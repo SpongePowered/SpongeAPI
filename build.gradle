@@ -1,0 +1,97 @@
+// Default tasks
+defaultTasks 'licenseFormat', 'build', 'install'
+
+// Apply plugin
+apply plugin: 'java'
+apply plugin: 'license'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+// Basic project information
+group = 'org.spongepowered'
+archivesBaseName = 'spongeapi'
+version = '1.0.0-SNAPSHOT'
+
+// Extended project information
+ext.projectName = 'SpongeAPI'
+ext.inceptionYear = '2014'
+ext.packaging = 'jar'
+ext.url = 'http://spongepowered.org'
+ext.description = 'SpongeAPI'
+ext.organization = 'SpongePowered'
+
+// Define variables
+ext.buildNumber = project.hasProperty("buildNumber") ? buildNumber : '0'
+ext.ciSystem = project.hasProperty("ciSystem") ? ciSystem : 'unknown'
+ext.commit = project.hasProperty("commit") ? commit : 'unknown'
+
+// Minimum version of Java required
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
+
+// Configuration settings
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds' // Always check for new snapshots
+}
+
+// Gradle repositories and dependencies
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+    }
+}
+
+// Project repositories
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = 'sonatype-nexus-public'
+        url = 'https://oss.sonatype.org/content/repositories/public/'
+    }
+}
+
+// Project dependencies
+dependencies {
+    compile 'org.apache.logging.log4j:log4j-api:2.0.2'
+}
+
+// Filter, process, and include resources
+processResources {
+    // Include in final JAR
+    from(rootProject.rootDir) {
+        include 'LICENSE.txt'
+    }
+}
+
+license {
+    ext.name = project.name
+    ext.organization = organization
+    ext.url = url
+    ext.year = inceptionYear
+    header rootProject.file('HEADER.txt')
+    ignoreFailures true
+    strictCheck true
+}
+
+// Source compiler configuration
+configure([compileJava, compileTestJava]) {
+    options.compilerArgs << '-Xlint:all'
+    options.compilerArgs << '-Xlint:-path'
+    options.deprecation = true
+}
+
+// JAR manifest configuration
+jar.manifest.mainAttributes(
+        "Built-By": System.properties['user.name'],
+        "Created-By": System.properties['java.vm.version'] + " (" + System.properties['java.vm.vendor'] + ")",
+        "Implementation-Title": name,
+        "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
+        "Implementation-Vendor": url)
+
+
+
+
