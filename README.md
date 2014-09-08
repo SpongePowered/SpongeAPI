@@ -1,6 +1,31 @@
-Sponge
-=========
+# Sponge
 
-DEVELOPMENT IN PROGRESS. UNSTABLE AND SUBJECT TO BREAKAGES.
+Sponge is an implementation of the SpongeAPI for Minecraft Forge.
 
-This project currently needs the latest builds of forge. Please see build.gradle for the current version/branch requirements.
+NOTE: THIS PROJECT IS CURRENTLY A WORK IN PROGRESS. WE DO NOT RECOMMEND USING IT AT THIS TIME.
+
+Compiling
+---------
+
+First, be sure to initialize the Git submodules:
+
+	git submodule init
+	git submodule update --init --recursive
+
+Use the provided Gradle runtime to compile.
+
+    ./gradlew build
+
+Note: This project currently needs a very recent build of Forge. Please see `build.gradle` for the current version/branch requirements.
+
+Contributing
+------------
+
+Sponge is available under the MIT license. The license can be found in LICENSE.txt.
+
+Contributions must be licensed under the MIT license.
+
+Links
+-----
+
+* [Visit our website](http://www.spongepowered.org/)
