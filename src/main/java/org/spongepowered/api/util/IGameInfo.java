@@ -21,47 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
-
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.util.IGameInfo;
+package org.spongepowered.api.util;
 
 /**
- * The core accessor of the API. The implementation uses this to pass constructed objects.
+ * Created by thomas on 9/9/2014.
  */
-public interface Game {
-    /**
-     * Gets the {@link org.apache.logging.log4j.Logger} of the implementation.
-     *
-     * @return The logger
-     */
-    public Logger getLogger();
+public interface IGameInfo {
 
-    /**
-     * Returns the {@link org.spongepowered.api.Platform} the implementation is executing from.
-     *
-     * @return The platform
-     */
-    public Platform getPlatform();
+    public String getForgeversion();
 
-    /**
-     * Gets the {@link org.spongepowered.api.plugin.PluginManager}.
-     *
-     * @return The plugin manager
-     */
-    public PluginManager getPluginManager();
+    public String getMinecraftversion();
 
-    /**
-     * Gets the {@link org.spongepowered.api.event.EventManager}.
-     *
-     * @return The event manager
-     */
-    public EventManager getEventManager();
+    public String getSpongeAPIversion();
 
-    /**
-     * @return Information about this server;
-     */
-    public IGameInfo getVersion();
+    public String getSpongeversion();
+
+
+    public String getMcpversion();
 }
