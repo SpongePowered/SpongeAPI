@@ -1,13 +1,22 @@
 package org.spongepowered.mod;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
+import org.objectweb.asm.Type;
+import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.mod.plugin.SpongePluginContainer;
 
-@Mod(modid = "SpongeMod")
-public class SpongeMod {
-    @EventHandler
-    public void onServerAboutToStart(FMLServerAboutToStartEvent event) {
+import cpw.mods.fml.common.DummyModContainer;
+import cpw.mods.fml.common.ModContainerFactory;
+import cpw.mods.fml.common.ModMetadata;
 
+public class SpongeMod extends DummyModContainer {
+    // This is a special Mod, provided by the IFMLLoadingPlugin. It will be instantiated before FML scans the system
+    // For mods (or plugins)
+    public SpongeMod() {
+        super(new ModMetadata());
+        // Register our special instance creator with FML
+        ModContainerFactory.instance().registerContainerType(Type.getType(Plugin.class), SpongePluginContainer.class);
+        
+        this.getMetadata().name = "SpongeAPIMod";
+        this.getMetadata().modId = "SpongeAPIMod";
     }
 }
