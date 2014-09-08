@@ -86,6 +86,7 @@ public class SpongeMod extends DummyModContainer {
         this.controller = controller;
         return true;
     }
+
     // We're not an FML mod, so we need to directly subscribe to the bus
     @Subscribe
     public void onEvent(FMLStateEvent event) {
