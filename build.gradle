@@ -83,9 +83,6 @@ dependencies {
 shadowJar {
     classifier = ''
     destinationDir = file("build/distributions")
-    dependencies {
-        include(dependency('org.spongepowered:spongeapi:1.0.0-SNAPSHOT'))
-    }
 }
 
 // Filter, process, and include resources
