@@ -9,10 +9,9 @@ Compiling
 
 First, be sure to initialize the Git submodules:
 
-	git submodule init
-	git submodule update --init --recursive
+    git submodule update --init --recursive
 
-Use the provided Gradle runtime to compile.
+Then use the provided Gradle runtime to compile.
 
     ./gradlew build
 
@@ -20,6 +19,19 @@ Note: This project currently needs a very recent build of Forge. Please see `bui
 
 Contributing
 ------------
+
+Before doing any major code changes, you probably want to have access to the minecraft source for reference:
+
+    ./gradlew setupDecompWorkspace
+
+Make sure your code compiles, passes tests and checkstyle, and has the correct license headers before committing:
+
+    ./gradlew build
+    ./gradlew
+
+A pre-commit hook is available that automatically checks and applies the license headers. To use it, copy it to .git/hooks
+
+    cp scripts/pre-commit .git/hooks
 
 Sponge is available under the MIT license. The license can be found in LICENSE.txt.
 
