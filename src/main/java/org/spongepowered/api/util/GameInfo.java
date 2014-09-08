@@ -21,47 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.util;
 
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.util.GameInfo;
+public class GameInfo {
+    //todo: automatic replacement when build (something about manifest ??)
 
-/**
- * The core accessor of the API. The implementation uses this to pass constructed objects.
- */
-public interface Game {
-    /**
-     * Gets the {@link org.apache.logging.log4j.Logger} of the implementation.
-     *
-     * @return The logger
-     */
-    public Logger getLogger();
+    private String forgeversion = "10.13.1.1214-new";
+    private String minecraftversion = "1.7.10";
+    private String spongeAPIversion = "1.0.0-SNAPSHOT";
+    private String spongeversion = "0.0.1"; //Truly no idea what version where on xD
+    private String mcpversion = "9.05";
 
-    /**
-     * Returns the {@link org.spongepowered.api.Platform} the implementation is executing from.
-     *
-     * @return The platform
-     */
-    public Platform getPlatform();
 
-    /**
-     * Gets the {@link org.spongepowered.api.plugin.PluginManager}.
-     *
-     * @return The plugin manager
-     */
-    public PluginManager getPluginManager();
+    public String getForgeversion() {
+        return forgeversion;
+    }
 
-    /**
-     * Gets the {@link org.spongepowered.api.event.EventManager}.
-     *
-     * @return The event manager
-     */
-    public EventManager getEventManager();
+    public String getMinecraftversion() {
+        return minecraftversion;
+    }
 
-    /**
-     * @return Information about this server;
-     */
-    public GameInfo getVersion();
+    public String getSpongeAPIversion() {
+        return spongeAPIversion;
+    }
+
+    public String getSpongeversion() {
+        return spongeversion;
+    }
+
+    public String getMcpversion() {
+        return mcpversion;
+    }
+
+    @Override
+    public String toString() {
+        return "mc: " + minecraftversion + ", Sponge: " + spongeversion + "(API " + spongeAPIversion + ")";
+    }
 }
