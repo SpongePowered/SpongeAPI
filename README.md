@@ -18,6 +18,13 @@ SpongeAPI is available under the MIT license. The license can be found in LICENS
 
 Contributions must be licensed under the MIT license.
 
+Pull request guidelines
+-----------------
+
+Only one commit per PR.  
+Keep all related changes in a single PR.  
+Be descriptive, explain the reasoning behind your changes.
+
 Links
 -----
 
