@@ -19,7 +19,7 @@ buildscript {
 }
 
 // Default tasks
-defaultTasks 'licenseFormat', 'check'
+defaultTasks 'licenseFormat'
 
 // Apply plugin
 apply plugin: 'forge'
@@ -49,16 +49,9 @@ minecraft {
     version = "1.7.10-10.13.1.1214-new"
 }
 
-// Configuration settings
-configurations {
-    packed
-    compile.extendsFrom packed
-    compile.resolutionStrategy.cacheChangingModulesFor 0, 'seconds' // Always check for new snapshots
-}
-
 // Project dependencies
 dependencies {
-    packed 'org.spongepowered:spongeapi:1.0.0-SNAPSHOT'
+    compile project(':SpongeAPI')
     testCompile 'junit:junit:4.11'
 }
 
@@ -84,13 +77,9 @@ processResources {
 }
 
 jar {
-   // Jar shading and packaging configuration
-    configurations.packed.each { dep ->
-        from(project.zipTree(dep)){
-            exclude 'META-INF', 'META-INF/**'
-        }
-    }
-
+    // Jar shading and packaging configuration
+    from project("SpongeAPI").sourceSets.main.output
+    
     // JAR manifest configuration
     manifest.mainAttributes(
         "Built-By": System.properties['user.name'],
@@ -108,7 +97,7 @@ license {
     ext.year = project.inceptionYear
     exclude "**/*.info"
     exclude "assets/**"
-    header file('HEADER.txt')
+    header new File(project("SpongeAPI").getProjectDir(), "HEADER.txt")
     sourceSets = project.sourceSets
     ignoreFailures false
     strictCheck true
@@ -121,11 +110,12 @@ checkstyle {
         "url" : project.url,
         "year" : project.inceptionYear
     ]
-    configFile = file("checkstyle.xml")
+    configFile = new File(project("SpongeAPI").getProjectDir(),"checkstyle.xml")
 }
+tasks.reobf.dependsOn "check"
 
 // Source compiler configuration
-configure([compileJava, compileTestJava]) {
+tasks.withType(JavaCompile) {
     options.compilerArgs += [ '-Xlint:all', '-Xlint:-path' ]
     options.deprecation = true
     options.encoding = 'utf8'
