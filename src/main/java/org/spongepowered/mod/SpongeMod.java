@@ -90,8 +90,7 @@ public class SpongeMod extends DummyModContainer {
     // We're not an FML mod, so we need to directly subscribe to the bus
     @Subscribe
     public void onEvent(FMLStateEvent event) {
-        if (event instanceof FMLServerAboutToStartEvent)
-        {
+        if (event instanceof FMLServerAboutToStartEvent) {
             game.getEventManager().fire(new SpongeServerAboutToStartEvent(game));
         }
     }

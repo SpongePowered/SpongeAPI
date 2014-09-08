@@ -1,46 +1,3 @@
-// Default tasks
-defaultTasks 'licenseFormat', 'shadowJar'
-
-// Apply plugin
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'forge'
-apply plugin: 'license'
-apply plugin: 'maven'
-apply plugin: 'signing'
-
-// Basic project information
-group = 'org.spongepowered'
-archivesBaseName = 'sponge'
-// Version -> Minecraft-MinecraftForge-Ours(If any?)
-version = '1.7.10-10.13.1.1213-SNAPSHOT'
-
-// Extended project information
-ext.projectName = 'Sponge'
-ext.inceptionYear = '2014'
-ext.packaging = 'jar'
-ext.url = 'http://spongepowered.org'
-ext.description = 'Sponge is a framework built on top of Forge and implements SpongeAPI'
-ext.organization = 'SpongePowered'
-
-// Define variables
-ext.buildNumber = project.hasProperty("buildNumber") ? buildNumber : '0'
-ext.ciSystem = project.hasProperty("ciSystem") ? ciSystem : 'unknown'
-ext.commit = project.hasProperty("commit") ? commit : 'unknown'
-
-// Minimum version of Java required
-sourceCompatibility = '1.6'
-targetCompatibility = '1.6'
-
-// Configuration settings
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds' // Always check for new snapshots
-}
-
-// MinecraftForge version
-minecraft {
-    version = "1.7.10-10.13.1.1214-new"
-}
-
 // Gradle repositories and dependencies
 buildscript {
     repositories {
@@ -58,31 +15,51 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.1.1'
     }
 }
 
-// Project repositories
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven {
-        name = 'sonatype-nexus-public'
-        url = 'https://oss.sonatype.org/content/repositories/public/'
-    }
+// Default tasks
+defaultTasks 'licenseFormat', 'check'
+
+// Apply plugin
+apply plugin: 'forge'
+apply plugin: 'license'
+apply plugin: 'maven'
+apply plugin: 'checkstyle'
+
+// Basic project information
+group = 'org.spongepowered'
+archivesBaseName = 'sponge'
+// Version -> Minecraft-MinecraftForge-Ours(If any?)
+version = '1.7.10-10.13.1.1213-SNAPSHOT'
+
+// Define variables
+ext.buildNumber = project.hasProperty("buildNumber") ? buildNumber : '0'
+ext.ciSystem = project.hasProperty("ciSystem") ? ciSystem : 'unknown'
+ext.commit = project.hasProperty("commit") ? commit : 'unknown'
+
+// Minimum version of Java required
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
+
+repositories { mavenLocal() }
+
+// MinecraftForge version
+minecraft {
+    version = "1.7.10-10.13.1.1214-new"
+}
+
+// Configuration settings
+configurations {
+    packed
+    compile.extendsFrom packed
+    compile.resolutionStrategy.cacheChangingModulesFor 0, 'seconds' // Always check for new snapshots
 }
 
 // Project dependencies
 dependencies {
-    compile 'org.spongepowered:spongeapi:1.0.0-SNAPSHOT'
-    compile 'junit:junit:4.11'
+    packed 'org.spongepowered:spongeapi:1.0.0-SNAPSHOT'
     testCompile 'junit:junit:4.11'
-}
-
-// Include dependencies in the final JAR
-shadowJar {
-    classifier = ''
-    destinationDir = file("build/distributions")
 }
 
 // Filter, process, and include resources
@@ -91,51 +68,65 @@ processResources {
     inputs.property "mcversion", project.minecraft.version
 
     // Include in final JAR
-    from(rootProject.rootDir) {
-        include 'LICENSE.txt'
-    }
+    from 'LICENSE.txt'
 
     // Replace variables
     from('src/main/resources/mcmod.info') {
-        expand 'modid': projectName,
-                'name': projectName,
-                'description': project.ext.description,
+        expand 'modid': project.name.toLowerCase(),
+                'name': project.name,
+                'description': project.description,
                 'version': version,
                 'buildNumber': buildNumber,
-                'mcversion': minecraft.version.split("-")[0],
+                'mcversion': minecraft.version,
                 'url': url,
                 'authorList': organization
     }
 }
 
-// License header formatting
-import nl.javadude.gradle.plugins.license.License
-tasks.withType(License).each { licenseTask ->
-    licenseTask.exclude 'assets/**'
-    licenseTask.exclude '**/*.info'
-}
+jar {
+   // Jar shading and packaging configuration
+    configurations.packed.each { dep ->
+        from(project.zipTree(dep)){
+            exclude 'META-INF', 'META-INF/**'
+        }
+    }
 
-license {
-    ext.name = project.name
-    ext.organization = organization
-    ext.url = url
-    ext.year = inceptionYear
-    header rootProject.file('HEADER.txt')
-    ignoreFailures true
-    strictCheck true
-}
-
-// Source compiler configuration
-configure([compileJava, compileTestJava]) {
-    options.compilerArgs << '-Xlint:all'
-    options.compilerArgs << '-Xlint:-path'
-    options.deprecation = true
-}
-
-// JAR manifest configuration
-jar.manifest.mainAttributes(
+    // JAR manifest configuration
+    manifest.mainAttributes(
         "Built-By": System.properties['user.name'],
         "Created-By": System.properties['java.vm.version'] + " (" + System.properties['java.vm.vendor'] + ")",
         "Implementation-Title": name,
         "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
         "Implementation-Vendor": url)
+}
+
+// License header formatting
+license {
+    ext.name = project.name
+    ext.organization = project.organization
+    ext.url = project.url
+    ext.year = project.inceptionYear
+    exclude "**/*.info"
+    exclude "assets/**"
+    header file('HEADER.txt')
+    sourceSets = project.sourceSets
+    ignoreFailures false
+    strictCheck true
+}
+
+checkstyle {
+    configProperties = [
+        "name" : project.name,
+        "organization" : project.organization,
+        "url" : project.url,
+        "year" : project.inceptionYear
+    ]
+    configFile = file("checkstyle.xml")
+}
+
+// Source compiler configuration
+configure([compileJava, compileTestJava]) {
+    options.compilerArgs += [ '-Xlint:all', '-Xlint:-path' ]
+    options.deprecation = true
+    options.encoding = 'utf8'
+}
