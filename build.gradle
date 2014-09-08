@@ -56,7 +56,7 @@ repositories {
 
 // Project dependencies
 dependencies {
-    compile 'org.apache.logging.log4j:log4j-api:2.0.2'
+    compile 'org.apache.logging.log4j:log4j-api:2.0-beta9'
 }
 
 // Filter, process, and include resources

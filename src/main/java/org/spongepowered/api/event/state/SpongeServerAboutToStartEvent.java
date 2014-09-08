@@ -21,11 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.event.state;
 
-/**
- * TODO Need to match this closely to FML's lifecycle
- */
-public enum GameState {
-    DISABLED, DISABLING, ENABLED, ENABLING, INITIALIZED, LOAD, SERVER_ABOUT_TO_START, SERVER_STARTING
+import org.spongepowered.api.Game;
+import org.spongepowered.api.GameState;
+
+public class SpongeServerAboutToStartEvent extends SpongeStateEvent {
+    public SpongeServerAboutToStartEvent(Game game) {
+        super(game);
+    }
+
+    @Override
+    public GameState getState() {
+        return GameState.SERVER_ABOUT_TO_START;
+    }
 }

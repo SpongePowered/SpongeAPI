@@ -39,6 +39,8 @@ public abstract class SpongeEvent {
     public final Game game;
     private final boolean isCancellable;
     private boolean isCancelled;
+    public Result result = Result.NO_RESULT;
+
     public SpongeEvent(Game game) {
         this.game = game;
         isCancellable = hasAnnotation(Cancellable.class);
@@ -46,10 +48,6 @@ public abstract class SpongeEvent {
 
     public final String getName() {
         return getClass().getSimpleName();
-    }
-
-    public Result getResult() {
-        return Result.NO_RESULT;
     }
 
     /**
