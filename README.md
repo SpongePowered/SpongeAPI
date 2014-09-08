@@ -1,8 +1,8 @@
-# Sponge
+# Sponge [![Build Status](https://api.travis-ci.org/SpongePowered/Sponge.png)](https://travis-ci.org/SpongePowered/Sponge/)
 
 Sponge is an implementation of the SpongeAPI for Minecraft Forge.
 
-NOTE: THIS PROJECT IS CURRENTLY A WORK IN PROGRESS. WE DO NOT RECOMMEND USING IT AT THIS TIME.
+**NOTE: THIS PROJECT IS CURRENTLY A WORK IN PROGRESS. WE DO NOT RECOMMEND USING IT AT THIS TIME.**
 
 Compiling
 ---------
