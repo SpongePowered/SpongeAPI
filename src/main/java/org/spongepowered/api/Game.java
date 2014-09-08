@@ -58,4 +58,10 @@ public interface Game {
      * @return The event manager
      */
     public EventManager getEventManager();
+
+
+    /**
+     * @return The Version string
+     */
+    public String getVersion();
 }
