@@ -21,50 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.mod;
+package org.spongepowered.mod.event;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.Game;
-import org.spongepowered.api.Platform;
+import cpw.mods.fml.common.eventhandler.EventBus;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.mod.event.SpongeEventManager;
-import org.spongepowered.mod.plugin.SpongePluginManager;
+import org.spongepowered.api.event.SpongeEvent;
 
-public final class SpongeGame implements Game {
-    private final Logger logger = LogManager.getLogger("sponge");
-    private final SpongePluginManager pluginManager;
-    private final SpongeEventManager eventManager;
+public class SpongeEventManager implements EventManager {
+    private final EventBus spongeBus = new EventBus();
 
-    public SpongeGame() {
-        this.pluginManager = new SpongePluginManager();
-        this.eventManager = new SpongeEventManager();
+    @Override
+    public void register(Object o) {
+        spongeBus.register(o);
     }
 
     @Override
-    public Logger getLogger() {
-        return logger;
+    public void unregister(Object o) {
+        spongeBus.unregister(o);
     }
 
     @Override
-    public Platform getPlatform() {
-        switch (FMLCommonHandler.instance().getEffectiveSide()) {
-            case CLIENT:
-                return Platform.CLIENT;
-            default:
-                return Platform.SERVER;
-        }
-    }
-
-    @Override
-    public PluginManager getPluginManager() {
-        return pluginManager;
-    }
-
-    @Override
-    public EventManager getEventManager() {
-        return eventManager;
+    public boolean fire(SpongeEvent spongeEvent) {
+        return spongeBus.post(new SpongeProxyEvent(spongeEvent));
     }
 }
