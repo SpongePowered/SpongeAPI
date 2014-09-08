@@ -27,8 +27,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
 import org.objectweb.asm.Type;
 import org.spongepowered.api.event.state.SpongeServerAboutToStartEvent;
 import org.spongepowered.api.plugin.Plugin;
@@ -36,12 +34,24 @@ import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.mod.plugin.SpongePluginContainer;
 
 import com.google.common.collect.Maps;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+
+import cpw.mods.fml.common.DummyModContainer;
+import cpw.mods.fml.common.LoadController;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainerFactory;
+import cpw.mods.fml.common.ModMetadata;
+import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
+import cpw.mods.fml.common.event.FMLStateEvent;
 
 public class SpongeMod extends DummyModContainer {
     public static SpongeMod instance;
     private final SpongeGame game;
 
     private Map<Object, PluginContainer> plugins = Maps.newHashMap();
+    private EventBus eventBus;
+    private LoadController controller;
     // This is a special Mod, provided by the IFMLLoadingPlugin. It will be instantiated before FML scans the system
     // For mods (or plugins)
     public SpongeMod() {
@@ -68,9 +78,20 @@ public class SpongeMod extends DummyModContainer {
         Object proxy = Loader.instance().getIndexedModList().get(s);
         return plugins.get(proxy);
     }
-
-    @Mod.EventHandler
-    public void onServerStarting(FMLServerAboutToStartEvent event) {
-        game.getEventManager().fire(new SpongeServerAboutToStartEvent(game));
+    
+    @Override
+    public boolean registerBus(EventBus bus, LoadController controller) {
+        bus.register(this);
+        this.eventBus = bus;
+        this.controller = controller;
+        return true;
+    }
+    // We're not an FML mod, so we need to directly subscribe to the bus
+    @Subscribe
+    public void onEvent(FMLStateEvent event) {
+        if (event instanceof FMLServerAboutToStartEvent)
+        {
+            game.getEventManager().fire(new SpongeServerAboutToStartEvent(game));
+        }
     }
 }
