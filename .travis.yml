@@ -5,4 +5,4 @@ install: true
 matrix:
   include:
   - jdk: openjdk6
-    script: ./gradlew build
+    script: gradle build
