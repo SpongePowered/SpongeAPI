@@ -60,8 +60,6 @@ public class SpongeProxyEvent extends Event {
         switch (result) {
             case ALLOW:
                 return Result.ALLOW;
-            case DEFAULT:
-                return Result.DEFAULT;
             case DENY:
                 return Result.DENY;
             default:
