@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.mod.SpongeMod;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,7 +24,7 @@ public class SpongePluginManager implements PluginManager {
 
     @Override
     public PluginContainer getPlugin(String s) {
-        return null;
+        return SpongeMod.instance.getPlugin(s);
     }
 
     @Override
@@ -33,6 +34,6 @@ public class SpongePluginManager implements PluginManager {
 
     @Override
     public Collection<PluginContainer> getPlugins() {
-        return null;
+        return SpongeMod.instance.getPlugins();
     }
 }
