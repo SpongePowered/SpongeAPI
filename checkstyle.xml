@@ -29,7 +29,7 @@
             <!-- Left brace never goes on another line -->
             <property name="option" value="eol" />
         </module>
-        <!-- We don't check right brance -->
+        <!-- We don't check right brace -->
         <module name="DefaultComesLast" />
         <!-- default case in switch should be last -->
         <module name="GenericWhitespace" />
