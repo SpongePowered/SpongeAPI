@@ -86,7 +86,8 @@ jar {
         "Created-By": System.properties['java.vm.version'] + " (" + System.properties['java.vm.vendor'] + ")",
         "Implementation-Title": name,
         "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
-        "Implementation-Vendor": url)
+        "Implementation-Vendor": url,
+        "FMLCorePlugin": "org.spongepowered.mod.SpongeCoremod")
 }
 
 // License header formatting
