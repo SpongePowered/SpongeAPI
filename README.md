@@ -29,6 +29,10 @@ Make sure your code compiles, passes tests and checkstyle, and has the correct l
     ./gradlew build
     ./gradlew
 
+A pre-commit hook is available that automatically checks and applies the license headers. To use it, copy it to .git/hooks
+
+    cp scripts/pre-commit .git/hooks
+
 Sponge is available under the MIT license. The license can be found in LICENSE.txt.
 
 Contributions must be licensed under the MIT license.
