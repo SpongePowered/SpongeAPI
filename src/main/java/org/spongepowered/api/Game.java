@@ -92,4 +92,18 @@ public interface Game {
      * @param message The message to send
      */
     void broadcastMessage(String message);
+
+    /**
+     * Gets the API version.
+     *
+     * @return The API version
+     */
+    String getAPIVersion();
+
+    /**
+     * Gets the implementation version.
+     *
+     * @return The implementation version
+     */
+    String getImplementationVersion();
 }
