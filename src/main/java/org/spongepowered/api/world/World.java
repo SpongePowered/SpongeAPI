@@ -47,13 +47,25 @@ public interface World {
     String getName();
 
     /**
-     * Gets a specific {@link Chunk} by its x/z chunk coordinate.
+     * Gets an already-loaded {@link Chunk} by its x/z chunk coordinate, or
+     * null if it's not available
      *
-     * @param x X chunk coordinate
-     * @param z Z chunk coordinate
+     * @param cx X chunk coordinate
+     * @param cz Z chunk coordinate
      * @return The chunk
      */
-    Chunk getChunk(int x, int z);
+    Chunk getChunk(int cx, int cz);
+
+    /**
+     * Loads and returns a {@link Chunk}. If the chunk does not
+     * exist, it will be generated unless `shouldGenerate` is false.
+     *
+     * @param cx X chunk coordinate
+     * @param cz Z chunk coordinate
+     * @param shouldGenerate Generate if new
+     * @return Chunk loaded/generated
+     */
+    Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
 
     /**
      * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
