@@ -24,77 +24,31 @@
 package org.spongepowered.api.event;
 
 /**
- * Order that a {@link org.spongepowered.api.event.SpongeEventHandler} may be registered at.
+ * Order that a {@link SpongeEventHandler} may be registered at.<br>
+ * <br>
+ * Event handlers are called the order given in the following table.<br>
+ * <br>
+ * <table summary="Order Recommendations">
+ *   <tr><td>Order</td>     <td>Read Only</td><td>Cancellation Allowed</td><td>Recommendation</td></tr>
+ *   <tr><td>PRE</td>         <td>YES</td>             <td>NO</td>         <td>Initialisation and registration actions</td></tr>
+ *   <tr><td>AFTER_PRE</td>   <td>YES</td>             <td>NO</td>         <td>Immediate responses to actions in PRE</td></tr>
+ *   <tr><td>FIRST</td>       <td>YES</td>             <td>YES</td>        <td>Cancellation by protection plugins for informational purposes</td></tr>
+ *   <tr><td>EARLY</td>       <td>NO</td>              <td>YES</td>        <td>Standard actions that should happen before other plugins react to the event</td></tr>
+ *   <tr><td>DEFAULT</td>     <td>NO</td>              <td>YES</td>        <td>The default action order</td></tr>
+ *   <tr><td>LATE</td>        <td>NO</td>              <td>YES</td>        <td>Standard actions that should happen after other plugins react to the event</td></tr>
+ *   <tr><td>LAST</td>        <td>YES</td>             <td>YES</td>        <td>Final cancellation by protection plugins</td></tr>
+ *   <tr><td>BEFORE_POST</td> <td>YES</td>             <td>YES</td>        <td>Actions that need to respond to cancelled events before POST</td></tr>
+ *   <tr><td>POST</td>        <td>YES</td>             <td>YES</td>        <td>Actions that need to react to the final and stable effects of event</td></tr>
+ * </table>
  */
 public enum Order {
-    /**
-     * Called before all other handlers. Should be used for high-priority event cancelling. Should not be used to make changes to any implementation core objects.
-     */
-    PRE(0, false),
-    /**
-     * Called after "Pre". Should be used for high-priority event cancelling.
-     */
-    FIRST(1, false),
-    /**
-     * Called after "First" handlers and before "Early" handlers.<br> Is called even when event has been cancelled.<br> Should generally be used to un-cancel events cancelled in First.<br>
-     */
-    FIRST_IGNORE_CANCELLED(2, true),
-    /**
-     * Called after "First" handlers. Should generally be used for low priority event cancelling.
-     */
-    EARLY(3, false),
-    /**
-     * Called after "Early" handlers and before "Default" handlers.<br> Called even when event has been cancelled.<br> This is for general-purpose always-run events.<br>
-     */
-    EARLY_IGNORE_CANCELLED(4, true),
-    /**
-     * Default call, for general purpose handlers.
-     */
-    DEFAULT(5, false),
-    /**
-     * Called after "Default" handlers and before "Late" handlers.<br> Called even when the event has been canceled.<br> This is for general-purpose always-run events.<br>
-     */
-    DEFAULT_IGNORE_CANCELLED(6, true),
-    /**
-     * Called after "Default" handlers.
-     */
-    LATE(7, false),
-    /**
-     * Called after "Late" handlers and before "Last" handlers.<br> Called even when the event has been cancelled.<br>
-     */
-    LATE_IGNORE_CANCELLED(8, true),
-    /**
-     * Called after "Late" handlers.<br> No changes to the event should be made in this order slot (may be enforced by implementation).<br>
-     */
-    LAST(9, false),
-    /**
-     * Called after "Last" handlers and before "Post" handlers.<br> No changes to the event should be made in this order slot (may be enforced by implementation).<br> This is called even when event has been cancelled.<br>
-     */
-    LAST_IGNORE_CANCELLED(10, true),
-    /**
-     * Called after all other handlers. Should not be used to make changes to the event or any implementation core objects.
-     */
-    POST(11, false);
-
-    private final int index;
-    private final boolean ignoreCancelled;
-
-    Order(int index, boolean ignoreCancelled) {
-        this.index = index;
-        this.ignoreCancelled = ignoreCancelled;
-    }
-
-    /**
-     * @return the index
-     */
-    public int getIndex() {
-        return index;
-    }
-
-    /**
-     * @return whether this Order ignores cancellation status
-     */
-    public boolean ignoresCancelled() {
-        return ignoreCancelled;
-    }
+    PRE,
+    AFTER_PRE,
+    FIRST,
+    EARLY,
+    DEFAULT,
+    LATE,
+    LAST,
+    BEFORE_POST,
+    POST
 }

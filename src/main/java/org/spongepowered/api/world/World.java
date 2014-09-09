@@ -31,24 +31,34 @@ import java.util.UUID;
 public interface World {
 
     /**
-     * Gets the unique id for this world
+     * Gets the unique id ({@link java.util.UUID} for this world.
      *
-     * @return a unique id
+     * @return The unique id or UUID
      */
     public UUID getUniqueID();
 
     /**
-     * Gets the name of the world
+     * Gets the name of the world.
      *
-     * @return the world name
+     * @return The world name
      */
     public String getName();
 
     /**
-     * Gets a specific {@link Chunk} by the x/z chunk coordinates in the world.
-     * @param x
-     * @param z
-     * @return a chunk
+     * Gets a specific {@link Chunk} by its x/z chunk coordinate.
+     *
+     * @param x X chunk coordinate
+     * @param z Z chunk coordinate
+     * @return The chunk
      */
     public Chunk getChunk(int x, int z);
+
+    /**
+     * Gets a specific {@link org.spongepowered.api.world.Block} by its x/y/z block coordinate.
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The block
+     */
+    public Block getBlock(int x, int y, int z);
 }
