@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.block.Block;
+
 import java.util.UUID;
 
 /**
@@ -54,7 +56,7 @@ public interface World {
     public Chunk getChunk(int x, int z);
 
     /**
-     * Gets a specific {@link org.spongepowered.api.world.Block} by its x/y/z block coordinate.
+     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
      * @param x X block coordinate
      * @param y Y block coordinate
      * @param z Z block coordinate
