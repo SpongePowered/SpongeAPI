@@ -21,32 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.event.state;
 
-public interface PluginContainer {
-    /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The id
-     */
-    String getID();
+import org.spongepowered.api.Game;
+import org.spongepowered.api.GameState;
 
-    /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
-     */
-    String getName();
+public class SpongeServerStoppedEvent extends SpongeStateEvent {
+    public SpongeServerStoppedEvent(Game game) {
+        super(game);
+    }
 
-    /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
-     */
-    String getVersion();
-
-    /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}
-     *
-     * TODO Provide a way to not dereference this back to Object
-     * @return The instance
-     */
-    Object getInstance();
+    @Override
+    public GameState getState() {
+        return GameState.SERVER_STOPPED;
+    }
 }

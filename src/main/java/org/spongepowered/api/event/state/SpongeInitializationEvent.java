@@ -33,6 +33,6 @@ public class SpongeInitializationEvent extends SpongeStateEvent {
 
     @Override
     public GameState getState() {
-        return GameState.INITIALIZED;
+        return GameState.INITIALIZATION;
     }
 }

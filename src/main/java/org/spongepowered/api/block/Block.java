@@ -21,18 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.block;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
-
-public class SpongeLoadEvent extends SpongeStateEvent {
-    public SpongeLoadEvent(Game game) {
-        super(game);
-    }
-
-    @Override
-    public GameState getState() {
-        return GameState.LOAD;
-    }
+/**
+ * Describes a voxel. Child classes define specific functionality.
+ */
+public interface Block {
+    /**
+     * Gets the id of this block.
+     *
+     * Ex. Minecraft registers stone as "minecraft:stone"
+     * @return The id
+     */
+    String getID();
 }

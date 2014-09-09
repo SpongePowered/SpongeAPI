@@ -21,32 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.item;
 
-public interface PluginContainer {
-    /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The id
-     */
-    String getID();
+import org.spongepowered.api.block.Block;
 
+/**
+ * Represents a {@link org.spongepowered.api.block.Block} as an {@link org.spongepowered.api.item.Item}
+ */
+public interface ItemBlock extends Item {
     /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
+     * Gets the {@link org.spongepowered.api.block.Block} this item places on interaction
+     * @return The block
      */
-    String getName();
-
-    /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
-     */
-    String getVersion();
-
-    /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}
-     *
-     * TODO Provide a way to not dereference this back to Object
-     * @return The instance
-     */
-    Object getInstance();
+    Block getBlock();
 }

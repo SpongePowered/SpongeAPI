@@ -24,8 +24,17 @@
 package org.spongepowered.api;
 
 /**
- * TODO Need to match this closely to FML's lifecycle
+ * Top to bottom order of the lifecycle.
  */
 public enum GameState {
-    DISABLED, DISABLING, ENABLED, ENABLING, INITIALIZED, LOAD, SERVER_ABOUT_TO_START, SERVER_STARTING
+    CONSTRUCTION,
+    LOAD_COMPLETE,
+    PRE_INITIALIZATION,
+    INITIALIZATION,
+    POST_INITIALIZATION,
+    SERVER_ABOUT_TO_START,
+    SERVER_STARTING,
+    SERVER_STARTED,
+    SERVER_STOPPING,
+    SERVER_STOPPED
 }

@@ -21,32 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.item;
 
-public interface PluginContainer {
+public interface Item {
     /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets the id of this item.
+     *
+     * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
      * @return The id
      */
     String getID();
-
-    /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
-     */
-    String getName();
-
-    /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
-     */
-    String getVersion();
-
-    /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}
-     *
-     * TODO Provide a way to not dereference this back to Object
-     * @return The instance
-     */
-    Object getInstance();
 }
