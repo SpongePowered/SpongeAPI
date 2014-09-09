@@ -3,7 +3,6 @@ notifications:
   email: false
 install: true
 script:
-  - gradle build
   - gradle
   - git diff --exit-code
 matrix:
