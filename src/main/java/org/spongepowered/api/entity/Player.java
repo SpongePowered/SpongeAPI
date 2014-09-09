@@ -31,7 +31,7 @@ public interface Player extends HumanEntity {
      * Gets the player's 128-bit unique identifier ({@link UUID}) that 
      *  differentiates them from other players with the same name.
      *
-     * the UUID of the player
+     * @return The UUID of the player
      */
     UUID getUniqueId();
 
