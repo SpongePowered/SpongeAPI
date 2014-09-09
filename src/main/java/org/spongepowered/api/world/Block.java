@@ -34,4 +34,11 @@ public interface Block {
      * @return The id
      */
     public String getID();
+    
+    /**
+     * Gets the {@link Location} of this block.
+     * 
+     * @return the block's location
+     */
+    public Location getLocation();
 }
