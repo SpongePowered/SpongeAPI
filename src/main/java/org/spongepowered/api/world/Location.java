@@ -42,7 +42,7 @@ public final class Location implements Cloneable {
     private float yaw;
     
     public Location(final World world, final double x, final double y, final double z) {
-        this(x, y, z, DEFAULT_PITCH, DEFAULT_YAW);
+        this(world, x, y, z, DEFAULT_PITCH, DEFAULT_YAW);
     }
     
     public Location(final World world, final double x, final double y, final double z, final float pitch, final float yaw) {
