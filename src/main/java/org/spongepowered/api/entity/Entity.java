@@ -66,7 +66,7 @@ public interface Entity {
      * @return a list of entities within a bounding box centered around this
      *         entity
      */
-    List<Entity> getNerabyEntities(double x, double y, double z);
+    List<Entity> getNearbyEntities(double x, double y, double z);
 
     /**
      * 
