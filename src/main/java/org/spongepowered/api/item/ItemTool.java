@@ -23,28 +23,14 @@
  */
 package org.spongepowered.api.item;
 
-import java.util.Locale;
-
-public interface Item {
+/**
+ * Represents all items which can have durability.
+ *
+ */
+public interface ItemTool extends Item {
     /**
-     * Gets the id of this item.
-     *
-     * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
-     * @return The id
-     */
-    String getID();
-    
-    /**
-     * Gets default attack damage of item. It may have modified by attributes and/or
-     * enchantments.
+     * Gets max durability of the item type.
      * @return
      */
-    public double getAttackDamage();
-    
-    /**
-     * Gets item's default name in given language.
-     * @param locale - should be language
-     * @return item's default name
-     */
-    public double getName(Locale locale);
+    public int getMaxDurability();
 }
