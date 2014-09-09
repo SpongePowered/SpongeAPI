@@ -19,7 +19,7 @@ buildscript {
 }
 
 // Default tasks
-defaultTasks 'licenseFormat'
+defaultTasks 'build', 'licenseFormat'
 
 // Apply plugin
 apply plugin: 'forge'
