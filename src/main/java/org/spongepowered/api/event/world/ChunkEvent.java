@@ -23,25 +23,18 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.SpongeEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
- * Abstract class for Chunk events
+ * Describes events which involve a {@link Chunk}
  */
-public abstract class ChunkEvent extends SpongeEvent {
-
-    public final Chunk chunk;
+public interface ChunkEvent {
 
     /**
-     * Called when a {@link Chunk} is loaded in an existing {@link World} map
+     * Gets the {@link Chunk} included in the event
      *
-     * @param game Game
-     * @param chunk {@link Chunk} being loaded
+     * @return Event {@link Chunk}
      */
-    public ChunkEvent(Game game, Chunk chunk) {
-        super(game);
-        this.chunk = chunk;
-    }
+    Chunk getChunk();
+
 }

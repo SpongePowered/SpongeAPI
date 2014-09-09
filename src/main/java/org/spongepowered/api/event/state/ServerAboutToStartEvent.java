@@ -25,17 +25,10 @@ package org.spongepowered.api.event.state;
 
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameState;
-import org.spongepowered.api.event.SpongeEvent;
 
-public abstract class SpongeStateEvent extends SpongeEvent {
-    public SpongeStateEvent(Game game) {
-        super(game);
-    }
+/**
+ * Represents {@link GameState#SERVER_ABOUT_TO_START} event
+ */
+public interface ServerAboutToStartEvent extends StateEvent {
 
-    @Override
-    public final boolean isCancellable() {
-        return false;
-    }
-
-    public abstract GameState getState();
 }

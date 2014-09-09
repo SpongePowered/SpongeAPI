@@ -26,13 +26,9 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameState;
 
-public class SpongePostInitializationEvent extends SpongeStateEvent {
-    public SpongePostInitializationEvent(Game game) {
-        super(game);
-    }
+/**
+ * Represents {@link GameState#LOAD_COMPLETE} event
+ */
+public interface LoadCompleteEvent extends StateEvent {
 
-    @Override
-    public GameState getState() {
-        return GameState.POST_INITIALIZATION;
-    }
 }
