@@ -25,10 +25,61 @@ package org.spongepowered.api.item;
 
 public interface Item {
     /**
+     * Gets the damage value of this item.
+     * 
+     * @return The item damage value, 0 for undamaged items
+     */
+    int getDamage();
+    
+    /**
      * Gets the id of this item.
      *
      * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
      * @return The id
      */
     String getID();
+    
+    /**
+     * Gets the lore (text under the item name) of the item
+     * 
+     * @return The item lore, if there is any. If not, it returns null.
+     */
+    String getLore();
+    
+    /**
+     * Gets the display name of this item.
+     * This can change if the item is named in an anvil or through plugins.
+     * 
+     * @return The name
+     */
+    String getName();
+    
+    /**
+     * Checks if this item is enchanted
+     * 
+     * @returns true if the item is enchanted, false if not
+     */
+    boolean isEnchanted();
+    
+    /**
+     * Sets the new damage value for this item
+     * Setting it to 0 will completely reset damage and "repair" the item
+     * 
+     * @param damage New damage value
+     */
+    void setDamage(int damage);
+    
+    /**
+     * Sets the new lore for this item
+     * 
+     * @param lore New item lore
+     */
+    void setLore(String lore);
+    
+    /**
+     * Sets the new name for this item
+     * 
+     * @param name New item name
+     */
+    void setName(String name);
 }
