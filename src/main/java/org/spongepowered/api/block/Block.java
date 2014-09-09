@@ -23,6 +23,9 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.World;
+
 /**
  * Describes a voxel. Child classes define specific functionality.
  */
@@ -34,4 +37,28 @@ public interface Block {
      * @return The id
      */
     String getID();
+    /**
+     * Gets the current X coordinate of this block
+     */
+    int getX();
+    /**
+     * Gets the current Y coordinate of this block
+     */
+    int getY();
+    /**
+     * Gets the current Z coordinate of this block
+     */
+    int getZ();
+    /**
+     * Gets the light level between 0-15. 
+     */
+    byte getLightLevel();
+    /**
+     * Gets the world which contains this Block. 
+     */
+    World getWorld();
+    /**
+     * Gets the chunk which contains this Block. 
+     */
+    Chunk getChunk();
 }
