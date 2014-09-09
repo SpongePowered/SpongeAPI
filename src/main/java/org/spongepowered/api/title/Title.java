@@ -84,6 +84,13 @@ public interface Title {
     void addSubTitle(String msg);
 
     /**
+     * Remove a subtitle by index.
+     *
+     * @param index at which the specified element is to be removed.
+     */
+    void removeSubTitle(int index);
+
+    /**
      * Set the duration in ticks of the fade out effect of the title.
      *
      * @param ticks The amount of ticks (1/20 second) for the fade in effect.
