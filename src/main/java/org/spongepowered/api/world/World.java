@@ -62,5 +62,5 @@ public interface World {
      * @param z Z block coordinate
      * @return The block
      */
-    Block getBlock(int x, int y, int z);
+    Block getBlock(double x, double y, double z);
 }
