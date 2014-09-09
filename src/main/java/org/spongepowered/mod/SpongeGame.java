@@ -30,8 +30,12 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.world.World;
 import org.spongepowered.mod.event.SpongeEventManager;
 import org.spongepowered.mod.plugin.SpongePluginManager;
+
+import java.util.Collection;
+import java.util.UUID;
 
 public final class SpongeGame implements Game {
     private final Logger logger = LogManager.getLogger("sponge");
@@ -66,5 +70,25 @@ public final class SpongeGame implements Game {
     @Override
     public EventManager getEventManager() {
         return eventManager;
+    }
+
+    @Override
+    public Collection<World> getWorlds() {
+        return null;
+    }
+
+    @Override
+    public World getWorld(UUID uniqueId) {
+        return null;
+    }
+
+    @Override
+    public World getWorld(String worldName) {
+        return null;
+    }
+
+    @Override
+    public void broadcastMessage(String message) {
+
     }
 }

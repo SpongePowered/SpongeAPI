@@ -41,7 +41,7 @@ public class SpongeEventManager implements EventManager {
     }
 
     @Override
-    public boolean fire(SpongeEvent spongeEvent) {
+    public boolean call(SpongeEvent spongeEvent) {
         return spongeBus.post(new SpongeProxyEvent(spongeEvent));
     }
 }
