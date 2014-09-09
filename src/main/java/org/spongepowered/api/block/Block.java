@@ -33,5 +33,5 @@ public interface Block {
      * Ex. Minecraft registers stone as "minecraft:stone"
      * @return The id
      */
-    public String getID();
+    String getID();
 }

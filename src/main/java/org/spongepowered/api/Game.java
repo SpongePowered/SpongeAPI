@@ -40,56 +40,56 @@ public interface Game {
      *
      * @return The logger
      */
-    public Logger getLogger();
+    Logger getLogger();
 
     /**
      * Returns the {@link org.spongepowered.api.Platform} the implementation is executing from.
      *
      * @return The platform
      */
-    public Platform getPlatform();
+    Platform getPlatform();
 
     /**
      * Gets the {@link org.spongepowered.api.plugin.PluginManager}.
      *
      * @return The plugin manager
      */
-    public PluginManager getPluginManager();
+    PluginManager getPluginManager();
 
     /**
      * Gets the {@link org.spongepowered.api.event.EventManager}.
      *
      * @return The event manager
      */
-    public EventManager getEventManager();
+    EventManager getEventManager();
 
     /**
-     * Gets all currently loaded worlds
+     * Gets all currently loaded {@link org.spongepowered.api.world.World}s.
      *
-     * @return list of loaded worlds
+     * @return Collection of loaded worlds
      */
-    public Collection<World> getWorlds();
+    Collection<World> getWorlds();
 
     /**
-     * Gets a loaded {@link World} by UUID
+     * Gets a loaded {@link World} by its unique id ({@link java.util.UUID}.
      *
-     * @param uniqueId
-     * @return a world
+     * @param uniqueId UUID to lookup
+     * @return The world or null if not found
      */
-    public World getWorld(UUID uniqueId);
+    World getWorld(UUID uniqueId);
 
     /**
      * Gets a loaded {@link World} by name
      *
-     * @param worldName
-     * @return a world
+     * @param worldName Name to lookup
+     * @return The world or null if not found
      */
-    public World getWorld(String worldName);
+    World getWorld(String worldName);
 
     /**
      * Sends the given message to all online players
      *
-     * @param message
+     * @param message The message to send
      */
-    public void broadcastMessage(String message);
+    void broadcastMessage(String message);
 }

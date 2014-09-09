@@ -10,5 +10,5 @@ public interface ItemBlock extends Item {
      * Gets the {@link org.spongepowered.api.block.Block} this item places on interaction
      * @return The block
      */
-    public Block getBlock();
+    Block getBlock();
 }

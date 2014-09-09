@@ -34,7 +34,7 @@ public interface PluginManager {
      * @param name The name
      * @return The plugin or null if not found
      */
-    public PluginContainer getPlugin(String name);
+    PluginContainer getPlugin(String name);
 
     /**
      * Gets the {@link org.apache.logging.log4j.Logger} for the {@link org.spongepowered.api.plugin.PluginContainer}.
@@ -42,12 +42,12 @@ public interface PluginManager {
      * @param plugin The plugin
      * @return The logger
      */
-    public Logger getLogger(PluginContainer plugin);
+    Logger getLogger(PluginContainer plugin);
 
     /**
      * Gets a {@link java.util.Collection} of all {@link org.spongepowered.api.plugin.PluginContainer}s
      *
      * @return The plugins
      */
-    public Collection<PluginContainer> getPlugins();
+    Collection<PluginContainer> getPlugins();
 }
