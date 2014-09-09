@@ -23,5 +23,5 @@
  */
 package org.spongepowered.api.entity;
 
-public interface HumanEntity {
+public interface HumanEntity extends LivingEntity {
 }
