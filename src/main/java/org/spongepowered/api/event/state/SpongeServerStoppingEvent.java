@@ -26,13 +26,13 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameState;
 
-public class SpongeLoadEvent extends SpongeStateEvent {
-    public SpongeLoadEvent(Game game) {
+public class SpongeServerStoppingEvent extends SpongeStateEvent {
+    public SpongeServerStoppingEvent(Game game) {
         super(game);
     }
 
     @Override
     public GameState getState() {
-        return GameState.LOAD;
+        return GameState.SERVER_STOPPING;
     }
 }
