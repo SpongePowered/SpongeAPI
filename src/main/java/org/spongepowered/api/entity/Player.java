@@ -23,7 +23,17 @@
  */
 package org.spongepowered.api.entity;
 
+import java.util.UUID;
+
 public interface Player extends HumanEntity {
+ 
+    /**
+     * Gets the player's 128-bit unique identifier ({@link UUID}) that 
+     *  differentiates them from other players with the same name.
+     *
+     * @return The UUID of the player
+     */
+    UUID getUniqueId();
 
     /**
      * Gets the players last known username
