@@ -46,21 +46,21 @@ public interface Title {
      *
      * @return ticks
      */
-    Integer getFadeOut();
+    int getFadeOut();
 
     /**
      * Get the amount of ticks (1/20 second) for the fade in effect.
      *
      * @return ticks
      */
-    Integer getFadeIn();
+    int getFadeIn();
 
     /**
      * Get the amount of ticks for the stay time.
      *
      * @return ticks
      */
-    Integer getStayTime();
+    int getStayTime();
 
     /**
      * Set the main title from Title.
@@ -88,21 +88,21 @@ public interface Title {
      *
      * @param ticks The amount of ticks (1/20 second) for the fade in effect.
      */
-    void setFadeOut(Integer ticks);
+    void setFadeOut(int ticks);
 
     /**
      * Set the duration in ticks how long the title should stay on the screen.
      *
      * @param ticks The amount of ticks (1/20 second) for the fade out effect.
      */
-    void setFadeIn(Integer ticks);
+    void setFadeIn(int ticks);
 
     /**
      * Set the duration in ticks how long the title should stay on the screen.
      *
      * @param ticks The amount of ticks (1/20 second) for the stay time.
      */
-    void setStayTime(Integer ticks);
+    void setStayTime(int ticks);
 
     /*
      TODO Create sendTo(entity/player) void.
