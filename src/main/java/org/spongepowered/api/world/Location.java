@@ -21,26 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.world;
 
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * A loaded Minecraft location
  */
-public interface Block {
+public interface World {
+
     /**
-     * Gets the id of this block.
+     * Gets the location's {@link org.spongepowered.api.world.World}.
      *
-     * Ex. Minecraft registers stone as "minecraft:stone"
-     * @return The id
+     * @return The world.
      */
-    String getID();
-	
+    World getWorld();
+
     /**
-     * Gets the block's {@link org.spongepowered.api.world.Location}.
+     * Gets the coordinate X.
      *
-     * @return The location.
+     * @return The coordinate X.
      */
-	Location getLocation();
+    Double getX();
+
+    /**
+     * Gets the coordinate Y.
+     *
+     * @return The coordinate Y.
+     */
+    Double getY();
+
+    /**
+     * Gets the coordinate Z.
+     *
+     * @return The coordinate Z.
+     */
+    Double getZ();
 }
