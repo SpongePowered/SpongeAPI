@@ -10,10 +10,12 @@ public class ExamplePlugin {
     @SpongeEventHandler
     public void onInitialization(SpongeInitializationEvent event) {
         event.game.getLogger().info("Hey folks, this is INITIALIZATION!");
+
     }
 
     @SpongeEventHandler
     public void onServerStarting(SpongeServerStartingEvent event) {
         event.game.getLogger().info("Hey...my implementation's server is starting?");
+        event.game.getCommandManager().registerCommand(new HelloWorldCommand());
     }
 }

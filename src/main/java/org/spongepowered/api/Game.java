@@ -24,6 +24,7 @@
 package org.spongepowered.api;
 
 import org.apache.logging.log4j.Logger;
+import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.world.World;
@@ -106,4 +107,11 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+
+    /**
+     * Gets the command {@link org.spongepowered.api.command.CommandManager} to register or overwrite commands
+     *
+     * @Return The command
+     */
+    CommandManager getCommandManager();
 }
