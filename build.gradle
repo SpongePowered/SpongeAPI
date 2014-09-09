@@ -78,7 +78,7 @@ processResources {
 
 jar {
     // Jar shading and packaging configuration
-    from project("SpongeAPI").sourceSets.main.output
+    from { project("SpongeAPI").sourceSets.main.output.files }
     
     // JAR manifest configuration
     manifest.mainAttributes(
