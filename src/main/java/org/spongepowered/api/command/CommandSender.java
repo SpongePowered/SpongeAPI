@@ -27,5 +27,11 @@ package org.spongepowered.api.command;
  * 
  */
 public interface CommandSender {
+    /**
+     * Gets the name of the {@link CommandSender}
+     * 
+     * @return The name of the {@link CommandSender}
+     */
+    String getName();
     // TODO
 }
