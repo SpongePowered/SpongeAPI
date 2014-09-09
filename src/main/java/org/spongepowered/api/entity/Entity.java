@@ -84,7 +84,7 @@ public interface Entity {
 	 * 
 	 * @return the vehicle that this player is inside.
 	 */
-	Entity GetVehicle();
+	Entity getVehicle();
 	//Vector getVelocity();
 	/**
 	 * 
