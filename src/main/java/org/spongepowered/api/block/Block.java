@@ -38,7 +38,7 @@ public interface Block {
     /**
      * Gets the raw id of this block.
      *
-     * Ex. Minecraft registers sponge as 19 (Integer)
+     * Warning: Usage of this method is internal and is not supported.
      * @return The raw id
      */
     int getRawID();
