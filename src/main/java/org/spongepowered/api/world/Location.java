@@ -79,7 +79,7 @@ public final class Location implements Cloneable {
         return z;
     }
     
-    public double setZ(final double z) {
+    public void setZ(final double z) {
         this.z = z;
     }
     
