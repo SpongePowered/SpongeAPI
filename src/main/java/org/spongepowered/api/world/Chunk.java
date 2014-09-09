@@ -38,7 +38,7 @@ public interface Chunk {
      *
      * @return X chunk coordinate
      */
-    public int getX();
+    int getX();
 
     /**
      * Gets the z chunk coordinate of this chunk as it appears in the
@@ -46,7 +46,7 @@ public interface Chunk {
      *
      * @return Z chunk coordinate
      */
-    public int getZ();
+    int getZ();
 
     /**
      * Gets the {@link org.spongepowered.api.block.Block} at the block coordinate x/y/z.
@@ -57,5 +57,5 @@ public interface Chunk {
      * @throws IllegalArgumentException If coordinates given are outside the chunk's bounds
      * @return The block
      */
-    public Block getBlock(int x, int y, int z);
+    Block getBlock(int x, int y, int z);
 }

@@ -7,5 +7,5 @@ public interface Item {
      * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
      * @return The id
      */
-    public String getID();
+    String getID();
 }

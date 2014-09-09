@@ -28,19 +28,19 @@ public interface PluginContainer {
      * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
      * @return The id
      */
-    public String getID();
+    String getID();
 
     /**
      * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
      * @return The name
      */
-    public String getName();
+    String getName();
 
     /**
      * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
      * @return The name
      */
-    public String getVersion();
+    String getVersion();
 
     /**
      * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}
@@ -48,5 +48,5 @@ public interface PluginContainer {
      * TODO Provide a way to not dereference this back to Object
      * @return The instance
      */
-    public Object getInstance();
+    Object getInstance();
 }

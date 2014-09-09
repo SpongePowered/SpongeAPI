@@ -29,14 +29,14 @@ public interface EventManager {
      *
      * @param obj The object
      */
-    public void register(Object obj);
+    void register(Object obj);
 
     /**
      * Un-registers an object from receiving {@link SpongeEvent}s.
      *
      * @param obj The object
      */
-    public void unregister(Object obj);
+    void unregister(Object obj);
 
     /**
      * Calls a {@link SpongeEvent} to all objects that handle it.
@@ -44,5 +44,5 @@ public interface EventManager {
      * @param event The event
      * @return True if canceled, false if not
      */
-    public boolean call(SpongeEvent event);
+    boolean call(SpongeEvent event);
 }
