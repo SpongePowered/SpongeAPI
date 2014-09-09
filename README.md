@@ -21,9 +21,12 @@ Contributions must be licensed under the MIT license.
 Pull request guidelines
 -----------------
 
-Only one commit per PR.  
-Keep all related changes in a single PR.  
-Be descriptive, explain the reasoning behind your changes.
+* Read the [Contribution Guidelines](https://docs.google.com/document/d/1483QXESTnQ8iGcnsL6sdgv6JWNm5NqZ50OuZUMpvLB0) document
+* Try and keep your PRs to only 1 commit
+* Keep all related changes in a single PR
+* Be descriptive, explain the reasoning behind your changes
+* Document your code (Javadocs)
+* Don't close and reopen a new PR every time you want to make a change to your submission
 
 Links
 -----
