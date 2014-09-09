@@ -34,4 +34,12 @@ public interface Block {
      * @return The id
      */
     String getID();
+    
+    /**
+     * Gets the raw id of this block.
+     *
+     * Warning: Usage of this method is internal and is not supported.
+     * @return The raw id
+     */
+    int getRawID();
 }
