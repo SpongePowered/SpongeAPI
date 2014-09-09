@@ -25,6 +25,7 @@ package org.spongepowered.api.plugin;
 
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
 public interface PluginManager {
@@ -34,6 +35,7 @@ public interface PluginManager {
      * @param name The name
      * @return The plugin or null if not found
      */
+    @Nullable
     PluginContainer getPlugin(String name);
 
     /**
