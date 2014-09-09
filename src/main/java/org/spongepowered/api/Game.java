@@ -24,6 +24,7 @@
 package org.spongepowered.api;
 
 import org.apache.logging.log4j.Logger;
+import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.world.World;
@@ -62,6 +63,28 @@ public interface Game {
      * @return The event manager
      */
     EventManager getEventManager();
+
+    /**
+     * Gets {@link Player}s currently online
+     *
+     * @return {@link Collection} of online players
+     */
+    public Collection<Player> getOnlinePlayers();
+
+    /**
+     * Gets the max players allowed on this server
+     *
+     * @return Maximum number of connected players
+     */
+    public int getMaxPlayers();
+
+    /**
+     * Gets a {@link Player} by their unique id
+     *
+     * @param uniqueId
+     * @return {@link Player}, or null if none found
+     */
+    public Player getPlayer(UUID uniqueId);
 
     /**
      * Gets all currently loaded {@link org.spongepowered.api.world.World}s.
