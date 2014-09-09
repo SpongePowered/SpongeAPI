@@ -26,6 +26,10 @@ package org.spongepowered.api;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.world.World;
+
+import java.util.Collection;
+import java.util.UUID;
 
 /**
  * The core accessor of the API. The implementation uses this to pass constructed objects.
@@ -36,26 +40,56 @@ public interface Game {
      *
      * @return The logger
      */
-    public Logger getLogger();
+    Logger getLogger();
 
     /**
      * Returns the {@link org.spongepowered.api.Platform} the implementation is executing from.
      *
      * @return The platform
      */
-    public Platform getPlatform();
+    Platform getPlatform();
 
     /**
      * Gets the {@link org.spongepowered.api.plugin.PluginManager}.
      *
      * @return The plugin manager
      */
-    public PluginManager getPluginManager();
+    PluginManager getPluginManager();
 
     /**
      * Gets the {@link org.spongepowered.api.event.EventManager}.
      *
      * @return The event manager
      */
-    public EventManager getEventManager();
+    EventManager getEventManager();
+
+    /**
+     * Gets all currently loaded {@link org.spongepowered.api.world.World}s.
+     *
+     * @return Collection of loaded worlds
+     */
+    Collection<World> getWorlds();
+
+    /**
+     * Gets a loaded {@link World} by its unique id ({@link java.util.UUID}.
+     *
+     * @param uniqueId UUID to lookup
+     * @return The world or null if not found
+     */
+    World getWorld(UUID uniqueId);
+
+    /**
+     * Gets a loaded {@link World} by name
+     *
+     * @param worldName Name to lookup
+     * @return The world or null if not found
+     */
+    World getWorld(String worldName);
+
+    /**
+     * Sends the given message to all online players
+     *
+     * @param message The message to send
+     */
+    void broadcastMessage(String message);
 }

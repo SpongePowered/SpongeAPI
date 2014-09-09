@@ -21,32 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.world;
 
-public interface PluginContainer {
+import org.spongepowered.api.block.Block;
+
+import java.util.UUID;
+
+/**
+ * A loaded Minecraft world
+ */
+public interface World {
+
     /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The id
+     * Gets the unique id ({@link java.util.UUID} for this world.
+     *
+     * @return The unique id or UUID
      */
-    String getID();
+    UUID getUniqueID();
 
     /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
+     * Gets the name of the world.
+     *
+     * @return The world name
      */
     String getName();
 
     /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * @return The name
+     * Gets a specific {@link Chunk} by its x/z chunk coordinate.
+     *
+     * @param x X chunk coordinate
+     * @param z Z chunk coordinate
+     * @return The chunk
      */
-    String getVersion();
+    Chunk getChunk(int x, int z);
 
     /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}
-     *
-     * TODO Provide a way to not dereference this back to Object
-     * @return The instance
+     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The block
      */
-    Object getInstance();
+    Block getBlock(int x, int y, int z);
 }
