@@ -32,33 +32,25 @@ import org.spongepowered.api.world.World;
 public interface Block {
     /**
      * Gets the id of this block.
-     *
+     * 
      * Ex. Minecraft registers stone as "minecraft:stone"
+     * 
      * @return The id
      */
     String getID();
+
     /**
-     * Gets the current X coordinate of this block
-     */
-    int getX();
-    /**
-     * Gets the current Y coordinate of this block
-     */
-    int getY();
-    /**
-     * Gets the current Z coordinate of this block
-     */
-    int getZ();
-    /**
-     * Gets the light level between 0-15. 
+     * Gets the light level between 0-15.
      */
     byte getLightLevel();
+
     /**
-     * Gets the world which contains this Block. 
+     * Gets the world which contains this Block.
      */
     World getWorld();
+
     /**
-     * Gets the chunk which contains this Block. 
+     * Gets the chunk which contains this Block.
      */
     Chunk getChunk();
 }

@@ -34,32 +34,39 @@ public interface World {
 
     /**
      * Gets the unique id ({@link java.util.UUID} for this world.
-     *
+     * 
      * @return The unique id or UUID
      */
     UUID getUniqueID();
 
     /**
      * Gets the name of the world.
-     *
+     * 
      * @return The world name
      */
     String getName();
 
     /**
      * Gets a specific {@link Chunk} by its x/z chunk coordinate.
-     *
-     * @param x X chunk coordinate
-     * @param z Z chunk coordinate
+     * 
+     * @param x
+     *            X chunk coordinate
+     * @param z
+     *            Z chunk coordinate
      * @return The chunk
      */
     Chunk getChunk(int x, int z);
 
     /**
-     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
-     * @param x X block coordinate
-     * @param y Y block coordinate
-     * @param z Z block coordinate
+     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z
+     * block coordinate.
+     * 
+     * @param x
+     *            X block coordinate
+     * @param y
+     *            Y block coordinate
+     * @param z
+     *            Z block coordinate
      * @return The block
      */
     Block getBlock(int x, int y, int z);

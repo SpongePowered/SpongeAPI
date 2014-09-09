@@ -52,7 +52,7 @@ public abstract class SpongeEvent {
 
     /**
      * Returns if this event can be cancelled.
-     *
+     * 
      * @return True if cancelled is allowed, false if not
      */
     public boolean isCancellable() {
@@ -61,7 +61,7 @@ public abstract class SpongeEvent {
 
     /**
      * Returns if this event has been cancelled.
-     *
+     * 
      * @return True if cancelled, false if not
      */
     public boolean isCancelled() {
@@ -70,13 +70,17 @@ public abstract class SpongeEvent {
 
     /**
      * Sets this event as cancelled.
-     *
-     * @param cancel True to cancel, false to not cancel
-     * @throws java.lang.IllegalArgumentException If an attempt is made to cancel but the event is not cancellable
+     * 
+     * @param cancel
+     *            True to cancel, false to not cancel
+     * @throws java.lang.IllegalArgumentException
+     *             If an attempt is made to cancel but the event is not
+     *             cancellable
      */
     public void setCancelled(boolean cancel) {
         if (!isCancellable()) {
-            throw new IllegalArgumentException("Attempted to cancel an event that is not cancellable!");
+            throw new IllegalArgumentException(
+                    "Attempted to cancel an event that is not cancellable!");
         }
         isCancelled = cancel;
     }

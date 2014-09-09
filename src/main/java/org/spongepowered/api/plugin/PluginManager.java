@@ -29,24 +29,29 @@ import java.util.Collection;
 
 public interface PluginManager {
     /**
-     * Retrieves a {@link org.spongepowered.api.plugin.PluginContainer} based on its name.
-     *
-     * @param name The name
+     * Retrieves a {@link org.spongepowered.api.plugin.PluginContainer} based on
+     * its name.
+     * 
+     * @param name
+     *            The name
      * @return The plugin or null if not found
      */
     PluginContainer getPlugin(String name);
 
     /**
-     * Gets the {@link org.apache.logging.log4j.Logger} for the {@link org.spongepowered.api.plugin.PluginContainer}.
-     *
-     * @param plugin The plugin
+     * Gets the {@link org.apache.logging.log4j.Logger} for the
+     * {@link org.spongepowered.api.plugin.PluginContainer}.
+     * 
+     * @param plugin
+     *            The plugin
      * @return The logger
      */
     Logger getLogger(PluginContainer plugin);
 
     /**
-     * Gets a {@link java.util.Collection} of all {@link org.spongepowered.api.plugin.PluginContainer}s
-     *
+     * Gets a {@link java.util.Collection} of all
+     * {@link org.spongepowered.api.plugin.PluginContainer}s
+     * 
      * @return The plugins
      */
     Collection<PluginContainer> getPlugins();

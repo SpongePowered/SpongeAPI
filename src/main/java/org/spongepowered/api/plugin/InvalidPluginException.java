@@ -24,7 +24,8 @@
 package org.spongepowered.api.plugin;
 
 /**
- * Thrown by the implementation if it determines that a {@link org.spongepowered.api.plugin.Plugin} being loaded is invalid.
+ * Thrown by the implementation if it determines that a
+ * {@link org.spongepowered.api.plugin.Plugin} being loaded is invalid.
  */
 public class InvalidPluginException extends Exception {
     private static final long serialVersionUID = 15816838168L;
