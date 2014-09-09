@@ -38,6 +38,8 @@ import java.util.Collection;
 import java.util.UUID;
 
 public final class SpongeGame implements Game {
+    private static final String apiVersion = Game.class.getPackage().getImplementationVersion();
+    private static final String implementationVersion = SpongeGame.class.getPackage().getImplementationVersion();
     private final Logger logger = LogManager.getLogger("sponge");
     private final SpongePluginManager pluginManager;
     private final SpongeEventManager eventManager;
@@ -90,5 +92,14 @@ public final class SpongeGame implements Game {
     @Override
     public void broadcastMessage(String message) {
 
+    }
+
+    public String getAPIVersion() {
+        return apiVersion != null ? apiVersion : "UNKNOWN";
+    }
+
+    @Override
+    public String getImplementationVersion() {
+        return implementationVersion != null ? implementationVersion : "UNKNOWN";
     }
 }
