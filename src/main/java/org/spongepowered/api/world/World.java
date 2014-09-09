@@ -46,8 +46,8 @@ public interface World {
 
     /**
      * Gets a specific {@link Chunk} by the x/z chunk coordinates in the world.
-     * @param x
-     * @param z
+     * @param x coordinate
+     * @param z coordinate
      * @return a chunk
      */
     public Chunk getChunk(int x, int z);
