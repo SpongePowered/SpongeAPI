@@ -23,6 +23,9 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.World;
+
 public interface Player extends HumanEntity {
 
     /**
@@ -39,5 +42,19 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
+    
+    /**
+     * Gets the world the player is currently in.
+     * 
+     * @return The world the player is located in.
+     */
+    World getWorld();
+    
+    /**
+     * Gets the chunk the player is currently in.
+     * 
+     * @return The chunk the player is located in.
+     */
+    Chunk getChunk();
 
 }
