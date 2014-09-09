@@ -21,28 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.world;
 
-public interface EventManager {
+/**
+ * Describes a voxel. Child classes define specific functionality.
+ */
+public interface Block {
     /**
-     * Registers an object to receive {@link SpongeEvent}s.
+     * Gets the id of this block.
      *
-     * @param obj The object
+     * Ex. Minecraft registers stone as "minecraft:stone"
+     * @return The id
      */
-    public void register(Object obj);
-
-    /**
-     * Un-registers an object from receiving {@link SpongeEvent}s.
-     *
-     * @param obj The object
-     */
-    public void unregister(Object obj);
-
-    /**
-     * Calls a {@link SpongeEvent} to all objects that handle it.
-     *
-     * @param event The event
-     * @return True if canceled, false if not
-     */
-    public boolean call(SpongeEvent event);
+    public String getID();
 }
