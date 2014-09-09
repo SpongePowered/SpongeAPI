@@ -37,12 +37,12 @@ public interface Command {
     String getName();
     
     /**
-     * Gets the command's description for {@link CommandSource}
+     * Gets the command's description for {@link CommandSender}
      * 
-     * @param source
+     * @param sender
      * @return The command's description
      */
-    String getDescription(CommandSource source);
+    String getDescription(CommandSender sender);
     
     /**
      * Gets a {@link java.util.List} of command aliases
@@ -52,19 +52,19 @@ public interface Command {
     List<String> getAliases();
     
     /**
-     * Returns {@code true} if the {@link CommandSource} is allowed to use the command
+     * Returns {@code true} if the {@link CommandSender} is allowed to use the command
      * 
-     * @param source
-     * @return {@code true} if the {@link CommandSource} is allowed to use
+     * @param sender
+     * @return {@code true} if the {@link CommandSender} is allowed to use
      *         the command, otherwise {@code false}
      */
-    boolean canUse(CommandSource source);
+    boolean canUse(CommandSender sender);
     
     /**
      * Execute the command
      * 
-     * @param source
+     * @param sender
      * @param parameters
      */
-    void execute(CommandSource source, String[] parameters);
+    void execute(CommandSender sender, String[] parameters);
 }

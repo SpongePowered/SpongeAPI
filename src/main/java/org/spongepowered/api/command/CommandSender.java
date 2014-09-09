@@ -26,6 +26,6 @@ package org.spongepowered.api.command;
 /**
  * 
  */
-public interface CommandSource {
+public interface CommandSender {
     // TODO
 }
