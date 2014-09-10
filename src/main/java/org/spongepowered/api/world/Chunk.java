@@ -26,7 +26,7 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.block.Block;
 
 /**
- * Chunks are 16x256x16 (x/y/z) containers of {@link org.spongepowered.api.block.Block}s
+ * Chunks are 16x256x16 (x/y/z) containers of {@link org.spongepowered.api.block.Block Block}s
  * in a specific {@link World}. Chunks use chunk coordinates, which
  * are simply block coordinates divided by 16 (one chunk every 16 blocks).
  */
@@ -49,7 +49,7 @@ public interface Chunk {
     int getZ();
 
     /**
-     * Gets the {@link org.spongepowered.api.block.Block} at the block coordinate x/y/z.
+     * Gets the {@link org.spongepowered.api.block.Block Block} at the block coordinate x/y/z.
      *
      * @param x X block coordinate
      * @param y Y block coordinate
@@ -60,7 +60,7 @@ public interface Chunk {
     Block getBlock(int x, int y, int z);
 
     /**
-     * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
+     * Gets the {@link org.spongepowered.api.world.Voxel Voxel} at the block coordinate x/y/z.
      *
      * @param x X block coordinate
      * @param y Y block coordinate

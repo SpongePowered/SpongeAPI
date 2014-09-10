@@ -40,41 +40,41 @@ import javax.annotation.Nullable;
  */
 public interface Game {
     /**
-     * Gets the {@link org.apache.logging.log4j.Logger} of the implementation.
+     * Gets the {@link org.apache.logging.log4j.Logger Logger} of the implementation.
      *
      * @return The logger
      */
     Logger getLogger();
 
     /**
-     * Returns the {@link org.spongepowered.api.Platform} the implementation is executing from.
+     * Returns the {@link org.spongepowered.api.Platform Platform} the implementation is executing from.
      *
      * @return The platform
      */
     Platform getPlatform();
 
     /**
-     * Gets the {@link org.spongepowered.api.plugin.PluginManager}.
+     * Gets the {@link org.spongepowered.api.plugin.PluginManager PluginManager}.
      *
      * @return The plugin manager
      */
     PluginManager getPluginManager();
 
     /**
-     * Gets the {@link org.spongepowered.api.event.EventManager}.
+     * Gets the {@link org.spongepowered.api.event.EventManager EventManager}.
      *
      * @return The event manager
      */
     EventManager getEventManager();
 
     /**
-     * Gets the {@link org.spongepowered.api.GameRegistry}.
+     * Gets the {@link org.spongepowered.api.GameRegistry GameRegistry}.
      *
      * @return The game registry
      */
     GameRegistry getRegistry();
 
-    /*
+    /**
      * Gets the {@link Player}s currently online
      *
      * @return a {@link Collection} of online players
@@ -98,14 +98,14 @@ public interface Game {
     Player getPlayer(UUID uniqueId);
 
     /**
-     * Gets all currently loaded {@link org.spongepowered.api.world.World}s.
+     * Gets all currently loaded {@link org.spongepowered.api.world.World World}s.
      *
      * @return Collection of loaded worlds
      */
     Collection<World> getWorlds();
 
     /**
-     * Gets a loaded {@link World} by its unique id ({@link java.util.UUID}.
+     * Gets a loaded {@link World} by its unique id ({@link java.util.UUID UUID}.
      *
      * @param uniqueId UUID to lookup
      * @return The world or null if not found

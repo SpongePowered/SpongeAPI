@@ -32,9 +32,9 @@ import org.spongepowered.api.event.Event;
 public interface PlayerEvent extends Event {
 
     /**
-     * Gets the {@link org.spongepowered.api.entity.Player} involved
+     * Gets the {@link org.spongepowered.api.entity.Player Player} involved
      *
-     * @return {@link org.spongepowered.api.entity.Player} involved
+     * @return {@link org.spongepowered.api.entity.Player Player} involved
      */
     Player getPlayer();
 }

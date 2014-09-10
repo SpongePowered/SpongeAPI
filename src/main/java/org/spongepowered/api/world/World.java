@@ -33,7 +33,7 @@ import java.util.UUID;
 public interface World {
 
     /**
-     * Gets the unique id ({@link java.util.UUID} for this world.
+     * Gets the unique id ({@link java.util.UUID UUID}) for this world.
      *
      * @return The unique id or UUID
      */
@@ -68,7 +68,7 @@ public interface World {
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
 
     /**
-     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
+     * Gets a specific {@link org.spongepowered.api.block.Block Block} by its x/y/z block coordinate.
      *
      * @param x X block coordinate
      * @param y Y block coordinate
@@ -78,7 +78,7 @@ public interface World {
     Block getBlock(int x, int y, int z);
 
     /**
-     * Gets a specific {@link org.spongepowered.api.world.Voxel} by its x/y/z block coordinate.
+     * Gets a specific {@link org.spongepowered.api.world.Voxel Voxel} by its x/y/z block coordinate.
      *
      * @param x X block coordinate
      * @param y Y block coordinate

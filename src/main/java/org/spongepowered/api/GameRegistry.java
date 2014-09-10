@@ -29,11 +29,11 @@ import org.spongepowered.api.item.Item;
 import javax.annotation.Nullable;
 
 /**
- * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game Game} based on their ids.
  */
 public interface GameRegistry {
     /**
-     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
+     * Gets a {@link org.spongepowered.api.block.Block Block} by its identifier.
      * @param id The id to look up
      * @return The block or null if not found
      */
@@ -41,7 +41,7 @@ public interface GameRegistry {
     Block getBlock(String id);
 
     /**
-     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
+     * Gets an {@link org.spongepowered.api.item.Item Item} by its identifier.
      * @param id The id to look up
      * @return The item or null if not found
      */
