@@ -21,18 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.world.World;
 
-public class SpongeConstructionEvent extends SpongeStateEvent {
-    public SpongeConstructionEvent(Game game) {
-        super(game);
-    }
+/**
+ * Describes {@link World} events
+ */
+public interface WorldEvent {
 
-    @Override
-    public GameState getState() {
-        return GameState.CONSTRUCTION;
-    }
+    /**
+     * Gets the {@link World} involved in the event
+     *
+     * @return
+     */
+    World getWorld();
 }

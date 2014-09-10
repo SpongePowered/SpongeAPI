@@ -21,20 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.event.voxel;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Voxel;
 
-@Target(TYPE)
-@Retention(RUNTIME)
-public @interface Plugin {
-    String id();
+/**
+ * Describes events which contain a {@link Block} wrapped by a {@link Voxel}
+ */
+public interface VoxelEvent extends Event {
 
-    String name();
-
-    String version() default "unknown";
+    /**
+     * Get {@link Voxel} included in the event
+     *
+     * @return Event {@link Voxel}
+     */
+    Voxel getVoxel();
 }

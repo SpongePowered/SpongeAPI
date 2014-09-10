@@ -25,24 +25,24 @@ package org.spongepowered.api.event;
 
 public interface EventManager {
     /**
-     * Registers an object to receive {@link SpongeEvent}s.
+     * Registers an object to receive {@link Event}s.
      *
      * @param obj The object
      */
     void register(Object obj);
 
     /**
-     * Un-registers an object from receiving {@link SpongeEvent}s.
+     * Un-registers an object from receiving {@link Event}s.
      *
      * @param obj The object
      */
     void unregister(Object obj);
 
     /**
-     * Calls a {@link SpongeEvent} to all objects that handle it.
+     * Calls a {@link Event} to all objects that handle it.
      *
      * @param event The event
      * @return True if canceled, false if not
      */
-    boolean call(SpongeEvent event);
+    boolean call(Event event);
 }

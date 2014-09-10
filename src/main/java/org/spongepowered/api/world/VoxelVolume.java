@@ -21,36 +21,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.world;
 
-public interface PluginContainer {
-    /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     *
-     * @return The id
-     */
-    String getID();
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.math.Vector3i;
 
-    /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getName();
+/**
+ * For Objects that contain volumes of {@link org.spongepowered.api.world.Voxel}s.
+ */
+public interface VoxelVolume {
 
     /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
      *
-     * @return The name
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The block
      */
-    String getVersion();
+    Block getBlock(int x, int y, int z);
 
     /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
-     * <p/>
-     * TODO Provide a way to not dereference this back to Object
+     * Gets a specific {@link org.spongepowered.api.world.Voxel} by its x/y/z block coordinate.
      *
-     * @return The instance
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The voxel
      */
-    Object getInstance();
+    Voxel getVoxel(int x, int y, int z);
+    
+    /**
+     * Gets the {@link org.spongepowered.api.block.Block} at the block coordinate x/y/z.
+     *
+     * @param location location of block in Vector3i format
+     * @return The block
+     */
+    Block getBlock(Vector3i location);
+
+    
+    /**
+     * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
+     *
+     * @param location of voxel in Vector3i format
+     * @return The voxel
+     */
+    Voxel getVoxel(Vector3i location);
 }

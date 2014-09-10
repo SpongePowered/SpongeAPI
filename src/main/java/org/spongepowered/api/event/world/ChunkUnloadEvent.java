@@ -21,21 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.event.SpongeEvent;
+import org.spongepowered.api.world.Chunk;
 
-public abstract class SpongeStateEvent extends SpongeEvent {
-    public SpongeStateEvent(Game game) {
-        super(game);
-    }
+/**
+ * Called when a {@link Chunk} is unloaded
+ */
+public interface ChunkUnloadEvent extends ChunkEvent {
 
-    @Override
-    public final boolean isCancellable() {
-        return false;
-    }
-
-    public abstract GameState getState();
 }

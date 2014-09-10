@@ -24,12 +24,16 @@
 package org.spongepowered.api;
 
 import org.apache.logging.log4j.Logger;
+
+import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * The core accessor of the API. The implementation uses this to pass constructed objects.
@@ -62,6 +66,36 @@ public interface Game {
      * @return The event manager
      */
     EventManager getEventManager();
+
+    /**
+     * Gets the {@link org.spongepowered.api.GameRegistry}.
+     *
+     * @return The game registry
+     */
+    GameRegistry getRegistry();
+
+    /*
+     * Gets the {@link Player}s currently online
+     *
+     * @return a {@link Collection} of online players
+     */
+    Collection<Player> getOnlinePlayers();
+
+    /**
+     * Gets the max players allowed on this server
+     *
+     * @return Maximum number of connected players
+     */
+    int getMaxPlayers();
+
+    /**
+     * Gets a {@link Player} by their unique id
+     *
+     * @param uniqueId
+     * @return {@link Player} or null if none found
+     */
+    @Nullable
+    Player getPlayer(UUID uniqueId);
 
     /**
      * Gets all currently loaded {@link org.spongepowered.api.world.World}s.

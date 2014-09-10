@@ -21,36 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.entity;
 
-public interface PluginContainer {
-    /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     *
-     * @return The id
-     */
-    String getID();
+import java.util.Collection;
 
-    /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getName();
+/**
+ * For Objects that contain Entities.
+ */
+public interface EntityUniverse {
 
     /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets a {@link java.util.Collection} of Entities for this universe.
      *
-     * @return The name
+     * @return A {@link java.util.Collection} of all Entities in this universe.
      */
-    String getVersion();
+    Collection<Entity> getEntities();
 
     /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
-     * <p/>
-     * TODO Provide a way to not dereference this back to Object
+     * Gets a {@link java.util.Collection} of LivingEntities for this universe.
      *
-     * @return The instance
+     * @return A {@link java.util.Collection} of all LivingEntities in this universe.
      */
-    Object getInstance();
+    Collection<LivingEntity> getLivingEntities();
+
+    /**
+     * Gets a {@link java.util.Collection} of Entities, in this universe,
+     * with the given class/interface.
+     *
+     * @param entityClass The class for the type of Entities which are trying to be matched.
+     * @return A {@link java.util.Collection} of Entities based upon the given class.
+     */
+    <T extends Entity> Collection<T> getEntitiesByClass(Class<T> entityClass);
+
+    /**
+     * Gets a {@link java.util.Collection} of Entities, in this universe,
+     * with the given classes/interfaces.
+     *
+     * @param entityClasses The classes for the types of Entities which are trying to be matched.
+     * @return A {@link java.util.Collection} of Entities based upon the given classes.
+     */
+    Collection<Entity> getEntitiesByClasses(Class<? extends Entity>... entityClasses);
 }

@@ -21,20 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.entity;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+public interface Damageable {
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+    /**
+     * Damages the entity by a specified amount;
+     *
+     * @param damage the damage amount
+     */
+    void damage(double amount);
 
-@Target(TYPE)
-@Retention(RUNTIME)
-public @interface Plugin {
-    String id();
+    /**
+     * Gets the health of the entity
+     *
+     * @return health of the {@code Damageable}
+     */
+    double getHealth();
 
-    String name();
-
-    String version() default "unknown";
+    /**
+     * Sets the Health of the {@code Damageable}
+     */
+    void setHealth(double health);
 }
