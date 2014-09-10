@@ -75,4 +75,13 @@ public interface World {
      * @return The block
      */
     Block getBlock(int x, int y, int z);
+
+    /**
+     * Gets a specific {@link org.spongepowered.api.world.Voxel} by its x/y/z block coordinate.
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The voxel
+     */
+    Voxel getVoxel(int x, int y, int z);
 }

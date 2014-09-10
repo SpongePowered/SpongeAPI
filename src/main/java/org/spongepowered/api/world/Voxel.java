@@ -21,27 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.world;
 
-import org.spongepowered.api.Game;
 import org.spongepowered.api.block.Block;
-import org.spongepowered.api.event.SpongeEvent;
 
 /**
- * Abstract class for map block events
+ * Represents the smallest unit of the world map. This unit
+ * has a position with integer coordinates and a block reference
+ * which defines it's behaviour and attributes. Unlike a block,
+ * this object has a position attribute, and does not define any logic
+ * by itself.
  */
-public abstract class BlockEvent extends SpongeEvent {
-    // TODO: use voxel instead to provide the location and block at once?
-    public final Block block;
+public interface Voxel {
 
     /**
-     * Create an event involving a {@link Block}
+     * Gets the voxel's position in the world map.
      *
-     * @param game Game instance
-     * @param block The {@link Block} this event impacts
+     * @return position The voxel's position
      */
-    public BlockEvent(Game game, Block block){
-        super(game);
-        this.block = block;
-    }
+    // TODO: uncomment this once the math branch is merged
+    //Vector3i getPosition();
+
+    /**
+     * Gets a reference to the block object that
+     * defines the voxel's logic.
+     *
+     * @return block The block defining the voxel
+     */
+    Block getBlock();
 }
