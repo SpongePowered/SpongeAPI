@@ -23,5 +23,24 @@
  */
 package org.spongepowered.api.entity;
 
-public interface LivingEntity extends Entity, Damageable {
+public interface Damageable {
+
+    /**
+     * Damages the entity by a specified amount;
+     *
+     * @param damage the damage amount
+     */
+    void damage(double amount);
+
+    /**
+     * Gets the health of the entity
+     *
+     * @return health of the {@code Damageable}
+     */
+    double getHealth();
+
+    /**
+     * Sets the Health of the {@code Damageable}
+     */
+    void setHealth(double health);
 }
