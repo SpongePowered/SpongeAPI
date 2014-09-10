@@ -24,25 +24,11 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.event.SpongeEvent;
 import org.spongepowered.api.world.World;
 
 /**
  * Called when the {@link Game} unloads a {@link World} map
  */
-public class WorldUnloadEvent extends WorldEvent {
-    /**
-     * Called when the {@link Game} unloads a {@link World} map
-     *
-     * @param game Game
-     * @param world {@link World} being unloaded
-     */
-    public WorldUnloadEvent(Game game, World world) {
-        super(game,world);
-    }
+public interface WorldUnloadEvent extends WorldEvent {
 
-    @Override
-    public final boolean isCancellable() {
-        return false;
-    }
 }
