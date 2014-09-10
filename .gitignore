@@ -59,6 +59,7 @@ Thumbs.db
 .classpath
 .externalToolBuilders
 .gradle
+.nb-gradle
 .idea
 .project
 .settings
