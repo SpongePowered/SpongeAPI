@@ -21,49 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.EntityUniverse;
-
-import java.util.UUID;
+import java.util.Collection;
 
 /**
- * A loaded Minecraft world
+ * For Objects that contain Entities.
  */
-public interface World extends EntityUniverse, VoxelVolume {
+public interface EntityUniverse {
 
     /**
-     * Gets the unique id ({@link java.util.UUID} for this world.
+     * Gets a {@link java.util.Collection} of Entities for this universe.
      *
-     * @return The unique id or UUID
+     * @return A {@link java.util.Collection} of all Entities in this universe.
      */
-    UUID getUniqueID();
+    Collection<Entity> getEntities();
 
     /**
-     * Gets the name of the world.
+     * Gets a {@link java.util.Collection} of LivingEntities for this universe.
      *
-     * @return The world name
+     * @return A {@link java.util.Collection} of all LivingEntities in this universe.
      */
-    String getName();
+    Collection<LivingEntity> getLivingEntities();
 
     /**
-     * Gets an already-loaded {@link Chunk} by its x/z chunk coordinate, or
-     * null if it's not available
+     * Gets a {@link java.util.Collection} of Entities, in this universe,
+     * with the given class/interface.
      *
-     * @param cx X chunk coordinate
-     * @param cz Z chunk coordinate
-     * @return The chunk
+     * @param entityClass The class for the type of Entities which are trying to be matched.
+     * @return A {@link java.util.Collection} of Entities based upon the given class.
      */
-    Chunk getChunk(int cx, int cz);
+    <T extends Entity> Collection<T> getEntitiesByClass(Class<T> entityClass);
 
     /**
-     * Loads and returns a {@link Chunk}. If the chunk does not
-     * exist, it will be generated unless `shouldGenerate` is false.
+     * Gets a {@link java.util.Collection} of Entities, in this universe,
+     * with the given classes/interfaces.
      *
-     * @param cx             X chunk coordinate
-     * @param cz             Z chunk coordinate
-     * @param shouldGenerate Generate if new
-     * @return Chunk loaded/generated
+     * @param entityClasses The classes for the types of Entities which are trying to be matched.
+     * @return A {@link java.util.Collection} of Entities based upon the given classes.
      */
-    Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+    Collection<Entity> getEntitiesByClasses(Class<? extends Entity>... entityClasses);
 }

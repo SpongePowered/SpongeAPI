@@ -23,47 +23,30 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.entity.EntityUniverse;
-
-import java.util.UUID;
+import org.spongepowered.api.block.Block;
 
 /**
- * A loaded Minecraft world
+ * For Objects that contain volumes of {@link org.spongepowered.api.world.Voxel}s.
  */
-public interface World extends EntityUniverse, VoxelVolume {
+public interface VoxelVolume {
 
     /**
-     * Gets the unique id ({@link java.util.UUID} for this world.
+     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
      *
-     * @return The unique id or UUID
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The block
      */
-    UUID getUniqueID();
+    Block getBlock(int x, int y, int z);
 
     /**
-     * Gets the name of the world.
+     * Gets a specific {@link org.spongepowered.api.world.Voxel} by its x/y/z block coordinate.
      *
-     * @return The world name
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The voxel
      */
-    String getName();
-
-    /**
-     * Gets an already-loaded {@link Chunk} by its x/z chunk coordinate, or
-     * null if it's not available
-     *
-     * @param cx X chunk coordinate
-     * @param cz Z chunk coordinate
-     * @return The chunk
-     */
-    Chunk getChunk(int cx, int cz);
-
-    /**
-     * Loads and returns a {@link Chunk}. If the chunk does not
-     * exist, it will be generated unless `shouldGenerate` is false.
-     *
-     * @param cx             X chunk coordinate
-     * @param cz             Z chunk coordinate
-     * @param shouldGenerate Generate if new
-     * @return Chunk loaded/generated
-     */
-    Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+    Voxel getVoxel(int x, int y, int z);
 }
