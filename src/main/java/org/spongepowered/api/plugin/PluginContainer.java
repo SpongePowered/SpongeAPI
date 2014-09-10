@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.plugin;
 
+import java.io.File;
+
 public interface PluginContainer {
     /**
      * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
@@ -53,4 +55,12 @@ public interface PluginContainer {
      * @return The instance
      */
     Object getInstance();
+
+    /**
+     * Returns resource folder of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * 
+     * @param createIfAbsent If true, creates folder if it doesn't exist on disk
+     * @return The plugin's resource folder
+     */
+    File getResourceFolder(boolean createIfAbsent);
 }
