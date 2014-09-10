@@ -42,8 +42,8 @@ public class PlayerMoveEvent extends PlayerEvent{
      */
     private Vector3d end;
 
-    public PlayerMoveEvent(Player player, Vector3d start, Vector3d end){
-        super(player);
+    public PlayerMoveEvent(Game game, Player player, Vector3d start, Vector3d end){
+        super(game, player);
         this.start=start;
         this.end=end;
     }

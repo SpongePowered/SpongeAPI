@@ -33,12 +33,18 @@ import org.spongepowered.api.event.Event;
 public abstract class EntityEvent implements Event {
 
     private Entity entity;
+    private Game game;
 
-    public EntityEvent(Entity entity){
+    public EntityEvent(Game game, Entity entity){
         this.entity=entity;
+        this.game=game;
     }
 
     public Entity getEntity(){
         return this.entity;
+    }
+
+    public Game getGame(){
+        return game;
     }
 }

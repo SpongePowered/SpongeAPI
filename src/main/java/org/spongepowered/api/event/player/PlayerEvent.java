@@ -34,8 +34,8 @@ public abstract class PlayerEvent extends LivingEntityEvent{
 
     private Player player;
 
-    public PlayerEvent(Player player){
-        super(player);
+    public PlayerEvent(Game game, Player player){
+        super(game, player);
         this.player=player;
     }
 

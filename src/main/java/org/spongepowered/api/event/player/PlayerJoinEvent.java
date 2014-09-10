@@ -34,8 +34,8 @@ public class PlayerJoinEvent extends PlayerEvent{
     //Message for when player joins
     private String joinMessage;
 
-    public PlayerJoinEvent(Player player, String message){
-        super(player);
+    public PlayerJoinEvent(Game game, Player player, String message){
+        super(game, player);
         this.joinMessage=message;
     }
 

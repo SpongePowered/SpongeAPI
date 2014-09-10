@@ -33,8 +33,8 @@ public abstract class LivingEntityEvent extends EntityEvent{
 
     private LivingEntity livingEntity;
 
-    public LivingEntityEvent(LivingEntity entity){
-        super(entity);
+    public LivingEntityEvent(Game game, LivingEntity entity){
+        super(game, entity);
         this.livingEntity=entity;
     }
 

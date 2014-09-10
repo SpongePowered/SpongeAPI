@@ -38,8 +38,8 @@ public class PlayerInteractEvent extends PlayerEvent{
     //The block that was clicked
     private Block block;
 
-    public PlayerInteractEvent(Player player, Action action, Block block){
-        super(player);
+    public PlayerInteractEvent(Game game, Player player, Action action, Block block){
+        super(game, player);
         this.action=action;
         this.block=block;
     }
