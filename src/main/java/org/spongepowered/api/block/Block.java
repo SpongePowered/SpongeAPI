@@ -23,7 +23,6 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.Location;
 
 /**
  * Describes a voxel. Child classes define specific functionality.
@@ -36,10 +35,4 @@ public interface Block {
      * @return The id
      */
     String getID();
-
-    /**
-     * Gets the location of the block
-     * @return location
-     */
-    Location getLocation();
 }

@@ -24,9 +24,9 @@
 package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.Location;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.item.Item;
+import org.spongepowered.api.math.Vector3d;
 
 /**
  * Event for when player moves
@@ -34,49 +34,53 @@ import org.spongepowered.api.item.Item;
 public class PlayerMoveEvent extends PlayerEvent{
 
     /**
-     * Location Player starts at
+     * Vector3d Player starts at
      */
-    private Location start;
+    private Vector3d start;
     /**
-     * Location player ends at
+     * Vector3d player ends at
      */
-    private Location end;
+    private Vector3d end;
 
-    public PlayerMoveEvent(Game game, Player player, Location start, Location end){
-        super(game, player);
+    public PlayerMoveEvent(Player player, Vector3d start, Vector3d end){
+        super(player);
         this.start=start;
         this.end=end;
     }
 
     /**
-     * Returns the starting location
+     * Returns the starting Vector3d
      * @return start
      */
-    public Location getStart(){
+    public Vector3d getStart(){
         return this.start;
     }
 
     /**
-     * Returns the ending location
+     * Returns the ending Vector3d
      * @return end
      */
-    public Location getEnd(){
+    public Vector3d getEnd(){
         return this.end;
     }
 
     /**
-     * Sets the starting location
+     * Sets the starting Vector3d
      * @param loc
      */
-    public void setStart(Location loc){
+    public void setStart(Vector3d loc){
         this.start=loc;
     }
 
     /**
-     * Sets the ending location
+     * Sets the ending Vector3d
      * @param loc
      */
-    public void setEnd(Location loc){
+    public void setEnd(Vector3d loc){
         this.end=loc;
+    }
+
+    public String getSimpleName(){
+        return "PlayerMoveEvent";
     }
 }

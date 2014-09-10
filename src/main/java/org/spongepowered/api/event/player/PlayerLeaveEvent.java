@@ -33,8 +33,8 @@ public class PlayerLeaveEvent extends PlayerEvent{
 
     private String leaveMessage;
 
-    public PlayerLeaveEvent(Game game, Player player, String message){
-        super(game, player);
+    public PlayerLeaveEvent(Player player, String message){
+        super(player);
         this.leaveMessage=leaveMessage;
     }
 
@@ -52,5 +52,9 @@ public class PlayerLeaveEvent extends PlayerEvent{
      */
     public void setLeaveMessage(String message){
         this.leaveMessage=message;
+    }
+
+    public  String getSimpleName(){
+        return "PlayerLeaveEvent";
     }
 }
