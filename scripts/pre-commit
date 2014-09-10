@@ -1,0 +1,3 @@
+#! /bin/env sh
+# -u = --no-search-upwards
+./gradlew --daemon -u licenseFormat
