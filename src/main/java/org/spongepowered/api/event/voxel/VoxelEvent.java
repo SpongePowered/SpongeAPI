@@ -21,49 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.event.voxel;
 
-import org.spongepowered.api.entity.EntityUniverse;
 
-import java.util.UUID;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Voxel;
 
 /**
- * A loaded Minecraft world
+ * Describes events which contain a {@link Block} wrapped by a {@link Voxel}
  */
-public interface World extends EntityUniverse, VoxelVolume {
+public interface VoxelEvent extends Event {
 
     /**
-     * Gets the unique id ({@link java.util.UUID} for this world.
+     * Get {@link Voxel} included in the event
      *
-     * @return The unique id or UUID
+     * @return Event {@link Voxel}
      */
-    UUID getUniqueID();
-
-    /**
-     * Gets the name of the world.
-     *
-     * @return The world name
-     */
-    String getName();
-
-    /**
-     * Gets an already-loaded {@link Chunk} by its x/z chunk coordinate, or
-     * null if it's not available
-     *
-     * @param cx X chunk coordinate
-     * @param cz Z chunk coordinate
-     * @return The chunk
-     */
-    Chunk getChunk(int cx, int cz);
-
-    /**
-     * Loads and returns a {@link Chunk}. If the chunk does not
-     * exist, it will be generated unless `shouldGenerate` is false.
-     *
-     * @param cx             X chunk coordinate
-     * @param cz             Z chunk coordinate
-     * @param shouldGenerate Generate if new
-     * @return Chunk loaded/generated
-     */
-    Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+    Voxel getVoxel();
 }
