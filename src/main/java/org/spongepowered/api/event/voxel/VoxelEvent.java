@@ -21,22 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.voxel;
 
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Voxel;
 
 /**
- * Describes events which contain a {@link Block}
+ * Describes events which contain a {@link Block} wrapped by a {@link Voxel}
  */
-public interface BlockEvent extends Event {
+public interface VoxelEvent extends Event {
 
     /**
-     * Get {@link Block} included in the event
-     * TODO: use voxel instead to provide the location and block at once?
+     * Get {@link Voxel} included in the event
      *
-     * @return Event {@link Block}
+     * @return Event {@link Voxel}
      */
-    Block getBlock();
+    Voxel getVoxel();
 }
