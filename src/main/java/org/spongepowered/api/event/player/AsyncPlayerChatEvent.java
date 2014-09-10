@@ -23,7 +23,6 @@
  */
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Player;
 
 /**
