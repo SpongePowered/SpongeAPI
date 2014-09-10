@@ -22,35 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.scoreboard;
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.scoreboard.PlayerScoreboardManager;
-import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.util.command.CommandSource;
-
-import javax.annotation.Nullable;
-
-public interface Player extends HumanEntity, CommandSource {
+/**
+ * This interface provides the score values for specific entries in objectives.
+ */
+public interface ScoreProvider {
 
     /**
-     * Gets the players last known username
+     * Gets the entry's score.
      *
-     * @return The player's last known username
+     * @throws IllegalArgumentException If the entry doesn't have a score.
+     * @param entry The scoreboard entry, most probably a player.
+     * @return The entry's score.
      */
-    String getName();
+    int getScore(String entry);
 
     /**
-     * Gets the player's display name. If none set, returns their current username.
+     * Gets the team's score.
      *
-     * @return The player's display name
+     * @throws IllegalArgumentException If the entry doesn't have a score.
+     * @param team The team scoreboard entry.
+     * @return The team's score.
      */
-    String getDisplayName();
-
-    /**
-     * Gets the {@link PlayerScoreboardManager} assigned to this player.
-     *
-     * @return The {@link PlayerScoreboardManager}
-     */
-    PlayerScoreboardManager getScoreboardManager();
+    int getTeamScore(Teamable team);
 }

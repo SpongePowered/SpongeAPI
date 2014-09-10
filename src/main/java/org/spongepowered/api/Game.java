@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.scoreboard.ScoreboardManager;
 import org.spongepowered.api.service.scheduler.Scheduler;
 import org.spongepowered.api.world.World;
 
@@ -69,6 +70,13 @@ public interface Game {
      * @return The game registry
      */
     GameRegistry getRegistry();
+
+    /**
+     * Gets the {@link ScoreboardManager}.
+     *
+     * @return The scoreboard manager
+     */
+    ScoreboardManager getScoreboardManager();
 
     /**
      * Gets the {@link Scheduler}.

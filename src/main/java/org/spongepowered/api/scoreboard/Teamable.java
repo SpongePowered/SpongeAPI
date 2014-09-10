@@ -22,35 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.scoreboard;
 
-package org.spongepowered.api.entity;
+/**
+ * <p>This interface must be implemented by every class that should be able
+ * to be combined into a {@link Team}.</p>
+ */
+public interface Teamable {
 
-import org.spongepowered.api.scoreboard.PlayerScoreboardManager;
-import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.util.command.CommandSource;
-
-import javax.annotation.Nullable;
-
-public interface Player extends HumanEntity, CommandSource {
-
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set, returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
-
-    /**
-     * Gets the {@link PlayerScoreboardManager} assigned to this player.
-     *
-     * @return The {@link PlayerScoreboardManager}
-     */
-    PlayerScoreboardManager getScoreboardManager();
 }
