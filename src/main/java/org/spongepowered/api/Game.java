@@ -74,7 +74,7 @@ public interface Game {
      */
     GameRegistry getRegistry();
 
-    /*
+    /**
      * Gets the {@link Player}s currently online
      *
      * @return a {@link Collection} of online players
