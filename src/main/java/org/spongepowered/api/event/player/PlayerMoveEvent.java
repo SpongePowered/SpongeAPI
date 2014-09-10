@@ -21,34 +21,66 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.item.Item;
-
+import org.spongepowered.api.math.Vector3d;
 
 /**
- * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ * Event for when player moves
  */
-public interface GameRegistry {
-    /**
-     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Block getBlock(String id);
+public class PlayerMoveEvent extends PlayerEvent{
 
     /**
-     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
-     * @param id The id to look up
-     * @return The item or null if not found
+     * Vector3d Player starts at
      */
-    Item getItem(String id);
+    private Vector3d start;
+    /**
+     * Vector3d player ends at
+     */
+    private Vector3d end;
+
+    public PlayerMoveEvent(Game game, Player player, Vector3d start, Vector3d end){
+        super(game, player);
+        this.start=start;
+        this.end=end;
+    }
 
     /**
-     * Gets the id registered to the object
-     * @param obj The object to look up
-     * @return The id or null if none found
+     * Returns the starting Vector3d
+     * @return start
      */
-    String getID(Object obj);
+    public Vector3d getStart(){
+        return this.start;
+    }
+
+    /**
+     * Returns the ending Vector3d
+     * @return end
+     */
+    public Vector3d getEnd(){
+        return this.end;
+    }
+
+    /**
+     * Sets the starting Vector3d
+     * @param loc
+     */
+    public void setStart(Vector3d loc){
+        this.start=loc;
+    }
+
+    /**
+     * Sets the ending Vector3d
+     * @param loc
+     */
+    public void setEnd(Vector3d loc){
+        this.end=loc;
+    }
+
+    public String getSimpleName(){
+        return "PlayerMoveEvent";
+    }
 }

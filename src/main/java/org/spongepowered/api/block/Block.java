@@ -23,6 +23,7 @@
  */
 package org.spongepowered.api.block;
 
+
 /**
  * Describes a voxel. Child classes define specific functionality.
  */

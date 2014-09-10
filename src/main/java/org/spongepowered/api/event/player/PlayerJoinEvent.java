@@ -21,34 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.item.Item;
-
+import org.spongepowered.api.Game;
+import org.spongepowered.api.entity.Player;
 
 /**
- * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ * Event for when player joins the server
  */
-public interface GameRegistry {
-    /**
-     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Block getBlock(String id);
+public class PlayerJoinEvent extends PlayerEvent{
+
+    //Message for when player joins
+    private String joinMessage;
+
+    public PlayerJoinEvent(Game game, Player player, String message){
+        super(game, player);
+        this.joinMessage=message;
+    }
 
     /**
-     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
-     * @param id The id to look up
-     * @return The item or null if not found
+     * Gets the join message for the player
+     * @return the join message
      */
-    Item getItem(String id);
+    public String getJoinMessage(){
+        return this.joinMessage;
+    }
 
     /**
-     * Gets the id registered to the object
-     * @param obj The object to look up
-     * @return The id or null if none found
+     * Sets the players join message
+     * @param message The players join message
      */
-    String getID(Object obj);
+    public void setJoinMessage(String message){
+        this.joinMessage=message;
+    }
+
+    public String getSimpleName(){
+        return "PlayerJoinEvent";
+    }
 }

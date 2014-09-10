@@ -21,34 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.item.Item;
-
+import org.spongepowered.api.Game;
+import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.entity.LivingEntityEvent;
 
 /**
- * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ * Event for everything to do with players
  */
-public interface GameRegistry {
-    /**
-     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Block getBlock(String id);
+public abstract class PlayerEvent extends LivingEntityEvent{
 
-    /**
-     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
-     * @param id The id to look up
-     * @return The item or null if not found
-     */
-    Item getItem(String id);
+    private Player player;
 
-    /**
-     * Gets the id registered to the object
-     * @param obj The object to look up
-     * @return The id or null if none found
-     */
-    String getID(Object obj);
+    public PlayerEvent(Game game, Player player){
+        super(game, player);
+        this.player=player;
+    }
+
+    public Player getPlayer(){
+        return this.player;
+    }
 }

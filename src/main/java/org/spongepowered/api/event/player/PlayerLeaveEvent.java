@@ -21,34 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.item.Item;
-
+import org.spongepowered.api.Game;
+import org.spongepowered.api.entity.Player;
 
 /**
- * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ * Event for when player leaves the server
  */
-public interface GameRegistry {
-    /**
-     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Block getBlock(String id);
+public class PlayerLeaveEvent extends PlayerEvent{
+
+    private String leaveMessage;
+
+    public PlayerLeaveEvent(Game game, Player player, String message){
+        super(game, player);
+        this.leaveMessage=leaveMessage;
+    }
 
     /**
-     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
-     * @param id The id to look up
-     * @return The item or null if not found
+     * Gets the players leave message
+     * @return leaveMessage
      */
-    Item getItem(String id);
+    public String getLeaveMessage(){
+        return this.leaveMessage;
+    }
 
     /**
-     * Gets the id registered to the object
-     * @param obj The object to look up
-     * @return The id or null if none found
+     * Sets the players leave message
+     * @param message The lace message
      */
-    String getID(Object obj);
+    public void setLeaveMessage(String message){
+        this.leaveMessage=message;
+    }
+
+    public  String getSimpleName(){
+        return "PlayerLeaveEvent";
+    }
 }

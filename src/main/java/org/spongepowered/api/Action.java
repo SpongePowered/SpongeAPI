@@ -23,32 +23,37 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.item.Item;
-
-
 /**
- * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ * Actions a player can do
  */
-public interface GameRegistry {
-    /**
-     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Block getBlock(String id);
+public enum  Action {
 
     /**
-     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
-     * @param id The id to look up
-     * @return The item or null if not found
+     * Right clicking a block
      */
-    Item getItem(String id);
+    RIGHT_CLICK_BLOCK,
 
     /**
-     * Gets the id registered to the object
-     * @param obj The object to look up
-     * @return The id or null if none found
+     * Right clicking the air
      */
-    String getID(Object obj);
+    RIGHT_CLICK_AIR,
+
+    /**
+     * Left clicking a block
+     */
+    LEFT_CLICK_BLOCK,
+
+    /**
+     * Left clicking the air
+     */
+    LEFT_CLICK_AIR,
+    /**
+     * Interacting with a block in a way not listed above:
+     * Examples:
+     * -Jumping on farmland
+     * -Triggering tripwire
+     * -Standing on pressure plate
+     * -Causing redstone ore to light up
+     */
+    INTERACT;
 }

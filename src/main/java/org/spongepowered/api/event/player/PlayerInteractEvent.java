@@ -21,34 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.event.player;
 
+import org.spongepowered.api.Action;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.block.Block;
-import org.spongepowered.api.item.Item;
-
+import org.spongepowered.api.entity.Player;
 
 /**
- * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ * Event for when a player interacts with the world
  */
-public interface GameRegistry {
-    /**
-     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Block getBlock(String id);
+public class PlayerInteractEvent extends PlayerEvent{
 
-    /**
-     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
-     * @param id The id to look up
-     * @return The item or null if not found
-     */
-    Item getItem(String id);
+    //The action
+    private Action action;
+    //The block that was clicked
+    private Block block;
 
-    /**
-     * Gets the id registered to the object
-     * @param obj The object to look up
-     * @return The id or null if none found
-     */
-    String getID(Object obj);
+    public PlayerInteractEvent(Game game, Player player, Action action, Block block){
+        super(game, player);
+        this.action=action;
+        this.block=block;
+    }
+
+    public Action getAction(){
+        return this.action;
+    }
+
+    public Block getBlock(){
+        return this.block;
+    }
+
+    public String getSimpleName(){
+        return "PlayerInteractEvent";
+    }
 }

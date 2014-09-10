@@ -23,6 +23,7 @@
  */
 package org.spongepowered.api.entity;
 
+
 public interface Player extends HumanEntity {
 
     /**
