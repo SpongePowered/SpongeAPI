@@ -21,19 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api;
+
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.item.Item;
+
+import javax.annotation.Nullable;
 
 /**
- * Thrown by the implementation if it determines that a {@link org.spongepowered.api.plugin.Plugin} being loaded is invalid.
+ * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
  */
-public class InvalidPluginException extends Exception {
-    private static final long serialVersionUID = 15816838168L;
+public interface GameRegistry {
+    /**
+     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
+     * @param id The id to look up
+     * @return The block or null if not found
+     */
+    @Nullable
+    Block getBlock(String id);
 
-    public InvalidPluginException(String message) {
-        super(message);
-    }
+    /**
+     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
+     * @param id The id to look up
+     * @return The item or null if not found
+     */
+    @Nullable
+    Item getItem(String id);
 
-    public InvalidPluginException(String message, Throwable cause) {
-        super(message, cause);
-    }
+    /**
+     * Gets the id registered to the object
+     * @param obj The object to look up
+     * @return The id or null if none found
+     */
+    @Nullable
+    String getID(Object obj);
 }
