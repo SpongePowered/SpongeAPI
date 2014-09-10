@@ -23,14 +23,14 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.entity.EntityUniverse;
 
 /**
  * Chunks are 16x256x16 (x/y/z) containers of {@link org.spongepowered.api.block.Block}s
  * in a specific {@link World}. Chunks use chunk coordinates, which
  * are simply block coordinates divided by 16 (one chunk every 16 blocks).
  */
-public interface Chunk {
+public interface Chunk extends EntityUniverse, VoxelVolume {
 
     /**
      * Gets the x chunk coordinate of this chunk as it appears in the
@@ -47,26 +47,4 @@ public interface Chunk {
      * @return Z chunk coordinate
      */
     int getZ();
-
-    /**
-     * Gets the {@link org.spongepowered.api.block.Block} at the block coordinate x/y/z.
-     *
-     * @param x X block coordinate
-     * @param y Y block coordinate
-     * @param z Z block coordinate
-     * @return The block
-     * @throws IllegalArgumentException If coordinates given are outside the chunk's bounds
-     */
-    Block getBlock(int x, int y, int z);
-
-    /**
-     * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
-     *
-     * @param x X block coordinate
-     * @param y Y block coordinate
-     * @param z Z block coordinate
-     * @return The voxel
-     * @throws IllegalArgumentException If coordinates given are outside the chunk's bounds
-     */
-    Voxel getVoxel(int x, int y, int z);
 }
