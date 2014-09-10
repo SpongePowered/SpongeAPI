@@ -23,10 +23,9 @@
  */
 package org.spongepowered.api;
 
+import com.sun.istack.internal.Nullable;
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.item.Item;
-
-import javax.annotation.Nullable;
 
 /**
  * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
