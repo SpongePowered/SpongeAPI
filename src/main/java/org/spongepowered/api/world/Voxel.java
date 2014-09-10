@@ -24,6 +24,7 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.Block;
+import org.spongepowered.api.math.Vector3i;
 
 /**
  * Represents the smallest unit of the world map. This unit
@@ -39,8 +40,7 @@ public interface Voxel {
      *
      * @return position The voxel's position
      */
-    // TODO: uncomment this once the math branch is merged
-    //Vector3i getPosition();
+    Vector3i getPosition();
 
     /**
      * Gets a reference to the block object that
