@@ -23,12 +23,37 @@
  */
 package org.spongepowered.api.item;
 
-public interface Item {
-    /**
-     * Gets the id of this item.
-     *
-     * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
-     * @return The id
+/**
+ * A simple enumeration of all type of items that are in minecraft TODO: I don't
+ * have documentation on hand listing every block type or their id values, but
+ * it's worth it to have some sort of example here
+ *
+ */
+public enum ItemType {
+    /*
+     * List of all types
      */
-    String getID();
+    DIRT(0), STONE(0), COBBLE(0);
+
+    /*
+     * The block Type
+     */
+    private final short identity;
+
+    /**
+     * basic, private constructor for enum type
+     * 
+     * @param id_val
+     *            the block ID value
+     */
+    private ItemType(int idVal) {
+        identity = (short) idVal;
+    }
+
+    /**
+     * @return the identity
+     */
+    public short getIdentity() {
+        return identity;
+    }
 }
