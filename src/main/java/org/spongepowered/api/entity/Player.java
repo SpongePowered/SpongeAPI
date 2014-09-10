@@ -21,20 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.entity;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+public interface Player extends HumanEntity {
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+    /**
+     * Gets the players last known username
+     *
+     * @return The player's last known username
+     */
+    String getName();
 
-@Target(TYPE)
-@Retention(RUNTIME)
-public @interface Plugin {
-    String id();
+    /**
+     * Gets the player's display name. If none set,
+     * returns their current username.
+     *
+     * @return The player's display name
+     */
+    String getDisplayName();
 
-    String name();
-
-    String version() default "unknown";
 }

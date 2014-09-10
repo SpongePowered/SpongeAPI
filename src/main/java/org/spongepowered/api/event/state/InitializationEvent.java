@@ -21,20 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.event.state;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import org.spongepowered.api.GameState;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+/**
+ * Represents the {@link GameState#INITIALIZATION} event
+ */
+public interface InitializationEvent extends StateEvent {
 
-@Target(TYPE)
-@Retention(RUNTIME)
-public @interface Plugin {
-    String id();
-
-    String name();
-
-    String version() default "unknown";
 }

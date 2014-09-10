@@ -21,18 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+import java.util.UUID;
 
-public class SpongePreInitializationEvent extends SpongeStateEvent {
-    public SpongePreInitializationEvent(Game game) {
-        super(game);
-    }
+public interface Entity {
 
-    @Override
-    public GameState getState() {
-        return GameState.PRE_INITIALIZATION;
-    }
+    /**
+     * Gets the unique ID for this entity
+     *
+     * @return The entity's {@link UUID}
+     */
+    UUID getUniqueID();
+
 }

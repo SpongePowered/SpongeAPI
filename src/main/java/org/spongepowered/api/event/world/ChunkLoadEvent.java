@@ -21,20 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.event.world;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import org.spongepowered.api.world.Chunk;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@Target(TYPE)
-@Retention(RUNTIME)
-public @interface Plugin {
-    String id();
-
-    String name();
-
-    String version() default "unknown";
+/**
+ * Called when a {@link Chunk} is loaded in an existing {@link org.spongepowered.api.world.World} map
+ */
+public interface ChunkLoadEvent extends ChunkEvent {
 }

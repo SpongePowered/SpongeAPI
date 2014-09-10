@@ -21,20 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.entity;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@Target(TYPE)
-@Retention(RUNTIME)
-public @interface Plugin {
-    String id();
-
-    String name();
-
-    String version() default "unknown";
+public interface LivingEntity extends Entity, Damageable {
 }

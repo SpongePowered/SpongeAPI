@@ -21,20 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.event.world;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import org.spongepowered.api.world.Chunk;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+/**
+ * Describes events which involve a {@link Chunk}
+ */
+public interface ChunkEvent {
 
-@Target(TYPE)
-@Retention(RUNTIME)
-public @interface Plugin {
-    String id();
+    /**
+     * Gets the {@link Chunk} included in the event
+     *
+     * @return Event {@link Chunk}
+     */
+    Chunk getChunk();
 
-    String name();
-
-    String version() default "unknown";
 }
