@@ -64,6 +64,13 @@ public interface Game {
     EventManager getEventManager();
 
     /**
+     * Gets the {@link org.spongepowered.api.GameRegistry}.
+     *
+     * @return The game registry
+     */
+    GameRegistry getRegistry();
+
+    /**
      * Gets all currently loaded {@link org.spongepowered.api.world.World}s.
      *
      * @return Collection of loaded worlds

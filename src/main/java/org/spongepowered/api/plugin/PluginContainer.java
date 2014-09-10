@@ -46,7 +46,7 @@ public interface PluginContainer {
     String getVersion();
 
     /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}
+     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
      * <p/>
      * TODO Provide a way to not dereference this back to Object
      *
