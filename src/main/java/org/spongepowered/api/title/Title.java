@@ -25,6 +25,8 @@ package org.spongepowered.api.title;
 
 import java.util.List;
 
+import org.spongepowered.api.entity.Player;
+
 public interface Title {
 
     /**
@@ -111,7 +113,10 @@ public interface Title {
      */
     void setStayTime(int ticks);
 
-    /*
-     TODO Create sendTo(entity/player) void.
+    /**
+     * Send this title configuration to the specified player.
+     * 
+     * @param player The player to send the title to.
      */
+    void sendTo(Player player);
 }
