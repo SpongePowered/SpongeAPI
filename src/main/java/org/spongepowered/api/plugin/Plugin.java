@@ -33,6 +33,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 public @interface Plugin {
     String id();
+
     String name();
+
     String version() default "unknown";
 }

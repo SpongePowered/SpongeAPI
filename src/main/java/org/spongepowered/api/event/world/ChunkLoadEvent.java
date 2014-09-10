@@ -23,7 +23,6 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
 import org.spongepowered.api.world.Chunk;
 
 /**

@@ -33,5 +33,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target(value = METHOD)
 public @interface SpongeEventHandler {
     Order order() default Order.DEFAULT;
+
     boolean ignoreCancelled() default false;
 }

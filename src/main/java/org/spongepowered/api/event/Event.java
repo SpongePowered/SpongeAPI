@@ -23,7 +23,16 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.Game;
+
 public interface Event {
+
+    /**
+     * Gets the {@link org.spongepowered.api.Game}.
+     *
+     * @return The game
+     */
+    Game getGame();
 
     /**
      * Gets a simple name of the current class

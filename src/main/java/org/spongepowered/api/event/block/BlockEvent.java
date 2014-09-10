@@ -34,7 +34,8 @@ public interface BlockEvent extends Event {
 
     /**
      * Get {@link Block} included in the event
-     *  TODO: use voxel instead to provide the location and block at once?
+     * TODO: use voxel instead to provide the location and block at once?
+     *
      * @return Event {@link Block}
      */
     Block getBlock();

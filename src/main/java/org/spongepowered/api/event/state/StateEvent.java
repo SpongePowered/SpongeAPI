@@ -23,8 +23,6 @@
  */
 package org.spongepowered.api.event.state;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
 import org.spongepowered.api.event.Event;
 
 /**
