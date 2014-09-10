@@ -35,4 +35,12 @@ public @interface Plugin {
     String id();
     String name();
     String version() default "unknown";
+
+    /**
+     * A list of dependencies which should be loaded first.<br/>
+     * Use the plugin's id.
+     * If more than one, use comma separated list in braces.
+     * <p><code>dependencies = {"dependecy1", "dependecy2", "dependencyX"}</code>
+     */
+    String[] dependencies() default {};
 }

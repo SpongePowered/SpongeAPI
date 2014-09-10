@@ -43,6 +43,12 @@ public interface PluginContainer {
     String getVersion();
 
     /**
+     * Gets an array of dependencies for the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * @return Array of dependency ids
+     */
+    public String[] getDependencies();
+
+    /**
      * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}
      *
      * TODO Provide a way to not dereference this back to Object
