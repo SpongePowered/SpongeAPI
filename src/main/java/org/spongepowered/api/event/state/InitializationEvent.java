@@ -26,13 +26,9 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameState;
 
-public class SpongeServerAboutToStartEvent extends SpongeStateEvent {
-    public SpongeServerAboutToStartEvent(Game game) {
-        super(game);
-    }
+/**
+ * Represents the {@link GameState#INITIALIZATION} event
+ */
+public interface InitializationEvent extends StateEvent {
 
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_ABOUT_TO_START;
-    }
 }

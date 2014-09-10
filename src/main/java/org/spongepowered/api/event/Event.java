@@ -21,18 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.event;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+public interface Event {
 
-public class SpongeServerStartedEvent extends SpongeStateEvent {
-    public SpongeServerStartedEvent(Game game) {
-        super(game);
-    }
+    /**
+     * Gets a simple name of the current class
+     *
+     * @return String name
+     */
+    String getSimpleName();
 
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_STARTED;
-    }
 }

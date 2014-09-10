@@ -26,13 +26,9 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameState;
 
-public class SpongeServerStoppingEvent extends SpongeStateEvent {
-    public SpongeServerStoppingEvent(Game game) {
-        super(game);
-    }
+/**
+ * Represents {@link GameState#SERVER_STARTED} event
+ */
+public interface ServerStartedEvent extends StateEvent {
 
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_STOPPING;
-    }
 }

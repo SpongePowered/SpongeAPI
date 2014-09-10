@@ -23,25 +23,19 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.Game;
+
 import org.spongepowered.api.block.Block;
-import org.spongepowered.api.event.SpongeEvent;
+import org.spongepowered.api.event.Event;
 
 /**
- * Abstract class for map block events
+ * Describes events which contain a {@link Block}
  */
-public abstract class BlockEvent extends SpongeEvent {
-
-    public final Block block;
+public interface BlockEvent extends Event {
 
     /**
-     * Create an event involving a {@link Block}
-     *
-     * @param game Game instance
-     * @param block The {@link Block} this event impacts
+     * Get {@link Block} included in the event
+     *  TODO: use voxel instead to provide the location and block at once?
+     * @return Event {@link Block}
      */
-    public BlockEvent(Game game, Block block){
-        super(game);
-        this.block = block;
-    }
+    Block getBlock();
 }

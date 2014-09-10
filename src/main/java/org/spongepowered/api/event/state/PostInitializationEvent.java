@@ -21,13 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.state;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.GameState;
 
 /**
- * Called when a {@link Chunk} is loaded in an existing {@link World} map
+ * Represents {@link GameState#POST_INITIALIZATION} event
  */
-public interface ChunkLoadEvent extends ChunkEvent {
+public interface PostInitializationEvent extends StateEvent {
+
 }
