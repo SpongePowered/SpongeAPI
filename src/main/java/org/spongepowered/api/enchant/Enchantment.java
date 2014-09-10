@@ -21,17 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item;
-
-import org.spongepowered.api.block.Block;
+package org.spongepowered.api.enchant;
 
 /**
- * Represents a {@link org.spongepowered.api.block.Block} as an {@link org.spongepowered.api.item.Item}
+ * An interface to represent enchantments, wrapping both the type and level
+ *
  */
-public interface ItemBlock extends Item {
+public interface Enchantment {
+
     /**
-     * Gets the {@link org.spongepowered.api.block.Block} this item places on interaction
-     * @return The block
+     * @return the eType
      */
-    Block getBlock();
+    public EnchantmentType getType();
+
+    /**
+     * @return the level
+     */
+    public int getLevel();
+
+    /**
+     * 
+     * @param other
+     *            another enchantment
+     * @return whether this and the other enchantment conflict, ie: not both
+     *         Sharpness and Smite
+     */
+    public abstract boolean conflictsWith(Enchantment other);
+
+    /**
+     * 
+     * @param other
+     *            another enchantment
+     * @return this and the other enchantment combined, ie: Sharpness I +
+     *         Sharpness I = Sharpness II
+     */
+    public abstract Enchantment combineWith(Enchantment other);
 }

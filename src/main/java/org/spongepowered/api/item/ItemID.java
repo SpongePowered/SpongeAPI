@@ -23,12 +23,19 @@
  */
 package org.spongepowered.api.item;
 
-public interface Item {
+/**
+ * an abstract class for defining names of items, for identification purposes
+ *
+ */
+public interface ItemID {
+
     /**
-     * Gets the id of this item.
-     *
-     * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
-     * @return The id
+     * @return the implName
      */
-    String getID();
+    public String getModName();
+
+    /**
+     * @return the itemName
+     */
+    public String getItemName();
 }
