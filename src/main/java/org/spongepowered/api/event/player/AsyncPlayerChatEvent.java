@@ -25,16 +25,15 @@ package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.event.Event;
 
 /**
- * An abstract class for {@link Player} events
+ * Called when a {@link Player} sends a chat message
+ *
  */
-public interface PlayerEvent extends Event {
+public interface AsyncPlayerChatEvent extends PlayerEvent {
     /**
-     * Gets the player {@link Player} who is involved in this event
-     *
-     * @return The player involved
+     * Get the message sent in this event
+     * @return The message sent
      */
-    Player getPlayer();
+    public String getMessage();
 }
