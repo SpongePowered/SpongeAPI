@@ -31,8 +31,9 @@ import org.spongepowered.api.world.World;
 public interface Block {
     /**
      * Gets the id of this block.
-     *
+     * <p/>
      * Ex. Minecraft registers stone as "minecraft:stone"
+     *
      * @return The id
      */
     String getID();

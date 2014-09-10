@@ -31,6 +31,7 @@ import org.spongepowered.api.block.Block;
 public interface ItemBlock extends Item {
     /**
      * Gets the {@link org.spongepowered.api.block.Block} this item places on interaction
+     *
      * @return The block
      */
     Block getBlock();
