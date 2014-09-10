@@ -28,9 +28,16 @@ public interface Damageable {
     /**
      * Damages the entity by a specified amount;
      *
-     * @param damage the damage amount
+     * @param amount the damage amount
      */
     void damage(double amount);
+
+    /**
+     * Heals the entity by a specified amount;
+     *
+     * @param amount the amount to heal
+     */
+    void heal(double amount);
 
     /**
      * Gets the health of the entity
