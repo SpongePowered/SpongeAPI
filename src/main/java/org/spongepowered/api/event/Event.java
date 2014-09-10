@@ -40,5 +40,42 @@ public interface Event {
      * @return String name
      */
     String getSimpleName();
+    
+    /**
+     * Gets if the {@link Event} can be cancelled
+     * 
+     * @return
+     */
+    boolean isCancellable();
+    
+    /**
+     * Gets if the {@link Event} has been cancelled
+     * 
+     * @return
+     */
+    boolean isCancelled();
+    
+    /**
+     * Sets the cancelled state of the {@link Event}
+     * 
+     * @param cancel the new cancelled state
+     * @return
+     */
+    void setCancelled(boolean cancel);
+
+    /**
+     * Sets the {@link Result} of the {@link Event}
+     * 
+     * @param result the result
+     * @return
+     */
+    void setResult(Result result);
+    
+    /**
+     * Gets the {@link Result} of the {@link Event}
+     * 
+     * @return
+     */
+    Result getResult();
 
 }

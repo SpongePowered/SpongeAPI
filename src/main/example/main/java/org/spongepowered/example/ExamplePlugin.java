@@ -9,11 +9,11 @@ import org.spongepowered.api.plugin.Plugin;
 public class ExamplePlugin {
     @SpongeEventHandler
     public void onInitialization(InitializationEvent event) {
-        event.game.getLogger().info("Hey folks, this is INITIALIZATION!");
+        event.getGame().getLogger().info("Hey folks, this is INITIALIZATION!");
     }
 
     @SpongeEventHandler
     public void onServerStarting(ServerStartingEvent event) {
-        event.game.getLogger().info("Hey...my implementation's server is starting?");
+        event.getGame().getLogger().info("Hey...my implementation's server is starting?");
     }
 }
