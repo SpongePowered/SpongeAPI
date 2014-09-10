@@ -33,7 +33,7 @@ import org.spongepowered.api.math.Vector3i;
  * this object has a position attribute, and does not define any logic
  * by itself.
  */
-public interface Voxel {
+public interface Voxel extends VoxelVolume {
 
     /**
      * Gets the voxel's position in the world map.
