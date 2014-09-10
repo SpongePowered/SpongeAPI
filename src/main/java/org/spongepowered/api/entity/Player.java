@@ -23,7 +23,6 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.Location;
 
 public interface Player extends HumanEntity {
 
@@ -41,11 +40,5 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
-
-    /**
-     * Gets the players location
-     * @return  Players location
-     */
-    Location getLocation();
 
 }
