@@ -49,6 +49,7 @@ repositories {
 // Project dependencies
 dependencies {
     compile 'org.apache.logging.log4j:log4j-api:2.0-beta9'
+    compile 'com.google.code.findbugs:jsr305:1.3.9'
 }
 
 // Filter, process, and include resources
