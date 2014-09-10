@@ -24,6 +24,7 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.Block;
+import org.spongepowered.api.math.Vector3i;
 
 import java.util.UUID;
 
@@ -76,6 +77,14 @@ public interface World {
      * @return The block
      */
     Block getBlock(int x, int y, int z);
+    
+    /**
+     * Gets the {@link org.spongepowered.api.block.Block} at the block coordinate x/y/z.
+     *
+     * @param location location of block in Vector3i format
+     * @return The block
+     */
+    Block getBlock(Vector3i location);
 
     /**
      * Gets a specific {@link org.spongepowered.api.world.Voxel} by its x/y/z block coordinate.
@@ -86,4 +95,12 @@ public interface World {
      * @return The voxel
      */
     Voxel getVoxel(int x, int y, int z);
+    
+    /**
+     * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
+     *
+     * @param location of voxel in Vector3i format
+     * @return The voxel
+     */
+    Voxel getVoxel(Vector3i location);
 }
