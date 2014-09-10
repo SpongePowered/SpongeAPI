@@ -1,37 +1,36 @@
 // Gradle repositories and dependencies
 buildscript {
     repositories {
-        mavenCentral()
-        maven {
-            name = 'sonatype-nexus-public'
-            url = 'https://oss.sonatype.org/content/repositories/public/'
-        }
-        maven {
-            name = 'forge-repo'
-            url = 'http://files.minecraftforge.net/maven/'
-        }
         jcenter()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
     }
 }
 
-// Default tasks
-defaultTasks 'build', 'licenseFormat'
-
 // Apply plugin
-apply plugin: 'forge'
+apply plugin: 'java'
 apply plugin: 'license'
-apply plugin: 'maven'
 apply plugin: 'checkstyle'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+// Default tasks
+defaultTasks 'licenseFormat', 'check', 'build'
 
 // Basic project information
 group = 'org.spongepowered'
-archivesBaseName = 'sponge'
-// Version -> Minecraft-MinecraftForge-Ours(If any?)
-version = '1.7.10-10.13.1.1213-SNAPSHOT'
+archivesBaseName = 'spongeapi'
+version = '1.0.0-SNAPSHOT'
+
+// Extended project information
+ext.projectName = 'SpongeAPI'
+ext.inceptionYear = '2014'
+ext.packaging = 'jar'
+ext.url = 'http://spongepowered.org'
+ext.description = 'SpongeAPI'
+ext.organization = 'SpongePowered'
 
 // Define variables
 ext.buildNumber = project.hasProperty("buildNumber") ? buildNumber : '0'
@@ -42,52 +41,20 @@ ext.commit = project.hasProperty("commit") ? commit : 'unknown'
 sourceCompatibility = '1.6'
 targetCompatibility = '1.6'
 
-repositories { mavenLocal() }
-
-// MinecraftForge version
-minecraft {
-    version = "1.7.10-10.13.1.1214-new"
+// Project repositories
+repositories {
+    mavenCentral()
 }
 
 // Project dependencies
 dependencies {
-    compile project(':SpongeAPI')
-    testCompile 'junit:junit:4.11'
+    compile 'org.apache.logging.log4j:log4j-api:2.0-beta9'
 }
 
 // Filter, process, and include resources
 processResources {
-    inputs.property "version", version
-    inputs.property "mcversion", project.minecraft.version
-
     // Include in final JAR
     from 'LICENSE.txt'
-
-    // Replace variables
-    from('src/main/resources/mcmod.info') {
-        expand 'modid': project.name.toLowerCase(),
-                'name': project.name,
-                'description': project.description,
-                'version': version,
-                'buildNumber': buildNumber,
-                'mcversion': minecraft.version,
-                'url': url,
-                'authorList': organization
-    }
-}
-
-jar {
-    // Jar shading and packaging configuration
-    from { project("SpongeAPI").sourceSets.main.output.files }
-    
-    // JAR manifest configuration
-    manifest.mainAttributes(
-        "Built-By": System.properties['user.name'],
-        "Created-By": System.properties['java.vm.version'] + " (" + System.properties['java.vm.vendor'] + ")",
-        "Implementation-Title": name,
-        "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
-        "Implementation-Vendor": url,
-        "FMLCorePlugin": "org.spongepowered.mod.SpongeCoremod")
 }
 
 // License header formatting
@@ -98,7 +65,7 @@ license {
     ext.year = project.inceptionYear
     exclude "**/*.info"
     exclude "assets/**"
-    header new File(project("SpongeAPI").getProjectDir(), "HEADER.txt")
+    header file('HEADER.txt')
     sourceSets = project.sourceSets
     ignoreFailures false
     strictCheck true
@@ -111,13 +78,21 @@ checkstyle {
         "url" : project.url,
         "year" : project.inceptionYear
     ]
-    configFile = new File(project("SpongeAPI").getProjectDir(),"checkstyle.xml")
+    configFile = file("checkstyle.xml")
 }
-tasks.reobf.dependsOn "check"
 
 // Source compiler configuration
-tasks.withType(JavaCompile) {
+configure([compileJava, compileTestJava]) {
     options.compilerArgs += [ '-Xlint:all', '-Xlint:-path' ]
     options.deprecation = true
     options.encoding = 'utf8'
 }
+
+// JAR manifest configuration
+jar.manifest.mainAttributes(
+        "Built-By": System.properties['user.name'],
+        "Created-By": System.properties['java.vm.version'] + " (" + System.properties['java.vm.vendor'] + ")",
+        "Implementation-Title": name,
+        "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
+        "Implementation-Vendor": url)
+

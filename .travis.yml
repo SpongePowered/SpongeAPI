@@ -2,9 +2,7 @@ language: java
 notifications:
   email: false
 install: true
-script:
-  - gradle
-  - git diff --exit-code
 matrix:
   include:
   - jdk: openjdk6
+    script: gradle build
