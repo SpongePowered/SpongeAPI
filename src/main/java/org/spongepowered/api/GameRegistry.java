@@ -23,9 +23,9 @@
  */
 package org.spongepowered.api;
 
-import com.sun.istack.internal.Nullable;
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.item.Item;
+
 
 /**
  * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
@@ -36,7 +36,6 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The block or null if not found
      */
-    @Nullable
     Block getBlock(String id);
 
     /**
@@ -44,7 +43,6 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The item or null if not found
      */
-    @Nullable
     Item getItem(String id);
 
     /**
@@ -52,6 +50,5 @@ public interface GameRegistry {
      * @param obj The object to look up
      * @return The id or null if none found
      */
-    @Nullable
     String getID(Object obj);
 }
