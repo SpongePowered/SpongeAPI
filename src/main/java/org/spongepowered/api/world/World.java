@@ -33,7 +33,7 @@ import java.util.UUID;
 public interface World extends EntityUniverse, VoxelVolume {
 
     /**
-     * Gets the unique id ({@link java.util.UUID} for this world.
+     * Gets the unique id ({@link java.util.UUID}) for this world.
      *
      * @return The unique id or UUID
      */
