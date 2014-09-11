@@ -39,5 +39,34 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
-
+    
+    /**
+     * Sets flight speed of player
+     * @param speed new flight speed for player
+     */
+    void setFlightSpeed(float speed);
+    
+    /**
+     * Gets flight speed.
+     * @return flight speed
+     */
+    float getFlightSpeed();
+    
+    /**
+     * Sets can player fly.
+     * @param canFly can player fly
+     */
+    void setCanFly(boolean canFly);
+    
+    /**
+     * Gets can the player fly. Will always return true for creative/spectator players.
+     * @return true if player can fly
+     */
+    boolean canFly();
+    
+    /**
+     * Checks is player currently flying.
+     * @return true if player is flying
+     */
+    boolean isFlying();
 }

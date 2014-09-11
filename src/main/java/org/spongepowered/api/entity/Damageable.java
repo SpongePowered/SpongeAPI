@@ -43,4 +43,16 @@ public interface Damageable {
      * Sets the Health of the {@code Damageable}
      */
     void setHealth(double health);
+    
+    /**
+     * Sets player invulnerable/removes invulnerablity.
+     * @param invulnerable player's new invulnerablity status
+     */
+    void setInvulnerable(boolean invulnerable);
+    
+    /**
+     * Checks is the player invulnerable.
+     * @return is the player invulnerable
+     */
+    boolean isInvulnerable();
 }
