@@ -25,9 +25,6 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3i;
-import org.spongepowered.api.entity.Entity;
-
-import java.util.Collection;
 
 /**
  * For Objects that contain volumes of {@link org.spongepowered.api.world.Voxel}s.
@@ -69,5 +66,4 @@ public interface VoxelVolume {
      * @return The voxel
      */
     Voxel getVoxel(Vector3i location);
-
 }
