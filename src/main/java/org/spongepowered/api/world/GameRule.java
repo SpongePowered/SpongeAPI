@@ -39,7 +39,7 @@ public interface GameRule {
      * Set current value of gamerule.
      * @param v       Value to update the gamerule
      */
-    public void setValue(boolean v);
+    public void setValue(boolean value);
 
     /**
      * Returns the name of the gamerule.
