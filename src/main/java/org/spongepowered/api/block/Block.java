@@ -47,7 +47,8 @@ public interface Block {
     World getWorld();
     
     /**
-     * Updates the block
+     * Updates the block's
+     * physics-related things , block state, power level etc...
      * <p/>
      */
     void update();
