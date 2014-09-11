@@ -35,15 +35,6 @@ public interface Item {
     String getID();
 
     /**
-     * Gets the data of this item, typically the
-     * uses left, but also works for things like
-     * wool color.
-     *
-     * @return uses
-     */
-    int getData();
-
-    /**
      * Get the default maximum quantity for {@link org.spongepowered.api.inventory.ItemStack}s of this item
      *
      * @return Max stack quantity
