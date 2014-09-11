@@ -23,9 +23,9 @@
  */
 package org.spongepowered.api.util;
 
-public class PermissionLevel{
+public class Permissions{
 
-public enum PermissionLevel{ZERO_PERMISSIONS , PLAYER , PLAYER_OPERATOR , CONSOLE_OPERATOR};
+public enum Level{ZERO_PERMISSIONS , PLAYER , PLAYER_OPERATOR , CONSOLE_OPERATOR};
 
 /*ZERO_PERMISSIONS - No permissions at all
   PLAYER - Basic permissions
