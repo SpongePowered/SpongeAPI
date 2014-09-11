@@ -1,5 +1,5 @@
 
-package package org.spongepowered.api.util;
+package org.spongepowered.api.util;
 
 public enum PermissionLevel{
 
