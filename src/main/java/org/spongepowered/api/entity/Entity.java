@@ -23,9 +23,12 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.component.ComponentHolder;
+import org.spongepowered.api.component.entity.EntityComponent;
+
 import java.util.UUID;
 
-public interface Entity {
+public interface Entity extends ComponentHolder<EntityComponent> {
 
     /**
      * Gets the unique ID for this entity
