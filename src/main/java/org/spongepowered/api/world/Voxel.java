@@ -65,4 +65,18 @@ public interface Voxel extends VoxelVolume {
      */
     void update();
     
+    /**
+     * Set if the voxel should be affected by physics
+     *
+     * @param true = yes , false = no
+     */
+    void setUsePhysics(boolean physics);
+    
+    /**
+     * Returns true if the voxel uses physics
+     *
+     * @return true if using physics
+     */
+    boolean getUsePhysics();
+    
 }
