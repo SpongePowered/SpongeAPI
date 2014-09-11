@@ -37,8 +37,8 @@ package org.spongepowered.api.event;
  * <tr><td>DEFAULT</td>     <td>NO</td>              <td>YES</td>        <td>The default action order</td></tr>
  * <tr><td>LATE</td>        <td>NO</td>              <td>YES</td>        <td>Standard actions that should happen after other plugins react to the event</td></tr>
  * <tr><td>LAST</td>        <td>YES</td>             <td>YES</td>        <td>Final cancellation by protection plugins</td></tr>
- * <tr><td>BEFORE_POST</td> <td>YES</td>             <td>YES</td>        <td>Actions that need to respond to cancelled events before POST</td></tr>
- * <tr><td>POST</td>        <td>YES</td>             <td>YES</td>        <td>Actions that need to react to the final and stable effects of event</td></tr>
+ * <tr><td>BEFORE_POST</td> <td>YES</td>             <td>NO</td>        <td>Actions that need to respond to cancelled events before POST</td></tr>
+ * <tr><td>POST</td>        <td>YES</td>             <td>NO</td>        <td>Actions that need to react to the final and stable effects of event</td></tr>
  * </table>
  */
 public enum Order {
