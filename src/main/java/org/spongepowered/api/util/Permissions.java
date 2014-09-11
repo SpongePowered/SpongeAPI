@@ -38,6 +38,6 @@ public enum Level{ZERO_PERMISSIONS , PLAYER , PLAYER_OPERATOR , CONSOLE_OPERATOR
     * @param Permission level provided
     * @param Permission level to compare to
     */
-    static boolean biggerThan(PermissionLevel provided , PermissionLevel tocompare);
+    static boolean biggerThan(Level provided , Level tocompare);
 
 }
