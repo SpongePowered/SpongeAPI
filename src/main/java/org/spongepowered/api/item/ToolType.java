@@ -25,19 +25,19 @@ package org.spongepowered.api.item;
 
 public interface ToolType {
     /**
-     * Gets the damage added to the
+     * Gets the melee damage added to the
      * base material type(Diamond, Stone, etc)
      *
      * @return damage
      */
-    public double getDamage();
+    double getDamageAdded();
 
     /**
      * Gets the name of the tool type(Spade, Axe, etc)
      *
      * @return name
      */
-    public String getName();
+    String getDisplayName();
 
     /**
      * Gets the blocks which this

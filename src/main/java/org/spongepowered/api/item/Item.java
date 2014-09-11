@@ -35,7 +35,9 @@ public interface Item {
     String getID();
 
     /**
-     * Gets the uses left on this item
+     * Gets the data of this item, typically the
+     * uses left, but also works for things like
+     * wool color.
      *
      * @return uses
      */
