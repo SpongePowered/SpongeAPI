@@ -47,18 +47,10 @@ public interface Player extends HumanEntity {
     boolean isOp();
     
     /**
-     * Returns true if the player has the permission node provided
+     * Returns true if the player has the permission node(s) provided
      * 
-     * @param Permission nodes
+     * @param Permission node(s)
      */
-    boolean hasPermission(String permission);
-    
-    /**
-     * Returns true if the player has all the 
-     * permissions provided
-     * 
-     * @param Permission nodes
-     */
-    boolean hasPermissions(String[] permission);
+    boolean hasPermission(String... permission);
 
 }
