@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.plugin;
 
+import java.util.Collection;
+
 public interface PluginContainer {
     /**
      * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
@@ -44,6 +46,13 @@ public interface PluginContainer {
      * @return The name
      */
     String getVersion();
+    
+    /**
+     * Gets the author of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     *
+     * @return The author(s)
+     */
+    Collection<Author> getAuthors();
 
     /**
      * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
