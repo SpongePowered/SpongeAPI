@@ -33,5 +33,4 @@ public interface Entity {
      * @return The entity's {@link UUID}
      */
     UUID getUniqueID();
-
 }

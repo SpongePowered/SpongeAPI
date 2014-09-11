@@ -212,7 +212,7 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
     /**
      * Raises each component of this vector by the value, returning the results as new vector.
      *
-     * @param a The value to raise by
+     * @param pow The value to raise by
      * @return The results of the operation as a new vector
      */
     Vector2i pow(double pow);
@@ -220,7 +220,7 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
     /**
      * Raises each component of this vector by the value, returning the results as new vector.
      *
-     * @param a The value to raise by
+     * @param power The value to raise by
      * @return The results of the operation as a new vector
      */
     Vector2i pow(int power);
@@ -366,14 +366,14 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
     /**
      * Return the axis with the minimal value.
      *
-     * @return {@link int} axis with minimal value
+     * @return The axis with minimal value
      */
     int getMinAxis();
 
     /**
      * Return the axis with the maximum value.
      *
-     * @return {@link int} axis with maximum value
+     * @return The axis with maximum value
      */
     int getMaxAxis();
 
@@ -386,6 +386,8 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
 
     /**
      * Returns this vector as a Vector3i, using the provided value for component z.
+     * 
+     * @param z The z component value to be used
      *
      * @return This vector as a Vector3i
      */
@@ -393,6 +395,8 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
 
     /**
      * Returns this vector as a Vector3i, using the provided value for component z.
+     * 
+     * @param z The z component value to be used
      *
      * @return This vector as a Vector3i
      */
@@ -419,10 +423,13 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
      */
     Vector2d toDouble();
 
+    @Override
     int compareTo(Vector2i v);
 
+    @Override
     boolean equals(Object o);
 
+    @Override
     int hashCode();
 
     /**
@@ -437,5 +444,6 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
      *
      * @return This vector as a string
      */
+    @Override
     String toString();
 }

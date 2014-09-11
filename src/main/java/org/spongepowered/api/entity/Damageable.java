@@ -23,12 +23,15 @@
  */
 package org.spongepowered.api.entity;
 
+/**
+ * Something that can have damage/health on it should inherit this
+ */
 public interface Damageable {
 
     /**
      * Damages the entity by a specified amount;
      *
-     * @param damage the damage amount
+     * @param amount the damage amount
      */
     void damage(double amount);
 
@@ -41,6 +44,8 @@ public interface Damageable {
 
     /**
      * Sets the Health of the {@code Damageable}
+     * 
+     * @param health The health to set this damageable's health to
      */
     void setHealth(double health);
 }

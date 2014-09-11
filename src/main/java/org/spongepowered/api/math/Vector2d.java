@@ -165,7 +165,7 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     /**
      * Raises each component of this vector by the value, returning the results as new vector.
      *
-     * @param a The value to raise by
+     * @param power The value to raise by
      * @return The results of the operation as a new vector
      */
     Vector2d pow(double power);
@@ -321,6 +321,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
 
     /**
      * Returns this vector as a Vector3d, using the provided value for component z.
+     * 
+     * @param z The z component value to be used
      *
      * @return This vector as a Vector3d
      */
@@ -347,10 +349,13 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
      */
     Vector2f toFloat();
 
+    @Override
     int compareTo(Vector2d v);
 
+    @Override
     boolean equals(Object o);
 
+    @Override
     int hashCode();
 
     /**
@@ -365,5 +370,6 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
      *
      * @return This vector as a string
      */
+    @Override
     String toString();
 }
