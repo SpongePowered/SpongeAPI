@@ -57,7 +57,7 @@ public interface Voxel extends VoxelVolume {
      *
      * @return The world that contains the voxel
      */
-    World getBlock();
+    World getWorld();
     
     /**
      * Update the voxel's physics , state , power etc.
