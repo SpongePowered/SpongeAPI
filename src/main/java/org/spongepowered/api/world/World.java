@@ -68,15 +68,15 @@ public interface World extends EntityUniverse, VoxelVolume {
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
  
     /**
-     * Returns the value of the {@link GameRule} specified.
-     * @param gr             The {@link GameRule} element to get the value from
+     * Returns the value of the {@link gameRule} specified.
+     * @param gr             The {@link gameRule} element to get the value from
      * @return               The boolean value of the selected GameRule on the world
      */
     boolean getGameRule(GameRule gr);
     
     /**
-     * Changes the value of the {@link GameRule} specified to the selected boolean value.
-     * @param gr             The {@link GameRule} which is going to be updated	
+     * Changes the value of the {@link gameRule} specified to the selected boolean value.
+     * @param gr             The {@link gameRule} which is going to be updated	
      * @param value          The boolean value to set the GameRule
      */
     void setGameRule(GameRule gr,boolean value);
