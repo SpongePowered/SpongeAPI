@@ -25,8 +25,15 @@
 
 package org.spongepowered.api.block;
 
+import javax.annotation.Nullable;
+import java.util.Set;
+
 /**
  * Describes a voxel. Child classes define specific functionality.
+ *
+ * The concept of block states were introduced in Minecraft 1.8 to replace metadata.
+ * Block states are described with a series of name-value pairs. For this API names are referred to as attributes and values as {@link org.spongepowered.api.block.BlockState}.
+ * For every block with the same ID got from {@link #getID()} the set of attributes are the same.
  */
 public interface Block {
 
@@ -39,4 +46,68 @@ public interface Block {
      */
     String getID();
 
+    /**
+     * Gets the {@link org.spongepowered.api.block.BlockState} of the block.
+     * <p/>
+     * Ex. "minecraft:stone" block. has a variant block state which determine
+     * if it is smooth, granite, smooth_granite, diorite, smooth_diorite, andesite or smooth_andesite.
+     * <p/>
+     * If there isn't a attribute for this block with the name {@code attribute} then null is returned.
+     *
+     * @param attribute name of the attribute being sort
+     * @return block state
+     */
+    @Nullable
+    BlockState getBlockState(String attribute);
+
+    /**
+     * Gets all attributes for this block. If {@link org.spongepowered.api.block.Block}'s have the same ID,
+     * which is obtained by {@link #getID()} then the set of attributes will be equal.
+     * <p/>
+     * So if {@code a} and {@code b} are instances of {@link org.spongepowered.api.block.Block}
+     * if {@code a.getID().equals(b.getID())}
+     * then {@code a.getBlockStateAttributes().equals(b.getBlockStateAttributes())}
+     * <p/>
+     * @return set of block state attributes
+     */
+    Set<String> getBlockStateAtributes();
+
+    /**
+     * Create a new block with the same ID and block state
+     * apart from the attribute {@code attribute} which is set to {@code value}.
+     * <p/>
+     * If there is not a attribute {@code attribute} then null is returned.
+     * @throws org.spongepowered.api.block.BlockStateTypeException if the attributes type isn't int or is out of range
+     * @param attribute the block state attribute to be changed
+     * @param value     the value to be changed to
+     * @return a new instance of {@link org.spongepowered.api.block.Block} with value of the block state attribute is {@code value}
+     */
+    @Nullable
+    Block setBlockState(String attribute,int value);
+
+    /**
+     * Create a new block with the same ID and block state
+     * apart from the attribute {@code attribute} which is set to {@code value}.
+     * <p/>
+     * If there is not a attribute {@code attribute} then null is returned.
+     * @throws org.spongepowered.api.block.BlockStateTypeException if the attributes type isn't boolean
+     * @param attribute the block state attribute to be changed
+     * @param value     the value to be changed to
+     * @return a new instance of {@link org.spongepowered.api.block.Block} with value of the block state attribute is {@code value}
+     */
+    @Nullable
+    Block setBlockState(String attribute,boolean value);
+
+    /**
+     * Create a new block with the same ID and block state
+     * apart from the attribute {@code attribute} which is set to {@code value}.
+     * <p/>
+     * If there is not a attribute {@code attribute} then null is returned.
+     * @throws org.spongepowered.api.block.BlockStateTypeException if the attributes type isn't of the type of {@code value}
+     * @param attribute the block state attribute to be changed
+     * @param value     the value to be changed to
+     * @return a new instance of {@link org.spongepowered.api.block.Block} with value of the block state attribute is {@code value}
+     */
+    @Nullable
+    Block setBlockState(String attribute,Object value);
 }
