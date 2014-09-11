@@ -23,43 +23,12 @@
  */
 package org.spongepowered.api.item;
 
-public interface Item {
-
+public interface ItemTool extends Item {
     /**
-     * Gets the id of this item.
-     * <p/>
-     * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
-     *
-     * @return The id
+     * Gets the variety of tool
+     * Ex. AXE
+     * @return type
      */
-    String getID();
-
-    /**
-     * Gets the uses left on this item
-     *
-     * @return uses
-     */
-    int getDurability();
-
-    /**
-     * Sets the uses left on this item
-     *
-     * @param durability Uses left
-     */
-    void setDurability(int durability);
-
-    /**
-     * Gets the max uses for this item
-     *
-     * @return max uses
-     */
-    int getMaxDurability();
-
-    /**
-     * Get the default maximum quantity for {@link org.spongepowered.api.inventory.ItemStack}s of this item
-     *
-     * @return Max stack quantity
-     */
-    int getMaxStackQuantity();
+    ToolType getToolType();
 
 }

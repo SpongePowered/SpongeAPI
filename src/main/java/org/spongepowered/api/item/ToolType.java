@@ -23,43 +23,27 @@
  */
 package org.spongepowered.api.item;
 
-public interface Item {
+public interface ToolType {
+    /**
+     * Gets the damage added to the
+     * base material type(Diamond, Stone, etc)
+     *
+     * @return damage
+     */
+    public double getDamage();
 
     /**
-     * Gets the id of this item.
-     * <p/>
-     * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
+     * Gets the name of the tool type(Spade, Axe, etc)
      *
-     * @return The id
+     * @return name
      */
-    String getID();
+    public String getName();
 
     /**
-     * Gets the uses left on this item
-     *
-     * @return uses
+     * Gets the blocks which this
+     * tool type is effective
+     * against(Pickaxes for stone, Axes for wood)
+     * @return
      */
-    int getDurability();
-
-    /**
-     * Sets the uses left on this item
-     *
-     * @param durability Uses left
-     */
-    void setDurability(int durability);
-
-    /**
-     * Gets the max uses for this item
-     *
-     * @return max uses
-     */
-    int getMaxDurability();
-
-    /**
-     * Get the default maximum quantity for {@link org.spongepowered.api.inventory.ItemStack}s of this item
-     *
-     * @return Max stack quantity
-     */
-    int getMaxStackQuantity();
-
+    public String[] getBlocksAffected();
 }
