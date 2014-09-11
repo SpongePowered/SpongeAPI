@@ -28,23 +28,23 @@ package org.spongepowered.api.world;
  * A Gamerule with a value
  */
 public interface GameRule {
-	
-	/**
-	 * Get current value of gamerule.
-	 * @return        Current value of the gamerule
-	 */
-	public void getValue();
-	
-	/**
-	 * Set current value of gamerule.
-	 * @param v       Value to update the gamerule
-	 */
-	public void setValue(boolean v);
-	
-	/**
-	 * Returns the name of the gamerule.
-	 * @return        Name of the gamerule
-	 */
-	public String getGameRuleName();
+
+    /**
+     * Get current value of gamerule.
+     * @return        Current value of the gamerule
+     */
+    public boolean getValue();
+
+    /**
+     * Set current value of gamerule.
+     * @param v       Value to update the gamerule
+     */
+    public void setValue(boolean v);
+
+    /**
+     * Returns the name of the gamerule.
+     * @return        Name of the gamerule
+     */
+    public String getGameRuleName();
 
 }
