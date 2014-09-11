@@ -25,21 +25,18 @@ package org.spongepowered.api.util;
 
 public enum PermissionLevel{
 
-LOWEST(0), // No permissions at all
-LOWER(1), // Basic permissions
-MIDDLE(2),
-HIGH(3),
-HIGHEST(4), // Player administrator level
-CONSOLE(5); // Console operator level - no player should have that high permission level
+LOWEST, // No permissions at all
+LOWER, // Basic permissions
+MIDDLE,
+HIGH,
+HIGHEST, // Player administrator level
+CONSOLE; // Console operator level - no player should have that high permission level
 
-    private int value;
-
-    private PermissionLevel(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
+    /* Compares 2 permission levels
+    * @return true if the provided one is greater than the one given to compare with
+    * @param Permission level provided
+    * @param Permission level to compare to
+    */
+    boolean biggerThan(PermissionLevel provided , PermissionLevel tocompare);
 
 }
