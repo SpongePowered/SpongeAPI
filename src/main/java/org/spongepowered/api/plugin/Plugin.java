@@ -26,6 +26,8 @@ package org.spongepowered.api.plugin;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import java.util.Collection;
+
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
@@ -38,5 +40,5 @@ public @interface Plugin {
 
     String version() default "unknown";
     
-    String author();
+    Collection<String> authors();
 }
