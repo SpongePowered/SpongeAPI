@@ -23,7 +23,7 @@
  */
 package org.spongepowered.api.plugin;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface PluginContainer {
     /**
@@ -52,7 +52,7 @@ public interface PluginContainer {
      *
      * @return The author(s)
      */
-    Collection<Author> getAuthors();
+    List<Author> getAuthors();
 
     /**
      * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
