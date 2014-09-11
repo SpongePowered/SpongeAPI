@@ -47,4 +47,10 @@ public interface Chunk extends EntityUniverse, VoxelVolume {
      * @return Z chunk coordinate
      */
     int getZ();
+    
+    /**
+     * Updates the chunk from a refresh perspective
+     * {@link Voxel}.
+     */
+    void update();
 }
