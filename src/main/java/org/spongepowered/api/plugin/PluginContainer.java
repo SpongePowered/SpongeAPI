@@ -52,7 +52,7 @@ public interface PluginContainer {
      *
      * @return The author(s)
      */
-    List<Author> getAuthors();
+    List<String> getAuthors();
 
     /**
      * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
