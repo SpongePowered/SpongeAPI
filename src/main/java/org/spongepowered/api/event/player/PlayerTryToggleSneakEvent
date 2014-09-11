@@ -27,7 +27,7 @@ import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.Event;
 
 /**
- * Player interacts with a block / item 
+ * Player tries to toggle sneaking 
  */
 public interface PlayerTryToggleSneak extends PlayerEvent {
 
