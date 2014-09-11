@@ -22,23 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component.attribute;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.component.Component;
 
-public interface Player extends Entity {
+/**
+ * Gives the "hunger" attribute.
+ */
+public interface Hunger extends Component {
+    double getHunger();
 
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
+    void setHunger(double hunger);
 
-    /**
-     * Gets the player's display name. If none set,
-     * returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+    double getSaturation();
+
+    void setSaturation(double saturation);
 }

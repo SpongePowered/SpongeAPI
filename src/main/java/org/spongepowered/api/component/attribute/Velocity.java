@@ -22,8 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component.attribute;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.component.Component;
+import org.spongepowered.api.math.Vector3f;
 
-public interface HumanEntity extends LivingEntity {
+/**
+ * Gives the "velocity" attribute.
+ */
+public interface Velocity extends Component {
+    Vector3f getVelocity();
+
+    void setVelocity(Vector3f velocity);
 }

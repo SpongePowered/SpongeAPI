@@ -22,23 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component.attribute;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.component.Component;
 
-public interface Player extends Entity {
+/**
+ * Gives the "health" attribute.
+ */
+public interface Health extends Component {
+    /**
+     * Gets the value of the current health
+     * @return The value
+     */
+    double getHealth();
 
     /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
+     * Sets the value for the health
+     * @param value The value
      */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set,
-     * returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+    void setHealth(double value);
 }

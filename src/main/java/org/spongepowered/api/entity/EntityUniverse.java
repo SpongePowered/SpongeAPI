@@ -40,13 +40,6 @@ public interface EntityUniverse {
     Collection<Entity> getEntities();
 
     /**
-     * Gets a {@link java.util.Collection} of LivingEntities for this universe.
-     *
-     * @return A {@link java.util.Collection} of all LivingEntities in this universe.
-     */
-    Collection<LivingEntity> getLivingEntities();
-
-    /**
      * Gets a {@link java.util.Collection} of Entities, in this universe,
      * with the given class/interface.
      *

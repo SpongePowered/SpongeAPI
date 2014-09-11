@@ -22,23 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component;
 
-package org.spongepowered.api.entity;
-
-public interface Player extends Entity {
-
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set,
-     * returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+/**
+ * Represents an object that defines an attribute and stores its data.
+ */
+public interface Component {
 }

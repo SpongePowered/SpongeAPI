@@ -25,6 +25,10 @@
 
 package org.spongepowered.api.entity;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.component.Component;
+import org.spongepowered.api.component.ComponentManager;
+
 import java.util.UUID;
 
 public interface Entity {
@@ -35,4 +39,54 @@ public interface Entity {
      * @return The entity's {@link UUID}
      */
     UUID getUniqueID();
+
+    /**
+     * Gets the {@link org.spongepowered.api.component.ComponentManager} that will track {@link org.spongepowered.api.component.Component}s for this entity.
+     * @return The manager
+     */
+    ComponentManager<Entity> getComponentManager();
+
+    /**
+     * Adds a {@link org.spongepowered.api.component.Component}. The component's class will be used for registration.
+     * <p>
+     * If the instance's class is already registered, this will override it.
+     *
+     * @param instance The component
+     */
+    <C extends Component> C addComponent(C instance);
+
+    /**
+     * Adds a {@link org.spongepowered.api.component.Component} keyed to the class.
+     * <p>
+     * If the instance's class is already registered, this will override it.
+     *
+     * @param instance The component
+     * @param clazz The class the instance will be registered to
+     * @return The component
+     */
+    <C extends Component> C addComponent(C instance, Class<C> clazz);
+
+    /**
+     * Gets a {@link org.spongepowered.api.component.Component} registered to the class.
+     *
+     * @param clazz The class to look for an instance registration
+     * @return An optional containing the result
+     */
+    <C extends Component> Optional<C> getComponent(Class<C> clazz);
+
+    /**
+     * Returns if there is a {@link org.spongepowered.api.component.Component} registration for the class.
+     *
+     * @param clazz The class to lookup
+     * @return True if there is a registration found, false if not
+     */
+    boolean hasComponent(Class<? extends Component> clazz);
+
+    /**
+     * Removes a {@link org.spongepowered.api.component.Component} registered to the class.
+     *
+     * @param clazz The class to look for an instance registration
+     * @return An optional containing the result
+     */
+    <C extends Component> Optional<C> removeComponent(Class<C> clazz);
 }

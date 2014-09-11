@@ -22,23 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component.system;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.component.Filter;
+import org.spongepowered.api.component.attribute.Position;
+import org.spongepowered.api.component.attribute.Velocity;
 
-public interface Player extends Entity {
+/**
+ * Represents an {@link org.spongepowered.api.component.system.EntitySystem} that processes {@link org.spongepowered.api.entity.Entity}s
+ * whose {@link org.spongepowered.api.component.Component}s give them attributes of entities that can move
+ */
+@SuppressWarnings("unchecked")
+public abstract class MovementSystem implements EntitySystem {
+    private final Filter vanillaFilter = new Filter(Position.class, Velocity.class);
 
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set,
-     * returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+    @Override
+    public Filter getFilter() {
+        return vanillaFilter;
+    }
 }

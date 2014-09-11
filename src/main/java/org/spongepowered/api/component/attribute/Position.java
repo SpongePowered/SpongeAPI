@@ -22,23 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component.attribute;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.component.Component;
+import org.spongepowered.api.math.Vector3f;
 
-public interface Player extends Entity {
+/**
+ * Gives the "position" attribute.
+ */
+public interface Position extends Component {
+    Vector3f getPosition();
 
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set,
-     * returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+    void setPosition(Vector3f position);
 }

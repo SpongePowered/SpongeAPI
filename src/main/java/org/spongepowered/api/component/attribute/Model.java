@@ -22,33 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component.attribute;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.component.Component;
 
 /**
- * Something that can have damage/health on it should inherit this
+ * Gives the "model" attribute, used in rendering.
  */
-public interface Damageable {
-
+public interface Model extends Component {
     /**
-     * Damages the entity by a specified amount;
-     *
-     * @param amount the damage amount
+     * Returns the identifier of the model.
+     * @return The model identifier
      */
-    void damage(double amount);
+    String getModel();
 
-    /**
-     * Gets the health of the entity
-     *
-     * @return health of the {@code Damageable}
-     */
-    double getHealth();
+    public static enum VanillaModels implements Model {
+        // TODO Someone want to add all the Vanilla models?
+        // TODO Eventhough the Enderman is THE best entity, he isn't id 0...give him the right one hm?
+        ENDERMAN(0, "minecraft:enderman");
 
-    /**
-     * Sets the Health of the {@code Damageable}
-     * 
-     * @param health The health to set this damageable's health to
-     */
-    void setHealth(double health);
+        private final int id;
+        private final String model;
 
+        VanillaModels(int id, String model) {
+            this.id = id;
+            this.model = model;
+        }
+
+        public final int getID() {
+            return id;
+        }
+
+        @Override
+        public String getModel() {
+            return model;
+        }
+    }
 }

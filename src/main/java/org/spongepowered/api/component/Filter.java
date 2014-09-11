@@ -22,8 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.component;
 
-package org.spongepowered.api.entity;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
-public interface LivingEntity extends Entity, Damageable {
+public class Filter {
+    private final ArrayList<Class<? extends Component>> filter;
+
+    public Filter(Class<? extends Component>... values) {
+        this.filter = new ArrayList<Class<? extends Component>>();
+        Collections.addAll(filter, values);
+    }
+
+    public Collection<Class<? extends Component>> getAll() {
+        return Collections.unmodifiableCollection(filter);
+    }
 }
