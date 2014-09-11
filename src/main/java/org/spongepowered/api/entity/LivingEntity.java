@@ -24,4 +24,15 @@
 package org.spongepowered.api.entity;
 
 public interface LivingEntity extends Entity, Damageable {
+    /**
+     * Sets movement speed of the entity.
+     * @param speed new speed to apply to entity
+     */
+    void setMovementSpeed(float speed);
+    
+    /**
+     * Gets general movement speed of entity.
+     * @return current movement speed of entity
+     */
+    float getMovementSpeed();
 }
