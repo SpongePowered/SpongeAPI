@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.Player;
 public interface Title {
 
     /**
-     * Get the main title from Title.
+     * Get the title to send to the player.
      *
      * @return The main title
      */
@@ -65,7 +65,7 @@ public interface Title {
     int getStayTime();
 
     /**
-     * Set the main title from Title.
+     * Set the title to send to the player.
      *
      * @param msg The main title.
      */
