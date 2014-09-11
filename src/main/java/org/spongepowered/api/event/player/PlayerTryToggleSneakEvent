@@ -29,6 +29,6 @@ import org.spongepowered.api.event.Event;
 /**
  * Player interacts with a block / item 
  */
-public interface PlayerInteractEvent extends PlayerEvent {
+public interface PlayerTryToggleSneak extends PlayerEvent {
 
 }
