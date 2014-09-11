@@ -36,4 +36,11 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
      * @return The message sent
      */
     String getMessage();
+    
+    /**
+     * Set whether this event is cancelled
+     * 
+     * @return Whether the event it cancelled
+     */
+     boolean isCancelled(boolean arg0);
 }
