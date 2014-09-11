@@ -37,4 +37,6 @@ public @interface Plugin {
     String name();
 
     String version() default "unknown";
+    
+    String[] authors();
 }
