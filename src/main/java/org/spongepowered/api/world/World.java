@@ -66,4 +66,10 @@ public interface World extends EntityUniverse, VoxelVolume {
      * @return Chunk loaded/generated
      */
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+    
+    /**
+     * Refresh the chunk in order
+     * to avoid chunks not loading
+     */
+    void refresh();
 }
