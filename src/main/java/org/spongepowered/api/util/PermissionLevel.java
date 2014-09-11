@@ -32,6 +32,8 @@ HIGH(3),
 HIGHEST(4), // Player administrator level
 CONSOLE(5); // Console operator level - no player should have that high permission level
 
+    private int value;
+
     private PermissionLevel(int value) {
         this.value = value;
     }
