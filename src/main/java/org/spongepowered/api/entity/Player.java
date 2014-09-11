@@ -39,5 +39,18 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
+    
+    /**
+     * Returns true if player is an
+     * operator
+     */
+    boolean isOp();
+    
+    /**
+     * Returns true if the player has the permission node(s) provided
+     * 
+     * @param Permission node(s)
+     */
+    boolean hasPermission(String... permission);
 
 }
