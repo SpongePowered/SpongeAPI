@@ -39,5 +39,4 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
-
 }

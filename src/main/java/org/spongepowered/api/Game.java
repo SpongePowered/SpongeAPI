@@ -74,7 +74,7 @@ public interface Game {
      */
     GameRegistry getRegistry();
 
-    /*
+    /**
      * Gets the {@link Player}s currently online
      *
      * @return a {@link Collection} of online players
@@ -91,7 +91,8 @@ public interface Game {
     /**
      * Gets a {@link Player} by their unique id
      *
-     * @param uniqueId
+     * @param uniqueId The UUID to get the player from
+     * 
      * @return {@link Player} or null if none found
      */
     @Nullable

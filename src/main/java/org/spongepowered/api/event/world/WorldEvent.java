@@ -33,7 +33,7 @@ public interface WorldEvent {
     /**
      * Gets the {@link World} involved in the event
      *
-     * @return
+     * @return The world that this event is involved in
      */
     World getWorld();
 }

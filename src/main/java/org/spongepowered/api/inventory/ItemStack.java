@@ -26,7 +26,6 @@ package org.spongepowered.api.inventory;
 import org.spongepowered.api.item.Item;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Represents a stack of a specific {@link Item}. Allows comparison to another
@@ -44,7 +43,7 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
     /**
      * Set the damage/durability
      *
-     * @param damage
+     * @param damage The value that the damage should be set to
      */
     void setDamage(short damage);
 
@@ -81,7 +80,7 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
     int getMaxStackQuantity();
 
     /**
-     * Set the max quantity per stack. This overrides, and is entirely separate from {@link org.spongepowered.api.item.Item#getMaxStackQuantity()
+     * Set the max quantity per stack. This overrides, and is entirely separate from {@link org.spongepowered.api.item.Item#getMaxStackQuantity()}
      *
      * @param quantity  Max stack quantity
      */
