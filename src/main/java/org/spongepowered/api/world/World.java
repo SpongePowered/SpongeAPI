@@ -74,9 +74,9 @@ public interface World extends EntityUniverse, VoxelVolume {
      */
     boolean getGameRule(GameRule gr);
     
-    /**
+     /**
      * Changes the value of the {@link gameRule} specified to the selected boolean value.
-     * @param gr             The {@link gameRule} which is going to be updated	
+     * @param gr             The {@link gameRule} which is going to be updated
      * @param value          The boolean value to set the GameRule
      */
     void setGameRule(GameRule gr,boolean value);
