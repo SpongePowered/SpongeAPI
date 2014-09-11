@@ -23,7 +23,7 @@
  */
 package org.spongepowered.api.util;
 
-public class Permissions{
+public interface Permissions{
 
 public enum Level{ZERO_PERMISSIONS , PLAYER , PLAYER_OPERATOR , CONSOLE_OPERATOR};
 
@@ -38,6 +38,6 @@ public enum Level{ZERO_PERMISSIONS , PLAYER , PLAYER_OPERATOR , CONSOLE_OPERATOR
     * @param Permission level provided
     * @param Permission level to compare to
     */
-    static boolean biggerThan(Level provided , Level tocompare);
+    boolean biggerThan(Level provided , Level tocompare);
 
 }
