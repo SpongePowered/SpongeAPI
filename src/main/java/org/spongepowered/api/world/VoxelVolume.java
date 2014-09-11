@@ -25,6 +25,9 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.entity.Entity;
+
+import java.util.Collection;
 
 /**
  * For Objects that contain volumes of {@link org.spongepowered.api.world.Voxel}s.
@@ -66,16 +69,5 @@ public interface VoxelVolume {
      * @return The voxel
      */
     Voxel getVoxel(Vector3i location);
-
-    /**
-     * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
-     *
-     * @param x X block coordinate
-     * @param y Y block coordinate
-     * @param z Z block coordinate
-     * @param radius area to look for entities
-     * @return A collection of all {@link org.spongepowered.api.entity.Entity}s within the given radius
-     */
-    Collection<Entity> getNearbyEntities(int x, int y, int z, double radius);
 
 }

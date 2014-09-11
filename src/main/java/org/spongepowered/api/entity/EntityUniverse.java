@@ -61,4 +61,17 @@ public interface EntityUniverse {
      * @return A {@link java.util.Collection} of Entities based upon the given classes.
      */
     Collection<Entity> getEntitiesByClasses(Class<? extends Entity>... entityClasses);
+
+    /**
+     * Gets a {@link java.util.Collection} of all {@link org.spongepowered.api.entity.Entity}s within
+     * the given radius of block coordinate x/y/z.
+     *
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @param radius radius to look for entities
+     * @return A {@link java.util.Collection} of all Entities within the given radius
+     */
+    Collection<Entity> getNearbyEntities(int x, int y, int z, double radius);
+
 }
