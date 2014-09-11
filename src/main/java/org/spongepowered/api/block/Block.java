@@ -35,4 +35,10 @@ public interface Block {
      * @return The id
      */
     String getID();
+    
+    /** Gets the location of the {@link Block} in the world (when Location is implemented)
+     * 
+     * @return The Block's Location
+     */
+     Location getLocation();
 }
