@@ -23,33 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.entity;
 
-import java.util.UUID;
-import javax.annotation.Nullable;
-
-public interface Entity {
-
-    /**
-     * Gets the unique ID for this entity.
-     *
-     * @return The entity's {@link UUID}
-     */
-    UUID getUniqueID();
-
-    /**
-     * Whether or not this entity has an entity riding it.
-     *
-     * @return True if an entity is riding
-     */
-    boolean hasRider();
-
-    /**
-     * Gets the entity riding this entity, or null if none.
-     *
-     * @return {@link Entity} rider or null
-     */
-    @Nullable
-    Entity getRider();
+/**
+ * Describes an {@link org.spongepowered.api.entity.Entity} leaving an {@link Entity}.
+ */
+public interface EntityRiderExitEvent extends EntityRiderEvent, EntityEvent {
 
 }
