@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.block.Block;
+
 public interface ToolType {
     /**
      * Gets the melee damage added to the
@@ -43,7 +45,7 @@ public interface ToolType {
      * Gets the blocks which this
      * tool type is effective
      * against(Pickaxes for stone, Axes for wood)
-     * @return
+     * @return blocks
      */
-    public String[] getBlocksAffected();
+    public Block[] getBlocksAffected();
 }
