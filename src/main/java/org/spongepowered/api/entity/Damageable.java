@@ -43,4 +43,16 @@ public interface Damageable {
      * Sets the Health of the {@code Damageable}
      */
     void setHealth(double health);
+
+    /**
+     * Returns the Invulnerability State of the {@code Damageable}
+     *
+     * @return is the {@code Damageable} invulnerable
+     */
+    boolean isInvunerable();
+
+    /**
+     * Sets the Invulnerability State of the {@code Damageable}
+     */
+    void setInvulnerable(boolean invulnerable);
 }
