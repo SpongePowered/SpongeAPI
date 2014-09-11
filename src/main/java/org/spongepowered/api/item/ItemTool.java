@@ -31,4 +31,11 @@ public interface ItemTool extends Item {
      */
     ToolType getToolType();
 
+    /**
+     * Gets the max uses for this item
+     *
+     * @return max uses
+     */
+    int getMaxDurability();
+
 }

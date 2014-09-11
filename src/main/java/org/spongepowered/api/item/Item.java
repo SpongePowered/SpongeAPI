@@ -39,21 +39,7 @@ public interface Item {
      *
      * @return uses
      */
-    int getDurability();
-
-    /**
-     * Sets the uses left on this item
-     *
-     * @param durability Uses left
-     */
-    void setDurability(int durability);
-
-    /**
-     * Gets the max uses for this item
-     *
-     * @return max uses
-     */
-    int getMaxDurability();
+    int getData();
 
     /**
      * Get the default maximum quantity for {@link org.spongepowered.api.inventory.ItemStack}s of this item
