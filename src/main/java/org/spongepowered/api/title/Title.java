@@ -114,7 +114,8 @@ public interface Title {
     void setStayTime(int ticks);
 
     /**
-     * Send this title configuration to the specified player.
+     * Send this title configuration to the specified (@link org.spongepowered.api.entity.Player).
+     * This is the same as calling {@link org.spongepowered.api.entity.Player#sendTitle(Title)}.
      * 
      * @param player The player to send the title to.
      */

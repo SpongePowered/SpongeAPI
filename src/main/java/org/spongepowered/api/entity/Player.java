@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.title.Title;
+
 public interface Player extends HumanEntity {
 
     /**
@@ -40,4 +42,12 @@ public interface Player extends HumanEntity {
      */
     String getDisplayName();
 
+    /**
+     * Sends a {@link org.spongepowered.api.title.Title} to this player.
+     * This is the same as calling {@link org.spongepowered.api.title.Title#sendTo(Player)}.
+     *
+     * @param title The title to send to the player.
+     * @see Title
+     */
+    void sendTitle(Title title);
 }
