@@ -35,4 +35,44 @@ public interface Block {
      * @return The id
      */
     String getID();
+    
+    /**
+     * Gets the position of this block.
+     * <p/>
+     *
+     * @return The position vector
+     */
+    Vector3i getPosition();
+    
+    /**
+     * Gets the world of this block.
+     * <p/>
+     *
+     * @return The world
+     */
+    World getWorld();
+    
+    /**
+     * Gets the data of this block.
+     * <p/>
+     *
+     * @return The data
+     */
+    byte getData();
+    
+    /**
+     * Sets the data of this block.
+     * <p/>
+     *
+     * @param The data
+     */
+    void setData(byte data);
+    
+    /**
+     * Updates the block
+     * <p/>
+     */
+    void update();
+    
+    
 }
