@@ -23,5 +23,49 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.effect.potion.EffectType;
+import org.spongepowered.api.effect.potion.PotionEffect;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+
 public interface LivingEntity extends Entity, Damageable {
+
+    /**
+     * adds a potion
+     * if the effect type already exists, the old one is replaced by the new one
+     *
+     * @param effect {@link org.spongepowered.api.effect.potion.EffectType}
+     * @param duration The duration of the effect in ticks (1/20 sec)
+     * @param power The power of the effect
+     * @param particles Whether visible particles will spawn around the entity
+     */
+    void applyPotionEffect(EffectType effect, int duration, int power, boolean particles);
+
+    /**
+     * Gets an {@link org.spongepowered.api.effect.potion.PotionEffect} by its effect type.
+     * @param effect The effect to look up
+     * @return The potion effect or null if not found
+     */
+    @Nullable
+    PotionEffect getActivePotionEffect(EffectType effect);
+
+    /**
+     * remove all effects with target type
+     *
+     * @param effectType {@link org.spongepowered.api.effect.potion.EffectType}
+     */
+    void removePotionEffect(EffectType effectType);
+
+    /**
+     * Gets a {@link java.util.Collection} of all applied {@link org.spongepowered.api.effect.potion.PotionEffect}
+     *
+     * returns The active potion effects
+     */
+    Collection<PotionEffect> getActivePotionEffects();
+
+    /**
+     * removes all applied potion effects
+     */
+    void removeAllPotionEffects();
 }
