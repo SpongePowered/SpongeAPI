@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.world.World;
+
 /**
  * Describes a voxel. Child classes define specific functionality.
  */
@@ -35,4 +37,21 @@ public interface Block {
      * @return The id
      */
     String getID();
+    
+    /**
+     * Gets the world of this block.
+     * <p/>
+     *
+     * @return The world
+     */
+    World getWorld();
+    
+    /**
+     * Updates the block's
+     * physics-related things , block state, power level etc...
+     * <p/>
+     */
+    void update();
+    
+    
 }
