@@ -23,6 +23,7 @@
  */
 package org.spongepowered.api.item;
 
+import com.sun.javafx.collections.UnmodifiableListSet;
 import org.spongepowered.api.block.Block;
 
 public interface ToolType {
@@ -47,5 +48,5 @@ public interface ToolType {
      * against(Pickaxes for stone, Axes for wood)
      * @return blocks
      */
-    public Block[] getBlocksAffected();
+    public UnmodifiableListSet<Block> getBlocksAffected();
 }
