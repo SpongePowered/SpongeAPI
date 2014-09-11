@@ -40,5 +40,4 @@ public interface Item {
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
-
 }
