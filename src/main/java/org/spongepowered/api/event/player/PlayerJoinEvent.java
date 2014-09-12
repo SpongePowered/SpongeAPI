@@ -23,7 +23,7 @@
  */
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.event.PlayerEvent;
+import org.spongepowered.api.event.player.PlayerEvent;
 
 /**
  * Player joins the server , spawns in the world
