@@ -30,18 +30,18 @@ import org.spongepowered.api.entity.Player;
 public interface Title {
 
     /**
-     * Get the title to send to the player.
+     * Get the title.
      *
      * @return The main title
      */
     String getTitle();
 
     /**
-     * Get subtitles list from this Title.
+     * Get the subtitle.
      *
-     * @return The subtitles list.
+     * @return The subtitle.
      */
-    List<String> getSubTitles();
+    String getSubTitle();
 
     /**
      * Get the amount of ticks (1/20 second) for the fade out effect.
@@ -67,30 +67,16 @@ public interface Title {
     /**
      * Set the title to send to the player.
      *
-     * @param msg The main title.
+     * @param text The text to use as the title.
      */
-    void setTitle(String msg);
+    void setTitle(String text);
 
     /**
-     * Set a new subtitles list for Title.
+     * Set the subtitle to send to the player.
      *
-     * @param titles A new subtitles list.
+     * @param text The text to use as the subtitle.
      */
-    void setSubTitles(List<String> titles);
-
-    /**
-     * Add a new subtitle to Subtitles list.
-     *
-     * @param msg A subtitle.
-     */
-    void addSubTitle(String msg);
-
-    /**
-     * Remove a subtitle by index.
-     *
-     * @param index at which the specified element is to be removed.
-     */
-    void removeSubTitle(int index);
+    void setSubTitle(String text);
 
     /**
      * Set the duration in ticks of the fade out effect of the title.
