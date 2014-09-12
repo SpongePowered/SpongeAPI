@@ -73,5 +73,5 @@ public interface World extends EntityUniverse, VoxelVolume {
      * Gets the {@link org.spongepowered.api.component.ComponentManager} managing {@link org.spongepowered.api.entity.Entity}s.
      * @return The manager
      */
-    ComponentManager<Entity> getEntityManager();
+    ComponentManager<Entity> getEntityComponentManager();
 }

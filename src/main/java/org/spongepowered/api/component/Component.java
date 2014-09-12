@@ -31,12 +31,14 @@ import org.spongepowered.api.Game;
 public interface Component<H> {
     /**
      * Returns the{@link org.spongepowered.api.component.ComponentHolder} holding this component.
+     *
      * @return The holder
      */
     H getHolder();
 
     /**
      * Gets the {@link org.spongepowered.api.Game} object.
+     *
      * @return The game
      */
     Game getGame();

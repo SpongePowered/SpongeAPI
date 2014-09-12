@@ -31,12 +31,14 @@ package org.spongepowered.api.component;
 public interface ComponentManager<H extends ComponentHolder> {
     /**
      * Adds a {@link ComponentSystem} to the manager to be processed.
+     *
      * @param system System to add
      */
     void addSystem(Class<? extends ComponentSystem<H>> system);
 
     /**
-     * Removes a {@link ComponentSystem} from this manager
+     * Removes a {@link ComponentSystem} from this manager.
+     *
      * @param system The system's class
      * @return The system removed
      */
@@ -44,6 +46,7 @@ public interface ComponentManager<H extends ComponentHolder> {
 
     /**
      * Attaches a {@link org.spongepowered.api.component.Component} based on a {@link org.spongepowered.api.component.ComponentKey}.
+     *
      * @param holder The holder
      * @param key The key
      */
@@ -51,6 +54,7 @@ public interface ComponentManager<H extends ComponentHolder> {
 
     /**
      * Detaches a {@link org.spongepowered.api.component.Component} based on a {@link org.spongepowered.api.component.ComponentKey}.
+     *
      * @param holder The holder
      * @param key The key
      * @return The removed component

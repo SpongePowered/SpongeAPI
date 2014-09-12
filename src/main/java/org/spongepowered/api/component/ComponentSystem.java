@@ -39,6 +39,9 @@ public interface ComponentSystem<H extends ComponentHolder> {
 
     /**
      * Returns if this system should invoke {@link ComponentSystem#process(org.spongepowered.api.component.ComponentHolder, float)}
+     *
+     * Useful for systems where you want to process them at a manual rate.
+     *
      * @return True to process, false to not
      */
     boolean shouldProcess();
@@ -68,6 +71,7 @@ public interface ComponentSystem<H extends ComponentHolder> {
 
     /**
      * Processes all {@link org.spongepowered.api.component.ComponentHolder} in this system.
+     *
      * @param holder The holder being processed
      * @param dt Time since the last processing
      */
