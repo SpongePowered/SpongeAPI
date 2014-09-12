@@ -24,23 +24,12 @@
 package org.spongepowered.api.component.entity.attribute;
 
 import org.spongepowered.api.component.entity.EntityComponent;
-import org.spongepowered.api.math.Vector3i;
 
 /**
- * Gives the attribute "position" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ * Gives the attribute "removable" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ * </p>
+ * Examples of "removable" entities: ItemStack, Arrows, Boat, Painting etc.
  */
-public interface Position extends EntityComponent {
-    /**
-     * Gets the position of an {@link org.spongepowered.api.entity.Entity Entity} in 
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}
-     * @return position
-     */
-    Vector3i getPosition();
+public interface Removable extends EntityComponent {
 
-    /**
-     * Sets the position of an {@link org.spongepowered.api.entity.Entity Entity} in
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}.
-     * @param position The position to set the entity to
-     */
-    void setPosition(Vector3i position);
 }

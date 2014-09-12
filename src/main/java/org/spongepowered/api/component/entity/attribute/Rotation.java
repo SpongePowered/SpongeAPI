@@ -24,23 +24,10 @@
 package org.spongepowered.api.component.entity.attribute;
 
 import org.spongepowered.api.component.entity.EntityComponent;
-import org.spongepowered.api.math.Vector3i;
 
 /**
- * Gives the attribute "position" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ * Gives the attribute "rotation" to an {@link org.spongepowered.api.entity.Entity Entity}.
  */
-public interface Position extends EntityComponent {
-    /**
-     * Gets the position of an {@link org.spongepowered.api.entity.Entity Entity} in 
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}
-     * @return position
-     */
-    Vector3i getPosition();
-
-    /**
-     * Sets the position of an {@link org.spongepowered.api.entity.Entity Entity} in
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}.
-     * @param position The position to set the entity to
-     */
-    void setPosition(Vector3i position);
+public interface Rotation extends EntityComponent {
+    //TODO Some sort of rotation class maybe?
 }

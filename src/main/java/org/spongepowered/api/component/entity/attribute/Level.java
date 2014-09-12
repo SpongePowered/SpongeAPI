@@ -23,24 +23,30 @@
  */
 package org.spongepowered.api.component.entity.attribute;
 
-import org.spongepowered.api.component.entity.EntityComponent;
-import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.component.entity.type.TypeComponent;
 
-/**
- * Gives the attribute "position" to an {@link org.spongepowered.api.entity.Entity Entity}.
- */
-public interface Position extends EntityComponent {
+public interface Level extends TypeComponent {
     /**
-     * Gets the position of an {@link org.spongepowered.api.entity.Entity Entity} in 
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}
-     * @return position
+     * Gets the experience value
+     * @return The experience value
      */
-    Vector3i getPosition();
+    double getExperience();
 
     /**
-     * Sets the position of an {@link org.spongepowered.api.entity.Entity Entity} in
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}.
-     * @param position The position to set the entity to
+     * Gets the level value
+     * @return The level value
      */
-    void setPosition(Vector3i position);
+    double getLevel();
+
+    /**
+     * Sets the experience value
+     * @param experience The experience value
+     */
+    void setExperience(double experience);
+
+    /**
+     * Sets the level value
+     * @param Level
+     */
+    void setLevel(double level);
 }

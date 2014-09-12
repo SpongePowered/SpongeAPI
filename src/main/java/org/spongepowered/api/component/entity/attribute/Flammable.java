@@ -24,23 +24,28 @@
 package org.spongepowered.api.component.entity.attribute;
 
 import org.spongepowered.api.component.entity.EntityComponent;
-import org.spongepowered.api.math.Vector3i;
 
 /**
- * Gives the attribute "position" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ * Gives the attribute "flammable" to an {@link org.spongepowered.api.entity.Entity Entity}.
  */
-public interface Position extends EntityComponent {
+public interface Flammable extends EntityComponent {
     /**
-     * Gets the position of an {@link org.spongepowered.api.entity.Entity Entity} in 
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}
-     * @return position
+     * Gets the remaining time for an {@link org.spongepowered.api.entity.Entity Entity} to be on
+     * fire.
+     * @return The duration in ticks
      */
-    Vector3i getPosition();
+    int getDuration();
 
     /**
-     * Sets the position of an {@link org.spongepowered.api.entity.Entity Entity} in
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}.
-     * @param position The position to set the entity to
+     * Checks to see if {@link org.spongepowered.api.entity.Entity Entity} is on fire.
+     * @return true If {@link #getDuration()} is greater than 0
      */
-    void setPosition(Vector3i position);
+    boolean isBurning();
+
+    /**
+     * Sets the remaining time for an {@link org.spongepowered.api.entity.Entity Entity} to be on
+     * fire. If {@link #isBurning()} is true
+     * @param ticks The amount to set
+     */
+    void setDuration(int ticks);
 }

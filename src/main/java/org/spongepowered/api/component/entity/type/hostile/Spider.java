@@ -21,26 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.component.entity.attribute;
+package org.spongepowered.api.component.entity.type.hostile;
 
-import org.spongepowered.api.component.entity.EntityComponent;
-import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.component.entity.type.TypeComponent;
 
-/**
- * Gives the attribute "position" to an {@link org.spongepowered.api.entity.Entity Entity}.
- */
-public interface Position extends EntityComponent {
-    /**
-     * Gets the position of an {@link org.spongepowered.api.entity.Entity Entity} in 
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}
-     * @return position
-     */
-    Vector3i getPosition();
+public interface Spider extends TypeComponent {
 
-    /**
-     * Sets the position of an {@link org.spongepowered.api.entity.Entity Entity} in
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}.
-     * @param position The position to set the entity to
-     */
-    void setPosition(Vector3i position);
 }
