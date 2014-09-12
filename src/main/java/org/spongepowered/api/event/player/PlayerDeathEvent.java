@@ -23,11 +23,11 @@
  */
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.event.player.PlayerEvent;
+import org.spongepowered.api.event.entity.EntityDeathEvent;
 
 /**
  * Player dies
  */
-public interface PlayerDeathEvent extends PlayerEvent {
+public interface PlayerDeathEvent extends EntityDeathEvent {
 
 }
