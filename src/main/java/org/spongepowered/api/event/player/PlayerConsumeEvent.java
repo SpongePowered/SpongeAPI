@@ -28,6 +28,6 @@ import org.spongepowered.api.event.player.PlayerEvent;
 /**
  * Player consumes an item (food/potion etc) 
  */
-public interface PlayerInteractEvent extends PlayerEvent {
+public interface PlayerConsumeEvent extends PlayerEvent {
 
 }
