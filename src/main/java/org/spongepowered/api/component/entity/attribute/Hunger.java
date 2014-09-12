@@ -25,12 +25,31 @@ package org.spongepowered.api.component.entity.attribute;
 
 import org.spongepowered.api.component.entity.EntityComponent;
 
+/**
+ * Gives the attribute "hunger" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ */
 public interface Hunger extends EntityComponent {
+    /**
+     * Gets the current hunger level
+     * @return The hunger level
+     */
     double getHunger();
 
+    /**
+     * Sets the current hunger level
+     * @param hunger The hunger level
+     */
     void setHunger(double hunger);
 
+    /**
+     * Gets the current saturation level
+     * @return The saturation level
+     */
     double getSaturation();
 
+    /**
+     * Sets the current saturation level
+     * @param saturation The saturation level
+     */
     void setSaturation(double saturation);
 }

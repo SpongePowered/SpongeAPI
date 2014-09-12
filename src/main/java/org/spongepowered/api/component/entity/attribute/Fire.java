@@ -24,23 +24,20 @@
 package org.spongepowered.api.component.entity.attribute;
 
 import org.spongepowered.api.component.entity.EntityComponent;
-import org.spongepowered.api.math.Vector3i;
 
 /**
- * Gives the attribute "position" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ * Gives the attribute "fire" to an {@link org.spongepowered.api.entity.Entity Entity}.
  */
-public interface Position extends EntityComponent {
+public interface Fire extends EntityComponent {
     /**
-     * Gets the position of an {@link org.spongepowered.api.entity.Entity Entity} in 
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}
-     * @return position
+     * Checks to see if {@link org.spongepowered.api.entity.Entity Entity} is on fire.
+     * @return true If {@link org.spongepowered.api.entity.Entity Entity} is on fire
      */
-    Vector3i getPosition();
+    boolean onFire();
 
     /**
-     * Sets the position of an {@link org.spongepowered.api.entity.Entity Entity} in
-     * {@link org.spongepowered.api.math.Vector3i Vector3i}.
-     * @param position The position to set the entity to
+     * Sets fire on the {@link org.spongepowered.api.entity.Entity Entity}.
+     * @param onFire true to set {@link org.spongepowered.api.entity.Entity Entity} on fire.
      */
-    void setPosition(Vector3i position);
+    void setFire(boolean onFire);
 }

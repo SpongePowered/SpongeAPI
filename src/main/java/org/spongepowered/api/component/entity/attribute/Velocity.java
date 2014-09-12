@@ -26,8 +26,19 @@ package org.spongepowered.api.component.entity.attribute;
 import org.spongepowered.api.component.entity.EntityComponent;
 import org.spongepowered.api.math.Vector3i;
 
+/**
+ * Gives the attribute "velocity" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ */
 public interface Velocity extends EntityComponent {
+    /**
+     * Gets the velocity value in {@link org.spongepowered.api.math.Vector3i Vector3i}
+     * @return The velocity value
+     */
     Vector3i getVelocity();
 
+    /**
+     * Sets the velocity value in {@link org.spongepowered.api.math.Vector3i Vector3i}
+     * @param velocity The velocity value
+     */
     void setVelocity(Vector3i velocity);
 }

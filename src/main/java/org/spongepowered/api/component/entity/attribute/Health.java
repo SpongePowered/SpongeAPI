@@ -26,18 +26,30 @@ package org.spongepowered.api.component.entity.attribute;
 import org.spongepowered.api.component.entity.EntityComponent;
 
 /**
- * Gives the attribute "health" to an {@link org.spongepowered.api.entity.Entity}.
+ * Gives the attribute "health" to an {@link org.spongepowered.api.entity.Entity Entity}.
  */
 public interface Health extends EntityComponent {
     /**
      * Gets the value of the current health
-     * @return The value
+     * @return The health value
      */
     double getHealth();
+    
+    /**
+     * Checks if {@link org.spongepowered.api.entity.Entity Entity} is invulnerable.
+     * @return true If {@link org.spongepowered.api.entity.Entity Entity} is invulnerable
+     */
+    boolean isInvulnerable();
+    
+    /**
+     * Sets {@link org.spongepowered.api.entity.Entity Entity} invulnerable if true
+     * @param invulnerable true to make invulnerable
+     */
+    void setInvulnerable(boolean invulnerable);
 
     /**
      * Sets the value for the health
-     * @param value The value
+     * @param value The health value
      */
     void setHealth(double value);
 }
