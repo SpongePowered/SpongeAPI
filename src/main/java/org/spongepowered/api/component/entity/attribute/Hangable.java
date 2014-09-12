@@ -26,18 +26,11 @@ package org.spongepowered.api.component.entity.attribute;
 import org.spongepowered.api.component.entity.EntityComponent;
 
 /**
- * Gives the attribute "fire" to an {@link org.spongepowered.api.entity.Entity Entity}.
+ * Gives the attribute "hangable" to an {@link org.spongepowered.api.entity.Entity Entity}.
  */
-public interface Fire extends EntityComponent {
-    /**
-     * Checks to see if {@link org.spongepowered.api.entity.Entity Entity} is on fire.
-     * @return true If {@link org.spongepowered.api.entity.Entity Entity} is on fire
+public interface Hangable extends EntityComponent {
+    /*TODO: Somehow needs to return a ItemFrame, LeashHitch or painting. 
+     *Maybe more to come in MC 1.8
+     *Ideas please. Discussion open
      */
-    boolean onFire();
-
-    /**
-     * Sets fire on the {@link org.spongepowered.api.entity.Entity Entity}.
-     * @param onFire true to set {@link org.spongepowered.api.entity.Entity Entity} on fire.
-     */
-    void setFire(boolean onFire);
 }
