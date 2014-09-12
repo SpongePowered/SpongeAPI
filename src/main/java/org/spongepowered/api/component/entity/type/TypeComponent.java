@@ -21,20 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.component.entity;
+package org.spongepowered.api.component.entity.type;
 
-import org.spongepowered.api.component.ComponentSystem;
-import org.spongepowered.api.component.Filter;
-import org.spongepowered.api.component.entity.attribute.Health;
-import org.spongepowered.api.component.entity.attribute.Position;
-import org.spongepowered.api.component.entity.attribute.Velocity;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.component.entity.EntityComponent;
 
-public abstract class LivingSystem implements ComponentSystem<Entity> {
-    private final Filter vanillaFilter = new Filter(Position.class, Velocity.class, Health.class);
-
-    @Override
-    public Filter getFilter() {
-        return vanillaFilter;
-    }
+/**
+ * Gives a {@link org.spongepowered.api.entity.Entity} the "type" attribute.
+ *
+ * This is used to tell the client which model to render.
+ */
+public interface TypeComponent extends EntityComponent {
+    /**
+     * Gets the type ID of the {@link org.spongepowered.api.entity.Entity}.
+     * @return The id
+     */
+    int getTypeID();
 }

@@ -21,20 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.component.entity;
+package org.spongepowered.api.component.entity.type.neutral;
 
-import org.spongepowered.api.component.ComponentSystem;
-import org.spongepowered.api.component.Filter;
-import org.spongepowered.api.component.entity.attribute.Health;
-import org.spongepowered.api.component.entity.attribute.Position;
-import org.spongepowered.api.component.entity.attribute.Velocity;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.component.entity.type.TypeComponent;
 
-public abstract class LivingSystem implements ComponentSystem<Entity> {
-    private final Filter vanillaFilter = new Filter(Position.class, Velocity.class, Health.class);
-
-    @Override
-    public Filter getFilter() {
-        return vanillaFilter;
-    }
+/**
+ * Types the {@link org.spongepowered.api.entity.Entity} as an Enderman and instructs the
+ * client to render it as one.
+ */
+public interface Enderman extends TypeComponent {
 }
