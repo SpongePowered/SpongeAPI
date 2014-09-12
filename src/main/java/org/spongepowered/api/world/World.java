@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.component.ComponentManager;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityUniverse;
 
 import java.util.UUID;
@@ -66,4 +68,10 @@ public interface World extends EntityUniverse, VoxelVolume {
      * @return Chunk loaded/generated
      */
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+
+    /**
+     * Gets the {@link org.spongepowered.api.component.ComponentManager} managing {@link org.spongepowered.api.entity.Entity}s.
+     * @return The manager
+     */
+    ComponentManager<Entity> getEntityManager();
 }

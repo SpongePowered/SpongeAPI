@@ -23,21 +23,5 @@
  */
 package org.spongepowered.api.entity;
 
-public interface Player extends HumanEntity {
-
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set,
-     * returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
-
+public interface Player extends Entity {
 }

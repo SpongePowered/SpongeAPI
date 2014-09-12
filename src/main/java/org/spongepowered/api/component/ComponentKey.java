@@ -21,7 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.component;
 
-public interface HumanEntity extends LivingEntity {
+/**
+ * Utility class that 'keys' an identifier to a {@link org.spongepowered.api.component.Component}.
+ */
+public class ComponentKey<T extends Component<?>> {
+    public final String identifier;
+    public final Class<T> clazz;
+
+    public ComponentKey(String identifier, Class<T> clazz) {
+        this.identifier = identifier;
+        this.clazz = clazz;
+    }
+
+    public static <C extends Component<?>> ComponentKey<C> of(String identifier, Class<C> clazz) {
+        return new ComponentKey<C>(identifier, clazz);
+    }
 }
