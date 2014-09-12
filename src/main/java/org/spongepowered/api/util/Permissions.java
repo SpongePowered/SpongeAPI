@@ -25,13 +25,14 @@ package org.spongepowered.api.util;
 
 public interface Permissions{
 
-public enum Level{ZERO_PERMISSIONS , PLAYER , PLAYER_OPERATOR , CONSOLE_OPERATOR};
+public enum Level{
+  ZERO_PERMISSIONS //- No permissions at all
+, PLAYER //- Basic permissions
+, PLAYER_OPERATOR //- Player administrator level
+, CONSOLE_OPERATOR //- Console operator level - no player should have that high permission level
+  
+}; 
 
-/*ZERO_PERMISSIONS - No permissions at all
-  PLAYER - Basic permissions
-
-  PLAYER_OPERATOR - Player administrator level
-  CONSOLE_OPERATOR - Console operator level - no player should have that high permission level*/
 
     /* Compares 2 permission levels
     * @return true if the provided one is greater than the one given to compare with
