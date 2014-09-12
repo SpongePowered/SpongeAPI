@@ -30,12 +30,11 @@ import java.util.Collection;
  */
 public interface ComponentSystem<H extends ComponentHolder> {
     /**
-     * Gets the {@link org.spongepowered.api.component.Component} classes that this system will process.
+     * Gets the {@link org.spongepowered.api.component.Filter} that will determine which {@link org.spongepowered.api.component.ComponentHolder}s to process.
      *
-     * This is used to determine if a {@link org.spongepowered.api.component.ComponentHolder} can be processed.
-     * @return Array of component classes to be processed
+     * @return The filter
      */
-    Class<Component<H>>[] toProcess();
+    Filter getFilter();
 
     /**
      * Returns if this system should invoke {@link ComponentSystem#process(org.spongepowered.api.component.ComponentHolder, float)}
