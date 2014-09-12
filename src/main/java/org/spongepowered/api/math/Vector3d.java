@@ -201,7 +201,7 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     /**
      * Raises each component of this vector by the value, returning the results as new vector.
      *
-     * @param a The value to raise by
+     * @param power The value to raise by
      * @return The results of the operation as a new vector
      */
     Vector3d pow(double power);
@@ -341,14 +341,14 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     /**
      * Returns the axis with the minimal value.
      *
-     * @return {@link int} axis with minimal value
+     * @return The axis with minimal value
      */
     int getMinAxis();
 
     /**
      * Returns the axis with the maximum value.
      *
-     * @return {@link int} axis with maximum value
+     * @return The axis with maximum value
      */
     int getMaxAxis();
 
@@ -388,10 +388,13 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
      */
     Vector3f toFloat();
 
+    @Override
     int compareTo(Vector3d v);
 
+    @Override
     boolean equals(Object o);
 
+    @Override
     int hashCode();
 
     /**
@@ -406,5 +409,6 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
      *
      * @return This vector as a string
      */
+    @Override
     String toString();
 }

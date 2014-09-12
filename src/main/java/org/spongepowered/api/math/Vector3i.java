@@ -257,7 +257,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
     /**
      * Raises each component of this vector by the value, returning the results as new vector.
      *
-     * @param a The value to raise by
+     * @param pow The value to raise by
      * @return The results of the operation as a new vector
      */
     Vector3i pow(double pow);
@@ -265,7 +265,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
     /**
      * Raises each component of this vector by the value, returning the results as new vector.
      *
-     * @param a The value to raise by
+     * @param power The value to raise by
      * @return The results of the operation as a new vector
      */
     Vector3i pow(int power);
@@ -419,14 +419,14 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
     /**
      * Returns the axis with the minimal value.
      *
-     * @return {@link int} axis with minimal value
+     * @return The axis with minimal value
      */
     int getMinAxis();
 
     /**
      * Returns the axis with the maximum value.
      *
-     * @return {@link int} axis with maximum value
+     * @return The axis with maximum value
      */
     int getMaxAxis();
 
@@ -459,12 +459,20 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      */
     Vector3f toFloat();
 
+    /**
+     * Returns this vector as a Vector3d.
+     *
+     * @return This vector as a Vector3d
+     */
     Vector3d toDouble();
 
+    @Override
     int compareTo(Vector3i v);
 
+    @Override
     boolean equals(Object o);
 
+    @Override
     int hashCode();
 
     /**
@@ -479,5 +487,6 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      *
      * @return This vector as a string
      */
+    @Override
     String toString();
 }

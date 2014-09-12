@@ -23,6 +23,9 @@
  */
 package org.spongepowered.api.plugin;
 
+/**
+ * A wrapper around a class marked with an {@link org.spongepowered.api.plugin.Plugin} annotation to retrieve information from the annotation for easier use
+ */
 public interface PluginContainer {
     /**
      * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.

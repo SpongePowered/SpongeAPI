@@ -20,5 +20,6 @@ Links
 -----
 
 * [Visit our website](http://www.spongepowered.org/)
+* [Official forums] (http://forums.spongepowered.org/)
 * [Chat with us (general talk)](https://webchat.esper.net/?channels=sponge)
 * [Chat with us (dev talk)](https://webchat.esper.net/?channels=spongedev)
