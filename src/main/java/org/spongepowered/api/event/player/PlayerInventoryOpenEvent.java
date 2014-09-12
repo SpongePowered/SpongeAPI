@@ -23,8 +23,7 @@
  */
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.PlayerEvent;
 
 /**
  * Player opens an inventory
