@@ -47,10 +47,11 @@ public interface ComponentManager<H extends ComponentHolder> {
     /**
      * Attaches a {@link org.spongepowered.api.component.Component} based on a {@link org.spongepowered.api.component.ComponentKey}.
      *
-     * @param holder The holder
+     * @param holder The holder*
      * @param key The key
+     * @param instance The instance of the component
      */
-    <C extends Component<H>> C addComponent(H holder, ComponentKey<C> key);
+    <C extends Component<H>> C addComponent(H holder, ComponentKey<C> key, C instance);
 
     /**
      * Detaches a {@link org.spongepowered.api.component.Component} based on a {@link org.spongepowered.api.component.ComponentKey}.
