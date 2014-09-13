@@ -23,25 +23,16 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.entity.Player;
+
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * A block that may contain a GUI when interacted with it.
  */
-public interface Block {
-    /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
-     *
-     * @return The id
-     */
-    String getID();
+public interface GuiBlock extends Block {
 
     /**
-     * Gets the redstone power level (0-15) of the block.
-     * <p/>
-     * Ex. A directly-powered block would return 15, a non-powered block would return 0
-     *
-     * @return the block's redstone power level.
+     * An array of all players watching the GUI of the block
+     * @return an array off all players viewing the GUI of the block
      */
-    int getPowerLevel();
+    Player[] getViewers();
 }
