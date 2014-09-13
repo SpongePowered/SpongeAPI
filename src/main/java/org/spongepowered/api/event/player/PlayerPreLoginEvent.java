@@ -26,7 +26,7 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.event.player.PlayerEvent;
 
 /**
- * Player tries to login server , first event triggered
+ * Player tries to login server , first event triggered as soon as player object gets created
  */
 public interface PlayerPreLoginEvent extends PlayerEvent {
 
