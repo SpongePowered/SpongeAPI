@@ -33,6 +33,8 @@ import org.spongepowered.api.world.World;
 import java.util.Collection;
 import java.util.UUID;
 
+import java.io.File;
+
 import javax.annotation.Nullable;
 
 /**
@@ -141,4 +143,11 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+    
+    /**
+     * Gets the {@link File} where it launched
+     * 
+     * @return The current working directory
+     */ 
+    File getWorkingDirectory();
 }
