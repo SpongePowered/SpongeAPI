@@ -24,8 +24,7 @@
 package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
-
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Called when a {@link Player} sends a chat message
