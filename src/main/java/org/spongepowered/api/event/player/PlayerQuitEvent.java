@@ -26,7 +26,7 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.event.player.PlayerEvent;
 
 /**
- * Player logs off
+ * Player logs off, called right before player object gets destroyed
  */
 public interface PlayerQuitEvent extends PlayerEvent {
 
