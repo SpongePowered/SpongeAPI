@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Player;
 /**
  * Contains the information regarding a Command Block (minecraft:command_block)
  */
-public interface CommandBlock extends Block {
+public interface CommandBlock extends GuiBlock {
     /**
      * The current input of the command block
      * @return the current input indide the command block interface. Should return "" if empty
@@ -39,11 +39,5 @@ public interface CommandBlock extends Block {
      * The latest success/failure message (debug) in the command block. Only used in 1.8+
      * @return the debug line inside the command block
      */
-    String getLastInput();
-
-    /**
-     * An array of all players watching the command block interface
-     * @return an array off all players viewing the command interface
-     */
-    Player[] getViewers();
+    String getLastOutput();
 }

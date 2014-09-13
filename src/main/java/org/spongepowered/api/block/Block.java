@@ -43,5 +43,5 @@ public interface Block {
      *
      * @return the block's redstone power level.
      */
-    float getPowerLevel();
+    int getPowerLevel();
 }
