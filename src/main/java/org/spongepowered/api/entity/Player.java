@@ -25,10 +25,14 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.world.World;
+
+import java.util.UUID;
+
 public interface Player extends HumanEntity {
 
     /**
-     * Gets the players last known username
+     * Gets the player's last known username
      *
      * @return The player's last known username
      */
@@ -41,4 +45,18 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
+    
+    /**
+     * Gets the UUID of the player
+     * 
+     * @return The UUID of the player
+     */ 
+    UUID getUUID();
+    
+    /**
+     * Gets the {@link World} player is inside
+     * 
+     * @return The world player is inside
+     */
+    World getWorld();
 }
