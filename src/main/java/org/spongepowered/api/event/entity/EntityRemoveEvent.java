@@ -26,9 +26,8 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.event.entity.EntityEvent;
 
 /**
- * An entity stops existing (gets removed from world). This is seperate from entity death , here the entity is
- * not a living one
+ * An non-living entity gets removed from world
  */
-public interface EntityStopExistingEvent extends EntityEvent {
+public interface EntityRemoveEvent extends EntityEvent {
 
 }
