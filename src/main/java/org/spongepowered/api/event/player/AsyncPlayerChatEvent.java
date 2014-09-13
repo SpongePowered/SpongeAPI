@@ -25,6 +25,8 @@ package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
 
+import java.util.Collection;
+
 /**
  * Called when a {@link Player} sends a chat message
  */
@@ -36,4 +38,18 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
      * @return The message sent
      */
     String getMessage();
+    
+    /**
+     * Get the recipients of this message
+     * 
+     * @return The recipients of this message
+     */
+    Collection<Player> getRecipients();
+    
+    /**
+     * Set the recipients of this message
+     * 
+     * @param recipients The new recipients of this message
+     */
+    void setRecipients(Collection<Player> recipients);
 }
