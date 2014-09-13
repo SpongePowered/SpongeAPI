@@ -26,6 +26,7 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.entity.EntityUniverse;
 
 import java.util.UUID;
+import java.util.Collection;
 
 /**
  * A loaded Minecraft world
@@ -66,4 +67,25 @@ public interface World extends EntityUniverse, VoxelVolume {
      * @return Chunk loaded/generated
      */
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+    
+    /**
+     * Check if the world has been loaded
+     * 
+     * @return true if world is loaded
+     */
+    boolean isLoaded();
+    
+    /**
+     * Loads the world
+     * 
+     * @return true if the world has loaded successfully
+     */
+    boolean load();
+    
+    /**
+     * Gets {@Link Player}(s) in this world
+     * 
+     * @return a {@link Collection} of player(s)
+     */
+    Collection<Player> getPlayers();
 }
