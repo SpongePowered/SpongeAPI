@@ -52,4 +52,6 @@ public @interface Plugin {
      * @return The version of the plugin
      */
     String version() default "unknown";
+    
+    String[] authors();
 }

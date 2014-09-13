@@ -49,6 +49,13 @@ public interface PluginContainer {
      * @return The name
      */
     String getVersion();
+    
+    /**
+     * Gets the author of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     *
+     * @return The author(s)
+     */
+    String[] getAuthors();
 
     /**
      * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
