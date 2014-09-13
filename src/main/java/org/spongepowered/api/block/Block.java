@@ -23,6 +23,9 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.world.Voxel;
+import org.spongepowered.api.world.World;
+
 /**
  * Describes a voxel. Child classes define specific functionality.
  */
@@ -35,4 +38,37 @@ public interface Block {
      * @return The id
      */
     String getID();
+
+    /**
+     * Gets the {@link org.spongepowered.api.world.World} this block resides in.
+     * @return The world
+     */
+    World getWorld();
+
+    /**
+     * Gets the {@link org.spongepowered.api.world.Voxel} this block occupies.
+     * @return The Voxel
+     */
+    Voxel getVoxel();
+
+    /**
+     * Checks to see if this block is empty.
+     * @return True: Block is empty, False: Block is not empty
+     */
+    boolean isEmpty();
+
+    /**
+     * Gets the block relative to the provided {@link org.spongepowered.api.block.BlockFace}.
+     * @param blockFace BlockFace used to find relative block
+     * @return The relative block
+     */
+    Block getRelative(BlockFace blockFace);
+
+    /**
+     * Gets the block relative to the provided {@link org.spongepowered.api.block.BlockFace} and distance.
+     * @param blockFace BlockFace used to find relative block
+     * @param distance distance away from this block to locate relative
+     * @return The relative block
+     */
+    Block getRelative(BlockFace blockFace, int distance);
 }

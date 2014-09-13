@@ -59,7 +59,6 @@ public interface VoxelVolume {
      */
     Block getBlock(Vector3i location);
 
-    
     /**
      * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
      *
