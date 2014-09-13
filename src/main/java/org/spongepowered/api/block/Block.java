@@ -29,8 +29,9 @@ package org.spongepowered.api.block;
 public interface Block {
     /**
      * Gets the id of this block.
-     *
+     * <p/>
      * Ex. Minecraft registers stone as "minecraft:stone"
+     *
      * @return The id
      */
     String getID();

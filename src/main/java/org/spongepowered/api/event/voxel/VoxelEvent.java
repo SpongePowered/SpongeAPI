@@ -21,18 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.event.voxel;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
 
-public class SpongeServerStartingEvent extends SpongeStateEvent {
-    public SpongeServerStartingEvent(Game game) {
-        super(game);
-    }
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Voxel;
 
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_STARTING;
-    }
+/**
+ * Describes events which contain a {@link Block} wrapped by a {@link Voxel}
+ */
+public interface VoxelEvent extends Event {
+
+    /**
+     * Get {@link Voxel} included in the event
+     *
+     * @return Event {@link Voxel}
+     */
+    Voxel getVoxel();
 }

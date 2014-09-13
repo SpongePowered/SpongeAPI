@@ -23,5 +23,5 @@
  */
 package org.spongepowered.api.entity;
 
-public interface LivingEntity extends Entity {
+public interface LivingEntity extends Entity, Damageable {
 }

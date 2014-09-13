@@ -21,27 +21,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.world;
 
-import org.spongepowered.api.Game;
 import org.spongepowered.api.block.Block;
-import org.spongepowered.api.event.SpongeEvent;
+import org.spongepowered.api.math.Vector3i;
 
 /**
- * Abstract class for map block events
+ * For Objects that contain volumes of {@link org.spongepowered.api.world.Voxel}s.
  */
-public abstract class BlockEvent extends SpongeEvent {
-
-    public final Block block;
+public interface VoxelVolume {
 
     /**
-     * Create an event involving a {@link Block}
+     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
      *
-     * @param game Game instance
-     * @param block The {@link Block} this event impacts
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The block
      */
-    public BlockEvent(Game game, Block block){
-        super(game);
-        this.block = block;
-    }
+    Block getBlock(int x, int y, int z);
+
+    /**
+     * Gets a specific {@link org.spongepowered.api.world.Voxel} by its x/y/z block coordinate.
+     *
+     * @param x X block coordinate
+     * @param y Y block coordinate
+     * @param z Z block coordinate
+     * @return The voxel
+     */
+    Voxel getVoxel(int x, int y, int z);
+    
+    /**
+     * Gets the {@link org.spongepowered.api.block.Block} at the block coordinate x/y/z.
+     *
+     * @param location location of block in Vector3i format
+     * @return The block
+     */
+    Block getBlock(Vector3i location);
+
+    
+    /**
+     * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
+     *
+     * @param location of voxel in Vector3i format
+     * @return The voxel
+     */
+    Voxel getVoxel(Vector3i location);
 }

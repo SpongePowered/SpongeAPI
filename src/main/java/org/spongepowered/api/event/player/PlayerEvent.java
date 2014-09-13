@@ -21,18 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.Event;
 
-public class SpongePostInitializationEvent extends SpongeStateEvent {
-    public SpongePostInitializationEvent(Game game) {
-        super(game);
-    }
+/**
+ * Describes events which contain a {@link Player}
+ */
+public interface PlayerEvent extends Event {
 
-    @Override
-    public GameState getState() {
-        return GameState.POST_INITIALIZATION;
-    }
+    /**
+     * Gets the {@link org.spongepowered.api.entity.Player} involved
+     *
+     * @return {@link org.spongepowered.api.entity.Player} involved
+     */
+    Player getPlayer();
 }

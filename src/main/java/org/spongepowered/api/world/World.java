@@ -23,17 +23,17 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.entity.EntityUniverse;
 
 import java.util.UUID;
 
 /**
  * A loaded Minecraft world
  */
-public interface World {
+public interface World extends EntityUniverse, VoxelVolume {
 
     /**
-     * Gets the unique id ({@link java.util.UUID} for this world.
+     * Gets the unique id ({@link java.util.UUID}) for this world.
      *
      * @return The unique id or UUID
      */
@@ -66,13 +66,4 @@ public interface World {
      * @return Chunk loaded/generated
      */
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
-
-    /**
-     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
-     * @param x X block coordinate
-     * @param y Y block coordinate
-     * @param z Z block coordinate
-     * @return The block
-     */
-    Block getBlock(int x, int y, int z);
 }

@@ -23,16 +23,11 @@
  */
 package org.spongepowered.api.event.state;
 
-import org.spongepowered.api.Game;
 import org.spongepowered.api.GameState;
 
-public class SpongePreInitializationEvent extends SpongeStateEvent {
-    public SpongePreInitializationEvent(Game game) {
-        super(game);
-    }
+/**
+ * Represents {@link GameState#POST_INITIALIZATION} event
+ */
+public interface PostInitializationEvent extends StateEvent {
 
-    @Override
-    public GameState getState() {
-        return GameState.PRE_INITIALIZATION;
-    }
 }

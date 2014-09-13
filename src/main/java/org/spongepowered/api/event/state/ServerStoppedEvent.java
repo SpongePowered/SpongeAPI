@@ -21,19 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.event.state;
+
+import org.spongepowered.api.GameState;
 
 /**
- * Thrown by the implementation if it determines that a {@link org.spongepowered.api.plugin.Plugin} being loaded is invalid.
+ * Represents {@link GameState#SERVER_STOPPED} event
  */
-public class InvalidPluginException extends Exception {
-    private static final long serialVersionUID = 15816838168L;
+public interface ServerStoppedEvent extends StateEvent {
 
-    public InvalidPluginException(String message) {
-        super(message);
-    }
-
-    public InvalidPluginException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

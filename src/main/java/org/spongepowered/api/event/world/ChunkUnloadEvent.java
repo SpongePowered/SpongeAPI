@@ -23,27 +23,11 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.SpongeEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * Called when a {@link Chunk} is unloaded
  */
-public class ChunkUnloadEvent extends ChunkEvent {
+public interface ChunkUnloadEvent extends ChunkEvent {
 
-    /**
-     * Called when a {@link Chunk} is unloaded
-     *
-     * @param game Game
-     * @param chunk {@link Chunk} being loaded
-     */
-    public ChunkUnloadEvent(Game game, Chunk chunk) {
-        super(game, chunk);
-    }
-
-    @Override
-    public final boolean isCancellable() {
-        return false;
-    }
 }

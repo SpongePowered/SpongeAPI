@@ -21,18 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+/**
+ * Something that can have damage/health on it should inherit this
+ */
+public interface Damageable {
 
-public class SpongeServerAboutToStartEvent extends SpongeStateEvent {
-    public SpongeServerAboutToStartEvent(Game game) {
-        super(game);
-    }
+    /**
+     * Damages the entity by a specified amount;
+     *
+     * @param amount the damage amount
+     */
+    void damage(double amount);
 
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_ABOUT_TO_START;
-    }
+    /**
+     * Gets the health of the entity
+     *
+     * @return health of the {@code Damageable}
+     */
+    double getHealth();
+
+    /**
+     * Sets the Health of the {@code Damageable}
+     * 
+     * @param health The health to set this damageable's health to
+     */
+    void setHealth(double health);
 }

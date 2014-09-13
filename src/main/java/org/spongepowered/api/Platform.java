@@ -23,6 +23,19 @@
  */
 package org.spongepowered.api;
 
+/**
+ * Effective side platforms
+ * 
+ * A side is what part of minecraft this is being run on. The client, or the server. 
+ * The internal server is also treated like a dedicated server.
+ */
 public enum Platform {
-    CLIENT, SERVER
+    /**
+     * The platform of a minecraft CLIENT is expected
+     */
+    CLIENT,
+    /**
+     * The platform of a mincecraft SERVER is expected
+     */
+    SERVER
 }

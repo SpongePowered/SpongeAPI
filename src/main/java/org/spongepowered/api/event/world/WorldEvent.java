@@ -23,25 +23,17 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.SpongeEvent;
 import org.spongepowered.api.world.World;
 
 /**
- * Abstract class for World events
+ * Describes {@link World} events
  */
-public abstract class WorldEvent extends SpongeEvent {
-
-    public final World world;
+public interface WorldEvent {
 
     /**
-     * Called when the {@link org.spongepowered.api.Game} loads a {@link World} map
+     * Gets the {@link World} involved in the event
      *
-     * @param game Game
-     * @param world {@link World} being loaded
+     * @return The world that this event is involved in
      */
-    public WorldEvent(Game game, World world) {
-        super(game);
-        this.world = world;
-    }
+    World getWorld();
 }

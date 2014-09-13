@@ -21,18 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.item.Item;
 
-public class SpongeInitializationEvent extends SpongeStateEvent {
-    public SpongeInitializationEvent(Game game) {
-        super(game);
-    }
+import javax.annotation.Nullable;
 
-    @Override
-    public GameState getState() {
-        return GameState.INITIALIZATION;
-    }
+/**
+ * Provides an easy way to retrieve objects from the {@link org.spongepowered.api.Game} based on their ids.
+ */
+public interface GameRegistry {
+    /**
+     * Gets a {@link org.spongepowered.api.block.Block} by its identifier.
+     * @param id The id to look up
+     * @return The block or null if not found
+     */
+    @Nullable
+    Block getBlock(String id);
+
+    /**
+     * Gets an {@link org.spongepowered.api.item.Item} by its identifier.
+     * @param id The id to look up
+     * @return The item or null if not found
+     */
+    @Nullable
+    Item getItem(String id);
+
+    /**
+     * Gets the id registered to the object
+     * @param obj The object to look up
+     * @return The id or null if none found
+     */
+    @Nullable
+    String getID(Object obj);
 }

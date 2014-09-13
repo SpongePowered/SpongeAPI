@@ -23,27 +23,10 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.SpongeEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
- * Called when a {@link Chunk} is loaded in an existing {@link World} map
+ * Called when a {@link Chunk} is loaded in an existing {@link org.spongepowered.api.world.World} map
  */
-public class ChunkLoadEvent extends ChunkEvent {
-
-    /**
-     * Called when a {@link Chunk} is loaded in an existing {@link World} map
-     *
-     * @param game Game
-     * @param chunk {@link Chunk} being loaded
-     */
-    public ChunkLoadEvent(Game game, Chunk chunk) {
-        super(game, chunk);
-    }
-
-    @Override
-    public final boolean isCancellable() {
-        return false;
-    }
+public interface ChunkLoadEvent extends ChunkEvent {
 }
