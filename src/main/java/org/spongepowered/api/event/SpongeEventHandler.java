@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event;
 
 import java.lang.annotation.Retention;
@@ -32,7 +34,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(value = RUNTIME)
 @Target(value = METHOD)
 public @interface SpongeEventHandler {
+
     Order order() default Order.DEFAULT;
 
     boolean ignoreCancelled() default true;
+
 }
