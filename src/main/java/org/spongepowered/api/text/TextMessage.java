@@ -36,10 +36,17 @@ public interface TextMessage extends Iterable<TextMessage>, Cloneable {
      * 
      * @return Unformatted Text
      */
+    String getPlainText();
+    
+    /**
+     * Gets the text value of this message and all children recursively.
+     * 
+     * @return
+     */
     String getUnformattedText();
 
     /**
-     * Gets the formatted text for this message.
+     * Gets the formatted text for this message and all children recursively.
      * 
      * @return Formatted text
      */
@@ -132,34 +139,5 @@ public interface TextMessage extends Iterable<TextMessage>, Cloneable {
      * @return raw json
      */
     String getRaw();
-
-    /**
-     * Gets the {@link TextType} of this message.
-     * 
-     * @return
-     */
-    TextType getType();
-    
-    /**
-     * Different types of messages that can exist.
-     */
-    public static enum TextType {
-
-        /**
-         * A single line with no styling or siblings. All messages start out as
-         * this
-         */
-        PRIMITIVE,
-        
-        /**
-         * A single line with any number of siblings or stylings.
-         */
-        OBJECT,
-        
-        /**
-         * An array of messages, no one parent. Items may be of any type.
-         */
-        ARRAY;
-    }
 
 }

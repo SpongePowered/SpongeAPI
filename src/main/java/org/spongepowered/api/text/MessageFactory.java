@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.text;
 
+import org.spongepowered.api.entity.Player;
+
 /**
  * Factory for creating new chat related objects.
  */
@@ -35,7 +37,38 @@ public interface MessageFactory {
      * @param text Contents of the message
      * @return New message
      */
-    TextMessage newMessage(String text);
+    TextMessage newTextMessage(String text);
+    
+    /**
+     * Creates a new translatable {@link TextMessage}
+     * 
+     * @param translate The translate string
+     * @return
+     */
+    TextMessage newTranslatedMessage(String translate);
+    
+    /**
+     * Creates a new {@link TextMessage} for showing a score.</p>
+     * 
+     * TODO: Create Objective class.
+     * 
+     * @param player
+     * @param objective
+     * @return New translated message
+     * @since 1.8
+     */
+    TextMessage newScoreMessage(Player player, String objective);
+    
+    /**
+     * Creates a new {@link TextMessage} using a selector.</br>
+     * Ex. <code>@p, @a[team="red"], @e, @r </code></p>
+     * TODO: Make a class for selectors and arguments
+     * 
+     * @param selector
+     * @return New selector message
+     * @since 1.8
+     */
+    TextMessage newSelectorMessage(String selector);
     
     /**
      * Translates the raw text into a {@link TextMessage}.

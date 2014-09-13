@@ -151,6 +151,29 @@ public interface TextStyle {
      * @return Itself
      */
     TextStyle setHoverEvent(TextClientEvent hoverEvent);
+    
+    /**
+     * Gets the text to be inserted in chat when shift clicked.
+     * 
+     * @return The text to be inserted
+     * @since 1.8
+     */
+    String getInsertion();
+    
+    /**
+     * Sets the text to be inserted in chat when shift clicked.
+     * 
+     * @return This Message
+     * @since 1.8
+     */
+    TextMessage setInsertion();
+
+    /**
+     * Gets the formatted string used by the font renderer.
+     * 
+     * @return Formatted string.
+     */
+    String getFormatCodes();
 
     /**
      * Gets a custom, non-vanilla style entry
