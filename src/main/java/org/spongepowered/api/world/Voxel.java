@@ -25,6 +25,7 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents the smallest unit of the world map. This unit
@@ -49,4 +50,26 @@ public interface Voxel extends VoxelVolume {
      * @return block The block defining the voxel
      */
     Block getBlock();
+    
+    /**
+     * Gets a reference to the world object that
+     * the voxel is inside
+     *
+     * @return The world that contains the voxel
+     */
+    World getWorld();
+    
+    /**
+     * Update the voxel's physics , state , power etc.
+     *
+     */
+    void update();
+    
+    /**
+     * Returns true if the voxel uses physics
+     *
+     * @return true if using physics
+     */
+    boolean getUsePhysics();
+    
 }
