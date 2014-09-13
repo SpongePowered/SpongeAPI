@@ -30,7 +30,7 @@ import java.util.Collection;
 /**
  * Called when a {@link Player} sends a chat message
  */
-public interface AsyncPlayerChatEvent {
+public interface AsyncPlayerChatEvent extends PlayerEvent {
 
     /**
      * Get the message sent in this event
