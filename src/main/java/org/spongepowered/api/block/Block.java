@@ -35,4 +35,13 @@ public interface Block {
      * @return The id
      */
     String getID();
+
+    /**
+     * Gets the redstone power level (0-15) of the block.
+     * <p/>
+     * Ex. A directly-powered block would return 15, a non-powered block would return 0
+     *
+     * @return the block's redstone power level.
+     */
+    float getPowerLevel();
 }
