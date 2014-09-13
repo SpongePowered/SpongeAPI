@@ -26,7 +26,7 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.event.player.PlayerEvent;
 
 /**
- * Player tries to login server , first event triggered
+ * Player breaks a block
  */
 public interface PlayerBlockPlaceEvent extends PlayerEvent {
 
