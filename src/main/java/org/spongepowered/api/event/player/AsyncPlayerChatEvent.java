@@ -47,7 +47,7 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
      /**
       * Set the recipients of this message
       * 
-      * @param r The new recipients of this message
+      * @param recipients The new recipients of this message
       */
-      void setRecipients(Collection<Player> r);
+      void setRecipients(Collection<Player> recipients);
 }
