@@ -23,6 +23,8 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.text.TextMessage;
+
 public interface Player extends HumanEntity {
 
     /**
@@ -39,4 +41,11 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
+    
+    /**
+     * Sends a message to this player
+     * 
+     * @param message The message to be sent
+     */
+    void sendMessage(TextMessage message);
 }
