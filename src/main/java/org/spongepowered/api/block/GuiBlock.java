@@ -31,8 +31,8 @@ import org.spongepowered.api.entity.Player;
 public interface GuiBlock extends Block {
 
     /**
-     * An array of all players watching the command block interface
-     * @return an array off all players viewing the command interface
+     * An array of all players watching the GUI of the block
+     * @return an array off all players viewing the GUI of the block
      */
     Player[] getViewers();
 }
