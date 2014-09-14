@@ -59,9 +59,10 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
 
     /**
     * Gets the message for a specific player.
-    * If the player is a recipient of this chat event
+    *
+    * <p>If the player is a recipient of this chat event
     * but doesn't have a specific message set this returns
-    * the fallback message.
+    * the fallback message.</p>
     *
     * @param player The player whose message is requested.
     * @return The message for the given player.
