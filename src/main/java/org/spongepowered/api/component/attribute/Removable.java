@@ -27,35 +27,10 @@ package org.spongepowered.api.component.attribute;
 import org.spongepowered.api.component.Component;
 
 /**
- * Gives the "hunger" attribute.
+ * Gives the "removable" attribute. 
+ * </p>
+ * Examples of "removable" entities: ItemStack, Arrows, Boat, Painting, etc.
  */
-public interface Hunger extends Component {
-    
-    /**
-     * Gets the current hunger level.
-     * 
-     * @return The hunger level
-     */
-    double getHunger();
-    
-    /**
-     * Gets the current saturation level.
-     * 
-     * @return The saturation level
-     */
-    double getSaturation();
+public interface Removable extends Component {
 
-    /**
-     * Sets the current hunger level.
-     * 
-     * @param hunger The hunger level
-     */
-    void setHunger(double hunger);
-
-    /**
-     * Sets the current saturation level.
-     * 
-     * @param saturation The saturation level
-     */
-    void setSaturation(double saturation);
 }

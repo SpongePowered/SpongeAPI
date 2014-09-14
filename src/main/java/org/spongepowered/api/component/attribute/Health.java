@@ -30,15 +30,32 @@ import org.spongepowered.api.component.Component;
  * Gives the "health" attribute.
  */
 public interface Health extends Component {
+
     /**
-     * Gets the value of the current health
-     * @return The value
+     * Gets the value of the current health.
+     * 
+     * @return The health value
      */
     double getHealth();
 
     /**
-     * Sets the value for the health
-     * @param value The value
+     * Checks if {@link Entity} is invulnerable.
+     * 
+     * @return true If {@link Entity} is invulnerable
+     */
+    boolean isInvulnerable();
+
+    /**
+     * Sets {@link Entity} invulnerable if true.
+     * 
+     * @param invulnerable true to make invulnerable
+     */
+    void setInvulnerable(boolean invulnerable);
+
+    /**
+     * Sets the value for the health.
+     * 
+     * @param value The health value
      */
     void setHealth(double value);
 }

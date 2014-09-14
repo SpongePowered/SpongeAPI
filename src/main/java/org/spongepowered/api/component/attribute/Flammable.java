@@ -27,35 +27,29 @@ package org.spongepowered.api.component.attribute;
 import org.spongepowered.api.component.Component;
 
 /**
- * Gives the "hunger" attribute.
+ * Gives the "flammable" attribute.
  */
-public interface Hunger extends Component {
-    
-    /**
-     * Gets the current hunger level.
-     * 
-     * @return The hunger level
-     */
-    double getHunger();
-    
-    /**
-     * Gets the current saturation level.
-     * 
-     * @return The saturation level
-     */
-    double getSaturation();
+public interface Flammable extends Component {
 
     /**
-     * Sets the current hunger level.
+     * Gets the remaining time for an {@link Entity} to be on fire.
      * 
-     * @param hunger The hunger level
+     * @return The duration in ticks
      */
-    void setHunger(double hunger);
+    int getDuration();
 
     /**
-     * Sets the current saturation level.
+     * Checks to see if {@link Entity} is on fire.
      * 
-     * @param saturation The saturation level
+     * @return true If {@link #getDuration()} is greater than 0
      */
-    void setSaturation(double saturation);
+    boolean isBurning();
+
+    /**
+     * Sets the remaining time for an {@link Entity} to be on fire if
+     * {@link #isBurning()} is true.
+     * 
+     * @param ticks The amount to set
+     */
+    void setDuration(int ticks);
 }

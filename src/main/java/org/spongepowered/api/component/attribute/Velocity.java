@@ -31,7 +31,18 @@ import org.spongepowered.api.math.Vector3f;
  * Gives the "velocity" attribute.
  */
 public interface Velocity extends Component {
+    
+    /**
+     * Gets the velocity value in {@link Vector3i}
+     * 
+     * @return The velocity value
+     */
     Vector3f getVelocity();
 
+    /**
+     * Sets the velocity value in {@link Vector3i}
+     * 
+     * @param velocity The velocity value
+     */
     void setVelocity(Vector3f velocity);
 }
