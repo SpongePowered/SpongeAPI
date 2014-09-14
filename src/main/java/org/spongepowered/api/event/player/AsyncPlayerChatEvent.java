@@ -31,7 +31,6 @@ import java.util.Set;
  * Called when a {@link Player} sends a chat message.
  */
 public interface AsyncPlayerChatEvent extends PlayerEvent {
-
     /**
      * Get the message sent in this event.
      *
