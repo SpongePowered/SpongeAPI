@@ -25,7 +25,6 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3i;
-import org.spongepowered.api.world.World;
 
 /**
  * Represents the smallest unit of the world map. This unit
