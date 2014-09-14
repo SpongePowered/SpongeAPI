@@ -36,8 +36,8 @@ public interface MessageBuilder extends Builder<MessageBuilder, TextMessage> {
     /**
      * Appends a message to the end of this builder.
      * 
-     * @param text
-     * @param formats
+     * @param text Text to append
+     * @param formats Text format
      * @return This instance
      */
     MessageBuilder appendString(String text, TextFormatting... formats);
@@ -46,21 +46,18 @@ public interface MessageBuilder extends Builder<MessageBuilder, TextMessage> {
      * Appends a message with an event to the end of this builder. Can be either
      * click or hover.
      * 
-     * @param display
-     * @param action
-     * @param value
-     * @param formats
+     * @param display The display text
+     * @param action The action
+     * @param value The action value
+     * @param formats The formatting
      * @return This instance.
      */
-    MessageBuilder appendAction(String display, TextAction action, String value,
-            TextFormatting... formats);
-    
+    MessageBuilder appendAction(String display, TextAction action, String value, TextFormatting... formats);
+
     /**
-     * Appends a message with a link to the end of this builder.<br/>
-     * <p>
+     * Appends a message with a link to the end of this builder.
      * Same thing as calling
      * {@code appendEvent(display, TextAction.OPEN_LINK, url.toString(), formats);}
-     * </p>
      * <p>
      * file:// protocols are not allowed.
      * </p>
@@ -70,7 +67,6 @@ public interface MessageBuilder extends Builder<MessageBuilder, TextMessage> {
      * @param formats The formatting codes to use.
      * @return This instance.
      */
-    MessageBuilder appendLink(String display, URL url,
-            TextFormatting... formats);
+    MessageBuilder appendLink(String display, URL url, TextFormatting... formats);
 
 }

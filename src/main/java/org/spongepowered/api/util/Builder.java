@@ -25,9 +25,7 @@
 package org.spongepowered.api.util;
 
 /**
- * Base interface for creating a Builder.<br/>
- * <h1>Usage:</h1> <br/>
- * A Builder is used by creating an interface extending it.
+ * Base interface for creating a Builder.
  * 
  * @param B The builder type, usually the implementing class
  * @param T The type this builder is building
@@ -42,27 +40,27 @@ public interface Builder<B extends Builder<B, T>, T> {
     T build();
 
     /**
-     * Gets the object at the given index.
+     * Gets the object at the given index, starting at 0.
      * 
-     * @param index The index of the object, starting at 0
-     * @return The object at the given index.
+     * @param index The index of the object
+     * @return The object at the given index
      */
     T getObjectAt(int index);
     
     /**
      * Gets an iterable list of objects in this builder.
      * 
-     * @return An iterable list.
+     * @return An iterable list
      */
     Iterable<T> iterate();
 
     /**
      * Appends the object at the current index.
      * 
-     * @param t
-     * @return This object
+     * @param object The object to append
+     * @return This instance
      */
-    B append(T t);
+    B append(T object);
     
     /**
      * Sets the next Object to be inserted at the given index.
@@ -71,29 +69,29 @@ public interface Builder<B extends Builder<B, T>, T> {
      * @return This instance
      */
     B setIndex(int index);
-    
+
     /**
-     * Moves the index the given amount.
+     * Moves the index the given amount. Negative is backwards, potitive is forwards.
      * 
-     * @param index
-     * @return
+     * @param move The direction and amount to move
+     * @return This instance
      */
     B moveIndex(int move);
-    
+
     /**
      * Gets the index the next object will be inserted at.
      * 
-     * @return
+     * @return The index
      */
     int getIndex();
-    
+
     /**
      * Sets the next object to be inserted at the end.
      * 
      * @return This instance
      */
     B setIndexLast();
-    
+
     /**
      * Sets the next object to be inserted at the beginning.
      * 

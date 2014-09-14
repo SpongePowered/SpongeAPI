@@ -34,9 +34,9 @@ import java.util.Set;
 public interface TextStyle {
 
     /**
-     * The color from {@link TextFormatting}
+     * The color from {@link TextFormatting}.
      * 
-     * @return
+     * @return The color
      */
     TextFormatting getColor();
 
@@ -51,14 +51,14 @@ public interface TextStyle {
     /**
      * Gets if the text is bolded.
      * 
-     * @return
+     * @return True if bold, false if not
      */
     boolean isBold();
 
     /**
      * Sets the text to be bolded.
      * 
-     * @param bold
+     * @param bold Value to set
      * @return Itself
      */
     TextStyle setBold(boolean bold);
@@ -66,14 +66,14 @@ public interface TextStyle {
     /**
      * Gets if the text is italicized.
      * 
-     * @return
+     * @return True if italic, false if not
      */
     boolean isItalic();
 
     /**
      * Sets the text to be italicized.
      * 
-     * @param italic
+     * @param italic Value to set
      * @return Itself
      */
     TextStyle setItalic(boolean italic);
@@ -81,14 +81,14 @@ public interface TextStyle {
     /**
      * Gets if the text is underlined.
      * 
-     * @return
+     * @return True if underlined, false if not
      */
     boolean isUnderlined();
 
     /**
      * Sets the text to be underlined.
      * 
-     * @param underlined
+     * @param underlined Value to set
      * @return Itself
      */
     TextStyle setUnderlined(boolean underlined);
@@ -96,14 +96,14 @@ public interface TextStyle {
     /**
      * Gets if the text is strikethrough.
      * 
-     * @return
+     * @return True if strikethough, false if not
      */
     boolean isStrikethrough();
 
     /**
      * Sets the text to be strikethrough.
      * 
-     * @param strikethrough
+     * @param strikethrough Value to set
      * @return Itself
      */
     TextStyle setStrikethrough(boolean strikethrough);
@@ -111,14 +111,14 @@ public interface TextStyle {
     /**
      * Gets if the text is obfuscated, AKA magic.
      * 
-     * @return
+     * @return True if obfuscated, false if not
      */
     boolean isObfuscated();
 
     /**
      * Sets the text to be obfuscated, AKA magic.
      * 
-     * @param obfuscated
+     * @param obfuscated Value to set
      * @return Itself
      */
     TextStyle setObfuscated(boolean obfuscated);
@@ -152,34 +152,32 @@ public interface TextStyle {
      * @return Itself
      */
     TextStyle setHoverEvent(TextClientEvent hoverEvent);
-    
+
     /**
      * Gets the text to be inserted in chat when shift clicked.
      * 
      * @return The text to be inserted
-     * @since 1.8
      */
     String getInsertion();
-    
+
     /**
      * Sets the text to be inserted in chat when shift clicked.
      * 
      * @return This Message
-     * @since 1.8
      */
     TextMessage setInsertion();
 
     /**
      * Gets the formatted string used by the font renderer.
      * 
-     * @return Formatted string.
+     * @return Formatted string
      */
     String getFormatCodes();
 
     /**
      * Gets a custom, non-vanilla style entry
      * 
-     * @param key
+     * @param key The custom key
      * @return Style entry value
      */
     Object getExtra(String key);
@@ -187,10 +185,8 @@ public interface TextStyle {
     /**
      * Sets a custom, non-vanilla style entry.
      * 
-     * @param key
-     * @param value
-     *            Must be a String or have getString() return something
-     *            relevant.
+     * @param key The custom key
+     * @param value The custom value
      * @return Itself
      */
     TextStyle setExtra(String key, Object value);
@@ -201,11 +197,11 @@ public interface TextStyle {
      * @return Set of style entries
      */
     Set<Entry<String, Object>> getExtraSet();
-    
+
     /**
      * Returns true if this style has no entries set
      * 
-     * @return True if style is empty.
+     * @return True if style is empty
      */
     boolean isEmpty();
 

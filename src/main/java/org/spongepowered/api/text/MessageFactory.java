@@ -32,45 +32,42 @@ import org.spongepowered.api.entity.Player;
 public interface MessageFactory {
 
     /**
-     * Creates a new {@link TextMessage} using the given text. Automatically converts
-     * messages using section sign to use a {@link TextStyle}.
+     * Creates a new {@link TextMessage} using the given text. Automatically
+     * converts messages using section sign to use a {@link TextStyle}.
      *
      * @param text Contents of the message
-     * @return New message
+     * @return New text message
      */
     TextMessage newTextMessage(String text);
-    
+
     /**
-     * Creates a new translatable {@link TextMessage}
+     * Creates a new translatable {@link TextMessage}.
      * 
      * @param translate The translate string
-     * @return
+     * @return New translated message
      */
     TextMessage newTranslatedMessage(String translate);
-    
+
     /**
-     * Creates a new {@link TextMessage} for showing a score.</p>
-     * 
+     * Creates a new {@link TextMessage} for showing a score.
      * TODO: Create Objective class.
      * 
-     * @param player
-     * @param objective
-     * @return New translated message
-     * @since 1.8
+     * @param player The player
+     * @param objective The objective name
+     * @return New score message
      */
     TextMessage newScoreMessage(Player player, String objective);
-    
+
     /**
      * Creates a new {@link TextMessage} using a selector.</br>
-     * Ex. <code>@p, @a[team="red"], @e, @r </code></p>
+     * <p>Ex. <code>@p, @a[team="red"], @e, @r[r=50] </code></p>
      * TODO: Make a class for selectors and arguments
      * 
-     * @param selector
+     * @param selector Selector string
      * @return New selector message
-     * @since 1.8
      */
     TextMessage newSelectorMessage(String selector);
-    
+
     /**
      * Translates the raw text into a {@link TextMessage}.
      * 
@@ -78,20 +75,20 @@ public interface MessageFactory {
      * @return The new message.
      */
     TextMessage newMessageFromJson(String json);
-    
+
     /**
-     * Creates a new {@link MessageBuilder}
+     * Creates a new {@link MessageBuilder}.
      * 
-     * @return
+     * @return A new message builder
      */
     MessageBuilder newBuilder();
-    
+
     /**
      * Creates a new {@link MessageBuilder} with the parameters as a base.
      * 
      * @param text Starting text
      * @param formatting The formatting
-     * @return
+     * @return A new message builder
      */
     MessageBuilder newBuilder(String text, TextFormatting... formatting);
 

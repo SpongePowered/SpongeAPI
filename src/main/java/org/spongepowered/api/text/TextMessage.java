@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text;
 
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -35,21 +34,21 @@ public interface TextMessage extends Iterable<TextMessage>, Cloneable {
     /**
      * Gets the text of this chat message.
      * 
-     * @return Unformatted Text
+     * @return The plain text
      */
     String getPlainText();
-    
+
     /**
      * Gets the text value of this message and all children recursively.
      * 
-     * @return
+     * @return The unformatted string
      */
     String getUnformattedText();
 
     /**
      * Gets the formatted text for this message and all children recursively.
      * 
-     * @return Formatted text
+     * @return The formatted text
      */
     String getFormattedText();
 
@@ -57,43 +56,15 @@ public interface TextMessage extends Iterable<TextMessage>, Cloneable {
      * Appends the given text to the end of this message
      * 
      * @param text Text to append
-     * @return Itself
+     * @return This instance
      */
     TextMessage append(String text);
-
-    /**
-     * Appends a url to the end of this message.
-     * 
-     * @param text The display text of the url
-     * @param url The target
-     * @return Itself
-     */
-    TextMessage append(String text, URL url);
-    
-    /**
-     * Appends a url with a style to the end of this message.
-     * 
-     * @param text
-     * @param url
-     * @param style
-     * @return
-     */
-    TextMessage append(String text, URL url, TextStyle style);
-
-    /**
-     * Appends a general client event to the end of this message.
-     * 
-     * @param text The display text of the event.
-     * @param event The event
-     * @return Itself
-     */
-    TextMessage append(String text, TextClientEvent event);
 
     /**
      * Appends a message to the end of this one.
      * 
      * @param message The message to append
-     * @return Itself
+     * @return This instance
      */
     TextMessage append(TextMessage message);
 
@@ -115,7 +86,7 @@ public interface TextMessage extends Iterable<TextMessage>, Cloneable {
      * Sets the style to be used by this message.
      * 
      * @param style The style
-     * @return Itself
+     * @return This instance
      */
     TextMessage setStyle(TextStyle style);
 

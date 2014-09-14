@@ -33,14 +33,15 @@ import org.spongepowered.api.world.World;
 import java.util.Collection;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
-
 import org.apache.logging.log4j.Logger;
+
+import javax.annotation.Nullable;
 
 /**
  * The core accessor of the API. The implementation uses this to pass constructed objects.
  */
 public interface Game {
+
     /**
      * Gets the {@link org.apache.logging.log4j.Logger} of the implementation.
      *
@@ -143,4 +144,5 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+
 }

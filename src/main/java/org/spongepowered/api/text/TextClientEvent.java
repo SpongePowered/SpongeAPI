@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text;
 
-
 /**
  * General chat event for the client.
  * 
@@ -32,27 +31,30 @@ package org.spongepowered.api.text;
  * @see net.minecraft.event.HoverEvent
  */
 public interface TextClientEvent {
-    
+
     /**
      * Gets what the client will do when this event is triggered.
-     * @return action
+     * 
+     * @return The action
      */
     TextAction getAction();
-    
+
     /**
      * Gets the value for the action.
-     * @return
+     * 
+     * @return The value
      */
     String getValue();
-    
+
     /**
-     * Gets the type of client event this is.  Currently Click or Hover
+     * Gets the type of client event this is.  Currently Click or Hover.
+     * 
      * @return Event type
      */
     ActionType getType();
 
     /**
-     * Possible action types the vanilla client knows about
+     * Possible action types the vanilla client knows about.
      */
     public static enum ActionType {
         CLICK,

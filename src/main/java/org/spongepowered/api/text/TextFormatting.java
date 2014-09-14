@@ -34,40 +34,53 @@ import java.util.Map;
  * @see net.minecraft.util.EnumChatFormatting
  */
 public final class TextFormatting {
-    
-    public static final TextFormatting BLACK         = new TextFormatting("black",          '0');
-    public static final TextFormatting DARK_BLUE     = new TextFormatting("dark_blue",      '1');
-    public static final TextFormatting DARK_GREEN    = new TextFormatting("dark_green",     '2');
-    public static final TextFormatting DARK_AQUA     = new TextFormatting("dark_aqua",      '3');
-    public static final TextFormatting DARK_RED      = new TextFormatting("dark_red",       '4');
-    public static final TextFormatting DARK_PURPLE   = new TextFormatting("dark_purple",    '5');
-    public static final TextFormatting GOLD          = new TextFormatting("gold",           '6');
-    public static final TextFormatting GRAY          = new TextFormatting("gray",           '7');
-    public static final TextFormatting DARK_GRAY     = new TextFormatting("dark_gray",      '8');
-    public static final TextFormatting BLUE          = new TextFormatting("blue",           '9');
-    public static final TextFormatting GREEN         = new TextFormatting("green",          'a');
-    public static final TextFormatting AQUA          = new TextFormatting("aqua",           'b');
-    public static final TextFormatting RED           = new TextFormatting("red",            'c');
-    public static final TextFormatting LIGHT_PURPLE  = new TextFormatting("light_purple",   'd');
-    public static final TextFormatting YELLOW        = new TextFormatting("yellow",         'e');
-    public static final TextFormatting WHITE         = new TextFormatting("white",          'f');
-    public static final TextFormatting OBFUSCATED    = new TextFormatting("obfuscated",     'k', true);
-    public static final TextFormatting BOLD          = new TextFormatting("bold",           'l', true);
-    public static final TextFormatting STRIKETHROUGH = new TextFormatting("strikethrough",  'm', true);
-    public static final TextFormatting UNDERLINE     = new TextFormatting("underline",      'n', true);
-    public static final TextFormatting ITALIC        = new TextFormatting("italic",         'o', true);
-    public static final TextFormatting RESET         = new TextFormatting("reset",          'r');
-    
+
+    public static final TextFormatting BLACK = new TextFormatting("black", '0');
+    public static final TextFormatting DARK_BLUE = new TextFormatting("dark_blue", '1');
+    public static final TextFormatting DARK_GREEN = new TextFormatting("dark_green", '2');
+    public static final TextFormatting DARK_AQUA = new TextFormatting("dark_aqua", '3');
+    public static final TextFormatting DARK_RED = new TextFormatting("dark_red", '4');
+    public static final TextFormatting DARK_PURPLE = new TextFormatting("dark_purple", '5');
+    public static final TextFormatting GOLD = new TextFormatting("gold", '6');
+    public static final TextFormatting GRAY = new TextFormatting("gray", '7');
+    public static final TextFormatting DARK_GRAY = new TextFormatting("dark_gray", '8');
+    public static final TextFormatting BLUE = new TextFormatting("blue", '9');
+    public static final TextFormatting GREEN = new TextFormatting("green", 'a');
+    public static final TextFormatting AQUA = new TextFormatting("aqua", 'b');
+    public static final TextFormatting RED = new TextFormatting("red", 'c');
+    public static final TextFormatting LIGHT_PURPLE = new TextFormatting("light_purple", 'd');
+    public static final TextFormatting YELLOW = new TextFormatting("yellow", 'e');
+    public static final TextFormatting WHITE = new TextFormatting("white", 'f');
+    public static final TextFormatting OBFUSCATED = new TextFormatting("obfuscated", 'k', true);
+    public static final TextFormatting BOLD = new TextFormatting("bold", 'l', true);
+    public static final TextFormatting STRIKETHROUGH = new TextFormatting("strikethrough", 'm', true);
+    public static final TextFormatting UNDERLINE = new TextFormatting("underline", 'n', true);
+    public static final TextFormatting ITALIC = new TextFormatting("italic", 'o', true);
+    public static final TextFormatting RESET = new TextFormatting("reset", 'r');
+
     private static final Map<Character, TextFormatting> codeMap = new LinkedHashMap<Character, TextFormatting>();
     private static final Map<String, TextFormatting> nameMap = new LinkedHashMap<String, TextFormatting>();
     private final String name;
     private final char colorCode;
     private final boolean fancy;
 
+    /**
+     * Creates a new format color.
+     * 
+     * @param name The simple name
+     * @param code The code used by the renderer
+     */
     public TextFormatting(String name, char code) {
         this(name, code, false);
     }
 
+    /**
+     * Creates a new format.
+     * 
+     * @param name The simple name
+     * @param code The code used by the renderer
+     * @param fancy Is the format not a color?
+     */
     public TextFormatting(String name, char code, boolean fancy) {
         this.name = name;
         this.colorCode = code;
@@ -98,7 +111,7 @@ public final class TextFormatting {
      * Gets whether this format is fancy.<br/>
      * ex. bold, italics, underline.
      *
-     * @return
+     * @return True if fancy, false if color
      */
     public boolean isFancy() {
         return this.fancy;
@@ -106,6 +119,8 @@ public final class TextFormatting {
 
     /**
      * Returns this format as shown in chat.
+     * 
+     * @return The String used in the font renderer
      */
     @Override
     public String toString() {
@@ -115,7 +130,7 @@ public final class TextFormatting {
     /**
      * Gets all the formats created.
      *
-     * @return
+     * @return Collection of formats
      */
     public static Collection<TextFormatting> values() {
         return codeMap.values();
@@ -125,7 +140,7 @@ public final class TextFormatting {
      * Gets a format by code.
      *
      * @param code The code used by the font renderer
-     * @return The format or null if it doesn't exist.
+     * @return The format or null if it doesn't exist
      */
     public static TextFormatting valueOf(char code) {
         return codeMap.get(Character.toLowerCase(code));
