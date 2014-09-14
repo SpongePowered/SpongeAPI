@@ -87,11 +87,11 @@ public enum MinecraftColor {
 	    WHITE('f', "\u00A7F");
 	
     private final char code;
-    private final String SpecialCode;
+    private final String specialCode;
 
-    private MinecraftColor(char code, String SpecialCode) {
+    private MinecraftColor(char code, String specialCode) {
         this.code = code;
-        this.SpecialCode = SpecialCode;
+        this.specialCode = specialCode;
     }
     
     public String getChatcode(MinecraftColor color) {
