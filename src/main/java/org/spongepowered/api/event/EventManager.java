@@ -42,7 +42,7 @@ public interface EventManager {
     void unregister(Object obj);
 
     /**
-     * Calls a {@link Event} to all objects that handle it.
+     * Calls an {@link Event} to all objects that handle it.
      *
      * @param event The event
      * @return True if canceled, false if not
