@@ -24,91 +24,96 @@
 package org.spongepowered.api.block;
 
 /**
- * Interface that represents a particular block state of a block
+ * Interface that represents a particular block state of a block.
  *
- * Block states can can be various different types
+ * Block states can can be various different types.
  */
 public interface BlockState {
+
     /**
-     * Gets if the block state is of type boolean
+     * Gets if the block state is of type boolean.
      *
-     * @return whether it is of type boolean
+     * @return Whether it is of type boolean
      */
     boolean isBoolean();
 
     /**
      * Gets the value of the block state if it is of type boolean,
-     * if not an exception is thrown
+     * if not an exception is thrown.
      *
-     * @throws org.spongepowered.api.block.BlockStateTypeException if block state isn't of type boolean
-     * @return value of the block state
+     * @throws BlockStateTypeException If block state isn't of type boolean
+     * @return Value of the block state
      */
     boolean getAsBoolean();
 
     /**
-     * Gets if the block state is of type int
+     * Gets if the block state is of type int.
      *
-     * @return whether it is of type int
+     * @return Whether it is of type int
      */
     boolean isInt();
 
     /**
      * Gets the value of the block state if it is of type int,
-     * if not an exception is thrown
+     * if not an exception is thrown.
      *
-     * @throws org.spongepowered.api.block.BlockStateTypeException if block state isn't of type int
-     * @return value of the block state
+     * @throws BlockStateTypeException If block state isn't of type int
+     * @return Value of the block state
      */
     int getAsInt();
 
     /**
-     * Gets if the block state is of type {@link String}
+     * Gets if the block state is of type {@link String}.
      *
-     * @return whether it is of type {@link String}
+     * @return Whether it is of type {@link String}
      */
     boolean isString();
 
     /**
      * Gets the value of the block state if it is of type {@link String},
-     * if not an exception is thrown
+     * if not an exception is thrown.
      *
-     * @throws org.spongepowered.api.block.BlockStateTypeException if block state isn't of type {@link String}
-     * @return value of the block state
+     * @throws BlockStateTypeException If block state isn't of type
+     *     {@link String}
+     * @return Value of the block state
      */
     String getAsString();
 
     /**
-     * Gets if the block state is of type {@link org.spongepowered.api.block.Direction}
+     * Gets if the block state is of type {@link Direction}.
      *
-     * @return whether it is of type {@link org.spongepowered.api.block.Direction}
+     * @return Whether it is of type {@link Direction}
      */
     boolean isDirection();
 
     /**
-     * Gets the value of the block state if it is of type {@link org.spongepowered.api.block.Direction},
-     * if not an exception is thrown
+     * Gets the value of the block state if it is of type {@link Direction},
+     * if not an exception is thrown.
      *
-     * @throws org.spongepowered.api.block.BlockStateTypeException if block state isn't of type {@link org.spongepowered.api.block.Direction}
-     * @return value of the block state
+     * @throws BlockStateTypeException If block state isn't of type
+     *     {@link Direction}
+     * @return Value of the block state
      */
     Direction getAsDirection();
 
     /**
-     * Gets if the block state is of type {@code type},
+     * Gets if the block state is of type {@code type}.
      *
-     * @param type type to check if this is of {@code type}
-     * @return whether it is of type {@code type}
+     * @param type Type to check if this is of {@code type}
+     * @return Whether it is of type {@code type}
      */
     boolean isOfType(Class<?> type);
 
     // should this be able to return null?
     /**
      * Gets the value of the block state if it is of type of {@code type},
-     * if not an exception is thrown
-     * @param <T>  type of value that will be returned
-     * @param type type of value that will be returned
-     * @throws org.spongepowered.api.block.BlockStateTypeException if block state isn't of type {@link org.spongepowered.api.block.Direction}
-     * @return value of the block state
+     * if not an exception is thrown.
+     *
+     * @param <T>  Type of value that will be returned
+     * @param type Type of value that will be returned
+     * @throws BlockStateTypeException If block state isn't of type
+     *     {@link Direction}
+     * @return Value of the block state
      */
     <T> T getAsType(Class<T> type);
 }

@@ -24,13 +24,32 @@
 package org.spongepowered.api.block;
 
 /**
- *  Enum to represent the direction certain blocks are facing
+ *  Enum to represent the direction certain blocks are facing.
  */
 public enum Direction {
+
+    /**
+     * Block is facing up(positive y).
+     */
     UP,
+    /**
+     * Block is facing down(negative y).
+     */
     DOWN,
+    /**
+     * Block is facing north(negative z).
+     */
     NORTH,
+    /**
+     * Block is facing south(positive z).
+     */
     SOUTH,
+    /**
+     * Block is facing east(positive x).
+     */
     EAST,
+    /**
+     * Block is facing west(negative x).
+     */
     WEST
 }
