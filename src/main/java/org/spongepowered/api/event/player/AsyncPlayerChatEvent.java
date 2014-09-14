@@ -28,21 +28,21 @@ import org.spongepowered.api.entity.Player;
 import java.util.Set;
 
 /**
- * Called when a {@link Player} sends a chat message
+ * Called when a {@link Player} sends a chat message.
  */
 public interface AsyncPlayerChatEvent extends PlayerEvent {
 
     /**
-     * Get the message sent in this event
+     * Get the message sent in this event.
      *
-     * @return The message sent
+     * @return The message sent.
      */
     String getMessage();
     
     /**
-     * Get the recipients of this message
+     * Get the recipients of this message.
      * 
-     * @return The recipients of this message
+     * @return The recipients of this message.
      */
     Set<Player> getRecipients();
 }
