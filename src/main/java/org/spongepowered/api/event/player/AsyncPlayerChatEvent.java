@@ -38,7 +38,7 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
      * Gets the message which is sent to the recipients
      * if no player-specific message is defined.
      *
-     * @return The fallback message
+     * @return The fallback message.
      */
     String getMessage();
 
@@ -46,14 +46,14 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
      * Sets the message which is sent to the recipients
      * if no player-specific message is defined.
      *
-     * @param message The new fallback message
+     * @param message The new fallback message.
      */
     void setMessage(String message);
     
     /**
      * Gets the recipients of this chat event.
      *
-     * @return The recipients of this chat event
+     * @return The recipients of this chat event.
      */
     Set<Player> getRecipients();
 
@@ -64,17 +64,17 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
      * but doesn't have a specific message set this returns
      * the fallback message.</p>
      *
-     * @param player The player whose message is requested
-     * @return The message for the given player
+     * @param player The player whose message is requested.
+     * @return The message for the given player.
      */
     String getMessage(Player player);
 
     /**
      * Sets the message for a specific player.
      *
-     * @param player The player to set the message for
+     * @param player The player to set the message for.
      * @param message The message to send to this player
-     *                or null to use the fallback message instead
+     *                or null to use the fallback message instead.
      */
     void setMessage(Player player, @Nullable String message);
 
