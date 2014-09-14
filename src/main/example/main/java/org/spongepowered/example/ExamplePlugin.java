@@ -7,6 +7,7 @@ import org.spongepowered.api.plugin.Plugin;
 
 @Plugin(id = "ExamplePlugin", name = "Example")
 public class ExamplePlugin {
+
     @SpongeEventHandler
     public void onInitialization(InitializationEvent event) {
         event.getGame().getLogger().info("Hey folks, this is INITIALIZATION!");

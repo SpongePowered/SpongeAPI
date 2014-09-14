@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.entity.EntityUniverse;
@@ -33,7 +35,7 @@ import java.util.UUID;
 public interface World extends EntityUniverse, VoxelVolume {
 
     /**
-     * Gets the unique id ({@link java.util.UUID}) for this world.
+     * Gets the unique id ({@link UUID}) for this world.
      *
      * @return The unique id or UUID
      */
@@ -57,8 +59,8 @@ public interface World extends EntityUniverse, VoxelVolume {
     Chunk getChunk(int cx, int cz);
 
     /**
-     * Loads and returns a {@link Chunk}. If the chunk does not
-     * exist, it will be generated unless `shouldGenerate` is false.
+     * Loads and returns a {@link Chunk}. If the chunk does not exist, it will
+     * be generated unless `shouldGenerate` is false.
      *
      * @param cx X chunk coordinate
      * @param cz Z chunk coordinate
@@ -66,4 +68,5 @@ public interface World extends EntityUniverse, VoxelVolume {
      * @return Chunk loaded/generated
      */
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+
 }

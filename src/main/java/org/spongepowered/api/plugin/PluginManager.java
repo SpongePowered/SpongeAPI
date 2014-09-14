@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,23 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.plugin;
 
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
 
+import javax.annotation.Nullable;
+
 public interface PluginManager {
-    /**
-     * Retrieves a {@link org.spongepowered.api.plugin.PluginContainer} based on its name.
-     *
-     * @param name The name
-     * @return The plugin or null if not found
-     */
-    PluginContainer getPlugin(String name);
 
     /**
-     * Gets the {@link org.apache.logging.log4j.Logger} for the {@link org.spongepowered.api.plugin.PluginContainer}.
+     * Retrieves a {@link PluginContainer} based on its ID.
+     *
+     * @param id The plugin ID
+     * @return The plugin or null if not found
+     */
+    @Nullable
+    PluginContainer getPlugin(String id);
+
+    /**
+     * Gets the {@link Logger} for the {@link PluginContainer}.
      *
      * @param plugin The plugin
      * @return The logger
@@ -45,9 +51,10 @@ public interface PluginManager {
     Logger getLogger(PluginContainer plugin);
 
     /**
-     * Gets a {@link java.util.Collection} of all {@link org.spongepowered.api.plugin.PluginContainer}s
+     * Gets a {@link Collection} of all {@link PluginContainer}s
      *
      * @return The plugins
      */
     Collection<PluginContainer> getPlugins();
+
 }
