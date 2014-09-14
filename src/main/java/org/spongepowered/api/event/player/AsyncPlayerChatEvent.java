@@ -29,6 +29,8 @@ import org.spongepowered.api.entity.Player;
 
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 /**
  * Called when a {@link Player} sends a chat message.
  */
