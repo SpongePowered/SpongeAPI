@@ -46,7 +46,7 @@ public interface Damageable {
 
     /**
      * Sets the Health of the {@code Damageable}
-     * 
+     *
      * @param health The health to set this damageable's health to
      */
     void setHealth(double health);

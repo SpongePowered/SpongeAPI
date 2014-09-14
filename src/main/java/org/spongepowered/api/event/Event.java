@@ -33,52 +33,52 @@ import org.spongepowered.api.Game;
 public interface Event {
 
     /**
-     * Gets the {@link org.spongepowered.api.Game}.
+     * Gets the {@link Game}.
      *
      * @return The game
      */
     Game getGame();
 
     /**
-     * Gets a simple name of the current class
+     * Gets a simple name of the current class.
      *
      * @return String name
      */
     String getSimpleName();
-    
+
     /**
-     * Gets if the {@link Event} can be cancelled
-     * 
+     * Gets if the {@link Event} can be cancelled.
+     *
      * @return Can this event be cancelled
      */
     boolean isCancellable();
-    
+
     /**
-     * Gets if the {@link Event} has been cancelled
-     * 
+     * Gets if the {@link Event} has been cancelled.
+     *
      * @return Is this event cancelled
      */
     boolean isCancelled();
-    
+
     /**
-     * Sets the cancelled state of the {@link Event}
-     * 
+     * Sets the cancelled state of the {@link Event}.
+     *
      * @param cancel the new cancelled state
      */
     void setCancelled(boolean cancel);
 
     /**
-     * Sets the {@link Result} of the {@link Event}
-     * 
-     * @param result the result
-     */
-    void setResult(Result result);
-    
-    /**
-     * Gets the {@link Result} of the {@link Event}
-     * 
+     * Gets the {@link Result} of the {@link Event}.
+     *
      * @return The result of this event
      */
     Result getResult();
+
+    /**
+     * Sets the {@link Result} of the {@link Event}.
+     *
+     * @param result The result
+     */
+    void setResult(Result result);
 
 }

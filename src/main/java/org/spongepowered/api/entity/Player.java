@@ -35,8 +35,7 @@ public interface Player extends HumanEntity {
     String getName();
 
     /**
-     * Gets the player's display name. If none set,
-     * returns their current username.
+     * Gets the player's display name. If none set, returns their current username.
      *
      * @return The player's display name
      */

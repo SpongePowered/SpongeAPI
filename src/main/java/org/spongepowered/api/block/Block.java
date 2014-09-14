@@ -32,8 +32,8 @@ public interface Block {
 
     /**
      * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
+     *
+     * <p>Ex. Minecraft registers stone as "minecraft:stone"</p>
      *
      * @return The id
      */
