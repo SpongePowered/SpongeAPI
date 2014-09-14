@@ -40,9 +40,9 @@ public interface Block {
 
 
     /**
-     * The redstone power level (0-15) of the block.
+     * The redstone power level (0-15 in Vanilla) of the block.
      * <p/>
-     * Ex. A directly-powered block would return 15, a non-powered block would return 0.
+     * Ex. A directly-powered block would return 15, a non-powered block would return 0 (Vanilla feature).
      *
      * @return The block's redstone power level.
      */
