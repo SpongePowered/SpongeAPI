@@ -37,5 +37,5 @@ public interface GuiBlock extends Block {
      * @return An array of all players viewing the GUI of the block.
      */
     Player[] getViewers();
-    
+
 }

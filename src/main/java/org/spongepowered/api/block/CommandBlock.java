@@ -25,19 +25,20 @@
 package org.spongepowered.api.block;
 
 /**
- * Contains the information regarding a Command Block (minecraft:command_block)
+ * Contains the information regarding a Command Block (minecraft:command_block).
  */
 public interface CommandBlock {
 
     /**
      * The current input of the command block.
      *
-     * @return The current input inside the command block interface. Should return "" if empty.
+     * @return The current input inside the command block interface. Should
+     * return "" if empty.
      */
     String getContents();
 
     /**
-     * The latest success/failure message (debug) in the command block. Only used in 1.8+
+     * The latest success/failure message (debug) in the command block. Only used in 1.7.2+.
      *
      * @return The debug line inside the command block.
      */

@@ -41,7 +41,7 @@ public interface Block {
 
     /**
      * The redstone power level (0-15) of the block.
-     *
+     * <p/>
      * Ex. A directly-powered block would return 15, a non-powered block would return 0.
      *
      * @return The block's redstone power level.
