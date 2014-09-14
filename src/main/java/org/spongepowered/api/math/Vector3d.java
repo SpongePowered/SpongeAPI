@@ -28,8 +28,8 @@ package org.spongepowered.api.math;
 import java.io.Serializable;
 
 /**
- * Represent a 3 component vector using doubles.
- * It is immutable and all vectors returned by the methods are new instances.
+ * Represent a 3 component vector using doubles. It is immutable and all vectors
+ * returned by the methods are new instances.
  */
 public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable {
 
@@ -84,7 +84,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d add(Vector3d v);
 
     /**
-     * Adds the vector components to this vector, returning the results as new vector.
+     * Adds the vector components to this vector, returning the results as new
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -94,7 +95,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d add(double x, double y, double z);
 
     /**
-     * Subtracts another Vector3d to this one, returning the results as new vector.
+     * Subtracts another Vector3d to this one, returning the results as new
+     * vector.
      *
      * @param v The vector to subtract
      * @return The results of the operation as a new vector
@@ -102,7 +104,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d sub(Vector3d v);
 
     /**
-     * Subtracts the vector components from this vector, returning the results as new vector.
+     * Subtracts the vector components from this vector, returning the results
+     * as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -112,7 +115,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d sub(double x, double y, double z);
 
     /**
-     * Multiplies each component of this vector by the value, returning the results as new vector.
+     * Multiplies each component of this vector by the value, returning the
+     * results as new vector.
      *
      * @param a The value to multiply by
      * @return The results of the operation as a new vector
@@ -120,8 +124,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d mul(double a);
 
     /**
-     * Multiplies each component of this vector by the corresponding component in another Vector3d,
-     * returning the results as new vector.
+     * Multiplies each component of this vector by the corresponding component
+     * in another Vector3d, returning the results as new vector.
      *
      * @param v The vector to multiply by
      * @return The results of the operation as a new vector
@@ -129,7 +133,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d mul(Vector3d v);
 
     /**
-     * Multiplies each component of this vector by the corresponding component, returning the results as new vector.
+     * Multiplies each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -139,7 +144,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d mul(double x, double y, double z);
 
     /**
-     * Divides each component of this vector by the value, returning the results as new vector.
+     * Divides each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param a The value to divide by
      * @return The results of the operation as a new vector
@@ -147,8 +153,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d div(double a);
 
     /**
-     * Divides each component of this vector by the corresponding component in another Vector3d,
-     * returning the results as new vector.
+     * Divides each component of this vector by the corresponding component in
+     * another Vector3d, returning the results as new vector.
      *
      * @param v The vector to divide by
      * @return The results of the operation as a new vector
@@ -156,7 +162,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d div(Vector3d v);
 
     /**
-     * Divides each component of this vector by the corresponding component, returning the results as new vector.
+     * Divides each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -202,7 +209,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d cross(double x, double y, double z);
 
     /**
-     * Raises each component of this vector by the value, returning the results as new vector.
+     * Raises each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param power The value to raise by
      * @return The results of the operation as a new vector
@@ -210,14 +218,16 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d pow(double power);
 
     /**
-     * Calculates the ceiling of each component, returning the result as a new vector.
+     * Calculates the ceiling of each component, returning the result as a new
+     * vector.
      *
      * @return The results of the operation
      */
     Vector3d ceil();
 
     /**
-     * Calculates the floor of each component, returning the result as a new vector.
+     * Calculates the floor of each component, returning the result as a new
+     * vector.
      *
      * @return The results of the operation
      */
@@ -231,7 +241,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d round();
 
     /**
-     * Calculates the absolute value of each component, returning the result as a new vector.
+     * Calculates the absolute value of each component, returning the result as
+     * a new vector.
      *
      * @return The results of the operation
      */
@@ -245,8 +256,9 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d negate();
 
     /**
-     * Finds the minimum between each component of this vector and the corresponding component in another Vector3d,
-     * returning the results as new vector.
+     * Finds the minimum between each component of this vector and the
+     * corresponding component in another Vector3d, returning the results as new
+     * vector.
      *
      * @param v The vector to compare
      * @return The results of the operation as a new vector
@@ -254,8 +266,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d min(Vector3d v);
 
     /**
-     * Finds the minimum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the minimum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -265,8 +277,9 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d min(double x, double y, double z);
 
     /**
-     * Finds the maximum between each component of this vector and the corresponding component in another Vector3d,
-     * returning the results as new vector.
+     * Finds the maximum between each component of this vector and the
+     * corresponding component in another Vector3d, returning the results as new
+     * vector.
      *
      * @param v The vector to compare
      * @return The results of the operation as a new vector
@@ -274,8 +287,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d max(Vector3d v);
 
     /**
-     * Finds the maximum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the maximum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -285,7 +298,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d max(double x, double y, double z);
 
     /**
-     * Gets the square of the distance between this vector and another Vector3d.
+     * Gets the square of the distance between this vector and another
+     * Vector3d.
      *
      * @param v The other vector
      * @return The square of the distance between the two
@@ -293,7 +307,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     double distanceSquared(Vector3d v);
 
     /**
-     * Gets the square of the distance between this vector and the components of another vector.
+     * Gets the square of the distance between this vector and the components of
+     * another vector.
      *
      * @param x The x component
      * @param y The y component
@@ -311,7 +326,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     double distance(Vector3d v);
 
     /**
-     * Gets the distance between this vector and the components of another vector.
+     * Gets the distance between this vector and the components of another
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -363,7 +379,8 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector2d toVector2();
 
     /**
-     * Returns this vector as a Vector2d, discarding either the y or z component.
+     * Returns this vector as a Vector2d, discarding either the y or z
+     * component.
      *
      * @param useZ Discard the y component and use z instead
      * @return This vector as a Vector2d
