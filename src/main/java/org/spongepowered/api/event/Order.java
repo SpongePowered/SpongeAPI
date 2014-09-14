@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event;
 
 /**
@@ -42,6 +44,7 @@ package org.spongepowered.api.event;
  * </table>
  */
 public enum Order {
+
     /**
      * The order point of PRE handles setting up things that need to be done before other things are handled
      * PRE is read only and cannot cancel the events
@@ -87,4 +90,5 @@ public enum Order {
      * POST is read only but can cancel events
      */
     POST
+
 }
