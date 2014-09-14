@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.math.Vector2i;
 import org.spongepowered.api.entity.EntityUniverse;
+import org.spongepowered.api.math.Vector2i;
 
 /**
  * Chunks are 16x256x16 (x/y/z) containers of {@link org.spongepowered.api.block.Block}s
@@ -39,7 +39,7 @@ public interface Chunk extends EntityUniverse, VoxelVolume {
      * Gets the chunk coordinate pair of this chunk as it appears in the
      * {@link World}.
      *
-     * @return chunk coordinate vector
+     * @return chunk coordinate {@link org.spongepowered.api.math.Vector2i}
      */
     Vector2i getCoordinates();
 
