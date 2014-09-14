@@ -73,7 +73,8 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
     * Sets the message for a specific player.
     *
     * @param player The player to set the message for.
+    * @param message The message to send to this player.
     */
-    void setMessage(Player player);
+    void setMessage(Player player, String message);
 
 }
