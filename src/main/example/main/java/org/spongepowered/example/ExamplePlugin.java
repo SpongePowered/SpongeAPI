@@ -10,7 +10,6 @@ public class ExamplePlugin {
     @SpongeEventHandler
     public void onInitialization(SpongeInitializationEvent event) {
         event.game.getLogger().info("Hey folks, this is INITIALIZATION!");
-
     }
 
     @SpongeEventHandler

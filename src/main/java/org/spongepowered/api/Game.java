@@ -109,9 +109,9 @@ public interface Game {
     String getImplementationVersion();
 
     /**
-     * Gets the command {@link org.spongepowered.api.command.CommandManager} to register or overwrite commands
+     * Gets the command {@link CommandManager} to register or overwrite commands.
      *
-     * @Return The command
+     * @return The command.
      */
     CommandManager getCommandManager();
 }

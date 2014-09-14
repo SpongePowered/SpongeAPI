@@ -23,28 +23,28 @@
  */
 package org.spongepowered.api.command;
 
+/**
+ * Represents a Command.
+ */
 public interface Command {
+    /**
+     * Returns the name of this command.
+     * @return The name of this command.
+     */
+    String getCommandName();
 
     /**
-     * Gets the Command his name
-     * @return
+     * Discription of what the command does.
+     * @param sender Sender of the command.
+     * @return Description of this command.
      */
-
-    public String getCommandName();
+    String getCommandUsage(CommandSender sender);
 
     /**
-     * Discription of what the command does
-     * @param sender
-     * @return
+     * Execution code for the command.
+     * @param sender Sender of the command.
+     * @param args Arguments for the command.
      */
-
-    public String getCommandUsage(CommandSender sender);
-
-    /**
-     * Execution code for the command
-     * @param sender
-     * @param args
-     */
-    public void processCommand(CommandSender sender, String[] args);
+    void processCommand(CommandSender sender, String[] args);
 
 }

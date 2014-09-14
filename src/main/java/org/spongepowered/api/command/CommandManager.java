@@ -25,21 +25,21 @@ package org.spongepowered.api.command;
 
 import java.util.Map;
 
+/**
+ * Holds and registers Commands for Sponge Plugins.
+ */
 public interface CommandManager {
-
     /**
-     * Registers a new Command for the plugin
+     * Registers a new Command for the plugin.
      *
-     * @param command
+     * @param command the Command.
      */
-
-    public void registerCommand(Command command);
+    void registerCommand(Command command);
 
     /**
-     * Returns a map with all the commands
-     * @return
+     * Returns a map with all the commands.
+     * @return a map with all the commands.
      */
-
-    public Map<String, Command> getCommands();
+    Map<String, Command> getCommands();
 
 }
