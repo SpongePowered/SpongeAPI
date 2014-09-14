@@ -30,16 +30,52 @@ import org.spongepowered.api.component.Component;
  * Gives the "model" attribute, used in rendering.
  */
 public interface Model extends Component {
+
     /**
      * Returns the identifier of the model.
+     * 
      * @return The model identifier
      */
     String getModel();
 
+    /**
+     * Enum representing all Vanilla models.
+     */
     public static enum VanillaModels implements Model {
-        // TODO Someone want to add all the Vanilla models?
-        // TODO Eventhough the Enderman is THE best entity, he isn't id 0...give him the right one hm?
-        ENDERMAN(0, "minecraft:enderman");
+        //All ID's before 50 are not mobs
+        CREEPER(50, "minecraft:creeper"),
+        SKELETON(51, "minecraft:skeleton"),
+        SPIDER(52, "minecraft:spider"),
+        GIANT(53, "minecraft:giant"),
+        ZOMBIE(54, "minecraft:zombie"),
+        SLIME(55, "minecraft:slime"),
+        GHAST(56, "minecraft:ghast"),
+        PIG_ZOMBIE(57, "minecraft:pigzombie"),
+        ENDERMAN(58, "minecraft:enderman"),
+        CAVE_SPIDER(59, "minecraft:cavespider"),
+        SILVERFISH(60, "minecraft:silverfish"),
+        BLAZE(61, "minecraft:blaze"),
+        MAGMA_CUBE(62, "minecraft:magmacube"),
+        ENDER_DRAGON(63, "minecraft:enderdragon"),
+        WITHER(64, "minecraft:wither"),
+        BAT(65, "minecraft:bat"),
+        WITCH(66, "minecraft:witch"),
+        //TODO: Uncomment when ready ENDERMITE(67, "minecraft:endermite"),
+        //TODO: Uncomment when ready GUARDIAN(68, "minecraft:guardian"),
+        PIG(90, "minecraft:pig"),
+        SHEEP(91, "minecraft:sheep"),
+        COW(92, "minecraft:cow"),
+        CHICKEN(93, "minecraft:chicken"),
+        SQUID(94, "minecraft:squid"),
+        WOLF(95, "minecraft:wolf"),
+        MOOSHROOM(96, "minecraft:mushroomcow"),
+        SNOW_GOLEM(97, "minecraft:snowgolem"),
+        OCELOT(98, "minecraft:ocelot"),
+        IRON_GOLEM(99, "minecraft:irongolem"),
+        HORSE(100, "minecraft:horse"),
+        //TODO: Uncomment when ready RABBIT(101, "minecraft:rabbit"),
+        VILLAGER(120, "minecraft:villager")
+        ;
 
         private final int id;
         private final String model;

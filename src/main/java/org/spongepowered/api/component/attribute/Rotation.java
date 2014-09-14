@@ -25,7 +25,8 @@
 package org.spongepowered.api.component.attribute;
 
 import org.spongepowered.api.component.Component;
-import org.spongepowered.api.math.Vector2f;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.math.Vector3f;
 
 /**
  * Gives the "rotation" attribute.
@@ -33,16 +34,16 @@ import org.spongepowered.api.math.Vector2f;
 public interface Rotation extends Component {
     
     /**
-     * Gets the rotation of an {@link Entity} in {@link Vector2f}.
+     * Gets the rotation of an {@link Entity} in {@link Vector3f}.
      * 
      * @return rotation
      */
-    Vector2f getRotation();
+    Vector3f getRotation();
     
     /**
-     * Sets the rotation of an {@link Entity} in {@link Vector2f}.
+     * Sets the rotation of an {@link Entity} in {@link Vector3f}.
      * 
      * @param rotation The rotation to set the entity to
      */
-    void setRotation(Vector2f rotation);
+    void setRotation(Vector3f rotation);
 }
