@@ -35,7 +35,7 @@ public interface ChunkEvent {
     /**
      * Gets the {@link Chunk} included in the event
      *
-     * @return Event {@link Chunk}
+     * @return The {@link Chunk} involved in the Event
      */
     Chunk getChunk();
 
