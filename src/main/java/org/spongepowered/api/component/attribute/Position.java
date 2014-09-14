@@ -31,7 +31,18 @@ import org.spongepowered.api.math.Vector3f;
  * Gives the "position" attribute.
  */
 public interface Position extends Component {
+
+    /**
+     * Gets the position of an {@link Entity} in {@link Vector3i}.
+     * 
+     * @return position
+     */
     Vector3f getPosition();
 
+    /**
+     * Sets the position of an {@link Entity} in {@link Vector3i}.
+     * 
+     * @param position The position to set the entity to
+     */
     void setPosition(Vector3f position);
 }

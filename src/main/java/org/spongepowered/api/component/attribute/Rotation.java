@@ -25,37 +25,24 @@
 package org.spongepowered.api.component.attribute;
 
 import org.spongepowered.api.component.Component;
+import org.spongepowered.api.math.Vector2f;
 
 /**
- * Gives the "hunger" attribute.
+ * Gives the "rotation" attribute.
  */
-public interface Hunger extends Component {
+public interface Rotation extends Component {
     
     /**
-     * Gets the current hunger level.
+     * Gets the rotation of an {@link Entity} in {@link Vector2f}.
      * 
-     * @return The hunger level
+     * @return rotation
      */
-    double getHunger();
+    Vector2f getRotation();
     
     /**
-     * Gets the current saturation level.
+     * Sets the rotation of an {@link Entity} in {@link Vector2f}.
      * 
-     * @return The saturation level
+     * @param rotation The rotation to set the entity to
      */
-    double getSaturation();
-
-    /**
-     * Sets the current hunger level.
-     * 
-     * @param hunger The hunger level
-     */
-    void setHunger(double hunger);
-
-    /**
-     * Sets the current saturation level.
-     * 
-     * @param saturation The saturation level
-     */
-    void setSaturation(double saturation);
+    void setRotation(Vector2f rotation);
 }

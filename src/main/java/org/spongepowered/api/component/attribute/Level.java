@@ -27,35 +27,35 @@ package org.spongepowered.api.component.attribute;
 import org.spongepowered.api.component.Component;
 
 /**
- * Gives the "hunger" attribute.
+ * Gives the "level" attribute.
  */
-public interface Hunger extends Component {
-    
-    /**
-     * Gets the current hunger level.
-     * 
-     * @return The hunger level
-     */
-    double getHunger();
-    
-    /**
-     * Gets the current saturation level.
-     * 
-     * @return The saturation level
-     */
-    double getSaturation();
+public interface Level extends Component {
 
     /**
-     * Sets the current hunger level.
+     * Gets the experience value.
      * 
-     * @param hunger The hunger level
+     * @return The experience value
      */
-    void setHunger(double hunger);
+    double getExperience();
 
     /**
-     * Sets the current saturation level.
+     * Gets the level value.
      * 
-     * @param saturation The saturation level
+     * @return The level value
      */
-    void setSaturation(double saturation);
+    int getLevel();
+
+    /**
+     * Sets the experience value.
+     * 
+     * @param experience The experience value
+     */
+    void setExperience(double experience);
+
+    /**
+     * Sets the level value.
+     * 
+     * @param level The Level value
+     */
+    void setLevel(int level);
 }
