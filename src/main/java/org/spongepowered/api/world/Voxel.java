@@ -50,19 +50,4 @@ public interface Voxel extends VoxelVolume {
      * @return block The block defining the voxel
      */
     Block getBlock();
-    
-    /**
-     * Gets the world of this block.
-     * <p/>
-     *
-     * @return The world
-     */
-    World getWorld();
-    
-    /**
-     * Updates the block's
-     * physics-related things , block state, power level etc...
-     * <p/>
-     */
-    void update();
 }
