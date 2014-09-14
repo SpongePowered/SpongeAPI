@@ -22,26 +22,26 @@ package org.spongepowered.api;
 
 public class ChatFormat {
 	
-	String chatprefix;
+	String chatPrefix;
 	
 	public ChatFormat(MinecraftColor color, Formatting format) {
-		String chatprefix = color.getChatcode(color) + format.getformatting(format);
-		this.chatprefix = chatprefix;
+		String chatPrefix = color.getChatcode(color) + format.getformatting(format);
+		this.chatPrefix = chatPrefix;
 	}
 	
 	public ChatFormat(MinecraftColor color, ChatFormat.Formatting[] formats) {
 		int i = 0;
 		while(formats.length >= i) {
 		Formatting format = formats[i];
-		String chatprefix = color.getChatcode(color) + format.getformatting(format);
-		this.chatprefix = chatprefix;
+		String chatPrefix = color.getChatcode(color) + format.getformatting(format);
+		this.chatPrefix = chatPrefix;
 		i++;
 		}
 	}
 	
 	public ChatFormat(MinecraftColor color) {
-		String chatprefix = color.getChatcode(color);
-		this.chatprefix = chatprefix;
+		String chatPrefix = color.getChatcode(color);
+		this.chatPrefix = chatPrefix;
 	}
 	
 	public ChatFormat(Formatting format) {
@@ -83,16 +83,16 @@ public class ChatFormat {
     Reset('r', "\u00A7r");
 	
     	private final char code;
-    	private final String SpecialCode;
+    	private final String specialCode;
 
-    	private Formatting(char code, String SpecialCode) {
+    	private Formatting(char code, String specialCode) {
     		this.code = code;
-    		this.SpecialCode = SpecialCode;
+    		this.specialCode = specialCode;
     	}
     	
     	public String getformatting(Formatting format) {
-        	String chatcode = "§" + format.code;
-        	return chatcode;
+        	String chatCode = "§" + format.code;
+        	return chatCode;
     	}
 	}
 }
