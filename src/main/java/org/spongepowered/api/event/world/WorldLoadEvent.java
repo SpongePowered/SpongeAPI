@@ -21,18 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.event.world;
+
+import org.spongepowered.api.Game;
+import org.spongepowered.api.world.World;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Called when the {@link Game} loads a {@link World} map
  */
-public interface Block {
-    /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
-     *
-     * @return The id
-     */
-    String getID();
+public interface WorldLoadEvent extends WorldEvent {
+
 }

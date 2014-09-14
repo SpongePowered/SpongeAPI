@@ -21,18 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.event.state;
+
+import org.spongepowered.api.GameState;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Represents {@link GameState#PRE_INITIALIZATION} event
  */
-public interface Block {
-    /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
-     *
-     * @return The id
-     */
-    String getID();
+public interface PreInitializationEvent extends StateEvent {
+
 }

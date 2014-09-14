@@ -21,18 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.entity.Player;
 
-public class SpongeServerAboutToStartEvent extends SpongeStateEvent {
-    public SpongeServerAboutToStartEvent(Game game) {
-        super(game);
-    }
+/**
+ * Called when a {@link Player} sends a chat message
+ */
+public interface AsyncPlayerChatEvent extends PlayerEvent {
 
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_ABOUT_TO_START;
-    }
+    /**
+     * Get the message sent in this event
+     *
+     * @return The message sent
+     */
+    String getMessage();
 }

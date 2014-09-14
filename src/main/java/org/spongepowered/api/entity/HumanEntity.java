@@ -21,18 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
-
-public class SpongeServerStoppingEvent extends SpongeStateEvent {
-    public SpongeServerStoppingEvent(Game game) {
-        super(game);
-    }
-
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_STOPPING;
-    }
+public interface HumanEntity extends LivingEntity {
 }

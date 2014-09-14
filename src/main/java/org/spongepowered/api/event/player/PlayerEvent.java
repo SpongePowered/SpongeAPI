@@ -21,19 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.event.player;
+
+import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.Event;
 
 /**
- * Thrown by the implementation if it determines that a {@link org.spongepowered.api.plugin.Plugin} being loaded is invalid.
+ * Describes events which contain a {@link Player}
  */
-public class InvalidPluginException extends Exception {
-    private static final long serialVersionUID = 15816838168L;
+public interface PlayerEvent extends Event {
 
-    public InvalidPluginException(String message) {
-        super(message);
-    }
-
-    public InvalidPluginException(String message, Throwable cause) {
-        super(message, cause);
-    }
+    /**
+     * Gets the {@link org.spongepowered.api.entity.Player} involved
+     *
+     * @return {@link org.spongepowered.api.entity.Player} involved
+     */
+    Player getPlayer();
 }

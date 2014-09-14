@@ -21,18 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.math.Vector3i;
 
-public class SpongeServerStoppedEvent extends SpongeStateEvent {
-    public SpongeServerStoppedEvent(Game game) {
-        super(game);
-    }
+/**
+ * Represents the smallest unit of the world map. This unit
+ * has a position with integer coordinates and a block reference
+ * which defines it's behaviour and attributes. Unlike a block,
+ * this object has a position attribute, and does not define any logic
+ * by itself.
+ */
+public interface Voxel extends VoxelVolume {
 
-    @Override
-    public GameState getState() {
-        return GameState.SERVER_STOPPED;
-    }
+    /**
+     * Gets the voxel's position in the world map.
+     *
+     * @return position The voxel's position
+     */
+    Vector3i getPosition();
+
+    /**
+     * Gets a reference to the block object that
+     * defines the voxel's logic.
+     *
+     * @return block The block defining the voxel
+     */
+    Block getBlock();
 }

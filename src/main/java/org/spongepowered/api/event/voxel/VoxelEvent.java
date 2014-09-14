@@ -21,18 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.event.voxel;
+
+
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Voxel;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Describes events which contain a {@link Block} wrapped by a {@link Voxel}
  */
-public interface Block {
+public interface VoxelEvent extends Event {
+
     /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
+     * Get {@link Voxel} included in the event
      *
-     * @return The id
+     * @return Event {@link Voxel}
      */
-    String getID();
+    Voxel getVoxel();
 }

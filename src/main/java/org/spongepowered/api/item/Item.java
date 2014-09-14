@@ -24,11 +24,20 @@
 package org.spongepowered.api.item;
 
 public interface Item {
+
     /**
      * Gets the id of this item.
-     *
+     * <p/>
      * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
+     *
      * @return The id
      */
     String getID();
+
+    /**
+     * Get the default maximum quantity for {@link org.spongepowered.api.inventory.ItemStack}s of this item
+     *
+     * @return Max stack quantity
+     */
+    int getMaxStackQuantity();
 }

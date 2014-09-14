@@ -21,18 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.event.state;
+
+import org.spongepowered.api.event.Event;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Parent interface for all state events
  */
-public interface Block {
-    /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
-     *
-     * @return The id
-     */
-    String getID();
+public interface StateEvent extends Event {
+
 }

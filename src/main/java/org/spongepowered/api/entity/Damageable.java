@@ -21,18 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.entity;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Something that can have damage/health on it should inherit this
  */
-public interface Block {
+public interface Damageable {
+
     /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
+     * Damages the entity by a specified amount;
      *
-     * @return The id
+     * @param amount the damage amount
      */
-    String getID();
+    void damage(double amount);
+
+    /**
+     * Gets the health of the entity
+     *
+     * @return health of the {@code Damageable}
+     */
+    double getHealth();
+
+    /**
+     * Sets the Health of the {@code Damageable}
+     * 
+     * @param health The health to set this damageable's health to
+     */
+    void setHealth(double health);
 }

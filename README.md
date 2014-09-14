@@ -11,23 +11,15 @@ Use the provided Gradle runtime to compile.
 
     ./gradlew build
 
-Contributing
+Contributing & Pull request guidelines
 ------------
 
-SpongeAPI is available under the MIT license. The license can be found in LICENSE.txt.
-
-Contributions must be licensed under the MIT license.
-
-Pull request guidelines
------------------
-
-Only one commit per PR.  
-Keep all related changes in a single PR.  
-Be descriptive, explain the reasoning behind your changes.
+Checkout our [Contributing File](https://github.com/SpongePowered/SpongeAPI/blob/master/CONTRIBUTING.md)
 
 Links
 -----
 
 * [Visit our website](http://www.spongepowered.org/)
+* [Official forums] (http://forums.spongepowered.org/)
 * [Chat with us (general talk)](https://webchat.esper.net/?channels=sponge)
 * [Chat with us (dev talk)](https://webchat.esper.net/?channels=spongedev)

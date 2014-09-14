@@ -21,18 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.GameState;
+public interface Player extends HumanEntity {
 
-public class SpongePreInitializationEvent extends SpongeStateEvent {
-    public SpongePreInitializationEvent(Game game) {
-        super(game);
-    }
+    /**
+     * Gets the players last known username
+     *
+     * @return The player's last known username
+     */
+    String getName();
 
-    @Override
-    public GameState getState() {
-        return GameState.PRE_INITIALIZATION;
-    }
+    /**
+     * Gets the player's display name. If none set,
+     * returns their current username.
+     *
+     * @return The player's display name
+     */
+    String getDisplayName();
 }

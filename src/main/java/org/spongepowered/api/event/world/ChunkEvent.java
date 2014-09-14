@@ -21,18 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.event.world;
+
+import org.spongepowered.api.world.Chunk;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Describes events which involve a {@link Chunk}
  */
-public interface Block {
+public interface ChunkEvent {
+
     /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
+     * Gets the {@link Chunk} included in the event
      *
-     * @return The id
+     * @return Event {@link Chunk}
      */
-    String getID();
+    Chunk getChunk();
+
 }
