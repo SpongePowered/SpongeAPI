@@ -24,6 +24,7 @@
 package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
+
 import java.util.Set;
 
 /**
