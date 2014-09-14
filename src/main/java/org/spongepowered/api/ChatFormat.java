@@ -22,43 +22,43 @@
 package org.spongepowered.api;
 
 public class ChatFormat {
-	
-	String chatPrefix;
-	
-	public ChatFormat(MinecraftColor color, Formatting format) {
-		String chatPrefix = color.getChatcode(color) + format.getformatting(format);
-		this.chatPrefix = chatPrefix;
-	}
-	
-	public ChatFormat(MinecraftColor color, ChatFormat.Formatting[] formats) {
-		int i = 0;
-		while(formats.length >= i) {
-		Formatting format = formats[i];
-		String chatPrefix = color.getChatcode(color) + format.getformatting(format);
-		this.chatPrefix = chatPrefix;
-		i++;
-		}
-	}
-	
-	public ChatFormat(MinecraftColor color) {
-		String chatPrefix = color.getChatcode(color);
-		this.chatPrefix = chatPrefix;
-	}
-	
-	public ChatFormat(Formatting format) {
-		this(MinecraftColor.WHITE, format);
-	}
-	
-	/*
-	For Future Use!!!
-	public ChatFormat(MinecraftColor color, Formatting format, String hovermsg) {
-		
-	}
-	*/
-	
-	
-	public enum Formatting {
-	 /**
+    
+    String chatPrefix;
+    
+    public ChatFormat(MinecraftColor color, Formatting format) {
+        String chatPrefix = color.getChatcode(color) + format.getformatting(format);
+        this.chatPrefix = chatPrefix;
+    }
+    
+    public ChatFormat(MinecraftColor color, ChatFormat.Formatting[] formats) {
+        int i = 0;
+        while(formats.length >= i) {
+        Formatting format = formats[i];
+        String chatPrefix = color.getChatcode(color) + format.getformatting(format);
+        this.chatPrefix = chatPrefix;
+        i++;
+        }
+    }
+    
+    public ChatFormat(MinecraftColor color) {
+        String chatPrefix = color.getChatcode(color);
+        this.chatPrefix = chatPrefix;
+    }
+    
+    public ChatFormat(Formatting format) {
+        this(MinecraftColor.WHITE, format);
+    }
+    
+    /*
+    For Future Use!!!
+    public ChatFormat(MinecraftColor color, Formatting format, String hovermsg) {
+        
+    }
+    */
+    
+    
+    public enum Formatting {
+     /**
      * Bold
      */
     Bold('l', "\u00A7l"),
@@ -82,18 +82,18 @@ public class ChatFormat {
      * Reset
      */
     Reset('r', "\u00A7r");
-	
-    	private final char code;
-    	private final String specialCode;
+    
+        private final char code;
+        private final String specialCode;
 
-    	private Formatting(char code, String specialCode) {
-    		this.code = code;
-    		this.specialCode = specialCode;
-    	}
-    	
-    	public String getformatting(Formatting format) {
-        	String chatCode = "§" + format.code;
-        	return chatCode;
-    	}
-	}
+        private Formatting(char code, String specialCode) {
+            this.code = code;
+            this.specialCode = specialCode;
+        }
+        
+        public String getformatting(Formatting format) {
+            String chatCode = "§" + format.code;
+            return chatCode;
+        }
+    }
 }
