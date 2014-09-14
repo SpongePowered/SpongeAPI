@@ -23,7 +23,9 @@
  */
 package org.spongepowered.api.command;
 
-
+/**
+ * Represents a sender of a command
+ */
 public interface CommandSender {
     /**
      * @return The name of the Command sender.
