@@ -22,11 +22,11 @@
 package org.spongepowered.api;
 
 public class FormattedMessage {
-	String formattedMessage;
-	
-	public FormattedMessage(String message, ChatFormat format) {
-		String newMessage = format.chatPrefix + message;
-		this.formattedMessage = newMessage;
-		
-	}
+    String formattedMessage;
+    
+    public FormattedMessage(String message, ChatFormat format) {
+        String newMessage = format.chatPrefix + message;
+        this.formattedMessage = newMessage;
+        
+    }
 }
