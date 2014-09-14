@@ -13,13 +13,11 @@ public class ExamplePlugin {
     }
 
     @SpongeEventHandler
-<<<<<<< HEAD
     public void onServerStarting(SpongeServerStartingEvent event) {
         event.game.getLogger().info("Hey...my implementation's server is starting?");
         event.game.getCommandManager().registerCommand(new HelloWorldCommand());
-=======
+
     public void onServerStarting(ServerStartingEvent event) {
         event.getGame().getLogger().info("Hey...my implementation's server is starting?");
->>>>>>> upstream/master
     }
 }

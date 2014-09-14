@@ -24,12 +24,8 @@
 package org.spongepowered.api;
 
 import org.apache.logging.log4j.Logger;
-<<<<<<< HEAD
 import org.spongepowered.api.command.CommandManager;
-=======
-
 import org.spongepowered.api.entity.Player;
->>>>>>> upstream/master
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.world.World;
