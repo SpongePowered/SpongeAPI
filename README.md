@@ -20,7 +20,7 @@ In order to build SpongeAPI you simply need to run the `gradle` command. You can
 
 ## Contributing
 Are you a talented programmer looking to contribute some code? We'd love the help!
-* Open a pull request with your changes, following our [requirements](Contributing.md).
+* Open a pull request with your changes, following our [guidelines](CONTRIBUTING.md).
 * Please follow the above guidelines and requirements for your pull request(s) to be accepted.
 
 [Eclipse]: http://www.eclipse.org/
