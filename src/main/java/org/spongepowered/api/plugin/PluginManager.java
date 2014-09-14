@@ -29,19 +29,30 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
 
-public interface PluginManager {
+import javax.annotation.Nullable;
 
+public interface PluginManager {
     /**
      * Retrieves a {@link org.spongepowered.api.plugin.PluginContainer} based on its name.
-     *
+     * 
      * @param name The name
      * @return The plugin or null if not found
      */
+    @Nullable
     PluginContainer getPlugin(String name);
 
     /**
+     * Retrieves a {@link org.spongepowered.api.plugin.PluginContainer} based on its ID.
+     * 
+     * @param id The ID
+     * @return The plugin or null if not found
+     */
+    @Nullable
+    PluginContainer getPluginByID(String id);
+
+    /**
      * Gets the {@link org.apache.logging.log4j.Logger} for the {@link org.spongepowered.api.plugin.PluginContainer}.
-     *
+     * 
      * @param plugin The plugin
      * @return The logger
      */
@@ -49,9 +60,8 @@ public interface PluginManager {
 
     /**
      * Gets a {@link java.util.Collection} of all {@link org.spongepowered.api.plugin.PluginContainer}s
-     *
+     * 
      * @return The plugins
      */
     Collection<PluginContainer> getPlugins();
-
 }
