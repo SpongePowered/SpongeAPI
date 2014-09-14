@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Player;
 /**
  * Contains the information regarding a Command Block (minecraft:command_block)
  */
-public interface CommandBlock extends GuiBlock {
+public interface CommandBlock {
 
     /**
      * The current input of the command block.
