@@ -49,7 +49,7 @@ public interface ComponentManager<H> {
      * @param clazz The class the instance will be registered to
      * @return The system
      */
-    <S extends ComponentSystem<H>> S addSystem(S instance, Class<S> clazz);
+    <S extends ComponentSystem<H>> S addSystem(S instance, Class<? super S> clazz);
 
     /**
      * Gets a {@link org.spongepowered.api.component.ComponentSystem} registered to the class.
@@ -87,7 +87,7 @@ public interface ComponentManager<H> {
      * @param clazz The class the instance will be registered to
      * @return The component
      */
-    <C extends Component> C addComponent(H holder, C instance, Class<C> clazz);
+    <C extends Component> C addComponent(H holder, C instance, Class<? super C> clazz);
 
     /**
      * Gets a {@link org.spongepowered.api.component.Component} for the holder registered to the class.
