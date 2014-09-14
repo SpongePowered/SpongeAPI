@@ -26,4 +26,32 @@
 package org.spongepowered.api.entity;
 
 public interface LivingEntity extends Entity, Damageable {
+  
+   /**
+     * Gets the hunger level of the entity
+     *
+     * @return The entity's food level (if -1 , the entity doesn't have a food level or is dead)
+     */
+    int getHungerLevel();
+    
+    /**
+     * Gets the maximum hunger level of the entity
+     * The minimum hunger level should always be 0
+     *
+     * @return The entity's maximum food level (if -1 , the entity doesn't have a food level)
+     */
+    int getMaximumHungerLevel();
+    
+    /**
+     * Sets the hunger level of the entity
+     * If the provided hunger level is bigger than maximum level , it will
+     * be floored to the maximum hunger level. If it is smaller than the
+     * minimum allowed level , it will
+     * be turned to 0
+     * 
+     * @param the entity's food level
+     * @return true if operation is successful and the arguments match expectations
+     */
+    boolean setHungerLevel(int foodLevel);
+  
 }
