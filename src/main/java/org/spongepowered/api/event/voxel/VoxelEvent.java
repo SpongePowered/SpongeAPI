@@ -35,7 +35,7 @@ import org.spongepowered.api.world.Voxel;
 public interface VoxelEvent extends Event {
 
     /**
-     * Get {@link Voxel} included in the event
+     * Gets the {@link Voxel} included in the event
      *
      * @return Event {@link Voxel}
      */
