@@ -24,27 +24,22 @@
 package org.spongepowered.api.block;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Contains the information regarding a Command Block (minecraft:command_block)
  */
-public interface Block {
+public interface CommandBlock {
 
     /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
+     * The current input of the command block.
      *
-     * @return The id
+     * @return The current input inside the command block interface. Should return "" if empty.
      */
-    String getID();
-
+    String getContents();
 
     /**
-     * The redstone power level (0-15) of the block.
+     * The latest success/failure message (debug) in the command block. Only used in 1.8+
      *
-     * Ex. A directly-powered block would return 15, a non-powered block would return 0.
-     *
-     * @return The block's redstone power level.
+     * @return The debug line inside the command block.
      */
-    int getPowerLevel();
+    String getLastOutput();
 
 }
