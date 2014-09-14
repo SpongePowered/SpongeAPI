@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,43 +25,44 @@
 package org.spongepowered.api.nbt;
 
 /**
- * Factory for {@link Tag}s
+ * Factory for {@link Tag}s.
  */
 public interface TagFactory {
+    
     /**
-     * Creates a new {@link ByteTag} with {@code value}
+     * Creates a new {@link ByteTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link ByteTag}
      */
     ByteTag newByte(byte value);
-    
+
     /**
-     * Creates a new {@link ShortTag} with {@code value}
+     * Creates a new {@link ShortTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link ShortTag}
      */
     ShortTag newShort(byte value);
-    
+
     /**
-     * Creates a new {@link IntTag} with {@code value}
+     * Creates a new {@link IntTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link IntTag}
      */
     IntTag newInteger(int value);
-    
+
     /**
-     * Creates a new {@link LongTag} with {@code value}
+     * Creates a new {@link LongTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link LongTag}
      */
     LongTag newLong(long value);
-    
+
     /**
-     * Creates a new {@link FloatTag} with {@code value}
+     * Creates a new {@link FloatTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link FloatTag}
@@ -68,7 +70,7 @@ public interface TagFactory {
     FloatTag newFloat(float value);
 
     /**
-     * Creates a new {@link DoubleTag} with {@code value}
+     * Creates a new {@link DoubleTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link DoubleTag}
@@ -76,7 +78,7 @@ public interface TagFactory {
     DoubleTag newDouble(double value);
 
     /**
-     * Creates a new {@link ByteArrayTag} with {@code value}
+     * Creates a new {@link ByteArrayTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link ByteArrayTag}
@@ -84,22 +86,22 @@ public interface TagFactory {
     ByteArrayTag newByteArray(byte[] value);
 
     /**
-     * Creates a new {@link IntArrayTag} with {@code value}
+     * Creates a new {@link IntArrayTag} with {@code value}.
      * 
      * @param value
      * @return The new {@link IntArrayTag}
      */
     IntArrayTag newIntArray(int[] value);
-    
+
     /**
-     * Creates a new {@link ListTag}
+     * Creates a new {@link ListTag}.
      * 
      * @return A new {@link ListTag}
      */
     ListTag newList();
-    
+
     /**
-     * Creates a new {@link CompoundTag}
+     * Creates a new {@link CompoundTag}.
      * 
      * @return A new {@link CompoundTag}
      */

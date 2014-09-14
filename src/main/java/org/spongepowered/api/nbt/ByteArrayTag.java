@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +25,12 @@
 package org.spongepowered.api.nbt;
 
 /**
- * NBT tag representing a bytearray
+ * NBT tag representing an array of bytes.
  */
 public interface ByteArrayTag extends Tag {
+    
     /**
-     * Gets the value of {@link ByteArrayTag}
+     * Gets the value of {@link ByteArrayTag}.
      * 
      * @return The value of {@link ByteArrayTag}
      */

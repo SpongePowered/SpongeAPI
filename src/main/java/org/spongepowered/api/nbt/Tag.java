@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,54 +25,56 @@
 package org.spongepowered.api.nbt;
 
 /**
- * Base for every NBT tag
+ * Base for every NBT tag.
  */
 public interface Tag extends Cloneable {
+    
     /**
-     * Gets the {@link TagType} of {@link Tag}
+     * Gets the {@link TagType} of {@link Tag}.
      * 
      * @return The {@link TagType} of {@link Tag}
      */
     TagType getType();
-    
+
     public static interface Primitive extends Tag {
+        
         /**
-         * Returns the value of {@link Tag} as byte
+         * Returns the value of {@link Tag} as byte.
          * 
          * @return The value of {@link Tag} as byte
          */
         byte asByte();
 
         /**
-         * Returns the value of {@link Tag} as short
+         * Returns the value of {@link Tag} as short.
          * 
          * @return The value of {@link Tag} as short
          */
         short asShort();
 
         /**
-         * Returns the value of {@link Tag} as int
+         * Returns the value of {@link Tag} as int.
          * 
          * @return The value of {@link Tag} as int
          */
         int asInteger();
 
         /**
-         * Returns the value of {@link Tag} as long
+         * Returns the value of {@link Tag} as long.
          * 
          * @return The value of {@link Tag} as long
          */
         long asLong();
 
         /**
-         * Returns the value of {@link Tag} as float
+         * Returns the value of {@link Tag} as float.
          * 
          * @return The value of {@link Tag} as float
          */
         float asFloat();
 
         /**
-         * Returns the value of {@link Tag} as double
+         * Returns the value of {@link Tag} as double.
          * 
          * @return The value of {@link Tag} as double
          */

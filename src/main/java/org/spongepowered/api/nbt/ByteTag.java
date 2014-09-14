@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +25,12 @@
 package org.spongepowered.api.nbt;
 
 /**
- * NBT tag representing a byte
+ * NBT tag representing a byte.
  */
 public interface ByteTag extends Tag.Primitive {
+    
     /**
-     * Gets the value of {@link ByteTag}
+     * Gets the value of {@link ByteTag}.
      * 
      * @return The value of {@link ByteTag}
      */

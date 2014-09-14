@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,235 +27,237 @@ package org.spongepowered.api.nbt;
 import java.util.Set;
 
 /**
- * NBT tag representing a map
+ * NBT tag representing a map.
  */
 public interface CompoundTag extends Tag {
+    
     /**
-     * Returns all keys of {@link CompoundTag}
+     * Returns all keys of {@link CompoundTag}.
      * 
      * @return All keys of {@link CompoundTag}
      */
     Set<String> keys();
-    
+
     /**
      * Checks if the {@link CompoundTag} contains a {@link Tag} with
-     * {@code key}
+     * {@code key}.
      * 
-     * @param key
-     * @return {@code true} if the {@link CompoundTag} contains a {@link Tag} with
-     *         {@code key}, otherwise {@code false}
+     * @param key The key to get from {@link CompoundTag}
+     * @return {@code True} if the {@link CompoundTag} contains a {@link Tag}
+     *         with {@code key}, otherwise {@code false}
      */
     boolean hasKey(String key);
 
     /**
-     * Checks if the {@link CompoundTag} contains a {@link Tag} of {@link TagType}
-     * with {@code key} 
+     * Checks if the {@link CompoundTag} contains a {@link Tag} of
+     * {@link TagType} with {@code key}.
      * 
-     * @param key
-     * @param type
-     * @return {@code true} if the {@link CompoundTag} contains a {@link Tag} of
-     *         {@link TagType} with {@code key}, otherwise {@code false}
+     * @param key The key to get from {@link CompoundTag}
+     * @param type The expected type
+     * @return {@code True} if the {@link CompoundTag} contains a {@link Tag}
+     *         of {@link TagType} with {@code key}, otherwise {@code false}
      */
     boolean hasKey(String key, TagType type);
-    
+
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Gets the {@link TagType} of {@link Tag} with {@code key}.
      * 
-     * @param key
-     * @return
+     * @param key The key to get from {@link CompoundTag}
+     * @return The {@link TagType} of {@link Tag} with {@code key}
      */
     TagType getType(String key);
-    
+
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Gets the boolean with {@code key}.
      * 
-     * @param key
-     * @return
+     * @param key The key to get from {@link CompoundTag}
+     * @return The boolean with {@code key}
      */
     boolean getBoolean(String key);
-    
+
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The boolean to set
      */
     void setBoolean(String key, boolean value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as byte
+     * Gets the byte with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as byte
+     * @param key The key to get from {@link CompoundTag}
+     * @return The byte with {@code key}
      */
     byte getByte(String key);
-    
+
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The byte to set
      */
     void setByte(String key, byte value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as short
+     * Gets the short with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as short
+     * @param key The key to get from {@link CompoundTag}
+     * @return The short with {@code key}
      */
     short getShort(String key);
 
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The short to set
      */
     void setShort(String key, short value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as int
+     * Gets the integer with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as int
+     * @param key The key to get from {@link CompoundTag}
+     * @return The integer with {@code key}
      */
     int getInteger(String key);
 
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The int to set
      */
     void setInteger(String key, int value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as long
+     * Gets the long with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as long
+     * @param key The key to get from {@link CompoundTag}
+     * @return The long with {@code key}
      */
     long getLong(String key);
 
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The long to set
      */
     void setLong(String key, long value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as float
+     * Gets the float with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as float
+     * @param key The key to get from {@link CompoundTag}
+     * @return The float with {@code key}
      */
     float getFloat(String key);
 
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The float to set
      */
     void setFloat(String key, float value);    
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as double
+     * Gets the double with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as double
+     * @param key The key to get from {@link CompoundTag}
+     * @return The double with {@code key}
      */
     double getDouble(String key);
 
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The double to set
      */
     void setDouble(String key, double value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as byte[]
+     * Gets the array of bytes with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as byte[]
+     * @param key The key to get from {@link CompoundTag}
+     * @return The array of bytes with {@code key}
      */
     byte[] getByteArray(String key);
 
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The array of bytes to set
      */
     void setByteArray(String key, byte[] value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as int[]
+     * Gets the array of integers with {@code key}.
      * 
-     * @param key
-     * @return The {@link Tag} with {@code key} as int[]
+     * @param key The key to get from {@link CompoundTag}
+     * @return The array of integers with {@code key}
      */
     int[] getIntArray(String key);
 
     /**
-     * Sets {@code key} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code value}.
      * 
-     * @param key
-     * @param value
+     * @param key The key to set in {@link CompoundTag}
+     * @param value The array of integers to set
      */
     void setIntArray(String key, int[] value);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as {@link ListTag} of {@link TagType}
+     * Gets the {@link ListTag} of {@link TagType} with {@code key}.
      * 
-     * @param key
-     * @param type
-     * @return The {@link Tag} with {@code key} as {@link ListTag} of {@link TagType}
+     * @param key The key to get from {@link CompoundTag}
+     * @param type The {@link TagType} of {@link ListTag}
+     * @return The {@link ListTag} of {@link TagType} with {@code key} 
+     *         
      */
     ListTag getList(String key, TagType type);
 
     /**
-     * Sets {@code list} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code list}.
      * 
-     * @param key
-     * @param list
+     * @param key The key to set in {@link CompoundTag}
+     * @param list The {@link ListTag} to set
      */
     void setList(String key, ListTag list);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key} as {@link CompoundTag}
+     * Gets the {@link CompoundTag} with {@code key}.
      * 
-     * @param key
-     * @return
+     * @param key The key to get from {@link CompoundTag}
+     * @return The {@link CompoundTag} with {@code key}
      */
     CompoundTag getCompound(String key);
 
     /**
-     * Sets {@code compound} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code compound}.
      * 
-     * @param key
-     * @param compound
+     * @param key The key to set in {@link CompoundTag}
+     * @param compound The {@link CompountTag} to set
      */
     void setCompound(String key, CompoundTag compound);
-    
+
     /**
-     * Gets the {@link Tag} with {@code key}
+     * Gets the {@link Tag} with {@code key}.
      * 
-     * @param key
-     * @return
+     * @param key The key to get from {@link CompoundTag}
+     * @return The {@link Tag} with {@code key}
      */
     Tag getTag(String key);
-    
+
     /**
-     * Sets {@code tag} in {@link CompoundTag} to {@code value}
+     * Sets {@code key} in {@link CompoundTag} to {@code tag}.
      * 
-     * @param key
-     * @param tag
+     * @param key The key to set in {@link CompoundTag}
+     * @param tag The {@link Tag} to set
      */
     void setTag(String key, Tag tag);
 }
