@@ -37,7 +37,7 @@ public interface AsyncPlayerChatEvent extends PlayerEvent {
      * @return The message sent.
      */
     String getMessage();
-    
+
     /**
      * Get the recipients of this message.
      * 
