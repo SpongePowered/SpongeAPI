@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.math;
 
 import java.io.Serializable;
@@ -31,6 +33,7 @@ import java.io.Serializable;
  * Double overloads are floored to ints before the operation, and int vectors are returned.
  */
 public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable {
+
     /**
      * Returns the x component.
      *
@@ -489,4 +492,5 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      */
     @Override
     String toString();
+
 }

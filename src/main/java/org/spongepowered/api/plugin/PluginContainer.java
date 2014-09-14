@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.plugin;
+
+import org.spongepowered.api.plugin.config.Configuration;
 
 import java.io.File;
 
-import org.spongepowered.api.plugin.config.Configuration;
 
 /**
  * A wrapper around a class marked with an {@link org.spongepowered.api.plugin.Plugin} annotation to retrieve information from the annotation for easier use
  */
 public interface PluginContainer {
+
     /**
      * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
      *
@@ -68,20 +72,20 @@ public interface PluginContainer {
      * @return The plugin's resource folder
      */
     File getResourceFolder(boolean createIfAbsent);
-    
+
     /**
-     * Gets the default config for the plugin.<br/>
+     * Gets the default config for the plugin.
      * 
      * TODO Document default config name
      * 
      * @return The default configuration
      */
     Configuration getConfiguration();
-    
+
     /**
      * Gets a config with the given name.
      * 
-     * @param name Name of the config.  May be a path.  Don't include the extension.
+     * @param name Name of the config.
      * @return A custom named configuration.
      */
     Configuration getConfiguration(String name);
