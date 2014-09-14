@@ -21,11 +21,11 @@ THE SOFTWARE.
 package org.spongepowered.api;
 
 public class FormattedMessage {
-	String formattedmessage;
+	String formattedMessage;
 	
 	public FormattedMessage(String message, ChatFormat format) {
-		String newmessage = format.chatprefix + message;
-		this.formattedmessage = newmessage;
+		String newMessage = format.chatPrefix + message;
+		this.formattedMessage = newMessage;
 		
 	}
 }
