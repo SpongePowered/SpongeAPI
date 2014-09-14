@@ -28,8 +28,8 @@ package org.spongepowered.api.math;
 import java.io.Serializable;
 
 /**
- * Represent a 2 component vector using doubles.
- * It is immutable and all vectors returned by the methods are new instances.
+ * Represent a 2 component vector using doubles. It is immutable and all vectors
+ * returned by the methods are new instances.
  */
 public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable {
 
@@ -71,7 +71,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d add(Vector2d v);
 
     /**
-     * Adds the vector components to this vector, returning the results as new vector.
+     * Adds the vector components to this vector, returning the results as new
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -80,7 +81,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d add(double x, double y);
 
     /**
-     * Subtracts another Vector2d to this one, returning the results as new vector.
+     * Subtracts another Vector2d to this one, returning the results as new
+     * vector.
      *
      * @param v The vector to subtract
      * @return The results of the operation as a new vector
@@ -88,7 +90,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d sub(Vector2d v);
 
     /**
-     * Subtracts the vector components from this vector, returning the results as new vector.
+     * Subtracts the vector components from this vector, returning the results
+     * as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -97,7 +100,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d sub(double x, double y);
 
     /**
-     * Multiplies each component of this vector by the value, returning the results as new vector.
+     * Multiplies each component of this vector by the value, returning the
+     * results as new vector.
      *
      * @param a The value to multiply by
      * @return The results of the operation as a new vector
@@ -105,8 +109,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d mul(double a);
 
     /**
-     * Multiplies each component of this vector by the corresponding component in another Vector2d,
-     * returning the results as new vector.
+     * Multiplies each component of this vector by the corresponding component
+     * in another Vector2d, returning the results as new vector.
      *
      * @param v The vector to multiply by
      * @return The results of the operation as a new vector
@@ -114,7 +118,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d mul(Vector2d v);
 
     /**
-     * Multiplies each component of this vector by the corresponding component, returning the results as new vector.
+     * Multiplies each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -123,7 +128,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d mul(double x, double y);
 
     /**
-     * Divides each component of this vector by the value, returning the results as new vector.
+     * Divides each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param a The value to divide by
      * @return The results of the operation as a new vector
@@ -131,8 +137,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d div(double a);
 
     /**
-     * Divides each component of this vector by the corresponding component in another Vector2d,
-     * returning the results as new vector.
+     * Divides each component of this vector by the corresponding component in
+     * another Vector2d, returning the results as new vector.
      *
      * @param v The vector to divide by
      * @return The results of the operation as a new vector
@@ -140,7 +146,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d div(Vector2d v);
 
     /**
-     * Divides each component of this vector by the corresponding component, returning the results as new vector.
+     * Divides each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -166,7 +173,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     double dot(double x, double y);
 
     /**
-     * Raises each component of this vector by the value, returning the results as new vector.
+     * Raises each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param power The value to raise by
      * @return The results of the operation as a new vector
@@ -174,14 +182,16 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d pow(double power);
 
     /**
-     * Calculates the ceiling of each component, returning the result as a new vector.
+     * Calculates the ceiling of each component, returning the result as a new
+     * vector.
      *
      * @return The results of the operation
      */
     Vector2d ceil();
 
     /**
-     * Calculates the floor of each component, returning the result as a new vector.
+     * Calculates the floor of each component, returning the result as a new
+     * vector.
      *
      * @return The results of the operation
      */
@@ -195,7 +205,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d round();
 
     /**
-     * Calculates the absolute value of each component, returning the result as a new vector.
+     * Calculates the absolute value of each component, returning the result as
+     * a new vector.
      *
      * @return The results of the operation
      */
@@ -209,8 +220,9 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d negate();
 
     /**
-     * Finds the minimum between each component of this vector and the corresponding component in another Vector2d,
-     * returning the results as new vector.
+     * Finds the minimum between each component of this vector and the
+     * corresponding component in another Vector2d, returning the results as new
+     * vector.
      *
      * @param v The vector to compare
      * @return The results of the operation as a new vector
@@ -218,8 +230,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d min(Vector2d v);
 
     /**
-     * Finds the minimum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the minimum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -228,8 +240,9 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d min(double x, double y);
 
     /**
-     * Finds the maximum between each component of this vector and the corresponding component in another Vector2d,
-     * returning the results as new vector.
+     * Finds the maximum between each component of this vector and the
+     * corresponding component in another Vector2d, returning the results as new
+     * vector.
      *
      * @param v The vector to compare
      * @return The results of the operation as a new vector
@@ -237,8 +250,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d max(Vector2d v);
 
     /**
-     * Finds the maximum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the maximum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -247,7 +260,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector2d max(double x, double y);
 
     /**
-     * Gets the square of the distance between this vector and another Vector2d.
+     * Gets the square of the distance between this vector and another
+     * Vector2d.
      *
      * @param v The other vector
      * @return The square of the distance between the two
@@ -255,7 +269,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     double distanceSquared(Vector2d v);
 
     /**
-     * Gets the square of the distance between this vector and the components of another vector.
+     * Gets the square of the distance between this vector and the components of
+     * another vector.
      *
      * @param x The x component
      * @param y The y component
@@ -272,7 +287,8 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     double distance(Vector2d v);
 
     /**
-     * Gets the distance between this vector and the components of another vector.
+     * Gets the distance between this vector and the components of another
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -323,10 +339,10 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     Vector3d toVector3();
 
     /**
-     * Returns this vector as a Vector3d, using the provided value for component z.
-     * 
-     * @param z The z component value to be used
+     * Returns this vector as a Vector3d, using the provided value for component
+     * z.
      *
+     * @param z The z component value to be used
      * @return This vector as a Vector3d
      */
     Vector3d toVector3(double z);

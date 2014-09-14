@@ -35,7 +35,7 @@ import java.util.UUID;
 public interface World extends EntityUniverse, VoxelVolume {
 
     /**
-     * Gets the unique id ({@link java.util.UUID}) for this world.
+     * Gets the unique id ({@link UUID}) for this world.
      *
      * @return The unique id or UUID
      */
@@ -59,8 +59,8 @@ public interface World extends EntityUniverse, VoxelVolume {
     Chunk getChunk(int cx, int cz);
 
     /**
-     * Loads and returns a {@link Chunk}. If the chunk does not
-     * exist, it will be generated unless `shouldGenerate` is false.
+     * Loads and returns a {@link Chunk}. If the chunk does not exist, it will
+     * be generated unless `shouldGenerate` is false.
      *
      * @param cx X chunk coordinate
      * @param cz Z chunk coordinate

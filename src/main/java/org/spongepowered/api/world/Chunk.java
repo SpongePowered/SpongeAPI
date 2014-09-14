@@ -28,23 +28,21 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.entity.EntityUniverse;
 
 /**
- * Chunks are 16x256x16 (x/y/z) containers of {@link org.spongepowered.api.block.Block}s
- * in a specific {@link World}. Chunks use chunk coordinates, which
- * are simply block coordinates divided by 16 (one chunk every 16 blocks).
+ * Chunks are 16x256x16 (x/y/z) containers of {@link Block}s
+ * in a specific {@link World}. Chunks use chunk coordinates, which are simply
+ * block coordinates divided by 16 (one chunk every 16 blocks).
  */
 public interface Chunk extends EntityUniverse, VoxelVolume {
 
     /**
-     * Gets the x chunk coordinate of this chunk as it appears in the
-     * {@link World}.
+     * Gets the x chunk coordinate of this chunk as it appears in the {@link World}.
      *
      * @return X chunk coordinate
      */
     int getX();
 
     /**
-     * Gets the z chunk coordinate of this chunk as it appears in the
-     * {@link World}.
+     * Gets the z chunk coordinate of this chunk as it appears in the {@link World}.
      *
      * @return Z chunk coordinate
      */

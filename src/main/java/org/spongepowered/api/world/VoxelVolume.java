@@ -29,12 +29,13 @@ import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3i;
 
 /**
- * For Objects that contain volumes of {@link org.spongepowered.api.world.Voxel}s.
+ * For Objects that contain volumes of {@link Voxel}s.
  */
 public interface VoxelVolume {
 
     /**
-     * Gets a specific {@link org.spongepowered.api.block.Block} by its x/y/z block coordinate.
+     * Gets a specific {@link Block} by its x/y/z
+     * block coordinate.
      *
      * @param x X block coordinate
      * @param y Y block coordinate
@@ -44,7 +45,8 @@ public interface VoxelVolume {
     Block getBlock(int x, int y, int z);
 
     /**
-     * Gets a specific {@link org.spongepowered.api.world.Voxel} by its x/y/z block coordinate.
+     * Gets a specific {@link Voxel} by its x/y/z
+     * block coordinate.
      *
      * @param x X block coordinate
      * @param y Y block coordinate
@@ -52,18 +54,20 @@ public interface VoxelVolume {
      * @return The voxel
      */
     Voxel getVoxel(int x, int y, int z);
-    
+
     /**
-     * Gets the {@link org.spongepowered.api.block.Block} at the block coordinate x/y/z.
+     * Gets the {@link Block} at the block
+     * coordinate x/y/z.
      *
      * @param location location of block in Vector3i format
      * @return The block
      */
     Block getBlock(Vector3i location);
 
-    
+
     /**
-     * Gets the {@link org.spongepowered.api.world.Voxel} at the block coordinate x/y/z.
+     * Gets the {@link Voxel} at the block
+     * coordinate x/y/z.
      *
      * @param location of voxel in Vector3i format
      * @return The voxel
