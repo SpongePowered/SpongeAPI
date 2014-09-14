@@ -29,15 +29,18 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
 
+import javax.annotation.Nullable;
+
 public interface PluginManager {
 
     /**
-     * Retrieves a {@link PluginContainer} based on its name.
+     * Retrieves a {@link PluginContainer} based on its ID.
      *
-     * @param name The name
+     * @param id The plugin ID
      * @return The plugin or null if not found
      */
-    PluginContainer getPlugin(String name);
+    @Nullable
+    PluginContainer getPlugin(String id);
 
     /**
      * Gets the {@link Logger} for the {@link PluginContainer}.
