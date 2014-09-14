@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +27,7 @@ package org.spongepowered.api.plugin.config;
 import javax.lang.model.type.NullType;
 
 /**
- * Represents an element without a value, set type, or is equal to null.</p>
- * <i>Ex:</i> {@code"nullobject": null}
+ * Represents an element without a value, set type, or is equal to null.
  */
 public interface ConfigNull extends ConfigPrimitive<NullType> {
 
@@ -38,18 +38,18 @@ public interface ConfigNull extends ConfigPrimitive<NullType> {
      * @return The array
      */
     <T> ConfigArray<T> setArrayType(Class<T> type);
-    
+
     /**
      * Sets this element to be a {@link ConfigObject}.
      * 
      * @return The object
      */
     ConfigObject setAsObject();
-    
+
     /**
      * Sets this element to be a {@link ConfigPrimitive} of the given type.
      * 
-     * @param type
+     * @param type The type of primitive
      * @return The primitive
      */
     <T> ConfigPrimitive<T> setPrimitiveType(Class<T> type);

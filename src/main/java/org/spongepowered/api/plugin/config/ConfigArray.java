@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,71 +25,71 @@
 package org.spongepowered.api.plugin.config;
 
 /**
- * Represents an array in a config
+ * Represents an array in a config.
  */
 public interface ConfigArray<T> extends ConfigElement<T[]>, Iterable<T> {
-    
+
     /**
      * Gets the element at the specified index.
      * 
-     * @param index
-     * @return
+     * @param index The index number
+     * @return The element
      */
     T getElement(int index);
-    
+
     /**
      * Adds the object to the end of this array.
      * 
-     * @param object
+     * @param object The object to add
      */
     void add(T object);
-    
+
     /**
-     * Inserts the object at the index
+     * Inserts the object at the index.
      * 
-     * @param object
-     * @param index
+     * @param object The object to add
+     * @param index The index to add it at
      */
     void add(T object, int index);
-    
+
     /**
-     * Removes the first instance of the element
+     * Removes the first instance of the element.
      * 
-     * @param object
+     * @param object The object to remove
      */
     void remove(T object);
-    
+
     /**
-     * Removes the element at the index
+     * Removes the element at the index.
      * 
-     * @param index
+     * @param index The index to remove
      */
     void remove(int index);
-    
+
     /**
-     * Removes all instances of the element
+     * Removes all instances of the element.
      * 
-     * @param object The element
+     * @param object The object to remove
      */
     void removeAll(T object);
-    
+
     /**
      * Removes all elements in this array.
      */
     void clear();
-    
+
     /**
      * Checks if this array contains the specified object.
      * 
-     * @param object
-     * @return True if yes, False if no.
+     * @param object The object to check for
+     * @return True if yes, false if no.
      */
     boolean contains(T object);
-    
+
     /**
      * Gets the index of the object.
      * 
-     * @param object
+     * @param object The object to check
      * @return The index
      */
     int getIndexOf(T object);

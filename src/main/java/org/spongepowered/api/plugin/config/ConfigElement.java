@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,68 +25,62 @@
 package org.spongepowered.api.plugin.config;
 
 /**
- * A Config Element provides a name, type, and value.<br/>
- * Should be implemented as Abstract.
+ * Base class for configs. Provides a name, type, and value.
  */
 public interface ConfigElement<T> {
-    
+
     /**
      * Gets the name of this element.
      * 
      * @return The name
      */
     String getName();
-    
+
     /**
      * Gets the comment of this element.
      * 
      * @return The comment
      */
     String getComment();
-    
+
     /**
      * Sets the comment of this element.
      * 
-     * @param comment The comment
+     * @param comment The new comment
      */
     void setComment(String comment);
-    
+
     /**
      * Deletes this element from the config.
      */
     void delete();
-    
-    /**
-     * Gets the type value that is stored in this element
-     * 
-     * @return The value type
-     */
-    ConfigElementType getType(); // abstract
-    
+
     /**
      * Gets this element as a {@link ConfigArray}.
      * 
-     * @return
+     * @return This element as a ConfigArray
      */
     ConfigArray<T> getAsArray();
-    
+
     /**
      * Gets this element as a {@link ConfigObject}.
      * 
-     * @return
+     * @return This element as a ConfigObject
      */
     ConfigObject getAsObject();
-    
+
     /**
      * Gets this element as a {@link ConfigPrimitive}.
      * 
-     * @return
+     * @return This element as a ConfigPrimitive
      */
     ConfigPrimitive<T> getAsPrimitive();
 
     /**
-     * Gets this element as a {@link ConfigNull}
+     * Gets this element as a {@link ConfigNull}.
+     * 
+     * @return This element as a ConfigNull
      */
     ConfigNull getAsNull();
-    
+
 }
