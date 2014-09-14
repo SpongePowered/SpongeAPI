@@ -28,26 +28,27 @@ import org.spongepowered.api.block.Block;
 import java.util.Set;
 
 public interface ToolType {
+
     /**
-     * Gets the melee damage added to the
-     * base material type(Diamond, Stone, etc)
+     * Gets the melee damage added
+     * to the item by the material (diamond, stone, etc).
      *
-     * @return damage
+     * @return The damage added by the item's material
      */
     double getDamageAdded();
 
     /**
-     * Gets the name of the tool type(Spade, Axe, etc)
+     * Gets the name of the tool type(spade, axe, etc)
      *
-     * @return name
+     * @return The name of the tool
      */
     String getDisplayName();
 
     /**
-     * Gets the blocks which this
-     * tool type is effective
-     * against(Pickaxes for stone, Axes for wood)
-     * @return blocks
+     * Gets the blocks which this tool type is efficient
+     * against(pickaxes for stone, axes for wood).
+     *
+     * @return The blocks which this tool is efficient against
      */
-    public Set<Block> getBlocksAffected();
+    Set<Block> getEfficientAgainst();
 }

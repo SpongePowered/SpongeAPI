@@ -23,18 +23,25 @@
  */
 package org.spongepowered.api.item;
 
+/**
+ * A tool is an item that can be used by a player against blocks or mobs.
+ * All default tools are Pickaxes, Spades, Axes, Hoes or Swords, but more can
+ * be added.
+ */
 public interface ItemTool extends Item {
     /**
-     * Gets the variety of tool
-     * Ex. AXE
-     * @return type
+     * Gets the {@link ToolType} of this tool.
+     * This can be any ToolType.
+     *
+     * @return The ToolType of this tool
      */
     ToolType getToolType();
 
     /**
-     * Gets the max uses for this item
+     * Gets the maximum amount of
+     * times you can use this item.
      *
-     * @return max uses
+     * @return Maximum uses on this item
      */
     int getMaxDurability();
 
