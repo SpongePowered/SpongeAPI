@@ -48,5 +48,4 @@ public interface Block {
      * @return Returns true if a block is Solid
      */
     boolean isSolid();
-
 }
