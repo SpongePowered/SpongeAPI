@@ -60,7 +60,7 @@ public interface World extends EntityUniverse, VoxelVolume {
 
     /**
      * Loads and returns a {@link Chunk}. If the chunk does not exist, it will
-     * be generated unless `shouldGenerate` is false.
+     * be generated unless {@code shouldGenerate} is false.
      *
      * @param cx X chunk coordinate
      * @param cz Z chunk coordinate
