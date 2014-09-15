@@ -38,5 +38,15 @@ public interface Block {
      * @return The id
      */
     String getID();
+    
+    /**
+     * Returns if a block is solid or not.
+     * 
+     * @see <a href="http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks">
+     * http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks</a>
+     *
+     * @return Returns true if a block is Solid
+     */
+    boolean isSolid();
 
 }
