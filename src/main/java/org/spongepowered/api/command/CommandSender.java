@@ -25,16 +25,19 @@
 package org.spongepowered.api.command;
 
 /**
- * Represents a sender of a command
+ * Represents a sender of a command.
  */
 public interface CommandSender {
     /**
-     * @return The name of the Command sender.
+     * Returns the name of the command sender.
+     *
+     * @return the Name of the command sender.
      */
     String getName();
 
     /**
      * Sends a raw colorless message.
+     *
      * @param message The Message.
      */
     void sendRawText(String message);

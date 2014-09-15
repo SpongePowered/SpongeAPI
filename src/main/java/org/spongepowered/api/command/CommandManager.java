@@ -39,6 +39,7 @@ public interface CommandManager {
 
     /**
      * Returns a map with all the commands.
+     *
      * @return a map with all the commands.
      */
     Map<String, Command> getCommands();

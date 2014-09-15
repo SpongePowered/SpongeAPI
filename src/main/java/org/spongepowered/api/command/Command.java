@@ -30,12 +30,14 @@ package org.spongepowered.api.command;
 public interface Command {
     /**
      * Returns the name of this command.
+     *
      * @return The name of this command.
      */
     String getCommandName();
 
     /**
      * Discription of what the command does.
+     *
      * @param sender Sender of the command.
      * @return Description of this command.
      */
@@ -43,6 +45,7 @@ public interface Command {
 
     /**
      * Execution code for the command.
+     *
      * @param sender Sender of the command.
      * @param args Arguments for the command.
      */

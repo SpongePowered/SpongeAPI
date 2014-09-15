@@ -4,7 +4,7 @@ import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandSender;
 
 /**
- * Example command that return "World" when "/hello" is executed by a User
+ * Example command that return "World" when "/hello" is executed by a User.
  */
 
 public class HelloWorldCommand implements Command {

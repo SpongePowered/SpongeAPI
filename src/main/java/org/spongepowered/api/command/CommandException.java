@@ -25,7 +25,7 @@
 package org.spongepowered.api.command;
 
 /**
- * Gets throw when a problem with commands occurs
+ * Gets throw when a problem with commands occurs.
  */
 public class CommandException extends Exception {
     private static final long serialVersionUID = 48484158L;
