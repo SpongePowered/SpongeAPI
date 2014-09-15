@@ -26,54 +26,54 @@
 package org.spongepowered.api.math;
 
 /**
- * Holds a duration value that can be converted into various time units,
- * such as seconds and Minecraft ticks
+ * <p>Holds a duration value that can be converted into various time units,
+ * such as seconds and game ticks</p>
  */
 public class Duration {
 
     /**
      * The duration in milliseconds
      */
-    long millis;
+    private final long millis;
 
     /**
      * Creates a duration object. Made private because the factory methods should be used.
-     * @param millis
+     * @param millis Duration in milliseconds
      */
     private Duration(long millis) {
         this.millis = millis;
     }
 
     /**
-     * @return the duration in milliseconds
+     * @return Duration in milliseconds
      */
     public long getMillis() {
         return millis;
     }
 
     /**
-     * @return the duration in seconds
+     * @return Duration in seconds
      */
     public double getSeconds() {
         return getMillis() / 1000d;
     }
 
     /**
-     * @return the duration in minutes
+     * @return Duration in minutes
      */
     public double getMinutes() {
         return getSeconds() / 60d;
     }
 
     /**
-     * @return the duration in hours
+     * @return Duration in hours
      */
     public double getHours() {
         return getMinutes() / 60d;
     }
 
     /**
-     * @return the duration in Minecraft ticks (20 ticks per second)
+     * @return Duration in game ticks (20 ticks per second)
      */
     public long getTicks() {
         return millis / 50;
@@ -81,7 +81,7 @@ public class Duration {
 
     /**
      * Gets this duration formatted as a human readable string.
-     * @return
+     * @return A human readable representation of the duration
      */
     @Override
     public String toString() {
@@ -136,8 +136,8 @@ public class Duration {
 
     /**
      * Creates a copy of this object and adds the given duration onto it.
-     * @param duration time to add
-     * @return the sum of this and the given duration
+     * @param duration Time to add
+     * @return Sum of this and the given duration
      */
     public Duration add(Duration duration) {
         return new Duration(getMillis() + duration.getMillis());
@@ -145,8 +145,8 @@ public class Duration {
 
     /**
      * Creates a copy of this object and subtracts the given duration from it.
-     * @param duration time to subtract
-     * @return the subtraction of this by the given duration
+     * @param duration Time to subtract
+     * @return Subtraction of this by the given duration
      */
     public Duration sub(Duration duration) {
         return new Duration(getMillis() - duration.getMillis());
@@ -154,8 +154,8 @@ public class Duration {
 
     /**
      * Factory method for a duration given in ticks
-     * @param ticks duration in ticks
-     * @return a Duration object with the given duration
+     * @param ticks Duration in ticks
+     * @return A Duration object with the given duration
      */
     public static Duration ticks(long ticks) {
         return new Duration(ticks * 50);
@@ -163,8 +163,8 @@ public class Duration {
 
     /**
      * Factory method for a duration given in milliseconds
-     * @param millis duration in milliseconds
-     * @return a Duration object with the given duration
+     * @param millis Duration in milliseconds
+     * @return A Duration object with the given duration
      */
     public static Duration millis(long millis) {
         return new Duration(millis);
@@ -173,7 +173,7 @@ public class Duration {
     /**
      * Factory method for a duration given in seconds
      * @param seconds duration in seconds
-     * @return a Duration object with the given duration
+     * @return A Duration object with the given duration
      */
     public static Duration seconds(double seconds) {
         return millis((long) (seconds * 1000d));
@@ -181,8 +181,8 @@ public class Duration {
 
     /**
      * Factory method for a duration given in minutes
-     * @param minutes duration in minutes
-     * @return a Duration object with the given duration
+     * @param minutes Duration in minutes
+     * @return A Duration object with the given duration
      */
     public static Duration minutes(double minutes) {
         return seconds(minutes * 60d);
@@ -190,8 +190,8 @@ public class Duration {
 
     /**
      * Factory method for a duration given in hours
-     * @param hours duration in hours
-     * @return a Duration object with the given duration
+     * @param hours Duration in hours
+     * @return A Duration object with the given duration
      */
     public static Duration hours(double hours) {
         return minutes(hours * 60d);
