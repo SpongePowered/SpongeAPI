@@ -42,5 +42,6 @@ public interface Entity {
      * 
      * @return The entity's {@link Voxel}
      */
-     Voxel getVoxel(); 
+     Voxel getVoxel();
+     
 }
