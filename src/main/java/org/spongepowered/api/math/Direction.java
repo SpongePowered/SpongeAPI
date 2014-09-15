@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.math;
 
-import java.io.Serializable;
-
 /**
  * Represent the Direction for in ex. a Block can face at.
  */
