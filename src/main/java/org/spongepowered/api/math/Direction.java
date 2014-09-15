@@ -28,6 +28,4 @@ package org.spongepowered.api.math;
 /**
  * Represent the Direction for in ex. a Block can face at.
  */
-public enum Direction {
-   NORTH,EAST,SOUTH,WEST,UP,DOWN
-}
+public enum Direction { NORTH, EAST, SOUTH, WEST, UP, DOWN }
