@@ -71,10 +71,7 @@ public interface World extends EntityUniverse, VoxelVolume {
 
     /**
      * Loads and returns a {@link Chunk}. If the chunk does not
-     * exist, it will be automatically generated. Should never
-     * return null like {@link World#loadChunk(int, int, boolean)}
-     * may in the case that the chunk does not exist and
-     * <code>shouldGenerate</code> is false.
+     * exist, it will be automatically generated.
      * 
      * @param cx X chunk coordinate
      * @param cz Z chunk coordinate
