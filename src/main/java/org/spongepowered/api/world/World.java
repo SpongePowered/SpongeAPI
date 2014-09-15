@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.entity.EntityUniverse;
@@ -35,7 +34,7 @@ import java.util.UUID;
 public interface World extends EntityUniverse, VoxelVolume {
 
     /**
-     * Gets the unique id ({@link UUID}) for this world.
+     * Gets the unique id ({@link java.util.UUID} for this world.
      *
      * @return The unique id or UUID
      */
@@ -59,14 +58,26 @@ public interface World extends EntityUniverse, VoxelVolume {
     Chunk getChunk(int cx, int cz);
 
     /**
-     * Loads and returns a {@link Chunk}. If the chunk does not exist, it will
-     * be generated unless `shouldGenerate` is false.
+     * Loads and returns a {@link Chunk}. If the chunk does not
+     * exist, it will be generated unless `shouldGenerate` is false.
      *
-     * @param cx X chunk coordinate
-     * @param cz Z chunk coordinate
+     * @param cx             X chunk coordinate
+     * @param cz             Z chunk coordinate
      * @param shouldGenerate Generate if new
      * @return Chunk loaded/generated
      */
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
 
+    /**
+     * Loads and returns a {@link Chunk}. If the chunk does not
+     * exist, it will be automatically generated. Should never
+     * return null like {@link World#loadChunk(int, int, boolean)}
+     * may in the case that the chunk does not exist and the
+     * boolean shouldGenerate is false.
+     * 
+     * @param cx X chunk coordinate
+     * @param cz Z chunk coordinate
+     * @return Chunk loaded/generated
+     */
+    Chunk loadChunk(int cx, int cz);
 }
