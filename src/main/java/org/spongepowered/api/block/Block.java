@@ -40,12 +40,45 @@ public interface Block {
     String getID();
     
     /**
-     * Returns if a block is solid or not.
+     * Returns if a block is opaque or not.
      * 
+     * <p>Entities in opaque blocks suffocate.
+     * Opaque blocks are i.e.: Dirt,Stone,Log,Ice,Furnace.
      * @see <a href="http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks">
-     * http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks</a>
+     * http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks</a></p>
      *
-     * @return Returns true if a block is Solid
+     * @return Returns true if a block is opaque
+     */
+    boolean isOpaque();
+    
+    /**
+     * Returns if a block is transparent or not.
+     * <p>Transparent blocks are i.e.: Fence,Torch,Ladder,Chest.
+     * @see <a href="http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks">
+     * http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks</a></p>
+     *
+     * @return Returns true if a block is transparent
+     */
+    boolean isTransparent();
+    
+    /**
+     * Returns if a block is solid or not.
+     * <p>Entities can't walk trough solid Blocks.
+     * Solid blocks are i.e.: Any ore,Stone,Leaves,Pumpkin.
+     * @see <a href="http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks">
+     * http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks</a></p>
+     *
+     * @return Returns true if a block is solid
      */
     boolean isSolid();
+    
+    /**
+     * Returns if a block is fluid.
+     * Solid blocks are i.e.: Any kind of lava and water(not ice).
+     * @see <a href="http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks">
+     * http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks</a></p>
+     *
+     * @return Returns true if a block is fluid
+     */
+    boolean isFluid();
 }
