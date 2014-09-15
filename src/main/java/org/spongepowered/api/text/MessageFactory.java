@@ -44,9 +44,10 @@ public interface MessageFactory {
      * Creates a new translatable {@link TextMessage}.
      * 
      * @param translate The translate string
+     * @param params The translation parameters
      * @return New translated message
      */
-    TextMessage newTranslatedMessage(String translate);
+    TextMessage newTranslatedMessage(String translate, String... params);
 
     /**
      * Creates a new {@link TextMessage} for showing a score.

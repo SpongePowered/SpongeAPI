@@ -145,4 +145,11 @@ public interface Game {
      */
     String getImplementationVersion();
 
+    /**
+     * Gets the factory provider.
+     * 
+     * @return The factory provider
+     */
+    FactoryProvider getFactoryProvider();
+
 }
