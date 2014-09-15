@@ -36,7 +36,7 @@ public interface Command {
     String getCommandName();
 
     /**
-     * Discription of what the command does.
+     * Description of what the command does.
      *
      * @param sender Sender of the command.
      * @return Description of this command.
