@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.math.Duration;
+
 import java.util.UUID;
 
 public interface Entity {
@@ -35,4 +37,11 @@ public interface Entity {
      * @return The entity's {@link UUID}
      */
     UUID getUniqueID();
+
+    /**
+     * Gets the time this entity has existed
+     *
+     * @return The entity's age
+     */
+    Duration getAge();
 }
