@@ -38,5 +38,12 @@ public interface Block {
      * @return The id
      */
     String getID();
+    
+        /**
+     * Gets the Position of this block.
+     *
+     * @return The Position
+     */
+    Vector3i getPosition();
 
 }
