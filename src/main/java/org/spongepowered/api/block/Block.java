@@ -74,7 +74,7 @@ public interface Block {
     
     /**
      * Returns if a block is fluid.
-     * Solid blocks are i.e.: Any kind of lava and water(not ice).
+     * Fluid blocks are i.e.: Any kind of lava and water(not ice).
      * @see <a href="http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks">
      * http://minecraft.gamepedia.com/Opacity#Types_of_transparent_blocks</a></p>
      *
