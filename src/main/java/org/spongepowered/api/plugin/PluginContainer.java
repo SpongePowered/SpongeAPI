@@ -61,12 +61,4 @@ public interface PluginContainer {
      */
     Object getInstance();
 
-    /**
-     * Returns resource folder of the {@link Plugin} within this container.
-     *
-     * @param createIfAbsent If true, creates folder if it doesn't exist on disk
-     * @return The plugin's resource folder
-     */
-    File getResourceFolder(boolean createIfAbsent);
-
 }
