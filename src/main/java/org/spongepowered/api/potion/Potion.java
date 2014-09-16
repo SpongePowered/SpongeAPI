@@ -30,31 +30,31 @@ import org.spongepowered.api.entity.Entity;
 public interface Potion {
 
 	/**
-	 * Gets the type of potion.
+	 * Gets the type of potion
 	 * 
-	 * @return PotionType The PotionType.
+	 * @return PotionType The PotionType
 	 */
-	public PotionType getType();
+	PotionType getType();
 	
 	/**
-	 * Applies the potion effects to the entity.
+	 * Applies the potion effects to the entity
 	 * 
-	 * @param entity The entity to apply the effects to.
+	 * @param entity The entity to apply the effects to
 	 */
-	public void apply(Entity entity);
+	void apply(Entity entity);
 	
 	/** 
-	 * Gets the amount of time the potion has to affect the entity.
+	 * Gets the amount of time the potion has to affect the entity
 	 * 
-	 * @return int The duration.
+	 * @return int The duration
 	 */
-	public int getDuration();
+	int getDuration();
 	
 	/** 
-	 * Gets the level the potion is. 
+	 * Gets the level the potion is
 	 *
-	 * @return int The level.
+	 * @return int The level
 	 */
-	public int getLevel();
+	int getLevel();
 	
 }

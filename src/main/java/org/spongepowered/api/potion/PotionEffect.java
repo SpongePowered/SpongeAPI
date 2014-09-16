@@ -28,24 +28,24 @@ package org.spongepowered.api.potion;
 public interface PotionEffect {
 
 	/**
-	 * Gets the unique identifier of the effect.
+	 * Gets the unique identifier of the effect
 	 * 
-	 * @return int The ID.
+	 * @return int The ID
 	 */
-	public int getId();
+	int getId();
 	
 	/** 
-	 * Gets the level representing how often the effect takes place.
+	 * Gets the level representing how often the effect takes place
 	 * 
-	 * @return int The amplifier amount.
+	 * @return int The amplifier amount
 	 */
-	public int getAmplifier();
+	int getAmplifier();
 	
 	/**
-	 * Gets the name of the effect.
+	 * Gets the name of the effect
 	 * 
-	 * @return String The name.
+	 * @return String The name
 	 */
-	public String getName();
+	String getName();
 	
 }
