@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin.config;
+package org.spongepowered.api.configuration;
 
 /**
  * Class for adding, removing, and modifying config elements in an object.

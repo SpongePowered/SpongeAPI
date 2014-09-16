@@ -22,35 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin.config;
+package org.spongepowered.api.configuration;
 
-import javax.lang.model.type.NullType;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * Represents an element without a value, set type, or is equal to null.
+ * The most basic form of a {@link ConfigElement}.
+ * 
+ * @param T The type that this config represents.
  */
-public interface ConfigNull extends ConfigPrimitive<NullType> {
+public interface ConfigPrimitive<T> extends ConfigElement<T> {
 
     /**
-     * Sets this element to be a {@link ConfigArray} of the given type.
+     * Gets the value stored in this element.
      * 
-     * @param type The type
-     * @return The array
+     * @return The value
      */
-    <T> ConfigArray<T> setArrayType(Class<T> type);
+    @Nullable
+    T getValue();
 
     /**
-     * Sets this element to be a {@link ConfigObject}.
+     * Sets the value for this element.
      * 
-     * @return The object
+     * @param value The new value
      */
-    ConfigObject setAsObject();
 
-    /**
-     * Sets this element to be a {@link ConfigPrimitive} of the given type.
-     * 
-     * @param type The type of primitive
-     * @return The primitive
-     */
-    <T> ConfigPrimitive<T> setPrimitiveType(Class<T> type);
+    void setValue(@Nonnull T value);
 }

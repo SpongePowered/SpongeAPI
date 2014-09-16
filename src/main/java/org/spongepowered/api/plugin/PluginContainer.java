@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.plugin;
 
-import org.spongepowered.api.plugin.config.Configuration;
+import org.spongepowered.api.configuration.Configuration;
 
 import java.io.File;
 
