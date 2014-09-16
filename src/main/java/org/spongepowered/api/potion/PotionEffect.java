@@ -28,7 +28,7 @@ package org.spongepowered.api.potion;
 public interface PotionEffect {
 
 	/**
-	 * Gets the unique identifier of the effect
+	 * Gets the unique identifier of the effect.
 	 * 
 	 * @return int The ID
 	 */
@@ -42,7 +42,7 @@ public interface PotionEffect {
 	int getAmplifier();
 	
 	/**
-	 * Gets the name of the effect
+	 * Gets the name of the effect.
 	 * 
 	 * @return String The name
 	 */

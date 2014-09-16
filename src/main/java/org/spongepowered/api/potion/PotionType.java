@@ -30,21 +30,21 @@ import java.util.List;
 public interface PotionType {
 
 	/**
-	 * Gets a list of all the {@link PotionEffect} the potion type applies
+	 * Gets a list of all the {@link PotionEffect} the potion type applies.
 	 * 
 	 * @return List<PotionEffect> The effects
 	 */
 	List<PotionEffect> getEffects();
 	
 	/**
-	 * Gets the unique identifier
+	 * Gets the unique identifier.
 	 * 
 	 * @return int The ID
 	 */
 	int getId();
 	
 	/**
-	 * Gets the name of the type
+	 * Gets the name of the type.
 	 * 
 	 * @return String The name
 	 */
