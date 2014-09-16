@@ -23,23 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api;
+package org.spongepowered.api.command.completion;
+
+import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.command.CommandSource;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
- * Effective side platforms
- *
- * <p>A side is what part of minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
+ * Always returns an empty list of suggestions.
  */
-public enum Platform {
+public class NullCompleter implements CommandCompleter {
 
-    /**
-     * The platform of a minecraft CLIENT is expected
-     */
-    CLIENT,
-    /**
-     * The platform of a mincecraft SERVER is expected
-     */
-    SERVER
+    @Override
+    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
+        return Collections.emptyList();
+    }
 
 }

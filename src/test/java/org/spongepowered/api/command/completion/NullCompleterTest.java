@@ -23,23 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api;
+package org.spongepowered.api.command.completion;
 
-/**
- * Effective side platforms
- *
- * <p>A side is what part of minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
- */
-public enum Platform {
+import org.junit.Test;
+import org.spongepowered.api.command.CommandSource;
 
-    /**
-     * The platform of a minecraft CLIENT is expected
-     */
-    CLIENT,
-    /**
-     * The platform of a mincecraft SERVER is expected
-     */
-    SERVER
+import static org.hamcrest.Matchers.empty;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+
+public class NullCompleterTest {
+
+    @Test
+    public void testGetSuggestions() throws Exception {
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), ""), empty());
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "example"), empty());
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "parent child"), empty());
+    }
 
 }

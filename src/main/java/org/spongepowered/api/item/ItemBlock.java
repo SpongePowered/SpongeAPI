@@ -28,12 +28,12 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.block.Block;
 
 /**
- * Represents a {@link org.spongepowered.api.block.Block} as an {@link org.spongepowered.api.item.Item}
+ * Represents a {@link Block} as an {@link Item}
  */
 public interface ItemBlock extends Item {
 
     /**
-     * Gets the {@link org.spongepowered.api.block.Block} this item places on interaction
+     * Gets the {@link Block} this item places on interaction
      *
      * @return The block
      */

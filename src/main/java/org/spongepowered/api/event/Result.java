@@ -35,7 +35,8 @@ public enum Result {
      */
     DENY,
     /**
-     * The result of a request such as an event has not been modified, and will progress based on the default expectation
+     * The result of a request such as an event has not been modified, and will
+     * progress based on the default expectation
      */
     DEFAULT,
     /**

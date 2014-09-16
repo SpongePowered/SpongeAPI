@@ -31,35 +31,34 @@ import java.io.File;
 
 
 /**
- * A wrapper around a class marked with an {@link org.spongepowered.api.plugin.Plugin} annotation to retrieve information from the annotation for easier use
+ * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
+ * information from the annotation for easier use.
  */
 public interface PluginContainer {
 
     /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets the id of the {@link Plugin} within this container.
      *
      * @return The id
      */
     String getID();
 
     /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets the name of the {@link Plugin} within this container.
      *
      * @return The name
      */
     String getName();
 
     /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets the version of the {@link Plugin} within this container.
      *
      * @return The name
      */
     String getVersion();
 
     /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
-     * <p/>
-     * TODO Provide a way to not dereference this back to Object
+     * Returns the created instance of {@link Plugin}.
      *
      * @return The instance
      */

@@ -23,23 +23,51 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api;
+package org.spongepowered.api.command;
+
+import java.util.Set;
 
 /**
- * Effective side platforms
+ * Provides information about a mapping between a command and its aliases.
  *
- * <p>A side is what part of minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
+ * <p>Implementations are not required to implement a sane
+ * {@link #equals(Object)} but may choose to do so.</p>
  */
-public enum Platform {
+public interface CommandMapping {
 
     /**
-     * The platform of a minecraft CLIENT is expected
+     * Get the primary alias.
+     *
+     * @return The primary alias
      */
-    CLIENT,
+    String getPrimaryAlias();
+
     /**
-     * The platform of a mincecraft SERVER is expected
+     * Get an immutable list of all aliases.
+     *
+     * <p>The returned list must contain at least one entry, of which one must
+     * be the one returned by {@link #getPrimaryAlias()}.</p>
+     *
+     * <p>There may be several versions of the same alias with different
+     * casing, although generally implementations should ignore the casing
+     * of aliases.</p>
+     *
+     * @return A set of aliases
      */
-    SERVER
+    Set<String> getAllAliases();
+
+    /**
+     * Get the callable
+     *
+     * @return The callable
+     */
+    CommandCallable getCallable();
+
+    /**
+     * Get the description of the command.
+     *
+     * @return The description
+     */
+    Description getDescription();
 
 }

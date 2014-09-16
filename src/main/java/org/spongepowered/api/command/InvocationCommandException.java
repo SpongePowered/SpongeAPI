@@ -23,23 +23,36 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api;
+package org.spongepowered.api.command;
+
+import javax.annotation.Nullable;
 
 /**
- * Effective side platforms
- *
- * <p>A side is what part of minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
+ * Thrown when invocation of a command fails, wrapping the exception that
+ * is thrown.
  */
-public enum Platform {
+public class InvocationCommandException extends CommandException {
+
+    private static final long serialVersionUID = 7859473889077167378L;
 
     /**
-     * The platform of a minecraft CLIENT is expected
+     * Construct a new exception with the given message and the given cause.
+     *
+     * @param message The detail message
+     * @param cause The cause
      */
-    CLIENT,
+    public InvocationCommandException(@Nullable String message, @Nullable Throwable cause) {
+        super(message, cause);
+    }
+
     /**
-     * The platform of a mincecraft SERVER is expected
+     * Constructs a new exception with the specified cause and a detail
+     * message of.
+     *
+     * @param cause The cause
      */
-    SERVER
+    public InvocationCommandException(@Nullable Throwable cause) {
+        super(cause);
+    }
 
 }

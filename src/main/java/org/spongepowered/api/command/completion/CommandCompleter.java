@@ -23,23 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api;
+package org.spongepowered.api.command.completion;
+
+import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.command.CommandSource;
+
+import java.util.List;
 
 /**
- * Effective side platforms
+ * Completes typed-in commands by providing a list of suggestions to replace
+ * the last typed in word with.
  *
- * <p>A side is what part of minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
+ * <p>Words are separated from each other by space characters.</p>
  */
-public enum Platform {
+public interface CommandCompleter {
 
     /**
-     * The platform of a minecraft CLIENT is expected
+     * Get a list of suggestions based on input.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * @param source The command source
+     * @param arguments The arguments entered up to this point
+     * @return A list of suggestions
+     * @throws CommandException Thrown if there was a parsing error
      */
-    CLIENT,
-    /**
-     * The platform of a mincecraft SERVER is expected
-     */
-    SERVER
+    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
 
 }

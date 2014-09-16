@@ -36,30 +36,30 @@ import java.io.Serializable;
 public interface ItemStack extends Comparable<ItemStack>, Serializable {
 
     /**
-     * Gets the {@link Item} item type
+     * Gets the {@link Item} item type.
      *
      * @return The item type
      */
     Item getItem();
 
     /**
-     * Set the damage/durability
+     * Get the damage/durability value.
+     *
+     * @return The item's damage value
+     */
+    short getDamage();
+
+    /**
+     * Set the damage/durability.
      *
      * @param damage The value that the damage should be set to
      */
     void setDamage(short damage);
 
     /**
-     * Get the damage/durability value
-     *
-     * @return Damage
-     */
-    short getDamage();
-
-    /**
-     * Gets the quantity of items in this stack. This may
-     * exceed the max stack size of the item, and if added
-     * to an inventory will then be divided by the max stack
+     * Gets the quantity of items in this stack. This may exceed the max stack
+     * size of the item, and if added to an inventory will then be divided by
+     * the max stack.
      *
      * @return Quantity of items
      */
@@ -69,22 +69,25 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
      * Sets the quantity in this stack.
      *
      * @param quantity Quantity
-     * @throws IllegalArgumentException If quantity set exceeds the {@link org.spongepowered.api.inventory.ItemStack#getMaxStackQuantity()}
+     * @throws IllegalArgumentException If quantity set exceeds the
+     * {@link ItemStack#getMaxStackQuantity()}
      */
     void setQuantity(int quantity) throws IllegalArgumentException;
 
     /**
-     * Get the maximum quantity per stack. By default, returns {@link org.spongepowered.api.item.Item#getMaxStackQuantity()},
-     * unless a different value has been set for this specific stack.
+     * Get the maximum quantity per stack. By default, returns
+     * {@link Item#getMaxStackQuantity()}, unless a
+     * different value has been set for this specific stack.
      *
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
 
     /**
-     * Set the max quantity per stack. This overrides, and is entirely separate from {@link org.spongepowered.api.item.Item#getMaxStackQuantity()}
+     * Set the max quantity per stack. This overrides, and is entirely separate
+     * from {@link Item#getMaxStackQuantity()}.
      *
-     * @param quantity  Max stack quantity
+     * @param quantity Max stack quantity
      */
     void setMaxStackQuantity(int quantity);
 

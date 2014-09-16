@@ -25,11 +25,11 @@
 
 package org.spongepowered.api.plugin;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
 /**
  * An annotation used to describe and mark a Sponge plugin
@@ -39,21 +39,44 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface Plugin {
 
     /**
-     * An ID for the plugin to be used internally
-     * The ID should be unique as to not conflict with other plugins
+     * An ID for the plugin to be used internally. The ID should be unique as to
+     * not conflict with other plugins.
      */
     String id();
 
     /**
-     * The human readable name of the plugin as to be used in descriptions and similar things
+     * The human readable name of the plugin as to be used in descriptions and
+     * similar things.
+     *
      * @return The human readable name of the plugin
      */
     String name();
 
     /**
-     * The version of the plugin
+     * The version of the plugin.
+     *
      * @return The version of the plugin
      */
     String version() default "unknown";
+
+    /**
+     * A simple dependency string for this mod separated by a ";"
+     * example:
+     * <pre>"required-after:Sponge@[1.2.3.2222,);required-after:myLibraryPlugin;after:towny;before:worldguard"</pre>
+     * supported options:
+     * <dl>
+     *   <dt>after</dt>
+     *   <dd>when present this plugin will run after plugin x</dd>
+     *   <dt>required-after</dt>
+     *   <dd>plugin x must be present, load after plugin x</dd>
+     *   <dt>before</dt>
+     *   <dd>when present run before plugin x</dd>
+     *   <dt>required-before</dt>
+     *   <dd>plugin x must be present, load before plugin x</dd>
+     * </dl>
+     * supports maven version ranges after @ in any field
+     */
+    String dependencies() default "";
+
 
 }

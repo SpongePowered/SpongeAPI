@@ -29,11 +29,10 @@ import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3i;
 
 /**
- * Represents the smallest unit of the world map. This unit
- * has a position with integer coordinates and a block reference
- * which defines it's behaviour and attributes. Unlike a block,
- * this object has a position attribute, and does not define any logic
- * by itself.
+ * Represents the smallest unit of the world map. This unit has a position with
+ * integer coordinates and a block reference which defines it's behaviour and
+ * attributes. Unlike a block, this object has a position attribute, and does
+ * not define any logic by itself.
  */
 public interface Voxel extends VoxelVolume {
 
@@ -45,8 +44,7 @@ public interface Voxel extends VoxelVolume {
     Vector3i getPosition();
 
     /**
-     * Gets a reference to the block object that
-     * defines the voxel's logic.
+     * Gets a reference to the block object that defines the voxel's logic.
      *
      * @return block The block defining the voxel
      */

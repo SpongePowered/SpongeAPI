@@ -23,23 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api;
+package org.spongepowered.api.command;
 
 /**
- * Effective side platforms
+ * Something that can execute commands.
  *
- * <p>A side is what part of minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
+ * <p>Examples of potential implementations include players, the server console,
+ * RCON clients, web-based clients, command blocks, and so on.</p>
  */
-public enum Platform {
-
-    /**
-     * The platform of a minecraft CLIENT is expected
-     */
-    CLIENT,
-    /**
-     * The platform of a mincecraft SERVER is expected
-     */
-    SERVER
-
+public interface CommandSource {
 }
