@@ -22,17 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt;
 
 /**
- * NBT tag representing a short.
+ * NBT tag representing an array of integers.
  */
-public interface ShortTag extends Tag.Primitive {
+public interface IntArrayTag extends Tag {
     
     /**
-     * Gets the value of {@link ShortTag}.
+     * Gets the value of {@link IntArrayTag}.
      * 
-     * @return The value of {@link ShortTag}
+     * @return The value of {@link IntArrayTag}
      */
-    short getValue();
+    int[] getValue();
 }

@@ -22,24 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt;
 
 /**
- * Enum for NBT tag types.
+ * NBT tag representing a double.
  */
-public enum TagType {
+public interface DoubleTag extends Tag.Primitive {
     
-    BYTE,
-    DOUBLE,
-    END,
-    FLOAT,
-    INT,
-    LONG,
-    SHORT,
-    STRING,
-    BYTEARRAY,
-    INTARRAY,
-    LIST,
-    COMPOUND,
-    PRIMITIVE
+    /**
+     * Gets the value of {@link DoubleTag}.
+     * 
+     * @return The value of {@link DoubleTag}
+     */
+    double getValue();
 }

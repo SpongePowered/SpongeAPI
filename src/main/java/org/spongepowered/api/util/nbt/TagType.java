@@ -22,17 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt;
 
 /**
- * NBT tag representing a string.
+ * Enum for NBT tag types.
  */
-public interface StringTag extends Tag {
+public enum TagType {
     
-    /**
-     * Gets the value of {@link StringTag}.
-     * 
-     * @return The value of {@link StringTag}
-     */
-    String getValue();
+    BYTE,
+    DOUBLE,
+    END,
+    FLOAT,
+    INT,
+    LONG,
+    SHORT,
+    STRING,
+    BYTEARRAY,
+    INTARRAY,
+    LIST,
+    COMPOUND,
+    PRIMITIVE
 }

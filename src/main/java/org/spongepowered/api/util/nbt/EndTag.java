@@ -22,17 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt;
 
 /**
- * NBT tag representing an int.
+ * NBT tag representing an end.
  */
-public interface IntTag extends Tag.Primitive {
-    
-    /**
-     * Gets the value of {@link IntTag}.
-     * 
-     * @return The value of {@link IntTag}
-     */
-    int getValue();
+public interface EndTag extends Tag {
+
 }

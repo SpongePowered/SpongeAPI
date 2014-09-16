@@ -22,17 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt;
 
 /**
- * NBT tag representing a float.
+ * NBT tag representing a short.
  */
-public interface FloatTag extends Tag.Primitive {
+public interface ShortTag extends Tag.Primitive {
     
     /**
-     * Gets the value of {@link FloatTag}.
+     * Gets the value of {@link ShortTag}.
      * 
-     * @return The value of {@link FloatTag}
+     * @return The value of {@link ShortTag}
      */
-    float getValue();
+    short getValue();
 }

@@ -22,17 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt;
 
 /**
- * NBT tag representing an array of integers.
+ * NBT tag representing a string.
  */
-public interface IntArrayTag extends Tag {
+public interface StringTag extends Tag {
     
     /**
-     * Gets the value of {@link IntArrayTag}.
+     * Gets the value of {@link StringTag}.
      * 
-     * @return The value of {@link IntArrayTag}
+     * @return The value of {@link StringTag}
      */
-    int[] getValue();
+    String getValue();
 }
