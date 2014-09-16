@@ -35,9 +35,9 @@ public interface PotionEffect {
 	int getId();
 	
 	/** 
-	 * Gets the level representing how often the effect takes place
+	 * Gets the value representing the frequency or amount.
 	 * 
-	 * @return int The amplifier amount
+	 * @return int The amplifier
 	 */
 	int getAmplifier();
 	
