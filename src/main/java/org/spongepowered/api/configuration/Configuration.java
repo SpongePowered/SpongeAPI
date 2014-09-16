@@ -25,6 +25,7 @@
 package org.spongepowered.api.configuration;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Used to access and modify configs.
@@ -54,18 +55,22 @@ public interface Configuration extends ConfigObject {
     boolean exists();
 
     /**
-     * Save the config to the file system.
+     * Saves the config to the file system.
      * 
-     * @return True if successful, false otherwise.
+     * @throws IOException If an error occurs
      */
-    boolean save();
+    void save() throws IOException;
 
     /**
-     * Loads the config from the file system. Will return true if the file has changed.
-     * If it hasn't changed or an IOExceptoin occurs, return false
+     * Loads the config from the file system.
      * 
-     * @return True if it changed, false if not or an IOException occurs.
+     * @throws IOException If an error occurs
      */
-    boolean load();
+    void load() throws IOException;
+
+    /**
+     * Removes all elements.
+     */
+    void clear();
 
 }

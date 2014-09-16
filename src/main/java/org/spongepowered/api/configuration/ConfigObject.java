@@ -24,18 +24,25 @@
  */
 package org.spongepowered.api.configuration;
 
+import java.util.Map.Entry;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Class for adding, removing, and modifying config elements in an object.
  */
-public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElement<Object>> {
+public interface ConfigObject extends ConfigElement<Object>,
+Iterable<Entry<String, ConfigElement<? extends Object>>> {
 
     /**
      * Gets an element of an unknown type.
      * 
      * @param string The key
-     * @return The element
+     * @return The element or null if it doesn't exist
      */
-    ConfigElement<?> getElement(String string);
+    @Nullable
+    ConfigElement<?> getElement(@Nonnull String string);
 
     /**
      * Gets an element with the specified name and type.
@@ -44,7 +51,8 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param type The type
      * @return The element value or null if it doesn't exist.
      */
-    <T> ConfigElement<T> getElement(String key, Class<T> type);
+    @Nullable
+    <T> ConfigElement<T> getElement(@Nonnull String key, @Nonnull Class<T> type);
 
     /**
      * Gets an element with the specified name.  If it doesn't exist, it is set to defaultValue.
@@ -53,7 +61,7 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param defaultValue The default value
      * @return The value or defaultValue if it doesn't exist.
      */
-    <T> ConfigElement<T> getElement(String key, T defaultValue);
+    <T> ConfigElement<T> getElement(@Nonnull String key, @Nullable T defaultValue);
 
     /**
      * Gets the element with the specified name and sets the comment.
@@ -64,15 +72,15 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param comment The comment
      * @return The value or defaultValue if it doesn't exist.
      */
-    <T> ConfigElement<T> getElement(String key, T defaultValue, String comment);
+    <T> ConfigElement<T> getElement(@Nonnull String key, @Nullable T defaultValue, String comment);
 
     /**
      * Gets a {@link ConfigObject} with the given name. If doesn't exist, creates a new one.
      * 
      * @param key Object name
-     * @return The config object
+     * @return The config object or null if it doesn't exist
      */
-    ConfigObject getObject(String key);
+    ConfigObject getObject(@Nonnull String key);
 
     /**
      * Gets a {@link ConfigObject} with the given name and comment. If it
@@ -82,7 +90,7 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param comment Comment
      * @return The config object
      */
-    ConfigObject getObject(String key, String comment);
+    ConfigObject getObject(@Nonnull String key, String comment);
 
     /**
      * Gets a {@link ConfigArray} with the given name and type. If doesn't
@@ -92,7 +100,7 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param type Array content type
      * @return The config array
      */
-    <T> ConfigArray<T> getArray(String key, Class<T> type);
+    <T> ConfigArray<T> getArray(@Nonnull String key, @Nonnull Class<T> type);
 
     /**
      * Gets a {@link ConfigArray} with the given name, type, and comment. If it
@@ -103,7 +111,7 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param comment Comment
      * @return The config array
      */
-    <T> ConfigArray<T> getArray(String key, Class<T> type, String comment);
+    <T> ConfigArray<T> getArray(@Nonnull String key, @Nonnull Class<T> type, String comment);
 
     /**
      * Gets a {@link ConfigPrimitive} with the specified name.
@@ -112,7 +120,7 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param type The type of the primitive.
      * @return The primitive
      */
-    <T> ConfigPrimitive<T> getPrimitive(String key, Class<T> type);
+    <T> ConfigPrimitive<T> getPrimitive(@Nonnull String key, @Nonnull Class<T> type);
 
     /**
      * Gets a {@link ConfigPrimitive} with the specified name. If it doesn't
@@ -122,7 +130,7 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param defaultValue Value to use if it doesn't exist.
      * @return The primitive
      */
-    <T> ConfigPrimitive<T> getPrimitive(String key, T defaultValue);
+    <T> ConfigPrimitive<T> getPrimitive(@Nonnull String key, @Nullable T defaultValue);
 
     /**
      * Gets a {@link ConfigPrimitive} with the specified name and sets the
@@ -133,7 +141,7 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param comment The comment
      * @return The primitive
      */
-    <T> ConfigPrimitive<T> getPrimitive(String key, T defaultValue, String comment);
+    <T> ConfigPrimitive<T> getPrimitive(@Nonnull String key, @Nullable T defaultValue, String comment);
 
     /**
      * Gets whether the element exists.
@@ -141,15 +149,16 @@ public interface ConfigObject extends ConfigElement<Object>, Iterable<ConfigElem
      * @param key The key
      * @return True if it has, false if not.
      */
-    boolean hasElement(String key);
+    boolean hasElement(@Nonnull String key);
 
     /**
      * Gets the type stored in the element represented by the key.
      * 
      * @param key The key
-     * @return The element type
+     * @return The element type or null if it doesn't exist
      */
-    Class<?> getElementType(String key);
+    @Nullable
+    Class<?> getElementType(@Nonnull String key);
 
     /**
      * Deletes unused elements from this object. An element is considered

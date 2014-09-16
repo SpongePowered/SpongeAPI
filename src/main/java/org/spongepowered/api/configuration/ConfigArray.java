@@ -53,6 +53,13 @@ public interface ConfigArray<T> extends ConfigElement<T[]>, Iterable<T> {
     void add(T object, int index);
 
     /**
+     * Adds all items to the element.
+     * 
+     * @param objects The objects to add
+     */
+    void addAll(T... objects);
+
+    /**
      * Removes the first instance of the element.
      * 
      * @param object The object to remove
@@ -65,13 +72,6 @@ public interface ConfigArray<T> extends ConfigElement<T[]>, Iterable<T> {
      * @param index The index to remove
      */
     void remove(int index);
-
-    /**
-     * Removes all instances of the element.
-     * 
-     * @param object The object to remove
-     */
-    void removeAll(T object);
 
     /**
      * Removes all elements in this array.
@@ -90,7 +90,7 @@ public interface ConfigArray<T> extends ConfigElement<T[]>, Iterable<T> {
      * Gets the index of the object.
      * 
      * @param object The object to check
-     * @return The index
+     * @return The index or -1 if it doesn't exist
      */
     int getIndexOf(T object);
 }
