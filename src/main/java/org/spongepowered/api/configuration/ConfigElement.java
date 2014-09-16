@@ -30,13 +30,6 @@ package org.spongepowered.api.configuration;
 public interface ConfigElement<T> {
 
     /**
-     * Gets the name of this element.
-     * 
-     * @return The name
-     */
-    String getName();
-
-    /**
      * Gets the comment of this element.
      * 
      * @return The comment
