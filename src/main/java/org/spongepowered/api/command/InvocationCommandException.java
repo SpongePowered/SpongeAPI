@@ -30,8 +30,6 @@ import javax.annotation.Nullable;
 /**
  * Thrown when invocation of a command fails, wrapping the exception that
  * is thrown.
- *
- * <p>{@link #getCause()} will not be null.</p>
  */
 public class InvocationCommandException extends CommandException {
 
