@@ -2,9 +2,11 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+        classpath 'org.ajoberstar:gradle-git:0.9.0'
     }
 }
 
@@ -15,6 +17,7 @@ apply plugin: 'checkstyle'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'github-pages'
 
 // Default tasks
 defaultTasks 'licenseFormat', 'check', 'build'
@@ -104,3 +107,13 @@ jar.manifest.mainAttributes(
         "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
         "Implementation-Vendor": url)
 
+githubPages {
+  repoUri = 'https://github.com/SpongePowered/SpongeAPI/'
+  pages {
+    from javadoc.outputs.files
+  }
+  credentials {
+    username = System.getenv('GH_TOKEN')
+    password = ''
+  }
+}
