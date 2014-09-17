@@ -40,10 +40,10 @@ public interface PlayerJoinEvent extends PlayerEvent {
     String getMessage();
     
     /**
-	 * Sets the join message that will be displayed when the player joins
-	 *
-	 * @param message to be set
-	 */
+     * Sets the join message that will be displayed when the player joins
+     *
+     * @param message to be set
+     */
     void setMessage(String message);
     
 }

@@ -32,12 +32,12 @@ import org.spongepowered.api.entity.Player;
  */
 public interface PlayerQuitEvent extends PlayerEvent {
 	
-	/**
-	 * Reasons that a {@link PlayerQuitEvent} can have
-	 */
-	public enum QuitReason {
-
-	}
+    /**
+     * Reasons that a {@link PlayerQuitEvent} can have
+     */
+    public enum QuitReason {
+    
+    }
 
     /**
      * Gets the message that will be broadcast when a player leave
@@ -47,16 +47,16 @@ public interface PlayerQuitEvent extends PlayerEvent {
     String getMessage();
     
     /**
-	 * Sets the message that will be displayed when the player leave
-	 *
-	 * @param message to be set
-	 */
+     * Sets the message that will be displayed when the player leave
+     *
+     * @param message to be set
+     */
     void setMessage(String message);
     
     /**
      * Gets the reason for the quit
-	 *
-	 * @return reason for the quit
+     *
+     * @return reason for the quit
      */
     QuitReason getReason();
     
