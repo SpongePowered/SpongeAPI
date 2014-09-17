@@ -28,35 +28,35 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.entity.Player;
 
 /**
- * Called when a {@link Player} leave the game
+ * Called when a {@link Player} leave the game.
  */
 public interface PlayerQuitEvent extends PlayerEvent {
 	
     /**
-     * Reasons that a {@link PlayerQuitEvent} can have
+     * Reasons that a {@link PlayerQuitEvent} can have.
      */
     public enum QuitReason {
     
     }
 
     /**
-     * Gets the message that will be broadcast when a player leave
+     * Gets the message that will be broadcast when a player leave.
      *
      * @return The join message
      */
     String getMessage();
     
     /**
-     * Sets the message that will be displayed when the player leave
+     * Sets the message that will be displayed when the player leave.
      *
      * @param message to be set
      */
     void setMessage(String message);
     
     /**
-     * Gets the reason for the quit
+     * Gets the reason for the quit.
      *
-     * @return reason for the quit
+     * @return The reason for the quit.
      */
     QuitReason getReason();
     

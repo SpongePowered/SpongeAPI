@@ -28,21 +28,21 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.entity.Player;
 
 /**
- * Called when a {@link Player} joins the game
+ * Called when a {@link Player} joins the game.
  */
 public interface PlayerJoinEvent extends PlayerEvent {
 
     /**
-     * Gets the join message that will be broadcast when a player joins
+     * Gets the join message that will be broadcast when a player joins.
      *
      * @return The join message
      */
     String getMessage();
     
     /**
-     * Sets the join message that will be displayed when the player joins
+     * Sets the join message that will be displayed when the player joins.
      *
-     * @param message to be set
+     * @param The message to be set.
      */
     void setMessage(String message);
     
