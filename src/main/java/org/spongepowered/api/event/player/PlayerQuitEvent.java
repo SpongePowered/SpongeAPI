@@ -37,26 +37,39 @@ public interface PlayerQuitEvent extends PlayerEvent {
      */
     public enum QuitReason {
 
+        /**
+         * The {@link Player} has disconnected the game.
+         */
+        DISCONNECT,
+        /**
+         * The {@link Player} was kicked out of the game.
+         */
+        KICK,
+        /**
+         * The quit of the {@link Player} is because of an error.
+         */
+        ERROR
+
     }
 
     /**
      * Gets the message that will be broadcast when a player leave.
      *
-     * @return The join message.
+     * @return The join message
      */
     String getMessage();
 
     /**
      * Sets the message that will be displayed when the player leave.
      *
-     * @param message The message to be set.
+     * @param message The message to be set
      */
     void setMessage(String message);
 
     /**
      * Gets the reason for the quit.
      *
-     * @return The reason for the quit.
+     * @return The reason for the quit
      */
     QuitReason getReason();
 
