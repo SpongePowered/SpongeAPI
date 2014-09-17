@@ -31,6 +31,13 @@ import org.spongepowered.api.entity.Player;
  * Called when a {@link Player} leave the game
  */
 public interface PlayerQuitEvent extends PlayerEvent {
+	
+	/**
+	 * Reasons that a {@link PlayerQuitEvent} can have
+	 */
+	public enum QuitReason {
+
+	}
 
     /**
      * Gets the message that will be broadcast when a player leave
@@ -47,10 +54,10 @@ public interface PlayerQuitEvent extends PlayerEvent {
     void setMessage(String message);
     
     /**
-     * Gets if the player was kicked
+     * Gets the reason for the quit
 	 *
-	 * @return true if the player was kicked
+	 * @return reason for the quit
      */
-    boolean isKick();
+    QuitReason getReason();
     
 }
