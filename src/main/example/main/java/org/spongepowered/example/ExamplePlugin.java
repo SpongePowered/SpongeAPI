@@ -7,9 +7,9 @@ import org.spongepowered.api.event.state.InitializationEvent;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.event.state.ServerStartingEvent;
 import org.spongepowered.api.event.voxel.VoxelEvent;
-import org.spongepowered.api.plugin.SpongePlugin;
+import org.spongepowered.api.plugin.Plugin;
 
-@SpongePlugin(id = "ExamplePlugin", name = "Example")
+@Plugin(id = "ExamplePlugin", name = "Example")
 public class ExamplePlugin {
     Logger logger;
     @EventHandler

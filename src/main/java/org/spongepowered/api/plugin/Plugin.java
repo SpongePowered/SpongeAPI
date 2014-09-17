@@ -36,7 +36,7 @@ import java.lang.annotation.Target;
  */
 @Target(TYPE)
 @Retention(RUNTIME)
-public @interface SpongePlugin {
+public @interface Plugin {
 
     /**
      * An ID for the plugin to be used internally. The ID should be unique as to
