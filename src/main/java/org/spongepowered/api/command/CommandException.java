@@ -23,41 +23,51 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.command;
 
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-
-import java.io.File;
+import javax.annotation.Nullable;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Thrown when an executed command raises an error or when execution of
+ * the command failed.
  */
-public interface PreInitializationEvent extends StateEvent {
+public class CommandException extends Exception {
+
+    private static final long serialVersionUID = 4626722936890074825L;
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
+     * Construct a new exception with a {@code null} message.
      */
-    public Logger getPluginLog();
+    public CommandException() {
+    }
 
     /**
+     * Construct a new exception with the given message.
      *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
+     * @param message The detail message
      */
-    public File getSuggestedConfigurationFile();
+    public CommandException(@Nullable String message) {
+        super(message);
+    }
 
     /**
+     * Construct a new exception with the given message and the given cause.
      *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
+     * @param message The detail message
+     * @param cause The cause
      */
-    public File getSuggestedConfigurationDirectory();
+    public CommandException(@Nullable String message, @Nullable Throwable cause) {
+        super(message, cause);
+    }
 
     /**
+     * Constructs a new exception with the specified cause and a detail
+     * message of.
      *
-     * @return the config folder
+     * @param cause The cause
      */
-    public File getConfigurationDirectory();
+    public CommandException(@Nullable Throwable cause) {
+        super(cause);
+    }
 
 }

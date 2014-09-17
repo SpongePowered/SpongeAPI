@@ -23,41 +23,51 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.command;
 
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-
-import java.io.File;
+import java.util.Set;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Provides information about a mapping between a command and its aliases.
+ *
+ * <p>Implementations are not required to implement a sane
+ * {@link #equals(Object)} but may choose to do so.</p>
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface CommandMapping {
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
+     * Get the primary alias.
      *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
+     * @return The primary alias
      */
-    public File getSuggestedConfigurationFile();
+    String getPrimaryAlias();
 
     /**
+     * Get an immutable list of all aliases.
      *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
+     * <p>The returned list must contain at least one entry, of which one must
+     * be the one returned by {@link #getPrimaryAlias()}.</p>
+     *
+     * <p>There may be several versions of the same alias with different
+     * casing, although generally implementations should ignore the casing
+     * of aliases.</p>
+     *
+     * @return A set of aliases
      */
-    public File getSuggestedConfigurationDirectory();
+    Set<String> getAllAliases();
 
     /**
+     * Get the callable
      *
-     * @return the config folder
+     * @return The callable
      */
-    public File getConfigurationDirectory();
+    CommandCallable getCallable();
+
+    /**
+     * Get the description of the command.
+     *
+     * @return The description
+     */
+    Description getDescription();
 
 }

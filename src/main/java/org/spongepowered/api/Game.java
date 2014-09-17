@@ -43,13 +43,6 @@ import javax.annotation.Nullable;
 public interface Game {
 
     /**
-     * Gets the {@link Logger} of the implementation.
-     *
-     * @return The logger
-     */
-    Logger getLogger();
-
-    /**
      * Returns the {@link Platform} the implementation
      * is executing from.
      *

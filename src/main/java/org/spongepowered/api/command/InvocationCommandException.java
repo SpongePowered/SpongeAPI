@@ -23,41 +23,36 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.command;
 
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-
-import java.io.File;
+import javax.annotation.Nullable;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Thrown when invocation of a command fails, wrapping the exception that
+ * is thrown.
  */
-public interface PreInitializationEvent extends StateEvent {
+public class InvocationCommandException extends CommandException {
+
+    private static final long serialVersionUID = 7859473889077167378L;
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
+     * Construct a new exception with the given message and the given cause.
      *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
+     * @param message The detail message
+     * @param cause The cause
      */
-    public File getSuggestedConfigurationFile();
+    public InvocationCommandException(@Nullable String message, @Nullable Throwable cause) {
+        super(message, cause);
+    }
 
     /**
+     * Constructs a new exception with the specified cause and a detail
+     * message of.
      *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
+     * @param cause The cause
      */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
+    public InvocationCommandException(@Nullable Throwable cause) {
+        super(cause);
+    }
 
 }

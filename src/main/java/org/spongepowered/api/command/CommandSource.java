@@ -23,41 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
-
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-
-import java.io.File;
+package org.spongepowered.api.command;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Something that can execute commands.
+ *
+ * <p>Examples of potential implementations include players, the server console,
+ * RCON clients, web-based clients, command blocks, and so on.</p>
  */
-public interface PreInitializationEvent extends StateEvent {
-
-    /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
-     *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
-     *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
-     */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
-
+public interface CommandSource {
 }

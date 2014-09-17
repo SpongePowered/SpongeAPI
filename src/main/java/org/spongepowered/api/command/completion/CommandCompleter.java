@@ -23,41 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.command.completion;
 
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.command.CommandSource;
 
-import java.io.File;
+import java.util.List;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Completes typed-in commands by providing a list of suggestions to replace
+ * the last typed in word with.
+ *
+ * <p>Words are separated from each other by space characters.</p>
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface CommandCompleter {
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
+     * Get a list of suggestions based on input.
      *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
      *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
+     * @param source The command source
+     * @param arguments The arguments entered up to this point
+     * @return A list of suggestions
+     * @throws CommandException Thrown if there was a parsing error
      */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
+    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
 
 }

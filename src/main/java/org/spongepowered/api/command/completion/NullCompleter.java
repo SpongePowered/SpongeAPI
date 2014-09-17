@@ -23,41 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.command.completion;
 
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.command.CommandSource;
 
-import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Always returns an empty list of suggestions.
  */
-public interface PreInitializationEvent extends StateEvent {
+public class NullCompleter implements CommandCompleter {
 
-    /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
-     *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
-     *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
-     */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
+    @Override
+    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
+        return Collections.emptyList();
+    }
 
 }

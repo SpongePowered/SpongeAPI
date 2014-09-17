@@ -23,41 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.command.completion;
 
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
+import org.junit.Test;
+import org.spongepowered.api.command.CommandSource;
 
-import java.io.File;
+import static org.hamcrest.Matchers.empty;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 
-/**
- * Represents {@link GameState#PRE_INITIALIZATION} event
- */
-public interface PreInitializationEvent extends StateEvent {
+public class NullCompleterTest {
 
-    /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
-     *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
-     *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
-     */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
+    @Test
+    public void testGetSuggestions() throws Exception {
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), ""), empty());
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "example"), empty());
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "parent child"), empty());
+    }
 
 }
