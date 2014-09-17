@@ -38,7 +38,7 @@ public interface PlayerJoinEvent extends PlayerEvent {
      * @return The join message.
      */
     String getMessage();
-    
+
     /**
      * Sets the join message that will be displayed when the player joins.
      *
