@@ -23,10 +23,12 @@
  */
 package org.spongepowered.api.block;
 
+import javax.annotation.Nullable;
+
 /**
  * Interface that represents a particular block state of a block.
  *
- * Block states can can be various different types.
+ * <p>Block states can can be various different types.<p/>
  */
 public interface BlockState {
 
@@ -38,11 +40,11 @@ public interface BlockState {
     boolean isBoolean();
 
     /**
-     * Gets the value of the block state if it is of type boolean,
-     * if not an exception is thrown.
+     * Gets the value of the block state if it is of type boolean, if not an
+     * exception is thrown.
      *
-     * @throws BlockStateTypeException If block state isn't of type boolean
      * @return Value of the block state
+     * @throws BlockStateTypeException If block state isn't of type boolean
      */
     boolean getAsBoolean();
 
@@ -54,11 +56,11 @@ public interface BlockState {
     boolean isInt();
 
     /**
-     * Gets the value of the block state if it is of type int,
-     * if not an exception is thrown.
+     * Gets the value of the block state if it is of type int, if not an
+     * exception is thrown.
      *
-     * @throws BlockStateTypeException If block state isn't of type int
      * @return Value of the block state
+     * @throws BlockStateTypeException If block state isn't of type int
      */
     int getAsInt();
 
@@ -70,12 +72,12 @@ public interface BlockState {
     boolean isString();
 
     /**
-     * Gets the value of the block state if it is of type {@link String},
-     * if not an exception is thrown.
+     * Gets the value of the block state if it is of type {@link String}, if not
+     * an exception is thrown.
      *
+     * @return Value of the block state
      * @throws BlockStateTypeException If block state isn't of type
      *     {@link String}
-     * @return Value of the block state
      */
     String getAsString();
 
@@ -87,12 +89,12 @@ public interface BlockState {
     boolean isDirection();
 
     /**
-     * Gets the value of the block state if it is of type {@link Direction},
-     * if not an exception is thrown.
+     * Gets the value of the block state if it is of type {@link Direction}, if
+     * not an exception is thrown.
      *
+     * @return Value of the block state
      * @throws BlockStateTypeException If block state isn't of type
      *     {@link Direction}
-     * @return Value of the block state
      */
     Direction getAsDirection();
 
@@ -104,16 +106,20 @@ public interface BlockState {
      */
     boolean isOfType(Class<?> type);
 
-    // should this be able to return null?
     /**
-     * Gets the value of the block state if it is of type of {@code type},
-     * if not an exception is thrown.
+     * Gets the value of the block state if it is of type of {@code type}, if
+     * not an exception is thrown.
+     *
+     * <p>Null can be returned if it's of the correct type and has the
+     * {@code null} value.</p>
      *
      * @param <T>  Type of value that will be returned
      * @param type Type of value that will be returned
+     *
+     * @return Value of the block state
      * @throws BlockStateTypeException If block state isn't of type
      *     {@link Direction}
-     * @return Value of the block state
      */
+    @Nullable
     <T> T getAsType(Class<T> type);
 }

@@ -25,17 +25,18 @@
 
 package org.spongepowered.api.block;
 
-import javax.annotation.Nullable;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * Describes a voxel. Child classes define specific functionality.
  *
- * The concept of block states were introduced in Minecraft 1.8 to replace
+ * <p>The concept of block states were introduced in Minecraft 1.8 to replace
  * metadata. Block states are described with a series of name-value pairs. For
  * this API names are referred to as attributes and values as
  * {@link BlockState}. For every block with the same ID got from
- * {@link #getID()} the set of attributes are the same.
+ * {@link #getID()} the set of attributes are the same.<p/>
  */
 public interface Block {
 
@@ -49,14 +50,14 @@ public interface Block {
     String getID();
 
     /**
-     * Gets the {@link org.spongepowered.api.block.BlockState} of the block.
-     * <p/>
-     * Ex. "minecraft:stone" block. has a variant block state which determine
+     * Gets the {@link BlockState} of the block.
+     *
+     * <p>Ex. "minecraft:stone" block. has a variant block state which determine
      * if it is smooth, granite, smooth_granite, diorite, smooth_diorite,
-     * andesite or smooth_andesite.
-     * <p/>
-     * If there isn't a attribute for this block with the name {@code attribute}
-     * then null is returned.
+     * andesite or smooth_andesite.<p/>
+     *
+     * <p>If there isn't a attribute for this block with the name
+     * {@code attribute} then null is returned.<p/>
      *
      * @param attribute Name of the attribute being sort
      * @return Block state
@@ -68,8 +69,8 @@ public interface Block {
      * Gets all attributes for this block. If {@link Block}'s have the same ID,
      * which is obtained by {@link #getID()} then the set of attributes will be
      * equal.
-     * <p/>
-     * Suppose {@code a} and {@code b} are instances of {@link Block}
+     *
+     * <p/>Suppose {@code a} and {@code b} are instances of {@link Block}
      * if {@code a.getID().equals(b.getID())} then
      * {@code a.getBlockStateAttributes().equals(b.getBlockStateAttributes())}.
      * <p/>
@@ -79,48 +80,51 @@ public interface Block {
     Set<String> getBlockStateAtributes();
 
     /**
-     * Create a new block with the same ID and block state
-     * apart from the attribute {@code attribute} which is set to {@code value}.
-     * <p/>
-     * If there is not a attribute {@code attribute} then null is returned.
+     * Create a new block with the same ID and block state apart from the
+     * attribute {@code attribute} which is set to {@code value}.
      *
-     * @throws BlockStateTypeException if the attributes type isn't int or is
-     *     out of range
+     * <p>If there is not a attribute {@code attribute} then null is
+     * returned.\</p>
+     *
      * @param attribute The block state attribute to be changed
      * @param value     The value to be changed to
      * @return A new instance of {@link Block} with value of the block state
      *     attribute is {@code value}
+     * @throws BlockStateTypeException if the attributes type isn't int or is
+     *     out of range
      */
     @Nullable
     Block setBlockState(String attribute,int value);
 
     /**
-     * Create a new block with the same ID and block state
-     * apart from the attribute {@code attribute} which is set to {@code value}.
-     * <p/>
-     * If there is not a attribute {@code attribute} then null is returned.
+     * Create a new block with the same ID and block state apart from the
+     * attribute {@code attribute} which is set to {@code value}.
      *
-     * @throws BlockStateTypeException if the attributes type isn't boolean
+     * <p>If there is not a attribute {@code attribute} then null is
+     * returned.</p>
+     *
      * @param attribute The block state attribute to be changed
      * @param value     The value to be changed to
      * @return A new instance of {@link Block} with value of the block state
      *     attribute is {@code value}
+     * @throws BlockStateTypeException if the attributes type isn't boolean
      */
     @Nullable
     Block setBlockState(String attribute,boolean value);
 
     /**
-     * Create a new block with the same ID and block state
-     * apart from the attribute {@code attribute} which is set to {@code value}.
-     * <p/>
-     * If there is not a attribute {@code attribute} then null is returned.
+     * Create a new block with the same ID and block state apart from the
+     * attribute {@code attribute} which is set to {@code value}.
      *
-     * @throws BlockStateTypeException If the attributes type isn't of the type
-     *     of {@code value}
+     * <p>If there is not a attribute {@code attribute} then null is
+     * returned.</p>
+     *
      * @param attribute The block state attribute to be changed
      * @param value     The value to be changed to
      * @return A new instance of {@link Block} with value of the block state
-     * attribute is {@code value}
+     *     attribute is {@code value}
+     * @throws BlockStateTypeException If the attributes type isn't of the type
+     *     of {@code value}
      */
     @Nullable
     Block setBlockState(String attribute,Object value);

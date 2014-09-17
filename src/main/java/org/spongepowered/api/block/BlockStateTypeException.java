@@ -24,13 +24,14 @@
 package org.spongepowered.api.block;
 
 /**
- *  Exception that is thrown when trying to get the value of a {@link org.spongepowered.api.block.BlockState} with an incorrect type
+ *  Exception that is thrown when trying to get the value of a
+ *  {@link BlockState} with an incorrect type.
  */
 public class BlockStateTypeException extends RuntimeException {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-    BlockStateTypeException(final String s) {
-        super(s);
+    BlockStateTypeException(final String reason) {
+        super(reason);
     }
 }
