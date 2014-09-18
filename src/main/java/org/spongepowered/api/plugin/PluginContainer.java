@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,36 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.plugin;
 
+import java.io.File;
+
+/**
+ * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
+ * information from the annotation for easier use.
+ */
 public interface PluginContainer {
+
     /**
-     * Gets the id of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets the id of the {@link Plugin} within this container.
      *
      * @return The id
      */
     String getID();
 
     /**
-     * Gets the name of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets the name of the {@link Plugin} within this container.
      *
      * @return The name
      */
     String getName();
 
     /**
-     * Gets the version of the {@link org.spongepowered.api.plugin.Plugin} within this container.
+     * Gets the version of the {@link Plugin} within this container.
      *
      * @return The name
      */
     String getVersion();
 
     /**
-     * Returns the created instance of {@link org.spongepowered.api.plugin.Plugin}.
-     * <p/>
-     * TODO Provide a way to not dereference this back to Object
+     * Returns the created instance of {@link Plugin}.
      *
      * @return The instance
      */
     Object getInstance();
+
 }
