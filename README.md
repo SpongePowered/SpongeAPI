@@ -9,6 +9,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Wiki]
 * [Community Chat]: #sponge on irc.esper.net
 * [Development Chat]: #spongedev on irc.esper.net
+* [Unofficial Jenkins CI]
 
 ## Prerequisites
 * [Java] 6
@@ -34,3 +35,4 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [MIT License]: http://www.tldrlegal.com/license/mit-license
 [Community Chat]: https://webchat.esper.net/?channels=sponge
 [Development Chat]: https://webchat.esper.net/?channels=spongedev
+[Unofficial Jenkins CI]: http://build.yu8.me:8080/job/SpongeAPI/
