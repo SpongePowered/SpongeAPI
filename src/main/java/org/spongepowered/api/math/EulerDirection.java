@@ -33,23 +33,47 @@ public interface EulerDirection {
     /**
      * Returns the pitch component.
      *
-     * @return the pitch component.
+     * @return the pitch component
      */
     float getPitch();
 
     /**
      * Returns the yaw component.
      *
-     * @return the yaw component.
+     * @return the yaw component
      */
     float getYaw();
 
     /**
-     * Converts this Euler Direction into a {@link Vector2d}
+     * Converts this Euler Direction into a {@link Vector2d}.
      *
-     * The vector will represent the directions that this direction is facing in x,y,z coordinates, with a length of 1.
+     * The vector will represent the directions that this direction is facing in x, y, z coordinates, with a length of 1.
      *
-     * @return the vector representation of this direction.
+     * @return the vector representation of this direction
      */
     Vector2d toVector();
+
+    @Override
+    int compareTo(EulerDirection v);
+
+    @Override
+    boolean equals(Object o);
+
+    @Override
+    int hashCode();
+
+    /**
+     * Returns a deep copy of this direction.
+     *
+     * @return A deep copy
+     */
+    EulerDirection clone();
+
+    /**
+     * Returns a string representation of this direction in the form "(pitch, yaw)".
+     *
+     * @return This direction as a string
+     */
+    @Override
+    String toString();
 }
