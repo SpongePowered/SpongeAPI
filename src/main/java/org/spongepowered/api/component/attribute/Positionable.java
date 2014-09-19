@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.component.attribute;
 
-import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.math.Vector3d;
 
 /**
  * An entity that has a position.
@@ -37,13 +37,13 @@ public interface Positionable {
      * 
      * @return position The position
      */
-    Vector3f getPosition();
+    Vector3d getPosition();
 
     /**
      * Sets the position.
      * 
      * @param position The position to set to
      */
-    void setPosition(Vector3f position);
+    void setPosition(Vector3d position);
 
 }
