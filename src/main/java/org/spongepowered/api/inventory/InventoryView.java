@@ -26,7 +26,7 @@ package org.spongepowered.api.inventory;
 
 /**
  * GameObject, cs.Entity Logical an inventory.
- * Contains {@link org.spongepowered.api.inventory.InventoryComponent}.
+ * Contains {@link InventoryComponent}.
  */
 public interface InventoryView extends Iterable<InventoryComponent> {
 

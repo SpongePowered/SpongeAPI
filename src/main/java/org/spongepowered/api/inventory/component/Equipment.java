@@ -33,22 +33,22 @@ import org.spongepowered.api.inventory.SlotType;
 public interface Equipment extends InventoryComponent {
 
     /**
-     * @return the slot for the Helmet
+     * @return The slot for the Helmet
      */
     SlotType slotHelmet();
 
     /**
-     * @return the slot for the Chestplate
+     * @return The slot for the Chestplate
      */
     SlotType slotChestplate();
 
     /**
-     * @return the slot for the Leggings
+     * @return The slot for the Leggings
      */
     SlotType slotLeggings();
 
     /**
-     * @return the slot for the Boots
+     * @return The slot for the Boots
      */
     SlotType slotBoots();
 }

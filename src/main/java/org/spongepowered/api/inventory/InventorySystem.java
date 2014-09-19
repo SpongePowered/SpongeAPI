@@ -31,14 +31,14 @@ import org.spongepowered.api.inventory.view.InventoryViewPlayer;
 import javax.annotation.Nullable;
 
 /**
- * Manage all {@link org.spongepowered.api.inventory.InventoryView}
+ * Manage all {@link InventoryView}
  */
 public interface InventorySystem {
 
     /**
-     * @param entity a entity
+     * @param entity Minecraft Entity
      *
-     * @return the Inventory or null
+     * @return Inventory or null
      */
     @Nullable
     InventoryView getInventory(Entity entity);
@@ -46,9 +46,9 @@ public interface InventorySystem {
     /**
      * Try to get a vanilla Player Inventory from the player
      *
-     * @param player to fetch a vanilla inventory
+     * @param player For vanilla inventory fetching
      *
-     * @return vanilla player inventory or null if failed
+     * @return Vanilla player inventory or null if failed
      */
     // TODO: maybe throw exception?
     @Nullable
@@ -56,7 +56,7 @@ public interface InventorySystem {
 
     /**
      * @param component Inventory Part
-     * @param slot      abstract slot
+     * @param slot Abstract slot
      *
      * @return item (if empty air)
      */
@@ -64,8 +64,8 @@ public interface InventorySystem {
 
     /**
      * @param component Inventory Part
-     * @param slot      abstract slot
-     * @param stack     Item for replacement
+     * @param slot Abstract slot
+     * @param stack Item for replacement
      *
      * @return item was set
      */
@@ -73,7 +73,7 @@ public interface InventorySystem {
 
     /**
      * @param component Inventory Part
-     * @param slot      raw slot index
+     * @param slot Raw slot index
      *
      * @return item (if empty air)
      */
@@ -81,8 +81,8 @@ public interface InventorySystem {
 
     /**
      * @param component Inventory Part
-     * @param slot      raw slot index
-     * @param stack     item for replacement
+     * @param slot Raw slot index
+     * @param stack Item for replacement
      *
      * @return item was set
      */

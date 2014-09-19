@@ -30,7 +30,7 @@ package org.spongepowered.api.inventory;
 public interface InventoryHolder {
 
     /**
-     * @return the View of the inventory with components
+     * @return View of the inventory with components
      */
     InventoryView getInventory();
 }

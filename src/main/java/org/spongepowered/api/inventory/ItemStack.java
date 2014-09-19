@@ -71,7 +71,7 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
      * @param quantity Quantity
      *
      * @throws IllegalArgumentException If quantity set exceeds the
-     *                                  {@link ItemStack#getMaxStackQuantity()}
+     * {@link ItemStack#getMaxStackQuantity()}
      */
     void setQuantity(int quantity) throws IllegalArgumentException;
 

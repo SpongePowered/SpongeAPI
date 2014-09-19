@@ -35,46 +35,55 @@ public interface InventoryComponent extends Iterable<ItemStack> {
     int getSlotSize();
 
     /**
-     * Calls {@link org.spongepowered.api.inventory.InventorySystem#getItem(InventoryComponent, SlotType)}
+     * Calls {@link InventorySystem#getItem(InventoryComponent, SlotType)}
      *
-     * @param type abstraction for the slot index
+     * @param type Abstraction for the slot index
      *
-     * @return Item stack for a {@link org.spongepowered.api.inventory.SlotType}
+     * @return Item stack for a {@link SlotType}
      */
     ItemStack getItem(SlotType type);
 
     /**
-     * Calls {@link org.spongepowered.api.inventory.InventorySystem#setItem(InventoryComponent, SlotType, ItemStack)}
+     * Calls {@link InventorySystem#setItem(InventoryComponent, SlotType, ItemStack)}
+     *
+     * @param slot Abstract slot
+     * @param stack Item for replacement
      */
     boolean setItem(SlotType slot, ItemStack stack);
 
     /**
      * Subject to change.
-     * Calls {@link org.spongepowered.api.inventory.InventorySystem#getItem(InventoryComponent, int)}
+     * Calls {@link InventorySystem#getItem(InventoryComponent, int)}
      *
-     * @param slot raw slot count for the component
+     * @param slot Raw slot count for the component
      *
      * @return Item stack for the raw slot index
      */
     ItemStack getItem(int slot);
 
     /**
-     * Calls {@link org.spongepowered.api.inventory.InventorySystem#setItem(InventoryComponent, int, ItemStack)}
+     * Calls {@link InventorySystem#setItem(InventoryComponent, int, ItemStack)}
+     *
+     * @param slot Raw slot index
+     * @param stack Item for replacement
+     *
+     * @return item was set
      */
     boolean setItem(int slot, ItemStack stack);
 
     /**
-     * Calls {@link org.spongepowered.api.inventory.InventorySystem#clear(InventoryComponent)} )}
+     * Calls {@link InventorySystem#clear(InventoryComponent)} )}
+     * Clear the content of the component
      */
     void clear();
 
     /**
-     * @return get first free slot.
+     * @return Get first free slot.
      */
     SlotType getFirstAirSlot();
 
     /**
-     * @return return the entity/parent/inventory
+     * @return Entity/Parent/Inventory
      */
     InventoryView getInventory();
 }
