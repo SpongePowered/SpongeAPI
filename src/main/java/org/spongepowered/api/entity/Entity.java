@@ -70,8 +70,9 @@ public interface Entity extends Flammable, Movable, Positionable, Rotatable {
     
     /**
      * Teleports this entity to a target position.
-     * </p>
-     * If world parameter is null, it will teleport an entity to a position in the same world
+     * 
+     * <p>If world parameter is null, it will teleport an entity to a position
+     * in the same world.</p>
      * 
      * @param position The Vector3d to teleport this entity to
      * @param world The world to teleport this entity to. Can be null
@@ -81,8 +82,10 @@ public interface Entity extends Flammable, Movable, Positionable, Rotatable {
     
     /**
      * Teleports this entity to a coordinate specified by x, y, z.
-     * </p>
-     * If world parameter is null, it will teleport an entity to the coordinates in the same world
+     * 
+     * <p>If world parameter is null, it will teleport an entity to the 
+     * coordinates in the same world</p>
+     * 
      * @param x The x coordinate
      * @param y The y coordinate
      * @param z The z coordinate
