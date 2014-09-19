@@ -29,8 +29,12 @@ import org.spongepowered.api.component.attribute.Flammable;
 import org.spongepowered.api.component.attribute.Movable;
 import org.spongepowered.api.component.attribute.Positionable;
 import org.spongepowered.api.component.attribute.Rotatable;
+import org.spongepowered.api.math.Vector3d;
+import org.spongepowered.api.world.World;
 
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * An entity is a Minecraft entity.
@@ -56,5 +60,35 @@ public interface Entity extends Flammable, Movable, Positionable, Rotatable {
      * @return The entity's {@link UUID}
      */
     UUID getUniqueID();
+    
+    /**
+     * Gets the world that this entity is in
+     * 
+     * @return World containing this entity
+     */
+    World getWorld();
+    
+    /**
+     * Teleports this entity to a target position.
+     * </p>
+     * If world parameter is null, it will teleport an entity to a position in the same world
+     * 
+     * @param position The Vector3d to teleport this entity to
+     * @param world The world to teleport this entity to. Can be null
+     * @see #teleport(double, double, double, World)
+     */
+    void teleport(Vector3d position, @Nullable World world);
+    
+    /**
+     * Teleports this entity to a coordinate specified by x, y, z.
+     * </p>
+     * If world parameter is null, it will teleport an entity to the coordinates in the same world
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param world The world these coordinates reside in. Can be null
+     * @see #teleport(Vector3d, World)
+     */
+    void teleport(double x, double y, double z, @Nullable World world);
 
 }

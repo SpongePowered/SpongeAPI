@@ -1,8 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
- * Copyright (c) contributors
+ * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,44 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.item;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.entity.Entity;
 
-public interface Player extends HumanEntity {
+/**
+ * Represents an Item entity
+ */
+public interface ItemEntity extends Entity {
 
-    /**
-     * Gets the players last known username.
-     * 
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set, returns their current
-     * username.
-     * 
-     * @return The player's display name
-     */
-    String getDisplayName();
-
-    /**
-     * Checks if this player has joined the server before.
-     * 
-     * @return true If player has joined before
-     */
-    boolean hasJoinedBefore();
-
-    /**
-     * Checks if this player is banned.
-     * 
-     * @return true If banned
-     */
-    boolean isBanned();
-
-    /**
-     * Checks if this player is whitelisted.
-     * 
-     * @return true If whitelisted
-     */
-    boolean isWhitelisted();
 }
