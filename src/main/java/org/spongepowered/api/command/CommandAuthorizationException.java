@@ -28,7 +28,8 @@ package org.spongepowered.api.command;
 import javax.annotation.Nullable;
 
 /**
- * Thrown when a command is called without the required permissions.
+ * Thrown when a command is called without authorization or the required
+ * permissions.
  */
 public class CommandAuthorizationException extends CommandException {
 
