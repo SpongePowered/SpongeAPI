@@ -23,38 +23,38 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-
-import java.util.UUID;
+package org.spongepowered.api.component.attribute;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An entity that contains a hunger level.
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
+public interface Feedable {
+    
+    /**
+     * Gets the current hunger level.
+     * 
+     * @return The hunger level
+     */
+    double getHunger();
+    
+    /**
+     * Gets the current saturation level.
+     * 
+     * @return The saturation level
+     */
+    double getSaturation();
 
     /**
-     * Gets the unique ID for this entity
-     *
-     * @return The entity's {@link UUID}
+     * Sets the current hunger level.
+     * 
+     * @param hunger The hunger level
      */
-    UUID getUniqueID();
+    void setHunger(double hunger);
 
+    /**
+     * Sets the current saturation level.
+     * 
+     * @param saturation The saturation level
+     */
+    void setSaturation(double saturation);
 }

@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.component.attribute.Damageable;
+
 public interface LivingEntity extends Entity, Damageable {
 
 }

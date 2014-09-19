@@ -23,38 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.component.attribute;
 
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-
-import java.util.UUID;
+import org.spongepowered.api.math.Vector3f;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An entity that has a position.
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
+public interface Positionable {
 
     /**
-     * Gets the unique ID for this entity
-     *
-     * @return The entity's {@link UUID}
+     * Gets the position.
+     * 
+     * @return position The position
      */
-    UUID getUniqueID();
+    Vector3f getPosition();
+
+    /**
+     * Sets the position.
+     * 
+     * @param position The position to set to
+     */
+    void setPosition(Vector3f position);
 
 }

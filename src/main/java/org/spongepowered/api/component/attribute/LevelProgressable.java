@@ -23,38 +23,39 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-
-import java.util.UUID;
+package org.spongepowered.api.component.attribute;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An entity that contains a level and can acquire experience.
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
+public interface LevelProgressable {
 
     /**
-     * Gets the unique ID for this entity
-     *
-     * @return The entity's {@link UUID}
+     * Gets the experience value.
+     * 
+     * @return The experience value
      */
-    UUID getUniqueID();
+    double getExperience();
+
+    /**
+     * Returns the level value.
+     * 
+     * @return The level value
+     */
+    int getLevel();
+
+    /**
+     * Sets the experience value.
+     * 
+     * @param experience The experience value
+     */
+    void setExperience(double experience);
+
+    /**
+     * Sets the level value.
+     * 
+     * @param level The Level value
+     */
+    void setLevel(int level);
 
 }

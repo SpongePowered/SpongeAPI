@@ -23,38 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-
-import java.util.UUID;
+package org.spongepowered.api.component.attribute;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An entity that can be set on fire.
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
+public interface Flammable {
 
     /**
-     * Gets the unique ID for this entity
+     * Returns whether the entity is on fire.
      *
-     * @return The entity's {@link UUID}
+     * @return Whether {@link #getDuration()} is greater than 0
      */
-    UUID getUniqueID();
+    boolean isBurning();
 
+    /**
+     * Gets the remaining time that the entity will be on fire for.
+     * 
+     * @return The duration in ticks
+     */
+    int getDuration();
+
+    /**
+     * Sets the remaining time for an entity to be on fire.
+     * 
+     * @param ticks The amount in ticks
+     */
+    void setDuration(int ticks);
 }

@@ -23,38 +23,46 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-
-import java.util.UUID;
+package org.spongepowered.api.component.attribute;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An entity that contains a health attribute.
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
+public interface Damageable {
 
     /**
-     * Gets the unique ID for this entity
+     * Subtracts from the health by the given amount.
      *
-     * @return The entity's {@link UUID}
+     * @param amount The damage amount
      */
-    UUID getUniqueID();
+    void damage(double amount);
+
+    /**
+     * Returns the health amount.
+     *
+     * <p>The range of the health depends on the object on which this
+     * method is defined. For players in Minecraft, the nominal range is
+     * between 0 and 20, inclusive, but the range can be adjusted.</p>
+     *
+     * <p>Convention dictates that health does not follow below 0 but this
+     * convention may be broken.</p>
+     *
+     * @return Health value
+     */
+    double getHealth();
+
+    /**
+     * Set the health amount.
+     *
+     * <p>The range of the health depends on the object on which this
+     * method is defined. For players in Minecraft, the nominal range is
+     * between 0 and 20, inclusive, but the range can be adjusted.</p>
+     *
+     * <p>Convention dictates that health does not follow below 0 but this
+     * convention may be broken.</p>
+     *
+     * @param health The health to set to
+     */
+    void setHealth(double health);
 
 }

@@ -23,38 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-
-import java.util.UUID;
+package org.spongepowered.api.component.attribute;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An entity that can be hanged.
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
-
-    /**
-     * Gets the unique ID for this entity
-     *
-     * @return The entity's {@link UUID}
-     */
-    UUID getUniqueID();
+public interface Hangable {
 
 }

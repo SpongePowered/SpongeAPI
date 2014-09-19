@@ -23,32 +23,26 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.component.attribute;
+
+import org.spongepowered.api.math.Vector3f;
 
 /**
- * Something that can have damage/health on it should inherit this
+ * An entity that can attain and hold a velocity.
  */
-public interface Damageable {
+public interface Movable {
+    
+    /**
+     * Gets the velocity value.
+     * 
+     * @return The velocity value
+     */
+    Vector3f getVelocity();
 
     /**
-     * Damages the entity by a specified amount;
-     *
-     * @param amount the damage amount
+     * Sets the velocity value.
+     * 
+     * @param velocity The velocity value
      */
-    void damage(double amount);
-
-    /**
-     * Gets the health of the entity
-     *
-     * @return health of the {@code Damageable}
-     */
-    double getHealth();
-
-    /**
-     * Sets the Health of the {@code Damageable}
-     *
-     * @param health The health to set this damageable's health to
-     */
-    void setHealth(double health);
-
+    void setVelocity(Vector3f velocity);
 }

@@ -23,38 +23,26 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.component.attribute;
 
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-
-import java.util.UUID;
+import org.spongepowered.api.math.Vector3f;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An entity that can be rotated.
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
-
+public interface Rotatable {
+    
     /**
-     * Gets the unique ID for this entity
-     *
-     * @return The entity's {@link UUID}
+     * Gets the rotation as a vector.
+     * 
+     * @return rotation A possibly, but not necessarily, unit vector
      */
-    UUID getUniqueID();
-
+    Vector3f getRotation();
+    
+    /**
+     * Sets the rotation.
+     * 
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(Vector3f rotation);
 }
