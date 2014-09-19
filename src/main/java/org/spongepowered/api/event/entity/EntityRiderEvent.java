@@ -22,32 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.entity.Entity;
 
-import java.util.UUID;
 import javax.annotation.Nullable;
 
-public interface Entity {
+/**
+ * Represents events that involve an {@link Entity} riding another {@link Entity}.
+ */
+public interface EntityRiderEvent {
 
     /**
-     * Gets the unique ID for this entity.
+     * Get the {@link Entity} being ridden in the event.
      *
-     * @return The entity's {@link UUID}
+     * @return The {@link Entity} being ridden
      */
-    UUID getUniqueID();
+    Entity getRiddenEntity();
 
     /**
-     * Whether or not this entity has an entity riding it.
+     * Convenience method for ridden entity {@link Entity#getRider()}.
      *
-     * @return True if an entity is riding
-     */
-    boolean hasRider();
-
-    /**
-     * Gets the entity riding this entity, or null if none.
-     *
-     * @return {@link Entity} rider or null
+     * @return The {@link Entity} rider, or null if none
      */
     @Nullable
     Entity getRider();
