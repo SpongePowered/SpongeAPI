@@ -25,11 +25,6 @@
 
 package org.spongepowered.api.plugin;
 
-import org.spongepowered.api.configuration.Configuration;
-
-import java.io.File;
-
-
 /**
  * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
  * information from the annotation for easier use.
@@ -63,29 +58,4 @@ public interface PluginContainer {
      * @return The instance
      */
     Object getInstance();
-
-    /**
-     * Returns resource folder of the {@link org.spongepowered.api.plugin.Plugin} within this container.
-     * 
-     * @param createIfAbsent If true, creates folder if it doesn't exist on disk
-     * @return The plugin's resource folder
-     */
-    File getResourceFolder(boolean createIfAbsent);
-
-    /**
-     * Gets the default config for the plugin.
-     * 
-     * TODO Document default config name
-     * 
-     * @return The default configuration
-     */
-    Configuration getConfiguration();
-
-    /**
-     * Gets a config with the given name.
-     * 
-     * @param name Name of the config.
-     * @return A custom named configuration.
-     */
-    Configuration getConfiguration(String name);
 }

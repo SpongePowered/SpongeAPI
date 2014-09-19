@@ -27,6 +27,7 @@ package org.spongepowered.api.event.state;
 
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.GameState;
+import org.spongepowered.api.configuration.Configuration;
 
 import java.io.File;
 
@@ -60,4 +61,18 @@ public interface PreInitializationEvent extends StateEvent {
      */
     public File getConfigurationDirectory();
 
+    /**
+     * Gets the suggested config for the plugin.
+     * 
+     * @return The default configuration
+     */
+    Configuration getSuggestedConfiguration();
+
+    /**
+     * Gets a config with the given name.
+     * 
+     * @param name Name of the config.
+     * @return A custom named configuration.
+     */
+    Configuration getConfiguration(String name);
 }
