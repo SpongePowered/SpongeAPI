@@ -48,9 +48,15 @@ import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Collection;
 import java.util.List;
 
@@ -382,5 +388,45 @@ public interface GameRegistry {
      * @return The list of all available {@link DimensionType}s
      */
     List<DimensionType> getDimensionTypes();
+
+    // TODO: Find a better place for these methods
+
+    /**
+     * Loads a {@link Favicon} from the specified encoded string. The format of
+     * the input depends on the implementation.
+     *
+     * @param raw The encoded favicon
+     * @return The loaded favicon
+     * @throws IOException If the favicon couldn't be loaded
+     */
+    Favicon loadFavicon(String raw) throws IOException;
+
+    /**
+     * Loads a favicon from a specified {@link File}.
+     *
+     * @param file The favicon file
+     * @return The loaded favicon from the file
+     * @throws IOException If the favicon couldn't be loaded
+     * @throws FileNotFoundException If the file doesn't exist
+     */
+    Favicon loadFavicon(File file) throws IOException;
+
+    /**
+     * Loads a favicon from a specified {@link URL}.
+     *
+     * @param url The favicon URL
+     * @return The loaded favicon from the URL
+     * @throws IOException If the favicon couldn't be loaded
+     */
+    Favicon loadFavicon(URL url) throws IOException;
+
+    /**
+     * Loads a favicon from a specified {@link InputStream}.
+     *
+     * @param in The favicon input stream
+     * @return The loaded favicon from the input stream
+     * @throws IOException If the favicon couldn't be loaded
+     */
+    Favicon loadFavicon(InputStream in) throws IOException;
 
 }
