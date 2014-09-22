@@ -26,7 +26,7 @@
 package org.spongepowered.api;
 
 /**
- * Effective side platforms
+ * Effective side platforms.
  *
  * <p>A side is what part of minecraft this is being run on. The client, or the
  * server. The internal server is also treated like a dedicated server.</p>

@@ -28,8 +28,8 @@ package org.spongepowered.api.command;
 import javax.annotation.Nullable;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * Thrown when an executed command raises an error or when execution of the
+ * command failed.
  */
 public class CommandException extends Exception {
 

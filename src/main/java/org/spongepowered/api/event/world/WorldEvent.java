@@ -28,12 +28,12 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.world.World;
 
 /**
- * Describes {@link World} events
+ * Describes {@link World} events.
  */
 public interface WorldEvent {
 
     /**
-     * Gets the {@link World} involved in the event
+     * Gets the {@link World} involved in the event.
      *
      * @return The world that this event is involved in
      */

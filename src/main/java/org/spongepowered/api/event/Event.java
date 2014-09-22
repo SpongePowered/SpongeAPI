@@ -28,7 +28,8 @@ package org.spongepowered.api.event;
 import org.spongepowered.api.Game;
 
 /**
- * A game event. A game event can be any sort of event from anywhere, and can be anything.
+ * A game event. A game event can be any sort of event from anywhere, and can
+ * be anything.
  */
 public interface Event {
 

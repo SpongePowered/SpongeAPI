@@ -62,8 +62,8 @@ public interface CommandCallable extends CommandCompleter {
     /**
      * Test whether this command can probably be executed by the given source.
      *
-     * <p>If implementations are unsure if the command can be executed by
-     * the source, {@code true} should be returned. Return values of this method
+     * <p>If implementations are unsure if the command can be executed by the
+     * source, {@code true} should be returned. Return values of this method
      * may be used to determine whether this command is listed in command
      * listings.</p>
      *

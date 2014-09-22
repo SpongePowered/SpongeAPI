@@ -28,12 +28,12 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.world.Chunk;
 
 /**
- * Describes events which involve a {@link Chunk}
+ * Describes events which involve a {@link Chunk}.
  */
 public interface ChunkEvent {
 
     /**
-     * Gets the {@link Chunk} included in the event
+     * Gets the {@link Chunk} included in the event.
      *
      * @return Event {@link Chunk}
      */

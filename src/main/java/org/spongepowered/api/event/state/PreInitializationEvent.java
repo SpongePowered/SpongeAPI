@@ -31,26 +31,28 @@ import org.spongepowered.api.GameState;
 import java.io.File;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Represents {@link GameState#PRE_INITIALIZATION} event.
  */
 public interface PreInitializationEvent extends StateEvent {
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
+     * Gets a logger pre-configured to use the Plugin's ID.
+     *
      * @return A Logger for the plugin
      */
     public Logger getPluginLog();
 
     /**
      *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
+     * @return Plugin Specific Configuration file for smaller plugins that do
+     *         not need an entire directory
      */
     public File getSuggestedConfigurationFile();
 
     /**
      *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
+     * @return Plugin specific Configuration directory for plugins that need
+     *         more than a single config file
      */
     public File getSuggestedConfigurationDirectory();
 

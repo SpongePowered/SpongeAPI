@@ -34,8 +34,7 @@ import org.spongepowered.api.math.Vector3i;
 public interface VoxelVolume {
 
     /**
-     * Gets a specific {@link Block} by its x/y/z
-     * block coordinate.
+     * Gets a specific {@link Block} by its x/y/z block coordinate.
      *
      * @param x X block coordinate
      * @param y Y block coordinate
@@ -45,8 +44,7 @@ public interface VoxelVolume {
     Block getBlock(int x, int y, int z);
 
     /**
-     * Gets a specific {@link Voxel} by its x/y/z
-     * block coordinate.
+     * Gets a specific {@link Voxel} by its x/y/z block coordinate.
      *
      * @param x X block coordinate
      * @param y Y block coordinate
@@ -56,8 +54,7 @@ public interface VoxelVolume {
     Voxel getVoxel(int x, int y, int z);
 
     /**
-     * Gets the {@link Block} at the block
-     * coordinate x/y/z.
+     * Gets the {@link Block} at the block coordinate x/y/z.
      *
      * @param location location of block in Vector3i format
      * @return The block
@@ -66,8 +63,7 @@ public interface VoxelVolume {
 
 
     /**
-     * Gets the {@link Voxel} at the block
-     * coordinate x/y/z.
+     * Gets the {@link Voxel} at the block coordinate x/y/z.
      *
      * @param location of voxel in Vector3i format
      * @return The voxel

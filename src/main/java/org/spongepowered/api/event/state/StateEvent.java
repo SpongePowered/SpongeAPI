@@ -28,7 +28,7 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.event.Event;
 
 /**
- * Parent interface for all state events
+ * Parent interface for all state events.
  */
 public interface StateEvent extends Event {
 

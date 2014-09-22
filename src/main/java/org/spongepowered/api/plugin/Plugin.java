@@ -32,7 +32,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * An annotation used to describe and mark a Sponge plugin
+ * An annotation used to describe and mark a Sponge plugin.
  */
 @Target(TYPE)
 @Retention(RUNTIME)
@@ -60,10 +60,14 @@ public @interface Plugin {
     String version() default "unknown";
 
     /**
-     * A simple dependency string for this mod separated by a ";"
-     * example:
+     * A simple dependency string for this mod separated by a ";".
+     *
+     * Example:
+     *
      * <pre>"required-after:Sponge@[1.2.3.2222,);required-after:myLibraryPlugin;after:towny;before:worldguard"</pre>
-     * supported options:
+     *
+     * Supported options:
+     *
      * <dl>
      *   <dt>after</dt>
      *   <dd>when present this plugin will run after plugin x</dd>
@@ -74,9 +78,9 @@ public @interface Plugin {
      *   <dt>required-before</dt>
      *   <dd>plugin x must be present, load before plugin x</dd>
      * </dl>
-     * supports maven version ranges after @ in any field
+     *
+     * Supports maven version ranges after @ in any field.
      */
     String dependencies() default "";
-
 
 }

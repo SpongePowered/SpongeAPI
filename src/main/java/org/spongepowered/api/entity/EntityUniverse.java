@@ -57,9 +57,11 @@ public interface EntityUniverse {
     <T extends Entity> Collection<T> getEntitiesByClass(Class<T> entityClass);
 
     /**
-     * Gets a {@link Collection} of Entities, in this universe, with the given classes/interfaces.
+     * Gets a {@link Collection} of Entities, in this universe, with
+     * the given classes/interfaces.
      *
-     * @param entityClasses The classes for the types of Entities which are trying to be matched.
+     * @param entityClasses The classes for the types of Entities which are
+     *                      trying to be matched.
      * @return A {@link Collection} of Entities based upon the given classes.
      */
     Collection<Entity> getEntitiesByClasses(Class<? extends Entity>... entityClasses);

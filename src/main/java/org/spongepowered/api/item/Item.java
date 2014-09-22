@@ -38,8 +38,7 @@ public interface Item {
     String getID();
 
     /**
-     * Get the default maximum quantity for {@link ItemStack}s
-     * of this item.
+     * Get the default maximum quantity for {@link ItemStack}s of this item.
      *
      * @return Max stack quantity
      */

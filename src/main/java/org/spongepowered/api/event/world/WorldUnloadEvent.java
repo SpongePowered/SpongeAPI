@@ -29,7 +29,7 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when the {@link Game} unloads a {@link World} map
+ * Called when the {@link Game} unloads a {@link World} map.
  */
 public interface WorldUnloadEvent extends WorldEvent {
 

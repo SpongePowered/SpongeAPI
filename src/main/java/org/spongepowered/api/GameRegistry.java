@@ -30,7 +30,8 @@ import org.spongepowered.api.item.Item;
 import javax.annotation.Nullable;
 
 /**
- * Provides an easy way to retrieve objects from the {@link Game} based on their ids.
+ * Provides an easy way to retrieve objects from the {@link Game} based on
+ * their ids.
  */
 public interface GameRegistry {
 
