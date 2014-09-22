@@ -44,17 +44,17 @@ public abstract class BaseEvent implements Event {
     }
 
     @Override
-    public final boolean isCancellable() {
+    public final boolean isCancelable() {
         return false;
     }
 
     @Override
-    public final boolean isCancelled() {
+    public final boolean isCanceled() {
         return false;
     }
 
     @Override
-    public final void setCancelled(boolean cancel) {
+    public final void setCanceled(boolean cancel) {
     }
 
     @Override

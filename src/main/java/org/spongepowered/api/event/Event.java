@@ -51,21 +51,21 @@ public interface Event {
      *
      * @return Can this event be cancelled
      */
-    boolean isCancellable();
+    boolean isCancelable();
 
     /**
      * Gets if the {@link Event} has been cancelled.
      *
      * @return Is this event cancelled
      */
-    boolean isCancelled();
+    boolean isCanceled();
 
     /**
      * Sets the cancelled state of the {@link Event}.
      *
      * @param cancel the new cancelled state
      */
-    void setCancelled(boolean cancel);
+    void setCanceled(boolean cancel);
 
     /**
      * Gets the {@link Result} of the {@link Event}.
