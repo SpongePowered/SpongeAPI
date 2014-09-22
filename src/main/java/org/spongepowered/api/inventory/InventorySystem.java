@@ -46,7 +46,7 @@ public interface InventorySystem {
     InventoryView getInventory(Entity entity);
 
     /**
-     * Try to get a vanilla Player Inventory from the player
+     * Tries to get a vanilla player inventory from the player.
      *
      * @param player Player for vanilla inventory fetching
      *
@@ -57,7 +57,7 @@ public interface InventorySystem {
     InventoryViewPlayer getInventory(Player player);
 
     /**
-     * Try to fetch an item from a part of an inventory and a specific slot.
+     * Tries to fetch an item from a part of an inventory and a specific slot.
      *
      * @param component Inventory Part
      * @param slot Abstract slot
@@ -68,7 +68,7 @@ public interface InventorySystem {
     ItemStack getItem(InventoryComponent component, SlotType slot);
 
     /**
-     * Replace the item at the slot.
+     * Replaces the item at the slot.
      *
      * @param component Inventory Part
      * @param slot Abstract slot
@@ -77,7 +77,7 @@ public interface InventorySystem {
     void setItem(InventoryComponent component, SlotType slot, ItemStack stack);
 
     /**
-     * Try to fetch an item from a part of an inventory and a specific slot.
+     * Tries to fetch an item from a part of an inventory and a specific slot.
      *
      * @param component Inventory Part
      * @param slot Raw slot index
@@ -87,7 +87,7 @@ public interface InventorySystem {
     ItemStack getItem(InventoryComponent component, int slot);
 
     /**
-     * Replace the item at the slot index
+     * Replaces the item at the slot index.
      *
      * @param component Inventory Part
      * @param slot Raw slot index
@@ -98,7 +98,7 @@ public interface InventorySystem {
     boolean setItem(InventoryComponent component, int slot, ItemStack stack);
 
     /**
-     * Clear the content of a component.
+     * Clears the content of a component.
      *
      * @param component Inventory Part
      */

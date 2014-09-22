@@ -25,7 +25,7 @@
 package org.spongepowered.api.inventory;
 
 /**
- * GameObject, cs.Entity Logical an inventory.
+ * GameObject, cs.Entity logical an inventory.
  * Contains {@link InventoryComponent}.
  */
 public interface InventoryView extends Iterable<InventoryComponent> {
@@ -36,12 +36,12 @@ public interface InventoryView extends Iterable<InventoryComponent> {
     String getName();
 
     /**
-     * @return get Components, all Inventory Parts, e.g. CraftingGrid, Hotbar etc.
+     * @return Gets Components, all Inventory Parts, e.g. CraftingGrid, Hotbar, etc
      */
     InventoryComponent[] getComponents();
 
     /**
-     * @return holder of the inventory
+     * @return Holder of the inventory
      */
     InventoryHolder getHolder();
 }

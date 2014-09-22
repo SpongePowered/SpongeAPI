@@ -31,27 +31,27 @@ import org.spongepowered.api.inventory.component.Equipment;
 import org.spongepowered.api.inventory.component.Hotbar;
 
 /**
- * Describes a vanilla PlayerInventory
+ * Describes a vanilla PlayerInventory.
  */
 public interface InventoryViewPlayer extends InventoryView {
 
     /**
-     * @return {@link Equipment} InventoryPart
+     * @return {@link Equipment} InventoryPart.
      */
     Equipment getEquipment();
 
     /**
-     * @return {@link CraftingGrid} InventoryPart
+     * @return {@link CraftingGrid} InventoryPart.
      */
     CraftingGrid getCraftingGrid();
 
     /**
-     * @return {@link Backpack} InventoryPart
+     * @return {@link Backpack} InventoryPart.
      */
     Backpack getBackpack();
 
     /**
-     * @return {@link Hotbar} InventoryPart
+     * @return {@link Hotbar} InventoryPart.
      */
     Hotbar getHotbar();
 }

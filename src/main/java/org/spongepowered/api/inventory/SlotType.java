@@ -25,7 +25,7 @@
 package org.spongepowered.api.inventory;
 
 /**
- * Interface to access a special Slot of an {@link org.spongepowered.api.inventory.InventoryComponent}
+ * Interface to access a special slot of an {@link InventoryComponent}.
  */
 public interface SlotType {
 }

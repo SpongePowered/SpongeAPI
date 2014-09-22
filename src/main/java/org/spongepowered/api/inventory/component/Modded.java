@@ -25,7 +25,7 @@
 package org.spongepowered.api.inventory.component;
 
 /**
- * Labels a modded Component
+ * Labels a modded Component.
  */
 interface Modded {
 }

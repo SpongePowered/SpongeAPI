@@ -25,7 +25,7 @@
 package org.spongepowered.api.inventory;
 
 /**
- * The holder of an inventory, can be any GameObject, e.g. a mob, a player etc.
+ * The holder of an inventory, can be any GameObject, e.g. a mob, a player, etc.
  */
 public interface InventoryHolder {
 

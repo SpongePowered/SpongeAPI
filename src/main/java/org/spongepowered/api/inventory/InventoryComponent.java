@@ -25,17 +25,17 @@
 package org.spongepowered.api.inventory;
 
 /**
- * Describe a logic subpart of an inventory, e.g. CrafingGrid.
+ * Describes a logic subpart of an inventory, e.g. CrafingGrid.
  */
 public interface InventoryComponent extends Iterable<ItemStack> {
 
     /**
-     * @return Amount of slots
+     * @return Amount of slots.
      */
     int getSlotCount();
 
     /**
-     * Calls {@link InventorySystem#getItem(InventoryComponent, SlotType)}
+     * Calls {@link InventorySystem#getItem(InventoryComponent, SlotType)}.
      * Try to fetch an item from a part of an inventory and a specific slot.
      *
      * @param type Abstraction for the slot index
@@ -45,8 +45,8 @@ public interface InventoryComponent extends Iterable<ItemStack> {
     ItemStack getItem(SlotType type);
 
     /**
-     * Calls {@link InventorySystem#setItem(InventoryComponent, SlotType, ItemStack)}
-     * Replace the item at the slot.
+     * Calls {@link InventorySystem#setItem(InventoryComponent, SlotType, ItemStack)}.
+     * Replaces the item at the slot.
      *
      * @param slot Abstract slot
      * @param stack Item for replacement
@@ -54,8 +54,8 @@ public interface InventoryComponent extends Iterable<ItemStack> {
     boolean setItem(SlotType slot, ItemStack stack);
 
     /**
-     * Calls {@link InventorySystem#getItem(InventoryComponent, int)}
-     * Try to fetch an item from a part of an inventory and a specific slot.
+     * Calls {@link InventorySystem#getItem(InventoryComponent, int)}.
+     * Tries to fetch an item from a part of an inventory and a specific slot.
      *
      * @param slot Raw slot count for the component
      *
@@ -64,8 +64,8 @@ public interface InventoryComponent extends Iterable<ItemStack> {
     ItemStack getItem(int slot);
 
     /**
-     * Calls {@link InventorySystem#setItem(InventoryComponent, int, ItemStack)}
-     * Replace the item at the slot.
+     * Calls {@link InventorySystem#setItem(InventoryComponent, int, ItemStack)}.
+     * Replaces the item at the slot.
      *
      * @param slot Raw slot index
      * @param stack Item for replacement
@@ -75,13 +75,13 @@ public interface InventoryComponent extends Iterable<ItemStack> {
     boolean setItem(int slot, ItemStack stack);
 
     /**
-     * Calls {@link InventorySystem#clear(InventoryComponent)} )}
-     * Clear the content of a component.
+     * Calls {@link InventorySystem#clear(InventoryComponent)}.
+     * Clears the content of a component.
      */
     void clear();
 
     /**
-     * @return Get first free slot.
+     * @return Gets first free slot.
      */
     SlotType getFirstFreeSlot();
 
