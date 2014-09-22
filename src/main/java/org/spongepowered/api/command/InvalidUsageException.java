@@ -37,8 +37,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * is true, which, in that case, the full help of the command should be
  * shown.</p>
  *
- * <p>If no error message is set and full help is not to be shown, then a generic
- * "you used this command incorrectly" message should be shown.</p>
+ * <p>If no error message is set and full help is not to be shown, then a
+ * generic "you used this command incorrectly" message should be shown.</p>
  */
 public class InvalidUsageException extends CommandException {
 
@@ -47,9 +47,9 @@ public class InvalidUsageException extends CommandException {
     private final boolean fullHelpSuggested;
 
     /**
-     * Create a new instance with no error message and with no suggestion
-     * that full and complete help for the command should be shown. This will
-     * result in a generic error message.
+     * Create a new instance with no error message and with no suggestion that
+     * full and complete help for the command should be shown. This will result
+     * in a generic error message.
      *
      * @param command The command
      */
@@ -58,8 +58,8 @@ public class InvalidUsageException extends CommandException {
     }
 
     /**
-     * Create a new instance with a message and with no suggestion
-     * that full and complete help for the command should be shown.
+     * Create a new instance with a message and with no suggestion that full and
+     * complete help for the command should be shown.
      *
      * @param message The message
      * @param command The command
@@ -73,7 +73,8 @@ public class InvalidUsageException extends CommandException {
      *
      * @param message The message
      * @param command The command
-     * @param fullHelpSuggested True if the full help for the command should be shown
+     * @param fullHelpSuggested True if the full help for the command should be
+     *                          shown
      */
     public InvalidUsageException(@Nullable String message, CommandCallable command, boolean fullHelpSuggested) {
         super(message);
@@ -94,7 +95,7 @@ public class InvalidUsageException extends CommandException {
     /**
      * Return whether the full usage of the command should be shown.
      *
-     * @return show full usage
+     * @return Show full usage
      */
     public boolean isFullHelpSuggested() {
         return fullHelpSuggested;

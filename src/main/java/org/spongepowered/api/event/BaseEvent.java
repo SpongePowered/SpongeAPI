@@ -27,9 +27,8 @@ package org.spongepowered.api.event;
 import org.spongepowered.api.Game;
 
 /**
- * This class should be used as the base class for all plugin
- * created custom events.  Handlers may not listen for this event 
- * directly.
+ * This class should be used as the base class for all plugin created
+ * custom events. Handlers may not listen for this event directly.
  */
 public abstract class BaseEvent implements Event {
 

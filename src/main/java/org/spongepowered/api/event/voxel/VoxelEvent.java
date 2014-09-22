@@ -30,12 +30,12 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.Voxel;
 
 /**
- * Describes events which contain a {@link Block} wrapped by a {@link Voxel}
+ * Describes events which contain a {@link Block} wrapped by a {@link Voxel}.
  */
 public interface VoxelEvent extends Event {
 
     /**
-     * Get {@link Voxel} included in the event
+     * Get {@link Voxel} included in the event.
      *
      * @return Event {@link Voxel}
      */

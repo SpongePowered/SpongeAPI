@@ -35,14 +35,16 @@ import org.spongepowered.api.entity.EntityUniverse;
 public interface Chunk extends EntityUniverse, VoxelVolume {
 
     /**
-     * Gets the x chunk coordinate of this chunk as it appears in the {@link World}.
+     * Gets the x chunk coordinate of this chunk as it appears in the
+     * {@link World}.
      *
      * @return X chunk coordinate
      */
     int getX();
 
     /**
-     * Gets the z chunk coordinate of this chunk as it appears in the {@link World}.
+     * Gets the z chunk coordinate of this chunk as it appears in the
+     * {@link World}.
      *
      * @return Z chunk coordinate
      */

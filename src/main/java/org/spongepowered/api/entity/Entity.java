@@ -51,7 +51,7 @@ import java.util.UUID;
 public interface Entity extends Flammable, Movable, Positionable, Rotatable {
 
     /**
-     * Gets the unique ID for this entity
+     * Gets the unique ID for this entity.
      *
      * @return The entity's {@link UUID}
      */

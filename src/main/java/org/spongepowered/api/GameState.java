@@ -28,6 +28,7 @@ package org.spongepowered.api;
  * Top to bottom order of the lifecycle.
  */
 public enum GameState {
+
     CONSTRUCTION,
     LOAD_COMPLETE,
     PRE_INITIALIZATION,
@@ -38,4 +39,5 @@ public enum GameState {
     SERVER_STARTED,
     SERVER_STOPPING,
     SERVER_STOPPED
+
 }

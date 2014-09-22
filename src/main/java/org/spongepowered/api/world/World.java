@@ -50,7 +50,7 @@ public interface World extends EntityUniverse, VoxelVolume {
 
     /**
      * Gets an already-loaded {@link Chunk} by its x/z chunk coordinate, or
-     * null if it's not available
+     * null if it's not available.
      *
      * @param cx X chunk coordinate
      * @param cz Z chunk coordinate

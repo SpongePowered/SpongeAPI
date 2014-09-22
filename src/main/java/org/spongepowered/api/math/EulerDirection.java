@@ -30,7 +30,8 @@ import java.io.Serializable;
 /**
  * Represents a euler direction, made up of both a pitch and yaw component.
  *
- * Euler directions are most commonly used by entities to represent the direction they are looking in.
+ * Euler directions are most commonly used by entities to represent the
+ * direction they are looking in.
  */
 public interface EulerDirection extends Cloneable, Comparable<EulerDirection>, Serializable {
 
@@ -51,7 +52,8 @@ public interface EulerDirection extends Cloneable, Comparable<EulerDirection>, S
     /**
      * Converts this Euler Direction into a {@link Vector2d}.
      *
-     * The vector will represent the directions that this direction is facing in x, y, z coordinates, with a length of 1.
+     * The vector will represent the directions that this direction is facing in
+     * x, y, z coordinates, with a length of 1.
      *
      * @return the vector representation of this direction
      */
@@ -71,7 +73,8 @@ public interface EulerDirection extends Cloneable, Comparable<EulerDirection>, S
     EulerDirection clone();
 
     /**
-     * Returns a string representation of this direction in the form "(pitch, yaw)".
+     * Returns a string representation of this direction in the form
+     * "(pitch, yaw)".
      *
      * @return This direction as a string
      */

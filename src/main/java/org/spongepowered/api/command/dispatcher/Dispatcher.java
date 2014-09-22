@@ -46,8 +46,8 @@ public interface Dispatcher extends CommandCallable {
     void registerCommand(CommandCallable callable, String... alias);
     
     /**
-     * Get a list of commands. Each command, regardless of how many aliases
-     * it may have, will only appear once in the returned set.
+     * Get a list of commands. Each command, regardless of how many aliases it
+     * may have, will only appear once in the returned set.
      *
      * <p>The returned collection cannot be modified.</p>
      * 
@@ -75,8 +75,8 @@ public interface Dispatcher extends CommandCallable {
     Collection<String> getAliases();
 
     /**
-     * Get the {@link CommandCallable} associated with an alias. Returns
-     * null if no command is named by the given alias.
+     * Get the {@link CommandCallable} associated with an alias. Returns null if
+     * no command is named by the given alias.
      * 
      * @param alias The alias
      * @return The command mapping (null if not found)

@@ -29,12 +29,12 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Event;
 
 /**
- * Describes events which contain an {@link Entity}
+ * Describes events which contain an {@link Entity}.
  */
 public interface EntityEvent extends Event {
 
     /**
-     * Gets the {@link Entity} involved
+     * Gets the {@link Entity} involved.
      *
      * @return {@link Entity} involved
      */

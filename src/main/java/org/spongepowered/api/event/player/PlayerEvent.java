@@ -29,12 +29,12 @@ import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.Event;
 
 /**
- * Describes events which contain a {@link Player}
+ * Describes events which contain a {@link Player}.
  */
 public interface PlayerEvent extends Event {
 
     /**
-     * Gets the {@link Player} involved
+     * Gets the {@link Player} involved.
      *
      * @return {@link Player} involved
      */

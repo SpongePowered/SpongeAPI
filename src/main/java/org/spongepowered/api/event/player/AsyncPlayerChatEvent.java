@@ -28,12 +28,12 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.entity.Player;
 
 /**
- * Called when a {@link Player} sends a chat message
+ * Called when a {@link Player} sends a chat message.
  */
 public interface AsyncPlayerChatEvent extends PlayerEvent {
 
     /**
-     * Get the message sent in this event
+     * Get the message sent in this event.
      *
      * @return The message sent
      */

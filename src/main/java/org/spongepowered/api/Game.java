@@ -72,21 +72,21 @@ public interface Game {
     GameRegistry getRegistry();
 
     /**
-     * Gets the {@link Player}s currently online
+     * Gets the {@link Player}s currently online.
      *
      * @return a {@link Collection} of online players
      */
     Collection<Player> getOnlinePlayers();
 
     /**
-     * Gets the max players allowed on this server
+     * Gets the max players allowed on this server.
      *
      * @return Maximum number of connected players
      */
     int getMaxPlayers();
 
     /**
-     * Gets a {@link Player} by their unique id
+     * Gets a {@link Player} by their unique id.
      *
      * @param uniqueId The UUID to get the player from
      * @return {@link Player} or null if none found
@@ -110,7 +110,7 @@ public interface Game {
     World getWorld(UUID uniqueId);
 
     /**
-     * Gets a loaded {@link World} by name
+     * Gets a loaded {@link World} by name.
      *
      * @param worldName Name to lookup
      * @return The world or null if not found
@@ -118,7 +118,7 @@ public interface Game {
     World getWorld(String worldName);
 
     /**
-     * Sends the given message to all online players
+     * Sends the given message to all online players.
      *
      * @param message The message to send
      */
