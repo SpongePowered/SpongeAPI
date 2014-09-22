@@ -28,27 +28,27 @@ import org.spongepowered.api.inventory.InventoryComponent;
 import org.spongepowered.api.inventory.SlotType;
 
 /**
- * Describes the Equipment Area.
+ * Describes the equipment area, e.g. of the player.
  */
 public interface Equipment extends InventoryComponent {
 
     /**
-     * @return The slot for the Helmet
+     * @return Sslot for the Helmet
      */
     SlotType slotHelmet();
 
     /**
-     * @return The slot for the Chestplate
+     * @return Slot for the Chestplate
      */
     SlotType slotChestplate();
 
     /**
-     * @return The slot for the Leggings
+     * @return Slot for the Leggings
      */
     SlotType slotLeggings();
 
     /**
-     * @return The slot for the Boots
+     * @return Slot for the Boots
      */
     SlotType slotBoots();
 }

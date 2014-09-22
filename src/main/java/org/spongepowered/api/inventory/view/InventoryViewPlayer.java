@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.inventory.view;
 
-import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.inventory.InventoryView;
 import org.spongepowered.api.inventory.component.Backpack;
 import org.spongepowered.api.inventory.component.CraftingGrid;
 import org.spongepowered.api.inventory.component.Equipment;
+import org.spongepowered.api.inventory.component.Hotbar;
 
 /**
  * Describes a vanilla PlayerInventory
@@ -36,22 +36,22 @@ import org.spongepowered.api.inventory.component.Equipment;
 public interface InventoryViewPlayer extends InventoryView {
 
     /**
-     * @return the {@link org.spongepowered.api.inventory.component.Equipment} InventoryPart
+     * @return {@link Equipment} InventoryPart
      */
     Equipment getEquipment();
 
     /**
-     * @return the {@link org.spongepowered.api.inventory.component.CraftingGrid} InventoryPart
+     * @return {@link CraftingGrid} InventoryPart
      */
     CraftingGrid getCraftingGrid();
 
     /**
-     * @return the {@link org.spongepowered.api.inventory.component.Backpack} InventoryPart
+     * @return {@link Backpack} InventoryPart
      */
     Backpack getBackpack();
 
     /**
-     * @return the {@link org.spongepowered.api.inventory.component.Hotbar} InventoryPart
+     * @return {@link Hotbar} InventoryPart
      */
-    Player getHotbar();
+    Hotbar getHotbar();
 }

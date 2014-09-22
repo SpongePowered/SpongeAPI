@@ -30,12 +30,13 @@ package org.spongepowered.api.inventory;
 public interface InventoryComponent extends Iterable<ItemStack> {
 
     /**
-     * @return amount of slots
+     * @return Amount of slots
      */
-    int getSlotSize();
+    int getSlotCount();
 
     /**
      * Calls {@link InventorySystem#getItem(InventoryComponent, SlotType)}
+     * Try to fetch an item from a part of an inventory and a specific slot.
      *
      * @param type Abstraction for the slot index
      *
@@ -45,6 +46,7 @@ public interface InventoryComponent extends Iterable<ItemStack> {
 
     /**
      * Calls {@link InventorySystem#setItem(InventoryComponent, SlotType, ItemStack)}
+     * Replace the item at the slot.
      *
      * @param slot Abstract slot
      * @param stack Item for replacement
@@ -52,8 +54,8 @@ public interface InventoryComponent extends Iterable<ItemStack> {
     boolean setItem(SlotType slot, ItemStack stack);
 
     /**
-     * Subject to change.
      * Calls {@link InventorySystem#getItem(InventoryComponent, int)}
+     * Try to fetch an item from a part of an inventory and a specific slot.
      *
      * @param slot Raw slot count for the component
      *
@@ -63,6 +65,7 @@ public interface InventoryComponent extends Iterable<ItemStack> {
 
     /**
      * Calls {@link InventorySystem#setItem(InventoryComponent, int, ItemStack)}
+     * Replace the item at the slot.
      *
      * @param slot Raw slot index
      * @param stack Item for replacement
@@ -73,14 +76,14 @@ public interface InventoryComponent extends Iterable<ItemStack> {
 
     /**
      * Calls {@link InventorySystem#clear(InventoryComponent)} )}
-     * Clear the content of the component
+     * Clear the content of a component.
      */
     void clear();
 
     /**
      * @return Get first free slot.
      */
-    SlotType getFirstAirSlot();
+    SlotType getFirstFreeSlot();
 
     /**
      * @return Entity/Parent/Inventory

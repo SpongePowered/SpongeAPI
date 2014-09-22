@@ -36,7 +36,7 @@ public interface InventoryView extends Iterable<InventoryComponent> {
     String getName();
 
     /**
-     * @return get Components, all Inventory Parts, e.g. CraftingGrid, Hotbar, ...
+     * @return get Components, all Inventory Parts, e.g. CraftingGrid, Hotbar etc.
      */
     InventoryComponent[] getComponents();
 

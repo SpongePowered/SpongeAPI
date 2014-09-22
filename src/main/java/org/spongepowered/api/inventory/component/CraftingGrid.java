@@ -27,7 +27,7 @@ package org.spongepowered.api.inventory.component;
 import org.spongepowered.api.inventory.InventoryComponent;
 
 /**
- * A Crafting grid.
+ * Crafting grid inventory part.
  */
 public interface CraftingGrid extends InventoryComponent {
 }

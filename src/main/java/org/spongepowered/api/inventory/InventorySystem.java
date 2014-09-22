@@ -31,47 +31,54 @@ import org.spongepowered.api.inventory.view.InventoryViewPlayer;
 import javax.annotation.Nullable;
 
 /**
- * Manage all {@link InventoryView}
+ * Manage all {@link InventoryView}. Main class for the inventory system.
+ * All Components used this class to change values.
  */
 public interface InventorySystem {
 
     /**
-     * @param entity Minecraft Entity
+     * @param entity Minecraft Entity, in the future it can be ANY GameObject
      *
      * @return Inventory or null
      */
+    // TODO: maybe throw an exception?
     @Nullable
     InventoryView getInventory(Entity entity);
 
     /**
      * Try to get a vanilla Player Inventory from the player
      *
-     * @param player For vanilla inventory fetching
+     * @param player Player for vanilla inventory fetching
      *
      * @return Vanilla player inventory or null if failed
      */
-    // TODO: maybe throw exception?
+    // TODO: maybe throw an exception?
     @Nullable
     InventoryViewPlayer getInventory(Player player);
 
     /**
+     * Try to fetch an item from a part of an inventory and a specific slot.
+     *
      * @param component Inventory Part
      * @param slot Abstract slot
      *
-     * @return item (if empty air)
+     * @return item or null if nothing set
      */
+    @Nullable
     ItemStack getItem(InventoryComponent component, SlotType slot);
 
     /**
+     * Replace the item at the slot.
+     *
      * @param component Inventory Part
      * @param slot Abstract slot
      * @param stack Item for replacement
-     *
-     * @return item was set
      */
-    boolean setItem(InventoryComponent component, SlotType slot, ItemStack stack);
+    void setItem(InventoryComponent component, SlotType slot, ItemStack stack);
 
     /**
+     * Try to fetch an item from a part of an inventory and a specific slot.
+     *
      * @param component Inventory Part
      * @param slot Raw slot index
      *
@@ -80,6 +87,8 @@ public interface InventorySystem {
     ItemStack getItem(InventoryComponent component, int slot);
 
     /**
+     * Replace the item at the slot index
+     *
      * @param component Inventory Part
      * @param slot Raw slot index
      * @param stack Item for replacement
@@ -89,7 +98,7 @@ public interface InventorySystem {
     boolean setItem(InventoryComponent component, int slot, ItemStack stack);
 
     /**
-     * clear the content of the component.
+     * Clear the content of a component.
      *
      * @param component Inventory Part
      */
