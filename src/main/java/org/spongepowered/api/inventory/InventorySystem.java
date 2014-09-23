@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.inventory.view.InventoryViewPlayer;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 /**
  * Manage all {@link InventoryView}. Main class for the inventory system.
@@ -41,9 +41,7 @@ public interface InventorySystem {
      *
      * @return Inventory or null
      */
-    // TODO: maybe throw an exception?
-    @Nullable
-    InventoryView getInventory(Entity entity);
+    Optional<InventoryView> getInventory(Entity entity);
 
     /**
      * Tries to get a vanilla player inventory from the player.
@@ -52,9 +50,7 @@ public interface InventorySystem {
      *
      * @return Vanilla player inventory or null if failed
      */
-    // TODO: maybe throw an exception?
-    @Nullable
-    InventoryViewPlayer getInventory(Player player);
+    Optional<InventoryViewPlayer> getInventory(Player player);
 
     /**
      * Tries to fetch an item from a part of an inventory and a specific slot.
@@ -64,8 +60,7 @@ public interface InventorySystem {
      *
      * @return item or null if nothing set
      */
-    @Nullable
-    ItemStack getItem(InventoryComponent component, SlotType slot);
+    Optional<ItemStack> getItem(InventoryComponent component, SlotType slot);
 
     /**
      * Replaces the item at the slot.
@@ -84,7 +79,7 @@ public interface InventorySystem {
      *
      * @return item (if empty air)
      */
-    ItemStack getItem(InventoryComponent component, int slot);
+    Optional<ItemStack> getItem(InventoryComponent component, int slot);
 
     /**
      * Replaces the item at the slot index.
