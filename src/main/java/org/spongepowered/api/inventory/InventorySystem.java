@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.inventory;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.inventory.view.InventoryViewPlayer;
-
-import java.util.Optional;
 
 /**
  * Manage all {@link InventoryView}. Main class for the inventory system.
@@ -39,7 +38,7 @@ public interface InventorySystem {
     /**
      * @param entity Minecraft Entity, in the future it can be ANY GameObject
      *
-     * @return Inventory or null
+     * @return Optional an inventory view
      */
     Optional<InventoryView> getInventory(Entity entity);
 
@@ -48,7 +47,7 @@ public interface InventorySystem {
      *
      * @param player Player for vanilla inventory fetching
      *
-     * @return Vanilla player inventory or null if failed
+     * @return Optional a vanilla player inventory
      */
     Optional<InventoryViewPlayer> getInventory(Player player);
 
@@ -58,7 +57,7 @@ public interface InventorySystem {
      * @param component Inventory Part
      * @param slot Abstract slot
      *
-     * @return item or null if nothing set
+     * @return Optional item stack for the given slot
      */
     Optional<ItemStack> getItem(InventoryComponent component, SlotType slot);
 
@@ -77,7 +76,7 @@ public interface InventorySystem {
      * @param component Inventory Part
      * @param slot Raw slot index
      *
-     * @return item (if empty air)
+     * @return Optional item stack for the given slot
      */
     Optional<ItemStack> getItem(InventoryComponent component, int slot);
 

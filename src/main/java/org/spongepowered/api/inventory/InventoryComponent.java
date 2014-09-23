@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.inventory;
 
-import java.util.Optional;
+import com.google.common.base.Optional;
 
 /**
  * Describes a logic subpart of an inventory, e.g. CrafingGrid.
@@ -42,7 +42,7 @@ public interface InventoryComponent extends Iterable<ItemStack> {
      *
      * @param type Abstraction for the slot index
      *
-     * @return Item stack for a {@link SlotType}
+     * @return Optional an item stack for a {@link SlotType}
      */
     Optional<ItemStack> getItem(SlotType type);
 
@@ -61,7 +61,7 @@ public interface InventoryComponent extends Iterable<ItemStack> {
      *
      * @param slot Raw slot count for the component
      *
-     * @return Item stack for the raw slot index
+     * @return Optional an item stack for the raw slot index
      */
     Optional<ItemStack> getItem(int slot);
 
