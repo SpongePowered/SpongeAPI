@@ -56,14 +56,14 @@ public interface EulerDirection extends Cloneable, Serializable {
     float getRoll();
 
     /**
-     * Converts this Euler Direction into a {@link Vector2d}.
+     * Converts this Euler Direction into a {@link Vector3f}.
      *
      * The vector will represent the directions that this direction is facing in x, y, z coordinates, with a length of 1.
      * Roll will be ignored, as it does not contribute to the facing direction.
      *
      * @return the vector representation of this direction
      */
-    Vector2d toVector();
+    Vector3f toVector();
 
     @Override
     boolean equals(Object o);

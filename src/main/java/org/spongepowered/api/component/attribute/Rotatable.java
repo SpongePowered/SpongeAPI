@@ -25,24 +25,42 @@
 
 package org.spongepowered.api.component.attribute;
 
+import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3f;
 
 /**
  * An entity that can be rotated.
  */
 public interface Rotatable {
-    
+
     /**
      * Gets the rotation as a vector.
-     * 
+     * This does not support the roll component of the entity's rotation.
+     *
      * @return rotation A possibly, but not necessarily, unit vector
      */
-    Vector3f getRotation();
-    
+    Vector3f getVectorRotation();
+
     /**
-     * Sets the rotation.
-     * 
+     * Sets the rotation to a vector.
+     * This does not support the roll component of the entity's rotation,
+     * any previous roll value will be removed.
+     *
      * @param rotation The rotation to set the entity to
      */
-    void setRotation(Vector3f rotation);
+    void setVectorRotation(Vector3f rotation);
+
+    /**
+     * Gets the rotation as a EulerDirection.
+     *
+     * @return rotation The rotation as a EulerDirection
+     */
+    EulerDirection getRotation();
+
+    /**
+     * Sets the rotation.
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(EulerDirection rotation);
 }
