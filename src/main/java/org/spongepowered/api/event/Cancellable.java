@@ -24,43 +24,20 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.Game;
+public interface Cancellable {
 
-/**
- * This class should be used as the base class for all plugin
- * created custom events.  Handlers may not listen for this event 
- * directly.
- */
-public abstract class BaseEvent implements Event {
+    /**
+     * Gets if the {@link Event} has been cancelled.
+     *
+     * @return Is this event cancelled
+     */
+    boolean isCancelled();
 
-    @Override
-    public final Game getGame() {
-        return null;
-    }
-
-    @Override
-    public final String getSimpleName() {
-        return null;
-    }
-
-    public final boolean isCancellable() {
-        return false;
-    }
-
-    public final boolean isCancelled() {
-        return false;
-    }
-
-    public final void setCancelled(boolean cancel) {
-    }
-
-    @Override
-    public final Result getResult() {
-        return null;
-    }
-
-    @Override
-    public final void setResult(Result result) {
-    }
-
+    /**
+     * Sets the cancelled state of the {@link Event}.
+     *
+     * @param cancel the new cancelled state
+     */
+    void setCancelled(boolean cancel);
+    
 }
