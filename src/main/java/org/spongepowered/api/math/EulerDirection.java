@@ -28,11 +28,11 @@ package org.spongepowered.api.math;
 import java.io.Serializable;
 
 /**
- * Represents a euler direction, made up of both a pitch and yaw component.
+ * Represents a euler direction, made up of both a pitch, yaw and roll component.
  *
  * Euler directions are most commonly used by entities to represent the direction they are looking in.
  */
-public interface EulerDirection extends Cloneable, Comparable<EulerDirection>, Serializable {
+public interface EulerDirection extends Cloneable, Serializable {
 
     /**
      * Returns the pitch component.
@@ -49,9 +49,17 @@ public interface EulerDirection extends Cloneable, Comparable<EulerDirection>, S
     float getYaw();
 
     /**
+     * Returns the roll component.
+     *
+     * @return the roll component
+     */
+    float getRoll();
+
+    /**
      * Converts this Euler Direction into a {@link Vector2d}.
      *
      * The vector will represent the directions that this direction is facing in x, y, z coordinates, with a length of 1.
+     * Roll will be ignored, as it does not contribute to the facing direction.
      *
      * @return the vector representation of this direction
      */
@@ -71,7 +79,7 @@ public interface EulerDirection extends Cloneable, Comparable<EulerDirection>, S
     EulerDirection clone();
 
     /**
-     * Returns a string representation of this direction in the form "(pitch, yaw)".
+     * Returns a string representation of this direction in the form "(pitch, yaw, roll)".
      *
      * @return This direction as a string
      */
