@@ -25,22 +25,26 @@
 
 package org.spongepowered.api.entity;
 
-public interface Player extends HumanEntity {
+import java.util.UUID;
+
+/**
+ * Interface representing an OfflinePlayer
+ */
+public interface OfflinePlayer {
 
     /**
-     * Gets the players last known username.
+     * Gets the offline players last known username.
      * 
-     * @return The player's last known username
+     * @return The offline player's last known username
      */
     String getName();
 
     /**
-     * Gets the player's display name. If none set, returns their current
-     * username.
+     * Gets the unique ID for this offline player.
      * 
-     * @return The player's display name
+     * @return The offline players {@link UUID}
      */
-    String getDisplayName();
+    UUID getUniqueID();
 
     /**
      * Checks if this player has joined the server before.
@@ -50,7 +54,7 @@ public interface Player extends HumanEntity {
     boolean hasJoinedBefore();
 
     /**
-     * Checks if this player is banned.
+     * Checks if this offline player is banned.
      * 
      * @return true If banned
      */

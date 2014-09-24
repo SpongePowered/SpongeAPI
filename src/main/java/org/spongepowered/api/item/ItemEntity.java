@@ -23,43 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.item;
 
-public interface Player extends HumanEntity {
+import org.spongepowered.api.entity.Entity;
 
-    /**
-     * Gets the players last known username.
-     * 
-     * @return The player's last known username
-     */
-    String getName();
+/**
+ * Represents an Item entity.
+ */
+public interface ItemEntity extends Entity {
 
-    /**
-     * Gets the player's display name. If none set, returns their current
-     * username.
-     * 
-     * @return The player's display name
-     */
-    String getDisplayName();
-
-    /**
-     * Checks if this player has joined the server before.
-     * 
-     * @return true If player has joined before
-     */
-    boolean hasJoinedBefore();
-
-    /**
-     * Checks if this player is banned.
-     * 
-     * @return true If banned
-     */
-    boolean isBanned();
-
-    /**
-     * Checks if this player is whitelisted.
-     * 
-     * @return true If whitelisted
-     */
-    boolean isWhitelisted();
 }
