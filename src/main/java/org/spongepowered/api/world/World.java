@@ -29,6 +29,8 @@ import org.spongepowered.api.entity.EntityUniverse;
 
 import java.util.UUID;
 
+import javax.annotation.Nullable;
+
 /**
  * A loaded Minecraft world
  */
@@ -56,17 +58,20 @@ public interface World extends EntityUniverse, VoxelVolume {
      * @param cz Z chunk coordinate
      * @return The chunk
      */
+    @Nullable
     Chunk getChunk(int cx, int cz);
 
     /**
      * Loads and returns a {@link Chunk}. If the chunk does not exist, it will
-     * be generated unless `shouldGenerate` is false.
+     * be generated unless `shouldGenerate` is false in which case null is
+     * returned.
      *
      * @param cx X chunk coordinate
      * @param cz Z chunk coordinate
      * @param shouldGenerate Generate if new
      * @return Chunk loaded/generated
      */
+    @Nullable
     Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
 
 }

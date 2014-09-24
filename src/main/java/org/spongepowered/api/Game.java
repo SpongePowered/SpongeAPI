@@ -107,6 +107,7 @@ public interface Game {
      * @param uniqueId UUID to lookup
      * @return The world or null if not found
      */
+    @Nullable
     World getWorld(UUID uniqueId);
 
     /**
@@ -115,6 +116,7 @@ public interface Game {
      * @param worldName Name to lookup
      * @return The world or null if not found
      */
+    @Nullable
     World getWorld(String worldName);
 
     /**
