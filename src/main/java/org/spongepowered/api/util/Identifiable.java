@@ -23,30 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-import org.spongepowered.api.util.Identifiable;
+import java.util.UUID;
 
 /**
- * An entity is a Minecraft entity.
- *
- * <p>Examples of entities include:</p>
- *
- * <ul>
- *     <li>Zombies</li>
- *     <li>Sheep</li>
- *     <li>Players</li>
- *     <li>Dropped items</li>
- *     <li>Dropped experience points</li>
- *     <li>etc.</li>
- * </ul>
- *
- * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ * An identifiable object has a UUID that can be retrieved.
  */
-public interface Entity extends Identifiable, Flammable, Movable, Positionable, Rotatable {
+public interface Identifiable {
+
+    /**
+     * Gets the unique ID for this object.
+     *
+     * @return The {@link UUID}
+     */
+    UUID getUniqueId();
 
 }
