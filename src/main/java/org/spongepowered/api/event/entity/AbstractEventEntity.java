@@ -26,6 +26,7 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Predicate;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
 
 import java.util.Collections;
@@ -39,16 +40,25 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public abstract class AbstractEventEntity implements EntityEvent {
 
+    private final Game game;
     private final List<Entity> entities;
 
     /**
      * Create a new instance.
      *
+     * @param game The game
      * @param entities A list of entities
      */
-    public AbstractEventEntity(List<Entity> entities) {
+    public AbstractEventEntity(Game game, List<Entity> entities) {
+        checkNotNull(game);
         checkNotNull(entities);
+        this.game = game;
         this.entities = entities;
+    }
+
+    @Override
+    public Game getGame() {
+        return game;
     }
 
     @Override

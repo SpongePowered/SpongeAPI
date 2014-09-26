@@ -23,21 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.Game;
 
 /**
- * Describes events which involve a {@link Chunk}
+ * An event that deals with the game.
+ *
+ * @see Game
  */
-public interface ChunkEvent extends GameEvent {
+public interface GameEvent extends Event {
 
     /**
-     * Gets the {@link Chunk} included in the event
+     * Get the game.
      *
-     * @return Event {@link Chunk}
+     * @return The game
      */
-    Chunk getChunk();
+    Game getGame();
 
 }

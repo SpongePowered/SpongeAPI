@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Result;
 import org.spongepowered.api.event.cause.Cause;
@@ -45,11 +46,12 @@ public class EntitySpawnEvent extends AbstractEventEntity implements CauseTracke
     /**
      * Create a new instance.
      *
+     * @param game The game
      * @param entities A list of entities
      * @param cause The cause
      */
-    public EntitySpawnEvent(List<Entity> entities, Cause cause) {
-        super(entities);
+    public EntitySpawnEvent(Game game, List<Entity> entities, Cause cause) {
+        super(game, entities);
         checkNotNull(cause);
         this.cause = cause;
     }

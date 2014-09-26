@@ -27,14 +27,14 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.GameEvent;
 
 import java.util.List;
 
 /**
  * An event that whose targets happen to be an entity.
  */
-public interface EntityEvent extends Event {
+public interface EntityEvent extends GameEvent {
 
     /**
      * Get a list of affected entities.
