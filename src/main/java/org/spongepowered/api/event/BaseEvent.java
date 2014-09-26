@@ -43,6 +43,7 @@ public abstract class BaseEvent implements Event {
         return null;
     }
 
+    @Override
     public final boolean isCancellable() {
         return false;
     }
