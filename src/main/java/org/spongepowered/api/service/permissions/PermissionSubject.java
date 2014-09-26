@@ -1,7 +1,8 @@
 package org.spongepowered.api.service.permissions;
 
+import com.google.common.base.Optional;
+
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +10,12 @@ import java.util.Map;
  * Represents a single user/group/to-be-named abstraction above those
  * This could possibly be used as a component in an ECS/be implemented in Player.
  */
-public interface PermissionSubject {
+public interface PermissionSubject<Ident, ParentIdent> {
     /**
      * Returns the identifier associated with this subject
      * @return
      */
-    public String getIdentifier();
+    public Ident getIdentifier();
 
     /**
      * Return all permissions associated with this data object
@@ -30,29 +31,26 @@ public interface PermissionSubject {
      */
     public void setPermissions(Context context, List<String> permissions);
 
-    // TODO: Keep both of these? Parents is more commonly stored directly, but children in a lot of cases makes sense to expose via API.
-    public List<String> getChildNames();
-
     /**
      * Return all registered parent names for all contexts
      * @return
      */
-    public Map<Context, List<String>> getAllParentNames();
+    public Map<Context, List<ParentIdent>> getAllParentNames();
 
     /**
      *
      * @return names of parents valid for the current context
      */
-    public List<String> getParentNames();
+    public List<ParentIdent> getParentNames();
 
     /**
      *
      * @param context The context to check
      * @return names of parents valid in the given context
      */
-    public List<String> getParentNames(Context context);
+    public List<ParentIdent> getParentNames(Context context);
 
-    public void setParentNames(Context context, List<String> names);
+    public void setParentNames(Context context, List<ParentIdent> names);
 
     /**
      *
@@ -73,5 +71,5 @@ public interface PermissionSubject {
      * Returns the context currently applicable for the permission subject
      * @return
      */
-    public @Nullable Context getActiveContext();
+    public Optional<Context> getActiveContext();
 }

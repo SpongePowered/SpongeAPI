@@ -3,8 +3,8 @@ package org.spongepowered.api.service.permissions;
 /**
  * Object that holds players, groups, etc. A better name would be good.
  */
-public interface Level {
-    public Level getParentLevel();
+public interface SubjectCollection<Ident, ParentIdent> {
+    public SubjectCollection<ParentIdent, ?> getParentLevel();
 
     /**
      * Returns the subject specified. Will not return null.
@@ -12,19 +12,19 @@ public interface Level {
      * @param identifier
      * @return
      */
-    public PermissionSubject getSubject(String identifier);
+    public PermissionSubject<Ident, ParentIdent> getSubject(Ident identifier);
 
     /**
      * Returns whether there is any data specified beyond the default
      * @param identifier
      * @return
      */
-    public boolean hasRegisteredSubject(String identifier);
+    public boolean hasRegisteredSubject(Ident identifier);
 
     /**
      * Returns all subjects. The callback provided to this method may be run asyncronously
      * @return
      */
-    public Iterable<PermissionSubject> getAllSubjects();
+    public Iterable<PermissionSubject<Ident, ParentIdent>> getAllSubjects();
 
 }
