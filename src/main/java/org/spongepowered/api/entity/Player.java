@@ -40,4 +40,18 @@ public interface Player extends HumanEntity {
      * @return The player's display name
      */
     String getDisplayName();
+    /**
+     * Gets the player's gamemode
+     *
+     * @return The player's gamemode
+     */
+    String getGamemodeAsString();
+
+
+    /**
+     * Gets the player's Health.
+     *
+     * @return The player's Health
+     */
+    double getHealth();
 }
