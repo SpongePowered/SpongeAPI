@@ -23,13 +23,51 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command;
+package org.spongepowered.api.util.command;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * RCON clients, web-based clients, command blocks, and so on.</p>
+ * Thrown when an executed command raises an error or when execution of
+ * the command failed.
  */
-public interface CommandSource {
+public class CommandException extends Exception {
+
+    private static final long serialVersionUID = 4626722936890074825L;
+
+    /**
+     * Construct a new exception with a {@code null} message.
+     */
+    public CommandException() {
+    }
+
+    /**
+     * Construct a new exception with the given message.
+     *
+     * @param message The detail message
+     */
+    public CommandException(@Nullable String message) {
+        super(message);
+    }
+
+    /**
+     * Construct a new exception with the given message and the given cause.
+     *
+     * @param message The detail message
+     * @param cause The cause
+     */
+    public CommandException(@Nullable String message, @Nullable Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructs a new exception with the specified cause and a detail
+     * message of.
+     *
+     * @param cause The cause
+     */
+    public CommandException(@Nullable Throwable cause) {
+        super(cause);
+    }
+
 }

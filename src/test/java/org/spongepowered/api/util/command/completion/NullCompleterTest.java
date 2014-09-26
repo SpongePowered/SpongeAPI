@@ -23,22 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command.completion;
+package org.spongepowered.api.util.command.completion;
 
-import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandSource;
+import org.junit.Test;
+import org.spongepowered.api.util.command.CommandSource;
 
-import java.util.Collections;
-import java.util.List;
+import static org.hamcrest.Matchers.empty;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 
-/**
- * Always returns an empty list of suggestions.
- */
-public class NullCompleter implements CommandCompleter {
+public class NullCompleterTest {
 
-    @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        return Collections.emptyList();
+    @Test
+    public void testGetSuggestions() throws Exception {
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), ""), empty());
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "example"), empty());
+        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "parent child"), empty());
     }
 
 }

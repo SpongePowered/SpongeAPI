@@ -23,36 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command;
+package org.spongepowered.api.util.command.completion;
 
-import javax.annotation.Nullable;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandSource;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
- * Thrown when invocation of a command fails, wrapping the exception that
- * is thrown.
+ * Always returns an empty list of suggestions.
  */
-public class InvocationCommandException extends CommandException {
+public class NullCompleter implements CommandCompleter {
 
-    private static final long serialVersionUID = 7859473889077167378L;
-
-    /**
-     * Construct a new exception with the given message and the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public InvocationCommandException(@Nullable String message, @Nullable Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructs a new exception with the specified cause and a detail
-     * message of.
-     *
-     * @param cause The cause
-     */
-    public InvocationCommandException(@Nullable Throwable cause) {
-        super(cause);
+    @Override
+    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
+        return Collections.emptyList();
     }
 
 }

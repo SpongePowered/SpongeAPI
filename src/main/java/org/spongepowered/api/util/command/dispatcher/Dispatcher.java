@@ -23,10 +23,10 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command.dispatcher;
+package org.spongepowered.api.util.command.dispatcher;
 
-import org.spongepowered.api.command.CommandCallable;
-import org.spongepowered.api.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandCallable;
+import org.spongepowered.api.util.command.CommandMapping;
 
 import javax.annotation.Nullable;
 import java.util.Collection;

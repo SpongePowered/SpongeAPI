@@ -23,22 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command.completion;
+package org.spongepowered.api.util.command.completion;
 
-import org.junit.Test;
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandSource;
 
-import static org.hamcrest.Matchers.empty;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
+import java.util.List;
 
-public class NullCompleterTest {
+/**
+ * Completes typed-in commands by providing a list of suggestions to replace
+ * the last typed in word with.
+ *
+ * <p>Words are separated from each other by space characters.</p>
+ */
+public interface CommandCompleter {
 
-    @Test
-    public void testGetSuggestions() throws Exception {
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), ""), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "example"), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "parent child"), empty());
-    }
+    /**
+     * Get a list of suggestions based on input.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * @param source The command source
+     * @param arguments The arguments entered up to this point
+     * @return A list of suggestions
+     * @throws CommandException Thrown if there was a parsing error
+     */
+    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
 
 }

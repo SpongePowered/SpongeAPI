@@ -23,32 +23,36 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command.completion;
+package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandSource;
-
-import java.util.List;
+import javax.annotation.Nullable;
 
 /**
- * Completes typed-in commands by providing a list of suggestions to replace
- * the last typed in word with.
- *
- * <p>Words are separated from each other by space characters.</p>
+ * Thrown when invocation of a command fails, wrapping the exception that
+ * is thrown.
  */
-public interface CommandCompleter {
+public class InvocationCommandException extends CommandException {
+
+    private static final long serialVersionUID = 7859473889077167378L;
 
     /**
-     * Get a list of suggestions based on input.
+     * Construct a new exception with the given message and the given cause.
      *
-     * <p>If a suggestion is chosen by the user, it will replace the last
-     * word.</p>
-     *
-     * @param source The command source
-     * @param arguments The arguments entered up to this point
-     * @return A list of suggestions
-     * @throws CommandException Thrown if there was a parsing error
+     * @param message The detail message
+     * @param cause The cause
      */
-    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
+    public InvocationCommandException(@Nullable String message, @Nullable Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructs a new exception with the specified cause and a detail
+     * message of.
+     *
+     * @param cause The cause
+     */
+    public InvocationCommandException(@Nullable Throwable cause) {
+        super(cause);
+    }
 
 }

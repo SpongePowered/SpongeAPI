@@ -23,60 +23,53 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command;
+package org.spongepowered.api.util.command;
 
-import javax.annotation.Nullable;
+import org.spongepowered.api.util.command.completion.CommandCompleter;
+
 import java.util.List;
 
 /**
- * Provides information about a command's usage and help.
- *
- * <p>The level of information provided is determined by the implementation.
- * Some implementations may provide little or no information.</p>
- *
- * <p>This class does not define a way to execute the command. See
- * {@link CommandCallable}, which has a {@code getDescription()} method,
- * for an interface that does define how a command is executed.</p>
+ * A command that can be executed.
  *
  * <p>Implementations are not required to implement a sane
  * {@link #equals(Object)} but may choose to do so.</p>
  */
-public interface Description {
+public interface CommandCallable extends CommandCompleter {
 
     /**
-     * Get a short one-line description of this command.
-     * 
-     * @return A description, or null if no description is available
+     * Execute the command based on input arguments.
+     *
+     * <p>The implementing class must perform the necessary permission
+     * checks.</p>
+     *
+     * @param source The caller of the command
+     * @param arguments The raw arguments for this command
+     * @param parents A stack of parent commands, where the first entry is
+     *                the root command
+     * @return Whether a command was processed
+     * @throws CommandException Thrown on a command error
      */
-    @Nullable
-    String getShortDescription();
-
-    /**
-     * Get a longer help text about this command.
-     * 
-     * @return A help text, or null if no help is available
-     */
-    @Nullable
-    String getHelp();
-
-    /**
-     * Get the usage string of this command.
-     * 
-     * <p>A usage string may look like 
-     * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
-     * 
-     * @return A usage string
-     */
-    String getUsage();
+    boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
     
     /**
-     * Get a list of permissions that the player may have to have permission.
+     * Get a description of the command, detailing usage information.
      * 
-     * <p>Permission data may or may not be available. This is only useful as a
-     * potential hint.</p>
-     * 
-     * @return The list of permissions
+     * @return The command description
      */
-    List<String> getPermissions();
+    Description getDescription();
+
+    /**
+     * Test whether this command can probably be executed by the given source.
+     *
+     * <p>If implementations are unsure if the command can be executed by
+     * the source, {@code true} should be returned. Return values of this method
+     * may be used to determine whether this command is listed in command
+     * listings.</p>
+     *
+     * @param source The caller of the command
+     * @return Whether permission is (probably) granted
+     */
+    boolean testPermission(CommandSource source);
 
 }

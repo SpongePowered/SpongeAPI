@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command;
+package org.spongepowered.api.util.command;
 
 import javax.annotation.Nullable;
 

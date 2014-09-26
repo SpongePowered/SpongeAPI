@@ -23,51 +23,51 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command;
+package org.spongepowered.api.util.command;
 
-import javax.annotation.Nullable;
+import java.util.Set;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * Provides information about a mapping between a command and its aliases.
+ *
+ * <p>Implementations are not required to implement a sane
+ * {@link #equals(Object)} but may choose to do so.</p>
  */
-public class CommandException extends Exception {
-
-    private static final long serialVersionUID = 4626722936890074825L;
+public interface CommandMapping {
 
     /**
-     * Construct a new exception with a {@code null} message.
-     */
-    public CommandException() {
-    }
-
-    /**
-     * Construct a new exception with the given message.
+     * Get the primary alias.
      *
-     * @param message The detail message
+     * @return The primary alias
      */
-    public CommandException(@Nullable String message) {
-        super(message);
-    }
+    String getPrimaryAlias();
 
     /**
-     * Construct a new exception with the given message and the given cause.
+     * Get an immutable list of all aliases.
      *
-     * @param message The detail message
-     * @param cause The cause
+     * <p>The returned list must contain at least one entry, of which one must
+     * be the one returned by {@link #getPrimaryAlias()}.</p>
+     *
+     * <p>There may be several versions of the same alias with different
+     * casing, although generally implementations should ignore the casing
+     * of aliases.</p>
+     *
+     * @return A set of aliases
      */
-    public CommandException(@Nullable String message, @Nullable Throwable cause) {
-        super(message, cause);
-    }
+    Set<String> getAllAliases();
 
     /**
-     * Constructs a new exception with the specified cause and a detail
-     * message of.
+     * Get the callable
      *
-     * @param cause The cause
+     * @return The callable
      */
-    public CommandException(@Nullable Throwable cause) {
-        super(cause);
-    }
+    CommandCallable getCallable();
+
+    /**
+     * Get the description of the command.
+     *
+     * @return The description
+     */
+    Description getDescription();
 
 }
