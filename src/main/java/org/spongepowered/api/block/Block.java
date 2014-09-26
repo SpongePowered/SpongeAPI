@@ -26,17 +26,22 @@
 package org.spongepowered.api.block;
 
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Describes a type of block.
+ *
+ * <p>An instance of this class does not describe a particular block at
+ * a particular location in a particular world.</p>
  */
 public interface Block {
 
     /**
-     * Gets the id of this block.
+     * Return the internal ID for the block.
      *
-     * <p>Ex. Minecraft registers stone as "minecraft:stone"</p>
+     * <p>The format of the internal ID may vary between implementations
+     * but in Minecraft, it follows the format of {@code mod:type}, an
+     * example being {@code minecraft:stone}.</p>
      *
      * @return The id
      */
-    String getID();
+    String getId();
 
 }
