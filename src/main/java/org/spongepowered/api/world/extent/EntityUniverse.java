@@ -23,31 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.entity.Entity;
+
+import java.util.Collection;
 
 /**
- * Represents the smallest unit of the world map. This unit has a position with
- * integer coordinates and a block reference which defines it's behaviour and
- * attributes. Unlike a block, this object has a position attribute, and does
- * not define any logic by itself.
+ * A container of {@link Entity} instances.
  */
-public interface Voxel extends VoxelVolume {
+public interface EntityUniverse {
 
     /**
-     * Gets the voxel's position in the world map.
+     * Return a collection of entities contained within this universe,
+     * possibly only returning entities only in loaded areas.
      *
-     * @return position The voxel's position
-     */
-    Vector3i getPosition();
-
-    /**
-     * Gets a reference to the block object that defines the voxel's logic.
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method will only return entities within those loaded
+     * parts.</p>
      *
-     * @return block The block defining the voxel
+     * @return A collection of entities
      */
-    Block getBlock();
+    Collection<Entity> getEntities();
 
 }

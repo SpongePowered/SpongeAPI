@@ -23,45 +23,36 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.world.extent;
 
-import java.util.Collection;
+import org.spongepowered.api.math.Vector2d;
+import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.world.Location;
 
 /**
- * For Objects that contain Entities.
+ * Contains blocks, entities, and possibly other game objects.
+ *
+ * @see BlockVolume
+ * @see EntityUniverse
  */
-public interface EntityUniverse {
+public interface Extent extends BlockVolume, EntityUniverse {
 
     /**
-     * Gets a {@link Collection} of Entities for this universe.
+     * Get an object that represents a given location on this extent.
      *
-     * @return A {@link Collection} of all Entities in this universe.
+     * @param position The position
+     * @return The location
      */
-    Collection<Entity> getEntities();
+    Location at(Vector2d position);
 
     /**
-     * Gets a {@link Collection} of LivingEntities for this universe.
+     * Get an object that represents a given location on this extent.
      *
-     * @return A {@link Collection} of all LivingEntities in this universe.
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     * @param z The z-coordinate
+     * @return The location
      */
-    Collection<LivingEntity> getLivingEntities();
-
-    /**
-     * Gets a {@link Collection} of Entities, in this universe, with
-     * the given class/interface.
-     *
-     * @param entityClass The class for the type of Entities which are trying
-     *                    to be matched.
-     * @return A {@link Collection} of Entities based upon the given class.
-     */
-    <T extends Entity> Collection<T> getEntitiesByClass(Class<T> entityClass);
-
-    /**
-     * Gets a {@link Collection} of Entities, in this universe, with the given classes/interfaces.
-     *
-     * @param entityClasses The classes for the types of Entities which are trying to be matched.
-     * @return A {@link Collection} of Entities based upon the given classes.
-     */
-    Collection<Entity> getEntitiesByClasses(Class<? extends Entity>... entityClasses);
+    Location at(int x, int y, int z);
 
 }

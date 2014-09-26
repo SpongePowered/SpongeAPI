@@ -25,17 +25,19 @@
 
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.entity.EntityUniverse;
+import org.spongepowered.api.math.Vector2i;
+import org.spongepowered.api.world.extent.Extent;
 
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 /**
  * A loaded Minecraft world
  */
-public interface World extends EntityUniverse, VoxelVolume {
+public interface World extends Extent {
 
     /**
-     * Gets the unique id ({@link UUID}) for this world.
+     * Gets the unique identifier for this world.
      *
      * @return The unique id or UUID
      */
@@ -44,29 +46,45 @@ public interface World extends EntityUniverse, VoxelVolume {
     /**
      * Gets the name of the world.
      *
+     * <p>The world name may randomly generated or user-defined. It may or
+     * may not be safe to be used in a filename.</p>
+     *
      * @return The world name
+     * @see #getUniqueID() A method to get a unique identifier
      */
     String getName();
 
     /**
-     * Gets an already-loaded {@link Chunk} by its x/z chunk coordinate, or
-     * null if it's not available
+     * Get the loaded chunk at the given position.
      *
-     * @param cx X chunk coordinate
-     * @param cz Z chunk coordinate
+     * <p>If the chunk has not been loaded at the given position, then
+     * {@code null} will be returned.</p>
+     *
+     * @param position The position
      * @return The chunk
      */
-    Chunk getChunk(int cx, int cz);
+    @Nullable
+    Chunk getChunk(Vector2i position);
 
     /**
-     * Loads and returns a {@link Chunk}. If the chunk does not exist, it will
-     * be generated unless `shouldGenerate` is false.
+     * Get the chunk at the given position if it exists or if
+     * {@code shouldGenerate} is true and the chunk is generated.
      *
-     * @param cx X chunk coordinate
-     * @param cz Z chunk coordinate
-     * @param shouldGenerate Generate if new
-     * @return Chunk loaded/generated
+     * @param position The position
+     * @param shouldGenerate True to generate a new chunk
+     * @return The loaded or generated chunk, but possibly null if the chunk
+     *         was to not be generated
      */
-    Chunk loadChunk(int cx, int cz, boolean shouldGenerate);
+    @Nullable
+    Chunk loadChunk(Vector2i position, boolean shouldGenerate);
+
+    /**
+     * Get the chunk at the given position if it exists, generating it
+     * if the chunk does not exist.
+     *
+     * @param position The position
+     * @return The loaded or generated chunk
+     */
+    Chunk loadChunk(Vector2i position);
 
 }
