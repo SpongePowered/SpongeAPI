@@ -25,31 +25,15 @@
 
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.Game;
-
 /**
- * A game event. A game event can be any sort of event from anywhere, and can be anything.
+ * An event that occurs in Sponge.
  */
 public interface Event {
-
-    /**
-     * Gets the {@link Game}.
-     *
-     * @return The game
-     */
-    Game getGame();
-
-    /**
-     * Gets a simple name of the current class.
-     *
-     * @return String name
-     */
-    String getSimpleName();
     
     /**
-     * Gets if the {@link Event} can be cancelled.
+     * Gets if the event can be cancelled.
      *
-     * @return Can this event be cancelled
+     * @return Whether the event can be cancelled
      */
     boolean isCancellable();
 
