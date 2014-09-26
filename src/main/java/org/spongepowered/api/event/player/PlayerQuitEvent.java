@@ -23,23 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api;
+package org.spongepowered.api.event.player;
+
+import org.spongepowered.api.entity.Player;
 
 /**
- * Effective side platforms
- *
- * <p>A side is what part of minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
+ * Called when a {@link Player} disconnects from the server.
  */
-public enum Platform {
-
-    /**
-     * The platform of a Minecraft CLIENT is expected
-     */
-    CLIENT,
-    /**
-     * The platform of a Minecraft SERVER is expected
-     */
-    SERVER
+public interface PlayerQuitEvent extends PlayerEvent {
 
 }
