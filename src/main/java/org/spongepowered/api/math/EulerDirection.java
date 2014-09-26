@@ -28,7 +28,7 @@ package org.spongepowered.api.math;
 import java.io.Serializable;
 
 /**
- * Represents a euler direction, made up of pitch, yaw and roll components.
+ * Represents an euler direction, made up of pitch, yaw and roll components.
  *
  * Euler directions are most commonly used by entities to represent the direction they are looking in.
  */
