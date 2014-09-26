@@ -29,14 +29,15 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Event;
 
 /**
- * Describes events which contain an {@link Entity}
+ * An event that whose target happens to be an entity.
  */
 public interface EntityEvent extends Event {
 
     /**
-     * Gets the {@link Entity} involved
+     * Return the target entity.
      *
-     * @return {@link Entity} involved
+     * @return The target entity
      */
     Entity getEntity();
+
 }
