@@ -45,7 +45,7 @@ public interface EntityEvent extends GameEvent {
      * for the removed entity (i.e. if it's a spawn entity event, then the
      * entity would not be spawned).</p>
      *
-     * @return An list of entities
+     * @return A list of entities
      */
     List<Entity> getEntities();
 
