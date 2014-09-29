@@ -43,14 +43,14 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
     Item getItem();
 
     /**
-     * Get the damage/durability value.
+     * Gets the damage/durability value.
      *
      * @return The item's damage value
      */
     short getDamage();
 
     /**
-     * Set the damage/durability.
+     * Sets the damage/durability.
      *
      * @param damage The value that the damage should be set to
      */
@@ -69,6 +69,7 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
      * Sets the quantity in this stack.
      *
      * @param quantity Quantity
+     *
      * @throws IllegalArgumentException If quantity set exceeds the
      * {@link ItemStack#getMaxStackQuantity()}
      */
@@ -84,7 +85,7 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
     int getMaxStackQuantity();
 
     /**
-     * Set the max quantity per stack. This overrides, and is entirely separate
+     * Sets the max quantity per stack. This overrides, and is entirely separate
      * from {@link Item#getMaxStackQuantity()}.
      *
      * @param quantity Max stack quantity
