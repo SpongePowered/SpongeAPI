@@ -26,6 +26,7 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.component.attribute.Diggable;
+import org.spongepowered.api.component.attribute.Illuminated;
 import org.spongepowered.api.component.attribute.Powerable;
 import org.spongepowered.api.math.Vector3i;
 import org.spongepowered.api.world.Location;
