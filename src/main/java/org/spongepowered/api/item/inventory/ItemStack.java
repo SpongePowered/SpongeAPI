@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.inventory;
+package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.Item;
 
