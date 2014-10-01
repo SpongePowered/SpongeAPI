@@ -27,7 +27,6 @@ package org.spongepowered.api.world.extent;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3d;
-import org.spongepowered.api.math.Vector3i;
 
 /**
  * A volume containing blocks.
