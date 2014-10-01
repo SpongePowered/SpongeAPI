@@ -40,6 +40,27 @@ public interface Positionable {
     Vector3d getPosition();
 
     /**
+     * Get the X component of this instance's position.
+     *
+     * @return The x component
+     */
+    double getX();
+
+    /**
+     * Get the Y component of this instance's position.
+     *
+     * @return The y component
+     */
+    double getY();
+
+    /**
+     * Get the Z component of this instance's position.
+     *
+     * @return The z component
+     */
+    double getZ();
+
+    /**
      * Sets the position.
      * 
      * @param position The position to set to
