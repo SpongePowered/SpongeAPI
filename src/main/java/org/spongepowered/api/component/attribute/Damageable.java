@@ -36,6 +36,13 @@ public interface Damageable {
      * @param amount The damage amount
      */
     void damage(double amount);
+    
+    /**
+     * Adds to the health by the given amount.
+     * 
+     * @param amount The healing amount
+     */
+    void heal(double amount);
 
     /**
      * Returns the health amount.
