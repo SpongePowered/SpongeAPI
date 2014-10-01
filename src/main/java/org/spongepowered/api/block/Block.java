@@ -34,7 +34,7 @@ import org.spongepowered.api.world.extent.Extent;
 /**
  * Represents a block at a specific location in an {@link Extent}.
  */
-public interface Block extends BlockState, Powerable, Diggable {
+public interface Block extends BlockState, Powerable, Diggable, Illuminated {
 
     /**
      * Get the extent.
@@ -109,34 +109,5 @@ public interface Block extends BlockState, Powerable, Diggable {
      * @param snapshot The snapshot
      */
     void replaceWith(BlockSnapshot snapshot);
-
-    /**
-     * Get the light level for this block.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    byte getLuminance();
-
-    /**
-     * Get the light level for this block that is caused by an overhead sky.
-     *
-     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
-     * the return value may be 0.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    byte getLuminanceFromSky();
-
-    /**
-     * Get the light level for this block that is caused by everything
-     * other than the sky.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    byte getLuminanceFromGround();
 
 }
