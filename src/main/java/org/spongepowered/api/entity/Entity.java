@@ -25,6 +25,9 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.component.attribute.Positionable;
+import org.spongepowered.api.component.attribute.Rotatable;
+
 /**
  * An entity is a Minecraft entity.
  *
@@ -41,7 +44,7 @@ package org.spongepowered.api.entity;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends EntityState {
+public interface Entity extends EntityState, Positionable, Rotatable {
 
     /**
      * Mark this entity for removal in the very near future, preferrably
