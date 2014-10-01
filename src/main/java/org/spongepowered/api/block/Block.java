@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.component.attribute.Powerable;
 import org.spongepowered.api.math.Vector3i;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
@@ -32,7 +33,7 @@ import org.spongepowered.api.world.extent.Extent;
 /**
  * Represents a block at a specific location in an {@link Extent}.
  */
-public interface Block extends BlockState {
+public interface Block extends BlockState, Powerable {
 
     /**
      * Get the extent.
