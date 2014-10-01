@@ -56,6 +56,27 @@ public interface Block extends BlockState {
     Location getLocation();
 
     /**
+     * Get the X component of this block instance's position.
+     *
+     * @return The x component
+     */
+    int getX();
+
+    /**
+     * Get the Y component of this block instance's position.
+     *
+     * @return The y component
+     */
+    int getY();
+
+    /**
+     * Get the Z component of this block instance's position.
+     *
+     * @return The z component
+     */
+    int getZ();
+
+    /**
      * Replace the block at this position by a new type.
      *
      * <p>This will remove any block data at the given position.</p>
