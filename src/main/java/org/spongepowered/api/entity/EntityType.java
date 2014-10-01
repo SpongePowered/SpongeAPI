@@ -23,11 +23,10 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.entity;
 
 /**
- * Contains blocks, entities, and possibly other game objects.
+ * Describes a type of entity.
  */
-public interface Extent extends BlockVolume, EntityUniverse {
-
+public interface EntityType {
 }

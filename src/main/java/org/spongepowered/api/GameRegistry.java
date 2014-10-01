@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.Item;
 
 import javax.annotation.Nullable;
@@ -35,13 +35,13 @@ import javax.annotation.Nullable;
 public interface GameRegistry {
 
     /**
-     * Gets a {@link Block} by its identifier.
+     * Gets a {@link BlockType} by its identifier.
      *
      * @param id The id to look up
      * @return The block or null if not found
      */
     @Nullable
-    Block getBlock(String id);
+    BlockType getBlock(String id);
 
     /**
      * Gets an {@link Item} by its identifier.

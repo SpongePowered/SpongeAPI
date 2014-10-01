@@ -23,11 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.entity;
+
+import org.spongepowered.api.component.ComponentContainer;
+import org.spongepowered.api.world.extent.Extent;
 
 /**
- * Contains blocks, entities, and possibly other game objects.
+ * Represents an entity with type and data.
  */
-public interface Extent extends BlockVolume, EntityUniverse {
+public interface EntityState extends ComponentContainer {
+
+    /**
+     * Get the type of entity.
+     *
+     * @return The type of entity
+     */
+    EntityType getType();
+
+    /**
+     * Get a snapshot of this entity at the current point in time.
+     *
+     * <p>An entity is disconnected from the {@link Extent} that it was
+     * taken from so changes to the original entity do not affect the
+     * snapshot.</p>
+     *
+     * @return A snapshot
+     */
+    EntitySnapshot getSnapshot();
 
 }

@@ -25,12 +25,6 @@
 
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-import org.spongepowered.api.util.Identifiable;
-
 /**
  * An entity is a Minecraft entity.
  *
@@ -47,6 +41,12 @@ import org.spongepowered.api.util.Identifiable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, Flammable, Movable, Positionable, Rotatable {
+public interface Entity extends EntityState {
+
+    /**
+     * Mark this entity for removal in the very near future, preferrably
+     * within one game tick.
+     */
+    void remove();
 
 }

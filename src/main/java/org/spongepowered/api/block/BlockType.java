@@ -23,11 +23,26 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.block;
 
 /**
- * Contains blocks, entities, and possibly other game objects.
+ * Describes a base type of block.
+ *
+ * <p>Currently, instances of this class do not fully represent variants of
+ * certain blocks because some blocks use data values (which are being
+ * phased out in Minecraft).</p>
  */
-public interface Extent extends BlockVolume, EntityUniverse {
+public interface BlockType {
+
+    /**
+     * Return the internal ID for the block.
+     *
+     * <p>The format of the internal ID may vary between implementations
+     * but in Minecraft, it follows the format of {@code domain:type}, an
+     * example being {@code minecraft:stone}.</p>
+     *
+     * @return The id
+     */
+    String getId();
 
 }

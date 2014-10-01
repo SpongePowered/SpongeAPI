@@ -26,6 +26,7 @@
 package org.spongepowered.api.world.extent;
 
 import org.spongepowered.api.block.Block;
+import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3i;
 
 /**
@@ -34,57 +35,21 @@ import org.spongepowered.api.math.Vector3i;
 public interface BlockVolume {
 
     /**
-     * Get the block (type) at the given position.
-     *
-     * <p>If the position is outside the bounds of the volume, the behavior
-     * is undefined. Implementations may return "air" as the given block, but
-     * may also return any other valid block.</p>
+     * Get a representation of the block at the given position.
      *
      * @param position The position
-     * @return The block type
+     * @return The block
      */
-    Block getBlock(Vector3i position);
+    Block getBlock(Vector3d position);
 
     /**
-     * Set the block (type) at the given location.
+     * Get a representation of the block at the given position.
      *
-     * <p>If the position is outside the bounds of the volume, then no change
-     * should occur and {@code false] should be returned.</p>
-     *
-     * @param position The position
-     * @param block The block type
-     * @return True if a change potentially occurred
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The block
      */
-    boolean setBlock(Vector3i position, Block block);
-
-    /**
-     * Get the light level at the given location.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    byte getLuminance(Vector3i position);
-
-    /**
-     * Get the light level at the given location that is caused by
-     * an overhead sky.
-     *
-     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
-     * the return value may be 0.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    byte getLuminanceFromSky(Vector3i position);
-
-    /**
-     * Get the light level at the given location that is caused by everything
-     * other than the sky.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    byte getLuminanceFromGround(Vector3i position);
+    Block getBlock(int x, int y, int z);
 
 }

@@ -25,7 +25,11 @@
 
 package org.spongepowered.api.world.extent;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.math.Vector3d;
 
 import java.util.Collection;
 
@@ -45,5 +49,23 @@ public interface EntityUniverse {
      * @return A collection of entities
      */
     Collection<Entity> getEntities();
+
+    /**
+     * Create an entity instance at the given position.
+     *
+     * @param type The type
+     * @param position The position
+     * @return An entity, if one was created
+     */
+    Optional<Entity> createEntity(EntityType type, Vector3d position);
+
+    /**
+     * Create an entity instance at the given position.
+     *
+     * @param snapshot The snapshot
+     * @param position The position
+     * @return An entity, if one was created
+     */
+    Optional<Entity> createEntity(EntitySnapshot snapshot, Vector3d position);
 
 }

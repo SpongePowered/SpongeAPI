@@ -23,11 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.component;
+
+import com.google.common.base.Optional;
 
 /**
- * Contains blocks, entities, and possibly other game objects.
+ * An object that holds components.
  */
-public interface Extent extends BlockVolume, EntityUniverse {
+public interface ComponentContainer {
+
+    /**
+     * Get a component, if it exists.
+     *
+     * @param clazz The component type
+     * @param <T> The type
+     * @return The component, if it is available
+     */
+    <T> Optional<T> getComponent(Class<T> clazz);
 
 }

@@ -27,8 +27,6 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3d;
-import org.spongepowered.api.math.Vector3i;
-import org.spongepowered.api.world.extent.BlockVolume;
 import org.spongepowered.api.world.extent.Extent;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -137,60 +135,12 @@ public class Location {
     }
 
     /**
-     * Get the block (type) at the given position.
+     * Get the block at this position.
      *
-     * @return The block type
-     * @see BlockVolume#getBlock(Vector3i)
+     * @return The block
      */
     public Block getBlock() {
-        return getExtent().getBlock(position.toInt());
-    }
-
-    /**
-     * Set the block (type) at the given location.
-     *
-     * @param block The block type
-     * @return True if a change potentially occurred
-     * @see BlockVolume#setBlock(Vector3i, Block)
-     */
-    public boolean setBlock(Block block) {
-        return getExtent().setBlock(position.toInt(), block);
-    }
-
-    /**
-     * Get the light level at the given location.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public byte getLuminance() {
-        return getExtent().getLuminance(position.toInt());
-    }
-
-    /**
-     * Get the light level at the given location that is caused by
-     * an overhead sky.
-     *
-     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
-     * the return value may be 0.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public byte getLuminanceFromSky() {
-        return getExtent().getLuminanceFromSky(position.toInt());
-    }
-
-    /**
-     * Get the light level at the given location that is caused by everything
-     * other than the sky.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public byte getLuminanceFromGround() {
-        return getExtent().getLuminanceFromGround(position.toInt());
+        return getExtent().getBlock(getPosition());
     }
 
 }

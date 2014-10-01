@@ -25,23 +25,82 @@
 
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
+
 /**
- * Describes a type of block.
- *
- * <p>An instance of this class does not describe a particular block at
- * a particular location in a particular world.</p>
+ * Represents a block at a specific location in an {@link Extent}.
  */
-public interface Block {
+public interface Block extends BlockState {
 
     /**
-     * Return the internal ID for the block.
+     * Get the extent.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code mod:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return The extent
      */
-    String getId();
+    Extent getExtent();
+
+    /**
+     * Get the position of the block.
+     *
+     * @return The position
+     */
+    Vector3i getPosition();
+
+    /**
+     * Get the location of the block.
+     *
+     * @return The location
+     */
+    Location getLocation();
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any block data at the given position.</p>
+     *
+     * @param type The new type
+     */
+    void replaceWith(BlockType type);
+
+    /**
+     * Replace the block at this position with a copy of the given snapshot.
+     *
+     * <p>Changing the snapshot afterwards will not affect the block that
+     * has been placed at this location.</p>
+     *
+     * @param snapshot The snapshot
+     */
+    void replaceWith(BlockSnapshot snapshot);
+
+    /**
+     * Get the light level for this block.
+     *
+     * <p>Higher levels indicate a higher luminance.</p>
+     *
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminance();
+
+    /**
+     * Get the light level for this block that is caused by an overhead sky.
+     *
+     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
+     * the return value may be 0.</p>
+     *
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminanceFromSky();
+
+    /**
+     * Get the light level for this block that is caused by everything
+     * other than the sky.
+     *
+     * <p>Higher levels indicate a higher luminance.</p>
+     *
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminanceFromGround();
 
 }
