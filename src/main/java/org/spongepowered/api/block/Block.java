@@ -77,6 +77,19 @@ public interface Block extends BlockState {
     int getZ();
 
     /**
+     * Replace the block at this position by with a new block with the same
+     * type but a different data value.
+     *
+     * <p>This will remove any block data at the given position.</p>
+     *
+     * @param data The new data value
+     * @see BlockState#getDataValue()
+     * @deprecated Minecraft is phasing out data values
+     */
+    @Deprecated
+    void replaceData(byte data);
+
+    /**
      * Replace the block at this position by a new type.
      *
      * <p>This will remove any block data at the given position.</p>
