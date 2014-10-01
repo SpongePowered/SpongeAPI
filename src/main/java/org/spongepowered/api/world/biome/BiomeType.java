@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.world.biome;
 
 /**
- * Contains blocks, entities, and possibly other game objects.
+ * Represents a biome.
  */
-public interface Extent extends BlockVolume, EntityUniverse, BiomeVolume {
+public interface BiomeType {
 
 }

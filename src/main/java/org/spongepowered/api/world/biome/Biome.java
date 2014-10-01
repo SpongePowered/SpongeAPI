@@ -23,11 +23,39 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.world.biome;
 
 /**
- * Contains blocks, entities, and possibly other game objects.
+ * Represents the biome at a particular location.
  */
-public interface Extent extends BlockVolume, EntityUniverse, BiomeVolume {
+public interface Biome {
+
+    /**
+     * Get the biome type.
+     *
+     * @return The biome type
+     */
+    BiomeType getType();
+
+    /**
+     * Get the temperature of this biome.
+     *
+     * @return The temperature
+     */
+    double getTemperature();
+
+    /**
+     * Get the humidity of this biome.
+     *
+     * @return The humidity
+     */
+    double getHumidity();
+
+    /**
+     * Replace with another biome type.
+     *
+     * @param type The new biome type
+     */
+    void replaceWith(BiomeType type);
 
 }
