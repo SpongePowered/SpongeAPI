@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.item;
 
-public interface Item {
+public interface ItemType {
 
     /**
      * Gets the id of this item.

@@ -25,22 +25,22 @@
 
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.item.Item;
+import org.spongepowered.api.item.ItemType;
 
 import java.io.Serializable;
 
 /**
- * Represents a stack of a specific {@link Item}. Allows comparison to another
+ * Represents a stack of a specific {@link ItemType}. Allows comparison to another
  * ItemStack, and supports serialization.
  */
 public interface ItemStack extends Comparable<ItemStack>, Serializable {
 
     /**
-     * Gets the {@link Item} item type.
+     * Gets the {@link ItemType} item type.
      *
      * @return The item type
      */
-    Item getItem();
+    ItemType getItem();
 
     /**
      * Get the damage/durability value.
@@ -76,7 +76,7 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
 
     /**
      * Get the maximum quantity per stack. By default, returns
-     * {@link Item#getMaxStackQuantity()}, unless a
+     * {@link ItemType#getMaxStackQuantity()}, unless a
      * different value has been set for this specific stack.
      *
      * @return Max stack quantity
@@ -85,7 +85,7 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
 
     /**
      * Set the max quantity per stack. This overrides, and is entirely separate
-     * from {@link Item#getMaxStackQuantity()}.
+     * from {@link ItemType#getMaxStackQuantity()}.
      *
      * @param quantity Max stack quantity
      */

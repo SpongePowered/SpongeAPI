@@ -27,7 +27,7 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.item.Item;
+import org.spongepowered.api.item.ItemType;
 
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
@@ -43,12 +43,12 @@ public interface GameRegistry {
     Optional<BlockType> getBlock(String id);
 
     /**
-     * Gets an {@link Item} by its identifier.
+     * Gets an {@link ItemType} by its identifier.
      *
      * @param id The id to look up
      * @return The item or null if not found
      */
-    Optional<Item> getItem(String id);
+    Optional<ItemType> getItem(String id);
 
     /**
      * Gets the ID registered to the object.
