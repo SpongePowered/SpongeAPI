@@ -25,6 +25,11 @@
 
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.item.inventory.ItemStack;
+
+/**
+ * A type of item.
+ */
 public interface ItemType {
 
     /**
@@ -35,7 +40,7 @@ public interface ItemType {
      *
      * @return The id
      */
-    String getID();
+    String getId();
 
     /**
      * Get the default maximum quantity for {@link ItemStack}s
