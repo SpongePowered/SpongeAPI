@@ -90,5 +90,21 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
      * @param quantity Max stack quantity
      */
     void setMaxStackQuantity(int quantity);
+    
+    /**
+     * Set the NBT tag for the item. The NBT tag dictates extra fuctionality of the
+     * item. Ex. {display:{Name:"",color:,Lore:["lore here", "lore here"]}}
+     * 
+     * @param nbt The NBT tag for the item.
+     */
+     void setNbtTag(nbt);
+     
+     /**
+     * Get the NBT tag for the item. The NBT tag dictates extra fuctionality of the
+     * item. Ex. {display:{Name:"",color:,Lore:["lore here", "lore here"]}}
+     * 
+     * @return The current NBT tag for the item.
+     */
+     String getNBT();
 
 }
