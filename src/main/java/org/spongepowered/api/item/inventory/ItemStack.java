@@ -105,6 +105,6 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
      * 
      * @return The current NBT tag for the item.
      */
-     String getNBT();
+     String getNbtTag();
 
 }
