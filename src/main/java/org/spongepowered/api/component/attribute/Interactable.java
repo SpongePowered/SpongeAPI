@@ -32,7 +32,7 @@ public interface Interactable {
     /**
      * Simulates the interaction with this object as if a player had done so.
      */
-    public void interact();
+    void interact();
 
     /**
      * Simulates the interaction with this object using the given item as if
@@ -40,5 +40,5 @@ public interface Interactable {
      *
      * @param itemStack The item
      */
-    public void interactWith(ItemStack itemStack);
+    void interactWith(ItemStack itemStack);
 }
