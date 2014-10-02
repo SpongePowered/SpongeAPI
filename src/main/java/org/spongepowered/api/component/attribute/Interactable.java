@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.component.attribute;
 
+import org.spongepowered.api.item.inventory.ItemStack;
+
 /**
  * Something that can be interacted with.
  */
