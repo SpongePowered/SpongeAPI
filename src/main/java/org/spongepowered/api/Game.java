@@ -22,13 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api;
 
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.text.TextMessage;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -122,7 +122,7 @@ public interface Game {
      *
      * @param message The message to send
      */
-    void broadcastMessage(String message);
+    void broadcastMessage(TextMessage message);
 
     /**
      * Gets the API version.
@@ -137,5 +137,12 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+
+    /**
+     * Gets the factory provider.
+     * 
+     * @return The factory provider
+     */
+    FactoryProvider getFactoryProvider();
 
 }

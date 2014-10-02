@@ -22,31 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text;
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.text.TextMessage;
-
-public interface Player extends HumanEntity {
-
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
+/**
+ * General chat event for the client.
+ * 
+ * @see net.minecraft.event.ClickEvent
+ * @see net.minecraft.event.HoverEvent
+ */
+public interface TextClientEvent {
 
     /**
-     * Gets the player's display name. If none set, returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
-
-    /**
-     * Sends a message to this player
+     * Gets what the client will do when this event is triggered.
      * 
-     * @param message The message to be sent
+     * @return The action
      */
-    void sendMessage(TextMessage message);
+    TextAction getAction();
+
+    /**
+     * Gets the value for the action.
+     * 
+     * @return The value
+     */
+    String getValue();
+
+    /**
+     * Gets the type of client event this is.  Currently Click or Hover.
+     * 
+     * @return Event type
+     */
+    ActionType getType();
+
+    /**
+     * Possible action types the vanilla client knows about.
+     */
+    public static enum ActionType {
+        CLICK,
+        HOVER;
+    }
 }
