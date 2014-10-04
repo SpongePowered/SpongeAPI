@@ -28,36 +28,20 @@ package org.spongepowered.api.item.inventory;
 /**
  * A type of inventory
  */
-public enum InventoryType {
-
-    ANVIL(3),
-    BEACON(1),
-    BREWING(4),
-    CHEST(27),
-    CRAFTING(5),
-    CREATIVE(9),
-    DISPENSER(9),
-    DROPPER(9),
-    ENCHANTING(1),
-    ENDER_CHEST(27),
-    FURNACE(3),
-    HOPPER(5),
-    MERCHANT(3),
-    PLAYER(36);
-
-    int inventorySize;
-
-    private InventoryType(int size) {
-        inventorySize = size;
-    }
+public interface InventoryType {
 
     /**
      * Gets the size of inventory type.
      * 
      * @return size
      */
-    public int getSize(){
-	    return inventorySize;
-	}
+    public int getSize();
+
+    /**
+     * Returns inventory type name.
+     * 
+     * @return type name
+     */
+    public String getName();
 
 }
