@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,20 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.GameEvent;
 
 /**
  * Describes events which contain a {@link Player}
  */
-public interface PlayerEvent extends Event {
+public interface PlayerEvent extends GameEvent {
 
     /**
-     * Gets the {@link org.spongepowered.api.entity.Player} involved
+     * Gets the {@link Player} involved
      *
-     * @return {@link org.spongepowered.api.entity.Player} involved
+     * @return {@link Player} involved
      */
     Player getPlayer();
+
 }

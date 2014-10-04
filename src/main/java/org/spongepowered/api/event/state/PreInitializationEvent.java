@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,13 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.state;
 
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.GameState;
+
+import java.io.File;
 
 /**
  * Represents {@link GameState#PRE_INITIALIZATION} event
  */
 public interface PreInitializationEvent extends StateEvent {
+
+    /**
+     * gets a logger pre-configured to use the Plugin's ID
+     * Use this.
+     * @return A Logger for the plugin
+     */
+    public Logger getPluginLog();
+
+    /**
+     *
+     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
+     */
+    public File getSuggestedConfigurationFile();
+
+    /**
+     *
+     * @return Plugin specific Configuration directory for plugins that need more than a single config file
+     */
+    public File getSuggestedConfigurationDirectory();
+
+    /**
+     *
+     * @return the config folder
+     */
+    public File getConfigurationDirectory();
 
 }

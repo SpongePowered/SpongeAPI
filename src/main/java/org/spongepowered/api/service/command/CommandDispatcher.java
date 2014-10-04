@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,23 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item;
 
-public interface Item {
+package org.spongepowered.api.service.command;
 
-    /**
-     * Gets the id of this item.
-     * <p/>
-     * Ex. Minecraft registers a golden carrot as "minecraft:golden_carrot"
-     *
-     * @return The id
-     */
-    String getID();
+import org.spongepowered.api.util.command.dispatcher.Dispatcher;
 
-    /**
-     * Get the default maximum quantity for {@link org.spongepowered.api.inventory.ItemStack}s of this item
-     *
-     * @return Max stack quantity
-     */
-    int getMaxStackQuantity();
+/**
+ * A command dispatcher watches for commands (such as those said in chat)
+ * and dispatches them to the correct command handler.
+ */
+public interface CommandDispatcher extends Dispatcher {
+
 }

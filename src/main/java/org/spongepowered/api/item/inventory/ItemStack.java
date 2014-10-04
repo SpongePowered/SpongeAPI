@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,43 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.inventory;
 
-import org.spongepowered.api.item.Item;
+package org.spongepowered.api.item.inventory;
+
+import org.spongepowered.api.item.ItemType;
 
 import java.io.Serializable;
 
 /**
- * Represents a stack of a specific {@link Item}. Allows comparison to another
+ * Represents a stack of a specific {@link ItemType}. Allows comparison to another
  * ItemStack, and supports serialization.
  */
 public interface ItemStack extends Comparable<ItemStack>, Serializable {
 
     /**
-     * Gets the {@link Item} item type
+     * Gets the {@link ItemType} item type.
      *
      * @return The item type
      */
-    Item getItem();
+    ItemType getItem();
 
     /**
-     * Set the damage/durability
+     * Get the damage/durability value.
+     *
+     * @return The item's damage value
+     */
+    short getDamage();
+
+    /**
+     * Set the damage/durability.
      *
      * @param damage The value that the damage should be set to
      */
     void setDamage(short damage);
 
     /**
-     * Get the damage/durability value
-     *
-     * @return Damage
-     */
-    short getDamage();
-
-    /**
-     * Gets the quantity of items in this stack. This may
-     * exceed the max stack size of the item, and if added
-     * to an inventory will then be divided by the max stack
+     * Gets the quantity of items in this stack. This may exceed the max stack
+     * size of the item, and if added to an inventory will then be divided by
+     * the max stack.
      *
      * @return Quantity of items
      */
@@ -67,22 +69,25 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
      * Sets the quantity in this stack.
      *
      * @param quantity Quantity
-     * @throws IllegalArgumentException If quantity set exceeds the {@link org.spongepowered.api.inventory.ItemStack#getMaxStackQuantity()}
+     * @throws IllegalArgumentException If quantity set exceeds the
+     * {@link ItemStack#getMaxStackQuantity()}
      */
     void setQuantity(int quantity) throws IllegalArgumentException;
 
     /**
-     * Get the maximum quantity per stack. By default, returns {@link org.spongepowered.api.item.Item#getMaxStackQuantity()},
-     * unless a different value has been set for this specific stack.
+     * Get the maximum quantity per stack. By default, returns
+     * {@link ItemType#getMaxStackQuantity()}, unless a
+     * different value has been set for this specific stack.
      *
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
 
     /**
-     * Set the max quantity per stack. This overrides, and is entirely separate from {@link org.spongepowered.api.item.Item#getMaxStackQuantity()}
+     * Set the max quantity per stack. This overrides, and is entirely separate
+     * from {@link ItemType#getMaxStackQuantity()}.
      *
-     * @param quantity  Max stack quantity
+     * @param quantity Max stack quantity
      */
     void setMaxStackQuantity(int quantity);
 

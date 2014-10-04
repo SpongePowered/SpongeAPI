@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,22 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.voxel;
 
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.Voxel;
+import java.util.UUID;
 
 /**
- * Describes events which contain a {@link Block} wrapped by a {@link Voxel}
+ * An identifiable object has a UUID that can be retrieved.
  */
-public interface VoxelEvent extends Event {
+public interface Identifiable {
 
     /**
-     * Get {@link Voxel} included in the event
+     * Gets the unique ID for this object.
      *
-     * @return Event {@link Voxel}
+     * @return The {@link UUID}
      */
-    Voxel getVoxel();
+    UUID getUniqueId();
+
 }

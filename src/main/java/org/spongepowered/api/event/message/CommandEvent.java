@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,32 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.math.Vector3i;
+package org.spongepowered.api.event.message;
+
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Represents the smallest unit of the world map. This unit
- * has a position with integer coordinates and a block reference
- * which defines it's behaviour and attributes. Unlike a block,
- * this object has a position attribute, and does not define any logic
- * by itself.
+ * Fired when a command has been used and needs to be processed.
  */
-public interface Voxel extends VoxelVolume {
+public interface CommandEvent extends GameEvent {
 
     /**
-     * Gets the voxel's position in the world map.
+     * Get the source of the command.
      *
-     * @return position The voxel's position
+     * @return The source of the command
      */
-    Vector3i getPosition();
+    CommandSource getSource();
 
     /**
-     * Gets a reference to the block object that
-     * defines the voxel's logic.
+     * Get the command as a string, without any sort of command prefix.
      *
-     * @return block The block defining the voxel
+     * <p>For example, if the message was {@code /example bob 3 -f}, then
+     * the command would be {@code example}.</p>
+     *
+     * @return The commands
      */
-    Block getBlock();
+    String getCommand();
+
+    /**
+     * Get the arguments as a string.
+     *
+     * <p>For example, if the message was {@code /example bob 3 -f}, then
+     * the arguments would be {@code bob 3 -f}.</p>
+     *
+     * @return The arguments
+     */
+    String getArguments();
+
 }

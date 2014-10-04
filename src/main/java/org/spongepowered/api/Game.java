@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,10 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api;
 
 import org.apache.logging.log4j.Logger;
-
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
@@ -36,39 +37,35 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 /**
- * The core accessor of the API. The implementation uses this to pass constructed objects.
+ * The core accessor of the API. The implementation uses this to pass
+ * constructed objects.
  */
 public interface Game {
-    /**
-     * Gets the {@link org.apache.logging.log4j.Logger} of the implementation.
-     *
-     * @return The logger
-     */
-    Logger getLogger();
 
     /**
-     * Returns the {@link org.spongepowered.api.Platform} the implementation is executing from.
+     * Returns the {@link Platform} the implementation
+     * is executing from.
      *
      * @return The platform
      */
     Platform getPlatform();
 
     /**
-     * Gets the {@link org.spongepowered.api.plugin.PluginManager}.
+     * Gets the {@link PluginManager}.
      *
      * @return The plugin manager
      */
     PluginManager getPluginManager();
 
     /**
-     * Gets the {@link org.spongepowered.api.event.EventManager}.
+     * Gets the {@link EventManager}.
      *
      * @return The event manager
      */
     EventManager getEventManager();
 
     /**
-     * Gets the {@link org.spongepowered.api.GameRegistry}.
+     * Gets the {@link GameRegistry}.
      *
      * @return The game registry
      */
@@ -92,21 +89,20 @@ public interface Game {
      * Gets a {@link Player} by their unique id
      *
      * @param uniqueId The UUID to get the player from
-     * 
      * @return {@link Player} or null if none found
      */
     @Nullable
     Player getPlayer(UUID uniqueId);
 
     /**
-     * Gets all currently loaded {@link org.spongepowered.api.world.World}s.
+     * Gets all currently loaded {@link World}s.
      *
      * @return Collection of loaded worlds
      */
     Collection<World> getWorlds();
 
     /**
-     * Gets a loaded {@link World} by its unique id ({@link java.util.UUID}.
+     * Gets a loaded {@link World} by its unique id ({@link UUID}).
      *
      * @param uniqueId UUID to lookup
      * @return The world or null if not found
@@ -141,4 +137,5 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+
 }

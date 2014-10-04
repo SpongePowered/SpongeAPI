@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.math;
 
 import java.io.Serializable;
 
 /**
- * Represent a 3 component vector using floats.
- * It is immutable and all vectors returned by the methods are new instances.
+ * Represent a 3 component vector using floats. It is immutable and all vectors
+ * returned by the methods are new instances.
  */
 public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable {
+
     /**
      * Returns the x component.
      *
@@ -81,7 +84,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f add(Vector3f v);
 
     /**
-     * Adds the vector components to this vector, returning the results as new vector.
+     * Adds the vector components to this vector, returning the results as new
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -91,7 +95,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f add(double x, double y, double z);
 
     /**
-     * Adds the vector components to this vector, returning the results as new vector.
+     * Adds the vector components to this vector, returning the results as new
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -101,7 +106,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f add(float x, float y, float z);
 
     /**
-     * Subtracts another Vector3f to this one, returning the results as new vector.
+     * Subtracts another Vector3f to this one, returning the results as new
+     * vector.
      *
      * @param v The vector to subtract
      * @return The results of the operation as a new vector
@@ -109,7 +115,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f sub(Vector3f v);
 
     /**
-     * Subtracts the vector components from this vector, returning the results as new vector.
+     * Subtracts the vector components from this vector, returning the results
+     * as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -119,7 +126,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f sub(double x, double y, double z);
 
     /**
-     * Subtracts the vector components from this vector, returning the results as new vector.
+     * Subtracts the vector components from this vector, returning the results
+     * as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -129,7 +137,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f sub(float x, float y, float z);
 
     /**
-     * Multiplies each component of this vector by the value, returning the results as new vector.
+     * Multiplies each component of this vector by the value, returning the
+     * results as new vector.
      *
      * @param a The value to multiply by
      * @return The results of the operation as a new vector
@@ -137,7 +146,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f mul(double a);
 
     /**
-     * Multiplies each component of this vector by the value, returning the results as new vector.
+     * Multiplies each component of this vector by the value, returning the
+     * results as new vector.
      *
      * @param a The value to multiply by
      * @return The results of the operation as a new vector
@@ -145,8 +155,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f mul(float a);
 
     /**
-     * Multiplies each component of this vector by the corresponding component in another Vector3f,
-     * returning the results as new vector.
+     * Multiplies each component of this vector by the corresponding component
+     * in another Vector3f, returning the results as new vector.
      *
      * @param v The vector to multiply by
      * @return The results of the operation as a new vector
@@ -154,7 +164,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f mul(Vector3f v);
 
     /**
-     * Multiplies each component of this vector by the corresponding component, returning the results as new vector.
+     * Multiplies each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -164,7 +175,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f mul(double x, double y, double z);
 
     /**
-     * Multiplies each component of this vector by the corresponding component, returning the results as new vector.
+     * Multiplies each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -174,7 +186,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f mul(float x, float y, float z);
 
     /**
-     * Divides each component of this vector by the value, returning the results as new vector.
+     * Divides each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param a The value to divide by
      * @return The results of the operation as a new vector
@@ -182,7 +195,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f div(double a);
 
     /**
-     * Divides each component of this vector by the value, returning the results as new vector.
+     * Divides each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param a The value to divide by
      * @return The results of the operation as a new vector
@@ -190,8 +204,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f div(float a);
 
     /**
-     * Divides each component of this vector by the corresponding component in another Vector3f,
-     * returning the results as new vector.
+     * Divides each component of this vector by the corresponding component in
+     * another Vector3f, returning the results as new vector.
      *
      * @param v The vector to divide by
      * @return The results of the operation as a new vector
@@ -199,7 +213,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f div(Vector3f v);
 
     /**
-     * Divides each component of this vector by the corresponding component, returning the results as new vector.
+     * Divides each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -209,7 +224,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f div(double x, double y, double z);
 
     /**
-     * Divides each component of this vector by the corresponding component, returning the results as new vector.
+     * Divides each component of this vector by the corresponding component,
+     * returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -275,7 +291,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f cross(float x, float y, float z);
 
     /**
-     * Raises each component of this vector by the value, returning the results as new vector.
+     * Raises each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param pow The value to raise by
      * @return The results of the operation as a new vector
@@ -283,7 +300,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f pow(double pow);
 
     /**
-     * Raises each component of this vector by the value, returning the results as new vector.
+     * Raises each component of this vector by the value, returning the results
+     * as new vector.
      *
      * @param power The value to raise by
      * @return The results of the operation as a new vector
@@ -291,14 +309,16 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f pow(float power);
 
     /**
-     * Calculates the ceiling of each component, returning the result as a new vector.
+     * Calculates the ceiling of each component, returning the result as a new
+     * vector.
      *
      * @return The results of the operation
      */
     Vector3f ceil();
 
     /**
-     * Calculates the floor of each component, returning the result as a new vector.
+     * Calculates the floor of each component, returning the result as a new
+     * vector.
      *
      * @return The results of the operation
      */
@@ -312,7 +332,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f round();
 
     /**
-     * Calculates the absolute value of each component, returning the result as a new vector.
+     * Calculates the absolute value of each component, returning the result as
+     * a new vector.
      *
      * @return The results of the operation
      */
@@ -326,8 +347,9 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f negate();
 
     /**
-     * Finds the minimum between each component of this vector and the corresponding component in another Vector3f,
-     * returning the results as new vector.
+     * Finds the minimum between each component of this vector and the
+     * corresponding component in another Vector3f, returning the results as new
+     * vector.
      *
      * @param v The vector to compare
      * @return The results of the operation as a new vector
@@ -335,8 +357,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f min(Vector3f v);
 
     /**
-     * Finds the minimum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the minimum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -346,8 +368,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f min(double x, double y, double z);
 
     /**
-     * Finds the minimum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the minimum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -357,8 +379,9 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f min(float x, float y, float z);
 
     /**
-     * Finds the maximum between each component of this vector and the corresponding component in another Vector3f,
-     * returning the results as new vector.
+     * Finds the maximum between each component of this vector and the
+     * corresponding component in another Vector3f, returning the results as new
+     * vector.
      *
      * @param v The vector to compare
      * @return The results of the operation as a new vector
@@ -366,8 +389,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f max(Vector3f v);
 
     /**
-     * Finds the maximum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the maximum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -377,8 +400,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f max(double x, double y, double z);
 
     /**
-     * Finds the maximum between each component of this vector and the corresponding component,
-     * returning the results as new vector.
+     * Finds the maximum between each component of this vector and the
+     * corresponding component, returning the results as new vector.
      *
      * @param x The x component
      * @param y The y component
@@ -388,7 +411,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f max(float x, float y, float z);
 
     /**
-     * Gets the square of the distance between this vector and another Vector3f.
+     * Gets the square of the distance between this vector and another
+     * Vector3f.
      *
      * @param v The other vector
      * @return The square of the distance between the two
@@ -396,7 +420,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     float distanceSquared(Vector3f v);
 
     /**
-     * Gets the square of the distance between this vector and the components of another vector.
+     * Gets the square of the distance between this vector and the components of
+     * another vector.
      *
      * @param x The x component
      * @param y The y component
@@ -406,7 +431,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     float distanceSquared(double x, double y, double z);
 
     /**
-     * Gets the square of the distance between this vector and the components of another vector.
+     * Gets the square of the distance between this vector and the components of
+     * another vector.
      *
      * @param x The x component
      * @param y The y component
@@ -424,7 +450,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     float distance(Vector3f v);
 
     /**
-     * Gets the distance between this vector and the components of another vector.
+     * Gets the distance between this vector and the components of another
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -434,7 +461,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     float distance(double x, double y, double z);
 
     /**
-     * Gets the distance between this vector and the components of another vector.
+     * Gets the distance between this vector and the components of another
+     * vector.
      *
      * @param x The x component
      * @param y The y component
@@ -486,7 +514,8 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector2f toVector2();
 
     /**
-     * Returns this vector as a Vector2f, discarding either the y or z component.
+     * Returns this vector as a Vector2f, discarding either the y or z
+     * component.
      *
      * @param useZ Discard the y component and use z instead
      * @return This vector as a Vector2f
@@ -537,4 +566,5 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
      */
     @Override
     String toString();
+
 }
