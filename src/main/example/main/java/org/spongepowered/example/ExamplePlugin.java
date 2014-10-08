@@ -48,14 +48,23 @@ public class ExamplePlugin {
     public class MyEvent extends BaseEvent implements Cancellable {
         
         private final String message;
+        private final boolean cancelled;
         
         public MyEvent(String message) {
             this.message = message;
+            cancelled = false;
         }
         
         public String getMessage() {
             return message;
         }
         
+        public boolean isCancelled() {
+            return cancelled;
+        }
+        
+        public boolean setCancelled(boolean cancelled) {
+            this.cancelled = cancelled;
+        }
     }
 }
