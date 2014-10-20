@@ -58,5 +58,4 @@ public interface PluginContainer {
      * @return The instance
      */
     Object getInstance();
-
 }

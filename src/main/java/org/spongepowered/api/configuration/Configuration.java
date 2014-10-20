@@ -22,57 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.event.state;
-
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.configuration.Configuration;
+package org.spongepowered.api.configuration;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Used to access and modify configs.
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface Configuration extends ConfigObject {
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
-     *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
-     *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
-     */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
-
-    /**
-     * Gets the suggested config for the plugin.
+     * Gets the file this configuration is saved to.
      * 
-     * @return The default configuration
+     * @return The config file
      */
-    Configuration getSuggestedConfiguration();
+    File getFile();
 
     /**
-     * Gets a config with the given name.
+     * Gets the name of this configuration.
      * 
-     * @param name Name of the config.
-     * @return A custom named configuration.
+     * @return The config name
      */
-    Configuration getConfiguration(String name);
+    String getName();
+
+    /**
+     * Gets whether or not this config exists on the file system.
+     * It will be created once it needs to be accessed.
+     * 
+     * @return Whether the config exists
+     */
+    boolean exists();
+
+    /**
+     * Saves the config to the file system.
+     * 
+     * @throws IOException If an error occurs
+     */
+    void save() throws IOException;
+
+    /**
+     * Loads the config from the file system.
+     * 
+     * @throws IOException If an error occurs
+     */
+    void load() throws IOException;
+
+    /**
+     * Removes all elements.
+     */
+    void clear();
+
 }

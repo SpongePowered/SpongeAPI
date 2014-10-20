@@ -22,57 +22,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.event.state;
-
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.configuration.Configuration;
-
-import java.io.File;
+package org.spongepowered.api.configuration;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Base class for configs. Provides a name, type, and value.
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface ConfigElement<T> {
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
-     *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
-     *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
-     */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
-
-    /**
-     * Gets the suggested config for the plugin.
+     * Gets the comment of this element.
      * 
-     * @return The default configuration
+     * @return The comment
      */
-    Configuration getSuggestedConfiguration();
+    String getComment();
 
     /**
-     * Gets a config with the given name.
+     * Sets the comment of this element.
      * 
-     * @param name Name of the config.
-     * @return A custom named configuration.
+     * @param comment The new comment
      */
-    Configuration getConfiguration(String name);
+    void setComment(String comment);
+
+    /**
+     * Deletes this element from the config.
+     */
+    void delete();
+
+    /**
+     * Gets this element as a {@link ConfigArray}.
+     * 
+     * @return This element as a ConfigArray
+     */
+    ConfigArray<T> getAsArray();
+
+    /**
+     * Gets this element as a {@link ConfigObject}.
+     * 
+     * @return This element as a ConfigObject
+     */
+    ConfigObject getAsObject();
+
+    /**
+     * Gets this element as a {@link ConfigPrimitive}.
+     * 
+     * @return This element as a ConfigPrimitive
+     */
+    ConfigPrimitive<T> getAsPrimitive();
+
+    /**
+     * Gets this element as a {@link ConfigNull}.
+     * 
+     * @return This element as a ConfigNull
+     */
+    ConfigNull getAsNull();
+
 }

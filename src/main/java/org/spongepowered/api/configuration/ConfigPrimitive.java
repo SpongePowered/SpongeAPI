@@ -22,57 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.configuration;
 
-package org.spongepowered.api.event.state;
-
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.configuration.Configuration;
-
-import java.io.File;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * The most basic form of a {@link ConfigElement}.
+ * 
+ * @param T The type that this config represents.
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface ConfigPrimitive<T> extends ConfigElement<T> {
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
-     *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
-     *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
-     */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
-
-    /**
-     * Gets the suggested config for the plugin.
+     * Gets the value stored in this element.
      * 
-     * @return The default configuration
+     * @return The value
      */
-    Configuration getSuggestedConfiguration();
+    @Nullable
+    T getValue();
 
     /**
-     * Gets a config with the given name.
+     * Sets the value for this element.
      * 
-     * @param name Name of the config.
-     * @return A custom named configuration.
+     * @param value The new value
      */
-    Configuration getConfiguration(String name);
+
+    void setValue(@Nonnull T value);
 }

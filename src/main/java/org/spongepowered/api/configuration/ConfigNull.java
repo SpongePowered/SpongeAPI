@@ -22,57 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.configuration;
 
-package org.spongepowered.api.event.state;
-
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.configuration.Configuration;
-
-import java.io.File;
+import javax.lang.model.type.NullType;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Represents an element without a value, set type, or is equal to null.
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface ConfigNull extends ConfigPrimitive<NullType> {
 
     /**
-     * gets a logger pre-configured to use the Plugin's ID
-     * Use this.
-     * @return A Logger for the plugin
-     */
-    public Logger getPluginLog();
-
-    /**
-     *
-     * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
-     */
-    public File getSuggestedConfigurationFile();
-
-    /**
-     *
-     * @return Plugin specific Configuration directory for plugins that need more than a single config file
-     */
-    public File getSuggestedConfigurationDirectory();
-
-    /**
-     *
-     * @return the config folder
-     */
-    public File getConfigurationDirectory();
-
-    /**
-     * Gets the suggested config for the plugin.
+     * Sets this element to be a {@link ConfigArray} of the given type.
      * 
-     * @return The default configuration
+     * @param type The type
+     * @return The array
      */
-    Configuration getSuggestedConfiguration();
+    <T> ConfigArray<T> setArrayType(Class<T> type);
 
     /**
-     * Gets a config with the given name.
+     * Sets this element to be a {@link ConfigObject}.
      * 
-     * @param name Name of the config.
-     * @return A custom named configuration.
+     * @return The object
      */
-    Configuration getConfiguration(String name);
+    ConfigObject setAsObject();
+
+    /**
+     * Sets this element to be a {@link ConfigPrimitive} of the given type.
+     * 
+     * @param type The type of primitive
+     * @return The primitive
+     */
+    <T> ConfigPrimitive<T> setPrimitiveType(Class<T> type);
 }

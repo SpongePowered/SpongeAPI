@@ -26,6 +26,7 @@
 package org.spongepowered.api;
 
 import org.apache.logging.log4j.Logger;
+import org.spongepowered.api.configuration.Configuration;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
@@ -64,6 +65,13 @@ public interface Game {
      * @return The event manager
      */
     EventManager getEventManager();
+
+    /**
+     * Gets the {@link Configuration} for the server. Formerly server.properties.
+     * 
+     * @return The server config
+     */
+    Configuration getGlobalConfig();
 
     /**
      * Gets the {@link GameRegistry}.
