@@ -35,5 +35,5 @@ public interface Task extends Runnable {
      *
      * @return if the task was cancelled
      */
-    public boolean cancel();
+    boolean cancel();
 }

@@ -37,7 +37,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    public Task runTask(Runnable task);
+    Task runTask(Runnable task);
 
     /**
      * Runs the task after a delay in ticks.
@@ -47,7 +47,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    public Task runTaskAfter(Runnable task, long delay);
+    Task runTaskAfter(Runnable task, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
@@ -58,7 +58,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    public Task runRepeatingTask(Runnable task, long interval);
+    Task runRepeatingTask(Runnable task, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -70,5 +70,5 @@ public interface Scheduler {
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    public Task runRepeatingTaskAfter(Runnable task, long interval, long delay);
+    Task runRepeatingTaskAfter(Runnable task, long interval, long delay);
 }
