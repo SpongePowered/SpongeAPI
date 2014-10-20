@@ -32,4 +32,11 @@ package org.spongepowered.api.util.command;
  * RCON clients, web-based clients, command blocks, and so on.</p>
  */
 public interface CommandSource {
+
+    /**
+     * Sends a message to source when possible.
+     * 
+     * @param message the Message.
+     */
+    void sendMessage(String message);
 }

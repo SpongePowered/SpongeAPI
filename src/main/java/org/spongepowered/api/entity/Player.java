@@ -25,7 +25,9 @@
 
 package org.spongepowered.api.entity;
 
-public interface Player extends HumanEntity {
+import org.spongepowered.api.util.command.CommandSource;
+
+public interface Player extends HumanEntity, CommandSource {
 
     /**
      * Gets the players last known username
