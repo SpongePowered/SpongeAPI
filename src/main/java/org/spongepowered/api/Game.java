@@ -101,6 +101,15 @@ public interface Game {
      */
     @Nullable
     Player getPlayer(UUID uniqueId);
+    
+    /**
+     * Gets a {@link Player} by their recent username
+     *
+     * @param username
+     * @return {@link Player} or null if none found
+     */
+    @Nullable
+    Player getPlayer(String username);
 
     /**
      * Gets all currently loaded {@link World}s.
