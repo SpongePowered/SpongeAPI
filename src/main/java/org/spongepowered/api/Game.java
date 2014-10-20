@@ -29,6 +29,7 @@ import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.util.scheduler.Scheduler;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -71,7 +72,12 @@ public interface Game {
      */
     GameRegistry getRegistry();
 
-
+    /**
+     * Gets the {@link Scheduler}.
+     *
+     * @return The scheduler
+     */
+    Scheduler getScheduler();
 
     /**
      * Gets the {@link Player}s currently online
