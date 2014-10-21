@@ -22,42 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.service.permission.context;
 
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.util.Tristate;
+
+import java.util.List;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * RCON clients, web-based clients, command blocks, and so on.</p>
+ * Created by zach on 04.12.14.
  */
-public interface CommandSource extends Subject {
+public interface ContextCalculator {
+    public void accumulateContexts(Subject subject, List<Context> accumulator);
 
-    /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(String... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(Message<?>... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Message<?>> messages);
-
+    public Tristate matches(Context context, Subject subject);
 }

@@ -24,44 +24,55 @@
  */
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.service.permission.context.Context;
-import org.spongepowered.api.service.permission.context.ContextCalculator;
+import org.spongepowered.api.util.Tristate;
 
-import java.util.UUID;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Represents a provider for permissions
- * Example:
- *
- * provide
+ * Container for a subject's data.
  */
-public interface PermissionService {
-    public static final String SUBJECTS_USER = "user", SUBJECTS_GROUP = "group";
-
+public interface SubjectData {
     /**
-     * Returns the permissions level that describes users.
-     * User identifiers are expected to be UUIDs in RFC4122 string format (This *does* have dashes. Mojang is stupid.)
-     *
-     *
-     * @return A subject collection for users
-     */
-    public SubjectCollection getUserSubjects();
-
-    /**
-     * Returns the collection of group subjects available. Implementation of this method is optional.
-     * @return Known group subjects
-     */
-    public SubjectCollection getGroupSubjects();
-
-    public void registerContextCalculator(ContextCalculator calculator);
-
-    /**
-     * Returns a subject collection with the given identifier
-     *
-     * @param identifier The identifier
-     * @param parentCollection The type of parent. If null is provided, this collection will use its own subjects as the parent type
+     * Return all permissions associated with this data object
+     * TODO: create permissions tree data structure that is used for all these methods rather than List&lt;String>
      * @return
      */
-    public <I, P> Optional<SubjectCollection> getSubjects(String identifier, SubjectCollection parentCollection);
+    public Map<Context, List<String>> getAllPermissions();
+
+    public List<String> getPermissions(Context context);
+
+    /**
+     * set permissions in context to the given permissions. Null unsets.
+     * @param context
+     * @param permission
+     */
+    public void setPermission(Context context, String permission, Tristate value);
+    public void setPermission(String permission, Tristate value);
+    public void clearPermissions();
+
+    /**
+     * Return all registered parent names for all contexts
+     * @return
+     */
+    public Map<Context, List<Subject>> getAllParents();
+
+
+    /**
+     *
+     * @param context The context to check
+     * @return names of parents valid in the given context
+     */
+    public List<Subject> getParents(Context context);
+
+    /**
+     * set permissions in context to the given permissions. Null unsets.
+     * @param context
+     * @param permission
+     */
+    public void addParent(Context context, String parent);
+    public void removeParent(Context context, String parent);
+    public void clearParents();
+
 }

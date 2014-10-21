@@ -25,6 +25,13 @@
 
 package org.spongepowered.api.service.permission;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.service.permission.context.Context;
+
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Map;
+
 /**
  * A source of permission requests.
  *
@@ -61,12 +68,59 @@ package org.spongepowered.api.service.permission;
 public interface Subject {
 
     /**
+     * Returns the identifier associated with this subject. May not be human-readable, but always refers to a single subject
+     * @return
+     */
+    public String getIdentifier();
+
+    /**
+     * The container for permissions data that *may* be persisted if the service provider supports it.
+     * @return The container for permissions data this subject uses
+     */
+    public SubjectData getData();
+
+    /**
+     * Returns container for subject data that is guaranteed to be transient (only lasting for the duration of the subject's session, not persisted).
+     * This might return the same object as {@link #getData()} if the provider for this service does not implement persistence for permissions data.
+     * @return
+     */
+    public SubjectData getTransientData();
+
+    /**
      * Test whether the subject is permitted to perform an action given as
      * the given permission string.
      *
      * @param permission The permission string
      * @return True if permission is granted
      */
-    boolean isPermitted(String permission);
+    public boolean hasPermission(List<Context> contexts, String permission);
 
+    /**
+     * Does the player have a permission?
+     * @param permission
+     * @return
+     *//**
+     * Test whether the subject is permitted to perform an action given as
+     * the given permission string.
+     *
+     * @param permission The permission string
+     * @return True if permission is granted
+     */
+    public boolean hasPermission(String permission);
+
+    public boolean childOf(String parent);
+
+    public boolean childOf(Subject parent);
+
+    /**
+     * Return all parents that this group has. This must include inherited values if the permissions service supports inheritance.
+     * @return An immutable list of parents
+     */
+    public List<Subject> getParents();
+
+    /**
+     *
+     * @return An immutable list of active contexts
+     */
+    public List<Context> getActiveContexts();
 }

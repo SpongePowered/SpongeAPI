@@ -22,42 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.service.permission.context;
 
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
+
+import java.util.Map;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * RCON clients, web-based clients, command blocks, and so on.</p>
+ * The context that a permission check occurs in. Instances of a context are designed
+ * to function as cache keys, meaning they should be fairly lightweight and not hold references to large objects
  */
-public interface CommandSource extends Subject {
+public final class Context {
+    private final String type, name;
+
+    public Context(String type, String name) {
+        this.type = type;
+        this.name = name;
+    }
 
     /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
-     *
-     * @param messages The message(s)
+     * @return the type of item this context represents, for example for a world this would be {@code world}
      */
-    void sendMessage(String... messages);
+    public String getType() {
+        return type;
+    }
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The message(s)
+     * @return the specific name of the item involved in this context, for example if
+     * the type were {@code world} this would be the name of the world.
      */
-    void sendMessage(Message<?>... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Message<?>> messages);
-
+    public String getName() {
+        return name;
+    }
 }

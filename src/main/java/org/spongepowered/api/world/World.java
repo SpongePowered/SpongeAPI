@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import com.flowpowered.math.vector.Vector2i;
+import org.spongepowered.api.service.permission.context.Contextual;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
@@ -37,7 +38,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world
  */
-public interface World extends Extent, Viewer, WeatherVolume {
+public interface World extends Extent, Viewer, WeatherVolume, Contextual {
 
     /**
      * Gets the unique identifier for this world.

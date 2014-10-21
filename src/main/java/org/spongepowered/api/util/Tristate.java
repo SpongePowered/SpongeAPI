@@ -22,42 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util.command;
-
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
+package org.spongepowered.api.util;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * RCON clients, web-based clients, command blocks, and so on.</p>
+ * Represents a simple tristate
  */
-public interface CommandSource extends Subject {
+public enum Tristate {
+    TRUE {
+        @Override
+        public Tristate and(Tristate other) {
+            return other == TRUE || other == UNDEFINED ? TRUE : FALSE;
+        }
 
-    /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(String... messages);
+        @Override
+        public Tristate or(Tristate other) {
+            return TRUE;
+        }
+    },
+    FALSE {
+        @Override
+        public Tristate and(Tristate other) {
+            return FALSE;
+        }
 
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(Message<?>... messages);
+        @Override
+        public Tristate or(Tristate other) {
+            return other == TRUE ? TRUE : FALSE;
+        }
+    },
+    UNDEFINED {
+        @Override
+        public Tristate and(Tristate other) {
+            return other;
+        }
 
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Message<?>> messages);
+        @Override
+        public Tristate or(Tristate other) {
+            return other;
+        }
+    };
 
+    public abstract Tristate and(Tristate other);
+
+    public abstract Tristate or(Tristate other);
 }

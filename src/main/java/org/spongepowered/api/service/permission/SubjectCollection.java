@@ -24,44 +24,32 @@
  */
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.service.permission.context.Context;
-import org.spongepowered.api.service.permission.context.ContextCalculator;
-
-import java.util.UUID;
-
 /**
- * Represents a provider for permissions
- * Example:
- *
- * provide
+ * Object that manages subjects of a certain type (user, group, etc{}
  */
-public interface PermissionService {
-    public static final String SUBJECTS_USER = "user", SUBJECTS_GROUP = "group";
+public interface SubjectCollection {
+    public SubjectCollection getParentCollection();
 
     /**
-     * Returns the permissions level that describes users.
-     * User identifiers are expected to be UUIDs in RFC4122 string format (This *does* have dashes. Mojang is stupid.)
+     * Returns the subject specified. Will not return null.
      *
-     *
-     * @return A subject collection for users
-     */
-    public SubjectCollection getUserSubjects();
-
-    /**
-     * Returns the collection of group subjects available. Implementation of this method is optional.
-     * @return Known group subjects
-     */
-    public SubjectCollection getGroupSubjects();
-
-    public void registerContextCalculator(ContextCalculator calculator);
-
-    /**
-     * Returns a subject collection with the given identifier
-     *
-     * @param identifier The identifier
-     * @param parentCollection The type of parent. If null is provided, this collection will use its own subjects as the parent type
+     * @param identifier
      * @return
      */
-    public <I, P> Optional<SubjectCollection> getSubjects(String identifier, SubjectCollection parentCollection);
+    public Subject get(String identifier);
+
+    /**
+     * Returns whether there is any data stored for the given subject
+     *
+     * @param identifier The identifier of the given subject
+     * @return
+     */
+    public boolean hasRegistered(String identifier);
+
+    /**
+     * Returns all subjects. The iterator provided by this method may be populated asynchronously
+     * @return
+     */
+    public Iterable<Subject> getAllSubjects();
+
 }
