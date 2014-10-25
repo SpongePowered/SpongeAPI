@@ -25,6 +25,9 @@
 
 package org.spongepowered.api.util.scheduler;
 
+/**
+ * Represents a task that repeats on an interval.
+ */
 public interface RepeatingTask extends Task {
 
     /**
