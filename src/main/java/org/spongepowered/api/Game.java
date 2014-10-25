@@ -25,7 +25,6 @@
 
 package org.spongepowered.api;
 
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
@@ -101,6 +100,20 @@ public interface Game {
      */
     @Nullable
     Player getPlayer(UUID uniqueId);
+
+    /**
+     * Gets a {@link Player} by their name
+     *
+     * This only works for online players.
+     *
+     * <b>Note: Do not use names for persistent storage, the
+     * Zidane of today may not be the Zidane of yesterday.</b>
+     *
+     * @param name The name to get the player from
+     * @return {@link Player} or null if none found
+     */
+    @Nullable
+    Player getPlayer(String name);
 
     /**
      * Gets all currently loaded {@link World}s.
