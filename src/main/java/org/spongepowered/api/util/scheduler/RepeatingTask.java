@@ -25,31 +25,12 @@
 
 package org.spongepowered.api.util.scheduler;
 
-import org.spongepowered.api.plugin.PluginContainer;
-
-/**
- * Represents a task that has been scheduled.
- */
-public interface Task extends Runnable {
+public interface RepeatingTask extends Task {
 
     /**
-     * Returns the plugin that scheduled this task.
+     * Gets the interval the task repeats on.
      *
-     * @return the plugin that scheduled the task
+     * @return the interval
      */
-    PluginContainer getOwner();
-
-    /**
-     * Gets the delay that the task was scheduled to run after.
-     *
-     * @return the delay
-     */
-    long getDelay();
-
-    /**
-     * Cancels the task, if it has not already run.
-     *
-     * @return if the task was cancelled
-     */
-    boolean cancel();
+    long getInterval();
 }

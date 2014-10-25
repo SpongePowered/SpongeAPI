@@ -25,6 +25,10 @@
 
 package org.spongepowered.api.util.scheduler;
 
+import org.spongepowered.api.plugin.PluginContainer;
+
+import java.util.Collection;
+
 /**
  * The base scheduler that schedules tasks.
  */
@@ -33,42 +37,63 @@ public interface Scheduler {
     /**
      * Runs the task immediately.
      *
+     * @param plugin The plugin requesting the task
      * @param task The task to run
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    Task runTask(Runnable task);
+    Task runTask(PluginContainer plugin, Runnable task);
 
     /**
      * Runs the task after a delay in ticks.
      *
+     * @param plugin The plugin requesting the task
      * @param task The task to run
      * @param delay The delay in ticks
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    Task runTaskAfter(Runnable task, long delay);
+    Task runTaskAfter(PluginContainer plugin, Runnable task, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
      * interval.
      *
+     * @param plugin The plugin requesting the task
      * @param task The task to run
      * @param interval The interval between runs
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    Task runRepeatingTask(Runnable task, long interval);
+    RepeatingTask runRepeatingTask(PluginContainer plugin, Runnable task, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
      * at an interval.
      *
+     * @param plugin The plugin requesting the task
      * @param task The task to run
      * @param interval The interval between runs
      * @param delay The delay in ticks
      *
      * @return The scheduled task, or null if failed to schedule
      */
-    Task runRepeatingTaskAfter(Runnable task, long interval, long delay);
+    RepeatingTask runRepeatingTaskAfter(PluginContainer plugin, Runnable task, long interval, long delay);
+
+    /**
+     * Returns a list of all currently scheduled tasks
+     *
+     * @return A list of scheduled tasks
+     */
+    Collection<Task> getScheduledTasks();
+
+    /**
+     * Returns a list of all currently scheduled tasks owned by a
+     * certain plugin.
+     *
+     * @param plugin The plugin to return tasks created by
+     *
+     * @return A list of scheduled tasks
+     */
+    Collection<Task> getScheduledTasks(PluginContainer plugin);
 }
