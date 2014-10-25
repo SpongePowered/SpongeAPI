@@ -33,6 +33,13 @@ import org.spongepowered.api.plugin.PluginContainer;
 public interface Task extends Runnable {
 
     /**
+     * Gets the name of this task.
+     *
+     * @return the name of the task
+     */
+    String getName();
+
+    /**
      * Returns the plugin that scheduled this task.
      *
      * @return the plugin that scheduled the task
