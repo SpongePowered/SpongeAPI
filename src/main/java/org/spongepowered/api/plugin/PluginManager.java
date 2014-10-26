@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.plugin;
 
+import com.google.common.base.Optional;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
@@ -37,10 +38,9 @@ public interface PluginManager {
      * Retrieves a {@link PluginContainer} based on its ID.
      *
      * @param id The plugin ID
-     * @return The plugin or null if not found
+     * @return The plugin, if available
      */
-    @Nullable
-    PluginContainer getPlugin(String id);
+    Optional<PluginContainer> getPlugin(String id);
 
     /**
      * Gets the {@link Logger} for the {@link PluginContainer}.

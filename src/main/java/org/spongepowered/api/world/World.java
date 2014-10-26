@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.world;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.math.Vector2i;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -61,10 +62,9 @@ public interface World extends Extent {
      * {@code null} will be returned.</p>
      *
      * @param position The position
-     * @return The chunk
+     * @return The chunk, if available
      */
-    @Nullable
-    Chunk getChunk(Vector2i position);
+    Optional<Chunk> getChunk(Vector2i position);
 
     /**
      * Get the chunk at the given position if it exists or if
@@ -72,11 +72,9 @@ public interface World extends Extent {
      *
      * @param position The position
      * @param shouldGenerate True to generate a new chunk
-     * @return The loaded or generated chunk, but possibly null if the chunk
-     *         was to not be generated
+     * @return The loaded or generated chunk, if already generated
      */
-    @Nullable
-    Chunk loadChunk(Vector2i position, boolean shouldGenerate);
+    Optional<Chunk> loadChunk(Vector2i position, boolean shouldGenerate);
 
     /**
      * Get the chunk at the given position if it exists, generating it

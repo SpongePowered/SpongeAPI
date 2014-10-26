@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.event.cause;
 
+import com.google.common.base.Optional;
+
 import javax.annotation.Nullable;
 
 /**
@@ -47,9 +49,8 @@ public interface Cause {
     /**
      * Get the parent cause.
      *
-     * @return The parent cause, or null if one does not exist
+     * @return The parent cause, if available
      */
-    @Nullable
-    Cause getParent();
+    Optional<Cause> getParent();
 
 }

@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.util.command.dispatcher;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 
@@ -79,10 +80,9 @@ public interface Dispatcher extends CommandCallable {
      * null if no command is named by the given alias.
      * 
      * @param alias The alias
-     * @return The command mapping (null if not found)
+     * @return The command mapping, if available
      */
-    @Nullable
-    CommandMapping get(String alias);
+    Optional<CommandMapping> get(String alias);
 
     /**
      * Returns whether the dispatcher contains a registered command for the

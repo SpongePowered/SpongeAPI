@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.util.scheduler;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
@@ -40,9 +41,9 @@ public interface Scheduler {
      * @param plugin The plugin requesting the task
      * @param task The task to run
      *
-     * @return The scheduled task, or null if failed to schedule
+     * @return The scheduled task, if successful
      */
-    Task runTask(PluginContainer plugin, Runnable task);
+    Optional<Task> runTask(PluginContainer plugin, Runnable task);
 
     /**
      * Runs the task after a delay in ticks.
@@ -51,9 +52,9 @@ public interface Scheduler {
      * @param task The task to run
      * @param delay The delay in ticks
      *
-     * @return The scheduled task, or null if failed to schedule
+     * @return The scheduled task, if successful
      */
-    Task runTaskAfter(PluginContainer plugin, Runnable task, long delay);
+    Optional<Task> runTaskAfter(PluginContainer plugin, Runnable task, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
@@ -63,9 +64,9 @@ public interface Scheduler {
      * @param task The task to run
      * @param interval The interval between runs
      *
-     * @return The scheduled task, or null if failed to schedule
+     * @return The scheduled task, if successful
      */
-    RepeatingTask runRepeatingTask(PluginContainer plugin, Runnable task, long interval);
+    Optional<RepeatingTask> runRepeatingTask(PluginContainer plugin, Runnable task, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -76,9 +77,9 @@ public interface Scheduler {
      * @param interval The interval between runs
      * @param delay The delay in ticks
      *
-     * @return The scheduled task, or null if failed to schedule
+     * @return The scheduled task, if successful
      */
-    RepeatingTask runRepeatingTaskAfter(PluginContainer plugin, Runnable task, long interval, long delay);
+    Optional<RepeatingTask> runRepeatingTaskAfter(PluginContainer plugin, Runnable task, long interval, long delay);
 
     /**
      * Returns a list of all currently scheduled tasks

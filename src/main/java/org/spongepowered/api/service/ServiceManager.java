@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.service;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.util.Owner;
 
 import javax.annotation.Nullable;
@@ -73,9 +74,8 @@ public interface ServiceManager {
      *
      * @param service The service
      * @param <T> The type of service
-     * @return A provider, or null if one is not registered
+     * @return A provider, if available
      */
-    @Nullable
-    <T> T provide(Class<T> service);
+    <T> Optional<T> provide(Class<T> service);
 
 }

@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.util.command;
 
+import com.google.common.base.Optional;
+
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -46,18 +48,16 @@ public interface Description {
     /**
      * Get a short one-line description of this command.
      * 
-     * @return A description, or null if no description is available
+     * @return A description, if available
      */
-    @Nullable
-    String getShortDescription();
+    Optional<String> getShortDescription();
 
     /**
      * Get a longer help text about this command.
      * 
-     * @return A help text, or null if no help is available
+     * @return A help text, if available
      */
-    @Nullable
-    String getHelp();
+    Optional<String> getHelp();
 
     /**
      * Get the usage string of this command.

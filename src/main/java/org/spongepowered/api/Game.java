@@ -25,6 +25,7 @@
 
 package org.spongepowered.api;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
@@ -96,10 +97,9 @@ public interface Game {
      * Gets a {@link Player} by their unique id
      *
      * @param uniqueId The UUID to get the player from
-     * @return {@link Player} or null if none found
+     * @return {@link Player} if available
      */
-    @Nullable
-    Player getPlayer(UUID uniqueId);
+    Optional<Player> getPlayer(UUID uniqueId);
 
     /**
      * Gets a {@link Player} by their name
@@ -110,10 +110,9 @@ public interface Game {
      * Zidane of today may not be the Zidane of yesterday.</b>
      *
      * @param name The name to get the player from
-     * @return {@link Player} or null if none found
+     * @return {@link Player} if available
      */
-    @Nullable
-    Player getPlayer(String name);
+    Optional<Player> getPlayer(String name);
 
     /**
      * Gets all currently loaded {@link World}s.
