@@ -25,8 +25,12 @@
 
 package org.spongepowered.api.block;
 
+import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.component.ComponentContainer;
 import org.spongepowered.api.world.extent.Extent;
+
+import java.util.Collection;
 
 /**
  * Represents a block with type and data.
@@ -49,24 +53,57 @@ public interface BlockState extends ComponentContainer {
     BlockType getType();
 
     /**
-     * Get the data value of the block at the given position.
+     * Get all properties defined on this BlockState, with their current values.
      *
-     * <p>The data value is a number between 0 and 15 (inclusive) that
-     * represents a value for differentiation with certain blocks. For example,
-     * the base dirt block has a data value that changes the variant of dirt.
-     * The base data value is generally 0.</p>
-     *
-     * <p>However, be aware that data values are being deprecated in
-     * Minecraft because they are a waste of bytes and add extra complexity to
-     * block differentiation. Most blocks don't use a data value, so that's
-     * a waste of four bits of data per block. In the future, there will
-     * only be <em>one</em> number to represent each 'state' of a block.</p>
-     *
-     * @return The data value
-     * @deprecated Being removed from Minecraft
+     * @return Map of all current properties
      */
-    @Deprecated
-    byte getDataValue();
+    ImmutableMap<BlockProperty<?>, ? extends Comparable<?>> getProperties();
+
+    /**
+     * Get all property names defined on this BlockState
+     *
+     * @return Collection of property names
+     */
+    Collection<String> getPropertyNames();
+
+    /**
+     * Get a property from its name.
+     *
+     * @param name The name of the property
+     * @return The property with the given name
+     */
+    Optional<BlockProperty<?>> getPropertyByName(String name);
+
+    /**
+     * Get the current value of a given property.
+     *
+     * @param name Property to get value of
+     * @return Current value of the property
+     */
+    Optional<? extends Comparable<?>> getPropertyValue(String name);
+
+    /**
+     * Get an altered BlockState with the given property set to the given value.
+     *
+     * <p>This does not alter the current BlockState instance</p>
+     *
+     * @param property Property to change value of
+     * @param value New value of property
+     * @return A BlockState with the property's value modified
+     */
+    BlockState withProperty(BlockProperty<?> property, Comparable<?> value);
+
+    /**
+     * Get an altered BlockState with the given property set to the next valid
+     * value for that property, cycling to the lowest value after the highest
+     * value.
+     *
+     * <p>This does not alter the current BlockState instance</p>
+     *
+     * @param property Property to change value of
+     * @return A BlockState with the property's value modified
+     */
+    BlockState cycleProperty(BlockProperty<?> property);
 
     /**
      * Get a snapshot of this block at the current point in time.
@@ -78,5 +115,4 @@ public interface BlockState extends ComponentContainer {
      * @return A snapshot
      */
     BlockSnapshot getSnapshot();
-
 }

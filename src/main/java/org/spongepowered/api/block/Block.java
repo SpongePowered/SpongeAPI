@@ -81,22 +81,18 @@ public interface Block extends BlockState, Powerable, Diggable, Interactable, Il
     int getZ();
 
     /**
-     * Replace the block at this position by with a new block with the same
-     * type but a different data value.
+     * Replace the block state at this position with a new state.
      *
-     * <p>This will remove any block data at the given position.</p>
+     * <p>This will remove any extended block data at the given position.</p>
      *
-     * @param data The new data value
-     * @see BlockState#getDataValue()
-     * @deprecated Minecraft is phasing out data values
+     * @param state The new block state
      */
-    @Deprecated
-    void replaceData(byte data);
+    void replaceWith(BlockState state);
 
     /**
      * Replace the block at this position by a new type.
      *
-     * <p>This will remove any block data at the given position.</p>
+     * <p>This will remove any extended block data at the given position.</p>
      *
      * @param type The new type
      */
