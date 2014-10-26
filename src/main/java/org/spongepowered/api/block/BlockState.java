@@ -106,6 +106,26 @@ public interface BlockState extends ComponentContainer {
     BlockState cycleProperty(BlockProperty<?> property);
 
     /**
+     * Get the data value of the block at the given position.
+     *
+     * <p>The data value is a number between 0 and 15 (inclusive) that
+     * represents a value for differentiation with certain blocks. For example,
+     * the base dirt block has a data value that changes the variant of dirt.
+     * The base data value is generally 0.</p>
+     *
+     * <p>However, be aware that data values are being deprecated in
+     * Minecraft because they are a waste of bytes and add extra complexity to
+     * block differentiation. Most blocks don't use a data value, so that's
+     * a waste of four bits of data per block. In the future, there will
+     * only be <em>one</em> number to represent each 'state' of a block.</p>
+     *
+     * @return The data value
+     * @deprecated Exists for backwards-compatibility/transitional use
+     */
+    @Deprecated
+    byte getDataValue();
+
+    /**
      * Get a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was

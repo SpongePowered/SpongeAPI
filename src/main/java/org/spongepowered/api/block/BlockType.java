@@ -49,4 +49,14 @@ public interface BlockType {
      * Return the default state for this block.
      */
     BlockState getDefaultState();
+
+    /**
+     * Get the block state for a given data value.
+     *
+     * @param data The data value to extract into a block state
+     * @return Block state with properties set according to the data value
+     * @deprecated Exists for backwards-compatibility/transitional use
+     */
+    @Deprecated
+    BlockState getStateFromDataValue(byte data);
 }
