@@ -1,7 +1,8 @@
-/**
+/*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +24,15 @@
  */
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.item.inventory.ItemStack;
+
 /**
  * A tool is an item that can be used by a player against blocks or mobs.
  * All default tools are Pickaxes, Spades, Axes, Hoes or Swords, but more can
  * be added.
  */
-public interface ItemTool extends Item {
+public interface ItemTool extends ItemStack {
+
     /**
      * Gets the {@link ToolType} of this tool.
      * This can be any ToolType.
