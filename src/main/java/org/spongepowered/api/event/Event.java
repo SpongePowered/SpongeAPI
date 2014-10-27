@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,61 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.Game;
-
+/**
+ * An event that occurs in Sponge.
+ */
 public interface Event {
 
     /**
-     * Gets the {@link org.spongepowered.api.Game}.
+     * Gets if the event can be cancelled.
      *
-     * @return The game
-     */
-    Game getGame();
-
-    /**
-     * Gets a simple name of the current class
-     *
-     * @return String name
-     */
-    String getSimpleName();
-    
-    /**
-     * Gets if the {@link Event} can be cancelled
-     * 
-     * @return
+     * @return Whether the event can be cancelled
      */
     boolean isCancellable();
-    
-    /**
-     * Gets if the {@link Event} has been cancelled
-     * 
-     * @return
-     */
-    boolean isCancelled();
-    
-    /**
-     * Sets the cancelled state of the {@link Event}
-     * 
-     * @param cancel the new cancelled state
-     * @return
-     */
-    void setCancelled(boolean cancel);
 
     /**
-     * Sets the {@link Result} of the {@link Event}
-     * 
-     * @param result the result
-     * @return
-     */
-    void setResult(Result result);
-    
-    /**
-     * Gets the {@link Result} of the {@link Event}
-     * 
-     * @return
+     * Gets the {@link Result} of the {@link Event}.
+     *
+     * @return The result of this event
      */
     Result getResult();
+
+    /**
+     * Sets the {@link Result} of the {@link Event}.
+     *
+     * @param result The result
+     */
+    void setResult(Result result);
 
 }

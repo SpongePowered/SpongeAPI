@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,17 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.entity;
 
-import java.util.UUID;
+import org.spongepowered.api.component.attribute.Interactable;
+import org.spongepowered.api.component.attribute.Positionable;
+import org.spongepowered.api.component.attribute.Rotatable;
 
-public interface Entity {
+/**
+ * An entity is a Minecraft entity.
+ *
+ * <p>Examples of entities include:</p>
+ *
+ * <ul>
+ *     <li>Zombies</li>
+ *     <li>Sheep</li>
+ *     <li>Players</li>
+ *     <li>Dropped items</li>
+ *     <li>Dropped experience points</li>
+ *     <li>etc.</li>
+ * </ul>
+ *
+ * <p>Blocks and items (when they are in inventories) are not entities.</p>
+ */
+public interface Entity extends EntityState, Interactable, Positionable, Rotatable {
 
     /**
-     * Gets the unique ID for this entity
-     *
-     * @return The entity's {@link UUID}
+     * Mark this entity for removal in the very near future, preferrably
+     * within one game tick.
      */
-    UUID getUniqueID();
+    void remove();
 
 }

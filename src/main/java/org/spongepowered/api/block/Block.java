@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +22,94 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.component.attribute.Diggable;
+import org.spongepowered.api.component.attribute.Illuminated;
+import org.spongepowered.api.component.attribute.Interactable;
+import org.spongepowered.api.component.attribute.Powerable;
+import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
+
 /**
- * Describes a voxel. Child classes define specific functionality.
+ * Represents a block at a specific location in an {@link Extent}.
  */
-public interface Block {
+public interface Block extends BlockState, Powerable, Diggable, Interactable, Illuminated {
+
     /**
-     * Gets the id of this block.
-     * <p/>
-     * Ex. Minecraft registers stone as "minecraft:stone"
+     * Get the extent.
      *
-     * @return The id
+     * @return The extent
      */
-    String getID();
+    Extent getExtent();
+
+    /**
+     * Get the position of the block.
+     *
+     * @return The position
+     */
+    Vector3i getPosition();
+
+    /**
+     * Get the location of the block.
+     *
+     * @return The location
+     */
+    Location getLocation();
+
+    /**
+     * Get the X component of this block instance's position.
+     *
+     * @return The x component
+     */
+    int getX();
+
+    /**
+     * Get the Y component of this block instance's position.
+     *
+     * @return The y component
+     */
+    int getY();
+
+    /**
+     * Get the Z component of this block instance's position.
+     *
+     * @return The z component
+     */
+    int getZ();
+
+    /**
+     * Replace the block at this position by with a new block with the same
+     * type but a different data value.
+     *
+     * <p>This will remove any block data at the given position.</p>
+     *
+     * @param data The new data value
+     * @see BlockState#getDataValue()
+     * @deprecated Minecraft is phasing out data values
+     */
+    @Deprecated
+    void replaceData(byte data);
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any block data at the given position.</p>
+     *
+     * @param type The new type
+     */
+    void replaceWith(BlockType type);
+
+    /**
+     * Replace the block at this position with a copy of the given snapshot.
+     *
+     * <p>Changing the snapshot afterwards will not affect the block that
+     * has been placed at this location.</p>
+     *
+     * @param snapshot The snapshot
+     */
+    void replaceWith(BlockSnapshot snapshot);
+
 }
