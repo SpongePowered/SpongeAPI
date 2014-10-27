@@ -27,7 +27,6 @@ package org.spongepowered.api.util.command;
 
 import com.google.common.base.Optional;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -47,34 +46,34 @@ public interface Description {
 
     /**
      * Get a short one-line description of this command.
-     * 
+     *
      * @return A description, if available
      */
     Optional<String> getShortDescription();
 
     /**
      * Get a longer help text about this command.
-     * 
+     *
      * @return A help text, if available
      */
     Optional<String> getHelp();
 
     /**
      * Get the usage string of this command.
-     * 
+     *
      * <p>A usage string may look like 
      * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
-     * 
+     *
      * @return A usage string
      */
     String getUsage();
-    
+
     /**
      * Get a list of permissions that the player may have to have permission.
-     * 
+     *
      * <p>Permission data may or may not be available. This is only useful as a
      * potential hint.</p>
-     * 
+     *
      * @return The list of permissions
      */
     List<String> getPermissions();

@@ -35,8 +35,6 @@ import org.spongepowered.api.world.World;
 import java.util.Collection;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
-
 /**
  * The core accessor of the API. The implementation uses this to pass
  * constructed objects.

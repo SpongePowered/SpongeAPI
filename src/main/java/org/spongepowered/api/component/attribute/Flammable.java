@@ -39,14 +39,14 @@ public interface Flammable {
 
     /**
      * Gets the remaining time that the entity will be on fire for.
-     * 
+     *
      * @return The duration in ticks
      */
     int getDuration();
 
     /**
      * Sets the remaining time for an entity to be on fire.
-     * 
+     *
      * @param ticks The amount in ticks
      */
     void setDuration(int ticks);

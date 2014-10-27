@@ -29,7 +29,7 @@ package org.spongepowered.api.event;
  * An event that occurs in Sponge.
  */
 public interface Event {
-    
+
     /**
      * Gets if the event can be cancelled.
      *

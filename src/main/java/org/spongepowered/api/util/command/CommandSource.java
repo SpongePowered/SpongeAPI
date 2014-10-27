@@ -35,7 +35,7 @@ public interface CommandSource {
 
     /**
      * Sends a message to source when possible.
-     * 
+     *
      * @param message the Message.
      */
     void sendMessage(String message);

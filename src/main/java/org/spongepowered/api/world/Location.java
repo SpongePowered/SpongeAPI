@@ -25,11 +25,11 @@
 
 package org.spongepowered.api.world;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.world.extent.Extent;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A position within a particular {@link Extent}.
@@ -74,15 +74,6 @@ public class Location {
     }
 
     /**
-     * Get the underlying position.
-     *
-     * @return The underlying position
-     */
-    public Vector3d getPosition() {
-        return position;
-    }
-
-    /**
      * Create a new instance with a new extent.
      *
      * @param extent The new extent
@@ -94,6 +85,15 @@ public class Location {
             return this;
         }
         return new Location(extent, getPosition());
+    }
+
+    /**
+     * Get the underlying position.
+     *
+     * @return The underlying position
+     */
+    public Vector3d getPosition() {
+        return position;
     }
 
     /**

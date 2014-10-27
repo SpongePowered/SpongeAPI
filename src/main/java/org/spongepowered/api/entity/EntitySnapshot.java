@@ -29,4 +29,5 @@ package org.spongepowered.api.entity;
  * A mutable complete representation of an entity type and its associated data.
  */
 public interface EntitySnapshot extends EntityState {
+
 }

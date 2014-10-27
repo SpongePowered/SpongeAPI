@@ -29,7 +29,6 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.math.Vector2i;
 import org.spongepowered.api.world.extent.Extent;
 
-import javax.annotation.Nullable;
 import java.util.UUID;
 
 /**

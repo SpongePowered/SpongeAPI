@@ -30,8 +30,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
 
-import javax.annotation.Nullable;
-
 public interface PluginManager {
 
     /**

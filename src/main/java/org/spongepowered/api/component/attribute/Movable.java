@@ -31,17 +31,17 @@ import org.spongepowered.api.math.Vector3f;
  * An entity that can attain and hold a velocity.
  */
 public interface Movable {
-    
+
     /**
      * Gets the velocity value.
-     * 
+     *
      * @return The velocity value
      */
     Vector3f getVelocity();
 
     /**
      * Sets the velocity value.
-     * 
+     *
      * @param velocity The velocity value
      */
     void setVelocity(Vector3f velocity);

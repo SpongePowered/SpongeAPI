@@ -51,10 +51,10 @@ public interface CommandCallable extends CommandCompleter {
      * @throws CommandException Thrown on a command error
      */
     boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
-    
+
     /**
      * Get a description of the command, detailing usage information.
-     * 
+     *
      * @return The command description
      */
     Description getDescription();

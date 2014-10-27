@@ -34,10 +34,17 @@ public interface Positionable {
 
     /**
      * Gets the position.
-     * 
+     *
      * @return position The position
      */
     Vector3d getPosition();
+
+    /**
+     * Sets the position.
+     *
+     * @param position The position to set to
+     */
+    void setPosition(Vector3d position);
 
     /**
      * Get the X component of this instance's position.
@@ -59,12 +66,5 @@ public interface Positionable {
      * @return The z component
      */
     double getZ();
-
-    /**
-     * Sets the position.
-     * 
-     * @param position The position to set to
-     */
-    void setPosition(Vector3d position);
 
 }

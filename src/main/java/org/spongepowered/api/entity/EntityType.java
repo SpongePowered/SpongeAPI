@@ -29,4 +29,5 @@ package org.spongepowered.api.entity;
  * Describes a type of entity.
  */
 public interface EntityType {
+
 }

@@ -28,8 +28,6 @@ package org.spongepowered.api.service;
 import com.google.common.base.Optional;
 import org.spongepowered.api.util.Owner;
 
-import javax.annotation.Nullable;
-
 /**
  * A manager of services and their providers.
  *

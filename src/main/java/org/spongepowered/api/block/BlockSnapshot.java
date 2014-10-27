@@ -29,4 +29,5 @@ package org.spongepowered.api.block;
  * A mutable complete representation of a block type and its associated data.
  */
 public interface BlockSnapshot extends BlockState {
+
 }

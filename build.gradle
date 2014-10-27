@@ -81,17 +81,17 @@ license {
 
 checkstyle {
     configProperties = [
-        "name" : project.name,
-        "organization" : project.organization,
-        "url" : project.url,
-        "year" : project.inceptionYear
+            "name"        : project.name,
+            "organization": project.organization,
+            "url"         : project.url,
+            "year"        : project.inceptionYear
     ]
     configFile = file("checkstyle.xml")
 }
 
 // Source compiler configuration
 configure([compileJava, compileTestJava]) {
-    options.compilerArgs += [ '-Xlint:all', '-Xlint:-path' ]
+    options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
     options.deprecation = true
     options.encoding = 'utf8'
 }

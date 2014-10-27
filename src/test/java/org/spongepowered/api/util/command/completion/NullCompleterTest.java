@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.util.command.completion;
 
-import org.junit.Test;
-import org.spongepowered.api.util.command.CommandSource;
-
 import static org.hamcrest.Matchers.empty;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
+
+import org.junit.Test;
+import org.spongepowered.api.util.command.CommandSource;
 
 public class NullCompleterTest {
 

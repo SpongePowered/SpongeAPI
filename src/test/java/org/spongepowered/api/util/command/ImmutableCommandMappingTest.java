@@ -25,12 +25,15 @@
 
 package org.spongepowered.api.util.command;
 
-import org.junit.Test;
-
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.sameInstance;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import org.junit.Test;
 
 public class ImmutableCommandMappingTest {
 
@@ -48,7 +51,8 @@ public class ImmutableCommandMappingTest {
     public void testGetAllAliases() throws Exception {
         assertThat(new ImmutableCommandMapping(mock(CommandCallable.class), "test").getAllAliases(), hasItems("test"));
         assertThat(new ImmutableCommandMapping(mock(CommandCallable.class), "test", "dudu").getAllAliases(), hasItems("test", "dudu"));
-        assertThat(new ImmutableCommandMapping(mock(CommandCallable.class), "test", "dudu", "TeSt").getAllAliases(), hasItems("test", "dudu", "TeSt"));
+        assertThat(new ImmutableCommandMapping(mock(CommandCallable.class), "test", "dudu", "TeSt").getAllAliases(),
+                   hasItems("test", "dudu", "TeSt"));
         assertThat(new ImmutableCommandMapping(mock(CommandCallable.class), "test", "test").getAllAliases(), hasItems("test"));
     }
 

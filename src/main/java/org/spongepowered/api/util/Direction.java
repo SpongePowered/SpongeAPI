@@ -25,9 +25,9 @@
 
 package org.spongepowered.api.util;
 
-import org.spongepowered.api.math.Vector3d;
-
 import static org.spongepowered.api.math.Vectors.create3d;
+
+import org.spongepowered.api.math.Vector3d;
 
 public enum Direction {
 
@@ -56,8 +56,8 @@ public enum Direction {
     private final Vector3d direction;
     private final int flags;
 
-    private Direction(Vector3d Vector3d, int flags) {
-        this.direction = Vector3d.normalize();
+    private Direction(Vector3d vector3d, int flags) {
+        this.direction = vector3d.normalize();
         this.flags = flags;
     }
 
@@ -113,6 +113,7 @@ public enum Direction {
     }
 
     public static final class Flag {
+
         public static int CARDINAL = 0x1;
         public static int ORDINAL = 0x2;
         public static int SECONDARY_ORDINAL = 0x4;
@@ -123,5 +124,5 @@ public enum Direction {
         private Flag() {
         }
     }
-    
+
 }

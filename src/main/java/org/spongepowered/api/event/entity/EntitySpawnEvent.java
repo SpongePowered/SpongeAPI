@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.event.entity;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Result;
@@ -32,8 +34,6 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 import java.util.List;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Raised when entities are spawned.

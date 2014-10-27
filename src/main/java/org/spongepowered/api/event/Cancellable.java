@@ -39,5 +39,5 @@ public interface Cancellable {
      * @param cancel the new cancelled state
      */
     void setCancelled(boolean cancel);
-    
+
 }

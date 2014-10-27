@@ -27,8 +27,6 @@ package org.spongepowered.api.event.cause;
 
 import com.google.common.base.Optional;
 
-import javax.annotation.Nullable;
-
 /**
  * A cause represents the reason or initiator of an event.
  *

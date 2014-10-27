@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.event.entity;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Predicate;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
@@ -32,8 +34,6 @@ import org.spongepowered.api.entity.Entity;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An abstract implementation of entity events.

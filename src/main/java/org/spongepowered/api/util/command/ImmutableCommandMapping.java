@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.util.command;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An immutable command mapping instance that returns the same objects that
@@ -41,10 +41,10 @@ public class ImmutableCommandMapping implements CommandMapping {
     private final String primary;
     private final Set<String> aliases;
     private final CommandCallable callable;
-    
+
     /**
      * Create a new instance.
-     * 
+     *
      * @param callable The command callable
      * @param primary The primary alias
      * @param alias A list of all aliases
@@ -64,12 +64,12 @@ public class ImmutableCommandMapping implements CommandMapping {
     public String getPrimaryAlias() {
         return primary;
     }
-    
+
     @Override
     public Set<String> getAllAliases() {
         return Collections.unmodifiableSet(aliases);
     }
-    
+
     @Override
     public CommandCallable getCallable() {
         return callable;
@@ -83,9 +83,9 @@ public class ImmutableCommandMapping implements CommandMapping {
     @Override
     public String toString() {
         return "ImmutableCommandMapping{"
-                + "primary='" + primary + '\''
-                + ", aliases=" + aliases
-                + ", callable=" + callable
-                + '}';
+               + "primary='" + primary + '\''
+               + ", aliases=" + aliases
+               + ", callable=" + callable
+               + '}';
     }
 }
