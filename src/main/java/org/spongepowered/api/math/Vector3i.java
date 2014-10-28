@@ -220,7 +220,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param v The vector to dot with
      * @return The results of the operation
      */
-    int dot(Vector3i v);
+    double dot(Vector3i v);
 
     /**
      * Dots the vector components with this vector.
@@ -230,7 +230,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The results of the operation
      */
-    int dot(double x, double y, double z);
+    double dot(double x, double y, double z);
 
     /**
      * Dots the vector components with this vector.
@@ -240,7 +240,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The results of the operation
      */
-    int dot(int x, int y, int z);
+    double dot(int x, int y, int z);
 
     /**
      * Crosses another Vector3i with this one.
@@ -374,7 +374,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param v The other vector
      * @return The square of the distance between the two
      */
-    int distanceSquared(Vector3i v);
+    double distanceSquared(Vector3i v);
 
     /**
      * Gets the square of the distance between this vector and the components of
@@ -385,7 +385,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The square of the distance between the two
      */
-    int distanceSquared(double x, double y, double z);
+    double distanceSquared(double x, double y, double z);
 
     /**
      * Gets the square of the distance between this vector and the components of
@@ -396,7 +396,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The square of the distance between the two
      */
-    int distanceSquared(int x, int y, int z);
+    double distanceSquared(int x, int y, int z);
 
     /**
      * Gets the distance between this vector and another Vector3i.
@@ -404,7 +404,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param v The other vector
      * @return The distance between the two
      */
-    int distance(Vector3i v);
+    double distance(Vector3i v);
 
     /**
      * Gets the distance between this vector and the components of another
@@ -415,7 +415,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The distance between the two
      */
-    int distance(double x, double y, double z);
+    double distance(double x, double y, double z);
 
     /**
      * Gets the distance between this vector and the components of another
@@ -426,21 +426,21 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The distance between the two
      */
-    int distance(int x, int y, int z);
+    double distance(int x, int y, int z);
 
     /**
      * Calculates the square of the length of this vector.
      *
      * @return The results of the operation
      */
-    int lengthSquared();
+    double lengthSquared();
 
     /**
      * Calculates the length of this vector.
      *
      * @return The results of the operation
      */
-    int length();
+    double length();
 
     /**
      * Returns the axis with the minimal value.
