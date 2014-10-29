@@ -25,13 +25,12 @@
 
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.component.ComponentContainer;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
  * Represents an entity with type and data.
  */
-public interface EntityState extends ComponentContainer {
+public interface EntityState {
 
     /**
      * Get the type of entity.

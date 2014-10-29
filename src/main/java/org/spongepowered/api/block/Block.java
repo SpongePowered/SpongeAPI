@@ -25,18 +25,16 @@
 
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.component.attribute.Diggable;
-import org.spongepowered.api.component.attribute.Illuminated;
-import org.spongepowered.api.component.attribute.Interactable;
-import org.spongepowered.api.component.attribute.Powerable;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
  * Represents a block at a specific location in an {@link Extent}.
  */
-public interface Block extends BlockState, Powerable, Diggable, Interactable, Illuminated {
+public interface Block extends BlockState {
 
     /**
      * Get the extent.
@@ -112,4 +110,91 @@ public interface Block extends BlockState, Powerable, Diggable, Interactable, Il
      */
     void replaceWith(BlockSnapshot snapshot);
 
+    /**
+     * Simulates the interaction with this object as if a player had done so.
+     */
+    void interact();
+
+    /**
+     * Simulates the interaction with this object using the given item as if
+     * the player had done so.
+     *
+     * @param itemStack The item
+     */
+    void interactWith(ItemStack itemStack);
+
+    /**
+     * Simulate the digging of the block as if a player had done so.
+     *
+     * @return Whether the block was destroyed
+     */
+    boolean dig();
+
+    /**
+     * Simulate the digging of the block with the given tool as if a player
+     * had done so.
+     *
+     * @param itemStack The tool
+     * @return Whether the block was destroyed
+     */
+    boolean digWith(ItemStack itemStack);
+
+    /**
+     * Get the light level for this object.
+     *
+     * <p>Higher levels indicate a higher luminance.</p>
+     *
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminance();
+
+    /**
+     * Get the light level for this object that is caused by an overhead sky.
+     *
+     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
+     * the return value may be 0.</p>
+     *
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminanceFromSky();
+
+    /**
+     * Get the light level for this object that is caused by everything
+     * other than the sky.
+     *
+     * <p>Higher levels indicate a higher luminance.</p>
+     *
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminanceFromGround();
+
+    /**
+     * Test whether the object is powered.
+     *
+     * @return Whether powered
+     */
+    boolean isPowered();
+
+    /**
+     * Test whether the object is indirectly powered.
+     *
+     * @return Whether powered
+     */
+    boolean isIndirectlyPowered();
+
+    /**
+     * Test whether the face in the given direction is powered.
+     *
+     * @param direction The direction
+     * @return Whether powered
+     */
+    boolean isFacePowered(Direction direction);
+
+    /**
+     * Test whether the face in the given direction is indirectly powered.
+     *
+     * @param direction The direction
+     * @return Whether powered
+     */
+    boolean isFaceIndirectlyPowered(Direction direction);
 }

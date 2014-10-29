@@ -27,9 +27,11 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.scoreboard.Teamable;
 
-import org.spongepowered.api.component.attribute.Interactable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.math.EulerDirection;
+import org.spongepowered.api.math.Vector3d;
+import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.world.extent.Extent;
 
 /**
  * An entity is a Minecraft entity.
@@ -47,13 +49,90 @@ import org.spongepowered.api.component.attribute.Rotatable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends EntityState, Interactable, Positionable, Rotatable, Teamable {
+public interface Entity extends EntityState, Teamable {
 
     /**
-     * Mark this entity for removal in the very near future, preferrably
+     * Mark this entity for removal in the very near future, preferably
      * within one game tick.
      */
     void remove();
 
-}
+    /**
+     * Simulates the interaction with this object as if a player had done so.
+     */
+    void interact();
 
+    /**
+     * Simulates the interaction with this object using the given item as if
+     * the player had done so.
+     *
+     * @param itemStack The item
+     */
+    void interactWith(ItemStack itemStack);
+
+    /**
+     * Gets the position.
+     *
+     * @return position The position
+     */
+    Vector3d getPosition();
+
+    /**
+     * Sets the position.
+     *
+     * @param position The position to set to
+     */
+    void setPosition(Vector3d position);
+
+    /**
+     * Get the X component of this instance's position.
+     *
+     * @return The x component
+     */
+    double getX();
+
+    /**
+     * Get the Y component of this instance's position.
+     *
+     * @return The y component
+     */
+    double getY();
+
+    /**
+     * Get the Z component of this instance's position.
+     *
+     * @return The z component
+     */
+    double getZ();
+
+    /**
+     * Gets the rotation as a vector.
+     * This does not support the roll component of the entity's rotation.
+     *
+     * @return rotation A possibly, but not necessarily, unit vector
+     */
+    Vector3f getVectorRotation();
+
+    /**
+     * Sets the rotation to a vector.
+     * This does not support the roll component of the entity's rotation,
+     * any previous roll value will be removed.
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setVectorRotation(Vector3f rotation);
+
+    /**
+     * Gets the rotation as a EulerDirection.
+     *
+     * @return rotation The rotation as a EulerDirection
+     */
+    EulerDirection getRotation();
+
+    /**
+     * Sets the rotation.
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(EulerDirection rotation);
+}
