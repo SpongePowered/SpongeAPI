@@ -104,3 +104,43 @@ jar.manifest.mainAttributes(
         "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
         "Implementation-Vendor": url)
 
+task sourceJar(type: Jar) {
+	from sourceSets.main.java
+	from sourceSets.main.resources
+	classifier = "sources"
+	build.dependsOn it
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	from javadoc.destinationDir
+	classifier = "javadocs"
+	build.dependsOn it
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+			
+			artifacts sourceJar {
+				classifier = 'sources'
+			}
+			artifacts javadocJar {
+				classifier = 'javadocs'
+			}
+        }
+    }
+
+    repositories {   	
+    	if (project.hasProperty("chRepo"))
+    	{
+	        maven {
+	            url project.chRepo;
+	            credentials {
+	            	username project.chUsername
+	            	password project.chPassword
+	            }
+	        }
+	    }
+    }
+}
