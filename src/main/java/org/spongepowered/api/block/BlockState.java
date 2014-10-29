@@ -25,13 +25,12 @@
 
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.component.ComponentContainer;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
  * Represents a block with type and data.
  */
-public interface BlockState extends ComponentContainer {
+public interface BlockState {
 
     /**
      * Get the base type of block.
