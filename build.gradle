@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'license'
 apply plugin: 'checkstyle'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
@@ -122,11 +122,11 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
 			
-			artifacts sourceJar {
-				classifier = 'sources'
+			artifact sourceJar {
+				classifier 'sources'
 			}
-			artifacts javadocJar {
-				classifier = 'javadocs'
+			artifact javadocJar {
+				classifier 'javadocs'
 			}
         }
     }
