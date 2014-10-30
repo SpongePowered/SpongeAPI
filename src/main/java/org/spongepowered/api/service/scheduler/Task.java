@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.scheduler;
+package org.spongepowered.api.service.scheduler;
 
 import org.spongepowered.api.plugin.PluginContainer;
 

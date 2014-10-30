@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.scheduler;
+package org.spongepowered.api.service.scheduler;
 
 /**
  * Represents a task that repeats on an interval.
