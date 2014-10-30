@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.component.attribute.Diggable;
@@ -111,5 +110,15 @@ public interface Block extends BlockState, Powerable, Diggable, Interactable, Il
      * @param snapshot The snapshot
      */
     void replaceWith(BlockSnapshot snapshot);
+
+
+    /**
+     * The redstone power level (0-15 in Vanilla) of the block.
+     * <p/>
+     * Ex. A directly-powered block would return 15, a non-powered block would return 0 (Vanilla feature).
+     *
+     * @return The block's redstone power level.
+     */
+    int getPowerLevel();
 
 }
