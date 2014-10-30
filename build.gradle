@@ -123,8 +123,9 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 artifacts {
-    sourceJar
-    javadocJar
+    archives jar
+    archives sourceJar
+    archives javadocJar
 }
 
 uploadArchives {
