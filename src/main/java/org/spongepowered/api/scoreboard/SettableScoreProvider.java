@@ -22,35 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.scoreboard;
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.scoreboard.PlayerScoreboardManager;
-import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.util.command.CommandSource;
-
-import javax.annotation.Nullable;
-
-public interface Player extends HumanEntity, CommandSource {
+/**
+ * <p>This interface provides means to modify the score
+ * returned by some score providers.</p>
+ */
+public interface SettableScoreProvider extends ScoreProvider {
 
     /**
-     * Gets the players last known username
+     * Sets the scoreboard entry's current score.
      *
-     * @return The player's last known username
+     * @param entry The entry which's score is set.
+     * @param score The score to set.
      */
-    String getName();
+    void setScore(String entry, int score);
 
     /**
-     * Gets the player's display name. If none set, returns their current username.
+     * Sets the team's current score.
      *
-     * @return The player's display name
+     * @param team The team which's score is set.
+     * @param score The score to set.
      */
-    String getDisplayName();
-
-    /**
-     * Gets the {@link PlayerScoreboardManager} assigned to this player.
-     *
-     * @return The {@link PlayerScoreboardManager}
-     */
-    PlayerScoreboardManager getScoreboardManager();
+    void setTeamScore(Teamable team, int score);
 }

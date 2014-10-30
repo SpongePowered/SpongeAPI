@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.scoreboard.Teamable;
+
 import org.spongepowered.api.component.attribute.Interactable;
 import org.spongepowered.api.component.attribute.Positionable;
 import org.spongepowered.api.component.attribute.Rotatable;
@@ -45,7 +47,7 @@ import org.spongepowered.api.component.attribute.Rotatable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends EntityState, Interactable, Positionable, Rotatable {
+public interface Entity extends EntityState, Interactable, Positionable, Rotatable, Teamable {
 
     /**
      * Mark this entity for removal in the very near future, preferrably
@@ -54,3 +56,4 @@ public interface Entity extends EntityState, Interactable, Positionable, Rotatab
     void remove();
 
 }
+

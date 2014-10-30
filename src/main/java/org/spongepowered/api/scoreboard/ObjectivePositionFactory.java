@@ -22,35 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.scoreboard;
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.scoreboard.PlayerScoreboardManager;
-import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.util.command.CommandSource;
-
-import javax.annotation.Nullable;
-
-public interface Player extends HumanEntity, CommandSource {
+/**
+ * This factory provides scoreboard positions available in vanilla clients.
+ */
+public interface ObjectivePositionFactory {
 
     /**
-     * Gets the players last known username
+     * Gets a {@link ObjectivePosition} which places the score on the sidebar.
      *
-     * @return The player's last known username
+     * @return A {@link ObjectivePosition}
      */
-    String getName();
+    ObjectivePosition getSidebarPosition();
 
     /**
-     * Gets the player's display name. If none set, returns their current username.
+     * Gets a {@link ObjectivePosition} which places the score in the player list.
      *
-     * @return The player's display name
+     * @return A {@link ObjectivePosition}
      */
-    String getDisplayName();
+    ObjectivePosition getPlayerListPosition();
 
     /**
-     * Gets the {@link PlayerScoreboardManager} assigned to this player.
+     * Gets a {@link ObjectivePosition} which places the score below the player's name.
      *
-     * @return The {@link PlayerScoreboardManager}
+     * @return A {@link ObjectivePosition}
      */
-    PlayerScoreboardManager getScoreboardManager();
+    ObjectivePosition getBelowNamePosition();
 }
