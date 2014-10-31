@@ -220,7 +220,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param v The vector to dot with
      * @return The results of the operation
      */
-    double dot(Vector3i v);
+    int dot(Vector3i v);
 
     /**
      * Dots the vector components with this vector.
@@ -230,7 +230,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The results of the operation
      */
-    double dot(double x, double y, double z);
+    int dot(double x, double y, double z);
 
     /**
      * Dots the vector components with this vector.
@@ -240,7 +240,7 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      * @param z The z component
      * @return The results of the operation
      */
-    double dot(int x, int y, int z);
+    int dot(int x, int y, int z);
 
     /**
      * Crosses another Vector3i with this one.
