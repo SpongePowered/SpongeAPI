@@ -34,9 +34,16 @@ package org.spongepowered.api.util.command;
 public interface CommandSource {
 
     /**
-     * Sends a message to source when possible.
+     * Sends the message(s) to source when possible.
      *
-     * @param message the Message.
+     * @param messages The message(s).
      */
-    void sendMessage(String message);
+    void sendMessage(String... messages);
+
+    /**
+     * Sends the messages to source when possible.
+     *
+     * @param messages The messages.
+     */
+    void sendMessage(Iterable<String> messages);
 }
