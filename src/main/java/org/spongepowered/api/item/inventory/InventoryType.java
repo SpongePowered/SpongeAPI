@@ -26,7 +26,7 @@
 package org.spongepowered.api.item.inventory;
 
 /**
- * A type of inventory
+ * A type of inventory.
  */
 public interface InventoryType {
 

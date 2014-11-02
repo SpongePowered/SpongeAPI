@@ -53,9 +53,8 @@ public interface Inventory extends Iterable<ItemStack> {
     /**
      * Check for item matching given ItemStack.
      * 
-     * @param Item amount
      * @param ItemStack
-     * @return
+     * @return true if item exist in inventory
      */
     boolean hasItem(ItemStack itemStack);
     
@@ -63,7 +62,7 @@ public interface Inventory extends Iterable<ItemStack> {
      * Check for item matching given {@link ItemType}.
      * 
      * @param ItemStack
-     * @return
+     * @return true if item exist in inventory
      */
     boolean hasItem(ItemType type);
 
@@ -71,38 +70,19 @@ public interface Inventory extends Iterable<ItemStack> {
      * Check for particular amount of items matching given ItemStack.
      * 
      * @param ItemStack
-     * @return
+     * @param amount of required item
+     * @return true if item exist in inventory
      */
-    boolean hasItem(int amount, ItemStack itemStack);
+    boolean hasItem(ItemStack itemStack, int amount);
 
     /**
      * Check for particular amount of items matching given {@link ItemType}.
      * 
-     * @param Item amount
      * @param ItemStack
-     * @return
+     * @param Item requested amount
+     * @return true if item exist in inventory
      */
-    boolean hasItem(int amount, ItemType type);
-
-    /**
-     * Take specified amount of Item matching given ItemStack from Inventory.
-     * Returns false if owned amount is lower than required.
-     * 
-     * @param Requested amount
-     * @param ItemStack
-     * @return
-     */
-    boolean takeItem(int amount, ItemStack itemStack);
-
-    /**
-     * Take specified amount of Item matching given {@link ItemType} from Inventory.
-     * Returns false if owned amount is lower than required.
-     * 
-     * @param Requested amount
-     * @param itemStack
-     * @return
-     */
-    boolean takeItem(int amount, ItemType type);
+    boolean hasItem(ItemType type, int amount);
 
     /**
      * Returns all ItemStacks.
@@ -121,8 +101,8 @@ public interface Inventory extends Iterable<ItemStack> {
     /**
      * Gets {@link ItemStack} from particular slot.
      * 
-     * @param Slot index
-     * @return
+     * @param The index of the slot ItemStack
+     * @return the ItemStack
      */
     ItemStack getItem(int slot);
 
@@ -142,7 +122,7 @@ public interface Inventory extends Iterable<ItemStack> {
      * @param Slot index
      * @param ItemStack
      */
-    void setItem(int slot, ItemStack itemStack);
+    void setItem(ItemStack itemStack, int slot);
 
     /**
      * Removes all stacks in the inventory matching the given stack.
@@ -169,6 +149,13 @@ public interface Inventory extends Iterable<ItemStack> {
      * @param Slot index
      */
     void clear(int slot);
+    
+    /**
+     * Returns the first free slot
+     * 
+     * @return The first free slot id, or -1 if there is no empty slots.
+     */
+    int getFirstFree();
 
     /**
      * Gets a list of viewers.
@@ -181,7 +168,7 @@ public interface Inventory extends Iterable<ItemStack> {
      * Returns HashMap with slots and ItemStacks with given ItemType.
      * 
      * @param Item Type
-     * @return
+     * @return HashMap with found items 
      */
     HashMap<Integer, ItemStack> search(ItemType type);
 
@@ -189,7 +176,7 @@ public interface Inventory extends Iterable<ItemStack> {
      * Returns HashMap with slots and ItemStacks matching given ItemStack.
      * 
      * @param Item Type
-     * @return
+     * @return HashMap with found items 
      */
     HashMap<Integer, ItemStack> search(ItemStack itemStack);
 
