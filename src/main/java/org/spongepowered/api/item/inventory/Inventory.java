@@ -129,14 +129,14 @@ public interface Inventory extends Iterable<ItemStack> {
      * 
      * @param ItemStack
      */
-    void remove(ItemStack itemStack);
+    void removeAll(ItemStack itemStack);
 
     /**
      * Removes all stacks in the inventory matching the given {@link ItemType}.
      * 
-     * @param The id
+     * @param The type
      */
-    void remove(ItemType type);
+    void removeAll(ItemType type);
 
     /**
      * Clears out whole Inventory.
