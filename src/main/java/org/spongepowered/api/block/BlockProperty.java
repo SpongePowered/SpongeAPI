@@ -25,38 +25,59 @@
 
 package org.spongepowered.api.block;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.util.Direction;
+
+import java.util.Collection;
+
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Represents a basic data property for a block.
  */
-public interface BlockType {
+public interface BlockProperty<T extends Comparable<T>> {
+    /**
+     * Get the name of this property.
+     *
+     * @return The property name
+     */
+    String getName();
 
     /**
-     * Return the internal ID for the block.
+     * Get the values that are valid for this property.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return A collection of valid values
      */
-    String getId();
+    Collection<T> getValidValues();
 
     /**
-     * Return the default state for this block.
+     * Get a name for the given value.
+     *
+     * @param value A valid value for this property
+     * @return A name for the value
      */
-    BlockState getDefaultState();
+    String getNameForValue(T value);
 
     /**
-     * Get the block state for a given data value.
+     * Get the value representation for the given name.
      *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
+     * @param name A name that represents a valid value for this property
+     * @return A valid value for this property
      */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    Optional<T> getValueForName(String name);
+
+    // Subinterface markers for vanilla property types
+    public interface BooleanProperty extends BlockProperty<Boolean> {
+
+    }
+
+    public interface EnumProperty<E extends Enum<E>> extends BlockProperty<E> {
+
+    }
+
+    public interface DirectionProperty extends EnumProperty<Direction> {
+
+    }
+
+    public interface IntegerProperty extends BlockProperty<Integer> {
+
+    }
 }
