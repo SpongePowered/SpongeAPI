@@ -42,4 +42,12 @@ public interface Player extends HumanEntity, CommandSource {
      * @return The player's display name
      */
     String getDisplayName();
+    
+    /**
+     * Gets the player's online state.
+     * returns if the player is online or not.
+     *
+     * @return The player's online state
+     */
+    boolean isOnline();
 }
