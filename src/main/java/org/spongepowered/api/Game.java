@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.scheduler.Scheduler;
+import org.spongepowered.api.title.Title;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -141,6 +142,22 @@ public interface Game {
      * @param message The message to send
      */
     void broadcastMessage(String message);
+
+    /**
+     * Creates a new clean {@link Title} configuration that will reset the
+     * currently displayed title before displaying the new one.
+     *
+     * @return A new clean {@link Title} configuration.
+     */
+    Title createTitle();
+
+    /**
+     * Creates a new empty {@link Title} configuration that will just update
+     * the currently displayed title on the client.
+     *
+     * @return A new empty {@link Title} configuration.
+     */
+    Title updateTitle();
 
     /**
      * Gets the API version.
