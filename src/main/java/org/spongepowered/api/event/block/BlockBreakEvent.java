@@ -35,7 +35,7 @@ public interface BlockBreakEvent extends BlockEvent {
     /**
      * Gets player who broke the block. If the block wasn't broken by a player, null
      * will returned.
-     * @return player who placed block, or null
+     * @return Player who placed block, or null
      */
     @Nullable
     Player getPlayer();

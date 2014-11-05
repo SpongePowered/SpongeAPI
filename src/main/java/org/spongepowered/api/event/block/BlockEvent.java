@@ -34,7 +34,7 @@ public interface BlockEvent extends GameEvent {
     /**
      * Gets block related to the event.
      * 
-     * @return related block
+     * @return Related block
      */
     Block getBlock();
 }
