@@ -31,6 +31,7 @@ import org.spongepowered.api.event.GameEvent;
  * Base event for everything which is related to blocks.
  */
 public interface BlockEvent extends GameEvent {
+    
     /**
      * Gets block related to the event.
      * 

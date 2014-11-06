@@ -25,11 +25,12 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.event.block.BlockBreakEvent;
+import org.spongepowered.api.event.block.BreakCause;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
-import org.spongepowered.api.world.extent.Extent;
 
 /**
  * An entity is a Minecraft entity.
@@ -133,4 +134,10 @@ public interface Entity extends EntityState {
      * @param rotation The rotation to set the entity to
      */
     void setRotation(EulerDirection rotation);
+    
+    /**
+     * If this entity breaks a block, this is cause for {@link BlockBreakEvent}.
+     * @return block break cause for this entity.
+     */
+    BreakCause.Entity getBreakCause();
 }

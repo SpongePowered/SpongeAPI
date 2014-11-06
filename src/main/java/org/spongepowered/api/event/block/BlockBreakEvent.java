@@ -24,19 +24,14 @@
  */
 package org.spongepowered.api.event.block;
 
-import javax.annotation.Nullable;
-
-import org.spongepowered.api.entity.Player;
-
 /**
  * Called when block is about to break. You can cancel the event to prevent it.
  */
 public interface BlockBreakEvent extends BlockEvent {
+    
     /**
-     * Gets player who broke the block. If the block wasn't broken by a player, null
-     * will returned.
-     * @return Player who placed block, or null
+     * Gets cause for block break.
+     * @return Cause for that block break
      */
-    @Nullable
-    Player getPlayer();
+    BreakCause getCause();
 }

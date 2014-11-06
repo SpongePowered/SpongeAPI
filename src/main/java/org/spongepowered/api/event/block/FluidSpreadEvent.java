@@ -24,20 +24,17 @@
  */
 package org.spongepowered.api.event.block;
 
-import javax.annotation.Nullable;
-
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.block.Block;
 
 /**
- * Called when block gets placed. Cancel the event to prevent placing.
+ * Gets called when fluid is about to spread. Cancel to prevent it from
+ * spreading.
  */
-public interface BlockPlaceEvent extends BlockEvent {
+public interface FluidSpreadEvent extends BlockEvent {
     
     /**
-     * Gets player who placed the block. If the block wasn't placed 
-     * by a player, null will returned.
-     * @return Player who placed block, or null
+     * Gets source block of spreading fluid.
+     * @return Source block of fluid
      */
-    @Nullable
-    Player getPlayer();
+    Block getSource();
 }

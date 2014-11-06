@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.event.block.BreakCause;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.Vector3i;
 import org.spongepowered.api.util.Direction;
@@ -209,4 +210,17 @@ public interface Block extends BlockState {
      * @return Faces indirectly powered
      */
     Collection<Direction> getIndirectlyPoweredFaces();
+    
+    /**
+     * If this block breaks another block, this is cause 
+     * for {@link BlockBreakEvent}. In vanilla, sponges do that.
+     * @return block break cause for this entity.
+     */
+    BreakCause.Block getBreakCause();
+    
+    /**
+     * Gets block break cause for (leave) decay.
+     * @return block break cause for decay
+     */
+    BreakCause.Decay getDecayCause();
 }

@@ -24,10 +24,32 @@
  */
 package org.spongepowered.api.event.block;
 
+import javax.annotation.Nullable;
+
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.world.Location;
+
 /**
- * Gets called when block is moved in world, usually using a piston. Cancel to prevent
- * the movement and make piston not work.
+ * Gets called when block is moved in world, usually using a piston. Cancel to 
+ * prevent the movement and make piston not work.
+ * 
+ * <p>This event is called before the block is actually moved, so getBlock() 
+ * gives block with its original position. Use {@link #getDestination()} 
+ * to get new destination.</p>
  */
 public interface BlockMoveEvent extends BlockEvent {
-
+    
+    /**
+     * Gets block which pushes moved block. Usually its piston, but if the block was
+     * pushed by some other means, it may be null.
+     * @return Block that pushed event block, or null
+     */
+    @Nullable
+    Block getPusher();
+    
+    /**
+     * Gets destination of block movement.
+     * @return Destination of block movement
+     */
+    Location getDestination();
 }
