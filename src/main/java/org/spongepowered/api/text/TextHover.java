@@ -123,7 +123,7 @@ public final class TextHover {
          * {@link Achievement}'s name and description when he hovers the text.
          */
 // TODO: Enable if Achievement class is added
-//        @Nonnull public final static Type SHOW_ACHIEVEMENT = new Type("SHOW_ACHIEVEMENT") {
+//        @Nonnull public static final Type SHOW_ACHIEVEMENT = new Type("SHOW_ACHIEVEMENT") {
 //
 //            @Override
 //            protected boolean accept(@Nonnull final Object object) {
@@ -135,7 +135,7 @@ public final class TextHover {
          * Will show the player the same tooltip that appeard when hovering the
          * provided {@link ItemStack} in an inventory.
          */
-        @Nonnull public final static Type SHOW_ENTITY = new Type("SHOW_ENTITY") {
+        @Nonnull public static final Type SHOW_ENTITY = new Type("SHOW_ENTITY") {
 
             @Override
             protected boolean accept(@Nonnull final Object object) {
@@ -147,7 +147,7 @@ public final class TextHover {
          * Will show the player the same tooltip that appeard when hovering the
          * provided {@link ItemStack} in an inventory.
          */
-        @Nonnull public final static Type SHOW_ITEM = new Type("SHOW_ITEM") {
+        @Nonnull public static final Type SHOW_ITEM = new Type("SHOW_ITEM") {
 
             @Override
             protected boolean accept(@Nonnull final Object object) {
@@ -159,7 +159,7 @@ public final class TextHover {
          * Will show the player a tooltip containing the provided lines. These
          * lines can contain {@link TextFormatting} codes.
          */
-        @Nonnull public final static Type SHOW_TEXT = new Type("SHOW_TEXT") {
+        @Nonnull public static final Type SHOW_TEXT = new Type("SHOW_TEXT") {
 
             @Override
             protected boolean accept(@Nonnull final Object object) {

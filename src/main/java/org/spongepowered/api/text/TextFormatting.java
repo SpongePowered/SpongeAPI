@@ -42,91 +42,91 @@ public final class TextFormatting {
     /**
      * Represents black.
      */
-    @Nonnull public final static TextFormatting BLACK = new TextFormatting("BLACK", true, '0');
+    @Nonnull public static final TextFormatting BLACK = new TextFormatting("BLACK", true, '0');
     /**
      * Represents dark blue.
      */
-    @Nonnull public final static TextFormatting DARK_BLUE = new TextFormatting("DARK_BLUE", true, '1');
+    @Nonnull public static final TextFormatting DARK_BLUE = new TextFormatting("DARK_BLUE", true, '1');
     /**
      * Represents dark green.
      */
-    @Nonnull public final static TextFormatting DARK_GREEN = new TextFormatting("DARK_GREEN", true, '2');
+    @Nonnull public static final TextFormatting DARK_GREEN = new TextFormatting("DARK_GREEN", true, '2');
     /**
      * Represents turquoise (aqua / dark cyan).
      */
-    @Nonnull public final static TextFormatting DARK_TURQUOISE = new TextFormatting("DARK_TURQUOISE", true, '3');
+    @Nonnull public static final TextFormatting DARK_TURQUOISE = new TextFormatting("DARK_TURQUOISE", true, '3');
     /**
      * Represents dark red.
      */
-    @Nonnull public final static TextFormatting DARK_RED = new TextFormatting("DARK_RED", true, '4');
+    @Nonnull public static final TextFormatting DARK_RED = new TextFormatting("DARK_RED", true, '4');
     /**
      * Represents purple.
      */
-    @Nonnull public final static TextFormatting PURPLE = new TextFormatting("PURPLE", true, '5');
+    @Nonnull public static final TextFormatting PURPLE = new TextFormatting("PURPLE", true, '5');
     /**
      * Represents orange.
      */
-    @Nonnull public final static TextFormatting ORANGE = new TextFormatting("ORANGE", true, '6');
+    @Nonnull public static final TextFormatting ORANGE = new TextFormatting("ORANGE", true, '6');
     /**
      * Represents light gray.
      */
-    @Nonnull public final static TextFormatting LIGHT_GRAY = new TextFormatting("LIGHT_GRAY", true, '7');
+    @Nonnull public static final TextFormatting LIGHT_GRAY = new TextFormatting("LIGHT_GRAY", true, '7');
     /**
      * Represents dark gray.
      */
-    @Nonnull public final static TextFormatting DARK_GRAY = new TextFormatting("DARK_GRAY", true, '8');
+    @Nonnull public static final TextFormatting DARK_GRAY = new TextFormatting("DARK_GRAY", true, '8');
     /**
      * Represents blue.
      */
-    @Nonnull public final static TextFormatting BLUE = new TextFormatting("BLUE", true, '9');
+    @Nonnull public static final TextFormatting BLUE = new TextFormatting("BLUE", true, '9');
     /**
      * Represents green.
      */
-    @Nonnull public final static TextFormatting LIGHT_GREEN = new TextFormatting("LIGHT_GREEN", true, 'a');
+    @Nonnull public static final TextFormatting LIGHT_GREEN = new TextFormatting("LIGHT_GREEN", true, 'a');
     /**
      * Represents light blue.
      */
-    @Nonnull public final static TextFormatting LIGHT_BLUE = new TextFormatting("LIGHT_BLUE", true, 'b');
+    @Nonnull public static final TextFormatting LIGHT_BLUE = new TextFormatting("LIGHT_BLUE", true, 'b');
     /**
      * Represents red.
      */
-    @Nonnull public final static TextFormatting RED = new TextFormatting("RED", true, 'c');
+    @Nonnull public static final TextFormatting RED = new TextFormatting("RED", true, 'c');
     /**
      * Represents light magenta.
      */
-    @Nonnull public final static TextFormatting MAGENTA = new TextFormatting("MAGENTA", true, 'd');
+    @Nonnull public static final TextFormatting MAGENTA = new TextFormatting("MAGENTA", true, 'd');
     /**
      * Represents yellow.
      */
-    @Nonnull public final static TextFormatting YELLOW = new TextFormatting("YELLOW", true, 'e');
+    @Nonnull public static final TextFormatting YELLOW = new TextFormatting("YELLOW", true, 'e');
     /**
      * Represents white.
      */
-    @Nonnull public final static TextFormatting WHITE = new TextFormatting("WHITE", true, 'f');
+    @Nonnull public static final TextFormatting WHITE = new TextFormatting("WHITE", true, 'f');
     /**
      * Represents magical characters that change around randomly.
      */
-    @Nonnull public final static TextFormatting DISGUISE = new TextFormatting("DISGUISE", true, 'k');
+    @Nonnull public static final TextFormatting DISGUISE = new TextFormatting("DISGUISE", true, 'k');
     /**
      * Makes the text bold.
      */
-    @Nonnull public final static TextFormatting BOLD = new TextFormatting("BOLD", true, 'l', true);
+    @Nonnull public static final TextFormatting BOLD = new TextFormatting("BOLD", true, 'l', true);
     /**
      * Makes a line appear through the text.
      */
-    @Nonnull public final static TextFormatting STRIKETHROUGH = new TextFormatting("STRIKETHROUGH", true, 'm', true);
+    @Nonnull public static final TextFormatting STRIKETHROUGH = new TextFormatting("STRIKETHROUGH", true, 'm', true);
     /**
      * Makes the text appear underlined.
      */
-    @Nonnull public final static TextFormatting UNDERLINE = new TextFormatting("UNDERLINE", true, 'n', true);
+    @Nonnull public static final TextFormatting UNDERLINE = new TextFormatting("UNDERLINE", true, 'n', true);
     /**
      * Makes the text italic.
      */
-    @Nonnull public final static TextFormatting ITALICS = new TextFormatting("ITALICS", true, 'o', true);
+    @Nonnull public static final TextFormatting ITALICS = new TextFormatting("ITALICS", true, 'o', true);
     /**
      * Resets all previous chat colors or formats.
      */
-    @Nonnull public final static TextFormatting RESET = new TextFormatting("RESET", true, 'r');
+    @Nonnull public static final TextFormatting RESET = new TextFormatting("RESET", true, 'r');
 
     private static final char FORMAT_CHAR = '\u00A7';
     private static final Map<String, TextFormatting> BY_NAME = new LinkedHashMap<String, TextFormatting>();

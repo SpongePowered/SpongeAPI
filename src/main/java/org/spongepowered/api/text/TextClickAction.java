@@ -108,7 +108,7 @@ public final class TextClickAction {
          * Based on Client configuration, will either open the URL or open the
          * "what to do with that URL?" prompt.
          */
-        @Nonnull public final static Type OPEN_URL = new Type("OPEN_URL") {
+        @Nonnull public static final Type OPEN_URL = new Type("OPEN_URL") {
 
             @Override
             protected boolean accept(final Object object) {
@@ -120,7 +120,7 @@ public final class TextClickAction {
          * Will make the user send the provided text to the chat. Supports
          * commands (texts starting with '/').
          */
-        @Nonnull public final static Type SEND_TEXT = new Type("SEND_TEXT") {
+        @Nonnull public static final Type SEND_TEXT = new Type("SEND_TEXT") {
 
             @Override
             protected boolean accept(final Object object) {
@@ -131,7 +131,7 @@ public final class TextClickAction {
         /**
          * Will fill the user chat input with the provided text.
          */
-        @Nonnull public final static Type SET_TEXT = new Type("SET_TEXT") {
+        @Nonnull public static final Type SET_TEXT = new Type("SET_TEXT") {
 
             @Override
             protected boolean accept(final Object object) {
