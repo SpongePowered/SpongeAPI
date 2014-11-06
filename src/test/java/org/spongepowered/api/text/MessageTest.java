@@ -26,16 +26,16 @@ package org.spongepowered.api.text;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
+// import org.spongepowered.api.item.ItemType;
+// import org.spongepowered.api.item.inventory.ItemStack;
 
 public class MessageTest {
 
     @Test
     public void testClone() {
         final Message message = Message.of("Sponge is awesome!")
-            .append(new ItemStack(ItemType.COOKIE, 42), TextFormatting.RED + "Here your awesome cookie!")
-            .append(Achievement.BAKE_CAKE, TextFormatting.UNDERLINE + "Here your awesome cake!")
+            // .append(new ItemStack(ItemType.COOKIE, 42), TextFormatting.RED + "Here your awesome cookie!")
+            // .append(Achievement.BAKE_CAKE, TextFormatting.UNDERLINE + "Here your awesome cake!")
             .append(TextClickAction.ofOpenUrl("http://spongepowered.org"), "Click here for more information.");
         assertEquals(message, message.clone());
     }

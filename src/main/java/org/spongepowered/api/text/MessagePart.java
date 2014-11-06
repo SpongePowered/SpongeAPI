@@ -80,8 +80,8 @@ public final class MessagePart {
     /**
      * Builds a message part consisting of a localized text and localized text
      * parameters, if any, which shows another text when hovered and executes
-     * the given {@link TextClickAction}action when clicked. The hover text may contain
-     * {@link TextFormatting}s as chars.
+     * the given {@link TextClickAction} when clicked. The hover text may
+     * contain {@link TextFormatting}s as chars.
      *
      * @param hoverText The text that should be displayed by this part when
      *        hovered, cannot be null or empty
@@ -147,10 +147,11 @@ public final class MessagePart {
      *        cannot be null
      * @return The hoverable part consisting of the given achievement
      */
-    @Nonnull
-    public static MessagePart of(@Nonnull final Achievement achievement) {
-        return new MessagePart().setHover(TextHover.of(achievement));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static MessagePart of(@Nonnull final Achievement achievement) {
+//        return new MessagePart().setHover(TextHover.of(achievement));
+//    }
 
     /**
      * Builds a message part consisting of text, which shows the given
@@ -163,10 +164,11 @@ public final class MessagePart {
      * @return The hoverable part consisting of the given text and the hover
      *         achievement
      */
-    @Nonnull
-    public static MessagePart of(@Nonnull final Achievement achievement, @Nonnull final String text) {
-        return new MessagePart().setHover(TextHover.of(achievement)).setText(text);
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static MessagePart of(@Nonnull final Achievement achievement, @Nonnull final String text) {
+//        return new MessagePart().setHover(TextHover.of(achievement)).setText(text);
+//    }
 
     /**
      * Builds a message part consisting of localized text, which shows the given
@@ -179,14 +181,15 @@ public final class MessagePart {
      * @return The hoverable part consisting of the given localized text and the
      *         hover achievement
      */
-    @Nonnull
-    public static MessagePart ofLocalized(@Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        return new MessagePart().setHover(TextHover.of(achievement)).setLocalizedText(id, parameters);
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static MessagePart ofLocalized(@Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        return new MessagePart().setHover(TextHover.of(achievement)).setLocalizedText(id, parameters);
+//    }
 
     /**
      * Builds a message part consisting of text, which executes the given
-     * {@link TextClickAction}action when clicked. The text may contain
+     * {@link TextClickAction} when clicked. The text may contain
      * {@link TextFormatting}s as chars.
      *
      * @param clickAction The action that should be performed when the text is
@@ -201,8 +204,8 @@ public final class MessagePart {
 
     /**
      * Builds a message part consisting of a localized text and localized text
-     * parameters, if any, which executes the given {@link TextClickAction}action when
-     * clicked.
+     * parameters, if any, which executes the given {@link TextClickAction}
+     * action when clicked.
      *
      * @param clickAction The action that should be performed when the text is
      *        clicked
@@ -217,8 +220,8 @@ public final class MessagePart {
 
     /**
      * Builds a message part consisting of text, which shows another text when
-     * hovered and executes the given {@link TextClickAction}action when clicked. The text
-     * and the hover text may contain {@link TextFormatting}s as chars.
+     * hovered and executes the given {@link TextClickAction} when clicked. The
+     * text and the hover text may contain {@link TextFormatting}s as chars.
      *
      * @param clickAction The action that should be performed when the text is
      *        clicked
@@ -236,8 +239,8 @@ public final class MessagePart {
     /**
      * Builds a message part consisting of a localized text and localized text
      * parameters, if any, which shows another text when hovered and executes
-     * the given {@link TextClickAction}action when clicked. The hover text may contain
-     * {@link TextFormatting}s as chars.
+     * the given {@link TextClickAction} when clicked. The hover text may
+     * contain {@link TextFormatting}s as chars.
      *
      * @param clickAction The action that should be performed when the text is
      *        clicked
@@ -256,7 +259,7 @@ public final class MessagePart {
     /**
      * Builds a message part consisting of an {@link ItemStack}. The name of the
      * item can be hovered to show the item details and executes the given
-     * {@link TextClickAction}action when clicked.
+     * {@link TextClickAction} when clicked.
      *
      * @param clickAction The action that should be performed when the item's
      *        name is clicked
@@ -271,8 +274,8 @@ public final class MessagePart {
 
     /**
      * Builds a message part consisting of text, which shows the given item when
-     * hovered and executes the given {@link TextClickAction}action when clicked. The text
-     * may contain {@link TextFormatting}s as chars.
+     * hovered and executes the given {@link TextClickAction} when clicked. The
+     * text may contain {@link TextFormatting}s as chars.
      *
      * @param clickAction The action that should be performed when the text is
      *        clicked
@@ -289,7 +292,7 @@ public final class MessagePart {
 
     /**
      * Builds a message part consisting of localized text, which shows the given
-     * item when hovered and executes the given {@link TextClickAction}action when
+     * item when hovered and executes the given {@link TextClickAction} when
      * clicked.
      *
      * @param clickAction The action that should be performed when the text is
@@ -309,7 +312,7 @@ public final class MessagePart {
     /**
      * Builds a message part consisting of an {@link Achievement}. The name of
      * the achievement can be hovered to show the achievement details and
-     * executes the given {@link TextClickAction}action when clicked.
+     * executes the given {@link TextClickAction} when clicked.
      *
      * @param clickAction The action that should be performed when the
      *        achievement's name is clicked
@@ -318,15 +321,17 @@ public final class MessagePart {
      * @return The hoverable and clickable part consisting of the given
      *         achievement
      */
-    @Nonnull
-    public static MessagePart of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
-        return new MessagePart().setClickAction(clickAction).setHover(TextHover.of(achievement));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static MessagePart of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
+//        return new MessagePart().setClickAction(clickAction).setHover(TextHover.of(achievement));
+//    }
 
     /**
      * Builds a message part consisting of text, which shows the given
-     * achievement when hovered and executes the given {@link TextClickAction}action when
-     * clicked. The text may contain {@link TextFormatting}s as chars.
+     * achievement when hovered and executes the given {@link TextClickAction}
+     * action when clicked. The text may contain {@link TextFormatting}s as
+     * chars.
      *
      * @param clickAction The action that should be performed when the text is
      *        clicked
@@ -336,15 +341,16 @@ public final class MessagePart {
      * @return The hoverable and clickable part consisting of the given text and
      *         the hover achievement
      */
-    @Nonnull
-    public static MessagePart of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
-        return new MessagePart().setClickAction(clickAction).setHover(TextHover.of(achievement)).setText(text);
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static MessagePart of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
+//        return new MessagePart().setClickAction(clickAction).setHover(TextHover.of(achievement)).setText(text);
+//    }
 
     /**
      * Builds a message part consisting of localized text, which shows the given
-     * achievement when hovered and executes the given {@link TextClickAction}action when
-     * clicked.
+     * achievement when hovered and executes the given {@link TextClickAction}
+     * action when clicked.
      *
      * @param clickAction The action that should be performed when the text is
      *        clicked
@@ -355,16 +361,17 @@ public final class MessagePart {
      * @return The hoverable and clickable part consisting of the given
      *         localized text and the hover achievement
      */
-    @Nonnull
-    public static MessagePart ofLocalized(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        return new MessagePart().setClickAction(clickAction).setHover(TextHover.of(achievement)).setLocalizedText(id, parameters);
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static MessagePart ofLocalized(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        return new MessagePart().setClickAction(clickAction).setHover(TextHover.of(achievement)).setLocalizedText(id, parameters);
+//    }
 
     /**
      * A String or a localized String identifier if {@link #isLocalizedText()}
      * is true
      */
-    @Nullable private String text;
+    private String text;
 
     /**
      * Determines what is stored in {@link #getText()}, a localized String
@@ -375,17 +382,17 @@ public final class MessagePart {
     /**
      * Parameters for this localized String
      */
-    @Nullable private String[] localizedTextParameters;
+    private String[] localizedTextParameters;
 
     /**
      * The Hover effect for this Part, if any
      */
-    @Nullable private TextHover hover;
+    private TextHover hover;
 
     /**
      * The Click action for this Part, if any
      */
-    @Nullable private TextClickAction clickAction;
+    private TextClickAction clickAction;
 
     /**
      * Private constructor, Part instances should be built using available
@@ -516,6 +523,7 @@ public final class MessagePart {
      *
      * @return A String representation of this Part
      */
+    @SuppressWarnings("null")
     @Override
     @Nonnull
     public String toString() {

@@ -150,10 +150,11 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @return The built Message
      */
-    @Nonnull
-    public static Message of(@Nonnull final Achievement achievement) {
-        return Message.of(MessagePart.of(achievement));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static Message of(@Nonnull final Achievement achievement) {
+//        return Message.of(MessagePart.of(achievement));
+//    }
 
     /**
      * Builds a Message with a text as first Part, using an Achievement
@@ -163,10 +164,11 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @return The built Message
      */
-    @Nonnull
-    public static Message of(@Nonnull final Achievement achievement, @Nonnull final String text) {
-        return Message.of(MessagePart.of(achievement, text));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static Message of(@Nonnull final Achievement achievement, @Nonnull final String text) {
+//        return Message.of(MessagePart.of(achievement, text));
+//    }
 
     /**
      * Builds a Message with a localized text as first Part, using an
@@ -177,10 +179,11 @@ public final class Message implements Iterable<MessagePart> {
      * @param parameters The localized text parameters, if any
      * @return The built Message
      */
-    @Nonnull
-    public static Message ofLocalized(@Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        return Message.of(MessagePart.ofLocalized(achievement, id, parameters));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static Message ofLocalized(@Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        return Message.of(MessagePart.ofLocalized(achievement, id, parameters));
+//    }
 
     /**
      * Builds a Message with a text as first Part, linking the provided Click
@@ -288,10 +291,11 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @return The built Message
      */
-    @Nonnull
-    public static Message of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
-        return Message.of(MessagePart.of(clickAction, achievement));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static Message of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
+//        return Message.of(MessagePart.of(clickAction, achievement));
+//    }
 
     /**
      * Builds a Message with a text as first Part, using an Achievement as hover
@@ -302,10 +306,11 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @return The built Message
      */
-    @Nonnull
-    public static Message of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
-        return Message.of(MessagePart.of(clickAction, achievement, text));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static Message of(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
+//        return Message.of(MessagePart.of(clickAction, achievement, text));
+//    }
 
     /**
      * Builds a Message with a localized text as firstPart, using an Achievement
@@ -317,10 +322,11 @@ public final class Message implements Iterable<MessagePart> {
      * @param parameters The localized text parameters, if any
      * @return The built Message
      */
-    @Nonnull
-    public static Message ofLocalized(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        return Message.of(MessagePart.ofLocalized(clickAction, achievement, id, parameters));
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public static Message ofLocalized(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        return Message.of(MessagePart.ofLocalized(clickAction, achievement, id, parameters));
+//    }
 
     /**
      * The Parts of this Message
@@ -458,11 +464,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message append(@Nonnull final Achievement achievement) {
-        append(MessagePart.of(achievement));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message append(@Nonnull final Achievement achievement) {
+//        append(MessagePart.of(achievement));
+//        return this;
+//    }
 
     /**
      * Appends a Part built from the provided text, using the provided
@@ -472,11 +479,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message append(@Nonnull final Achievement achievement, @Nonnull final String text) {
-        append(MessagePart.of(achievement, text));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message append(@Nonnull final Achievement achievement, @Nonnull final String text) {
+//        append(MessagePart.of(achievement, text));
+//        return this;
+//    }
 
     /**
      * Appends a Part built from the provided localized text, using the provided
@@ -487,11 +495,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message appendLocalized(@Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        append(MessagePart.ofLocalized(achievement, id, parameters));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message appendLocalized(@Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        append(MessagePart.ofLocalized(achievement, id, parameters));
+//        return this;
+//    }
 
     /**
      * Appends a Part built from the provided text, linking the provided Click
@@ -607,11 +616,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message append(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
-        append(MessagePart.of(clickAction, achievement));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message append(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
+//        append(MessagePart.of(clickAction, achievement));
+//        return this;
+//    }
 
     /**
      * Appends a Part built from the provided text, using the provided
@@ -623,11 +633,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message append(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
-        append(MessagePart.of(clickAction, achievement, text));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message append(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
+//        append(MessagePart.of(clickAction, achievement, text));
+//        return this;
+//    }
 
     /**
      * Appends a Part built from the provided localized text, using the provided
@@ -640,11 +651,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message appendLocalized(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        append(MessagePart.ofLocalized(clickAction, achievement, id, parameters));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message appendLocalized(@Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        append(MessagePart.ofLocalized(clickAction, achievement, id, parameters));
+//        return this;
+//    }
 
     /**
      * Inserts a Part at the provided position in this Message.
@@ -655,7 +667,6 @@ public final class Message implements Iterable<MessagePart> {
      */
     @Nonnull
     public Message insert(final int pos, @Nonnull final MessagePart part) {
-        Validate.notNull(part, "Part cannot be null!");
         this.parts.add(pos, part);
         return this;
     }
@@ -774,11 +785,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message insert(final int pos, @Nonnull final Achievement achievement) {
-        insert(pos, MessagePart.of(achievement));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message insert(final int pos, @Nonnull final Achievement achievement) {
+//        insert(pos, MessagePart.of(achievement));
+//        return this;
+//    }
 
     /**
      * Inserts a Part built from the provided text, using the provided
@@ -790,11 +802,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message insert(final int pos, @Nonnull final Achievement achievement, @Nonnull final String text) {
-        insert(pos, MessagePart.of(achievement, text));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message insert(final int pos, @Nonnull final Achievement achievement, @Nonnull final String text) {
+//        insert(pos, MessagePart.of(achievement, text));
+//        return this;
+//    }
 
     /**
      * Inserts a Part built from the provided localized text, using the provided
@@ -807,11 +820,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message insertLocalized(final int pos, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        insert(pos, MessagePart.ofLocalized(achievement, id, parameters));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message insertLocalized(final int pos, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        insert(pos, MessagePart.ofLocalized(achievement, id, parameters));
+//        return this;
+//    }
 
     /**
      * Inserts a Part built from the provided text, linking the provided Click
@@ -937,11 +951,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
-        insert(pos, MessagePart.of(clickAction, achievement));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement) {
+//        insert(pos, MessagePart.of(clickAction, achievement));
+//        return this;
+//    }
 
     /**
      * Inserts a Part built from the provided text, using the provided
@@ -954,11 +969,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
-        insert(pos, MessagePart.of(clickAction, achievement, text));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String text) {
+//        insert(pos, MessagePart.of(clickAction, achievement, text));
+//        return this;
+//    }
 
     /**
      * Inserts a Part built from the provided localized text, using the provided
@@ -972,11 +988,12 @@ public final class Message implements Iterable<MessagePart> {
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
      */
-    @Nonnull
-    public Message insertLocalized(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
-        insert(pos, MessagePart.ofLocalized(clickAction, achievement, id, parameters));
-        return this;
-    }
+// TODO: Enable if Achievement class is added
+//    @Nonnull
+//    public Message insertLocalized(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final Achievement achievement, @Nonnull final String id, @Nonnull final String... parameters) {
+//        insert(pos, MessagePart.ofLocalized(clickAction, achievement, id, parameters));
+//        return this;
+//    }
 
     /**
      * Gets the Part at the specified position in this Message's Parts list.

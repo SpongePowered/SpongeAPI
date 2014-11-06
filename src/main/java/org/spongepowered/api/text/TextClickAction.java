@@ -23,9 +23,14 @@
  */
 package org.spongepowered.api.text;
 
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Represents an action that will be executed by the Minecraft Client as soon as
@@ -40,78 +45,177 @@ public final class TextClickAction {
     private static final Pattern HTTP_REGEX = Pattern.compile("^https?://.*", Pattern.CASE_INSENSITIVE);
 
     /**
-     * Builds a new Click of type {@link Type#OPEN_URL}.
+     * Builds a new TextClickAction of type {@link Type#OPEN_URL}.
      *
      * @param url An URL matching {@link #HTTP_REGEX}
-     * @return A new Click of type OPEN_URL
+     * @return A new TextClickAction of type OPEN_URL
      */
     @Nonnull
     public static TextClickAction ofOpenUrl(@Nonnull final String url) {
         if (!HTTP_REGEX.matcher(url).matches()) {
             throw new IllegalArgumentException("Provided url is invalid: " + url);
         }
-        return forType(Type.OPEN_URL, url);
+        return new TextClickAction(Type.OPEN_URL, url);
     }
 
     /**
-     * Builds a new Click of type {@link Type#SEND_TEXT}.
+     * Builds a new TextClickAction of type {@link Type#SEND_TEXT}.
      *
      * @param text The text to be send
-     * @return A new Click of type SEND_TEXT
+     * @return A new TextClickAction of type SEND_TEXT
      */
     @Nonnull
     public static TextClickAction ofSendText(@Nonnull final String text) {
-        return forType(Type.SEND_TEXT, text);
+        return new TextClickAction(Type.SEND_TEXT, text);
     }
 
     /**
-     * Builds a new Click of type {@link Type#SET_TEXT}.
+     * Builds a new TextClickAction of type {@link Type#SET_TEXT}.
      *
      * @param text The text to be set
-     * @return A new Click of type SET_TEXT
+     * @return A new TextClickAction of type SET_TEXT
      */
     @Nonnull
     public static TextClickAction ofSetText(@Nonnull final String text) {
-        return forType(Type.SET_TEXT, text);
+        return new TextClickAction(Type.SET_TEXT, text);
     }
 
     /**
-     * Builds a new Click of the provided Type with the provided text.
+     * Builds a new TextClickAction of generic type.
      *
-     * @param type The Type
-     * @param action The text
-     * @return A new Click of the provided Type
+     * @param type The click type
+     * @param object The data object
+     * @return A new TextClickAction
+     * @throws IllegalArgumentException if type does not
+     *             {@link Type#accept(Object)} the object for any reason.
      */
     @Nonnull
-    private static TextClickAction forType(@Nonnull final Type type, @Nonnull final String action) {
-        return new TextClickAction(type, action);
+    public static TextClickAction forType(@Nonnull final Type type, @Nonnull final Object object) {
+        if (type.accept(object)) {
+            return new TextClickAction(type, object);
+        } else {
+            throw new IllegalArgumentException(type + " does not support " + object + " (" + object.getClass().getName() + ")");
+        }
     }
 
     /**
-     * An enum listing all possible action on Click.
+     * An enum like class listing all possible actions on Click.
      */
-    public enum Type {
+    public static abstract class Type {
+
         /**
          * Based on Client configuration, will either open the URL or open the
          * "what to do with that URL?" prompt.
          */
-        OPEN_URL,
+        @Nonnull public final static Type OPEN_URL = new Type("OPEN_URL") {
+
+            @Override
+            protected boolean accept(final Object object) {
+                return object instanceof String && HTTP_REGEX.matcher((String) object).matches();
+            };
+        };
 
         /**
          * Will make the user send the provided text to the chat. Supports
-         * commands (text starting with '/').
+         * commands (texts starting with '/').
          */
-        SEND_TEXT,
+        @Nonnull public final static Type SEND_TEXT = new Type("SEND_TEXT") {
+
+            @Override
+            protected boolean accept(final Object object) {
+                return object instanceof String;
+            };
+        };
 
         /**
          * Will fill the user chat input with the provided text.
          */
-        SET_TEXT,
-        ;
+        @Nonnull public final static Type SET_TEXT = new Type("SET_TEXT") {
+
+            @Override
+            protected boolean accept(final Object object) {
+                return object instanceof String;
+            };
+        };
+
+        private static final Map<String, Type> BY_NAME = new LinkedHashMap<String, Type>();
+
+        @Nonnull private final String name;
+
+        /**
+         * Creates a new Type with a given name.
+         * 
+         * @param name The name for this TextActionClickType. The name is case
+         *       insensitive and must be unique!
+         * @throws IllegalArgumentException If the given name does already exist
+         */
+        @SuppressWarnings("null")
+        public Type(@Nonnull final String name) {
+            super();
+            this.name = name.toUpperCase();
+            if (!BY_NAME.containsKey(this.name)) {
+                BY_NAME.put(this.name, this);
+            } else {
+                throw new IllegalArgumentException("TextActionClickType with name " + this.name + " does already exist!");
+            }
+        }
+
+        @Nonnull
+        public final String getName() {
+            return name;
+        }
+
+        protected abstract boolean accept(@Nonnull Object object);
+
+        protected boolean equalsData(@Nonnull final Object o1, @Nonnull final Object o2) {
+            return o1.equals(o2);
+        }
+
+        protected String dataToString(@Nonnull final Object object) {
+            return object.toString();
+        }
+
+        @Override
+        public final String toString() {
+            return "TextClickActionType[" + name + "]";
+        }
+
+        @Override
+        public final boolean equals(final Object obj) {
+            return this == obj;
+        }
+
+        @Override
+        public final int hashCode() {
+            return super.hashCode();
+        }
+
+        /**
+         * Gets the Type for the given type name.
+         *
+         * @param name The name to check
+         * @return The Type for the given (case insesitive) name or null, if the
+         *         given name does not specify a type.
+         */
+        @Nullable
+        public static Type getByName(@Nonnull final String name) {
+            return BY_NAME.get(name.toUpperCase());
+        }
+
+        /**
+         * Gets all registered TextClickActions.
+         *
+         * @return A {@link Set} all registered TextClickActions .
+         */
+        @Nonnull
+        public static Set<Type> getAll() {
+            return new LinkedHashSet<Type>(BY_NAME.values());
+        }
+
     }
 
     @Nonnull private final Type type;
-    @Nonnull private final String text;
+    @Nonnull private final Object object;
 
     /**
      * Builds a new Click of the provided Type with the provided text.
@@ -119,9 +223,9 @@ public final class TextClickAction {
      * @param type The Type
      * @param text The text
      */
-    private TextClickAction(@Nonnull final Type type, @Nonnull final String text) {
+    private TextClickAction(@Nonnull final Type type, @Nonnull final Object object) {
         this.type = type;
-        this.text = text;
+        this.object = object;
     }
 
     /**
@@ -129,22 +233,37 @@ public final class TextClickAction {
      *
      * @return The Type of this Click
      */
+    @Nonnull
     public Type getType() {
         return this.type;
     }
 
     /**
-     * Gets the text of this Click.
+     * Gets the text attached to this click action. Returns null if the attached
+     * object isn't an {@link String}.
      *
-     * @return The text of this Click
+     * @return An text if the attached object is an {@link String}, null
+     *         otherwise
      */
+    @Nullable
     public String getText() {
-        return this.text;
+        return this.object instanceof String ? (String) object : null;
+    }
+
+    /**
+     * Gets the {@link Object} attached to this click action.
+     *
+     * @return The {@link Object} the attached to this click action
+     */
+    @Nonnull
+    public Object getObject() {
+        return object;
     }
 
     @Override
+    @Nonnull
     public String toString() {
-        return "Click [type=" + type.name() + ", text=" + text + "]";
+        return "TextClickAction [type=" + type.name + ", object=" + type.dataToString(object) + "]";
     }
 
     @Override
@@ -158,20 +277,17 @@ public final class TextClickAction {
 
         final TextClickAction click = (TextClickAction) o;
 
-        if (!text.equals(click.text)) {
-            return false;
-        }
         if (type != click.type) {
             return false;
         }
 
-        return true;
+        return type.equalsData(object, click.object);
     }
 
     @Override
     public int hashCode() {
         int result = type.hashCode();
-        result = 31 * result + text.hashCode();
+        result = 31 * result + object.hashCode();
         return result;
     }
 

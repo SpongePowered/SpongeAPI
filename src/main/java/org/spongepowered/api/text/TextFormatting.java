@@ -160,6 +160,8 @@ public final class TextFormatting {
             BY_CODE.put(this.code, this);
             BY_CODE.put(Character.toUpperCase(this.code), this);
             generatePatterns();
+        } else {
+            throw new IllegalArgumentException("TextFormatting with name " + this.name + " or code " + this.code + " does already exist!");
         }
     }
 
@@ -183,12 +185,13 @@ public final class TextFormatting {
     }
 
     /**
-     * Creates a new ChatFormatting with a given name and code. If name and code
-     * is unique it will be registered as global ChatFormatting.
+     * Creates a new TextFormatting with a given name and code. If name and code
+     * is unique it will be registered as global TextFormatting.
      *
-     * @param name The name of this ChatFormatting
-     * @param code The code of this ChatFormatting, cannot be '\'
+     * @param name The name of this TextFormatting
+     * @param code The code of this TextFormatting, cannot be '\'
      * @param isStyle True, if this indicates a style otherwise false
+     * @throws IllegalArgumentException If the given name or code does already exist
      */
     public TextFormatting(@Nonnull final String name, final char code, final boolean isStyle) {
         this(name, false, code, isStyle);
@@ -198,7 +201,7 @@ public final class TextFormatting {
      * Checks whether this format is provided by the API and not
      * server/implementation dependent.
      *
-     * @return True, if this ChatFormatting is specified by the API, otherwise
+     * @return True, if this TextFormatting is specified by the API, otherwise
      *         false.
      */
     public boolean isDefault() {
@@ -239,11 +242,11 @@ public final class TextFormatting {
     }
 
     /**
-     * Gets the ChatFormatting for the given format name.
+     * Gets the TextFormatting for the given format name.
      *
-     * @param code The code to check
-     * @return The ChatFormatting for the given (case insesitive) name or null,
-     *         if the given code does not influence the format.
+     * @param name The name to check
+     * @return The TextFormatting for the given (case insesitive) name or null,
+     *         if the given name does not specify a format.
      */
     @Nullable
     public static TextFormatting getByName(@Nonnull final String name) {
@@ -251,15 +254,25 @@ public final class TextFormatting {
     }
 
     /**
-     * Gets the ChatFormatting for the given format char.
+     * Gets the TextFormatting for the given format char.
      *
      * @param code The code to check
-     * @return The ChatFormatting for the given code or null, if the given code
+     * @return The TextFormatting for the given code or null, if the given code
      *         does not influence the format.
      */
     @Nullable
     public static TextFormatting getByCode(final char code) {
         return BY_CODE.get(code);
+    }
+
+    /**
+     * Gets all registered TextFormattings.
+     *
+     * @return A {@link Set} all registered TextFormattings .
+     */
+    @Nonnull
+    public static Set<TextFormatting> getAll() {
+        return new LinkedHashSet<TextFormatting>(BY_NAME.values());
     }
 
     /**
@@ -351,7 +364,7 @@ public final class TextFormatting {
      * message:
      *
      * <pre>
-     * List<ChatFormatting> list = new ArrayList<ChatFormatting>(formats);
+     * List<TextFormatting> list = new ArrayList<TextFormatting>(formats);
      * Collections.reverse(list).toString() + message;
      * </pre>
      *
