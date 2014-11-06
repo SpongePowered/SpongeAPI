@@ -39,6 +39,9 @@ import javax.annotation.Nullable;
  */
 public final class TextFormatting {
 
+    private static final Map<String, TextFormatting> BY_NAME = new LinkedHashMap<String, TextFormatting>();
+    private static final Map<Character, TextFormatting> BY_CODE = new LinkedHashMap<Character, TextFormatting>();
+
     /**
      * Represents black.
      */
@@ -129,8 +132,6 @@ public final class TextFormatting {
     @Nonnull public static final TextFormatting RESET = new TextFormatting("RESET", true, 'r');
 
     private static final char FORMAT_CHAR = '\u00A7';
-    private static final Map<String, TextFormatting> BY_NAME = new LinkedHashMap<String, TextFormatting>();
-    private static final Map<Character, TextFormatting> BY_CODE = new LinkedHashMap<Character, TextFormatting>();
     private static String COLOR_INFLUENCERS = null;
     private static String FORMAT_INFLUENCERS = null;
     private static Pattern STRIP_FORMAT_PATTERN = null;
@@ -363,13 +364,12 @@ public final class TextFormatting {
      * <p>
      * Use the following scriptlet to apply the returned format to any other
      * message:
+     * </p>
      *
      * <pre>
-     * List<TextFormatting> list = new ArrayList<TextFormatting>(formats);
+     * List&lt;TextFormatting&gt; list = new ArrayList&lt;TextFormatting&gt;(formats);
      * Collections.reverse(list).toString() + message;
      * </pre>
-     *
-     * </p>
      *
      * @param formatedString The string to search for formatting
      * @return A set containing all format codes applied to the given string.

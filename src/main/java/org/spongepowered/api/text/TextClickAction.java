@@ -104,6 +104,8 @@ public final class TextClickAction {
      */
     public static abstract class Type {
 
+        private static final Map<String, Type> BY_NAME = new LinkedHashMap<String, Type>();
+
         /**
          * Based on Client configuration, will either open the URL or open the
          * "what to do with that URL?" prompt.
@@ -138,8 +140,6 @@ public final class TextClickAction {
                 return object instanceof String;
             };
         };
-
-        private static final Map<String, Type> BY_NAME = new LinkedHashMap<String, Type>();
 
         @Nonnull private final String name;
 

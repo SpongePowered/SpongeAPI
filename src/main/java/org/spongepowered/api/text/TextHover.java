@@ -118,6 +118,8 @@ public final class TextHover {
      */
     public static abstract class Type {
 
+        private static final Map<String, Type> BY_NAME = new LinkedHashMap<String, Type>();
+
         /**
          * Will show the player a tooltip containing the provided
          * {@link Achievement}'s name and description when he hovers the text.
@@ -166,8 +168,6 @@ public final class TextHover {
                 return object instanceof String[];
             };
         };
-
-        private static final Map<String, Type> BY_NAME = new LinkedHashMap<String, Type>();
 
         @Nonnull private final String name;
 
