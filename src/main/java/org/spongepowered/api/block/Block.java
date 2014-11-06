@@ -31,6 +31,8 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
+import java.util.Collection;
+
 /**
  * Represents a block at a specific location in an {@link Extent}.
  */
@@ -193,4 +195,18 @@ public interface Block extends BlockState {
      * @return Whether powered
      */
     boolean isFaceIndirectlyPowered(Direction direction);
+
+    /**
+     * Get all the faces of this block that are directly powered.
+     *
+     * @return Faces powered
+     */
+    Collection<Direction> getPoweredFaces();
+
+    /**
+     * Get all faces of this block that are indirectly powered.
+     *
+     * @return Faces indirectly powered
+     */
+    Collection<Direction> getIndirectlyPoweredFaces();
 }
