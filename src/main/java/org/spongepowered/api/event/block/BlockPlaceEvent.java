@@ -35,7 +35,7 @@ public interface BlockPlaceEvent extends BlockEvent {
     /**
      * Gets player who placed the block. If the block wasn't placed by a player, null
      * will returned.
-     * @return player who placed block, or null
+     * @return Player who placed block, or null
      */
     @Nullable
     Player getPlayer();
