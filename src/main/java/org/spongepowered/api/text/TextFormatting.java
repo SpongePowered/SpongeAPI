@@ -132,7 +132,7 @@ public final class TextFormatting {
     private static final Map<Character, TextFormatting> BY_CODE = new LinkedHashMap<Character, TextFormatting>();
     private static String COLOR_INFLUENCERS = null;
     private static String FORMAT_INFLUENCERS = null;
-    private static Pattern STRIP_FROMAT_PATTERN = null;
+    private static Pattern STRIP_FORMAT_PATTERN = null;
 
     @Nonnull private final String name;
     private final boolean isDefault;
@@ -179,7 +179,7 @@ public final class TextFormatting {
         patternBuilder.append("\\E]");
         COLOR_INFLUENCERS = colorBuilder.toString();
         FORMAT_INFLUENCERS = formatBuilder.toString();
-        STRIP_FROMAT_PATTERN = Pattern.compile(patternBuilder.toString());
+        STRIP_FORMAT_PATTERN = Pattern.compile(patternBuilder.toString());
     }
 
     /**
@@ -315,7 +315,7 @@ public final class TextFormatting {
         if (formatedString == null) {
             return null;
         } else {
-            return STRIP_FROMAT_PATTERN.matcher(formatedString).replaceAll("");
+            return STRIP_FORMAT_PATTERN.matcher(formatedString).replaceAll("");
         }
     }
 
