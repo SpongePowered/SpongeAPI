@@ -28,6 +28,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
@@ -141,13 +142,46 @@ public final class TextClickAction {
             };
         };
 
+        /**
+         * Will open the specified page in a book. (Books only)
+         */
+        @Nonnull public static final Type CHANGE_PAGE = new Type("CHANGE_PAGE") {
+
+            @Override
+            protected boolean accept(final Object object) {
+                return object instanceof Integer;
+            };
+        };
+
+        /**
+         * Will open the twitch user info. (Client only)
+         */
+        @Nonnull public static final Type TWITCH_USER_INFO = new Type("TWITCH_USER_INFO") {
+
+            @Override
+            protected boolean accept(final Object object) {
+                return object instanceof UUID;
+            };
+        };
+
+        /**
+         * Will open the specified file. (Client only)
+         */
+        @Nonnull public static final Type OPEN_FILE = new Type("OPEN_FILE") {
+
+            @Override
+            protected boolean accept(final Object object) {
+                return object instanceof String;
+            };
+        };
+
         @Nonnull private final String name;
 
         /**
          * Creates a new Type with a given name.
-         * 
+         *
          * @param name The name for this TextActionClickType. The name is case
-         *       insensitive and must be unique!
+         *        insensitive and must be unique!
          * @throws IllegalArgumentException If the given name does already exist
          */
         @SuppressWarnings("null")
