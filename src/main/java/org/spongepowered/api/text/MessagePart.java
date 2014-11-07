@@ -34,6 +34,17 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * Represents a part of a {@link Message}, a simple or localized String which
  * may have a {@link TextClickAction} and/or a {@link TextHover} attached to it.
+ * Any unsupported {@link TextHover} and {@link TextActionClick} feature will be
+ * ignored.
+ * <p>
+ * Reasons why a feature may be ignored:
+ * </p>
+ * <ul>
+ * <li>Not supported by the server or client</li>
+ * <li>Not meant to be transferred</li>
+ * <li>Not applicable to target context (ex.
+ * {@link TextClickAction.Type#CHANGE_PAGE} in default chats)</li>
+ * <ul>
  */
 public final class MessagePart {
 
