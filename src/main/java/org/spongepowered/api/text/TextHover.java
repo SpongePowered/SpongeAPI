@@ -116,7 +116,7 @@ public final class TextHover {
     /**
      * An enum like class listing all possible types of Hover.
      */
-    public static abstract class Type {
+    public abstract static class Type {
 
         private static final Map<String, Type> BY_NAME = new LinkedHashMap<String, Type>();
 

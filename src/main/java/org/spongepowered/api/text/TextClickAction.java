@@ -103,7 +103,7 @@ public final class TextClickAction {
     /**
      * An enum like class listing all possible actions on Click.
      */
-    public static abstract class Type {
+    public abstract static class Type {
 
         private static final Map<String, Type> BY_NAME = new LinkedHashMap<String, Type>();
 
