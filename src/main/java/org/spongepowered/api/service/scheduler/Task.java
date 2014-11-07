@@ -30,7 +30,7 @@ import org.spongepowered.api.plugin.PluginContainer;
 /**
  * Represents a task that has been scheduled.
  */
-public interface Task extends Runnable {
+public interface Task {
 
     /**
      * Gets the name of this task.
