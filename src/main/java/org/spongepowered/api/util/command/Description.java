@@ -40,7 +40,7 @@ import java.util.List;
  * for an interface that does define how a command is executed.</p>
  *
  * <p>Implementations are not required to implement a sane
- * {@link #equals(Object)} but may choose to do so.</p>
+ * {@link java.lang.Object#equals(Object)} but may choose to do so.</p>
  */
 public interface Description {
 
