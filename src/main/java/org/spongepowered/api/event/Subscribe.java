@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
 
 @Retention(value = RUNTIME)
 @Target(value = METHOD)
-public @interface SpongeEventHandler {
+public @interface Subscribe {
 
     Order order() default Order.DEFAULT;
 

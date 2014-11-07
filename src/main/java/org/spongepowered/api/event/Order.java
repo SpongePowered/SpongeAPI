@@ -26,7 +26,7 @@
 package org.spongepowered.api.event;
 
 /**
- * Order that a {@link SpongeEventHandler} may be registered at.
+ * Order that {@link Subscribe}d methods may be registered at.
  *
  * <p>Event handlers are called the order given in the following table.</p>
  *
