@@ -22,26 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.cause.block;
 
 import org.spongepowered.api.block.Block;
 
 /**
- * Gets called when fluid is about to spread. Cancel to prevent it from
- * spreading.
+ * Block place cause.
  */
-public interface FluidSpreadEvent extends BlockEvent {
+public interface PlaceCause extends BlockCause {
     
     /**
-     * Gets source block of spreading fluid.
-     * @return Source block of fluid
+     * Entity (usually player) placed the block. Enderdragon's death doesn't
+     * count, as it technically does not create the return portal.
      */
-    Block getSource();
+    interface Entity extends PlaceCause {
+        /**
+         * Gets entity which placed this block.
+         * @return Entity which placed this block
+         */
+        Entity getEntity();
+    }
     
     /**
-     * Gets block which is about to be fluid. Does exactly same as
-     * {@link #getBlock()}.
-     * @return
+     * Plant was grown and created new block(s). Trees are also considered as
+     * plants.
      */
-    Block getDestination();
+    interface PlantGrow extends PlaceCause {
+        /**
+         * Gets sapling which grew the new plant.
+         * @return Sapling of plant
+         */
+        Block getSapling();
+    }
+    
+    /**
+     * Block was spawned as part of some structure. World gen structures won't
+     * count, only structures, which spawn when something happens is loaded
+     * chunks count. In vanilla, the only example is enderdragon's death.
+     */
+    interface Spawn extends PlaceCause {
+        //TODO: When chunk events are implemented, add spawn causes.
+    }
 }

@@ -24,20 +24,10 @@
  */
 package org.spongepowered.api.event.block;
 
-import javax.annotation.Nullable;
-
-import org.spongepowered.api.entity.Player;
 
 /**
  * Called when block gets placed. Cancel the event to prevent placing.
  */
 public interface BlockPlaceEvent extends BlockEvent {
     
-    /**
-     * Gets player who placed the block. If the block wasn't placed 
-     * by a player, null will returned.
-     * @return Player who placed block, or null
-     */
-    @Nullable
-    Player getPlayer();
 }

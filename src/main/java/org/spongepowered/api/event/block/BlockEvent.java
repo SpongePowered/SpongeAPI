@@ -26,6 +26,7 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.block.BlockCause;
 
 /**
  * Base event for everything which is related to blocks.
@@ -38,4 +39,10 @@ public interface BlockEvent extends GameEvent {
      * @return Related block
      */
     Block getBlock();
+    
+    /**
+     * Gets cause for that block event
+     * @return Cause of the event
+     */
+    BlockCause getCause();
 }

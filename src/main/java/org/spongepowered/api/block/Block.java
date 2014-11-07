@@ -25,7 +25,8 @@
 
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.event.block.BreakCause;
+import org.spongepowered.api.event.cause.block.BreakCause;
+import org.spongepowered.api.event.cause.block.PlaceCause;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.Vector3i;
 import org.spongepowered.api.util.Direction;
@@ -214,13 +215,20 @@ public interface Block extends BlockState {
     /**
      * If this block breaks another block, this is cause 
      * for {@link BlockBreakEvent}. In vanilla, sponges do that.
-     * @return block break cause for this entity.
+     * @return Block break cause for this entity.
      */
     BreakCause.Block getBreakCause();
     
     /**
      * Gets block break cause for (leave) decay.
-     * @return block break cause for decay
+     * @return Block break cause for decay
      */
     BreakCause.Decay getDecayCause();
+    
+    /**
+     * If this block is a sapling and grows, this is cause for the new blocks
+     * {@link BlockPlaceEvent}s
+     * @return Block place cause for sapling/plant
+     */
+    PlaceCause.PlantGrow getGrowCause();
 }

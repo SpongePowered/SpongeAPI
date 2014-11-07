@@ -22,26 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
-
-import org.spongepowered.api.block.Block;
+package org.spongepowered.api.event.cause.block;
 
 /**
- * Gets called when fluid is about to spread. Cancel to prevent it from
- * spreading.
+ * Block movement cause. No, this doesn't apply on endermen (or players)
+ * carrying stuff around.
  */
-public interface FluidSpreadEvent extends BlockEvent {
+public interface MoveCause extends BlockCause {
     
     /**
-     * Gets source block of spreading fluid.
-     * @return Source block of fluid
+     * Another block moved the block. Usually only pistons do that.
      */
-    Block getSource();
+    interface Block {
+        /**
+         * Gets block which moved the event block.
+         * @return Block which moved another block
+         */
+        Block getBlock();
+    }
     
     /**
-     * Gets block which is about to be fluid. Does exactly same as
-     * {@link #getBlock()}.
-     * @return
+     * Gravity made the block drop.
      */
-    Block getDestination();
+    interface Gravity {
+        
+    }
 }

@@ -22,26 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.cause.block;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.cause.Cause;
 
-/**
- * Gets called when fluid is about to spread. Cancel to prevent it from
- * spreading.
- */
-public interface FluidSpreadEvent extends BlockEvent {
+public interface BlockCause extends Cause {
     
     /**
-     * Gets source block of spreading fluid.
-     * @return Source block of fluid
+     * Cause for block event is unknown, which may caused by mods.
      */
-    Block getSource();
-    
-    /**
-     * Gets block which is about to be fluid. Does exactly same as
-     * {@link #getBlock()}.
-     * @return
-     */
-    Block getDestination();
+    interface Unknown extends BlockCause {
+        //TODO: Even way to get this may be needed
+    }
 }

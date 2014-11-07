@@ -22,27 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
-
-import org.spongepowered.api.event.cause.Cause;
+package org.spongepowered.api.event.cause.block;
 
 /**
  * Block break cause.
  */
-public interface BreakCause extends Cause {
-    
-    /**
-     * Gets name of this block break cause.
-     * @return
-     */
-    String getName();
-    
-    /**
-     * Checks is the block break cause Unknown, which means that it is probably
-     * created by mods.
-     * @return true if the break cause is unknown, false otherwise
-     */
-    boolean isUnknown();
+public interface BreakCause extends BlockCause {
     
     /**
      * Explosion broke the block.
@@ -75,7 +60,7 @@ public interface BreakCause extends Cause {
     }
     
     /**
-     * Fluid was destroyed because fluid source block was removed.
+     * Fluid was destroyed because source block was removed.
      */
     interface SourceRemoved extends BreakCause {
         //TODO: Way to get this... Must consider.
@@ -83,17 +68,21 @@ public interface BreakCause extends Cause {
     
     /**
      * Block was destroyed by natural decay. This usually happens only 
-     * to leaves when they are not touching wood blocks.
+     * to leaves when they are not touching wood blocks. Also ice melting is
+     * considered as "decay".
      */
     interface Decay extends BreakCause {
         
     }
     
     /**
-     * Something tried to broke the block. Mods may create this kind of causes,
-     * if they don't support Sponge.
+     * Fluid destroyed the block, this usually happens to torches.
      */
-    interface Unknown extends BreakCause {
-        //TODO: Even way to get this may be needed
+    interface Fluid extends BreakCause {
+        /**
+         * Gets the fluid which destroyed the block.
+         * @return Fluid destroyed the block
+         */
+        Block getFluid();
     }
 }

@@ -29,9 +29,4 @@ package org.spongepowered.api.event.block;
  */
 public interface BlockBreakEvent extends BlockEvent {
     
-    /**
-     * Gets cause for block break.
-     * @return Cause for that block break
-     */
-    BreakCause getCause();
 }
