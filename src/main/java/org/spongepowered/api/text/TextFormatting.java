@@ -247,7 +247,7 @@ public final class TextFormatting {
      * Gets the TextFormatting for the given format name.
      *
      * @param name The name to check
-     * @return The TextFormatting for the given (case insesitive) name or null,
+     * @return The TextFormatting for the given (case insensitive) name or null,
      *         if the given name does not specify a format.
      */
     @Nullable
@@ -270,7 +270,7 @@ public final class TextFormatting {
     /**
      * Gets all registered TextFormattings.
      *
-     * @return A {@link Set} all registered TextFormattings .
+     * @return A {@link Set} all registered TextFormattings.
      */
     @Nonnull
     public static Set<TextFormatting> getAll() {

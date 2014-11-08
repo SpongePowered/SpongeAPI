@@ -275,7 +275,7 @@ public final class TextHover {
          * Gets the Type for the given type name.
          *
          * @param name The name to check
-         * @return The Type for the given (case insesitive) name or null, if the
+         * @return The Type for the given (case insensitive) name or null, if the
          *         given name does not specify a type.
          */
         @Nullable
