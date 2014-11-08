@@ -286,7 +286,7 @@ public final class TextHover {
         /**
          * Gets all registered TextHovers.
          *
-         * @return A {@link Set} all registered TextHovers .
+         * @return A {@link Set} all registered TextHovers.
          */
         @Nonnull
         public static Set<Type> getAll() {

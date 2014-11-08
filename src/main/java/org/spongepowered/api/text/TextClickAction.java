@@ -293,7 +293,7 @@ public final class TextClickAction {
         /**
          * Gets all registered TextClickActions.
          *
-         * @return A {@link Set} all registered TextClickActions .
+         * @return A {@link Set} all registered TextClickActions.
          */
         @Nonnull
         public static Set<Type> getAll() {
