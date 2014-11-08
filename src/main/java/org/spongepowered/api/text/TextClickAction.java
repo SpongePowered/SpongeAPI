@@ -217,12 +217,48 @@ public final class TextClickAction {
             return name;
         }
 
+        /**
+         * Internal method used by {@link TextClickAction#forType(Type, Object)}
+         * . Checks whether this Type does support the given data object and the
+         * data object is fully initialized. This method must not throw any
+         * Exceptions. Any objects that are accepted must also pass
+         * {@link #equalsData(Object, Object)} and {@link #dataToString(Object)}
+         * without any Exceptions.
+         * 
+         * @param object The data object to check
+         * @return True, if this data object is supported by this Type and the
+         *         data object is fully initialized, False otherwise.
+         */
         protected abstract boolean accept(@Nonnull Object object);
 
+        /**
+         * Internal method used by {@link TextClickAction#equals(Object)}.
+         * Checks whether these both data objects are equal and will have the
+         * same result if displayed/used. This method must not throw any
+         * Exceptions. This method may only be called for data objects of the
+         * same Type, which would be accepted by {@link #accept(Object)}.
+         * 
+         * @param o1 The first data object to compare
+         * @param o2 the second data object to compare
+         * @return True, if both data objects are equal and will have the same
+         *         result if displayed/used.
+         */
         protected boolean equalsData(@Nonnull final Object o1, @Nonnull final Object o2) {
             return o1.equals(o2);
         }
 
+        /**
+         * Internal method used by {@link TextClickAction#toString()}. Converts
+         * the given data object to a string, that should be useful for
+         * debugging purposes. This method must not throw any Exceptions. This
+         * method may only be called for data objects which would be accepted by
+         * {@link #accept(Object)}.
+         * 
+         * @param object The data object to convert to a string
+         * @return The string representing the given data object.
+         */
+        @SuppressWarnings("null")
+        @Nonnull
         protected String dataToString(@Nonnull final Object object) {
             return object.toString();
         }
