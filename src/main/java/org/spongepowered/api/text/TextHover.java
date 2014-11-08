@@ -146,7 +146,7 @@ public final class TextHover {
         };
 
         /**
-         * Will show the player the same tooltip that appeard when hovering the
+         * Will show the player the same tooltip that appears when hovering the
          * provided {@link ItemStack} in an inventory.
          */
         @Nonnull public static final Type SHOW_ITEM = new Type("SHOW_ITEM") {
