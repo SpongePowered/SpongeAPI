@@ -28,7 +28,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
@@ -109,7 +108,10 @@ public final class TextClickAction {
 
         /**
          * Based on Client configuration, will either open the URL or open the
-         * "what to do with that URL?" prompt.
+         * "What to do with that URL?" prompt.
+         * <p>
+         * <b>data</b> (String): The URL that should be opened.
+         * </p>
          */
         @Nonnull public static final Type OPEN_URL = new Type("OPEN_URL") {
 
@@ -122,6 +124,9 @@ public final class TextClickAction {
         /**
          * Will make the user send the provided text to the chat. Supports
          * commands (texts starting with '/').
+         * <p>
+         * <b>data</b> (String): The command to send.
+         * </p>
          */
         @Nonnull public static final Type SEND_TEXT = new Type("SEND_TEXT") {
 
@@ -133,6 +138,9 @@ public final class TextClickAction {
 
         /**
          * Will fill the user chat input with the provided text.
+         * <p>
+         * <b>data</b> (String): The chat to put in the chat input.
+         * </p>
          */
         @Nonnull public static final Type SET_TEXT = new Type("SET_TEXT") {
 
@@ -144,6 +152,9 @@ public final class TextClickAction {
 
         /**
          * Will open the specified page in a book. (Books only)
+         * <p>
+         * <b>data</b> (Integer): A page in the currently opened book.
+         * </p>
          */
         @Nonnull public static final Type CHANGE_PAGE = new Type("CHANGE_PAGE") {
 
@@ -155,17 +166,23 @@ public final class TextClickAction {
 
         /**
          * Will open the twitch user info. (Client only)
+         * <p>
+         * <b>data</b> (String): Twitch user name.
+         * </p>
          */
         @Nonnull public static final Type TWITCH_USER_INFO = new Type("TWITCH_USER_INFO") {
 
             @Override
             protected boolean accept(final Object object) {
-                return object instanceof UUID;
+                return object instanceof String;
             };
         };
 
         /**
          * Will open the specified file. (Client only)
+         * <p>
+         * <b>data</b> (String): Path targeting to a local file.
+         * </p>
          */
         @Nonnull public static final Type OPEN_FILE = new Type("OPEN_FILE") {
 
