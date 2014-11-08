@@ -205,6 +205,11 @@ public final class TextHover {
             }
         }
 
+        /**
+         * Gets the name of this TextHover Type.
+         * 
+         * @return The name of this TextHover Type.
+         */
         @Nonnull
         public final String getName() {
             return name;

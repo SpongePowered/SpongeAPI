@@ -212,6 +212,11 @@ public final class TextClickAction {
             }
         }
 
+        /**
+         * Gets the name of this TextClickAction Type.
+         * 
+         * @return The name of this TextClickAction Type.
+         */
         @Nonnull
         public final String getName() {
             return name;

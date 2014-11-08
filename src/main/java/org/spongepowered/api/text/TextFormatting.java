@@ -202,7 +202,7 @@ public final class TextFormatting {
     /**
      * Gets the name of this TextFormatting.
      * 
-     * @return The name of this {@link TextFormatting}
+     * @return The name of this TextFormatting.
      */
     @Nonnull
     public final String getName() {
