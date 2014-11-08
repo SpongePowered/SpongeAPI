@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -167,6 +168,20 @@ public final class TextHover {
             protected boolean accept(@Nonnull final Object object) {
                 return object instanceof String[];
             };
+
+            @Override
+            protected boolean equalsData(Object o1, Object o2) {
+                // Cast to Object[] to avoid any ClassCastExceptions,
+                // but is always String[]
+                return Arrays.equals((Object[]) o1, (Object[]) o2);
+            }
+
+            @Override
+            protected String dataToString(Object object) {
+                // Cast to Object[] to avoid any ClassCastExceptions,
+                // but is always String[]
+                return Arrays.toString((Object[]) object);
+            }
         };
 
         @Nonnull private final String name;
