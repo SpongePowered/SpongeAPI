@@ -200,6 +200,16 @@ public final class TextFormatting {
     }
 
     /**
+     * Gets the name of this TextFormatting.
+     * 
+     * @return The name of this {@link TextFormatting}
+     */
+    @Nonnull
+    public final String getName() {
+        return name;
+    }
+
+    /**
      * Checks whether this format is provided by the API and not
      * server/implementation dependent.
      *
