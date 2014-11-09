@@ -50,5 +50,39 @@ public interface Cause {
      * @return The parent cause, if available
      */
     Optional<Cause> getParent();
-
+    
+    /**
+     * Gets reason for cause.
+     */
+    Reason getReason();
+    
+    /**
+     * World caused the event.
+     */
+    interface World {
+        //TODO: What getters there should be? And where this should gotten
+    }
+    
+    /**
+     * Entity caused the event.
+     */
+    interface Entity {
+        /**
+         * Gets entity which caused the event.
+         * @return Entity associated with this cause
+         */
+        Entity getEntity();
+    }
+    
+    /**
+     * Block caused the event.
+     */
+    interface Block {
+        /**
+         * Gets block which caused the event.
+         * @return Block associated with this cause
+         */
+        Block getBlock();
+    }
+    
 }

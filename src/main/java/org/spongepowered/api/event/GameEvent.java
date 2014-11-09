@@ -26,6 +26,7 @@
 package org.spongepowered.api.event;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.api.event.cause.Cause;
 
 /**
  * An event that deals with the game.
@@ -40,5 +41,11 @@ public interface GameEvent extends Event {
      * @return The game
      */
     Game getGame();
+    
+    /**
+     * Gets cause for this event
+     * @return Cause of the event
+     */
+    Cause getCause();
 
 }

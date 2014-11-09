@@ -26,8 +26,8 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.event.block.BlockBreakEvent;
-import org.spongepowered.api.event.cause.block.BreakCause;
-import org.spongepowered.api.event.cause.block.PlaceCause;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.Reason;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
@@ -137,14 +137,10 @@ public interface Entity extends EntityState {
     void setRotation(EulerDirection rotation);
     
     /**
-     * If this entity breaks a block, this is cause for {@link BlockBreakEvent}.
-     * @return Block break cause for this entity.
+     * If this entity does something which call an event, this is cause for
+     * that action.
+     * @param reason Reason of the action
+     * @return Cause for this entity.
      */
-    BreakCause.Entity getBreakCause();
-    
-    /**
-     * If this entity places a block, this is cause for {@link BlockPlaceEvent}.
-     * @return Block place cause for this entity.
-     */
-    PlaceCause.Entity getPlaceCause();
+    Cause.Entity getCause(Reason reason);
 }

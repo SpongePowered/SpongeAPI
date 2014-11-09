@@ -25,15 +25,17 @@
 
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.event.cause.block.BreakCause;
-import org.spongepowered.api.event.cause.block.PlaceCause;
+import java.util.Collection;
+
+import org.spongepowered.api.event.block.BlockBreakEvent;
+import org.spongepowered.api.event.block.BlockPlaceEvent;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.Reason;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.Vector3i;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
-
-import java.util.Collection;
 
 /**
  * Represents a block at a specific location in an {@link Extent}.
@@ -213,22 +215,10 @@ public interface Block extends BlockState {
     Collection<Direction> getIndirectlyPoweredFaces();
     
     /**
-     * If this block breaks another block, this is cause 
-     * for {@link BlockBreakEvent}. In vanilla, sponges do that.
-     * @return Block break cause for this entity.
+     * If this block does something which calls an event, this is cause for
+     * that action.
+     * @param reason Reason of the action
+     * @return Cause for this entity.
      */
-    BreakCause.Block getBreakCause();
-    
-    /**
-     * Gets block break cause for (leave) decay.
-     * @return Block break cause for decay
-     */
-    BreakCause.Decay getDecayCause();
-    
-    /**
-     * If this block is a sapling and grows, this is cause for the new blocks
-     * {@link BlockPlaceEvent}s
-     * @return Block place cause for sapling/plant
-     */
-    PlaceCause.PlantGrow getGrowCause();
+    Cause.Block getCause(Reason reason);
 }
