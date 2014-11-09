@@ -665,6 +665,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param pos The position
      * @param part The Part
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nonnull final MessagePart part) {
@@ -679,6 +681,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param pos The position
      * @param text The text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nonnull final String text) {
@@ -694,6 +698,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insertLocalized(final int pos, @Nonnull final String id, @Nonnull final String... parameters) {
@@ -709,6 +715,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @param hoverText the hover text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nonnull final String text, @Nonnull final String... hoverText) {
@@ -725,6 +733,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insertLocalized(final int pos, @Nonnull final String[] hoverText, @Nonnull final String id, @Nonnull final String... parameters) {
@@ -739,6 +749,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param pos The position
      * @param item The itemstack
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nonnull final ItemStack item) {
@@ -754,6 +766,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param item The itemstack
      * @param text The text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nonnull final ItemStack item, @Nonnull final String text) {
@@ -771,6 +785,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insertLocalized(final int pos, @Nonnull final ItemStack item, @Nonnull final String id, @Nonnull final String... parameters) {
@@ -785,6 +801,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param pos The position
      * @param achievement The achievement
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
 // TODO: Enable if Achievement class is added
 //    @Nonnull
@@ -802,6 +820,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @param text The text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
 // TODO: Enable if Achievement class is added
 //    @Nonnull
@@ -820,6 +840,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
 // TODO: Enable if Achievement class is added
 //    @Nonnull
@@ -836,6 +858,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param clickAction The click action
      * @param text The text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final String text) {
@@ -852,6 +876,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insertLocalized(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final String id, @Nonnull final String... parameters) {
@@ -868,6 +894,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param text The text
      * @param hoverText the hover text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final String text, @Nonnull final String... hoverText) {
@@ -886,6 +914,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insertLocalized(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final String[] hoverText, @Nonnull final String id, @Nonnull final String... parameters) {
@@ -901,6 +931,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param clickAction The click action
      * @param item The itemstack
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final ItemStack item) {
@@ -918,6 +950,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param item The itemstack
      * @param text The text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insert(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final ItemStack item, @Nonnull final String text) {
@@ -936,6 +970,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
     @Nonnull
     public Message insertLocalized(final int pos, @Nullable final TextClickAction clickAction, @Nonnull final ItemStack item, @Nonnull final String id, @Nonnull final String... parameters) {
@@ -951,6 +987,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param clickAction The click action
      * @param achievement The achievement
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
 // TODO: Enable if Achievement class is added
 //    @Nonnull
@@ -969,6 +1007,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param achievement The achievement
      * @param text The text
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
 // TODO: Enable if Achievement class is added
 //    @Nonnull
@@ -988,6 +1028,8 @@ public final class Message implements Iterable<MessagePart> {
      * @param id The localized text identifier
      * @param parameters The localized text parameters, if any
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the position is out of range (
+     *             <tt>pos &lt; 0 || pos &gt; {@link #size()}</tt>)
      */
 // TODO: Enable if Achievement class is added
 //    @Nonnull
@@ -999,25 +1041,38 @@ public final class Message implements Iterable<MessagePart> {
     /**
      * Gets the Part at the specified position in this Message's Parts list.
      *
-     * @param i The index of the wanted Part
+     * @param index The index of the wanted Part
      * @return The Part at the specified position
+     * @throws IndexOutOfBoundsException if the index is out of range (
+     *             <tt>index &lt; 0 || index &gt;= {@link #size()}</tt>)
      */
     @SuppressWarnings("null")
     @Nonnull
-    public MessagePart get(final int i) {
-        return this.parts.get(i);
+    public MessagePart get(final int index) {
+        return this.parts.get(index);
+    }
+
+    /**
+     * Gets the current number of {@link MessagePart}s in this message.
+     * 
+     * @return the current number of {@link MessagePart}s in this message
+     */
+    public int size() {
+        return this.parts.size();
     }
 
     /**
      * Sets the Part at the specified position in this Message's Parts list.
      *
-     * @param i The index
+     * @param index The index
      * @param part The Part
      * @return This Message for chain calls
+     * @throws IndexOutOfBoundsException if the index is out of range (
+     *             <tt>index &lt; 0 || index &gt;= {@link #size()}</tt>)
      */
     @Nonnull
-    public Message set(final int i, @Nonnull final MessagePart part) {
-        this.parts.set(i, part);
+    public Message set(final int index, @Nonnull final MessagePart part) {
+        this.parts.set(index, part);
         return this;
     }
 
