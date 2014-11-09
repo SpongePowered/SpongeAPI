@@ -25,6 +25,7 @@
 package org.spongepowered.api.text;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -407,6 +408,18 @@ public final class MessagePart {
     private TextClickAction clickAction;
 
     /**
+     * The extra data for this Part, if any. May only contain JSON compatible
+     * stuff.
+     */
+    private List<Object> extraData;
+
+    /**
+     * Text that will be inserted to the chat on shift clicking this part, if
+     * any. (Since 1.8)
+     */
+    private String insertion;
+
+    /**
      * Private constructor, Part instances should be built using available
      * static constructors.
      */
@@ -526,6 +539,49 @@ public final class MessagePart {
     @Nonnull
     public MessagePart setClickAction(@Nullable final TextClickAction clickAction) {
         this.clickAction = clickAction;
+        return this;
+    }
+
+    /**
+     * Get this Part's extra data.
+     * 
+     * @return This Part's extra data.
+     */
+    public final List<Object> getExtraData() {
+        return extraData;
+    }
+
+    /**
+     * Sets this Part's extra data.
+     *
+     * @param extraData This Part's new extra data.
+     * @return
+     * @return This Part for chain calls
+     */
+    public final MessagePart setExtraData(List<Object> extraData) {
+        this.extraData = extraData;
+        return this;
+    }
+
+    /**
+     * Get this Part's text insertion. The text that will be inserted to the
+     * chat on shift clicking this part's text.
+     * 
+     * @return This Part's text insertion.
+     */
+    public final String getInsertion() {
+        return insertion;
+    }
+
+    /**
+     * Sets this Part's text insertion. The text that will be inserted to the
+     * chat on shift clicking this part's text.
+     *
+     * @param insertion This Part's new text insertion.
+     * @return This Part for chain calls
+     */
+    public final MessagePart setInsertion(String insertion) {
+        this.insertion = insertion;
         return this;
     }
 
