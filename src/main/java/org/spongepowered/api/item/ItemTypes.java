@@ -55,7 +55,6 @@ public class ItemTypes {
     public static final ItemBlock DISPENSER = null;
     public static final ItemBlock SANDSTONE = null;
     public static final ItemBlock NOTEBLOCK = null;
-    public static final ItemBlock BED = null;
     public static final ItemBlock GOLDEN_RAIL = null;
     public static final ItemBlock DETECTOR_RAIL = null;
     public static final ItemBlock STICKY_PISTON = null;
@@ -87,19 +86,16 @@ public class ItemTypes {
     public static final ItemBlock DIAMOND_ORE = null;
     public static final ItemBlock DIAMOND_BLOCK = null;
     public static final ItemBlock CRAFTING_TABLE = null;
-    public static final ItemBlock WHEAT = null;
     public static final ItemBlock FARMLAND = null;
     public static final ItemBlock FURNACE = null;
     public static final ItemBlock LIT_FURNACE = null;
     public static final ItemBlock STANDING_SIGN = null;
-    public static final ItemBlock WOODEN_DOOR = null;
     public static final ItemBlock LADDER = null;
     public static final ItemBlock RAIL = null;
     public static final ItemBlock STONE_STAIRS = null;
     public static final ItemBlock WALL_SIGN = null;
     public static final ItemBlock LEVER = null;
     public static final ItemBlock STONE_PRESSURE_PLATE = null;
-    public static final ItemBlock IRON_DOOR = null;
     public static final ItemBlock WOODEN_PRESSURE_PLATE = null;
     public static final ItemBlock REDSTONE_ORE = null;
     public static final ItemBlock LIT_REDSTONE_ORE = null;
@@ -111,7 +107,6 @@ public class ItemTypes {
     public static final ItemBlock SNOW = null;
     public static final ItemBlock CACTUS = null;
     public static final ItemBlock CLAY = null;
-    public static final ItemBlock REEDS = null;
     public static final ItemBlock JUKEBOX = null;
     public static final ItemBlock FENCE = null;
     public static final ItemBlock PUMPKIN = null;
@@ -120,7 +115,6 @@ public class ItemTypes {
     public static final ItemBlock GLOWSTONE = null;
     public static final ItemBlock PORTAL = null;
     public static final ItemBlock LIT_PUMPKIN = null;
-    public static final ItemBlock CAKE = null;
     public static final ItemBlock UNPOWERED_REPEATER = null;
     public static final ItemBlock POWERED_REPEATER = null;
     public static final ItemBlock STAINED_GLASS = null;
@@ -141,10 +135,7 @@ public class ItemTypes {
     public static final ItemBlock NETHER_BRICK = null;
     public static final ItemBlock NETHER_BRICK_FENCE = null;
     public static final ItemBlock NETHER_BRICK_STAIRS = null;
-    public static final ItemBlock NETHER_WART = null;
     public static final ItemBlock ENCHANTING_TABLE = null;
-    public static final ItemBlock BREWING_STAND = null;
-    public static final ItemBlock CAULDRON = null;
     public static final ItemBlock END_PORTAL = null;
     public static final ItemBlock END_PORTAL_FRAME = null;
     public static final ItemBlock END_STONE = null;
@@ -166,11 +157,9 @@ public class ItemTypes {
     public static final ItemBlock COMMAND_BLOCK = null;
     public static final ItemBlock BEACON = null;
     public static final ItemBlock COBBLESTONE_WALL = null;
-    public static final ItemBlock FLOWER_POT = null;
     public static final ItemBlock CARROTS = null;
     public static final ItemBlock POTATOES = null;
     public static final ItemBlock WOODEN_BUTTON = null;
-    public static final ItemBlock SKULL = null;
     public static final ItemBlock ANVIL = null;
     public static final ItemBlock TRAPPED_CHEST = null;
     public static final ItemBlock LIGHT_WEIGHTED_PRESSURE_PLATE = null;
@@ -219,16 +208,10 @@ public class ItemTypes {
     public static final ItemBlock JUNGLE_FENCE = null;
     public static final ItemBlock DARK_OAK_FENCE = null;
     public static final ItemBlock ACACIA_FENCE = null;
-    public static final ItemBlock SPRUCE_DOOR = null;
-    public static final ItemBlock BIRCH_DOOR = null;
-    public static final ItemBlock JUNGLE_DOOR = null;
-    public static final ItemBlock ACACIA_DOOR = null;
-    public static final ItemBlock DARK_OAK_DOOR = null;
 
     public static final ItemType IRON_SHOVEL = null;
     public static final ItemType IRON_PICKAXE = null;
     public static final ItemType IRON_AXE = null;
-    public static final ItemType FLINT_AND_STEEL = null;
     public static final ItemType APPLE = null;
     public static final ItemType BOW = null;
     public static final ItemType ARROW = null;
