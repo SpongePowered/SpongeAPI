@@ -35,7 +35,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * Represents a part of a {@link Message}, a simple or localized String which
  * may have a {@link TextClickAction} and/or a {@link TextHover} attached to it.
- * Any unsupported {@link TextHover} and {@link TextActionClick} feature will be
+ * Any unsupported {@link TextHover} and {@link TextClickAction} feature will be
  * ignored.
  * <p>
  * Reasons why a feature may be ignored:
@@ -555,7 +555,6 @@ public final class MessagePart {
      * Sets this Part's extra data.
      *
      * @param extraData This Part's new extra data.
-     * @return
      * @return This Part for chain calls
      */
     public final MessagePart setExtraData(List<Object> extraData) {
