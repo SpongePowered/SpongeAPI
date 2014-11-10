@@ -173,6 +173,23 @@ public interface Vector2d extends Comparable<Vector2d>, Serializable, Cloneable 
     double dot(double x, double y);
 
     /**
+     * Projects this vector onto another vector.
+     *
+     * @param v the vector to project on
+     * @return The results of the operation as a new vector
+     */
+    Vector2d project(Vector2d v);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @return The results of the operation
+     */
+    Vector2d project(double x, double y);
+
+    /**
      * Raises each component of this vector by the value, returning the results
      * as new vector.
      *

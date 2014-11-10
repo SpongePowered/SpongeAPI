@@ -291,6 +291,34 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     Vector3f cross(float x, float y, float z);
 
     /**
+     * Projects this vector onto another vector.
+     *
+     * @param v the vector to project on
+     * @return The results of the operation as a new vector
+     */
+    Vector3f project(Vector3f v);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return The results of the operation
+     */
+    Vector3f project(double x, double y, double z);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return The results of the operation
+     */
+    Vector3f project(float x, float y, float z);
+
+    /**
      * Raises each component of this vector by the value, returning the results
      * as new vector.
      *
