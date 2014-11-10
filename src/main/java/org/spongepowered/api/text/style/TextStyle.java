@@ -22,52 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.style;
 
-package org.spongepowered.api.entity;
+import com.google.common.base.Optional;
 
-import org.spongepowered.api.text.Message;
-import org.spongepowered.api.text.Title;
-import org.spongepowered.api.util.command.CommandSource;
+import java.awt.Color;
+import java.util.Collection;
 
-public interface Player extends HumanEntity, CommandSource {
+public interface TextStyle {
+
+    Color getColor();
+
+    TextStyle and(TextStyle that);
+
+    TextStyle andNot(TextStyle that);
+
+    TextStyle negate();
+
+    boolean isBold();
+
+    boolean isItalic();
+
+    boolean isUnderline();
+
+    boolean isStrikethrough();
+
+    boolean isObfuscated();
+
+    boolean isComposite();
 
     /**
-     * Gets the players last known username
+     * Gets a list of Minecraft formatting codes that, when put together
+     * and applied, have the same effect as this TextFormat.
      *
-     * @return The player's last known username
+     * @return a List of Minecraft formatting codes
      */
-    String getName();
+    @Deprecated
+    Optional<Collection<Character>> getCodes();
 
-    /**
-     * Gets the player's display name. If none set, returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
-
-    /**
-     * Sends the given message to this player
-     *
-     * @param message The message to send
-     */
-    void sendMessage(Message message);
-
-    /**
-     * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
-     *
-     * @param title The {@link Title} to send to the player.
-     */
-    void sendTitle(Title title);
-
-    /**
-     * Removes the currently displayed {@link Title} from the player and resets
-     * all settings back to default values.
-     */
-    void resetTitle();
-
-    /**
-     * Removes the currently displayed {@link Title} from the player's screen.
-     */
-    void clearTitle();
 }

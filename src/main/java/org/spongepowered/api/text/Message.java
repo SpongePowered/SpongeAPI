@@ -22,52 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.text.action.ClickAction;
+import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.style.TextStyle;
 
-import org.spongepowered.api.text.Message;
-import org.spongepowered.api.text.Title;
-import org.spongepowered.api.util.command.CommandSource;
+import java.util.List;
 
-public interface Player extends HumanEntity, CommandSource {
+public interface Message {
 
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
+    String getText();
+    TextStyle getStyle();
 
-    /**
-     * Gets the player's display name. If none set, returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+    List<Message> getExtra();
 
-    /**
-     * Sends the given message to this player
-     *
-     * @param message The message to send
-     */
-    void sendMessage(Message message);
+    String getInsertion();
 
-    /**
-     * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
-     *
-     * @param title The {@link Title} to send to the player.
-     */
-    void sendTitle(Title title);
+    ClickAction<?> getClickAction();
 
-    /**
-     * Removes the currently displayed {@link Title} from the player and resets
-     * all settings back to default values.
-     */
-    void resetTitle();
+    HoverAction<?> getHoverAction();
 
-    /**
-     * Removes the currently displayed {@link Title} from the player's screen.
-     */
-    void clearTitle();
+    String getTranslationIdentifier();
+
+    // todo use score
+    Object getScore();
+
 }

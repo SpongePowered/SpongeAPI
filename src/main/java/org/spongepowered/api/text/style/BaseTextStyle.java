@@ -22,52 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.style;
 
-package org.spongepowered.api.entity;
+import com.google.common.base.Optional;
 
-import org.spongepowered.api.text.Message;
-import org.spongepowered.api.text.Title;
-import org.spongepowered.api.util.command.CommandSource;
+public interface BaseTextStyle extends TextStyle {
 
-public interface Player extends HumanEntity, CommandSource {
-
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
     String getName();
 
     /**
-     * Gets the player's display name. If none set, returns their current username.
+     * Gets the corresponding Minecraft formatting code, that, when applied,
+     * has the same effect as this text format.
      *
-     * @return The player's display name
+     * @return a List of Minecraft formatting codes
      */
-    String getDisplayName();
+    @Deprecated
+    Optional<Character> getCode();
 
-    /**
-     * Sends the given message to this player
-     *
-     * @param message The message to send
-     */
-    void sendMessage(Message message);
-
-    /**
-     * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
-     *
-     * @param title The {@link Title} to send to the player.
-     */
-    void sendTitle(Title title);
-
-    /**
-     * Removes the currently displayed {@link Title} from the player and resets
-     * all settings back to default values.
-     */
-    void resetTitle();
-
-    /**
-     * Removes the currently displayed {@link Title} from the player's screen.
-     */
-    void clearTitle();
 }

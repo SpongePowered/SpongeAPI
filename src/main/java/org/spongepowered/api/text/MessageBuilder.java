@@ -22,52 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.text.action.ClickAction;
+import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.style.TextStyle;
 
-import org.spongepowered.api.text.Message;
-import org.spongepowered.api.text.Title;
-import org.spongepowered.api.util.command.CommandSource;
+public interface MessageBuilder {
 
-public interface Player extends HumanEntity, CommandSource {
+    Message build();
 
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
+    MessageBuilder setText(String text);
 
-    /**
-     * Gets the player's display name. If none set, returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+    MessageBuilder addExtra(Message extra);
 
-    /**
-     * Sends the given message to this player
-     *
-     * @param message The message to send
-     */
-    void sendMessage(Message message);
+    MessageBuilder addExtra(Iterable<Message> extra);
 
-    /**
-     * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
-     *
-     * @param title The {@link Title} to send to the player.
-     */
-    void sendTitle(Title title);
+    MessageBuilder addExtra(Message... extra);
 
-    /**
-     * Removes the currently displayed {@link Title} from the player and resets
-     * all settings back to default values.
-     */
-    void resetTitle();
+    MessageBuilder setFormat(TextStyle format);
 
-    /**
-     * Removes the currently displayed {@link Title} from the player's screen.
-     */
-    void clearTitle();
+    MessageBuilder setInsertion(String insertion);
+
+    <V> MessageBuilder setClickAction(ClickAction<V> clickAction);
+
+    <V> MessageBuilder setHoverAction(HoverAction<V> hoverAction);
+
+    MessageBuilder setTranslationIdentifier(String translationIdentifier);
+
+    // TODO score api
+    MessageBuilder setScore(Object score);
+
+    MessageBuilder overrideScore(Object score, String value);
+
 }

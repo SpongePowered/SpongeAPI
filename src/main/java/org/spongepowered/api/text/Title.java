@@ -22,9 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.title;
+package org.spongepowered.api.text;
 
-import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Player;
 
 /**
@@ -40,8 +39,7 @@ public interface Title {
      * @param text The text to use as the title.
      * @return This title configuration.
      */
-    // TODO: Replace with text formatting API
-    Title title(String text);
+    Title title(Message text);
 
     /**
      * Set the subtitle to send to the player.
@@ -49,8 +47,7 @@ public interface Title {
      * @param text The text to use as the subtitle.
      * @return This title configuration.
      */
-    // TODO: Replace with text formatting API
-    Title subTitle(String text);
+    Title subTitle(Message text);
 
     /**
      * Set the duration in ticks of the fade in effect of the title. Once this
@@ -86,7 +83,6 @@ public interface Title {
      */
     Title fadeOut(int ticks);
 
-
     /**
      * Remove the currently displayed title from the player's screen. This will
      * keep the currently used display times and will only remove the title.
@@ -102,7 +98,6 @@ public interface Title {
      * @return This title configuration.
      */
     Title reset();
-
 
     /**
      * Send this title configuration to the specified player. This is the same

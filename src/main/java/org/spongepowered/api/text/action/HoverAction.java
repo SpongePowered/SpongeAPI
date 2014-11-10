@@ -22,52 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.action;
 
-package org.spongepowered.api.entity;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.ItemType;
 
-import org.spongepowered.api.text.Message;
-import org.spongepowered.api.text.Title;
-import org.spongepowered.api.util.command.CommandSource;
+import java.util.UUID;
 
-public interface Player extends HumanEntity, CommandSource {
+public interface HoverAction<V> extends TextAction<V> {
 
-    /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
+    interface ShowText extends HoverAction<String> {
 
-    /**
-     * Gets the player's display name. If none set, returns their current username.
-     *
-     * @return The player's display name
-     */
-    String getDisplayName();
+    }
 
-    /**
-     * Sends the given message to this player
-     *
-     * @param message The message to send
-     */
-    void sendMessage(Message message);
+    interface ShowItem extends HoverAction<ItemType> {
 
-    /**
-     * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
-     *
-     * @param title The {@link Title} to send to the player.
-     */
-    void sendTitle(Title title);
+    }
 
-    /**
-     * Removes the currently displayed {@link Title} from the player and resets
-     * all settings back to default values.
-     */
-    void resetTitle();
+    // TODO replace with achievement
+    interface ShowAchievement extends HoverAction<Object> {
 
-    /**
-     * Removes the currently displayed {@link Title} from the player's screen.
-     */
-    void clearTitle();
+    }
+
+    interface ShowEntity extends HoverAction<Entity> {
+
+        // TODO keep this just for reference, but should use entity?
+        interface ShowActionEntity {
+
+            String getName();
+
+            String getType();
+
+            UUID getID();
+
+        }
+
+    }
+
 }
