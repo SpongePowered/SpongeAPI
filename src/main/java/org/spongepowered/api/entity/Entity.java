@@ -57,16 +57,19 @@ public interface Entity extends EntityState {
 
     /**
      * Simulates the interaction with this object as if a player had done so.
+     *
+     * @param interactionType The type of interaction performed on this entity
      */
-    void interact();
+    void interact(EntityInteractionType interactionType);
 
     /**
      * Simulates the interaction with this object using the given item as if
      * the player had done so.
      *
      * @param itemStack The item
+     * @param interactionType The type of interaction performed on this entity
      */
-    void interactWith(ItemStack itemStack);
+    void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
 
     /**
      * Gets the position.
