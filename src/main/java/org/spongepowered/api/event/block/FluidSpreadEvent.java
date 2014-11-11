@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event.block;
 
+import java.util.List;
+
 import org.spongepowered.api.block.Block;
 
 /**
@@ -33,15 +35,15 @@ import org.spongepowered.api.block.Block;
 public interface FluidSpreadEvent extends BlockEvent {
     
     /**
-     * Gets source block of spreading fluid.
+     * Gets source block of spreading fluid. Does exactly same as
+     * {@link #getBlock()}.
      * @return Source block of fluid
      */
     Block getSource();
     
     /**
-     * Gets block which is about to be fluid. Does exactly same as
-     * {@link #getBlock()}.
-     * @return
+     * Gets new fluid blocks, which are trying to spawn.
+     * @return New fluid blocks
      */
-    Block getDestination();
+    List<Block> getNewBlocks();
 }

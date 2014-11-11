@@ -25,9 +25,6 @@
 
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.event.block.BlockBreakEvent;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.Reason;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
@@ -59,16 +56,19 @@ public interface Entity extends EntityState {
 
     /**
      * Simulates the interaction with this object as if a player had done so.
+     *
+     * @param interactionType The type of interaction performed on this entity
      */
-    void interact();
+    void interact(EntityInteractionType interactionType);
 
     /**
      * Simulates the interaction with this object using the given item as if
      * the player had done so.
      *
      * @param itemStack The item
+     * @param interactionType The type of interaction performed on this entity
      */
-    void interactWith(ItemStack itemStack);
+    void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
 
     /**
      * Gets the position.
@@ -135,12 +135,5 @@ public interface Entity extends EntityState {
      * @param rotation The rotation to set the entity to
      */
     void setRotation(EulerDirection rotation);
-    
-    /**
-     * If this entity does something which call an event, this is cause for
-     * that action.
-     * @param reason Reason of the action
-     * @return Cause for this entity.
-     */
-    Cause.Entity getCause(Reason reason);
+
 }

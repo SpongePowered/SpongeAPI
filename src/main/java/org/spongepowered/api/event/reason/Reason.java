@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.reason;
 
 /**
  * Reason for certain event. There is static finals for vanilla reasons, but 
@@ -38,7 +38,7 @@ public class Reason {
     /**
      * Reason was explosion in a world.
      */
-    public static final Reason EXPLOSION = new Reason("explosion").setVanilla(true);
+    public static final Reason EXPLOSION = new ExplosionReason().setVanilla(true);
     
     /**
      * Reason was natural decay.
@@ -48,7 +48,7 @@ public class Reason {
     /**
      * Someone executed command.
      */
-    public static final Reason COMMAND = new Reason("dommand").setVanilla(true);
+    public static final Reason COMMAND = new Reason("command").setVanilla(true);
     
     /**
      * Something grew and it caused something...
@@ -69,7 +69,7 @@ public class Reason {
     /**
      * Something unknown happened.
      */
-    public static final Reason UNKNOWN = new Reason("unknown").setVanilla(false);
+    public static final Reason UNKNOWN = new Reason("unknown");
     
     private String name;
     private boolean isVanilla;

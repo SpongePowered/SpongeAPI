@@ -22,29 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.block;
+
+package org.spongepowered.api.entity;
 
 /**
- * Block movement cause. No, this doesn't apply on endermen (or players)
- * carrying stuff around.
+ * An enum representing the possible ways for a player to interact with an entity directly.
  */
-public interface MoveCause extends BlockCause {
-    
-    /**
-     * Another block moved the block. Usually only pistons do that.
-     */
-    interface Block {
-        /**
-         * Gets block which moved the event block.
-         * @return Block which moved another block
-         */
-        Block getBlock();
-    }
-    
-    /**
-     * Gravity made the block drop.
-     */
-    interface Gravity {
-        
-    }
+public enum EntityInteractionType {
+    LEFT_CLICK,
+    RIGHT_CLICK;
 }

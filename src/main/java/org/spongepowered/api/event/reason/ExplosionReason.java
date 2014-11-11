@@ -22,45 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.block;
+package org.spongepowered.api.event.reason;
 
-import org.spongepowered.api.block.Block;
+import com.google.common.base.Optional;
 
 /**
- * Block place cause.
+ * Reason for explosion. It may contain explosion power.
  */
-public interface PlaceCause extends BlockCause {
+public class ExplosionReason extends Reason {
     
-    /**
-     * Entity (usually player) placed the block. Enderdragon's death doesn't
-     * count, as it technically does not create the return portal.
-     */
-    interface Entity extends PlaceCause {
-        /**
-         * Gets entity which placed this block.
-         * @return Entity which placed this block
-         */
-        Entity getEntity();
+    private float power;
+    
+    public ExplosionReason(float power) {
+        super("explosion");
+        this.power = power;
+    }
+    
+    public ExplosionReason() {
+        super("explosion");
     }
     
     /**
-     * Plant was grown and created new block(s). Trees are also considered as
-     * plants.
+     * Gets power of the explosion, if specified.
+     * @return Power of explosion, if available
      */
-    interface PlantGrow extends PlaceCause {
-        /**
-         * Gets sapling which grew the new plant.
-         * @return Sapling of plant
-         */
-        Block getSapling();
-    }
-    
-    /**
-     * Block was spawned as part of some structure. World gen structures won't
-     * count, only structures, which spawn when something happens is loaded
-     * chunks count. In vanilla, the only example is enderdragon's death.
-     */
-    interface Spawn extends PlaceCause {
-        //TODO: When chunk events are implemented, add spawn causes.
+    public Optional<Float> getPower() {
+        return Optional.of(this.power);
     }
 }

@@ -30,7 +30,7 @@ import java.util.Collection;
 import org.spongepowered.api.event.block.BlockBreakEvent;
 import org.spongepowered.api.event.block.BlockPlaceEvent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.Reason;
+import org.spongepowered.api.event.reason.Reason;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.Vector3i;
 import org.spongepowered.api.util.Direction;
@@ -213,12 +213,4 @@ public interface Block extends BlockState {
      * @return Faces indirectly powered
      */
     Collection<Direction> getIndirectlyPoweredFaces();
-    
-    /**
-     * If this block does something which calls an event, this is cause for
-     * that action.
-     * @param reason Reason of the action
-     * @return Cause for this entity.
-     */
-    Cause.Block getCause(Reason reason);
 }

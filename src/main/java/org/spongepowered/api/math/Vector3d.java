@@ -209,6 +209,24 @@ public interface Vector3d extends Comparable<Vector3d>, Serializable, Cloneable 
     Vector3d cross(double x, double y, double z);
 
     /**
+     * Projects this vector onto another vector.
+     *
+     * @param v the vector to project on
+     * @return The results of the operation as a new vector
+     */
+    Vector3d project(Vector3d v);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return The results of the operation
+     */
+    Vector3d project(double x, double y, double z);
+
+    /**
      * Raises each component of this vector by the value, returning the results
      * as new vector.
      *

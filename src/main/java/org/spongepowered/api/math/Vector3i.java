@@ -271,6 +271,34 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
     Vector3i cross(int x, int y, int z);
 
     /**
+     * Projects this vector onto another vector.
+     *
+     * @param v the vector to project on
+     * @return The results of the operation as a new vector
+     */
+    Vector3i project(Vector3i v);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return The results of the operation
+     */
+    Vector3i project(double x, double y, double z);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return The results of the operation
+     */
+    Vector3i project(int x, int y, int z);
+
+    /**
      * Raises each component of this vector by the value, returning the results
      * as new vector.
      *

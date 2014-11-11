@@ -25,6 +25,11 @@
 
 package org.spongepowered.api.event.cause;
 
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.reason.Reason;
+import org.spongepowered.api.world.World;
+
 import com.google.common.base.Optional;
 
 /**
@@ -42,47 +47,104 @@ import com.google.common.base.Optional;
  * some blocks, but tracing this event would be too complicated and thus
  * may not be attempted.</p>
  */
-public interface Cause {
+public class Cause {
+    
+    private Cause parent;
+    private Reason reason; //Never, ever null!
+    private Block block;
+    private Entity entity;
+    private World world;
 
+    public Cause(Block block, Reason reason, Cause parent) {
+        this.block = block;
+        this.reason = reason;
+        this.parent = parent;
+    }
+    
+    public Cause(Block block, Reason reason) {
+        this(block, reason, null);
+    }
+    
+    public Cause(Block block) {
+        this(block, Reason.UNKNOWN);
+    }
+    
+    public Cause(Entity entity, Reason reason, Cause parent) {
+        this.entity = entity;
+        this.reason = reason;
+        this.parent = parent;
+    }
+    
+    public Cause(Entity entity, Reason reason) {
+        this(entity, reason, null);
+    }
+    
+    public Cause(Entity entity) {
+        this(entity, Reason.UNKNOWN);
+    }
+    
+    public Cause(World world, Reason reason, Cause parent) {
+        this.world = world;
+        this.reason = reason;
+        this.parent = parent;
+    }
+    
+    public Cause(World world, Reason reason) {
+        this(world, reason, null);
+    }
+    
+    public Cause(World world) {
+        this(world, Reason.UNKNOWN);
+    }
+    
     /**
      * Get the parent cause.
      *
      * @return The parent cause, if available
      */
-    Optional<Cause> getParent();
+    Optional<Cause> getParent() {
+        return Optional.of(parent);
+    }
     
     /**
      * Gets reason for cause.
      */
-    Reason getReason();
-    
-    /**
-     * World caused the event.
-     */
-    interface World {
-        //TODO: What getters there should be? And where this should gotten
+    Reason getReason() {
+        return this.reason;
     }
     
     /**
-     * Entity caused the event.
+     * Gets block associated with this cause.
+     * @return Block, if available
      */
-    interface Entity {
-        /**
-         * Gets entity which caused the event.
-         * @return Entity associated with this cause
-         */
-        Entity getEntity();
+    Optional<Block> getBlock() {
+        return Optional.of(block);
     }
     
     /**
-     * Block caused the event.
+     * Gets entity associated with this cause.
+     * @return Entity, if available
      */
-    interface Block {
-        /**
-         * Gets block which caused the event.
-         * @return Block associated with this cause
-         */
-        Block getBlock();
+    Optional<Entity> getEntity() {
+        return Optional.of(entity);
     }
     
+    /**
+     * Gets world associated with this cause. If world isn't directly
+     * specified, world of entity or block will returned.
+     * @return World, if available
+     */
+    Optional<World> getWorld() {
+        if (world != null) {
+            return Optional.of(this.world);
+        } else {
+            if (entity != null) {
+                return entity.getWorld();
+            } else if (block != null) {
+                //Cast Extends to World, should work always.
+                return Optional.of((World) block.getLocation().getExtent());
+            }
+        }
+        return Optional.of(world);
+    }
 }
