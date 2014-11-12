@@ -27,14 +27,10 @@ package org.spongepowered.api.text;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.style.TextStyle;
+import org.spongepowered.api.text.translation.Translation;
 
 import java.util.List;
 
-// Possible use cases:
-//   Message<String>      - regular text message
-//   Message<Translation> - translated message with translation ID
-//   Message<Selector>    - selector message (TODO: API for selectors)
-//   Message<Score>       - score message (TODO: Scoreboard API)
 public interface Message<T> {
     T getContent();
     TextStyle getStyle();
@@ -45,4 +41,9 @@ public interface Message<T> {
 
     ClickAction<?> getClickAction();
     HoverAction<?> getHoverAction();
+
+    interface Text extends Message<String> {}
+    interface Translatable extends Message<Translation>, org.spongepowered.api.text.translation.Translatable {}
+    //interface Score extends Message<Score> {}
+    //interface Selector extends Message<Selector> {}
 }
