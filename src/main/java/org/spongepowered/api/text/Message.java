@@ -30,9 +30,13 @@ import org.spongepowered.api.text.style.TextStyle;
 
 import java.util.List;
 
-public interface Message {
-
-    String getText();
+// Possible use cases:
+//   Message<String>      - regular text message
+//   Message<Translation> - translated message with translation ID
+//   Message<Selector>    - selector message (TODO: API for selectors)
+//   Message<Score>       - score message (TODO: Scoreboard API)
+public interface Message<T> {
+    T getContent();
     TextStyle getStyle();
 
     List<Message> getExtra();
@@ -40,12 +44,5 @@ public interface Message {
     String getInsertion();
 
     ClickAction<?> getClickAction();
-
     HoverAction<?> getHoverAction();
-
-    String getTranslationIdentifier();
-
-    // todo use score
-    Object getScore();
-
 }
