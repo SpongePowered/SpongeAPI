@@ -25,4 +25,71 @@
 package org.spongepowered.api.text;
 
 public interface TitleBuilder {
+    /**
+     * Set the title to send to the player.
+     *
+     * @param text The text to use as the title.
+     * @return This title configuration.
+     */
+    TitleBuilder title(Message text);
+
+    /**
+     * Set the subtitle to send to the player.
+     *
+     * @param text The text to use as the subtitle.
+     * @return This title configuration.
+     */
+    TitleBuilder subTitle(Message text);
+
+    /**
+     * Set the duration in ticks of the fade in effect of the title. Once this
+     * period of time is over the title will stay for the amount of time
+     * specified in {@link #stay(int)}.
+     *
+     * <p>The default value for Vanilla is 20 (1 second).</p>
+     *
+     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
+     * @return This title configuration.
+     */
+    TitleBuilder fadeIn(int ticks);
+
+    /**
+     * Set the duration in ticks how long the title should stay on the screen.
+     * Once this period of time is over the title will fade out using the
+     * duration specified in {@link #fadeOut(int)}.
+     *
+     * <p>The default value for Vanilla is 60 (3 seconds).</p>
+     *
+     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
+     * @return This title configuration.
+     */
+    TitleBuilder stay(int ticks);
+
+    /**
+     * Set the duration in ticks of the fade out effect of the title.
+     *
+     * <p>The default value for Vanilla Minecraft is 60 (3 seconds).</p>
+     *
+     * @param ticks The amount of ticks (1/20 second) for the fade out effect.
+     * @return This title configuration.
+     */
+    TitleBuilder fadeOut(int ticks);
+
+    /**
+     * Remove the currently displayed title from the player's screen. This will
+     * keep the currently used display times and will only remove the title.
+     *
+     * @return This title configuration.
+     */
+    TitleBuilder clear();
+
+    /**
+     * Remove the currently displayed title from the player's screen
+     * and set the configuration back to the default values.
+     *
+     * @return This title configuration.
+     */
+    TitleBuilder reset();
+
+    Title build();
 }

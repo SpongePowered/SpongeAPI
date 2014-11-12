@@ -24,87 +24,20 @@
  */
 package org.spongepowered.api.text;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Player;
 
-/**
- * Represents a configuration of a title. It consists of a main title and a
- * sub title and will {@link #fadeIn(int) fade in}, {@link #stay(int) stay} and
- * {@link #fadeOut(int) fade out} for a specified amount of time.
- */
 public interface Title {
 
-    /**
-     * Set the title to send to the player.
-     *
-     * @param text The text to use as the title.
-     * @return This title configuration.
-     */
-    Title title(Message text);
+    Optional<Message> getTitle();
+    Optional<Message> getSubTitle();
 
-    /**
-     * Set the subtitle to send to the player.
-     *
-     * @param text The text to use as the subtitle.
-     * @return This title configuration.
-     */
-    Title subTitle(Message text);
+    Optional<Integer> getFadeIn();
+    Optional<Integer> getStay();
+    Optional<Integer> getFadeOut();
 
-    /**
-     * Set the duration in ticks of the fade in effect of the title. Once this
-     * period of time is over the title will stay for the amount of time
-     * specified in {@link #stay(int)}.
-     *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
-     *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
-     */
-    Title fadeIn(int ticks);
+    boolean isClear();
+    boolean isReset();
 
-    /**
-     * Set the duration in ticks how long the title should stay on the screen.
-     * Once this period of time is over the title will fade out using the
-     * duration specified in {@link #fadeOut(int)}.
-     *
-     * <p>The default value for Vanilla is 60 (3 seconds).</p>
-     *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
-     */
-    Title stay(int ticks);
-
-    /**
-     * Set the duration in ticks of the fade out effect of the title.
-     *
-     * <p>The default value for Vanilla Minecraft is 60 (3 seconds).</p>
-     *
-     * @param ticks The amount of ticks (1/20 second) for the fade out effect.
-     * @return This title configuration.
-     */
-    Title fadeOut(int ticks);
-
-    /**
-     * Remove the currently displayed title from the player's screen. This will
-     * keep the currently used display times and will only remove the title.
-     *
-     * @return This title configuration.
-     */
-    Title clear();
-
-    /**
-     * Remove the currently displayed title from the player's screen
-     * and set the configuration back to the default values.
-     *
-     * @return This title configuration.
-     */
-    Title reset();
-
-    /**
-     * Send this title configuration to the specified player. This is the same
-     * as calling {@link Player#sendTitle(Title)}.
-     *
-     * @param player The player to send the title to.
-     * @return This title configuration.
-     */
-    Title send(Player player);
+    void send(Player... players);
 }
