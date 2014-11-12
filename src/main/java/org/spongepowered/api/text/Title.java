@@ -29,8 +29,8 @@ import org.spongepowered.api.entity.Player;
 
 public interface Title {
 
-    Optional<Message> getTitle();
-    Optional<Message> getSubTitle();
+    Optional<Message<?>> getTitle();
+    Optional<Message<?>> getSubTitle();
 
     Optional<Integer> getFadeIn();
     Optional<Integer> getStay();

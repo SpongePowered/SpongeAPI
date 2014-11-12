@@ -50,7 +50,7 @@ public interface Player extends HumanEntity, CommandSource {
      *
      * @param message The message to send
      */
-    void sendMessage(Message message);
+    void sendMessage(Message<?> message);
 
     /**
      * Sends a {@link Title} to this player. This is the same as calling

@@ -31,15 +31,15 @@ import org.spongepowered.api.text.translation.Translation;
 
 public interface MessageBuilder {
 
-    Message build();
+    Message<?> build(); // TODO
 
     MessageBuilder text(String text);
 
-    MessageBuilder add(Message extra);
+    MessageBuilder add(Message<?> extra);
 
-    MessageBuilder add(Iterable<Message> extra);
+    MessageBuilder add(Iterable<Message<?>> extra);
 
-    MessageBuilder add(Message... extra);
+    MessageBuilder add(Message<?>... extra);
 
     MessageBuilder format(TextStyle format);
 
@@ -51,11 +51,11 @@ public interface MessageBuilder {
 
     MessageBuilder translation(Translation translation);
 
-    MessageBuilder arg(Message extra);
+    MessageBuilder arg(Message<?> extra);
 
-    MessageBuilder arg(Iterable<Message> extra);
+    MessageBuilder arg(Iterable<Message<?>> extra);
 
-    MessageBuilder arg(Message... extra);
+    MessageBuilder arg(Message<?>... extra);
 
     // TODO score api
     MessageBuilder score(Object score);

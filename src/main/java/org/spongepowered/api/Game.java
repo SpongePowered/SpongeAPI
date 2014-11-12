@@ -142,7 +142,7 @@ public interface Game {
      *
      * @param message The message to send
      */
-    void broadcastMessage(Message message);
+    void broadcastMessage(Message<?> message);
 
     /**
      * Creates a new clean {@link Title} configuration that will reset the

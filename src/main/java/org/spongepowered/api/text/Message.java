@@ -31,11 +31,11 @@ import org.spongepowered.api.text.translation.Translation;
 
 import java.util.List;
 
-public interface Message<T> {
+public interface Message<T> extends Iterable<Message<?>> {
     T getContent();
     TextStyle getStyle();
 
-    List<Message> getChildren();
+    List<Message<?>> getChildren();
 
     String getInsertion();
 
