@@ -41,11 +41,5 @@ public interface GameEvent extends Event {
      * @return The game
      */
     Game getGame();
-    
-    /**
-     * Gets cause for this event
-     * @return Cause of the event
-     */
-    Cause getCause();
 
 }
