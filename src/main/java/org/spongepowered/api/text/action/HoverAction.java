@@ -28,42 +28,21 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Message;
 
-public class HoverAction<R> extends TextAction<R> {
+public interface HoverAction<R> extends TextAction<R> {
+    interface ShowText extends HoverAction<Message<?>> {
 
-    HoverAction(String id, R result) {
-        super(id, result);
     }
 
-    public static class ShowText extends HoverAction<Message<?>> {
-
-        ShowText(Message<?> result) {
-            super("show_text", result);
-        }
-    }
-
-    public static class ShowItem extends HoverAction<ItemStack> {
-
-        ShowItem(ItemStack result) {
-            super("show_item", result);
-        }
+    interface ShowItem extends HoverAction<ItemStack> {
 
     }
 
     // TODO replace with achievement
-    public static class ShowAchievement extends HoverAction<Object> {
-
-        ShowAchievement(Object result) {
-            super("show_achievement", result);
-        }
+    interface ShowAchievement extends HoverAction<Object> {
 
     }
 
-    public static class ShowEntity extends HoverAction<Entity> {
-
-        ShowEntity(Entity result) {
-            super("show_entity", result);
-        }
-
+    interface ShowEntity extends HoverAction<Entity> {
 
         // TODO keep this just for reference, but should use entity?
         /*

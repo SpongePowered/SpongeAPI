@@ -26,58 +26,39 @@ package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.style.TextFormat;
 import org.spongepowered.api.text.style.TextStyle;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
-public interface MessageBuilder<T> {
+public interface MessageBuilder {
 
-    Message<T> build(); // TODO
+    Message<?> build(); // TODO
 
-    MessageBuilder<T> content(T text);
+    MessageBuilder text(String text);
 
-    interface VisibleMessageBuilder<T> extends MessageBuilder<T> {
+    MessageBuilder add(Iterable<Message<?>> child);
 
-        MessageBuilder<T> format(TextFormat format);
+    MessageBuilder add(Message<?>... child);
 
-        MessageBuilder<T> color(TextStyle style);
+    MessageBuilder format(TextStyle format);
 
-        MessageBuilder<T> insertion(String insertion);
+    MessageBuilder insertion(String insertion);
 
-        <V> MessageBuilder<T> clickAction(ClickAction<V> clickAction);
+    MessageBuilder onClick(ClickAction<?> action);
+    <R, T extends ClickAction<R>> MessageBuilder onClick(Class<T> type, R result);
+    MessageBuilder onHover(HoverAction<?> action);
+    <R, T extends HoverAction<R>> MessageBuilder onHover(Class<T> type, R result);
 
-        <V> MessageBuilder<T> hoverAction(HoverAction<V> hoverAction);
-    }
+    MessageBuilder translation(Translation translation);
 
-    interface TextMessageBuilder extends VisibleMessageBuilder<String> {
+    MessageBuilder arg(Message<?> extra);
 
-        TextMessageBuilder add(Iterable<Message<String>> child);
+    MessageBuilder arg(Iterable<Message<?>> extra);
 
-        TextMessageBuilder add(Message<?>... child);
-
-    }
-
-    interface TranslatableMessageBuilder extends VisibleMessageBuilder<Translatable> {
-
-        TranslatableMessageBuilder translation(Translation translation);
-
-        TranslatableMessageBuilder arg(Message<?>... arg);
-
-        TranslatableMessageBuilder arg(Iterable<Message<?>> arg);
-
-    }
+    MessageBuilder arg(Message<?>... extra);
 
     // TODO score api
-    interface ScoreMessageBuilder extends MessageBuilder<Object> {
+    MessageBuilder score(Object score);
 
-        ScoreMessageBuilder override(Object score, String value);
-
-    }
-
-    interface SelectorMessageBuilder extends VisibleMessageBuilder<Object> {
-
-    }
-
+    MessageBuilder overrideScore(Object score, String value);
 
 }

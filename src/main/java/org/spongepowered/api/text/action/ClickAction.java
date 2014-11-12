@@ -26,41 +26,21 @@ package org.spongepowered.api.text.action;
 
 import java.net.URL;
 
-public class ClickAction<R> extends TextAction<R> {
+public interface ClickAction<R> extends TextAction<R> {
 
-    ClickAction(String id, R result) {
-        super(id, result);
-    }
-
-    public static class OpenUrl extends ClickAction<URL> {
-
-        public OpenUrl(URL result) {
-            super("open_url", result);
-        }
+    interface OpenUrl extends ClickAction<URL> {
 
     }
 
-    public static class RunCommand extends ClickAction<String> {
-
-        public RunCommand(String result) {
-            super("run_command", result);
-        }
+    interface RunCommand extends ClickAction<String> {
 
     }
 
-    public static class ChangePage extends ClickAction<Integer> {
-
-        public ChangePage(Integer result) {
-            super("change_page", result);
-        }
+    interface ChangePage extends ClickAction<Integer> {
 
     }
 
-    public static class SuggestCommand extends ClickAction<String> {
-
-        public SuggestCommand(String result) {
-            super("suggest_command", result);
-        }
+    interface SuggestCommand extends ClickAction<String> {
 
     }
 
