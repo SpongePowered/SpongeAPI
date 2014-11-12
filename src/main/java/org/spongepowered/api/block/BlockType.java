@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Describes a base type of block.
  *
@@ -32,7 +34,7 @@ package org.spongepowered.api.block;
  * certain blocks because some blocks use data values (which are being
  * phased out in Minecraft).</p>
  */
-public interface BlockType {
+public interface BlockType extends Translatable {
 
     /**
      * Return the internal ID for the block.
