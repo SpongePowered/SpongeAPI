@@ -34,24 +34,24 @@ public interface MessageBuilder {
 
     MessageBuilder setText(String text);
 
-    MessageBuilder addExtra(Message extra);
+    MessageBuilder add(Message extra);
 
-    MessageBuilder addExtra(Iterable<Message> extra);
+    MessageBuilder add(Iterable<Message> extra);
 
-    MessageBuilder addExtra(Message... extra);
+    MessageBuilder add(Message... extra);
 
-    MessageBuilder setFormat(TextStyle format);
+    MessageBuilder format(TextStyle format);
 
-    MessageBuilder setInsertion(String insertion);
+    MessageBuilder insertion(String insertion);
 
-    <V> MessageBuilder setClickAction(ClickAction<V> clickAction);
+    <V> MessageBuilder clickAction(ClickAction<V> clickAction);
 
-    <V> MessageBuilder setHoverAction(HoverAction<V> hoverAction);
+    <V> MessageBuilder hoverAction(HoverAction<V> hoverAction);
 
-    MessageBuilder setTranslationIdentifier(String translationIdentifier);
+    MessageBuilder translationIdentifier(String translationIdentifier);
 
     // TODO score api
-    MessageBuilder setScore(Object score);
+    MessageBuilder score(Object score);
 
     MessageBuilder overrideScore(Object score, String value);
 

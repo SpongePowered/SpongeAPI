@@ -29,24 +29,45 @@ import org.spongepowered.api.item.ItemType;
 
 import java.util.UUID;
 
-public interface HoverAction<V> extends TextAction<V> {
+public class HoverAction<R> extends TextAction<R> {
 
-    interface ShowText extends HoverAction<String> {
-
+    HoverAction(String id, R result) {
+        super(id, result);
     }
 
-    interface ShowItem extends HoverAction<ItemType> {
+    public static class ShowText extends HoverAction<String> {
+
+        ShowText(String result) {
+            super("show_text", result);
+        }
+    }
+
+    public static class ShowItem extends HoverAction<ItemType> {
+
+        ShowItem(ItemType result) {
+            super("show_item", result);
+        }
 
     }
 
     // TODO replace with achievement
-    interface ShowAchievement extends HoverAction<Object> {
+    public static class ShowAchievement extends HoverAction<Object> {
+
+        ShowAchievement(Object result) {
+            super("show_achievement", result);
+        }
 
     }
 
-    interface ShowEntity extends HoverAction<Entity> {
+    public static class ShowEntity extends HoverAction<Entity> {
+
+        ShowEntity(Entity result) {
+            super("show_entity", result);
+        }
+
 
         // TODO keep this just for reference, but should use entity?
+        /*
         interface ShowActionEntity {
 
             String getName();
@@ -55,7 +76,7 @@ public interface HoverAction<V> extends TextAction<V> {
 
             UUID getID();
 
-        }
+        }*/
 
     }
 

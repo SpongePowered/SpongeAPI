@@ -24,10 +24,30 @@
  */
 package org.spongepowered.api.text.action;
 
-public interface TextAction<V> {
+/**
+ * A TextAction is something that happens as a response to some event on text.
+ * In the Sponge API this is either a
+ * {@link org.spongepowered.api.text.action.ClickAction click} or
+ * {@link org.spongepowered.api.text.action.HoverAction hover}.
+ *
+ * @param <R> the type of the result of the action
+ */
+public class TextAction<R> {
 
-    String getName();
+    protected String id;
+    protected R result;
 
-    V getValue();
+    TextAction(String id, R result) {
+        this.id = id;
+        this.result = result;
+    }
+
+    public String getID() {
+        return id;
+    }
+
+    public R getResult() {
+        return result;
+    }
 
 }

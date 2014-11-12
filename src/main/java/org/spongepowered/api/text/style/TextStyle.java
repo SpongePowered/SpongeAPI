@@ -31,13 +31,15 @@ import java.util.Collection;
 
 public interface TextStyle {
 
-    Color getColor();
+    boolean isComposite();
 
     TextStyle and(TextStyle that);
 
     TextStyle andNot(TextStyle that);
 
     TextStyle negate();
+
+    Color getColor();
 
     boolean isBold();
 
@@ -48,8 +50,6 @@ public interface TextStyle {
     boolean isStrikethrough();
 
     boolean isObfuscated();
-
-    boolean isComposite();
 
     /**
      * Gets a list of Minecraft formatting codes that, when put together

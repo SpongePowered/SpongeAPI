@@ -24,21 +24,41 @@
  */
 package org.spongepowered.api.text.action;
 
-public interface ClickAction<V> extends TextAction<V> {
+public class ClickAction<R> extends TextAction<R> {
 
-    interface OpenUrl extends ClickAction<String> {
+    ClickAction(String id, R result) {
+        super(id, result);
+    }
+
+    public static class OpenUrl extends ClickAction<String> {
+
+        public OpenUrl(String result) {
+            super("open_url", result);
+        }
 
     }
 
-    interface RunCommand extends ClickAction<String> {
+    public static class RunCommand extends ClickAction<String> {
+
+        public RunCommand(String result) {
+            super("run_command", result);
+        }
 
     }
 
-    interface ChangePage extends ClickAction<Integer> {
+    public static class ChangePage extends ClickAction<Integer> {
+
+        public ChangePage(Integer result) {
+            super("change_page", result);
+        }
 
     }
 
-    interface SuggestCommand extends ClickAction<String> {
+    public static class SuggestCommand extends ClickAction<String> {
+
+        public SuggestCommand(String result) {
+            super("suggest_command", result);
+        }
 
     }
 
