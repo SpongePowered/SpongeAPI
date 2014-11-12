@@ -27,12 +27,13 @@ package org.spongepowered.api.text;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.style.TextStyle;
+import org.spongepowered.api.text.translation.Translation;
 
 public interface MessageBuilder {
 
     Message build();
 
-    MessageBuilder setText(String text);
+    MessageBuilder text(String text);
 
     MessageBuilder add(Message extra);
 
@@ -48,7 +49,13 @@ public interface MessageBuilder {
 
     <V> MessageBuilder hoverAction(HoverAction<V> hoverAction);
 
-    MessageBuilder translationIdentifier(String translationIdentifier);
+    MessageBuilder translation(Translation translation);
+
+    MessageBuilder arg(Message extra);
+
+    MessageBuilder arg(Iterable<Message> extra);
+
+    MessageBuilder arg(Message... extra);
 
     // TODO score api
     MessageBuilder score(Object score);

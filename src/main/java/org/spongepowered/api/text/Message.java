@@ -39,7 +39,7 @@ public interface Message<T> {
     T getContent();
     TextStyle getStyle();
 
-    List<Message> getExtra();
+    List<Message> getChildren();
 
     String getInsertion();
 
