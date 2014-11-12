@@ -38,10 +38,10 @@ public interface Message<T> extends Iterable<Message<T>> {
 
     List<Message<?>> getChildren();
 
-    String getInsertion();
+    Optional<String> getInsertion();
 
-    ClickAction<?> getClickAction();
-    HoverAction<?> getHoverAction();
+    Optional<ClickAction<?>> getClickAction();
+    Optional<HoverAction<?>> getHoverAction();
 
     interface Text extends Message<String> { }
 
@@ -52,5 +52,5 @@ public interface Message<T> extends Iterable<Message<T>> {
         Optional<String> getOverride();
     }
     // TODO use Selector
-    interface Selector extends Message<Selector> { }
+    interface Selector extends Message<String> { }
 }

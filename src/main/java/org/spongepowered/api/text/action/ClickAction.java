@@ -24,15 +24,17 @@
  */
 package org.spongepowered.api.text.action;
 
+import java.net.URL;
+
 public class ClickAction<R> extends TextAction<R> {
 
     ClickAction(String id, R result) {
         super(id, result);
     }
 
-    public static class OpenUrl extends ClickAction<String> {
+    public static class OpenUrl extends ClickAction<URL> {
 
-        public OpenUrl(String result) {
+        public OpenUrl(URL result) {
             super("open_url", result);
         }
 
