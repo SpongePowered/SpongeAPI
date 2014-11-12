@@ -35,11 +35,9 @@ public interface MessageBuilder {
 
     MessageBuilder text(String text);
 
-    MessageBuilder add(Message<?> extra);
+    MessageBuilder add(Iterable<Message<?>> child);
 
-    MessageBuilder add(Iterable<Message<?>> extra);
-
-    MessageBuilder add(Message<?>... extra);
+    MessageBuilder add(Message<?>... child);
 
     MessageBuilder format(TextStyle format);
 

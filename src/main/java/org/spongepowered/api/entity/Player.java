@@ -54,7 +54,7 @@ public interface Player extends HumanEntity, CommandSource {
 
     /**
      * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
+     * {@link Title#send(Player...)}.
      *
      * @param title The {@link Title} to send to the player.
      */

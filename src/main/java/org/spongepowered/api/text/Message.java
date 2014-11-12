@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.style.TextStyle;
@@ -31,7 +32,7 @@ import org.spongepowered.api.text.translation.Translation;
 
 import java.util.List;
 
-public interface Message<T> extends Iterable<Message<?>> {
+public interface Message<T> extends Iterable<Message<T>> {
     T getContent();
     TextStyle getStyle();
 
@@ -42,8 +43,14 @@ public interface Message<T> extends Iterable<Message<?>> {
     ClickAction<?> getClickAction();
     HoverAction<?> getHoverAction();
 
-    interface Text extends Message<String> {}
-    interface Translatable extends Message<Translation>, org.spongepowered.api.text.translation.Translatable {}
-    //interface Score extends Message<Score> {}
-    //interface Selector extends Message<Selector> {}
+    interface Text extends Message<String> { }
+
+    interface Translatable extends Message<Translation> { }
+
+    // TODO use Score
+    interface Score extends Message<Object> {
+        Optional<String> getOverride();
+    }
+    // TODO use Selector
+    interface Selector extends Message<Selector> { }
 }
