@@ -27,10 +27,12 @@ package org.spongepowered.api.service.scheduler;
 
 import org.spongepowered.api.plugin.PluginContainer;
 
+import java.util.concurrent.Future;
+
 /**
  * Represents a task that has been scheduled.
  */
-public interface Task {
+public interface Task extends Future {
 
     /**
      * Gets the name of this task.
@@ -59,4 +61,11 @@ public interface Task {
      * @return if the task was cancelled
      */
     boolean cancel();
+
+    /**
+     * Gets the {@link Runnable} that this task is running.
+     *
+     * @return The runnable.
+     */
+    Runnable getRunnable();
 }
