@@ -26,7 +26,7 @@
 package org.spongepowered.api.plugin;
 
 import com.google.common.base.Optional;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 
 import java.util.Collection;
 
