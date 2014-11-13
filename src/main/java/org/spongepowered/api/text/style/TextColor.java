@@ -26,17 +26,10 @@ package org.spongepowered.api.text.style;
 
 import com.google.common.base.Optional;
 
-public interface BaseTextStyle extends TextStyle {
+import java.awt.*;
 
-    String getName();
-
-    /**
-     * Gets the corresponding Minecraft formatting code, that, when applied,
-     * has the same effect as this text format.
-     *
-     * @return a List of Minecraft formatting codes
-     */
-    @Deprecated
-    Optional<Character> getCode();
-
+public interface TextColor extends TextStyle {
+    Optional<String> getId();
+    Color getColor();
+    boolean isReset();
 }

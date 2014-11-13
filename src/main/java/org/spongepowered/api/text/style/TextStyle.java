@@ -24,40 +24,16 @@
  */
 package org.spongepowered.api.text.style;
 
-import com.google.common.base.Optional;
-
-import java.awt.Color;
-import java.util.Collection;
-
 public interface TextStyle {
-
     boolean isComposite();
+    boolean is(TextStyle style);
 
-    TextStyle and(TextStyle that);
-
-    TextStyle andNot(TextStyle that);
-
+    // TODO: Decide if this would fit better inside the builder
+    TextStyle and(TextStyle... styles);
+    TextStyle andNot(TextStyle... styles);
     TextStyle negate();
 
-    Color getColor();
+    interface Type extends TextStyle, TextFormat {
 
-    boolean isBold();
-
-    boolean isItalic();
-
-    boolean isUnderline();
-
-    boolean isStrikethrough();
-
-    boolean isObfuscated();
-
-    /**
-     * Gets a list of Minecraft formatting codes that, when put together
-     * and applied, have the same effect as this TextFormat.
-     *
-     * @return a List of Minecraft formatting codes
-     */
-    @Deprecated
-    Optional<Collection<Character>> getCodes();
-
+    }
 }

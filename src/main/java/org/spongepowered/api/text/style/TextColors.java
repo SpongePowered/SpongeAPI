@@ -22,37 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.style;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.text.action.ClickAction;
-import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.style.TextColor;
-import org.spongepowered.api.text.style.TextStyle;
-import org.spongepowered.api.text.translation.Translation;
+public class TextColors {
 
-import java.util.List;
+    public static final TextColor BLACK = null;
+    public static final TextColor DARK_BLUE = null;
+    public static final TextColor DARK_GREEN = null;
+    public static final TextColor DARK_AQUA = null;
+    public static final TextColor DARK_RED = null;
+    public static final TextColor DARK_PURPLE = null;
+    public static final TextColor GOLD = null;
+    public static final TextColor GRAY = null;
+    public static final TextColor DARK_GRAY = null;
+    public static final TextColor BLUE = null;
+    public static final TextColor GREEN = null;
+    public static final TextColor AQUA = null;
+    public static final TextColor RED = null;
+    public static final TextColor LIGHT_PURPLE = null;
+    public static final TextColor YELLOW = null;
+    public static final TextColor WHITE = null;
 
-public interface Message<T> extends Iterable<Message<T>> {
-    T getContent();
-    TextColor getColor();
-    TextStyle getStyle();
-
-    List<Message<?>> getChildren();
-
-    Optional<String> getInsertion();
-
-    Optional<ClickAction<?>> getClickAction();
-    Optional<HoverAction<?>> getHoverAction();
-
-    interface Text extends Message<String> { }
-
-    interface Translatable extends Message<Translation> { }
-
-    // TODO use Score
-    interface Score extends Message<Object> {
-        Optional<String> getOverride();
-    }
-    // TODO use Selector
-    interface Selector extends Message<String> { }
+    // TODO: There doesn't seem to be a difference to WHITE
+    // Unlike with the old color codes, this will not reset the chat style, just the color
+    public static final TextColor RESET = null;
 }
