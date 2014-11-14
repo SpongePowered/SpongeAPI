@@ -25,43 +25,38 @@
 
 package org.spongepowered.api.event.player;
 
-public interface TeleportEvent {
+public class TeleportEvent {
 	
 	/**
-	 * Gets the reason for teleportation.
-	 * 
-	 * @return The reason for teleportation
+	 * When a player teleports, this should be called.
 	 */
-	TeleportReason getReason();
-	
-	/**
-	 * The possible reasons for a player being teleported.
-	 */
-	public enum TeleportReason {
+	public TeleportEvent() {
 		
-		/**
-		 * The player was teleported by an execute of a command.
-		 */
-		COMMAND,
-		
-		/**
-		 * The player was teleported by entering an end portal.
-		 */
-		END_PORTAL,
-		
-		/**
-		 * The player was teleported by the launching of an ender pearl.
-		 */
-		ENDER_PEARL,
-		
-		/**
-		 * The player was teleported by entering a nether portal.
-		 */
-		NETHER_PORTAL,
-		
-		/**
-		 * The player was teleported by an external plugin.
-		 */
-		PLUGIN
 	}
+	
+	/**
+	 * The player was teleported by an execute of a command.
+	 */
+	public static final TeleportEvent COMMAND = new TeleportEvent();
+	
+	/**
+	 * The player was teleported by entering an end portal.
+	 */
+	public static final TeleportEvent END_PORTAL = new TeleportEvent();
+	
+	/**
+	 * The player was teleported by the launching of an ender pearl.
+	 */
+	public static final TeleportEvent ENDER_PEARL = new TeleportEvent();
+	
+	/**
+	 * The player was teleported by entering a nether portal.
+	 */
+	public static final TeleportEvent NETHER_PORTAL = new TeleportEvent();
+	
+	/**
+	 * The player was teleported by an external plugin.
+	 */
+	public static final TeleportEvent PLUGIN = new TeleportEvent();
+	
 }
