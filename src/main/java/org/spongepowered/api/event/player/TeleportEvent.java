@@ -30,7 +30,7 @@ public interface TeleportEvent {
 	/**
 	 * Gets the reason for teleportation.
 	 * 
-	 * @return The reason for teleportation.
+	 * @return The reason for teleportation
 	 */
 	TeleportReason getReason();
 	
@@ -38,6 +38,7 @@ public interface TeleportEvent {
 	 * The possible reasons for a player being teleported.
 	 */
 	public enum TeleportReason {
+		
 		/**
 		 * The player was teleported by an execute of a command.
 		 */
