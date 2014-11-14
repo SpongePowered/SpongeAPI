@@ -24,36 +24,14 @@
  */
 package org.spongepowered.api.text;
 
-import org.spongepowered.api.text.action.ClickAction;
-import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.translation.Translation;
 
-public interface MessageBuilder<T> {
+interface MessageFactory {
 
-    MessageBuilder<T> append(Message<?>... children);
+    <T> MessageBuilder<T> createBuilder(T content);
 
-    MessageBuilder<T> append(Iterable<Message<?>> child);
+    MessageBuilder<Translation> createTranslationBuilder(Translation t, Object... args);
 
-    MessageBuilder<T> content(T content);
+    MessageBuilder<Object> createScoreBuilder(Object score, Object override); // TODO
 
-
-    MessageBuilder<T> color(TextColor color);
-
-    MessageBuilder<T> style(TextStyle style);
-
-
-    // TODO: Naming? This is a bit confusing
-    MessageBuilder<T> insertion(String insertion);
-
-    MessageBuilder<T> onClick(ClickAction<?> action);
-
-    <R, A extends ClickAction<R>> MessageBuilder<T> onClick(Class<A> type, R result);
-
-    MessageBuilder<T> onHover(HoverAction<?> action);
-
-    <R, A extends HoverAction<R>> MessageBuilder<T> onHover(Class<A> type, R result);
-
-
-    Message<T> build();
 }

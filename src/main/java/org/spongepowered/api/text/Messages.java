@@ -24,36 +24,23 @@
  */
 package org.spongepowered.api.text;
 
-import org.spongepowered.api.text.action.ClickAction;
-import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.translation.Translation;
 
-public interface MessageBuilder<T> {
+public final class Messages {
+    private static final MessageFactory factory = new NullMessageFactory();
 
-    MessageBuilder<T> append(Message<?>... children);
+    private Messages() {}
 
-    MessageBuilder<T> append(Iterable<Message<?>> child);
+    public static <T> MessageBuilder<T> builder(T content) {
+        return factory.createBuilder(content);
+    }
 
-    MessageBuilder<T> content(T content);
+    public static MessageBuilder<Translation> builder(Translation t, Object... args) {
+        return factory.createTranslationBuilder(t, args);
+    }
 
-
-    MessageBuilder<T> color(TextColor color);
-
-    MessageBuilder<T> style(TextStyle style);
-
-
-    // TODO: Naming? This is a bit confusing
-    MessageBuilder<T> insertion(String insertion);
-
-    MessageBuilder<T> onClick(ClickAction<?> action);
-
-    <R, A extends ClickAction<R>> MessageBuilder<T> onClick(Class<A> type, R result);
-
-    MessageBuilder<T> onHover(HoverAction<?> action);
-
-    <R, A extends HoverAction<R>> MessageBuilder<T> onHover(Class<A> type, R result);
-
-
-    Message<T> build();
+    // TODO: Scoreboard
+    public static MessageBuilder<Object> builder(Object score, Object override) {
+        return factory.createScoreBuilder(score, override);
+    }
 }
