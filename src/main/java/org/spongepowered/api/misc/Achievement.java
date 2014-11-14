@@ -25,52 +25,43 @@
 
 package org.spongepowered.api.misc;
 
-public interface Achievement {
+public class Achievement {
 	
 	/**
-	 * Gets the list of achievements.
-	 * 
-	 * @return The list of achievements
+	 * The list of achievements.
 	 */
-	AchievementList getAchievements();
-	
-	/**
-	 * The list of achievements that can be given to a player.
-	 */
-	public enum AchievementList {
-		TAKING_INVENTORY,
-		GETTING_WOOD,
-		BENCHMARKING,
-		TIME_TO_MINE,
-		HOT_TOPIC,
-		ACQUIRE_HARDWARE,
-		TIME_TO_FARM,
-		BAKE_BREAD,
-		THE_LIE,
-		GETTING_AN_UPGRADE,
-		DELICIOUS_FISH,
-		ON_A_RAIL,
-		TIME_TO_STRIKE,
-		MONSTER_HUNTER,
-		COW_TIPPER,
-		WHEN_PIGS_FLY,
-		SNIPER_DUEL,
-		DIAMONDS,
-		WE_NEED_TO_GO_DEEPER,
-		RETURN_TO_SENDER,
-		INTO_FIRE,
-		LOCAL_BREWERY,
-		THE_END_PORTAL,
-		THE_END_DRAGON,
-		ENCHANTER,
-		OVERKILL,
-		LIBRARIAN,
-		ADVENTURING_TIME,
-		THE_BEGINNING_SPAWN,
-		THE_BEGINNING_DEFEAT,
-		BEACONATOR,
-		REPOPULATION,
-		DIAMONDS_TO_YOU,
-		OVERPOWERED
-	}
+	public static final Achievement TAKING_INVENTORY = new Achievement();
+	public static final Achievement GETTING_WOOD = new Achievement();
+	public static final Achievement BENCHMARKING = new Achievement();
+	public static final Achievement TIME_TO_MINE = new Achievement();
+	public static final Achievement HOT_TOPIC = new Achievement();
+	public static final Achievement ACQUIRE_HARDWARE = new Achievement();
+	public static final Achievement TIME_TO_FARM = new Achievement();
+	public static final Achievement BAKE_BREAD = new Achievement();
+	public static final Achievement THE_LIE = new Achievement();
+	public static final Achievement GETTING_AN_UPGRADE = new Achievement();
+	public static final Achievement DELICIOUS_FISH = new Achievement();
+	public static final Achievement ON_A_RAIL = new Achievement();
+	public static final Achievement TIME_TO_STRIKE = new Achievement();
+	public static final Achievement MONSTER_HUNTER = new Achievement();
+	public static final Achievement COW_TIPPER = new Achievement();
+	public static final Achievement WHEN_PIGS_FLY = new Achievement();
+	public static final Achievement SNIPER_DUEL = new Achievement();
+	public static final Achievement DIAMONDS = new Achievement();
+	public static final Achievement WE_NEED_TO_GO_DEEPER = new Achievement();
+	public static final Achievement RETURN_TO_SENDER = new Achievement();
+	public static final Achievement INTO_FIRE = new Achievement();
+	public static final Achievement LOCAL_BREWERY = new Achievement();
+	public static final Achievement THE_END_PORTAL = new Achievement();
+	public static final Achievement THE_END_DRAGON = new Achievement();
+	public static final Achievement ENCHANTER = new Achievement();
+	public static final Achievement OVERKILL = new Achievement();
+	public static final Achievement LIBRARIAN = new Achievement();
+	public static final Achievement ADVENTURING_TIME = new Achievement();
+	public static final Achievement THE_BEGINNING_SPAWN = new Achievement();
+	public static final Achievement THE_BEGINNING_DEFEAT = new Achievement();
+	public static final Achievement BEACONATOR = new Achievement();
+	public static final Achievement REPOPULATION = new Achievement();
+	public static final Achievement DIAMONDS_TO_YOU = new Achievement();
+	public static final Achievement OVERPOWERED = new Achievement();
 }
