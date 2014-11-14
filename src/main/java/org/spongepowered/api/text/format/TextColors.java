@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.text.format;
 
+/**
+ * TextColors is a list of the default text colors that Minecraft provides.
+ * The values are filled in by mixins in Sponge at runtime.
+ */
 public class TextColors {
 
     public static final TextColor BLACK = null;
@@ -46,4 +50,5 @@ public class TextColors {
     // TODO: There doesn't seem to be a difference to WHITE
     // Unlike with the old color codes, this will not reset the chat style, just the color
     public static final TextColor RESET = null;
+
 }

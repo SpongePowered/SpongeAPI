@@ -28,21 +28,39 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Message;
 
+/**
+ * A HoverAction is a TextAction that responds to hovers.
+ *
+ * @param <R> the type of the result of the action
+ */
 public interface HoverAction<R> extends TextAction<R> {
 
+    /**
+     * Shows some text.
+     */
     interface ShowText extends HoverAction<Message<?>> {
 
     }
 
+    /**
+     * Shows an item and its information.
+     */
     interface ShowItem extends HoverAction<ItemStack> {
 
     }
 
     // TODO replace with achievement
+
+    /**
+     * Shows an achievement and its information.
+     */
     interface ShowAchievement extends HoverAction<Object> {
 
     }
 
+    /**
+     * Shows an entity and its information.
+     */
     interface ShowEntity extends HoverAction<Entity> {
 
         // TODO keep this just for reference, but should use entity?

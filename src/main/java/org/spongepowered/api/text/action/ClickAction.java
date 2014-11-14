@@ -26,22 +26,31 @@ package org.spongepowered.api.text.action;
 
 import java.net.URL;
 
+/**
+ * A ClickAction is a TextAction that responds to clicks.
+ *
+ * @param <R> the type of the result of the action
+ */
 public interface ClickAction<R> extends TextAction<R> {
 
-    interface OpenUrl extends ClickAction<URL> {
+    /**
+     * Opens a url.
+     */
+    interface OpenUrl extends ClickAction<URL> { }
 
-    }
+    /**
+     * Runs a command.
+     */
+    interface RunCommand extends ClickAction<String> { }
 
-    interface RunCommand extends ClickAction<String> {
+    /**
+     * For books, changes pages.
+     */
+    interface ChangePage extends ClickAction<Integer> { }
 
-    }
-
-    interface ChangePage extends ClickAction<Integer> {
-
-    }
-
-    interface SuggestCommand extends ClickAction<String> {
-
-    }
+    /**
+     * Suggests a command in the prompt.
+     */
+    interface SuggestCommand extends ClickAction<String> { }
 
 }

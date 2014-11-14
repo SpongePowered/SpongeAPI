@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.text.format;
 
+/**
+ * TextStyles is a list of the default text styles that Minecraft provides.
+ * The values are filled in by mixins in Sponge at runtime.
+ */
 public class TextStyles {
 
     public static final TextStyle.Base OBFUSCATED = null;

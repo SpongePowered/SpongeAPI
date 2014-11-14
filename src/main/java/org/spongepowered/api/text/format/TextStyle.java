@@ -24,21 +24,68 @@
  */
 package org.spongepowered.api.text.format;
 
+/**
+ * A TextStyle represents the style that a {@link org.spongepowered.api.text.Message} has.
+ * It is an immutable class.
+ * There are several Base styles specified in {@link org.spongepowered.api.text.format.TextStyles}
+ * which are the Minecraft base types.
+ * From these types, the {@link #and(TextStyle...)}, {@link #andNot(TextStyle...)}, and {@link #negate()} methods
+ * can compose text styles together.
+ *
+ * <p>Interestingly enough, TextStyle actually forms a group with the {@link #and(TextStyle...)} operation
+ * as the group operation and the TextStyle elements as the elements of the group. I do not want to prove
+ * closure or the other group laws, but yay math!</p>
+ */
 public interface TextStyle {
 
+    /**
+     * Returns whether this text style is a composite of multiple base text styles.
+     *
+     * @return A boolean for whether this text style is a composite
+     */
     boolean isComposite();
 
+    /**
+     * Checks for if the given TextStyle is contained in this TextStyle.
+     * It is equivalent if checking that applying this TextStyle includes applying the passed in TextStyle.
+     *
+     * @param style The TextStyle to check for existence
+     * @return A boolean representing if the given TextStyle is in this TextStyle
+     */
     boolean is(TextStyle style);
 
     // TODO: Decide if this would fit better inside the builder
-    TextStyle and(TextStyle... styles);
-
-    TextStyle andNot(TextStyle... styles);
-
+    /**
+     * Negates this text style.
+     * This is useful for undoing text styles that are inherited by parent Messages.
+     *
+     * @return A new TextStyle that is the inverse of this TextStyle.
+     */
     TextStyle negate();
 
-    interface Base extends FormattingCode, TextStyle {
+    /**
+     * Composes this TextStyle with the passed in TextStyles.
+     *
+     * @param styles A list of TextStyles to compose this one with
+     * @return A new TextStyle composed out of passed in text styles
+     */
+    TextStyle and(TextStyle... styles);
 
-    }
+    /**
+     * Composes this TextStyle with the passed in TextStyles, but negates them before composition.
+     * This is the same as negating all the passed in TextStyles and then using the {@link #and(TextStyle...)} method.
+     *
+     * @param styles A list of TextStyles to compose this one with
+     * @return A new TextStyle composed out of passed in text styles
+     */
+    TextStyle andNot(TextStyle... styles);
+
+    /**
+     * A Base text style is a text style that is represented in Minecraft.
+     * There are several Base styles specified in {@link org.spongepowered.api.text.format.TextStyles}
+     * which are the Minecraft base types.
+     * Base extends FormattingCode because it does have a corresponding formatting code.
+     */
+    interface Base extends FormattingCode, TextStyle { }
 
 }

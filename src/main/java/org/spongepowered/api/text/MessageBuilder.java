@@ -37,11 +37,9 @@ public interface MessageBuilder<T> {
 
     MessageBuilder<T> content(T content);
 
-
     MessageBuilder<T> color(TextColor color);
 
     MessageBuilder<T> style(TextStyle style);
-
 
     // TODO: Naming? This is a bit confusing
     MessageBuilder<T> insertion(String insertion);
@@ -54,6 +52,6 @@ public interface MessageBuilder<T> {
 
     <R, A extends HoverAction<R>> MessageBuilder<T> onHover(Class<A> type, R result);
 
-
     Message<T> build();
+
 }

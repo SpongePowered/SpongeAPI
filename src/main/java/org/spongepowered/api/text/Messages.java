@@ -45,4 +45,5 @@ public final class Messages {
     public static MessageBuilder<Object> builder(Object score, Object override) {
         return factory.createScoreBuilder(score, override);
     }
+
 }
