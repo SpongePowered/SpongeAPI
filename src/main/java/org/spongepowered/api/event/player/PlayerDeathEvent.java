@@ -37,56 +37,56 @@ public interface PlayerDeathEvent extends PlayerEvent {
     /**
      * Get the cause of the player's death.
      *
-     * @return The cause of the player's death.
+     * @return The cause of the player's death
      */
     Cause getCause();
 
     /**
      * Get the location of the player's death.
      *
-     * @return The {@link Location} of the player's death.
+     * @return The {@link Location} of the player's death
      */
     Location getLocation();
 
     /**
      * Get the message that will announce the player's death.
      *
-     * @return The message that will announce the player's death.
+     * @return The message that will announce the player's death
      */
     String getDeathAnnouncement();
 
     /**
      * Get whether the player keeps their inventory on death.
      *
-     * @return {@code True} if the player keeps their inventory on death.
+     * @return {@code True} if the player keeps their inventory on death
      */
     boolean getKeepInventory();
 
     /**
      * Get whether the player keeps all of their EXP on death.
      *
-     * @return {@code True} if the player keeps all of their EXP on death.
+     * @return {@code True} if the player keeps all of their EXP on death
      */
     boolean getKeepLevel();
 
     /**
      * Set the message that will announce the player's death.
      *
-     * @param message The message to show, or {@code null} for no message.
+     * @param message The message to show, or {@code null} for no message
      */
     void setDeathAnnouncement(String message);
 
     /**
      * Sets if the player keeps their inventory on death.
      *
-     * @param keepInventory {@code True} if the player should keep inventory.
+     * @param keepInventory {@code True} if the player should keep inventory
      */
     void setKeepInventory(boolean keepInventory);
 
     /**
      * Sets if the player keeps all of their EXP on death.
      *
-     * @param keepLevel {@code True} if the player should keep all EXP.
+     * @param keepLevel {@code True} if the player should keep all EXP
      */
     void setKeepLevel(boolean keepLevel);
 
