@@ -27,9 +27,11 @@ package org.spongepowered.api.text;
 import org.spongepowered.api.text.translation.Translation;
 
 public final class Messages {
+
     private static final MessageFactory factory = new NullMessageFactory();
 
-    private Messages() {}
+    private Messages() {
+    }
 
     public static <T> MessageBuilder<T> builder(T content) {
         return factory.createBuilder(content);

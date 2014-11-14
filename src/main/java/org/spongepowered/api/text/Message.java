@@ -38,6 +38,7 @@ public interface Message<T> extends Iterable<Message<T>> {
     T getContent();
 
     TextColor getColor();
+
     TextStyle getStyle();
 
     List<Message<?>> getChildren();
@@ -45,17 +46,25 @@ public interface Message<T> extends Iterable<Message<T>> {
     Optional<String> getInsertion();
 
     Optional<ClickAction<?>> getClickAction();
+
     Optional<HoverAction<?>> getHoverAction();
 
-    interface Text extends Message<String> { }
+    interface Text extends Message<String> {
 
-    interface Translatable extends Message<Translation> { }
+    }
+
+    interface Translatable extends Message<Translation> {
+
+    }
 
     // TODO use Selector
-    interface Selector extends Message<String> { }
+    interface Selector extends Message<String> {
+
+    }
 
     // TODO use Score
     interface Score extends Message<Object> {
+
         Optional<String> getOverride();
     }
 

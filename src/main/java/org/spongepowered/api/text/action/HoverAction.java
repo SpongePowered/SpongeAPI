@@ -29,6 +29,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Message;
 
 public interface HoverAction<R> extends TextAction<R> {
+
     interface ShowText extends HoverAction<Message<?>> {
 
     }

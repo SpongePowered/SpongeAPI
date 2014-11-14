@@ -25,6 +25,7 @@
 package org.spongepowered.api.text;
 
 public interface TitleBuilder {
+
     /**
      * Set the title to send to the player.
      *

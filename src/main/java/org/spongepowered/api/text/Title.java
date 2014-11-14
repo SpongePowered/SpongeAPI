@@ -30,13 +30,17 @@ import org.spongepowered.api.entity.Player;
 public interface Title {
 
     Optional<Message<?>> getTitle();
+
     Optional<Message<?>> getSubTitle();
 
     Optional<Integer> getFadeIn();
+
     Optional<Integer> getStay();
+
     Optional<Integer> getFadeOut();
 
     boolean isClear();
+
     boolean isReset();
 
     void send(Player... players);

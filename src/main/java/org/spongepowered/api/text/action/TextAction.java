@@ -33,7 +33,9 @@ package org.spongepowered.api.text.action;
  * @param <R> the type of the result of the action
  */
 public interface TextAction<R> {
+
     String getId();
+
     R getResult();
 
 }
