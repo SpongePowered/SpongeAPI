@@ -26,6 +26,7 @@ package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextStyle;
 
@@ -41,16 +42,11 @@ public interface MessageBuilder<T> {
 
     MessageBuilder<T> style(TextStyle style);
 
-    // TODO: Naming? This is a bit confusing
-    MessageBuilder<T> insertion(String insertion);
-
     MessageBuilder<T> onClick(ClickAction<?> action);
-
-    <R, A extends ClickAction<R>> MessageBuilder<T> onClick(Class<A> type, R result);
 
     MessageBuilder<T> onHover(HoverAction<?> action);
 
-    <R, A extends HoverAction<R>> MessageBuilder<T> onHover(Class<A> type, R result);
+    MessageBuilder<T> onShiftClick(ShiftClickAction<?> action);
 
     Message<T> build();
 

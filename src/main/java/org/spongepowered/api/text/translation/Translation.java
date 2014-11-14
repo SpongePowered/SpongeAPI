@@ -33,7 +33,4 @@ public interface Translation {
     String get();
 
     String get(Object... args);
-    // TODO: this would only work on the client
-    // String get(Locale locale);
-    // String get(Locale locale, Object... args);
 }

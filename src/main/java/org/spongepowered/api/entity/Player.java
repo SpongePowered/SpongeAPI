@@ -26,7 +26,8 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.text.Message;
-import org.spongepowered.api.text.Title;
+import org.spongepowered.api.text.chat.ChatPosition;
+import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.util.command.CommandSource;
 
 public interface Player extends HumanEntity, CommandSource {
@@ -45,12 +46,12 @@ public interface Player extends HumanEntity, CommandSource {
      */
     String getDisplayName();
 
-    /**
-     * Sends the given message to this player
-     *
-     * @param message The message to send
-     */
-    void sendMessage(Message<?> message);
+    // TODO: Javadocs
+    void sendMessage(ChatPosition position, String... message);
+
+    void sendMessage(ChatPosition position, Message<?>... messages);
+
+    void sendMessage(ChatPosition position, Iterable<Message<?>> messages);
 
     /**
      * Sends a {@link Title} to this player. This is the same as calling

@@ -22,7 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.title;
+
+import org.spongepowered.api.text.Message;
 
 public interface TitleBuilder {
 

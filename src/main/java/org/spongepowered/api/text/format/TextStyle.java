@@ -55,6 +55,7 @@ public interface TextStyle {
     boolean is(TextStyle style);
 
     // TODO: Decide if this would fit better inside the builder
+
     /**
      * Negates this text style.
      * This is useful for undoing text styles that are inherited by parent Messages.
@@ -86,6 +87,8 @@ public interface TextStyle {
      * which are the Minecraft base types.
      * Base extends FormattingCode because it does have a corresponding formatting code.
      */
-    interface Base extends FormattingCode, TextStyle { }
+    interface Base extends FormattingCode, TextStyle {
+
+    }
 
 }

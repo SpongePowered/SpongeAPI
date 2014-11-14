@@ -24,20 +24,56 @@
  */
 package org.spongepowered.api.text.action;
 
-/**
- * A ShiftClickAction is a TextAction that responds to shift-clicks.
- * Currently the only value is InsertText, which maps to the insertion field in Message JSON.
- * Possibly more shift click actions will be added to the client in the future.
- *
- * @param <R> the type of the result of the action
- */
-public interface ShiftClickAction<R> extends TextAction<R> {
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.Message;
 
-    /**
-     * Inserts some text into the chat prompt.
-     */
-    interface InsertText extends ShiftClickAction<String> {
+import java.net.URL;
 
+class NullActionFactory implements ActionFactory {
+
+    @Override
+    public ClickAction.OpenUrl createOpenUrl(URL url) {
+        return null;
     }
 
+    @Override
+    public ClickAction.RunCommand createRunCommand(String command) {
+        return null;
+    }
+
+    @Override
+    public ClickAction.ChangePage createChangePage(int page) {
+        return null;
+    }
+
+    @Override
+    public ClickAction.SuggestCommand createSuggestCommand(String command) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowText createShowText(Message<?> text) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowItem createShowItem(ItemStack item) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowAchievement createShowAchievement(Object achievement) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowEntity createShowEntity(Entity entity) {
+        return null;
+    }
+
+    @Override
+    public ShiftClickAction.InsertText createInsertText(String text) {
+        return null;
+    }
 }

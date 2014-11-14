@@ -41,9 +41,47 @@ public final class Messages {
         return factory.createTranslationBuilder(t, args);
     }
 
-    // TODO: Scoreboard
-    public static MessageBuilder<Object> builder(Object score, Object override) {
+    // TODO: Score API
+    public static MessageBuilder<Object> builder(Object score, String override) {
         return factory.createScoreBuilder(score, override);
     }
 
+    public static <T> Message<T> of(T message) {
+        return builder(message).build();
+    }
+
+    @Deprecated
+    public static char getLegacyChar() {
+        return factory.getColorChar();
+    }
+
+    @Deprecated
+    public static Message<?> fromLegacy(String message) {
+        return fromLegacy(message, getLegacyChar());
+    }
+
+    @Deprecated
+    public static Message<?> fromLegacy(String message, char color) {
+        return factory.parseCodes(message, color);
+    }
+
+    @Deprecated
+    public static String stripCodes(String message) {
+        return stripCodes(message, getLegacyChar());
+    }
+
+    @Deprecated
+    public static String stripCodes(String message, char color) {
+        return factory.stripCodes(message, color);
+    }
+
+    @Deprecated
+    public static String translateCodes(String message, char from) {
+        return translateCodes(message, from, getLegacyChar());
+    }
+
+    @Deprecated
+    public static String translateCodes(String message, char from, char to) {
+        return factory.translateCodes(message, from, to);
+    }
 }

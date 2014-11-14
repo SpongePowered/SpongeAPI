@@ -31,7 +31,7 @@ import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.scheduler.Scheduler;
 import org.spongepowered.api.text.Message;
-import org.spongepowered.api.text.Title;
+import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;

@@ -38,7 +38,7 @@ import java.util.List;
  * A Message represents some text in the new raw JSON message format.
  * Message is an immutable class that is created by a {@link org.spongepowered.api.text.MessageBuilder},
  * and each getter method maps to a field or some fields in JSON.
- * Message is also an Iterable whose iterator iterates over its children, children's children, etc. recursively.
+ * Message is also an {@link Iterable} whose iterator iterates over its children, children's children, etc. recursively.
  *
  * <p>Among other places, it shows up in books, signs, titles, chat, and the /tellraw command.</p>
  *
@@ -79,15 +79,6 @@ public interface Message<T> extends Iterable<Message<T>> {
     List<Message<?>> getChildren();
 
     /**
-     * Returns the insertion of this Message.
-     * In Minecraft, this is what gets inserted into the chat prompt when the text is shift-clicked.
-     * This maps to the insertion field in JSON.
-     *
-     * @return The insertion text of this Message
-     */
-    Optional<String> getInsertion();
-
-    /**
      * Returns the action for when this text is clicked.
      * This maps to the clickEvent field in JSON.
      *
@@ -115,14 +106,18 @@ public interface Message<T> extends Iterable<Message<T>> {
      * A Text Message is a message with a String as content.
      * In JSON, the content getter maps to the text field.
      */
-    interface Text extends Message<String> { }
+    interface Text extends Message<String> {
+
+    }
 
     /**
      * A Translatable Message is a message with a Translation as content.
      * Whatever locale the client is using translates this message using the translation identifier.
      * In JSON, the content getter maps to the translation identifier.
      */
-    interface Translatable extends Message<Translation> { }
+    interface Translatable extends Message<Translation> {
+
+    }
 
 
     /**
@@ -137,7 +132,7 @@ public interface Message<T> extends Iterable<Message<T>> {
     /**
      * A Score Message is a message with a Score as content.
      * this Message does not appear, but changes the score for some objective on the client-side.
-     * It can be overriden.
+     * It can be overridden.
      * In JSON, the content getter maps to the score field.
      */
     interface Score extends Message<Object> {

@@ -22,22 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.chat;
 
-/**
- * A ShiftClickAction is a TextAction that responds to shift-clicks.
- * Currently the only value is InsertText, which maps to the insertion field in Message JSON.
- * Possibly more shift click actions will be added to the client in the future.
- *
- * @param <R> the type of the result of the action
- */
-public interface ShiftClickAction<R> extends TextAction<R> {
+public class ChatPositions {
 
-    /**
-     * Inserts some text into the chat prompt.
-     */
-    interface InsertText extends ShiftClickAction<String> {
-
-    }
-
+    public static final ChatPosition CHAT = null;
+    public static final ChatPosition SYSTEM = null;
+    public static final ChatPosition ACTION_BAR = null;
 }

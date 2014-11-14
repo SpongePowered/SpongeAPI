@@ -39,7 +39,27 @@ class NullMessageFactory implements MessageFactory {
     }
 
     @Override
-    public MessageBuilder<Object> createScoreBuilder(Object score, Object override) {
+    public MessageBuilder<Object> createScoreBuilder(Object score, String override) {
+        return null;
+    }
+
+    @Override
+    public char getColorChar() {
+        return 0;
+    }
+
+    @Override
+    public Message<?> parseCodes(String message, char color) {
+        return null;
+    }
+
+    @Override
+    public String stripCodes(String message, char color) {
+        return null;
+    }
+
+    @Override
+    public String translateCodes(String message, char from, char to) {
         return null;
     }
 }

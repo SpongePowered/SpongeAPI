@@ -22,26 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.chat;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Player;
+public interface ChatPosition {
 
-public interface Title {
-
-    Optional<Message<?>> getTitle();
-
-    Optional<Message<?>> getSubTitle();
-
-    Optional<Integer> getFadeIn();
-
-    Optional<Integer> getStay();
-
-    Optional<Integer> getFadeOut();
-
-    boolean isClear();
-
-    boolean isReset();
-
-    void send(Player... players);
+    // TODO: Do we need something in here
 }

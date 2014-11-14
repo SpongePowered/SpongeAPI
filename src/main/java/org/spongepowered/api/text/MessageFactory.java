@@ -32,6 +32,14 @@ interface MessageFactory {
 
     MessageBuilder<Translation> createTranslationBuilder(Translation t, Object... args);
 
-    MessageBuilder<Object> createScoreBuilder(Object score, Object override); // TODO
+    MessageBuilder<Object> createScoreBuilder(Object score, String override); // TODO
+
+    char getColorChar();
+
+    Message<?> parseCodes(String message, char color);
+
+    String stripCodes(String message, char color);
+
+    String translateCodes(String message, char from, char to);
 
 }
