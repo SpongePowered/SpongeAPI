@@ -26,17 +26,31 @@ package org.spongepowered.api.text.style;
 
 import com.google.common.base.Optional;
 
-public interface BaseTextStyle extends TextStyle {
+import java.util.Collection;
 
-    String getName();
+public interface TextFormat {
+
+    boolean isComposite();
+
+    TextFormat and(TextFormat that);
+
+    TextFormat andNot(TextFormat that);
+
+    TextFormat negate();
+
+    boolean is(TextFormat style);
 
     /**
-     * Gets the corresponding Minecraft formatting code, that, when applied,
-     * has the same effect as this text format.
+     * Gets a list of Minecraft formatting codes that, when put together
+     * and applied, have the same effect as this TextFormat.
      *
      * @return a List of Minecraft formatting codes
      */
     @Deprecated
-    Optional<Character> getCode();
+    Optional<Collection<Character>> getCodes();
+
+    interface Base extends TextFormat, TextStyle {
+
+    }
 
 }
