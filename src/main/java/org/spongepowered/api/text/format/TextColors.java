@@ -22,15 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.style;
+package org.spongepowered.api.text.format;
 
-public class TextStyles {
+public class TextColors {
 
-    public static final TextStyle.Type NONE = null;
+    public static final TextColor BLACK = null;
+    public static final TextColor DARK_BLUE = null;
+    public static final TextColor DARK_GREEN = null;
+    public static final TextColor DARK_AQUA = null;
+    public static final TextColor DARK_RED = null;
+    public static final TextColor DARK_PURPLE = null;
+    public static final TextColor GOLD = null;
+    public static final TextColor GRAY = null;
+    public static final TextColor DARK_GRAY = null;
+    public static final TextColor BLUE = null;
+    public static final TextColor GREEN = null;
+    public static final TextColor AQUA = null;
+    public static final TextColor RED = null;
+    public static final TextColor LIGHT_PURPLE = null;
+    public static final TextColor YELLOW = null;
+    public static final TextColor WHITE = null;
 
-    public static final TextStyle.Type OBFUSCATED = null;
-    public static final TextStyle.Type BOLD = null;
-    public static final TextStyle.Type STRIKETHROUGH = null;
-    public static final TextStyle.Type UNDERLINE = null;
-    public static final TextStyle.Type ITALIC = null;
+    // TODO: There doesn't seem to be a difference to WHITE
+    // Unlike with the old color codes, this will not reset the chat style, just the color
+    public static final TextColor RESET = null;
 }

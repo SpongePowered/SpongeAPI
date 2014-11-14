@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.style;
+package org.spongepowered.api.text.format;
 
 public interface TextStyle {
+
     boolean isComposite();
     boolean is(TextStyle style);
 
@@ -33,7 +34,8 @@ public interface TextStyle {
     TextStyle andNot(TextStyle... styles);
     TextStyle negate();
 
-    interface Type extends TextStyle, TextFormat {
+    interface Base extends FormattingCode, TextStyle {
 
     }
+
 }

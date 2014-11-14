@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.style;
+package org.spongepowered.api.text.format;
 
-import com.google.common.base.Optional;
+public class TextStyles {
 
-import java.awt.*;
+    public static final TextStyle.Base OBFUSCATED = null;
+    public static final TextStyle.Base BOLD = null;
+    public static final TextStyle.Base STRIKETHROUGH = null;
+    public static final TextStyle.Base UNDERLINE = null;
+    public static final TextStyle.Base ITALIC = null;
 
-public interface TextColor extends TextStyle {
-    Optional<String> getId();
-    Color getColor();
-    boolean isReset();
+    public static final TextStyle.Base RESET = null;
+
 }

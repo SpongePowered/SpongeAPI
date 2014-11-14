@@ -27,14 +27,16 @@ package org.spongepowered.api.text;
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.style.TextColor;
-import org.spongepowered.api.text.style.TextStyle;
+import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 
 import java.util.List;
 
 public interface Message<T> extends Iterable<Message<T>> {
+
     T getContent();
+
     TextColor getColor();
     TextStyle getStyle();
 
@@ -49,10 +51,13 @@ public interface Message<T> extends Iterable<Message<T>> {
 
     interface Translatable extends Message<Translation> { }
 
+    // TODO use Selector
+    interface Selector extends Message<String> { }
+
     // TODO use Score
+    // should this REALLY be a message? it's so different
     interface Score extends Message<Object> {
         Optional<String> getOverride();
     }
-    // TODO use Selector
-    interface Selector extends Message<String> { }
+
 }

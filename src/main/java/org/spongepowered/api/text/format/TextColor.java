@@ -22,11 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.style;
+package org.spongepowered.api.text.format;
 
 import com.google.common.base.Optional;
 
-public interface TextFormat {
-    @Deprecated
-    Optional<Character> getCode();
+import java.awt.Color;
+
+public interface TextColor extends FormattingCode {
+
+    Optional<String> getId();
+
+    Color getColor();
+
+    boolean isReset();
+
 }

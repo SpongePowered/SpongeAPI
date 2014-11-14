@@ -26,39 +26,30 @@ package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.style.TextStyle;
+import org.spongepowered.api.text.format.FormattingCode;
+import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
-public interface MessageBuilder {
+public interface MessageBuilder<T> {
 
-    Message<?> build(); // TODO
+    Message<T> build(); // TODO
 
-    MessageBuilder text(String text);
+    MessageBuilder<T> content(T content);
+
+    MessageBuilder<T> color(TextColor color);
+
+    MessageBuilder<T> style(TextStyle style);
+
+    MessageBuilder<T> insertion(String insertion);
+
+    MessageBuilder onClick(ClickAction<?> action);
+
+    MessageBuilder onHover(HoverAction<?> action);
 
     MessageBuilder add(Iterable<Message<?>> child);
 
     MessageBuilder add(Message<?>... child);
-
-    MessageBuilder format(TextStyle format);
-
-    MessageBuilder insertion(String insertion);
-
-    MessageBuilder onClick(ClickAction<?> action);
-    <R, T extends ClickAction<R>> MessageBuilder onClick(Class<T> type, R result);
-    MessageBuilder onHover(HoverAction<?> action);
-    <R, T extends HoverAction<R>> MessageBuilder onHover(Class<T> type, R result);
-
-    MessageBuilder translation(Translation translation);
-
-    MessageBuilder arg(Message<?> extra);
-
-    MessageBuilder arg(Iterable<Message<?>> extra);
-
-    MessageBuilder arg(Message<?>... extra);
-
-    // TODO score api
-    MessageBuilder score(Object score);
-
-    MessageBuilder overrideScore(Object score, String value);
 
 }

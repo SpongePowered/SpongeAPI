@@ -22,28 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.style;
+package org.spongepowered.api.text.format;
+import com.google.common.base.Optional;
 
-public class TextColors {
+public interface FormattingCode {
 
-    public static final TextColor BLACK = null;
-    public static final TextColor DARK_BLUE = null;
-    public static final TextColor DARK_GREEN = null;
-    public static final TextColor DARK_AQUA = null;
-    public static final TextColor DARK_RED = null;
-    public static final TextColor DARK_PURPLE = null;
-    public static final TextColor GOLD = null;
-    public static final TextColor GRAY = null;
-    public static final TextColor DARK_GRAY = null;
-    public static final TextColor BLUE = null;
-    public static final TextColor GREEN = null;
-    public static final TextColor AQUA = null;
-    public static final TextColor RED = null;
-    public static final TextColor LIGHT_PURPLE = null;
-    public static final TextColor YELLOW = null;
-    public static final TextColor WHITE = null;
+    String getName();
 
-    // TODO: There doesn't seem to be a difference to WHITE
-    // Unlike with the old color codes, this will not reset the chat style, just the color
-    public static final TextColor RESET = null;
+    /**
+     * Gets the corresponding Minecraft formatting code, that, when applied,
+     * has the same effect as this text format.
+     *
+     * @return a List of Minecraft formatting codes
+     */
+    @Deprecated
+    Optional<Character> getCode();
+
 }
