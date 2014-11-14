@@ -36,7 +36,7 @@ import java.util.Collection;
 /**
  * Represents a block at a specific location in an {@link Extent}.
  */
-public interface Block extends BlockState {
+public interface Block {
 
     /**
      * Get the extent.
@@ -79,6 +79,13 @@ public interface Block extends BlockState {
      * @return The z component
      */
     int getZ();
+
+    /**
+     * Get the block state for this position.
+     *
+     * @return The current block state
+     */
+    BlockState getState();
 
     /**
      * Replace the block state at this position with a new state.
@@ -209,4 +216,15 @@ public interface Block extends BlockState {
      * @return Faces indirectly powered
      */
     Collection<Direction> getIndirectlyPoweredFaces();
+
+    /**
+     * Get a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link Extent} that it was
+     * taken from so changes to the original block do not affect the
+     * snapshot.</p>
+     *
+     * @return A snapshot
+     */
+    BlockSnapshot getSnapshot();
 }
