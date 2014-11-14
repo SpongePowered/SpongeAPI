@@ -19,7 +19,7 @@ public interface TeleportEvent {
 		COMMAND,
 		
 		/**
-		 * The player was teleported by the entrance of an end portal.
+		 * The player was teleported by entering an end portal.
 		 */
 		END_PORTAL,
 		
@@ -29,7 +29,7 @@ public interface TeleportEvent {
 		ENDER_PEARL,
 		
 		/**
-		 * The player was teleported by the entrance of an nether portal.
+		 * The player was teleported by entering a nether portal.
 		 */
 		NETHER_PORTAL,
 		
