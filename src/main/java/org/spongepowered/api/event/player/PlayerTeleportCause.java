@@ -25,38 +25,31 @@
 
 package org.spongepowered.api.event.player;
 
-public class TeleportEvent {
+public class PlayerTeleportCause {
 	
 	/**
-	 * When a player teleports, this should be called.
+	 * The player was teleported by the execution of a command.
 	 */
-	public TeleportEvent() {
-		
-	}
+	public static final PlayerTeleportCause COMMAND = null;
 	
 	/**
-	 * The player was teleported by an execute of a command.
+	 * The player was teleported by the entering an end portal.
 	 */
-	public static final TeleportEvent COMMAND = new TeleportEvent();
-	
-	/**
-	 * The player was teleported by entering an end portal.
-	 */
-	public static final TeleportEvent END_PORTAL = new TeleportEvent();
+	public static final PlayerTeleportCause END_PORTAL = null;
 	
 	/**
 	 * The player was teleported by the launching of an ender pearl.
 	 */
-	public static final TeleportEvent ENDER_PEARL = new TeleportEvent();
+	public static final PlayerTeleportCause ENDER_PEARL = null;
 	
 	/**
-	 * The player was teleported by entering a nether portal.
+	 * The player was teleported by the entering a nether portal.
 	 */
-	public static final TeleportEvent NETHER_PORTAL = new TeleportEvent();
+	public static final PlayerTeleportCause NETHER_PORTAL = null;
 	
 	/**
 	 * The player was teleported by an external plugin.
 	 */
-	public static final TeleportEvent PLUGIN = new TeleportEvent();
+	public static final PlayerTeleportCause PLUGIN = null;
 	
 }
