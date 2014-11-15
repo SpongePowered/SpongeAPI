@@ -25,17 +25,8 @@
 
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.event.entity.EntityDropItemEvent;
 
-/**
- * Called when a player drops an item stack
- */
-public interface PlayerDropItemEvent extends PlayerEvent {
+public interface PlayerDropItemEvent extends PlayerEvent, EntityDropItemEvent {
 
-    /**
-     * Gets the items that the player is dropping
-     * 
-     * @return The dropped items
-     */
-    ItemStack getDroppedItems();
 }

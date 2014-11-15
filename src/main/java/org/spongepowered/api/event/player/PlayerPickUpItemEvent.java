@@ -25,17 +25,8 @@
 
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
 
-/**
- * Called when a player picks up an item or item stack
- */
-public interface PlayerPickUpItemEvent extends PlayerEvent {
+public interface PlayerPickUpItemEvent extends PlayerEvent, EntityPickUpItemEvent {
 
-    /**
-     * Gets the items as an {@link Entity} that the player is picking up
-     * 
-     * @return The items as entities
-     */
-    Entity getItems();
 }

@@ -23,28 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Player} is teleported to a different world
+ * Called when a entity picks up an item or item stack
  */
-public interface PlayerChangedWorldEvent extends PlayerEvent, Cancellable {
+public interface EntityPickUpItemEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the {@link World} the player has moved from
-     *
-     * @return The source world
+     * Gets the items as an {@link Entity} that the entity is picking up
+     * 
+     * @return The items as entities
      */
-    World getSourceWorld();
-
-    /**
-     * The {@link World} the player has moved to
-     *
-     * @return The destination world
-     */
-    World getDestinationWorld();
+    Entity getItems();
 }

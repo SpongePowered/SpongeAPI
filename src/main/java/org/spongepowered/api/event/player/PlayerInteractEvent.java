@@ -29,11 +29,12 @@ import javax.annotation.Nullable;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.entity.PlayerInteractionType;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Called when a {@link Player} interacts with the world
  */
-public interface PlayerInteractEvent extends PlayerEvent {
+public interface PlayerInteractEvent extends PlayerEvent, Cancellable {
 
     /**
      * Gets the {@link Block} that the player has clicked, returns null if the
