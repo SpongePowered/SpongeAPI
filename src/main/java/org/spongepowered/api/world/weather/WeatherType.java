@@ -26,7 +26,7 @@
 package org.spongepowered.api.world.weather;
 
 /**
- * An represents a possible weather condition.
+ * Represents a possible weather condition.
  */
 public interface WeatherType {
 
