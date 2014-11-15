@@ -28,6 +28,12 @@ package org.spongepowered.api.block;
 /**
  * A mutable complete representation of a block type and its associated data.
  */
-public interface BlockSnapshot extends BlockState {
+public interface BlockSnapshot {
 
+    /**
+     * Get the block state for this snapshot.
+     *
+     * @return The stored block state
+     */
+    BlockState getState();
 }
