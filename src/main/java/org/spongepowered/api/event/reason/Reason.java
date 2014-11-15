@@ -71,6 +71,11 @@ public class Reason {
      */
     public static final Reason UNKNOWN = new Reason("unknown");
     
+    /**
+     * Fire was the reason. Usually this applies when something burns...
+     */
+    public static final Reason FIRE = new Reason("fire").setVanilla(true);
+    
     private String name;
     private boolean isVanilla;
     

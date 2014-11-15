@@ -141,7 +141,7 @@ public class Cause {
             if (entity != null) {
                 return entity.getWorld();
             } else if (block != null) {
-                //Cast Extends to World, should work always.
+                //Cast Extendt to World, should work always.
                 return Optional.of((World) block.getLocation().getExtent());
             }
         }
