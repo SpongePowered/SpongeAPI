@@ -23,32 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.weather;
+package org.spongepowered.api.world.weather;
 
 /**
- * Represents the weather in a particular world.
+ * An represents a possible weather condition.
  */
-public interface Weather {
-
-    /**
-     * Gets the weather type.
-     *
-     * @return The {@link WeatherType}
-     */
-    WeatherType getType();
-
-    /**
-     * Gets the amount of time before the weather can naturally change.
-     *
-     * @return The remaining time in seconds
-     */
-    int getRemainingDuration();
-
-    /**
-     * Sets the amount of time before the weather can naturally change.
-     *
-     * @param duration The number of seconds until next weather change
-     */
-    void setRemainingDuration(int duration);
+public interface WeatherType {
 
 }

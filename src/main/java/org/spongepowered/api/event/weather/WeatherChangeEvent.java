@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.event.weather;
 
-import org.spongepowered.api.weather.Weather;
-import org.spongepowered.api.weather.WeatherType;
+import org.spongepowered.api.world.weather.Weather;
+import org.spongepowered.api.world.weather.WeatherType;
 
 /**
  * Called when a world's weather changes
