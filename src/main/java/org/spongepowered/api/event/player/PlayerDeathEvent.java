@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.event.player;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.entity.Player;
@@ -32,7 +33,7 @@ import org.spongepowered.api.entity.Player;
 /**
  * Called when a {@link Player} dies
  */
-public interface PlayerDeathEvent extends PlayerEvent {
+public interface PlayerDeathEvent extends PlayerEvent, Cancellable {
 
     /**
      * Get the cause of the player's death.
