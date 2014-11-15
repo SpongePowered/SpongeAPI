@@ -24,9 +24,28 @@
  */
 package org.spongepowered.api.text.chat;
 
+/**
+ * ChatPositions is a list of the default chat positions that are available in Minecraft.
+ * The values are filled in by mixins in Sponge at runtime.
+ */
 public class ChatPositions {
 
+    /**
+     * The standard chat position in prompt at the bottom-left.
+     */
     public static final ChatPosition CHAT = null;
+
+    /**
+     * The same position as the {@link #CHAT} position, except messages sent to this position are still seen when
+     * chat is turned off on the Minecraft client.
+     *
+     * <p>Use wisely as to not annoy players.</p>
+     */
     public static final ChatPosition SYSTEM = null;
+
+    /**
+     * The position right above the inventory, experience, health, item name, etc. bars.
+     */
     public static final ChatPosition ACTION_BAR = null;
+
 }

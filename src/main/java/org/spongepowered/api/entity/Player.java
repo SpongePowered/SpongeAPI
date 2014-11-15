@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.text.Message;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.chat.ChatPosition;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.util.command.CommandSource;

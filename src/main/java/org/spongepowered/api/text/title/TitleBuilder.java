@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.text.title;
 
-import org.spongepowered.api.text.Message;
+import org.spongepowered.api.text.message.Message;
 
 public interface TitleBuilder {
 

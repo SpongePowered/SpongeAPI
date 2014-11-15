@@ -26,7 +26,7 @@ package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.Message;
+import org.spongepowered.api.text.message.Message;
 
 /**
  * A HoverAction is a TextAction that responds to hovers.
@@ -38,25 +38,19 @@ public interface HoverAction<R> extends TextAction<R> {
     /**
      * Shows some text.
      */
-    interface ShowText extends HoverAction<Message<?>> {
-
-    }
+    interface ShowText extends HoverAction<Message<?>> { }
 
     /**
      * Shows an item and its information.
      */
-    interface ShowItem extends HoverAction<ItemStack> {
-
-    }
+    interface ShowItem extends HoverAction<ItemStack> { }
 
     // TODO replace with achievement
 
     /**
      * Shows an achievement and its information.
      */
-    interface ShowAchievement extends HoverAction<Object> {
-
-    }
+    interface ShowAchievement extends HoverAction<Object> { }
 
     /**
      * Shows an entity and its information.

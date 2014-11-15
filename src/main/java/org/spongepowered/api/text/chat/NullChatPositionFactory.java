@@ -22,24 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.chat;
 
-import org.spongepowered.api.text.translation.Translation;
+import java.util.List;
 
-interface MessageFactory {
+class NullChatPositionFactory implements ChatPositionFactory {
 
-    <T> MessageBuilder<T> createBuilder(T content);
+    @Override
+    public ChatPosition parsePosition(String name) {
+        return null;
+    }
 
-    MessageBuilder<Translation> createTranslationBuilder(Translation t, Object... args);
-
-    MessageBuilder<Object> createScoreBuilder(Object score, String override); // TODO
-
-    char getColorChar();
-
-    Message<?> parseCodes(String message, char color);
-
-    String stripCodes(String message, char color);
-
-    String translateCodes(String message, char from, char to);
-
+    @Override
+    public List<ChatPosition> getPositions() {
+        return null;
+    }
 }

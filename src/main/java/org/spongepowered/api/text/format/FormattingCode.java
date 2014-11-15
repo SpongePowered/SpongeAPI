@@ -40,11 +40,11 @@ public interface FormattingCode {
     String getName();
 
     /**
-     * Gets the corresponding Minecraft formatting code.
+     * Gets the corresponding Minecraft formatting code if available.
      *
      * @return a char of the Minecraft formatting code
      */
     @Deprecated
-    char getCode();
+    Optional<Character> getCode();
 
 }

@@ -22,32 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.message;
 
-import org.spongepowered.api.text.action.ClickAction;
-import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.action.ShiftClickAction;
-import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.translation.Translation;
 
-public interface MessageBuilder<T> {
+interface MessageFactory {
 
-    MessageBuilder<T> append(Message<?>... children);
+    <T> MessageBuilder<T> createBuilder(T content);
 
-    MessageBuilder<T> append(Iterable<Message<?>> child);
+    MessageBuilder<Translation> createTranslationBuilder(Translation t, Object... args);
 
-    MessageBuilder<T> content(T content);
+    MessageBuilder<Object> createScoreBuilder(Object score, String override); // TODO
 
-    MessageBuilder<T> color(TextColor color);
+    // TODO selector builder?
 
-    MessageBuilder<T> style(TextStyle style);
+    char getColorChar();
 
-    MessageBuilder<T> onClick(ClickAction<?> action);
+    Message.Text parseCodes(String message, char color);
 
-    MessageBuilder<T> onHover(HoverAction<?> action);
+    String stripCodes(String message, char color);
 
-    MessageBuilder<T> onShiftClick(ShiftClickAction<?> action);
-
-    Message<T> build();
+    String replaceCodes(String message, char from, char to);
 
 }

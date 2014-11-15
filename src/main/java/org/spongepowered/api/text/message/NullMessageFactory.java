@@ -22,21 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.message;
 
-/**
- * A ShiftClickAction is a TextAction that responds to shift-clicks.
- * Currently the only value is InsertText, which maps to the insertion field in Message JSON.
- * This is because of the way that there is no actual shiftClickEvent field in the raw message JSON.
- * Possibly more shift click actions will be added to the client in the future.
- *
- * @param <R> the type of the result of the action
- */
-public interface ShiftClickAction<R> extends TextAction<R> {
+import org.spongepowered.api.text.translation.Translation;
 
-    /**
-     * Inserts some text into the chat prompt.
-     */
-    interface InsertText extends ShiftClickAction<String> { }
+class NullMessageFactory implements MessageFactory {
+
+    @Override
+    public <T> MessageBuilder<T> createBuilder(T content) {
+        return null;
+    }
+
+    @Override
+    public MessageBuilder<Translation> createTranslationBuilder(Translation t, Object... args) {
+        return null;
+    }
+
+    @Override
+    public MessageBuilder<Object> createScoreBuilder(Object score, String override) {
+        return null;
+    }
+
+    @Override
+    public char getColorChar() {
+        return 0;
+    }
+
+    @Override
+    public Message.Text parseCodes(String message, char color) {
+        return null;
+    }
+
+    @Override
+    public String stripCodes(String message, char color) {
+        return null;
+    }
+
+    @Override
+    public String replaceCodes(String message, char from, char to) {
+        return null;
+    }
 
 }

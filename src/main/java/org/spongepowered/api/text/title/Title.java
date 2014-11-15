@@ -26,7 +26,7 @@ package org.spongepowered.api.text.title;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.text.Message;
+import org.spongepowered.api.text.message.Message;
 
 public interface Title {
 

@@ -22,44 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.format;
 
-import org.spongepowered.api.text.translation.Translation;
+import java.util.List;
 
-class NullMessageFactory implements MessageFactory {
-
+class NullTextFormatFactory implements TextFormatFactory {
     @Override
-    public <T> MessageBuilder<T> createBuilder(T content) {
+    public TextColor parseColor(String name) {
         return null;
     }
 
     @Override
-    public MessageBuilder<Translation> createTranslationBuilder(Translation t, Object... args) {
+    public List<TextColor> getColors() {
         return null;
     }
 
     @Override
-    public MessageBuilder<Object> createScoreBuilder(Object score, String override) {
+    public TextStyle parseStyle(String name) {
         return null;
     }
 
     @Override
-    public char getColorChar() {
-        return 0;
-    }
-
-    @Override
-    public Message<?> parseCodes(String message, char color) {
+    public List<TextStyle> getStyles() {
         return null;
     }
 
     @Override
-    public String stripCodes(String message, char color) {
-        return null;
-    }
-
-    @Override
-    public String translateCodes(String message, char from, char to) {
+    public TextStyle createStyle(TextStyle[] styles) {
         return null;
     }
 }

@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.text.Message;
+import org.spongepowered.api.text.message.Message;
 
 /**
  * Something that can execute commands.

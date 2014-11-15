@@ -25,15 +25,15 @@
 package org.spongepowered.api.text.format;
 
 /**
- * A TextStyle represents the style that a {@link org.spongepowered.api.text.Message} has.
+ * A TextStyle represents the style that a {@link org.spongepowered.api.text.message.Message} has.
  * It is an immutable class.
  * There are several Base styles specified in {@link org.spongepowered.api.text.format.TextStyles}
  * which are the Minecraft base types.
  * From these types, the {@link #and(TextStyle...)}, {@link #andNot(TextStyle...)}, and {@link #negate()} methods
  * can compose text styles together.
  *
- * <p>Interestingly enough, TextStyle actually forms a group with the {@link #and(TextStyle...)} operation
- * as the group operation and the TextStyle elements as the elements of the group. I do not want to prove
+ * <p>Interestingly enough, TextStyle actually forms a monoid with the {@link #and(TextStyle...)} operation
+ * as the monoid operation and the TextStyle elements as the elements of the monoid. I do not want to prove
  * closure or the other group laws, but yay math!</p>
  */
 public interface TextStyle {
@@ -58,7 +58,7 @@ public interface TextStyle {
 
     /**
      * Negates this text style.
-     * This is useful for undoing text styles that are inherited by parent Messages.
+     * This is useful for undoing text styles that are inherited from parent Messages.
      *
      * @return A new TextStyle that is the inverse of this TextStyle.
      */
@@ -85,10 +85,9 @@ public interface TextStyle {
      * A Base text style is a text style that is represented in Minecraft.
      * There are several Base styles specified in {@link org.spongepowered.api.text.format.TextStyles}
      * which are the Minecraft base types.
-     * Base extends FormattingCode because it does have a corresponding formatting code.
+     * Base extends FormattingCode because it does have a corresponding formatting code;
+     * it is a single, pure text style.
      */
-    interface Base extends FormattingCode, TextStyle {
-
-    }
+    interface Base extends FormattingCode, TextStyle { }
 
 }

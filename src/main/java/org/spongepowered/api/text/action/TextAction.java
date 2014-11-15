@@ -41,8 +41,11 @@ public interface TextAction<R> {
     String getId();
 
     /**
-     * Returns the result of this
-     * @return
+     * Returns the result of this text action.
+     * This is an argument that gets passed into the text action in JSON, for instance,
+     * the URL in the OpenUrl click action.
+     *
+     * @return A result
      */
     R getResult();
 

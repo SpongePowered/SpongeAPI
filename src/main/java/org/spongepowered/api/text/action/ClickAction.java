@@ -36,29 +36,21 @@ public interface ClickAction<R> extends TextAction<R> {
     /**
      * Opens a url.
      */
-    interface OpenUrl extends ClickAction<URL> {
-
-    }
+    interface OpenUrl extends ClickAction<URL> { }
 
     /**
      * Runs a command.
      */
-    interface RunCommand extends ClickAction<String> {
-
-    }
+    interface RunCommand extends ClickAction<String> { }
 
     /**
      * For books, changes pages.
      */
-    interface ChangePage extends ClickAction<Integer> {
-
-    }
+    interface ChangePage extends ClickAction<Integer> { }
 
     /**
      * Suggests a command in the prompt.
      */
-    interface SuggestCommand extends ClickAction<String> {
-
-    }
+    interface SuggestCommand extends ClickAction<String> { }
 
 }
