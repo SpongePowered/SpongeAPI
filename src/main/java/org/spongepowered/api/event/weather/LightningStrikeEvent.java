@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.event.weather;
 
+import com.google.common.base.Optional;
+
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Location;
 
@@ -41,10 +43,10 @@ public interface LightningStrikeEvent extends WeatherEvent {
     Location getStrikeLocation();
 
     /**
-     * Gets whether the lightning struck an {@link Entity}.
+     * Gets the {@link Entity} targeted by this lightning strike.
      *
-     * @return {@code True} if the lightning struck an {@link Entity}
+     * @return {@link Entity} targeted
      */
-    boolean struckEntity();
+    Optional<Entity> targetedEntity();
 
 }
