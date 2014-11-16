@@ -47,6 +47,6 @@ public interface LightningStrikeEvent extends WeatherEvent {
      *
      * @return {@link Entity} targeted
      */
-    Optional<Entity> targetedEntity();
+    Optional<Entity> getTargetedEntity();
 
 }
