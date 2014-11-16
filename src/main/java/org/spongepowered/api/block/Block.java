@@ -155,6 +155,20 @@ public interface Block {
     boolean digWith(ItemStack itemStack);
 
     /**
+     * Gets the time it takes to dig this block with a fist in ticks.
+     *
+     * @return The time in ticks.
+     */
+    int getDigTime();
+
+    /**
+     * Gets the time it takes to dig this block the specified item in ticks.
+     *
+     * @return The time in ticks.
+     */
+    int getDigTimeWith(ItemStack itemStack);
+
+    /**
      * Get the light level for this object.
      *
      * <p>Higher levels indicate a higher luminance.</p>
