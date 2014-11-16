@@ -22,22 +22,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.chat;
+package org.spongepowered.api.text.action;
 
-import java.util.List;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.message.Message;
+
+import java.net.URL;
 
 /**
- * Dummy implementation of {@link ChatPositionFactory} - returns null for all methods
+ * Dummy implementation of {@link TextActionFactory} - returns null for all methods
  */
-class NullChatPositionFactory implements ChatPositionFactory {
+class NullTextActionFactory implements TextActionFactory {
 
     @Override
-    public ChatPosition parsePosition(String name) {
+    public ClickAction.OpenUrl createOpenUrl(URL url) {
         return null;
     }
 
     @Override
-    public List<ChatPosition> getPositions() {
+    public ClickAction.RunCommand createRunCommand(String command) {
+        return null;
+    }
+
+    @Override
+    public ClickAction.ChangePage createChangePage(int page) {
+        return null;
+    }
+
+    @Override
+    public ClickAction.SuggestCommand createSuggestCommand(String command) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowText createShowText(Message<?> text) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowItem createShowItem(ItemStack item) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowAchievement createShowAchievement(Object achievement) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowEntity createShowEntity(Entity entity) {
+        return null;
+    }
+
+    @Override
+    public ShiftClickAction.InsertText createInsertText(String text) {
         return null;
     }
 }

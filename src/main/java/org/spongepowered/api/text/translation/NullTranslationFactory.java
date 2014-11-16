@@ -25,40 +25,12 @@
 package org.spongepowered.api.text.translation;
 
 /**
- * A Translation most closely represents any given Minecraft translation ID.
- * It allows for getting a string of text in multiple locales in the client; however, it is mostly used to hold a
- * translation ID when sending a message so the client can do translation.
- * Some Translations have parameters, and some do not.
- *
- * <p>On the server-side, the only available locale is English.</p>
+ * Dummy implementation of {@link TranslationFactory} - returns null for all methods
  */
-public interface Translation {
+class NullTranslationFactory implements TranslationFactory {
 
-    /**
-     * Returns the translation identifier for this Translation.
-     *
-     * @return A String for the translation identifier
-     */
-    String getId();
-
-    /**
-     * Gets the default translation without any parameters. If the translations contains
-     * any parameters they will be filled with empty text.
-     *
-     * @return A String for the translation
-     */
-    String get();
-
-    /**
-     * Gets the default translation with the specified parameters.
-     *
-     * @param args The parameters for this translation
-     * @return The default translation with the specified parameters
-     */
-    String get(Object... args);
-
-    // TODO locale api
-    //String get(Object locale);
-    //String get(Object locale, Object... args);
-
+    @Override
+    public Translation getTranslation(String id) {
+        return null;
+    }
 }

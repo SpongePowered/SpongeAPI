@@ -22,38 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.title;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.message.Message;
+/**
+ * Utility class to create instances of {@link TitleBuilder}.
+ */
+public final class Titles {
+    private static final TitleFactory factory = new NullTitleFactory();
 
-import java.net.URL;
+    private Titles() {}
 
-interface ActionFactory {
+    /**
+     * Creates a new {@link Title} configuration builder that will reset the
+     * currently displayed Title on the client before displaying the new
+     * configured one.
+     *
+     * @return A new {@link TitleBuilder}
+     * @see #update
+     */
+    public static TitleBuilder builder() {
+        return update().reset();
+    }
 
-    // Click actions
-
-    ClickAction.OpenUrl createOpenUrl(URL url);
-
-    ClickAction.RunCommand createRunCommand(String command);
-
-    ClickAction.ChangePage createChangePage(int page);
-
-    ClickAction.SuggestCommand createSuggestCommand(String command);
-
-    // Hover actions
-
-    HoverAction.ShowText createShowText(Message<?> text);
-
-    HoverAction.ShowItem createShowItem(ItemStack item);
-
-    HoverAction.ShowAchievement createShowAchievement(Object achievement);
-
-    HoverAction.ShowEntity createShowEntity(Entity entity);
-
-    // Shift click actions
-
-    ShiftClickAction.InsertText createInsertText(String text);
-
+    /**
+     * Creates a new empty {@link Title} configuration builder. Unlike
+     * {@link #builder} this won't reset the current Title on the client
+     * before displaying the current one. This has less use cases but should
+     * be used if just the previously sent Title should be updated.
+     *
+     * @return A new {@link TitleBuilder}
+     * @see #builder
+     */
+    public static TitleBuilder update() {
+        return factory.createTitleBuilder();
+    }
 }

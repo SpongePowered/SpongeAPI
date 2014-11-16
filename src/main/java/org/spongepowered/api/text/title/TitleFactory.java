@@ -22,43 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.translation;
+package org.spongepowered.api.text.title;
 
 /**
- * A Translation most closely represents any given Minecraft translation ID.
- * It allows for getting a string of text in multiple locales in the client; however, it is mostly used to hold a
- * translation ID when sending a message so the client can do translation.
- * Some Translations have parameters, and some do not.
- *
- * <p>On the server-side, the only available locale is English.</p>
+ * Represents the required implementation for the static methods in {@link Titles}.
  */
-public interface Translation {
+interface TitleFactory {
 
     /**
-     * Returns the translation identifier for this Translation.
+     * Creates a new empty {@link TitleBuilder} instance.
      *
-     * @return A String for the translation identifier
+     * @return A new title builder
      */
-    String getId();
-
-    /**
-     * Gets the default translation without any parameters. If the translations contains
-     * any parameters they will be filled with empty text.
-     *
-     * @return A String for the translation
-     */
-    String get();
-
-    /**
-     * Gets the default translation with the specified parameters.
-     *
-     * @param args The parameters for this translation
-     * @return The default translation with the specified parameters
-     */
-    String get(Object... args);
-
-    // TODO locale api
-    //String get(Object locale);
-    //String get(Object locale, Object... args);
-
+    TitleBuilder createTitleBuilder();
 }

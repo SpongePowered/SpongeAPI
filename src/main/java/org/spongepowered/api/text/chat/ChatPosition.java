@@ -31,5 +31,4 @@ package org.spongepowered.api.text.chat;
  */
 public interface ChatPosition {
 
-    // TODO: Do we need something in here
 }

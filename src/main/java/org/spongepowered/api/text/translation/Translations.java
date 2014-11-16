@@ -22,58 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.translation;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.message.Message;
+import com.google.common.base.Optional;
 
-import java.net.URL;
+/**
+ * Utility class to obtain instances of {@link Translation}s by their ID.
+ */
+public final class Translations {
+    private static final TranslationFactory factory = new NullTranslationFactory();
 
-class NullActionFactory implements ActionFactory {
-
-    @Override
-    public ClickAction.OpenUrl createOpenUrl(URL url) {
-        return null;
+    private Translations() {
     }
 
-    @Override
-    public ClickAction.RunCommand createRunCommand(String command) {
-        return null;
-    }
-
-    @Override
-    public ClickAction.ChangePage createChangePage(int page) {
-        return null;
-    }
-
-    @Override
-    public ClickAction.SuggestCommand createSuggestCommand(String command) {
-        return null;
-    }
-
-    @Override
-    public HoverAction.ShowText createShowText(Message<?> text) {
-        return null;
-    }
-
-    @Override
-    public HoverAction.ShowItem createShowItem(ItemStack item) {
-        return null;
-    }
-
-    @Override
-    public HoverAction.ShowAchievement createShowAchievement(Object achievement) {
-        return null;
-    }
-
-    @Override
-    public HoverAction.ShowEntity createShowEntity(Entity entity) {
-        return null;
-    }
-
-    @Override
-    public ShiftClickAction.InsertText createInsertText(String text) {
-        return null;
+    /**
+     * Returns a {@link Translation} instance for the translation with the specified ID.
+     *
+     * @param id The translation ID
+     * @return A {@link Translation} instance with the specified ID, or {@link Optional#absent()} if not found
+     */
+    public static Optional<Translation> of(String id) {
+        return Optional.fromNullable(factory.getTranslation(id));
     }
 }

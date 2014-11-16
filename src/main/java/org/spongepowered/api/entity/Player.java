@@ -46,11 +46,29 @@ public interface Player extends HumanEntity, CommandSource {
      */
     String getDisplayName();
 
-    // TODO: Javadocs
+    /**
+     * Sends the plain text message(s) to the specified {@link ChatPosition} on the client.
+     * <p>Use {@link #sendMessage(ChatPosition, Message...)} for a formatted message.</p>
+     *
+     * @param position The chat position to send the messages to
+     * @param message The message(s) to send
+     */
     void sendMessage(ChatPosition position, String... message);
 
+    /**
+     * Sends the message(s) to the specified {@link ChatPosition} on the client.
+     *
+     * @param position The chat position to send the messages to
+     * @param messages The message(s) to send
+     */
     void sendMessage(ChatPosition position, Message<?>... messages);
 
+    /**
+     * Sends the message(s) to the specified {@link ChatPosition} on the client.
+     *
+     * @param position The chat position to send the messages to
+     * @param messages The message(s) to send
+     */
     void sendMessage(ChatPosition position, Iterable<Message<?>> messages);
 
     /**

@@ -38,7 +38,8 @@ public interface CommandSource {
     /**
      * Sends the plain text message(s) to source when possible.
      * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
-     * @param messages The message(s).
+     *
+     * @param messages The message(s)
      */
     void sendMessage(String... messages);
 
@@ -46,7 +47,7 @@ public interface CommandSource {
      * Sends the formatted text message(s) to source when possible. If text formatting
      * is not supported in the implementation it will be displayed as plain text.
      *
-     * @param messages The message(s).
+     * @param messages The message(s)
      */
     void sendMessage(Message<?>... messages);
 
@@ -54,7 +55,7 @@ public interface CommandSource {
      * Sends the formatted text message(s) to source when possible. If text formatting
      * is not supported in the implementation it will be displayed as plain text.
      *
-     * @param messages The message(s).
+     * @param messages The message(s)
      */
     void sendMessage(Iterable<Message<?>>... messages);
 

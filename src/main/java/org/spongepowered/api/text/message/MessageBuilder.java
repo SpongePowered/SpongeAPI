@@ -30,24 +30,87 @@ import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextStyle;
 
+/**
+ * Represents a builder interface to create immutable {@link Message} instances.
+ *
+ * @param <T> The type of the message's content
+ */
 public interface MessageBuilder<T> {
 
+    /**
+     * Appends the specified messages to the end of this message.
+     *
+     * @param children The messages to append
+     * @return This message builder
+     */
     MessageBuilder<T> append(Message<?>... children);
 
+    /**
+     * Appends the specified messages to the end of this message.
+     *
+     * @param children The messages to append
+     * @return This message builder
+     */
     MessageBuilder<T> append(Iterable<Message<?>> child);
 
+    /**
+     * Sets the content of this message.
+     *
+     * @param content The new content for this message
+     * @return This message builder
+     */
     MessageBuilder<T> content(T content);
 
+    /**
+     * Sets the {@link TextColor} of this message.
+     *
+     * @param color The new text color for this message
+     * @return This message builder
+     */
     MessageBuilder<T> color(TextColor color);
 
-    MessageBuilder<T> style(TextStyle style);
+    /**
+     * Sets the text styles of this message. This will construct a composite
+     * {@link TextStyle} of the current style and the specified styles first
+     * and set it to the message.
+     *
+     * @param styles The text styles to apply
+     * @return This message builder
+     */
+    MessageBuilder<T> style(TextStyle... styles);
 
+    /**
+     * Sets the {@link ClickAction} that will be executed if this message
+     * is clicked in the chat.
+     *
+     * @param action The new click action for this message
+     * @return This message builder
+     */
     MessageBuilder<T> onClick(ClickAction<?> action);
 
+    /**
+     * Sets the {@link HoverAction} that will be executed if this message
+     * is hovered in the chat.
+     *
+     * @param action The new hover action for this message
+     * @return This message builder
+     */
     MessageBuilder<T> onHover(HoverAction<?> action);
 
+    /**
+     * Sets the {@link ShiftClickAction} that will be executed if this message
+     * is shift-clicked in the chat.
+     *
+     * @param action The new shift click action for this message
+     * @return This message builder
+     */
     MessageBuilder<T> onShiftClick(ShiftClickAction<?> action);
 
+    /**
+     * Builds an immutable instance of the current message.
+     *
+     * @return An immutable {@link Message} with the current properties of this builder
+     */
     Message<T> build();
 
 }

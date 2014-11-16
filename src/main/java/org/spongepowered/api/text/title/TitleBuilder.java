@@ -26,23 +26,26 @@ package org.spongepowered.api.text.title;
 
 import org.spongepowered.api.text.message.Message;
 
+/**
+ * Represents a builder interface to create immutable {@link Title} configurations.
+ */
 public interface TitleBuilder {
 
     /**
      * Set the title to send to the player.
      *
-     * @param text The text to use as the title.
-     * @return This title configuration.
+     * @param message The message to use as the title
+     * @return This title builder
      */
-    TitleBuilder title(Message<?> text);
+    TitleBuilder title(Message<?> message);
 
     /**
      * Set the subtitle to send to the player.
      *
-     * @param text The text to use as the subtitle.
-     * @return This title configuration.
+     * @param message The text to use as the subtitle
+     * @return This title builder
      */
-    TitleBuilder subTitle(Message<?> text);
+    TitleBuilder subtitle(Message<?> message);
 
     /**
      * Set the duration in ticks of the fade in effect of the title. Once this
@@ -51,8 +54,8 @@ public interface TitleBuilder {
      *
      * <p>The default value for Vanilla is 20 (1 second).</p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) for the fade in effect
+     * @return This title builder
      */
     TitleBuilder fadeIn(int ticks);
 
@@ -63,18 +66,18 @@ public interface TitleBuilder {
      *
      * <p>The default value for Vanilla is 60 (3 seconds).</p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) to stay
+     * @return This title builder
      */
     TitleBuilder stay(int ticks);
 
     /**
      * Set the duration in ticks of the fade out effect of the title.
      *
-     * <p>The default value for Vanilla Minecraft is 60 (3 seconds).</p>
+     * <p>The default value for Vanilla is 20 (1 second).</p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade out effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) for the fade out effect
+     * @return This title builder
      */
     TitleBuilder fadeOut(int ticks);
 
@@ -82,7 +85,7 @@ public interface TitleBuilder {
      * Remove the currently displayed title from the player's screen. This will
      * keep the currently used display times and will only remove the title.
      *
-     * @return This title configuration.
+     * @return This title builder
      */
     TitleBuilder clear();
 
@@ -90,9 +93,14 @@ public interface TitleBuilder {
      * Remove the currently displayed title from the player's screen
      * and set the configuration back to the default values.
      *
-     * @return This title configuration.
+     * @return This title builder
      */
     TitleBuilder reset();
 
+    /**
+     * Builds an immutable instance of the current configuration.
+     *
+     * @return An immutable {@link Title} with the currently configured settings
+     */
     Title build();
 }

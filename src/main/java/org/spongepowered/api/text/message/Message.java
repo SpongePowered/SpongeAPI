@@ -82,7 +82,7 @@ public interface Message<T> extends Iterable<Message<T>> {
      * Returns the action for when this text is clicked.
      * This maps to the clickEvent field in JSON.
      *
-     * @return The ClickAction of this Message
+     * @return The {@link ClickAction} of this Message
      */
     Optional<ClickAction<?>> getClickAction();
 
@@ -90,7 +90,7 @@ public interface Message<T> extends Iterable<Message<T>> {
      * Returns the action for when this text is hovered over.
      * This maps to the hoverEvent field in JSON.
      *
-     * @return The HoverAction of this Message
+     * @return The {@link HoverAction} of this Message
      */
     Optional<HoverAction<?>> getHoverAction();
 
@@ -98,9 +98,16 @@ public interface Message<T> extends Iterable<Message<T>> {
      * Returns the action for when this text is shift-clicked.
      * This maps to the insertion field in JSON, because that is the only possible shift-click action.
      *
-     * @return The ShiftClickAction of this Message
+     * @return The {@link ShiftClickAction} of this Message
      */
     Optional<ShiftClickAction<?>> getShiftClickAction();
+
+    /**
+     * Returns a new {@link MessageBuilder} with the content of this message.
+     *
+     * @return A new {@link MessageBuilder} to modify this message
+     */
+    MessageBuilder<T> builder();
 
     /**
      * A Text Message is a message with a String as content.

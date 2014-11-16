@@ -55,20 +55,6 @@ public interface HoverAction<R> extends TextAction<R> {
     /**
      * Shows an entity and its information.
      */
-    interface ShowEntity extends HoverAction<Entity> {
-
-        // TODO keep this just for reference, but should use entity?
-        /*
-        interface ShowActionEntity {
-
-            String getName();
-
-            String getType();
-
-            UUID getID();
-
-        }*/
-
-    }
+    interface ShowEntity extends HoverAction<Entity> { }
 
 }
