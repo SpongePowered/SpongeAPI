@@ -53,5 +53,14 @@ public interface PlayerTeleportEvent extends PlayerEvent, EntityTeleportEvent, C
 	 * @param target The target {@link Location}
 	 */
 	void teleportPlayer(Player player, World currentWorld, World targetWorld, Location current, Location target);
-
+	
+	/**
+	 * Teleports the player to the designated location.
+	 * 
+	 * @param player The {@link Player} being teleporting
+	 * @param current The current {@link Location}
+	 * @param target The target {@link Location}
+	 */
+	void teleportPlayer(Player player, Location current, Location target);
+	
 }
