@@ -26,7 +26,7 @@
 package org.spongepowered.api.world.weather;
 
 /**
- * An enumeration of all possible {@link WeatherType}s in vanilla minecraft.
+ * All possible {@link WeatherType}s in vanilla minecraft.
  */
 public class WeatherTypes {
 

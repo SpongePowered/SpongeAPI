@@ -48,25 +48,18 @@ public interface WeatherChangeEvent extends WeatherEvent {
     Weather getResultingWeather();
 
     /**
-     * Sets what the new {@link WeatherType} should be with a random duration.
-     *
-     * @param weatherType The new {@link WeatherType}
-     */
-    void setResultingWeather(WeatherType weatherType);
-
-    /**
-     * Sets what the new {@link WeatherType} should be with a given duration.
-     *
-     * @param weatherType The new {@link WeatherType}
-     * @param duration The duration of the weather in seconds
-     */
-    void setResultingWeather(WeatherType weatherType, int duration);
-
-    /**
-     * Sets what the new {@link Weather} should be.
+     * Sets what the new {@link Weather} should be with a random duration.
      *
      * @param weather The new {@link Weather}
      */
     void setResultingWeather(Weather weather);
+
+    /**
+     * Sets what the new {@link WeatherType} should be with a given duration.
+     *
+     * @param weather The new {@link Weather}
+     * @param duration The duration of the weather in seconds
+     */
+    void setResultingWeather(Weather weather, int duration);
 
 }
