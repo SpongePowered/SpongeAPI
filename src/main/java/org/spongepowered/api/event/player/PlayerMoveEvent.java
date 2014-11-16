@@ -28,7 +28,7 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.event.entity.EntityMoveEvent;
 
 /**
- * Called when a {@link Player} moves
+ * Called when a {@link Player} moves.
  */
 public interface PlayerMoveEvent extends PlayerEvent, EntityMoveEvent {
 

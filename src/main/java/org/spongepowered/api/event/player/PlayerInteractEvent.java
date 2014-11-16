@@ -25,28 +25,28 @@
 
 package org.spongepowered.api.event.player;
 
-import javax.annotation.Nullable;
-
 import org.spongepowered.api.block.Block;
+import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.entity.PlayerInteractionType;
 import org.spongepowered.api.event.Cancellable;
 
+import com.google.common.base.Optional;
+
 /**
- * Called when a {@link Player} interacts with the world
+ * Called when a {@link Player} interacts with the world.
  */
 public interface PlayerInteractEvent extends PlayerEvent, Cancellable {
 
     /**
      * Gets the {@link Block} that the player has clicked, returns null if the
-     * player clicks the air
+     * player clicks the air.
      * 
      * @return The block
      */
-    @Nullable
-    Block getBlock();
+    Optional<Block> getBlock();
 
     /**
-     * Gets the {@link PlayerInteractionType} that the player used
+     * Gets the {@link PlayerInteractionType} that the player used.
      * 
      * @return The type of click
      */

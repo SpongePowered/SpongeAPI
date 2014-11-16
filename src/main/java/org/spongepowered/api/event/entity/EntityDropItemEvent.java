@@ -25,18 +25,20 @@
 
 package org.spongepowered.api.event.entity;
 
+import java.util.Collection;
+
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Called when a player drops an item stack
+ * Called when a player drops an item stack.
  */
 public interface EntityDropItemEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the items that the player is dropping
+     * Gets the items that the player is dropping.
      * 
-     * @return The dropped items
+     * @return The dropped stacks
      */
-    ItemStack getDroppedItems();
+    Collection<ItemStack> getDroppedStacks();
 }
