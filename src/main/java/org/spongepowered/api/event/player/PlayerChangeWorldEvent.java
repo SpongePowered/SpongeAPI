@@ -26,32 +26,25 @@
 package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Player} is teleported.
+ * Called when {@link Player} is taken to another world.
  */
-public interface PlayerTeleportEvent extends PlayerEvent, Cancellable {
+public interface PlayerChangeWorldEvent extends PlayerEvent, Cancellable {
 	
 	/**
-	 * Gets the cause of a {@link Player} teleportation.
+	 * Gets the {@link Player} current world.
 	 * 
-	 * @return The cause for teleportation
+	 * @return The world the player is in
 	 */
-	PlayerTeleportCause getCause();
+	World getCurrentWorld();
 	
 	/**
-	 * Gets the {@link Player} current location.
-	 *  
-	 * @return The player's current location
-	 */
-	Location getCurrentLocation();
-	
-	/**
-	 * Gets the {@link Player} target location.
+	 * Gets the {@link Player} target world.
 	 * 
-	 * @return The player's target location
+	 * @return The world the player is traveling to
 	 */
-	Location getTargetLocation();
+	World getTargetWorld();
 	
 }
