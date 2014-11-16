@@ -22,24 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.world.Location;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Gets called when block is moved in world, usually using a piston. Cancel to 
+ * prevent the movement and make piston not work.
+ * 
+ * <p>This event is called before the block is actually moved, so getBlock() 
+ * gives block with its original position. Use {@link #getDestination()} 
+ * to get new destination.</p>
  */
-public interface GameEvent extends Event {
-
+public interface BlockMoveEvent extends BlockEvent {
+    
     /**
-     * Get the game.
-     *
-     * @return The game
+     * Gets destination of block movement.
+     * @return Destination of block movement
      */
-    Game getGame();
-
+    Location getDestination();
 }

@@ -22,24 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.block.Block;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * When block changes to another, this is called. Only instant type changes
+ * apply, so if something breaks the block and player places it again, this
+ * <b>should not</b> called.
  */
-public interface GameEvent extends Event {
-
+public interface BlockChangeEvent extends BlockEvent {
+    
     /**
-     * Get the game.
-     *
-     * @return The game
+     * Gets original block. This is alias for {@link #getBlock}.
+     * @return Original block
      */
-    Game getGame();
-
+    Block getOriginal();
+    
+    /**
+     * Gets the new block which is trying to replace the original one.
+     * @return New block
+     */
+    Block getNew();
 }

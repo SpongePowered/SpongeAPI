@@ -22,24 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event;
+import java.util.List;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.block.Block;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Gets called when fluid is about to spread. Cancel to prevent it from
+ * spreading.
  */
-public interface GameEvent extends Event {
-
+public interface FluidSpreadEvent extends BlockEvent {
+    
     /**
-     * Get the game.
-     *
-     * @return The game
+     * Gets source block of spreading fluid. Does exactly same as
+     * {@link #getBlock()}.
+     * @return Source block of fluid
      */
-    Game getGame();
-
+    Block getSource();
+    
+    /**
+     * Gets new fluid blocks, which are trying to spawn.
+     * @return New fluid blocks
+     */
+    List<Block> getNewBlocks();
 }

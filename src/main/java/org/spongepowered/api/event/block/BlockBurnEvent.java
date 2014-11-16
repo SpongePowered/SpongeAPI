@@ -22,24 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.reason.Reason;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Gets called when block is destroyed by fire. This is shortcut for
+ * {@link BlockBreakEvent} with reason {@link Reason#FIRE}.
  */
-public interface GameEvent extends Event {
-
-    /**
-     * Get the game.
-     *
-     * @return The game
-     */
-    Game getGame();
+public interface BlockBurnEvent extends BlockEvent {
 
 }

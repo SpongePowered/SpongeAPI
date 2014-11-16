@@ -22,24 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import java.util.List;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Gets called when text of the sign is edited. Does not trigger if sign is
+ * truly replaced. For that, use {@link BlockChangeEvent}.
  */
-public interface GameEvent extends Event {
-
+public interface SignChangeEvent extends BlockEvent {
+    //TODO: When the text formatting API is ready, use it
+    
     /**
-     * Get the game.
-     *
-     * @return The game
+     * Gets old sign text.
+     * @return The old sign text
      */
-    Game getGame();
-
+    List<String> getOld();
+    
+    /**
+     * Gets new sign text.
+     * @return The new sign text
+     */
+    List<String> getNew();
+    
+    /**
+     * Sets new text for the sign. If this event gets cancelled by another
+     * event handler, the text will not change. Later event handlers
+     * will also recieve this when doing {@link #getOld()}
+     * @param newText New text for the sign
+     */
+    void setNew(List<String> newText);
 }
