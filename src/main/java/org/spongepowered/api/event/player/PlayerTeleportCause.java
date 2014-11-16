@@ -25,6 +25,9 @@
 
 package org.spongepowered.api.event.player;
 
+/**
+ * All of the possible causes of a teleportation for {@link Player}
+ */
 public class PlayerTeleportCause {
 	
 	/**
@@ -51,5 +54,10 @@ public class PlayerTeleportCause {
 	 * The player was teleported by an external plugin.
 	 */
 	public static final PlayerTeleportCause PLUGIN = null;
+	
+	/**
+	 * The player was teleported by an unknown source.
+	 */
+	public static final PlayerTeleportCause OTHER = null;
 	
 }

@@ -23,15 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when {@link Player} is taken to another world.
+ * Called when a {@link Entity} is teleported.
  */
-public interface PlayerChangeWorldEvent extends PlayerEvent, Cancellable {
+public interface EntityTeleportEvent extends EntityEvent, Cancellable {
+	
+	/**
+	 * Gets the {@link Entity} current location.
+	 *  
+	 * @return The player's current location
+	 */
+	Location getCurrentLocation();
+	
+	/**
+	 * Gets the {@link Entity} target location.
+	 * 
+	 * @return The player's target location
+	 */
+	Location getTargetLocation();
 	
 	/**
 	 * Gets the {@link Player} current world.
@@ -46,5 +62,25 @@ public interface PlayerChangeWorldEvent extends PlayerEvent, Cancellable {
 	 * @return The world the player is traveling to
 	 */
 	World getTargetWorld();
+	
+	/**
+	 * Teleports the entity to the designated location in a designated world.
+	 * 
+	 * @param entity The {@link Entity} being teleported
+	 * @param currentWorld The current {@link World}
+	 * @param targetWorld The target {@link World}
+	 * @param current The current {@link Location}
+	 * @param target The target {@link Location}
+	 */
+	void teleportEntity(Entity entity, World currentWorld, World targetWorld, Location current, Location target);
+	
+	/**
+	 * Teleports the entity to the designated location
+	 * 
+	 * @param entity The {@link Entity} being teleported
+	 * @param current The current {@link Location}
+	 * @param target The target {@link Location}
+	 */
+	void teleportEntity(Entity entity, Location current, Location target);
 	
 }
