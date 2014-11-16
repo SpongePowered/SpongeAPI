@@ -31,6 +31,7 @@ import org.spongepowered.api.event.reason.Reason;
 import org.spongepowered.api.world.World;
 
 import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 
 /**
  * A cause represents the reason or initiator of an event.
@@ -49,13 +50,14 @@ import com.google.common.base.Optional;
  */
 public class Cause {
     
-    private Cause parent;
+    private Cause parent; //May be null in this variable, converted in getter
     private Reason reason; //Never, ever null!
     private Block block;
     private Entity entity;
     private World world;
 
     public Cause(Block block, Reason reason, Cause parent) {
+        Preconditions.checkNotNull(reason, "Reason cannot be null!");
         this.block = block;
         this.reason = reason;
         this.parent = parent;
@@ -70,6 +72,7 @@ public class Cause {
     }
     
     public Cause(Entity entity, Reason reason, Cause parent) {
+        Preconditions.checkNotNull(reason, "Reason cannot be null!");
         this.entity = entity;
         this.reason = reason;
         this.parent = parent;
@@ -84,6 +87,7 @@ public class Cause {
     }
     
     public Cause(World world, Reason reason, Cause parent) {
+        Preconditions.checkNotNull(reason, "Reason cannot be null!");
         this.world = world;
         this.reason = reason;
         this.parent = parent;
@@ -109,7 +113,7 @@ public class Cause {
     /**
      * Gets reason for cause.
      */
-    Reason getReason() {
+    public Reason getReason() {
         return this.reason;
     }
     
@@ -117,7 +121,7 @@ public class Cause {
      * Gets block associated with this cause.
      * @return Block, if available
      */
-    Optional<Block> getBlock() {
+    public Optional<Block> getBlock() {
         return Optional.of(block);
     }
     
@@ -125,7 +129,7 @@ public class Cause {
      * Gets entity associated with this cause.
      * @return Entity, if available
      */
-    Optional<Entity> getEntity() {
+    public Optional<Entity> getEntity() {
         return Optional.of(entity);
     }
     
@@ -134,7 +138,7 @@ public class Cause {
      * specified, world of entity or block will returned.
      * @return World, if available
      */
-    Optional<World> getWorld() {
+    public Optional<World> getWorld() {
         if (world != null) {
             return Optional.of(this.world);
         } else {

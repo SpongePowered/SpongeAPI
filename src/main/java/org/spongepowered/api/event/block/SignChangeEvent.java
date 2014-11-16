@@ -24,24 +24,32 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.Block;
+import java.util.List;
 
 /**
- * When block changes to another, this is called. Only instant type changes
- * apply, so if something breaks the block and player places it again, this
- * <b>should not</b> called.
+ * Gets called when text of the sign is edited. Does not trigger if sign is
+ * truly replaced. For that, use {@link BlockChangeEvent}.
  */
-public interface BlockChangeEvent extends BlockEvent {
+public interface SignChangeEvent extends BlockEvent {
+    //TODO: When the text formatting API is ready, use it
     
     /**
-     * Gets original block. This is alias for {@link #getBlock}.
-     * @return Original block
+     * Gets old sign text.
+     * @return The old sign text
      */
-    Block getOriginal();
+    List<String> getOld();
     
     /**
-     * Gets the new block which is trying to replace the original one.
-     * @return New block
+     * Gets new sign text.
+     * @return The new sign text
      */
-    Block getNew();
+    List<String> getNew();
+    
+    /**
+     * Sets new text for the sign. If this event gets cancelled by another
+     * event handler, the text will not change. Later event handlers
+     * will also recieve this when doing {@link #getOld()}
+     * @param newText New text for the sign
+     */
+    void setNew(List<String> newText);
 }
