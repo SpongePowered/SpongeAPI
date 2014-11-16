@@ -59,6 +59,20 @@ public interface Player extends HumanEntity, CommandSource {
     void resetTitle();
 
     /**
+     * Gets if the {@link Player} can fly.
+     * 
+     * @return {@code True} if the {@link Player} can fly
+     */
+    boolean getAllowFlight();
+
+    /**
+     * Sets if the {@link Player} can fly.
+     * 
+     * @param allowFlight {@code True} if the player should be able to fly
+     */
+    void setAllowFlight(boolean allowFlight);
+
+    /**
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     void clearTitle();
