@@ -81,6 +81,16 @@ public interface Block {
     int getZ();
 
     /**
+     * Get the base type of block.
+     *
+     * <p>The type does not include block data such as the contents of
+     * inventories.</p>
+     *
+     * @return The type of block
+     */
+    BlockType getType();
+
+    /**
      * Get the block state for this position.
      *
      * @return The current block state
@@ -143,20 +153,6 @@ public interface Block {
      * @return Whether the block was destroyed
      */
     boolean digWith(ItemStack itemStack);
-
-    /**
-     * Gets the time it takes to dig this block with a fist in ticks.
-     *
-     * @return The time in ticks.
-     */
-    int getDigTime();
-
-    /**
-     * Gets the time it takes to dig this block the specified item in ticks.
-     *
-     * @return The time in ticks.
-     */
-    int getDigTimeWith(ItemStack itemStack);
 
     /**
      * Get the light level for this object.
