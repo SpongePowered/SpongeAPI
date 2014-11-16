@@ -40,6 +40,7 @@ import org.spongepowered.api.entity.living.meta.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
@@ -327,6 +328,21 @@ public interface GameRegistry {
      */
     // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
     List<PotionEffectType> getPotionEffects();
+
+    /**
+     * Gets the {@link Enchantment} with the specified id.
+     *
+     * @param id The id of the enchantment to return
+     * @return The enchantment with the given id or Optional.absent() if not found
+     */
+    Optional<Enchantment> getEnchantment(String id);
+
+    /**
+     * Gets all available {@link Enchantment}s.
+     *
+     * @return A list of all enchantments
+     */
+    List<Enchantment> getEnchantments();
 
     /**
      * Gets a {@link Collection} of the default GameRules.
