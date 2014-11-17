@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
@@ -141,10 +142,8 @@ public interface Entity extends EntityState {
     /**
     * Teleports the entity to the designated location
     * 
-    * @param entity The {@link Entity} being teleported
-    * @param current The current {@link Location}
     * @param target The target {@link Location}
     */
-    void teleportEntity(Entity entity, Location current, Location target);
+    Event teleportEntity(Location target);
     
 }
