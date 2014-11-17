@@ -29,40 +29,40 @@ package org.spongepowered.api.misc;
  * The list of achievements within vanilla Minecraft.
  */
 public class Achievements {
-	
-	public static final Achievement TAKING_INVENTORY = null;
-	public static final Achievement GETTING_WOOD = null;
-	public static final Achievement BENCHMARKING = null;
-	public static final Achievement TIME_TO_MINE = null;
-	public static final Achievement HOT_TOPIC = null;
-	public static final Achievement ACQUIRE_HARDWARE = null;
-	public static final Achievement TIME_TO_FARM = null;
-	public static final Achievement BAKE_BREAD = null;
-	public static final Achievement THE_LIE = null;
-	public static final Achievement GETTING_AN_UPGRADE = null;
-	public static final Achievement DELICIOUS_FISH = null;
-	public static final Achievement ON_A_RAIL = null;
-	public static final Achievement TIME_TO_STRIKE = null;
-	public static final Achievement MONSTER_HUNTER = null;
-	public static final Achievement COW_TIPPER = null;
-	public static final Achievement WHEN_PIGS_FLY = null;
-	public static final Achievement SNIPER_DUEL = null;
-	public static final Achievement DIAMONDS = null;
-	public static final Achievement WE_NEED_TO_GO_DEEPER = null;
-	public static final Achievement RETURN_TO_SENDER = null;
-	public static final Achievement INTO_FIRE = null;
-	public static final Achievement LOCAL_BREWERY = null;
-	public static final Achievement THE_END_PORTAL = null;
-	public static final Achievement THE_END_DRAGON = null;
-	public static final Achievement ENCHANTER = null;
-	public static final Achievement OVERKILL = null;
-	public static final Achievement LIBRARIAN = null;
-	public static final Achievement ADVENTURING_TIME = null;
-	public static final Achievement THE_BEGINNING_SPAWN = null;
-	public static final Achievement THE_BEGINNING_DEFEAT = null;
-	public static final Achievement BEACONATOR = null;
-	public static final Achievement REPOPULATION = null;
-	public static final Achievement DIAMONDS_TO_YOU = null;
-	public static final Achievement OVERPOWERED = null;
-	
+
+    public static final Achievement TAKING_INVENTORY = null;
+    public static final Achievement GETTING_WOOD = null;
+    public static final Achievement BENCHMARKING = null;
+    public static final Achievement TIME_TO_MINE = null;
+    public static final Achievement HOT_TOPIC = null;
+    public static final Achievement ACQUIRE_HARDWARE = null;
+    public static final Achievement TIME_TO_FARM = null;
+    public static final Achievement BAKE_BREAD = null;
+    public static final Achievement THE_LIE = null;
+    public static final Achievement GETTING_AN_UPGRADE = null;
+    public static final Achievement DELICIOUS_FISH = null;
+    public static final Achievement ON_A_RAIL = null;
+    public static final Achievement TIME_TO_STRIKE = null;
+    public static final Achievement MONSTER_HUNTER = null;
+    public static final Achievement COW_TIPPER = null;
+    public static final Achievement WHEN_PIGS_FLY = null;
+    public static final Achievement SNIPER_DUEL = null;
+    public static final Achievement DIAMONDS = null;
+    public static final Achievement WE_NEED_TO_GO_DEEPER = null;
+    public static final Achievement RETURN_TO_SENDER = null;
+    public static final Achievement INTO_FIRE = null;
+    public static final Achievement LOCAL_BREWERY = null;
+    public static final Achievement THE_END_PORTAL = null;
+    public static final Achievement THE_END_DRAGON = null;
+    public static final Achievement ENCHANTER = null;
+    public static final Achievement OVERKILL = null;
+    public static final Achievement LIBRARIAN = null;
+    public static final Achievement ADVENTURING_TIME = null;
+    public static final Achievement THE_BEGINNING_SPAWN = null;
+    public static final Achievement THE_BEGINNING_DEFEAT = null;
+    public static final Achievement BEACONATOR = null;
+    public static final Achievement REPOPULATION = null;
+    public static final Achievement DIAMONDS_TO_YOU = null;
+    public static final Achievement OVERPOWERED = null;
+    
 }
