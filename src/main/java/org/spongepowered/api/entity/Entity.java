@@ -25,11 +25,13 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.Location;
 
 /**
  * An entity is a Minecraft entity.
@@ -136,4 +138,12 @@ public interface Entity extends EntityState {
      * @param rotation The rotation to set the entity to
      */
     void setRotation(EulerDirection rotation);
+
+    /**
+    * Teleports the entity to the designated location
+    * 
+    * @param target The target {@link Location}
+    */
+    Event teleportEntity(Location target);
+    
 }
