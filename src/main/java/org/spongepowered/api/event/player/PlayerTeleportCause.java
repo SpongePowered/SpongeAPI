@@ -29,35 +29,35 @@ package org.spongepowered.api.event.player;
  * All of the possible causes of a teleportation for {@link Player}
  */
 public class PlayerTeleportCause {
-	
-	/**
-	 * The player was teleported by the execution of a command.
-	 */
-	public static final PlayerTeleportCause COMMAND = null;
-	
-	/**
-	 * The player was teleported by the entering an end portal.
-	 */
-	public static final PlayerTeleportCause END_PORTAL = null;
-	
-	/**
-	 * The player was teleported by the launching of an ender pearl.
-	 */
-	public static final PlayerTeleportCause ENDER_PEARL = null;
-	
-	/**
-	 * The player was teleported by the entering a nether portal.
-	 */
-	public static final PlayerTeleportCause NETHER_PORTAL = null;
-	
-	/**
-	 * The player was teleported by an external plugin.
-	 */
-	public static final PlayerTeleportCause PLUGIN = null;
-	
-	/**
-	 * The player was teleported by an unknown source.
-	 */
-	public static final PlayerTeleportCause OTHER = null;
-	
+    
+    /**
+     * The player was teleported by the execution of a command.
+     */
+    public static final PlayerTeleportCause COMMAND = null;
+     
+    /**
+     * The player was teleported by the entering an end portal.
+     */
+    public static final PlayerTeleportCause END_PORTAL = null;
+     
+    /**
+     * The player was teleported by the launching of an ender pearl.
+     */
+    public static final PlayerTeleportCause ENDER_PEARL = null;
+    
+    /**
+     * The player was teleported by the entering a nether portal.
+     */
+    public static final PlayerTeleportCause NETHER_PORTAL = null;
+    
+    /**
+     * The player was teleported by an external plugin.
+     */
+    public static final PlayerTeleportCause PLUGIN = null;
+     
+    /**
+     * The player was teleported by an unknown source.
+     */
+    public static final PlayerTeleportCause OTHER = null;
+   
 }

@@ -28,39 +28,17 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.EntityTeleportEvent;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link Player} is teleported.
  */
 public interface PlayerTeleportEvent extends PlayerEvent, EntityTeleportEvent, Cancellable {
-	
-	/**
-	 * Gets the cause of a {@link Player} teleportation.
-	 * 
-	 * @return The cause for teleportation
-	 */
-	PlayerTeleportCause getCause();
-	
-	/**
-	 * Teleports the player to the designated location in a designated world.
-	 * 
-	 * @param player The {@link Player} being teleporting
-	 * @param currentWorld The current {@link World}
-	 * @param targetWorld The target {@link World}
-	 * @param current The current {@link Location}
-	 * @param target The target {@link Location}
-	 */
-	void teleportPlayer(Player player, World currentWorld, World targetWorld, Location current, Location target);
-	
-	/**
-	 * Teleports the player to the designated location.
-	 * 
-	 * @param player The {@link Player} being teleporting
-	 * @param current The current {@link Location}
-	 * @param target The target {@link Location}
-	 */
-	void teleportPlayer(Player player, Location current, Location target);
-	
+    
+    /**
+     * Gets the cause of a {@link Player} teleportation.
+     * 
+     * @return The cause for teleportation
+     */
+    PlayerTeleportCause getCause();
+    
 }
