@@ -118,36 +118,7 @@ public class DescriptionBuilder {
      * @throws IllegalArgumentException Thrown if the usage string is not set
      */
     public Description build() {
-        final String shortDescription = this.shortDescription;
-        final String help = this.help;
-        final String usage = this.usage;
-        final List<String> permissions = Collections.unmodifiableList(new ArrayList<String>(this.permissions));
-
-        if (usage == null) {
-            throw new IllegalArgumentException("Usage is not set");
-        }
-
-        return new Description() {
-            @Override
-            public Optional<String> getShortDescription() {
-                return Optional.fromNullable(shortDescription);
-            }
-
-            @Override
-            public Optional<String> getHelp() {
-                return Optional.fromNullable(help);
-            }
-
-            @Override
-            public String getUsage() {
-                return usage;
-            }
-
-            @Override
-            public List<String> getPermissions() {
-                return permissions;
-            }
-        };
+        return new StaticDescription(shortDescription, help, usage, permissions);
     }
 
     /**
@@ -159,4 +130,41 @@ public class DescriptionBuilder {
         return new DescriptionBuilder();
     }
 
+    private static class StaticDescription implements Description {
+        private final String shortDescription;
+        private final String help;
+        private final String usage;
+        private final List<String> permissions;
+
+        private StaticDescription(String shortDescription, String help, String usage, List<String> permissions) {
+            if (usage == null) {
+                throw new IllegalArgumentException("Usage is not set");
+            }
+
+            this.shortDescription = shortDescription;
+            this.help = help;
+            this.usage = usage;
+            this.permissions = Collections.unmodifiableList(new ArrayList<String>(permissions));
+        }
+
+        @Override
+        public Optional<String> getShortDescription() {
+            return Optional.fromNullable(shortDescription);
+        }
+
+        @Override
+        public Optional<String> getHelp() {
+            return Optional.fromNullable(help);
+        }
+
+        @Override
+        public String getUsage() {
+            return usage;
+        }
+
+        @Override
+        public List<String> getPermissions() {
+            return permissions;
+        }
+    }
 }
