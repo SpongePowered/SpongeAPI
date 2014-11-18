@@ -25,13 +25,12 @@
 package org.spongepowered.api.text.format;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.text.chat.ChatPosition;
 
 import java.util.List;
 
 /**
- * TextColors is a list of the default text colors that Minecraft provides.
- * The values are filled in by mixins in Sponge at runtime.
+ * TextColors is a list of the default text colors that Minecraft provides. The
+ * values are filled in by mixins in Sponge at runtime.
  */
 public final class TextColors {
 
@@ -61,15 +60,15 @@ public final class TextColors {
      */
     public static final TextColor.Base RESET = null;
 
-
     /**
      * Gets the {@link TextColor} with the specified name.
      *
      * @param name The identifier of the text colors, for example "DARK_BLUE"
-     * @return The {@link TextColor} with the specified name, or {@link Optional#absent()} if not found
+     * @return The {@link TextColor} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
     public static Optional<TextColor> valueOf(String name) {
-        return Optional.fromNullable(TextStyles.factory.parseColor(name));
+        return Optional.fromNullable(TextStyles.factory.getColorFromName(name));
     }
 
     /**

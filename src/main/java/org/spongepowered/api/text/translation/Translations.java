@@ -30,19 +30,22 @@ import com.google.common.base.Optional;
  * Utility class to obtain instances of {@link Translation}s by their ID.
  */
 public final class Translations {
+
     private static final TranslationFactory factory = new NullTranslationFactory();
 
     private Translations() {
     }
 
     /**
-     * Returns a {@link Translation} instance for the translation with the specified ID.
+     * Returns a {@link Translation} instance for the translation with the
+     * specified ID.
      *
      * @param id The translation ID
-     * @return A {@link Translation} instance with the specified ID, or {@link Optional#absent()} if not found
+     * @return A {@link Translation} instance with the specified ID, or
+     *         {@link Optional#absent()} if not found
      */
     public static Optional<Translation> of(String id) {
-        return Optional.fromNullable(factory.getTranslation(id));
+        return Optional.fromNullable(factory.getTranslationFromId(id));
     }
 
 }

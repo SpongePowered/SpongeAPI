@@ -27,7 +27,8 @@ package org.spongepowered.api.text.message;
 import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Represents the required implementation for the static methods in {@link Messages}.
+ * Represents the required implementation for the static methods in
+ * {@link Messages}.
  */
 interface MessageFactory {
 
@@ -38,28 +39,32 @@ interface MessageFactory {
      * @param <T> The type parameter of the Message
      * @return A new MessageBuilder
      *
-     * @throws UnsupportedOperationException If the specified content type is not supported by this server
+     * @throws UnsupportedOperationException If the specified content type is
+     *             not supported by this server
      */
     <T> MessageBuilder<T> createBuilder(T content);
 
     /**
-     * Creates a new {@link MessageBuilder} that builds {@link Translation} messages.
+     * Creates a new {@link MessageBuilder} that builds {@link Translation}
+     * messages.
      *
      * @param translation The translation of the Message
      * @param args The arguments to the translation
      * @return A new MessageBuilder
      */
-    MessageBuilder<Translation> createTranslationBuilder(Translation t, Object[] args);
+    MessageBuilder<Translation> createTranslationBuilder(Translation translation, Object[] args);
+
+    // TODO: Score API
 
     /**
-     * Creates a new {@link MessageBuilder} that builds {@link Message.Score} messages.
-     * If you wish to not override the score, use the {@link #builder(Object)} method.
+     * Creates a new {@link MessageBuilder} that builds {@link Message.Score}
+     * messages.
      *
      * @param score The score of the Message
      * @param override The override of the score
      * @return A
      */
-    MessageBuilder<Object> createScoreBuilder(Object score, String override); // TODO: Scoreboard API
+    MessageBuilder<Object> createScoreBuilder(Object score, String override);
 
     /**
      * Returns the default legacy formatting character.
@@ -87,7 +92,8 @@ interface MessageFactory {
     String stripLegacyCodes(String message, char color);
 
     /**
-     * Replaces the given formatting character with another given formatting character from a legacy string.
+     * Replaces the given formatting character with another given formatting
+     * character from a legacy string.
      *
      * @param message The legacy message as a String
      * @param from The color character to be replaced

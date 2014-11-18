@@ -28,7 +28,10 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.chat.ChatPosition;
 import org.spongepowered.api.text.title.Title;
+import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
+
+import java.util.Locale;
 
 public interface Player extends HumanEntity, CommandSource {
 
@@ -45,6 +48,14 @@ public interface Player extends HumanEntity, CommandSource {
      * @return The player's display name
      */
     String getDisplayName();
+
+    /**
+     * Gets the locale used by the player.
+     *
+     * @return The player's locale
+     * @see Locales
+     */
+    Locale getLocale();
 
     /**
      * Sends the plain text message(s) to the specified {@link ChatPosition} on the client.

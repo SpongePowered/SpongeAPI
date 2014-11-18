@@ -35,68 +35,73 @@ import org.spongepowered.api.text.translation.Translation;
 import java.util.List;
 
 /**
- * A Message represents some text in the new raw JSON message format.
- * Message is an immutable class that is created by a {@link MessageBuilder},
- * and each getter method maps to a field or some fields in JSON.
- * Message is also an {@link Iterable} whose iterator iterates over its children, children's children, etc. recursively.
+ * A Message represents some text in the new raw JSON message format. Message is
+ * an immutable class that is created by a {@link MessageBuilder}, and each
+ * getter method maps to a field or some fields in JSON. Message is also an
+ * {@link Iterable} whose iterator iterates over its children, children's
+ * children, etc. recursively.
  *
- * <p>Among other places, it shows up in books, signs, titles, chat, and the /tellraw command.</p>
+ * <p>
+ * Among other places, it shows up in books, signs, titles, chat, and the
+ * /tellraw command.
+ * </p>
  *
  * @param <T> The type of this Message's content
  */
 public interface Message<T> extends Iterable<Message<T>> {
 
     /**
-     * Returns the main content of this Message.
-     * This maps to the text, translation, selector, or score field in JSON depending on the type of Message.
+     * Returns the main content of this Message. This maps to the text,
+     * translation, selector, or score field in JSON depending on the type of
+     * Message.
      *
      * @return The content of this Message
      */
     T getContent();
 
     /**
-     * Returns the color of this Message.
-     * This maps to the color field in JSON.
+     * Returns the color of this Message. This maps to the color field in JSON.
      *
      * @return The color of this Message
      */
     TextColor getColor();
 
     /**
-     * Returns the style of this Message.
-     * Depending on which styles are contained, this method maps to the various style fields in JSON.
+     * Returns the style of this Message. Depending on which styles are
+     * contained, this method maps to the various style fields in JSON.
      *
      * @return The style of this Message
      */
     TextStyle getStyle();
 
     /**
-     * Returns the children of this Message.
-     * This maps to the with or extra fields in JSON depending on this Message type.
+     * Returns the children of this Message. This maps to the with or extra
+     * fields in JSON depending on this Message type.
      *
      * @return This Message's children
      */
     List<Message<?>> getChildren();
 
     /**
-     * Returns the action for when this text is clicked.
-     * This maps to the clickEvent field in JSON.
+     * Returns the action for when this text is clicked. This maps to the
+     * clickEvent field in JSON.
      *
      * @return The {@link ClickAction} of this Message
      */
     Optional<ClickAction<?>> getClickAction();
 
     /**
-     * Returns the action for when this text is hovered over.
-     * This maps to the hoverEvent field in JSON.
+     * Returns the action for when this text is hovered over. This maps to the
+     * hoverEvent field in JSON.
      *
      * @return The {@link HoverAction} of this Message
      */
     Optional<HoverAction<?>> getHoverAction();
 
     /**
-     * Returns the action for when this text is shift-clicked.
-     * This maps to the insertion field in JSON, because that is the only possible shift-click action.
+     * Returns the action for when this text is shift-clicked. This maps to the
+     * insertion field in JSON, because that is the only possible shift-click
+     * action.
      *
      * @return The {@link ShiftClickAction} of this Message
      */
@@ -110,34 +115,40 @@ public interface Message<T> extends Iterable<Message<T>> {
     MessageBuilder<T> builder();
 
     /**
-     * A Text Message is a message with a String as content.
-     * In JSON, the content getter maps to the text field.
+     * A Text Message is a message with a String as content. In JSON, the
+     * content getter maps to the text field.
      */
-    interface Text extends Message<String> { }
+    interface Text extends Message<String> {
+
+    }
 
     /**
      * A Translatable Message is a message with a Translation as content.
-     * Whatever locale the client is using translates this message using the translation identifier.
-     * In JSON, the content getter maps to the translation identifier.
+     * Whatever locale the client is using translates this message using the
+     * translation identifier. In JSON, the content getter maps to the
+     * translation identifier.
      */
-    interface Translatable extends Message<Translation> { }
+    interface Translatable extends Message<Translation> {
+
+    }
 
     /**
-     * A Selector Message is a message with a Selector as content.
-     * Whatever the selector matches becomes the text of this Message.
-     * In JSON, the content getter maps to the translation field.
+     * A Selector Message is a message with a Selector as content. Whatever the
+     * selector matches becomes the text of this Message. In JSON, the content
+     * getter maps to the translation field.
      */
     interface Selector extends Message<String> {
         // TODO use Selector
     }
 
     /**
-     * A Score Message is a message with a Score as content.
-     * this Message does not appear, but changes the score for some objective on the client-side.
-     * It can be overridden.
-     * In JSON, the content getter maps to the score field.
+     * A Score Message is a message with a Score as content. this Message does
+     * not appear, but changes the score for some objective on the client-side.
+     * It can be overridden. In JSON, the content getter maps to the score
+     * field.
      */
     interface Score extends Message<Object> {
+
         // TODO use Score
 
         Optional<String> getOverride();

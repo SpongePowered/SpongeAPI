@@ -71,8 +71,8 @@ public interface MessageBuilder<T> {
 
     /**
      * Sets the text styles of this message. This will construct a composite
-     * {@link TextStyle} of the current style and the specified styles first
-     * and set it to the message.
+     * {@link TextStyle} of the current style and the specified styles first and
+     * set it to the message.
      *
      * @param styles The text styles to apply
      * @return This message builder
@@ -80,8 +80,8 @@ public interface MessageBuilder<T> {
     MessageBuilder<T> style(TextStyle... styles);
 
     /**
-     * Sets the {@link ClickAction} that will be executed if this message
-     * is clicked in the chat.
+     * Sets the {@link ClickAction} that will be executed if this message is
+     * clicked in the chat.
      *
      * @param action The new click action for this message
      * @return This message builder
@@ -89,8 +89,8 @@ public interface MessageBuilder<T> {
     MessageBuilder<T> onClick(ClickAction<?> action);
 
     /**
-     * Sets the {@link HoverAction} that will be executed if this message
-     * is hovered in the chat.
+     * Sets the {@link HoverAction} that will be executed if this message is
+     * hovered in the chat.
      *
      * @param action The new hover action for this message
      * @return This message builder
@@ -109,7 +109,8 @@ public interface MessageBuilder<T> {
     /**
      * Builds an immutable instance of the current message.
      *
-     * @return An immutable {@link Message} with the current properties of this builder
+     * @return An immutable {@link Message} with the current properties of this
+     *         builder
      */
     Message<T> build();
 

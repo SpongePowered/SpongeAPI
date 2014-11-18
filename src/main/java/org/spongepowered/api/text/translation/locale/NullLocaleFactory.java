@@ -22,47 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.translation.locale;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.message.Message;
+import java.util.List;
+import java.util.Locale;
 
 /**
- * A HoverAction is a TextAction that responds to hovers.
- *
- * @param <R> the type of the result of the action
+ * Dummy implementation of {@link LocaleFactory} - returns null for all methods.
  */
-public interface HoverAction<R> extends TextAction<R> {
+class NullLocaleFactory implements LocaleFactory {
 
-    /**
-     * Shows some text.
-     */
-    interface ShowText extends HoverAction<Message<?>> {
-
+    @Override
+    public Locale getLocaleFromId(String id) {
+        return null;
     }
 
-    /**
-     * Shows an item and its information.
-     */
-    interface ShowItem extends HoverAction<ItemStack> {
-
+    @Override
+    public Locale getLocaleFromName(String name) {
+        return null;
     }
 
-    // TODO replace with achievement
-
-    /**
-     * Shows an achievement and its information.
-     */
-    interface ShowAchievement extends HoverAction<Object> {
-
+    @Override
+    public List<Locale> getLocales() {
+        return null;
     }
-
-    /**
-     * Shows an entity and its information.
-     */
-    interface ShowEntity extends HoverAction<Entity> {
-
-    }
-
 }

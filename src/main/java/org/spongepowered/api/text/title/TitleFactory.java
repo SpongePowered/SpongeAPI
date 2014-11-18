@@ -25,7 +25,8 @@
 package org.spongepowered.api.text.title;
 
 /**
- * Represents the required implementation for the static methods in {@link Titles}.
+ * Represents the required implementation for the static methods in
+ * {@link Titles}.
  */
 interface TitleFactory {
 

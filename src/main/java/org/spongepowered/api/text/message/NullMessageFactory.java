@@ -27,7 +27,8 @@ package org.spongepowered.api.text.message;
 import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Dummy implementation of {@link MessageFactory} - returns null for all methods.
+ * Dummy implementation of {@link MessageFactory} - returns null for all
+ * methods.
  */
 class NullMessageFactory implements MessageFactory {
 

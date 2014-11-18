@@ -27,7 +27,8 @@ package org.spongepowered.api.text.title;
 import org.spongepowered.api.text.message.Message;
 
 /**
- * Represents a builder interface to create immutable {@link Title} configurations.
+ * Represents a builder interface to create immutable {@link Title}
+ * configurations.
  */
 public interface TitleBuilder {
 
@@ -52,7 +53,9 @@ public interface TitleBuilder {
      * period of time is over the title will stay for the amount of time
      * specified in {@link #stay(int)}.
      *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
+     * <p>
+     * The default value for Vanilla is 20 (1 second).
+     * </p>
      *
      * @param ticks The amount of ticks (1/20 second) for the fade in effect
      * @return This title builder
@@ -64,7 +67,9 @@ public interface TitleBuilder {
      * Once this period of time is over the title will fade out using the
      * duration specified in {@link #fadeOut(int)}.
      *
-     * <p>The default value for Vanilla is 60 (3 seconds).</p>
+     * <p>
+     * The default value for Vanilla is 60 (3 seconds).
+     * </p>
      *
      * @param ticks The amount of ticks (1/20 second) to stay
      * @return This title builder
@@ -74,7 +79,9 @@ public interface TitleBuilder {
     /**
      * Set the duration in ticks of the fade out effect of the title.
      *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
+     * <p>
+     * The default value for Vanilla is 20 (1 second).
+     * </p>
      *
      * @param ticks The amount of ticks (1/20 second) for the fade out effect
      * @return This title builder
@@ -90,8 +97,8 @@ public interface TitleBuilder {
     TitleBuilder clear();
 
     /**
-     * Remove the currently displayed title from the player's screen
-     * and set the configuration back to the default values.
+     * Remove the currently displayed title from the player's screen and set the
+     * configuration back to the default values.
      *
      * @return This title builder
      */

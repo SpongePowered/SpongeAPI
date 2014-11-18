@@ -25,8 +25,9 @@
 package org.spongepowered.api.text.action;
 
 /**
- * A TextAction is something that happens as a response to some event on raw text.
- * In the Sponge API this is either a {@link org.spongepowered.api.text.action.ClickAction click} or
+ * A TextAction is something that happens as a response to some event on raw
+ * text. In the Sponge API this is either a
+ * {@link org.spongepowered.api.text.action.ClickAction click} or
  * {@link org.spongepowered.api.text.action.HoverAction hover}.
  *
  * @param <R> the type of the result of the action
@@ -41,9 +42,9 @@ public interface TextAction<R> {
     String getId();
 
     /**
-     * Returns the result of this text action.
-     * This is an argument that gets passed into the text action in JSON, for instance,
-     * the URL in the OpenUrl click action.
+     * Returns the result of this text action. This is an argument that gets
+     * passed into the text action in JSON, for instance, the URL in the OpenUrl
+     * click action.
      *
      * @return A result
      */

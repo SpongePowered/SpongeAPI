@@ -43,14 +43,16 @@ public final class Messages {
      * @param <T> The type parameter of the Message
      * @return A new MessageBuilder
      *
-     * @throws UnsupportedOperationException If the specified content type is not supported by this server
+     * @throws UnsupportedOperationException If the specified content type is
+     *             not supported by this server
      */
     public static <T> MessageBuilder<T> builder(T content) {
         return factory.createBuilder(content);
     }
 
     /**
-     * Creates a new {@link MessageBuilder} that builds {@link Translation} messages.
+     * Creates a new {@link MessageBuilder} that builds {@link Translation}
+     * messages.
      *
      * @param translation The translation of the Message
      * @param args The arguments to the translation
@@ -61,9 +63,11 @@ public final class Messages {
     }
 
     // TODO: Score API
+
     /**
-     * Creates a new {@link MessageBuilder} that builds {@link Message.Score} messages.
-     * If you wish to not override the score, use the {@link #builder(Object)} method.
+     * Creates a new {@link MessageBuilder} that builds {@link Message.Score}
+     * messages. If you wish to not override the score, use the
+     * {@link #builder(Object)} method.
      *
      * @param score The score of the Message
      * @param override The override of the score
@@ -74,8 +78,8 @@ public final class Messages {
     }
 
     /**
-     * Creates a new {@link MessageBuilder} out of the given content and builds it immediately.
-     * This is a shorthand to {@link #builder(Object)}.
+     * Creates a new {@link MessageBuilder} out of the given content and builds
+     * it immediately. This is a shorthand to {@link #builder(Object)}.
      *
      * @param content The content of the Message
      * @param <T> The type parameter of the Message
@@ -147,7 +151,8 @@ public final class Messages {
     }
 
     /**
-     * Replaces the given formatting character with the default legacy formatting character from a legacy string.
+     * Replaces the given formatting character with the default legacy
+     * formatting character from a legacy string.
      *
      * @param message The legacy message as a String
      * @param from The color character to be replaced
@@ -160,7 +165,8 @@ public final class Messages {
     }
 
     /**
-     * Replaces the given formatting character with another given formatting character from a legacy string.
+     * Replaces the given formatting character with another given formatting
+     * character from a legacy string.
      *
      * @param message The legacy message as a String
      * @param from The color character to be replaced

@@ -28,9 +28,11 @@ package org.spongepowered.api.text.title;
  * Utility class to create instances of {@link TitleBuilder}.
  */
 public final class Titles {
+
     private static final TitleFactory factory = new NullTitleFactory();
 
-    private Titles() {}
+    private Titles() {
+    }
 
     /**
      * Creates a new {@link Title} configuration builder that will reset the
@@ -46,9 +48,9 @@ public final class Titles {
 
     /**
      * Creates a new empty {@link Title} configuration builder. Unlike
-     * {@link #builder} this won't reset the current Title on the client
-     * before displaying the current one. This has less use cases but should
-     * be used if just the previously sent Title should be updated.
+     * {@link #builder} this won't reset the current Title on the client before
+     * displaying the current one. This has less use cases but should be used if
+     * just the previously sent Title should be updated.
      *
      * @return A new {@link TitleBuilder}
      * @see #builder

@@ -22,47 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.translation.locale;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.message.Message;
+import java.util.List;
+import java.util.Locale;
 
 /**
- * A HoverAction is a TextAction that responds to hovers.
- *
- * @param <R> the type of the result of the action
+ * Represents the required implementation for the static methods in
+ * {@link Locales}.
  */
-public interface HoverAction<R> extends TextAction<R> {
+interface LocaleFactory {
 
     /**
-     * Shows some text.
+     * Gets the {@link Locale} of the specified Minecraft locale code.
+     *
+     * @param id The ID for the locale, for example "en_US" or "de_DE"
+     * @return The {@link Locale} with the specified ID, or null if not found
      */
-    interface ShowText extends HoverAction<Message<?>> {
-
-    }
+    Locale getLocaleFromId(String id);
 
     /**
-     * Shows an item and its information.
+     * Gets the {@link Locale} with the specified name.
+     *
+     * @param name The name of the locale, for example "ENGLISH" or "GERMAN"
+     * @return The {@link Locale} with the specified name, or null if not found
      */
-    interface ShowItem extends HoverAction<ItemStack> {
-
-    }
-
-    // TODO replace with achievement
+    Locale getLocaleFromName(String name);
 
     /**
-     * Shows an achievement and its information.
+     * Returns a list of all available {@link Locale}s on this server.
+     *
+     * @return An immutable list of all locales
      */
-    interface ShowAchievement extends HoverAction<Object> {
-
-    }
-
-    /**
-     * Shows an entity and its information.
-     */
-    interface ShowEntity extends HoverAction<Entity> {
-
-    }
+    List<Locale> getLocales();
 
 }

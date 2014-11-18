@@ -25,9 +25,11 @@
 package org.spongepowered.api.text.chat;
 
 /**
- * A ChatPosition represents one of the positions that a chat message can be sent to.
- * Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the chat message packet</a> for a description of the packet.
- * A list of available chat positions in Minecraft is available in {@link org.spongepowered.api.text.chat.ChatPositions}.
+ * A ChatPosition represents one of the positions that a chat message can be
+ * sent to. Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the
+ * chat message packet</a> for a description of the packet. A list of available
+ * chat positions in Minecraft is available in
+ * {@link org.spongepowered.api.text.chat.ChatPositions}.
  */
 public interface ChatPosition {
 

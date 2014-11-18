@@ -96,8 +96,8 @@ public final class TextActions {
     }
 
     /**
-     * Creates a new {@link HoverAction} that will show information about
-     * an item when it is hovered.
+     * Creates a new {@link HoverAction} that will show information about an
+     * item when it is hovered.
      *
      * @param item The item to display
      * @return The created hover action instance
@@ -118,8 +118,8 @@ public final class TextActions {
     }
 
     /**
-     * Creates a new {@link HoverAction} that will show information about an entity
-     * when it is hovered.
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
      *
      * @param entity The entity to display
      * @return The created hover action instance
@@ -129,8 +129,8 @@ public final class TextActions {
     }
 
     /**
-     * Creates a new {@link ShiftClickAction} that will insert text at the current
-     * cursor position in the chat when it is shift-clicked.
+     * Creates a new {@link ShiftClickAction} that will insert text at the
+     * current cursor position in the chat when it is shift-clicked.
      *
      * @param text The text to insert
      * @return The created shift click action instance

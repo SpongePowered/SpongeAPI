@@ -27,8 +27,10 @@ package org.spongepowered.api.text.format;
 import java.awt.Color;
 
 /**
- * A TextColor represents a color that a {@link org.spongepowered.api.text.message.Message} has.
- * A list of the base text colors provided in Minecraft is provided in {@link org.spongepowered.api.text.format.TextColors}.
+ * A TextColor represents a color that a
+ * {@link org.spongepowered.api.text.message.Message} has. A list of the base
+ * text colors provided in Minecraft is provided in
+ * {@link org.spongepowered.api.text.format.TextColors}.
  */
 public interface TextColor {
 
@@ -47,11 +49,14 @@ public interface TextColor {
     boolean isReset();
 
     /**
-     * A Base text color is one that is represented in Minecraft.
-     * There are several Base colors provided in Minecraft which are specified in {@link org.spongepowered.api.text.format.TextColors}.
-     * Base extends FormattingCode because it does have a corresponding formatting code;
-     * it is a single, pure text color.
+     * A Base text color is one that is represented in Minecraft. There are
+     * several Base colors provided in Minecraft which are specified in
+     * {@link org.spongepowered.api.text.format.TextColors}. Base extends
+     * FormattingCode because it does have a corresponding formatting code; it
+     * is a single, pure text color.
      */
-    interface Base extends FormattingCode, TextStyle { }
+    interface Base extends FormattingCode, TextStyle {
+
+    }
 
 }

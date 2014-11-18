@@ -29,8 +29,8 @@ import com.google.common.base.Optional;
 import java.util.List;
 
 /**
- * ChatPositions is a list of the default chat positions that are available in Minecraft.
- * The values are filled in by mixins in Sponge at runtime.
+ * ChatPositions is a list of the default chat positions that are available in
+ * Minecraft. The values are filled in by mixins in Sponge at runtime.
  */
 public final class ChatPositions {
 
@@ -46,15 +46,19 @@ public final class ChatPositions {
     public static final ChatPosition CHAT = null;
 
     /**
-     * The same position as the {@link #CHAT} position, except messages sent to this position are still seen when
-     * chat is turned off on the Minecraft client.
+     * The same position as the {@link #CHAT} position, except messages sent to
+     * this position are still seen when chat is turned off on the Minecraft
+     * client.
      *
-     * <p>Use wisely as to not annoy players.</p>
+     * <p>
+     * Use wisely as to not annoy players.
+     * </p>
      */
     public static final ChatPosition SYSTEM = null;
 
     /**
-     * The position right above the inventory, experience, health, item name, etc. bars.
+     * The position right above the inventory, experience, health, item name,
+     * etc. bars.
      */
     public static final ChatPosition ACTION_BAR = null;
 
@@ -62,10 +66,11 @@ public final class ChatPositions {
      * Gets the {@link ChatPosition} with the specified name.
      *
      * @param name The identifier of the chat position, for example "ACTION_BAR"
-     * @return The {@link ChatPosition} with the specified name, or {@link Optional#absent()} if not found
+     * @return The {@link ChatPosition} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
     public static Optional<ChatPosition> valueOf(String name) {
-        return Optional.fromNullable(factory.parsePosition(name));
+        return Optional.fromNullable(factory.getPositionFromName(name));
     }
 
     /**

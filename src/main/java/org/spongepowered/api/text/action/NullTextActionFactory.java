@@ -31,7 +31,8 @@ import org.spongepowered.api.text.message.Message;
 import java.net.URL;
 
 /**
- * Dummy implementation of {@link TextActionFactory} - returns null for all methods.
+ * Dummy implementation of {@link TextActionFactory} - returns null for all
+ * methods.
  */
 class NullTextActionFactory implements TextActionFactory {
 

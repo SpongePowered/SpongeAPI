@@ -25,13 +25,13 @@
 package org.spongepowered.api.text.translation;
 
 /**
- * Dummy implementation of {@link TranslationFactory} - returns null for all methods.
+ * Dummy implementation of {@link TranslationFactory} - returns null for all
+ * methods.
  */
 class NullTranslationFactory implements TranslationFactory {
 
     @Override
-    public Translation getTranslation(String id) {
+    public Translation getTranslationFromId(String id) {
         return null;
     }
-
 }
