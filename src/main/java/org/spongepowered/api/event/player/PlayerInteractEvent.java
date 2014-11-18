@@ -38,8 +38,7 @@ import com.google.common.base.Optional;
 public interface PlayerInteractEvent extends PlayerEvent, Cancellable {
 
     /**
-     * Gets the {@link Block} that the player has clicked, returns null if the
-     * player clicks the air.
+     * Gets the {@link Block} that the player has clicked, if available.
      * 
      * @return The block
      */
