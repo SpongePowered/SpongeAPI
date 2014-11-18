@@ -27,16 +27,57 @@ package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
 
+import java.util.Set;
+
+import javax.annotation.Nullable;
+
 /**
- * Called when a {@link Player} sends a chat message
+ * Called when a {@link Player} sends a chat message.
  */
 public interface AsyncPlayerChatEvent extends PlayerEvent {
 
     /**
-     * Get the message sent in this event
+     * Gets the message which is sent to the recipients
+     * if no player-specific message is defined.
      *
-     * @return The message sent
+     * @return The fallback message.
      */
     String getMessage();
+
+    /**
+     * Sets the message which is sent to the recipients
+     * if no player-specific message is defined.
+     *
+     * @param message The new fallback message.
+     */
+    void setMessage(String message);
+    
+    /**
+     * Gets the recipients of this chat event.
+     *
+     * @return The recipients of this chat event.
+     */
+    Set<Player> getRecipients();
+
+    /**
+     * Gets the message for a specific player.
+     *
+     * <p>If the player is a recipient of this chat event
+     * but doesn't have a specific message set this returns
+     * the fallback message.</p>
+     *
+     * @param player The player whose message is requested.
+     * @return The message for the given player.
+     */
+    String getMessage(Player player);
+
+    /**
+     * Sets the message for a specific player.
+     *
+     * @param player The player to set the message for.
+     * @param message The message to send to this player
+     *                or null to use the fallback message instead.
+     */
+    void setMessage(Player player, @Nullable String message);
 
 }
