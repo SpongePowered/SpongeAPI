@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.service.command;
 
+import org.spongepowered.api.util.Owner;
+import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
 
 /**
@@ -32,5 +34,14 @@ import org.spongepowered.api.util.command.dispatcher.Dispatcher;
  * and dispatches them to the correct command handler.
  */
 public interface CommandDispatcher extends Dispatcher {
+
+    /**
+     * Register a command with this dispatcher.
+     *
+     * @param callable The command executor
+     * @param owner The owner of the command
+     * @param alias A list of aliases, where the first alias is the primary name
+     */
+    void registerCommand(CommandCallable callable, Owner owner, String... alias);
 
 }
