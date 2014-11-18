@@ -22,29 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link org.spongepowered.api.entity.Entity} moves.
+ * An EntityEvent that has a primary entity performing an action.
  */
-public interface EntityMoveEvent extends EntityPerformEvent, Cancellable {
+public interface EntityPerformEvent extends EntityEvent {
 
     /**
-     * Gets the previous {@link Location} that the entity was in.
-     * 
-     * @return The old location
+     * Returns the primary entity involved in this event that performs the action.
+     * This entity is also contained in the list of entities from {@link #getEntities()}.
+     *
+     * @return The entity performing the action
      */
-    Location getOldLocation();
+    Entity getEntity();
 
-    /**
-     * Gets the new {@link Location} that the entity is in.
-     * 
-     * @return The new location
-     */
-    Location getNewLocation();
 }

@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.GameEvent;
 
 /**
- * An event that represents an action performed by an entity.
+ * An event that whose targets happen to be entities.
  */
 public interface EntityEvent extends GameEvent {
 
