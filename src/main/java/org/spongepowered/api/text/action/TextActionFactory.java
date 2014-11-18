@@ -35,19 +35,17 @@ import java.net.URL;
  */
 interface TextActionFactory {
 
-    // Click actions
-
     /**
-     * Creates a new {@link ClickAction} that will ask the player to open an URL
+     * Creates a new {@link ClickAction.OpenUrl} instance that will ask the player to open an URL
      * when it is clicked.
      *
-     * @param url The URL to open
+     * @param url The url to open
      * @return The created click action instance
      */
     ClickAction.OpenUrl createOpenUrl(URL url);
 
     /**
-     * Creates a new {@link ClickAction} that will run a command on the client
+     * Creates a new {@link ClickAction.RunCommand} instance that will run a command on the client
      * when it is clicked.
      *
      * @param command The command to execute
@@ -56,7 +54,7 @@ interface TextActionFactory {
     ClickAction.RunCommand createRunCommand(String command);
 
     /**
-     * Creates a new {@link ClickAction} that will change the page in a book
+     * Creates a new {@link ClickAction.ChangePage} instance that will change the page in a book
      * when it is clicked.
      *
      * @param page The book page to switch to
@@ -65,7 +63,7 @@ interface TextActionFactory {
     ClickAction.ChangePage createChangePage(int page);
 
     /**
-     * Creates a new {@link ClickAction} that will suggest the player a command
+     * Creates a new {@link ClickAction.SuggestCommand} instance that will suggest the player a command
      * when it is clicked.
      *
      * @param command The command to suggest
@@ -73,19 +71,17 @@ interface TextActionFactory {
      */
     ClickAction.SuggestCommand createSuggestCommand(String command);
 
-    // Hover actions
-
     /**
-     * Creates a new {@link HoverAction} that will show a text on the client
-     * when it is hovered.
+     * Creates a new {@link org.spongepowered.api.text.action.HoverAction.ShowText} instance
+     * that will show text when it is hovered.
      *
-     * @param text The text to display
+     * @param text The message to show
      * @return The created hover action instance
      */
     HoverAction.ShowText createShowText(Message<?> text);
 
     /**
-     * Creates a new {@link HoverAction} that will show information about
+     * Creates a new {@link HoverAction.ShowItem} instance that will show information about
      * an item when it is hovered.
      *
      * @param item The item to display
@@ -94,7 +90,7 @@ interface TextActionFactory {
     HoverAction.ShowItem createShowItem(ItemStack item);
 
     /**
-     * Creates a new {@link HoverAction} that will show information about an
+     * Creates a new {@link HoverAction.ShowItem} instance that will show information about an
      * achievement when it is hovered.
      *
      * @param achievement The achievement to display
@@ -106,19 +102,17 @@ interface TextActionFactory {
      * Creates a new {@link HoverAction} that will show information about an entity
      * when it is hovered.
      *
-     * @param text The text to display
+     * @param entity The entity to display
      * @return The created hover action instance
      */
     HoverAction.ShowEntity createShowEntity(Entity entity);
 
-    // Shift click actions
-
     /**
-     * Creates a new {@link ShiftClickAction} that will insert text at the current
+     * Creates a new {@link ShiftClickAction} instance that will insert text at the current
      * cursor position in the chat when it is shift-clicked.
      *
      * @param text The text to insert
-     * @return The created shift click action instance
+     * @return The created shift-click action instance
      */
     ShiftClickAction.InsertText createInsertText(String text);
 

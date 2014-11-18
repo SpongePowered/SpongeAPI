@@ -45,4 +45,5 @@ interface ChatPositionFactory {
      * @return An immutable list of all chat positions
      */
     List<ChatPosition> getPositions();
+
 }

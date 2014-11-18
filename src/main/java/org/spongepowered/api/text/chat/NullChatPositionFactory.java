@@ -27,7 +27,7 @@ package org.spongepowered.api.text.chat;
 import java.util.List;
 
 /**
- * Dummy implementation of {@link ChatPositionFactory} - returns null for all methods
+ * Dummy implementation of {@link ChatPositionFactory} - returns null for all methods.
  */
 class NullChatPositionFactory implements ChatPositionFactory {
 
@@ -40,4 +40,5 @@ class NullChatPositionFactory implements ChatPositionFactory {
     public List<ChatPosition> getPositions() {
         return null;
     }
+
 }

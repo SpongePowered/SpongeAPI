@@ -40,8 +40,6 @@ public final class TextActions {
     private TextActions() {
     }
 
-    // Click actions
-
     /**
      * Creates a new {@link ClickAction} that will ask the player to open an URL
      * when it is clicked.
@@ -86,8 +84,6 @@ public final class TextActions {
         return factory.createSuggestCommand(command);
     }
 
-    // Hover actions
-
     /**
      * Creates a new {@link HoverAction} that will show a text on the client
      * when it is hovered.
@@ -125,14 +121,12 @@ public final class TextActions {
      * Creates a new {@link HoverAction} that will show information about an entity
      * when it is hovered.
      *
-     * @param text The text to display
+     * @param entity The entity to display
      * @return The created hover action instance
      */
     public static HoverAction.ShowEntity showEntity(Entity entity) {
         return factory.createShowEntity(entity);
     }
-
-    // Shift click actions
 
     /**
      * Creates a new {@link ShiftClickAction} that will insert text at the current

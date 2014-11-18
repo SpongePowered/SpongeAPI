@@ -103,4 +103,5 @@ public interface TitleBuilder {
      * @return An immutable {@link Title} with the currently configured settings
      */
     Title build();
+
 }

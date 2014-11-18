@@ -56,4 +56,5 @@ public final class Titles {
     public static TitleBuilder update() {
         return factory.createTitleBuilder();
     }
+
 }

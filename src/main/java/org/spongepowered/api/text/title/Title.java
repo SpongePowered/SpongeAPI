@@ -107,4 +107,5 @@ public interface Title {
      * @return A new builder to modify this Title configuration
      */
     TitleBuilder builder();
+
 }

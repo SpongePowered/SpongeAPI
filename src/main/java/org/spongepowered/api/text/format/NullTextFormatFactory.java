@@ -27,9 +27,10 @@ package org.spongepowered.api.text.format;
 import java.util.List;
 
 /**
- * Dummy implementation of {@link TextFormatFactory} - returns null for all methods
+ * Dummy implementation of {@link TextFormatFactory} - returns null for all methods.
  */
 class NullTextFormatFactory implements TextFormatFactory {
+
     @Override
     public TextColor parseColor(String name) {
         return null;
@@ -54,4 +55,5 @@ class NullTextFormatFactory implements TextFormatFactory {
     public TextStyle createStyle(TextStyle[] styles) {
         return null;
     }
+
 }

@@ -44,4 +44,5 @@ public final class Translations {
     public static Optional<Translation> of(String id) {
         return Optional.fromNullable(factory.getTranslation(id));
     }
+
 }

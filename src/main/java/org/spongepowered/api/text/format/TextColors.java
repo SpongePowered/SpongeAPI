@@ -81,6 +81,4 @@ public final class TextColors {
         return TextStyles.factory.getColors();
     }
 
-
-
 }

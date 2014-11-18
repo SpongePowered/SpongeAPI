@@ -51,7 +51,7 @@ public interface MessageBuilder<T> {
      * @param children The messages to append
      * @return This message builder
      */
-    MessageBuilder<T> append(Iterable<Message<?>> child);
+    MessageBuilder<T> append(Iterable<Message<?>> children);
 
     /**
      * Sets the content of this message.

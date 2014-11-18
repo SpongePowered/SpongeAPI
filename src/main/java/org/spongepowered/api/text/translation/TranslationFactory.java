@@ -34,6 +34,8 @@ interface TranslationFactory {
      *
      * @param id The translation ID
      * @return A {@link Translation} instance with the specified ID or null if not found
+     *
      */
     Translation getTranslation(String id);
+
 }

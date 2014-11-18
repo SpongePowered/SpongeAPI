@@ -33,6 +33,7 @@ import java.util.List;
  * The values are filled in by mixins in Sponge at runtime.
  */
 public final class ChatPositions {
+
     private static final ChatPositionFactory factory = new NullChatPositionFactory();
 
     private ChatPositions() {
@@ -75,4 +76,5 @@ public final class ChatPositions {
     public static List<ChatPosition> getValues() {
         return factory.getPositions();
     }
+
 }

@@ -35,4 +35,5 @@ interface TitleFactory {
      * @return A new title builder
      */
     TitleBuilder createTitleBuilder();
+
 }

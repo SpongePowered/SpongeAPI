@@ -34,7 +34,7 @@ package org.spongepowered.api.text.format;
  *
  * <p>Interestingly enough, TextStyle actually forms a monoid with the {@link #and(TextStyle...)} operation
  * as the monoid operation and the TextStyle elements as the elements of the monoid. I do not want to prove
- * closure or the other group laws, but yay math!</p>
+ * closure or the other monoid laws, but yay math!</p>
  */
 public interface TextStyle {
 
