@@ -25,11 +25,11 @@
 
 package org.spongepowered.api.plugin;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * An annotation used to describe and mark a Sponge plugin
@@ -41,6 +41,8 @@ public @interface Plugin {
     /**
      * An ID for the plugin to be used internally. The ID should be unique as to
      * not conflict with other plugins.
+     *
+     * @return A unique identifier
      */
     String id();
 
@@ -75,6 +77,8 @@ public @interface Plugin {
      *   <dd>plugin x must be present, load before plugin x</dd>
      * </dl>
      * supports maven version ranges after @ in any field
+     *
+     * @return A specially formatted list of dependencies
      */
     String dependencies() default "";
 
