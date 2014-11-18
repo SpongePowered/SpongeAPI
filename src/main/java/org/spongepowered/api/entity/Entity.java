@@ -61,7 +61,7 @@ public interface Entity extends EntityState {
      *
      * @param interactionType The type of interaction performed on this entity
      */
-    void interact(EntityInteractionType interactionType);
+    void interact(PlayerInteractionType interactionType);
 
     /**
      * Simulates the interaction with this object using the given item as if
@@ -70,7 +70,7 @@ public interface Entity extends EntityState {
      * @param itemStack The item
      * @param interactionType The type of interaction performed on this entity
      */
-    void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
+    void interactWith(ItemStack itemStack, PlayerInteractionType interactionType);
 
     /**
      * Gets the position.
