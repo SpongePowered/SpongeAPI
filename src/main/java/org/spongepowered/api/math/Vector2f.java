@@ -239,6 +239,32 @@ public interface Vector2f extends Comparable<Vector2f>, Serializable, Cloneable 
     float dot(float x, float y);
 
     /**
+     * Projects this vector onto another vector.
+     *
+     * @param v the vector to project on
+     * @return The results of the operation as a new vector
+     */
+    Vector2f project(Vector2f v);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @return The results of the operation
+     */
+    Vector2f project(double x, double y);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @return The results of the operation
+     */
+    Vector2f project(float x, float y);
+
+    /**
      * Raises each component of this vector by the value, returning the results
      * as new vector.
      *

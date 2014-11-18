@@ -226,6 +226,32 @@ public interface Vector2i extends Comparable<Vector2i>, Serializable, Cloneable 
     int dot(int x, int y);
 
     /**
+     * Projects this vector onto another vector.
+     *
+     * @param v the vector to project on
+     * @return The results of the operation as a new vector
+     */
+    Vector2i project(Vector2i v);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @return The results of the operation
+     */
+    Vector2i project(double x, double y);
+
+    /**
+     * Projects this vector onto another vector.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @return The results of the operation
+     */
+    Vector2i project(int x, int y);
+
+    /**
      * Raises each component of this vector by the value, returning the results
      * as new vector.
      *

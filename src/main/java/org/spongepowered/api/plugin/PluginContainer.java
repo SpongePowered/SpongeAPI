@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.plugin;
 
-import java.io.File;
-
 /**
  * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
  * information from the annotation for easier use.
@@ -38,7 +36,7 @@ public interface PluginContainer {
      *
      * @return The id
      */
-    String getID();
+    String getId();
 
     /**
      * Gets the name of the {@link Plugin} within this container.

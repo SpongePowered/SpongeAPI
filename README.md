@@ -1,6 +1,6 @@
 SpongeAPI [![Build Status](https://travis-ci.org/SpongePowered/SpongeAPI.png?branch=master)](https://travis-ci.org/SpongePowered/SpongeAPI)
 =============
-**Currently not stable and under heavily development!**  
+**Currently not stable and under heavy development!**  
 A Minecraft plugin API (not including an implementation). It is licensed under the [MIT License]. 
 
 * [Homepage]

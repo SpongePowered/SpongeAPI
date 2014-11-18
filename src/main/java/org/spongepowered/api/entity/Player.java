@@ -25,7 +25,10 @@
 
 package org.spongepowered.api.entity;
 
-public interface Player extends HumanEntity {
+import org.spongepowered.api.title.Title;
+import org.spongepowered.api.util.command.CommandSource;
+
+public interface Player extends HumanEntity, CommandSource {
 
     /**
      * Gets the players last known username.
@@ -62,4 +65,23 @@ public interface Player extends HumanEntity {
      * @return true If whitelisted
      */
     boolean isWhitelisted();
+
+
+     * Sends a {@link Title} to this player. This is the same as calling
+     * {@link Title#send(Player)}.
+     *
+     * @param title The {@link Title} to send to the player.
+     */
+    void sendTitle(Title title);
+
+    /**
+     * Removes the currently displayed {@link Title} from the player and resets
+     * all settings back to default values.
+     */
+    void resetTitle();
+
+    /**
+     * Removes the currently displayed {@link Title} from the player's screen.
+     */
+    void clearTitle();
 }

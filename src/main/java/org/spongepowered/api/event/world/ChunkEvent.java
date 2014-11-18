@@ -25,12 +25,13 @@
 
 package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * Describes events which involve a {@link Chunk}
  */
-public interface ChunkEvent {
+public interface ChunkEvent extends GameEvent {
 
     /**
      * Gets the {@link Chunk} included in the event

@@ -48,10 +48,20 @@ You can also download our formatting xml files. Links for both are in our [contr
 While we urge that you read Google's Java conventions particularly, the two are fairly long documents. To get you started quickly, here is an example of properly formatted code...
 
 ```
+/* 
+ * Licensing 
+ */
+
 package com.example.java;
+
 /* imports */
+
+/**
+ * An Example class which shows the required formatting
+ */
 public class Example {
-   private static final Logger log = Logger.getLogger(ExampleClass.class);
+
+   private static final Logger logger = Logger.getLogger(ExampleClass.class);
    private static final Random random = new Random();
    private final String id = "test";
 
@@ -63,11 +73,12 @@ public class Example {
     * the given fallback ID is returned.</p>
     *
     * @param fallback An optional fallback name to return
+    *        if the random boolean returns false
     * @return The ID half of the time, the given fallback the other half
     */
    @Nullable
    public String resolveId(@Nullable String fallback) {
-       log.log(Priority.INFO, "ID requested");
+       logger.log(Priority.INFO, "ID requested");
 
        if (random.nextBoolean()) {
            return id;
@@ -75,5 +86,52 @@ public class Example {
            return fallback;
        }
    }
+}
+```
+
+Heres an example of a properly formatted code in an interface:
+
+```
+/*
+ * Licensing
+ */
+ 
+package org.spongepowered.api.component.attribute;
+
+/**
+ * An Example interface which shows the required formatting
+ */
+public interface Example extends AnotherInterface, ExampleInterface {
+
+    /**
+     * Gets the name of the {@link Entity}.
+     *
+     * @param entity The entity
+     * @return The entity name
+     * @throws NonExistingEntityException The error caused when the entity
+     *         does not exist
+     */
+    String getName(Entity entity) throws NonExistingEntityException;
+
+    /**
+     * Set the health amount.
+     *
+     * <p>The range of the health depends on the object on which this
+     * method is defined. For players in Minecraft, the nominal range is
+     * between 0 and 20, inclusive, but the range can be adjusted.</p>
+     *
+     * <p>Convention dictates that health does not follow below 0 but this
+     * convention may be broken.</p>
+     *
+     * @param health The health to set to
+     */
+    void setHealth(double health);
+
+    /**
+     * Checks to see if {@link Entity} is alive.
+     *
+     * @return true If entity is alive
+     */
+    boolean isAlive(Entity entity);
 }
 ```

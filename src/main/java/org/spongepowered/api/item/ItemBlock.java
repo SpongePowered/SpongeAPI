@@ -25,18 +25,18 @@
 
 package org.spongepowered.api.item;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockType;
 
 /**
- * Represents a {@link Block} as an {@link Item}
+ * Represents a {@link BlockType} as an {@link ItemType}
  */
-public interface ItemBlock extends Item {
+public interface ItemBlock extends ItemType {
 
     /**
-     * Gets the {@link Block} this item places on interaction
+     * Gets the {@link BlockType} this item places on interaction
      *
      * @return The block
      */
-    Block getBlock();
+    BlockType getBlock();
 
 }

@@ -25,16 +25,16 @@
 
 package org.spongepowered.api;
 
-import org.apache.logging.log4j.Logger;
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.service.scheduler.Scheduler;
+import org.spongepowered.api.title.Title;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -72,6 +72,13 @@ public interface Game {
     GameRegistry getRegistry();
 
     /**
+     * Gets the {@link Scheduler}.
+     *
+     * @return The scheduler
+     */
+    Scheduler getScheduler();
+
+    /**
      * Gets the {@link Player}s currently online
      *
      * @return a {@link Collection} of online players
@@ -89,10 +96,22 @@ public interface Game {
      * Gets a {@link Player} by their unique id
      *
      * @param uniqueId The UUID to get the player from
-     * @return {@link Player} or null if none found
+     * @return {@link Player} if available
      */
-    @Nullable
-    Player getPlayer(UUID uniqueId);
+    Optional<Player> getPlayer(UUID uniqueId);
+
+    /**
+     * Gets a {@link Player} by their name
+     *
+     * This only works for online players.
+     *
+     * <b>Note: Do not use names for persistent storage, the
+     * Zidane of today may not be the Zidane of yesterday.</b>
+     *
+     * @param name The name to get the player from
+     * @return {@link Player} if available
+     */
+    Optional<Player> getPlayer(String name);
 
     /**
      * Gets all currently loaded {@link World}s.
@@ -123,6 +142,22 @@ public interface Game {
      * @param message The message to send
      */
     void broadcastMessage(String message);
+
+    /**
+     * Creates a new clean {@link Title} configuration that will reset the
+     * currently displayed title before displaying the new one.
+     *
+     * @return A new clean {@link Title} configuration.
+     */
+    Title createTitle();
+
+    /**
+     * Creates a new empty {@link Title} configuration that will just update
+     * the currently displayed title on the client.
+     *
+     * @return A new empty {@link Title} configuration.
+     */
+    Title updateTitle();
 
     /**
      * Gets the API version.

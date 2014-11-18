@@ -22,42 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.item.Item;
-
-import javax.annotation.Nullable;
+import com.google.common.base.Optional;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.item.ItemType;
 
 /**
- * Provides an easy way to retrieve objects from the {@link Game} based on their ids.
+ * Provides an easy way to retrieve types from a {@link Game}.
  */
 public interface GameRegistry {
 
     /**
-     * Gets a {@link Block} by its identifier.
+     * Gets a {@link BlockType} by its identifier.
      *
      * @param id The id to look up
      * @return The block or null if not found
      */
-    @Nullable
-    Block getBlock(String id);
+    Optional<BlockType> getBlock(String id);
 
     /**
-     * Gets an {@link Item} by its identifier.
+     * Gets an {@link ItemType} by its identifier.
      *
      * @param id The id to look up
      * @return The item or null if not found
      */
-    @Nullable
-    Item getItem(String id);
+    Optional<ItemType> getItem(String id);
 
     /**
-     * Gets the id registered to the object.
+     * Gets the ID registered to the object.
      *
      * @param obj The object to look up
      * @return The id or null if none found
      */
-    @Nullable
-    String getID(Object obj);
+    Optional<String> getId(Object obj);
 }

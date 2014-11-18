@@ -28,7 +28,7 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.world.Chunk;
 
 /**
- * Called when a {@link Chunk} is loaded in an existing {@link World} map
+ * Called when a {@link Chunk} is loaded in an existing {@link org.spongepowered.api.world.World} map
  */
 public interface ChunkLoadEvent extends ChunkEvent {
 

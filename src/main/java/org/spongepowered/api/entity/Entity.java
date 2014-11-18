@@ -25,14 +25,9 @@
 
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.component.attribute.Flammable;
-import org.spongepowered.api.component.attribute.Movable;
-import org.spongepowered.api.component.attribute.Positionable;
-import org.spongepowered.api.component.attribute.Rotatable;
-import org.spongepowered.api.math.Vector3d;
-import org.spongepowered.api.world.World;
-
-import java.util.UUID;
+import com.google.common.base.Optional;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.math.EulerDirection;
 
 import javax.annotation.Nullable;
 
@@ -52,46 +47,124 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Flammable, Movable, Positionable, Rotatable {
+public interface Entity extends EntityState {
 
     /**
-     * Gets the unique ID for this entity
+     * Mark this entity for removal in the very near future, preferably
+     * within one game tick.
+     */
+    void remove();
+
+    /**
+     * Simulates the interaction with this object as if a player had done so.
      *
-     * @return The entity's {@link UUID}
+     * @param interactionType The type of interaction performed on this entity
      */
-    UUID getUniqueID();
-    
-    /**
-     * Gets the world that this entity is in
-     * 
-     * @return World containing this entity
-     */
-    World getWorld();
-    
-    /**
-     * Teleports this entity to a target position.
-     * 
-     * <p>If world parameter is null, it will teleport an entity to a position
-     * in the same world.</p>
-     * 
-     * @param position The Vector3d to teleport this entity to
-     * @param world The world to teleport this entity to. Can be null
-     * @see #teleport(double, double, double, World)
-     */
-    void teleport(Vector3d position, @Nullable World world);
-    
-    /**
-     * Teleports this entity to a coordinate specified by x, y, z.
-     * 
-     * <p>If world parameter is null, it will teleport an entity to the 
-     * coordinates in the same world</p>
-     * 
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
-     * @param world The world these coordinates reside in. Can be null
-     * @see #teleport(Vector3d, World)
-     */
-    void teleport(double x, double y, double z, @Nullable World world);
+    void interact(EntityInteractionType interactionType);
 
+    /**
+     * Simulates the interaction with this object using the given item as if
+     * the player had done so.
+     *
+     * @param itemStack The item
+     * @param interactionType The type of interaction performed on this entity
+     */
+    void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
+
+    /**
+     * Gets the position.
+     *
+     * @return position The position
+     */
+    Vector3d getPosition();
+
+    /**
+     * Sets the position.
+     *
+     * @param position The position to set to
+     */
+    void setPosition(Vector3d position);
+
+    /**
+     * Get the X component of this instance's position.
+     *
+     * @return The x component
+     */
+    double getX();
+
+    /**
+     * Get the Y component of this instance's position.
+     *
+     * @return The y component
+     */
+    double getY();
+
+    /**
+     * Get the Z component of this instance's position.
+     *
+     * @return The z component
+     */
+    double getZ();
+
+    /**
+     * Gets the rotation as a vector.
+     * This does not support the roll component of the entity's rotation.
+     *
+     * @return rotation A possibly, but not necessarily, unit vector
+     */
+    Vector3f getVectorRotation();
+
+    /**
+     * Sets the rotation to a vector.
+     * This does not support the roll component of the entity's rotation,
+     * any previous roll value will be removed.
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setVectorRotation(Vector3f rotation);
+
+    /**
+     * Gets the rotation as a EulerDirection.
+     *
+     * @return rotation The rotation as a EulerDirection
+     */
+    EulerDirection getRotation();
+
+    /**
+     * Sets the rotation.
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(EulerDirection rotation);
+
+    /**
+     * Mount the entity provided.
+     *
+     * @param entity The entity to mount.
+     */
+    void mount(Entity entity);
+
+    /**
+     * Dismount from the currently mounted entity.
+     */
+    void dismount();
+
+    /**
+     * Eject any entity mounted on this entity.
+     */
+    void eject();
+
+    /**
+     * Gets the entity that is riding this entity.
+     *
+     * @return The riding entity, if it exists.
+     */
+    Optional<Entity> getRider();
+
+    /**
+     * Gets the entity that this entity is riding.
+     *
+     * @return The entity being ridden, if it exists.
+     */
+    Optional<Entity> getRiding();
 }

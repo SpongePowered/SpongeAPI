@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.state;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 import org.spongepowered.api.GameState;
 
 import java.io.File;
