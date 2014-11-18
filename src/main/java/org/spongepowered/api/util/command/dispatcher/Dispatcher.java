@@ -38,14 +38,6 @@ import java.util.Set;
 public interface Dispatcher extends CommandCallable {
 
     /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param alias A list of aliases, where the first alias is the primary name
-     */
-    void registerCommand(CommandCallable callable, String... alias);
-
-    /**
      * Get a list of commands. Each command, regardless of how many aliases
      * it may have, will only appear once in the returned set.
      *

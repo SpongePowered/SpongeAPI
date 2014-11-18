@@ -76,4 +76,18 @@ public interface ServiceManager {
      */
     <T> Optional<T> provide(Class<T> service);
 
+    /**
+     * Return a provider for the given service, raising an unchecked exception
+     * if a provider does not exist.
+     *
+     * <p>The returned provider may be a proxy to the real underlying proxy,
+     * depending on the implementation of the service manager.</p>
+     *
+     * @param service The service
+     * @param <T> The type of service
+     * @return A provider
+     * @throws ProvisioningException Thrown if a provider cannot be provisioned
+     */
+    <T> Optional<T> provideUnchecked(Class<T> service) throws ProvisioningException;
+
 }

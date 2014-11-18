@@ -29,7 +29,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.Vector3d;
 
 /**
- * Called when a block is about to dispense an item.
+ * Called when a block is about to dispense an item. In Vanilla, droppers
+ * and hoppers do that.
  */
 public interface BlockDispenseEvent extends BlockEvent {
 

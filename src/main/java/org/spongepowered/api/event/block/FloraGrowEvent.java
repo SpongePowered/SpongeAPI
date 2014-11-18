@@ -27,7 +27,8 @@ package org.spongepowered.api.event.block;
 
 /**
  * Called when a block is about to be changed because it would have
- * resulted from some form of growth related to flora.
+ * resulted from some form of growth related to flora. Cancel the event
+ * to prevent growth.
  *
  * <p>Examples of reasons why this event would be called include:</p>
  *

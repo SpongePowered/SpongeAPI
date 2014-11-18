@@ -22,26 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity;
 
-package org.spongepowered.api.service.command;
-
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
 
 /**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
+ * Raised when an entity dismounts another entity.
  */
-public interface CommandDispatcher extends Dispatcher {
+public interface EntityDismountEvent extends EntityEvent, Cancellable {
 
     /**
-     * Register a command with this dispatcher.
+     * Gets the entity that is being dismounted from.
      *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
+     * @return The entity that is being dismounted from.
      */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
-
+    Entity getDismounted();
 }

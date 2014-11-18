@@ -25,8 +25,16 @@
 
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.InteractionType;
+
 /**
  * Dispatched when a block is being interacted with.
  */
 public interface BlockInteractEvent extends BlockEvent {
+    
+    /**
+     * Gets type of the interaction.
+     * @return Type of interaction
+     */
+    InteractionType getInteractionType();
 }

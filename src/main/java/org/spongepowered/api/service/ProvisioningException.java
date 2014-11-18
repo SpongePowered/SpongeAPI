@@ -23,25 +23,50 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.service.command;
+package org.spongepowered.api.service;
 
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
+ * Thrown when a provider has not been registered or one cannot be
+ * provisioned.
  */
-public interface CommandDispatcher extends Dispatcher {
+public class ProvisioningException extends RuntimeException {
+
+    private static final long serialVersionUID = -7538212541921643926L;
+
+    private final Class<?> service;
+
+    public ProvisioningException(Class<?> service) {
+        checkNotNull(service);
+        this.service = service;
+    }
+
+    public ProvisioningException(String message, Class<?> service) {
+        super(message);
+        checkNotNull(service);
+        this.service = service;
+    }
+
+    public ProvisioningException(String message, Throwable cause, Class<?> service) {
+        super(message, cause);
+        checkNotNull(service);
+        this.service = service;
+    }
+
+    public ProvisioningException(Throwable cause, Class<?> service) {
+        super(cause);
+        checkNotNull(service);
+        this.service = service;
+    }
 
     /**
-     * Register a command with this dispatcher.
+     * Get the service that was requested.
      *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
+     * @return The service
      */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
+    public Class<?> getService() {
+        return service;
+    }
 
 }

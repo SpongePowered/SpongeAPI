@@ -22,26 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.reason;
 
-package org.spongepowered.api.service.command;
-
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import com.google.common.base.Optional;
 
 /**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
+ * Reason for command execution. Contains the command which was executed.
  */
-public interface CommandDispatcher extends Dispatcher {
+public class CommandReason extends Reason {
 
+    private String command;
+    
+    public CommandReason(String command) {
+        super("command");
+        this.command = command;
+    }
+    
+    public CommandReason() {
+        super("command");
+    }
+    
     /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
+     * Gets the full command string, if available. Its unlikely that
+     * isn't.
+     * @return Command
      */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
+    public Optional<String> getCommand() {
+        return Optional.of(command);
+    }
 
 }

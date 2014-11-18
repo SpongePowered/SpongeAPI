@@ -48,7 +48,7 @@ public class Reason {
     /**
      * Someone executed command.
      */
-    public static final Reason COMMAND = new Reason("command").setVanilla(true);
+    public static final Reason COMMAND = new CommandReason().setVanilla(true);
     
     /**
      * Something grew and it caused something...

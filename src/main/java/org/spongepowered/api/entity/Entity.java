@@ -25,13 +25,21 @@
 
 package org.spongepowered.api.entity;
 
+<<<<<<< .merge_file_7wo1lh
+import org.spongepowered.api.InteractionType;
+=======
+import com.google.common.base.Optional;
+>>>>>>> .merge_file_BSMWLh
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
+<<<<<<< .merge_file_7wo1lh
 import org.spongepowered.api.world.World;
 
 import com.google.common.base.Optional;
+=======
+>>>>>>> .merge_file_BSMWLh
 
 /**
  * An entity is a Minecraft entity.
@@ -62,7 +70,7 @@ public interface Entity extends EntityState {
      *
      * @param interactionType The type of interaction performed on this entity
      */
-    void interact(EntityInteractionType interactionType);
+    void interact(InteractionType interactionType);
 
     /**
      * Simulates the interaction with this object using the given item as if
@@ -71,7 +79,7 @@ public interface Entity extends EntityState {
      * @param itemStack The item
      * @param interactionType The type of interaction performed on this entity
      */
-    void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
+    void interactWith(ItemStack itemStack, InteractionType interactionType);
 
     /**
      * Gets the position.
@@ -140,8 +148,40 @@ public interface Entity extends EntityState {
     void setRotation(EulerDirection rotation);
 
     /**
+<<<<<<< .merge_file_7wo1lh
      * Gets world of this entity.
      * @return World, if possible
      */
     Optional<World> getWorld();
+=======
+     * Mount the entity provided.
+     *
+     * @param entity The entity to mount.
+     */
+    void mount(Entity entity);
+
+    /**
+     * Dismount from the currently mounted entity.
+     */
+    void dismount();
+
+    /**
+     * Eject any entity mounted on this entity.
+     */
+    void eject();
+
+    /**
+     * Gets the entity that is riding this entity.
+     *
+     * @return The riding entity, if it exists.
+     */
+    Optional<Entity> getRider();
+
+    /**
+     * Gets the entity that this entity is riding.
+     *
+     * @return The entity being ridden, if it exists.
+     */
+    Optional<Entity> getRiding();
+>>>>>>> .merge_file_BSMWLh
 }

@@ -23,12 +23,12 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api;
 
 /**
- * An enum representing the possible ways for a player to interact with an entity directly.
+ * An enum representing the possible ways for a player to interact with world.
  */
-public enum EntityInteractionType {
+public enum InteractionType {
     LEFT_CLICK,
     RIGHT_CLICK;
 }

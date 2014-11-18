@@ -26,17 +26,11 @@
 package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.entity.EntityDropItemEvent;
 
 /**
- * Called when a {@link Player} sends a chat message
+ * Called when a {@link Player} drops an item(s).
  */
-public interface AsyncPlayerChatEvent extends PlayerEvent {
-
-    /**
-     * Get the message sent in this event
-     *
-     * @return The message sent
-     */
-    String getMessage();
+public interface PlayerDropItemEvent extends PlayerEvent, EntityDropItemEvent {
 
 }

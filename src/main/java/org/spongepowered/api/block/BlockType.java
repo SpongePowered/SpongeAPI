@@ -47,6 +47,8 @@ public interface BlockType {
 
     /**
      * Return the default state for this block.
+     *
+     * @return The default state
      */
     BlockState getDefaultState();
 

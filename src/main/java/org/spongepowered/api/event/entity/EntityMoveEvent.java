@@ -23,25 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.service.command;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.Location;
 
 /**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
+ * Called when an {@link Entity} moves.
  */
-public interface CommandDispatcher extends Dispatcher {
+public interface EntityMoveEvent extends EntityEvent, Cancellable {
 
     /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
+     * Gets the previous {@link Location} that the entity was in.
+     * 
+     * @return The old location
      */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
+    Location getOldLocation();
 
+    /**
+     * Gets the new {@link Location} that the entity is in.
+     * 
+     * @return The new location
+     */
+    Location getNewLocation();
 }

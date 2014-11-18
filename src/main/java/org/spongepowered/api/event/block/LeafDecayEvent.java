@@ -26,7 +26,8 @@
 package org.spongepowered.api.event.block;
 
 /**
- * Called when a leaf block is about to decay.
+ * Called when a leaf block is about to decay. Cancel the event
+ * to prevent leaf decay.
  */
 public interface LeafDecayEvent extends BlockChangeEvent {
 

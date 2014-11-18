@@ -30,6 +30,7 @@ import org.spongepowered.api.block.BlockType;
 /**
  * Called when a block update is about to occur, which is often when a block
  * has triggered an "update" for its neighbors.
+ * @see BlockInteractEvent
  */
 public interface BlockUpdateEvent extends BlockEvent {
 

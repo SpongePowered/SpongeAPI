@@ -23,25 +23,10 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.service.command;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
 
-/**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
- */
-public interface CommandDispatcher extends Dispatcher {
-
-    /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
-     */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
+public interface PlayerPickUpItemEvent extends PlayerEvent, EntityPickUpItemEvent {
 
 }

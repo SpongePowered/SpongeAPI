@@ -32,7 +32,7 @@ import java.util.concurrent.Future;
 /**
  * Represents a task that has been scheduled.
  */
-public interface Task extends Future {
+public interface Task {
 
     /**
      * Gets the name of this task.

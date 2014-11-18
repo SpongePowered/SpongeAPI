@@ -23,25 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.service.command;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import java.util.Collection;
+
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
 
 /**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
+ * Called when a entity picks up an item(s).
  */
-public interface CommandDispatcher extends Dispatcher {
+public interface EntityPickUpItemEvent extends EntityEvent, Cancellable {
 
     /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
+     * Gets the items as an {@link Entity} that the entity is picking up.
+     * 
+     * @return The items as entities
      */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
-
+    Collection<Entity> getItems();
 }
