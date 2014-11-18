@@ -28,14 +28,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.title.Title;
 import org.spongepowered.api.util.command.CommandSource;
 
-public interface Player extends HumanEntity, CommandSource {
-
-    /**
-     * Gets the players last known username.
-     * 
-     * @return The player's last known username
-     */
-    String getName();
+public interface Player extends HumanEntity, OfflinePlayer, CommandSource {
 
     /**
      * Gets the player's display name. If none set, returns their current
@@ -46,27 +39,6 @@ public interface Player extends HumanEntity, CommandSource {
     String getDisplayName();
 
     /**
-     * Checks if this player has joined the server before.
-     * 
-     * @return true If player has joined before
-     */
-    boolean hasJoinedBefore();
-
-    /**
-     * Checks if this player is banned.
-     * 
-     * @return true If banned
-     */
-    boolean isBanned();
-
-    /**
-     * Checks if this player is whitelisted.
-     * 
-     * @return true If whitelisted
-     */
-    boolean isWhitelisted();
-
-
      * Sends a {@link Title} to this player. This is the same as calling
      * {@link Title#send(Player)}.
      *

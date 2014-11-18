@@ -23,13 +23,19 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.item;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * Represents an Item entity.
  */
 public interface ItemEntity extends Entity {
 
+    /**
+     * Get the {@link ItemStack} that this entity represents.
+     *
+     * @return The represented {@link ItemStack}.
+     */
+    ItemStack getItemStack();
 }

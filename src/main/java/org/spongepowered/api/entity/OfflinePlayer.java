@@ -33,16 +33,16 @@ import java.util.UUID;
 public interface OfflinePlayer {
 
     /**
-     * Gets the offline players last known username.
+     * Gets the player's last known username.
      * 
-     * @return The offline player's last known username
+     * @return The player's last known username
      */
     String getName();
 
     /**
-     * Gets the unique ID for this offline player.
+     * Gets the unique ID for this player.
      * 
-     * @return The offline players {@link UUID}
+     * @return The player's {@link UUID}
      */
     UUID getUniqueID();
 
@@ -54,7 +54,7 @@ public interface OfflinePlayer {
     boolean hasJoinedBefore();
 
     /**
-     * Checks if this offline player is banned.
+     * Checks if this player is banned.
      * 
      * @return true If banned
      */
