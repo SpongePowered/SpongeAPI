@@ -23,12 +23,44 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living;
 
-/**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
- */
-public interface Projectile extends Entity {
+import org.spongepowered.api.entity.Entity;
 
+public interface LivingEntity extends Entity {
+
+    /**
+     * Subtracts from the health by the given amount.
+     *
+     * @param amount The damage amount
+     */
+    void damage(double amount);
+
+    /**
+     * Returns the health amount.
+     *
+     * <p>The range of the health depends on the object on which this
+     * method is defined. For players in Minecraft, the nominal range is
+     * between 0 and 20, inclusive, but the range can be adjusted.</p>
+     *
+     * <p>Convention dictates that health does not follow below 0 but this
+     * convention may be broken.</p>
+     *
+     * @return Health value
+     */
+    double getHealth();
+
+    /**
+     * Set the health amount.
+     *
+     * <p>The range of the health depends on the object on which this
+     * method is defined. For players in Minecraft, the nominal range is
+     * between 0 and 20, inclusive, but the range can be adjusted.</p>
+     *
+     * <p>Convention dictates that health does not follow below 0 but this
+     * convention may be broken.</p>
+     *
+     * @param health The health to set to
+     */
+    void setHealth(double health);
 }

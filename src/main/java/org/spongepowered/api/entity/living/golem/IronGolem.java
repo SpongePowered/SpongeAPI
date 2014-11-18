@@ -23,12 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living.golem;
+
+import org.spongepowered.api.entity.living.Golem;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Represents an Iron Golem.
  */
-public interface Projectile extends Entity {
+public interface IronGolem extends Golem {
 
 }

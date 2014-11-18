@@ -25,12 +25,14 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.util.Identifiable;
+
 import java.util.UUID;
 
 /**
  * Interface representing an OfflinePlayer
  */
-public interface OfflinePlayer {
+public interface OfflinePlayer extends Identifiable {
 
     /**
      * Gets the player's last known username.
@@ -38,13 +40,6 @@ public interface OfflinePlayer {
      * @return The player's last known username
      */
     String getName();
-
-    /**
-     * Gets the unique ID for this player.
-     * 
-     * @return The player's {@link UUID}
-     */
-    UUID getUniqueID();
 
     /**
      * Checks if this player has joined the server before.

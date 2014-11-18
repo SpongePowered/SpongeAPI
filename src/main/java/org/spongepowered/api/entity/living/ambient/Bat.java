@@ -23,12 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living.ambient;
+
+import org.spongepowered.api.entity.living.AmbientEntity;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Represents a Bat.
  */
-public interface Projectile extends Entity {
+public interface Bat extends AmbientEntity {
 
 }

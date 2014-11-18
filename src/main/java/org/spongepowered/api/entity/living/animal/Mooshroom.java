@@ -23,12 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living.animal;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Represents a Mooshroom.
  */
-public interface Projectile extends Entity {
+public interface Mooshroom extends Cow {
 
 }

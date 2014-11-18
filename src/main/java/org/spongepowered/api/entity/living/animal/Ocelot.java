@@ -23,12 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living.animal;
+
+import org.spongepowered.api.entity.living.Animal;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Represents an Ocelot.
  */
-public interface Projectile extends Entity {
+public interface Ocelot extends Animal {
 
 }

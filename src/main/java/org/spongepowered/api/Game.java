@@ -26,7 +26,7 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.living.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.scheduler.Scheduler;

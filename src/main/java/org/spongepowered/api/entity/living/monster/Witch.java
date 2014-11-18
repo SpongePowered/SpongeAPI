@@ -23,12 +23,14 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living.monster;
+
+import org.spongepowered.api.entity.living.Monster;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Represents a Witch.
  */
-public interface Projectile extends Entity {
+public interface Witch extends Monster {
+
 
 }

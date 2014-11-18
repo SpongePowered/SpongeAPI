@@ -23,12 +23,38 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living;
 
-/**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
- */
-public interface Projectile extends Entity {
+import org.spongepowered.api.entity.OfflinePlayer;
+import org.spongepowered.api.title.Title;
+import org.spongepowered.api.util.command.CommandSource;
 
+public interface Player extends HumanEntity, OfflinePlayer, CommandSource {
+
+    /**
+     * Gets the player's display name. If none set, returns their current
+     * username.
+     * 
+     * @return The player's display name
+     */
+    String getDisplayName();
+
+    /**
+     * Sends a {@link Title} to this player. This is the same as calling
+     * {@link Title#send(Player)}.
+     *
+     * @param title The {@link Title} to send to the player.
+     */
+    void sendTitle(Title title);
+
+    /**
+     * Removes the currently displayed {@link Title} from the player and resets
+     * all settings back to default values.
+     */
+    void resetTitle();
+
+    /**
+     * Removes the currently displayed {@link Title} from the player's screen.
+     */
+    void clearTitle();
 }
