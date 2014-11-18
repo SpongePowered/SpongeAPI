@@ -25,18 +25,18 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
 
 /**
- * Raised when an entity mounts another entity.
+ * An EntityEvent that has a primary entity performing an action.
  */
-public interface EntityMountEvent extends EntityPerformEvent, Cancellable {
+public interface EntityPerformEvent extends EntityEvent {
 
     /**
-     * Gets the entity that is being mounted.
+     * Returns the primary entity involved in this event that performs the action.
+     * This entity is also contained in the list of entities from {@link #getEntities()}.
      *
-     * @return The entity that is being mounted.
+     * @return The entity performing the action
      */
-    Entity getMounted();
+    Entity getEntity();
 
 }

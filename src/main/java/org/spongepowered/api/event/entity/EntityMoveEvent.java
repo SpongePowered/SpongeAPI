@@ -29,9 +29,9 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link Entity} moves.
+ * Called when an {@link org.spongepowered.api.entity.Entity} moves.
  */
-public interface EntityMoveEvent extends EntityEvent, Cancellable {
+public interface EntityMoveEvent extends EntityPerformEvent, Cancellable {
 
     /**
      * Gets the previous {@link Location} that the entity was in.

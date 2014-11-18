@@ -30,7 +30,7 @@ import org.spongepowered.api.event.Cancellable;
 /**
  * Raised when an entity dismounts another entity.
  */
-public interface EntityDismountEvent extends EntityEvent, Cancellable {
+public interface EntityDismountEvent extends EntityPerformEvent, Cancellable {
 
     /**
      * Gets the entity that is being dismounted from.
@@ -38,4 +38,5 @@ public interface EntityDismountEvent extends EntityEvent, Cancellable {
      * @return The entity that is being dismounted from.
      */
     Entity getDismounted();
+
 }

@@ -27,16 +27,17 @@ package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.entity.EntityPerformEvent;
 
 /**
  * Describes events which contain a {@link Player}
  */
-public interface PlayerEvent extends GameEvent {
+public interface PlayerEvent extends EntityPerformEvent {
 
     /**
-     * Gets the {@link Player} involved
+     * Gets the {@link Player} involved involved in this event.
      *
-     * @return {@link Player} involved
+     * @return The {@link Player} involved
      */
     Player getPlayer();
 

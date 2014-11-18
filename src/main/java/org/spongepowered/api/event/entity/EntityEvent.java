@@ -32,7 +32,7 @@ import org.spongepowered.api.event.GameEvent;
 import java.util.List;
 
 /**
- * An event that whose targets happen to be an entity.
+ * An event that whose targets happen to be entities.
  */
 public interface EntityEvent extends GameEvent {
 
@@ -45,7 +45,7 @@ public interface EntityEvent extends GameEvent {
      * for the removed entity (i.e. if it's a spawn entity event, then the
      * entity would not be spawned).</p>
      *
-     * @return An list of entities
+     * @return A list of entities
      */
     List<Entity> getEntities();
 
