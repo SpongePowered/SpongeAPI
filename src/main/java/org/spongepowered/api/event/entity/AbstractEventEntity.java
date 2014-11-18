@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * An abstract implementation of entity events.
  */
-public abstract class AbstractEventEntity implements EntityEvent {
+public abstract class AbstractEventEntity implements BulkEntityEvent {
 
     private final Game game;
     private final List<Entity> entities;

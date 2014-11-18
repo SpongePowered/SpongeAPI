@@ -33,7 +33,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * Called when a player drops an item stack.
  */
-public interface EntityDropItemEvent extends EntityPerformEvent, Cancellable {
+public interface EntityDropItemEvent extends EntityEvent, Cancellable {
 
     /**
      * Gets the items that the player is dropping.

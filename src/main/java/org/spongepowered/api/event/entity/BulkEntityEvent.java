@@ -22,21 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.entity;
 
+import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.GameEvent;
+
+import java.util.List;
 
 /**
- * An EntityEvent that has a primary entity performing an action.
+ * An event that involves multiple entities at once.
  */
-public interface EntityPerformEvent extends EntityEvent {
+public interface BulkEntityEvent extends GameEvent {
 
     /**
-     * Returns the primary entity involved in this event that performs the action.
-     * This entity is also contained in the list of entities from {@link #getEntities()}.
+     * Get a list of affected entities.
      *
-     * @return The entity performing the action
+     * <p>The list of entities is immutable if {@link #isCancellable()}
+     * is {@code false}. Otherwise, the effect of removing an entity from
+     * the list is dependent on the event, though it may "cancel" the event
+     * for the removed entity (i.e. if it's a spawn entity event, then the
+     * entity would not be spawned).</p>
+     *
+     * @return A list of entities
      */
-    Entity getEntity();
+    List<Entity> getEntities();
+
+    /**
+     * Apply the given predicate to the list of entities.
+     *
+     * <p>The given predicate should return {@code true} by default, and
+     * return {@code false} to remove the entity from the list
+     * of entities (if the list mutable -- see {@link #getEntities()}
+     * for more information).</p>
+     *
+     * @param predicate A predicate that returns false to remove the given entity
+     */
+    void filter(Predicate<Entity> predicate);
 
 }
