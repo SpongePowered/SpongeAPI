@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.event.player;
 
+import org.spongepowered.api.InteractionType;
 import org.spongepowered.api.block.Block;
-import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.Cancellable;
 
@@ -49,5 +49,5 @@ public interface PlayerInteractEvent extends PlayerEvent, Cancellable {
      * 
      * @return The type of click
      */
-    EntityInteractionType getInteractionType();
+    InteractionType getInteractionType();
 }

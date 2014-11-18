@@ -25,21 +25,15 @@
 
 package org.spongepowered.api.entity;
 
-<<<<<<< .merge_file_7wo1lh
 import org.spongepowered.api.InteractionType;
-=======
 import com.google.common.base.Optional;
->>>>>>> .merge_file_BSMWLh
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
-<<<<<<< .merge_file_7wo1lh
 import org.spongepowered.api.world.World;
 
 import com.google.common.base.Optional;
-=======
->>>>>>> .merge_file_BSMWLh
 
 /**
  * An entity is a Minecraft entity.
@@ -148,12 +142,12 @@ public interface Entity extends EntityState {
     void setRotation(EulerDirection rotation);
 
     /**
-<<<<<<< .merge_file_7wo1lh
      * Gets world of this entity.
      * @return World, if possible
      */
     Optional<World> getWorld();
-=======
+    
+    /**
      * Mount the entity provided.
      *
      * @param entity The entity to mount.
@@ -183,5 +177,4 @@ public interface Entity extends EntityState {
      * @return The entity being ridden, if it exists.
      */
     Optional<Entity> getRiding();
->>>>>>> .merge_file_BSMWLh
 }
