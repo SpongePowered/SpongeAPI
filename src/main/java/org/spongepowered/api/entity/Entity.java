@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.entity;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
@@ -136,4 +137,35 @@ public interface Entity extends EntityState {
      * @param rotation The rotation to set the entity to
      */
     void setRotation(EulerDirection rotation);
+
+    /**
+     * Mount the entity provided.
+     *
+     * @param entity The entity to mount.
+     */
+    void mount(Entity entity);
+
+    /**
+     * Dismount from the currently mounted entity.
+     */
+    void dismount();
+
+    /**
+     * Eject any entity mounted on this entity.
+     */
+    void eject();
+
+    /**
+     * Gets the entity that is riding this entity.
+     *
+     * @return The riding entity, if it exists.
+     */
+    Optional<Entity> getRider();
+
+    /**
+     * Gets the entity that this entity is riding.
+     *
+     * @return The entity being ridden, if it exists.
+     */
+    Optional<Entity> getRiding();
 }
