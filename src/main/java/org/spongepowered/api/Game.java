@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.scheduler.Scheduler;
 import org.spongepowered.api.title.Title;
 import org.spongepowered.api.world.World;
@@ -70,6 +71,16 @@ public interface Game {
      * @return The game registry
      */
     GameRegistry getRegistry();
+
+    /**
+     * Get the game's instance of the service manager, which is the gateway
+     * to various services provided by Sponge (command registration and so on).
+     *
+     * <p>Services registered by other plugins may be available too.</p>
+     *
+     * @return The service manager
+     */
+    ServiceManager getServiceManager();
 
     /**
      * Gets the {@link Scheduler}.
