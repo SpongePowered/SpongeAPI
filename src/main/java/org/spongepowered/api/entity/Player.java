@@ -45,6 +45,20 @@ public interface Player extends HumanEntity, CommandSource {
     String getDisplayName();
 
     /**
+     * Returns whether the {@link Player} can fly via the fly key.
+     *
+     * @return {@code True} if the {@link Player} is allowed to fly
+     */
+    boolean getAllowFlight();
+
+    /**
+     * Sets if the {@link Player} can fly via the fly key.
+     *
+     * @param allowFlight {@code True} if the player is allowed to fly
+     */
+    void setAllowFlight(boolean allowFlight);
+
+    /**
      * Sends a {@link Title} to this player. This is the same as calling
      * {@link Title#send(Player)}.
      *
@@ -62,4 +76,5 @@ public interface Player extends HumanEntity, CommandSource {
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     void clearTitle();
+
 }
