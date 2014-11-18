@@ -37,6 +37,6 @@ public interface Identifiable {
      *
      * @return The {@link UUID}
      */
-    UUID getUniqueID();
+    UUID getUniqueId();
 
 }
