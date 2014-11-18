@@ -22,23 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.world.Location;
-
 /**
- * Gets called when block is moved in world, usually using a piston. Cancel to 
+ * Dispatched when block is moved in world, such as by a piston. Cancel to
  * prevent the movement and make piston not work.
- * 
- * <p>This event is called before the block is actually moved, so getBlock() 
- * gives block with its original position. Use {@link #getDestination()} 
- * to get new destination.</p>
  */
-public interface BlockMoveEvent extends BlockEvent {
-    
-    /**
-     * Gets destination of block movement.
-     * @return Destination of block movement
-     */
-    Location getDestination();
+public interface BlockMoveEvent extends BulkBlockEvent {
+
 }

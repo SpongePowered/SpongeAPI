@@ -22,10 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.block;
 
 /**
- * Gets called when block is ignited.
+ * Dispatched when fire blocks are placed adjacent a block because
+ * the block has been "ignited."
+ *
+ * <p>The block itself does not change.</p>
  */
 public interface BlockIgniteEvent extends BlockEvent {
 

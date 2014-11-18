@@ -22,12 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.block;
 
+import com.google.common.base.Predicate;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+
+import java.util.List;
 
 /**
- * Called when block gets placed. Cancel the event to prevent placing.
+ * A base event for events affecting several blocks (as their target).
  */
-public interface BlockPlaceEvent extends BlockEvent {
-    
+public interface BulkBlockEvent extends GameEvent, CauseTracked {
+
+    /**
+     * Get a list of affected blocks.
+     *
+     * <p>The list of blocks is immutable if {@link #isCancellable()}
+     * is {@code false}. Otherwise, the effect of removing a block from
+     * the list is dependent on the event, though it may "cancel" the event
+     * for the removed block .</p>
+     *
+     * @return An list of blocks
+     */
+    List<Block> getBlocks();
+
+    /**
+     * Apply the given predicate to the list of blocks.
+     *
+     * <p>The given predicate should return {@code true} by default, and
+     * return {@code false} to remove the block from the list
+     * of blocks (if the list mutable -- see {@link #getBlocks()}
+     * for more information).</p>
+     *
+     * @param predicate A predicate that returns false to remove the given block
+     */
+    void filter(Predicate<Block> predicate);
+
 }

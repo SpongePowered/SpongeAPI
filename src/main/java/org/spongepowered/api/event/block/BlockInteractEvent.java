@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.block;
 
 /**
- * Called when block is about to break. You can cancel the event to prevent it.
+ * Dispatched when a block is being interacted with.
  */
-public interface BlockBreakEvent extends BlockEvent {
-    
+public interface BlockInteractEvent extends BlockEvent {
 }

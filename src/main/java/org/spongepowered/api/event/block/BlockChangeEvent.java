@@ -22,26 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockSnapshot;
 
 /**
- * When block changes to another, this is called. Only instant type changes
- * apply, so if something breaks the block and player places it again, this
- * <b>should not</b> called.
+ * Dispatched when a block is in the process of changing, before
+ * the change has been made.
  */
 public interface BlockChangeEvent extends BlockEvent {
     
     /**
-     * Gets original block. This is alias for {@link #getBlock}.
-     * @return Original block
+     * Get the block that will replace the block.
      */
-    Block getOriginal();
-    
-    /**
-     * Gets the new block which is trying to replace the original one.
-     * @return New block
-     */
-    Block getNew();
+    BlockSnapshot getReplacementBlock();
+
 }

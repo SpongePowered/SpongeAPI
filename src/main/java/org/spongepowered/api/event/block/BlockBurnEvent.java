@@ -22,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.event.reason.Reason;
-
 /**
- * Gets called when block is destroyed by fire. This is shortcut for
- * {@link BlockBreakEvent} with reason {@link Reason#FIRE}.
+ * Called when a block is removed due to fire.
  */
-public interface BlockBurnEvent extends BlockEvent {
+public interface BlockBurnEvent extends BlockChangeEvent {
 
 }

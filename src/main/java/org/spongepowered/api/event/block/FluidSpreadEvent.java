@@ -24,26 +24,9 @@
  */
 package org.spongepowered.api.event.block;
 
-import java.util.List;
-
-import org.spongepowered.api.block.Block;
-
 /**
- * Gets called when fluid is about to spread. Cancel to prevent it from
- * spreading.
+ * Dispatched when fluid is about to spread.
  */
-public interface FluidSpreadEvent extends BlockEvent {
-    
-    /**
-     * Gets source block of spreading fluid. Does exactly same as
-     * {@link #getBlock()}.
-     * @return Source block of fluid
-     */
-    Block getSource();
-    
-    /**
-     * Gets new fluid blocks, which are trying to spawn.
-     * @return New fluid blocks
-     */
-    List<Block> getNewBlocks();
+public interface FluidSpreadEvent extends BulkBlockEvent {
+
 }
