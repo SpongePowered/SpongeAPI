@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.service.command.CommandDispatcher;
 import org.spongepowered.api.service.scheduler.Scheduler;
 import org.spongepowered.api.title.Title;
 import org.spongepowered.api.world.World;
@@ -88,6 +89,14 @@ public interface Game {
      * @return The scheduler
      */
     Scheduler getScheduler();
+
+    /**
+     * Get the command dispatcher used for registering and dispatching
+     * registered commands.
+     *
+     * @return The command dispatcher
+     */
+    CommandDispatcher getCommandDispatcher();
 
     /**
      * Gets the {@link Player}s currently online
