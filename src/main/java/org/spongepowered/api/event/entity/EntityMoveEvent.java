@@ -23,13 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.entity;
+
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.Location;
 
 /**
- * An enum representing the possible ways for a player to interact directly.
+ * Called when an {@link Entity} moves.
  */
-public enum EntityInteractionType {
-    LEFT_CLICK,
-    MIDDLE_CLICK,
-    RIGHT_CLICK;
+public interface EntityMoveEvent extends EntityEvent, Cancellable {
+
+    /**
+     * Gets the previous {@link Location} that the entity was in.
+     * 
+     * @return The old location
+     */
+    Location getOldLocation();
+
+    /**
+     * Gets the new {@link Location} that the entity is in.
+     * 
+     * @return The new location
+     */
+    Location getNewLocation();
 }

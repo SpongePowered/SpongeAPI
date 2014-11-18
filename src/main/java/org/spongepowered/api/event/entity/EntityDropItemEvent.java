@@ -23,13 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.entity;
+
+import java.util.Collection;
+
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * An enum representing the possible ways for a player to interact directly.
+ * Called when a player drops an item stack.
  */
-public enum EntityInteractionType {
-    LEFT_CLICK,
-    MIDDLE_CLICK,
-    RIGHT_CLICK;
+public interface EntityDropItemEvent extends EntityEvent, Cancellable {
+
+    /**
+     * Gets the items that the player is dropping.
+     * 
+     * @return The dropped stacks
+     */
+    Collection<ItemStack> getDroppedStacks();
 }

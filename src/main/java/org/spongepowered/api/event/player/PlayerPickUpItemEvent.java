@@ -23,13 +23,10 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.player;
 
-/**
- * An enum representing the possible ways for a player to interact directly.
- */
-public enum EntityInteractionType {
-    LEFT_CLICK,
-    MIDDLE_CLICK,
-    RIGHT_CLICK;
+import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
+
+public interface PlayerPickUpItemEvent extends PlayerEvent, EntityPickUpItemEvent {
+
 }

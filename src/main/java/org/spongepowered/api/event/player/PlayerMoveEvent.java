@@ -23,13 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.player;
+
+import org.spongepowered.api.event.entity.EntityMoveEvent;
 
 /**
- * An enum representing the possible ways for a player to interact directly.
+ * Called when a {@link Player} moves.
  */
-public enum EntityInteractionType {
-    LEFT_CLICK,
-    MIDDLE_CLICK,
-    RIGHT_CLICK;
+public interface PlayerMoveEvent extends PlayerEvent, EntityMoveEvent {
+
 }

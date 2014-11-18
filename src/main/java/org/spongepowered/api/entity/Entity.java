@@ -30,7 +30,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
-import org.spongepowered.api.world.extent.Extent;
 
 /**
  * An entity is a Minecraft entity.

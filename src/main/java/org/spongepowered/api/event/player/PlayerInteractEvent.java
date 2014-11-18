@@ -23,13 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.player;
+
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.entity.EntityInteractionType;
+import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.Cancellable;
+
+import com.google.common.base.Optional;
 
 /**
- * An enum representing the possible ways for a player to interact directly.
+ * Called when a {@link Player} interacts with the world.
  */
-public enum EntityInteractionType {
-    LEFT_CLICK,
-    MIDDLE_CLICK,
-    RIGHT_CLICK;
+public interface PlayerInteractEvent extends PlayerEvent, Cancellable {
+
+    /**
+     * Gets the {@link Block} that the player has clicked, returns null if the
+     * player clicks the air.
+     * 
+     * @return The block
+     */
+    Optional<Block> getBlock();
+
+    /**
+     * Gets the {@link EntityInteractionType} that the player used.
+     * 
+     * @return The type of click
+     */
+    EntityInteractionType getInteractionType();
 }

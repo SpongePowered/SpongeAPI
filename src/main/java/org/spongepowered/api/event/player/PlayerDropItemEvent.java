@@ -23,13 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.player;
+
+import org.spongepowered.api.event.entity.EntityDropItemEvent;
 
 /**
- * An enum representing the possible ways for a player to interact directly.
+ * Called when a {@link Player} drops an item(s). 
  */
-public enum EntityInteractionType {
-    LEFT_CLICK,
-    MIDDLE_CLICK,
-    RIGHT_CLICK;
+public interface PlayerDropItemEvent extends PlayerEvent, EntityDropItemEvent {
+
 }
