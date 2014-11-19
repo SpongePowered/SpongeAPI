@@ -27,6 +27,7 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.title.Title;
 import org.spongepowered.api.util.command.CommandSource;
+import java.util.Locale;
 
 public interface Player extends HumanEntity, CommandSource {
 
@@ -76,5 +77,12 @@ public interface Player extends HumanEntity, CommandSource {
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     void clearTitle();
+
+    /**
+     * Gets the Locale that best represents the player's chosen locale.
+     *
+     * @return The player's locale
+     */
+    Locale getLocale();
 
 }
