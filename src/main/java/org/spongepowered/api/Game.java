@@ -42,7 +42,18 @@ import java.util.UUID;
  * The core accessor of the API. The implementation uses this to pass
  * constructed objects.
  */
-public interface Game {
+public abstract class Game {
+
+    protected static Game instance = null;
+
+    /**
+     * Returns the currently loaded Game instance.
+     *
+     * @return The current Game
+     */
+    public static Game getGame() {
+        return instance;
+    }
 
     /**
      * Returns the {@link Platform} the implementation
@@ -50,28 +61,28 @@ public interface Game {
      *
      * @return The platform
      */
-    Platform getPlatform();
+    public abstract Platform getPlatform();
 
     /**
      * Gets the {@link PluginManager}.
      *
      * @return The plugin manager
      */
-    PluginManager getPluginManager();
+    public abstract PluginManager getPluginManager();
 
     /**
      * Gets the {@link EventManager}.
      *
      * @return The event manager
      */
-    EventManager getEventManager();
+    public abstract EventManager getEventManager();
 
     /**
      * Gets the {@link GameRegistry}.
      *
      * @return The game registry
      */
-    GameRegistry getRegistry();
+    public abstract GameRegistry getRegistry();
 
     /**
      * Get the game's instance of the service manager, which is the gateway
@@ -81,14 +92,14 @@ public interface Game {
      *
      * @return The service manager
      */
-    ServiceManager getServiceManager();
+    public abstract ServiceManager getServiceManager();
 
     /**
      * Gets the {@link Scheduler}.
      *
      * @return The scheduler
      */
-    Scheduler getScheduler();
+    public abstract Scheduler getScheduler();
 
     /**
      * Get the command dispatcher used for registering and dispatching
@@ -96,21 +107,21 @@ public interface Game {
      *
      * @return The command dispatcher
      */
-    CommandDispatcher getCommandDispatcher();
+    public abstract CommandDispatcher getCommandDispatcher();
 
     /**
      * Gets the {@link Player}s currently online
      *
      * @return a {@link Collection} of online players
      */
-    Collection<Player> getOnlinePlayers();
+    public abstract Collection<Player> getOnlinePlayers();
 
     /**
      * Gets the max players allowed on this server
      *
      * @return Maximum number of connected players
      */
-    int getMaxPlayers();
+    public abstract int getMaxPlayers();
 
     /**
      * Gets a {@link Player} by their unique id
@@ -118,7 +129,7 @@ public interface Game {
      * @param uniqueId The UUID to get the player from
      * @return {@link Player} if available
      */
-    Optional<Player> getPlayer(UUID uniqueId);
+    public abstract Optional<Player> getPlayer(UUID uniqueId);
 
     /**
      * Gets a {@link Player} by their name
@@ -131,14 +142,14 @@ public interface Game {
      * @param name The name to get the player from
      * @return {@link Player} if available
      */
-    Optional<Player> getPlayer(String name);
+    public abstract Optional<Player> getPlayer(String name);
 
     /**
      * Gets all currently loaded {@link World}s.
      *
      * @return Collection of loaded worlds
      */
-    Collection<World> getWorlds();
+    public abstract Collection<World> getWorlds();
 
     /**
      * Gets a loaded {@link World} by its unique id ({@link UUID}).
@@ -146,7 +157,7 @@ public interface Game {
      * @param uniqueId UUID to lookup
      * @return The world or null if not found
      */
-    World getWorld(UUID uniqueId);
+    public abstract World getWorld(UUID uniqueId);
 
     /**
      * Gets a loaded {@link World} by name
@@ -154,14 +165,14 @@ public interface Game {
      * @param worldName Name to lookup
      * @return The world or null if not found
      */
-    World getWorld(String worldName);
+    public abstract World getWorld(String worldName);
 
     /**
      * Sends the given message to all online players
      *
      * @param message The message to send
      */
-    void broadcastMessage(String message);
+    public abstract void broadcastMessage(String message);
 
     /**
      * Creates a new clean {@link Title} configuration that will reset the
@@ -169,7 +180,7 @@ public interface Game {
      *
      * @return A new clean {@link Title} configuration.
      */
-    Title createTitle();
+    public abstract Title createTitle();
 
     /**
      * Creates a new empty {@link Title} configuration that will just update
@@ -177,20 +188,20 @@ public interface Game {
      *
      * @return A new empty {@link Title} configuration.
      */
-    Title updateTitle();
+    public abstract Title updateTitle();
 
     /**
      * Gets the API version.
      *
      * @return The API version
      */
-    String getAPIVersion();
+    public abstract String getAPIVersion();
 
     /**
      * Gets the implementation version.
      *
      * @return The implementation version
      */
-    String getImplementationVersion();
+    public abstract String getImplementationVersion();
 
 }
