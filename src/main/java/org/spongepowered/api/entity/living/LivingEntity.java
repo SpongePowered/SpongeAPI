@@ -51,7 +51,7 @@ public interface LivingEntity extends Entity {
     double getHealth();
 
     /**
-     * Set the health amount.
+     * Sets the health amount.
      *
      * <p>The range of the health depends on the object on which this
      * method is defined. For players in Minecraft, the nominal range is
@@ -65,10 +65,22 @@ public interface LivingEntity extends Entity {
     void setHealth(double health);
 
     /**
+     * Gets the current maximum health.
      *
-     * @return
+     * <p>The maximum health may or may not include all attribute increasing
+     * health points.</p>
+     *
+     * @return this entities maximum health
      */
     double getMaxHealth();
 
+    /**
+     * Sets the current maximum health.
+     * <p>The maximum health set here may affect the attribute increasing
+     * health points. The base health should be minded that it may be lower
+     * than the total maximum health of this entity.</p>
+     *
+     * @param maxHealth the maximum health for this entity
+     */
     void setMaxHealth(double maxHealth);
 }
