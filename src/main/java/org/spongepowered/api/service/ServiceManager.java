@@ -88,6 +88,6 @@ public interface ServiceManager {
      * @return A provider
      * @throws ProvisioningException Thrown if a provider cannot be provisioned
      */
-    <T> Optional<T> provideUnchecked(Class<T> service) throws ProvisioningException;
+    <T> T provideUnchecked(Class<T> service) throws ProvisioningException;
 
 }
