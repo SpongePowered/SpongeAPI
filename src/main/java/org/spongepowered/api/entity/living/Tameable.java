@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.living;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Tamer;
-import org.spongepowered.api.entity.living.LivingEntity;
 
 public interface Tameable extends LivingEntity {
 
