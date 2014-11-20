@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.entity.living.villager.Career;
+
 /**
  * Represents a Villager.
  */
@@ -48,43 +50,20 @@ public interface Villager extends Ageable {
     boolean isTrading();
 
     /**
-     * Gets the current profession of this villager.
+     * Gets the current career of this villager.
      *
-     * @return the current profession of this villager
+     * @return the current career of this villager
      */
-    Profession getProfession();
+    Career getCareer();
 
     /**
-     * Sets the current profession of this villager.
-     * <p>Setting the profession of a villager may affect the trade offers
+     * Sets the current career of this villager.
+     * <p>Setting the career of a villager may affect the trade offers
      * this villager can give to other human entities. Likewise, this may
      * change the rendering color of this villager.</p>
      *
-     * @param profession the profession to set
+     * @param career the career to set
      */
-    void setProfession(Profession profession);
-
-    /**
-     * A villager Profession will determine their types of trades they can
-     * perform with another {@link HumanEntity}.
-     */
-    public interface Profession {
-
-        /**
-         * The default professions provided by vanilla Minecraft.
-         */
-        public final class VanillaProfession implements Profession {
-            public static final VanillaProfession FARMER = new VanillaProfession();
-            public static final VanillaProfession LIBRARIAN = new VanillaProfession();
-            public static final VanillaProfession PRIEST = new VanillaProfession();
-            public static final VanillaProfession BLACKSMITH = new VanillaProfession();
-            public static final VanillaProfession BUTCHER = new VanillaProfession();
-            private static final VanillaProfession[] values = new VanillaProfession[] { FARMER, LIBRARIAN, PRIEST, BLACKSMITH, BUTCHER };
-
-            public static VanillaProfession[] values() {
-                return values;
-            }
-        }
-    }
+    void setCareer(Career career);
 
 }
