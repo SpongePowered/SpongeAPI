@@ -22,54 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.recipe;
 
-package org.spongepowered.api;
+import java.util.List;
 
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.oredict.OreDictionaryService;
-import org.spongepowered.api.recipe.RecipeService;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Provides an easy way to retrieve types from a {@link Game}.
+ * Service for registering and removing recipes.
  */
-public interface GameRegistry {
-
-    /**
-     * Gets a {@link BlockType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Optional<BlockType> getBlock(String id);
-
-    /**
-     * Gets an {@link ItemType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The item or null if not found
-     */
-    Optional<ItemType> getItem(String id);
-
-    /**
-     * Gets the ID registered to the object.
-     *
-     * @param obj The object to look up
-     * @return The id or null if none found
-     */
-    Optional<String> getId(Object obj);
+public interface RecipeService {
     
     /**
-     * Gets recipe service, which is used to register and unregister recipes.
-     * @return Recipe service
+     * Registers a new recipe.
+     * @param recipe The new recipe
      */
-    RecipeService getRecipeService();
+    void registerRecipe(Recipe recipe);
     
     /**
-     * Gets ore dictionary service.
-     * @return Ore dictionary service.
+     * Unregisters given recipe. If it wasn't registered, nothing will happen.
+     * @param recipe Recipe to unregister
      */
-    OreDictionaryService getOreDictService();
+    void unregisterRecipe(Recipe recipe);
+    
+    /**
+     * Gets all recipes which have given result
+     * @param result Result to use
+     * @return List of recipes with given result
+     */
+    List<Recipe> getRecipesByResult(ItemStack result);
+    
+    /**
+     * Gets all recipes.
+     * @return All recipes registered.
+     */
+    List<Recipe> getAllRecipes();
 }
