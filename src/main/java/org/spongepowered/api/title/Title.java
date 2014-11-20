@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.title;
 
-import org.spongepowered.api.entity.living.Player;
+import org.spongepowered.api.entity.player.Player;
 
 /**
  * Represents a configuration of a title. It consists of a main title and a

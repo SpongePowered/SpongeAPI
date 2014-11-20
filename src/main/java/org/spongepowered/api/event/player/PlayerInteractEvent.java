@@ -27,7 +27,7 @@ package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.entity.EntityInteractionType;
-import org.spongepowered.api.entity.living.Player;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.Cancellable;
 
 import com.google.common.base.Optional;

@@ -23,9 +23,10 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity.player;
 
 import org.spongepowered.api.entity.OfflinePlayer;
+import org.spongepowered.api.entity.living.HumanEntity;
 import org.spongepowered.api.title.Title;
 import org.spongepowered.api.util.command.CommandSource;
 

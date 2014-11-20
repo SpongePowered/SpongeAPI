@@ -27,8 +27,6 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.util.Identifiable;
 
-import java.util.UUID;
-
 /**
  * Interface representing an OfflinePlayer
  */

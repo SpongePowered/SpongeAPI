@@ -22,27 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.service.permission;
-
-import com.google.common.annotations.Beta;
-import org.spongepowered.api.entity.player.Player;
+package org.spongepowered.api.entity.player.gamemode;
 
 /**
- * Returns {@link Subject}s that can be used to test permission.
+ * A list of the game modes that Minecraft provides in vanilla.
  */
-public interface PermissionService {
+public class GameModes {
 
-    /**
-     * Return a subject for the given player.
-     *
-     * <p>This method is subject to change because some sort of
-     * "user" object may be introduced.</p>
-     *
-     * @param player The player
-     * @return A subject
-     */
-    @Beta
-    Subject login(Player player);
+    public static final GameMode SURVIVAL = null;
+    public static final GameMode CREATIVE = null;
+    public static final GameMode ADVENTURE = null;
+    public static final GameMode SPECTATOR = null;
 
 }

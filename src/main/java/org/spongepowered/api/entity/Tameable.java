@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Tamer;
 
 public interface Tameable {
 

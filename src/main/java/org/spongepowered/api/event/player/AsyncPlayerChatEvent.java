@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.living.Player;
+import org.spongepowered.api.entity.player.Player;
 
 /**
  * Called when a {@link Player} sends a chat message

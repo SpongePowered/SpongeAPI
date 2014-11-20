@@ -22,27 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.service.permission;
-
-import com.google.common.annotations.Beta;
-import org.spongepowered.api.entity.player.Player;
+package org.spongepowered.api.entity.player.gamemode;
 
 /**
- * Returns {@link Subject}s that can be used to test permission.
+ * Represents a game mode that a {@link org.spongepowered.api.entity.player.Player} may have.
  */
-public interface PermissionService {
-
-    /**
-     * Return a subject for the given player.
-     *
-     * <p>This method is subject to change because some sort of
-     * "user" object may be introduced.</p>
-     *
-     * @param player The player
-     * @return A subject
-     */
-    @Beta
-    Subject login(Player player);
+public interface GameMode {
 
 }
