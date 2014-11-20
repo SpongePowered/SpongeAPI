@@ -37,8 +37,8 @@ public interface Title {
     /**
      * Set the title to send to the player.
      *
-     * @param text The text to use as the title.
-     * @return This title configuration.
+     * @param text The text to use as the title
+     * @return This title configuration
      */
     // TODO: Replace with text formatting API
     Title title(String text);
@@ -46,8 +46,8 @@ public interface Title {
     /**
      * Set the subtitle to send to the player.
      *
-     * @param text The text to use as the subtitle.
-     * @return This title configuration.
+     * @param text The text to use as the subtitle
+     * @return This title configuration
      */
     // TODO: Replace with text formatting API
     Title subTitle(String text);
@@ -59,8 +59,8 @@ public interface Title {
      *
      * <p>The default value for Vanilla is 20 (1 second).</p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) for the fade in effect
+     * @return This title configuration
      */
     Title fadeIn(int ticks);
 
@@ -71,8 +71,8 @@ public interface Title {
      *
      * <p>The default value for Vanilla is 60 (3 seconds).</p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) for the fade in effect
+     * @return This title configuration
      */
     Title stay(int ticks);
 
@@ -81,8 +81,8 @@ public interface Title {
      *
      * <p>The default value for Vanilla Minecraft is 60 (3 seconds).</p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade out effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) for the fade out effect
+     * @return This title configuration
      */
     Title fadeOut(int ticks);
 
@@ -91,7 +91,7 @@ public interface Title {
      * Remove the currently displayed title from the player's screen. This will
      * keep the currently used display times and will only remove the title.
      *
-     * @return This title configuration.
+     * @return This title configuration
      */
     Title clear();
 
@@ -99,7 +99,7 @@ public interface Title {
      * Remove the currently displayed title from the player's screen
      * and set the configuration back to the default values.
      *
-     * @return This title configuration.
+     * @return This title configuration
      */
     Title reset();
 
@@ -108,8 +108,8 @@ public interface Title {
      * Send this title configuration to the specified player. This is the same
      * as calling {@link Player#sendTitle(Title)}.
      *
-     * @param player The player to send the title to.
-     * @return This title configuration.
+     * @param player The player to send the title to
+     * @return This title configuration
      */
     Title send(Player player);
 }

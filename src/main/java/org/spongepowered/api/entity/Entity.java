@@ -66,7 +66,7 @@ public interface Entity extends EntityState {
      * Simulates the interaction with this object using the given item as if
      * the player had done so.
      *
-     * @param itemStack The item
+     * @param itemStack       The item
      * @param interactionType The type of interaction performed on this entity
      */
     void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
@@ -74,7 +74,7 @@ public interface Entity extends EntityState {
     /**
      * Gets the position.
      *
-     * @return position The position
+     * @return The position
      */
     Vector3d getPosition();
 
@@ -110,7 +110,7 @@ public interface Entity extends EntityState {
      * Gets the rotation as a vector.
      * This does not support the roll component of the entity's rotation.
      *
-     * @return rotation A possibly, but not necessarily, unit vector
+     * @return A possibly, but not necessarily, unit vector
      */
     Vector3f getVectorRotation();
 
@@ -126,7 +126,7 @@ public interface Entity extends EntityState {
     /**
      * Gets the rotation as a EulerDirection.
      *
-     * @return rotation The rotation as a EulerDirection
+     * @return The rotation as a EulerDirection
      */
     EulerDirection getRotation();
 
@@ -140,7 +140,7 @@ public interface Entity extends EntityState {
     /**
      * Mount the entity provided.
      *
-     * @param entity The entity to mount.
+     * @param entity The entity to mount
      */
     void mount(Entity entity);
 
@@ -157,14 +157,15 @@ public interface Entity extends EntityState {
     /**
      * Gets the entity that is riding this entity.
      *
-     * @return The riding entity, if it exists.
+     * @return The riding entity, if it exists
      */
     Optional<Entity> getRider();
 
     /**
      * Gets the entity that this entity is riding.
      *
-     * @return The entity being ridden, if it exists.
+     * @return The entity being ridden, if it exists
      */
     Optional<Entity> getRiding();
+
 }

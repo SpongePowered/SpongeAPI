@@ -35,7 +35,7 @@ public interface EntityDismountEvent extends EntityEvent, Cancellable {
     /**
      * Gets the entity that is being dismounted from.
      *
-     * @return The entity that is being dismounted from.
+     * @return The entity that is being dismounted from
      */
     Entity getDismounted();
 

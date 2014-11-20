@@ -35,7 +35,7 @@ public interface Minecart extends Entity {
      * Gets whether or not the minecart is
      * currently on a valid rail block.
      *
-     * @return If the cart is on a rail.
+     * @return If the cart is on a rail
      */
     boolean isOnRail();
 
@@ -45,7 +45,7 @@ public interface Minecart extends Entity {
      *
      * Default value is 0.4
      *
-     * @return The maximum speed.
+     * @return The maximum speed
      */
     double getMaxSpeed();
 
@@ -55,7 +55,7 @@ public interface Minecart extends Entity {
      *
      * Default value is 0.4
      *
-     * @param maxSpeed The new max speed.
+     * @param maxSpeed The new max speed
      */
     void setMaxSpeed(double maxSpeed);
 
@@ -63,7 +63,7 @@ public interface Minecart extends Entity {
      * Gets whether or not the minecart slows down
      * faster without a passenger.
      *
-     * @return If the cart slows when empty.
+     * @return If the cart slows when empty
      */
     boolean doesSlowWhenEmpty();
 
@@ -71,7 +71,7 @@ public interface Minecart extends Entity {
      * Sets whether or not the minecart slows down
      * faster without a passenger.
      *
-     * @param slowWhenEmpty If the cart should slow when emoty.
+     * @param slowWhenEmpty If the cart should slow when emoty
      */
     void setSlowWhenEmpty(boolean slowWhenEmpty);
 
@@ -79,7 +79,7 @@ public interface Minecart extends Entity {
      * Gets the velocity modifier applied when the
      * minecart is airborne.
      *
-     * @return Airborne velocity modifier.
+     * @return Airborne velocity modifier
      */
     Vector3d getAirborneVelocityMod();
 
@@ -87,7 +87,7 @@ public interface Minecart extends Entity {
      * Sets the velocity modifier applied when the
      * minecart is airborne.
      *
-     * @param airborneVelocityMod The new airborne velocity modifier.
+     * @param airborneVelocityMod The new airborne velocity modifier
      */
     void setAirborneVelocityMod(Vector3d airborneVelocityMod);
 
@@ -95,7 +95,7 @@ public interface Minecart extends Entity {
      * Gets the velocity modifier applied when the
      * minecart is not on rails.
      *
-     * @return Derailed velocity modifier.
+     * @return Derailed velocity modifier
      */
     Vector3d getDerailedVelocityMod();
 
@@ -103,7 +103,7 @@ public interface Minecart extends Entity {
      * Sets the velocity modifier applied when the
      * minecart is not on rails.
      *
-     * @param derailedVelocityMod The new derailed velocity modifier.
+     * @param derailedVelocityMod The new derailed velocity modifier
      */
     void setDerailedVelocityMod(Vector3d derailedVelocityMod);
 }

@@ -36,7 +36,7 @@ public interface Cancellable {
     /**
      * Sets the cancelled state of the {@link Event}.
      *
-     * @param cancel the new cancelled state
+     * @param cancel The new cancelled state
      */
     void setCancelled(boolean cancel);
 

@@ -59,7 +59,6 @@ public class ProvisioningException extends RuntimeException {
         checkNotNull(service);
         this.service = service;
     }
-
     /**
      * Get the service that was requested.
      *
