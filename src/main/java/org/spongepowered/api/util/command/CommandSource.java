@@ -55,7 +55,7 @@ public interface CommandSource {
      * Sends the formatted text message(s) to source when possible. If text formatting
      * is not supported in the implementation it will be displayed as plain text.
      *
-     * @param messages The message(s)
+     * @param messages The messages
      */
     void sendMessage(Iterable<Message<?>>... messages);
 
