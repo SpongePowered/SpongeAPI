@@ -32,4 +32,17 @@ import org.spongepowered.api.entity.living.Monster;
  */
 public interface Creeper extends Monster {
 
+    /**
+     * Gets whether or not the creeper has been struck by lightning.
+     *
+     * @return If the creeper is powered.
+     */
+    boolean isPowered();
+
+    /**
+     * Sets whether or not the creeper has been struck by lightning.
+     *
+     * @param powered If the creeper should be powered.
+     */
+    void setPowered(boolean powered);
 }

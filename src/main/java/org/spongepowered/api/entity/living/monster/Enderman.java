@@ -25,11 +25,44 @@
 
 package org.spongepowered.api.entity.living.monster;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.item.ItemBlock;
 
 /**
  * Represents an Enderman.
  */
 public interface Enderman extends Monster {
 
+    /**
+     * Gets the {@link ItemBlock} currently carried by the enderman.
+     *
+     * @return The {@link ItemBlock}, if available.
+     */
+    Optional<ItemBlock> getCarriedBlock();
+
+    /**
+     * Sets the {@link ItemBlock} currently carried by the enderman.
+     *
+     * @param carriedBlock The carried {@link ItemBlock}.
+     */
+    void setCarriedBlock(ItemBlock carriedBlock);
+
+    /**
+     * Gets if the enderman is currently screaming.
+     * <p>This behaviour generally occurs when a player has been
+     * targeted due to staring too long.</p>
+     *
+     * @return If the enderman is screaming.
+     */
+    boolean isScreaming();
+
+    /**
+     * Sets if the enderman is currently screaming.
+     * <p>This behaviour generally occurs when a player has been
+     * targeted due to staring too long.</p>
+     *
+     * @param screaming If the enderman should be screaming.
+     */
+    void setScreaming(boolean screaming);
 }

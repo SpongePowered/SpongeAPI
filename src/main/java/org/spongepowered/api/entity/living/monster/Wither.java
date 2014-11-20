@@ -25,11 +25,37 @@
 
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.living.LivingEntity;
 import org.spongepowered.api.entity.living.Monster;
+
+import java.util.List;
 
 /**
  * Represents the Wither.
  */
 public interface Wither extends Monster {
 
+    /**
+     * Gets the amount of ticks that the Wither should stay
+     * invulnerable for.
+     *
+     * @return The invulnerable time in ticks.
+     */
+    long getInvulnerableTicks();
+
+    /**
+     * Sets the amount of ticks that the Wither should stay
+     * invulnerable for.
+     *
+     * @param invulnerableTicks The invulnerable time in ticks.
+     */
+    void setInvulnerableTicks(long invulnerableTicks);
+
+    /**
+     * Gets the entities currently being targetted by this wither.
+     * <p>This list should contain a maximum of 3 entities.</p>
+     *
+     * @return The Wither's targets.
+     */
+    List<LivingEntity> getTargets();
 }

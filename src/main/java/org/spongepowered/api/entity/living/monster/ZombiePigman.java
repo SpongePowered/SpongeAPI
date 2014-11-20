@@ -30,6 +30,6 @@ import org.spongepowered.api.entity.living.Monster;
 /**
  * Represents Zombie Pigmen.
  */
-public interface ZombiePigman extends Monster {
+public interface ZombiePigman extends Zombie {
 
 }
