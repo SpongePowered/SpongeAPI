@@ -29,63 +29,63 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Represents an entity that can be equipped with armour.
+ * Represents an entity that can be equipped with armor.
  */
 public interface ArmorEquipable {
 
     /**
      * Gets the helmet currently being worn by this entity.
      *
-     * @return The helmet, if available.
+     * @return The helmet, if available
      */
     Optional<ItemStack> getHelmet();
 
     /**
      * Sets the helmet currently being worn by this entity.
      *
-     * @param helmet The helmet to put on the entity.
+     * @param helmet The helmet to put on the entity
      */
     void setHelmet(ItemStack helmet);
 
     /**
      * Gets the chestplate currently being worn by this entity.
      *
-     * @return The chestplate, if available.
+     * @return The chestplate, if available
      */
     Optional<ItemStack> getChestplate();
 
     /**
      * Sets the chestplate currently being worn by this entity.
      *
-     * @param chestplate The chestplate to put on the entity.
+     * @param chestplate The chestplate to put on the entity
      */
     void setChestplate(ItemStack chestplate);
 
     /**
      * Gets the leggings currently being worn by this entity.
      *
-     * @return The leggings, if available.
+     * @return The leggings, if available
      */
     Optional<ItemStack> getLeggings();
 
     /**
      * Sets the leggings currently being worn by this entity.
      *
-     * @param leggings The leggings to put on the entity.
+     * @param leggings The leggings to put on the entity
      */
     void setLeggings(ItemStack leggings);
 
     /**
      * Gets the boots currently being worn by this entity.
      *
-     * @return The boots, if available.
+     * @return The boots, if available
      */
     Optional<ItemStack> getBoots();
 
     /**
      * Sets the boots currently being worn by this entity.
      *
-     * @param boots The boots to put on the entity.
+     * @param boots The boots to put on the entity
      */
     void setBoots(ItemStack boots);
 
