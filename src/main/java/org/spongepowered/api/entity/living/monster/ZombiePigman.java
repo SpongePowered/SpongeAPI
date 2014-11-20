@@ -25,11 +25,13 @@
 
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Monster;
 
 /**
- * Represents Zombie Pigmen.
+ * Represents a Zombie Pigman.
  */
-public interface ZombiePigman extends Zombie {
+public interface ZombiePigman extends Monster, ArmorEquipable, Ageable {
 
 }
