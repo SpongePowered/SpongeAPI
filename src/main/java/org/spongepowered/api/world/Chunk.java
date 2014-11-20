@@ -48,4 +48,27 @@ public interface Chunk extends Extent {
      */
     Vector3i getPosition();
 
+    /**
+     * Gets whether or not this chunk is currently loaded.
+     *
+     * @return Whether or not this chunk is loaded.
+     */
+    boolean isLoaded();
+
+    /**
+     * Loads this chunk, and generates if specified and required.
+     *
+     * @param generate Whether or not to generate the chunk
+     *                 if it does not yet exist
+     *
+     * @return If the chunk was successfully loaded.
+     */
+    boolean loadChunk(boolean generate);
+
+    /**
+     * Unloads this chunk, if possible.
+     *
+     * @return Whether or not the chunk unloaded.
+     */
+    boolean unloadChunk();
 }
