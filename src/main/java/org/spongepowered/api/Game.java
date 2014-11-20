@@ -165,6 +165,22 @@ public interface Game {
     void broadcastMessage(Message<?> message);
 
     /**
+     * Creates a new clean {@link Title} configuration that will reset the
+     * currently displayed title before displaying the new one.
+     *
+     * @return A new clean {@link Title} configuration
+     */
+    Title createTitle();
+
+    /**
+     * Creates a new empty {@link Title} configuration that will just update
+     * the currently displayed title on the client.
+     *
+     * @return A new empty {@link Title} configuration
+     */
+    Title updateTitle();
+
+    /**
      * Gets the API version.
      *
      * @return The API version
