@@ -23,23 +23,14 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.game;
 
 import org.spongepowered.api.GameMode;
+import org.spongepowered.api.event.GameEvent;
 
-public interface HumanEntity extends LivingEntity {
+/**
+ * Describes events related to {@link GameMode}.
+ */
+public interface GameModeEvent extends GameEvent {
 
-    /**
-     * Gets the entity's current {@link GameMode}.
-     *
-     * @return The current game mode
-     */
-    GameMode getGameMode();
-
-    /**
-     * Sets the entity's current {@link GameMode}.
-     *
-     * @param mode The new game mode
-     */
-    void setGameMode(GameMode mode);
 }
