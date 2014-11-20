@@ -28,6 +28,6 @@ package org.spongepowered.api.entity.living;
 /**
  * Represents an Animal, such as a Cow.
  */
-public interface Animal {
+public interface Animal extends Ageable {
 
 }

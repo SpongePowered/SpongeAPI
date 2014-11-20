@@ -63,4 +63,12 @@ public interface LivingEntity extends Entity {
      * @param health The health to set to
      */
     void setHealth(double health);
+
+    /**
+     *
+     * @return
+     */
+    double getMaxHealth();
+
+    void setMaxHealth(double maxHealth);
 }

@@ -32,4 +32,20 @@ import org.spongepowered.api.entity.living.Monster;
  */
 public interface Skeleton extends Monster {
 
+    SkeletonType getSkeletonType();
+
+    void setSkeletonType(SkeletonType skeletonType);
+
+    public interface SkeletonType {
+
+        public final class VanillaSkeletonType implements SkeletonType {
+            public static final VanillaSkeletonType NORMAL = new VanillaSkeletonType();
+            public static final VanillaSkeletonType WITHER = new VanillaSkeletonType();
+            private static final VanillaSkeletonType[] values = new VanillaSkeletonType[] { NORMAL, WITHER };
+            public static VanillaSkeletonType[] values() {
+                return values;
+            }
+        }
+    }
+
 }

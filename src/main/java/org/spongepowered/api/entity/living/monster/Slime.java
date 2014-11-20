@@ -32,4 +32,21 @@ import org.spongepowered.api.entity.living.Monster;
  */
 public interface Slime extends Monster {
 
+    /**
+     * Gets the size of this slime. Size helps define the maximum health and
+     * damage dealt by this slime.
+     *
+     * @return the current size of this slime
+     */
+    int getSize();
+
+    /**
+     * Sets the size of this slime.
+     * <p>The size should always be 1 or more. Setting the size may affect
+     * this slimes maximum health. Sizes should not be negative.</p>
+     *
+     * @param size the size of the slime
+     */
+    void setSize(int size);
+
 }

@@ -25,11 +25,66 @@
 
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.entity.living.LivingEntity;
-
 /**
  * Represents a Villager.
  */
-public interface Villager extends LivingEntity {
+public interface Villager extends Ageable {
+
+    /**
+     * Checks if this villager is currently playing with other child
+     * villagers. This normally only applies to children villagers.
+     *
+     * @return true if this villager is playing with other children
+     */
+    boolean isPlaying();
+
+    /**
+     * Returns true if this villager is currently trading with another {@link
+     * HumanEntity}. A villager is normally unable to trade with multiple
+     * HumanEntities at the same time.
+     *
+     * @return true if this villager is trading with another player
+     */
+    boolean isTrading();
+
+    /**
+     * Gets the current profession of this villager.
+     *
+     * @return the current profession of this villager
+     */
+    Profession getProfession();
+
+    /**
+     * Sets the current profession of this villager.
+     * <p>Setting the profession of a villager may affect the trade offers
+     * this villager can give to other human entities. Likewise, this may
+     * change the rendering color of this villager.</p>
+     *
+     * @param profession the profession to set
+     */
+    void setProfession(Profession profession);
+
+    /**
+     * A villager Profession will determine their types of trades they can
+     * perform with another {@link HumanEntity}.
+     */
+    public interface Profession {
+
+        /**
+         * The default professions provided by vanilla Minecraft.
+         */
+        public final class VanillaProfession implements Profession {
+            public static final VanillaProfession FARMER = new VanillaProfession();
+            public static final VanillaProfession LIBRARIAN = new VanillaProfession();
+            public static final VanillaProfession PRIEST = new VanillaProfession();
+            public static final VanillaProfession BLACKSMITH = new VanillaProfession();
+            public static final VanillaProfession BUTCHER = new VanillaProfession();
+            private static final VanillaProfession[] values = new VanillaProfession[] { FARMER, LIBRARIAN, PRIEST, BLACKSMITH, BUTCHER };
+
+            public static VanillaProfession[] values() {
+                return values;
+            }
+        }
+    }
 
 }

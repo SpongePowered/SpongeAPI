@@ -167,4 +167,35 @@ public interface Entity extends EntityState {
      * @return The entity being ridden, if it exists.
      */
     Optional<Entity> getRiding();
+
+    /**
+     * Sets the bounding box size for this entity.
+     *
+     * @param xz size in width
+     * @param y size in height
+     */
+    void setSize(float xz, float y);
+
+    /**
+     * Gets the current x/z size of this entity.
+     *
+     * @return the width of this entity
+     */
+    float getXZSize();
+
+    /**
+     * Gets the current y height of this entity.
+     *
+     * @return the current y height
+     */
+    float getHeight();
+
+    /**
+     * Sets the scale of this entity according to the current xz/y definitions
+     * to render.
+     *
+     * @param scale the scale to size this entity
+     */
+    void setScale(float scale);
+
 }

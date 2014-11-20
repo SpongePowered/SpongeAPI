@@ -32,4 +32,19 @@ import org.spongepowered.api.entity.living.AmbientEntity;
  */
 public interface Bat extends AmbientEntity {
 
+    /**
+     * Returns true whether this bat is awake and flying or hanging.
+     *
+     * @return true if this bat is flying
+     */
+    boolean isAwake();
+
+    /**
+     * Sets this bat to be awake or not. An awakened bat will fly around,
+     * whereas a sleeping bat hangs upside down.
+     *
+     * @param awake whether this bat is awake or not
+     */
+    void setAwake(boolean awake);
+
 }
