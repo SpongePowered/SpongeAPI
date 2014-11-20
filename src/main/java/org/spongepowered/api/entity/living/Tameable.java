@@ -22,12 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.living.LivingEntity;
 
-public interface Tameable {
+public interface Tameable extends LivingEntity {
 
     /**
      * Checks if this is tamed
