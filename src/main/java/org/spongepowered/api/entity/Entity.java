@@ -169,19 +169,19 @@ public interface Entity extends EntityState {
     Optional<Entity> getRiding();
 
     /**
-     * Sets the bounding box size for this entity.
-     *
-     * @param xz size in width
-     * @param y size in height
-     */
-    void setSize(float xz, float y);
-
-    /**
      * Gets the current x/z size of this entity.
      *
      * @return the width of this entity
      */
-    float getXZSize();
+    float getBase();
+
+    /**
+     * Sets the bounding box size for this entity.
+     *
+     * @param base size in width
+     * @param y size in height
+     */
+    void setSize(float base, float y);
 
     /**
      * Gets the current y height of this entity.

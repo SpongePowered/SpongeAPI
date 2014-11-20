@@ -1,8 +1,8 @@
 package org.spongepowered.api.entity;
 
-import java.util.UUID;
+import org.spongepowered.api.util.Identifiable;
 
-public interface Tamer {
+public interface Tamer extends Identifiable {
 
     /**
      * Gets the name of this tamer to reference on tamed entities or null
@@ -12,10 +12,4 @@ public interface Tamer {
      */
     String getName();
 
-    /**
-     * Gets the UUID of this tamer to reference on tamed entities.
-     *
-     * @return the UUID to reference on tamed entities
-     */
-    UUID getUniqueId();
 }

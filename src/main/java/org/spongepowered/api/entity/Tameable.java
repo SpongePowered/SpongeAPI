@@ -1,5 +1,7 @@
 package org.spongepowered.api.entity;
 
+import com.google.common.base.Optional;
+
 public interface Tameable {
 
     /**
@@ -24,9 +26,9 @@ public interface Tameable {
     /**
      * Gets the current owning Tamer
      *
-     * @return the owning Tamer, or null if not owned
+     * @return an optional for the Tamer
      */
-    Tamer getOwner();
+    Optional<Tamer> getOwner();
 
     /**
      * Sets this to be owned by given Tamer.
