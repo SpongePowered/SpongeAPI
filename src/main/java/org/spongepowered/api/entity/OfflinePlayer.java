@@ -25,12 +25,13 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.entity.ArmourEquipable;
 import org.spongepowered.api.util.Identifiable;
 
 /**
  * Interface representing an OfflinePlayer
  */
-public interface OfflinePlayer extends Identifiable {
+public interface OfflinePlayer extends Identifiable, ArmourEquipable {
 
     /**
      * Gets the player's last known username.
