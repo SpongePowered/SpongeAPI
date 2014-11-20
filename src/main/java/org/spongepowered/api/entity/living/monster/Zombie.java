@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.ArmourEquipable;
+import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents a Zombie.
  */
-public interface Zombie extends Monster, ArmourEquipable {
+public interface Zombie extends Monster, ArmorEquipable {
 
 }

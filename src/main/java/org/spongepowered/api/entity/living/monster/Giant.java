@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.ArmourEquipable;
+import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents a Giant.
  */
-public interface Giant extends Monster, ArmourEquipable {
+public interface Giant extends Monster, ArmorEquipable {
 
 }
