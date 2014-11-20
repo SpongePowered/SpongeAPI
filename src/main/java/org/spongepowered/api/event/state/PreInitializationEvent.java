@@ -56,7 +56,7 @@ public interface PreInitializationEvent extends StateEvent {
 
     /**
      *
-     * @return the config folder
+     * @return The config folder
      */
     public File getConfigurationDirectory();
 

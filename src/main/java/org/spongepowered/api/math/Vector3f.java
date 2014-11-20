@@ -293,7 +293,7 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     /**
      * Projects this vector onto another vector.
      *
-     * @param v the vector to project on
+     * @param v The vector to project on
      * @return The results of the operation as a new vector
      */
     Vector3f project(Vector3f v);
@@ -553,7 +553,7 @@ public interface Vector3f extends Comparable<Vector3f>, Serializable, Cloneable 
     /**
      * Returns this vector as an array.
      *
-     * @return This vector as an array.
+     * @return This vector as an array
      */
     float[] toArray();
 

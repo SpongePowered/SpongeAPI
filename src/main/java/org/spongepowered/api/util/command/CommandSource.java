@@ -36,14 +36,14 @@ public interface CommandSource {
     /**
      * Sends the message(s) to source when possible.
      *
-     * @param messages The message(s).
+     * @param messages The message(s)
      */
     void sendMessage(String... messages);
 
     /**
      * Sends the messages to source when possible.
      *
-     * @param messages The messages.
+     * @param messages The messages
      */
     void sendMessage(Iterable<String> messages);
 }
