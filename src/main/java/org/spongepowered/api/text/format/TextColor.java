@@ -55,7 +55,7 @@ public interface TextColor {
      * FormattingCode because it does have a corresponding formatting code; it
      * is a single, pure text color.
      */
-    interface Base extends FormattingCode, TextStyle {
+    interface Base extends FormattingCode, TextColor {
 
     }
 
