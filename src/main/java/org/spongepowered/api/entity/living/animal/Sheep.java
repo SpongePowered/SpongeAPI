@@ -26,15 +26,15 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.entity.living.Animal;
-import org.spongepowered.api.entity.living.meta.SheepColor;
+import org.spongepowered.api.entity.living.Dyeable;
 
 /**
  * Represents a Sheep.
  */
-public interface Sheep extends Animal {
+public interface Sheep extends Animal, Dyeable {
 
-    SheepColor getColor();
+    boolean isSheared();
 
-    void setColor(SheepColor color);
+    void setSheared(boolean sheared);
 
 }

@@ -24,6 +24,6 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-public interface CollarColor {
+public interface DyeColor {
 
 }

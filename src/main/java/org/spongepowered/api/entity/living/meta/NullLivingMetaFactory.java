@@ -39,12 +39,7 @@ public class NullLivingMetaFactory implements LivingMetaFactory {
     }
 
     @Override
-    public List<SheepColor> getSheepColors() {
-        return null;
-    }
-
-    @Override
-    public List<CollarColor> getCollarColors() {
+    public List<DyeColor> getDyeColors() {
         return null;
     }
 

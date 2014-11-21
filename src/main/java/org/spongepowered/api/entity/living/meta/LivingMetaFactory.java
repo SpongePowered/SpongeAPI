@@ -33,9 +33,7 @@ public interface LivingMetaFactory {
 
     List<OcelotType> getOcelotTypes();
 
-    List<SheepColor> getSheepColors();
-
-    List<CollarColor> getCollarColors();
+    List<DyeColor> getDyeColors();
 
     List<HorseColor> getHorseColors();
 

@@ -24,13 +24,26 @@
  */
 package org.spongepowered.api.entity;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.HumanEntity;
+
+import javax.annotation.Nullable;
 
 public interface Merchant {
 
-    void setCustomer(HumanEntity human);
+    /**
+     * Sets the currently trading customer with this merchant.
+     * <p>If the human entity is available, a new trading window may open
+     * with this merchant.</p>
+     *
+     * @param human the human to trade with
+     */
+    void setCustomer(@Nullable HumanEntity human);
 
-    HumanEntity getCustomer();
-
-
+    /**
+     * Gets the currently trading customer with this merchant.
+     *
+     * @return the currently trading customer if available
+     */
+    Optional<HumanEntity> getCustomer();
 }
