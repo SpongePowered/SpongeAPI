@@ -77,7 +77,7 @@ public interface Ageable extends LivingEntity {
 
     /**
      * Sets whether this entity can breed a new child.
-     * @param breeding whether this entity can breed
+     * @param breeding Whether this entity can breed
      */
     void setBreeding(boolean breeding);
 

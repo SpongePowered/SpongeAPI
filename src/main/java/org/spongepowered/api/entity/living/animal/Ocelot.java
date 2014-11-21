@@ -34,8 +34,18 @@ import org.spongepowered.api.entity.living.meta.OcelotType;
  */
 public interface Ocelot extends Animal, Sittable {
 
+    /**
+     * Gets the current {@link OcelotType} of this ocelot.
+     *
+     * @return The current ocelot type
+     */
     OcelotType getOcelotType();
 
+    /**
+     * Sets this ocelot to become the given {@link OcelotType}.
+     *
+     * @param ocelotType The new ocelot type
+     */
     void setOcelotType(final OcelotType ocelotType);
 
 }

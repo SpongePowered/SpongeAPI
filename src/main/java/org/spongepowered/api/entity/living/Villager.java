@@ -36,23 +36,32 @@ public interface Villager extends Ageable {
      * Checks if this villager is currently playing with other child
      * villagers. This normally only applies to children villagers.
      *
-     * @return true if this villager is playing with other children
+     * @return True if this villager is playing with other children
      */
     boolean isPlaying();
+
+    /**
+     * Sets this villager to play with other child villagers.
+     * <p>This usually is only applicable to children villagers that
+     * are still considered babies.</p>
+     *
+     * @param playing If this villager should play
+     */
+    void setPlaying(boolean playing);
 
     /**
      * Returns true if this villager is currently trading with another {@link
      * HumanEntity}. A villager is normally unable to trade with multiple
      * HumanEntities at the same time.
      *
-     * @return true if this villager is trading with another player
+     * @return True if this villager is trading with another player
      */
     boolean isTrading();
 
     /**
      * Gets the current career of this villager.
      *
-     * @return the current career of this villager
+     * @return The current career of this villager
      */
     Career getCareer();
 
@@ -62,7 +71,7 @@ public interface Villager extends Ageable {
      * this villager can give to other human entities. Likewise, this may
      * change the rendering color of this villager.</p>
      *
-     * @param career the career to set
+     * @param career The career to set
      */
     void setCareer(Career career);
 

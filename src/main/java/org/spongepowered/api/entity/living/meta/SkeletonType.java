@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+/**
+ * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
+ * can be. Certain skeleton types define the items a skeleton can equip and
+ * can define the various status immunities, such as withering.
+ */
 public interface SkeletonType {
 
 }

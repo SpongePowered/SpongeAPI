@@ -26,10 +26,24 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.entity.living.meta.DyeColor;
 
+/**
+ * Represents something that can be dyed, such as a
+ * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ */
 public interface Dyeable {
 
+    /**
+     * Gets the current {@link DyeColor} this is dyed.
+     *
+     * @return The current dye color
+     */
     DyeColor getColor();
 
+    /**
+     * Sets the {@link DyeColor} of this being.
+     *
+     * @param color The new dye color
+     */
     void setColor(DyeColor color);
 
 }

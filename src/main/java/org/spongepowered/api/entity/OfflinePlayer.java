@@ -43,21 +43,21 @@ public interface OfflinePlayer extends Identifiable, ArmorEquipable {
     /**
      * Checks if this player has joined the server before.
      * 
-     * @return true If player has joined before
+     * @return True If player has joined before
      */
     boolean hasJoinedBefore();
 
     /**
      * Checks if this player is banned.
      * 
-     * @return true If banned
+     * @return True If banned
      */
     boolean isBanned();
 
     /**
      * Checks if this player is whitelisted.
      * 
-     * @return true If whitelisted
+     * @return True If whitelisted
      */
     boolean isWhitelisted();
 }

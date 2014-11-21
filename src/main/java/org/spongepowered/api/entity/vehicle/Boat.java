@@ -35,7 +35,7 @@ public interface Boat extends Entity {
      * Gets whether this boat is currently in
      * water.
      *
-     * @return If the boat is in water.
+     * @return If the boat is in water
      */
     boolean isInWater();
 
@@ -45,7 +45,7 @@ public interface Boat extends Entity {
      *
      * Default value is 0.4
      *
-     * @return The maximum speed.
+     * @return The maximum speed
      */
     double getMaxSpeed();
 
@@ -55,7 +55,7 @@ public interface Boat extends Entity {
      *
      * Default value is 0.4
      *
-     * @param maxSpeed The new max speed.
+     * @param maxSpeed The new max speed
      */
     void setMaxSpeed(double maxSpeed);
 
@@ -63,7 +63,7 @@ public interface Boat extends Entity {
      * Gets whether or not the boat is able to
      * move freely on land.
      *
-     * @return If the boat can move on land.
+     * @return If the boat can move on land
      */
     boolean getMoveOnLand();
 
@@ -71,7 +71,7 @@ public interface Boat extends Entity {
      * Gets whether or not the boat is able to
      * move freely on land.
      *
-     * @param moveOnLand If the boat can move on land.
+     * @param moveOnLand If the boat can move on land
      */
     void setMoveOnLand(boolean moveOnLand);
 
@@ -85,21 +85,21 @@ public interface Boat extends Entity {
     /**
      * Sets the rate at which occupied boats decelerate.
      *
-     * @param occupiedDeceleration The new occupied deceleration rate.
+     * @param occupiedDeceleration The new occupied deceleration rate
      */
     void setOccupiedDeceleration(double occupiedDeceleration);
 
     /**
      * Gets the rate at which unoccupied boats decelerate.
      *
-     * @return The unoccupied deceleration rate.
+     * @return The unoccupied deceleration rate
      */
     double getUnoccupiedDeceleration();
 
     /**
      * Sets the rate at which unoccupied boats decelerate.
      *
-     * @param unoccupiedDeceleration The new unoccupied deceleration rate.
+     * @param unoccupiedDeceleration The new unoccupied deceleration rate
      */
     void setUnoccupiedDeceleration(double unoccupiedDeceleration);
 }

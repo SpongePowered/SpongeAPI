@@ -32,14 +32,14 @@ public interface Sittable extends Tameable {
     /**
      * Gets whether this entity is sitting.
      *
-     * @return true if this entity is sitting
+     * @return True if this entity is sitting
      */
     boolean isSitting();
 
     /**
      * Sets whether this entity is sitting or not.
      *
-     * @param sitting whether this entity is sitting
+     * @param sitting Whether this entity is sitting
      */
     void setSitting(boolean sitting);
 

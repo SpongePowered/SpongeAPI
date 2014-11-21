@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+/**
+ * Represents the color of a {@link org.spongepowered.api.entity.living.animal.Horse}.
+ * <p>The color of a horse is a genetic trait that can be inherited to a new
+ * born horse.</p>
+ */
 public interface HorseColor {
 
 }

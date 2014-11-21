@@ -35,7 +35,7 @@ public interface ItemEntity extends Entity {
     /**
      * Get the {@link ItemStack} that this entity represents.
      *
-     * @return The represented {@link ItemStack}.
+     * @return The represented {@link ItemStack}
      */
     ItemStack getItemStack();
 }

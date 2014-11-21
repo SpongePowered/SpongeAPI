@@ -34,7 +34,7 @@ public interface Tameable extends LivingEntity {
      * <p>If something is tamed then no other tamer is able to tame this
      * entity through normal methods.</p>
      *
-     * @return true if this has been tamed
+     * @return True if this has been tamed
      */
     boolean isTamed();
 
@@ -44,23 +44,23 @@ public interface Tameable extends LivingEntity {
      * <p>If something is tamed then no other tamer is able to tame this
      * entity through normal methods.</p>
      *
-     * @param tame true if tame
+     * @param tame True if tame
      */
     void setTamed(boolean tame);
 
     /**
      * Gets the current owning Tamer
      *
-     * @return an optional for the Tamer
+     * @return The tamer, if available
      */
     Optional<Tamer> getOwner();
 
     /**
-     * Sets this to be owned by given Tamer.
+     * Sets this to be owned by given {@link Tamer}.
      * <p>If the tamer is null, this entity will become untamed and become
      * tameable by other tamers.</p>
      *
-     * @param tamer the Tamer who should own this
+     * @param tamer The Tamer who should own this
      */
     void setOwner(Tamer tamer);
 

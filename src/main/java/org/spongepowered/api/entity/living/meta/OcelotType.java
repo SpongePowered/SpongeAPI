@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+/**
+ * Represents the type of ocelot an ocelot is.
+ */
 public interface OcelotType {
 
 }

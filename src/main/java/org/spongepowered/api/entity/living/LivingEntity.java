@@ -70,7 +70,7 @@ public interface LivingEntity extends Entity {
      * <p>The maximum health may or may not include all attribute increasing
      * health points.</p>
      *
-     * @return this entities maximum health
+     * @return This entities maximum health
      */
     double getMaxHealth();
 
@@ -80,7 +80,7 @@ public interface LivingEntity extends Entity {
      * health points. The base health should be minded that it may be lower
      * than the total maximum health of this entity.</p>
      *
-     * @param maxHealth the maximum health for this entity
+     * @param maxHealth The maximum health for this entity
      */
     void setMaxHealth(double maxHealth);
 }

@@ -140,7 +140,7 @@ public interface Entity extends EntityState {
     /**
      * Mount the entity provided.
      *
-     * @param entity The entity to mount.
+     * @param entity The entity to mount
      */
     void mount(Entity entity);
 
@@ -150,43 +150,43 @@ public interface Entity extends EntityState {
     void dismount();
 
     /**
-     * Eject any entity mounted on this entity.
+     * Eject any entity mounted on this entity
      */
     void eject();
 
     /**
      * Gets the entity that is riding this entity.
      *
-     * @return The riding entity, if it exists.
+     * @return The riding entity, if it exists
      */
     Optional<Entity> getRider();
 
     /**
      * Gets the entity that this entity is riding.
      *
-     * @return The entity being ridden, if it exists.
+     * @return The entity being ridden, if it exists
      */
     Optional<Entity> getRiding();
 
     /**
      * Gets the current x/z size of this entity.
      *
-     * @return the width of this entity
+     * @return The width of this entity
      */
     float getBase();
 
     /**
      * Sets the bounding box size for this entity.
      *
-     * @param base size in width
-     * @param y size in height
+     * @param base Size in width
+     * @param y Size in height
      */
     void setSize(float base, float y);
 
     /**
      * Gets the current y height of this entity.
      *
-     * @return the current y height
+     * @return The current y height
      */
     float getHeight();
 
@@ -194,7 +194,7 @@ public interface Entity extends EntityState {
      * Sets the scale of this entity according to the current xz/y definitions
      * to render.
      *
-     * @param scale the scale to size this entity
+     * @param scale The scale to size this entity
      */
     void setScale(float scale);
 

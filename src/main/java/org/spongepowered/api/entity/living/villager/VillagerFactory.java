@@ -24,13 +24,15 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 public interface VillagerFactory {
 
-    Career getCareerFromName(String name);
+    Optional<Career> getCareerFromName(String name);
 
-    Profession getProfessionFromName(String name);
+    Optional<Profession> getProfessionFromName(String name);
 
     Profession getProfessionFromCareer(Career career);
 

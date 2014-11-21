@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+/**
+ * Represents a Villager Profession. A profession defines the genre of
+ * trade offers a villager may offer to a player.
+ */
 public interface Profession {
 
 }

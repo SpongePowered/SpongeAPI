@@ -94,14 +94,14 @@ public interface ArmorEquipable {
     /**
      * Gets the current equipped item in hand if available.
      *
-     * @return the current item in hand
+     * @return The current item in hand, if available
      */
     Optional<ItemStack> getItemInHand();
 
     /**
      * Sets the item in hand for this entity.
      *
-     * @param itemInHand the item in hand
+     * @param itemInHand The item in hand
      */
     void setItemInHand(@Nullable ItemStack itemInHand);
 

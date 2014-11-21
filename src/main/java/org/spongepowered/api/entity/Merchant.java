@@ -36,14 +36,14 @@ public interface Merchant {
      * <p>If the human entity is available, a new trading window may open
      * with this merchant.</p>
      *
-     * @param human the human to trade with
+     * @param human The human to trade with
      */
     void setCustomer(@Nullable HumanEntity human);
 
     /**
      * Gets the currently trading customer with this merchant.
      *
-     * @return the currently trading customer if available
+     * @return The currently trading customer if available
      */
     Optional<HumanEntity> getCustomer();
 }

@@ -24,8 +24,18 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+/**
+ * Represents a Villager Career. A career can define a more specified list
+ * of trade offers the villager can give to a player.
+ */
 public interface Career {
-    
+
+    /**
+     * The parent profession of this career. The profession is permanent
+     * and can not be changed.
+     *
+     * @return The profession this career belongs to
+     */
     Profession getProfession();
 
 }
