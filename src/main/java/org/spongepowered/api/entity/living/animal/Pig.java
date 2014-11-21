@@ -32,4 +32,8 @@ import org.spongepowered.api.entity.living.Animal;
  */
 public interface Pig extends Animal {
 
+    boolean isSaddled();
+
+    void setSaddled(boolean saddled);
+
 }

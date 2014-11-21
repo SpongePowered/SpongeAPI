@@ -39,7 +39,7 @@ public interface Wither extends Monster {
      * Gets the amount of ticks that the Wither should stay
      * invulnerable for.
      *
-     * @return The invulnerable time in ticks.
+     * @return The invulnerable time in ticks
      */
     long getInvulnerableTicks();
 
@@ -47,7 +47,7 @@ public interface Wither extends Monster {
      * Sets the amount of ticks that the Wither should stay
      * invulnerable for.
      *
-     * @param invulnerableTicks The invulnerable time in ticks.
+     * @param invulnerableTicks The invulnerable time in ticks
      */
     void setInvulnerableTicks(long invulnerableTicks);
 
@@ -55,7 +55,7 @@ public interface Wither extends Monster {
      * Gets the entities currently being targetted by this wither.
      * <p>This list should contain a maximum of 3 entities.</p>
      *
-     * @return The Wither's targets.
+     * @return The Wither's targets
      */
     List<LivingEntity> getTargets();
 }

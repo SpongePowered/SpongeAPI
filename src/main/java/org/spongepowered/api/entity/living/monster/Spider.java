@@ -35,7 +35,7 @@ public interface Spider extends Monster {
     /**
      * Gets whether or not the spider is currently climbing a wall.
      *
-     * @return Whether or not the spider is climbing a wall.
+     * @return Whether or not the spider is climbing a wall
      */
     boolean isClimbing();
 }

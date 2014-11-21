@@ -28,6 +28,8 @@ package org.spongepowered.api.entity;
 import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents an entity that can be equipped with armor.
  */
@@ -45,7 +47,7 @@ public interface ArmorEquipable {
      *
      * @param helmet The helmet to put on the entity
      */
-    void setHelmet(ItemStack helmet);
+    void setHelmet(@Nullable ItemStack helmet);
 
     /**
      * Gets the chestplate currently being worn by this entity.
@@ -59,7 +61,7 @@ public interface ArmorEquipable {
      *
      * @param chestplate The chestplate to put on the entity
      */
-    void setChestplate(ItemStack chestplate);
+    void setChestplate(@Nullable ItemStack chestplate);
 
     /**
      * Gets the leggings currently being worn by this entity.
@@ -73,7 +75,7 @@ public interface ArmorEquipable {
      *
      * @param leggings The leggings to put on the entity
      */
-    void setLeggings(ItemStack leggings);
+    void setLeggings(@Nullable ItemStack leggings);
 
     /**
      * Gets the boots currently being worn by this entity.
@@ -87,6 +89,20 @@ public interface ArmorEquipable {
      *
      * @param boots The boots to put on the entity
      */
-    void setBoots(ItemStack boots);
+    void setBoots(@Nullable ItemStack boots);
+
+    /**
+     * Gets the current equipped item in hand if available.
+     *
+     * @return the current item in hand
+     */
+    Optional<ItemStack> getItemInHand();
+
+    /**
+     * Sets the item in hand for this entity.
+     *
+     * @param itemInHand the item in hand
+     */
+    void setItemInHand(@Nullable ItemStack itemInHand);
 
 }

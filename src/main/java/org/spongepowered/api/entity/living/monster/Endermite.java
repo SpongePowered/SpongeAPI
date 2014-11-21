@@ -28,4 +28,17 @@ import org.spongepowered.api.entity.living.Monster;
 
 public interface Endermite extends Monster {
 
+    /**
+     * Gets if this {@link Endermite} was created by a player.
+     *
+     * @return If the {@link Endermite} was created by a player
+     */
+    boolean isPlayerCreated();
+
+    /**
+     * Sets if this {@link Endermite} was created by a player.
+     *
+     * @param playerCreated If the {@link Endermite} should be created by a player
+     */
+    void setPlayerCreated(boolean playerCreated);
 }

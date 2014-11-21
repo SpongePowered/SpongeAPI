@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.entity.living.LivingEntity;
-
 /**
  * Represents a Hostile Entity, such as a Skeleton.
  */

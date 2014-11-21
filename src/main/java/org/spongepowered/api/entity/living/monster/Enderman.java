@@ -37,14 +37,14 @@ public interface Enderman extends Monster {
     /**
      * Gets the {@link ItemBlock} currently carried by the enderman.
      *
-     * @return The {@link ItemBlock}, if available.
+     * @return The {@link ItemBlock}, if available
      */
     Optional<ItemBlock> getCarriedBlock();
 
     /**
      * Sets the {@link ItemBlock} currently carried by the enderman.
      *
-     * @param carriedBlock The carried {@link ItemBlock}.
+     * @param carriedBlock The carried {@link ItemBlock}
      */
     void setCarriedBlock(ItemBlock carriedBlock);
 
@@ -53,7 +53,7 @@ public interface Enderman extends Monster {
      * <p>This behaviour generally occurs when a player has been
      * targeted due to staring too long.</p>
      *
-     * @return If the enderman is screaming.
+     * @return If the enderman is screaming
      */
     boolean isScreaming();
 
@@ -62,7 +62,7 @@ public interface Enderman extends Monster {
      * <p>This behaviour generally occurs when a player has been
      * targeted due to staring too long.</p>
      *
-     * @param screaming If the enderman should be screaming.
+     * @param screaming If the enderman should be screaming
      */
     void setScreaming(boolean screaming);
 }

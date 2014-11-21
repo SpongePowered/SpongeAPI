@@ -35,14 +35,14 @@ public interface Creeper extends Monster {
     /**
      * Gets whether or not the creeper has been struck by lightning.
      *
-     * @return If the creeper is powered.
+     * @return If the creeper is powered
      */
     boolean isPowered();
 
     /**
      * Sets whether or not the creeper has been struck by lightning.
      *
-     * @param powered If the creeper should be powered.
+     * @param powered If the creeper should be powered
      */
     void setPowered(boolean powered);
 }

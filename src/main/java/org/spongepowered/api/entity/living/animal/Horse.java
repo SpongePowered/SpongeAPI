@@ -25,11 +25,15 @@
 
 package org.spongepowered.api.entity.living.animal;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Animal;
 import org.spongepowered.api.entity.living.Tameable;
 import org.spongepowered.api.entity.living.meta.HorseColor;
 import org.spongepowered.api.entity.living.meta.HorseStyle;
 import org.spongepowered.api.entity.living.meta.HorseVariant;
+import org.spongepowered.api.item.inventory.ItemStack;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a Horse.
@@ -47,5 +51,9 @@ public interface Horse extends Animal, Tameable {
     HorseVariant getVariant();
 
     void setVariant(HorseVariant variant);
+
+    Optional<ItemStack> getSaddle();
+
+    void setSaddle(@Nullable ItemStack itemStack);
 
 }
