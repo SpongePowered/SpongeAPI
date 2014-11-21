@@ -22,45 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.format;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import java.util.List;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Dummy implementation of {@link TextFormatFactory} - returns null for all
+ * methods.
  */
-public interface BlockType extends Translatable {
+class NullTextFormatFactory implements TextFormatFactory {
 
-    /**
-     * Return the internal ID for the block.
-     *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
-     */
-    String getId();
+    @Override
+    public TextColor getColorFromName(String name) {
+        return null;
+    }
 
-    /**
-     * Return the default state for this block.
-     *
-     * @return The default state
-     */
-    BlockState getDefaultState();
+    @Override
+    public List<TextColor> getColors() {
+        return null;
+    }
 
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    @Override
+    public TextStyle getStyleFromName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<TextStyle> getStyles() {
+        return null;
+    }
+
+    @Override
+    public TextStyle createStyle(TextStyle[] styles) {
+        return null;
+    }
+
 }

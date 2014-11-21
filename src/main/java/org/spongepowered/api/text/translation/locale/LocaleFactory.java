@@ -22,45 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.translation.locale;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import java.util.List;
+import java.util.Locale;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Represents the required implementation for the static methods in
+ * {@link Locales}.
  */
-public interface BlockType extends Translatable {
+interface LocaleFactory {
 
     /**
-     * Return the internal ID for the block.
+     * Gets the {@link Locale} of the specified Minecraft locale code.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @param id The ID for the locale, for example "en_US" or "de_DE"
+     * @return The {@link Locale} with the specified ID, or null if not found
      */
-    String getId();
+    Locale getLocaleFromId(String id);
 
     /**
-     * Return the default state for this block.
+     * Gets the {@link Locale} with the specified name.
      *
-     * @return The default state
+     * @param name The name of the locale, for example "ENGLISH" or "GERMAN"
+     * @return The {@link Locale} with the specified name, or null if not found
      */
-    BlockState getDefaultState();
+    Locale getLocaleFromName(String name);
 
     /**
-     * Get the block state for a given data value.
+     * Returns a list of all available {@link Locale}s on this server.
      *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
+     * @return An immutable list of all locales
      */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    List<Locale> getLocales();
+
 }

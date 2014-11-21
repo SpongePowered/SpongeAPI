@@ -22,45 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+package org.spongepowered.api.text.translation;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Represents the required implementation for the static methods in
+ * {@link Translations}.
  */
-public interface BlockType extends Translatable {
+interface TranslationFactory {
 
     /**
-     * Return the internal ID for the block.
+     * Returns a {@link Translation} instance for the translation with the
+     * specified ID.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
+     * @param id The translation ID
+     * @return A {@link Translation} instance with the specified ID or null if
+     *         not found
      *
-     * @return The id
      */
-    String getId();
+    Translation getTranslationFromId(String id);
 
-    /**
-     * Return the default state for this block.
-     *
-     * @return The default state
-     */
-    BlockState getDefaultState();
-
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
 }

@@ -22,45 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+package org.spongepowered.api.text.title;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Represents the required implementation for the static methods in
+ * {@link Titles}.
  */
-public interface BlockType extends Translatable {
+interface TitleFactory {
 
     /**
-     * Return the internal ID for the block.
+     * Creates a new empty {@link TitleBuilder} instance.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return A new title builder
      */
-    String getId();
+    TitleBuilder createTitleBuilder();
 
-    /**
-     * Return the default state for this block.
-     *
-     * @return The default state
-     */
-    BlockState getDefaultState();
-
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
 }

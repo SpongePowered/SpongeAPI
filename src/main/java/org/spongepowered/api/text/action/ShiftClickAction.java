@@ -22,45 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+package org.spongepowered.api.text.action;
 
 /**
- * Describes a base type of block.
+ * A ShiftClickAction is a TextAction that responds to shift-clicks. Currently
+ * the only value is InsertText, which maps to the insertion field in Message
+ * JSON. This is because of the way that there is no actual shiftClickEvent
+ * field in the raw message JSON. Possibly more shift click actions will be
+ * added to the client in the future.
  *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * @param <R> the type of the result of the action
  */
-public interface BlockType extends Translatable {
+public interface ShiftClickAction<R> extends TextAction<R> {
 
     /**
-     * Return the internal ID for the block.
-     *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * Inserts some text into the chat prompt.
      */
-    String getId();
+    interface InsertText extends ShiftClickAction<String> {
 
-    /**
-     * Return the default state for this block.
-     *
-     * @return The default state
-     */
-    BlockState getDefaultState();
+    }
 
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
 }

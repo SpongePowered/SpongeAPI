@@ -22,45 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.action;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Describes a base type of block.
+ * A HoverAction is a TextAction that responds to hovers.
  *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * @param <R> the type of the result of the action
  */
-public interface BlockType extends Translatable {
+public interface HoverAction<R> extends TextAction<R> {
 
     /**
-     * Return the internal ID for the block.
-     *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * Shows some text.
      */
-    String getId();
+    interface ShowText extends HoverAction<Message<?>> {
+
+    }
 
     /**
-     * Return the default state for this block.
-     *
-     * @return The default state
+     * Shows an item and its information.
      */
-    BlockState getDefaultState();
+    interface ShowItem extends HoverAction<ItemStack> {
+
+    }
+
+    // TODO replace with achievement
 
     /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
+     * Shows an achievement and its information.
      */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    interface ShowAchievement extends HoverAction<Object> {
+
+    }
+
+    /**
+     * Shows an entity and its information.
+     */
+    interface ShowEntity extends HoverAction<Entity> {
+
+    }
+
 }

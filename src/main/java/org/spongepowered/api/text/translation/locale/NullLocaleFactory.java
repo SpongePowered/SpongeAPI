@@ -22,45 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.translation.locale;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import java.util.List;
+import java.util.Locale;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Dummy implementation of {@link LocaleFactory} - returns null for all methods.
  */
-public interface BlockType extends Translatable {
+class NullLocaleFactory implements LocaleFactory {
 
-    /**
-     * Return the internal ID for the block.
-     *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
-     */
-    String getId();
+    @Override
+    public Locale getLocaleFromId(String id) {
+        return null;
+    }
 
-    /**
-     * Return the default state for this block.
-     *
-     * @return The default state
-     */
-    BlockState getDefaultState();
+    @Override
+    public Locale getLocaleFromName(String name) {
+        return null;
+    }
 
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    @Override
+    public List<Locale> getLocales() {
+        return null;
+    }
 }

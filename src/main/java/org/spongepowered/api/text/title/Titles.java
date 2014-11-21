@@ -22,45 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+package org.spongepowered.api.text.title;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Utility class to create instances of {@link TitleBuilder}.
  */
-public interface BlockType extends Translatable {
+public final class Titles {
+
+    private static final TitleFactory factory = new NullTitleFactory();
+
+    private Titles() {
+    }
 
     /**
-     * Return the internal ID for the block.
+     * Creates a new {@link Title} configuration builder that will reset the
+     * currently displayed Title on the client before displaying the new
+     * configured one.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return A new {@link TitleBuilder}
+     * @see #update
      */
-    String getId();
+    public static TitleBuilder builder() {
+        return update().reset();
+    }
 
     /**
-     * Return the default state for this block.
+     * Creates a new empty {@link Title} configuration builder. Unlike
+     * {@link #builder} this won't reset the current Title on the client before
+     * displaying the current one. This has less use cases but should be used if
+     * just the previously sent Title should be updated.
      *
-     * @return The default state
+     * @return A new {@link TitleBuilder}
+     * @see #builder
      */
-    BlockState getDefaultState();
+    public static TitleBuilder update() {
+        return factory.createTitleBuilder();
+    }
 
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
 }

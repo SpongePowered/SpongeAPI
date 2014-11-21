@@ -22,45 +22,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.message;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Dummy implementation of {@link MessageFactory} - returns null for all
+ * methods.
  */
-public interface BlockType extends Translatable {
+class NullMessageFactory implements MessageFactory {
 
-    /**
-     * Return the internal ID for the block.
-     *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
-     */
-    String getId();
+    @Override
+    public <T> MessageBuilder<T> createBuilder(T content) {
+        return null;
+    }
 
-    /**
-     * Return the default state for this block.
-     *
-     * @return The default state
-     */
-    BlockState getDefaultState();
+    @Override
+    public MessageBuilder<Translation> createTranslationBuilder(Translation t, Object[] args) {
+        return null;
+    }
 
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    @Override
+    public MessageBuilder<Object> createScoreBuilder(Object score, String override) {
+        return null;
+    }
+
+    @Override
+    public char getColorChar() {
+        return 0;
+    }
+
+    @Override
+    public Message.Text parseLegacyMessage(String message, char color) {
+        return null;
+    }
+
+    @Override
+    public String stripLegacyCodes(String message, char color) {
+        return null;
+    }
+
+    @Override
+    public String replaceLegacyCodes(String message, char from, char to) {
+        return null;
+    }
+
 }
