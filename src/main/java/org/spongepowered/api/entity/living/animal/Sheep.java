@@ -26,10 +26,15 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.entity.living.Animal;
+import org.spongepowered.api.entity.living.meta.SheepColor;
 
 /**
  * Represents a Sheep.
  */
 public interface Sheep extends Animal {
+
+    SheepColor getColor();
+
+    void setColor(SheepColor color);
 
 }

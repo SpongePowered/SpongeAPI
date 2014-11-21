@@ -22,12 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.meta;
 
-package org.spongepowered.api.entity.living;
+import java.util.List;
 
-/**
- * Represents a Golem type mob.
- */
-public interface Golem extends LivingEntity {
+public interface LivingMetaFactory {
+
+
+    List<SkeletonType> getSkeletonTypes();
+
+    List<OcelotType> getOcelotTypes();
+
+    List<SheepColor> getSheepColors();
+
+    List<CollarColor> getCollarColors();
+
+    List<HorseColor> getHorseColors();
+
+    List<HorseStyle> getHorseStyles();
+
+    List<HorseVariant> getHorseVariants();
 
 }

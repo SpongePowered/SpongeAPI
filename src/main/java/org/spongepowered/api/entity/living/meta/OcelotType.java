@@ -22,12 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.meta;
 
-package org.spongepowered.api.entity.living;
-
-/**
- * Represents a Golem type mob.
- */
-public interface Golem extends LivingEntity {
+public interface OcelotType {
 
 }

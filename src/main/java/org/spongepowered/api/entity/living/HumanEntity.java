@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.entity.living.LivingEntity;
-
 public interface HumanEntity extends LivingEntity {
 
 }

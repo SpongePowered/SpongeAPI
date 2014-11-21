@@ -22,12 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.meta;
 
-package org.spongepowered.api.entity.living;
+import java.util.List;
 
-/**
- * Represents a Golem type mob.
- */
-public interface Golem extends LivingEntity {
+public final class CollarColors {
+    private CollarColors() {
+    }
 
+    public static final CollarColor WHITE = null;
+    public static final CollarColor ORANGE = null;
+    public static final CollarColor MAGENTA = null;
+    public static final CollarColor LIGHT_BLUE = null;
+    public static final CollarColor YELLOW = null;
+    public static final CollarColor LIME = null;
+    public static final CollarColor PINK = null;
+    public static final CollarColor GRAY = null;
+    public static final CollarColor SILVER = null;
+    public static final CollarColor CYAN = null;
+    public static final CollarColor PURPLE = null;
+    public static final CollarColor BLUE = null;
+    public static final CollarColor BROWN = null;
+    public static final CollarColor GREEN = null;
+    public static final CollarColor RED = null;
+    public static final CollarColor BLACK = null;
+
+    public static List<CollarColor> getValues() {
+        return NullLivingMetaFactory.factory.getCollarColors();
+    }
 }

@@ -22,12 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.meta;
 
-package org.spongepowered.api.entity.living.monster;
+import java.util.List;
 
-/**
- * Represents a Wither Skeleton.
- */
-public interface WitherSkeleton extends Skeleton {
+public class NullLivingMetaFactory implements LivingMetaFactory {
+
+    @Override
+    public List<SkeletonType> getSkeletonTypes() {
+        return null;
+    }
+
+    @Override
+    public List<OcelotType> getOcelotTypes() {
+        return null;
+    }
+
+    @Override
+    public List<SheepColor> getSheepColors() {
+        return null;
+    }
+
+    @Override
+    public List<CollarColor> getCollarColors() {
+        return null;
+    }
+
+    @Override
+    public List<HorseColor> getHorseColors() {
+        return null;
+    }
+
+    @Override
+    public List<HorseStyle> getHorseStyles() {
+        return null;
+    }
+
+    @Override
+    public List<HorseVariant> getHorseVariants() {
+        return null;
+    }
+
+    static final LivingMetaFactory factory = new NullLivingMetaFactory();
 
 }

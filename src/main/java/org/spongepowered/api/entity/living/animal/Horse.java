@@ -26,10 +26,26 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.entity.living.Animal;
+import org.spongepowered.api.entity.living.Tameable;
+import org.spongepowered.api.entity.living.meta.HorseColor;
+import org.spongepowered.api.entity.living.meta.HorseStyle;
+import org.spongepowered.api.entity.living.meta.HorseVariant;
 
 /**
  * Represents a Horse.
  */
-public interface Horse extends Animal {
+public interface Horse extends Animal, Tameable {
+
+    HorseStyle getStyle();
+
+    void setStyle(HorseStyle style);
+
+    HorseColor getColor();
+
+    void setColor(HorseColor color);
+
+    HorseVariant getVariant();
+
+    void setVariant(HorseVariant variant);
 
 }

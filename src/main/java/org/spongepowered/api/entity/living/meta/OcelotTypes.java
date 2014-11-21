@@ -22,12 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.meta;
 
-package org.spongepowered.api.entity.living;
+import java.util.List;
 
-/**
- * Represents a Golem type mob.
- */
-public interface Golem extends LivingEntity {
+public final class OcelotTypes {
+    private OcelotTypes() {
+    }
 
+    public static final OcelotType WILD_OCELOT = null;
+    public static final OcelotType BLACK_CAT = null;
+    public static final OcelotType RED_CAT = null;
+    public static final OcelotType SIAMESE_CAT = null;
+
+    public static List<OcelotType> getValues() {
+        return NullLivingMetaFactory.factory.getOcelotTypes();
+    }
 }

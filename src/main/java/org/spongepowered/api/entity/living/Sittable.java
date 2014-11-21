@@ -22,12 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living;
 
 /**
- * Represents a Golem type mob.
+ * Represents a tameable entity that can sit.
  */
-public interface Golem extends LivingEntity {
+public interface Sittable extends Tameable {
+
+    /**
+     * Gets whether this entity is sitting.
+     *
+     * @return true if this entity is sitting
+     */
+    boolean isSitting();
+
+    /**
+     * Sets whether this entity is sitting or not.
+     *
+     * @param sitting whether this entity is sitting
+     */
+    void setSitting(boolean sitting);
 
 }

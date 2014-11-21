@@ -26,10 +26,16 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.entity.living.Animal;
+import org.spongepowered.api.entity.living.Sittable;
+import org.spongepowered.api.entity.living.meta.CollarColor;
 
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends Animal {
+public interface Wolf extends Animal, Sittable {
+
+    CollarColor getCollarColor();
+
+    void setCollarColor(CollarColor collarColor);
 
 }

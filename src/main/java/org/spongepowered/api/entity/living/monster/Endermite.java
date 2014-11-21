@@ -22,12 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.monster;
 
-package org.spongepowered.api.entity.living;
+import org.spongepowered.api.entity.living.Monster;
 
-/**
- * Represents a Golem type mob.
- */
-public interface Golem extends LivingEntity {
+public interface Endermite extends Monster {
 
 }

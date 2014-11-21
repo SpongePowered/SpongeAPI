@@ -22,12 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.meta;
 
-package org.spongepowered.api.entity.living;
+import java.util.List;
 
-/**
- * Represents a Golem type mob.
- */
-public interface Golem extends LivingEntity {
+public final class HorseColors {
+    private HorseColors() {
+    }
+
+    public static final HorseColor WHITE = null;
+    public static final HorseColor CREAMY = null;
+    public static final HorseColor CHESTNUT = null;
+    public static final HorseColor BROWN = null;
+    public static final HorseColor BLACK = null;
+    public static final HorseColor GRAY = null;
+    public static final HorseColor DARK_BROWN = null;
+
+    public static List<HorseColor> getValues() {
+        return NullLivingMetaFactory.factory.getHorseColors();
+    }
 
 }
