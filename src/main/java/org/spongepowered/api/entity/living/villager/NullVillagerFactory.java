@@ -24,17 +24,19 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 public class NullVillagerFactory implements VillagerFactory {
 
     @Override
-    public Career getCareerFromName(String name) {
+    public Optional<Career> getCareerFromName(String name) {
         return null;
     }
 
     @Override
-    public Profession getProfessionFromName(String name) {
+    public Optional<Profession> getProfessionFromName(String name) {
         return null;
     }
 
