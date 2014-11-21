@@ -164,7 +164,7 @@ uploadArchives {
 
                     licenses {
                         license {
-                            name 'MIT liscence'
+                            name 'MIT License'
                             url 'http://opensource.org/licenses/MIT'
                             distribution 'repo'
                         }
