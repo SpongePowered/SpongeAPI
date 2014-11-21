@@ -30,6 +30,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.util.Identifiable;
 
 /**
  * An entity is a Minecraft entity.
@@ -47,7 +48,7 @@ import org.spongepowered.api.math.Vector3f;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends EntityState {
+public interface Entity extends Identifiable, EntityState {
 
     /**
      * Mark this entity for removal in the very near future, preferably
