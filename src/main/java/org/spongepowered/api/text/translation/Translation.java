@@ -22,45 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+package org.spongepowered.api.text.translation;
 
 /**
- * Describes a base type of block.
+ * A Translation most closely represents any given Minecraft translation ID. It
+ * allows for getting a string of text in multiple locales in the client;
+ * however, it is mostly used to hold a translation ID when sending a message so
+ * the client can do translation. Some Translations have parameters, and some do
+ * not.
  *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * <p>
+ * On the server-side, the only available locale is English.
+ * </p>
  */
-public interface BlockType extends Translatable {
+public interface Translation {
 
     /**
-     * Return the internal ID for the block.
+     * Returns the translation identifier for this Translation.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return A String for the translation identifier
      */
     String getId();
 
     /**
-     * Return the default state for this block.
+     * Gets the default translation without any parameters. If the translations
+     * contains any parameters they will be filled with empty text.
      *
-     * @return The default state
+     * @return A String for the translation
      */
-    BlockState getDefaultState();
+    String get();
 
     /**
-     * Get the block state for a given data value.
+     * Gets the default translation with the specified parameters.
      *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
+     * @param args The parameters for this translation
+     * @return The default translation with the specified parameters
      */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    String get(Object... args);
+
+    // TODO locale api
+    // String get(Object locale);
+    // String get(Object locale, Object... args);
+
 }

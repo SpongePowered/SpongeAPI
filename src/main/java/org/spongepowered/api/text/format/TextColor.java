@@ -22,45 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.format;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import java.awt.Color;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * A TextColor represents a color that a
+ * {@link org.spongepowered.api.text.message.Message} has. A list of the base
+ * text colors provided in Minecraft is provided in
+ * {@link org.spongepowered.api.text.format.TextColors}.
  */
-public interface BlockType extends Translatable {
+public interface TextColor {
 
     /**
-     * Return the internal ID for the block.
+     * Returns the corresponding {@link java.awt.Color} for this TextColor.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return A Color
      */
-    String getId();
+    Color getColor();
 
     /**
-     * Return the default state for this block.
+     * Returns whether this color is the reset color.
      *
-     * @return The default state
+     * @return A boolean for if this color is the reset color
      */
-    BlockState getDefaultState();
+    boolean isReset();
 
     /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
+     * A Base text color is one that is represented in Minecraft. There are
+     * several Base colors provided in Minecraft which are specified in
+     * {@link org.spongepowered.api.text.format.TextColors}. Base extends
+     * FormattingCode because it does have a corresponding formatting code; it
+     * is a single, pure text color.
      */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    interface Base extends FormattingCode, TextColor {
+
+    }
+
 }

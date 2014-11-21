@@ -22,45 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.action;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import java.net.URL;
 
 /**
- * Describes a base type of block.
+ * A ClickAction is a TextAction that responds to clicks.
  *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * @param <R> the type of the result of the action
  */
-public interface BlockType extends Translatable {
+public interface ClickAction<R> extends TextAction<R> {
 
     /**
-     * Return the internal ID for the block.
-     *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * Opens a url.
      */
-    String getId();
+    interface OpenUrl extends ClickAction<URL> {
+
+    }
 
     /**
-     * Return the default state for this block.
-     *
-     * @return The default state
+     * Runs a command.
      */
-    BlockState getDefaultState();
+    interface RunCommand extends ClickAction<String> {
+
+    }
 
     /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
+     * For books, changes pages.
      */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    interface ChangePage extends ClickAction<Integer> {
+
+    }
+
+    /**
+     * Suggests a command in the prompt.
+     */
+    interface SuggestCommand extends ClickAction<String> {
+
+    }
+
 }

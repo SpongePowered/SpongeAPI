@@ -22,45 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+package org.spongepowered.api.text.action;
 
 /**
- * Describes a base type of block.
+ * A TextAction is something that happens as a response to some event on raw
+ * text. In the Sponge API this is either a
+ * {@link org.spongepowered.api.text.action.ClickAction click} or
+ * {@link org.spongepowered.api.text.action.HoverAction hover}.
  *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * @param <R> the type of the result of the action
  */
-public interface BlockType extends Translatable {
+public interface TextAction<R> {
 
     /**
-     * Return the internal ID for the block.
+     * Returns the ID of this text action as represented in JSON.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return A String id
      */
     String getId();
 
     /**
-     * Return the default state for this block.
+     * Returns the result of this text action. This is an argument that gets
+     * passed into the text action in JSON, for instance, the URL in the OpenUrl
+     * click action.
      *
-     * @return The default state
+     * @return A result
      */
-    BlockState getDefaultState();
+    R getResult();
 
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
 }

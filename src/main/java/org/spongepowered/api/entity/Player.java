@@ -25,8 +25,13 @@
 
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.title.Title;
+import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.chat.ChatPosition;
+import org.spongepowered.api.text.title.Title;
+import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
+
+import java.util.Locale;
 
 public interface Player extends HumanEntity, CommandSource {
 
@@ -45,22 +50,41 @@ public interface Player extends HumanEntity, CommandSource {
     String getDisplayName();
 
     /**
-     * Returns whether the {@link Player} can fly via the fly key.
+     * Gets the locale used by the player.
      *
-     * @return {@code True} if the {@link Player} is allowed to fly
+     * @return The player's locale
+     * @see Locales
      */
-    boolean getAllowFlight();
+    Locale getLocale();
 
     /**
-     * Sets if the {@link Player} can fly via the fly key.
+     * Sends the plain text message(s) to the specified {@link ChatPosition} on the client.
+     * <p>Use {@link #sendMessage(ChatPosition, Message...)} for a formatted message.</p>
      *
-     * @param allowFlight {@code True} if the player is allowed to fly
+     * @param position The chat position to send the messages to
+     * @param message The message(s) to send
      */
-    void setAllowFlight(boolean allowFlight);
+    void sendMessage(ChatPosition position, String... message);
+
+    /**
+     * Sends the message(s) to the specified {@link ChatPosition} on the client.
+     *
+     * @param position The chat position to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatPosition position, Message<?>... messages);
+
+    /**
+     * Sends the message(s) to the specified {@link ChatPosition} on the client.
+     *
+     * @param position The chat position to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatPosition position, Iterable<Message<?>> messages);
 
     /**
      * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
+     * {@link Title#send(Player...)}.
      *
      * @param title The {@link Title} to send to the player
      */

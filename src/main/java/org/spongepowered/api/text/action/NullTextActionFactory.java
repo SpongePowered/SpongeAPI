@@ -22,41 +22,63 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.action;
 
-package org.spongepowered.api.util.command;
-
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.message.Message;
 
+import java.net.URL;
+
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * RCON clients, web-based clients, command blocks, and so on.</p>
+ * Dummy implementation of {@link TextActionFactory} - returns null for all
+ * methods.
  */
-public interface CommandSource {
+class NullTextActionFactory implements TextActionFactory {
 
-    /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(String... messages);
+    @Override
+    public ClickAction.OpenUrl createOpenUrl(URL url) {
+        return null;
+    }
 
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(Message<?>... messages);
+    @Override
+    public ClickAction.RunCommand createRunCommand(String command) {
+        return null;
+    }
 
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(Iterable<Message<?>>... messages);
+    @Override
+    public ClickAction.ChangePage createChangePage(int page) {
+        return null;
+    }
+
+    @Override
+    public ClickAction.SuggestCommand createSuggestCommand(String command) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowText createShowText(Message<?> text) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowItem createShowItem(ItemStack item) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowAchievement createShowAchievement(Object achievement) {
+        return null;
+    }
+
+    @Override
+    public HoverAction.ShowEntity createShowEntity(Entity entity) {
+        return null;
+    }
+
+    @Override
+    public ShiftClickAction.InsertText createInsertText(String text) {
+        return null;
+    }
 
 }

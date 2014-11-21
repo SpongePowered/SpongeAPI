@@ -22,45 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.chat;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import java.util.List;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * Represents the required implementation for the static methods in
+ * {@link ChatPositions}.
  */
-public interface BlockType extends Translatable {
+interface ChatPositionFactory {
 
     /**
-     * Return the internal ID for the block.
+     * Gets the {@link ChatPosition} with the specified name.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @param name The identifier of the chat position, for example "ACTION_BAR"
+     * @return The {@link ChatPosition} with the specified name, or null if not
+     *         found
      */
-    String getId();
+    ChatPosition getPositionFromName(String name);
 
     /**
-     * Return the default state for this block.
+     * Returns a list of all available {@link ChatPosition}s on this server.
      *
-     * @return The default state
+     * @return An immutable list of all chat positions
      */
-    BlockState getDefaultState();
+    List<ChatPosition> getPositions();
 
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
 }

@@ -22,45 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.format;
 
-package org.spongepowered.api.block;
-
-import org.spongepowered.api.text.translation.Translatable;
+import com.google.common.base.Optional;
 
 /**
- * Describes a base type of block.
- *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * A FormattingCode is something that has a formatting code in Minecraft. This
+ * means either text styles(bold, italics, etc.) or colors(red, green, etc.).
  */
-public interface BlockType extends Translatable {
+public interface FormattingCode {
 
     /**
-     * Return the internal ID for the block.
+     * Returns the corresponding Minecraft name for this FormattingCode.
      *
-     * <p>The format of the internal ID may vary between implementations
-     * but in Minecraft, it follows the format of {@code domain:type}, an
-     * example being {@code minecraft:stone}.</p>
-     *
-     * @return The id
+     * @return a String of the Minecraft name
      */
-    String getId();
+    String getName();
 
     /**
-     * Return the default state for this block.
+     * Gets the corresponding Minecraft formatting code if available.
      *
-     * @return The default state
-     */
-    BlockState getDefaultState();
-
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
+     * @return a char of the Minecraft formatting code
      */
     @Deprecated
-    BlockState getStateFromDataValue(byte data);
+    Optional<Character> getCode();
+
 }
