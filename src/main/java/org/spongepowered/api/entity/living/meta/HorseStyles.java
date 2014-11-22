@@ -43,6 +43,6 @@ public final class HorseStyles {
     }
 
     public static Optional<HorseStyle> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.horseStyleByString(name));
+        return Optional.fromNullable(NullLivingMetaFactory.factory.getHorseStyleFromName(name));
     }
 }

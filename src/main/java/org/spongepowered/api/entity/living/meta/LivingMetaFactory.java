@@ -35,26 +35,26 @@ interface LivingMetaFactory {
 
     List<SkeletonType> getSkeletonTypes();
 
-    SkeletonType skeletonTypeByString(String name);
+    SkeletonType getSkeletonTypeFromName(String name);
 
     List<OcelotType> getOcelotTypes();
 
-    OcelotType ocelotTypeByString(String name);
+    OcelotType getOcelotTypeFromName(String name);
 
     List<DyeColor> getDyeColors();
 
-    DyeColor dyeColorByString(String name);
+    DyeColor getDyeColorFromName(String name);
 
     List<HorseColor> getHorseColors();
 
-    HorseColor horseColorByString(String name);
+    HorseColor getHorseColorFromName(String name);
 
     List<HorseStyle> getHorseStyles();
 
-    HorseStyle horseStyleByString(String name);
+    HorseStyle getHorseStyleFromName(String name);
 
     List<HorseVariant> getHorseVariants();
 
-    HorseVariant horseVariantByString(String name);
+    HorseVariant getHorseVariantFromName(String name);
 
 }

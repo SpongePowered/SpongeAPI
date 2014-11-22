@@ -42,6 +42,6 @@ public final class OcelotTypes {
     }
 
     public static Optional<OcelotType> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.ocelotTypeByString(name));
+        return Optional.fromNullable(NullLivingMetaFactory.factory.getOcelotTypeFromName(name));
     }
 }

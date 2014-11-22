@@ -40,6 +40,6 @@ public final class SkeletonTypes {
     }
 
     public static Optional<SkeletonType> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.skeletonTypeByString(name));
+        return Optional.fromNullable(NullLivingMetaFactory.factory.getSkeletonTypeFromName(name));
     }
 }

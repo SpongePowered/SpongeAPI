@@ -45,7 +45,7 @@ public final class HorseColors {
     }
 
     public static Optional<HorseColor> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.horseColorByString(name));
+        return Optional.fromNullable(NullLivingMetaFactory.factory.getHorseColorFromName(name));
     }
 
 }

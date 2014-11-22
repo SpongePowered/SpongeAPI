@@ -54,6 +54,6 @@ public final class DyeColors {
     }
 
     public static Optional<DyeColor> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.dyeColorByString(name));
+        return Optional.fromNullable(NullLivingMetaFactory.factory.getDyeColorFromName(name));
     }
 }

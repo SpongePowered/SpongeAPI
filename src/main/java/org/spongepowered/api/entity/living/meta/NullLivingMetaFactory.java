@@ -34,7 +34,7 @@ class NullLivingMetaFactory implements LivingMetaFactory {
     }
 
     @Override
-    public SkeletonType skeletonTypeByString(String name) {
+    public SkeletonType getSkeletonTypeFromName(String name) {
         return null;
     }
 
@@ -44,7 +44,7 @@ class NullLivingMetaFactory implements LivingMetaFactory {
     }
 
     @Override
-    public OcelotType ocelotTypeByString(String name) {
+    public OcelotType getOcelotTypeFromName(String name) {
         return null;
     }
 
@@ -54,7 +54,7 @@ class NullLivingMetaFactory implements LivingMetaFactory {
     }
 
     @Override
-    public DyeColor dyeColorByString(String name) {
+    public DyeColor getDyeColorFromName(String name) {
         return null;
     }
 
@@ -64,7 +64,7 @@ class NullLivingMetaFactory implements LivingMetaFactory {
     }
 
     @Override
-    public HorseColor horseColorByString(String name) {
+    public HorseColor getHorseColorFromName(String name) {
         return null;
     }
 
@@ -74,7 +74,7 @@ class NullLivingMetaFactory implements LivingMetaFactory {
     }
 
     @Override
-    public HorseStyle horseStyleByString(String name) {
+    public HorseStyle getHorseStyleFromName(String name) {
         return null;
     }
 
@@ -84,7 +84,7 @@ class NullLivingMetaFactory implements LivingMetaFactory {
     }
 
     @Override
-    public HorseVariant horseVariantByString(String name) {
+    public HorseVariant getHorseVariantFromName(String name) {
         return null;
     }
 
