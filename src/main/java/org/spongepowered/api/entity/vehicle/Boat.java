@@ -65,7 +65,7 @@ public interface Boat extends Entity {
      *
      * @return If the boat can move on land
      */
-    boolean getMoveOnLand();
+    boolean canMoveOnLand();
 
     /**
      * Gets whether or not the boat is able to
