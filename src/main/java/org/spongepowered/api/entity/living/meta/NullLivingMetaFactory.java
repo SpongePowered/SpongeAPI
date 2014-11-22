@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.living.meta;
 
 import java.util.List;
 
-public class NullLivingMetaFactory implements LivingMetaFactory {
+class NullLivingMetaFactory implements LivingMetaFactory {
 
     @Override
     public List<SkeletonType> getSkeletonTypes() {

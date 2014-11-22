@@ -26,8 +26,12 @@ package org.spongepowered.api.entity.living.meta;
 
 import java.util.List;
 
-public interface LivingMetaFactory {
-
+/**
+ * Represents the required implementation for the static methods in
+ * {@link DyeColors}, {@link HorseColors}, {@link HorseStyles},
+ * {@link HorseVariants}, {@link OcelotTypes}, and {@link SkeletonTypes}.
+ */
+interface LivingMetaFactory {
 
     List<SkeletonType> getSkeletonTypes();
 

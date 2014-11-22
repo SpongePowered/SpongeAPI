@@ -42,4 +42,7 @@ public final class Careers {
     public static final Career BUTCHER = null;
     public static final Career LEATHERWORKER = null;
 
+    Career valueOf(String name) {
+        return null;
+    }
 }
