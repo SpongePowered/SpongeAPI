@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.entity.living.Angerable;
 import org.spongepowered.api.entity.living.Animal;
 import org.spongepowered.api.entity.living.Dyeable;
 import org.spongepowered.api.entity.living.Sittable;
@@ -32,23 +33,6 @@ import org.spongepowered.api.entity.living.Sittable;
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends Animal, Sittable, Dyeable {
-
-    /**
-     * Returns whether this wolf is angry, and therefor hostile towards
-     * other entities, or not.
-     *
-     * @return Whether this wolf is angry or not
-     */
-    boolean isAngry();
-
-    /**
-     * Sets whether this wolf is angry or not.
-     * <p>An angry wolf may start targeting other entities such as
-     * Players.</p>
-     *
-     * @param angry Whether this wolf is to be angry or not
-     */
-    void setAngry(boolean angry);
+public interface Wolf extends Animal, Sittable, Dyeable, Angerable {
 
 }

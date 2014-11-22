@@ -22,32 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living;
 
-package org.spongepowered.api.entity.living.monster;
-
-import org.spongepowered.api.entity.living.Angerable;
-
-/**
- * Represents a Zombie Pigman.
- */
-public interface ZombiePigman extends Zombie, Angerable {
+public interface Angerable extends LivingEntity {
 
     /**
-     * Gets the current anger level.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
+     * Returns whether this entity is angry, and therefor hostile towards
+     * other entities, or not.
      *
-     * @return The current anger level for this zombie pigman
+     * @return Whether this entity is angry or not
      */
-    int getAngerLevel();
+    boolean isAngry();
 
     /**
-     * Sets the anger level for this zombie pigman.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
+     * Sets whether this entity is angry or not.
+     * <p>An angry entity may start targeting other entities such as
+     * Players.</p>
      *
-     * @param angerLevel The new anger level
+     * @param angry Whether this entity is to be angry or not
      */
-    void setAngerLevel(int angerLevel);
+    void setAngry(boolean angry);
 
 }
