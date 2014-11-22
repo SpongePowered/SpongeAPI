@@ -31,6 +31,9 @@ import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.World;
+
+import javax.annotation.Nullable;
 
 /**
  * An entity is a Minecraft entity.
@@ -85,6 +88,33 @@ public interface Entity extends Identifiable, EntityState {
      * @param position The position to set to
      */
     void setPosition(Vector3d position);
+
+    /**
+     * Gets the current world this entity resides in.
+     *
+     * @return The current world this entity resides in
+     */
+    World getWorld();
+
+    /**
+     * Teleports this entity to the target position specified by the vector
+     * and, if available, the world.
+     *
+     * @param position The position to teleport to
+     * @param world The world to teleport to, if available
+     */
+    void teleport(Vector3d position, @Nullable World world);
+
+    /**
+     * Teleports this entity to the target position specified by x, y, z,
+     * and world.
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param world The world to teleport to, if available
+     */
+    void teleport(double x, double y, double z, @Nullable World world);
 
     /**
      * Get the X component of this instance's position.
