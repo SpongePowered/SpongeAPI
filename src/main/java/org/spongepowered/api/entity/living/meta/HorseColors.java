@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 public final class HorseColors {
@@ -40,6 +42,10 @@ public final class HorseColors {
 
     public static List<HorseColor> getValues() {
         return NullLivingMetaFactory.factory.getHorseColors();
+    }
+
+    public static Optional<HorseColor> valueOf(String name) {
+        return Optional.fromNullable(NullLivingMetaFactory.factory.horseColorByString(name));
     }
 
 }

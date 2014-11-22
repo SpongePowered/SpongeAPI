@@ -22,24 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.complex;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.entity.living.LivingEntity;
 
-import java.util.List;
+import java.util.Set;
 
-public final class SkeletonTypes {
-    private SkeletonTypes() {
-    }
+/**
+ * Represents a complex living entity that requires multiple bounding
+ * boxes, example: {@link EnderDragon}.
+ */
+public interface ComplexLivingEntity extends LivingEntity {
 
-    public static final SkeletonType NORMAL = null;
-    public static final SkeletonType WITHER = null;
+    /**
+     * Gets the set of parts belonging to this complex entity.
+     *
+     * @return The parts belonging to this entity
+     */
+    Set<? extends ComplexEntityPart> getParts();
 
-    public static List<SkeletonType> getValues() {
-        return NullLivingMetaFactory.factory.getSkeletonTypes();
-    }
-
-    public static Optional<SkeletonType> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.skeletonTypeByString(name));
-    }
 }

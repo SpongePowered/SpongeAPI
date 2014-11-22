@@ -22,24 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+
+package org.spongepowered.api.entity.living.complex;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.entity.EnderCrystal;
 
-import java.util.List;
+import java.util.Set;
 
-public final class SkeletonTypes {
-    private SkeletonTypes() {
-    }
+import javax.annotation.Nullable;
 
-    public static final SkeletonType NORMAL = null;
-    public static final SkeletonType WITHER = null;
+/**
+ * Represents an Ender Dragon.
+ */
+public interface EnderDragon extends ComplexLivingEntity {
 
-    public static List<SkeletonType> getValues() {
-        return NullLivingMetaFactory.factory.getSkeletonTypes();
-    }
+    @Override
+    Set<EnderDragonPart> getParts();
 
-    public static Optional<SkeletonType> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.skeletonTypeByString(name));
-    }
+    /**
+     * Gets the ender crystal healing this Ender Dragon.
+     *
+     * @return The crystal, if available
+     */
+    Optional<EnderCrystal> getHealingCrystal();
+
+    /**
+     * Sets the ender crystal curretly healing this dragon.
+     *
+     * @param crystal The crystal to heal this dragon
+     */
+    void setHealingCrystal(@Nullable EnderCrystal crystal);
 }

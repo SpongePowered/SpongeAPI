@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 public final class OcelotTypes {
@@ -37,5 +39,9 @@ public final class OcelotTypes {
 
     public static List<OcelotType> getValues() {
         return NullLivingMetaFactory.factory.getOcelotTypes();
+    }
+
+    public static Optional<OcelotType> valueOf(String name) {
+        return Optional.fromNullable(NullLivingMetaFactory.factory.ocelotTypeByString(name));
     }
 }

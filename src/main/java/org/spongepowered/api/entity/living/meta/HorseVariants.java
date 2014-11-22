@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 public final class HorseVariants {
@@ -38,5 +40,9 @@ public final class HorseVariants {
 
     public static List<HorseVariant> getValues() {
         return NullLivingMetaFactory.factory.getHorseVariants();
+    }
+
+    public static Optional<HorseVariant> valueOf(String name) {
+        return Optional.fromNullable(NullLivingMetaFactory.factory.horseVariantByString(name));
     }
 }

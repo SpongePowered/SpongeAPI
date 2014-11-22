@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 public final class DyeColors {
@@ -49,5 +51,9 @@ public final class DyeColors {
 
     public static List<DyeColor> getValues() {
         return NullLivingMetaFactory.factory.getDyeColors();
+    }
+
+    public static Optional<DyeColor> valueOf(String name) {
+        return Optional.fromNullable(NullLivingMetaFactory.factory.dyeColorByString(name));
     }
 }

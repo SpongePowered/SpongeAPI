@@ -22,24 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity;
 
-import com.google.common.base.Optional;
+public interface EnderCrystal extends Entity {
 
-import java.util.List;
-
-public final class SkeletonTypes {
-    private SkeletonTypes() {
-    }
-
-    public static final SkeletonType NORMAL = null;
-    public static final SkeletonType WITHER = null;
-
-    public static List<SkeletonType> getValues() {
-        return NullLivingMetaFactory.factory.getSkeletonTypes();
-    }
-
-    public static Optional<SkeletonType> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.skeletonTypeByString(name));
-    }
 }

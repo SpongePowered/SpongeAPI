@@ -22,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.complex;
 
-package org.spongepowered.api.entity.living.monster;
+import org.spongepowered.api.entity.Entity;
 
-import org.spongepowered.api.entity.living.Monster;
+public interface ComplexEntityPart extends Entity {
 
-/**
- * Represents an Ender Dragon.
- */
-public interface EnderDragon extends Monster {
+    ComplexLivingEntity getParent();
 
 }

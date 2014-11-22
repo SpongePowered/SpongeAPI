@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 public final class HorseStyles {
@@ -40,4 +42,7 @@ public final class HorseStyles {
         return NullLivingMetaFactory.factory.getHorseStyles();
     }
 
+    public static Optional<HorseStyle> valueOf(String name) {
+        return Optional.fromNullable(NullLivingMetaFactory.factory.horseStyleByString(name));
+    }
 }
