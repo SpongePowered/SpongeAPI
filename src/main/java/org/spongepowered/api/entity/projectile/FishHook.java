@@ -22,11 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile;
 
-package org.spongepowered.api.entity.living;
+import com.google.common.base.Optional;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import javax.annotation.Nullable;
 
-public interface HumanEntity extends LivingEntity, ProjectileSource {
+/**
+ * Represents a fish hook.
+ */
+public interface FishHook extends Projectile {
+
+    /**
+     * Sets the hooked item for this fish hook.
+     * <p>The hooked item may change depending on the type of fishing rod
+     * used to cast this fish hook. The hooked item may also be null.</p>
+     *
+     * @return The hooked item, if available
+     */
+    Optional<ItemStack> getHookedItem();
+
+    /**
+     * Sets the hooked item for this fish hook.
+     * <p>The hooked item may change depending on the type of fishing rod
+     * used to cast this fish hook. The hooked item may also be null.</p>
+     *
+     * @param item The hooked item
+     */
+    void setHookedItem(@Nullable ItemStack item);
 
 }

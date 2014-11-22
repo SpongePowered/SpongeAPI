@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile.source;
 
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-
-public interface HumanEntity extends LivingEntity, ProjectileSource {
+/**
+ * Represents a valid source of a projectile.
+ */
+public interface ProjectileSource {
 
 }

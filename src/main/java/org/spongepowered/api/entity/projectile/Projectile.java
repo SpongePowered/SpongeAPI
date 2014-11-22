@@ -26,11 +26,30 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
  * Represents entities that act as projectiles and can fly in the air.
  * For example, Arrows.
  */
 public interface Projectile extends Entity {
+
+    /**
+     * Gets the shooter of this projectile.
+     * <p>All projectiles have a {@link ProjectileSource} regardless
+     * whether the projectile was launched via plugin or mod.</p>
+     *
+     * @return The projectile source that shot this projectile
+     */
+    ProjectileSource getShooter();
+
+    /**
+     * Sets the shooter of this projectile.
+     * <p>All projectiles have a {@link ProjectileSource} regardless
+     * whether the projectile was launched via plugin or mod.</p>
+     *
+     * @param shooter The projectile source that shot this projectile
+     */
+    void setShooter(ProjectileSource shooter);
 
 }

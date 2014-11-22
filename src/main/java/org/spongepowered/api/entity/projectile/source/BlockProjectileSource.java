@@ -22,11 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile.source;
 
-package org.spongepowered.api.entity.living;
+import org.spongepowered.api.block.Block;
 
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+/**
+ * Represents a {@link ProjectileSource} that is a block. Examples are
+ * Dispensers.
+ */
+public interface BlockProjectileSource extends ProjectileSource {
 
-public interface HumanEntity extends LivingEntity, ProjectileSource {
+    /**
+     * Gets the block of this source.
+     *
+     * @return The block of this source
+     */
+    Block getBlock();
 
 }

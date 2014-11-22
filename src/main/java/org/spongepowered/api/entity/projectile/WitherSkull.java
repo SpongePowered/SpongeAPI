@@ -28,6 +28,6 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents a Wither Skull.
  */
-public interface WitherSkull extends Projectile {
+public interface WitherSkull extends Fireball {
 
 }

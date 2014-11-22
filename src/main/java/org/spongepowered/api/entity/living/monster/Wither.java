@@ -27,13 +27,14 @@ package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.living.LivingEntity;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 import java.util.List;
 
 /**
  * Represents the Wither.
  */
-public interface Wither extends Monster {
+public interface Wither extends Monster, ProjectileSource {
 
     /**
      * Gets the amount of ticks that the Wither should stay

@@ -28,6 +28,6 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents a Blaze fireball.
  */
-public interface SmallFireball extends Projectile {
+public interface SmallFireball extends Fireball {
 
 }

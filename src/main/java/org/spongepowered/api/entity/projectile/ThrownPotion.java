@@ -22,11 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile;
 
-package org.spongepowered.api.entity.living;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+/**
+ * Represents a thrown potion.
+ */
+public interface ThrownPotion extends Projectile {
 
-public interface HumanEntity extends LivingEntity, ProjectileSource {
+    /**
+     * Gets the copy of the current potion in the form of an
+     * {@link ItemStack}.
+     * <p>Changes made to this ItemStack will not reflect on to
+     * this potion.</p>
+     *
+     * @return A copy of the ItemStack for this potion
+     */
+    ItemStack getItem();
+
+    /**
+     * Sets the given ItemStack for this thrown potion.
+     * <p>The given ItemStack mush be a potion.</p>
+     *
+     * @param item The new ItemStack
+     */
+    void setItem(ItemStack item);
 
 }

@@ -22,11 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile;
 
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-
-public interface HumanEntity extends LivingEntity, ProjectileSource {
+public interface Fireball extends Projectile {
 
 }

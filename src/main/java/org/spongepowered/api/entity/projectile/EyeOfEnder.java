@@ -22,11 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile;
 
-package org.spongepowered.api.entity.living;
+import org.spongepowered.api.math.Vector3d;
 
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+/**
+ * Represents an Eye of Ender.
+ */
+public interface EyeOfEnder extends Projectile {
 
-public interface HumanEntity extends LivingEntity, ProjectileSource {
+    /**
+     * Gets the target location this eye is flying towards.
+     *
+     * @return The location this eye is flying towards
+     */
+    Vector3d getTargetedLocation();
+
+    /**
+     * Sets the target location this eye will fly towards.
+     *
+     * @param vector3d The target location for this eye to fly towards
+     */
+    void setTargetedLocation(Vector3d vector3d);
+
+    /**
+     * Returns whether this eye will shatter or drop a new eye in the
+     * form of an {@link org.spongepowered.api.entity.ItemEntity}.
+     *
+     * @return True if this eye will shatter or not
+     */
+    boolean doesShatterOnDrop();
+
+    /**
+     * Sets whether this eye will shatter or drop a new eye in the
+     * form of an {@link org.spongepowered.api.entity.ItemEntity}.
+     *
+     * @param shatterOnDrop Whether this eye will shatter or not
+     */
+    void setShatterOnDrop(boolean shatterOnDrop);
 
 }

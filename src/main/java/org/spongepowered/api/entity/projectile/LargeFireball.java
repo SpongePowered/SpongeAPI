@@ -28,6 +28,26 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents a Ghast fireball.
  */
-public interface LargeFireball extends Projectile {
+public interface LargeFireball extends Fireball {
+
+    /**
+     * gets the explosion power of this Large Fireball.
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage a fireball will do upon
+     * exploding.</p>
+     *
+     * @return The explosion power
+     */
+    int getExplosionPower();
+
+    /**
+     * Sets the explosion power of this Large Fireball.
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage a fireball will do upon
+     * exploding.</p>
+     *
+     * @param explosionPower The explosion power
+     */
+    void setExplosionPower(int explosionPower);
 
 }

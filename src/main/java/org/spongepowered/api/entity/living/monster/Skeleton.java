@@ -28,11 +28,12 @@ package org.spongepowered.api.entity.living.monster;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.entity.living.meta.SkeletonType;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
  * Represents a Skeleton.
  */
-public interface Skeleton extends Monster, ArmorEquipable {
+public interface Skeleton extends Monster, ArmorEquipable, ProjectileSource {
 
     /**
      * Gets the current skeleton type for this skeleton.
