@@ -22,94 +22,93 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.title;
+package org.spongepowered.api.text.title;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Represents a configuration of a title. It consists of a main title and a
- * sub title and will {@link #fadeIn(int) fade in}, {@link #stay(int) stay} and
- * {@link #fadeOut(int) fade out} for a specified amount of time.
+ * Represents a builder interface to create immutable {@link Title}
+ * configurations.
  */
-public interface Title {
+public interface TitleBuilder {
 
     /**
      * Set the title to send to the player.
      *
-     * @param text The text to use as the title.
-     * @return This title configuration.
+     * @param message The message to use as the title
+     * @return This title builder
      */
-    // TODO: Replace with text formatting API
-    Title title(String text);
+    TitleBuilder title(Message<?> message);
 
     /**
      * Set the subtitle to send to the player.
      *
-     * @param text The text to use as the subtitle.
-     * @return This title configuration.
+     * @param message The text to use as the subtitle
+     * @return This title builder
      */
-    // TODO: Replace with text formatting API
-    Title subTitle(String text);
+    TitleBuilder subtitle(Message<?> message);
 
     /**
      * Set the duration in ticks of the fade in effect of the title. Once this
      * period of time is over the title will stay for the amount of time
      * specified in {@link #stay(int)}.
      *
-     * <p>The default value for Vanilla is 20 (1 second).</p>
+     * <p>
+     * The default value for Vanilla is 20 (1 second).
+     * </p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) for the fade in effect
+     * @return This title builder
      */
-    Title fadeIn(int ticks);
+    TitleBuilder fadeIn(int ticks);
 
     /**
      * Set the duration in ticks how long the title should stay on the screen.
      * Once this period of time is over the title will fade out using the
      * duration specified in {@link #fadeOut(int)}.
      *
-     * <p>The default value for Vanilla is 60 (3 seconds).</p>
+     * <p>
+     * The default value for Vanilla is 60 (3 seconds).
+     * </p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) to stay
+     * @return This title builder
      */
-    Title stay(int ticks);
+    TitleBuilder stay(int ticks);
 
     /**
      * Set the duration in ticks of the fade out effect of the title.
      *
-     * <p>The default value for Vanilla Minecraft is 60 (3 seconds).</p>
+     * <p>
+     * The default value for Vanilla is 20 (1 second).
+     * </p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade out effect.
-     * @return This title configuration.
+     * @param ticks The amount of ticks (1/20 second) for the fade out effect
+     * @return This title builder
      */
-    Title fadeOut(int ticks);
-
+    TitleBuilder fadeOut(int ticks);
 
     /**
      * Remove the currently displayed title from the player's screen. This will
      * keep the currently used display times and will only remove the title.
      *
-     * @return This title configuration.
+     * @return This title builder
      */
-    Title clear();
+    TitleBuilder clear();
 
     /**
-     * Remove the currently displayed title from the player's screen
-     * and set the configuration back to the default values.
+     * Remove the currently displayed title from the player's screen and set the
+     * configuration back to the default values.
      *
-     * @return This title configuration.
+     * @return This title builder
      */
-    Title reset();
-
+    TitleBuilder reset();
 
     /**
-     * Send this title configuration to the specified player. This is the same
-     * as calling {@link Player#sendTitle(Title)}.
+     * Builds an immutable instance of the current configuration.
      *
-     * @param player The player to send the title to.
-     * @return This title configuration.
+     * @return An immutable {@link Title} with the currently configured settings
      */
-    Title send(Player player);
+    Title build();
+
 }

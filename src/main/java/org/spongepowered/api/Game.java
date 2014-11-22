@@ -32,7 +32,8 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandDispatcher;
 import org.spongepowered.api.service.scheduler.Scheduler;
-import org.spongepowered.api.title.Title;
+import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -101,7 +102,7 @@ public interface Game {
     /**
      * Gets the {@link Player}s currently online
      *
-     * @return a {@link Collection} of online players
+     * @return A {@link Collection} of online players
      */
     Collection<Player> getOnlinePlayers();
 
@@ -161,13 +162,13 @@ public interface Game {
      *
      * @param message The message to send
      */
-    void broadcastMessage(String message);
+    void broadcastMessage(Message<?> message);
 
     /**
      * Creates a new clean {@link Title} configuration that will reset the
      * currently displayed title before displaying the new one.
      *
-     * @return A new clean {@link Title} configuration.
+     * @return A new clean {@link Title} configuration
      */
     Title createTitle();
 
@@ -175,7 +176,7 @@ public interface Game {
      * Creates a new empty {@link Title} configuration that will just update
      * the currently displayed title on the client.
      *
-     * @return A new empty {@link Title} configuration.
+     * @return A new empty {@link Title} configuration
      */
     Title updateTitle();
 

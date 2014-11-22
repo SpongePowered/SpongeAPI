@@ -37,35 +37,35 @@ public interface Task {
     /**
      * Gets the name of this task.
      *
-     * @return the name of the task
+     * @return The name of the task
      */
     String getName();
 
     /**
      * Returns the plugin that scheduled this task.
      *
-     * @return the plugin that scheduled the task
+     * @return The plugin that scheduled the task
      */
     PluginContainer getOwner();
 
     /**
      * Gets the delay that the task was scheduled to run after.
      *
-     * @return the delay
+     * @return The delay
      */
     long getDelay();
 
     /**
      * Cancels the task, if it has not already run.
      *
-     * @return if the task was cancelled
+     * @return If the task was cancelled
      */
     boolean cancel();
 
     /**
      * Gets the {@link Runnable} that this task is running.
      *
-     * @return The runnable.
+     * @return The runnable
      */
     Runnable getRunnable();
 }

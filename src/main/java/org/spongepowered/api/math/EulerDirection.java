@@ -37,21 +37,21 @@ public interface EulerDirection extends Cloneable, Serializable {
     /**
      * Returns the pitch component.
      *
-     * @return the pitch component
+     * @return The pitch component
      */
     float getPitch();
 
     /**
      * Returns the yaw component.
      *
-     * @return the yaw component
+     * @return The yaw component
      */
     float getYaw();
 
     /**
      * Returns the roll component.
      *
-     * @return the roll component
+     * @return The roll component
      */
     float getRoll();
 
@@ -61,7 +61,7 @@ public interface EulerDirection extends Cloneable, Serializable {
      * The vector will represent the directions that this direction is facing in x, y, z coordinates, with a length of 1.
      * Roll will be ignored, as it does not contribute to the facing direction.
      *
-     * @return the vector representation of this direction
+     * @return The vector representation of this direction
      */
     Vector3f toVector();
 

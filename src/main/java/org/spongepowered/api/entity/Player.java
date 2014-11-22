@@ -25,8 +25,13 @@
 
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.title.Title;
+import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.chat.ChatPosition;
+import org.spongepowered.api.text.title.Title;
+import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
+
+import java.util.Locale;
 
 public interface Player extends HumanEntity, CommandSource {
 
@@ -58,11 +63,43 @@ public interface Player extends HumanEntity, CommandSource {
      */
     void setAllowFlight(boolean allowFlight);
 
-    /**
-     * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player)}.
+    /*
+     * Gets the locale used by the player.
      *
-     * @param title The {@link Title} to send to the player.
+     * @return The player's locale
+     * @see Locales
+     */
+    Locale getLocale();
+
+    /**
+     * Sends the plain text message(s) to the specified {@link ChatPosition} on the client.
+     * <p>Use {@link #sendMessage(ChatPosition, Message...)} for a formatted message.</p>
+     *
+     * @param position The chat position to send the messages to
+     * @param message The message(s) to send
+     */
+    void sendMessage(ChatPosition position, String... message);
+
+    /**
+     * Sends the message(s) to the specified {@link ChatPosition} on the client.
+     *
+     * @param position The chat position to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatPosition position, Message<?>... messages);
+
+    /**
+     * Sends the message(s) to the specified {@link ChatPosition} on the client.
+     *
+     * @param position The chat position to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatPosition position, Iterable<Message<?>> messages);
+
+    /**
+     * Sends a {@link Title} to this player.
+     *
+     * @param title The {@link Title} to send to the player
      */
     void sendTitle(Title title);
 

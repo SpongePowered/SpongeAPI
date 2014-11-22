@@ -68,7 +68,7 @@ public enum Direction {
      * <p>This evaluates as false for directions that have a non-zero
      * Y-component.</p>
      *
-     * @return true if cardinal
+     * @return True if cardinal
      */
     public boolean isCardinal() {
         return (flags & Flag.CARDINAL) > 0;
@@ -78,7 +78,7 @@ public enum Direction {
      * Return true if the direction is of an ordinal direction (northwest,
      * southwest, southeast, northeaast).
      *
-     * @return true if ordinal
+     * @return True if ordinal
      */
     public boolean isOrdinal() {
         return (flags & Flag.ORDINAL) > 0;
@@ -88,7 +88,7 @@ public enum Direction {
      * Return true if the direction is of a secondary ordinal direction
      * (north-northwest, north-northeast, south-southwest, etc.).
      *
-     * @return true if secondary ordinal
+     * @return True if secondary ordinal
      */
     public boolean isSecondaryOrdinal() {
         return (flags & Flag.SECONDARY_ORDINAL) > 0;
@@ -97,7 +97,7 @@ public enum Direction {
     /**
      * Return whether Y component is non-zero.
      *
-     * @return true if the Y component is non-zero
+     * @return True if the Y component is non-zero
      */
     public boolean isUpright() {
         return (flags & Flag.UPRIGHT) > 0;
@@ -106,7 +106,7 @@ public enum Direction {
     /**
      * Get the Vector3d.
      *
-     * @return the Vector3d
+     * @return The Vector3d
      */
     public Vector3d toVector3d() {
         return direction;
