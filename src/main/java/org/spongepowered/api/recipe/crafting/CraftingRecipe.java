@@ -22,29 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.recipe;
+package org.spongepowered.api.recipe.crafting;
 
-import java.util.Arrays;
+import java.util.List;
 
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-
-import com.google.common.base.Preconditions;
+import org.spongepowered.api.recipe.Recipe;
 
 /**
- * Object for shaped recipes.
+ * Main class for all crafting recipes.
  */
-public class ShapelessRecipe extends Recipe {
+public class CraftingRecipe extends Recipe {
     
-    /**
-     * Creates a new shapeless recipe. 
-     * @param result Result of recipe
-     * @param ingredients
-     */
-    public ShapelessRecipe(ItemStack result, ItemType... ingredients) {
-        Preconditions.checkNotNull(result, "Result of recipe cannot be null!");
-        Preconditions.checkNotNull(result, "Ingredients cannot be null!");
-        this.result = result;
-        this.ingredients = Arrays.asList(ingredients);
+    protected List<ItemType> ingredients;
+    
+    public List<ItemType> getIngredients() {
+        return this.ingredients;
     }
 }

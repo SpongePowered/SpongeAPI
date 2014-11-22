@@ -22,48 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.recipe;
+package org.spongepowered.api.recipe.crafting;
 
-import java.util.List;
+import java.util.Arrays;
 
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.recipe.custom.RecipeHandler;
+
+import com.google.common.base.Preconditions;
 
 /**
- * Service for registering and removing recipes.
+ * A shaped recipe. Locations of ingredients in crafting grid do matter.
  */
-public interface RecipeService {
+public class ShapedRecipe extends CraftingRecipe {
     
     /**
-     * Registers a new recipe.
-     * @param recipe The new recipe
+     * Creates a new shaped recipe.  Ingredients are used on crafting table
+     * following way (pseudo-code):
+     * <pre>
+     * new ShapedRecipe(result,
+     *         1, 2, 3,
+     *         4, 5, 6,
+     *         7, 8, 9
+     * );
+     * </pre>
+     * Crafting table:
+     * <pre>
+     * 1 2 3
+     * 4 5 6 => result
+     * 7 8 9
+     * </pre>
+     * @param result Result of recipe
+     * @param ingredients Ingredients, from right to left and up to down
      */
-    void registerRecipe(Recipe recipe);
-    
-    /**
-     * Unregisters given recipe. If it wasn't registered, nothing will happen.
-     * @param recipe Recipe to unregister
-     */
-    void unregisterRecipe(Recipe recipe);
-    
-    /**
-     * Gets all recipes which have given result
-     * @param result Result to use
-     * @return List of recipes with given result
-     */
-    List<CraftingRecipe> getRecipesByResult(ItemStack result);
-    
-    /**
-     * Gets all recipes.
-     * @return All recipes registered.
-     */
-    List<CraftingRecipe> getAllRecipes();
-    
-    /**
-     * Registers a new recipe handler. After doing that its possible to
-     * register the mod recipes supported by that handler.
-     * @param handler Recipe handler
-     */
-    void registerHandler(RecipeHandler handler);
+    public ShapedRecipe(ItemStack result, ItemType... ingredients) {
+        Preconditions.checkNotNull(result, "Result of recipe cannot be null!");
+        Preconditions.checkNotNull(result, "Ingredients cannot be null!");
+        this.result = result;
+        this.ingredients = Arrays.asList(ingredients);
+    }
 }

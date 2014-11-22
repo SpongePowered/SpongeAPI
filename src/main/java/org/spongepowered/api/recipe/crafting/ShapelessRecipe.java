@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.recipe;
+package org.spongepowered.api.recipe.crafting;
 
 import java.util.Arrays;
 
@@ -31,28 +31,17 @@ import org.spongepowered.api.item.inventory.ItemStack;
 
 import com.google.common.base.Preconditions;
 
-public class ShapedRecipe extends Recipe {
+/**
+ * Class for shapeless recipes. Locations of crafting ingredients don't matter.
+ */
+public class ShapelessRecipe extends CraftingRecipe {
     
     /**
-     * Creates a new shaped recipe.  Ingredients are used on crafting table
-     * following way (pseudo-code):
-     * <pre>
-     * new ShapedRecipe(result,
-     *         1, 2, 3,
-     *         4, 5, 6,
-     *         7, 8, 9
-     * );
-     * </pre>
-     * Crafting table:
-     * <pre>
-     * 1 2 3
-     * 4 5 6 => result
-     * 7 8 9
-     * </pre>
+     * Creates a new shapeless recipe. 
      * @param result Result of recipe
-     * @param ingredients Ingredients, from right to left and up to down
+     * @param ingredients
      */
-    public ShapedRecipe(ItemStack result, ItemType... ingredients) {
+    public ShapelessRecipe(ItemStack result, ItemType... ingredients) {
         Preconditions.checkNotNull(result, "Result of recipe cannot be null!");
         Preconditions.checkNotNull(result, "Ingredients cannot be null!");
         this.result = result;
