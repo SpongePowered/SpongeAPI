@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.living.HumanEntity;
 import org.spongepowered.api.title.Title;
 import org.spongepowered.api.util.command.CommandSource;
 
-public interface Player extends HumanEntity, OfflinePlayer, CommandSource {
+public interface Player extends HumanEntity, User, CommandSource {
 
     /**
      * Gets the player's display name. If none set, returns their current

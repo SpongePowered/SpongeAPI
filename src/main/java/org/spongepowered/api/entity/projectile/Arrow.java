@@ -64,5 +64,4 @@ public interface Arrow extends Projectile {
      */
     void setKnockbackStrength(int knockbackStrength);
 
-
 }

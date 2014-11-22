@@ -25,13 +25,46 @@
 
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.entity.living.Monster;
-
 /**
  * Represents a Zombie Pigman.
  */
-public interface ZombiePigman extends Monster, ArmorEquipable, Ageable {
+public interface ZombiePigman extends Zombie {
+
+    /**
+     * Gets the current anger level.
+     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
+     * entities.</p>
+     *
+     * @return The current anger level for this zombie pigman
+     */
+    int getAngerLevel();
+
+    /**
+     * Sets the anger level for this zombie pigman.
+     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
+     * entities.</p>
+     *
+     * @param angerLevel The new anger level
+     */
+    void setAngerLevel(int angerLevel);
+
+    /**
+     * Returns whether this zombie pigman is considered to be angry
+     * or not.
+     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
+     * entities.</p>
+     *
+     * @return Whether this zombie pigman is angry or not
+     */
+    boolean isAngry();
+
+    /**
+     * Sets whether this zombie pigman is to be angry or not.
+     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
+     * entities.</p>
+     *
+     * @param angry Whether this zombie pigman is to be angry or not
+     */
+    void setAngry(boolean angry);
 
 }

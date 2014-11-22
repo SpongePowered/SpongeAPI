@@ -25,13 +25,14 @@
 
 package org.spongepowered.api.entity.player;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.util.Identifiable;
 
 /**
  * Interface representing an OfflinePlayer
  */
-public interface OfflinePlayer extends Identifiable, ArmorEquipable {
+public interface User extends Identifiable, ArmorEquipable {
 
     /**
      * Gets the player's last known username.
@@ -60,4 +61,19 @@ public interface OfflinePlayer extends Identifiable, ArmorEquipable {
      * @return True If whitelisted
      */
     boolean isWhitelisted();
+
+    /**
+     * Checks if this player is online or not.
+     *
+     * @return True if the corresponding player is online
+     */
+    boolean isOnline();
+
+    /**
+     * Gets the related online {@link Player} if the player is
+     * in fact online.
+     *
+     * @return The associated online Player, if available
+     */
+    Optional<Player> getPlayer();
 }
