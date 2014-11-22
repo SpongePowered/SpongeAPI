@@ -25,11 +25,12 @@
 
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.Projectile;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a Blaze fireball.
+ * Represents entities that act as projectiles and can fly in the air.
+ * For example, Arrows.
  */
-public interface BlazeFireball extends Projectile {
+public interface Projectile extends Entity {
 
 }

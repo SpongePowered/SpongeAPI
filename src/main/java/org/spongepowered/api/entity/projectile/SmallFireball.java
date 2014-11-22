@@ -25,11 +25,9 @@
 
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.Projectile;
-
 /**
- * Represents a Ghast fireball.
+ * Represents a Blaze fireball.
  */
-public interface GhastFireball extends Projectile {
+public interface SmallFireball extends Projectile {
 
 }

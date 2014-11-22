@@ -23,12 +23,41 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.player;
+
+import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.util.Identifiable;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Interface representing an OfflinePlayer
  */
-public interface Projectile extends Entity {
+public interface OfflinePlayer extends Identifiable, ArmorEquipable {
 
+    /**
+     * Gets the player's last known username.
+     * 
+     * @return The player's last known username
+     */
+    String getName();
+
+    /**
+     * Checks if this player has joined the server before.
+     * 
+     * @return True If player has joined before
+     */
+    boolean hasJoinedBefore();
+
+    /**
+     * Checks if this player is banned.
+     * 
+     * @return True If banned
+     */
+    boolean isBanned();
+
+    /**
+     * Checks if this player is whitelisted.
+     * 
+     * @return True If whitelisted
+     */
+    boolean isWhitelisted();
 }

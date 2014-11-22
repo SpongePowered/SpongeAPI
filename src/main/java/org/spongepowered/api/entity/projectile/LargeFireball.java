@@ -23,41 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.util.Identifiable;
+package org.spongepowered.api.entity.projectile;
 
 /**
- * Interface representing an OfflinePlayer
+ * Represents a Ghast fireball.
  */
-public interface OfflinePlayer extends Identifiable, ArmorEquipable {
+public interface LargeFireball extends Projectile {
 
-    /**
-     * Gets the player's last known username.
-     * 
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Checks if this player has joined the server before.
-     * 
-     * @return True If player has joined before
-     */
-    boolean hasJoinedBefore();
-
-    /**
-     * Checks if this player is banned.
-     * 
-     * @return True If banned
-     */
-    boolean isBanned();
-
-    /**
-     * Checks if this player is whitelisted.
-     * 
-     * @return True If whitelisted
-     */
-    boolean isWhitelisted();
 }

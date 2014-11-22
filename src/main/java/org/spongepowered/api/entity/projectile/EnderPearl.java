@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.Projectile;
-
 /**
  * Represents an Ender Pearl.
  */
