@@ -22,30 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.event.message;
-
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.text.message.Message;
-import org.spongepowered.api.util.command.CommandSource;
+package org.spongepowered.api.event.player;
 
 /**
- * Fired when a chat message is sent.
+ * Fired when player joins the server.
  */
-public interface MessageEvent extends GameEvent {
-
-    /**
-     * Get the command source.
-     *
-     * @return The command source
-     */
-    CommandSource getSource();
-
-    /**
-     * Get the message sent.
-     *
-     * @return The message sent.
-     */
-    Message<Message.Text> getMessage();
+public interface PlayerJoinEvent extends PlayerEvent {
 
 }
