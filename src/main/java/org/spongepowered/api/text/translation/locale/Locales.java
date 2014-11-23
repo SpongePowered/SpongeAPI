@@ -119,12 +119,8 @@ public final class Locales {
      * Gets the {@link Locale} of the specified Minecraft locale code.
      *
      * @param id The ID for the locale, for example "en_US" or "de_DE"
-<<<<<<< HEAD
      * @return The {@link Locale} with the specified ID, or
      *         {@link Optional#absent} if not found
-=======
-     * @return The {@link Locale} with the specified ID, or {@link Optional#absent} if not found
->>>>>>> a132a53... Add Locale API
      */
     public static Optional<Locale> of(String id) {
         return Optional.fromNullable(factory.getLocaleFromId(id));
@@ -134,12 +130,8 @@ public final class Locales {
      * Gets the {@link Locale} with the specified name.
      *
      * @param name The name of the locale, for example "ENGLISH" or "GERMAN"
-<<<<<<< HEAD
      * @return The {@link Locale} with the specified name, or
      *         {@link Optional#absent()} if not found
-=======
-     * @return The {@link Locale} with the specified name, or {@link Optional#absent()} if not found
->>>>>>> a132a53... Add Locale API
      */
     public static Optional<Locale> valueOf(String name) {
         return Optional.fromNullable(factory.getLocaleFromName(name));

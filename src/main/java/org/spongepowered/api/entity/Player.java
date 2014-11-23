@@ -50,6 +50,20 @@ public interface Player extends HumanEntity, CommandSource {
     String getDisplayName();
 
     /**
+     * Returns whether the {@link Player} can fly via the fly key.
+     *
+     * @return {@code True} if the {@link Player} is allowed to fly
+     */
+    boolean getAllowFlight();
+
+    /**
+     * Sets if the {@link Player} can fly via the fly key.
+     *
+     * @param allowFlight {@code True} if the player is allowed to fly
+     */
+    void setAllowFlight(boolean allowFlight);
+
+    /*
      * Gets the locale used by the player.
      *
      * @return The player's locale
@@ -83,8 +97,7 @@ public interface Player extends HumanEntity, CommandSource {
     void sendMessage(ChatPosition position, Iterable<Message<?>> messages);
 
     /**
-     * Sends a {@link Title} to this player. This is the same as calling
-     * {@link Title#send(Player...)}.
+     * Sends a {@link Title} to this player.
      *
      * @param title The {@link Title} to send to the player
      */
