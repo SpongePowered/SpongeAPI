@@ -23,23 +23,24 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.block.BlockType;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Called when a block update is about to occur, which is often when a block
+ * has triggered an "update" for its neighbors.
  */
-public interface GameEvent extends Event {
+public interface BlockUpdateEvent extends BlockEvent {
 
     /**
-     * Get the game.
+     * Get the type of block that is causing the update.
      *
-     * @return The game
+     * <p>It is not possible to get the location of the block that caused
+     * the change.</p>
+     *
+     * @return The type of the causing block
      */
-    Game getGame();
+    BlockType getCauseBlockType();
 
 }

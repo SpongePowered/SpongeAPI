@@ -23,23 +23,14 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+package org.spongepowered.api.event.block;
 
 /**
- * An event that deals with the game.
+ * Dispatched when fire blocks are placed adjacent a block because
+ * the block has been "ignited."
  *
- * @see Game
+ * <p>The block itself does not change.</p>
  */
-public interface GameEvent extends Event {
-
-    /**
-     * Get the game.
-     *
-     * @return The game
-     */
-    Game getGame();
+public interface BlockIgniteEvent extends BlockEvent {
 
 }

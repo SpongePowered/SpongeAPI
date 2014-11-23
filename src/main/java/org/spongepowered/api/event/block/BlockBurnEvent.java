@@ -23,23 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+package org.spongepowered.api.event.block;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Called when a block is removed due to fire.
  */
-public interface GameEvent extends Event {
-
-    /**
-     * Get the game.
-     *
-     * @return The game
-     */
-    Game getGame();
+public interface BlockBurnEvent extends BlockChangeEvent {
 
 }

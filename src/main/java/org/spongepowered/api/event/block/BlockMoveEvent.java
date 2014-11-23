@@ -23,23 +23,12 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+package org.spongepowered.api.event.block;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Dispatched when block is moved in world, such as by a piston. Cancel to
+ * prevent the movement and make piston not work.
  */
-public interface GameEvent extends Event {
-
-    /**
-     * Get the game.
-     *
-     * @return The game
-     */
-    Game getGame();
+public interface BlockMoveEvent extends BulkBlockEvent {
 
 }

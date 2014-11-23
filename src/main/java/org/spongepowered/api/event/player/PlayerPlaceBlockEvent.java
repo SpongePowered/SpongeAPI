@@ -22,24 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.player;
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.block.BlockEvent;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Dispatched when a player is placing a block.
  */
-public interface GameEvent extends Event {
-
-    /**
-     * Get the game.
-     *
-     * @return The game
-     */
-    Game getGame();
-
+public interface PlayerPlaceBlockEvent extends BlockEvent, PlayerEvent {
+    
 }

@@ -23,23 +23,15 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.block.BlockEvent;
 
 /**
- * An event that deals with the game.
+ * Called when a player is about to hit a block without breaking it.
  *
- * @see Game
+ * @see PlayerBreakBlockEvent
  */
-public interface GameEvent extends Event {
-
-    /**
-     * Get the game.
-     *
-     * @return The game
-     */
-    Game getGame();
+public interface PlayerDamageBlockEvent extends BlockEvent, PlayerEvent {
 
 }

@@ -22,24 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.reason;
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import com.google.common.base.Optional;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Reason for explosion. It may contain explosion power.
  */
-public interface GameEvent extends Event {
-
+public class ExplosionReason extends Reason {
+    
+    private float power;
+    
+    public ExplosionReason(float power) {
+        super("explosion");
+        this.power = power;
+    }
+    
+    public ExplosionReason() {
+        super("explosion");
+    }
+    
     /**
-     * Get the game.
-     *
-     * @return The game
+     * Gets power of the explosion, if specified.
+     * @return Power of explosion, if available
      */
-    Game getGame();
-
+    public Optional<Float> getPower() {
+        return Optional.of(this.power);
+    }
 }

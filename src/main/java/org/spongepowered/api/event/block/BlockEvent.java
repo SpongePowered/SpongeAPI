@@ -22,24 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Base event for events affecting a single block.
  */
-public interface GameEvent extends Event {
-
+public interface BlockEvent extends GameEvent, CauseTracked {
+    
     /**
-     * Get the game.
-     *
-     * @return The game
+     * Get the block affected by the event (the target block).
+     * 
+     * @return Related block
      */
-    Game getGame();
+    Block getBlock();
 
 }

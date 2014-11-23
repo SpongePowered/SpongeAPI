@@ -23,23 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+package org.spongepowered.api.event.block;
 
 /**
- * An event that deals with the game.
+ * Called when a block is about to be changed because it would have
+ * resulted from some form of growth related to flora.
  *
- * @see Game
+ * <p>Examples of reasons why this event would be called include:</p>
+ *
+ * <ul>
+ *     <li>The placement of a cactus block because it grew.</li>
+ *     <li>The placement of a pumpkin block because it grew.</li>
+ *     <li>The change in state of a wheat block because it grew.</li>
+ * </ul>
  */
-public interface GameEvent extends Event {
-
-    /**
-     * Get the game.
-     *
-     * @return The game
-     */
-    Game getGame();
+public interface FloraGrowEvent extends BlockChangeEvent {
 
 }

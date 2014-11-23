@@ -30,6 +30,9 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.world.World;
+
+import com.google.common.base.Optional;
 
 /**
  * An entity is a Minecraft entity.
@@ -168,4 +171,8 @@ public interface Entity extends EntityState {
      */
     Optional<Entity> getRiding();
 
+     * Gets world of this entity.
+     * @return World, if possible
+     */
+    Optional<World> getWorld();
 }

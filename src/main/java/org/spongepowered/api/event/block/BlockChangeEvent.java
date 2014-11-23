@@ -23,23 +23,19 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.block.BlockSnapshot;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Dispatched when a block is in the process of changing, before
+ * the change has been made.
  */
-public interface GameEvent extends Event {
-
+public interface BlockChangeEvent extends BlockEvent {
+    
     /**
-     * Get the game.
-     *
-     * @return The game
+     * Get the block that will replace the block.
      */
-    Game getGame();
+    BlockSnapshot getReplacementBlock();
 
 }

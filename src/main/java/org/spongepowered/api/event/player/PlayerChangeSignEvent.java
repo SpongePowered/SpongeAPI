@@ -22,24 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.player;
 
-package org.spongepowered.api.event;
+import org.spongepowered.api.event.block.BlockInteractEvent;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
+import java.util.List;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Dispatched if the text on a sign is be changed.
  */
-public interface GameEvent extends Event {
+public interface PlayerChangeSignEvent extends BlockInteractEvent, PlayerEvent {
 
+    //TODO: When the text formatting API is ready, use it
+    
     /**
-     * Get the game.
+     * Get the new text that is to go onto the sign.
      *
-     * @return The game
+     * @return The new sign text
      */
-    Game getGame();
+    List<String> getReplacementLines();
 
 }
