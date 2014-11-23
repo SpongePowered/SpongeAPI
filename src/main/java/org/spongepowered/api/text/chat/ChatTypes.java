@@ -70,7 +70,7 @@ public final class ChatTypes {
      *         {@link Optional#absent()} if not found
      */
     public static Optional<ChatType> valueOf(String name) {
-        return Optional.fromNullable(factory.getTypeFromName(name));
+        return factory.getTypeFromName(name);
     }
 
     /**

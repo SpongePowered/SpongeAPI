@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.translation.locale;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -37,17 +39,19 @@ interface LocaleFactory {
      * Gets the {@link Locale} of the specified Minecraft locale code.
      *
      * @param id The ID for the locale, for example "en_US" or "de_DE"
-     * @return The {@link Locale} with the specified ID, or null if not found
+     * @return The {@link Locale} with the specified ID, or
+     *         {@link Optional#absent} if not found
      */
-    Locale getLocaleFromId(String id);
+    Optional<Locale> getLocaleFromId(String id);
 
     /**
      * Gets the {@link Locale} with the specified name.
      *
      * @param name The name of the locale, for example "ENGLISH" or "GERMAN"
-     * @return The {@link Locale} with the specified name, or null if not found
+     * @return The {@link Locale} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
-    Locale getLocaleFromName(String name);
+    Optional<Locale> getLocaleFromName(String name);
 
     /**
      * Returns a list of all available {@link Locale}s on this server.

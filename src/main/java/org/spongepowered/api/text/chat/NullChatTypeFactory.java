@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.chat;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 /**
@@ -33,7 +35,7 @@ import java.util.List;
 class NullChatTypeFactory implements ChatTypeFactory {
 
     @Override
-    public ChatType getTypeFromName(String name) {
+    public Optional<ChatType> getTypeFromName(String name) {
         return null;
     }
 
