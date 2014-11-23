@@ -24,22 +24,13 @@
  */
 package org.spongepowered.api.text.chat;
 
-import java.util.List;
-
 /**
- * Dummy implementation of {@link ChatPositionFactory} - returns null for all
- * methods.
+ * A chat type represents one of the positions that a chat message can be
+ * sent to. Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the
+ * chat message packet</a> for a description of the packet. A list of available
+ * chat types in Minecraft is available in
+ * {@link ChatTypes}.
  */
-class NullChatPositionFactory implements ChatPositionFactory {
-
-    @Override
-    public ChatPosition getPositionFromName(String name) {
-        return null;
-    }
-
-    @Override
-    public List<ChatPosition> getPositions() {
-        return null;
-    }
+public interface ChatType {
 
 }

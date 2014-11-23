@@ -24,13 +24,28 @@
  */
 package org.spongepowered.api.text.chat;
 
+import java.util.List;
+
 /**
- * A ChatPosition represents one of the positions that a chat message can be
- * sent to. Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the
- * chat message packet</a> for a description of the packet. A list of available
- * chat positions in Minecraft is available in
- * {@link org.spongepowered.api.text.chat.ChatPositions}.
+ * Represents the required implementation for the static methods in
+ * {@link ChatTypes}.
  */
-public interface ChatPosition {
+interface ChatTypeFactory {
+
+    /**
+     * Gets the {@link ChatType} with the specified name.
+     *
+     * @param name The identifier of the chat type, for example "ACTION_BAR"
+     * @return The {@link ChatType} with the specified name, or null if not
+     *         found
+     */
+    ChatType getTypeFromName(String name);
+
+    /**
+     * Returns a list of all available {@link ChatType}s on this server.
+     *
+     * @return An immutable list of all chat types
+     */
+    List<ChatType> getTypes();
 
 }

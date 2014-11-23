@@ -27,25 +27,19 @@ package org.spongepowered.api.text.chat;
 import java.util.List;
 
 /**
- * Represents the required implementation for the static methods in
- * {@link ChatPositions}.
+ * Dummy implementation of {@link ChatTypeFactory} - returns null for all
+ * methods.
  */
-interface ChatPositionFactory {
+class NullChatTypeFactory implements ChatTypeFactory {
 
-    /**
-     * Gets the {@link ChatPosition} with the specified name.
-     *
-     * @param name The identifier of the chat position, for example "ACTION_BAR"
-     * @return The {@link ChatPosition} with the specified name, or null if not
-     *         found
-     */
-    ChatPosition getPositionFromName(String name);
+    @Override
+    public ChatType getTypeFromName(String name) {
+        return null;
+    }
 
-    /**
-     * Returns a list of all available {@link ChatPosition}s on this server.
-     *
-     * @return An immutable list of all chat positions
-     */
-    List<ChatPosition> getPositions();
+    @Override
+    public List<ChatType> getTypes() {
+        return null;
+    }
 
 }
