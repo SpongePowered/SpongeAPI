@@ -23,22 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.player;
 
-import java.util.Collection;
-
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.entity.EntityDeathEvent;
 
 /**
- * Called when a player drops an item stack.
+ * Called when a {@link Player} is killed.
  */
-public interface EntityDropItemEvent extends EntityEvent, Cancellable {
+public interface PlayerDeathEvent extends EntityDeathEvent, PlayerEvent {
 
     /**
-     * Gets the items that the player is dropping.
-     * 
-     * @return The dropped stacks
+     * Gets the death message of this {@link Player}.
+     *
+     * @return The death message.
      */
-    Collection<ItemStack> getDroppedStacks();
+    String getDeathMessage();
+
+    /**
+     * Sets the death message of this {@link Player}.
+     *
+     * @param deathMessage The new death message.
+     */
+    void setDeathMessage(String deathMessage);
 }

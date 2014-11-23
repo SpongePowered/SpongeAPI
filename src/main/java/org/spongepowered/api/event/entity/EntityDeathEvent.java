@@ -22,21 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * An EntityEvent that has a primary entity performing an action.
+ * Called when an {@link Entity} is killed or unloaded..
  */
-public interface EntityPerformEvent extends EntityEvent {
-
-    /**
-     * Returns the primary entity involved in this event that performs the action.
-     * This entity is also contained in the list of entities from {@link #getEntities()}.
-     *
-     * @return The entity performing the action
-     */
-    Entity getEntity();
-
+public interface EntityDeathEvent extends EntityEvent, CauseTracked, Cancellable {
+    
 }
