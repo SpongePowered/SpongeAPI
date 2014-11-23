@@ -26,7 +26,6 @@
 package org.spongepowered.api.event;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.event.cause.Cause;
 
 /**
  * An event that deals with the game.
