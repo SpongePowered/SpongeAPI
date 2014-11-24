@@ -31,6 +31,12 @@ import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.spongepowered.api.event.Order;
+import org.spongepowered.api.event.Result;
+import org.spongepowered.api.event.Subscribe;
+import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.util.Owner;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
@@ -40,6 +46,7 @@ import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -48,9 +55,23 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SimpleCommandService implements CommandService {
 
+    private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
+
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();
     private final Multimap<Owner, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
+
+    @Subscribe(order = Order.LAST)
+    public void onCommandEvent(CommandEvent event) {
+        try {
+            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList())) {
+                event.setResult(Result.DENY);
+            }
+        } catch (CommandException e) {
+            event.setResult(Result.DENY);
+            log.warn("Failed to execute a command", e);
+        }
+    }
 
     @Override
     public Optional<CommandMapping> register(Owner owner, CommandCallable callable, String... alias) {
