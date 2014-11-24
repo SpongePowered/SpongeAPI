@@ -63,11 +63,4 @@ public interface CommandMapping {
      */
     CommandCallable getCallable();
 
-    /**
-     * Get the description of the command.
-     *
-     * @return The description
-     */
-    Description getDescription();
-
 }
