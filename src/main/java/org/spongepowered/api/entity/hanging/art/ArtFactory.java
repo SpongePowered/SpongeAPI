@@ -28,6 +28,21 @@ import java.util.List;
 
 interface ArtFactory {
 
+    /**
+     * Gets a list of all possible {@link Art}s, that are supported by this
+     * implementation.
+     * 
+     * @return An immutable list containing all available arts
+     */
     List<Art> getArtPieces();
 
+    /**
+     * Gets the {@link Art} by it's name.
+     * 
+     * @param name The name of the art that should be returned
+     * @return An {@link Art} with the given name, or null if there is no
+     *         {@link Art} with the given name.
+     * @see Art#getName()
+     */
+    Art getFromName(String name);
 }

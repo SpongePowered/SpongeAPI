@@ -26,7 +26,12 @@ package org.spongepowered.api.entity.hanging.art;
 
 import java.util.List;
 
-public class Arts {
+import com.google.common.base.Optional;
+
+/**
+ * A utility class for easy access to all available {@link Art}s.
+ */
+public final class Arts {
 
     private static final ArtFactory factory = new NullArtFactory();
 
@@ -60,7 +65,25 @@ public class Arts {
     public static final Art PIGSCENE = null;
     public static final Art BURNING_SKULL = null;
 
+    /**
+     * Gets a list of all possible {@link Art}s, that are supported by this
+     * implementation.
+     * 
+     * @return An immutable list containing all available arts
+     */
     public static List<Art> getValues() {
         return factory.getArtPieces();
+    }
+
+    /**
+     * Gets the {@link Art} by it's name.
+     * 
+     * @param name The name of the art
+     * @return An {@link Optional} containing the {@link Art} with the given
+     *         name, if any
+     * @see Art#getName()
+     */
+    public static Optional<Art> valueOf(String name) {
+        return Optional.fromNullable(factory.getFromName(name));
     }
 }
