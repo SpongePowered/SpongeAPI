@@ -88,6 +88,16 @@ class NullLivingMetaFactory implements LivingMetaFactory {
         return null;
     }
 
+    @Override
+    public List<RabbitType> getRabbitTypes() {
+        return null;
+    }
+
+    @Override
+    public RabbitType getRabbitTypeFromName(String name) {
+        return null;
+    }
+
     static final LivingMetaFactory factory = new NullLivingMetaFactory();
 
 }

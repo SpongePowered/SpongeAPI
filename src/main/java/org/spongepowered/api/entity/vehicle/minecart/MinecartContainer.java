@@ -26,6 +26,9 @@ package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.entity.vehicle.Minecart;
 
+/**
+ * Represents a minecart with a hopper in it.
+ */
 public interface MinecartContainer extends Minecart {
 
 

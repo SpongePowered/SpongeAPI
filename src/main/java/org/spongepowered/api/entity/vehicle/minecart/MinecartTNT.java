@@ -26,12 +26,28 @@ package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.entity.vehicle.Minecart;
 
+/**
+ * Represents a Minecart with a TNT block in it.
+ */
 public interface MinecartTNT extends Minecart {
 
+    /**
+     * Detonates the minecart.
+     */
     void detonate();
 
+    /**
+     * Gets the current fuse time on the tnt block.
+     *
+     * @return The current fuse time on the tnt block
+     */
     int getFuseTime();
 
+    /**
+     * Sets the fuse time on the tnt block.
+     *
+     * @param fuseTime The new fuse time
+     */
     void setFuseTime(int fuseTime);
 
 }

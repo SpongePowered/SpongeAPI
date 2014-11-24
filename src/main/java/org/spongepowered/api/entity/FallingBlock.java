@@ -31,16 +31,48 @@ import org.spongepowered.api.block.BlockState;
  */
 public interface FallingBlock extends Entity {
 
+    /**
+     * Gets the current fall damage per block fallen.
+     *
+     * @return The current fall damage per block
+     */
     double getFallDamagePerBlock();
 
+    /**
+     * Sets the fall damage per block.
+     *
+     * @param damage The fall damage per block
+     */
     void setFallDamagePerBlock(double damage);
 
+    /**
+     * Gets the maximum damage this block can deal to another entity
+     * for falling on the entity.
+     *
+     * @return The maximum damage this block can deal
+     */
     double getMaxFallDamage();
 
+    /**
+     * Sets the maximum damage this block can deal to another entity
+     * for falling on the entity.
+     *
+     * @param damage The maximum damage this block can deal
+     */
     void setMaxFallDamage(double damage);
 
+    /**
+     * Gets the {@link BlockState} this falling block is representing.
+     *
+     * @return The falling block's block state
+     */
     BlockState getBlockState();
 
+    /**
+     * Sets the block state for this falling block.
+     *
+     * @param blockState The block state of this falling block
+     */
     void setBlockState(BlockState blockState);
 
 }

@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living;
 
+/**
+ * Represents an entity that can be angered.
+ */
 public interface Angerable extends LivingEntity {
 
     /**

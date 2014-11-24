@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+/**
+ * Represents an abstract fireball, such as {@link SmallFireball}.
+ */
 public interface Fireball extends Projectile {
 
 }

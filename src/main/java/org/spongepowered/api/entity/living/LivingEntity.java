@@ -25,7 +25,10 @@
 
 package org.spongepowered.api.entity.living;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+
+import javax.annotation.Nullable;
 
 public interface LivingEntity extends Entity {
 
@@ -83,4 +86,20 @@ public interface LivingEntity extends Entity {
      * @param maxHealth The maximum health for this entity
      */
     void setMaxHealth(double maxHealth);
+
+    /**
+     * Gets the living entity that last attacked this one.
+     * <p>The last attacker may expire over time or when the attacker died.</p>
+     *
+     * @return The last attacker of this entity
+     */
+    Optional<LivingEntity> getLastAttacker();
+
+    /**
+     * Sets the last living entity to have attacked this entity.
+     * <p>The last attacker may expire over time or when the attacker died.</p>
+     *
+     * @param lastAttacker The last attacker
+     */
+    void setLastAttacker(@Nullable LivingEntity lastAttacker);
 }

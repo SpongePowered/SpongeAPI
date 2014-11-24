@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+/**
+ * Represents a firework.
+ */
 public interface Firework extends Projectile {
 
     /**
@@ -33,15 +36,38 @@ public interface Firework extends Projectile {
 
     /**
      * Gets the current fuse time for this firework.
-     * <p>Usually, after the fuse time passes the detonation</p>
-     * @return
+     * <p>Usually, after the fuse time passes the detonation time, the
+     * firework will explode.</p>
+     *
+     * @return The current fuse time
      */
     int getFuseTime();
 
+    /**
+     * Sets the fuse time.
+     * <p>Usually, after the fuse time passes the detonation time, the
+     * firework will explode.</p>
+     *
+     * @param fusetime The new fuse time
+     */
     void setFusetime(int fusetime);
 
+    /**
+     * Gets the detonation time limit.
+     * <p>Usually, after the fuse time passes the detonation time, the
+     * firework will explode.</p>
+     *
+     * @return The current max fuse time
+     */
     int getDetonationTime();
 
+    /**
+     * Sets the detonation time limit.
+     * <p>Usually, after the fuse time passes the detonation time, the
+     * firework will explode.</p>
+     *
+     * @param detonationTime The new detonation time
+     */
     void setDetonationTime(int detonationTime);
 
 }

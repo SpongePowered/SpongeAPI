@@ -22,22 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.complex;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Animal;
+import org.spongepowered.api.entity.living.meta.RabbitType;
 
 /**
- * Represents a part of a {@link ComplexLivingEntity}.
- * <p>Parts are usually created to have multiple bounding boxes associated
- * with a larger entity.</p>
+ * Represents a rabbit.
  */
-public interface ComplexEntityPart extends Entity {
+public interface Rabbit extends Animal {
 
     /**
-     * Gets the associated parent of this part.
+     * Gets the current rabbit type for this rabbit.
+     * <p>Rabbit types can change the health of a rabbit, as well as
+     * causing the rabbit to start attacking other entities.</p>
      *
-     * @return The associated parent
+     * @return The type of rabbit
      */
-    ComplexLivingEntity getParent();
+    RabbitType getRabbitType();
+
+    /**
+     * Sets the new rabbit type for this rabbit.
+     * <p>Rabbit types can change the health of a rabbit, as well as
+     * causing the rabbit to start attacking other entities.</p>
+     *
+     * @param type The type of rabbit
+     */
+    void setRabbitType(RabbitType type);
 
 }

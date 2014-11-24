@@ -22,22 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.complex;
+package org.spongepowered.api.entity.living.meta;
 
-import org.spongepowered.api.entity.Entity;
+import com.google.common.base.Optional;
 
-/**
- * Represents a part of a {@link ComplexLivingEntity}.
- * <p>Parts are usually created to have multiple bounding boxes associated
- * with a larger entity.</p>
- */
-public interface ComplexEntityPart extends Entity {
+import java.util.List;
 
-    /**
-     * Gets the associated parent of this part.
-     *
-     * @return The associated parent
-     */
-    ComplexLivingEntity getParent();
+public final class RabbitTypes {
+    private RabbitTypes() {
+    }
 
+    public static final RabbitType BROWN = null;
+    public static final RabbitType WHITE = null;
+    public static final RabbitType BLACK = null;
+    public static final RabbitType BLACK_AND_WHITE = null;
+    public static final RabbitType GOLD = null;
+    public static final RabbitType SALT_AND_PEPPER = null;
+    public static final RabbitType KILLER = null;
+
+    public static List<RabbitType> getValues() {
+        return NullLivingMetaFactory.factory.getRabbitTypes();
+    }
+
+    public static Optional<RabbitType> getTypeFromString(String name) {
+        return Optional.fromNullable(NullLivingMetaFactory.factory.getRabbitTypeFromName(name));
+    }
 }

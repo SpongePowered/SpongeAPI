@@ -27,6 +27,9 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
+/**
+ * Represents a HumanEntity in game, such as {@link org.spongepowered.api.entity.player.Player}
+ */
 public interface HumanEntity extends LivingEntity, ProjectileSource {
 
 }

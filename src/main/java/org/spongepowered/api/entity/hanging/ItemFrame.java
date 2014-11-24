@@ -38,10 +38,15 @@ public interface ItemFrame extends Hanging {
     /**
      * Gets the currently displayed Item.
      *
-     * @return
+     * @return The currently displayed item, if available
      */
     Optional<ItemStack> getItem();
 
+    /**
+     * Sets the item to be displayed.
+     *
+     * @param item The item to be displayed
+     */
     void setItem(@Nullable ItemStack item);
 
 }

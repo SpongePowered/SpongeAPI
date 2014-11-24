@@ -49,4 +49,5 @@ public interface ThrownPotion extends Projectile {
      */
     void setItem(ItemStack item);
 
+    // TODO add getPotionEffects() when potions are added
 }

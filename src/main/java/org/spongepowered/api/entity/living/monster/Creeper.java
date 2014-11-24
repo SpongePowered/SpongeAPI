@@ -45,4 +45,18 @@ public interface Creeper extends Monster {
      * @param powered If the creeper should be powered
      */
     void setPowered(boolean powered);
+
+    /**
+     * Gets the explosion radius of this creeper.
+     *
+     * @return The explosion radius of this creeper
+     */
+    int getExplosionRadius();
+
+    /**
+     * Sets the explosion radius of this creeper.
+     *
+     * @param radius The explosion radius of this creeper
+     */
+    void setExplosionRadius(int radius);
 }

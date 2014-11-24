@@ -57,4 +57,7 @@ interface LivingMetaFactory {
 
     HorseVariant getHorseVariantFromName(String name);
 
+    List<RabbitType> getRabbitTypes();
+
+    RabbitType getRabbitTypeFromName(String name);
 }
