@@ -25,12 +25,11 @@
 
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Called when an {@link Entity} teleports.
+ * Called when a Projectile is launched.
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked {
+public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
 
 }

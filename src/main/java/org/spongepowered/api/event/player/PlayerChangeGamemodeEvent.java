@@ -23,14 +23,14 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.Player;
 
 /**
- * Called when an {@link Entity} teleports.
+ * Called when a {@link Player} changes GameMode. //TODO @link that, and add methods when Gamemode added.
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked {
+public interface PlayerChangeGamemodeEvent extends PlayerEvent {
+
 
 }
