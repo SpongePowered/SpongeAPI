@@ -22,15 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.action;
 
-package org.spongepowered.api.service.command;
-
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
+ * A HoverAction is a TextAction that responds to hovers.
+ *
+ * @param <R> the type of the result of the action
  */
-public interface CommandDispatcher extends Dispatcher {
+public interface HoverAction<R> extends TextAction<R> {
+
+    /**
+     * Shows some text.
+     */
+    interface ShowText extends HoverAction<Message<?>> {
+
+    }
+
+    /**
+     * Shows an item and its information.
+     */
+    interface ShowItem extends HoverAction<ItemStack> {
+
+    }
+
+    // TODO replace with achievement
+
+    /**
+     * Shows an achievement and its information.
+     */
+    interface ShowAchievement extends HoverAction<Object> {
+
+    }
+
+    /**
+     * Shows an entity and its information.
+     */
+    interface ShowEntity extends HoverAction<Entity> {
+
+    }
 
 }

@@ -22,60 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.text.translation.locale;
 
 import com.google.common.base.Optional;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
- * Provides information about a command's usage and help.
- *
- * <p>The level of information provided is determined by the implementation.
- * Some implementations may provide little or no information.</p>
- *
- * <p>This class does not define a way to execute the command. See
- * {@link CommandCallable}, which has a {@code getDescription()} method,
- * for an interface that does define how a command is executed.</p>
- *
- * <p>Implementations are not required to implement a sane
- * {@link java.lang.Object#equals(Object)} but may choose to do so.</p>
+ * Represents the required implementation for the static methods in
+ * {@link Locales}.
  */
-public interface Description {
+interface LocaleFactory {
 
     /**
-     * Get a short one-line description of this command.
+     * Gets the {@link Locale} of the specified Minecraft locale code.
      *
-     * @return A description, if available
+     * @param id The ID for the locale, for example "en_US" or "de_DE"
+     * @return The {@link Locale} with the specified ID, or
+     *         {@link Optional#absent} if not found
      */
-    Optional<String> getShortDescription();
+    Optional<Locale> getLocaleFromId(String id);
 
     /**
-     * Get a longer help text about this command.
+     * Gets the {@link Locale} with the specified name.
      *
-     * @return A help text, if available
+     * @param name The name of the locale, for example "ENGLISH" or "GERMAN"
+     * @return The {@link Locale} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
-    Optional<String> getHelp();
+    Optional<Locale> getLocaleFromName(String name);
 
     /**
-     * Get the usage string of this command.
+     * Returns a list of all available {@link Locale}s on this server.
      *
-     * <p>A usage string may look like 
-     * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
-     *
-     * @return A usage string
+     * @return An immutable list of all locales
      */
-    String getUsage();
-
-    /**
-     * Get a list of permissions that the player may have to have permission.
-     *
-     * <p>Permission data may or may not be available. This is only useful as a
-     * potential hint.</p>
-     *
-     * @return The list of permissions
-     */
-    List<String> getPermissions();
+    List<Locale> getLocales();
 
 }

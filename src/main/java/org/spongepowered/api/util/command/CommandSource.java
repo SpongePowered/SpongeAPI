@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.util.command;
 
+import org.spongepowered.api.text.message.Message;
+
 /**
  * Something that can execute commands.
  *
@@ -34,16 +36,27 @@ package org.spongepowered.api.util.command;
 public interface CommandSource {
 
     /**
-     * Sends the message(s) to source when possible.
+     * Sends the plain text message(s) to source when possible.
+     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
      *
-     * @param messages The message(s).
+     * @param messages The message(s)
      */
     void sendMessage(String... messages);
 
     /**
-     * Sends the messages to source when possible.
+     * Sends the formatted text message(s) to source when possible. If text formatting
+     * is not supported in the implementation it will be displayed as plain text.
      *
-     * @param messages The messages.
+     * @param messages The message(s)
      */
-    void sendMessage(Iterable<String> messages);
+    void sendMessage(Message<?>... messages);
+
+    /**
+     * Sends the formatted text message(s) to source when possible. If text formatting
+     * is not supported in the implementation it will be displayed as plain text.
+     *
+     * @param messages The message(s)
+     */
+    void sendMessage(Iterable<Message<?>>... messages);
+
 }

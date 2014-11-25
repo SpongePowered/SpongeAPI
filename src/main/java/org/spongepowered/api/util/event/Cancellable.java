@@ -23,20 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.util.event;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+public interface Cancellable {
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+    /**
+     * Gets if the {@link Event} has been cancelled.
+     *
+     * @return Is this event cancelled
+     */
+    boolean isCancelled();
 
-@Retention(value = RUNTIME)
-@Target(value = METHOD)
-public @interface Subscribe {
-
-    Order order() default Order.DEFAULT;
-
-    boolean ignoreCancelled() default true;
+    /**
+     * Sets the cancelled state of the {@link Event}.
+     *
+     * @param cancel The new cancelled state
+     */
+    void setCancelled(boolean cancel);
 
 }

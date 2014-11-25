@@ -23,32 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.util.event;
 
-/**
- * An event that occurs in Sponge.
- */
-public interface Event {
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-    /**
-     * Gets if the event can be cancelled.
-     *
-     * @return Whether the event can be cancelled
-     */
-    boolean isCancellable();
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-    /**
-     * Gets the {@link Result} of the {@link Event}.
-     *
-     * @return The result of this event
-     */
-    Result getResult();
+@Retention(value = RUNTIME)
+@Target(value = METHOD)
+public @interface Subscribe {
 
-    /**
-     * Sets the {@link Result} of the {@link Event}.
-     *
-     * @param result The result
-     */
-    void setResult(Result result);
+    Order order() default Order.DEFAULT;
+
+    boolean ignoreCancelled() default true;
 
 }

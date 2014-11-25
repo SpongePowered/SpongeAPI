@@ -78,7 +78,7 @@ public interface Boat extends Entity {
     /**
      * Gets the rate at which occupied boats decelerate.
      *
-     * @return The occupied deceleration rate.
+     * @return The occupied deceleration rate
      */
     double getOccupiedDeceleration();
 

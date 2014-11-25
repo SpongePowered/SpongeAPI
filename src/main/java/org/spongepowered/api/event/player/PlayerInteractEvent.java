@@ -25,12 +25,11 @@
 
 package org.spongepowered.api.event.player;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.Cancellable;
-
-import com.google.common.base.Optional;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when a {@link Player} interacts with the world.

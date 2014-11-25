@@ -29,21 +29,12 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 
-import java.util.Collection;
 import java.util.Set;
 
 /**
  * Executes a command based on user input.
  */
 public interface Dispatcher extends CommandCallable {
-
-    /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param alias A list of aliases, where the first alias is the primary name
-     */
-    void registerCommand(CommandCallable callable, String... alias);
 
     /**
      * Get a list of commands. Each command, regardless of how many aliases
@@ -53,7 +44,7 @@ public interface Dispatcher extends CommandCallable {
      *
      * @return A list of registrations
      */
-    Set<CommandMapping> getCommands();
+    Set<? extends CommandMapping> getCommands();
 
     /**
      * Get a list of primary aliases.
@@ -62,7 +53,7 @@ public interface Dispatcher extends CommandCallable {
      *
      * @return A list of aliases
      */
-    Collection<String> getPrimaryAliases();
+    Set<String> getPrimaryAliases();
 
     /**
      * Get a list of all the command aliases, which includes the primary alias.
@@ -72,7 +63,7 @@ public interface Dispatcher extends CommandCallable {
      *
      * @return A list of aliases
      */
-    Collection<String> getAliases();
+    Set<String> getAliases();
 
     /**
      * Get the {@link CommandCallable} associated with an alias. Returns
@@ -81,7 +72,7 @@ public interface Dispatcher extends CommandCallable {
      * @param alias The alias
      * @return The command mapping, if available
      */
-    Optional<CommandMapping> get(String alias);
+    Optional<? extends CommandMapping> get(String alias);
 
     /**
      * Returns whether the dispatcher contains a registered command for the
@@ -90,6 +81,14 @@ public interface Dispatcher extends CommandCallable {
      * @param alias The alias
      * @return True if a registered command exists
      */
-    boolean contains(String alias);
+    boolean containsAlias(String alias);
+
+    /**
+     * Returns whether the dispatcher contains the given mapping.
+     *
+     * @param mapping The mapping
+     * @return True if a mapping exists
+     */
+    boolean containsMapping(CommandMapping mapping);
 
 }
