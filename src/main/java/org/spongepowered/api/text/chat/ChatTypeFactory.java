@@ -24,28 +24,30 @@
  */
 package org.spongepowered.api.text.chat;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 /**
  * Represents the required implementation for the static methods in
- * {@link ChatPositions}.
+ * {@link ChatTypes}.
  */
-interface ChatPositionFactory {
+interface ChatTypeFactory {
 
     /**
-     * Gets the {@link ChatPosition} with the specified name.
+     * Gets the {@link ChatType} with the specified name.
      *
-     * @param name The identifier of the chat position, for example "ACTION_BAR"
-     * @return The {@link ChatPosition} with the specified name, or null if not
-     *         found
+     * @param name The identifier of the chat type, for example "ACTION_BAR"
+     * @return The {@link ChatType} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
-    ChatPosition getPositionFromName(String name);
+    Optional<ChatType> getTypeFromName(String name);
 
     /**
-     * Returns a list of all available {@link ChatPosition}s on this server.
+     * Returns a list of all available {@link ChatType}s on this server.
      *
-     * @return An immutable list of all chat positions
+     * @return An immutable list of all chat types
      */
-    List<ChatPosition> getPositions();
+    List<ChatType> getTypes();
 
 }

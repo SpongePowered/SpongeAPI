@@ -22,26 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.service.command;
-
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+package org.spongepowered.api.text.chat;
 
 /**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
+ * A chat type represents one of the positions that a chat message can be sent
+ * to. Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the chat
+ * message packet</a> for a description of the packet. A list of available chat
+ * types in Minecraft is available in {@link ChatTypes}.
  */
-public interface CommandDispatcher extends Dispatcher {
-
-    /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
-     */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
+public interface ChatType {
 
 }

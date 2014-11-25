@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
-import org.spongepowered.api.service.command.CommandDispatcher;
+import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.scheduler.Scheduler;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
@@ -97,7 +97,7 @@ public interface Game {
      *
      * @return The command dispatcher
      */
-    CommandDispatcher getCommandDispatcher();
+    CommandService getCommandDispatcher();
 
     /**
      * Gets the {@link Player}s currently online
@@ -163,22 +163,6 @@ public interface Game {
      * @param message The message to send
      */
     void broadcastMessage(Message<?> message);
-
-    /**
-     * Creates a new clean {@link Title} configuration that will reset the
-     * currently displayed title before displaying the new one.
-     *
-     * @return A new clean {@link Title} configuration
-     */
-    Title createTitle();
-
-    /**
-     * Creates a new empty {@link Title} configuration that will just update
-     * the currently displayed title on the client.
-     *
-     * @return A new empty {@link Title} configuration
-     */
-    Title updateTitle();
 
     /**
      * Gets the API version.

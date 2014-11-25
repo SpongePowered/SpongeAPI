@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.translation.locale;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -33,12 +35,12 @@ import java.util.Locale;
 class NullLocaleFactory implements LocaleFactory {
 
     @Override
-    public Locale getLocaleFromId(String id) {
+    public Optional<Locale> getLocaleFromId(String id) {
         return null;
     }
 
     @Override
-    public Locale getLocaleFromName(String name) {
+    public Optional<Locale> getLocaleFromName(String name) {
         return null;
     }
 
@@ -46,4 +48,5 @@ class NullLocaleFactory implements LocaleFactory {
     public List<Locale> getLocales() {
         return null;
     }
+
 }

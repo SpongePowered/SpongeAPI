@@ -58,7 +58,7 @@ public final class TextStyles {
      *         {@link Optional#absent()} if not found
      */
     public static Optional<TextStyle> valueOf(String name) {
-        return Optional.fromNullable(factory.getStyleFromName(name));
+        return factory.getStyleFromName(name);
     }
 
     /**

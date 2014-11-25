@@ -68,7 +68,7 @@ public final class TextColors {
      *         {@link Optional#absent()} if not found
      */
     public static Optional<TextColor> valueOf(String name) {
-        return Optional.fromNullable(TextStyles.factory.getColorFromName(name));
+        return TextStyles.factory.getColorFromName(name);
     }
 
     /**

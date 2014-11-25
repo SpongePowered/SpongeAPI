@@ -24,21 +24,23 @@
  */
 package org.spongepowered.api.text.chat;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 /**
- * Dummy implementation of {@link ChatPositionFactory} - returns null for all
+ * Dummy implementation of {@link ChatTypeFactory} - returns null for all
  * methods.
  */
-class NullChatPositionFactory implements ChatPositionFactory {
+class NullChatTypeFactory implements ChatTypeFactory {
 
     @Override
-    public ChatPosition getPositionFromName(String name) {
+    public Optional<ChatType> getTypeFromName(String name) {
         return null;
     }
 
     @Override
-    public List<ChatPosition> getPositions() {
+    public List<ChatType> getTypes() {
         return null;
     }
 
