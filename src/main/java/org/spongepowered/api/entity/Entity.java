@@ -70,7 +70,7 @@ public interface Entity extends Identifiable, EntityState {
      * Simulates the interaction with this object using the given item as if
      * the player had done so.
      *
-     * @param itemStack The item
+     * @param itemStack       The item
      * @param interactionType The type of interaction performed on this entity
      */
     void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
@@ -78,7 +78,7 @@ public interface Entity extends Identifiable, EntityState {
     /**
      * Gets the position.
      *
-     * @return position The position
+     * @return The position
      */
     Vector3d getPosition();
 
@@ -141,7 +141,7 @@ public interface Entity extends Identifiable, EntityState {
      * Gets the rotation as a vector.
      * This does not support the roll component of the entity's rotation.
      *
-     * @return rotation A possibly, but not necessarily, unit vector
+     * @return A possibly, but not necessarily, unit vector
      */
     Vector3f getVectorRotation();
 
@@ -157,7 +157,7 @@ public interface Entity extends Identifiable, EntityState {
     /**
      * Gets the rotation as a EulerDirection.
      *
-     * @return rotation The rotation as a EulerDirection
+     * @return The rotation as a EulerDirection
      */
     EulerDirection getRotation();
 

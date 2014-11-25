@@ -25,8 +25,12 @@
 
 package org.spongepowered.api.entity.player;
 
+import java.util.Locale;
+
 import org.spongepowered.api.entity.living.HumanEntity;
-import org.spongepowered.api.title.Title;
+import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.util.command.CommandSource;
 
 public interface Player extends HumanEntity, User, CommandSource {
@@ -38,6 +42,53 @@ public interface Player extends HumanEntity, User, CommandSource {
      * @return The player's display name
      */
     String getDisplayName();
+
+    /**
+     * Returns whether the {@link Player} can fly via the fly key.
+     *
+     * @return {@code True} if the {@link Player} is allowed to fly
+     */
+    boolean getAllowFlight();
+
+    /**
+     * Sets if the {@link Player} can fly via the fly key.
+     *
+     * @param allowFlight {@code True} if the player is allowed to fly
+     */
+    void setAllowFlight(boolean allowFlight);
+
+    /**
+     * Gets the locale used by the player.
+     *
+     * @return The player's locale
+     * @see Locales
+     */
+    Locale getLocale();
+
+    /**
+     * Sends the plain text message(s) with the specified {@link ChatType} on the client.
+     * <p>Use {@link #sendMessage(ChatType, Message...)} for a formatted message.</p>
+     *
+     * @param type The chat type to send the messages to
+     * @param message The message(s) to send
+     */
+    void sendMessage(ChatType type, String... message);
+
+    /**
+     * Sends the message(s) with the specified {@link ChatType} on the client.
+     *
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatType type, Message<?>... messages);
+
+    /**
+     * Sends the message(s) with the specified {@link ChatType} on the client.
+     *
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatType type, Iterable<Message<?>> messages);
 
     /**
      * Sends a {@link Title} to this player. This is the same as calling
@@ -57,4 +108,5 @@ public interface Player extends HumanEntity, User, CommandSource {
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     void clearTitle();
+
 }

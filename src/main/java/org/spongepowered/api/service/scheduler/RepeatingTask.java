@@ -33,7 +33,7 @@ public interface RepeatingTask extends Task {
     /**
      * Gets the interval the task repeats on.
      *
-     * @return the interval
+     * @return The interval
      */
     long getInterval();
 }

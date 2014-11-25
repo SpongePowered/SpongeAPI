@@ -241,7 +241,7 @@ public interface Vector2f extends Comparable<Vector2f>, Serializable, Cloneable 
     /**
      * Projects this vector onto another vector.
      *
-     * @param v the vector to project on
+     * @param v The vector to project on
      * @return The results of the operation as a new vector
      */
     Vector2f project(Vector2f v);
@@ -500,7 +500,7 @@ public interface Vector2f extends Comparable<Vector2f>, Serializable, Cloneable 
     /**
      * Returns this vector as an array.
      *
-     * @return This vector as an array.
+     * @return This vector as an array
      */
     float[] toArray();
 

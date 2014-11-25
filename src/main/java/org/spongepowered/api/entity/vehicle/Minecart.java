@@ -64,7 +64,7 @@ public interface Minecart extends Entity {
      * Gets whether or not the minecart slows down
      * faster without a passenger.
      *
-     * @return If the cart slows when empty.
+     * @return If the cart slows when empty
      */
     boolean doesSlowWhenEmpty();
 
@@ -72,7 +72,7 @@ public interface Minecart extends Entity {
      * Sets whether or not the minecart slows down
      * faster without a passenger.
      *
-     * @param slowWhenEmpty If the cart should slow when emoty
+     * @param slowWhenEmpty If the cart should slow when empty
      */
     void setSlowWhenEmpty(boolean slowWhenEmpty);
 

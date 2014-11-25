@@ -25,12 +25,13 @@
 
 package org.spongepowered.api.util.command;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An immutable command mapping instance that returns the same objects that
@@ -51,11 +52,23 @@ public class ImmutableCommandMapping implements CommandMapping {
      * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
     public ImmutableCommandMapping(CommandCallable callable, String primary, String... alias) {
+        this(callable, primary, Arrays.asList(checkNotNull(alias)));
+    }
+
+    /**
+     * Create a new instance.
+     *
+     * @param callable The command callable
+     * @param primary The primary alias
+     * @param aliases A collection of all aliases
+     * @throws IllegalArgumentException Thrown if aliases are duplicated
+     */
+    public ImmutableCommandMapping(CommandCallable callable, String primary, Collection<String> aliases) {
         checkNotNull(callable);
         checkNotNull(primary);
-        checkNotNull(alias);
+        checkNotNull(aliases);
         this.primary = primary;
-        this.aliases = new HashSet<String>(Arrays.asList(alias));
+        this.aliases = new HashSet<String>(aliases);
         this.aliases.add(primary);
         this.callable = callable;
     }
@@ -73,11 +86,6 @@ public class ImmutableCommandMapping implements CommandMapping {
     @Override
     public CommandCallable getCallable() {
         return callable;
-    }
-
-    @Override
-    public Description getDescription() {
-        return getCallable().getDescription();
     }
 
     @Override
