@@ -26,6 +26,13 @@
 package org.spongepowered.api.event.cause;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.reason.Reason;
+
+import javax.annotation.Nullable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A cause represents the reason or initiator of an event.
@@ -42,13 +49,52 @@ import com.google.common.base.Optional;
  * some blocks, but tracing this event would be too complicated and thus
  * may not be attempted.</p>
  */
-public interface Cause {
+public class Cause<T> {
+    
+    private final Optional<Cause> parent;
+    private final T cause;
+    private final Optional<Reason> reason;
 
     /**
-     * Get the parent cause.
+     * Create a new cause instance.
      *
-     * @return The parent cause, if available
+     * @param parent An optional parent
+     * @param cause The causing object (may be a block, entity, etc.)
+     * @param reason An optional reason
      */
-    Optional<Cause> getParent();
+    public Cause(@Nullable Cause parent, T cause, @Nullable Reason reason) {
+        checkNotNull(cause);
+        this.parent = Optional.fromNullable(parent);
+        this.cause = cause;
+        this.reason = Optional.fromNullable(reason);
+    }
+
+    /**
+     * Get the parent cause of this cause.
+     *
+     * @return The parent cause
+     */
+    public Optional<Cause> getParent() {
+        return parent;
+    }
+
+    /**
+     * Get the causing object (it may be an {@link Entity}, {@link Block},
+     * etc.).
+     *
+     * @return The cause
+     */
+    public T getCause() {
+        return cause;
+    }
+
+    /**
+     * Get the reason.
+     *
+     * @return The reason
+     */
+    public Optional<Reason> getReason() {
+        return reason;
+    }
 
 }
