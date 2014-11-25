@@ -22,22 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.text.chat;
 
-public interface Cancellable {
-
-    /**
-     * Gets if the {@link Event} has been cancelled.
-     *
-     * @return Is this event cancelled
-     */
-    boolean isCancelled();
-
-    /**
-     * Sets the cancelled state of the {@link Event}.
-     *
-     * @param cancel the new cancelled state
-     */
-    void setCancelled(boolean cancel);
+/**
+ * A chat type represents one of the positions that a chat message can be sent
+ * to. Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the chat
+ * message packet</a> for a description of the packet. A list of available chat
+ * types in Minecraft is available in {@link ChatTypes}.
+ */
+public interface ChatType {
 
 }

@@ -22,31 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.action;
 
-package org.spongepowered.api.event;
-
-public interface EventManager {
-
-    /**
-     * Registers an object to receive {@link Event}s.
-     *
-     * @param obj The object
-     */
-    void register(Object obj);
-
-    /**
-     * Un-registers an object from receiving {@link Event}s.
-     *
-     * @param obj The object
-     */
-    void unregister(Object obj);
+/**
+ * A ShiftClickAction is a TextAction that responds to shift-clicks. Currently
+ * the only value is InsertText, which maps to the insertion field in Message
+ * JSON. This is because of the way that there is no actual shiftClickEvent
+ * field in the raw message JSON. Possibly more shift click actions will be
+ * added to the client in the future.
+ *
+ * @param <R> the type of the result of the action
+ */
+public interface ShiftClickAction<R> extends TextAction<R> {
 
     /**
-     * Calls a {@link Event} to all objects that handle it.
-     *
-     * @param event The event
-     * @return True if canceled, false if not
+     * Inserts some text into the chat prompt.
      */
-    boolean call(Event event);
+    interface InsertText extends ShiftClickAction<String> {
+
+    }
 
 }

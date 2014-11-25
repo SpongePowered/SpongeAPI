@@ -157,14 +157,15 @@ public interface Block {
     /**
      * Gets the time it takes to dig this block with a fist in ticks.
      *
-     * @return The time in ticks.
+     * @return The time in ticks
      */
     int getDigTime();
 
     /**
      * Gets the time it takes to dig this block the specified item in ticks.
      *
-     * @return The time in ticks.
+     * @param itemStack The item to pretend-dig with
+     * @return The time in ticks
      */
     int getDigTimeWith(ItemStack itemStack);
 

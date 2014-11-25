@@ -28,7 +28,7 @@ package org.spongepowered.api.event.entity;
 import java.util.Collection;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when a entity picks up an item(s).

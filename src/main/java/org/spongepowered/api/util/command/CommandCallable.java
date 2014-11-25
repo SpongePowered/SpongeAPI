@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.util.command;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.completion.CommandCompleter;
 
 import java.util.List;
@@ -53,13 +54,6 @@ public interface CommandCallable extends CommandCompleter {
     boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
 
     /**
-     * Get a description of the command, detailing usage information.
-     *
-     * @return The command description
-     */
-    Description getDescription();
-
-    /**
      * Test whether this command can probably be executed by the given source.
      *
      * <p>If implementations are unsure if the command can be executed by
@@ -71,5 +65,29 @@ public interface CommandCallable extends CommandCompleter {
      * @return Whether permission is (probably) granted
      */
     boolean testPermission(CommandSource source);
+
+    /**
+     * Get a short one-line description of this command.
+     *
+     * @return A description, if available
+     */
+    Optional<String> getShortDescription();
+
+    /**
+     * Get a longer help text about this command.
+     *
+     * @return A help text, if available
+     */
+    Optional<String> getHelp();
+
+    /**
+     * Get the usage string of this command.
+     *
+     * <p>A usage string may look like
+     * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
+     *
+     * @return A usage string
+     */
+    String getUsage();
 
 }

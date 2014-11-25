@@ -22,21 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.chat;
 
-package org.spongepowered.api.event.player;
+import com.google.common.base.Optional;
 
-import org.spongepowered.api.entity.player.Player;
+import java.util.List;
 
 /**
- * Called when a {@link Player} sends a chat message
+ * Represents the required implementation for the static methods in
+ * {@link ChatTypes}.
  */
-public interface AsyncPlayerChatEvent extends PlayerEvent {
+interface ChatTypeFactory {
 
     /**
-     * Get the message sent in this event
+     * Gets the {@link ChatType} with the specified name.
      *
-     * @return The message sent
+     * @param name The identifier of the chat type, for example "ACTION_BAR"
+     * @return The {@link ChatType} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
-    String getMessage();
+    Optional<ChatType> getTypeFromName(String name);
+
+    /**
+     * Returns a list of all available {@link ChatType}s on this server.
+     *
+     * @return An immutable list of all chat types
+     */
+    List<ChatType> getTypes();
 
 }

@@ -46,17 +46,17 @@ public interface PreInitializationEvent extends StateEvent {
      *
      * @return Plugin Specific Configuration file for smaller plugins that do not need an entire directory
      */
-    public File getSuggestedConfigurationFile();
+    public File getRecommendedConfigurationFile();
 
     /**
      *
      * @return Plugin specific Configuration directory for plugins that need more than a single config file
      */
-    public File getSuggestedConfigurationDirectory();
+    public File getRecommendedConfigurationDirectory();
 
     /**
      *
-     * @return the config folder
+     * @return The config folder
      */
     public File getConfigurationDirectory();
 
