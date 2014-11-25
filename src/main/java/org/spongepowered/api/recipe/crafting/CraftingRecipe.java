@@ -30,7 +30,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.recipe.Recipe;
 
 /**
- * Main class for all crafting recipes.
+ * Main class for most of normal crafting recipes.
  */
 public class CraftingRecipe extends Recipe {
     

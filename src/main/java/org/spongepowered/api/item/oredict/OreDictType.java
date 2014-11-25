@@ -35,9 +35,9 @@ public interface OreDictType extends ItemType {
     /**
      * Gets the ore dictionary id of the item. It is not the "modname:itemname"
      * which is used in regural {@link ItemType}. Instead, ore dictionary name
-     * will returned with prefix.
+     * will returned without any prefix.
      * 
-     * <p>Ex. "minecraft:carrot" would be "oredict:carrot"</p>
+     * <p>Ex. "minecraft:carrot" would be simply "carrot"</p>
      *
      * @return Id, which is ore dictionary name in this case
      */

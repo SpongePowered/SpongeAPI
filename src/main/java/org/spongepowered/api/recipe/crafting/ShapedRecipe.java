@@ -53,7 +53,7 @@ public class ShapedRecipe extends CraftingRecipe {
      * 7 8 9
      * </pre>
      * @param result Result of recipe
-     * @param ingredients Ingredients, from right to left and up to down
+     * @param ingredients Ingredients, from left to right and up to down
      */
     public ShapedRecipe(ItemStack result, ItemType... ingredients) {
         Preconditions.checkNotNull(result, "Result of recipe cannot be null!");
