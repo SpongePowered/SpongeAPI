@@ -31,6 +31,14 @@ package org.spongepowered.api.entity.living.villager;
 public interface Career {
 
     /**
+     * The unique name of this career.
+     *
+     * @return The name of this career
+     * @see Careers#valueOf(String)
+     */
+    String getName();
+
+    /**
      * The parent profession of this career. The profession is permanent
      * and can not be changed.
      *

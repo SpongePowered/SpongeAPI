@@ -26,12 +26,14 @@ package org.spongepowered.api.entity.living.villager;
 
 import java.util.List;
 
+import com.google.common.base.Optional;
+
+/**
+ * A utility class for easy access to all available {@link Profession}s.
+ */
 public final class Professions {
 
-    static final VillagerFactory factory = new NullVillagerFactory();
-
     private Professions() {
-
     }
 
     public static final Profession FARMER = null;
@@ -40,8 +42,24 @@ public final class Professions {
     public static final Profession BLACKSMITH = null;
     public static final Profession BUTCHER = null;
 
+    /**
+     * Gets all available {@link Profession}s.
+     * 
+     * @return An immutable list of all professions
+     */
     public static List<Profession> getValues() {
-        return factory.getProfessions();
+        return NullVillagerFactory.factory.getProfessions();
+    }
+
+    /**
+     * Gets the {@link Profession} with the specified name or null if there is
+     * no such profession.
+     * 
+     * @param name The name of the profession to return
+     * @return The profession with the given name or null
+     */
+    public static Optional<Profession> valueOf(final String name) {
+        return Optional.fromNullable(NullVillagerFactory.factory.getProfessionFromName(name));
     }
 
 }

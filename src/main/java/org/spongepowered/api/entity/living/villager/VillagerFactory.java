@@ -24,20 +24,52 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
-import com.google.common.base.Optional;
-
 import java.util.List;
 
 public interface VillagerFactory {
 
-    Optional<Career> getCareerFromName(String name);
-
-    Optional<Profession> getProfessionFromName(String name);
-
-    Profession getProfessionFromCareer(Career career);
-
+    /**
+     * Gets all available {@link Profession}s.
+     * 
+     * @return An immutable list of all professions
+     */
     List<Profession> getProfessions();
 
+    /**
+     * Gets the {@link Profession} with the specified name or null if there is
+     * no such profession.
+     * 
+     * @param name The name of the profession to return
+     * @return The profession with the given name or null
+     */
+    Profession getProfessionFromName(String name);
+
+    /**
+     * Gets all available {@link Career}s.
+     * 
+     * @return An immutable list of all careers
+     */
     List<Career> getCareers();
+
+    /**
+     * Gets all {@link Career}s belonging to the specified {@link Profession}.
+     * Returns a non empty list of {@link Profession}s or null if the given
+     * {@link Profession} is null.
+     * 
+     * @param profession The profession which careers should be returned.
+     * @return An immutable list of careers belonging to the given profession or
+     *         null if profession is null
+     * @see Career#getProfession()
+     */
+    List<Career> getCareersFromProfession(Profession profession);
+
+    /**
+     * Gets the {@link Career} with the specified name or null if there is no
+     * such career.
+     * 
+     * @param name The name of the career to return
+     * @return The career with the given name or null
+     */
+    Career getCareerFromName(String name);
 
 }

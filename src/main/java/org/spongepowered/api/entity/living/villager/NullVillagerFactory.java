@@ -24,26 +24,11 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
-import com.google.common.base.Optional;
-
 import java.util.List;
 
-public class NullVillagerFactory implements VillagerFactory {
+final class NullVillagerFactory implements VillagerFactory {
 
-    @Override
-    public Optional<Career> getCareerFromName(String name) {
-        return null;
-    }
-
-    @Override
-    public Optional<Profession> getProfessionFromName(String name) {
-        return null;
-    }
-
-    @Override
-    public Profession getProfessionFromCareer(Career career) {
-        return null;
-    }
+    static final VillagerFactory factory = new NullVillagerFactory();
 
     @Override
     public List<Profession> getProfessions() {
@@ -51,7 +36,23 @@ public class NullVillagerFactory implements VillagerFactory {
     }
 
     @Override
+    public Profession getProfessionFromName(String name) {
+        return null;
+    }
+
+    @Override
     public List<Career> getCareers() {
         return null;
     }
+
+    @Override
+    public List<Career> getCareersFromProfession(Profession profession) {
+        return null;
+    }
+
+    @Override
+    public Career getCareerFromName(String name) {
+        return null;
+    }
+
 }

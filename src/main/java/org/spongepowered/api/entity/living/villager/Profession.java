@@ -30,4 +30,12 @@ package org.spongepowered.api.entity.living.villager;
  */
 public interface Profession {
 
+    /**
+     * The unique name of this profession.
+     *
+     * @return The name of this profession
+     * @see Professions#valueOf(String)
+     */
+    String getName();
+
 }
