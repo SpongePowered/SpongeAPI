@@ -23,30 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.util.event;
 
-public interface EventManager {
-
-    /**
-     * Registers an object to receive {@link Event}s.
-     *
-     * @param obj The object
-     */
-    void register(Object obj);
+public interface Cancellable {
 
     /**
-     * Un-registers an object from receiving {@link Event}s.
+     * Gets if the {@link Event} has been cancelled.
      *
-     * @param obj The object
+     * @return Is this event cancelled
      */
-    void unregister(Object obj);
+    boolean isCancelled();
 
     /**
-     * Calls a {@link Event} to all objects that handle it.
+     * Sets the cancelled state of the {@link Event}.
      *
-     * @param event The event
-     * @return True if canceled, false if not
+     * @param cancel The new cancelled state
      */
-    boolean call(Event event);
+    void setCancelled(boolean cancel);
 
 }

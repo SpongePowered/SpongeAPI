@@ -27,8 +27,6 @@ package org.spongepowered.api.service.scheduler;
 
 import org.spongepowered.api.plugin.PluginContainer;
 
-import java.util.concurrent.Future;
-
 /**
  * Represents a task that has been scheduled.
  */

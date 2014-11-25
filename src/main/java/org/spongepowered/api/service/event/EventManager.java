@@ -23,29 +23,35 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.service.event;
+
+import org.spongepowered.api.util.event.Event;
 
 /**
- * The result of an action such as an event
+ * Manages the registration of event handlers and the dispatching of events.
  */
-public enum Result {
+public interface EventManager {
 
     /**
-     * The result of a request such as an event has been denied continuation
+     * Registers an object to receive {@link Event}s.
+     *
+     * @param obj The object
      */
-    DENY,
+    void register(Object obj);
+
     /**
-     * The result of a request such as an event has not been modified, and will
-     * progress based on the default expectation
+     * Un-registers an object from receiving {@link Event}s.
+     *
+     * @param obj The object
      */
-    DEFAULT,
+    void unregister(Object obj);
+
     /**
-     * The result of a request such as an event has been allowed continuation
+     * Calls a {@link Event} to all handlers that handle it.
+     *
+     * @param event The event
+     * @return True if canceled, false if not
      */
-    ALLOW,
-    /**
-     * There is no result from a request such as an event, or a result is not applicable
-     */
-    NO_RESULT
+    boolean post(Event event);
 
 }

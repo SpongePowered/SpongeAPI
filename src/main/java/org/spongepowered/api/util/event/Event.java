@@ -22,22 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
 
-public interface Cancellable {
+package org.spongepowered.api.util.event;
 
-    /**
-     * Gets if the {@link Event} has been cancelled.
-     *
-     * @return Is this event cancelled
-     */
-    boolean isCancelled();
+/**
+ * An event that occurs in Sponge.
+ */
+public interface Event {
 
     /**
-     * Sets the cancelled state of the {@link Event}.
+     * Gets if the event can be cancelled.
      *
-     * @param cancel The new cancelled state
+     * @return Whether the event can be cancelled
      */
-    void setCancelled(boolean cancel);
+    boolean isCancellable();
+
+    /**
+     * Gets the {@link Result} of the {@link Event}.
+     *
+     * @return The result of this event
+     */
+    Result getResult();
+
+    /**
+     * Sets the {@link Result} of the {@link Event}.
+     *
+     * @param result The result
+     */
+    void setResult(Result result);
 
 }

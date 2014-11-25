@@ -23,20 +23,29 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.util.event;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+/**
+ * The result of an action such as an event
+ */
+public enum Result {
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-@Retention(value = RUNTIME)
-@Target(value = METHOD)
-public @interface Subscribe {
-
-    Order order() default Order.DEFAULT;
-
-    boolean ignoreCancelled() default true;
+    /**
+     * The result of a request such as an event has been denied continuation
+     */
+    DENY,
+    /**
+     * The result of a request such as an event has not been modified, and will
+     * progress based on the default expectation
+     */
+    DEFAULT,
+    /**
+     * The result of a request such as an event has been allowed continuation
+     */
+    ALLOW,
+    /**
+     * There is no result from a request such as an event, or a result is not applicable
+     */
+    NO_RESULT
 
 }
