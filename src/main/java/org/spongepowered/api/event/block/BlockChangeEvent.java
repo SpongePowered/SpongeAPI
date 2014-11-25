@@ -35,6 +35,8 @@ public interface BlockChangeEvent extends BlockEvent {
     
     /**
      * Get the block that will replace the block.
+     *
+     * @return The block that will replace
      */
     BlockSnapshot getReplacementBlock();
 
