@@ -49,10 +49,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * some blocks, but tracing this event would be too complicated and thus
  * may not be attempted.</p>
  */
-public class Cause<T> {
+public class Cause {
     
     private final Optional<Cause> parent;
-    private final T cause;
+    private final Object cause;
     private final Optional<Reason> reason;
 
     /**
@@ -62,7 +62,7 @@ public class Cause<T> {
      * @param cause The causing object (may be a block, entity, etc.)
      * @param reason An optional reason
      */
-    public Cause(@Nullable Cause parent, T cause, @Nullable Reason reason) {
+    public Cause(@Nullable Cause parent, Object cause, @Nullable Reason reason) {
         checkNotNull(cause);
         this.parent = Optional.fromNullable(parent);
         this.cause = cause;
@@ -84,7 +84,7 @@ public class Cause<T> {
      *
      * @return The cause
      */
-    public T getCause() {
+    public Object getCause() {
         return cause;
     }
 
