@@ -29,4 +29,12 @@ package org.spongepowered.api.entity.living.meta;
  */
 public interface OcelotType {
 
+    /**
+     * The unique name of this horse variant.
+     * 
+     * @return The name of this horse variant
+     * @see HorseVariants#valueOf(String)
+     */
+    String getName();
+
 }

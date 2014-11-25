@@ -31,4 +31,12 @@ package org.spongepowered.api.entity.living.meta;
  */
 public interface HorseStyle {
 
+    /**
+     * The unique name of this horse style.
+     * 
+     * @return The name of this horse style
+     * @see HorseStyles#valueOf(String)
+     */
+    String getName();
+
 }

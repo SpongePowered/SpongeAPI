@@ -31,4 +31,12 @@ package org.spongepowered.api.entity.living.meta;
  */
 public interface HorseColor {
 
+    /**
+     * The unique name of this horse color.
+     * 
+     * @return The name of this horse color
+     * @see HorseColors#valueOf(String)
+     */
+    String getName();
+
 }

@@ -31,4 +31,12 @@ package org.spongepowered.api.entity.living.meta;
  */
 public interface SkeletonType {
 
+    /**
+     * The unique name of this skeleton type.
+     * 
+     * @return The name of this skeleton type
+     * @see SkeletonTypes#valueOf(String)
+     */
+    String getName();
+
 }
