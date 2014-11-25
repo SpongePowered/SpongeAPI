@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.service.event;
 
+import org.spongepowered.api.util.Owner;
 import org.spongepowered.api.util.event.Event;
 
 /**
@@ -35,9 +36,10 @@ public interface EventManager {
     /**
      * Registers an object to receive {@link Event}s.
      *
+     * @param owner The owner of the handlers
      * @param obj The object
      */
-    void register(Object obj);
+    void register(Owner owner, Object obj);
 
     /**
      * Un-registers an object from receiving {@link Event}s.
