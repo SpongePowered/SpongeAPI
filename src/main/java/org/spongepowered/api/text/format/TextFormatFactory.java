@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.format;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 /**
@@ -36,10 +38,10 @@ interface TextFormatFactory {
      * Gets the {@link TextColor} with the specified name.
      *
      * @param name The identifier of the text colors, for example "DARK_BLUE"
-     * @return The {@link TextColor} with the specified name, or null if not
-     *         found
+     * @return The {@link TextColor} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
-    TextColor getColorFromName(String name);
+    Optional<TextColor> getColorFromName(String name);
 
     /**
      * Returns a list of all available {@link TextColor}s on this server.
@@ -52,10 +54,10 @@ interface TextFormatFactory {
      * Gets the {@link TextStyle} with the specified name.
      *
      * @param name The identifier of the text style, for example "UNDERLINE"
-     * @return The {@link TextStyle} with the specified name, or null if not
-     *         found
+     * @return The {@link TextStyle} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
-    TextStyle getStyleFromName(String name);
+    Optional<TextStyle> getStyleFromName(String name);
 
     /**
      * Returns a list of all available {@link TextStyle}s on this server.

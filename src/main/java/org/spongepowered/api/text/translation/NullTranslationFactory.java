@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.translation;
 
+import com.google.common.base.Optional;
+
 /**
  * Dummy implementation of {@link TranslationFactory} - returns null for all
  * methods.
@@ -31,7 +33,8 @@ package org.spongepowered.api.text.translation;
 class NullTranslationFactory implements TranslationFactory {
 
     @Override
-    public Translation getTranslationFromId(String id) {
+    public Optional<Translation> getTranslationFromId(String id) {
         return null;
     }
+
 }

@@ -22,15 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.chat;
+
+package org.spongepowered.api.service.event;
+
+import org.spongepowered.api.util.Owner;
+import org.spongepowered.api.util.event.Event;
 
 /**
- * A ChatPosition represents one of the positions that a chat message can be
- * sent to. Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the
- * chat message packet</a> for a description of the packet. A list of available
- * chat positions in Minecraft is available in
- * {@link org.spongepowered.api.text.chat.ChatPositions}.
+ * Manages the registration of event handlers and the dispatching of events.
  */
-public interface ChatPosition {
+public interface EventManager {
+
+    /**
+     * Registers an object to receive {@link Event}s.
+     *
+     * @param owner The owner of the handlers
+     * @param obj The object
+     */
+    void register(Owner owner, Object obj);
+
+    /**
+     * Un-registers an object from receiving {@link Event}s.
+     *
+     * @param obj The object
+     */
+    void unregister(Object obj);
+
+    /**
+     * Calls a {@link Event} to all handlers that handle it.
+     *
+     * @param event The event
+     * @return True if canceled, false if not
+     */
+    boolean post(Event event);
 
 }

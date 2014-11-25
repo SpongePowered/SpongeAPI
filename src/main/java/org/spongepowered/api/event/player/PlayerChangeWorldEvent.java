@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.World;
 
 /**

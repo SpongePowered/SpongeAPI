@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.translation;
 
+import com.google.common.base.Optional;
+
 /**
  * Represents the required implementation for the static methods in
  * {@link Translations}.
@@ -35,10 +37,9 @@ interface TranslationFactory {
      * specified ID.
      *
      * @param id The translation ID
-     * @return A {@link Translation} instance with the specified ID or null if
-     *         not found
-     *
+     * @return A {@link Translation} instance with the specified ID, or
+     *         {@link Optional#absent()} if not found
      */
-    Translation getTranslationFromId(String id);
+    Optional<Translation> getTranslationFromId(String id);
 
 }

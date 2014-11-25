@@ -123,7 +123,7 @@ public final class Locales {
      *         {@link Optional#absent} if not found
      */
     public static Optional<Locale> of(String id) {
-        return Optional.fromNullable(factory.getLocaleFromId(id));
+        return factory.getLocaleFromId(id);
     }
 
     /**
@@ -134,7 +134,7 @@ public final class Locales {
      *         {@link Optional#absent()} if not found
      */
     public static Optional<Locale> valueOf(String name) {
-        return Optional.fromNullable(factory.getLocaleFromName(name));
+        return factory.getLocaleFromName(name);
     }
 
     /**

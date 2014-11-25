@@ -29,21 +29,21 @@ import com.google.common.base.Optional;
 import java.util.List;
 
 /**
- * ChatPositions is a list of the default chat positions that are available in
+ * ChatTypes is a list of the default chat positions that are available in
  * Minecraft. The values are filled in by mixins in Sponge at runtime.
  */
-public final class ChatPositions {
+public final class ChatTypes {
 
-    private static final ChatPositionFactory factory = new NullChatPositionFactory();
+    private static final ChatTypeFactory factory = new NullChatTypeFactory();
 
-    private ChatPositions() {
+    private ChatTypes() {
 
     }
 
     /**
      * The standard chat position in prompt at the bottom-left.
      */
-    public static final ChatPosition CHAT = null;
+    public static final ChatType CHAT = null;
 
     /**
      * The same position as the {@link #CHAT} position, except messages sent to
@@ -54,32 +54,32 @@ public final class ChatPositions {
      * Use wisely as to not annoy players.
      * </p>
      */
-    public static final ChatPosition SYSTEM = null;
+    public static final ChatType SYSTEM = null;
 
     /**
      * The position right above the inventory, experience, health, item name,
      * etc. bars.
      */
-    public static final ChatPosition ACTION_BAR = null;
+    public static final ChatType ACTION_BAR = null;
 
     /**
-     * Gets the {@link ChatPosition} with the specified name.
+     * Gets the {@link ChatType} with the specified name.
      *
-     * @param name The identifier of the chat position, for example "ACTION_BAR"
-     * @return The {@link ChatPosition} with the specified name, or
+     * @param name The identifier of the chat type, for example "ACTION_BAR"
+     * @return The {@link ChatType} with the specified name, or
      *         {@link Optional#absent()} if not found
      */
-    public static Optional<ChatPosition> valueOf(String name) {
-        return Optional.fromNullable(factory.getPositionFromName(name));
+    public static Optional<ChatType> valueOf(String name) {
+        return factory.getTypeFromName(name);
     }
 
     /**
-     * Returns a list of all available {@link ChatPosition}s on this server.
+     * Returns a list of all available {@link ChatType}s on this server.
      *
-     * @return An immutable list of all chat positions
+     * @return An immutable list of all chat types
      */
-    public static List<ChatPosition> getValues() {
-        return factory.getPositions();
+    public static List<ChatType> getValues() {
+        return factory.getTypes();
     }
 
 }

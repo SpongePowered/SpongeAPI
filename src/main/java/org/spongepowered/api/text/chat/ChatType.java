@@ -22,33 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.event;
+package org.spongepowered.api.text.chat;
 
 /**
- * An event that occurs in Sponge.
+ * A chat type represents one of the positions that a chat message can be sent
+ * to. Please see the <a href="http://wiki.vg/Protocol#Chat_Message">the chat
+ * message packet</a> for a description of the packet. A list of available chat
+ * types in Minecraft is available in {@link ChatTypes}.
  */
-public interface Event {
-
-    /**
-     * Gets if the event can be cancelled.
-     *
-     * @return Whether the event can be cancelled
-     */
-    boolean isCancellable();
-
-    /**
-     * Gets the {@link Result} of the {@link Event}.
-     *
-     * @return The result of this event
-     */
-    Result getResult();
-
-    /**
-     * Sets the {@link Result} of the {@link Event}.
-     *
-     * @param result The result
-     */
-    void setResult(Result result);
+public interface ChatType {
 
 }

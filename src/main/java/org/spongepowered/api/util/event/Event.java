@@ -23,29 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event;
+package org.spongepowered.api.util.event;
 
 /**
- * The result of an action such as an event
+ * An event that occurs in Sponge.
  */
-public enum Result {
+public interface Event {
 
     /**
-     * The result of a request such as an event has been denied continuation
+     * Gets if the event can be cancelled.
+     *
+     * @return Whether the event can be cancelled
      */
-    DENY,
+    boolean isCancellable();
+
     /**
-     * The result of a request such as an event has not been modified, and will
-     * progress based on the default expectation
+     * Gets the {@link Result} of the {@link Event}.
+     *
+     * @return The result of this event
      */
-    DEFAULT,
+    Result getResult();
+
     /**
-     * The result of a request such as an event has been allowed continuation
+     * Sets the {@link Result} of the {@link Event}.
+     *
+     * @param result The result
      */
-    ALLOW,
-    /**
-     * There is no result from a request such as an event, or a result is not applicable
-     */
-    NO_RESULT
+    void setResult(Result result);
 
 }

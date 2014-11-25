@@ -23,25 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.service.command;
+package org.spongepowered.api.util.event;
 
-import org.spongepowered.api.util.Owner;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.dispatcher.Dispatcher;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-/**
- * A command dispatcher watches for commands (such as those said in chat)
- * and dispatches them to the correct command handler.
- */
-public interface CommandDispatcher extends Dispatcher {
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-    /**
-     * Register a command with this dispatcher.
-     *
-     * @param callable The command executor
-     * @param owner The owner of the command
-     * @param alias A list of aliases, where the first alias is the primary name
-     */
-    void registerCommand(CommandCallable callable, Owner owner, String... alias);
+@Retention(value = RUNTIME)
+@Target(value = METHOD)
+public @interface Subscribe {
+
+    Order order() default Order.DEFAULT;
+
+    boolean ignoreCancelled() default true;
 
 }

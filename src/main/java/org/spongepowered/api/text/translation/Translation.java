@@ -60,8 +60,9 @@ public interface Translation {
      */
     String get(Object... args);
 
-    // TODO locale api
-    // String get(Object locale);
-    // String get(Object locale, Object... args);
+    // This would only work on the client, the server has only the English
+    // translation
+    // String get(Locale locale);
+    // String get(Locale locale, Object... args);
 
 }

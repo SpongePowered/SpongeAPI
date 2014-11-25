@@ -22,24 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.chat;
 
-import java.util.List;
+package org.spongepowered.api.util.event;
 
 /**
- * Dummy implementation of {@link ChatPositionFactory} - returns null for all
- * methods.
+ * The result of an action such as an event
  */
-class NullChatPositionFactory implements ChatPositionFactory {
+public enum Result {
 
-    @Override
-    public ChatPosition getPositionFromName(String name) {
-        return null;
-    }
-
-    @Override
-    public List<ChatPosition> getPositions() {
-        return null;
-    }
+    /**
+     * The result of a request such as an event has been denied continuation
+     */
+    DENY,
+    /**
+     * The result of a request such as an event has not been modified, and will
+     * progress based on the default expectation
+     */
+    DEFAULT,
+    /**
+     * The result of a request such as an event has been allowed continuation
+     */
+    ALLOW,
+    /**
+     * There is no result from a request such as an event, or a result is not applicable
+     */
+    NO_RESULT
 
 }

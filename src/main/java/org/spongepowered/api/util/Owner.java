@@ -30,4 +30,12 @@ package org.spongepowered.api.util;
  */
 public interface Owner {
 
+    /**
+     * An ID for the owner to be used internally. The ID should be unique as to
+     * not conflict with other owners.
+     *
+     * @return A unique identifier
+     */
+    String getId();
+
 }

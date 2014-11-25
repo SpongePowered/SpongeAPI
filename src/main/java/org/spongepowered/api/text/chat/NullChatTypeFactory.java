@@ -22,31 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.chat;
 
-package org.spongepowered.api.event;
+import com.google.common.base.Optional;
 
-public interface EventManager {
+import java.util.List;
 
-    /**
-     * Registers an object to receive {@link Event}s.
-     *
-     * @param obj The object
-     */
-    void register(Object obj);
+/**
+ * Dummy implementation of {@link ChatTypeFactory} - returns null for all
+ * methods.
+ */
+class NullChatTypeFactory implements ChatTypeFactory {
 
-    /**
-     * Un-registers an object from receiving {@link Event}s.
-     *
-     * @param obj The object
-     */
-    void unregister(Object obj);
+    @Override
+    public Optional<ChatType> getTypeFromName(String name) {
+        return null;
+    }
 
-    /**
-     * Calls a {@link Event} to all objects that handle it.
-     *
-     * @param event The event
-     * @return True if canceled, false if not
-     */
-    boolean call(Event event);
+    @Override
+    public List<ChatType> getTypes() {
+        return null;
+    }
 
 }

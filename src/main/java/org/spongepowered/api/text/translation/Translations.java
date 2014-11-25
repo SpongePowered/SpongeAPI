@@ -45,7 +45,7 @@ public final class Translations {
      *         {@link Optional#absent()} if not found
      */
     public static Optional<Translation> of(String id) {
-        return Optional.fromNullable(factory.getTranslationFromId(id));
+        return factory.getTranslationFromId(id);
     }
 
 }

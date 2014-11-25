@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.format;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 /**
@@ -33,7 +35,7 @@ import java.util.List;
 class NullTextFormatFactory implements TextFormatFactory {
 
     @Override
-    public TextColor getColorFromName(String name) {
+    public Optional<TextColor> getColorFromName(String name) {
         return null;
     }
 
@@ -43,7 +45,7 @@ class NullTextFormatFactory implements TextFormatFactory {
     }
 
     @Override
-    public TextStyle getStyleFromName(String name) {
+    public Optional<TextStyle> getStyleFromName(String name) {
         return null;
     }
 
@@ -56,5 +58,4 @@ class NullTextFormatFactory implements TextFormatFactory {
     public TextStyle createStyle(TextStyle[] styles) {
         return null;
     }
-
 }

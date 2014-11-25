@@ -26,8 +26,8 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when the health of an {@link Entity} changes.
