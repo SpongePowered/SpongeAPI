@@ -25,13 +25,14 @@
 
 package org.spongepowered.api.event.cause;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.block.Block;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.reason.Reason;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.cause.reason.Reason;
 
-import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
+import javax.annotation.Nullable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A cause represents the reason or initiator of an event.
@@ -48,107 +49,52 @@ import com.google.common.base.Preconditions;
  * some blocks, but tracing this event would be too complicated and thus
  * may not be attempted.</p>
  */
-public class Cause {
+public class Cause<T> {
     
-    private Cause parent; //May be null in this variable, converted in getter
-    private Reason reason; //Never, ever null!
-    private Block block;
-    private Entity entity;
-    private World world;
+    private final Optional<Cause> parent;
+    private final T cause;
+    private final Optional<Reason> reason;
 
-    public Cause(Block block, Reason reason, Cause parent) {
-        Preconditions.checkNotNull(reason, "Reason cannot be null!");
-        this.block = block;
-        this.reason = reason;
-        this.parent = parent;
-    }
-    
-    public Cause(Block block, Reason reason) {
-        this(block, reason, null);
-    }
-    
-    public Cause(Block block) {
-        this(block, Reason.UNKNOWN);
-    }
-    
-    public Cause(Entity entity, Reason reason, Cause parent) {
-        Preconditions.checkNotNull(reason, "Reason cannot be null!");
-        this.entity = entity;
-        this.reason = reason;
-        this.parent = parent;
-    }
-    
-    public Cause(Entity entity, Reason reason) {
-        this(entity, reason, null);
-    }
-    
-    public Cause(Entity entity) {
-        this(entity, Reason.UNKNOWN);
-    }
-    
-    public Cause(World world, Reason reason, Cause parent) {
-        Preconditions.checkNotNull(reason, "Reason cannot be null!");
-        this.world = world;
-        this.reason = reason;
-        this.parent = parent;
-    }
-    
-    public Cause(World world, Reason reason) {
-        this(world, reason, null);
-    }
-    
-    public Cause(World world) {
-        this(world, Reason.UNKNOWN);
-    }
-    
     /**
-     * Get the parent cause.
+     * Create a new cause instance.
      *
-     * @return The parent cause, if available
+     * @param parent An optional parent
+     * @param cause The causing object (may be a block, entity, etc.)
+     * @param reason An optional reason
      */
-    Optional<Cause> getParent() {
-        return Optional.of(parent);
+    public Cause(@Nullable Cause parent, T cause, @Nullable Reason reason) {
+        checkNotNull(cause);
+        this.parent = Optional.fromNullable(parent);
+        this.cause = cause;
+        this.reason = Optional.fromNullable(reason);
     }
-    
+
     /**
-     * Gets reason for cause.
+     * Get the parent cause of this cause.
+     *
+     * @return The parent cause
      */
-    public Reason getReason() {
-        return this.reason;
+    public Optional<Cause> getParent() {
+        return parent;
     }
-    
+
     /**
-     * Gets block associated with this cause.
-     * @return Block, if available
+     * Get the causing object (it may be an {@link Entity}, {@link Block},
+     * etc.).
+     *
+     * @return The cause
      */
-    public Optional<Block> getBlock() {
-        return Optional.of(block);
+    public T getCause() {
+        return cause;
     }
-    
+
     /**
-     * Gets entity associated with this cause.
-     * @return Entity, if available
+     * Get the reason.
+     *
+     * @return The reason
      */
-    public Optional<Entity> getEntity() {
-        return Optional.of(entity);
+    public Optional<Reason> getReason() {
+        return reason;
     }
-    
-    /**
-     * Gets world associated with this cause. If world isn't directly
-     * specified, world of entity or block will returned.
-     * @return World, if available
-     */
-    public Optional<World> getWorld() {
-        if (world != null) {
-            return Optional.of(this.world);
-        } else {
-            if (entity != null) {
-                return entity.getWorld();
-            } else if (block != null) {
-                //Cast Extendt to World, should work always.
-                return Optional.of((World) block.getLocation().getExtent());
-            }
-        }
-        return Optional.of(world);
-    }
+
 }

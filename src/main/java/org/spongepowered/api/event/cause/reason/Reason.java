@@ -22,31 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.reason;
 
-import com.google.common.base.Optional;
+package org.spongepowered.api.event.cause.reason;
+
+import org.spongepowered.api.event.cause.Cause;
 
 /**
- * Reason for explosion. It may contain explosion power.
+ * A reason explains a {@link Cause}. For example, a cause might be a fire
+ * block, and the reason would be fire spread.
  */
-public class ExplosionReason extends Reason {
-    
-    private float power;
-    
-    public ExplosionReason(float power) {
-        super("explosion");
-        this.power = power;
-    }
-    
-    public ExplosionReason() {
-        super("explosion");
-    }
-    
-    /**
-     * Gets power of the explosion, if specified.
-     * @return Power of explosion, if available
-     */
-    public Optional<Float> getPower() {
-        return Optional.of(this.power);
-    }
+public interface Reason {
+
 }
