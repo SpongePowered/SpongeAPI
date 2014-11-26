@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+import java.util.List;
+
+import com.google.common.base.Optional;
+
+/**
+ * A utility class for easy access to all available {@link Career}s.
+ */
 public final class Careers {
 
     private Careers() {
-
     }
 
     public static final Career FARMER = null;
@@ -42,7 +48,38 @@ public final class Careers {
     public static final Career BUTCHER = null;
     public static final Career LEATHERWORKER = null;
 
-    Career valueOf(String name) {
-        return null;
+    /**
+     * Gets all available {@link Career}s.
+     *
+     * @return An immutable list of all careers
+     */
+    public static List<Career> getValues() {
+        return NullVillagerFactory.factory.getCareers();
     }
+
+    /**
+     * Gets all {@link Career}s belonging to the specified {@link Profession}.
+     * Returns a non empty list of {@link Profession}s or null if the given
+     * {@link Profession} is null.
+     *
+     * @param profession The profession which careers should be returned.
+     * @return An immutable list of careers belonging to the given profession or
+     *         null if profession is null
+     * @see Career#getProfession()
+     */
+    public static List<Career> getValuesForProfession(final Profession profession) {
+        return NullVillagerFactory.factory.getCareersFromProfession(profession);
+    }
+
+    /**
+     * Gets the {@link Career} with the specified name or null if there is no
+     * such career.
+     *
+     * @param name The name of the career to return
+     * @return The career with the given name or null
+     */
+    public static Optional<Career> valueOf(final String name) {
+        return Optional.fromNullable(NullVillagerFactory.factory.getCareerFromName(name));
+    }
+
 }
