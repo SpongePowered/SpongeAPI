@@ -33,7 +33,7 @@ public interface Ageable extends LivingEntity {
     /**
      * Gets the age of this entity.
      *
-     * @return the current age of this entity
+     * @return The current age of this entity
      */
     int getAge();
 
@@ -44,7 +44,7 @@ public interface Ageable extends LivingEntity {
      * tends to equate to the entity being an adult and able to breed children.
      * </p>
      *
-     * @param age the age of this entity
+     * @param age The age of this entity
      */
     void setAge(int age);
 
@@ -63,7 +63,7 @@ public interface Ageable extends LivingEntity {
     /**
      * Returns true if this entity is considered an adult.
      *
-     * @return true if this entity is an adult
+     * @return True if this entity is an adult
      */
     boolean isBaby();
 
@@ -71,7 +71,7 @@ public interface Ageable extends LivingEntity {
      * Returns true if this entity is able to breed. Some entities have
      * cooldowns between being able to breed new entities.
      *
-     * @return true if this entity is able to breed
+     * @return True if this entity is able to breed
      */
     boolean canBreed();
 
