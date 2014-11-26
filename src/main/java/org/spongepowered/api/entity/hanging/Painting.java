@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.entity.Hanging;
 import org.spongepowered.api.entity.hanging.art.Art;
 
 /**

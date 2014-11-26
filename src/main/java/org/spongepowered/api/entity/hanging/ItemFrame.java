@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.hanging;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Hanging;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import javax.annotation.Nullable;
