@@ -39,10 +39,10 @@ public final class HorseVariants {
     public static final HorseVariant SKELETON_HORSE = null;
 
     public static List<HorseVariant> getValues() {
-        return NullLivingMetaFactory.factory.getHorseVariants();
+        return null;
     }
 
     public static Optional<HorseVariant> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.getHorseVariantFromName(name));
+        return Optional.fromNullable(null);
     }
 }

@@ -41,11 +41,11 @@ public final class HorseColors {
     public static final HorseColor DARK_BROWN = null;
 
     public static List<HorseColor> getValues() {
-        return NullLivingMetaFactory.factory.getHorseColors();
+        return null;
     }
 
     public static Optional<HorseColor> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.getHorseColorFromName(name));
+        return Optional.fromNullable(null);
     }
 
 }

@@ -31,4 +31,11 @@ package org.spongepowered.api.entity.living.meta;
  */
 public interface SkeletonType {
 
+    /**
+     * Gets the name of this skeleton type.
+     *
+     * @return The name of this skeleton type
+     */
+    String getName();
+
 }

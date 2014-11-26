@@ -24,11 +24,16 @@
  */
 package org.spongepowered.api.entity.hanging.art;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
+import com.google.common.base.Optional;
+
 import java.util.List;
 
+/**
+ * A utility class for getting available {@link Art} pieces.
+ */
 public class Arts {
-
-    private static final ArtFactory factory = new NullArtFactory();
 
     private Arts() {
     }
@@ -60,7 +65,17 @@ public class Arts {
     public static final Art PIGSCENE = null;
     public static final Art BURNING_SKULL = null;
 
+    /**
+     * Gets a list of all available {@link Art} pieces.
+     *
+     * @return A list of all available art pieces
+     */
     public static List<Art> getValues() {
-        return factory.getArtPieces();
+        return null;
+    }
+
+    public static Optional<Art> getArtByName(final String name) {
+        checkArgument(name != null, "Cannot get art with a null name!");
+        return null;
     }
 }

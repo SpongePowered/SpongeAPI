@@ -221,20 +221,11 @@ public interface Entity extends Identifiable, EntityState {
     float getHeight();
 
     /**
-     * Sets the bounding box size for this entity.
+     * Gets the current size scale of this entity.
      *
-     * @param base Size in width
-     * @param y Size in height
+     * @return The current scale of the bounding box
      */
-    void setSize(float base, float y);
-
-    /**
-     * Sets the scale of this entity according to the current xz/y definitions
-     * to render.
-     *
-     * @param scale The scale to size this entity
-     */
-    void setScale(float scale);
+    float getScale();
 
     /**
      * Returns whether this entity is considered dead and ready for removal.

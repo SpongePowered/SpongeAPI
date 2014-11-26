@@ -22,10 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.merchant;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.HumanEntity;
+
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -46,4 +49,30 @@ public interface Merchant {
      * @return The currently trading customer if available
      */
     Optional<HumanEntity> getCustomer();
+
+    /**
+     * Gets an immutable list of {@link TradeOffer}s that this merchant
+     * can send to a {@link HumanEntity}.
+     *
+     * @return An immutable list of trade offers
+     */
+    List<TradeOffer> getOffers();
+
+    /**
+     * Adds the given offer to the list of offers provided by this merchant.
+     *
+     * @param offer The offer to add
+     */
+    void addOffer(TradeOffer offer);
+
+    /**
+     * Replaces the entire list of trade offers this merchant can trade
+     * with a {@link HumanEntity}.
+     * <p>When a merchant is in the middle of a trade, the offers may change
+     * dynamically according to the offers completed by the customer.</p>
+     *
+     * @param offers The offers to set
+     */
+    void setOffers(List<TradeOffer> offers);
+
 }

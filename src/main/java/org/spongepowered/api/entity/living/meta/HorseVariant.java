@@ -32,4 +32,11 @@ package org.spongepowered.api.entity.living.meta;
  */
 public interface HorseVariant {
 
+    /**
+     * Gets the name of this variant.
+     *
+     * @return The name of this variant
+     */
+    String getName();
+
 }

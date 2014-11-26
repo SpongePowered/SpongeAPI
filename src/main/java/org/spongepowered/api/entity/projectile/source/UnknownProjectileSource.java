@@ -22,36 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.villager;
+package org.spongepowered.api.entity.projectile.source;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.math.Vector3f;
 
-import java.util.List;
-
-public class NullVillagerFactory implements VillagerFactory {
+/**
+ * Represents a {@link ProjectileSource} that is not part of the API, such
+ * as a plugin or mod spawning a Projectile.
+ */
+public final class UnknownProjectileSource implements ProjectileSource {
 
     @Override
-    public Optional<Career> getCareerFromName(String name) {
+    public <T extends Projectile> T launchProjectile(Class<T> projectileClass) {
         return null;
     }
 
     @Override
-    public Optional<Profession> getProfessionFromName(String name) {
-        return null;
-    }
-
-    @Override
-    public Profession getProfessionFromCareer(Career career) {
-        return null;
-    }
-
-    @Override
-    public List<Profession> getProfessions() {
-        return null;
-    }
-
-    @Override
-    public List<Career> getCareers() {
+    public <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3f velocity) {
         return null;
     }
 }

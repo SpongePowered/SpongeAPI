@@ -39,10 +39,10 @@ public final class HorseStyles {
     public static final HorseStyle BLACK_DOTS = null;
 
     public static List<HorseStyle> getValues() {
-        return NullLivingMetaFactory.factory.getHorseStyles();
+        return null;
     }
 
     public static Optional<HorseStyle> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.getHorseStyleFromName(name));
+        return Optional.fromNullable(null);
     }
 }

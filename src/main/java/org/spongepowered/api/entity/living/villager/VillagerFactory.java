@@ -28,16 +28,56 @@ import com.google.common.base.Optional;
 
 import java.util.List;
 
-public interface VillagerFactory {
+/**
+ * A utility factory to retrieve available {@link Profession}s and
+ * {@link Career}s.
+ */
+interface VillagerFactory {
 
-    Optional<Career> getCareerFromName(String name);
+    /**
+     * Gets the career by name, if available.
+     *
+     * @param name The name of the career
+     * @return The career, if available
+     */
+    Career getCareerFromName(String name);
 
-    Optional<Profession> getProfessionFromName(String name);
+    /**
+     * Gets the profession by name, if available.
+     *
+     * @param name The name of the profession
+     * @return The profession if available
+     */
+    Profession getProfessionFromName(String name);
 
+    /**
+     * Gets the profession the given {@link Career} is associated with.
+     * <p>This can be simplified with {@link Career#getProfession()}</p>
+     *
+     * @param career The career
+     * @return The profession
+     */
     Profession getProfessionFromCareer(Career career);
 
+    /**
+     * Gets the currently available professions.
+     *
+     * @return A list of all professions
+     */
     List<Profession> getProfessions();
 
+    /**
+     * Gets the currently available careers.
+     *
+     * @return A list of all careers
+     */
     List<Career> getCareers();
 
+    /**
+     * Gets all available careers for the given {@link Profession}.
+     *
+     * @param profession The profession in question
+     * @return A list of careers
+     */
+    List<Career> getCareersFromProfession(Profession profession);
 }

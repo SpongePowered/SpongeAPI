@@ -24,10 +24,24 @@
  */
 package org.spongepowered.api.entity.hanging.art;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 interface ArtFactory {
 
+    /**
+     * Gets a list of all available art pieces
+     *
+     * @return A list of all art pieces
+     */
     List<Art> getArtPieces();
 
+    /**
+     * Gets the {@link Art} by name.
+     *
+     * @param name The name of the art piece
+     * @return The art, if available
+     */
+    Optional<Art> getArtFromName(String name);
 }

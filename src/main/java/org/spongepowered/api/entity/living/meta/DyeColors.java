@@ -50,10 +50,10 @@ public final class DyeColors {
     public static final DyeColor BLACK = null;
 
     public static List<DyeColor> getValues() {
-        return NullLivingMetaFactory.factory.getDyeColors();
+        return null;
     }
 
     public static Optional<DyeColor> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.getDyeColorFromName(name));
+        return Optional.fromNullable(null);
     }
 }

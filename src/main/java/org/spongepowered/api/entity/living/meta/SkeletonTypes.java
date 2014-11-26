@@ -36,10 +36,10 @@ public final class SkeletonTypes {
     public static final SkeletonType WITHER = null;
 
     public static List<SkeletonType> getValues() {
-        return NullLivingMetaFactory.factory.getSkeletonTypes();
+        return null;
     }
 
     public static Optional<SkeletonType> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.getSkeletonTypeFromName(name));
+        return Optional.fromNullable(null);
     }
 }

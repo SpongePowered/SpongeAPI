@@ -29,4 +29,11 @@ package org.spongepowered.api.entity.living.meta;
  */
 public interface OcelotType {
 
+    /**
+     * Gets the name of this ocelot type.
+     *
+     * @return The name of this ocelot type
+     */
+    String getName();
+
 }

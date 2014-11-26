@@ -37,6 +37,8 @@ public interface ArmorEquipable {
 
     /**
      * Gets the helmet currently being worn by this entity.
+     * <p>Having the helmet as null will result in having nothing
+     * equipped in the helmet slot.</p>
      *
      * @return The helmet, if available
      */
@@ -44,6 +46,8 @@ public interface ArmorEquipable {
 
     /**
      * Sets the helmet currently being worn by this entity.
+     * <p>Having the helmet as null will result in having nothing
+     * equipped in the helmet slot.</p>
      *
      * @param helmet The helmet to put on the entity
      */
@@ -51,6 +55,8 @@ public interface ArmorEquipable {
 
     /**
      * Gets the chestplate currently being worn by this entity.
+     * <p>Having the chestplate as null will result in having nothing
+     * equipped in the chestplate slot.</p>
      *
      * @return The chestplate, if available
      */
@@ -58,6 +64,8 @@ public interface ArmorEquipable {
 
     /**
      * Sets the chestplate currently being worn by this entity.
+     * <p>Having the chestplate as null will result in having nothing
+     * equipped in the chestplate slot.</p>
      *
      * @param chestplate The chestplate to put on the entity
      */
@@ -65,6 +73,8 @@ public interface ArmorEquipable {
 
     /**
      * Gets the leggings currently being worn by this entity.
+     * <p>Having the leggings as null will result in having nothing
+     * equipped in the leggings slot.</p>
      *
      * @return The leggings, if available
      */
@@ -72,6 +82,8 @@ public interface ArmorEquipable {
 
     /**
      * Sets the leggings currently being worn by this entity.
+     * <p>Having the leggings as null will result in having nothing
+     * equipped in the leggings slot.</p>
      *
      * @param leggings The leggings to put on the entity
      */
@@ -79,6 +91,8 @@ public interface ArmorEquipable {
 
     /**
      * Gets the boots currently being worn by this entity.
+     * <p>Having the boots as null will result in having nothing
+     * equipped in the boots slot.</p>
      *
      * @return The boots, if available
      */
@@ -86,6 +100,8 @@ public interface ArmorEquipable {
 
     /**
      * Sets the boots currently being worn by this entity.
+     * <p>Having the boots as null will result in having nothing
+     * equipped in the boots slot.</p>
      *
      * @param boots The boots to put on the entity
      */
@@ -93,6 +109,8 @@ public interface ArmorEquipable {
 
     /**
      * Gets the current equipped item in hand if available.
+     * <p>Having the item in hand as null will result in having nothing
+     * equipped in the item in hand slot.</p>
      *
      * @return The current item in hand, if available
      */
@@ -100,6 +118,8 @@ public interface ArmorEquipable {
 
     /**
      * Sets the item in hand for this entity.
+     * <p>Having the item in hand as null will result in having nothing
+     * equipped in the item in hand slot.</p>
      *
      * @param itemInHand The item in hand
      */

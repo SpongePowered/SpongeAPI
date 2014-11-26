@@ -41,10 +41,10 @@ public final class RabbitTypes {
     public static final RabbitType KILLER = null;
 
     public static List<RabbitType> getValues() {
-        return NullLivingMetaFactory.factory.getRabbitTypes();
+        return null;
     }
 
     public static Optional<RabbitType> getTypeFromString(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.getRabbitTypeFromName(name));
+        return Optional.fromNullable(null);
     }
 }

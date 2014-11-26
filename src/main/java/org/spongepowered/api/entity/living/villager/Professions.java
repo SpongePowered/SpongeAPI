@@ -24,14 +24,17 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
+import com.google.common.base.Optional;
+
 import java.util.List;
 
+/**
+ * A utility class to access all available {@link Profession}s.
+ */
 public final class Professions {
-
-    static final VillagerFactory factory = new NullVillagerFactory();
-
     private Professions() {
-
     }
 
     public static final Profession FARMER = null;
@@ -40,8 +43,24 @@ public final class Professions {
     public static final Profession BLACKSMITH = null;
     public static final Profession BUTCHER = null;
 
+    /**
+     * Gets all available {@link Profession}s.
+     *
+     * @return A list of all professions
+     */
     public static List<Profession> getValues() {
-        return factory.getProfessions();
+        return null;
+    }
+
+    /**
+     * Gets the {@link Profession} with the specified name.
+     *
+     * @param name The name of the profession to return
+     * @return The profession with the given name, if available
+     */
+    public static Optional<Profession> getProfessionByName(final String name) {
+        checkArgument(name != null, "Cannot have a null profession name!");
+        return null;
     }
 
 }

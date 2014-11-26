@@ -38,10 +38,10 @@ public final class OcelotTypes {
     public static final OcelotType SIAMESE_CAT = null;
 
     public static List<OcelotType> getValues() {
-        return NullLivingMetaFactory.factory.getOcelotTypes();
+        return null;
     }
 
     public static Optional<OcelotType> valueOf(String name) {
-        return Optional.fromNullable(NullLivingMetaFactory.factory.getOcelotTypeFromName(name));
+        return Optional.fromNullable(null);
     }
 }

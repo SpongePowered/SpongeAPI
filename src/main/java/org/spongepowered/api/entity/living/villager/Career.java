@@ -31,11 +31,18 @@ package org.spongepowered.api.entity.living.villager;
 public interface Career {
 
     /**
-     * The parent profession of this career. The profession is permanent
+     * Gets the parent profession of this career. The profession is permanent
      * and can not be changed.
      *
      * @return The profession this career belongs to
      */
     Profession getProfession();
+
+    /**
+     * Gets name of this career.
+     *
+     * @return The name of this career
+     */
+    String getName();
 
 }

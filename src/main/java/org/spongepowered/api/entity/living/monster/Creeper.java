@@ -34,6 +34,7 @@ public interface Creeper extends Monster {
 
     /**
      * Gets whether or not the creeper has been struck by lightning.
+     * <p>Powered creepers may affect the overall blast radius/size.</p>
      *
      * @return If the creeper is powered
      */
@@ -41,6 +42,7 @@ public interface Creeper extends Monster {
 
     /**
      * Sets whether or not the creeper has been struck by lightning.
+     * <p>Powered creepers may affect the overall blast radius/size.</p>
      *
      * @param powered If the creeper should be powered
      */
@@ -48,6 +50,8 @@ public interface Creeper extends Monster {
 
     /**
      * Gets the explosion radius of this creeper.
+     * <p>The explosion radius may be affected if the creeper is
+     * {@link #isPowered()} and may double the overall damage/radius.</p>
      *
      * @return The explosion radius of this creeper
      */
@@ -55,6 +59,8 @@ public interface Creeper extends Monster {
 
     /**
      * Sets the explosion radius of this creeper.
+     * <p>The explosion radius may be affected if the creeper is
+     * {@link #isPowered()} and may double the overall damage/radius.</p>
      *
      * @param radius The explosion radius of this creeper
      */

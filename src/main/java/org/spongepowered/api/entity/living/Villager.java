@@ -25,12 +25,13 @@
 
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.merchant.Merchant;
 import org.spongepowered.api.entity.living.villager.Career;
 
 /**
  * Represents a Villager.
  */
-public interface Villager extends Ageable {
+public interface Villager extends Ageable, Merchant {
 
     /**
      * Checks if this villager is currently playing with other child
