@@ -26,10 +26,15 @@ package org.spongepowered.api.entity.hanging.art;
 
 import java.util.List;
 
-class NullArtFactory implements ArtFactory {
+final class NullArtFactory implements ArtFactory {
 
     @Override
     public List<Art> getArtPieces() {
+        return null;
+    }
+
+    @Override
+    public Art getFromName(String name) {
         return null;
     }
 }
