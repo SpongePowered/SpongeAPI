@@ -27,7 +27,16 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.block.BlockState;
 
 /**
- * Represents a falling block.
+ * Represents a falling block. A falling block may hurt any entities it hits
+ * while it is falling. There are four things that can happen when a falling
+ * block hits the floor.
+ * <ul>
+ * <li>The block will be placed.</li>
+ * <li>The block cannot be placed and will be dropped as item.</li>
+ * <li>The item cannot be dropped and the falling block will vanish without
+ * traces.</li>
+ * <li>An event will enforce some custom logic on this falling block.</li>
+ * </ul>
  */
 public interface FallingBlock extends Entity {
 
@@ -74,5 +83,38 @@ public interface FallingBlock extends Entity {
      * @param blockState The block state of this falling block
      */
     void setBlockState(BlockState blockState);
+
+    /**
+     * Gets whether this falling block will try to place itself where it landed.
+     * 
+     * @return True, if this falling block will be try to place itself. False if
+     *         it should try to drop as item directly
+     */
+    boolean canPlaceAsBlock();
+
+    /**
+     * Sets whether this falling block will try to place itself where it landed.
+     * 
+     * @param dropAsItem whether this falling block will try to place itself as
+     *            block
+     */
+    void setCanPlaceAsBlock(boolean canPlaceAsBlock);
+    /**
+     * Gets whether this falling block will drop as item, if it cannot be
+     * placed.
+     * 
+     * @return True, if this falling block will be dropped as item, if it cannot
+     *         be placed for any reason. False if it should despawn directly
+     */
+    boolean canDropAsItem();
+
+    /**
+     * Sets whether this falling block will drop as item, if it cannot be
+     * placed.
+     * 
+     * @param dropAsItem whether this falling block will drop as item, if it
+     *            cannot be placed
+     */
+    void setCanDropAsItem(boolean dropAsItem);
 
 }
