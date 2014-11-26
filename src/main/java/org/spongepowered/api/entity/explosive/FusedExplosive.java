@@ -22,13 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity.explosive;
 
-import org.spongepowered.api.entity.explosive.Explosive;
+public interface FusedExplosive extends Explosive {
 
-/**
- * Represents an abstract fireball, such as {@link SmallFireball}.
- */
-public interface Fireball extends Explosive, Projectile {
+    /**
+     * Triggers this explosive to detonate after the fuse time has run
+     * out.
+     * <p>
+     * Normally, the fuse may be set to 80 ticks before detonating.
+     * </p>
+     */
+    void ignite();
+
+    /**
+     * Gets the current fuse time in ticks on this explosive.
+     *
+     * @return The current fuse time on the tnt block
+     */
+    int getFuseTime();
+
+    /**
+     * Sets the fuse time in ticks on this explosive.
+     *
+     * @param fuseTime The new fuse time
+     */
+    void setFuseTime(int fuseTime);
 
 }

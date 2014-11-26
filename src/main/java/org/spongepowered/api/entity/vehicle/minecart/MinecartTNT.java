@@ -24,37 +24,12 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.vehicle.Minecart;
 
 /**
  * Represents a Minecart with a TNT block in it.
  */
-public interface MinecartTNT extends Minecart {
-
-    /**
-     * Detonates the minecart immediately.
-     */
-    void detonate();
-
-    /**
-     * Triggers the tnt in this minecart to detonate after the fuse time
-     * has run out.
-     * <p>Normally, the fuse may be set to 80 ticks before detonating.</p>
-     */
-    void ignite();
-
-    /**
-     * Gets the current fuse time in ticks on the tnt block.
-     *
-     * @return The current fuse time on the tnt block
-     */
-    int getFuseTime();
-
-    /**
-     * Sets the fuse time in ticks on the tnt block.
-     *
-     * @param fuseTime The new fuse time
-     */
-    void setFuseTime(int fuseTime);
+public interface MinecartTNT extends FusedExplosive, Minecart {
 
 }
