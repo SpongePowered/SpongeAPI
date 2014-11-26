@@ -22,14 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.FusedExplosive;
-import org.spongepowered.api.entity.vehicle.Minecart;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.living.LivingEntity;
 
 /**
- * Represents a Minecart with a TNT block in it.
+ * Represents a TNT that will explode.
  */
-public interface MinecartTNT extends Minecart, FusedExplosive {
+public interface PrimedTNT extends FusedExplosive {
+
+    /**
+     * Gets the living entity that set off this primed tnt.
+     *
+     * @return The living entity that set off this primed tnt, if available
+     */
+    Optional<LivingEntity> getDetonator();
 
 }
