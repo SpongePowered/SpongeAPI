@@ -57,7 +57,7 @@ public interface Block {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<Extent> getLocation();
 
     /**
      * Get the X component of this block instance's position.

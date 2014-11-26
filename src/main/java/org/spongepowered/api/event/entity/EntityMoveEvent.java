@@ -28,6 +28,7 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
 
 /**
  * Called when an {@link Entity} moves.
@@ -39,12 +40,12 @@ public interface EntityMoveEvent extends EntityEvent, Cancellable {
      * 
      * @return The old location
      */
-    Location getOldLocation();
+    Location<Extent> getOldLocation();
 
     /**
      * Gets the new {@link Location} that the entity is in.
      * 
      * @return The new location
      */
-    Location getNewLocation();
+    Location<Extent> getNewLocation();
 }

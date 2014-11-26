@@ -30,6 +30,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
 
 /**
  * An entity is a Minecraft entity.
@@ -70,6 +72,28 @@ public interface Entity extends EntityState {
      * @param interactionType The type of interaction performed on this entity
      */
     void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
+
+    /**
+     * Get the location of this entity.
+     *
+     * @return The location
+     */
+    Location<Extent> getLocation();
+
+    /**
+     * Teleport the entity to a location.
+     *
+     * @param location The location
+     */
+    void teleport(Location<Extent> location);
+
+    /**
+     * Teleport the entity to a location.
+     *
+     * @param extent The new extent
+     * @param position The new position
+     */
+    void teleport(Extent extent, Vector3d position);
 
     /**
      * Gets the position.
