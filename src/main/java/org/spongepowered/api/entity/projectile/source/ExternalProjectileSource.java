@@ -24,10 +24,22 @@
  */
 package org.spongepowered.api.entity.projectile.source;
 
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.math.Vector3f;
+
 /**
  * Represents a {@link ProjectileSource} that is not part of the API, such
  * as a plugin or mod spawning a Projectile.
  */
 public final class ExternalProjectileSource implements ProjectileSource {
 
+    @Override
+    public <T extends Projectile> T launchProjectile(Class<T> projectileClass) {
+        return null;
+    }
+
+    @Override
+    public <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3f velocity) {
+        return null;
+    }
 }
