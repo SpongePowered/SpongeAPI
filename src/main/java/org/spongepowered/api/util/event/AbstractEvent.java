@@ -23,59 +23,23 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Predicate;
-import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.AbstractEvent;
-
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+package org.spongepowered.api.util.event;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * An abstract implementation of entity events.
- */
-public abstract class AbstractEventEntity extends AbstractEvent implements EntityEvent {
+public abstract class AbstractEvent implements Event {
 
-    private final Game game;
-    private final List<Entity> entities;
+    private Result result = Result.DEFAULT;
 
-    /**
-     * Create a new instance.
-     *
-     * @param game The game
-     * @param entities A list of entities
-     */
-    public AbstractEventEntity(Game game, List<Entity> entities) {
-        checkNotNull(game);
-        checkNotNull(entities);
-        this.game = game;
-        this.entities = entities;
+    @Override
+    public Result getResult() {
+        return result;
     }
 
     @Override
-    public Game getGame() {
-        return game;
-    }
-
-    @Override
-    public List<Entity> getEntities() {
-        return isCancellable() ? entities : Collections.unmodifiableList(entities);
-    }
-
-    @Override
-    public void filter(Predicate<Entity> predicate) {
-        Iterator<Entity> it = entities.iterator();
-        boolean canRemove = isCancellable();
-        while (it.hasNext()) {
-            if (!predicate.apply(it.next()) && canRemove) {
-                it.remove();
-            }
-        }
+    public void setResult(Result result) {
+        checkNotNull(result, "result");
+        this.result = result;
     }
 
 }

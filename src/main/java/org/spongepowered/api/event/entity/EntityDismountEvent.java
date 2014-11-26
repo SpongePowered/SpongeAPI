@@ -24,18 +24,50 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.event.Cancellable;
+
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Raised when an entity dismounts another entity.
  */
-public interface EntityDismountEvent extends EntityEvent, Cancellable {
+public class EntityDismountEvent extends AbstractEventEntity implements Cancellable {
+
+    private boolean cancelled;
+    private final Entity dismounted;
+
+    public EntityDismountEvent(Game game, List<Entity> entities, Entity dismounted) {
+        super(game, entities);
+        checkNotNull(dismounted, "dismounted");
+        this.dismounted = dismounted;
+    }
 
     /**
-     * Gets the entity that is being dismounted from.
+     * Get the entity that was dismounted.
      *
-     * @return The entity that is being dismounted from
+     * @return The entity dismounted
      */
-    Entity getDismounted();
+    public Entity getDismounted() {
+        return dismounted;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        this.cancelled = cancel;
+    }
+
+    @Override
+    public boolean isCancellable() {
+        return true;
+    }
+
 }
