@@ -36,7 +36,7 @@ import java.util.Collection;
 /**
  * Represents a block at a specific location in an {@link Extent}.
  */
-public interface Block {
+public interface Voxel {
 
     /**
      * Get the extent.

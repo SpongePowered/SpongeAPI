@@ -25,13 +25,13 @@
 
 package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.Voxel;
 import org.spongepowered.api.math.Vector3d;
 
 /**
  * A volume containing blocks.
  */
-public interface BlockVolume {
+public interface VoxelVolume {
 
     /**
      * Get a representation of the block at the given position.
@@ -39,7 +39,7 @@ public interface BlockVolume {
      * @param position The position
      * @return The block
      */
-    Block getBlock(Vector3d position);
+    Voxel getVoxel(Vector3d position);
 
     /**
      * Get a representation of the block at the given position.
@@ -49,6 +49,6 @@ public interface BlockVolume {
      * @param z The Z position
      * @return The block
      */
-    Block getBlock(int x, int y, int z);
+    Voxel getVoxel(int x, int y, int z);
 
 }

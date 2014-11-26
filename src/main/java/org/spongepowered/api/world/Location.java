@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.Voxel;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
 import org.spongepowered.api.math.Vector3i;
@@ -164,20 +164,20 @@ public class Location {
      *
      * @return The block
      */
-    public Block getBlock() {
-        return getWorld().getBlock(getPosition());
+    public Voxel getVoxel() {
+        return getWorld().getVoxel(getPosition());
     }
 
     /**
-     * Create a new location instance from a {@link Block} residing
+     * Create a new location instance from a {@link Voxel} residing
      * inside a {@link World}.
      *
-     * @param block The block
+     * @param voxel The block
      * @return The location
      */
-    public static Location fromBlock(Block block) {
-        if (block.getExtent() instanceof World) {
-            return new Location((World) block.getExtent(), block.getPosition());
+    public static Location fromVoxel(Voxel voxel) {
+        if (voxel.getExtent() instanceof World) {
+            return new Location((World) voxel.getExtent(), voxel.getPosition());
         } else {
             throw new IllegalArgumentException("The given block is not in an instance of a World");
         }

@@ -28,6 +28,6 @@ package org.spongepowered.api.world.extent;
 /**
  * Contains blocks, entities, and possibly other game objects.
  */
-public interface Extent extends BlockVolume, EntityUniverse, BiomeVolume {
+public interface Extent extends VoxelVolume, EntityUniverse, BiomeVolume {
 
 }
