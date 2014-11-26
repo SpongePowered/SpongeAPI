@@ -38,17 +38,10 @@ public interface Event {
     boolean isCancellable();
 
     /**
-     * Gets the {@link Result} of the {@link Event}.
+     * Get a list of callbacks.
      *
-     * @return The result of this event
+     * @return A list of callbacks
      */
-    Result getResult();
-
-    /**
-     * Sets the {@link Result} of the {@link Event}.
-     *
-     * @param result The result
-     */
-    void setResult(Result result);
+    CallbackList getCallbacks();
 
 }

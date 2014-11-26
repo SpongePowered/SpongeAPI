@@ -1,0 +1,154 @@
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+package org.spongepowered.api.util.event;
+
+import com.google.common.collect.Iterators;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ * A collection of callbacks.
+ *
+ * <p>Entries in the list cannot be removed, but new entries can be added.</p>
+ *
+ * <p>A misbehavior callback (one that throws an exception) will not halt
+ * the processing of other callbacks.</p>
+ */
+public final class CallbackList implements Collection<Callback> {
+
+    private static final Logger log = LoggerFactory.getLogger(CallbackList.class);
+    private final List<Callback> callbacks = new ArrayList<Callback>();
+
+    /**
+     * Execute all callbacks in the correct order.
+     */
+    public void runAll() {
+        for (Callback callback : callbacks) {
+            try {
+                callback.run();
+            } catch (Exception e) {
+                log.error("Failed to run an event callback", e);
+            }
+        }
+    }
+
+    /**
+     * Tests whether there are any non-cancelled non-base game callbacks.
+     *
+     * @return Whether there are non-cancelled non-base game callbacks
+     */
+    public boolean hasCustomCallback() {
+        for (Callback callback : callbacks) {
+            if (!callback.isBaseGame() && !callback.isCancelled()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Cancel all callbacks that return true for {@link Callback#isBaseGame()}.
+     */
+    public void cancelBaseGame() {
+        for (Callback callback : callbacks) {
+            if (callback.isBaseGame()) {
+                callback.setCancelled(true);
+            }
+        }
+    }
+
+    @Override
+    public int size() {
+        return callbacks.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return callbacks.isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return callbacks.contains(o);
+    }
+
+    @Override
+    public Iterator<Callback> iterator() {
+        return Iterators.unmodifiableIterator(callbacks.iterator());
+    }
+
+    @Override
+    public Object[] toArray() {
+        return callbacks.toArray();
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return callbacks.toArray(a);
+    }
+
+    @Override
+    public boolean add(Callback callback) {
+        return callbacks.add(callback);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        throw new UnsupportedOperationException("Cannot remove entries from the callback list");
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return callbacks.containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends Callback> c) {
+        return callbacks.addAll(c);
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Cannot remove entries from the callback list");
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Cannot remove entries from the callback list");
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Cannot remove entries from the callback list");
+    }
+
+}

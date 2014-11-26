@@ -37,6 +37,6 @@ public @interface Subscribe {
 
     Order order() default Order.DEFAULT;
 
-    boolean ignoreCancelled() default true;
+    boolean ignoreIfOverridden() default true;
 
 }

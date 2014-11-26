@@ -33,16 +33,16 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.spongepowered.api.util.event.Order;
-import org.spongepowered.api.util.event.Result;
-import org.spongepowered.api.util.event.Subscribe;
 import org.spongepowered.api.event.message.CommandEvent;
+import org.spongepowered.api.util.AbstractCallback;
 import org.spongepowered.api.util.Owner;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
+import org.spongepowered.api.util.event.Order;
+import org.spongepowered.api.util.event.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,14 +62,20 @@ public class SimpleCommandService implements CommandService {
     private final Object lock = new Object();
 
     @Subscribe(order = Order.LAST)
-    public void onCommandEvent(CommandEvent event) {
-        try {
-            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList())) {
-                event.setResult(Result.DENY);
-            }
-        } catch (CommandException e) {
-            event.setResult(Result.DENY);
-            log.warn("Failed to execute a command", e);
+    public void onCommandEvent(final CommandEvent event) {
+        if (containsAlias(event.getCommand())) {
+            event.getCallbacks().add(new AbstractCallback() {
+                @Override
+                public void run() {
+                    try {
+                        call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList());
+                    } catch (CommandException e) {
+                        log.warn("Failed to execute a command", e);
+                    }
+                }
+            });
+
+            event.getCallbacks().cancelBaseGame();
         }
     }
 

@@ -25,15 +25,16 @@
 
 package org.spongepowered.api.event.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Predicate;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.event.CallbackList;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An abstract implementation of entity events.
@@ -41,6 +42,7 @@ import java.util.List;
 public abstract class AbstractEventEntity implements EntityEvent {
 
     private final Game game;
+    private final CallbackList callbacks = new CallbackList();
     private final List<Entity> entities;
 
     /**
@@ -59,6 +61,11 @@ public abstract class AbstractEventEntity implements EntityEvent {
     @Override
     public Game getGame() {
         return game;
+    }
+
+    @Override
+    public CallbackList getCallbacks() {
+        return callbacks;
     }
 
     @Override

@@ -26,26 +26,17 @@
 package org.spongepowered.api.util.event;
 
 /**
- * The result of an action such as an event
+ * A callback is called upon completing the dispatch of an event. Callbacks
+ * are executed in the order opposite of that in which they were registered
+ * (LIFO).
  */
-public enum Result {
+public interface Callback extends Cancellable, Runnable {
 
     /**
-     * The result of a request such as an event has been denied continuation
+     * Return whether the callback is for base game functionality.
+     *
+     * @return Whether it's for the base game
      */
-    DENY,
-    /**
-     * The result of a request such as an event has not been modified, and will
-     * progress based on the default expectation
-     */
-    DEFAULT,
-    /**
-     * The result of a request such as an event has been allowed continuation
-     */
-    ALLOW,
-    /**
-     * There is no result from a request such as an event, or a result is not applicable
-     */
-    NO_RESULT
+    boolean isBaseGame();
 
 }
