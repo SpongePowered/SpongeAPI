@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.math.Vector3f;
 
 import javax.annotation.Nullable;
 
@@ -102,4 +103,177 @@ public interface LivingEntity extends Entity {
      * @param lastAttacker The last attacker
      */
     void setLastAttacker(@Nullable LivingEntity lastAttacker);
+
+    /**
+     * Returns whether this entity is leashed.
+     *
+     * @return True if this entity is leashed
+     */
+    boolean isLeashed();
+
+    /**
+     * Sets whether this entity is leashed or not.
+     *
+     * @param leashed Whether this entity is leashed or not
+     */
+    void setLeashed(boolean leashed);
+
+    /**
+     * Gets the holder of this leashed entity, if available.
+     *
+     * @return The leash holder, if available
+     */
+    Optional<Entity> getLeashHolder();
+
+    /**
+     * Sets the holder of this leashed entity.
+     *
+     * @param entity The entity to hold the leash
+     */
+    void setLeashHolder(@Nullable Entity entity);
+
+    /**
+     * Gets the height of the eye (camera) of this entity
+     *
+     * @return The camera height
+     */
+    double getEyeHeight();
+
+    /**
+     * Gets the location of the eye height (camera) of this entity.
+     *
+     * @return The camera location
+     */
+    Vector3f getEyeLocation();
+
+    /**
+     * Gets the remaining ticks of air.
+     *
+     * @return The ticks of air
+     */
+    int getRemainingAir();
+
+    /**
+     * Sets the remaining ticks of air.
+     *
+     * @param air The remaining ticks of air
+     */
+    void setRemainingAir(int air);
+
+    /**
+     * Gets the maximum ticks of air this entity can have.
+     *
+     * @return The maximum ticks of air
+     */
+    int getMaxAir();
+
+    /**
+     * Sets the maximum ticks of air this entity can have.
+     *
+     * @param air The maximum ticks of air
+     */
+    void setMaxAir(int air);
+
+    /**
+     * Gets the last amount of damage dealt to this entity.
+     *
+     * @return The damage amount last dealt
+     */
+    double getLasDamage();
+
+    /**
+     * Sets the last damage amount that was dealt to this living entity.
+     *
+     * @param damage The amount of damage last dealt
+     */
+    void setLastDamage(double damage);
+
+    /**
+     * Gets the amount of ticks this entity is immune from damage.
+     *
+     * @return The ticks of immunity towards damage
+     */
+    int getInvulnerabilityTicks();
+
+    /**
+     * Sets the amount of ticks this entity is immune from damage.
+     *
+     * @param ticks The ticks of invulnerability
+     */
+    void setInvulnerabilityTicks(int ticks);
+
+    /**
+     * Gets the maximum ticks of invulnerability for this entity.
+     *
+     * @return The maximum ticks of invulnerability
+     */
+    int getMaxInvulnerabilityTicks();
+
+    /**
+     * Sets the maximum ticks of invulnerability for this entity.
+     *
+     * @param ticks The maximum ticks of invulnerability
+     */
+    void setMaxInvulnerabilityTicks(int ticks);
+
+    // TODO Add these when Potions API is added
+
+    /*
+    Collection<PotionEffect> getPotionEffects();
+
+    void addPotionEffect(PotionEffect effect);
+
+    void addPotionEffects(Collection<PotionEffect> effects);
+
+    void removePotionEffect(PotionType potionType);
+
+    boolean hasPotionEffect(PotionType potionType);
+    */
+
+    /**
+     * Returns whether this living entity can pick up items.
+     *
+     * @return Whether this entity can pick up items
+     */
+    boolean getCanPickupItems();
+
+    /**
+     * Sets whether this entity can pick up items or not.
+     *
+     * @param canPickupItems Whether this entity can pick up items
+     */
+    void setCanPickupItems(boolean canPickupItems);
+
+    /**
+     * Gets the custom display name of this entity.
+     * <p>Custom names may appear overhead or when in the line of sight
+     * of a player.</p>
+     *
+     * @return The custom name
+     */
+    String getCustomName();
+
+    /**
+     * Sets the custom display name of this entity.
+     * <p>Custom names may appear overhead or when in the line of sight
+     * of a player.</p>
+     *
+     * @param name The custom name
+     */
+    void setCustomName(String name);
+
+    /**
+     * Returns whether the custom name is visible to players.
+     *
+     * @return Whether the custom name is visible or not
+     */
+    boolean isCustomNameVisible();
+
+    /**
+     * Sets whether the custom name is visible to players.
+     *
+     * @param visible Whether the custom name is visible
+     */
+    void setCustomNameVisible(boolean visible);
+
 }

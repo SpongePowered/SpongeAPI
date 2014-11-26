@@ -76,6 +76,13 @@ public interface Entity extends Identifiable, EntityState {
     void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
 
     /**
+     * Returns whether this entity is on the ground (not in the air) or not.
+     *
+     * @return Whether this entity is on the ground or not
+     */
+    boolean isOnGround();
+
+    /**
      * Gets the position.
      *
      * @return The position
@@ -207,6 +214,13 @@ public interface Entity extends Identifiable, EntityState {
     float getBase();
 
     /**
+     * Gets the current y height of this entity.
+     *
+     * @return The current y height
+     */
+    float getHeight();
+
+    /**
      * Sets the bounding box size for this entity.
      *
      * @param base Size in width
@@ -215,18 +229,46 @@ public interface Entity extends Identifiable, EntityState {
     void setSize(float base, float y);
 
     /**
-     * Gets the current y height of this entity.
-     *
-     * @return The current y height
-     */
-    float getHeight();
-
-    /**
      * Sets the scale of this entity according to the current xz/y definitions
      * to render.
      *
      * @param scale The scale to size this entity
      */
     void setScale(float scale);
+
+    /**
+     * Returns whether this entity is considered dead and ready for removal.
+     *
+     * @return True if this entity is dead
+     */
+    boolean isDead();
+
+    /**
+     * Returns whether this entity is still loaded in a world/chunk.
+     *
+     * @return True if this entity is still loaded
+     */
+    boolean isValid();
+
+    /**
+     * Gets the ticks remaining of being lit on fire.
+     *
+     * @return The remaining fire ticks
+     */
+    int getFireTicks();
+
+    /**
+     * Sets the remaining ticks of being lit on fire.
+     *
+     * @param ticks The ticks of being lit on fire
+     */
+    void setFireTicks(int ticks);
+
+    /**
+     * Gets the maximum ticks this entity can be on fire.
+     *
+     * @return The maximum fire ticks this entity can be on fire
+     */
+    int getMaxFireTicks();
 
 }

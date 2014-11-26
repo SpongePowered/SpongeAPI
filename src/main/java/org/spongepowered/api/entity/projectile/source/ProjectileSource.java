@@ -24,9 +24,30 @@
  */
 package org.spongepowered.api.entity.projectile.source;
 
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.math.Vector3f;
+
 /**
  * Represents a valid source of a projectile.
  */
 public interface ProjectileSource {
 
+    /**
+     * Launches a {@link Projectile} from this projectile source.
+     *
+     * @param projectileClass The class of the projectile
+     * @param <T> The Type of Projectile
+     * @return The projectile instance that was launched
+     */
+    <T extends Projectile> T launchProjectile(Class<T> projectileClass);
+
+    /**
+     * Launches a {@link Projectile} from this projectile source.
+     *
+     * @param projectileClass The class of the projectile
+     * @param velocity The velocity to launch the projectile
+     * @param <T> The Type of Projectile
+     * @return The projectile instance that was launched
+     */
+    <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3f velocity);
 }
