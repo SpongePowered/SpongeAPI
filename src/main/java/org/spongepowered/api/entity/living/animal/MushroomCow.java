@@ -26,8 +26,8 @@
 package org.spongepowered.api.entity.living.animal;
 
 /**
- * Represents a Mooshroom.
+ * Represents a MushroomCow.
  */
-public interface Mooshroom extends Cow {
+public interface MushroomCow extends Cow {
 
 }
