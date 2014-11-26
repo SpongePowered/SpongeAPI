@@ -26,4 +26,12 @@ package org.spongepowered.api.entity.living.meta;
 
 public interface DyeColor {
 
+    /**
+     * The unique name of this dye color.
+     * 
+     * @return The name of this dye color
+     * @see DyeColors#valueOf(String)
+     */
+    String getName();
+
 }

@@ -26,4 +26,12 @@ package org.spongepowered.api.entity.living.meta;
 
 public interface RabbitType {
 
+    /**
+     * The unique name of this rabbit type.
+     * 
+     * @return The name of this rabbit type
+     * @see RabbitTypes#valueOf(String)
+     */
+    String getName();
+
 }
