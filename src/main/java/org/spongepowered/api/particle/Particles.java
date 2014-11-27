@@ -24,123 +24,71 @@
  */
 package org.spongepowered.api.particle;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.base.Optional;
+
 import javax.annotation.Nullable;
 
 /**
  * The particles that can be sent on a vanilla Minecraft client.
  */
-public enum Particles implements Particle {
+public final class Particles {
 
-    EXPLOSION_NORMAL("explode"),
-    EXPLOSION_LARGE("largeexplode"),
-    EXPLOSION_HUGE("hugeexplosion"),
-    FIREWORKS_SPARK("fireworksSpark"),
-    WATER_BUBBLE("bubble"),
-    WATER_SPLASH("splash"),
-    WATER_WAKE("wake"),
-    SUSPENDED("suspended"),
-    SUSPENDED_DEPTH("depthsuspend"),
-    CRIT("crit"),
-    CRIT_MAGIC("magicCrit"),
-    SMOKE_NORMAL("smoke"),
-    SMOKE_LARGE("largesmoke"),
-    SPELL("spell"),
-    SPELL_INSTANT("instantSpell"),
-    SPELL_MOB("mobSpell"),
-    SPELL_MOB_AMBIENT("mobSpellAmbient"),
-    SPELL_WITCH("witchMagic"),
-    DRIP_WATER("dripWater"),
-    DRIP_LAVA("dripLava"),
-    VILLAGER_ANGRY("angryVillager"),
-    VILLAGER_HAPPY("happyVillager"),
-    TOWN_AURA("townaura"),
-    NOTE("note"),
-    PORTAL("portal"),
-    ENCHANTMENT_TABLE("enchantmenttable"),
-    FLAME("flame"),
-    LAVA("lava"),
-    FOOTSTEP("footstep"),
-    CLOUD("cloud"),
-    REDSTONE("reddust"),
-    SNOWBALL("snowballpoof"),
-    SNOW_SHOVEL("snowshovel"),
-    SLIME("slime"),
-    HEART("heart"),
-    BARRIER("barrier"),
-    /**
-     * Requires an array of int containing the id of an item and his data value.
-     */
-    ITEM_CRACK("iconcrack_", 2),
-    /**
-     * Requires an array of int containing the id of a block.
-     */
-    BLOCK_CRACK("blockcrack_", 1),
-    /**
-     * Requires an array of int containing the id of a block.
-     */
-    BLOCK_DUST("blockdust_", 1),
-    WATER_DROP("droplet"),
-    ITEM_TAKE("take"),
-    MOB_APPEARANCE("mobappearance");
-
-    @Override
-    public String getName() {
-
-        return name;
+    private Particles() {
     }
 
-    @Override
-    public int getParamCount() {
+    public static final Particle EXPLOSION_NORMAL = null;
+    public static final Particle EXPLOSION_LARGE = null;
+    public static final Particle EXPLOSION_HUGE = null;
+    public static final Particle FIREWORKS_SPARK = null;
+    public static final Particle WATER_BUBBLE = null;
+    public static final Particle WATER_SPLASH = null;
+    public static final Particle WATER_WAKE = null;
+    public static final Particle SUSPENDED = null;
+    public static final Particle SUSPENDED_DEPTH = null;
+    public static final Particle CRIT = null;
+    public static final Particle CRIT_MAGIC = null;
+    public static final Particle SMOKE_NORMAL = null;
+    public static final Particle SMOKE_LARGE = null;
+    public static final Particle SPELL = null;
+    public static final Particle SPELL_INSTANT = null;
+    public static final Particle SPELL_MOB = null;
+    public static final Particle SPELL_MOB_AMBIENT = null;
+    public static final Particle SPELL_WITCH = null;
+    public static final Particle DRIP_WATER = null;
+    public static final Particle DRIP_LAVA = null;
+    public static final Particle VILLAGER_ANGRY = null;
+    public static final Particle VILLAGER_HAPPY = null;
+    public static final Particle TOWN_AURA = null;
+    public static final Particle NOTE = null;
+    public static final Particle PORTAL = null;
+    public static final Particle ENCHANTMENT_TABLE = null;
+    public static final Particle FLAME = null;
+    public static final Particle LAVA = null;
+    public static final Particle FOOTSTEP = null;
+    public static final Particle CLOUD = null;
+    public static final Particle REDSTONE = null;
+    public static final Particle SNOWBALL = null;
+    public static final Particle SNOW_SHOVEL = null;
+    public static final Particle SLIME = null;
+    public static final Particle HEART = null;
+    public static final Particle BARRIER = null;
+    public static final Particle ITEM_CRACK = null;
+    public static final Particle BLOCK_CRACK = null;
+    public static final Particle BLOCK_DUST = null;
+    public static final Particle WATER_DROP = null;
+    public static final Particle ITEM_TAKE = null;
+    public static final Particle MOB_APPEARANCE = null;
 
-        return paramCount;
-    }
 
     /**
-     * Returns a particle with its name.
+     * Gets a {@link Particle} by name.
      *
      * @param name The particle name
-     * @return The corresponding {@link Particle}
+     * @return The corresponding particle, if available
      */
     @Nullable
-    public static Particle getByName(String name) {
-
-        return map.get(name);
+    public static Optional<Particle> getByName(String name) {
+        return null;
     }
 
-    /**
-     * Adds a custom particle.
-     *
-     * @param particle The {@link Particle} to add
-     */
-    public static void addCustomParticle(Particle particle) {
-
-        if (!map.containsKey(particle.getName())) {
-            map.put(particle.getName(), particle);
-        }
-    }
-
-    private String name;
-    private int paramCount;
-    private static final Map<String, Particle> map;
-
-    private Particles(String name) {
-
-        this(name, 0);
-    }
-
-    private Particles(String name, int paramCount) {
-
-        this.name = name;
-        this.paramCount = paramCount;
-    }
-
-    static {
-
-        map = new HashMap<String, Particle>();
-        for (Particle particle : values()) {
-            map.put(particle.getName(), particle);
-        }
-    }
 }
