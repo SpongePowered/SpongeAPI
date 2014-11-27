@@ -23,21 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package org.spongepowered.api.util.event.callback;
 
 /**
- * Raised when entities are spawned.
+ * A callback is called upon completing the dispatch of an event. Callbacks
+ * are executed in the order opposite of that in which they were registered
+ * (LIFO).
  */
-public interface EntitySpawnEvent extends EntityEvent, Cancellable {
+public interface EventCallback extends Runnable {
 
     /**
-     * Returns the location where this entity is spawning.
+     * Return whether the callback is for base game functionality.
      *
-     * @return The location where this entity is spawning
+     * @return Whether it's for the base game
      */
-    Location getLocation();
+    boolean isBaseGame();
 
 }

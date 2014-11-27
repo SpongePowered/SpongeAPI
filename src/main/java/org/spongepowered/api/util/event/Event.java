@@ -25,30 +25,18 @@
 
 package org.spongepowered.api.util.event;
 
+import org.spongepowered.api.util.event.callback.CallbackList;
+
 /**
  * An event that occurs in Sponge.
  */
 public interface Event {
 
     /**
-     * Gets if the event can be cancelled.
+     * Get a list of callbacks.
      *
-     * @return Whether the event can be cancelled
+     * @return A list of callbacks
      */
-    boolean isCancellable();
-
-    /**
-     * Gets the {@link Result} of the {@link Event}.
-     *
-     * @return The result of this event
-     */
-    Result getResult();
-
-    /**
-     * Sets the {@link Result} of the {@link Event}.
-     *
-     * @param result The result
-     */
-    void setResult(Result result);
+    CallbackList getCallbacks();
 
 }

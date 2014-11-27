@@ -31,6 +31,8 @@ import org.spongepowered.api.event.GameEvent;
 
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * An event that involves multiple entities at once.
  */
@@ -47,6 +49,8 @@ public interface BulkEntityEvent extends GameEvent {
      *
      * @return A list of entities
      */
+
+    /**
     List<Entity> getEntities();
 
     /**

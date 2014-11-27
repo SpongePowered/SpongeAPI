@@ -25,91 +25,66 @@
 
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.block.Block;
-import org.spongepowered.api.math.Vector3d;
-import org.spongepowered.api.math.Vector3f;
-import org.spongepowered.api.math.Vector3i;
-import org.spongepowered.api.math.Vectors;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.math.Vector3d;
+import org.spongepowered.api.world.extent.Extent;
+
 /**
- * A position within a particular {@link World}.
+ * A position within a particular {@link Extent}.
+ *
+ * <p>This class is primarily a helper class to represent a location in a
+ * particular {@link Extent}. The methods provided are proxy methods to ones
+ * on {@link Extent}.</p>
+ *
+ * <p>Each instance can be used to either represent a block or a location on
+ * a continuous coordinate system. Internally, positions are stored using
+ * doubles. When a block-related method is used, the components of the
+ * position are each rounded to an integer.</p>
  *
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
 public class Location {
 
-    private final World world;
+    private final Extent extent;
     private final Vector3d position;
 
     /**
      * Create a new instance.
      *
-     * @param world The world
+     * @param extent The extent
      * @param position The position
      */
-    public Location(World world, Vector3d position) {
-        checkNotNull(world);
+    public Location(Extent extent, Vector3d position) {
+        checkNotNull(extent);
         checkNotNull(position);
-        this.world = world;
+        this.extent = extent;
         this.position = position;
     }
 
     /**
-     * Create a new instance.
+     * Get the underlying extent.
      *
-     * @param world The world
-     * @param position The position
+     * @return The extent
      */
-    public Location(World world, Vector3f position) {
-        this(world, position.toDouble());
+    public Extent getExtent() {
+        return extent;
     }
 
     /**
-     * Create a new instance.
+     * Create a new instance with a new extent.
      *
-     * @param world The world
-     * @param position The position
-     */
-    public Location(World world, Vector3i position) {
-        this(world, position.toDouble());
-    }
-
-    /**
-     * Create a new instance.
-     *
-     * @param world The world
-     * @param x The x position
-     * @param y The y position
-     * @param z The z position
-     */
-    public Location(World world, double x, double y, double z) {
-        this(world, Vectors.create3d(x, y, z));
-    }
-
-    /**
-     * Get the underlying world.
-     *
-     * @return The world
-     */
-    public World getWorld() {
-        return world;
-    }
-
-    /**
-     * Create a new instance with a new world.
-     *
-     * @param world The new world
+     * @param extent The new extent
      * @return A new instance
      */
-    public Location setWorld(World world) {
-        checkNotNull(world);
-        if (world == getWorld()) {
+    public Location setExtent(Extent extent) {
+        checkNotNull(extent);
+        if (extent == getExtent()) {
             return this;
         }
-        return new Location(world, getPosition());
+        return new Location(extent, getPosition());
     }
 
     /**
@@ -132,7 +107,7 @@ public class Location {
         if (position == getPosition()) {
             return this;
         }
-        return new Location(getWorld(), position);
+        return new Location(getExtent(), position);
     }
 
     /**
@@ -165,22 +140,7 @@ public class Location {
      * @return The block
      */
     public Block getBlock() {
-        return getWorld().getBlock(getPosition());
-    }
-
-    /**
-     * Create a new location instance from a {@link Block} residing
-     * inside a {@link World}.
-     *
-     * @param block The block
-     * @return The location
-     */
-    public static Location fromBlock(Block block) {
-        if (block.getExtent() instanceof World) {
-            return new Location((World) block.getExtent(), block.getPosition());
-        } else {
-            throw new IllegalArgumentException("The given block is not in an instance of a World");
-        }
+        return getExtent().getBlock(getPosition());
     }
 
 }
