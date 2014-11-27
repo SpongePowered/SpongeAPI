@@ -26,6 +26,7 @@
 package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.item.inventory.ItemStack;
 

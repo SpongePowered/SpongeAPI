@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
