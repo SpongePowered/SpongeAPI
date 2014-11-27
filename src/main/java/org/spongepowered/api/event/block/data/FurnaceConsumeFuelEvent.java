@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.block.data;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.block.data.Furnace;
 import org.spongepowered.api.item.inventory.ItemStack;
 

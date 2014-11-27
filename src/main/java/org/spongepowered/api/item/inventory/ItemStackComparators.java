@@ -26,6 +26,7 @@
 package org.spongepowered.api.item.inventory;
 
 import com.google.common.collect.Ordering;
+
 import org.spongepowered.api.item.ItemType;
 
 import java.util.Arrays;

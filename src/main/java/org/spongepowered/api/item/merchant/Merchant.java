@@ -26,12 +26,17 @@ package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.MerchantInventory;
 
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-public interface Merchant {
+/**
+ * Represents a Merchant which can offer trades to customers.
+ */
+public interface Merchant extends Carrier {
 
     /**
      * Gets the currently trading customer with this merchant.
@@ -74,4 +79,10 @@ public interface Merchant {
      */
     void addOffer(TradeOffer offer);
 
+    /*
+     * Returns the inventory of this Merchant.
+     *
+     * @return The inventory of this merchant
+     */
+    MerchantInventory getInventory();
 }
