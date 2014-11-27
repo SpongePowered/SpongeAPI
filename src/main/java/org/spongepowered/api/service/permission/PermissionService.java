@@ -26,7 +26,7 @@
 package org.spongepowered.api.service.permission;
 
 import com.google.common.annotations.Beta;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.player.Player;
 
 /**
  * Returns {@link Subject}s that can be used to test permission.
