@@ -1,5 +1,6 @@
 SpongeAPI [![Build Status](https://travis-ci.org/SpongePowered/SpongeAPI.png?branch=master)](https://travis-ci.org/SpongePowered/SpongeAPI)
 =============
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/SpongePowered/SpongeAPI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 **Currently not stable and under heavy development!**  
 A Minecraft plugin API (not including an implementation). It is licensed under the [MIT License]. 
 
