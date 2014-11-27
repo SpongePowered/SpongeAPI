@@ -25,12 +25,13 @@
 
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.block.Block;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.block.BlockEvent;
 
 /**
- * Called when an {@link Entity} collides with another {@link Entity}.
+ * Called when an {@link Entity} collides with a {@link Block}.
  */
-public interface EntityCollideWithEntityEvent extends BulkEntityEvent, Cancellable {
+public interface EntityCollisionWithBlockEvent extends EntityCollisionEvent, BlockEvent {
 
 }
