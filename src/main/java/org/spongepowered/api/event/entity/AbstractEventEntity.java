@@ -25,15 +25,17 @@
 
 package org.spongepowered.api.event.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Predicate;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.util.event.callback.CallbackList;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An abstract implementation of entity events.
@@ -41,6 +43,7 @@ import java.util.List;
 public abstract class AbstractEventEntity implements EntityEvent {
 
     private final Game game;
+    private final CallbackList callbacks = new CallbackList();
     private final List<Entity> entities;
 
     /**
@@ -62,14 +65,19 @@ public abstract class AbstractEventEntity implements EntityEvent {
     }
 
     @Override
+    public CallbackList getCallbacks() {
+        return callbacks;
+    }
+
+    @Override
     public List<Entity> getEntities() {
-        return isCancellable() ? entities : Collections.unmodifiableList(entities);
+        return (this instanceof Cancellable) ? entities : Collections.unmodifiableList(entities);
     }
 
     @Override
     public void filter(Predicate<Entity> predicate) {
         Iterator<Entity> it = entities.iterator();
-        boolean canRemove = isCancellable();
+        boolean canRemove = this instanceof Cancellable;
         while (it.hasNext()) {
             if (!predicate.apply(it.next()) && canRemove) {
                 it.remove();

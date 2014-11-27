@@ -39,7 +39,7 @@ public interface EntityEvent extends GameEvent {
     /**
      * Get a list of affected entities.
      *
-     * <p>The list of entities is immutable if {@link #isCancellable()}
+     * <p>The list of entities is immutable if the event is cancellable
      * is {@code false}. Otherwise, the effect of removing an entity from
      * the list is dependent on the event, though it may "cancel" the event
      * for the removed entity (i.e. if it's a spawn entity event, then the

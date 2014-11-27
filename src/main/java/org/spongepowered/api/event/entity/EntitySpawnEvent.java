@@ -25,15 +25,14 @@
 
 package org.spongepowered.api.event.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Result;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Raised when entities are spawned.
@@ -41,8 +40,6 @@ import java.util.List;
 public class EntitySpawnEvent extends AbstractEventEntity implements CauseTracked {
 
     private final Cause cause;
-    private Result result = Result.DEFAULT;
-
     /**
      * Create a new instance.
      *
@@ -59,22 +56,6 @@ public class EntitySpawnEvent extends AbstractEventEntity implements CauseTracke
     @Override
     public Cause getCause() {
         return cause;
-    }
-
-    @Override
-    public boolean isCancellable() {
-        return true;
-    }
-
-    @Override
-    public Result getResult() {
-        return result;
-    }
-
-    @Override
-    public void setResult(Result result) {
-        checkNotNull(result);
-        this.result = result;
     }
 
 }

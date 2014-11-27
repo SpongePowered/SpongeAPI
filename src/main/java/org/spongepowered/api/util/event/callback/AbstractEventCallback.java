@@ -23,29 +23,16 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.event;
+package org.spongepowered.api.util.event.callback;
 
 /**
- * The result of an action such as an event
+ * An abstract implement of {@link EventCallback}.
  */
-public enum Result {
+public abstract class AbstractEventCallback implements EventCallback {
 
-    /**
-     * The result of a request such as an event has been denied continuation
-     */
-    DENY,
-    /**
-     * The result of a request such as an event has not been modified, and will
-     * progress based on the default expectation
-     */
-    DEFAULT,
-    /**
-     * The result of a request such as an event has been allowed continuation
-     */
-    ALLOW,
-    /**
-     * There is no result from a request such as an event, or a result is not applicable
-     */
-    NO_RESULT
+    @Override
+    public boolean isBaseGame() {
+        return false;
+    }
 
 }

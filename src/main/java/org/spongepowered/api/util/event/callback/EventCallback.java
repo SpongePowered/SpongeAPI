@@ -23,26 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.event;
+package org.spongepowered.api.util.event.callback;
 
-public interface Cancellable {
-
-    /**
-     * Gets if the {@link Event} has been cancelled.
-     *
-     * @return Is this event cancelled
-     */
-    boolean isCancelled();
+/**
+ * A callback is called upon completing the dispatch of an event. Callbacks
+ * are executed in the order opposite of that in which they were registered
+ * (LIFO).
+ */
+public interface EventCallback extends Runnable {
 
     /**
-     * Sets the cancelled state of the {@link Event}.
+     * Return whether the callback is for base game functionality.
      *
-     * <p>This will also cancel any callbacks on the event if {@code cancel}
-     * is {@code true}. However, no callbacks will be un-cancelled if
-     * {@code cancel} is {@code false}.</p>
-     *
-     * @param cancel The new cancelled state
+     * @return Whether it's for the base game
      */
-    void setCancelled(boolean cancel);
+    boolean isBaseGame();
 
 }
