@@ -22,6 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.effect;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.particle;
+/**
+ * Represents a sound that can be heard on clients.
+ */
+public interface Sound {
+
+    /**
+     * Gets the sounds name.
+     *
+     * @return The name of this sound
+     */
+    String getName();
+
+}

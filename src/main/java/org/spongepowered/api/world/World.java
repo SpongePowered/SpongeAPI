@@ -26,20 +26,17 @@
 package org.spongepowered.api.world;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.math.Vector2i;
-import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.world.extent.Extent;
-import org.spongepowered.api.particle.Particle;
-import org.spongepowered.api.particle.Particles;
 
 import java.util.UUID;
 
 /**
  * A loaded Minecraft world
  */
-public interface World extends Extent {
+public interface World extends Extent, Viewer {
 
     /**
      * Gets the unique identifier for this world.
@@ -101,67 +98,5 @@ public interface World extends Extent {
      * @return An entity, if available
      */
     Optional<Entity> getEntityFromUUID(UUID uuid);
-    
-    /**
-     * Spawn some {@link Particle} in this world at a given position.
-     * All players within a defaults radius around the position will see the
-     * particles.
-     *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
-     */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed);
-
-    /**
-     * Spawn some {@link Particle} in this world at a given position.
-     * All players within a given radius around the position will see the
-     * particles.
-     *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
-     * @param radius The radius around the position where the particles can
-     * be seen by players
-     */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, int radius);
-
-    /**
-     * Spawn some {@link Particle} in this world at a given position. All
-     * players within a defaults radius around the position will see the particles.
-     * <p>Some particles like {@link Particles#ITEM_CRACK},
-     * {@link Particles#BLOCK_CRACK} and {@link Particles#BLOCK_DUST}
-     * require the item type to render correctly.</p>
-     *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
-     * @param itemType The type of item the particle will base off of
-     */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, ItemType itemType);
-
-    /**
-     * Spawn some {@link Particle} in this world at a given position. All
-     * players within a given radius around the position will see the particles.
-     * <p>Some particles like {@link Particles#ITEM_CRACK},
-     * {@link Particles#BLOCK_CRACK} and {@link Particles#BLOCK_DUST}
-     * require the item type to render correctly.</p>
-     *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
-     * @param radius The radius around the position where the particles can
-     * be seen by players
-     * @param itemType The type of item the particle will base off of
-     */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, int radius, ItemType itemType);
 
 }

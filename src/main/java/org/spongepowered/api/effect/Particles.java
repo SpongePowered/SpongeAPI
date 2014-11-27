@@ -22,9 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.particle;
+package org.spongepowered.api.effect;
 
 import com.google.common.base.Optional;
+
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -88,6 +90,10 @@ public final class Particles {
      */
     @Nullable
     public static Optional<Particle> getByName(String name) {
+        return null;
+    }
+
+    public static List<Particle> getValues() {
         return null;
     }
 

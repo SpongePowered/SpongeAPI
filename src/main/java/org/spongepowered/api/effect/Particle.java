@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.particle;
+package org.spongepowered.api.effect;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.

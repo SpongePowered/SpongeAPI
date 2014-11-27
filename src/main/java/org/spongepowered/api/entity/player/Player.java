@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.entity.player;
 
+import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
@@ -42,7 +43,7 @@ import java.util.Locale;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Human, User, CommandSource {
+public interface Player extends Human, User, CommandSource, Viewer {
 
     /**
      * Gets the player's display name. If none set, returns their current
