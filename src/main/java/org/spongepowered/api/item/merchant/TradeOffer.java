@@ -84,7 +84,7 @@ public interface TradeOffer {
     /**
      * Gets the current maximum uses of this offer.
      * <p>Usually, the uses of an offer a re limited by the amount of
-     * {@link #getMaxUses()}. Once the uses reaches the max uses,
+     * maximum uses. Once the uses reaches the max uses,
      * the offer may temporariliy become disabled.</p>
      *
      * @return The maximum uses of this trade offer
@@ -98,5 +98,13 @@ public interface TradeOffer {
      * @return True if the uses have surpassed the maximum uses
      */
     boolean hasExpired();
+
+    /**
+     * Gets whether this trade offer will grant experience upon usage
+     * or not.
+     *
+     * @return True if using this trade offer will grant experience
+     */
+    boolean doesGrantExperience();
 
 }
