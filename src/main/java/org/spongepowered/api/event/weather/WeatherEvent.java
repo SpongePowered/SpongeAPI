@@ -23,21 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.weather;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.world.WorldEvent;
 
 /**
- * Raised when an entity mounts another entity.
+ * Called when a weather-related activity happens.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Gets the entity that is being mounted.
-     *
-     * @return The entity that is being mounted
-     */
-    Entity getMounted();
+public interface WeatherEvent extends WorldEvent {
 
 }

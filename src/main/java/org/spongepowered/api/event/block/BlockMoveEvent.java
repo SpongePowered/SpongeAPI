@@ -23,21 +23,12 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+package org.spongepowered.api.event.block;
 
 /**
- * Raised when an entity mounts another entity.
+ * Dispatched when block is moved in world, such as by a piston. Cancel to
+ * prevent the movement and make piston not work.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Gets the entity that is being mounted.
-     *
-     * @return The entity that is being mounted
-     */
-    Entity getMounted();
+public interface BlockMoveEvent extends BulkBlockEvent {
 
 }

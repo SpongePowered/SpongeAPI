@@ -23,21 +23,26 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.entity.player.Player;
 
 /**
- * Raised when an entity mounts another entity.
+ * Called when a {@link Player} joins the game.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
+public interface PlayerJoinEvent extends PlayerEvent {
 
     /**
-     * Gets the entity that is being mounted.
+     * Gets the message displayed when the player joins.
      *
-     * @return The entity that is being mounted
+     * @return The player join message.
      */
-    Entity getMounted();
+    String getJoinMessage();
 
+    /**
+     * Sets the message displayed when the player joins.
+     *
+     * @param joinMessage The new player quit message.
+     */
+    void setJoinMessage(String joinMessage);
 }

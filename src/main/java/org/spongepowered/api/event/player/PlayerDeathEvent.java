@@ -23,21 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.event.entity.EntityDeathEvent;
 
 /**
- * Raised when an entity mounts another entity.
+ * Called when a {@link Player} is killed.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
+public interface PlayerDeathEvent extends EntityDeathEvent, PlayerEvent {
 
     /**
-     * Gets the entity that is being mounted.
+     * Gets the death message of this {@link Player}.
      *
-     * @return The entity that is being mounted
+     * @return The death message.
      */
-    Entity getMounted();
+    String getDeathMessage();
 
+    /**
+     * Sets the death message of this {@link Player}.
+     *
+     * @param deathMessage The new death message.
+     */
+    void setDeathMessage(String deathMessage);
 }

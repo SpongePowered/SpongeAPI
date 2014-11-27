@@ -23,21 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.world.World;
 
 /**
- * Raised when an entity mounts another entity.
+ * Called when the {@link Player} changes {@link World}.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
+public interface PlayerChangeWorldEvent extends PlayerEvent, Cancellable {
 
     /**
-     * Gets the entity that is being mounted.
+     * Gets the {@link World} the player is leaving.
      *
-     * @return The entity that is being mounted
+     * @return The from world.
      */
-    Entity getMounted();
+    World getFromWorld();
 
+    /**
+     * Gets the {@link World} the player is entering.
+     *
+     * @return The to world.
+     */
+    World getToWorld();
 }

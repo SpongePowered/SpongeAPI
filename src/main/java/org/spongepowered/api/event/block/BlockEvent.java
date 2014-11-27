@@ -22,22 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.block.Block;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Raised when an entity mounts another entity.
+ * Base event for events affecting a single block.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
-
+public interface BlockEvent extends GameEvent, CauseTracked {
+    
     /**
-     * Gets the entity that is being mounted.
-     *
-     * @return The entity that is being mounted
+     * Get the block affected by the event (the target block).
+     * 
+     * @return Related block
      */
-    Entity getMounted();
+    Block getBlock();
 
 }

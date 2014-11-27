@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.event.cause;
 
+import com.google.common.base.Optional;
+
 /**
  * Something that keeps track of the cause.
  */
@@ -38,6 +40,6 @@ public interface CauseTracked {
      *
      * @return The last cause
      */
-    Cause getCause();
+    Optional<Cause> getCause();
 
 }

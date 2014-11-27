@@ -23,21 +23,21 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.block.BlockSnapshot;
 
 /**
- * Raised when an entity mounts another entity.
+ * Dispatched when a block is in the process of changing, before
+ * the change has been made.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
-
+public interface BlockChangeEvent extends BlockEvent {
+    
     /**
-     * Gets the entity that is being mounted.
+     * Get the block that will replace the block.
      *
-     * @return The entity that is being mounted
+     * @return The block that will replace
      */
-    Entity getMounted();
+    BlockSnapshot getReplacementBlock();
 
 }

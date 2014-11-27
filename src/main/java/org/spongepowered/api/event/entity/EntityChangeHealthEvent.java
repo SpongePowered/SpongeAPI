@@ -26,18 +26,32 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Raised when an entity mounts another entity.
+ * Called when the health of an {@link Entity} changes.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
+public interface EntityChangeHealthEvent extends EntityEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets the entity that is being mounted.
+     * Gets the old health of the {@link Entity}.
      *
-     * @return The entity that is being mounted
+     * @return The old health.
      */
-    Entity getMounted();
+    double getOldHealth();
 
+    /**
+     * Gets the new health of the {@link Entity}.
+     *
+     * @return The new health.
+     */
+    double getNewHealth();
+
+    /**
+     * Sets the new health of the {@link Entity}.
+     *
+     * @param newHealth The new health
+     */
+    void setNewHealth(double newHealth);
 }

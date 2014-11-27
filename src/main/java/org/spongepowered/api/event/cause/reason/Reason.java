@@ -23,21 +23,14 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.cause.reason;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.cause.Cause;
 
 /**
- * Raised when an entity mounts another entity.
+ * A reason explains a {@link Cause}. For example, a cause might be a fire
+ * block, and the reason would be fire spread.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Gets the entity that is being mounted.
-     *
-     * @return The entity that is being mounted
-     */
-    Entity getMounted();
+public interface Reason {
 
 }

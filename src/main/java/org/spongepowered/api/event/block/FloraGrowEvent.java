@@ -23,21 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+package org.spongepowered.api.event.block;
 
 /**
- * Raised when an entity mounts another entity.
+ * Called when a block is about to be changed because it would have
+ * resulted from some form of growth related to flora.
+ *
+ * <p>Examples of reasons why this event would be called include:</p>
+ *
+ * <ul>
+ *     <li>The placement of a cactus block because it grew.</li>
+ *     <li>The placement of a pumpkin block because it grew.</li>
+ *     <li>The change in state of a wheat block because it grew.</li>
+ * </ul>
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Gets the entity that is being mounted.
-     *
-     * @return The entity that is being mounted
-     */
-    Entity getMounted();
+public interface FloraGrowEvent extends BlockChangeEvent {
 
 }

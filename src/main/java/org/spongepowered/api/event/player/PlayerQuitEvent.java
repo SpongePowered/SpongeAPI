@@ -23,21 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Raised when an entity mounts another entity.
+ * Called when a {@link Player} quit the game.
  */
-public interface EntityMountEvent extends EntityEvent, Cancellable {
+public interface PlayerQuitEvent extends PlayerEvent {
 
     /**
-     * Gets the entity that is being mounted.
+     * Gets the message displayed when the player quits.
      *
-     * @return The entity that is being mounted
+     * @return The player quit message.
      */
-    Entity getMounted();
+    String getQuitMessage();
 
+    /**
+     * Sets the message displayed when the player quits.
+     *
+     * @param quitMessage The new player quit message.
+     */
+    void setQuitMessage(Message<?> quitMessage);
 }

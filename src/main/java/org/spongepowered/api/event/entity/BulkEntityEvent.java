@@ -26,63 +26,40 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.util.event.callback.CallbackList;
 
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
- * An abstract implementation of entity events.
+ * An event that involves multiple entities at once.
  */
-public abstract class AbstractEventEntity implements EntityEvent {
-
-    private final Game game;
-    private final CallbackList callbacks = new CallbackList();
-    private final List<Entity> entities;
+public interface BulkEntityEvent extends GameEvent {
 
     /**
-     * Create a new instance.
+     * Get a list of affected entities.
      *
-     * @param game The game
-     * @param entities A list of entities
+     * <p>The list of entities is immutable if this event does not extend
+     * {@link Cancellable}. Otherwise, the effect of removing an entity from
+     * the list is dependent on the event, though it may "cancel" the event
+     * for the removed entity (i.e. if it's a spawn entity event, then the
+     * entity would not be spawned).</p>
+     *
+     * @return A list of entities
      */
-    public AbstractEventEntity(Game game, List<Entity> entities) {
-        checkNotNull(game);
-        checkNotNull(entities);
-        this.game = game;
-        this.entities = entities;
-    }
+    List<Entity> getEntities();
 
-    @Override
-    public Game getGame() {
-        return game;
-    }
-
-    @Override
-    public CallbackList getCallbacks() {
-        return callbacks;
-    }
-
-    @Override
-    public List<Entity> getEntities() {
-        return (this instanceof Cancellable) ? entities : Collections.unmodifiableList(entities);
-    }
-
-    @Override
-    public void filter(Predicate<Entity> predicate) {
-        Iterator<Entity> it = entities.iterator();
-        boolean canRemove = this instanceof Cancellable;
-        while (it.hasNext()) {
-            if (!predicate.apply(it.next()) && canRemove) {
-                it.remove();
-            }
-        }
-    }
+    /**
+     * Apply the given predicate to the list of entities.
+     *
+     * <p>The given predicate should return {@code true} by default, and
+     * return {@code false} to remove the entity from the list
+     * of entities (if the list mutable -- see {@link #getEntities()}
+     * for more information).</p>
+     *
+     * @param predicate A predicate that returns false to remove the given entity
+     */
+    void filter(Predicate<Entity> predicate);
 
 }
