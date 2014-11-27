@@ -26,7 +26,6 @@
 package org.spongepowered.api.entity.living.animal;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.living.Animal;
 import org.spongepowered.api.entity.living.Tameable;
 import org.spongepowered.api.entity.living.meta.HorseColor;
 import org.spongepowered.api.entity.living.meta.HorseStyle;

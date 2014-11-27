@@ -22,32 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.weather;
 
-package org.spongepowered.api.entity.projectile;
+import org.spongepowered.api.entity.weather.WeatherEffect;
 
 /**
- * Represents a Ghast fireball.
+ * Represents Lightning.
+ * <p>Lightning usually deals damage to blocks and/or other entities nearby.</p>
  */
-public interface LargeFireball extends Fireball {
+public interface Lightning extends WeatherEffect {
 
     /**
-     * gets the explosion power of this Large Fireball.
-     * <p>Explosion power must be equal to or greater than zero. Explosion
-     * power defines the amount of block damage a fireball will do upon
-     * exploding.</p>
+     * Returns whether this lightning strike is an effect and doesn't deal damage.
      *
-     * @return The explosion power
+     * @return Whether this strike is an effect
      */
-    int getExplosionPower();
-
-    /**
-     * Sets the explosion power of this Large Fireball.
-     * <p>Explosion power must be equal to or greater than zero. Explosion
-     * power defines the amount of block damage a fireball will do upon
-     * exploding.</p>
-     *
-     * @param explosionPower The explosion power
-     */
-    void setExplosionPower(int explosionPower);
-
+    boolean isEffect();
 }

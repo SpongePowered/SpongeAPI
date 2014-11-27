@@ -28,7 +28,7 @@ package org.spongepowered.api.entity.living.complex;
 /**
  * Represents a part of an Ender Dragon.
  */
-public interface EnderDragonPart extends ComplexEntityPart {
+public interface EnderDragonPart extends ComplexLivingPart {
 
     @Override
     EnderDragon getParent();

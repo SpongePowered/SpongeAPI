@@ -22,20 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.weather;
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents an Item entity.
+ * Represents weather, such as {@link Lightning}.
  */
-public interface ItemEntity extends Entity {
+public interface WeatherEffect extends Entity {
 
-    /**
-     * Get the {@link ItemStack} that this entity represents.
-     *
-     * @return The represented {@link ItemStack}
-     */
-    ItemStack getItemStack();
 }

@@ -22,43 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+
+package org.spongepowered.api.entity.living.golem;
+
+import org.spongepowered.api.entity.living.Agent;
 
 /**
- * Represents an explosive that detonates after its fuse has expired.
+ * Represents a Golem type mob.
  */
-public interface FusedExplosive extends Explosive {
-
-    /**
-     * Ignites this explosive to detonate after some fuse duration in ticks.
-     */
-    void ignite();
-
-    /**
-     * Ignites this explosive to detonate after the given fuse ticks.
-     *
-     * @param fuseTicks The ticks to set the fuse
-     */
-    void ignite(int fuseTicks);
-
-    /**
-     * Gets the current fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
-     *
-     * @return The current fuse duration in ticks
-     */
-    int getFuseDuration();
-
-    /**
-     * Sets the remainig fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
-     *
-     * @param fuseTicks The ticks for the fuse
-     */
-    void setFuseDuration(int fuseTicks);
+public interface Golem extends Agent {
 
 }

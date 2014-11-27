@@ -22,16 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+
+package org.spongepowered.api.entity.living.animal;
+
+import org.spongepowered.api.entity.living.Ageable;
 
 /**
- * Represents an explosive entity that explodes.
+ * Represents an Animal, such as a Cow.
  */
-public interface Explosive extends Entity {
-
-    /**
-     * Detonates this explosive immediately.
-     */
-    void detonate();
+public interface Animal extends Ageable {
 
 }

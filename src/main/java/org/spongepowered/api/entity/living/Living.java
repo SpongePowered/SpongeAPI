@@ -31,7 +31,7 @@ import org.spongepowered.api.math.Vector3f;
 
 import javax.annotation.Nullable;
 
-public interface LivingEntity extends Entity {
+public interface Living extends Entity {
 
     /**
      * Subtracts from the health by the given amount.
@@ -94,7 +94,7 @@ public interface LivingEntity extends Entity {
      *
      * @return The last attacker of this entity
      */
-    Optional<LivingEntity> getLastAttacker();
+    Optional<Living> getLastAttacker();
 
     /**
      * Sets the last living entity to have attacked this entity.
@@ -102,7 +102,7 @@ public interface LivingEntity extends Entity {
      *
      * @param lastAttacker The last attacker
      */
-    void setLastAttacker(@Nullable LivingEntity lastAttacker);
+    void setLastAttacker(@Nullable Living lastAttacker);
 
     /**
      * Returns whether this entity is leashed.

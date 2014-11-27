@@ -22,12 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.explosive;
 
-package org.spongepowered.api.entity.living;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a Hostile Entity, such as a Skeleton.
+ * Represents an explosive entity that explodes.
  */
-public interface Monster extends LivingEntity {
+public interface Explosive extends Entity {
+
+    /**
+     * Detonates this explosive immediately.
+     */
+    void detonate();
 
 }

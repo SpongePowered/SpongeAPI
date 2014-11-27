@@ -22,18 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+
+package org.spongepowered.api.entity.projectile.fireball;
 
 /**
- * Represents Lightning.
- * <p>Lightning usually deals damage to blocks and/or other entities nearby.</p>
+ * Represents a Blaze fireball.
  */
-public interface Lightning extends WeatherEntity {
+public interface SmallFireball extends Fireball {
 
-    /**
-     * Returns whether this lightning strike is an effect and doesn't deal damage.
-     *
-     * @return Whether this strike is an effect
-     */
-    boolean isEffect();
 }

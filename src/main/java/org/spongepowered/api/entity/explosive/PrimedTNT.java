@@ -22,12 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.explosive;
 
-package org.spongepowered.api.entity.projectile;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.living.Living;
 
 /**
- * Represents a Wither Skull.
+ * Represents a TNT that will explode.
  */
-public interface WitherSkull extends Fireball {
+public interface PrimedTNT extends FusedExplosive {
+
+    /**
+     * Gets the living entity that set off this primed tnt.
+     *
+     * @return The living entity that set off this primed tnt, if available
+     */
+    Optional<Living> getDetonator();
 
 }

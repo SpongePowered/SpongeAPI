@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.entity.vehicle.Minecart;
-
 /**
  * Represents a minecart with a furnace inside it.
  */

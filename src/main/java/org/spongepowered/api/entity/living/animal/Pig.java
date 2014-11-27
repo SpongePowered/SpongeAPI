@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Animal;
-
 /**
  * Represents a Pig.
  */

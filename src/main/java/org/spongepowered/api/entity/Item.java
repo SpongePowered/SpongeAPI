@@ -23,11 +23,19 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity;
+
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Represents a Golem type mob.
+ * Represents an Item entity.
  */
-public interface Golem extends LivingEntity {
+public interface Item extends Entity {
 
+    /**
+     * Get the {@link ItemStack} that this entity represents.
+     *
+     * @return The represented {@link ItemStack}
+     */
+    ItemStack getItemStack();
 }

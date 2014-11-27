@@ -28,7 +28,7 @@ package org.spongepowered.api.entity.living;
  * Represents a living entity that can change in size as it ages
  * and can spawn children.
  */
-public interface Ageable extends LivingEntity {
+public interface Ageable extends Agent {
 
     /**
      * Gets the age of this entity.

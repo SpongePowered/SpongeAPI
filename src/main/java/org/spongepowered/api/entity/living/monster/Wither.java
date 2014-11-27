@@ -25,8 +25,7 @@
 
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.living.LivingEntity;
-import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 import java.util.List;
@@ -58,5 +57,5 @@ public interface Wither extends Monster, ProjectileSource {
      *
      * @return The Wither's targets
      */
-    List<LivingEntity> getTargets();
+    List<Living> getTargets();
 }

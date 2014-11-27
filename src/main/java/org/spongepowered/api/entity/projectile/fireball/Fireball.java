@@ -22,23 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.complex;
+package org.spongepowered.api.entity.projectile.fireball;
 
-import org.spongepowered.api.entity.living.LivingEntity;
-
-import java.util.Set;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents a complex living entity that requires multiple bounding
- * boxes, example: {@link EnderDragon}.
+ * Represents an abstract fireball, such as {@link SmallFireball}.
  */
-public interface ComplexLivingEntity extends LivingEntity {
-
-    /**
-     * Gets the set of parts belonging to this complex entity.
-     *
-     * @return The parts belonging to this entity
-     */
-    Set<? extends ComplexEntityPart> getParts();
+public interface Fireball extends Projectile, Explosive {
 
 }

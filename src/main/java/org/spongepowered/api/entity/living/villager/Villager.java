@@ -23,10 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity.living.villager;
 
-import org.spongepowered.api.item.merchant.Merchant;
+import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.villager.Career;
+import org.spongepowered.api.item.merchant.Merchant;
 
 /**
  * Represents a Villager.
@@ -52,7 +53,7 @@ public interface Villager extends Ageable, Merchant {
 
     /**
      * Returns true if this villager is currently trading with another {@link
-     * HumanEntity}. A villager is normally unable to trade with multiple
+     * org.spongepowered.api.entity.living.Human}. A villager is normally unable to trade with multiple
      * HumanEntities at the same time.
      *
      * @return True if this villager is trading with another player

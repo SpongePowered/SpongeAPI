@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.complex;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.EnderCrystal;
+import org.spongepowered.api.entity.living.Agent;
 
 import java.util.Set;
 
@@ -35,7 +36,7 @@ import javax.annotation.Nullable;
 /**
  * Represents an Ender Dragon.
  */
-public interface EnderDragon extends ComplexLivingEntity {
+public interface EnderDragon extends ComplexLiving, Agent {
 
     @Override
     Set<EnderDragonPart> getParts();

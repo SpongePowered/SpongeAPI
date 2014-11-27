@@ -22,11 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.living.complex;
+
+import org.spongepowered.api.entity.living.Living;
+
+import java.util.Set;
 
 /**
- * Represents weather, such as {@link Lightning}.
+ * Represents a complex living entity that requires multiple bounding
+ * boxes, example: {@link EnderDragon}.
  */
-public interface WeatherEntity extends Entity {
+public interface ComplexLiving extends Living {
+
+    /**
+     * Gets the set of parts belonging to this complex entity.
+     *
+     * @return The parts belonging to this entity
+     */
+    Set<? extends ComplexLivingPart> getParts();
 
 }

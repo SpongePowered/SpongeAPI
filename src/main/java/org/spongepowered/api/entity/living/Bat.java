@@ -22,22 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.complex;
 
-import org.spongepowered.api.entity.Entity;
+package org.spongepowered.api.entity.living;
 
 /**
- * Represents a part of a {@link ComplexLivingEntity}.
- * <p>Parts are usually created to have multiple bounding boxes associated
- * with a larger entity.</p>
+ * Represents a Bat.
  */
-public interface ComplexEntityPart extends Entity {
+public interface Bat extends Agent {
 
     /**
-     * Gets the associated parent of this part.
+     * Returns true whether this bat is awake and flying or hanging.
      *
-     * @return The associated parent
+     * @return True if this bat is flying
      */
-    ComplexLivingEntity getParent();
+    boolean isAwake();
+
+    /**
+     * Sets this bat to be awake or not. An awakened bat will fly around,
+     * whereas a sleeping bat hangs upside down.
+     *
+     * @param awake Whether this bat is awake or not
+     */
+    void setAwake(boolean awake);
 
 }

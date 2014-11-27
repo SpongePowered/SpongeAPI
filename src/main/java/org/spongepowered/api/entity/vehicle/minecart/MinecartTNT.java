@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.entity.FusedExplosive;
-import org.spongepowered.api.entity.vehicle.Minecart;
+import org.spongepowered.api.entity.explosive.FusedExplosive;
 
 /**
  * Represents a Minecart with a TNT block in it.

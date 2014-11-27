@@ -53,7 +53,7 @@ public interface Projectile extends Entity {
     void setShooter(ProjectileSource shooter);
 
     /**
-     * Gets the damage this arrow will deal to a {@link org.spongepowered.api.entity.living.LivingEntity}
+     * Gets the damage this arrow will deal to a {@link org.spongepowered.api.entity.living.Living}
      * if hit.
      *
      * @return The damage of this arrow

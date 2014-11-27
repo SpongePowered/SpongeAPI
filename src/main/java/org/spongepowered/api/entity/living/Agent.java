@@ -22,21 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.living.LivingEntity;
+package org.spongepowered.api.entity.living;
 
 /**
- * Represents a TNT that will explode.
+ * An Agent represents a {@link Living} that has AI.
+ * In the future Sponge will allow for custom AIs, but for now vanilla behavior can only be disabled.
  */
-public interface PrimedTNT extends FusedExplosive {
+public interface Agent extends Living {
 
     /**
-     * Gets the living entity that set off this primed tnt.
+     * Returns whether AI is currently enabled for this Agent.
      *
-     * @return The living entity that set off this primed tnt, if available
+     * @return A boolean for whether AI is currently enabled
      */
-    Optional<LivingEntity> getDetonator();
+    boolean isAiEnabled();
+
+    /**
+     * Sets whether AI is currently enabled for this Agent.
+     *
+     * @param aiEnabled True if AI should be enabled for this Agent
+     */
+    void setAiEnabled(boolean aiEnabled);
+
+    // TODO for 1.1 add methods like getTarget, setTarget, etc.
 
 }

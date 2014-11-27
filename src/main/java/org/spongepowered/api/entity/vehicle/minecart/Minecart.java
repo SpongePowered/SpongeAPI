@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle;
+package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.math.Vector3d;

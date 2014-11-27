@@ -25,12 +25,10 @@
 
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.living.Angerable;
-
 /**
  * Represents a Zombie Pigman.
  */
-public interface ZombiePigman extends Zombie, Angerable {
+public interface ZombiePigman extends Zombie {
 
     /**
      * Gets the current anger level.

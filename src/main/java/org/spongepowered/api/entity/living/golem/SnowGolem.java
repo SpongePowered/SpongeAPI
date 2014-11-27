@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.entity.living.golem;
 
-import org.spongepowered.api.entity.living.Golem;
-
 /**
  * Represents a Snow Golem.
  */

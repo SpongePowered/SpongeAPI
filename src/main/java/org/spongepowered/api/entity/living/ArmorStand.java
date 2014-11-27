@@ -30,7 +30,7 @@ import org.spongepowered.api.math.EulerDirection;
 /**
  * Represents an armor stand.
  */
-public interface ArmorStand extends LivingEntity, ArmorEquipable {
+public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
      * Gets the direction the headpiece is aiming at.

@@ -22,28 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+
+package org.spongepowered.api.entity.living.monster;
+
+import org.spongepowered.api.entity.living.Agent;
 
 /**
- * Represents an entity that can be angered.
+ * Represents a hostile Agent, such as a Skeleton.
  */
-public interface Angerable extends LivingEntity {
-
-    /**
-     * Returns whether this entity is angry, and therefor hostile towards
-     * other entities, or not.
-     *
-     * @return Whether this entity is angry or not
-     */
-    boolean isAngry();
-
-    /**
-     * Sets whether this entity is angry or not.
-     * <p>An angry entity may start targeting other entities such as
-     * Players.</p>
-     *
-     * @param angry Whether this entity is to be angry or not
-     */
-    void setAngry(boolean angry);
+public interface Monster extends Agent {
 
 }

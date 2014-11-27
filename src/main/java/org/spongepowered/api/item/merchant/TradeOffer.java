@@ -28,7 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Represents a trade offer that a {@link Merchant} may offer a {@link org.spongepowered.api.entity.living.HumanEntity}.
+ * Represents a trade offer that a {@link Merchant} may offer a {@link org.spongepowered.api.entity.living.Human}.
  * <p>TradeOffers usually have a limited amount of times they can be used.</p>
  * <p>Also, trade offers are not guaranteed to have two buying items.</p>
  */

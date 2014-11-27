@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity.projectile.fireball;
 
 /**
- * Represents an Ambient Entity, such as Bats.
+ * Represents a Wither Skull.
  */
-public interface AmbientEntity extends LivingEntity {
+public interface WitherSkull extends Fireball {
 
 }

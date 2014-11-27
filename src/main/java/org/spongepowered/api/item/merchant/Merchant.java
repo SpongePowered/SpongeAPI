@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.living.HumanEntity;
+import org.spongepowered.api.entity.living.Human;
 
 import java.util.List;
 
@@ -40,18 +40,18 @@ public interface Merchant {
      *
      * @param human The human to trade with
      */
-    void setCustomer(@Nullable HumanEntity human);
+    void setCustomer(@Nullable Human human);
 
     /**
      * Gets the currently trading customer with this merchant.
      *
      * @return The currently trading customer if available
      */
-    Optional<HumanEntity> getCustomer();
+    Optional<Human> getCustomer();
 
     /**
      * Gets an immutable list of {@link TradeOffer}s that this merchant
-     * can send to a {@link HumanEntity}.
+     * can send to a {@link org.spongepowered.api.entity.living.Human}.
      *
      * @return An immutable list of trade offers
      */
@@ -66,7 +66,7 @@ public interface Merchant {
 
     /**
      * Replaces the entire list of trade offers this merchant can trade
-     * with a {@link HumanEntity}.
+     * with a {@link org.spongepowered.api.entity.living.Human}.
      * <p>When a merchant is in the middle of a trade, the offers may change
      * dynamically according to the offers completed by the customer.</p>
      *

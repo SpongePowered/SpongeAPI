@@ -22,12 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.complex;
 
-package org.spongepowered.api.entity.living;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents an Animal, such as a Cow.
+ * Represents a part of a {@link ComplexLiving}.
+ * <p>Parts are usually created to have multiple bounding boxes associated
+ * with a larger entity.</p>
  */
-public interface Animal extends Ageable {
+public interface ComplexLivingPart extends Entity {
+
+    /**
+     * Gets the associated parent of this part.
+     *
+     * @return The associated parent
+     */
+    ComplexLiving getParent();
 
 }

@@ -47,7 +47,7 @@ public interface EyeOfEnder extends Projectile {
 
     /**
      * Returns whether this eye will shatter or drop a new eye in the
-     * form of an {@link org.spongepowered.api.entity.ItemEntity}.
+     * form of an {@link org.spongepowered.api.entity.Item}.
      *
      * @return True if this eye will shatter or not
      */
@@ -55,7 +55,7 @@ public interface EyeOfEnder extends Projectile {
 
     /**
      * Sets whether this eye will shatter or drop a new eye in the
-     * form of an {@link org.spongepowered.api.entity.ItemEntity}.
+     * form of an {@link org.spongepowered.api.entity.Item}.
      *
      * @param shatterOnDrop Whether this eye will shatter or not
      */
