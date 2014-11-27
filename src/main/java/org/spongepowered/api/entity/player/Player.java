@@ -34,6 +34,14 @@ import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Locale;
 
+/**
+ * A Player represents the in-game entity of a human playing on a server.
+ * This is in contrast to User which represents the storage and data
+ * associated with a Player.
+ *
+ * <p>Any methods called on Player that are not on User do not store any data
+ * that persists across server restarts.</p>
+ */
 public interface Player extends HumanEntity, User, CommandSource {
 
     /**

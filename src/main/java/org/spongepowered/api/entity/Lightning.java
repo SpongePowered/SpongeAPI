@@ -28,7 +28,7 @@ package org.spongepowered.api.entity;
  * Represents Lightning.
  * <p>Lightning usually deals damage to blocks and/or other entities nearby.</p>
  */
-public interface Lightning extends Weather {
+public interface Lightning extends WeatherEntity {
 
     /**
      * Returns whether this lightning strike is an effect and doesn't deal damage.

@@ -30,7 +30,8 @@ import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.util.Identifiable;
 
 /**
- * Interface representing an OfflinePlayer
+ * A User is the data usually associated with a Player that is persisted across server restarts.
+ * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
 public interface User extends Identifiable, ArmorEquipable {
 

@@ -27,6 +27,6 @@ package org.spongepowered.api.entity;
 /**
  * Represents weather, such as {@link Lightning}.
  */
-public interface Weather extends Entity {
+public interface WeatherEntity extends Entity {
 
 }

@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.merchant.Merchant;
+import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.entity.living.villager.Career;
 
 /**
