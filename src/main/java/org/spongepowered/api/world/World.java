@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.math.Vector2i;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.world.extent.Extent;
@@ -134,25 +135,23 @@ public interface World extends Extent {
      * players within a defaults radius around the position will see the particles.
      * <p>Some particles like {@link Particles#ITEM_CRACK},
      * {@link Particles#BLOCK_CRACK} and {@link Particles#BLOCK_DUST}
-     * require an array of int as extra parameters in order to produce the 
-     * appropriate visual effect.</p>
+     * require the item type to render correctly.</p>
      *
      * @param particle The particle to create
      * @param particleCount The number of particle to create
      * @param position The position at which to create the particle
      * @param offset The offset to apply to each individual particle
      * @param speed The speed of the particle, must be at least 0
-     * @param params An array of {@link Particle#getParamCount()} int
+     * @param itemType The type of item the particle will base off of
      */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, int[] params);
+    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, ItemType itemType);
 
     /**
      * Spawn some {@link Particle} in this world at a given position. All
      * players within a given radius around the position will see the particles.
      * <p>Some particles like {@link Particles#ITEM_CRACK},
      * {@link Particles#BLOCK_CRACK} and {@link Particles#BLOCK_DUST}
-     * require an array of int as extra parameters in order to produce the 
-     * appropriate visual effect.</p>
+     * require the item type to render correctly.</p>
      *
      * @param particle The particle to create
      * @param particleCount The number of particle to create
@@ -161,8 +160,8 @@ public interface World extends Extent {
      * @param speed The speed of the particle, must be at least 0
      * @param radius The radius around the position where the particles can
      * be seen by players
-     * @param params An array of {@link Particle#getParamCount()} int
+     * @param itemType The type of item the particle will base off of
      */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, int radius, int[] params);
+    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, int radius, ItemType itemType);
 
 }
