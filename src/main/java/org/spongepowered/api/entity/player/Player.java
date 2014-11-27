@@ -23,28 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.player;
 
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Locale;
 
-public interface Player extends HumanEntity, CommandSource {
+/**
+ * A Player represents the in-game entity of a human playing on a server.
+ * This is in contrast to User which represents the storage and data
+ * associated with a Player.
+ *
+ * <p>Any methods called on Player that are not on User do not store any data
+ * that persists across server restarts.</p>
+ */
+public interface Player extends Human, User, CommandSource {
 
     /**
-     * Gets the players last known username
-     *
-     * @return The player's last known username
-     */
-    String getName();
-
-    /**
-     * Gets the player's display name. If none set, returns their current username.
-     *
+     * Gets the player's display name. If none set, returns their current
+     * username.
+     * 
      * @return The player's display name
      */
     String getDisplayName();

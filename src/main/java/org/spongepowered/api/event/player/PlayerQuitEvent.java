@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
 
 /**
@@ -45,5 +45,5 @@ public interface PlayerQuitEvent extends PlayerEvent {
      *
      * @param quitMessage The new player quit message.
      */
-    void setQuitMessage(String quitMessage);
+    void setQuitMessage(Message<?> quitMessage);
 }

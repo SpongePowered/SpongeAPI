@@ -22,9 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living;
 
-package org.spongepowered.api.entity;
+/**
+ * An Agent represents a {@link Living} that has AI.
+ * In the future Sponge will allow for custom AIs, but for now vanilla behavior can only be disabled.
+ */
+public interface Agent extends Living {
 
-public interface HumanEntity extends LivingEntity {
+    /**
+     * Returns whether AI is currently enabled for this Agent.
+     *
+     * @return A boolean for whether AI is currently enabled
+     */
+    boolean isAiEnabled();
+
+    /**
+     * Sets whether AI is currently enabled for this Agent.
+     *
+     * @param aiEnabled True if AI should be enabled for this Agent
+     */
+    void setAiEnabled(boolean aiEnabled);
+
+    // TODO for 1.1 add methods like getTarget, setTarget, etc.
 
 }

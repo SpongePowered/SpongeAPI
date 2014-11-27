@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.player.Player;
 
 /**
  * Called when a {@link Player} joins the game.

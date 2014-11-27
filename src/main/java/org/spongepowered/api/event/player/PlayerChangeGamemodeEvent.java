@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.player.Player;
 
 /**
  * Called when a {@link Player} changes GameMode. //TODO @link that, and add methods when Gamemode added.

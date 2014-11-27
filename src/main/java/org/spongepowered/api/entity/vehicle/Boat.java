@@ -22,25 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.entity.vehicle;
 
-import org.spongepowered.api.math.Vector3d;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a Minecart entity.
+ * Represents a Boat entity.
  */
-public interface Minecart extends Entity {
+public interface Boat extends Entity {
 
     /**
-     * Gets whether or not the minecart is
-     * currently on a valid rail block.
+     * Gets whether this boat is currently in
+     * water.
      *
-     * @return If the cart is on a rail
+     * @return If the boat is in water
      */
-    boolean isOnRail();
+    boolean isInWater();
 
     /**
-     * Gets the maximum speed that this cart is
+     * Gets the maximum speed that this boat is
      * allowed to travel at.
      *
      * Default value is 0.4
@@ -50,7 +50,7 @@ public interface Minecart extends Entity {
     double getMaxSpeed();
 
     /**
-     * Sets the maximum speed that this cart is
+     * Sets the maximum speed that this boat is
      * allowed to travel at.
      *
      * Default value is 0.4
@@ -60,50 +60,46 @@ public interface Minecart extends Entity {
     void setMaxSpeed(double maxSpeed);
 
     /**
-     * Gets whether or not the minecart slows down
-     * faster without a passenger.
+     * Gets whether or not the boat is able to
+     * move freely on land.
      *
-     * @return If the cart slows when empty
+     * @return If the boat can move on land
      */
-    boolean doesSlowWhenEmpty();
+    boolean canMoveOnLand();
 
     /**
-     * Sets whether or not the minecart slows down
-     * faster without a passenger.
+     * Gets whether or not the boat is able to
+     * move freely on land.
      *
-     * @param slowWhenEmpty If the cart should slow when emoty
+     * @param moveOnLand If the boat can move on land
      */
-    void setSlowWhenEmpty(boolean slowWhenEmpty);
+    void setMoveOnLand(boolean moveOnLand);
 
     /**
-     * Gets the velocity modifier applied when the
-     * minecart is airborne.
+     * Gets the rate at which occupied boats decelerate.
      *
-     * @return Airborne velocity modifier
+     * @return The occupied deceleration rate
      */
-    Vector3d getAirborneVelocityMod();
+    double getOccupiedDeceleration();
 
     /**
-     * Sets the velocity modifier applied when the
-     * minecart is airborne.
+     * Sets the rate at which occupied boats decelerate.
      *
-     * @param airborneVelocityMod The new airborne velocity modifier
+     * @param occupiedDeceleration The new occupied deceleration rate
      */
-    void setAirborneVelocityMod(Vector3d airborneVelocityMod);
+    void setOccupiedDeceleration(double occupiedDeceleration);
 
     /**
-     * Gets the velocity modifier applied when the
-     * minecart is not on rails.
+     * Gets the rate at which unoccupied boats decelerate.
      *
-     * @return Derailed velocity modifier
+     * @return The unoccupied deceleration rate
      */
-    Vector3d getDerailedVelocityMod();
+    double getUnoccupiedDeceleration();
 
     /**
-     * Sets the velocity modifier applied when the
-     * minecart is not on rails.
+     * Sets the rate at which unoccupied boats decelerate.
      *
-     * @param derailedVelocityMod The new derailed velocity modifier
+     * @param unoccupiedDeceleration The new unoccupied deceleration rate
      */
-    void setDerailedVelocityMod(Vector3d derailedVelocityMod);
+    void setUnoccupiedDeceleration(double unoccupiedDeceleration);
 }

@@ -22,10 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.text.title;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.text.message.Message;
 
 /**

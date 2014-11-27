@@ -22,43 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.hanging.art;
 
-package org.spongepowered.api.entity;
+import com.google.common.base.Optional;
 
-public interface LivingEntity extends Entity {
+import java.util.List;
 
-    /**
-     * Subtracts from the health by the given amount.
-     *
-     * @param amount The damage amount
-     */
-    void damage(double amount);
+interface ArtFactory {
 
     /**
-     * Returns the health amount.
+     * Gets a list of all available art pieces
      *
-     * <p>The range of the health depends on the object on which this
-     * method is defined. For players in Minecraft, the nominal range is
-     * between 0 and 20, inclusive, but the range can be adjusted.</p>
-     *
-     * <p>Convention dictates that health does not follow below 0 but this
-     * convention may be broken.</p>
-     *
-     * @return Health value
+     * @return A list of all art pieces
      */
-    double getHealth();
+    List<Art> getArtPieces();
 
     /**
-     * Set the health amount.
+     * Gets the {@link Art} by name.
      *
-     * <p>The range of the health depends on the object on which this
-     * method is defined. For players in Minecraft, the nominal range is
-     * between 0 and 20, inclusive, but the range can be adjusted.</p>
-     *
-     * <p>Convention dictates that health does not follow below 0 but this
-     * convention may be broken.</p>
-     *
-     * @param health The health to set to
+     * @param name The name of the art piece
+     * @return The art, if available
      */
-    void setHealth(double health);
+    Optional<Art> getArtFromName(String name);
 }
