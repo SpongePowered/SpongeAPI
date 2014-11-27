@@ -84,7 +84,8 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> register(Owner owner, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback) {
+    public Optional<CommandMapping> register(Owner owner, CommandCallable callable, List<String> aliases,
+                                             Function<List<String>, List<String>> callback) {
         checkNotNull(owner);
 
         synchronized (lock) {

@@ -114,7 +114,8 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be registered
      * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
      */
-    public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback) {
+    public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
+                                                          Function<List<String>, List<String>> callback) {
         checkNotNull(aliases);
         checkNotNull(callable);
         checkNotNull(callback);
