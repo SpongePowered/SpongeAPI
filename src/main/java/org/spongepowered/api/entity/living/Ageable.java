@@ -77,6 +77,7 @@ public interface Ageable extends Agent {
 
     /**
      * Sets whether this entity can breed a new child.
+     *
      * @param breeding Whether this entity can breed
      */
     void setBreeding(boolean breeding);

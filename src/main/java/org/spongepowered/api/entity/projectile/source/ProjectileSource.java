@@ -36,7 +36,7 @@ public interface ProjectileSource {
      * Launches a {@link Projectile} from this projectile source.
      *
      * @param projectileClass The class of the projectile
-     * @param <T> The Type of Projectile
+     * @param <T>             The Type of Projectile
      * @return The projectile instance that was launched
      */
     <T extends Projectile> T launchProjectile(Class<T> projectileClass);
@@ -45,8 +45,8 @@ public interface ProjectileSource {
      * Launches a {@link Projectile} from this projectile source.
      *
      * @param projectileClass The class of the projectile
-     * @param velocity The velocity to launch the projectile
-     * @param <T> The Type of Projectile
+     * @param velocity        The velocity to launch the projectile
+     * @param <T>             The Type of Projectile
      * @return The projectile instance that was launched
      */
     <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3f velocity);

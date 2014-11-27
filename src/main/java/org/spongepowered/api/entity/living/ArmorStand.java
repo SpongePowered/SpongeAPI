@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living;
 
 import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.item.inventory.EquipmentInventory;
 
 /**
  * Represents an armor stand.
@@ -174,4 +175,12 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @param baseplate Whether this armor stand is to have a base plate
      */
     void setHasBasePlate(boolean baseplate);
+
+    /**
+     * Gets the equipment inventory of this ArmorStand.
+     *
+     * @return The equipment inventory
+     */
+    EquipmentInventory<ArmorStand> getInventory();
+
 }

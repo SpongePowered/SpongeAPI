@@ -26,6 +26,7 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -65,6 +66,8 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
@@ -535,5 +538,21 @@ public interface GameRegistry {
      * @return The list of all available {@link BannerPatternShape}s
      */
     List<BannerPatternShape> getBannerPatternShapes();
+
+    /**
+     * Retrieves the ItemDictionary for this GameRegistry
+     * (and, by proxy, Game).
+     *
+     * @return The item dictionary
+     */
+    GameDictionary getGameDictionary();
+
+    /**
+     * Retrieves the RecipeRegistry for this GameRegistry
+     * (and, by proxy, Game).
+     *
+     * @return The recipe registry
+     */
+    RecipeRegistry getRecipeRegistry();
 
 }
