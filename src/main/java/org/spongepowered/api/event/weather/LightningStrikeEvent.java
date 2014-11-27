@@ -25,10 +25,17 @@
 
 package org.spongepowered.api.event.weather;
 
+import org.spongepowered.api.entity.weather.Lightning;
+
 /**
- * Called when lightning strikes..
+ * Called when {@link Lightning} strikes.
  */
 public interface LightningStrikeEvent extends WeatherEvent {
 
-    //TODO add getLightningStrike once entity is added.
+    /**
+     * Gets the lightning that struck.
+     *
+     * @return The lightning.
+     */
+    Lightning getLightning();
 }

@@ -30,7 +30,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when an {@link Entity} is killed or unloaded..
+ * Called when an {@link Entity} is killed or removed due to unload.
  */
 public interface EntityDeathEvent extends EntityEvent, CauseTracked, Cancellable {
     
