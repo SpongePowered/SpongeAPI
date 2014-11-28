@@ -35,7 +35,7 @@ import com.google.common.base.Optional;
  * with the service(s) that the provider implements.</p>
  *
  * <p>Providers are registered at runtime using
- * {@link #setProvider(Object, Class, Object, boolean)}. Only one provider
+ * {@link #setProvider(Object, Class, Object)}. Only one provider
  * can be registered for each service, but a provider can be marked as
  * replaceable if it can be replaced with a new provider.</p>
  */
@@ -56,13 +56,12 @@ public interface ServiceManager {
      * @param plugin The instance of a plugin
      * @param service The service
      * @param provider The implementation
-     * @param replaceable Whether this provider can be replaced with another
      * @param <T> The type of service
      * @throws ProviderExistsException Thrown if a provider already exists
      *                                 and cannot be replaced
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    <T> void setProvider(Object plugin, Class<T> service, T provider, boolean replaceable) throws ProviderExistsException;
+    <T> void setProvider(Object plugin, Class<T> service, T provider) throws ProviderExistsException;
 
     /**
      * Return a provider for the given service, if one is available.
