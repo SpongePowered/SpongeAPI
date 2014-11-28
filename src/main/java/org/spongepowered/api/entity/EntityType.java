@@ -32,4 +32,11 @@ import org.spongepowered.api.text.translation.Translatable;
  */
 public interface EntityType extends Translatable {
 
+    /**
+     * Gets the name of this entity type.
+     *
+     * @return The name of this entity type
+     */
+    String getName();
+
 }
