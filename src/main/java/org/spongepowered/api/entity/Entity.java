@@ -30,10 +30,13 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
+
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -76,6 +79,26 @@ public interface Entity extends Identifiable, EntityState {
      * @param interactionType The type of interaction performed on this entity
      */
     void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
+
+    /**
+     * Adds a {@link PotionEffect} to this entity.
+     *
+     * <p>
+     *     If a conflicting {@link PotionEffect} already exists,
+     *     this will not be applied unless force is specified.
+     * </p>
+     *
+     * @param potionEffect The {@link PotionEffect} to add.
+     * @param force Whether or not to forcibly add it.
+     */
+    void addPotionEffect(PotionEffect potionEffect, boolean force);
+
+    /**
+     * Gets a list of {@link PotionEffect}s currently applied to this entity.
+     *
+     * @return The list of {@link PotionEffect}s.
+     */
+    List<PotionEffect> getPotionEffects();
 
     /**
      * Returns whether this entity is on the ground (not in the air) or not.
