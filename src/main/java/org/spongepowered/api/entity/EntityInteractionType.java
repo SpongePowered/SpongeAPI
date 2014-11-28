@@ -29,7 +29,9 @@ package org.spongepowered.api.entity;
  * An enum representing the possible ways for a player to interact directly.
  */
 public enum EntityInteractionType {
+
     LEFT_CLICK,
     MIDDLE_CLICK,
-    RIGHT_CLICK;
+    RIGHT_CLICK
+
 }

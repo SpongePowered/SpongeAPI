@@ -26,6 +26,7 @@
 package org.spongepowered.api.world;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.math.Vector2i;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -84,4 +85,16 @@ public interface World extends Extent {
      */
     Chunk loadChunk(Vector2i position);
 
+    /**
+     * Gets the entity whose {@link UUID} matches the provided id, possibly
+     * returning no entity if the entity is not loaded or non-existant.
+     *
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method may return no entity if the entity is not
+     * loaded.</p>
+     *
+     * @param uuid The unique id
+     * @return An entity, if available
+     */
+    Optional<Entity> getEntityFromUUID(UUID uuid);
 }

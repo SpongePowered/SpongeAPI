@@ -37,6 +37,10 @@ public interface Cancellable {
     /**
      * Sets the cancelled state of the {@link Event}.
      *
+     * <p>This will also cancel any callbacks on the event if {@code cancel}
+     * is {@code true}. However, no callbacks will be un-cancelled if
+     * {@code cancel} is {@code false}.</p>
+     *
      * @param cancel The new cancelled state
      */
     void setCancelled(boolean cancel);

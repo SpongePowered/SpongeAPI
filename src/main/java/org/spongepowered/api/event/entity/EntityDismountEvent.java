@@ -38,4 +38,5 @@ public interface EntityDismountEvent extends EntityEvent, Cancellable {
      * @return The entity that is being dismounted from
      */
     Entity getDismounted();
+
 }

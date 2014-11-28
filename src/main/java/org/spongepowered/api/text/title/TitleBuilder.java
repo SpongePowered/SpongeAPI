@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.title;
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
 
 /**
