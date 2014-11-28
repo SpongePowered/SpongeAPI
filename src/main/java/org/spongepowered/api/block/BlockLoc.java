@@ -27,6 +27,7 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.Vector3i;
+import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
@@ -36,7 +37,7 @@ import java.util.Collection;
 /**
  * Represents a block at a specific location in an {@link Extent}.
  */
-public interface BlockLoc {
+public interface BlockLoc extends DataHolder {
 
     /**
      * Get the extent.

@@ -30,6 +30,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.math.EulerDirection;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -53,7 +54,7 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, EntityState {
+public interface Entity extends Identifiable, EntityState, DataHolder {
 
     /**
      * Mark this entity for removal in the very near future, preferably

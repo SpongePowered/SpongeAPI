@@ -32,6 +32,9 @@ import java.util.Collection;
 
 /**
  * Represents a block with type and data.
+ *
+ * <p>This interface represents something directly analogous to block states
+ * in Minecraft.</p>
  */
 public interface BlockState {
 
@@ -117,20 +120,5 @@ public interface BlockState {
      */
     @Deprecated
     byte getDataValue();
-
-    /**
-     * Get an instance of the given data class for this block.
-     *
-     * <p>For example, if this block represents a sign,
-     * {@code getData(Sign.class)} would yield an instance of
-     * {@code Sign} to change the contents of the sign. However, if
-     * this block does not represent a sign, then an instance will not
-     * be returned.</p>
-     *
-     * @param dataClass The data class
-     * @param <T> The type of data
-     * @return An instance of the class
-     */
-    <T> Optional<T> getData(Class<T> dataClass);
 
 }
