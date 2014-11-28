@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.event.Cancellable;
@@ -48,7 +48,7 @@ public interface BulkBlockEvent extends GameEvent, CauseTracked {
      *
      * @return An list of blocks
      */
-    List<Block> getBlocks();
+    List<BlockLoc> getBlocks();
 
     /**
      * Apply the given predicate to the list of blocks.
@@ -60,6 +60,6 @@ public interface BulkBlockEvent extends GameEvent, CauseTracked {
      *
      * @param predicate A predicate that returns false to remove the given block
      */
-    void filter(Predicate<Block> predicate);
+    void filter(Predicate<BlockLoc> predicate);
 
 }

@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.cause;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.reason.Reason;
 
@@ -79,7 +79,7 @@ public class Cause {
     }
 
     /**
-     * Get the causing object (it may be an {@link Entity}, {@link Block},
+     * Get the causing object (it may be an {@link Entity}, {@link BlockLoc},
      * etc.).
      *
      * @return The cause

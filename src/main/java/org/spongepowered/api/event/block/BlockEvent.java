@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 
@@ -38,6 +38,6 @@ public interface BlockEvent extends GameEvent, CauseTracked {
      * 
      * @return Related block
      */
-    Block getBlock();
+    BlockLoc getBlock();
 
 }

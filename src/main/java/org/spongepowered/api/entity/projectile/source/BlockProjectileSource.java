@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile.source;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 
 /**
  * Represents a {@link ProjectileSource} that is a block. Examples are
@@ -37,6 +37,6 @@ public interface BlockProjectileSource extends ProjectileSource {
      *
      * @return The block of this source
      */
-    Block getBlock();
+    BlockLoc getBlock();
 
 }

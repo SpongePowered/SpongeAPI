@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.player;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.event.Cancellable;
@@ -37,11 +37,11 @@ import org.spongepowered.api.util.event.Cancellable;
 public interface PlayerInteractEvent extends PlayerEvent, Cancellable {
 
     /**
-     * Gets the {@link Block} that the player has clicked, if available.
+     * Gets the {@link BlockLoc} that the player has clicked, if available.
      * 
      * @return The block
      */
-    Optional<Block> getBlock();
+    Optional<BlockLoc> getBlock();
 
     /**
      * Gets the {@link EntityInteractionType} that the player used.

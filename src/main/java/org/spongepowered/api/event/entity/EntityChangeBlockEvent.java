@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.block.BlockChangeEvent;
 
 /**
- * Called when an {@link Entity} changes a {@link Block}.
+ * Called when an {@link Entity} changes a {@link BlockLoc}.
  */
 public interface EntityChangeBlockEvent extends EntityEvent, BlockChangeEvent {
 
