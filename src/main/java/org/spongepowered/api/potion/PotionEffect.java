@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.potion;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Living;
 
 /**
  * Represents a possible Potion Effect.
@@ -41,11 +41,11 @@ public interface PotionEffect {
 
     /**
      * Applies this potion effect to the specified
-     * {@link Entity}.
+     * {@link Living}.
      *
      * @param ent The entity to apply the effect to.
      */
-    void apply(Entity ent);
+    void apply(Living ent);
 
     /**
      * Gets the duration for which this potion effect

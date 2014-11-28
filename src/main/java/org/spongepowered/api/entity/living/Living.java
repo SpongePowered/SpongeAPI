@@ -28,6 +28,9 @@ package org.spongepowered.api.entity.living;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.potion.PotionEffect;
+
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -87,6 +90,26 @@ public interface Living extends Entity {
      * @param maxHealth The maximum health for this entity
      */
     void setMaxHealth(double maxHealth);
+
+    /**
+     * Adds a {@link PotionEffect} to this entity.
+     *
+     * <p>
+     *     If a conflicting {@link PotionEffect} already exists,
+     *     this will not be applied unless force is specified.
+     * </p>
+     *
+     * @param potionEffect The {@link PotionEffect} to add.
+     * @param force Whether or not to forcibly add it.
+     */
+    void addPotionEffect(PotionEffect potionEffect, boolean force);
+
+    /**
+     * Gets a list of {@link PotionEffect}s currently applied to this entity.
+     *
+     * @return The list of {@link PotionEffect}s.
+     */
+    List<PotionEffect> getPotionEffects();
 
     /**
      * Gets the living entity that last attacked this one.
