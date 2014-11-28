@@ -25,6 +25,9 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.potion.PotionEffect;
+
+import java.util.List;
 
 /**
  * Represents a thrown potion.
@@ -49,5 +52,11 @@ public interface ThrownPotion extends Projectile {
      */
     void setItem(ItemStack item);
 
-    // TODO add getPotionEffects() when potions are added
+    /**
+     * Gets the list of {@link PotionEffect}s that are in
+     * this thrown potion.
+     *
+     * @return The list of {@link PotionEffect}s.
+     */
+    List<PotionEffect> getPotionEffects();
 }
