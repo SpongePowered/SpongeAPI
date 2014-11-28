@@ -27,6 +27,11 @@ package org.spongepowered.api.block;
 
 /**
  * A mutable complete representation of a block type and its associated data.
+ *
+ * <p>A block snapshot contains block type, block properties (state), as
+ * well as extra block data.</p>
+ *
+ * @see BlockLoc
  */
 public interface BlockSnapshot {
 
@@ -36,4 +41,5 @@ public interface BlockSnapshot {
      * @return The stored block state
      */
     BlockState getState();
+
 }

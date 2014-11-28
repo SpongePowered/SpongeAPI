@@ -36,11 +36,18 @@ import java.util.Collection;
 
 /**
  * Represents a block at a specific location in an {@link Extent}.
+ *
+ * <p>A {@code BlockLoc} is <strong>not</strong> a copy of a block's data.
+ * The type of block a {@code BlockLoc} refers to can change over time. To
+ * get a copy of the block's data, use {@link #getSnapshot()}.</p>
+ *
+ * <p>Instances are immutable, however, so they will never refer to
+ * a different location.</p>
  */
 public interface BlockLoc extends DataHolder {
 
     /**
-     * Get the extent.
+     * Get the extent that the block that is referred to resides within.
      *
      * @return The extent
      */

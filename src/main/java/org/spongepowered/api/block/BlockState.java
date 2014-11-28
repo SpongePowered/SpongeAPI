@@ -27,14 +27,19 @@ package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
+import org.spongepowered.api.util.DataHolder;
 
 import java.util.Collection;
 
 /**
- * Represents a block with type and data.
+ * Represents a block using {@link BlockType} and a list of
+ * {@link BlockProperty} instances.
  *
- * <p>This interface represents something directly analogous to block states
- * in Minecraft.</p>
+ * <p>This interface represents the Mojang interpretation of
+ * "block state."</p>
+ *
+ * <p>States do not refer to extra data, such as chest contents. That is
+ * considered extra data and can be accessed via {@link DataHolder}.</p>
  */
 public interface BlockState {
 

@@ -32,6 +32,21 @@ import java.util.Collection;
 
 /**
  * Represents a basic data property for a block.
+ *
+ * <p>Properties are facets of {@link BlockState}s. They fundamentally allow
+ * basic block types to be differentiated. For example, the direction
+ * of a stairs block would be one property. More complex data, such as the
+ * contents of inventories, are <strong>not</strong> considered a block
+ * property, and are considered block data in Sponge.</p>
+ *
+ * <p>In older versions of Minecraft, block properties were encoded in
+ * a block's metadata.</p>
+ *
+ * <p>Not all properties are serialized to disk; they may only exist only during
+ * the runtime of the game, which implies that their state are initialized based
+ * on their environment.</p>
+ *
+ * @see BlockState Contains a collection of properties
  */
 public interface BlockProperty<T extends Comparable<T>> {
     /**

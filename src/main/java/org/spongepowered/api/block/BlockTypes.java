@@ -34,6 +34,8 @@ public final class BlockTypes {
     private BlockTypes() {
     }
 
+    // These values will not be null at runtime
+
     public static final BlockType AIR = null;
     public static final BlockType STONE = null;
     public static final BlockType GRASS = null;

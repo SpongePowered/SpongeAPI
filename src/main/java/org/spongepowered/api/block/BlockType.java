@@ -26,13 +26,14 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.DataHolder;
 
 /**
  * Describes a base type of block.
  *
- * <p>Currently, instances of this class do not fully represent variants of
- * certain blocks because some blocks use data values (which are being
- * phased out in Minecraft).</p>
+ * <p>Blocks are further differentiated using a {@link BlockState}. Complex
+ * data, such as inventory contents, are considered data, which is provided
+ * via {@link DataHolder}.</p>
  */
 public interface BlockType extends Translatable {
 
