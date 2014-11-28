@@ -32,7 +32,7 @@ import org.spongepowered.api.util.event.Cancellable;
 /**
  * Called when a {@link Player} changes {@link GameMode}.
  */
-public interface PlayerChangeGameModeEvent extends PlayerEvent, Cancellable {
+public interface PlayerChangeGamemodeEvent extends PlayerEvent, Cancellable {
 
     /**
      * Gets the old {@link GameMode} of the player.
