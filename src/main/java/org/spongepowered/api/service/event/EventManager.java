@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.service.event;
 
-import org.spongepowered.api.util.Owner;
 import org.spongepowered.api.util.event.Event;
 
 /**
@@ -36,10 +35,11 @@ public interface EventManager {
     /**
      * Registers an object to receive {@link Event}s.
      *
-     * @param owner The owner of the handlers
+     * @param plugin A plugin instance
      * @param obj The object
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    void register(Owner owner, Object obj);
+    void register(Object plugin, Object obj);
 
     /**
      * Un-registers an object from receiving {@link Event}s.

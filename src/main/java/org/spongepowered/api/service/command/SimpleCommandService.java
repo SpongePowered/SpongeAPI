@@ -34,7 +34,8 @@ import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.event.message.CommandEvent;
-import org.spongepowered.api.util.Owner;
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -43,6 +44,7 @@ import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -56,9 +58,16 @@ public class SimpleCommandService implements CommandService {
 
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
 
+    private final PluginManager pluginManager;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();
-    private final Multimap<Owner, CommandMapping> owners = HashMultimap.create();
+    private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
+
+    @Inject
+    public SimpleCommandService(PluginManager pluginManager) {
+        checkNotNull(pluginManager, "pluginManager");
+        this.pluginManager = pluginManager;
+    }
 
     @Subscribe(order = Order.LAST)
     public void onCommandEvent(final CommandEvent event) {
@@ -73,32 +82,41 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> register(Owner owner, CommandCallable callable, String... alias) {
-        return register(owner, callable, Arrays.asList(alias));
+    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
+        return register(plugin, callable, Arrays.asList(alias));
     }
 
     @Override
-    public Optional<CommandMapping> register(Owner owner, CommandCallable callable, List<String> aliases) {
-        return register(owner, callable, aliases, Functions.<List<String>>identity());
+    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
+        return register(plugin, callable, aliases, Functions.<List<String>>identity());
     }
 
     @Override
-    public Optional<CommandMapping> register(Owner owner, CommandCallable callable, List<String> aliases,
+    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
                                              Function<List<String>, List<String>> callback) {
-        checkNotNull(owner);
+        checkNotNull(plugin);
+
+        Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
+        if (!containerOptional.isPresent()) {
+            throw new IllegalArgumentException(
+                    "The provided plugin object does not have an associated plugin container "
+                            + "(in other words, is 'plugin' actually your plugin object?");
+        }
+
+        PluginContainer container = containerOptional.get();
 
         synchronized (lock) {
             // <namespace>:<alias> for all commands
             List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
             for (String alias : aliases) {
                 aliasesWithPrefix.add(alias);
-                aliasesWithPrefix.add(owner.getId() + ":" + alias);
+                aliasesWithPrefix.add(container.getId() + ":" + alias);
             }
 
             Optional<CommandMapping> mapping = dispatcher.register(callable, aliasesWithPrefix, callback);
 
             if (!mapping.isPresent()) {
-                owners.put(owner, mapping.get());
+                owners.put(container, mapping.get());
             }
 
             return mapping;
@@ -142,7 +160,7 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<Owner> getOwners() {
+    public Set<PluginContainer> getPluginContainers() {
         synchronized (lock) {
             return ImmutableSet.copyOf(owners.keySet());
         }
@@ -154,9 +172,9 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<CommandMapping> getOwnedBy(Owner owner) {
+    public Set<CommandMapping> getOwnedBy(PluginContainer container) {
         synchronized (lock) {
-            return ImmutableSet.copyOf(owners.get(owner));
+            return ImmutableSet.copyOf(owners.get(container));
         }
     }
 
