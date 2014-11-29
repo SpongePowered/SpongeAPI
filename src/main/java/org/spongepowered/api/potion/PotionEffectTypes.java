@@ -30,6 +30,9 @@ package org.spongepowered.api.potion;
  */
 public class PotionEffectTypes {
 
+	private PotionEffectTypes() {
+	}
+
     public static final PotionEffectType SPEED = null;
     public static final PotionEffectType SLOWNESS = null;
     public static final PotionEffectType HASTE = null;
