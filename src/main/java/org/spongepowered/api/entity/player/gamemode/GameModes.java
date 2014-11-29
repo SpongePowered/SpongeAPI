@@ -29,8 +29,8 @@ package org.spongepowered.api.entity.player.gamemode;
  */
 public class GameModes {
 
-	private GameModes() {
-	}
+    private GameModes() {
+    }
 
     public static final GameMode SURVIVAL = null;
     public static final GameMode CREATIVE = null;

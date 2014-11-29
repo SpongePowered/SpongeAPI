@@ -32,8 +32,8 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
  */
 public class ItemTypes {
 
-	private ItemTypes() {
-	}
+    private ItemTypes() {
+    }
 
     public static final ItemBlock STONE = null;
     public static final ItemBlock GRASS = null;

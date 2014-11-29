@@ -30,8 +30,8 @@ package org.spongepowered.api.block;
  */
 public class BlockTypes {
 
-	private BlockTypes() {
-	}
+    private BlockTypes() {
+    }
 
     public static final BlockType AIR = null;
     public static final BlockType STONE = null;
