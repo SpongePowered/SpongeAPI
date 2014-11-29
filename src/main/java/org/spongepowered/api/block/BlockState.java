@@ -27,12 +27,14 @@ package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
 
 /**
  * Represents a block with type and data.
+ *
+ * <p>This interface represents something directly analogous to block states
+ * in Minecraft.</p>
  */
 public interface BlockState {
 
@@ -118,4 +120,5 @@ public interface BlockState {
      */
     @Deprecated
     byte getDataValue();
+
 }

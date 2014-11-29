@@ -33,6 +33,14 @@ import java.util.Collection;
 public interface PluginManager {
 
     /**
+     * Get the plugin container from an instance.
+     *
+     * @param instance The instance
+     * @return The container
+     */
+    Optional<PluginContainer> fromInstance(Object instance);
+
+    /**
      * Retrieves a {@link PluginContainer} based on its ID.
      *
      * @param id The plugin ID

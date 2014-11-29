@@ -27,7 +27,7 @@ package org.spongepowered.api.service.command;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
-import org.spongepowered.api.util.Owner;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
@@ -52,12 +52,13 @@ public interface CommandService extends Dispatcher {
      *
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
-     * @param owner The owner of the command
+     * @param plugin A plugin instance
      * @param callable The command
      * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be registered
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    Optional<CommandMapping> register(Owner owner, CommandCallable callable, String... alias);
+    Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
 
     /**
      * Register a given command using the given list of aliases.
@@ -70,12 +71,13 @@ public interface CommandService extends Dispatcher {
      *
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
-     * @param owner The owner of the command
+     * @param plugin A plugin instance
      * @param callable The command
      * @param aliases A list of aliases
      * @return The registered command mapping, unless no aliases could be registered
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    Optional<CommandMapping> register(Owner owner, CommandCallable callable, List<String> aliases);
+    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
 
     /**
      * Register a given command using a given list of aliases.
@@ -91,14 +93,15 @@ public interface CommandService extends Dispatcher {
      *
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
-     * @param owner The owner of the command
+     * @param plugin A plugin instance
      * @param callable The command
      * @param aliases A list of aliases
      * @param callback The callback
      * @return The registered command mapping, unless no aliases could be registered
      * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    Optional<CommandMapping> register(Owner owner, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
+    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
 
     /**
      * Remove a mapping identified by the given alias.
@@ -117,19 +120,19 @@ public interface CommandService extends Dispatcher {
     Optional<CommandMapping> removeMapping(CommandMapping mapping);
 
     /**
-     * Get a set of owners that have commands registered.
+     * Get a set of plugin containers that have commands registered.
      *
-     * @return A set of owners
+     * @return A set of plugin containers
      */
-    Set<Owner> getOwners();
+    Set<PluginContainer> getPluginContainers();
 
     /**
-     * Get a set of commands owned by the given owner object.
+     * Get a set of commands owned by the given plugin container.
      *
-     * @param owner The owner
+     * @param container The plugin container
      * @return A set of mappings
      */
-    Set<CommandMapping> getOwnedBy(Owner owner);
+    Set<CommandMapping> getOwnedBy(PluginContainer container);
 
     /**
      * Get the number of registered aliases.
