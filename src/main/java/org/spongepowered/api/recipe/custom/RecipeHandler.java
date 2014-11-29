@@ -30,7 +30,7 @@ import org.spongepowered.api.recipe.Recipe;
 
 /**
  * Custom handler for mods which add new ways to create items. For example,
- * if some mod adds an owen, it may require custom recipes.
+ * if some mod adds an oven, it may require custom recipes.
  */
 public interface RecipeHandler {
     
