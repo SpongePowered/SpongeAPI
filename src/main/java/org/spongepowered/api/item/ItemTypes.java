@@ -27,10 +27,14 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 
+import java.util.List;
+
 /**
  * An enumeration of all possible {@link ItemType}s and {@link ItemBlock}s in vanilla minecraft.
  */
-public class ItemTypes {
+public final class ItemTypes {
+    private ItemTypes() {
+    }
 
     public static final ItemBlock STONE = null;
     public static final ItemBlock GRASS = null;
@@ -370,6 +374,10 @@ public class ItemTypes {
     public static final ItemType RECORD_WARD = null;
     public static final ItemType RECORD_11 = null;
     public static final ItemType RECORD_WAIT = null;
+
+    public static List<ItemType> getValues() {
+        return null;
+    }
 
     public static ItemStackBuilder getItemBuilder() {
         return null;
