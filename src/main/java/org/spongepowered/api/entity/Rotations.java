@@ -22,51 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.hanging;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Rotation;
-import org.spongepowered.api.item.inventory.ItemStack;
-
-import javax.annotation.Nullable;
+package org.spongepowered.api.entity;
 
 /**
- * Represents an ItemFrame.
+ * A list of rotations that certain entities can have, such as Item Frames
+ *
+ * Only the specific values listed are supported by Minecraft.
+ * Arbitrary degree values are not possible.
  */
-public interface ItemFrame extends Hanging {
+public enum Rotations implements Rotation {
+    DEGREES_0(0),
+    DEGREES_45(45),
+    DEGREES_90(90),
+    DEGREES_135(135),
+    DEGREES_180(180),
+    DEGREES_225(225),
+    DEGREES_270(270),
+    DEGREES_315(315);
 
-    /**
-     * Gets the currently displayed Item.
-     *
-     * @return The currently displayed item, if available
-     */
-    Optional<ItemStack> getItem();
+    private double degree;
 
-    /**
-     * Sets the item to be displayed.
-     *
-     * @param item The item to be displayed
-     */
-    void setItem(@Nullable ItemStack item);
+    private Rotations(double degree) {
+        this.degree = degree;
+    }
 
-    /**
-     * Gets the rotation of the currently displayed item
-     *
-     * <p>If no item is being displayed in the item frame, the rotation will be
-     * used the next time one is displayed.</p>
-     *
-     * @return The rotation of the current item
-     */
-    Rotation getItemRotation();
-
-    /**
-     * Sets the rotation of the currently displayed item
-     *
-     * <p>If no item is being displayed in the item frame, the rotation will be
-     * used the next time one is displayed.</p>
-     *
-     * @param rotation The rotation to be set
-     */
-    void setItemRotation(Rotation rotation);
-
+    public double getAngle() {
+        return degree;
+    }
 }
