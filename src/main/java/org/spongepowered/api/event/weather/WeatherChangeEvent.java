@@ -57,9 +57,9 @@ public interface WeatherChangeEvent extends WeatherEvent {
     /**
      * Sets what the new {@link WeatherType} should be with a given duration.
      *
-     * @param weather The new {@link Weather}
+     * @param weatherType The new {@link WeatherType}
      * @param duration The duration of the weather in ticks
      */
-    void setResultingWeather(Weather weather, int duration);
+    void setResultingWeather(WeatherType weatherType, int duration);
 
 }

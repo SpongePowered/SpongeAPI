@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.event.weather;
 
+import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
@@ -32,13 +33,6 @@ import org.spongepowered.api.event.GameEvent;
 /**
  * Describes events related to Weather
  */
-public interface WeatherEvent extends GameEvent, Cancellable {
-
-    /**
-     * Gets the {@link World} where the event happened.
-     *
-     * @return {@link World} where the event happened
-     */
-    World getWorld();
+public interface WeatherEvent extends WorldEvent, Cancellable {
 
 }
