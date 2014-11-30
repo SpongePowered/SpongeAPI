@@ -22,54 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.recipe.crafting;
 
-package org.spongepowered.api;
+import java.util.List;
 
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.oredict.OreDictionaryService;
-import org.spongepowered.api.recipe.RecipeService;
+import org.spongepowered.api.recipe.Recipe;
 
 /**
- * Provides an easy way to retrieve types from a {@link Game}.
+ * Main class for most of normal crafting recipes.
  */
-public interface GameRegistry {
-
-    /**
-     * Gets a {@link BlockType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Optional<BlockType> getBlock(String id);
-
-    /**
-     * Gets an {@link ItemType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The item or null if not found
-     */
-    Optional<ItemType> getItem(String id);
-
-    /**
-     * Gets the ID registered to the object.
-     *
-     * @param obj The object to look up
-     * @return The id or null if none found
-     */
-    Optional<String> getId(Object obj);
+public class CraftingRecipe extends Recipe {
     
-    /**
-     * Gets recipe service, which is used to register and unregister recipes.
-     * @return Recipe service
-     */
-    RecipeService getRecipeService();
+    protected List<ItemType> ingredients;
     
-    /**
-     * Gets ore dictionary service.
-     * @return Ore dictionary service.
-     */
-    OreDictionaryService getOreDictService();
+    public List<ItemType> getIngredients() {
+        return this.ingredients;
+    }
 }

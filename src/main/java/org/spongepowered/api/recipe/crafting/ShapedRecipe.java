@@ -22,54 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.recipe.crafting;
 
-package org.spongepowered.api;
+import java.util.Arrays;
 
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.oredict.OreDictionaryService;
-import org.spongepowered.api.recipe.RecipeService;
+import org.spongepowered.api.item.inventory.ItemStack;
+
+import com.google.common.base.Preconditions;
 
 /**
- * Provides an easy way to retrieve types from a {@link Game}.
+ * A shaped recipe. Locations of ingredients in crafting grid do matter.
  */
-public interface GameRegistry {
-
-    /**
-     * Gets a {@link BlockType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Optional<BlockType> getBlock(String id);
-
-    /**
-     * Gets an {@link ItemType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The item or null if not found
-     */
-    Optional<ItemType> getItem(String id);
-
-    /**
-     * Gets the ID registered to the object.
-     *
-     * @param obj The object to look up
-     * @return The id or null if none found
-     */
-    Optional<String> getId(Object obj);
+public class ShapedRecipe extends CraftingRecipe {
     
     /**
-     * Gets recipe service, which is used to register and unregister recipes.
-     * @return Recipe service
+     * Creates a new shaped recipe.  Ingredients are used on crafting table
+     * following way (pseudo-code):
+     * <pre>
+     * new ShapedRecipe(result,
+     *         1, 2, 3,
+     *         4, 5, 6,
+     *         7, 8, 9
+     * );
+     * </pre>
+     * Crafting table:
+     * <pre>
+     * 1 2 3
+     * 4 5 6 => result
+     * 7 8 9
+     * </pre>
+     * @param result Result of recipe
+     * @param ingredients Ingredients, from left to right and up to down
      */
-    RecipeService getRecipeService();
-    
-    /**
-     * Gets ore dictionary service.
-     * @return Ore dictionary service.
-     */
-    OreDictionaryService getOreDictService();
+    public ShapedRecipe(ItemStack result, ItemType... ingredients) {
+        Preconditions.checkNotNull(result, "Result of recipe cannot be null!");
+        Preconditions.checkNotNull(result, "Ingredients cannot be null!");
+        this.result = result;
+        this.ingredients = Arrays.asList(ingredients);
+    }
 }

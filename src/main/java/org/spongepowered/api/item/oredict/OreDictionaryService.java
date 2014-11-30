@@ -22,54 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.item.oredict;
 
-package org.spongepowered.api;
+import java.util.List;
 
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.oredict.OreDictionaryService;
-import org.spongepowered.api.recipe.RecipeService;
 
 /**
- * Provides an easy way to retrieve types from a {@link Game}.
+ * Ore dictionary service, which can register and fetch contents from it.
  */
-public interface GameRegistry {
-
+public interface OreDictionaryService {
     /**
-     * Gets a {@link BlockType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The block or null if not found
+     * Gets special {@link OreDictType}, which represents item type for
+     * all items for given dictionary entry.
+     * @param name Ore dictionary key
+     * @return Ore dictionary
      */
-    Optional<BlockType> getBlock(String id);
-
-    /**
-     * Gets an {@link ItemType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The item or null if not found
-     */
-    Optional<ItemType> getItem(String id);
-
-    /**
-     * Gets the ID registered to the object.
-     *
-     * @param obj The object to look up
-     * @return The id or null if none found
-     */
-    Optional<String> getId(Object obj);
+    OreDictType getItemType(String key);
     
     /**
-     * Gets recipe service, which is used to register and unregister recipes.
-     * @return Recipe service
+     * Registers new item for specified ore dictionary key.
+     * @param item Item to register
+     * @param key Key to use
      */
-    RecipeService getRecipeService();
+    void registerItem(ItemType item, String key);
     
     /**
-     * Gets ore dictionary service.
-     * @return Ore dictionary service.
+     * Gets all items registered to specific key. Some of them may be items
+     * from mods.
+     * @param key Key to use
+     * @return List of items
      */
-    OreDictionaryService getOreDictService();
+    List<ItemType> getItems(String key);
 }

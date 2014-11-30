@@ -22,54 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.recipe.custom;
 
-package org.spongepowered.api;
+import java.util.List;
 
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.oredict.OreDictionaryService;
-import org.spongepowered.api.recipe.RecipeService;
+import org.spongepowered.api.recipe.Recipe;
 
 /**
- * Provides an easy way to retrieve types from a {@link Game}.
+ * Custom handler for mods which add new ways to create items. For example,
+ * if some mod adds an oven, it may require custom recipes.
  */
-public interface GameRegistry {
-
-    /**
-     * Gets a {@link BlockType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The block or null if not found
-     */
-    Optional<BlockType> getBlock(String id);
-
-    /**
-     * Gets an {@link ItemType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The item or null if not found
-     */
-    Optional<ItemType> getItem(String id);
-
-    /**
-     * Gets the ID registered to the object.
-     *
-     * @param obj The object to look up
-     * @return The id or null if none found
-     */
-    Optional<String> getId(Object obj);
+public interface RecipeHandler {
     
     /**
-     * Gets recipe service, which is used to register and unregister recipes.
-     * @return Recipe service
+     * Gets list of recipe classes, which should handled by this. When plugin
+     * then tries to register one of them, {@link #registerRecipe(Recipe)}
+     * will called with the corresponding recipe.
+     * 
+     * <p>When a plugin tries to unregister a recipe, only difference is
+     * that {@link #unregisterRecipe(Recipe)} will called instead.</p>
+     * @return List of handled recipe classes
      */
-    RecipeService getRecipeService();
+    List<Class<Recipe>> getHandledClasses();
     
     /**
-     * Gets ore dictionary service.
-     * @return Ore dictionary service.
+     * Should register new recipe to your mods recipe registry.
+     * @param recipe Recipe to register
      */
-    OreDictionaryService getOreDictService();
+    void registerRecipe(Recipe recipe);
+    
+    /**
+     * Should unregister the recipe from your mods recipe registry.
+     * @param recipe Recipe to unregister
+     */
+    void unregisterRecipe(Recipe recipe);
 }
