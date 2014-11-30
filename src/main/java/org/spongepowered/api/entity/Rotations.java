@@ -26,15 +26,28 @@
 package org.spongepowered.api.entity;
 
 /**
- * Represents an angle that some entities, such as
- * {@link org.spongepowered.api.entity.hanging.ItemFrame}, can have.
+ * A list of rotations that certain entities can have, such as Item Frames
+ *
+ * Only the specific values listed are supported by Minecraft.
+ * Arbitrary degree values are not possible.
  */
-public interface Rotation {
+public enum Rotations implements Rotation {
+    DEGREES_0(0),
+    DEGREES_45(45),
+    DEGREES_90(90),
+    DEGREES_135(135),
+    DEGREES_180(180),
+    DEGREES_225(225),
+    DEGREES_270(270),
+    DEGREES_315(315);
 
-    /**
-     * Gets the angle of this rotation, in degrees
-     *
-     * @return The rotation value
-     */
-    public double getAngle();
+    private double degree;
+
+    private Rotations(double degree) {
+        this.degree = degree;
+    }
+
+    public double getAngle() {
+        return degree;
+    }
 }
