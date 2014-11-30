@@ -22,47 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.hanging;
+package org.spongepowered.api.util.rotation;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.rotation.Rotation;
 
-import javax.annotation.Nullable;
+import java.util.List;
 
 /**
- * Represents an ItemFrame.
+ * An enumeration of possible rotations for something that can rotate,
+ * such as an {@link org.spongepowered.api.item.inventory.ItemStack} within
+ * an {@link org.spongepowered.api.entity.hanging.ItemFrame}.
  */
-public interface ItemFrame extends Hanging {
+public final class Rotations {
+    private Rotations() {
+    }
 
-    /**
-     * Gets the currently displayed Item.
-     *
-     * @return The currently displayed item, if available
-     */
-    Optional<ItemStack> getItem();
+    public static final Rotation TOP = null;
+    public static final Rotation TOP_RIGHT = null;
+    public static final Rotation RIGHT = null;
+    public static final Rotation BOTTOM_RIGHT = null;
+    public static final Rotation BOTTOM = null;
+    public static final Rotation BOTTOM_LEFT = null;
+    public static final Rotation LEFT = null;
+    public static final Rotation TOP_LEFT = null;
 
-    /**
-     * Sets the item to be displayed.
-     *
-     * @param item The item to be displayed
-     */
-    void setItem(@Nullable ItemStack item);
+    public static List<Rotation> getValues() {
+        return null;
+    }
 
-    /**
-     * Gets the current {@link Rotation} of the {@link ItemStack} if
-     * an ItemStack is currently displayed.
-     *
-     * @return The current item rotation, if available
-     */
-    Optional<Rotation> getItemRotation();
+    public static Optional<Rotation> getRotationForDegree(int degrees) {
+        return Optional.absent();
+    }
 
-    /**
-     * Sets the {@link Rotation} of the item hanging in this item frame.
-     * <p>If the itemframe does not have an {@link ItemStack} inside, then
-     * the rotation setting may be ignored.</p>
-     *
-     * @param itemRotation The rotation
-     */
-    void setRotation(Rotation itemRotation);
 }

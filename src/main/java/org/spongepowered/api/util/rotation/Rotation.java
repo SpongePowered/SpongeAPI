@@ -22,47 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.hanging;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.rotation.Rotation;
-
-import javax.annotation.Nullable;
+package org.spongepowered.api.util.rotation;
 
 /**
- * Represents an ItemFrame.
+ * Represents an angle of rotation
  */
-public interface ItemFrame extends Hanging {
+public interface Rotation {
 
     /**
-     * Gets the currently displayed Item.
+     * The angle in degrees.
      *
-     * @return The currently displayed item, if available
+     * @return The angle in degrees
      */
-    Optional<ItemStack> getItem();
+    //TODO we should have an Angle class in the future
+    int getAngle();
 
-    /**
-     * Sets the item to be displayed.
-     *
-     * @param item The item to be displayed
-     */
-    void setItem(@Nullable ItemStack item);
-
-    /**
-     * Gets the current {@link Rotation} of the {@link ItemStack} if
-     * an ItemStack is currently displayed.
-     *
-     * @return The current item rotation, if available
-     */
-    Optional<Rotation> getItemRotation();
-
-    /**
-     * Sets the {@link Rotation} of the item hanging in this item frame.
-     * <p>If the itemframe does not have an {@link ItemStack} inside, then
-     * the rotation setting may be ignored.</p>
-     *
-     * @param itemRotation The rotation
-     */
-    void setRotation(Rotation itemRotation);
 }
