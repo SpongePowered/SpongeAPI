@@ -36,6 +36,9 @@ public final class ItemTypes {
     private ItemTypes() {
     }
 
+    private ItemTypes() {
+    }
+
     public static final ItemBlock STONE = null;
     public static final ItemBlock GRASS = null;
     public static final ItemBlock DIRT = null;

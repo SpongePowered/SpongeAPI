@@ -34,6 +34,9 @@ public final class BlockTypes {
     private BlockTypes() {
     }
 
+    private BlockTypes() {
+    }
+
     public static final BlockType AIR = null;
     public static final BlockType STONE = null;
     public static final BlockType GRASS = null;
