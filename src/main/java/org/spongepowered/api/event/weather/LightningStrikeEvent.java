@@ -36,17 +36,10 @@ import org.spongepowered.api.world.Location;
 public interface LightningStrikeEvent extends WeatherEvent {
 
     /**
-     * Gets the {@link Location} where the lightning struck.
+     * Gets the {@link Entity} of the lightning strike.
      *
-     * @return The {@link Location} where the lightning struck
+     * @return The {@link Entity} of the lightning strike
      */
-    Location getStrikeLocation();
-
-    /**
-     * Gets the {@link Entity} targeted by this lightning strike.
-     *
-     * @return {@link Entity} targeted
-     */
-    Optional<Entity> getTargetedEntity();
-
+    Entity getLightningStrike();
+    
 }
