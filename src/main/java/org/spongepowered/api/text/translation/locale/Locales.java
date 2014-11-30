@@ -34,7 +34,7 @@ import java.util.Locale;
  */
 public final class Locales {
 
-    private static final LocaleFactory factory = new NullLocaleFactory();
+    private static final LocaleFactory factory = null;
 
     private Locales() {
 

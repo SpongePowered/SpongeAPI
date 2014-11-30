@@ -34,7 +34,7 @@ import java.util.List;
  * A utility class for getting available {@link Art} pieces.
  */
 public class Arts {
-
+    private static final ArtFactory factory = null;
     private Arts() {
     }
 
@@ -71,11 +71,11 @@ public class Arts {
      * @return A list of all available art pieces
      */
     public static List<Art> getValues() {
-        return null;
+        return factory.getArtPieces();
     }
 
     public static Optional<Art> getArtByName(final String name) {
         checkArgument(name != null, "Cannot get art with a null name!");
-        return null;
+        return factory.getArtFromName(name);
     }
 }

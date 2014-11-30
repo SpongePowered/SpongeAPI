@@ -29,7 +29,7 @@ package org.spongepowered.api.text.title;
  */
 public final class Titles {
 
-    private static final TitleFactory factory = new NullTitleFactory();
+    private static final TitleFactory factory = null;
 
     private Titles() {
     }

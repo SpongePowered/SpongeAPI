@@ -30,7 +30,7 @@ package org.spongepowered.api.math;
  */
 public final class Vectors {
 
-    private static final VectorFactory factory = new NullPointerExceptionsForAllFactory();
+    private static final VectorFactory factory = null;
 
     private Vectors() {
     }

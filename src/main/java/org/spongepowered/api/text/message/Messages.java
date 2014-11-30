@@ -31,7 +31,7 @@ import org.spongepowered.api.text.translation.Translation;
  */
 public final class Messages {
 
-    private static final MessageFactory factory = new NullMessageFactory();
+    private static final MessageFactory factory = null;
 
     private Messages() {
     }

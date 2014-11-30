@@ -35,7 +35,7 @@ import java.net.URL;
  */
 public final class TextActions {
 
-    private static final TextActionFactory factory = new NullTextActionFactory();
+    private static final TextActionFactory factory = null;
 
     private TextActions() {
     }

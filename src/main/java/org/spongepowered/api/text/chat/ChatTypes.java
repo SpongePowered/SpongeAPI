@@ -34,7 +34,7 @@ import java.util.List;
  */
 public final class ChatTypes {
 
-    private static final ChatTypeFactory factory = new NullChatTypeFactory();
+    private static final ChatTypeFactory factory = null;
 
     private ChatTypes() {
 

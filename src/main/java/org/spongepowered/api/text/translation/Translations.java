@@ -31,7 +31,7 @@ import com.google.common.base.Optional;
  */
 public final class Translations {
 
-    private static final TranslationFactory factory = new NullTranslationFactory();
+    private static final TranslationFactory factory = null;
 
     private Translations() {
     }

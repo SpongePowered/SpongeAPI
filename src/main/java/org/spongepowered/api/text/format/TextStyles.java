@@ -34,7 +34,7 @@ import java.util.List;
  */
 public final class TextStyles {
 
-    static final TextFormatFactory factory = new NullTextFormatFactory();
+    static final TextFormatFactory factory = null;
 
     private TextStyles() {
     }
