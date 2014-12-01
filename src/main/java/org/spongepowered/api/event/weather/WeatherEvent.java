@@ -31,7 +31,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 
 /**
- * Describes events related to Weather
+ * Describes events related to Weather.
  */
 public interface WeatherEvent extends WorldEvent, Cancellable {
 

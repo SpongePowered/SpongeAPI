@@ -29,7 +29,7 @@ import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherType;
 
 /**
- * Called when a world's weather changes
+ * Called when a world's weather changes.
  */
 public interface WeatherChangeEvent extends WeatherEvent {
 
