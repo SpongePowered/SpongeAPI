@@ -9,7 +9,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Wiki]
 * [Community Chat]: #sponge on irc.esper.net
 * [Development Chat]: #spongedev on irc.esper.net
-* [Plugin Workspace Info]: (https://github.com/SpongePowered/SpongeDocs/blob/master/pluginWorkspace.rst)
+* [Plugin Workspace Info(temporary link)]
 
 ## Prerequisites
 * [Java] 6
@@ -24,14 +24,15 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 * Open a pull request with your changes, following our [guidelines](CONTRIBUTING.md).
 * Please follow the above guidelines and requirements for your pull request(s) to be accepted.
 
-[Eclipse]: (http://www.eclipse.org/)
-[Gradle]: (http://www.gradle.org/)
-[Homepage]: (http://spongepowered.org/)
-[IntelliJ]: (http://www.jetbrains.com/idea/)
-[Issues]: (http://issues.spongepowered.org/)
-[Wiki]: (https://github.com/SpongePowered/SpongeAPI/wiki/)
-[Java]: (http://java.oracle.com/)
-[Source]: (https://github.com/SpongePowered/SpongeAPI/)
-[MIT License]: (http://www.tldrlegal.com/license/mit-license)
-[Community Chat]: (https://webchat.esper.net/?channels=sponge)
-[Development Chat]: (https://webchat.esper.net/?channels=spongedev)
+[Eclipse]: http://www.eclipse.org/
+[Gradle]: http://www.gradle.org/
+[Homepage]: http://spongepowered.org/
+[IntelliJ]: http://www.jetbrains.com/idea/
+[Issues]: http://issues.spongepowered.org/
+[Wiki]: https://github.com/SpongePowered/SpongeAPI/wiki/
+[Java]: http://java.oracle.com/
+[Source]: https://github.com/SpongePowered/SpongeAPI/
+[MIT License]: http://www.tldrlegal.com/license/mit-license
+[Community Chat]: https://webchat.esper.net/?channels=sponge
+[Development Chat]: https://webchat.esper.net/?channels=spongedev
+[Plugin Workspace Info(temporary link)]: https://github.com/SpongePowered/SpongeDocs/blob/master/pluginWorkspace.rst
