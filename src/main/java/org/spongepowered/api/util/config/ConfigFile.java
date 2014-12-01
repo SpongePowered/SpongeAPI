@@ -138,7 +138,7 @@ public final class ConfigFile implements Config {
     private void write(boolean onlyIfChanged) throws IOException {
         String renderedString = render();
 
-        if (onlyIfChanged) {
+        if (onlyIfChanged && file.exists()) {
             List<String> original = Files.readLines(file, CHARSET);
             List<String> rendered = Arrays.asList(renderedString.split("[\r\n]"));
 
