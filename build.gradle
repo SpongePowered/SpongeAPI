@@ -22,7 +22,7 @@ defaultTasks 'licenseFormat', 'check', 'build'
 // Basic project information
 group = 'org.spongepowered'
 archivesBaseName = 'spongeapi'
-version = '1.0.0-SNAPSHOT'
+version = '1.0'
 
 // Extended project information
 ext.projectName = 'SpongeAPI'

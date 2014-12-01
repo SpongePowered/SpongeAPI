@@ -33,7 +33,7 @@ Gradle users place the following in your build.gradle:
     }
 
     dependencies {
-        compile "org.spongepowered:spongeapi:1.0.0"
+        compile "org.spongepowered:spongeapi:1.0"
     }
 
 Maven
@@ -61,6 +61,6 @@ Maven users place the following in your pom.xml:
         <dependency>
             <groupId>org.spongepowered</groupId>
             <artifactId>spongeapi</artifactId>
-            <version>1.0.0</version>
+            <version>1.0</version>
         </dependency>
     </dependencies>
