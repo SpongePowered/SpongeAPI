@@ -29,6 +29,8 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.util.Identifiable;
 
+import java.util.Date;
+
 /**
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
@@ -58,7 +60,7 @@ public interface User extends Identifiable, ArmorEquipable {
      *
      * @return The players first join time.
      */
-    long getFirstPlayed();
+    Date getFirstPlayed();
 
     /**
      * Gets the last time a player was on the server.
@@ -69,7 +71,7 @@ public interface User extends Identifiable, ArmorEquipable {
      *
      * @return The last time a player was online.
      */
-    long getLastPlayed();
+    Date getLastPlayed();
 
     /**
      * Checks if this player is banned.
