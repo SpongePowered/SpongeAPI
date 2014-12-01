@@ -42,7 +42,14 @@ public interface WeatherVolume {
      *
      * @return The remaining weather duration.
      */
-    long getWeatherDuration();
+    long getRemainingDuration();
+
+    /**
+     * Gets the duration the current {@link Weather} has been running for.
+     *
+     * @return The running weather duration.
+     */
+    long getRunningDuration();
 
     /**
      * Sets the {@link Weather} of the volume with a random duration.
