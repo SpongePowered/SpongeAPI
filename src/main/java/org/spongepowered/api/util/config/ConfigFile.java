@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -239,6 +240,10 @@ public final class ConfigFile implements Config {
     @Override
     public ConfigFile withFallback(ConfigMergeable other) {
         return withConfig(config.withFallback(other));
+    }
+
+    public ConfigFile withFallback(URL url) {
+        return withFallback(ConfigFactory.parseURL(url));
     }
 
     @Override
