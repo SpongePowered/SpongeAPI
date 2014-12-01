@@ -202,7 +202,7 @@ public interface Living extends Entity {
      *
      * @return The damage amount last dealt
      */
-    double getLasDamage();
+    double getLastDamage();
 
     /**
      * Sets the last damage amount that was dealt to this living entity.
