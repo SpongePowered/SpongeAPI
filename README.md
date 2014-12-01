@@ -35,4 +35,4 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [MIT License]: http://www.tldrlegal.com/license/mit-license
 [Community Chat]: https://webchat.esper.net/?channels=sponge
 [Development Chat]: https://webchat.esper.net/?channels=spongedev
-[Plugin Workspace Info(temporary link)]: https://github.com/SpongePowered/SpongeDocs/blob/master/pluginWorkspace.rst
+[Plugin Workspace Info(temporary link)]: https://github.com/SpongePowered/SpongeAPI/blob/master/pluginWorkspace.rst
