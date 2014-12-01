@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt.tag;
 
 /**
- * NBT tag representing a float
+ * A Tag represents any given NBT tag.
  */
-public interface FloatTag extends Tag.Primitive {
+public interface Tag<T> extends Cloneable {
+
     /**
-     * Gets the value of {@link FloatTag}
+     * Gets the type of this tag.
      *
-     * @return The value of {@link FloatTag}
+     * @return The tag type
      */
-    float getValue();
+    TagType getType();
+
+    /**
+     * Gets the value of this tag.
+     *
+     * @return The value
+     */
+    public abstract T getValue();
+
 }

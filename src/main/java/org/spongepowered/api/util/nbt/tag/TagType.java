@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt.tag;
 
 /**
- * NBT tag representing a short
+ * Enum for NBT tag types
  */
-public interface ShortTag extends Tag.Primitive {
-    /**
-     * Gets the value of {@link ShortTag}
-     *
-     * @return The value of {@link ShortTag}
-     */
-    short getValue();
+public enum TagType {
+    BYTE,
+    DOUBLE,
+    END,
+    FLOAT,
+    INT,
+    LONG,
+    SHORT,
+    STRING,
+    BYTEARRAY,
+    INTARRAY,
+    LIST,
+    COMPOUND,
+    PRIMITIVE
 }

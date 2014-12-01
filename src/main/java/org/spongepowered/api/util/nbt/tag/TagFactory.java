@@ -1,7 +1,8 @@
-/**
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014 SpongePowered <http://spongepowered.org/>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,65 +22,68 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.nbt;
+package org.spongepowered.api.util.nbt.tag;
+
+import org.spongepowered.api.util.nbt.tag.*;
+import org.spongepowered.api.util.nbt.tag.primitive.*;
 
 /**
  * Factory for {@link Tag}s
  */
 public interface TagFactory {
     /**
-     * Creates a new {@link ByteTag} with {@code value}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.primitive.ByteTag} with {@code value}
      *
      * @param value
-     * @return The new {@link ByteTag}
+     * @return The new {@link org.spongepowered.api.util.nbt.tag.primitive.ByteTag}
      */
     ByteTag newByte(byte value);
 
     /**
-     * Creates a new {@link ShortTag} with {@code value}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.primitive.ShortTag} with {@code value}
      *
      * @param value
-     * @return The new {@link ShortTag}
+     * @return The new {@link org.spongepowered.api.util.nbt.tag.primitive.ShortTag}
      */
     ShortTag newShort(byte value);
 
     /**
-     * Creates a new {@link IntTag} with {@code value}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.primitive.IntTag} with {@code value}
      *
      * @param value
-     * @return The new {@link IntTag}
+     * @return The new {@link org.spongepowered.api.util.nbt.tag.primitive.IntTag}
      */
     IntTag newInteger(int value);
 
     /**
-     * Creates a new {@link LongTag} with {@code value}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.primitive.LongTag} with {@code value}
      *
      * @param value
-     * @return The new {@link LongTag}
+     * @return The new {@link org.spongepowered.api.util.nbt.tag.primitive.LongTag}
      */
     LongTag newLong(long value);
 
     /**
-     * Creates a new {@link FloatTag} with {@code value}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.primitive.FloatTag} with {@code value}
      *
      * @param value
-     * @return The new {@link FloatTag}
+     * @return The new {@link org.spongepowered.api.util.nbt.tag.primitive.FloatTag}
      */
     FloatTag newFloat(float value);
 
     /**
-     * Creates a new {@link DoubleTag} with {@code value}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.primitive.DoubleTag} with {@code value}
      *
      * @param value
-     * @return The new {@link DoubleTag}
+     * @return The new {@link org.spongepowered.api.util.nbt.tag.primitive.DoubleTag}
      */
     DoubleTag newDouble(double value);
 
     /**
-     * Creates a new {@link ByteArrayTag} with {@code value}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.ByteArrayTag} with {@code value}
      *
      * @param value
-     * @return The new {@link ByteArrayTag}
+     * @return The new {@link org.spongepowered.api.util.nbt.tag.ByteArrayTag}
      */
     ByteArrayTag newByteArray(byte[] value);
 
@@ -99,9 +103,9 @@ public interface TagFactory {
     ListTag newList();
 
     /**
-     * Creates a new {@link CompoundTag}
+     * Creates a new {@link org.spongepowered.api.util.nbt.tag.CompoundTag}
      *
-     * @return A new {@link CompoundTag}
+     * @return A new {@link org.spongepowered.api.util.nbt.tag.CompoundTag}
      */
     CompoundTag newCompound();
 }
