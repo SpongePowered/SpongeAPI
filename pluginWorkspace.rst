@@ -17,6 +17,8 @@ The Sponge team recommends the use of Gradle as use of the Forge team's ForgeGra
 
 Development builds use the SNAPSHOT system
 
+`Online Javadocs(Temporary link) <http://spongepowered.github.io/SpongeAPI/>`__
+
 Gradle
 ------
 
