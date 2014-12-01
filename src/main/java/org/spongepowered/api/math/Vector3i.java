@@ -27,6 +27,8 @@ package org.spongepowered.api.math;
 
 import java.io.Serializable;
 
+import org.spongepowered.api.util.Axis;
+
 /**
  * Represent a 3 component vector using ints. It is immutable and all vectors
  * returned by the methods are new instances. Double overloads are floored to
@@ -475,14 +477,14 @@ public interface Vector3i extends Comparable<Vector3i>, Serializable, Cloneable 
      *
      * @return The axis with minimal value
      */
-    int getMinAxis();
+    Axis getMinAxis();
 
     /**
      * Returns the axis with the maximum value.
      *
      * @return The axis with maximum value
      */
-    int getMaxAxis();
+    Axis getMaxAxis();
 
     /**
      * Returns this vector as a Vector2i, discarding the component z.

@@ -27,6 +27,8 @@ package org.spongepowered.api.math;
 
 import java.io.Serializable;
 
+import org.spongepowered.api.util.Axis;
+
 /**
  * Represent a 2 component vector using floats. It is immutable and all vectors
  * returned by the methods are new instances.
@@ -463,14 +465,14 @@ public interface Vector2f extends Comparable<Vector2f>, Serializable, Cloneable 
      *
      * @return The axis with minimal value
      */
-    int getMinAxis();
+    Axis getMinAxis();
 
     /**
      * Return the axis with the maximum value.
      *
      * @return The axis with maximum value
      */
-    int getMaxAxis();
+    Axis getMaxAxis();
 
     /**
      * Returns this vector as a Vector3f, using the value 0 for component z.
