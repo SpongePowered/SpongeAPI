@@ -50,6 +50,28 @@ public interface User extends Identifiable, ArmorEquipable {
     boolean hasJoinedBefore();
 
     /**
+     * Gets the first time a player joined the server.
+     *
+     * <p>
+     *     This time is based off epoch timestamps.
+     * </p>
+     *
+     * @return The players first join time.
+     */
+    long getFirstPlayed();
+
+    /**
+     * Gets the last time a player was on the server.
+     *
+     * <p>
+     *     This time is based off epoch timestamps.
+     * </p>
+     *
+     * @return The last time a player was online.
+     */
+    long getLastPlayed();
+
+    /**
      * Checks if this player is banned.
      * 
      * @return True If banned
