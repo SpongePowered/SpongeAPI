@@ -26,13 +26,9 @@
 package org.spongepowered.api.event.weather;
 
 import org.spongepowered.api.event.world.WorldEvent;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
 
 /**
- * Describes events related to Weather.
+ * Called when a weather-related activity happens.
  */
-public interface WeatherEvent extends WorldEvent, Cancellable {
+public interface WeatherEvent extends WorldEvent {
 
-}

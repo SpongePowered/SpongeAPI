@@ -94,7 +94,7 @@ public class InvalidUsageException extends CommandException {
     /**
      * Return whether the full usage of the command should be shown.
      *
-     * @return show full usage
+     * @return Show full usage
      */
     public boolean isFullHelpSuggested() {
         return fullHelpSuggested;

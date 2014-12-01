@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.math.Vector3d;
 
 /**
@@ -39,7 +39,7 @@ public interface BlockVolume {
      * @param position The position
      * @return The block
      */
-    Block getBlock(Vector3d position);
+    BlockLoc getBlock(Vector3d position);
 
     /**
      * Get a representation of the block at the given position.
@@ -49,6 +49,6 @@ public interface BlockVolume {
      * @param z The Z position
      * @return The block
      */
-    Block getBlock(int x, int y, int z);
+    BlockLoc getBlock(int x, int y, int z);
 
 }

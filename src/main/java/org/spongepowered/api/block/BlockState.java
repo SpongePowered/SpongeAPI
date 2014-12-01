@@ -27,27 +27,24 @@ package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
 
 /**
  * Represents a block with type and data.
+ *
+ * <p>This interface represents something directly analogous to block states
+ * in Minecraft.</p>
  */
 public interface BlockState {
 
     /**
      * Get the base type of block.
      *
-     * <p>The base type does not include variants (yet) because some blocks
-     * are differentiated using a data value. In the future, the type will
-     * be a full representation of the variant of a block.</p>
-     *
      * <p>The type does not include block data such as the contents of
      * inventories.</p>
      *
      * @return The type of block
-     * @see #getDataValue() For extra differentiation
      */
     BlockType getType();
 
@@ -123,4 +120,5 @@ public interface BlockState {
      */
     @Deprecated
     byte getDataValue();
+
 }

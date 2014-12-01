@@ -25,56 +25,21 @@
 
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.world.Location;
+
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Result;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.CauseTracked;
-
-import java.util.List;
 
 /**
  * Raised when entities are spawned.
  */
-public class EntitySpawnEvent extends AbstractEventEntity implements CauseTracked {
-
-    private final Cause cause;
-    private Result result = Result.DEFAULT;
+public interface EntitySpawnEvent extends EntityEvent, Cancellable {
 
     /**
-     * Create a new instance.
+     * Returns the location where this entity is spawning.
      *
-     * @param game The game
-     * @param entities A list of entities
-     * @param cause The cause
+     * @return The location where this entity is spawning
      */
-    public EntitySpawnEvent(Game game, List<Entity> entities, Cause cause) {
-        super(game, entities);
-        checkNotNull(cause);
-        this.cause = cause;
-    }
-
-    @Override
-    public Cause getCause() {
-        return cause;
-    }
-
-    @Override
-    public boolean isCancellable() {
-        return true;
-    }
-
-    @Override
-    public Result getResult() {
-        return result;
-    }
-
-    @Override
-    public void setResult(Result result) {
-        checkNotNull(result);
-        this.result = result;
-    }
+    Location getLocation();
 
 }

@@ -26,7 +26,6 @@
 package org.spongepowered.api.service;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.util.Owner;
 
 /**
  * A manager of services and their providers.
@@ -36,7 +35,7 @@ import org.spongepowered.api.util.Owner;
  * with the service(s) that the provider implements.</p>
  *
  * <p>Providers are registered at runtime using
- * {@link #setProvider(Class, Object, boolean, Owner)}. Only one provider
+ * {@link #setProvider(Object, Class, Object)}. Only one provider
  * can be registered for each service, but a provider can be marked as
  * replaceable if it can be replaced with a new provider.</p>
  */
@@ -54,15 +53,15 @@ public interface ServiceManager {
      * <p>Services should only be registered during initialization. If services
      * are registered later, then they may not be utilized.</p>
      *
+     * @param plugin The instance of a plugin
      * @param service The service
      * @param provider The implementation
-     * @param replaceable Whether this provider can be replaced with another
-     * @param owner The owner of the service
      * @param <T> The type of service
      * @throws ProviderExistsException Thrown if a provider already exists
      *                                 and cannot be replaced
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    <T> void setProvider(Class<T> service, T provider, boolean replaceable, Owner owner) throws ProviderExistsException;
+    <T> void setProvider(Object plugin, Class<T> service, T provider) throws ProviderExistsException;
 
     /**
      * Return a provider for the given service, if one is available.
@@ -75,5 +74,19 @@ public interface ServiceManager {
      * @return A provider, if available
      */
     <T> Optional<T> provide(Class<T> service);
+
+    /**
+     * Return a provider for the given service, raising an unchecked exception
+     * if a provider does not exist.
+     *
+     * <p>The returned provider may be a proxy to the real underlying proxy,
+     * depending on the implementation of the service manager.</p>
+     *
+     * @param service The service
+     * @param <T> The type of service
+     * @return A provider
+     * @throws ProvisioningException Thrown if a provider cannot be provisioned
+     */
+    <T> T provideUnchecked(Class<T> service) throws ProvisioningException;
 
 }

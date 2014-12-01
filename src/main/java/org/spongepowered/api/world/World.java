@@ -26,6 +26,8 @@
 package org.spongepowered.api.world;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.effect.Viewer;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.math.Vector2i;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -34,7 +36,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world
  */
-public interface World extends Extent {
+public interface World extends Extent, Viewer {
 
     /**
      * Gets the unique identifier for this world.
@@ -83,5 +85,18 @@ public interface World extends Extent {
      * @return The loaded or generated chunk
      */
     Chunk loadChunk(Vector2i position);
+
+    /**
+     * Gets the entity whose {@link UUID} matches the provided id, possibly
+     * returning no entity if the entity is not loaded or non-existant.
+     *
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method may return no entity if the entity is not
+     * loaded.</p>
+     *
+     * @param uuid The unique id
+     * @return An entity, if available
+     */
+    Optional<Entity> getEntityFromUUID(UUID uuid);
 
 }
