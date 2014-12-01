@@ -81,7 +81,7 @@ public enum Axis {
     /**
      * Get the Vector3d with the given {@link AxisDirection}.
      *
-     * @param The direction along the axis.
+     * @param axisDirection The direction along the axis.
      * @return the Vector3d
      */
     public Vector3d toVector3dWithDirection(final AxisDirection axisDirection) {
