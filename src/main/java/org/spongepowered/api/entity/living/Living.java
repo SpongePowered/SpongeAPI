@@ -29,7 +29,9 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.math.Vector3f;
 import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.potion.PotionEffectType;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -103,6 +105,35 @@ public interface Living extends Entity {
      * @param force Whether or not to forcibly add it.
      */
     void addPotionEffect(PotionEffect potionEffect, boolean force);
+
+    /**
+     * Adds a list of {@link PotionEffect}s to this entity.
+     *
+     * <p>
+     *     If a conflicting {@link PotionEffect} already exists,
+     *     this will not be applied unless force is specified.
+     * </p>
+     *
+     * @param potionEffects The {@link PotionEffect}s to add.
+     * @param force Whether or not to forcibly add it.
+     */
+    void addPotionEffects(Collection<PotionEffect> potionEffects, boolean force);
+
+    /**
+     * Remove {@link PotionEffect}s of the specified type from this entity.
+     *
+     * @param potionEffectType The {@link PotionEffectType}.
+     */
+    void removePotionEffect(PotionEffectType potionEffectType);
+
+    /**
+     * Gets if this entity has a {@link PotionEffect} of this type.
+     *
+     * @param potionEffectType The {@link PotionEffectType}.
+     *
+     * @return If it has the potion effect type.
+     */
+    boolean hasPotionEffect(PotionEffectType potionEffectType);
 
     /**
      * Gets a list of {@link PotionEffect}s currently applied to this entity.
@@ -238,20 +269,6 @@ public interface Living extends Entity {
      * @param ticks The maximum ticks of invulnerability
      */
     void setMaxInvulnerabilityTicks(int ticks);
-
-    // TODO Add these when Potions API is added
-
-    /*
-    Collection<PotionEffect> getPotionEffects();
-
-    void addPotionEffect(PotionEffect effect);
-
-    void addPotionEffects(Collection<PotionEffect> effects);
-
-    void removePotionEffect(PotionType potionType);
-
-    boolean hasPotionEffect(PotionType potionType);
-    */
 
     /**
      * Returns whether this living entity can pick up items.
