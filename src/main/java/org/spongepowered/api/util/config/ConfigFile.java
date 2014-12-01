@@ -457,7 +457,7 @@ public final class ConfigFile implements Config {
 
     @Override
     public Config withValue(String path, ConfigValue value) {
-        return config.withValue(path, value);
+        return new ConfigFile(file,config.withValue(path, value));
     }
 
 }
