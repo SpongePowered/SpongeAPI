@@ -23,42 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.weather;
-
-import org.spongepowered.api.world.weather.Weather;
+package org.spongepowered.api.world.weather;
 
 /**
- * Called when a world's weather changes.
+ * Represents a type of weather.
  */
-public interface WeatherChangeEvent extends WeatherEvent {
-
-    /**
-     * Gets the {@link Weather} that was happening before this event.
-     *
-     * @return The {@link Weather} before the event was called
-     */
-    Weather getInitialWeather();
-
-    /**
-     * Gets the {@link Weather} that this event is creating.
-     *
-     * @return The {@link Weather} after this event is called
-     */
-    Weather getResultingWeather();
-
-    /**
-     * Sets what the new {@link Weather} should be with a random duration.
-     *
-     * @param weather The new {@link Weather}
-     */
-    void setResultingWeather(Weather weather);
-
-    /**
-     * Sets what the new {@link Weather} should be with a given duration.
-     *
-     * @param weather The new {@link Weather}
-     * @param duration The duration of the weather in ticks
-     */
-    void setResultingWeather(Weather weather, int duration);
+public interface Weather {
 
 }

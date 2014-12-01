@@ -23,42 +23,46 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.weather;
-
-import org.spongepowered.api.world.weather.Weather;
+package org.spongepowered.api.world.weather;
 
 /**
- * Called when a world's weather changes.
+ * A volume containing {@link Weather}.
  */
-public interface WeatherChangeEvent extends WeatherEvent {
+public interface WeatherVolume {
 
     /**
-     * Gets the {@link Weather} that was happening before this event.
+     * Gets the current {@link Weather} in this volume.
      *
-     * @return The {@link Weather} before the event was called
+     * @return The current weather.
      */
-    Weather getInitialWeather();
+    Weather getWeather();
 
     /**
-     * Gets the {@link Weather} that this event is creating.
+     * Gets the remaining duration of the current {@link Weather}.
      *
-     * @return The {@link Weather} after this event is called
+     * @return The remaining weather duration.
      */
-    Weather getResultingWeather();
+    long getRemainingDuration();
 
     /**
-     * Sets what the new {@link Weather} should be with a random duration.
+     * Gets the duration the current {@link Weather} has been running for.
      *
-     * @param weather The new {@link Weather}
+     * @return The running weather duration.
      */
-    void setResultingWeather(Weather weather);
+    long getRunningDuration();
 
     /**
-     * Sets what the new {@link Weather} should be with a given duration.
+     * Sets the {@link Weather} of the volume with a random duration.
      *
-     * @param weather The new {@link Weather}
-     * @param duration The duration of the weather in ticks
+     * @param weather The new {@link Weather}.
      */
-    void setResultingWeather(Weather weather, int duration);
+    void forecast(Weather weather);
 
+    /**
+     * Sets the {@link Weather} of the volume with the specified duration.
+     *
+     * @param weather The new {@link Weather}.
+     * @param duration The specified duration.
+     */
+    void forecast(Weather weather, long duration);
 }

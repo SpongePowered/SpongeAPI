@@ -25,17 +25,35 @@
 
 package org.spongepowered.api.event.weather;
 
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.weather.Lightning;
 
+import java.util.List;
+
 /**
- * Called when {@link Lightning} strikes.
+ * Called when there is a lightning strike.
  */
 public interface LightningStrikeEvent extends WeatherEvent {
 
     /**
-     * Gets the lightning that struck.
+     * Gets the {@link Lightning} of the lightning strike.
      *
-     * @return The lightning.
+     * @return The {@link Lightning} of the lightning strike
      */
-    Lightning getLightning();
+    Lightning getLightningStrike();
+
+    /**
+     * Gets a {@link List} of all struck {@link Entity}s.
+     *
+     * @return A list of struck entities.
+     */
+    List<Entity> getStruckEntities();
+
+    /**
+     * Gets a {@link List} of all struck {@link BlockLoc}s.
+     *
+     * @return A list of struck blocks.
+     */
+    List<BlockLoc> getStruckBlocks();
 }

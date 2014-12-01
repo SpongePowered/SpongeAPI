@@ -25,11 +25,18 @@
 
 package org.spongepowered.api.event.weather;
 
-import org.spongepowered.api.event.world.WorldEvent;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.world.weather.WeatherVolume;
 
 /**
  * Called when a weather-related activity happens.
  */
-public interface WeatherEvent extends WorldEvent {
+public interface WeatherEvent extends GameEvent {
 
+    /**
+     * Gets the volume in which the weather changed.
+     *
+     * @return The weather volume.
+     */
+    WeatherVolume getWeatherVolume();
 }
