@@ -26,7 +26,6 @@
 package org.spongepowered.api.event.weather;
 
 import org.spongepowered.api.world.weather.Weather;
-import org.spongepowered.api.world.weather.WeatherType;
 
 /**
  * Called when a world's weather changes.
@@ -55,11 +54,11 @@ public interface WeatherChangeEvent extends WeatherEvent {
     void setResultingWeather(Weather weather);
 
     /**
-     * Sets what the new {@link WeatherType} should be with a given duration.
+     * Sets what the new {@link Weather} should be with a given duration.
      *
-     * @param weatherType The new {@link WeatherType}
+     * @param weather The new {@link Weather}
      * @param duration The duration of the weather in ticks
      */
-    void setResultingWeather(WeatherType weatherType, int duration);
+    void setResultingWeather(Weather weather, int duration);
 
 }

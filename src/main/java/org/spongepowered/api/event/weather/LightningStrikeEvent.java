@@ -25,8 +25,9 @@
 
 package org.spongepowered.api.event.weather;
 
-import org.spongepowered.api.block.Block;
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.weather.Lightning;
 
 import java.util.List;
 
@@ -36,11 +37,11 @@ import java.util.List;
 public interface LightningStrikeEvent extends WeatherEvent {
 
     /**
-     * Gets the {@link Entity} of the lightning strike.
+     * Gets the {@link Lightning} of the lightning strike.
      *
-     * @return The {@link Entity} of the lightning strike
+     * @return The {@link Lightning} of the lightning strike
      */
-    Entity getLightningStrike();
+    Lightning getLightningStrike();
 
     /**
      * Gets a {@link List} of all struck {@link Entity}s.
@@ -50,9 +51,9 @@ public interface LightningStrikeEvent extends WeatherEvent {
     List<Entity> getStruckEntities();
 
     /**
-     * Gets a {@link List} of all struck {@link Block}s.
+     * Gets a {@link List} of all struck {@link BlockLoc}s.
      *
      * @return A list of struck blocks.
      */
-    List<Block> getStruckBlocks();
+    List<BlockLoc> getStruckBlocks();
 }

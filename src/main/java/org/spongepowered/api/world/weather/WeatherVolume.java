@@ -26,8 +26,36 @@
 package org.spongepowered.api.world.weather;
 
 /**
- * Represents a possible weather condition.
+ * A volume containing {@link Weather}.
  */
-public interface WeatherType {
+public interface WeatherVolume {
 
+    /**
+     * Gets the current {@link Weather} in this volume.
+     *
+     * @return The current weather.
+     */
+    Weather getWeather();
+
+    /**
+     * Gets the remaining duration of the current {@link Weather}.
+     *
+     * @return The remaining weather duration.
+     */
+    long getWeatherDuration();
+
+    /**
+     * Sets the {@link Weather} of the volume with a random duration.
+     *
+     * @param weather The new {@link Weather}.
+     */
+    void forecast(Weather weather);
+
+    /**
+     * Sets the {@link Weather} of the volume with the specified duration.
+     *
+     * @param weather The new {@link Weather}.
+     * @param duration The specified duration.
+     */
+    void forecast(Weather weather, long duration);
 }

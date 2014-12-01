@@ -26,11 +26,11 @@
 package org.spongepowered.api.world.weather;
 
 /**
- * All possible {@link WeatherType}s in vanilla minecraft.
+ * All possible {@link Weather}s in vanilla minecraft.
  */
-public class WeatherTypes {
+public class Weathers {
 
-    public static final WeatherType CLEAR = null;
-    public static final WeatherType RAIN = null;
-    public static final WeatherType THUNDER_STORM = null;    
+    public static final Weather CLEAR = null;
+    public static final Weather RAIN = null;
+    public static final Weather THUNDER_STORM = null;
 }

@@ -26,29 +26,8 @@
 package org.spongepowered.api.world.weather;
 
 /**
- * Represents the weather in a particular world.
+ * Represents a type of weather.
  */
 public interface Weather {
-
-    /**
-     * Gets the weather type.
-     *
-     * @return The {@link WeatherType}
-     */
-    WeatherType getType();
-
-    /**
-     * Gets the amount of time before the weather can naturally change.
-     *
-     * @return The remaining time in ticks
-     */
-    int getRemainingDuration();
-
-    /**
-     * Sets the amount of time before the weather can naturally change.
-     *
-     * @param duration The number of ticks until next weather change
-     */
-    void setRemainingDuration(int duration);
 
 }
