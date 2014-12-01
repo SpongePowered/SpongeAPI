@@ -9,7 +9,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Wiki]
 * [Community Chat]: #sponge on irc.esper.net
 * [Development Chat]: #spongedev on irc.esper.net
-
+* [Plugin Workspace Info(temporary link)]: https://github.com/SpongePowered/SpongeDocs/blob/master/pluginWorkspace.rst
 ## Prerequisites
 * [Java] 6
 
