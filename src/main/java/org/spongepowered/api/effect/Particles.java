@@ -27,12 +27,15 @@ package org.spongepowered.api.effect;
 import java.util.List;
 
 import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 
 /**
  * The particles that can be sent on a vanilla Minecraft client.
  */
 public final class Particles {
 
+    private static final ParticleFactory factory = null;
+    
     private Particles() {
     }
 
@@ -78,11 +81,6 @@ public final class Particles {
     public static final Particle WATER_DROP = null;
     public static final Particle ITEM_TAKE = null;
     public static final Particle MOB_APPEARANCE = null;
-    
-    /**
-     * List of all particles
-     */
-    private static final List<Particle> particleList = null;
 
     /**
      * Gets a {@link Particle} by name.
@@ -91,17 +89,12 @@ public final class Particles {
      * @return The corresponding particle, if available
      */
     public static Optional<Particle> getByName(String name) {
-        for (int i = 0; i < getValues().size(); i++) {
-            if (getValues().get(i).getName().equalsIgnoreCase(name)) {
-                return Optional.of(getValues().get(i));
-            }
-        }
-        
-        return Optional.absent();
+        Preconditions.checkNotNull(name, "Particle name cannot be null");
+        return factory.getByName(name);
     }
 
     public static List<Particle> getValues() {
-        return particleList;
+        return factory.getParticles();
     }
 
 }
