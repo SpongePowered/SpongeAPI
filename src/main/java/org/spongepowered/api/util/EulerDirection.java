@@ -23,7 +23,9 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.math;
+package org.spongepowered.api.util;
+
+import com.flowpowered.math.vector.Vector3f;
 
 import java.io.Serializable;
 
@@ -56,7 +58,7 @@ public interface EulerDirection extends Cloneable, Serializable {
     float getRoll();
 
     /**
-     * Converts this Euler Direction into a {@link Vector3f}.
+     * Converts this Euler Direction into a {@link com.flowpowered.math.vector.Vector3f}.
      *
      * The vector will represent the directions that this direction is facing in x, y, z coordinates, with a length of 1.
      * Roll will be ignored, as it does not contribute to the facing direction.

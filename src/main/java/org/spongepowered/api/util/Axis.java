@@ -25,15 +25,13 @@
 
 package org.spongepowered.api.util;
 
-import static org.spongepowered.api.math.Vectors.create3d;
-
-import org.spongepowered.api.math.Vector3d;
+import com.flowpowered.math.vector.Vector3d;
 
 public enum Axis {
 
-    X(create3d(1, 0, 0)),
-    Y(create3d(0, 1, 0)),
-    Z(create3d(0, 0, 1));
+    X(new Vector3d(1, 0, 0)),
+    Y(new Vector3d(0, 1, 0)),
+    Z(new Vector3d(0, 0, 1));
 
     private final Vector3d direction;
 

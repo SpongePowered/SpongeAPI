@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.math.EulerDirection;
+import org.spongepowered.api.util.EulerDirection;
 
 /**
  * Represents an armor stand.

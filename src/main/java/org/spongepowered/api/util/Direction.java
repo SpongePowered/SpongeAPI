@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import static org.spongepowered.api.math.Vectors.create3d;
-import org.spongepowered.api.math.Vector3d;
+import com.flowpowered.math.vector.Vector3d;
 
 /**
  * Represent the 16 main and secondary cardinal directions plus up and down.
@@ -40,30 +39,30 @@ import org.spongepowered.api.math.Vector3d;
  * </ul>
  */
 public enum Direction {
-    NORTH           (create3d( 0,       0, -1       ), Flag.CARDINAL         ),
-    NORTH_NORTHEAST (create3d( C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
-    NORTHEAST       (create3d( 1,       0, -1       ), Flag.ORDINAL          ),
-    EAST_NORTHEAST  (create3d( C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
+    NORTH           (new Vector3d( 0,       0, -1       ), Flag.CARDINAL         ),
+    NORTH_NORTHEAST (new Vector3d( C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
+    NORTHEAST       (new Vector3d( 1,       0, -1       ), Flag.ORDINAL          ),
+    EAST_NORTHEAST  (new Vector3d( C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
 
-    EAST            (create3d( 1,       0,  0       ), Flag.CARDINAL         ),
-    EAST_SOUTHEAST  (create3d( C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
-    SOUTHEAST       (create3d( 1,       0,  1       ), Flag.ORDINAL          ),
-    SOUTH_SOUTHEAST (create3d( C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
+    EAST            (new Vector3d( 1,       0,  0       ), Flag.CARDINAL         ),
+    EAST_SOUTHEAST  (new Vector3d( C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
+    SOUTHEAST       (new Vector3d( 1,       0,  1       ), Flag.ORDINAL          ),
+    SOUTH_SOUTHEAST (new Vector3d( C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
 
-    SOUTH           (create3d( 0,       0,  1       ), Flag.CARDINAL         ),
-    SOUTH_SOUTHWEST (create3d(-C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
-    SOUTHWEST       (create3d(-1,       0,  1       ), Flag.ORDINAL          ),
-    WEST_SOUTHWEST  (create3d(-C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
+    SOUTH           (new Vector3d( 0,       0,  1       ), Flag.CARDINAL         ),
+    SOUTH_SOUTHWEST (new Vector3d(-C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
+    SOUTHWEST       (new Vector3d(-1,       0,  1       ), Flag.ORDINAL          ),
+    WEST_SOUTHWEST  (new Vector3d(-C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
 
-    WEST            (create3d(-1,       0,  0       ), Flag.CARDINAL         ),
-    WEST_NORTHWEST  (create3d(-C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
-    NORTHWEST       (create3d(-1,       0, -1       ), Flag.ORDINAL          ),
-    NORTH_NORTHWEST (create3d(-C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
+    WEST            (new Vector3d(-1,       0,  0       ), Flag.CARDINAL         ),
+    WEST_NORTHWEST  (new Vector3d(-C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
+    NORTHWEST       (new Vector3d(-1,       0, -1       ), Flag.ORDINAL          ),
+    NORTH_NORTHWEST (new Vector3d(-C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
 
-    UP              (create3d( 0,       1,  0       ), Flag.UPRIGHT          ),
-    DOWN            (create3d( 0,      -1,  0       ), Flag.UPRIGHT          ),
+    UP              (new Vector3d( 0,       1,  0       ), Flag.UPRIGHT          ),
+    DOWN            (new Vector3d( 0,      -1,  0       ), Flag.UPRIGHT          ),
 
-    NONE            (create3d( 0,       0,  0       ), 0                     );
+    NONE            (new Vector3d( 0,       0,  0       ), 0                     );
 
     private interface C {
         public static final double C8 = Math.cos(Math.PI / 8);

@@ -27,9 +27,9 @@ package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.math.EulerDirection;
-import org.spongepowered.api.math.Vector3d;
-import org.spongepowered.api.math.Vector3f;
+import org.spongepowered.api.util.EulerDirection;
+import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;

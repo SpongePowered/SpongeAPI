@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.math.Vector3i;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.extent.Extent;
 
 /**

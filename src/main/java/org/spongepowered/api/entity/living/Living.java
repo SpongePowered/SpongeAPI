@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.math.Vector3f;
+import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
 

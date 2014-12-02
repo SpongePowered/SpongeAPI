@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.math.Vector3d;
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.world.biome.Biome;
 
 /**

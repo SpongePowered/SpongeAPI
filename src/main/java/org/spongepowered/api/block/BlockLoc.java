@@ -26,7 +26,7 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.math.Vector3i;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
