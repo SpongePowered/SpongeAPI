@@ -202,7 +202,7 @@ public enum Direction {
                 return SOUTH;
             }
         } else {
-            final double angle = Math.atan(vector.getZ() / -vector.getX());
+            final double angle = Math.atan2(vector.getX(), -vector.getZ());
             final int ordinal = (int) (angle * 8 / Math.PI + 16.5) % 16;
             return values()[ordinal];
         }
