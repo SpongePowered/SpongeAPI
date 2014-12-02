@@ -41,7 +41,7 @@ public interface SQLService {
      * Returns a data source for the provided JDBC connection string or an alias
      *
      * A jdbc connection url is expected to be of the form:
-     * jdbc:&lt;engine>://[&lt;username>[:&lt;password>]@]&lt;host>/&lt;database>
+     * jdbc:&lt;engine&gt;://[&lt;username&gt;[:&lt;password&gt;]@]&lt;host&gt;/&lt;database&gt;
      *
      * or an alias (available aliases are known only by the service provider)
      *
@@ -55,7 +55,8 @@ public interface SQLService {
      * Returns a possible connection URL for a given alias.
      *
      * @param alias The alias to check
-     * @return
+     * @return The connection url as a String if it exists,
+     *          or {@link Optional#absent()}
      */
     public Optional<String> getConnectionURLFromAlias(String alias);
 }
