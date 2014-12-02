@@ -50,12 +50,13 @@ public interface ItemFrame extends Hanging {
     void setItem(@Nullable ItemStack item);
 
     /**
-     * Gets the current {@link Rotation} of the {@link ItemStack} if
-     * an ItemStack is currently displayed.
+     * Gets the current {@link Rotation} of the {@link ItemStack}
+     * <p>If the itemframe does not have an {@link ItemStack} inside,
+     * the rotation value will be used once an item is placed inside it.</p>
      *
-     * @return The current item rotation, if available
+     * @return The current item rotation
      */
-    Optional<Rotation> getItemRotation();
+    Rotation getItemRotation();
 
     /**
      * Sets the {@link Rotation} of the item hanging in this item frame.
