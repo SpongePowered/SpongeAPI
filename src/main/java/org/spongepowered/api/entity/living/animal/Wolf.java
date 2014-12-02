@@ -33,4 +33,22 @@ import org.spongepowered.api.entity.living.Sittable;
  */
 public interface Wolf extends Animal, Sittable, Dyeable {
 
+    /**
+     * Returns whether this Wolf is angry or not
+     * <p>A Wolf can be angry if attacked by a Player.
+     * The angry Wolf may also attack players.</p>
+     *
+     * @return True if the Wolf is angry
+     */
+    boolean isAngry();
+
+    /**
+     * Sets whether this Wolf is angry or not
+     * <p>A Wolf can be angry if attacked by a Player.
+     * The angry Wolf may also attack players.</p>
+     *
+     * @param angry Whether the Wolf is angry or not
+     */
+    void setAngry(boolean angry);
+
 }
