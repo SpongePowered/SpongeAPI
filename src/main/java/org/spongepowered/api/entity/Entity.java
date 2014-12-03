@@ -281,10 +281,10 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     void setFireTicks(int ticks);
 
     /**
-     * Gets the maximum ticks this entity can be on fire.
+     * Gets the delay in ticks before this entity will catch fire after being in a burning block.
      *
-     * @return The maximum fire ticks this entity can be on fire
+     * @return The delay before catching fire
      */
-    int getMaxFireTicks();
+    int getFireDelay();
 
 }
