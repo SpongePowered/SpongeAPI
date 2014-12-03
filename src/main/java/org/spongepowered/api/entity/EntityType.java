@@ -30,6 +30,12 @@ import org.spongepowered.api.text.translation.Translatable;
 /**
  * Describes a type of entity.
  */
-public interface EntityType extends Translatable {
+public interface EntityType {
 
+    /**
+     * Return the internal ID for the entity type.
+     *
+     * @return The id
+     */
+    String getId();
 }
