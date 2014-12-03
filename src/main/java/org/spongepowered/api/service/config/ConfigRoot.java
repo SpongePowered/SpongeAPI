@@ -23,13 +23,36 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.service.config;
 
-import org.spongepowered.api.GameState;
+import org.spongepowered.api.util.config.ConfigFile;
+
+import java.io.File;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * A configuration root.
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface ConfigRoot {
+
+    /**
+     * Get the path to the default configuration file for the plugin.
+     *
+     * @return A file, which may not yet exist
+     */
+    File getConfigFile();
+
+    /**
+     * Get an instance of the default configuration file for the plugin.
+     *
+     * @return A configuration object
+     */
+    ConfigFile getConfig();
+
+    /**
+     * Get the directory.
+     *
+     * @return A directory
+     */
+    File getDirectory();
 
 }

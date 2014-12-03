@@ -23,13 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.service.config;
 
-import org.spongepowered.api.GameState;
+import com.google.inject.Inject;
+
+import java.io.File;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Combine with {@link Inject} to inject a {@link File} representing
+ * the configuration directory for a plugin.
+ *
+ * @see ConfigService For getting configuration without injection
  */
-public interface PreInitializationEvent extends StateEvent {
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
+public @interface ConfigDir {
+
+    /**
+     * Whether the the shared root for configuration should be used.
+     *
+     * @return True to use the shared root
+     */
+    boolean sharedRoot();
 
 }

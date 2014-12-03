@@ -23,13 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.state;
-
-import org.spongepowered.api.GameState;
+package org.spongepowered.api.service.config;
 
 /**
- * Represents {@link GameState#PRE_INITIALIZATION} event
+ * Provides configuration for plugins.
  */
-public interface PreInitializationEvent extends StateEvent {
+public interface ConfigService {
+
+    /**
+     * Get the configuration root for a plugin that utilizes the shared
+     * configuration folder.
+     *
+     * <p>Multiple plugins may be storing their data in this root.</p>
+     *
+     * @param instance The plugin instance
+     * @return The shared root
+     */
+    ConfigRoot getSharedConfig(Object instance);
+
+    /**
+     * Get the configuration root for a plugin.
+     *
+     * <p>No other plugin will be utilizing this root.</p>
+     *
+     * @param instance The plugin instance
+     * @return The plugin-specific configuration root
+     */
+    ConfigRoot getPluginConfig(Object instance);
 
 }
