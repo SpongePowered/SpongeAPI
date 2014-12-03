@@ -26,39 +26,24 @@
 package org.spongepowered.api.world.gamerule;
 
 /**
- * Represents a GameRule on a world.
+ * An enumeration of all possible {@link GameRule}s in vanilla minecraft.
  */
-public interface GameRule<T> {
+public class GameRules {
 
-    /**
-     * Sets the value of this GameRule.
-     *
-     * <p>
-     *     If required, this value will be serialized to JSON
-     *     and stored internally as a {@link String}.
-     * </p>
-     *
-     * @param value The new value to set it to.
-     */
-    void setValue(T value);
-
-    /**
-     * Gets the value of this GameRule.
-     *
-     * <p>
-     *     If required, this value will be serialized from a
-     *     {@link String} using JSON.
-     * </p>
-     *
-     * @return The GameRule value.
-     */
-    T getValue();
-
-    /**
-     * Gets the name of this GameRule.
-     *
-     * @return
-     */
-    String getName();
+    public static final GameRule<Boolean> COMMAND_BLOCK_OUTPUT = null;
+    public static final GameRule<Boolean> DO_DAYLIGHT_CYCLE = null;
+    public static final GameRule<Boolean> DO_ENTITY_DROPS = null;
+    public static final GameRule<Boolean> DO_FIRE_TICK = null;
+    public static final GameRule<Boolean> DO_MOB_LOOT = null;
+    public static final GameRule<Boolean> DO_MOB_SPAWNING = null;
+    public static final GameRule<Boolean> DO_TILE_DROPS = null;
+    public static final GameRule<Boolean> KEEP_INVENTORY = null;
+    public static final GameRule<Boolean> LOG_ADMIN_COMMANDS = null;
+    public static final GameRule<Boolean> MOB_GRIEFING = null;
+    public static final GameRule<Boolean> NATURAL_REGENERATION = null;
+    public static final GameRule<Integer> RANDOM_TICK_SPEED = null;
+    public static final GameRule<Boolean> REDUCED_DEBUG_INFO = null;
+    public static final GameRule<Boolean> SEND_COMMAND_FEEDBACK = null;
+    public static final GameRule<Boolean> SHOW_DEATH_MESSAGES = null;
 
 }
