@@ -103,11 +103,23 @@ public final class EntityTypes {
     public static final EntityType ENDERMITE = null;
     public static final EntityType UNKNOWN = null;
 
+    /**
+    * Gets all available {@link EntityType}s.
+    *
+    * @return A list of all entity types
+    */
     public static List<EntityType> getValues() {
         return null;
     }
 
+    /**
+    * Gets the {@link EntityType} with the specified name.
+    *
+    * @param name The name of the entity type to return
+    * @return The entity type with the given name, if available
+    */
     public static Optional<EntityType> getByName(String name) {
         return Optional.absent();
     }
+
 }
