@@ -102,13 +102,12 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Optional<Entity> getEntityFromUUID(UUID uuid);
 
     /**
-     * Gets the specified {@link GameRule} by name.
+     * Gets the specified {@link GameRule}'s value.
      *
-     * @param name The name of the {@link GameRule}.
-     * @param <T> The type of value the {@link GameRule} stores.
+     * @param gameRule The {@link GameRule}.
      *
-     * @return The {@link GameRule}.
+     * @return The {@link GameRule}s value.
      */
-    <T> GameRule<T> getGameRule(String name);
+    <T> T getGameRule(GameRule<T> gameRule);
 
 }

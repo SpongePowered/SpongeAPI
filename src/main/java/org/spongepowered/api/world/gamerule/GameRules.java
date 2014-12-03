@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.world.gamerule;
 
+import com.google.common.base.Optional;
+
 /**
  * An enumeration of all possible {@link GameRule}s in vanilla minecraft.
  */
@@ -46,4 +48,16 @@ public class GameRules {
     public static final GameRule<Boolean> SEND_COMMAND_FEEDBACK = null;
     public static final GameRule<Boolean> SHOW_DEATH_MESSAGES = null;
 
+    /**
+     * Gets a {@link GameRule} by name.
+     *
+     * @param name The name of the {@link GameRule}.
+     * @param <T> The value type of the {@link GameRule}.
+     *
+     * @return The {@link GameRule}, if available.
+     */
+    public static <T> Optional<GameRule<T>> getByName(String name) {
+
+        return null;
+    }
 }

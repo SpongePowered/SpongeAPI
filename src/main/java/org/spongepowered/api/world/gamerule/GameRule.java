@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.world.gamerule;
 
+import org.spongepowered.api.world.World;
+
 /**
  * Represents a GameRule on a world.
  */
@@ -38,9 +40,10 @@ public interface GameRule<T> {
      *     and stored internally as a {@link String}.
      * </p>
      *
+     * @param world The {@link World}.
      * @param value The new value to set it to.
      */
-    void setValue(T value);
+    void setValue(World world, T value);
 
     /**
      * Gets the value of this GameRule.
@@ -50,9 +53,11 @@ public interface GameRule<T> {
      *     {@link String} using JSON.
      * </p>
      *
+     * @param world The {@link World}.
+     *
      * @return The GameRule value.
      */
-    T getValue();
+    T getValue(World world);
 
     /**
      * Gets the name of this GameRule.
