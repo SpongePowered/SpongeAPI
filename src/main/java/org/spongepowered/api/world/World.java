@@ -30,6 +30,7 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
 import java.util.UUID;
@@ -99,5 +100,15 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return An entity, if available
      */
     Optional<Entity> getEntityFromUUID(UUID uuid);
+
+    /**
+     * Gets the specified {@link GameRule} by name.
+     *
+     * @param name The name of the {@link GameRule}.
+     * @param <T> The type of value the {@link GameRule} stores.
+     *
+     * @return The {@link GameRule}.
+     */
+    <T> GameRule<T> getGameRule(String name);
 
 }
