@@ -132,6 +132,9 @@ public final class ConfigFile implements Config {
      * are no changes were made. However, if changes were made, then it is
      * guaranteed that the configuration data will be written to disk.</p>
      *
+     * <p>Any parent directories that do not yet exist will be created
+     * automatically.</p>
+     *
      * @param onlyIfChanged True to not write if no changes are detected
      * @throws IOException Thrown on write error
      * @see #save(boolean) Convenience method to ignore errors
@@ -165,6 +168,9 @@ public final class ConfigFile implements Config {
      * <p>Errors that occur will be written to the log and not throw an
      * exception.</p>
      *
+     * <p>Any parent directories that do not yet exist will be created
+     * automatically.</p>
+     *
      * @param onlyIfChanged True to not write if no changes are detected
      * @see #write(boolean) Exceptions are thrown on error
      */
@@ -179,10 +185,16 @@ public final class ConfigFile implements Config {
     /**
      * Write the given data to the file.
      *
+     * <p>Any parent directories that do not yet exist will be created
+     * automatically.</p>
+     *
      * @param renderedString The data
      * @throws IOException On write error
      */
     private void write(String renderedString) throws IOException {
+        //noinspection ResultOfMethodCallIgnored
+        file.getParentFile().mkdirs();
+
         Closer closer = Closer.create();
         try {
             BufferedWriter bw = closer.register(Files.newWriter(file, CHARSET));
