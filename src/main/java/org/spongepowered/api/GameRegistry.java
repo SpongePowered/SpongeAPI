@@ -25,6 +25,8 @@
 
 package org.spongepowered.api;
 
+import java.util.List;
+
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
@@ -41,7 +43,14 @@ public interface GameRegistry {
      * @return The block or null if not found
      */
     Optional<BlockType> getBlock(String id);
-
+ 
+    /**
+     * Gets a list of all available {@link BlockType}s.
+     *
+     * @return A list containing all block types in registry
+     */
+    List<BlockType> getBlocks();
+ 
     /**
      * Gets an {@link ItemType} by its identifier.
      *
@@ -49,12 +58,11 @@ public interface GameRegistry {
      * @return The item or null if not found
      */
     Optional<ItemType> getItem(String id);
-
+ 
     /**
-     * Gets the ID registered to the object.
+     * Gets a list of all available {@link ItemType}s.
      *
-     * @param obj The object to look up
-     * @return The id or null if none found
+     * @return A list containg all item types in registry
      */
-    Optional<String> getId(Object obj);
+    List<ItemType> getItems();
 }

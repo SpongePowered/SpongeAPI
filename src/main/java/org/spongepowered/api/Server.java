@@ -103,16 +103,10 @@ public interface Server {
     void broadcastMessage(Message<?> message);
 
     /**
-     * Gets the port the server is listening on.
-     * @return The port
-     */
-    int getPort();
-
-    /**
      * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
      * @return The address
      */
-    InetSocketAddress getBoundIP();
+    Optional<InetSocketAddress> getBoundAddress();
 
     /**
      * Tests if the server has a whitelist enabled.
@@ -135,4 +129,9 @@ public interface Server {
      */
     boolean getOnlineMode();
 
+    /**
+     * Gets the message that is displayed in the server list of the client.
+     * @return The servers MOTD
+     */
+    String getMOTD();
 }
