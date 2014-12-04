@@ -51,7 +51,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * 
      * @return The player's display name
      */
-    String getDisplayName();
+    Message<?> getDisplayName();
 
     /**
      * Returns whether the {@link Player} can fly via the fly key.
