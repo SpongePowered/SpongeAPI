@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.message;
+package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -31,11 +31,11 @@ import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextStyle;
 
 /**
- * Represents a builder interface to create immutable {@link Message} instances.
+ * Represents a builder interface to create immutable {@link Text} instances.
  *
  * @param <T> The type of the message's content
  */
-public interface MessageBuilder<T> {
+public interface TextBuilder<T> {
 
     /**
      * Appends the specified messages to the end of this message.
@@ -43,7 +43,7 @@ public interface MessageBuilder<T> {
      * @param children The messages to append
      * @return This message builder
      */
-    MessageBuilder<T> append(Message<?>... children);
+    TextBuilder<T> append(Text<?>... children);
 
     /**
      * Appends the specified messages to the end of this message.
@@ -51,7 +51,7 @@ public interface MessageBuilder<T> {
      * @param children The messages to append
      * @return This message builder
      */
-    MessageBuilder<T> append(Iterable<Message<?>> children);
+    TextBuilder<T> append(Iterable<Text<?>> children);
 
     /**
      * Sets the content of this message.
@@ -59,7 +59,7 @@ public interface MessageBuilder<T> {
      * @param content The new content for this message
      * @return This message builder
      */
-    MessageBuilder<T> content(T content);
+    TextBuilder<T> content(T content);
 
     /**
      * Sets the {@link TextColor} of this message.
@@ -67,7 +67,7 @@ public interface MessageBuilder<T> {
      * @param color The new text color for this message
      * @return This message builder
      */
-    MessageBuilder<T> color(TextColor color);
+    TextBuilder<T> color(TextColor color);
 
     /**
      * Sets the text styles of this message. This will construct a composite
@@ -77,7 +77,7 @@ public interface MessageBuilder<T> {
      * @param styles The text styles to apply
      * @return This message builder
      */
-    MessageBuilder<T> style(TextStyle... styles);
+    TextBuilder<T> style(TextStyle... styles);
 
     /**
      * Sets the {@link ClickAction} that will be executed if this message is
@@ -86,7 +86,7 @@ public interface MessageBuilder<T> {
      * @param action The new click action for this message
      * @return This message builder
      */
-    MessageBuilder<T> onClick(ClickAction<?> action);
+    TextBuilder<T> onClick(ClickAction<?> action);
 
     /**
      * Sets the {@link HoverAction} that will be executed if this message is
@@ -95,7 +95,7 @@ public interface MessageBuilder<T> {
      * @param action The new hover action for this message
      * @return This message builder
      */
-    MessageBuilder<T> onHover(HoverAction<?> action);
+    TextBuilder<T> onHover(HoverAction<?> action);
 
     /**
      * Sets the {@link ShiftClickAction} that will be executed if this message
@@ -104,14 +104,14 @@ public interface MessageBuilder<T> {
      * @param action The new shift click action for this message
      * @return This message builder
      */
-    MessageBuilder<T> onShiftClick(ShiftClickAction<?> action);
+    TextBuilder<T> onShiftClick(ShiftClickAction<?> action);
 
     /**
      * Builds an immutable instance of the current message.
      *
-     * @return An immutable {@link Message} with the current properties of this
+     * @return An immutable {@link Text} with the current properties of this
      *         builder
      */
-    Message<T> build();
+    Text<T> build();
 
 }

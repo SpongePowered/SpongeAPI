@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.text.Text;
+
 import java.awt.Color;
 
 /**
  * A TextColor represents a color that a
- * {@link org.spongepowered.api.text.message.Message} has. A list of the base
+ * {@link Text} has. A list of the base
  * text colors provided in Minecraft is provided in
  * {@link org.spongepowered.api.text.format.TextColors}.
  */

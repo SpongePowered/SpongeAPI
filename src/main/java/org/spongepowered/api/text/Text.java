@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.message;
+package org.spongepowered.api.text;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.action.ClickAction;
@@ -36,7 +36,7 @@ import java.util.List;
 
 /**
  * A Message represents some text in the new raw JSON message format. Message is
- * an immutable class that is created by a {@link MessageBuilder}, and each
+ * an immutable class that is created by a {@link TextBuilder}, and each
  * getter method maps to a field or some fields in JSON. Message is also an
  * {@link Iterable} whose iterator iterates over its children, children's
  * children, etc. recursively.
@@ -48,7 +48,7 @@ import java.util.List;
  *
  * @param <T> The type of this Message's content
  */
-public interface Message<T> extends Iterable<Message<T>> {
+public interface Text<T> extends Iterable<Text<T>> {
 
     /**
      * Returns the main content of this Message. This maps to the text,
@@ -80,7 +80,7 @@ public interface Message<T> extends Iterable<Message<T>> {
      *
      * @return This Message's children
      */
-    List<Message<?>> getChildren();
+    List<org.spongepowered.api.text.Text<?>> getChildren();
 
     /**
      * Returns the action for when this text is clicked. This maps to the
@@ -108,17 +108,17 @@ public interface Message<T> extends Iterable<Message<T>> {
     Optional<ShiftClickAction<?>> getShiftClickAction();
 
     /**
-     * Returns a new {@link MessageBuilder} with the content of this message.
+     * Returns a new {@link TextBuilder} with the content of this message.
      *
-     * @return A new {@link MessageBuilder} to modify this message
+     * @return A new {@link TextBuilder} to modify this message
      */
-    MessageBuilder<T> builder();
+    TextBuilder<T> builder();
 
     /**
      * A Text Message is a message with a String as content. In JSON, the
      * content getter maps to the text field.
      */
-    interface Text extends Message<String> {
+    interface Raw extends Text<String> {
 
     }
 
@@ -128,7 +128,7 @@ public interface Message<T> extends Iterable<Message<T>> {
      * translation identifier. In JSON, the content getter maps to the
      * translation identifier.
      */
-    interface Translatable extends Message<Translation> {
+    interface Translatable extends Text<Translation> {
 
     }
 
@@ -137,7 +137,7 @@ public interface Message<T> extends Iterable<Message<T>> {
      * selector matches becomes the text of this Message. In JSON, the content
      * getter maps to the translation field.
      */
-    interface Selector extends Message<String> {
+    interface Selector extends Text<String> {
         // TODO use Selector
     }
 
@@ -147,7 +147,7 @@ public interface Message<T> extends Iterable<Message<T>> {
      * It can be overridden. In JSON, the content getter maps to the score
      * field.
      */
-    interface Score extends Message<Object> {
+    interface Score extends Text<Object> {
 
         // TODO use Score
 

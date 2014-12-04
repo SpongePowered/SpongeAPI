@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.text.title;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Represents a builder interface to create immutable {@link Title}
@@ -36,18 +35,18 @@ public interface TitleBuilder {
     /**
      * Set the title to send to the player.
      *
-     * @param message The message to use as the title
+     * @param text The text to use as the title
      * @return This title builder
      */
-    TitleBuilder title(Message<?> message);
+    TitleBuilder title(Text<?> text);
 
     /**
      * Set the subtitle to send to the player.
      *
-     * @param message The text to use as the subtitle
+     * @param text The text to use as the subtitle
      * @return This title builder
      */
-    TitleBuilder subtitle(Message<?> message);
+    TitleBuilder subtitle(Text<?> text);
 
     /**
      * Set the duration in ticks of the fade in effect of the title. Once this

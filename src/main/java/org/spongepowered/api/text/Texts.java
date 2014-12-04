@@ -22,22 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.message;
+package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.translation.Translation;
 
 /**
  * Utility class to work with and create Messages.
  */
-public final class Messages {
+public final class Texts {
 
-    private static final MessageFactory factory = null;
+    private static final TextFactory factory = null;
 
-    private Messages() {
+    private Texts() {
     }
 
     /**
-     * Creates a new {@link MessageBuilder}.
+     * Creates a new {@link TextBuilder}.
      *
      * @param content The content of the Message
      * @param <T> The type parameter of the Message
@@ -46,26 +46,26 @@ public final class Messages {
      * @throws UnsupportedOperationException If the specified content type is
      *             not supported by this server
      */
-    public static <T> MessageBuilder<T> builder(T content) {
+    public static <T> TextBuilder<T> builder(T content) {
         return factory.createBuilder(content);
     }
 
     /**
-     * Creates a new {@link MessageBuilder} that builds {@link Translation}
+     * Creates a new {@link TextBuilder} that builds {@link Translation}
      * messages.
      *
      * @param translation The translation of the Message
      * @param args The arguments to the translation
      * @return A new MessageBuilder
      */
-    public static MessageBuilder<Translation> builder(Translation translation, Object... args) {
+    public static TextBuilder<Translation> builder(Translation translation, Object... args) {
         return factory.createTranslationBuilder(translation, args);
     }
 
     // TODO: Score API
 
     /**
-     * Creates a new {@link MessageBuilder} that builds {@link Message.Score}
+     * Creates a new {@link TextBuilder} that builds {@link Text.Score}
      * messages. If you wish to not override the score, use the
      * {@link #builder(Object)} method.
      *
@@ -73,19 +73,19 @@ public final class Messages {
      * @param override The override of the score
      * @return A
      */
-    public static MessageBuilder<Object> builder(Object score, String override) {
+    public static TextBuilder<Object> builder(Object score, String override) {
         return factory.createScoreBuilder(score, override);
     }
 
     /**
-     * Creates a new {@link MessageBuilder} out of the given content and builds
+     * Creates a new {@link TextBuilder} out of the given content and builds
      * it immediately. This is a shorthand to {@link #builder(Object)}.
      *
      * @param content The content of the Message
      * @param <T> The type parameter of the Message
-     * @return The constructed {@link Message}
+     * @return The constructed {@link Text}
      */
-    public static <T> Message<T> of(T content) {
+    public static <T> Text<T> of(T content) {
         return builder(content).build();
     }
 
@@ -103,80 +103,80 @@ public final class Messages {
     /**
      * Creates a Message from a legacy string using the default legacy.
      *
-     * @param message The message to be converted as a String
+     * @param text The text to be converted as a String
      * @return The converted Message
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Message.Text fromLegacy(String message) {
-        return fromLegacy(message, getLegacyChar());
+    public static Text.Raw fromLegacy(String text) {
+        return fromLegacy(text, getLegacyChar());
     }
 
     /**
      * Creates a Message from a legacy string, given a color character.
      *
-     * @param message The message to be converted as a String
+     * @param text The text to be converted as a String
      * @param color The color character to be replaced
      * @return The converted Message
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Message.Text fromLegacy(String message, char color) {
-        return factory.parseLegacyMessage(message, color);
+    public static Text.Raw fromLegacy(String text, char color) {
+        return factory.parseLegacyMessage(text, color);
     }
 
     /**
      * Removes the legacy formatting character from a legacy string.
      *
-     * @param message The legacy message as a String
-     * @return The stripped message
+     * @param text The legacy text as a String
+     * @return The stripped text
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static String stripCodes(String message) {
-        return stripCodes(message, getLegacyChar());
+    public static String stripCodes(String text) {
+        return stripCodes(text, getLegacyChar());
     }
 
     /**
      * Removes the legacy formatting character from a legacy string.
      *
-     * @param message The legacy message as a String
+     * @param text The legacy text as a String
      * @param color The color character to be replaced
-     * @return The stripped message
+     * @return The stripped text
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static String stripCodes(String message, char color) {
-        return factory.stripLegacyCodes(message, color);
+    public static String stripCodes(String text, char color) {
+        return factory.stripLegacyCodes(text, color);
     }
 
     /**
      * Replaces the given formatting character with the default legacy
      * formatting character from a legacy string.
      *
-     * @param message The legacy message as a String
+     * @param text The legacy text as a String
      * @param from The color character to be replaced
-     * @return The replaced message
+     * @return The replaced text
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static String replaceCodes(String message, char from) {
-        return replaceCodes(message, from, getLegacyChar());
+    public static String replaceCodes(String text, char from) {
+        return replaceCodes(text, from, getLegacyChar());
     }
 
     /**
      * Replaces the given formatting character with another given formatting
      * character from a legacy string.
      *
-     * @param message The legacy message as a String
+     * @param text The legacy text as a String
      * @param from The color character to be replaced
      * @param to The color character to replace with
-     * @return The replaced message
+     * @return The replaced text
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static String replaceCodes(String message, char from, char to) {
-        return factory.replaceLegacyCodes(message, from, to);
+    public static String replaceCodes(String text, char from, char to) {
+        return factory.replaceLegacyCodes(text, from, to);
     }
 
 }
