@@ -110,4 +110,14 @@ public interface World extends Extent, Viewer, WeatherVolume {
      */
     <T> T getGameRule(GameRule<T> gameRule);
 
+    /**
+     * Sets the {@link GameRule} to the specified value.
+     *
+     * @param gameRule The {@link GameRule} to set.
+     * @param value The value to set it to.
+     *
+     * @param <T> The type of value the {@link GameRule} stores.
+     */
+    <T> void setGameRule(GameRule<T> gameRule, T value);
+
 }

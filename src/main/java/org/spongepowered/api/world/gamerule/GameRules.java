@@ -27,6 +27,8 @@ package org.spongepowered.api.world.gamerule;
 
 import com.google.common.base.Optional;
 
+import java.util.List;
+
 /**
  * An enumeration of all possible {@link GameRule}s in vanilla minecraft.
  */
@@ -57,7 +59,11 @@ public class GameRules {
      * @return The {@link GameRule}, if available.
      */
     public static <T> Optional<GameRule<T>> getByName(String name) {
-
         return null;
     }
+
+    public static List<GameRule> getValues() {
+        return null;
+    }
+
 }

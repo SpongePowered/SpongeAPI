@@ -62,7 +62,7 @@ public interface GameRule<T> {
     /**
      * Gets the name of this GameRule.
      *
-     * @return
+     * @return The name of the GameRule.
      */
     String getName();
 
