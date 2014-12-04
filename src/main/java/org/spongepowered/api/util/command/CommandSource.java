@@ -57,6 +57,6 @@ public interface CommandSource {
      *
      * @param messages The messages
      */
-    void sendMessage(Iterable<Message<?>>... messages);
+    void sendMessage(Iterable<Message<?>> messages);
 
 }
