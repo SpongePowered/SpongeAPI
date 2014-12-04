@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.service.config;
 
+import com.google.inject.BindingAnnotation;
 import com.google.inject.Inject;
 import org.spongepowered.api.util.config.ConfigFile;
 
@@ -41,6 +42,7 @@ import java.lang.annotation.Target;
  *
  * @see ConfigService For getting configuration without injection
  */
+@BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.PARAMETER, ElementType.FIELD })
 public @interface Config {
