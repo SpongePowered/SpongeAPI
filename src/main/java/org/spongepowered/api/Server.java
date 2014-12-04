@@ -133,5 +133,5 @@ public interface Server {
      * Gets the message that is displayed in the server list of the client.
      * @return The servers MOTD
      */
-    String getMOTD();
+    Message.Text getMOTD();
 }
