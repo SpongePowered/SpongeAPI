@@ -37,10 +37,10 @@ import org.spongepowered.api.item.ItemType;
 public interface GameRegistry {
 
     /**
-     * Gets a {@link BlockType} by its identifier.
+     * Gets a {@link BlockType} by its identifier, if available.
      *
      * @param id The id to look up
-     * @return The block or null if not found
+     * @return The block
      */
     Optional<BlockType> getBlock(String id);
  
@@ -52,10 +52,10 @@ public interface GameRegistry {
     List<BlockType> getBlocks();
  
     /**
-     * Gets an {@link ItemType} by its identifier.
+     * Gets an {@link ItemType} by its identifier, if available.
      *
      * @param id The id to look up
-     * @return The item or null if not found
+     * @return The item
      */
     Optional<ItemType> getItem(String id);
  

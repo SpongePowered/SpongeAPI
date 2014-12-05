@@ -52,15 +52,15 @@ public interface Server {
     int getMaxPlayers();
 
     /**
-     * Gets a {@link Player} by their unique id
+     * Gets a {@link Player} by their unique id, if available
      *
      * @param uniqueId The UUID to get the player from
-     * @return {@link Player} if available
+     * @return The player
      */
     Optional<Player> getPlayer(UUID uniqueId);
 
     /**
-     * Gets a {@link Player} by their name
+     * Gets a {@link Player} by their name, if available
      *
      * This only works for online players.
      *
@@ -68,7 +68,7 @@ public interface Server {
      * Zidane of today may not be the Zidane of yesterday.</b>
      *
      * @param name The name to get the player from
-     * @return {@link Player} if available
+     * @return The player
      */
     Optional<Player> getPlayer(String name);
 
@@ -80,18 +80,18 @@ public interface Server {
     Collection<World> getWorlds();
 
     /**
-     * Gets a loaded {@link World} by its unique id ({@link UUID}), if any.
+     * Gets a loaded {@link World} by its unique id ({@link UUID}), if available
      *
      * @param uniqueId UUID to lookup
-     * @return The world or null if not found
+     * @return The world
      */
     Optional<World> getWorld(UUID uniqueId);
 
     /**
-     * Gets a loaded {@link World} by name, if any
+     * Gets a loaded {@link World} by name, if available
      *
      * @param worldName Name to lookup
-     * @return The world or null if not found
+     * @return The world
      */
     Optional<World> getWorld(String worldName);
 
@@ -103,8 +103,8 @@ public interface Server {
     void broadcastMessage(Message<?> message);
 
     /**
-     * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
-     * @return The address
+     * Gets the bound {@link InetSocketAddress} this server is accepting connections from, if available
+     * @return The link
      */
     Optional<InetSocketAddress> getBoundAddress();
 

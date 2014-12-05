@@ -68,7 +68,7 @@ public interface BlockState {
     Collection<String> getPropertyNames();
 
     /**
-     * Get a property from its name.
+     * Get a property from its name, if available
      *
      * @param name The name of the property
      * @return The property with the given name
@@ -76,7 +76,7 @@ public interface BlockState {
     Optional<BlockProperty<?>> getPropertyByName(String name);
 
     /**
-     * Get the current value of a given property.
+     * Get the current value of a given property, if available
      *
      * @param name Property to get value of
      * @return Current value of the property
