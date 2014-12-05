@@ -82,19 +82,19 @@ public interface Scheduler {
     Optional<RepeatingTask> runRepeatingTaskAfter(PluginContainer plugin, Runnable task, long interval, long delay);
 
     /**
-     * Returns a list of all currently scheduled tasks
+     * Returns a {@link Collection} of all currently scheduled tasks
      *
-     * @return A list of scheduled tasks
+     * @return A collection of scheduled tasks
      */
     Collection<Task> getScheduledTasks();
 
     /**
-     * Returns a list of all currently scheduled tasks owned by a
+     * Returns a {@link Collection} of all currently scheduled tasks owned by a
      * certain plugin.
      *
      * @param plugin The plugin to return tasks created by
      *
-     * @return A list of scheduled tasks
+     * @return A collection of scheduled tasks
      */
     Collection<Task> getScheduledTasks(PluginContainer plugin);
 }

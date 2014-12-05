@@ -33,9 +33,9 @@ import org.spongepowered.api.event.GameEvent;
 public interface EntityEvent extends GameEvent {
 
     /**
-     * Returns the primary entity involved in this event that performs the action.
+     * Returns the primary entity involved in this event.
      *
-     * @return The entity performing the action
+     * @return The entity involved
      */
     Entity getEntity();
 

@@ -35,7 +35,7 @@ import org.spongepowered.api.event.entity.EntityEvent;
 public interface PlayerEvent extends EntityEvent {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Gets the {@link Player} involved in this event.
      *
      * @return The {@link Player} involved
      */
