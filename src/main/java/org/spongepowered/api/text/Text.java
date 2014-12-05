@@ -118,7 +118,7 @@ public interface Text<T> extends Iterable<Text<T>> {
      * A Text Message is a message with a String as content. In JSON, the
      * content getter maps to the text field.
      */
-    interface Raw extends Text<String> {
+    interface Plain extends Text<String> {
 
     }
 

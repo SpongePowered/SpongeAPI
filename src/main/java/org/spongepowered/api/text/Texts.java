@@ -108,7 +108,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Text.Raw fromLegacy(String text) {
+    public static Text.Plain fromLegacy(String text) {
         return fromLegacy(text, getLegacyChar());
     }
 
@@ -121,7 +121,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Text.Raw fromLegacy(String text, char color) {
+    public static Text.Plain fromLegacy(String text, char color) {
         return factory.parseLegacyMessage(text, color);
     }
 

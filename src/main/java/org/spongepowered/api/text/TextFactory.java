@@ -80,7 +80,7 @@ interface TextFactory {
      * @param color The color character to be replaced
      * @return The converted Message
      */
-    Text.Raw parseLegacyMessage(String text, char color);
+    Text.Plain parseLegacyMessage(String text, char color);
 
     /**
      * Removes the legacy formatting character from a legacy string.
