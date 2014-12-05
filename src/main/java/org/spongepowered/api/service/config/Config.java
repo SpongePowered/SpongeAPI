@@ -36,9 +36,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Combine with {@link Inject} to inject either a
- * {@link ConfigFile} or a {@link File} representing the configuration for
- * a plugin.
+ * Provides an convenient injection for {@link ConfigRoot#getConfig()} or
+ * {@link ConfigRoot#getConfigFile()}.
+ *
+ * <p>Use this annotation on a {@link File} if you want the pathname to
+ * the default configuration. Or instead, use this annotation on a
+ * {@link ConfigFile} to get an instance of that. Remember that
+ * {@link Inject} is also necessary.</p>
  *
  * @see ConfigService For getting configuration without injection
  */
@@ -51,6 +55,7 @@ public @interface Config {
      * Whether the the shared root for configuration should be used.
      *
      * @return True to use the shared root
+     * @see ConfigRoot#getConfigFile() For information on what the shared root is
      */
     boolean sharedRoot();
 

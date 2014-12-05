@@ -35,8 +35,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Combine with {@link Inject} to inject a {@link File} representing
- * the configuration directory for a plugin.
+ * Provides an convenient injection for {@link ConfigRoot#getDirectory()}.
+ *
+ * <p>Use this annotation on a {@link File}. Remember that
+ * {@link Inject} is also necessary.</p>
  *
  * @see ConfigService For getting configuration without injection
  */
@@ -46,9 +48,11 @@ import java.lang.annotation.Target;
 public @interface ConfigDir {
 
     /**
-     * Whether the the shared root for configuration should be used.
+     * Whether the the shared root for configuration should be used, or instead,
+     * the plugin-specific configuration directory.
      *
-     * @return True to use the shared root
+     * @return True to return the shared configuration directory
+     * @see ConfigRoot#getConfigFile() For information on what the shared root is
      */
     boolean sharedRoot();
 
