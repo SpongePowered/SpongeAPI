@@ -49,7 +49,7 @@ import java.lang.annotation.Target;
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.PARAMETER, ElementType.FIELD })
-public @interface Config {
+public @interface DefaultConfig {
 
     /**
      * Whether the the shared root for configuration should be used.

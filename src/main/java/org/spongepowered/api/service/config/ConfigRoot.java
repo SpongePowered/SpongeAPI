@@ -61,7 +61,7 @@ public interface ConfigRoot {
      * It is up to the caller of this method to create the file if desired.</p>
      *
      * @return A file, which may not yet exist
-     * @see Config
+     * @see DefaultConfig
      */
     File getConfigFile();
 
