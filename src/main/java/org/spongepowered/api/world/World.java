@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.Entity;
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gamerule.GameRule;
+import org.spongepowered.api.world.gamerule.GameRuleType;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
 import java.util.UUID;
@@ -102,22 +103,16 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Optional<Entity> getEntityFromUUID(UUID uuid);
 
     /**
-     * Gets the specified {@link GameRule}'s value.
+     * Gets the specified {@link GameRuleType}'s state.
      *
-     * @param gameRule The {@link GameRule}.
+     * <p>
+     *     The value of a {@link GameRule} is modifiable via the
+     *     current state object.
+     * </p>
      *
-     * @return The {@link GameRule}s value.
+     * @param gameRuleType The {@link GameRuleType}.
+     * @return The {@link GameRuleType}s state.
      */
-    <T> T getGameRule(GameRule<T> gameRule);
-
-    /**
-     * Sets the {@link GameRule} to the specified value.
-     *
-     * @param gameRule The {@link GameRule} to set.
-     * @param value The value to set it to.
-     *
-     * @param <T> The type of value the {@link GameRule} stores.
-     */
-    <T> void setGameRule(GameRule<T> gameRule, T value);
+    GameRule getGameRule(GameRuleType gameRuleType);
 
 }

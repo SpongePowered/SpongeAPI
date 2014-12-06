@@ -25,41 +25,15 @@
 
 package org.spongepowered.api.world.gamerule;
 
-import org.spongepowered.api.world.World;
-
 /**
- * Represents the state of a GameRule.
+ * Represents a type of {@link GameRule}.
  */
-public interface GameRule {
+public interface GameRuleType {
 
     /**
-     * Sets the value of this GameRule.
+     * Gets the name of this GameRuleType.
      *
-     * @param value The new value to set it to.
+     * @return The name.
      */
-    void set(String value);
-
-    /**
-     * Gets the value of this GameRule.
-     *
-     * @return The GameRule value.
-     */
-    String get();
-
-    //TODO - If this system is liked, add getBoolean, getInteger, getDouble, and equivalent sets.
-
-    /**
-     * Gets the {@link GameRuleType} of this GameRule.
-     *
-     * @return The type of the GameRule.
-     */
-    GameRuleType getType();
-
-    /**
-     * Gets the {@link World} this GameRule is on.
-     *
-     * @return The world.
-     */
-    World getWorld();
-
+    String getName();
 }

@@ -30,39 +30,38 @@ import com.google.common.base.Optional;
 import java.util.List;
 
 /**
- * An enumeration of all possible {@link GameRule}s in vanilla minecraft.
+ * An enumeration of all possible {@link GameRuleType}s in vanilla minecraft.
  */
-public class GameRules {
+public class GameRuleTypes {
 
-    public static final GameRule<Boolean> COMMAND_BLOCK_OUTPUT = null;
-    public static final GameRule<Boolean> DO_DAYLIGHT_CYCLE = null;
-    public static final GameRule<Boolean> DO_ENTITY_DROPS = null;
-    public static final GameRule<Boolean> DO_FIRE_TICK = null;
-    public static final GameRule<Boolean> DO_MOB_LOOT = null;
-    public static final GameRule<Boolean> DO_MOB_SPAWNING = null;
-    public static final GameRule<Boolean> DO_TILE_DROPS = null;
-    public static final GameRule<Boolean> KEEP_INVENTORY = null;
-    public static final GameRule<Boolean> LOG_ADMIN_COMMANDS = null;
-    public static final GameRule<Boolean> MOB_GRIEFING = null;
-    public static final GameRule<Boolean> NATURAL_REGENERATION = null;
-    public static final GameRule<Integer> RANDOM_TICK_SPEED = null;
-    public static final GameRule<Boolean> REDUCED_DEBUG_INFO = null;
-    public static final GameRule<Boolean> SEND_COMMAND_FEEDBACK = null;
-    public static final GameRule<Boolean> SHOW_DEATH_MESSAGES = null;
+    public static final GameRuleType COMMAND_BLOCK_OUTPUT = null;
+    public static final GameRuleType DO_DAYLIGHT_CYCLE = null;
+    public static final GameRuleType DO_ENTITY_DROPS = null;
+    public static final GameRuleType DO_FIRE_TICK = null;
+    public static final GameRuleType DO_MOB_LOOT = null;
+    public static final GameRuleType DO_MOB_SPAWNING = null;
+    public static final GameRuleType DO_TILE_DROPS = null;
+    public static final GameRuleType KEEP_INVENTORY = null;
+    public static final GameRuleType LOG_ADMIN_COMMANDS = null;
+    public static final GameRuleType MOB_GRIEFING = null;
+    public static final GameRuleType NATURAL_REGENERATION = null;
+    public static final GameRuleType RANDOM_TICK_SPEED = null;
+    public static final GameRuleType REDUCED_DEBUG_INFO = null;
+    public static final GameRuleType SEND_COMMAND_FEEDBACK = null;
+    public static final GameRuleType SHOW_DEATH_MESSAGES = null;
 
     /**
-     * Gets a {@link GameRule} by name.
+     * Gets a {@link GameRuleType} by name.
      *
-     * @param name The name of the {@link GameRule}.
-     * @param <T> The value type of the {@link GameRule}.
+     * @param name The name of the {@link GameRuleType}.
      *
-     * @return The {@link GameRule}, if available.
+     * @return The {@link GameRuleType}, if available.
      */
-    public static <T> Optional<GameRule<T>> getByName(String name) {
+    public static Optional<GameRuleType> getByName(String name) {
         return null;
     }
 
-    public static List<GameRule> getValues() {
+    public static List<GameRuleType> getValues() {
         return null;
     }
 
