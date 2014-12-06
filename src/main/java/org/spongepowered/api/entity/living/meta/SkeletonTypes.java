@@ -24,22 +24,11 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class SkeletonTypes {
-    private SkeletonTypes() {
-    }
 
     public static final SkeletonType NORMAL = null;
     public static final SkeletonType WITHER = null;
 
-    public static List<SkeletonType> getValues() {
-        return null;
-    }
-
-    public static Optional<SkeletonType> valueOf(String name) {
-        return Optional.fromNullable(null);
+    private SkeletonTypes() {
     }
 }

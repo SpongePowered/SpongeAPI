@@ -25,14 +25,10 @@
 
 package org.spongepowered.api.potion;
 
-import java.util.List;
-
 /**
  * An enumaration of all possible {@link PotionEffectType}s in vanilla minecraft.
  */
 public final class PotionEffectTypes {
-    private PotionEffectTypes() {
-    }
 
     public static final PotionEffectType SPEED = null;
     public static final PotionEffectType SLOWNESS = null;
@@ -58,8 +54,6 @@ public final class PotionEffectTypes {
     public static final PotionEffectType ABSORPTION = null;
     public static final PotionEffectType SATURATION = null;
 
-    public static List<PotionEffectType> getValues() {
-        return null;
+    private PotionEffectTypes() {
     }
-
 }

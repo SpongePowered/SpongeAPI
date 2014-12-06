@@ -24,13 +24,7 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class RabbitTypes {
-    private RabbitTypes() {
-    }
 
     public static final RabbitType BROWN = null;
     public static final RabbitType WHITE = null;
@@ -40,11 +34,6 @@ public final class RabbitTypes {
     public static final RabbitType SALT_AND_PEPPER = null;
     public static final RabbitType KILLER = null;
 
-    public static List<RabbitType> getValues() {
-        return null;
-    }
-
-    public static Optional<RabbitType> getTypeFromString(String name) {
-        return Optional.fromNullable(null);
+    private RabbitTypes() {
     }
 }

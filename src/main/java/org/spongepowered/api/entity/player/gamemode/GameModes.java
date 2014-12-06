@@ -24,22 +24,17 @@
  */
 package org.spongepowered.api.entity.player.gamemode;
 
-import java.util.List;
-
 /**
  * A list of the game modes that Minecraft provides in vanilla.
  */
 public final class GameModes {
-    private GameModes() {
-    }
 
     public static final GameMode SURVIVAL = null;
     public static final GameMode CREATIVE = null;
     public static final GameMode ADVENTURE = null;
     public static final GameMode SPECTATOR = null;
 
-    public static List<GameMode> getValues() {
-        return null;
+    private GameModes() {
     }
 
 }

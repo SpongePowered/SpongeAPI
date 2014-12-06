@@ -25,17 +25,10 @@
 
 package org.spongepowered.api.entity;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * An enumeration of all possible {@link EntityType}s available in vanilla minecraft.
  */
 public final class EntityTypes {
-
-    private EntityTypes() {
-    }
 
     public static final EntityType DROPPED_ITEM = null;
     public static final EntityType EXPERIENCE_ORB = null;
@@ -104,11 +97,6 @@ public final class EntityTypes {
     public static final EntityType ENDERMITE = null;
     public static final EntityType UNKNOWN = null;
 
-    public static List<EntityType> getValues() {
-        return null;
-    }
-
-    public static Optional<EntityType> getByName(String name) {
-        return Optional.absent();
+    private EntityTypes() {
     }
 }

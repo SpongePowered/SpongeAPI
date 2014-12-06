@@ -24,13 +24,7 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class HorseColors {
-    private HorseColors() {
-    }
 
     public static final HorseColor WHITE = null;
     public static final HorseColor CREAMY = null;
@@ -40,12 +34,6 @@ public final class HorseColors {
     public static final HorseColor GRAY = null;
     public static final HorseColor DARK_BROWN = null;
 
-    public static List<HorseColor> getValues() {
-        return null;
+    private HorseColors() {
     }
-
-    public static Optional<HorseColor> valueOf(String name) {
-        return Optional.fromNullable(null);
-    }
-
 }

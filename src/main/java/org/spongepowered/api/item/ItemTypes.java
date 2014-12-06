@@ -24,17 +24,10 @@
  */
 package org.spongepowered.api.item;
 
-import org.spongepowered.api.item.inventory.ItemStackBuilder;
-import org.spongepowered.api.item.merchant.TradeOfferBuilder;
-
-import java.util.List;
-
 /**
  * An enumeration of all possible {@link ItemType}s and {@link ItemBlock}s in vanilla minecraft.
  */
 public final class ItemTypes {
-    private ItemTypes() {
-    }
 
     public static final ItemBlock STONE = null;
     public static final ItemBlock GRASS = null;
@@ -186,7 +179,6 @@ public final class ItemTypes {
     public static final ItemBlock RED_SANDSTONE = null;
     public static final ItemBlock RED_SANDSTONE_STAIRS = null;
     public static final ItemBlock STONE_SLAB2 = null;
-
     public static final ItemType IRON_SHOVEL = null;
     public static final ItemType IRON_PICKAXE = null;
     public static final ItemType IRON_AXE = null;
@@ -374,16 +366,6 @@ public final class ItemTypes {
     public static final ItemType RECORD_WARD = null;
     public static final ItemType RECORD_11 = null;
     public static final ItemType RECORD_WAIT = null;
-
-    public static List<ItemType> getValues() {
-        return null;
-    }
-
-    public static ItemStackBuilder getItemBuilder() {
-        return null;
-    }
-
-    public static TradeOfferBuilder getTradeOfferBuilder() {
-        return null;
+    private ItemTypes() {
     }
 }

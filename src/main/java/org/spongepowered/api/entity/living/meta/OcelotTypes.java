@@ -24,24 +24,13 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class OcelotTypes {
-    private OcelotTypes() {
-    }
 
     public static final OcelotType WILD_OCELOT = null;
     public static final OcelotType BLACK_CAT = null;
     public static final OcelotType RED_CAT = null;
     public static final OcelotType SIAMESE_CAT = null;
 
-    public static List<OcelotType> getValues() {
-        return null;
-    }
-
-    public static Optional<OcelotType> valueOf(String name) {
-        return Optional.fromNullable(null);
+    private OcelotTypes() {
     }
 }
