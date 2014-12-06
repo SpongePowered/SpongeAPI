@@ -104,7 +104,7 @@ public final class ItemTypes {
     public static final ItemBlock CACTUS = null;
     public static final ItemBlock CLAY = null;
     public static final ItemBlock JUKEBOX = null;
-    public static final ItemBlock OAK_FENCE = null;
+    public static final ItemBlock FENCE = null;
     public static final ItemBlock SPRUCE_FENCE = null;
     public static final ItemBlock BIRCH_FENCE = null;
     public static final ItemBlock JUNGLE_FENCE = null;
@@ -124,7 +124,7 @@ public final class ItemTypes {
     public static final ItemBlock GLASS_PANE = null;
     public static final ItemBlock MELON_BLOCK = null;
     public static final ItemBlock VINE = null;
-    public static final ItemBlock OAK_FENCE_GATE = null;
+    public static final ItemBlock FENCE_GATE = null;
     public static final ItemBlock SPRUCE_FENCE_GATE = null;
     public static final ItemBlock BIRCH_FENCE_GATE = null;
     public static final ItemBlock JUNGLE_FENCE_GATE = null;
@@ -177,7 +177,7 @@ public final class ItemTypes {
     public static final ItemBlock PACKED_ICE = null;
     public static final ItemBlock ACACIA_STAIRS = null;
     public static final ItemBlock DARK_OAK_STAIRS = null;
-    public static final ItemBlock SLIME_BLOCK = null;
+    public static final ItemBlock SLIME = null;
     public static final ItemBlock DOUBLE_PLANT = null;
     public static final ItemBlock STAINED_GLASS = null;
     public static final ItemBlock STAINED_GLASS_PANE = null;
