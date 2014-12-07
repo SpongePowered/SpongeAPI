@@ -72,7 +72,7 @@ public interface WorldBorder {
     public void setRadius(double radius, long time);
 
     /**
-     * Get the time remaining until the world border stops expanding or contracting
+     * Get the time remaining until the world border stops expanding or contracting.
      *
      * @return The time remaining, in seconds
      */
@@ -99,10 +99,10 @@ public interface WorldBorder {
 
     /**
      * Get the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} seconds
+     * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint</p>
+     * reddish tint.</p>
      *
      * @return The time, in seconds
      */
@@ -110,10 +110,10 @@ public interface WorldBorder {
 
     /**
      * Set the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} seconds
+     * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint</p>
+     * reddish tint.</p>
      *
      * @param time The time, in seconds
      */
@@ -124,7 +124,7 @@ public interface WorldBorder {
      * the world border is {@code distance} blocks away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint</p>
+     * reddish tint.</p>
      *
      * @return The distance, in blocks
      */
@@ -135,7 +135,7 @@ public interface WorldBorder {
      * the world border is {@code distance} blocks away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint</p>
+     * reddish tint.</p>
      *
      * @param distance The distance, in blocks
      */
