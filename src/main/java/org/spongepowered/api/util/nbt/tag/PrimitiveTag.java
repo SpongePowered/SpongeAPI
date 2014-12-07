@@ -26,13 +26,13 @@ package org.spongepowered.api.util.nbt.tag;
 
 public interface PrimitiveTag<T> extends Tag<T> {
 
-    interface ByteTag extends PrimitiveTag<Byte> {
+    interface Byte extends PrimitiveTag<Byte> {
 
         byte getPrimitive();
 
     }
 
-    interface DoubleTag extends PrimitiveTag<Double> {
+    interface Double extends PrimitiveTag<Double> {
 
         double getPrimitive();
 
@@ -44,19 +44,19 @@ public interface PrimitiveTag<T> extends Tag<T> {
 
     }
 
-    interface IntTag extends PrimitiveTag<Integer> {
+    interface Int extends PrimitiveTag<Integer> {
 
         int getPrimitive();
 
     }
 
-    interface LongTag extends PrimitiveTag<Long> {
+    interface Long extends PrimitiveTag<Long> {
 
         long getPrimitive();
 
     }
 
-    interface ShortTag extends PrimitiveTag<Short> {
+    interface Short extends PrimitiveTag<Short> {
 
         short getPrimitive();
 

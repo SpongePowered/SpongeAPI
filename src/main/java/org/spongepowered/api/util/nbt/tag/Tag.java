@@ -41,6 +41,6 @@ public interface Tag<T> extends Cloneable {
      *
      * @return The value
      */
-    public abstract T getValue();
+    T getValue();
 
 }

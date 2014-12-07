@@ -22,11 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.nbt;
+package org.spongepowered.api.util.nbt.mapper;
 
-/**
- * A marker interface to mark some class or interface as being able to
- * serialize to NBT.
- */
-public interface NbtStored {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD, ElementType.METHOD})
+public @interface Property {
+
+    String name() default "";
+
+    boolean collapse() default false;
+
+    PropertyType type() default PropertyType.DETECT;
+
 }
