@@ -47,7 +47,7 @@ public interface WorldBorder {
      *
      * @return The radius, in blocks
      */
-    public double getRadius();
+    double getRadius();
 
     /**
      * Set the radius of the world border.
@@ -57,7 +57,7 @@ public interface WorldBorder {
      *
      * @param radius The radius, in blocks
      */
-    public void setRadius(double radius);
+    void setRadius(double radius);
 
     /**
      * Set the radius of the world border, over the given period of time.
@@ -69,14 +69,14 @@ public interface WorldBorder {
      * @param radius The radius, in blocks
      * @param time The time over which to change, in milliseconds
      */
-    public void setRadius(double radius, long time);
+    void setRadius(double radius, long time);
 
     /**
      * Get the time remaining until the world border stops expanding or contracting.
      *
      * @return The time remaining, in milliseconds
      */
-    public long getTimeRemaining();
+    long getTimeRemaining();
 
     /**
      * Set the center of the world border.
@@ -84,7 +84,7 @@ public interface WorldBorder {
      * @param x The x-axis center of the world border
      * @param z The z-axis center of the world border
      */
-    public void setCenter(double x, double z);
+    void setCenter(double x, double z);
 
     /**
      * Get the center of the world border.
@@ -95,7 +95,7 @@ public interface WorldBorder {
      *
      * @return The center
      */
-    public Vector3d getCenter();
+    Vector3d getCenter();
 
     /**
      * Get the time when a contracting world border will warn a player for whom
@@ -106,7 +106,7 @@ public interface WorldBorder {
      *
      * @return The time, in seconds
      */
-    public int getWarningTime();
+    int getWarningTime();
 
     /**
      * Set the time when a contracting world border will warn a player for whom
@@ -117,7 +117,7 @@ public interface WorldBorder {
      *
      * @param time The time, in seconds
      */
-    public void setWarningTime(int time);
+    void setWarningTime(int time);
 
     /**
      * Get the distance when a contracting world border will warn a player for whom
@@ -128,7 +128,7 @@ public interface WorldBorder {
      *
      * @return The distance, in blocks
      */
-    public int getWarningDistance();
+    int getWarningDistance();
 
     /**
      * Set the distance when a contracting world border will warn a player for whom
@@ -139,5 +139,5 @@ public interface WorldBorder {
      *
      * @param distance The distance, in blocks
      */
-    public void setWarningDistance(int distance);
+    void setWarningDistance(int distance);
 }
