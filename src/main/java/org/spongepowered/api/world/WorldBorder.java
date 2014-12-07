@@ -40,6 +40,16 @@ import com.flowpowered.math.vector.Vector3d;
 public interface WorldBorder {
 
     /**
+     * Get the radius the world border is expanding or contracting to.
+     *
+     * <p>This will return the same value as {@link #getRadius} unless
+     * {@link #getTimeRemaining} is greater than 0.</p>
+     *
+     * @return The radius being changed to, in blocks
+     */
+    double getNewRadius();
+
+    /**
      * Get the radius of the world border.
      *
      * <p>The returned radius applies to the x and z axis. The world border
