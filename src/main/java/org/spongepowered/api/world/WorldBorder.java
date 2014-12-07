@@ -84,7 +84,7 @@ public interface WorldBorder {
      * @param x The x-axis center of the world border
      * @param z The z-axis center of the world border
      */
-    public void setCenter(double x, double y);
+    public void setCenter(double x, double z);
 
     /**
      * Get the center of the world border.
