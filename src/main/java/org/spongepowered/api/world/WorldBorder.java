@@ -140,4 +140,34 @@ public interface WorldBorder {
      * @param distance The distance, in blocks
      */
     void setWarningDistance(int distance);
+
+    /**
+     * Get the distance a player maby be outside the world border before
+     * taking damage.
+     *
+     * @return The distance, in blocks
+     */
+    int getBlockBuffer();
+
+    /**
+     * Set the distance a player maby be outside the world border before
+     * taking damage.
+     *
+     * @param distance The distance, in blocks
+     */
+    void getBlockBuffer(int distance);
+
+    /**
+     * Get the damage done to a player per second when outside the buffer.
+     *
+     * @return The damage amount
+     */
+    int getDamageAmount();
+
+    /**
+     * Set the damage done to a player per second when outside the buffer.
+     *
+     * @param damage The damage amount
+     */
+    void setDamageAmount(int damage);
 }
