@@ -67,14 +67,14 @@ public interface WorldBorder {
      * extends over the entire y-axis.</p>
      *
      * @param radius The radius, in blocks
-     * @param time The time over which to change, in seconds
+     * @param time The time over which to change, in milliseconds
      */
     public void setRadius(double radius, long time);
 
     /**
      * Get the time remaining until the world border stops expanding or contracting.
      *
-     * @return The time remaining, in seconds
+     * @return The time remaining, in milliseconds
      */
     public long getTimeRemaining();
 
@@ -99,23 +99,23 @@ public interface WorldBorder {
 
     /**
      * Get the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} seconds.
+     * the world border will reach in {@code time} milliseconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
-     * @return The time, in seconds
+     * @return The time, in milliseconds
      */
     public int getWarningTime();
 
     /**
      * Set the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} seconds.
+     * the world border will reach in {@code time} milliseconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
-     * @param time The time, in seconds
+     * @param time The time, in milliseconds
      */
     public void setWarningTime(int time);
 
