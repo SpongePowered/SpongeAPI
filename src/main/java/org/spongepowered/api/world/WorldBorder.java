@@ -99,23 +99,23 @@ public interface WorldBorder {
 
     /**
      * Get the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} milliseconds.
+     * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
-     * @return The time, in milliseconds
+     * @return The time, in seconds
      */
     public int getWarningTime();
 
     /**
      * Set the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} milliseconds.
+     * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
-     * @param time The time, in milliseconds
+     * @param time The time, in seconds
      */
     public void setWarningTime(int time);
 
