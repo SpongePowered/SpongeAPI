@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector3i;
+import com.flowpowered.math.vector.Vector3d;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
