@@ -33,9 +33,9 @@ import com.flowpowered.math.vector.Vector3d;
  * <p>It can gradually grow or shrink to a radius over a period of time.
  * A warning is displayed when a contracting world border will reach the player
  * in a certain amount of time, or when the player is a certain number of
- * blocks away.
+ * blocks away.</p>
  *
- * In Minecraft, a warning is displayed in the form of a reddish tint.</p>
+ * <p>In Minecraft, a warning is displayed in the form of a reddish tint.</p>
  */
 public interface WorldBorder {
 
