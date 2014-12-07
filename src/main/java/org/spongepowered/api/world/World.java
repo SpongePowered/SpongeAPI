@@ -100,4 +100,11 @@ public interface World extends Extent, Viewer, WeatherVolume {
      */
     Optional<Entity> getEntityFromUUID(UUID uuid);
 
+    /**
+     * Gets the world border for the world.
+     *
+     * @return The world border
+     */
+    WorldBorder getWorldBorder();
+
 }
