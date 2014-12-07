@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * The base scheduler that schedules tasks.
@@ -80,6 +81,14 @@ public interface Scheduler {
      * @return The scheduled task, if successful
      */
     Optional<RepeatingTask> runRepeatingTaskAfter(PluginContainer plugin, Runnable task, long interval, long delay);
+
+    /**
+     * Retrieves a scheduled or running task by its unique ID.
+     *
+     * @param id The id of the task
+     * @return The scheduled or running task, or {@link Optional#absent()}
+     */
+    Optional<Task> getTaskById(UUID id);
 
     /**
      * Returns a list of all currently scheduled tasks
