@@ -26,7 +26,7 @@
 package org.spongepowered.api.entity.living.monster;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.item.ItemBlock;
+import org.spongepowered.api.block.BlockState;
 
 /**
  * Represents an Enderman.
@@ -34,18 +34,18 @@ import org.spongepowered.api.item.ItemBlock;
 public interface Enderman extends Monster {
 
     /**
-     * Gets the {@link ItemBlock} currently carried by the enderman.
+     * Gets the {@link BlockState} currently carried by the enderman.
      *
-     * @return The {@link ItemBlock}, if available
+     * @return The {@link BlockState}, if available
      */
-    Optional<ItemBlock> getCarriedBlock();
+    Optional<BlockState> getCarriedBlock();
 
     /**
-     * Sets the {@link ItemBlock} currently carried by the enderman.
+     * Sets the {@link BlockState} currently carried by the enderman.
      *
-     * @param carriedBlock The carried {@link ItemBlock}
+     * @param carriedBlock The carried {@link BlockState}
      */
-    void setCarriedBlock(ItemBlock carriedBlock);
+    void setCarriedBlock(BlockState carriedBlock);
 
     /**
      * Gets if the enderman is currently screaming.

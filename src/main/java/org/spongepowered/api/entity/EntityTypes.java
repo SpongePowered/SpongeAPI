@@ -54,6 +54,7 @@ public final class EntityTypes {
     public static final EntityType FALLING_BLOCK = null;
     public static final EntityType FIREWORK = null;
     public static final EntityType COMMANDBLOCK_MINECART = null;
+    public static final EntityType ARMOR_STAND = null;
     public static final EntityType BOAT = null;
     public static final EntityType RIDEABLE_MINECART = null;
     public static final EntityType CHESTED_MINECART = null;
