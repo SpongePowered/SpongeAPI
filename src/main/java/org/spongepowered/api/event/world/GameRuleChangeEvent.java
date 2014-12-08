@@ -34,11 +34,24 @@ import org.spongepowered.api.world.gamerule.GameRuleType;
  */
 public interface GameRuleChangeEvent extends WorldEvent, Cancellable {
 
-    //TODO Javadocs if this is liked.
-
+    /**
+     * Gets the new state of the {@link GameRule}.
+     *
+     * @return The new state.
+     */
     GameRule getNewState();
 
+    /**
+     * Gets the old state of the {@link GameRule}.
+     *
+     * @return The old state.
+     */
     GameRule getOldState();
 
+    /**
+     * Gets the {@link GameRuleType} that is being changed.
+     *
+     * @return The {@link GameRuleType}.
+     */
     GameRuleType getType();
 }

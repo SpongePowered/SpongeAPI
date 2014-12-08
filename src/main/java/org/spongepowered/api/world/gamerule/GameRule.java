@@ -46,7 +46,71 @@ public interface GameRule {
      */
     String get();
 
-    //TODO - If this system is liked, add getBoolean, getInteger, getDouble, and equivalent sets.
+    /**
+     * Sets the value of this GameRule to a boolean.
+     *
+     * <p>
+     *     This is equivalent to calling set(String.valueOf(value));
+     * </p>
+     *
+     * @param value The boolean value to set it to.
+     */
+    void setBoolean(boolean value);
+
+    /**
+     * Gets the value of this GameRule as a boolean.
+     *
+     * <p>
+     *     This is equivalent to calling Boolean.parseBoolean(get());
+     * </p>
+     *
+     * @return The boolean value of the GameRule.
+     */
+    boolean getBoolean();
+
+    /**
+     * Sets the value of this GameRule to a double.
+     *
+     * <p>
+     *     This is equivalent to calling set(String.valueOf(value));
+     * </p>
+     *
+     * @param value The double value to set it to.
+     */
+    void setDouble(double value);
+
+    /**
+     * Gets the value of this GameRule as a double.
+     *
+     * <p>
+     *     This is equivalent to calling Double.parseDouble(get());
+     * </p>
+     *
+     * @return The double value of the GameRule.
+     */
+    double getDouble();
+
+    /**
+     * Sets the value of this GameRule to an int.
+     *
+     * <p>
+     *     This is equivalent to calling set(String.valueOf(value));
+     * </p>
+     *
+     * @param value The int value to set it to.
+     */
+    void setInteger(int value);
+
+    /**
+     * Gets the value of this GameRule as an int.
+     *
+     * <p>
+     *     This is equivalent to calling Integer.parseInt(get());
+     * </p>
+     *
+     * @return The int value of the GameRule.
+     */
+    int getInteger();
 
     /**
      * Gets the {@link GameRuleType} of this GameRule.
