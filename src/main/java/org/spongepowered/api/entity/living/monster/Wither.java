@@ -47,7 +47,7 @@ public interface Wither extends Monster, ProjectileSource {
      * Sets the amount of ticks that the Wither should stay
      * invulnerable for.
      *
-     * <b>Note: This causes an explosion when the time runs out.
+     * <b>Note: This causes an explosion when the time runs out.</b>
      *
      * @param invulnerableTicks The invulnerable time in ticks
      */
