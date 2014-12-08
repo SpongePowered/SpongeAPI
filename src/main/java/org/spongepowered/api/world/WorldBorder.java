@@ -152,7 +152,7 @@ public interface WorldBorder {
     void setWarningDistance(int distance);
 
     /**
-     * Get the distance a player maby be outside the world border before
+     * Get the distance a player may be outside the world border before
      * taking damage.
      *
      * @return The distance, in blocks
@@ -160,7 +160,7 @@ public interface WorldBorder {
     int getBlockBuffer();
 
     /**
-     * Set the distance a player maby be outside the world border before
+     * Set the distance a player may be be outside the world border before
      * taking damage.
      *
      * @param distance The distance, in blocks
