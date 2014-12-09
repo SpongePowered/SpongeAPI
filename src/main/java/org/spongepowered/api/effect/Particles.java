@@ -24,17 +24,18 @@
  */
 package org.spongepowered.api.effect;
 
-import com.google.common.base.Optional;
-
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 
 /**
  * The particles that can be sent on a vanilla Minecraft client.
  */
 public final class Particles {
 
+    private static final ParticleFactory factory = null;
+    
     private Particles() {
     }
 
@@ -81,20 +82,19 @@ public final class Particles {
     public static final Particle ITEM_TAKE = null;
     public static final Particle MOB_APPEARANCE = null;
 
-
     /**
      * Gets a {@link Particle} by name.
      *
      * @param name The particle name
      * @return The corresponding particle, if available
      */
-    @Nullable
     public static Optional<Particle> getByName(String name) {
-        return null;
+        Preconditions.checkNotNull(name, "Particle name cannot be null");
+        return factory.getByName(name);
     }
 
     public static List<Particle> getValues() {
-        return null;
+        return factory.getParticles();
     }
 
 }
