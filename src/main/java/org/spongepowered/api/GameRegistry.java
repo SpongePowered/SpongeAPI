@@ -30,6 +30,7 @@ import java.util.List;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
@@ -62,7 +63,22 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link ItemType}s.
      *
-     * @return A list containg all item types in registry
+     * @return A list containing all item types in registry
      */
     List<ItemType> getItems();
+
+    /**
+     * Gets a {@link BiomeType} by its identifier.
+     *
+     * @param id The id to look up
+     * @return The biome or null if not found
+     */
+    Optional<BiomeType> getBiome(String id);
+ 
+    /**
+     * Gets a list of all available {@link BiomeType}s.
+     *
+     * @return A list containing all biome types
+     */
+    List<BiomeType> getBiomes();
 }
