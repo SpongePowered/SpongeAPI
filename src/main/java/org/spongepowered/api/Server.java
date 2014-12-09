@@ -96,6 +96,13 @@ public interface Server {
     Optional<World> getWorld(String worldName);
 
     /**
+     * Gets the time, in ticks, since this server began running.
+     *
+     * @return The number of ticks since this server started running
+     */
+    int getRunningTimeTicks();
+
+    /**
      * Sends the given message to all online players
      *
      * @param message The message to send
