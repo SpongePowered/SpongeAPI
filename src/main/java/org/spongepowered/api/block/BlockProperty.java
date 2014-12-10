@@ -75,7 +75,7 @@ public interface BlockProperty<T extends Comparable<T>> {
      * Get the value representation for the given name.
      *
      * @param name A name that represents a valid value for this property
-     * @return A valid value for this property
+     * @return A valid value for this property or Optional.absent() if not found
      */
     Optional<T> getValueForName(String name);
 

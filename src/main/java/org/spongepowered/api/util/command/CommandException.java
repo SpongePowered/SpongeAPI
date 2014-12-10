@@ -61,8 +61,7 @@ public class CommandException extends Exception {
     }
 
     /**
-     * Constructs a new exception with the specified cause and a detail
-     * message of.
+     * Constructs a new exception with the specified cause.
      *
      * @param cause The cause
      */

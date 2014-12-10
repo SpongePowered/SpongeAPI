@@ -55,7 +55,7 @@ public interface Server {
      * Gets a {@link Player} by their unique id
      *
      * @param uniqueId The UUID to get the player from
-     * @return {@link Player} if available
+     * @return {@link Player} or Optional.absent() if not found
      */
     Optional<Player> getPlayer(UUID uniqueId);
 
@@ -68,7 +68,7 @@ public interface Server {
      * Zidane of today may not be the Zidane of yesterday.</b>
      *
      * @param name The name to get the player from
-     * @return {@link Player} if available
+     * @return {@link Player} or Optional.absent() if not found
      */
     Optional<Player> getPlayer(String name);
 
@@ -83,15 +83,15 @@ public interface Server {
      * Gets a loaded {@link World} by its unique id ({@link UUID}), if any.
      *
      * @param uniqueId UUID to lookup
-     * @return The world or null if not found
+     * @return The world or Optional.absent() if not found
      */
     Optional<World> getWorld(UUID uniqueId);
 
     /**
-     * Gets a loaded {@link World} by name, if any
+     * Gets a loaded {@link World} by name, if any.
      *
      * @param worldName Name to lookup
-     * @return The world or null if not found
+     * @return The world or Optional.absent() if not found
      */
     Optional<World> getWorld(String worldName);
 
@@ -114,7 +114,7 @@ public interface Server {
 
     /**
      * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
-     * @return The address
+     * @return The address or Optional.absent() if not found
      */
     Optional<InetSocketAddress> getBoundAddress();
 

@@ -99,7 +99,7 @@ public interface GameRegistry {
      * Gets a {@link BiomeType} by its identifier.
      *
      * @param id The id to look up
-     * @return The biome or null if not found
+     * @return The biome or Optional.absent() if not found
      */
     Optional<BiomeType> getBiome(String id);
 
@@ -128,7 +128,7 @@ public interface GameRegistry {
      * Gets a {@link Particle} by id.
      *
      * @param id The particle id
-     * @return The corresponding particle, if available
+     * @return The corresponding particle or Optional.absent() if not found
      */
     Optional<Particle> getParticle(String id);
 
@@ -278,7 +278,7 @@ public interface GameRegistry {
      * Gets the villager {@link Career} with the specified id.
      *
      * @param id The id of the career to return
-     * @return The career with the given id, if available
+     * @return The career with the given id or Optional.absent() if not found
      */
     Optional<Career> getCareer(String id);
 
@@ -301,7 +301,7 @@ public interface GameRegistry {
      * Gets the villager {@link Profession} with the specified id.
      *
      * @param id The id of the profession to return
-     * @return The profession with the given id, if available
+     * @return The profession with the given id or Optional.absent() if not found
      */
     Optional<Profession> getProfession(String id);
 

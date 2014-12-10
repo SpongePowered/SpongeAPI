@@ -71,7 +71,7 @@ public interface BlockState {
      * Get a property from its name.
      *
      * @param name The name of the property
-     * @return The property with the given name
+     * @return The property with the given name or Optional.absent() if not found
      */
     Optional<BlockProperty<?>> getPropertyByName(String name);
 
@@ -79,7 +79,7 @@ public interface BlockState {
      * Get the current value of a given property.
      *
      * @param name Property to get value of
-     * @return Current value of the property
+     * @return Current value of the property or Optional.absent() if not found
      */
     Optional<? extends Comparable<?>> getPropertyValue(String name);
 

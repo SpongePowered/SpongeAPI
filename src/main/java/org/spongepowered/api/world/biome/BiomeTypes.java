@@ -70,7 +70,7 @@ public final class BiomeTypes {
     public static final BiomeType MEGA_TAIGA_HILLS = null;
     public static final BiomeType EXTREME_HILLS_PLUS = null;
     public static final BiomeType SAVANNA = null;
-    public static final BiomeType SAVANNA_PLATEA = null;
+    public static final BiomeType SAVANNA_PLATEAU = null;
     public static final BiomeType MESA = null;
     public static final BiomeType MESA_PLATEAU_FOREST = null;
     public static final BiomeType MESA_PLATEAU = null;
