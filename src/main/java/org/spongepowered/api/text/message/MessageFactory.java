@@ -32,12 +32,60 @@ import org.spongepowered.api.text.translation.Translation;
  */
 interface MessageFactory {
 
+    /**
+     * Creates a {@link MessageBuilder} with empty text.
+     *
+     * @return A new message builder with empty text
+     */
     MessageBuilder<?> createEmptyBuilder();
-    MessageBuilder.Text createPlainBuilder(String text);
+
+    /**
+     * Creates a {@link MessageBuilder.Text} with the specified text.
+     *
+     * @param text The text for the message
+     * @return A new message builder with the specified text
+     * @see Message.Text
+     */
+    MessageBuilder.Text createTextBuilder(String text);
+
+    /**
+     * Creates a {@link MessageBuilder.Translatable} with the specified
+     * translation and arguments.
+     *
+     * @param translation The translation to use for the message
+     * @param args The arguments for the translation, can be empty
+     * @return A new message builder with the specified translation and
+     *         arguments
+     * @see Message.Translatable
+     */
     MessageBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
+
+    /**
+     * Creates a new {@link MessageBuilder.Selector} with the specified
+     * selector.
+     *
+     * @param selector The selector for the message
+     * @return A new message builder with the specified selector
+     * @see Message.Selector
+     */
     MessageBuilder.Selector createSelectorBuilder(String selector);
+
+    /**
+     * Creates a new {@link MessageBuilder.Score} with the specified score.
+     *
+     * @param score The score for the message
+     * @return A new message builder with the specified score
+     * @see Message.Score
+     */
     MessageBuilder.Score createScoreBuilder(Object score); // TODO
 
+    /**
+     * Creates a {@link Message} with the specified plain text. The created
+     * message won't have any formatting or events configured.
+     *
+     * @param content The content of the Message
+     * @return The created {@link Message}
+     */
     Message.Text createPlain(String text);
 
     /**

@@ -29,8 +29,7 @@ import com.google.common.base.Optional;
 import java.util.List;
 
 /**
- * TextColors is a list of the default text colors that Minecraft provides. The
- * values are filled in by mixins in Sponge at runtime.
+ * TextColors is a list of text colors provided by Vanilla Minecraft.
  */
 public final class TextColors {
 
@@ -56,7 +55,7 @@ public final class TextColors {
 
     /**
      * Resets the current color to the default one on the client. In most cases
-     * this will be the same as {@link #WHITE}.
+     * this should be the same as {@link #WHITE}.
      */
     public static final TextColor.Base RESET = null;
 

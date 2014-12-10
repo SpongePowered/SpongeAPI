@@ -41,15 +41,8 @@ import javax.annotation.Nullable;
 public interface MessageBuilder<T extends MessageBuilder<T>> {
 
     /**
-     * Sets the contents of this message.
-     *
-     * @param content The content of the message.
-     * @return This message builder
-     */
-    T content(Object content);
-
-    /**
-     * Appends the specified messages to the end of this message.
+     * Appends the specified {@link Message Messages} to the end of this
+     * message.
      *
      * @param children The messages to append
      * @return This message builder
@@ -57,7 +50,8 @@ public interface MessageBuilder<T extends MessageBuilder<T>> {
     T append(Message... children);
 
     /**
-     * Appends the specified messages to the end of this message.
+     * Appends the specified {@link Message Messages} to the end of this
+     * message.
      *
      * @param children The messages to append
      * @return This message builder
@@ -110,7 +104,8 @@ public interface MessageBuilder<T extends MessageBuilder<T>> {
     T onShiftClick(@Nullable ShiftClickAction<?> action);
 
     /**
-     * Builds an immutable instance of the current message.
+     * Builds an immutable instance of the current state of this message
+     * builder.
      *
      * @return An immutable {@link Message} with the current properties of this
      *         builder
@@ -118,101 +113,93 @@ public interface MessageBuilder<T extends MessageBuilder<T>> {
     Message build();
 
     /**
-     * A MessageBuilder that can build Text messages.
+     * Represents a {@link MessageBuilder} creating immutable
+     * {@link Message.Text} instances.
      */
     interface Text extends MessageBuilder<Text> {
 
         /**
-         * Sets the content of this message.
+         * Sets the text of this message.
          *
-         * @param content The content of this message as a String
+         * @param text The text of this message
          * @return This message builder
          */
-        Text content(String content);
+        Text content(String text);
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
         Message.Text build();
     }
 
     /**
-     * A MessageBuilder that can build Translatable messages.
+     * Represents a {@link MessageBuilder} creating immutable
+     * {@link Message.Translatable} instances.
      */
     interface Translatable extends MessageBuilder<Translatable> {
 
         /**
-         * Sets the content of this message.
+         * Sets the translation of this message.
          *
-         * @param content The content of this message as a Translation
-         * @param args The arguments to the translation
+         * @param translation The translation to use for this message
+         * @param args The arguments for the translation
          * @return This message builder
          */
-        Translatable content(Translation content, Object... args);
+        Translatable content(Translation translation, Object... args);
 
         /**
-         * Sets the content of this message.
+         * Sets the translation of this message.
          *
-         * @param content The content of this message as a Translation
-         * @param args The arguments to the translation
+         * @param translatable The translatable object to use for this message
+         * @param args The arguments for the translation
          * @return This message builder
          */
-        Translatable content(org.spongepowered.api.text.translation.Translatable content, Object... args);
+        Translatable content(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
         Message.Translatable build();
 
     }
 
     /**
-     * A MessageBuilder that can build Selector messages.
+     * Represents a {@link MessageBuilder} creating immutable
+     * {@link Message.Selector} instances.
      */
     interface Selector extends MessageBuilder<Selector> {
 
         /**
-         * Sets the content of this message.
+         * Sets the selector of this message.
          *
-         * @param content The content of this message as a Selector
+         * @param selector The selector for this message to use
          * @return This message builder
          */
-        Selector content(String content);
+        Selector content(String selector);
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
         Message.Selector build();
 
     }
 
     /**
-     * A MessageBuilder that can build Score messages.
+     * Represents a {@link MessageBuilder} creating immutable
+     * {@link Message.Score} instances.
      */
     interface Score extends MessageBuilder<Score> {
 
         /**
          * Sets the score of this message.
          *
-         * @param content The content of the message as a Score.
+         * @param score The score for this message to use
          * @return This message builder
          */
-        Score content(Object content); // TODO
+        Score content(Object score); // TODO
 
         /**
-         * Sets the override to the score in this message.
+         * Overrides the real score and displays a custom text instead.
          *
-         * @param override The override of the score
+         * @param override The text to override the score with
          * @return This message builder
          */
         Score override(@Nullable String override);
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
         Message.Score build();
 

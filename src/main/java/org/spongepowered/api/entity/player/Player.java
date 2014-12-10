@@ -77,7 +77,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
 
     /**
      * Sends the plain text message(s) with the specified {@link ChatType} on the client.
-     * <p>Use {@link #sendMessage(ChatType, org.spongepowered.api.text.message.Message...)} for a formatted message.</p>
+     * <p>Use {@link #sendMessage(ChatType, Message...)} for a formatted message.</p>
      *
      * @param type The chat type to send the messages to
      * @param message The message(s) to send

@@ -37,7 +37,7 @@ public interface CommandSource {
 
     /**
      * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(org.spongepowered.api.text.message.Message...)} for a formatted message.</p>
+     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
      *
      * @param messages The message(s)
      */

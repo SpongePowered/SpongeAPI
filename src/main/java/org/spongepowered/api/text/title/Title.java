@@ -43,14 +43,14 @@ public interface Title {
     /**
      * Returns the title of this title configuration.
      *
-     * @return The {@link org.spongepowered.api.text.message.Message} of the title, if it was configured
+     * @return The {@link Message} of the title, if it was configured
      */
     Optional<Message> getTitle();
 
     /**
      * Returns the subtitle of this title configuration.
      *
-     * @return The {@link org.spongepowered.api.text.message.Message} of the subtitle, if it was configured
+     * @return The {@link Message} of the subtitle, if it was configured
      */
     Optional<Message> getSubtitle();
 

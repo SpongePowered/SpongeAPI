@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Utility class for working with languages/locales in Minecraft
+ * Utility class for working with languages/locales in Minecraft.
  */
 public final class Locales {
 

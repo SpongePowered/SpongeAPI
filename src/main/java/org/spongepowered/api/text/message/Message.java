@@ -36,20 +36,20 @@ import java.util.List;
 
 /**
  * Represents an immutable instance of formatted text that can be displayed on
- * the client. Each instance consists of content and a list of children texts
- * appended after the content of this message. The content of the text is available
- * through one of the subinterfaces.
+ * the client. Each instance consists of content and a list of children messages
+ * appended after the content of this message. The content of the message is
+ * available through one of the subinterfaces.
  * <p>
- * Messages are primarily used for sending formatted chat messages to players, but
- * also in other places like books or signs.
+ * Messages are primarily used for sending formatted chat messages to players,
+ * but also in other places like books or signs.
  * </p>
  * <p>
- * Text instances can be created using the {@link MessageBuilder} available through
- * one of the {@link Messages#builder()} methods.
+ * Message instances can be created using the {@link MessageBuilder} available
+ * through one of the {@link Messages#builder()} methods.
  * </p>
  *
  * @see Messages#builder()
- * @see org.spongepowered.api.text.message.Message.Text
+ * @see Message.Text
  * @see Translatable
  * @see Selector
  * @see Score
@@ -108,18 +108,18 @@ public interface Message extends Iterable<Message> {
      * Returns the {@link ShiftClickAction} executed on the client when this
      * {@link Message} gets shift-clicked.
      *
-     * @return The shift-click action of this message, or {@link Optional#absent()}
-     *         if not set
+     * @return The shift-click action of this message, or
+     *         {@link Optional#absent()} if not set
      */
     Optional<ShiftClickAction<?>> getShiftClickAction();
 
     /**
-     * Returns a new {@link MessageBuilder} with the content of this message. This
-     * can be used to edit an immutable {@link Message} instance.
+     * Returns a new {@link MessageBuilder} with the content of this message.
+     * This can be used to edit an immutable {@link Message} instance.
      *
-     * @return A new MessageBuilder with the content of this message
+     * @return A new message builder with the content of this message
      */
-    MessageBuilder<? extends MessageBuilder<?>> builder();
+    MessageBuilder<?> builder();
 
     /**
      * Represents a {@link Message} containing a plain text {@link String}.
@@ -134,11 +134,6 @@ public interface Message extends Iterable<Message> {
         @Override
         String getContent();
 
-        /**
-         * Creates a new builder from this Message.
-         *
-         * @return A new MessageBuilder
-         */
         @Override
         MessageBuilder.Text builder();
 
@@ -166,19 +161,14 @@ public interface Message extends Iterable<Message> {
          */
         List<Object> getArguments();
 
-        /**
-         * Creates a new builder from this Message.
-         *
-         * @return A new MessageBuilder
-         */
         @Override
         MessageBuilder.Translatable builder();
 
     }
 
     /**
-     * Represents a {@link Message} containing a selector that will be replaced by
-     * the names of the matching entities on the client.
+     * Represents a {@link Message} containing a selector that will be replaced
+     * by the names of the matching entities on the client.
      *
      * @see <a
      *      href="http://minecraft.gamepedia.com/Commands#Target_selectors">Selectors
@@ -196,11 +186,6 @@ public interface Message extends Iterable<Message> {
         @Override
         String getContent();
 
-        /**
-         * Creates a new builder from this Message.
-         *
-         * @return A new MessageBuilder
-         */
         @Override
         MessageBuilder.Selector builder();
     }
@@ -230,11 +215,6 @@ public interface Message extends Iterable<Message> {
          */
         Optional<String> getOverride();
 
-        /**
-         * Creates a new builder from this Message.
-         *
-         * @return A new MessageBuilder
-         */
         @Override
         MessageBuilder.Score builder();
     }

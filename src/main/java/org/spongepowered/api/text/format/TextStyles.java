@@ -29,8 +29,7 @@ import com.google.common.base.Optional;
 import java.util.List;
 
 /**
- * TextStyles is a list of the default text styles that Minecraft provides. The
- * values are filled in by mixins in Sponge at runtime.
+ * TextStyles is a list of the text styles provided by Vanilla Minecraft.
  */
 public final class TextStyles {
 

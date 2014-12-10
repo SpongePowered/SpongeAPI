@@ -24,79 +24,82 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.text.message.Message;
+
 /**
- * A TextStyle represents the style that a
- * {@link org.spongepowered.api.text.message.Message} has. It is an immutable
- * class. There are several Base styles specified in
- * {@link org.spongepowered.api.text.format.TextStyles} which are the Minecraft
- * base types. From these types, the {@link #and(TextStyle...)},
- * {@link #andNot(TextStyle...)}, and {@link #negate()} methods can compose text
- * styles together.
+ * Represents an immutable text style of a {@link Message}.
  *
  * <p>
- * Interestingly enough, TextStyle actually forms a monoid with the
- * {@link #and(TextStyle...)} operation as the monoid operation and the
- * TextStyle elements as the elements of the monoid. I do not want to prove
- * closure or the other monoid laws, but yay math!
+ * Combined styles can be created using {@link TextStyles#of(TextStyle...)} or
+ * using one of the {@link #and(TextStyle...)}, {@link #andNot (TextStyle...)}
+ * or {@link #negate()} method.
  * </p>
+ *
+ * @see TextStyles
  */
 public interface TextStyle {
 
     /**
-     * Returns whether this text style is a composite of multiple base text
-     * styles.
+     * Returns whether this text style is a composite of multiple text styles.
      *
-     * @return A boolean for whether this text style is a composite
+     * @return True if this text style is a composite
      */
     boolean isComposite();
 
     /**
-     * Checks for if the given TextStyle is contained in this TextStyle. It is
-     * equivalent if checking that applying this TextStyle includes applying the
-     * passed in TextStyle.
+     * Returns whether the given {@link TextStyle} is contained in this
+     * {@link TextStyle}.
      *
-     * @param style The TextStyle to check for existence
-     * @return A boolean representing if the given TextStyle is in this
-     *         TextStyle
+     * <p>
+     * For example, a {@link TextStyle} with {@code [Bold, Italic]} would return
+     * true for <code>is({@link TextStyles#BOLD})</code> and
+     * <code>is({@link TextStyles#ITALIC}).</code>
+     * </p>
+     *
+     * <p>
+     * If the specified {@link TextStyle} is a composite of multiple styles it
+     * returns true if this style has at least all of the properties set in the
+     * specified style.
+     * </p>
+     *
+     * @param style The text style to check
+     * @return True if the given text style is contained in this text style
      */
     boolean is(TextStyle style);
 
     // TODO: Decide if this would fit better inside the builder
 
     /**
-     * Negates this text style. This is useful for undoing text styles that are
-     * inherited from parent Messages.
+     * Negates this {@link TextStyle}. This is useful for undoing text styles
+     * that are inherited from parent messages.
      *
-     * @return A new TextStyle that is the inverse of this TextStyle.
+     * @return The inverse of this text style
      */
     TextStyle negate();
 
     /**
-     * Composes this TextStyle with the passed in TextStyles.
+     * Composes this {@link TextStyle} with the specified text styles.
      *
-     * @param styles A list of TextStyles to compose this one with
-     * @return A new TextStyle composed out of passed in text styles
+     * @param styles The text styles to compose this one with
+     * @return A new text style composed out of the given text styles
      */
     TextStyle and(TextStyle... styles);
 
     /**
-     * Composes this TextStyle with the passed in TextStyles, but negates them
-     * before composition. This is the same as negating all the passed in
-     * TextStyles and then using the {@link #and(TextStyle...)} method.
+     * Composes this {@link TextStyle} with the passed in TextStyles, but
+     * negates them before composition. This is the same as negating all the
+     * passed in {@link TextStyle} and then using the {@link #and(TextStyle...)}
+     * method.
      *
-     * @param styles A list of TextStyles to compose this one with
-     * @return A new TextStyle composed out of passed in text styles
+     * @param styles The text styles to compose this one with
+     * @return A new text style composed out of the given text styles
      */
     TextStyle andNot(TextStyle... styles);
 
     /**
-     * A Base text style is a text style that is represented in Minecraft. There
-     * are several Base styles specified in
-     * {@link org.spongepowered.api.text.format.TextStyles} which are the
-     * Minecraft base types. Base extends FormattingCode because it does have a
-     * corresponding formatting code; it is a single, pure text style.
+     * Represent a {@link TextStyle} with {@link LegacyFormatting}.
      */
-    interface Base extends FormattingCode, TextStyle {
+    interface Base extends TextStyle, LegacyFormatting {
 
     }
 

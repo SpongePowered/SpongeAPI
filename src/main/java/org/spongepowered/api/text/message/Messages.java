@@ -37,37 +37,85 @@ public final class Messages {
     private Messages() {
     }
 
+    /**
+     * Creates a {@link MessageBuilder} with empty text.
+     *
+     * @return A new message builder with empty text
+     */
     public static MessageBuilder<?> builder() {
         return factory.createEmptyBuilder();
     }
 
+    /**
+     * Creates a {@link MessageBuilder.Text} with the specified text.
+     *
+     * @param text The text for the message
+     * @return A new message builder with the specified text
+     * @see Message.Text
+     */
     public static MessageBuilder.Text builder(String text) {
-        return factory.createPlainBuilder(text);
+        return factory.createTextBuilder(text);
     }
 
+    /**
+     * Creates a {@link MessageBuilder.Translatable} with the specified
+     * translation and arguments.
+     *
+     * @param translation The translation to use for the message
+     * @param args The arguments for the translation, can be empty
+     * @return A new message builder with the specified translation and
+     *         arguments
+     * @see Message.Translatable
+     */
     public static MessageBuilder.Translatable builder(Translation translation, Object... args) {
         return factory.createTranslatableBuilder(translation, args);
     }
 
+    /**
+     * Creates a {@link MessageBuilder.Translatable} with the specified
+     * {@link Translatable} object and arguments.
+     *
+     * @param translatable The translatable object to insert to the message
+     * @param args The arguments for the translation, can be empty
+     * @return A new message builder with the translation of the translatable
+     *         object
+     * @see Message.Translatable
+     */
     public static MessageBuilder.Translatable builder(Translatable translatable, Object... args) {
         return builder(translatable.getTranslation(), args);
     }
 
     // TODO: Change to builder() when possible?
+
+    /**
+     * Creates a new {@link MessageBuilder.Selector} with the specified
+     * selector.
+     *
+     * @param selector The selector for the message
+     * @return A new message builder with the specified selector
+     * @see Message.Selector
+     */
     public static MessageBuilder.Selector selector(String selector) {
         return factory.createSelectorBuilder(selector);
     }
 
+    /**
+     * Creates a new {@link MessageBuilder.Score} with the specified score.
+     *
+     * @param score The score for the message
+     * @return A new message builder with the specified score
+     * @see Message.Score
+     */
     public static MessageBuilder.Score score(Object score) {
         return factory.createScoreBuilder(score);
     }
 
     /**
-     * Creates a new {@link MessageBuilder} out of the given content and builds
-     * it immediately. This is a shorthand to {@link #builder(String)}.
+     * Creates a {@link Message} with the specified plain text. The created
+     * message won't have any formatting or events configured.
      *
      * @param content The content of the Message
-     * @return The constructed {@link Message}
+     * @return The created {@link Message}
      */
     public static Message.Text of(String content) {
         return factory.createPlain(content);
