@@ -26,11 +26,12 @@
 package org.spongepowered.api.service.scheduler;
 
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.Identifiable;
 
 /**
  * Represents a task that has been scheduled.
  */
-public interface Task {
+public interface Task extends Identifiable {
 
     /**
      * Gets the name of this task.

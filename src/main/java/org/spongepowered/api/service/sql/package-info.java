@@ -22,16 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
 
-public final class HorseStyles {
-
-    public static final HorseStyle NONE = null;
-    public static final HorseStyle WHITE = null;
-    public static final HorseStyle WHITEFIELD = null;
-    public static final HorseStyle WHITE_DOTS = null;
-    public static final HorseStyle BLACK_DOTS = null;
-
-    private HorseStyles() {
-    }
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.service.sql;

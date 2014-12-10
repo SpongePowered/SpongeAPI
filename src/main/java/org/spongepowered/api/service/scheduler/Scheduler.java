@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * The base scheduler that schedules tasks.
@@ -43,7 +44,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runTask(PluginContainer plugin, Runnable task);
+    Optional<Task> runTask(Object plugin, Runnable task);
 
     /**
      * Runs the task after a delay in ticks.
@@ -54,7 +55,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runTaskAfter(PluginContainer plugin, Runnable task, long delay);
+    Optional<Task> runTaskAfter(Object plugin, Runnable task, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
@@ -66,7 +67,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<RepeatingTask> runRepeatingTask(PluginContainer plugin, Runnable task, long interval);
+    Optional<RepeatingTask> runRepeatingTask(Object plugin, Runnable task, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -79,7 +80,15 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<RepeatingTask> runRepeatingTaskAfter(PluginContainer plugin, Runnable task, long interval, long delay);
+    Optional<RepeatingTask> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
+
+    /**
+     * Retrieves a scheduled or running task by its unique ID.
+     *
+     * @param id The id of the task
+     * @return The scheduled or running task, or {@link Optional#absent()}
+     */
+    Optional<Task> getTaskById(UUID id);
 
     /**
      * Returns a list of all currently scheduled tasks
@@ -96,5 +105,5 @@ public interface Scheduler {
      *
      * @return A list of scheduled tasks
      */
-    Collection<Task> getScheduledTasks(PluginContainer plugin);
+    Collection<Task> getScheduledTasks(Object plugin);
 }

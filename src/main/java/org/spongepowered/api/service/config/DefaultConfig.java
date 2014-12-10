@@ -22,16 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
 
-public final class HorseStyles {
+package org.spongepowered.api.service.config;
 
-    public static final HorseStyle NONE = null;
-    public static final HorseStyle WHITE = null;
-    public static final HorseStyle WHITEFIELD = null;
-    public static final HorseStyle WHITE_DOTS = null;
-    public static final HorseStyle BLACK_DOTS = null;
+import com.google.inject.BindingAnnotation;
+import com.google.inject.Inject;
+import org.spongepowered.api.util.config.ConfigFile;
 
-    private HorseStyles() {
-    }
+import java.io.File;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * Provides an convenient injection for {@link ConfigRoot#getConfig()} or
+ * {@link ConfigRoot#getConfigFile()}.
+ *
+ * <p>Use this annotation on a {@link File} if you want the pathname to
+ * the default configuration. Or instead, use this annotation on a
+ * {@link ConfigFile} to get an instance of that. Remember that
+ * {@link Inject} is also necessary.</p>
+ *
+ * @see ConfigService For getting configuration without injection
+ */
+@BindingAnnotation
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
+public @interface DefaultConfig {
+
+    /**
+     * Whether the the shared root for configuration should be used.
+     *
+     * @return True to use the shared root
+     * @see ConfigRoot#getConfigFile() For information on what the shared root is
+     */
+    boolean sharedRoot();
+
 }

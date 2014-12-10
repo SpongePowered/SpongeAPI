@@ -24,19 +24,10 @@
  */
 package org.spongepowered.api.effect;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 /**
  * The particles that can be sent on a vanilla Minecraft client.
  */
 public final class Particles {
-
-    private Particles() {
-    }
 
     public static final Particle EXPLOSION_NORMAL = null;
     public static final Particle EXPLOSION_LARGE = null;
@@ -81,20 +72,6 @@ public final class Particles {
     public static final Particle ITEM_TAKE = null;
     public static final Particle MOB_APPEARANCE = null;
 
-
-    /**
-     * Gets a {@link Particle} by name.
-     *
-     * @param name The particle name
-     * @return The corresponding particle, if available
-     */
-    @Nullable
-    public static Optional<Particle> getByName(String name) {
-        return null;
+    private Particles() {
     }
-
-    public static List<Particle> getValues() {
-        return null;
-    }
-
 }

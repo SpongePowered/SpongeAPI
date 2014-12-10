@@ -24,20 +24,10 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * A utility class for getting all available {@link Career}s.
  */
 public final class Careers {
-
-    private Careers() {
-
-    }
 
     public static final Career FARMER = null;
     public static final Career FISHERMAN = null;
@@ -51,28 +41,7 @@ public final class Careers {
     public static final Career BUTCHER = null;
     public static final Career LEATHERWORKER = null;
 
-    /**
-     * Gets all available {@link Profession}s.
-     *
-     * @return A list of all professions
-     */
-    public static List<Career> getValues() {
-        return null;
-    }
+    private Careers() {
 
-    /**
-     * Gets the {@link Profession} with the specified name.
-     *
-     * @param name The name of the profession to return
-     * @return The profession with the given name, if available
-     */
-    public static Optional<Career> getCareerByName(final String name) {
-        checkArgument(name != null, "Cannot have a null profession name!");
-        return Optional.fromNullable(null);
-    }
-
-    public static List<Career> getCareersForProfession(final Profession profession) {
-        checkArgument(profession != null, "Cannot get careers for a null profession!");
-        return null;
     }
 }

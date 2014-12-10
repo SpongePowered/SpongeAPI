@@ -24,13 +24,7 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class DyeColors {
-    private DyeColors() {
-    }
 
     public static final DyeColor WHITE = null;
     public static final DyeColor ORANGE = null;
@@ -49,11 +43,6 @@ public final class DyeColors {
     public static final DyeColor RED = null;
     public static final DyeColor BLACK = null;
 
-    public static List<DyeColor> getValues() {
-        return null;
-    }
-
-    public static Optional<DyeColor> valueOf(String name) {
-        return Optional.fromNullable(null);
+    private DyeColors() {
     }
 }

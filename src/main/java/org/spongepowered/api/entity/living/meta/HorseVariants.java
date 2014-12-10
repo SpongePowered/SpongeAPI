@@ -24,13 +24,7 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class HorseVariants {
-    private HorseVariants() {
-    }
 
     public static final HorseVariant HORSE = null;
     public static final HorseVariant DONKEY = null;
@@ -38,11 +32,6 @@ public final class HorseVariants {
     public static final HorseVariant UNDEAD_HORSE = null;
     public static final HorseVariant SKELETON_HORSE = null;
 
-    public static List<HorseVariant> getValues() {
-        return null;
-    }
-
-    public static Optional<HorseVariant> valueOf(String name) {
-        return Optional.fromNullable(null);
+    private HorseVariants() {
     }
 }

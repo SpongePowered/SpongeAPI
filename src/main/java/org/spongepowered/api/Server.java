@@ -96,6 +96,16 @@ public interface Server {
     Optional<World> getWorld(String worldName);
 
     /**
+     * Gets the time, in ticks, since this server began running for the current session.
+     *
+     * <p>This value is not persisted across server restarts, it is set to zero
+     * each time the server starts.</p>
+     *
+     * @return The number of ticks since this server started running
+     */
+    int getRunningTimeTicks();
+
+    /**
      * Sends the given message to all online players
      *
      * @param message The message to send

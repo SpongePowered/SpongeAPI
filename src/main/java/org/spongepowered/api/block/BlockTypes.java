@@ -25,14 +25,10 @@
 
 package org.spongepowered.api.block;
 
-import java.util.List;
-
 /**
  * An enumeration of all possible {@link BlockType}s in vanilla minecraft.
  */
 public final class BlockTypes {
-    private BlockTypes() {
-    }
 
     // These values will not be null at runtime
 
@@ -235,7 +231,6 @@ public final class BlockTypes {
     public static final BlockType DOUBLE_STONE_SLAB2 = null;
     public static final BlockType STONE_SLAB2 = null;
 
-    public static List<BlockType> getValues() {
-        return null;
+    private BlockTypes() {
     }
 }

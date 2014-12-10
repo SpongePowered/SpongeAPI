@@ -24,17 +24,10 @@
  */
 package org.spongepowered.api.item;
 
-import org.spongepowered.api.item.inventory.ItemStackBuilder;
-import org.spongepowered.api.item.merchant.TradeOfferBuilder;
-
-import java.util.List;
-
 /**
  * An enumeration of all possible {@link ItemType}s and {@link ItemBlock}s in vanilla minecraft.
  */
 public final class ItemTypes {
-    private ItemTypes() {
-    }
 
     public static final ItemBlock STONE = null;
     public static final ItemBlock GRASS = null;
@@ -104,7 +97,7 @@ public final class ItemTypes {
     public static final ItemBlock CACTUS = null;
     public static final ItemBlock CLAY = null;
     public static final ItemBlock JUKEBOX = null;
-    public static final ItemBlock OAK_FENCE = null;
+    public static final ItemBlock FENCE = null;
     public static final ItemBlock SPRUCE_FENCE = null;
     public static final ItemBlock BIRCH_FENCE = null;
     public static final ItemBlock JUNGLE_FENCE = null;
@@ -124,7 +117,7 @@ public final class ItemTypes {
     public static final ItemBlock GLASS_PANE = null;
     public static final ItemBlock MELON_BLOCK = null;
     public static final ItemBlock VINE = null;
-    public static final ItemBlock OAK_FENCE_GATE = null;
+    public static final ItemBlock FENCE_GATE = null;
     public static final ItemBlock SPRUCE_FENCE_GATE = null;
     public static final ItemBlock BIRCH_FENCE_GATE = null;
     public static final ItemBlock JUNGLE_FENCE_GATE = null;
@@ -177,7 +170,7 @@ public final class ItemTypes {
     public static final ItemBlock PACKED_ICE = null;
     public static final ItemBlock ACACIA_STAIRS = null;
     public static final ItemBlock DARK_OAK_STAIRS = null;
-    public static final ItemBlock SLIME_BLOCK = null;
+    public static final ItemBlock SLIME = null;
     public static final ItemBlock DOUBLE_PLANT = null;
     public static final ItemBlock STAINED_GLASS = null;
     public static final ItemBlock STAINED_GLASS_PANE = null;
@@ -186,7 +179,6 @@ public final class ItemTypes {
     public static final ItemBlock RED_SANDSTONE = null;
     public static final ItemBlock RED_SANDSTONE_STAIRS = null;
     public static final ItemBlock STONE_SLAB2 = null;
-
     public static final ItemType IRON_SHOVEL = null;
     public static final ItemType IRON_PICKAXE = null;
     public static final ItemType IRON_AXE = null;
@@ -374,16 +366,6 @@ public final class ItemTypes {
     public static final ItemType RECORD_WARD = null;
     public static final ItemType RECORD_11 = null;
     public static final ItemType RECORD_WAIT = null;
-
-    public static List<ItemType> getValues() {
-        return null;
-    }
-
-    public static ItemStackBuilder getItemBuilder() {
-        return null;
-    }
-
-    public static TradeOfferBuilder getTradeOfferBuilder() {
-        return null;
+    private ItemTypes() {
     }
 }
