@@ -35,124 +35,145 @@ import org.spongepowered.api.text.translation.Translation;
 import java.util.List;
 
 /**
- * A Message represents some text in the new raw JSON message format. Message is
- * an immutable class that is created by a {@link TextBuilder}, and each
- * getter method maps to a field or some fields in JSON. Message is also an
- * {@link Iterable} whose iterator iterates over its children, children's
- * children, etc. recursively.
- *
+ * Represents an immutable instance of formatted text that can be displayed on
+ * the client. Each instance consists of content and a list of children texts
+ * appended after the content of this text. The content of the text is available
+ * through one of the subinterfaces.
  * <p>
- * Among other places, it shows up in books, signs, titles, chat, and the
- * /tellraw command.
+ * Texts are primarily used for sending formatted chat messages to players, but
+ * also in other places like books or signs.
+ * </p>
+ * <p>
+ * Text instances can be created using the {@link TextBuilder} available through
+ * one of the {@link Texts#builder()} methods.
  * </p>
  *
- * @param <T> The type of this Message's content
+ * @see Texts#builder()
+ * @see Plain
+ * @see Translatable
+ * @see Selector
+ * @see Score
  */
 public interface Text extends Iterable<Text> {
 
     /**
-     * Returns the main content of this Message. This maps to the text,
-     * translation, selector, or score field in JSON depending on the type of
-     * Message.
+     * Returns the color of this {@link Text}.
      *
-     * @return The content of this Message
-     */
-    Object getContent();
-
-    /**
-     * Returns the color of this Message. This maps to the color field in JSON.
-     *
-     * @return The color of this Message
+     * @return The color of this text
      */
     TextColor getColor();
 
     /**
-     * Returns the style of this Message. Depending on which styles are
-     * contained, this method maps to the various style fields in JSON.
+     * Returns the style of this {@link Text}. This will return a compound
+     * {@link TextStyle} if multiple different styles have been set.
      *
-     * @return The style of this Message
+     * @return The style of this text
      */
     TextStyle getStyle();
 
     /**
-     * Returns the children of this Message. This maps to the with or extra
-     * fields in JSON depending on this Message type.
+     * Returns the list of children appended after the content of this
+     * {@link Text}.
      *
-     * @return This Message's children
+     * @return The list of children
      */
     List<Text> getChildren();
 
     /**
-     * Returns the action for when this text is clicked. This maps to the
-     * clickEvent field in JSON.
+     * Returns the {@link ClickAction} executed on the client when this
+     * {@link Text} gets clicked.
      *
-     * @return The {@link ClickAction} of this Message
+     * @return The click action of this text, or {@link Optional#absent()} if
+     *         not set
      */
     Optional<ClickAction<?>> getClickAction();
 
     /**
-     * Returns the action for when this text is hovered over. This maps to the
-     * hoverEvent field in JSON.
+     * Returns the {@link HoverAction} executed on the client when this
+     * {@link Text} gets hovered.
      *
-     * @return The {@link HoverAction} of this Message
+     * @return The hover action of this text, or {@link Optional#absent()} if
+     *         not set
      */
     Optional<HoverAction<?>> getHoverAction();
 
     /**
-     * Returns the action for when this text is shift-clicked. This maps to the
-     * insertion field in JSON, because that is the only possible shift-click
-     * action.
+     * Returns the {@link ShiftClickAction} executed on the client when this
+     * {@link Text} gets shift-clicked.
      *
-     * @return The {@link ShiftClickAction} of this Message
+     * @return The shift-click action of this text, or {@link Optional#absent()}
+     *         if not set
      */
     Optional<ShiftClickAction<?>> getShiftClickAction();
 
     /**
-     * Returns a new {@link TextBuilder} with the content of this message.
+     * Returns a new {@link TextBuilder} with the content of this message. This
+     * can be used to edit an immutable {@link Text} instance.
      *
-     * @return A new {@link TextBuilder} to modify this message
+     * @return A new text builder with the content of this message
      */
     TextBuilder builder();
 
     /**
-     * A Text Message is a message with a String as content. In JSON, the
-     * content getter maps to the text field.
+     * Represents a {@link Text} containing a plain text {@link String}.
      */
     interface Plain extends Text {
 
-        @Override
+        /**
+         * Returns the plain text content of this {@link Text}.
+         *
+         * @return The content of this text
+         */
         String getContent();
 
         @Override
         TextBuilder.Plain builder();
+
     }
 
     /**
-     * A Translatable Message is a message with a Translation as content.
-     * Whatever locale the client is using translates this message using the
-     * translation identifier. In JSON, the content getter maps to the
-     * translation identifier.
+     * Represents a {@link Text} containing a {@link Translation} identifier
+     * that gets translated into the current locale on the client.
      */
     interface Translatable extends Text {
 
-        @Override
+        /**
+         * Returns the translation of this {@link Text}.
+         *
+         * @return The translation of this text
+         */
         Translation getContent();
 
+        /**
+         * Returns the list of {@link Translation} arguments used to format this
+         * {@link Text}.
+         *
+         * @return The list of translation arguments
+         */
         List<Object> getArguments();
 
         @Override
         TextBuilder.Translatable builder();
+
     }
 
     /**
-     * A Selector Message is a message with a Selector as content. Whatever the
-     * selector matches becomes the text of this Message. In JSON, the content
-     * getter maps to the translation field.
+     * Represents a {@link Text} containing a selector that will be replaced by
+     * the names of the matching entities on the client.
+     *
+     * @see <a
+     *      href="http://minecraft.gamepedia.com/Commands#Target_selectors">Selectors
+     *      on the Minecraft Wiki</a>
      */
     interface Selector extends Text {
+
         // TODO use Selector
 
-        @Override
+        /**
+         * Returns the selector used in this {@link Text}.
+         *
+         * @return The selector of this text
+         */
         String getContent();
 
         @Override
@@ -160,16 +181,27 @@ public interface Text extends Iterable<Text> {
     }
 
     /**
-     * A Score Message is a message with a Score as content. this Message does
-     * not appear, but changes the score for some objective on the client-side.
-     * It can be overridden. In JSON, the content getter maps to the score
-     * field.
+     * Represents a {@link Text} displaying the current player's score in an
+     * objective.
      */
     interface Score extends Text {
+
         // TODO use Score
-        @Override
+
+        /**
+         * Returns the score displayed by this {@link Text}.
+         *
+         * @return The score in this text
+         */
         Object getContent();
 
+        /**
+         * Returns a value that is displayed instead of the real score.
+         *
+         * @return The value displayed instead of the real score, or
+         *         {@link Optional#absent()} if the real score will be displayed
+         *         instead
+         */
         Optional<String> getOverride();
 
         @Override
