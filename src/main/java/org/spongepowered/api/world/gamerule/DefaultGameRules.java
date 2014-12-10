@@ -25,15 +25,33 @@
 
 package org.spongepowered.api.world.gamerule;
 
-/**
- * Represents a type of {@link GameRule}.
- */
-public interface GameRuleType {
+import com.google.common.base.Optional;
 
-    /**
-     * Gets the name of this GameRuleType.
-     *
-     * @return The name.
-     */
-    String getName();
+import java.util.List;
+
+/**
+ * An enumeration of all possible {@link GameRule} names in vanilla minecraft.
+ */
+public class DefaultGameRules {
+
+    public static final String COMMAND_BLOCK_OUTPUT = null;
+    public static final String DO_DAYLIGHT_CYCLE = null;
+    public static final String DO_ENTITY_DROPS = null;
+    public static final String DO_FIRE_TICK = null;
+    public static final String DO_MOB_LOOT = null;
+    public static final String DO_MOB_SPAWNING = null;
+    public static final String DO_TILE_DROPS = null;
+    public static final String KEEP_INVENTORY = null;
+    public static final String LOG_ADMIN_COMMANDS = null;
+    public static final String MOB_GRIEFING = null;
+    public static final String NATURAL_REGENERATION = null;
+    public static final String RANDOM_TICK_SPEED = null;
+    public static final String REDUCED_DEBUG_INFO = null;
+    public static final String SEND_COMMAND_FEEDBACK = null;
+    public static final String SHOW_DEATH_MESSAGES = null;
+
+    public static List<String> getValues() {
+        return null;
+    }
+
 }

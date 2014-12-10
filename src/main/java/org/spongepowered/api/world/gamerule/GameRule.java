@@ -113,11 +113,11 @@ public interface GameRule {
     int getInteger();
 
     /**
-     * Gets the {@link GameRuleType} of this GameRule.
+     * Gets the name of this GameRule.
      *
-     * @return The type of the GameRule.
+     * @return The name of the GameRule.
      */
-    GameRuleType getType();
+    String getName();
 
     /**
      * Gets the {@link World} this GameRule is on.
