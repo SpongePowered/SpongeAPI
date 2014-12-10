@@ -33,6 +33,7 @@ import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
+import java.util.Collection;
 import java.util.UUID;
 
 /**
@@ -114,5 +115,17 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return The {@link GameRule} state.
      */
     GameRule getGameRule(String gameRule);
+
+    /**
+     * Gets a {@link Collection} of all {@link GameRule}s in this world.
+     *
+     * <p>
+     *     The value of a {@link GameRule} is modifiable via the
+     *     current state object.
+     * </p>
+     *
+     * @return A collection of GameRules.
+     */
+    Collection<GameRule> getGameRules();
 
 }
