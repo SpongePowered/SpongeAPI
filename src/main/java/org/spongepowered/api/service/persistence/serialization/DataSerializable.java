@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.service.persistence.serialization;
 
+import org.spongepowered.api.service.persistence.DataSource;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 
 /**
  * Represents an object that can be represented by a {@link DataContainer}.
- * <p>DataContainers received from {@link DataSerializable#serialize()}
+ * <p>DataContainers received from {@link DataSerializable#serializeToContainer()}
  * should be considered to be copies of the original data, and therefor,
  * thread safe.</p>
  */
@@ -36,8 +37,11 @@ public interface DataSerializable {
 
     /**
      * Serializes this object into a comprehensible {@link DataContainer}.
+     *
      * @return A newly created DataContainer
      */
-    DataContainer serialize();
+    DataContainer serializeToContainer();
+
+    void serializeTo(DataSource source);
 
 }

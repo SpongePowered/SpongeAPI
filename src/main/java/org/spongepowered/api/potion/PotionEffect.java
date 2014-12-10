@@ -32,7 +32,7 @@ import org.spongepowered.api.service.persistence.serialization.SerializableAs;
 /**
  * Represents a possible Potion Effect.
  */
-@SerializableAs("PotionEffect")
+@SerializableAs(key = "PotionEffect")
 public interface PotionEffect extends DataSerializable {
 
     /**

@@ -22,17 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.persistence;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import com.google.common.base.Optional;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+public final class PrimitiveUtil {
 
-public interface Persistence {
+    public static Optional<String> asString(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
 
-    DataContainer deserialize(InputStream stream);
+    public static Optional<Boolean> asBoolean(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
 
-    void serialize(OutputStream stream, DataContainer section);
+    public static Optional<Integer> asInteger(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Double> asDouble(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Short> asShort(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Float> asFloat(Object input) {
+
+        return Optional.absent();
+    }
+
+    public static Optional<Byte> asByte(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Long> asLong(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Character> asCharacter(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
 
 }

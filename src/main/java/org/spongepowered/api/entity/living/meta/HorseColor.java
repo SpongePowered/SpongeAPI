@@ -24,12 +24,16 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+import org.spongepowered.api.service.persistence.serialization.SerializableAs;
+
 /**
  * Represents the color of a {@link org.spongepowered.api.entity.living.animal.Horse}.
  * <p>The color of a horse is a genetic trait that can be inherited to a new
  * born horse.</p>
  */
-public interface HorseColor {
+@SerializableAs(key = "color", compoundable = true)
+public interface HorseColor extends DataSerializable {
 
     /**
      * Gets the name of this color.

@@ -24,6 +24,14 @@
  */
 package org.spongepowered.api.service.persistence;
 
-public interface NbtPersistence extends Persistence {
+import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+
+public interface DataSource {
+
+    <T extends DataSerializable> Optional<DataContainer> deserialize(Class<T> clazz) throws InvalidDataException;
+
+    void serialize(DataSerializable section) throws InvalidDataException;
 
 }

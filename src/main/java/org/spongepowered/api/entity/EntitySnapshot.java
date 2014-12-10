@@ -29,7 +29,7 @@ import org.spongepowered.api.service.persistence.serialization.DataSerializable;
 
 /**
  * A mutable complete representation of an entity type and its associated data.
- * <p>Being that this is a snapshot, all the data from {@link #serialize()} may
+ * <p>Being that this is a snapshot, all the data from {@link #serializeToContainer()} may
  * be threadsafe and used for storage purposes.</p>
  */
 public interface EntitySnapshot extends EntityState, DataSerializable {

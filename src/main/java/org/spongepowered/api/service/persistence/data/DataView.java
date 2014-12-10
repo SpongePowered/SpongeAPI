@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.serialization.DataSerializable;
 
 import java.util.List;
 import java.util.Map;
@@ -352,10 +353,15 @@ public interface DataView {
     Optional<List<Map<?, ?>>> getMapList(String path);
 
     /**
-     * Gets a {@link Map} of this {@link DataView} and all of it's children.
-     * <p>This can be used as a serialization object as it is a copy.</p>
+     * Gets the {@link DataSerializable} object by path, if available.
+     * <p>If a {@link DataSerializable} exists, but is not the proper class
+     * type, or there is no data at the path given, an absent is returned.</p>
      *
-     * @return A copy of the data represented by this view
+     * @param path The path of the value to get
+     * @param clazz The class of the {@link DataSerializable}
+     * @param <T> The type of {@link DataSerializable} object
+     * @return The deserialized object, if available
      */
-    Map<String, Object> toMap();
+    <T extends DataSerializable> Optional<T> getSerialiable(String path, Class<T> clazz);
+
 }

@@ -27,6 +27,9 @@ package org.spongepowered.api.service.persistence.data;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+import org.spongepowered.api.util.PrimitiveUtil;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -50,7 +53,7 @@ public class MemoryDataView implements DataView {
         }
         this.path = "";
         this.fullpath = "";
-        this.parent = null;
+        this.parent = this;
         this.container = (DataContainer) this;
     }
 
@@ -133,7 +136,28 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Optional<Object> get(String path) {
-        return null; // TODO implement
+        if (path.length() == 0) {
+            return Optional.<Object>of(this);
+        }
+
+        DataContainer root = getContainer();
+
+        final char separator = root.getOptions().getPathSeparator();
+        int higher = -1;
+        int lower;
+        DataView section = this;
+        while ((higher = path.indexOf(separator, lower = higher + 1)) != -1) {
+            if (section.getView(path.substring(lower, higher)).isPresent()) {
+                section = section.getView(path.substring(lower, higher)).get();
+            }
+        }
+
+        String key = path.substring(lower);
+        if (section == this) {
+            Object result = map.get(key);
+            return Optional.fromNullable(result);
+        }
+        return section.get(key);
     }
 
     @Override
@@ -143,101 +167,306 @@ public class MemoryDataView implements DataView {
 
     @Override
     public DataView createView(String path) {
-        return null; // TODO implement
+        DataContainer root = getContainer();
+
+        final char separator = root.getOptions().getPathSeparator();
+        // i1 is the leading (higher) index
+        // i2 is the trailing (lower) index
+        int higher = -1;
+        int lower;
+        DataView section = this;
+        while ((higher = path.indexOf(separator, lower = higher + 1)) != -1) {
+            String node = path.substring(lower, higher);
+            if (section.getView(node).isPresent()) {
+                section = section.getView(node).get();
+            } else {
+                section = section.createView(node);
+            }
+        }
+
+        String key = path.substring(lower);
+        if (section == this) {
+            DataView result = new MemoryDataView(this, key);
+            map.put(key, result);
+            return result;
+        }
+        return section.createView(key);
     }
 
     @Override
     public DataView createView(String path, Map<?, ?> map) {
-        return null; // TODO implement
+        DataView section = createView(path);
+
+        for (Map.Entry<?, ?> entry : map.entrySet()) {
+            if (entry.getValue() instanceof Map) {
+                section.createView(entry.getKey().toString(), (Map<?, ?>) entry.getValue());
+            } else {
+                section.set(entry.getKey().toString(), entry.getValue());
+            }
+        }
+
+        return section;
     }
 
     @Override
     public Optional<DataView> getView(String path) {
-        return null; // TODO implement
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            if (val.get() instanceof DataView) {
+                return Optional.of((DataView) val.get());
+            }
+        }
+        return Optional.absent();
     }
 
     @Override
     public Optional<Boolean> getBoolean(String path) {
-        return null; // TODO implement
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return PrimitiveUtil.asBoolean(val.get());
+        }
+        return Optional.absent();
     }
 
     @Override
     public Optional<Integer> getInt(String path) {
-        return null; // TODO implement
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return PrimitiveUtil.asInteger(val.get());
+        }
+        return Optional.absent();
     }
 
     @Override
     public Optional<Long> getLong(String path) {
-        return null; // TODO implement
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return PrimitiveUtil.asLong(val.get());
+        }
+        return Optional.absent();
     }
 
     @Override
     public Optional<Double> getDouble(String path) {
-        return null; // TODO implement
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return PrimitiveUtil.asDouble(val.get());
+        }
+        return Optional.absent();
     }
 
     @Override
     public Optional<String> getString(String path) {
-        return null; // TODO implement
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return PrimitiveUtil.asString(val.get());
+        }
+        return Optional.absent();
     }
-
     @Override
     public Optional<List<?>> getList(String path) {
-        return null; // TODO implement
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            if (val.get() instanceof List<?>) {
+                return Optional.<List<?>>of(ImmutableList.copyOf((List<?>) val.get()));
+            }
+        }
+        return Optional.absent();
     }
 
     @Override
     public Optional<List<String>> getStringList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<String> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<String> optional = PrimitiveUtil.asString(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<String>) builder.build());
     }
 
     @Override
     public Optional<List<Character>> getCharacterList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Character> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Character> optional = PrimitiveUtil.asCharacter(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Character>) builder.build());
     }
 
     @Override
     public Optional<List<Boolean>> getBooleanList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Boolean> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Boolean> optional = PrimitiveUtil.asBoolean(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Boolean>) builder.build());
     }
 
     @Override
     public Optional<List<Byte>> getByteList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Byte> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Byte> optional = PrimitiveUtil.asByte(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Byte>) builder.build());
     }
 
     @Override
     public Optional<List<Short>> getShortList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Short> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Short> optional = PrimitiveUtil.asShort(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Short>) builder.build());
     }
 
     @Override
     public Optional<List<Integer>> getIntegerList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Integer> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Integer> optional = PrimitiveUtil.asInteger(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Integer>) builder.build());
     }
 
     @Override
     public Optional<List<Long>> getLongList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Long> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Long> optional = PrimitiveUtil.asLong(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Long>) builder.build());
     }
 
     @Override
     public Optional<List<Float>> getFloatList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Float> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Float> optional = PrimitiveUtil.asFloat(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Float>) builder.build());
     }
 
     @Override
     public Optional<List<Double>> getDoubleList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Double> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            Optional<Double> optional = PrimitiveUtil.asDouble(object);
+            if (optional.isPresent()) {
+                builder.add(optional.get());
+            }
+        }
+        return Optional.of((List<Double>) builder.build());
     }
 
     @Override
     public Optional<List<Map<?, ?>>> getMapList(String path) {
-        return null; // TODO implement
+        Optional<List<?>> list = getList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        ImmutableList.Builder<Map<?, ?>> builder = ImmutableList.builder();
+
+        for (Object object : list.get()) {
+            if (object instanceof Map) {
+                builder.add((Map<?, ?>) object);
+            }
+        }
+
+        return Optional.of((List<Map<?,?>>) builder.build());
     }
 
     @Override
-    public Map<String, Object> toMap() {
-        return null; // TODO implement
+    public <T extends DataSerializable> Optional<T> getSerialiable(String path, Class<T> clazz) {
+        return Optional.absent(); // TODO implement
     }
+
 }

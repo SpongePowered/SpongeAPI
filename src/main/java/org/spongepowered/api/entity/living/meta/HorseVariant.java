@@ -24,13 +24,17 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+import org.spongepowered.api.service.persistence.serialization.SerializableAs;
+
 /**
  * Represents the variant of a {@link org.spongepowered.api.entity.living.animal.Horse}.
  * <p>The variant of a horse defines the various behaviors the horse can have.
  * Some behaviors limit whether a horse can be chested, wear horse armor, or
  * can be saddled.</p>
  */
-public interface HorseVariant {
+@SerializableAs(key = "variant", compoundable = true)
+public interface HorseVariant extends DataSerializable {
 
     /**
      * Gets the name of this variant.
