@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.world.gamerule;
 
-import com.google.common.base.Optional;
-
 import java.util.List;
 
 /**
