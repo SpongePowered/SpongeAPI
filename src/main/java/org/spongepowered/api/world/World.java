@@ -102,7 +102,8 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Optional<Entity> getEntityFromUUID(UUID uuid);
 
     /**
-     * Gets the specified {@link GameRule} state.
+     * Gets the specified {@link GameRule} state. If one with this name
+     * does not exist, it will be created.
      *
      * <p>
      *     The value of a {@link GameRule} is modifiable via the
