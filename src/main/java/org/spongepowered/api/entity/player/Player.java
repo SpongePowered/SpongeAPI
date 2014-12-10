@@ -27,8 +27,8 @@ package org.spongepowered.api.entity.player;
 
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
@@ -51,7 +51,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * 
      * @return The player's display name
      */
-    Text getDisplayName();
+    Message getDisplayName();
 
     /**
      * Returns whether the {@link Player} can fly via the fly key.
@@ -77,7 +77,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
 
     /**
      * Sends the plain text message(s) with the specified {@link ChatType} on the client.
-     * <p>Use {@link #sendMessage(ChatType, Text...)} for a formatted message.</p>
+     * <p>Use {@link #sendMessage(ChatType, org.spongepowered.api.text.message.Message...)} for a formatted message.</p>
      *
      * @param type The chat type to send the messages to
      * @param message The message(s) to send
@@ -90,7 +90,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Text... messages);
+    void sendMessage(ChatType type, Message... messages);
 
     /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
@@ -98,7 +98,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Iterable<Text> messages);
+    void sendMessage(ChatType type, Iterable<Message> messages);
 
     /**
      * Sends a {@link Title} to this player.

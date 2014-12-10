@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.message;
 
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
@@ -30,47 +30,47 @@ import org.spongepowered.api.text.translation.Translation;
 /**
  * Utility class to work with and create Messages.
  */
-public final class Texts {
+public final class Messages {
 
-    private static final TextFactory factory = null;
+    private static final MessageFactory factory = null;
 
-    private Texts() {
+    private Messages() {
     }
 
-    public static TextBuilder<?> builder() {
+    public static MessageBuilder<?> builder() {
         return factory.createEmptyBuilder();
     }
 
-    public static TextBuilder.Plain builder(String text) {
+    public static MessageBuilder.Text builder(String text) {
         return factory.createPlainBuilder(text);
     }
 
-    public static TextBuilder.Translatable builder(Translation translation, Object... args) {
+    public static MessageBuilder.Translatable builder(Translation translation, Object... args) {
         return factory.createTranslatableBuilder(translation, args);
     }
 
-    public static TextBuilder.Translatable builder(Translatable translatable, Object... args) {
+    public static MessageBuilder.Translatable builder(Translatable translatable, Object... args) {
         return builder(translatable.getTranslation(), args);
     }
 
     // TODO: Change to builder() when possible?
-    public static TextBuilder.Selector selector(String selector) {
+    public static MessageBuilder.Selector selector(String selector) {
         return factory.createSelectorBuilder(selector);
     }
 
-    public static TextBuilder.Score score(Object score) {
+    public static MessageBuilder.Score score(Object score) {
         return factory.createScoreBuilder(score);
     }
 
     /**
-     * Creates a new {@link TextBuilder} out of the given content and builds
-     * it immediately. This is a shorthand to {@link #builder(Object)}.
+     * Creates a new {@link MessageBuilder} out of the given content and builds
+     * it immediately. This is a shorthand to {@link #builder(String)}.
      *
      * @param content The content of the Message
-     * @return The constructed {@link Text}
+     * @return The constructed {@link Message}
      */
-    public static Text.Plain of(String text) {
-        return factory.createPlain(text);
+    public static Message.Text of(String content) {
+        return factory.createPlain(content);
     }
 
     /**
@@ -92,7 +92,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Text.Plain fromLegacy(String text) {
+    public static Message.Text fromLegacy(String text) {
         return fromLegacy(text, getLegacyChar());
     }
 
@@ -105,7 +105,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Text.Plain fromLegacy(String text, char color) {
+    public static Message.Text fromLegacy(String text, char color) {
         return factory.parseLegacyMessage(text, color);
     }
 

@@ -22,23 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.message;
 
 import org.spongepowered.api.text.translation.Translation;
 
 /**
  * Represents the required implementation for the static methods in
- * {@link Texts}.
+ * {@link Messages}.
  */
-interface TextFactory {
+interface MessageFactory {
 
-    TextBuilder<?> createEmptyBuilder();
-    TextBuilder.Plain createPlainBuilder(String text);
-    TextBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
-    TextBuilder.Selector createSelectorBuilder(String selector);
-    TextBuilder.Score createScoreBuilder(Object score); // TODO
+    MessageBuilder<?> createEmptyBuilder();
+    MessageBuilder.Text createPlainBuilder(String text);
+    MessageBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
+    MessageBuilder.Selector createSelectorBuilder(String selector);
+    MessageBuilder.Score createScoreBuilder(Object score); // TODO
 
-    Text.Plain createPlain(String text);
+    Message.Text createPlain(String text);
 
     /**
      * Returns the default legacy formatting character.
@@ -54,7 +54,7 @@ interface TextFactory {
      * @param color The color character to be replaced
      * @return The converted Message
      */
-    Text.Plain parseLegacyMessage(String text, char color);
+    Message.Text parseLegacyMessage(String text, char color);
 
     /**
      * Removes the legacy formatting character from a legacy string.

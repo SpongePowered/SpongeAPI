@@ -26,7 +26,7 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.world.World;
 
 import java.net.InetSocketAddress;
@@ -110,7 +110,7 @@ public interface Server {
      *
      * @param message The message to send
      */
-    void broadcastMessage(Text message);
+    void broadcastMessage(Message message);
 
     /**
      * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
@@ -143,5 +143,5 @@ public interface Server {
      * Gets the message that is displayed in the server list of the client.
      * @return The servers MOTD
      */
-    Text getMOTD();
+    Message getMOTD();
 }

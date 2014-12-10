@@ -24,11 +24,9 @@
  */
 package org.spongepowered.api.text.format;
 
-import org.spongepowered.api.text.Text;
-
 /**
  * A TextStyle represents the style that a
- * {@link Text} has. It is an immutable
+ * {@link org.spongepowered.api.text.message.Message} has. It is an immutable
  * class. There are several Base styles specified in
  * {@link org.spongepowered.api.text.format.TextStyles} which are the Minecraft
  * base types. From these types, the {@link #and(TextStyle...)},

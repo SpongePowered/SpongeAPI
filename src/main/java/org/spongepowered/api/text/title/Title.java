@@ -26,7 +26,7 @@
 package org.spongepowered.api.text.title;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.message.Message;
 
 /**
  * Represents an immutable configuration for an in-game title. Instances of this
@@ -43,16 +43,16 @@ public interface Title {
     /**
      * Returns the title of this title configuration.
      *
-     * @return The {@link Text} of the title, if it was configured
+     * @return The {@link org.spongepowered.api.text.message.Message} of the title, if it was configured
      */
-    Optional<Text> getTitle();
+    Optional<Message> getTitle();
 
     /**
      * Returns the subtitle of this title configuration.
      *
-     * @return The {@link Text} of the subtitle, if it was configured
+     * @return The {@link org.spongepowered.api.text.message.Message} of the subtitle, if it was configured
      */
-    Optional<Text> getSubtitle();
+    Optional<Message> getSubtitle();
 
     /**
      * Returns the specified time to fade in the title on the client. Once this

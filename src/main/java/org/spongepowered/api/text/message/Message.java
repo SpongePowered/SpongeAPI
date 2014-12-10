@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.message;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.action.ClickAction;
@@ -37,162 +37,188 @@ import java.util.List;
 /**
  * Represents an immutable instance of formatted text that can be displayed on
  * the client. Each instance consists of content and a list of children texts
- * appended after the content of this text. The content of the text is available
+ * appended after the content of this message. The content of the text is available
  * through one of the subinterfaces.
  * <p>
- * Texts are primarily used for sending formatted chat messages to players, but
+ * Messages are primarily used for sending formatted chat messages to players, but
  * also in other places like books or signs.
  * </p>
  * <p>
- * Text instances can be created using the {@link TextBuilder} available through
- * one of the {@link Texts#builder()} methods.
+ * Text instances can be created using the {@link MessageBuilder} available through
+ * one of the {@link Messages#builder()} methods.
  * </p>
  *
- * @see Texts#builder()
- * @see Plain
+ * @see Messages#builder()
+ * @see org.spongepowered.api.text.message.Message.Text
  * @see Translatable
  * @see Selector
  * @see Score
  */
-public interface Text extends Iterable<Text> {
+public interface Message extends Iterable<Message> {
 
     /**
-     * Returns the color of this {@link Text}.
+     * Returns the content of this {@link Message}.
      *
-     * @return The color of this text
+     * @return The content of this message
+     */
+    Object getContent();
+
+    /**
+     * Returns the color of this {@link Message}.
+     *
+     * @return The color of this message
      */
     TextColor getColor();
 
     /**
-     * Returns the style of this {@link Text}. This will return a compound
+     * Returns the style of this {@link Message}. This will return a compound
      * {@link TextStyle} if multiple different styles have been set.
      *
-     * @return The style of this text
+     * @return The style of this message
      */
     TextStyle getStyle();
 
     /**
      * Returns the list of children appended after the content of this
-     * {@link Text}.
+     * {@link Message}.
      *
      * @return The list of children
      */
-    List<Text> getChildren();
+    List<Message> getChildren();
 
     /**
      * Returns the {@link ClickAction} executed on the client when this
-     * {@link Text} gets clicked.
+     * {@link Message} gets clicked.
      *
-     * @return The click action of this text, or {@link Optional#absent()} if
+     * @return The click action of this message, or {@link Optional#absent()} if
      *         not set
      */
     Optional<ClickAction<?>> getClickAction();
 
     /**
      * Returns the {@link HoverAction} executed on the client when this
-     * {@link Text} gets hovered.
+     * {@link Message} gets hovered.
      *
-     * @return The hover action of this text, or {@link Optional#absent()} if
+     * @return The hover action of this message, or {@link Optional#absent()} if
      *         not set
      */
     Optional<HoverAction<?>> getHoverAction();
 
     /**
      * Returns the {@link ShiftClickAction} executed on the client when this
-     * {@link Text} gets shift-clicked.
+     * {@link Message} gets shift-clicked.
      *
-     * @return The shift-click action of this text, or {@link Optional#absent()}
+     * @return The shift-click action of this message, or {@link Optional#absent()}
      *         if not set
      */
     Optional<ShiftClickAction<?>> getShiftClickAction();
 
     /**
-     * Returns a new {@link TextBuilder} with the content of this message. This
-     * can be used to edit an immutable {@link Text} instance.
+     * Returns a new {@link MessageBuilder} with the content of this message. This
+     * can be used to edit an immutable {@link Message} instance.
      *
-     * @return A new text builder with the content of this message
+     * @return A new MessageBuilder with the content of this message
      */
-    TextBuilder builder();
+    MessageBuilder<? extends MessageBuilder<?>> builder();
 
     /**
-     * Represents a {@link Text} containing a plain text {@link String}.
+     * Represents a {@link Message} containing a plain text {@link String}.
      */
-    interface Plain extends Text {
+    interface Text extends Message {
 
         /**
-         * Returns the plain text content of this {@link Text}.
+         * Returns the plain text content of this {@link Message}.
          *
-         * @return The content of this text
+         * @return The content of this message
          */
+        @Override
         String getContent();
 
+        /**
+         * Creates a new builder from this Message.
+         *
+         * @return A new MessageBuilder
+         */
         @Override
-        TextBuilder.Plain builder();
+        MessageBuilder.Text builder();
 
     }
 
     /**
-     * Represents a {@link Text} containing a {@link Translation} identifier
+     * Represents a {@link Message} containing a {@link Translation} identifier
      * that gets translated into the current locale on the client.
      */
-    interface Translatable extends Text {
+    interface Translatable extends Message {
 
         /**
-         * Returns the translation of this {@link Text}.
+         * Returns the translation of this {@link Message}.
          *
-         * @return The translation of this text
+         * @return The translation of this message
          */
+        @Override
         Translation getContent();
 
         /**
          * Returns the list of {@link Translation} arguments used to format this
-         * {@link Text}.
+         * {@link Message}.
          *
          * @return The list of translation arguments
          */
         List<Object> getArguments();
 
+        /**
+         * Creates a new builder from this Message.
+         *
+         * @return A new MessageBuilder
+         */
         @Override
-        TextBuilder.Translatable builder();
+        MessageBuilder.Translatable builder();
 
     }
 
     /**
-     * Represents a {@link Text} containing a selector that will be replaced by
+     * Represents a {@link Message} containing a selector that will be replaced by
      * the names of the matching entities on the client.
      *
      * @see <a
      *      href="http://minecraft.gamepedia.com/Commands#Target_selectors">Selectors
      *      on the Minecraft Wiki</a>
      */
-    interface Selector extends Text {
+    interface Selector extends Message {
 
         // TODO use Selector
 
         /**
-         * Returns the selector used in this {@link Text}.
+         * Returns the selector used in this {@link Message}.
          *
-         * @return The selector of this text
+         * @return The selector of this message
          */
+        @Override
         String getContent();
 
+        /**
+         * Creates a new builder from this Message.
+         *
+         * @return A new MessageBuilder
+         */
         @Override
-        TextBuilder.Selector builder();
+        MessageBuilder.Selector builder();
     }
 
     /**
-     * Represents a {@link Text} displaying the current player's score in an
+     * Represents a {@link Message} displaying the current player's score in an
      * objective.
      */
-    interface Score extends Text {
+    interface Score extends Message {
 
         // TODO use Score
 
         /**
-         * Returns the score displayed by this {@link Text}.
+         * Returns the score displayed by this {@link Message}.
          *
-         * @return The score in this text
+         * @return The score in this message
          */
+        @Override
         Object getContent();
 
         /**
@@ -204,8 +230,13 @@ public interface Text extends Iterable<Text> {
          */
         Optional<String> getOverride();
 
+        /**
+         * Creates a new builder from this Message.
+         *
+         * @return A new MessageBuilder
+         */
         @Override
-        TextBuilder.Score builder();
+        MessageBuilder.Score builder();
     }
 
 }

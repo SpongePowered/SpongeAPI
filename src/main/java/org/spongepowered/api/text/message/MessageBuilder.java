@@ -22,24 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
+package org.spongepowered.api.text.message;
 
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents a builder interface to create immutable {@link Text} instances.
+ * Represents a builder interface to create immutable {@link Message} instances.
  *
- * @param <T> The type of the text builder
+ * @param <T> The type of the message builder
  */
-public interface TextBuilder<T extends TextBuilder<T>> {
+public interface MessageBuilder<T extends MessageBuilder<T>> {
+
+    /**
+     * Sets the contents of this message.
+     *
+     * @param content The content of the message.
+     * @return This message builder
+     */
+    T content(Object content);
 
     /**
      * Appends the specified messages to the end of this message.
@@ -47,7 +54,7 @@ public interface TextBuilder<T extends TextBuilder<T>> {
      * @param children The messages to append
      * @return This message builder
      */
-    T append(Text... children);
+    T append(Message... children);
 
     /**
      * Appends the specified messages to the end of this message.
@@ -55,7 +62,7 @@ public interface TextBuilder<T extends TextBuilder<T>> {
      * @param children The messages to append
      * @return This message builder
      */
-    T append(Iterable<Text> children);
+    T append(Iterable<Message> children);
 
     /**
      * Sets the {@link TextColor} of this message.
@@ -105,39 +112,110 @@ public interface TextBuilder<T extends TextBuilder<T>> {
     /**
      * Builds an immutable instance of the current message.
      *
-     * @return An immutable {@link Text} with the current properties of this
+     * @return An immutable {@link Message} with the current properties of this
      *         builder
      */
-    Text build();
+    Message build();
 
-    interface Plain extends TextBuilder<Plain> {
-        Plain text(String text);
+    /**
+     * A MessageBuilder that can build Text messages.
+     */
+    interface Text extends MessageBuilder<Text> {
 
+        /**
+         * Sets the content of this message.
+         *
+         * @param content The content of this message as a String
+         * @return This message builder
+         */
+        Text content(String content);
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
-        Text.Plain build();
+        Message.Text build();
     }
 
-    interface Translatable extends TextBuilder<Translatable> {
-        Translatable translation(Translation translation, Object... args);
-        Translatable translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
+    /**
+     * A MessageBuilder that can build Translatable messages.
+     */
+    interface Translatable extends MessageBuilder<Translatable> {
 
+        /**
+         * Sets the content of this message.
+         *
+         * @param content The content of this message as a Translation
+         * @param args The arguments to the translation
+         * @return This message builder
+         */
+        Translatable content(Translation content, Object... args);
+
+        /**
+         * Sets the content of this message.
+         *
+         * @param content The content of this message as a Translation
+         * @param args The arguments to the translation
+         * @return This message builder
+         */
+        Translatable content(org.spongepowered.api.text.translation.Translatable content, Object... args);
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
-        Text.Translatable build();
+        Message.Translatable build();
+
     }
 
-    interface Selector extends TextBuilder<Selector> {
-        Selector selector(String selector);
+    /**
+     * A MessageBuilder that can build Selector messages.
+     */
+    interface Selector extends MessageBuilder<Selector> {
 
+        /**
+         * Sets the content of this message.
+         *
+         * @param content The content of this message as a Selector
+         * @return This message builder
+         */
+        Selector content(String content);
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
-        Text.Selector build();
+        Message.Selector build();
+
     }
 
-    interface Score extends TextBuilder<Score> {
-        Score score(Object score); // TODO
+    /**
+     * A MessageBuilder that can build Score messages.
+     */
+    interface Score extends MessageBuilder<Score> {
+
+        /**
+         * Sets the score of this message.
+         *
+         * @param content The content of the message as a Score.
+         * @return This message builder
+         */
+        Score content(Object content); // TODO
+
+        /**
+         * Sets the override to the score in this message.
+         *
+         * @param override The override of the score
+         * @return This message builder
+         */
         Score override(@Nullable String override);
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
-        Text.Score build();
+        Message.Score build();
+
     }
 
 }

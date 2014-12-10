@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.message.Message;
 
 /**
  * Something that can execute commands.
@@ -37,7 +37,7 @@ public interface CommandSource {
 
     /**
      * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Text...)} for a formatted message.</p>
+     * <p>Use {@link #sendMessage(org.spongepowered.api.text.message.Message...)} for a formatted message.</p>
      *
      * @param messages The message(s)
      */
@@ -49,7 +49,7 @@ public interface CommandSource {
      *
      * @param messages The message(s)
      */
-    void sendMessage(Text... messages);
+    void sendMessage(Message... messages);
 
     /**
      * Sends the formatted text message(s) to source when possible. If text formatting
@@ -57,6 +57,6 @@ public interface CommandSource {
      *
      * @param messages The messages
      */
-    void sendMessage(Iterable<Text> messages);
+    void sendMessage(Iterable<Message> messages);
 
 }
