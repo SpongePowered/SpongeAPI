@@ -22,16 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+package org.spongepowered.api.service.persistence.data;
 
 /**
- * A mutable complete representation of an entity type and its associated data.
- * <p>Being that this is a snapshot, all the data from {@link #serialize()} may
- * be threadsafe and used for storage purposes.</p>
+ * Represents the options for a {@link DataContainer}. Options may include
+ * things such as path separators.
  */
-public interface EntitySnapshot extends EntityState, DataSerializable {
+public interface DataOptions {
+
+    /**
+     * Gets the path separator.
+     * <p>When performing a {@link DataView#get(String)}, the string is parsed
+     * with the returning path separator, separating one {@link DataView} from
+     * it's parent DataView.</p>
+     *
+     * @return The character representing a separator in a path
+     */
+    char getPathSeparator();
+
+    /**
+     * Sets the path separator.
+     * <p>When performing a {@link DataView#get(String)}, the string is parsed
+     * with the returning path separator, separating one {@link DataView} from
+     * it's parent DataView.</p>
+     *
+     * @param separator The character to separate paths
+     * @return This instance of options for chaining
+     */
+    DataOptions setPathSeparator(char separator);
+
+    /**
+     * Gets the container this set of options is affecting. No container can
+     * exist without a form of DataOptions.
+     *
+     * @return The container this set of options affects
+     */
+    DataContainer getContainer();
 
 }

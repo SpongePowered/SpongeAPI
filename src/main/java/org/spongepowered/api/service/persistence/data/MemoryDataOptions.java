@@ -22,16 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.service.persistence.data;
 
-package org.spongepowered.api.entity;
+import static com.google.common.base.Preconditions.checkArgument;
 
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+public class MemoryDataOptions implements DataOptions {
 
-/**
- * A mutable complete representation of an entity type and its associated data.
- * <p>Being that this is a snapshot, all the data from {@link #serialize()} may
- * be threadsafe and used for storage purposes.</p>
- */
-public interface EntitySnapshot extends EntityState, DataSerializable {
+    private final DataContainer container;
+    private char pathSeparator = '.';
 
+    protected MemoryDataOptions(MemoryDataContainer container) {
+        checkArgument(container != null, "Cannot create a MemoryDataOptions with a null container!");
+        this.container = container;
+    }
+
+    @Override
+    public char getPathSeparator() {
+        return this.pathSeparator;
+    }
+
+    @Override
+    public DataOptions setPathSeparator(char separator) {
+        checkArgument(separator != '\u0000', "Cannot set an empty separator.");
+        this.pathSeparator = separator;
+        return this;
+    }
+
+    @Override
+    public DataContainer getContainer() {
+        return this.container;
+    }
 }

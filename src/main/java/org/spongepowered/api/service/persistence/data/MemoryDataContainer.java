@@ -22,16 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.service.persistence.data;
 
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+import com.google.common.base.Optional;
 
 /**
- * A mutable complete representation of an entity type and its associated data.
- * <p>Being that this is a snapshot, all the data from {@link #serialize()} may
- * be threadsafe and used for storage purposes.</p>
+ * Default implementaiton of a {@link DataContainer} being used in memory.
  */
-public interface EntitySnapshot extends EntityState, DataSerializable {
+public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 
+    private final DataOptions options = new MemoryDataOptions(this);
+
+    public MemoryDataContainer() {
+    }
+
+    @Override
+    public Optional<DataView> getParent() {
+        return Optional.absent();
+    }
+
+    @Override
+    public DataContainer getContainer() {
+        return this;
+    }
+
+    @Override
+    public DataOptions getOptions() {
+        return this.options;
+    }
 }

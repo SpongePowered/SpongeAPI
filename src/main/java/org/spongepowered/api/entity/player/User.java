@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.player;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.service.persistence.serialization.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.Date;
@@ -35,7 +36,7 @@ import java.util.Date;
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
-public interface User extends Identifiable, ArmorEquipable {
+public interface User extends Identifiable, ArmorEquipable, DataSerializable {
 
     /**
      * Gets the player's last known username.

@@ -24,23 +24,20 @@
  */
 package org.spongepowered.api.service.persistence.serialization;
 
-import org.spongepowered.api.service.persistence.data.DataSection;
+import org.spongepowered.api.service.persistence.data.DataContainer;
 
-import java.util.Map;
-
-public interface DataSectionable {
-
-    /**
-     * Serializes this object into a comprehensible {@link DataSection}.
-     * @return
-     */
-    DataSection serialize();
+/**
+ * Represents an object that can be represented by a {@link DataContainer}.
+ * <p>DataContainers received from {@link DataSerializable#serialize()}
+ * should be considered to be copies of the original data, and therefor,
+ * thread safe.</p>
+ */
+public interface DataSerializable {
 
     /**
-     * Serializes this object into a usable {@link Map} based object.
-     *
-     * @return
+     * Serializes this object into a comprehensible {@link DataContainer}.
+     * @return A newly created DataContainer
      */
-    Map<String, Object> serializeAsMap();
+    DataContainer serialize();
 
 }

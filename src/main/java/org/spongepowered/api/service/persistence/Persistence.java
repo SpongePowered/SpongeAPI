@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.service.persistence.data.DataSection;
+import org.spongepowered.api.service.persistence.data.DataContainer;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface Persistence {
 
-    DataSection deserialize(InputStream stream);
+    DataContainer deserialize(InputStream stream);
 
-    void serialize(OutputStream stream, DataSection section);
+    void serialize(OutputStream stream, DataContainer section);
 
 }

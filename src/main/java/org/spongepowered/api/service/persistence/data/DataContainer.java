@@ -22,16 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+package org.spongepowered.api.service.persistence.data;
 
 /**
- * A mutable complete representation of an entity type and its associated data.
- * <p>Being that this is a snapshot, all the data from {@link #serialize()} may
- * be threadsafe and used for storage purposes.</p>
+ * Represents a data structure that contains data. A DataContainer is
+ * an object that can be considered a root {@link DataView}.
  */
-public interface EntitySnapshot extends EntityState, DataSerializable {
+public interface DataContainer extends DataView {
+
+    /**
+     * Gets the options for this container.
+     * @return The options for this container
+     * @see DataOptions
+     */
+    DataOptions getOptions();
 
 }
