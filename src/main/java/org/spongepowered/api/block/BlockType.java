@@ -72,14 +72,14 @@ public interface BlockType extends Translatable {
      *
      * @return If the BlockType ticks randomly.
      */
-    boolean isRandomTicking();
+    boolean getTickRandomly();
 
     /**
      * Sets if the BlockType should receive random block ticks.
      *
      * <p>Random block ticks are most commonly used for growth of plants.</p>
      *
-     * @param randomTicking If the BlockType should tick randomly.
+     * @param tickRandomly If the BlockType should tick randomly.
      */
-    void setRandomTicking(boolean randomTicking);
+    void setTickRandomly(boolean tickRandomly);
 }
