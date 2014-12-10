@@ -64,4 +64,22 @@ public interface BlockType extends Translatable {
      */
     @Deprecated
     BlockState getStateFromDataValue(byte data);
+
+    /**
+     * Gets if this BlockType is set to receive random block ticks.
+     *
+     * <p>Random block ticks are most commonly used for growth of plants.</p>
+     *
+     * @return If the BlockType ticks randomly.
+     */
+    boolean isRandomTicking();
+
+    /**
+     * Sets if the BlockType should receive random block ticks.
+     *
+     * <p>Random block ticks are most commonly used for growth of plants.</p>
+     *
+     * @param randomTicking If the BlockType should tick randomly.
+     */
+    void setRandomTicking(boolean randomTicking);
 }
