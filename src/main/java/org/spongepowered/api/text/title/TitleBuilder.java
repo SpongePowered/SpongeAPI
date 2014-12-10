@@ -38,7 +38,7 @@ public interface TitleBuilder {
      * @param text The text to use as the title
      * @return This title builder
      */
-    TitleBuilder title(Text<?> text);
+    TitleBuilder title(Text text);
 
     /**
      * Set the subtitle to send to the player.
@@ -46,7 +46,7 @@ public interface TitleBuilder {
      * @param text The text to use as the subtitle
      * @return This title builder
      */
-    TitleBuilder subtitle(Text<?> text);
+    TitleBuilder subtitle(Text text);
 
     /**
      * Set the duration in ticks of the fade in effect of the title. Once this

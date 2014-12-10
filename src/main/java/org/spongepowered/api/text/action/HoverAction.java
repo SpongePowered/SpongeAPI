@@ -38,7 +38,7 @@ public interface HoverAction<R> extends TextAction<R> {
     /**
      * Shows some text.
      */
-    interface ShowText extends HoverAction<Text<?>> {
+    interface ShowText extends HoverAction<Text> {
 
     }
 

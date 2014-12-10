@@ -91,7 +91,7 @@ public final class TextActions {
      * @param text The text to display
      * @return The created hover action instance
      */
-    public static HoverAction.ShowText showText(Text<?> text) {
+    public static HoverAction.ShowText showText(Text text) {
         return factory.createShowText(text);
     }
 

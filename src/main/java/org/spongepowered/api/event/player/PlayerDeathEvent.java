@@ -39,12 +39,12 @@ public interface PlayerDeathEvent extends EntityDeathEvent, PlayerEvent {
      *
      * @return The death message.
      */
-    Text<?> getDeathMessage();
+    Text getDeathMessage();
 
     /**
      * Sets the death message of this {@link Player}.
      *
      * @param deathMessage The new death message.
      */
-    void setDeathMessage(Text<?> deathMessage);
+    void setDeathMessage(Text deathMessage);
 }

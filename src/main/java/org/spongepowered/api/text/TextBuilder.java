@@ -29,13 +29,17 @@ import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a builder interface to create immutable {@link Text} instances.
  *
- * @param <T> The type of the message's content
+ * @param <T> The type of the text builder
  */
-public interface TextBuilder<T> {
+public interface TextBuilder<T extends TextBuilder<T>> {
 
     /**
      * Appends the specified messages to the end of this message.
@@ -43,7 +47,7 @@ public interface TextBuilder<T> {
      * @param children The messages to append
      * @return This message builder
      */
-    TextBuilder<T> append(Text<?>... children);
+    T append(Text... children);
 
     /**
      * Appends the specified messages to the end of this message.
@@ -51,15 +55,7 @@ public interface TextBuilder<T> {
      * @param children The messages to append
      * @return This message builder
      */
-    TextBuilder<T> append(Iterable<Text<?>> children);
-
-    /**
-     * Sets the content of this message.
-     *
-     * @param content The new content for this message
-     * @return This message builder
-     */
-    TextBuilder<T> content(T content);
+    T append(Iterable<Text> children);
 
     /**
      * Sets the {@link TextColor} of this message.
@@ -67,7 +63,7 @@ public interface TextBuilder<T> {
      * @param color The new text color for this message
      * @return This message builder
      */
-    TextBuilder<T> color(TextColor color);
+    T color(@Nullable TextColor color);
 
     /**
      * Sets the text styles of this message. This will construct a composite
@@ -77,7 +73,7 @@ public interface TextBuilder<T> {
      * @param styles The text styles to apply
      * @return This message builder
      */
-    TextBuilder<T> style(TextStyle... styles);
+    T style(TextStyle... styles);
 
     /**
      * Sets the {@link ClickAction} that will be executed if this message is
@@ -86,7 +82,7 @@ public interface TextBuilder<T> {
      * @param action The new click action for this message
      * @return This message builder
      */
-    TextBuilder<T> onClick(ClickAction<?> action);
+    T onClick(@Nullable ClickAction<?> action);
 
     /**
      * Sets the {@link HoverAction} that will be executed if this message is
@@ -95,7 +91,7 @@ public interface TextBuilder<T> {
      * @param action The new hover action for this message
      * @return This message builder
      */
-    TextBuilder<T> onHover(HoverAction<?> action);
+    T onHover(@Nullable HoverAction<?> action);
 
     /**
      * Sets the {@link ShiftClickAction} that will be executed if this message
@@ -104,7 +100,7 @@ public interface TextBuilder<T> {
      * @param action The new shift click action for this message
      * @return This message builder
      */
-    TextBuilder<T> onShiftClick(ShiftClickAction<?> action);
+    T onShiftClick(@Nullable ShiftClickAction<?> action);
 
     /**
      * Builds an immutable instance of the current message.
@@ -112,6 +108,36 @@ public interface TextBuilder<T> {
      * @return An immutable {@link Text} with the current properties of this
      *         builder
      */
-    Text<T> build();
+    Text build();
+
+    interface Plain extends TextBuilder<Plain> {
+        Plain text(String text);
+
+        @Override
+        Text.Plain build();
+    }
+
+    interface Translatable extends TextBuilder<Translatable> {
+        Translatable translation(Translation translation, Object... args);
+        Translatable translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
+
+        @Override
+        Text.Translatable build();
+    }
+
+    interface Selector extends TextBuilder<Selector> {
+        Selector selector(String selector);
+
+        @Override
+        Text.Selector build();
+    }
+
+    interface Score extends TextBuilder<Score> {
+        Score score(Object score); // TODO
+        Score override(@Nullable String override);
+
+        @Override
+        Text.Score build();
+    }
 
 }

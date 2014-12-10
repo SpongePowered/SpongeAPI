@@ -38,12 +38,12 @@ public interface PlayerJoinEvent extends PlayerEvent {
      *
      * @return The player join message.
      */
-    Text<?> getJoinMessage();
+    Text getJoinMessage();
 
     /**
      * Sets the message displayed when the player joins.
      *
      * @param joinMessage The new player quit message.
      */
-    void setJoinMessage(Text<?> joinMessage);
+    void setJoinMessage(Text joinMessage);
 }

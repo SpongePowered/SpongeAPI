@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
 /**
@@ -36,45 +37,29 @@ public final class Texts {
     private Texts() {
     }
 
-    /**
-     * Creates a new {@link TextBuilder}.
-     *
-     * @param content The content of the Message
-     * @param <T> The type parameter of the Message
-     * @return A new MessageBuilder
-     *
-     * @throws UnsupportedOperationException If the specified content type is
-     *             not supported by this server
-     */
-    public static <T> TextBuilder<T> builder(T content) {
-        return factory.createBuilder(content);
+    public static TextBuilder<?> builder() {
+        return factory.createEmptyBuilder();
     }
 
-    /**
-     * Creates a new {@link TextBuilder} that builds {@link Translation}
-     * messages.
-     *
-     * @param translation The translation of the Message
-     * @param args The arguments to the translation
-     * @return A new MessageBuilder
-     */
-    public static TextBuilder<Translation> builder(Translation translation, Object... args) {
-        return factory.createTranslationBuilder(translation, args);
+    public static TextBuilder.Plain builder(String text) {
+        return factory.createPlainBuilder(text);
     }
 
-    // TODO: Score API
+    public static TextBuilder.Translatable builder(Translation translation, Object... args) {
+        return factory.createTranslatableBuilder(translation, args);
+    }
 
-    /**
-     * Creates a new {@link TextBuilder} that builds {@link Text.Score}
-     * messages. If you wish to not override the score, use the
-     * {@link #builder(Object)} method.
-     *
-     * @param score The score of the Message
-     * @param override The override of the score
-     * @return A
-     */
-    public static TextBuilder<Object> builder(Object score, String override) {
-        return factory.createScoreBuilder(score, override);
+    public static TextBuilder.Translatable builder(Translatable translatable, Object... args) {
+        return builder(translatable.getTranslation(), args);
+    }
+
+    // TODO: Change to builder() when possible?
+    public static TextBuilder.Selector selector(String selector) {
+        return factory.createSelectorBuilder(selector);
+    }
+
+    public static TextBuilder.Score score(Object score) {
+        return factory.createScoreBuilder(score);
     }
 
     /**
@@ -82,11 +67,10 @@ public final class Texts {
      * it immediately. This is a shorthand to {@link #builder(Object)}.
      *
      * @param content The content of the Message
-     * @param <T> The type parameter of the Message
      * @return The constructed {@link Text}
      */
-    public static <T> Text<T> of(T content) {
-        return builder(content).build();
+    public static Text.Plain of(String text) {
+        return factory.createPlain(text);
     }
 
     /**

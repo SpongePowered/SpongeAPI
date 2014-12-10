@@ -80,7 +80,7 @@ interface TextActionFactory {
      * @param text The message to show
      * @return The created hover action instance
      */
-    HoverAction.ShowText createShowText(Text<?> text);
+    HoverAction.ShowText createShowText(Text text);
 
     /**
      * Creates a new {@link HoverAction.ShowItem} instance that will show

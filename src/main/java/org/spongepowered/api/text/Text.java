@@ -48,7 +48,7 @@ import java.util.List;
  *
  * @param <T> The type of this Message's content
  */
-public interface Text<T> extends Iterable<Text<T>> {
+public interface Text extends Iterable<Text> {
 
     /**
      * Returns the main content of this Message. This maps to the text,
@@ -57,7 +57,7 @@ public interface Text<T> extends Iterable<Text<T>> {
      *
      * @return The content of this Message
      */
-    T getContent();
+    Object getContent();
 
     /**
      * Returns the color of this Message. This maps to the color field in JSON.
@@ -80,7 +80,7 @@ public interface Text<T> extends Iterable<Text<T>> {
      *
      * @return This Message's children
      */
-    List<org.spongepowered.api.text.Text<?>> getChildren();
+    List<Text> getChildren();
 
     /**
      * Returns the action for when this text is clicked. This maps to the
@@ -112,14 +112,19 @@ public interface Text<T> extends Iterable<Text<T>> {
      *
      * @return A new {@link TextBuilder} to modify this message
      */
-    TextBuilder<T> builder();
+    TextBuilder builder();
 
     /**
      * A Text Message is a message with a String as content. In JSON, the
      * content getter maps to the text field.
      */
-    interface Plain extends Text<String> {
+    interface Plain extends Text {
 
+        @Override
+        String getContent();
+
+        @Override
+        TextBuilder.Plain builder();
     }
 
     /**
@@ -128,8 +133,15 @@ public interface Text<T> extends Iterable<Text<T>> {
      * translation identifier. In JSON, the content getter maps to the
      * translation identifier.
      */
-    interface Translatable extends Text<Translation> {
+    interface Translatable extends Text {
 
+        @Override
+        Translation getContent();
+
+        List<Object> getArguments();
+
+        @Override
+        TextBuilder.Translatable builder();
     }
 
     /**
@@ -137,8 +149,14 @@ public interface Text<T> extends Iterable<Text<T>> {
      * selector matches becomes the text of this Message. In JSON, the content
      * getter maps to the translation field.
      */
-    interface Selector extends Text<String> {
+    interface Selector extends Text {
         // TODO use Selector
+
+        @Override
+        String getContent();
+
+        @Override
+        TextBuilder.Selector builder();
     }
 
     /**
@@ -147,12 +165,15 @@ public interface Text<T> extends Iterable<Text<T>> {
      * It can be overridden. In JSON, the content getter maps to the score
      * field.
      */
-    interface Score extends Text<Object> {
-
+    interface Score extends Text {
         // TODO use Score
+        @Override
+        Object getContent();
 
         Optional<String> getOverride();
 
+        @Override
+        TextBuilder.Score builder();
     }
 
 }

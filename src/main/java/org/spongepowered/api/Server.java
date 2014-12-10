@@ -110,7 +110,7 @@ public interface Server {
      *
      * @param message The message to send
      */
-    void broadcastMessage(Text<?> message);
+    void broadcastMessage(Text message);
 
     /**
      * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
@@ -143,5 +143,5 @@ public interface Server {
      * Gets the message that is displayed in the server list of the client.
      * @return The servers MOTD
      */
-    Text<?> getMOTD();
+    Text getMOTD();
 }

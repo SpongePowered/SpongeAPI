@@ -32,39 +32,13 @@ import org.spongepowered.api.text.translation.Translation;
  */
 interface TextFactory {
 
-    /**
-     * Creates a new {@link TextBuilder}.
-     *
-     * @param content The content of the Message
-     * @param <T> The type parameter of the Message
-     * @return A new MessageBuilder
-     *
-     * @throws UnsupportedOperationException If the specified content type is
-     *             not supported by this server
-     */
-    <T> TextBuilder<T> createBuilder(T content);
+    TextBuilder<?> createEmptyBuilder();
+    TextBuilder.Plain createPlainBuilder(String text);
+    TextBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
+    TextBuilder.Selector createSelectorBuilder(String selector);
+    TextBuilder.Score createScoreBuilder(Object score); // TODO
 
-    /**
-     * Creates a new {@link TextBuilder} that builds {@link Translation}
-     * messages.
-     *
-     * @param translation The translation of the Message
-     * @param args The arguments to the translation
-     * @return A new MessageBuilder
-     */
-    TextBuilder<Translation> createTranslationBuilder(Translation translation, Object[] args);
-
-    // TODO: Score API
-
-    /**
-     * Creates a new {@link TextBuilder} that builds {@link Text.Score}
-     * messages.
-     *
-     * @param score The score of the Message
-     * @param override The override of the score
-     * @return A
-     */
-    TextBuilder<Object> createScoreBuilder(Object score, String override);
+    Text.Plain createPlain(String text);
 
     /**
      * Returns the default legacy formatting character.

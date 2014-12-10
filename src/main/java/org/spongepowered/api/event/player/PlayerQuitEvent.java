@@ -38,12 +38,12 @@ public interface PlayerQuitEvent extends PlayerEvent {
      *
      * @return The player quit message.
      */
-    Text<?> getQuitMessage();
+    Text getQuitMessage();
 
     /**
      * Sets the message displayed when the player quits.
      *
      * @param quitMessage The new player quit message.
      */
-    void setQuitMessage(Text<?> quitMessage);
+    void setQuitMessage(Text quitMessage);
 }

@@ -51,7 +51,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * 
      * @return The player's display name
      */
-    Text<?> getDisplayName();
+    Text getDisplayName();
 
     /**
      * Returns whether the {@link Player} can fly via the fly key.
@@ -90,7 +90,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Text<?>... messages);
+    void sendMessage(ChatType type, Text... messages);
 
     /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
@@ -98,7 +98,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Iterable<Text<?>> messages);
+    void sendMessage(ChatType type, Iterable<Text> messages);
 
     /**
      * Sends a {@link Title} to this player.
