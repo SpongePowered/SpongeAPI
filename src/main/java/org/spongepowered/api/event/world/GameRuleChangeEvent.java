@@ -26,25 +26,31 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.world.gamerule.GameRule;
 
 /**
- * Called when a {@link GameRule} is changed.
+ * Called when a GameRule is changed.
  */
 public interface GameRuleChangeEvent extends WorldEvent, Cancellable {
 
     /**
-     * Gets the new state of the {@link GameRule}.
+     * Gets the new value of the GameRule.
      *
-     * @return The new state.
+     * @return The new value.
      */
-    GameRule getNewState();
+    String getNewValue();
 
     /**
-     * Gets the old state of the {@link GameRule}.
+     * Gets the old value of the GameRule.
      *
-     * @return The old state.
+     * @return The old value.
      */
-    GameRule getOldState();
+    String getOldValue();
+
+    /**
+     * Gets the name of this GameRule.
+     *
+     * @return The name of the GameRule.
+     */
+    String getName();
 
 }

@@ -34,6 +34,7 @@ import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -103,29 +104,28 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Optional<Entity> getEntityFromUUID(UUID uuid);
 
     /**
-     * Gets the specified {@link GameRule} state. If one with this name
+     * Gets the specified GameRule value. If one with this name
      * does not exist, it will be created.
-     *
-     * <p>
-     *     The value of a {@link GameRule} is modifiable via the
-     *     current state object.
-     * </p>
-     *
-     * @param gameRule The name of the {@link GameRule}.
-     * @return The {@link GameRule} state.
+     **
+     * @param gameRule The name of the GameRule.
+     * @return The GameRule value.
      */
-    GameRule getGameRule(String gameRule);
+    String getGameRule(String gameRule);
 
     /**
-     * Gets a {@link Collection} of all {@link GameRule}s in this world.
+     * Sets the specified GameRule value. If one with this name
+     * does not exist, it will be created.
      *
-     * <p>
-     *     The value of a {@link GameRule} is modifiable via the
-     *     current state object.
-     * </p>
-     *
+     * @param gameRule The name of the GameRule.
+     * @param value The value to set the GameRule to.
+     */
+    void setGameRule(String gameRule, String value);
+
+    /**
+     * Gets a {@link Map} of all GameRules with values in this world.
+     **
      * @return A collection of GameRules.
      */
-    Collection<GameRule> getGameRules();
+    Map<String, String> getGameRules();
 
 }
