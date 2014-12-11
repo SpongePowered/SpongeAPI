@@ -29,6 +29,9 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.ItemType;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
  */
@@ -57,4 +60,12 @@ public interface GameRegistry {
      * @return The id or null if none found
      */
     Optional<String> getId(Object obj);
+
+    /**
+     * Gets a {@link Collection} of the default GameRules.
+     *
+     * @return The default GameRules.
+     */
+    Collection<String> getDefaultGameRules();
+
 }

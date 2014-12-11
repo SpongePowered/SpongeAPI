@@ -28,7 +28,7 @@ package org.spongepowered.api.world.gamerule;
 import java.util.List;
 
 /**
- * An enumeration of all possible {@link GameRule} names in vanilla minecraft.
+ * An enumeration of all possible GameRule names in vanilla minecraft.
  */
 public class DefaultGameRules {
 
@@ -47,9 +47,5 @@ public class DefaultGameRules {
     public static final String REDUCED_DEBUG_INFO = "reducedDebugInfo";
     public static final String SEND_COMMAND_FEEDBACK = "sendCommandFeedback";
     public static final String SHOW_DEATH_MESSAGES = "showDeathMessages";
-
-    public static List<String> getValues() {
-        return null;
-    }
 
 }
