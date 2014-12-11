@@ -24,27 +24,26 @@
  */
 package org.spongepowered.api.text.format;
 
-import com.google.common.base.Optional;
-
 /**
- * A FormattingCode is something that has a formatting code in Minecraft. This
- * means either text styles(bold, italics, etc.) or colors(red, green, etc.).
+ * Represents a text formatting with a deprecated legacy code.
  */
-public interface FormattingCode {
+@Deprecated
+public interface LegacyFormatting {
 
     /**
-     * Returns the corresponding Minecraft name for this FormattingCode.
+     * Returns the corresponding Minecraft name for this
+     * {@link LegacyFormatting}.
      *
      * @return a String of the Minecraft name
      */
     String getName();
 
     /**
-     * Gets the corresponding Minecraft formatting code if available.
+     * Gets the corresponding Minecraft formatting code.
      *
-     * @return a char of the Minecraft formatting code
+     * @return The Minecraft formatting code of this format
      */
     @Deprecated
-    Optional<Character> getCode();
+    char getCode();
 
 }

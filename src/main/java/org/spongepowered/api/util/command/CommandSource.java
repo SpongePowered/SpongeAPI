@@ -49,7 +49,7 @@ public interface CommandSource {
      *
      * @param messages The message(s)
      */
-    void sendMessage(Message<?>... messages);
+    void sendMessage(Message... messages);
 
     /**
      * Sends the formatted text message(s) to source when possible. If text formatting
@@ -57,6 +57,6 @@ public interface CommandSource {
      *
      * @param messages The messages
      */
-    void sendMessage(Iterable<Message<?>> messages);
+    void sendMessage(Iterable<Message> messages);
 
 }

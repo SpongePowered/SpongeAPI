@@ -25,15 +25,14 @@
 package org.spongepowered.api.text.translation;
 
 /**
- * A Translatable represents a game object that has a corresponding translation
- * ID. This includes item types, for instance.
+ * Represents a game object with a corresponding translation.
  */
 public interface Translatable {
 
     /**
-     * Returns the Translation that corresponds to this translatable.
+     * Returns the Translation that corresponds to this {@link Translatable}.
      *
-     * @return A Translation
+     * @return The translation of this object
      */
     Translation getTranslation();
 

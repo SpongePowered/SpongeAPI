@@ -77,10 +77,10 @@ interface TextActionFactory {
      * {@link org.spongepowered.api.text.action.HoverAction.ShowText} instance
      * that will show text when it is hovered.
      *
-     * @param text The message to show
+     * @param message The message to show
      * @return The created hover action instance
      */
-    HoverAction.ShowText createShowText(Message<?> text);
+    HoverAction.ShowText createShowText(Message message);
 
     /**
      * Creates a new {@link HoverAction.ShowItem} instance that will show

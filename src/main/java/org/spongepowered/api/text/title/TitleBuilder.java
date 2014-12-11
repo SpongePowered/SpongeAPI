@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text.title;
 
-import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
 
 /**
@@ -36,10 +35,10 @@ public interface TitleBuilder {
     /**
      * Set the title to send to the player.
      *
-     * @param message The message to use as the title
+     * @param message The text to use as the title
      * @return This title builder
      */
-    TitleBuilder title(Message<?> message);
+    TitleBuilder title(Message message);
 
     /**
      * Set the subtitle to send to the player.
@@ -47,7 +46,7 @@ public interface TitleBuilder {
      * @param message The text to use as the subtitle
      * @return This title builder
      */
-    TitleBuilder subtitle(Message<?> message);
+    TitleBuilder subtitle(Message message);
 
     /**
      * Set the duration in ticks of the fade in effect of the title. Once this

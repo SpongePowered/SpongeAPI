@@ -25,11 +25,7 @@
 package org.spongepowered.api.text.action;
 
 /**
- * A ShiftClickAction is a TextAction that responds to shift-clicks. Currently
- * the only value is InsertText, which maps to the insertion field in Message
- * JSON. This is because of the way that there is no actual shiftClickEvent
- * field in the raw message JSON. Possibly more shift click actions will be
- * added to the client in the future.
+ * Represents a {@link TextAction} that responds to shift-clicks.
  *
  * @param <R> the type of the result of the action
  */

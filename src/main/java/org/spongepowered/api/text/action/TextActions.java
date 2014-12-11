@@ -88,11 +88,11 @@ public final class TextActions {
      * Creates a new {@link HoverAction} that will show a text on the client
      * when it is hovered.
      *
-     * @param text The text to display
+     * @param message The text to display
      * @return The created hover action instance
      */
-    public static HoverAction.ShowText showText(Message<?> text) {
-        return factory.createShowText(text);
+    public static HoverAction.ShowText showText(Message message) {
+        return factory.createShowText(message);
     }
 
     /**

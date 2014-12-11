@@ -45,14 +45,14 @@ public interface Title {
      *
      * @return The {@link Message} of the title, if it was configured
      */
-    Optional<Message<?>> getTitle();
+    Optional<Message> getTitle();
 
     /**
      * Returns the subtitle of this title configuration.
      *
      * @return The {@link Message} of the subtitle, if it was configured
      */
-    Optional<Message<?>> getSubtitle();
+    Optional<Message> getSubtitle();
 
     /**
      * Returns the specified time to fade in the title on the client. Once this

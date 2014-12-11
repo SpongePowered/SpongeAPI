@@ -29,8 +29,8 @@ import com.google.common.base.Optional;
 import java.util.List;
 
 /**
- * ChatTypes is a list of the default chat positions that are available in
- * Minecraft. The values are filled in by mixins in Sponge at runtime.
+ * ChatTypes is a list of the default chat types that are available in Vanilla
+ * Minecraft.
  */
 public final class ChatTypes {
 

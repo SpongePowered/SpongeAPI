@@ -29,7 +29,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.message.Message;
 
 /**
- * A HoverAction is a TextAction that responds to hovers.
+ * Represents a {@link TextAction} that responds to hovers.
  *
  * @param <R> the type of the result of the action
  */
@@ -38,12 +38,12 @@ public interface HoverAction<R> extends TextAction<R> {
     /**
      * Shows some text.
      */
-    interface ShowText extends HoverAction<Message<?>> {
+    interface ShowText extends HoverAction<Message> {
 
     }
 
     /**
-     * Shows an item and its information.
+     * Shows information about an item.
      */
     interface ShowItem extends HoverAction<ItemStack> {
 
@@ -52,14 +52,14 @@ public interface HoverAction<R> extends TextAction<R> {
     // TODO replace with achievement
 
     /**
-     * Shows an achievement and its information.
+     * Shows information about an achievement.
      */
     interface ShowAchievement extends HoverAction<Object> {
 
     }
 
     /**
-     * Shows an entity and its information.
+     * Shows information about an entity.
      */
     interface ShowEntity extends HoverAction<Entity> {
 

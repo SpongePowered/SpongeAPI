@@ -33,38 +33,60 @@ import org.spongepowered.api.text.translation.Translation;
 interface MessageFactory {
 
     /**
-     * Creates a new {@link MessageBuilder}.
+     * Creates a {@link MessageBuilder} with empty text.
+     *
+     * @return A new message builder with empty text
+     */
+    MessageBuilder<?> createEmptyBuilder();
+
+    /**
+     * Creates a {@link MessageBuilder.Text} with the specified text.
+     *
+     * @param text The text for the message
+     * @return A new message builder with the specified text
+     * @see Message.Text
+     */
+    MessageBuilder.Text createTextBuilder(String text);
+
+    /**
+     * Creates a {@link MessageBuilder.Translatable} with the specified
+     * translation and arguments.
+     *
+     * @param translation The translation to use for the message
+     * @param args The arguments for the translation, can be empty
+     * @return A new message builder with the specified translation and
+     *         arguments
+     * @see Message.Translatable
+     */
+    MessageBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
+
+    /**
+     * Creates a new {@link MessageBuilder.Selector} with the specified
+     * selector.
+     *
+     * @param selector The selector for the message
+     * @return A new message builder with the specified selector
+     * @see Message.Selector
+     */
+    MessageBuilder.Selector createSelectorBuilder(String selector);
+
+    /**
+     * Creates a new {@link MessageBuilder.Score} with the specified score.
+     *
+     * @param score The score for the message
+     * @return A new message builder with the specified score
+     * @see Message.Score
+     */
+    MessageBuilder.Score createScoreBuilder(Object score); // TODO
+
+    /**
+     * Creates a {@link Message} with the specified plain text. The created
+     * message won't have any formatting or events configured.
      *
      * @param content The content of the Message
-     * @param <T> The type parameter of the Message
-     * @return A new MessageBuilder
-     *
-     * @throws UnsupportedOperationException If the specified content type is
-     *             not supported by this server
+     * @return The created {@link Message}
      */
-    <T> MessageBuilder<T> createBuilder(T content);
-
-    /**
-     * Creates a new {@link MessageBuilder} that builds {@link Translation}
-     * messages.
-     *
-     * @param translation The translation of the Message
-     * @param args The arguments to the translation
-     * @return A new MessageBuilder
-     */
-    MessageBuilder<Translation> createTranslationBuilder(Translation translation, Object[] args);
-
-    // TODO: Score API
-
-    /**
-     * Creates a new {@link MessageBuilder} that builds {@link Message.Score}
-     * messages.
-     *
-     * @param score The score of the Message
-     * @param override The override of the score
-     * @return A
-     */
-    MessageBuilder<Object> createScoreBuilder(Object score, String override);
+    Message.Text createPlain(String text);
 
     /**
      * Returns the default legacy formatting character.
@@ -76,30 +98,30 @@ interface MessageFactory {
     /**
      * Creates a Message from a legacy string, given a color character.
      *
-     * @param message The message to be converted as a String
+     * @param text The text to be converted as a String
      * @param color The color character to be replaced
      * @return The converted Message
      */
-    Message.Text parseLegacyMessage(String message, char color);
+    Message.Text parseLegacyMessage(String text, char color);
 
     /**
      * Removes the legacy formatting character from a legacy string.
      *
-     * @param message The legacy message as a String
+     * @param text The legacy text as a String
      * @param color The color character to be replaced
-     * @return The stripped message
+     * @return The stripped text
      */
-    String stripLegacyCodes(String message, char color);
+    String stripLegacyCodes(String text, char color);
 
     /**
      * Replaces the given formatting character with another given formatting
      * character from a legacy string.
      *
-     * @param message The legacy message as a String
+     * @param text The legacy text as a String
      * @param from The color character to be replaced
      * @param to The color character to replace with
-     * @return The replaced message
+     * @return The replaced text
      */
-    String replaceLegacyCodes(String message, char from, char to);
+    String replaceLegacyCodes(String text, char from, char to);
 
 }

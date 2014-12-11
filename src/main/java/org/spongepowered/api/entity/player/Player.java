@@ -27,8 +27,8 @@ package org.spongepowered.api.entity.player;
 
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
@@ -51,7 +51,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * 
      * @return The player's display name
      */
-    Message<?> getDisplayName();
+    Message getDisplayName();
 
     /**
      * Returns whether the {@link Player} can fly via the fly key.
@@ -90,7 +90,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Message<?>... messages);
+    void sendMessage(ChatType type, Message... messages);
 
     /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
@@ -98,7 +98,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Iterable<Message<?>> messages);
+    void sendMessage(ChatType type, Iterable<Message> messages);
 
     /**
      * Sends a {@link Title} to this player.

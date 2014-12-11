@@ -27,7 +27,7 @@ package org.spongepowered.api.text.action;
 import java.net.URL;
 
 /**
- * A ClickAction is a TextAction that responds to clicks.
+ * Represents a {@link TextAction} that responds to clicks.
  *
  * @param <R> the type of the result of the action
  */

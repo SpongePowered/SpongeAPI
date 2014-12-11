@@ -24,38 +24,35 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.text.message.Message;
+
 import java.awt.Color;
 
 /**
- * A TextColor represents a color that a
- * {@link org.spongepowered.api.text.message.Message} has. A list of the base
- * text colors provided in Minecraft is provided in
- * {@link org.spongepowered.api.text.format.TextColors}.
+ * Represents the color of the text of a {@link Message}.
+ *
+ * @see TextColors
  */
 public interface TextColor {
 
     /**
-     * Returns the corresponding {@link java.awt.Color} for this TextColor.
+     * Returns the corresponding {@link Color} for this {@link TextColor}.
      *
-     * @return A Color
+     * @return The RGB color of this text color
      */
     Color getColor();
 
     /**
-     * Returns whether this color is the reset color.
+     * Returns whether this color resets the color to the default one.
      *
-     * @return A boolean for if this color is the reset color
+     * @return True if this color is the reset color
      */
     boolean isReset();
 
     /**
-     * A Base text color is one that is represented in Minecraft. There are
-     * several Base colors provided in Minecraft which are specified in
-     * {@link org.spongepowered.api.text.format.TextColors}. Base extends
-     * FormattingCode because it does have a corresponding formatting code; it
-     * is a single, pure text color.
+     * Represents a {@link TextColor} with {@link LegacyFormatting}.
      */
-    interface Base extends FormattingCode, TextColor {
+    interface Base extends TextColor, LegacyFormatting {
 
     }
 
