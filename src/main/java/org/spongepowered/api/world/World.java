@@ -104,13 +104,12 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Optional<Entity> getEntityFromUUID(UUID uuid);
 
     /**
-     * Gets the specified GameRule value. If one with this name
-     * does not exist, it will be created.
+     * Gets the specified GameRule value.
      **
      * @param gameRule The name of the GameRule.
-     * @return The GameRule value.
+     * @return The GameRule value, if it exists.
      */
-    String getGameRule(String gameRule);
+    Optional<String> getGameRule(String gameRule);
 
     /**
      * Sets the specified GameRule value. If one with this name
