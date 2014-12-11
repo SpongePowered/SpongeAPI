@@ -47,10 +47,4 @@ public interface GameRuleChangeEvent extends WorldEvent, Cancellable {
      */
     GameRule getOldState();
 
-    /**
-     * Gets the name of the changed {@link GameRule}.
-     *
-     * @return The name of the {@link GameRule}.
-     */
-    String getName();
 }
