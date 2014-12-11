@@ -30,8 +30,11 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -107,4 +110,28 @@ public interface World extends Extent, Viewer, WeatherVolume {
      */
     WorldBorder getWorldBorder();
 
+    /**
+     * Gets the specified GameRule value.
+     **
+     * @param gameRule The name of the GameRule.
+     * @return The GameRule value, if it exists.
+     */
+    Optional<String> getGameRule(String gameRule);
+
+    /**
+     * Sets the specified GameRule value. If one with this name
+     * does not exist, it will be created.
+     *
+     * @param gameRule The name of the GameRule.
+     * @param value The value to set the GameRule to.
+     */
+    void setGameRule(String gameRule, String value);
+
+    /**
+     * Gets a {@link Map} of all GameRules with values in this world.
+     **
+     * @return A collection of GameRules.
+     */
+    Map<String, String> getGameRules();
+    
 }

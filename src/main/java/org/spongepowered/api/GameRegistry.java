@@ -48,6 +48,9 @@ import org.spongepowered.api.world.biome.BiomeType;
 
 import java.util.List;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
  *
@@ -324,4 +327,11 @@ public interface GameRegistry {
      */
     // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
     List<PotionEffectType> getPotionEffects();
+
+    /**
+     * Gets a {@link Collection} of the default GameRules.
+     *
+     * @return The default GameRules.
+     */
+    Collection<String> getDefaultGameRules();
 }
