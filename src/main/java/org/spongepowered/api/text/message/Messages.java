@@ -42,7 +42,7 @@ public final class Messages {
      *
      * @return A new message builder with empty text
      */
-    public static MessageBuilder<?> builder() {
+    public static MessageBuilder builder() {
         return factory.createEmptyBuilder();
     }
 

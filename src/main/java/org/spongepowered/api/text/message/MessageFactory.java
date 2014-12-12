@@ -37,7 +37,7 @@ interface MessageFactory {
      *
      * @return A new message builder with empty text
      */
-    MessageBuilder<?> createEmptyBuilder();
+    MessageBuilder createEmptyBuilder();
 
     /**
      * Creates a {@link MessageBuilder.Text} with the specified text.

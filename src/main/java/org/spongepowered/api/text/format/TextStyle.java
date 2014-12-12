@@ -222,7 +222,7 @@ public class TextStyle {
      * Minecraft base types. Base extends FormattingCode because it does have a
      * corresponding formatting code; it is a single, pure text style.
      */
-    public static class Base extends TextStyle implements FormattingCode {
+    public static class Base extends TextStyle implements BaseFormatting {
 
         /**
          * The name of this Base TextStyle.

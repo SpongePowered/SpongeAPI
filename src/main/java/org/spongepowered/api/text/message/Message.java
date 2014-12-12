@@ -119,7 +119,7 @@ public interface Message extends Iterable<Message> {
      *
      * @return A new message builder with the content of this message
      */
-    MessageBuilder<?> builder();
+    MessageBuilder builder();
 
     /**
      * Represents a {@link Message} containing a plain text {@link String}.

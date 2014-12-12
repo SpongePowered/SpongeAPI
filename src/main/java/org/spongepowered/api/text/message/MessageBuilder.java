@@ -35,18 +35,8 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a builder interface to create immutable {@link Message} instances.
- *
- * @param <T> The type of the message to be built
  */
-public interface MessageBuilder<T extends Message> {
-
-    /**
-     * Sets the content of this message.
-     *
-     * @param content The content of this message
-     * @return This message builder
-     */
-    MessageBuilder<T> content(Object content);
+public interface MessageBuilder {
 
     /**
      * Appends the specified {@link Message Messages} to the end of this
@@ -55,7 +45,7 @@ public interface MessageBuilder<T extends Message> {
      * @param children The messages to append
      * @return This message builder
      */
-    MessageBuilder<T> append(Message... children);
+    MessageBuilder append(Message... children);
 
     /**
      * Appends the specified {@link Message Messages} to the end of this
@@ -64,7 +54,7 @@ public interface MessageBuilder<T extends Message> {
      * @param children The messages to append
      * @return This message builder
      */
-    MessageBuilder<T> append(Iterable<Message> children);
+    MessageBuilder append(Iterable<Message> children);
 
     /**
      * Sets the {@link TextColor} of this message.
@@ -72,7 +62,7 @@ public interface MessageBuilder<T extends Message> {
      * @param color The new text color for this message
      * @return This message builder
      */
-    MessageBuilder<T> color(@Nullable TextColor color);
+    MessageBuilder color(@Nullable TextColor color);
 
     /**
      * Sets the text styles of this message. This will construct a composite
@@ -82,7 +72,7 @@ public interface MessageBuilder<T extends Message> {
      * @param styles The text styles to apply
      * @return This message builder
      */
-    MessageBuilder<T> style(TextStyle... styles);
+    MessageBuilder style(TextStyle... styles);
 
     /**
      * Sets the {@link ClickAction} that will be executed if this message is
@@ -91,7 +81,7 @@ public interface MessageBuilder<T extends Message> {
      * @param action The new click action for this message
      * @return This message builder
      */
-    MessageBuilder<T> onClick(@Nullable ClickAction<?> action);
+    MessageBuilder onClick(@Nullable ClickAction<?> action);
 
     /**
      * Sets the {@link HoverAction} that will be executed if this message is
@@ -100,7 +90,7 @@ public interface MessageBuilder<T extends Message> {
      * @param action The new hover action for this message
      * @return This message builder
      */
-    MessageBuilder<T> onHover(@Nullable HoverAction<?> action);
+    MessageBuilder onHover(@Nullable HoverAction<?> action);
 
     /**
      * Sets the {@link ShiftClickAction} that will be executed if this message
@@ -109,7 +99,7 @@ public interface MessageBuilder<T extends Message> {
      * @param action The new shift click action for this message
      * @return This message builder
      */
-    MessageBuilder<T> onShiftClick(@Nullable ShiftClickAction<?> action);
+    MessageBuilder onShiftClick(@Nullable ShiftClickAction<?> action);
 
     /**
      * Builds an immutable instance of the current state of this message
@@ -118,13 +108,13 @@ public interface MessageBuilder<T extends Message> {
      * @return An immutable {@link Message} with the current properties of this
      *         builder
      */
-    T build();
+    Message build();
 
     /**
      * Represents a {@link MessageBuilder} creating immutable
      * {@link Message.Text} instances.
      */
-    interface Text extends MessageBuilder<Message.Text> {
+    interface Text extends MessageBuilder {
 
         /**
          * Sets the text of this message.
@@ -155,13 +145,15 @@ public interface MessageBuilder<T extends Message> {
         @Override
         Text onShiftClick(@Nullable ShiftClickAction<?> action);
 
+        @Override
+        Message.Text build();
     }
 
     /**
      * Represents a {@link MessageBuilder} creating immutable
      * {@link Message.Translatable} instances.
      */
-    interface Translatable extends MessageBuilder<Message.Translatable> {
+    interface Translatable extends MessageBuilder {
 
         /**
          * Sets the translation of this message.
@@ -202,13 +194,15 @@ public interface MessageBuilder<T extends Message> {
         @Override
         Translatable onShiftClick(@Nullable ShiftClickAction<?> action);
 
+        @Override
+        Message.Translatable build();
     }
 
     /**
      * Represents a {@link MessageBuilder} creating immutable
      * {@link Message.Selector} instances.
      */
-    interface Selector extends MessageBuilder<Message.Selector> {
+    interface Selector extends MessageBuilder {
 
         /**
          * Sets the selector of this message.
@@ -239,13 +233,15 @@ public interface MessageBuilder<T extends Message> {
         @Override
         Selector onShiftClick(@Nullable ShiftClickAction<?> action);
 
+        @Override
+        Message.Selector build();
     }
 
     /**
      * Represents a {@link MessageBuilder} creating immutable
      * {@link Message.Score} instances.
      */
-    interface Score extends MessageBuilder<Message.Score> {
+    interface Score extends MessageBuilder {
 
         /**
          * Sets the score of this message.
@@ -284,6 +280,8 @@ public interface MessageBuilder<T extends Message> {
         @Override
         Score onShiftClick(@Nullable ShiftClickAction<?> action);
 
+        @Override
+        Message.Score build();
     }
 
 }
