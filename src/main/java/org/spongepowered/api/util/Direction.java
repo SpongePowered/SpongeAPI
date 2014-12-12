@@ -74,7 +74,7 @@ public enum Direction {
     private Direction opposite;
 
     private Direction(Vector3d vector3d, int flags) {
-        if(vector3d.length() == 0) {
+        if (vector3d.length() == 0) {
             // Prevent normalization of the zero direction
             this.direction = vector3d;
         } else {

@@ -33,7 +33,7 @@ public final class BiomeTypes {
     private BiomeTypes() {
     }
 
-	// Standard Biomes
+    // Standard Biomes
     public static final BiomeType OCEAN = null;
     public static final BiomeType PLAINS = null;
     public static final BiomeType DESERT = null;
@@ -75,7 +75,7 @@ public final class BiomeTypes {
     public static final BiomeType MESA_PLATEAU_FOREST = null;
     public static final BiomeType MESA_PLATEAU = null;
 
-	// Mutated Biomes
+    // Mutated Biomes
     public static final BiomeType SUNFLOWER_PLAINS = null;
     public static final BiomeType DESERT_MOUNTAINS = null;
     public static final BiomeType FLOWER_FOREST = null;
