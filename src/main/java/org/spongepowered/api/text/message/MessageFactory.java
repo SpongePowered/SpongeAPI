@@ -83,7 +83,7 @@ interface MessageFactory {
      * Creates a {@link Message} with the specified plain text. The created
      * message won't have any formatting or events configured.
      *
-     * @param content The content of the Message
+     * @param text The content of the Message
      * @return The created {@link Message}
      */
     Message.Text createPlain(String text);

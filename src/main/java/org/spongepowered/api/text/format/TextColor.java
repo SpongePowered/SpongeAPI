@@ -50,9 +50,13 @@ public interface TextColor {
     boolean isReset();
 
     /**
-     * Represents a {@link TextColor} with {@link LegacyFormatting}.
+     * A Base text color is one that is represented in Minecraft. There are
+     * several Base colors provided in Minecraft which are specified in
+     * {@link TextColors}. Base extends
+     * FormattingCode because it does have a corresponding formatting code; it
+     * is a single, pure text color.
      */
-    interface Base extends TextColor, LegacyFormatting {
+    interface Base extends TextColor, FormattingCode {
 
     }
 

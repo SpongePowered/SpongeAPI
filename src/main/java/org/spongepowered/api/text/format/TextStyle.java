@@ -97,9 +97,13 @@ public interface TextStyle {
     TextStyle andNot(TextStyle... styles);
 
     /**
-     * Represent a {@link TextStyle} with {@link LegacyFormatting}.
+     * A Base text style is a text style that is represented in Minecraft. There
+     * are several Base styles specified in
+     * {@link TextStyles} which are the
+     * Minecraft base types. Base extends FormattingCode because it does have a
+     * corresponding formatting code; it is a single, pure text style.
      */
-    interface Base extends TextStyle, LegacyFormatting {
+    interface Base extends TextStyle, FormattingCode {
 
     }
 
