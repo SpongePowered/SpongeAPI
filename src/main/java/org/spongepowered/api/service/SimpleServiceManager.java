@@ -39,7 +39,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class SimpleServiceManager implements ServiceManager {
 
     private final ConcurrentMap<Class<?>, Provider> providers =
-            new MapMaker().weakKeys().weakValues().concurrencyLevel(3).makeMap();
+            new MapMaker().concurrencyLevel(3).makeMap();
     private final PluginManager pluginManager;
 
     @Inject
