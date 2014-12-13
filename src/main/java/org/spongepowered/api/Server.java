@@ -25,13 +25,19 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.chunk.ChunkDecorator;
+import org.spongepowered.api.world.chunk.ChunkGenerator;
+import org.spongepowered.api.world.chunk.ChunkPopulator;
 
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a typical Minecraft Server.
@@ -94,6 +100,22 @@ public interface Server {
      * @return The world or Optional.absent() if not found
      */
     Optional<World> getWorld(String worldName);
+
+    /**
+     * Creates or loads a world with the given name using the given chunk
+     * generators.
+     * 
+     * @param name The name of the world to generate
+     * @param generator The generator to generate new chunks.
+     * @param populatorm The populator to use. Can be null if no populator
+     *            should be used.
+     * @param decorator The decorator to use. Can be null if no decorator should
+     *            be used.
+     * @return The created or loaded world
+     * @throws IllegalStateException If the world is already loaded or something
+     *             went wrong during the creation process.
+     */
+    World createOrLoadWorld(String name, ChunkGenerator generator, @Nullable ChunkPopulator populatorm, @Nullable ChunkDecorator decorator) throws IllegalStateException;
 
     /**
      * Gets the time, in ticks, since this server began running for the current session.

@@ -23,52 +23,69 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.extent.Extent;
+package org.spongepowered.api.world.chunk;
 
 /**
- * A chunk is a specific grid-aligned partition of a {@link Extent}.
- *
- * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
- * of each chunk varies between worlds.</p>
+ * Represents the generation state of a chunk.
  */
-public interface Chunk extends Extent {
+public enum ChunkState {
 
     /**
-     * Get the position of the chunk.
-     *
-     * <p>The returned position is 3-dimensional with the Y-coordinate set to
-     * be the base (lowest) Y-position of the chunk. As 3-dimensional chunks
-     * do not yet exist in Minecraft, the returned position will always have
-     * a {@code y} set to 0.</p>
-     *
-     * @return The position
+     * The chunk is not generated yet or no information are cached for the
+     * chunk.
      */
-    Vector3i getPosition();
+    NOTAVAILABLE,
+    /**
+     * The chunk is generated.
+     */
+    GENERATED,
+    /**
+     * The chunks is generated and populated,
+     */
+    POPULATED,
+    /**
+     * The chunks is fully generated,
+     */
+    DECORATED,
+    /**
+     * The chunks is fully generated and loaded,
+     */
+    LOADED;
 
     /**
-     * Gets whether or not this chunk is currently loaded.
+     * Gets whether the chunk is at least generated.
      *
-     * @return Whether or not this chunk is loaded
+     * @return Whether the chunk is generated
      */
-    boolean isLoaded();
+    public boolean isGenerated() {
+        return ordinal() >= GENERATED.ordinal();
+    }
 
     /**
-     * Loads this chunk, and generates if specified and required.
+     * Gets whether the chunk is at least populated.
      *
-     * @param generate Whether or not to generate the chunk
-     *                 if it does not yet exist
-     *
-     * @return If the chunk was successfully loaded
+     * @return Whether the chunk is populated
      */
-    boolean loadChunk(boolean generate);
+    public boolean isPopulated() {
+        return ordinal() >= POPULATED.ordinal();
+    }
 
     /**
-     * Unloads this chunk, if possible.
+     * Gets whether the chunk is at least decorated.
      *
-     * @return Whether or not the chunk unloaded
+     * @return Whether the chunk is decorated
      */
-    boolean unloadChunk();
+    public boolean isDecorated() {
+        return ordinal() >= DECORATED.ordinal();
+    }
+
+    /**
+     * Gets whether the chunk is loaded.
+     *
+     * @return Whether the chunk is loaded
+     */
+    public boolean isLoaded() {
+        return ordinal() >= LOADED.ordinal();
+    }
+
 }

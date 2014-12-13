@@ -23,13 +23,24 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.ChunkDecorator;
+
+import com.google.common.base.Optional;
 
 /**
- * Called when a {@link Chunk} is unloaded
+ * Called when a {@link Chunk} was (re)decorated.
  */
-public interface ChunkUnloadEvent extends ChunkEvent {
+public interface ChunkPostDecorateEvent extends ChunkEvent {
+
+    /**
+     * Gets the decorator that was used to decorate the chunk.
+     *
+     * @return The decorator that was used to decorate the chunk or
+     *         {@link Optional#absent()} if not available
+     */
+    Optional<ChunkDecorator> getDecorator();
 
 }

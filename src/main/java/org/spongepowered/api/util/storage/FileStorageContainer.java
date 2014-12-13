@@ -23,21 +23,38 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.util.storage;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.world.Chunk;
+import java.io.File;
 
 /**
- * Describes events which involve a {@link Chunk}
+ * Represents a {@link StorageContainer} that saves its data to a {@link File}.
+ * <p>
+ * <b>Warning: Additional care is needed if accessing the file</b>
+ * </p>
  */
-public interface ChunkEvent extends GameEvent {
+public interface FileStorageContainer extends StorageContainer {
 
     /**
-     * Gets the {@link Chunk} included in the event
+     * Gets the file connected to this {@link StorageContainer}.
      *
-     * @return Event {@link Chunk}
+     * @return The file connected to this storage container.
      */
-    Chunk getChunk();
+    File getFile();
+
+    public static final class SimpleFileStorageContainer implements FileStorageContainer {
+
+        private final File file;
+
+        public SimpleFileStorageContainer(final File file) {
+            this.file = file;
+        }
+
+        @Override
+        public File getFile() {
+            return file;
+        }
+
+    }
 
 }

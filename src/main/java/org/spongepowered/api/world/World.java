@@ -25,16 +25,21 @@
 
 package org.spongepowered.api.world;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.effect.Viewer;
-import org.spongepowered.api.entity.Entity;
-import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.world.extent.Extent;
-import org.spongepowered.api.world.weather.WeatherVolume;
-
-import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
+
+import org.spongepowered.api.effect.Viewer;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.filter.Filter;
+import org.spongepowered.api.util.storage.StorageContainer;
+import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.ChunkData;
+import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.region.Region;
+import org.spongepowered.api.world.weather.WeatherVolume;
+
+import com.flowpowered.math.vector.Vector2i;
+import com.google.common.base.Optional;
 
 /**
  * A loaded Minecraft world
@@ -60,31 +65,156 @@ public interface World extends Extent, Viewer, WeatherVolume {
     String getName();
 
     /**
+     * Gets the storage where all data belonging to this world are stored. May
+     * be a folder, database or anything else. In vanilla minecraft this is the
+     * world folder.
+     *
+     * @return The storage where all data belonging to this world are stored
+     */
+    StorageContainer getStorage();
+
+    /**
+     * Gets the storage where all region data belonging to this world are
+     * stored. May be a folder, database or anything else. In vanilla minecraft
+     * this is the world/region folder.
+     *
+     * @return The storage where all region data belonging to this world are
+     *         stored
+     */
+    Optional<StorageContainer> getRegionsStorage();
+
+    /**
+     * Gets the region that would contain the chunk at the given location.
+     *
+     * @param position The position of the chunk.
+     * @return The region that would contain the chunk.
+     */
+    Region getRegionForChunk(Vector2i position);
+
+    /**
+     * Gets an {@link Iterable} containing all regions in this world. Due to the
+     * asynchronous nature of this method newly generated or deleted regions may
+     * or may not be visible in the iterator, this only applies to regions that
+     * have not been iterated at that time.
+     * <p>
+     * <b>Warning: Long running process.</b> The process may have heavy impact
+     * on the IO and may wait for the main/world thread to process the request.
+     * </p>
+     *
+     * @return An iterable containing all existing regions
+     */
+    Iterable<Region> getExistingRegionsAsynchronously();
+
+    /**
+     * Gets all existing chunks within the given bounds. Due to the asynchronous
+     * nature of this method newly generated or deleted chunks may or may not be
+     * visible in the iterator, this only applies to chunks that have not been
+     * iterated at that time.
+     * <p>
+     * <b>Warning: Long running process.</b> The process may have heavy impact
+     * on the IO and may wait for the main/world thread to process the request.
+     * </p>
+     * If you don't need the actual blocks or entities in the chunk you should
+     * consider using
+     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i)}
+     * 
+     * @param min The minimum chunk position for the search
+     * @param max The maximum chunk position for the search
+     * @return An iterable containing all existing chunks within the given
+     *         bounds
+     */
+    Iterable<Chunk> getExistingChunksAsynchronously(Vector2i min, Vector2i max);
+
+    /**
+     * Gets all existing chunks within the given bounds matching the given
+     * filter. Due to the asynchronous nature of this method newly generated or
+     * deleted chunks may or may not be visible in the iterator, this only
+     * applies to chunks that have not been iterated at that time.
+     * <p>
+     * <b>Warning: Long running process.</b> The process may have heavy impact
+     * on the IO and may wait for the main/world thread to process the request.
+     * </p>
+     * If you don't need the actual blocks or entities in the chunk you should
+     * consider using
+     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i, Filter)}
+     * 
+     * @param min The minimum chunk position for the search
+     * @param max The maximum chunk position for the search
+     * @param filter The filter used to exclude a chunk from the search
+     * @return An iterable containing all existing chunks within the given
+     *         bounds matching the given filter
+     */
+    Iterable<Chunk> getExistingChunksAsynchronously(Vector2i min, Vector2i max, Filter<Vector2i> filter);
+
+    /**
+     * Gets all chunks within the given bounds. Due to the asynchronous nature
+     * of this method newly generated or deleted chunks may or may not be
+     * visible in the iterator, this only applies to chunks that have not been
+     * iterated at that time.
+     * <p>
+     * <b>Warning: Long running process.</b> The process may have heavy impact
+     * on the IO and may wait for the main/world thread to process the request.
+     * </p>
+     * 
+     * @param min The minimum chunk position for the search
+     * @param max The maximum chunk position for the search
+     * @return An iterable containing all existing chunk data within the given
+     *         bounds
+     */
+    Iterable<ChunkData> getChunkDataAsynchronously(Vector2i min, Vector2i max);
+
+    /**
+     * Gets all chunk data within the given bounds matching the given filter.
+     * Due to the asynchronous nature of this method newly generated or deleted
+     * chunks may or may not be visible in the iterator, this only applies to
+     * chunks that have not been iterated at that time.
+     * <p>
+     * <b>Warning: Long running process.</b> The process may have heavy impact
+     * on the IO and may wait for the main/world thread to process the request.
+     * </p>
+     * 
+     * @param min The minimum chunk position for the search
+     * @param max The maximum chunk position for the search
+     * @param filter The filter used to exclude a chunk from the search
+     * @return An iterable containing all existing chunk data within the given
+     *         bounds matching the given filter
+     */
+    Iterable<ChunkData> getChunkDataAsynchronously(Vector2i min, Vector2i max, Filter<Vector2i> filter);
+
+    /**
      * Get the loaded chunk at the given position.
      *
-     * <p>If the chunk has not been loaded at the given position, then
-     * {@code null} will be returned.</p>
-     *
-     * @param position The position
-     * @return The chunk, if available
+     * @param position The position in chunk coordinates
+     * @return The chunk at the given position or {@link Optional#absent()} if
+     *         not found
      */
     Optional<Chunk> getChunk(Vector2i position);
+
+    /**
+     * Get the chunk data for the chunk at the given position.
+     *
+     * @param position The position in chunk coordinates
+     * @return The chunk data for the chunk
+     */
+    ChunkData getChunkData(Vector2i position);
 
     /**
      * Get the chunk at the given position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
-     * @param position The position
-     * @param shouldGenerate True to generate a new chunk
-     * @return The loaded or generated chunk, if already generated
+     * @param position The position in chunk coordinates
+     * @param shouldGenerate True to generate a new chunk if it does not exist
+     *            yet
+     * @return The loaded or generated chunk at the given position or
+     *         {@link Optional#absent()} if not found and not generated
      */
     Optional<Chunk> loadChunk(Vector2i position, boolean shouldGenerate);
 
     /**
-     * Get the chunk at the given position if it exists, generating it
-     * if the chunk does not exist.
+     * Get the chunk at the given position if it exists, generating it if the
+     * chunk does not exist.
      *
-     * @param position The position
+     * @param position The position in chunk coordinates
      * @return The loaded or generated chunk
      */
     Chunk loadChunk(Vector2i position);
@@ -118,8 +248,8 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Optional<String> getGameRule(String gameRule);
 
     /**
-     * Sets the specified GameRule value. If one with this name
-     * does not exist, it will be created.
+     * Sets the specified GameRule value. If one with this name does not exist,
+     * it will be created.
      *
      * @param gameRule The name of the GameRule.
      * @param value The value to set the GameRule to.
@@ -132,5 +262,14 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return A collection of GameRules.
      */
     Map<String, String> getGameRules();
-    
+
+    /**
+     * Tries to safely unload the chunk at the given position if it is loaded
+     * and then delete it.
+     *
+     * @param position The position to delete the chunk.
+     * @return True, if the chunk has been deleted. False otherwise.
+     */
+    boolean deleteChunk(Vector2i position);
+
 }
