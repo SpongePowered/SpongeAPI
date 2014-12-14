@@ -28,6 +28,7 @@ package org.spongepowered.api.entity.player;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.service.permission.Subject;
 
 import java.util.Date;
 
@@ -35,7 +36,7 @@ import java.util.Date;
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
-public interface User extends Identifiable, ArmorEquipable {
+public interface User extends Identifiable, Subject, ArmorEquipable {
 
     /**
      * Gets the player's last known username.
@@ -93,13 +94,6 @@ public interface User extends Identifiable, ArmorEquipable {
      * @return True if the corresponding player is online
      */
     boolean isOnline();
-    
-    /**
-     * Checks if this player is server operator or not.
-     * 
-     * @return True if corresponding player is server operator
-     */
-    boolean isOp();
 
     /**
      * Gets the related online {@link Player} if the player is
