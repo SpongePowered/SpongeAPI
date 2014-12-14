@@ -68,5 +68,11 @@ public interface Subject {
      * @return True if permission is granted
      */
     boolean isPermitted(String permission);
-
+    
+    /**
+     * Checks if this subject is server operator or not.
+     * 
+     * @return True if corresponding subject is server operator
+     */
+    boolean isOp();
 }
