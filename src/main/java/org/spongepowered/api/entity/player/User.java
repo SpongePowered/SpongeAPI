@@ -93,6 +93,13 @@ public interface User extends Identifiable, ArmorEquipable {
      * @return True if the corresponding player is online
      */
     boolean isOnline();
+    
+    /**
+     * Checks if this player is server operator or not.
+     * 
+     * @return True if corresponding player is server operator
+     */
+    boolean isOp();
 
     /**
      * Gets the related online {@link Player} if the player is
