@@ -29,8 +29,6 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkPopulator;
 
-import com.google.common.base.Optional;
-
 /**
  * Called when a {@link Chunk} will be (re)populated.
  */
@@ -52,10 +50,9 @@ public interface ChunkPrePopulateEvent extends ChunkEvent {
     /**
      * Gets the populator that will be used to populate the chunk.
      *
-     * @return The populator that will be used to populate the chunk or
-     *         {@link Optional#absent()} if not available
+     * @return The populator that will be used to populate the chunk
      */
-    Optional<ChunkPopulator> getPopulator();
+    ChunkPopulator getPopulator();
 
     /**
      * Checks whether the given world supports custom {@link ChunkPopulator}s

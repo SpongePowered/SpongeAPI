@@ -29,8 +29,6 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkDecorator;
 
-import com.google.common.base.Optional;
-
 /**
  * Called when a {@link Chunk} will be (re)decorated.
  */
@@ -52,10 +50,9 @@ public interface ChunkPreDecorateEvent extends ChunkEvent {
     /**
      * Gets the decorator that will be used to decorate the chunk.
      *
-     * @return The decorator that will be used to decorate the chunk or
-     *         {@link Optional#absent()} if not available
+     * @return The decorator that will be used to decorate the chunk
      */
-    Optional<ChunkDecorator> getDecorator();
+    ChunkDecorator getDecorator();
 
     /**
      * Checks whether the given world supports custom {@link ChunkDecorator}s

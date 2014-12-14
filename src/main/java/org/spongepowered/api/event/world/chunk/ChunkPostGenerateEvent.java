@@ -28,8 +28,6 @@ package org.spongepowered.api.event.world.chunk;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkGenerator;
 
-import com.google.common.base.Optional;
-
 /**
  * Called when a {@link Chunk} was (re)generated.
  */
@@ -38,9 +36,8 @@ public interface ChunkPostGenerateEvent extends ChunkEvent {
     /**
      * Gets the generator that was used to generate the chunk.
      *
-     * @return The generator that was used to generate the chunk or
-     *         {@link Optional#absent()} if not available
+     * @return The generator that was used to generate the chunk
      */
-    Optional<ChunkGenerator> getGenerator();
+    ChunkGenerator getGenerator();
 
 }

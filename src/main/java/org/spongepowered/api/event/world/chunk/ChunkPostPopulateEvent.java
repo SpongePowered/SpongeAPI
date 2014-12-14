@@ -28,8 +28,6 @@ package org.spongepowered.api.event.world.chunk;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkPopulator;
 
-import com.google.common.base.Optional;
-
 /**
  * Called when a {@link Chunk} was (re)populated.
  */
@@ -38,9 +36,8 @@ public interface ChunkPostPopulateEvent extends ChunkEvent {
     /**
      * Gets the populator that was used to populate the chunk.
      *
-     * @return The populator that was used to populate the chunk or
-     *         {@link Optional#absent()} if not available
+     * @return The populator that was used to populate the chunk
      */
-    Optional<ChunkPopulator> getPopulator();
+    ChunkPopulator getPopulator();
 
 }

@@ -29,8 +29,6 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkGenerator;
 
-import com.google.common.base.Optional;
-
 /**
  * Called when a {@link Chunk} will be (re)generated.
  */
@@ -52,10 +50,9 @@ public interface ChunkPreGenerateEvent extends ChunkEvent {
     /**
      * Gets the generator that will be used to generate the chunk.
      *
-     * @return The generator that will be used to generate the chunk or
-     *         {@link Optional#absent()} if not available
+     * @return The generator that will be used to generate the chunk
      */
-    Optional<ChunkGenerator> getGenerator();
+    ChunkGenerator getGenerator();
 
     /**
      * Checks whether the given world supports custom {@link ChunkGenerator}s

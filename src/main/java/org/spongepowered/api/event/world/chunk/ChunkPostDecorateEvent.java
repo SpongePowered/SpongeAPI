@@ -28,8 +28,6 @@ package org.spongepowered.api.event.world.chunk;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkDecorator;
 
-import com.google.common.base.Optional;
-
 /**
  * Called when a {@link Chunk} was (re)decorated.
  */
@@ -38,9 +36,8 @@ public interface ChunkPostDecorateEvent extends ChunkEvent {
     /**
      * Gets the decorator that was used to decorate the chunk.
      *
-     * @return The decorator that was used to decorate the chunk or
-     *         {@link Optional#absent()} if not available
+     * @return The decorator that was used to decorate the chunk
      */
-    Optional<ChunkDecorator> getDecorator();
+    ChunkDecorator getDecorator();
 
 }
