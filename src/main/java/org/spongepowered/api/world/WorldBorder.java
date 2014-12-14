@@ -165,7 +165,7 @@ public interface WorldBorder {
      *
      * @param distance The distance, in blocks
      */
-    void getBlockBuffer(int distance);
+    void setBlockBuffer(int distance);
 
     /**
      * Get the damage done to a player per second when outside the buffer.
