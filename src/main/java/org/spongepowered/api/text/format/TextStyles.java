@@ -44,6 +44,10 @@ public final class TextStyles {
     public static final TextStyle.Base UNDERLINE = null;
     public static final TextStyle.Base ITALIC = null;
 
+    // NONE and IDENTITY represent the same thing, the "zero" text style.
+    public static final TextStyle NONE = new TextStyle();
+    public static final TextStyle IDENTITY = NONE;
+
     /**
      * Resets all currently applied text styles to their default values.
      */
