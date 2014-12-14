@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A TextStyle epresents an immutable text style of a {@link Message}.
+ * A TextStyle represents an immutable text style of a {@link Message}.
  * It is a utility that is not normally present in Minecraft.
  *
  * <p>
@@ -46,7 +46,8 @@ import java.util.Map;
  * corresponds to one of the base text styles(this is why they are called base,
  * for "basis vector"). Each dimension's value can be 1, 0, or -1, standing
  * for applied, unapplied, and negated, represented by the
- * {@link TextStyleMode} enum. A TextStyle is like a vector with each component
+ * {@link org.spongepowered.api.text.format.TextStyle.TextStyleComponent} enum.
+ * A TextStyle is like a vector with each component
  * corresponding to the value of the corresponding dimension, a Base TextStyle.
  * </p>
  *
@@ -71,14 +72,14 @@ public class TextStyle {
     /**
      * This map stores the text style's components.
      */
-    protected Map<Base, TextStyleMode> components;
+    protected Map<Base, TextStyleComponent> components;
 
     /**
      * Constructs a new TextStyle from the given components.
      *
      * @param components The components to build this TextStyle from as a basis
      */
-    public TextStyle(Map<Base, TextStyleMode> components) {
+    public TextStyle(Map<Base, TextStyleComponent> components) {
         this.components = ImmutableMap.copyOf(components);
     }
 
@@ -86,7 +87,7 @@ public class TextStyle {
      * Constructs an empty TextStyle.
      */
     public TextStyle() {
-        this(new ImmutableMap.Builder<Base, TextStyleMode>().build());
+        this(new ImmutableMap.Builder<Base, TextStyleComponent>().build());
     }
 
     /**
@@ -119,8 +120,8 @@ public class TextStyle {
      * @return True if the given text style is contained in this text style
      */
     public boolean is(TextStyle style) {
-        for (Map.Entry<Base, TextStyleMode> entry: style.components.entrySet()) {
-            if (applied(entry.getKey()).compareTo(TextStyleMode.APPLIED) < 1) {
+        for (Map.Entry<Base, TextStyleComponent> entry: style.components.entrySet()) {
+            if (applied(entry.getKey()).compareTo(TextStyleComponent.APPLIED) < 1) {
                 return false;
             }
         }
@@ -129,28 +130,28 @@ public class TextStyle {
 
     /**
      * Checks for how the given Base TextStyle is applied in this composite.
-     * Any Base TextStyle that is not defined in the component list is
-     * {@link TextStyleMode#UNAPPLIED}.
+     * Any Base TextStyle that is not defined in the component map is
+     * automatically {@link TextStyleComponent#UNAPPLIED}.
      *
      * <p>
      * As examples, <code>TextStyles.BOLD.applied(TextStyles.BOLD)</code>
-     * results in <code>TextStyleMode.APPLIED</code>,
+     * results in <code>TextStyleComponent.APPLIED</code>,
      * <code>TextStyles.ITALICS.applied(TextStyles.BOLD)</code> results in
-     * <code>TextStyleMode.UNAPPLIED</code>, and
+     * <code>TextStyleComponent.UNAPPLIED</code>, and
      * <code>TextStyles.BOLD.negate().applied(TextStyles.BOLD)</code> results
-     * in <code>TextStyleMode.NEGATE</code>
+     * in <code>TextStyleComponent.NEGATE</code>
      * </p>
      *
      * @param style The given Base TextStyle
-     * @return The TextStyleMode which represents the application of the given
+     * @return The TextStyleComponent which represents the application of the given
      *          base text style
-     * @see TextStyleMode
+     * @see org.spongepowered.api.text.format.TextStyle.TextStyleComponent
      */
-    public TextStyleMode applied(Base style) {
+    public TextStyleComponent applied(Base style) {
         if (components.containsKey(style)) {
             return components.get(style);
         } else {
-            return TextStyleMode.UNAPPLIED;
+            return TextStyleComponent.UNAPPLIED;
         }
     }
 
@@ -162,9 +163,9 @@ public class TextStyle {
      */
     public TextStyle negate() {
         // Do a negation of each component
-        ImmutableMap.Builder<Base, TextStyleMode> newComponents =
-                new ImmutableMap.Builder<Base, TextStyleMode>();
-        for (Map.Entry<Base, TextStyleMode> entry: components.entrySet()) {
+        ImmutableMap.Builder<Base, TextStyleComponent> newComponents =
+                new ImmutableMap.Builder<Base, TextStyleComponent>();
+        for (Map.Entry<Base, TextStyleComponent> entry: components.entrySet()) {
             newComponents.put(entry.getKey(), entry.getValue().negate());
         }
         return new TextStyle(newComponents.build());
@@ -178,19 +179,19 @@ public class TextStyle {
      */
     public TextStyle and(TextStyle... styles) {
         // We can't use a builder here because we have to remove values
-        Map<Base, TextStyleMode> newComponents =
-                new HashMap<Base, TextStyleMode>();
+        Map<Base, TextStyleComponent> newComponents =
+                new HashMap<Base, TextStyleComponent>();
         newComponents.putAll(components);
         for (TextStyle style: styles) {
-            for (Map.Entry<Base, TextStyleMode> entry: style.components.entrySet()) {
+            for (Map.Entry<Base, TextStyleComponent> entry: style.components.entrySet()) {
                 Base base = entry.getKey();
-                TextStyleMode mode = applied(base).add(entry.getValue());
-                if (mode.equals(TextStyleMode.UNAPPLIED)) {
-                    if(newComponents.containsKey(base)) {
+                TextStyleComponent component = applied(base).add(entry.getValue());
+                if (component.equals(TextStyleComponent.UNAPPLIED)) {
+                    if (newComponents.containsKey(base)) {
                         newComponents.remove(base);
                     }
                 } else {
-                    newComponents.put(base, mode);
+                    newComponents.put(base, component);
                 }
             }
         }
@@ -240,9 +241,9 @@ public class TextStyle {
          * @param code The char code behind this TextStyle
          */
         public Base(String name, char code) {
-            ImmutableMap.Builder<Base, TextStyleMode> builder =
-                    new ImmutableMap.Builder<Base, TextStyleMode>();
-            builder.put(this, TextStyleMode.APPLIED);
+            ImmutableMap.Builder<Base, TextStyleComponent> builder =
+                    new ImmutableMap.Builder<Base, TextStyleComponent>();
+            builder.put(this, TextStyleComponent.APPLIED);
             components = builder.build();
             this.name = name;
             this.code = code;
@@ -267,17 +268,17 @@ public class TextStyle {
     }
 
     /**
-     * TextStyleMode represents the state of a base TextStyle in a composite one.
+     * TextStyleComponent represents the state of a base TextStyle in a composite one.
      *
      * <p>Composite TextStyles are implemented as a map from base TextStyles
-     * (what they're composed of) to a TextStyleMode, which represents if the
+     * (what they're composed of) to a TextStyleComponent, which represents if the
      * base TextStyle in question is being applied.</p>
      *
-     * <p>Any given TextStyleMode behaves like a standard integer, meaning
+     * <p>Any given TextStyleComponent behaves like a standard integer, meaning
      * that it can be negated or added. This is the basis for the behavior
      * of TextStyle itself.</p>
      */
-    public static enum TextStyleMode implements Comparable<TextStyleMode> {
+    public static enum TextStyleComponent {
 
         /**
          * Represents a base TextStyle that is applied.
@@ -295,9 +296,9 @@ public class TextStyle {
         NEGATED(-1, Optional.of(false));
 
         /**
-         * A map to retrieve text style modes from their integer values.
+         * A map to retrieve text style components from their integer values.
          */
-        private static Map<Integer, TextStyleMode> fromInteger = new HashMap<Integer, TextStyleMode>();
+        private static Map<Integer, TextStyleComponent> fromInteger = new HashMap<Integer, TextStyleComponent>();
 
 
         // Add all values to the map
@@ -308,85 +309,89 @@ public class TextStyle {
         }
 
         /**
-         * The value of a mode as an integer.
+         * The value of a component as an integer.
          */
         private final int intValue;
 
         /**
-         * The value of the mode as an optional boolean.
+         * The value of the component as an optional boolean.
          */
         private final Optional<Boolean> boolValue;
 
         /**
-         * Constructs a mode.
+         * Constructs a component.
          *
-         * @param intValue The value of the mode as an int
-         * @param boolValue The value of the mode as a boolean optional
+         * @param intValue The value of the component as an int
+         * @param boolValue The value of the component as a boolean optional
          */
-        private TextStyleMode(int intValue, Optional<Boolean> boolValue) {
+        private TextStyleComponent(int intValue, Optional<Boolean> boolValue) {
             this.intValue = intValue;
             this.boolValue = boolValue;
         }
 
         /**
-         * Adds this TextStyleMode to the given one.
+         * Adds this TextStyleComponent to the given one.
          *
-         * @param that The given mode
-         * @return A new TextStyleMode
+         * @param that The given component
+         * @return A new TextStyleComponent
          */
-        public TextStyleMode add(TextStyleMode that) {
+        public TextStyleComponent add(TextStyleComponent that) {
             return valueOf(intValue + that.intValue);
         }
 
         /**
-         * Negates this TextStyleMode.
+         * Negates this TextStyleComponent.
          *
-         * @return The negated TextStyleMode
+         * @return The negated TextStyleComponent
          */
-        public TextStyleMode negate() {
+        public TextStyleComponent negate() {
             return valueOf(-intValue);
         }
 
         /**
-         * Compares two TextStyleModes for equality.
+         * Compares two TextStyleComponents for equality.
          *
-         * @param that The given TextStyleMode
-         * @return True if the two modes are equal, otherwise false
+         * @param that The given TextStyleComponent
+         * @return True if the two components are equal, otherwise false
          */
-        public boolean equals(TextStyleMode that) {
+        public boolean equals(TextStyleComponent that) {
             return that.intValue == this.intValue;
         }
 
         /**
-         * Converts this TextStyleMode to an integer.
+         * Converts this TextStyleComponent to an integer.
          *
-         * @return The integer form of this mode
+         * @return The integer form of this component
          */
         public int toInteger() {
             return intValue;
         }
 
         /**
-         * Converts this TextStyleMode to an optional boolean. If this
-         * mode's value is 0 then {@link Optional#absent()} is returned.
+         * Converts this TextStyleComponent to an optional boolean. If this
+         * component's value is 0 then {@link Optional#absent()} is returned.
          *
-         * @return This mode as a boolean or {@link Optional#absent()}
+         * @return This component as a boolean or {@link Optional#absent()}
          */
         public Optional<Boolean> toBoolean() {
             return boolValue;
         }
 
         /**
-         * Gets a TextStyleMode from an integer intValue, cutting off anything
+         * Gets a TextStyleComponent from an integer intValue, cutting off anything
          * not in the domain [-1, 1].
          *
-         * @param value The intValue of the mode as a string
-         * @return The TextStyleMode as a intValue
+         * @param value The intValue of the component as a string
+         * @return The TextStyleComponent as a intValue
          */
-        public static TextStyleMode valueOf(int value) {
-            if (value > 1) return fromInteger.get(1);
-            else if (value < -1) return fromInteger.get(-1);
-            else return fromInteger.get(value);
+        public static TextStyleComponent valueOf(int value) {
+            if (value > 1) {
+                return fromInteger.get(1);
+            } else if (value < -1) {
+                return fromInteger.get(-1);
+            } else {
+                return fromInteger.get(value);
+            }
         }
 
     }
