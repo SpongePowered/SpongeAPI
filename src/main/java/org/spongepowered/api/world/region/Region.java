@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.world.region;
 
-import org.spongepowered.api.util.filter.Filter;
 import org.spongepowered.api.util.storage.StorageContainer;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
@@ -33,6 +32,7 @@ import org.spongepowered.api.world.chunk.ChunkData;
 
 import com.flowpowered.math.vector.Vector2i;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 
 /**
  * Represents a chunk container also known as region.
@@ -65,7 +65,7 @@ public interface Region {
     /**
      * Gets the storage this region stores its data in. In vanilla minecraft
      * this is the region file.
-     * 
+     *
      * @return The storage this region stores its data in or
      *         {@link Optional#absent()} if it not available
      */
@@ -77,7 +77,7 @@ public interface Region {
      * <b>Warning: Long running process.</b> The process may have heavy impact
      * on the IO and may wait for the main/world thread to process the request.
      * </p>
-     * 
+     *
      * @return True, if the given region exists. False otherwise.
      */
     boolean exists();
@@ -113,7 +113,7 @@ public interface Region {
      * </p>
      * If you don't need the actual blocks or entities in the chunk you should
      * consider using
-     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i, Filter)}
+     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i, Predicate)}
      *
      * @param min The minimum chunk position for the search
      * @param max The maximum chunk position for the search
@@ -121,7 +121,7 @@ public interface Region {
      * @return An iterable containing all existing chunks within the given
      *         bounds matching the given filter
      */
-    Iterable<Chunk> getExistingChunksAsynchronously(Filter<Vector2i> filter);
+    Iterable<Chunk> getExistingChunksAsynchronously(Predicate<Vector2i> filter);
 
     /**
      * Gets all chunks within the given bounds. Due to the asynchronous nature
@@ -156,6 +156,6 @@ public interface Region {
      * @return An iterable containing all existing chunk data within the given
      *         bounds matching the given filter
      */
-    Iterable<ChunkData> getChunkDataAsynchronously(Filter<Vector2i> filter);
+    Iterable<ChunkData> getChunkDataAsynchronously(Predicate<Vector2i> filter);
 
 }

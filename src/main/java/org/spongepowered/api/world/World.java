@@ -30,7 +30,6 @@ import java.util.UUID;
 
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.filter.Filter;
 import org.spongepowered.api.util.storage.StorageContainer;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkData;
@@ -40,6 +39,7 @@ import org.spongepowered.api.world.weather.WeatherVolume;
 
 import com.flowpowered.math.vector.Vector2i;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 
 /**
  * A loaded Minecraft world
@@ -136,7 +136,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * </p>
      * If you don't need the actual blocks or entities in the chunk you should
      * consider using
-     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i, Filter)}
+     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i, Predicate)}
      * 
      * @param min The minimum chunk position for the search
      * @param max The maximum chunk position for the search
@@ -144,7 +144,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return An iterable containing all existing chunks within the given
      *         bounds matching the given filter
      */
-    Iterable<Chunk> getExistingChunksAsynchronously(Vector2i min, Vector2i max, Filter<Vector2i> filter);
+    Iterable<Chunk> getExistingChunksAsynchronously(Vector2i min, Vector2i max, Predicate<Vector2i> filter);
 
     /**
      * Gets all chunks within the given bounds. Due to the asynchronous nature
@@ -179,7 +179,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return An iterable containing all existing chunk data within the given
      *         bounds matching the given filter
      */
-    Iterable<ChunkData> getChunkDataAsynchronously(Vector2i min, Vector2i max, Filter<Vector2i> filter);
+    Iterable<ChunkData> getChunkDataAsynchronously(Vector2i min, Vector2i max, Predicate<Vector2i> filter);
 
     /**
      * Get the loaded chunk at the given position.
