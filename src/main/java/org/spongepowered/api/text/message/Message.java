@@ -54,7 +54,7 @@ import java.util.List;
  * @see Selector
  * @see Score
  */
-public interface Message extends Iterable<Message> {
+public interface Message {
 
     /**
      * Returns the content of this {@link Message}.
@@ -85,6 +85,14 @@ public interface Message extends Iterable<Message> {
      * @return The list of children
      */
     List<Message> getChildren();
+
+    /**
+     * Returns an {@link Iterable} over this message and all of its children. This is
+     * recursive, the children of the children will be also included.
+     *
+     * @return An iterable over this message and the children messages
+     */
+    Iterable<Message> withChildren();
 
     /**
      * Returns the {@link ClickAction} executed on the client when this
