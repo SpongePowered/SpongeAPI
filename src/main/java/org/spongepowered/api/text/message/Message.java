@@ -122,6 +122,25 @@ public interface Message extends Iterable<Message> {
     MessageBuilder builder();
 
     /**
+     * Returns a representation of this {@link Message} using the legacy color codes.
+     *
+     * @return This message converted to the old color codes
+     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     */
+    @Deprecated
+    String toLegacy();
+
+    /**
+     * Returns a representation of this {@link Message} using the legacy color codes.
+     *
+     * @param code The legacy char to use for the message
+     * @return This message converted to the old color codes
+     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     */
+    @Deprecated
+    String toLegacy(char code);
+
+    /**
      * Represents a {@link Message} containing a plain text {@link String}.
      */
     interface Text extends Message {
