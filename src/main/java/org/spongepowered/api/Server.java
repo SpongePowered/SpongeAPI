@@ -100,6 +100,19 @@ public interface Server {
     Optional<World> getWorld(String worldName);
 
     /**
+     * Loads a world with the given name using the given chunk
+     * generators.
+     * 
+     * @param name The name of the world to generate
+     * @param generator The generator to generate new chunks.
+     * @param populatorm The populator to use
+     * @param decorator The decorator to use
+     * @return The created or loaded world or Optional.absent() if not available
+     * @throws IllegalStateException If the world is already loaded
+     */
+    Optional<World> loadWorld(String name, ChunkGenerator generator, ChunkPopulator populator, ChunkDecorator decorator) throws IllegalStateException;
+
+    /**
      * Creates or loads a world with the given name using the given chunk
      * generators.
      * 
@@ -108,8 +121,7 @@ public interface Server {
      * @param populatorm The populator to use
      * @param decorator The decorator to use
      * @return The created or loaded world
-     * @throws IllegalStateException If the world is already loaded or something
-     *             went wrong during the creation process.
+     * @throws IllegalStateException If the world is already loaded
      */
     World createOrLoadWorld(String name, ChunkGenerator generator, ChunkPopulator populator, ChunkDecorator decorator) throws IllegalStateException;
 
