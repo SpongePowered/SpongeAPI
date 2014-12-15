@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.stats.achievement;
 
+import java.util.List;
+
 import com.google.common.base.Optional;
 
 /**
@@ -37,5 +39,12 @@ public interface Achievement {
      * @return The parent of this achievement
      */
     Optional<Achievement> getParent();
+
+    /**
+     * Returns the children of this achievement, if there are any.
+     *
+     * @return The children of this achievement
+     */
+    Optional<List<Achievement>> getChildren();
 
 }
