@@ -261,6 +261,7 @@ public class TextStyle {
         }
 
         @Override
+        @Deprecated
         public char getCode() {
             return code;
         }
