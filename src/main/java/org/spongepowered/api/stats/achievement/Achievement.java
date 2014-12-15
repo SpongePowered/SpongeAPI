@@ -26,6 +26,8 @@ package org.spongepowered.api.stats.achievement;
 
 import com.google.common.base.Optional;
 
+import java.util.List;
+
 /**
  * Represents an in-game achievement which may be earned by or given to players.
  */
@@ -37,5 +39,12 @@ public interface Achievement {
      * @return The parent of this achievement
      */
     Optional<Achievement> getParent();
+
+    /**
+     * Returns the children of this achievement.
+     *
+     * @return The children of this achievement
+     */
+    List<Achievement> getChildren();
 
 }
