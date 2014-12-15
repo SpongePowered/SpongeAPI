@@ -33,6 +33,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.storage.StorageContainer;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.ChunkData;
+import org.spongepowered.api.world.chunk.ChunkDecorator;
+import org.spongepowered.api.world.chunk.ChunkGenerator;
+import org.spongepowered.api.world.chunk.ChunkPopulator;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.region.Region;
 import org.spongepowered.api.world.weather.WeatherVolume;
@@ -63,6 +66,27 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @see #getUniqueID() A method to get a unique identifier
      */
     String getName();
+
+    /**
+     * Gets the chunk generator used to generate this world.
+     *
+     * @return The chunk generator used to generate this world
+     */
+    ChunkGenerator getChunkGenerator();
+
+    /**
+     * Gets the chunk populator used to populate this world.
+     *
+     * @return The chunk populator used to populate this world
+     */
+    ChunkPopulator getChunkPopulator();
+
+    /**
+     * Gets the chunk decorator used to decorate this world.
+     *
+     * @return The chunk decorator used to decorate this world
+     */
+    ChunkDecorator getChunkDecorator();
 
     /**
      * Gets the storage where all data belonging to this world are stored. May
