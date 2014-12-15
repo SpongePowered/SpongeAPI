@@ -41,10 +41,10 @@ public interface Achievement {
     Optional<Achievement> getParent();
 
     /**
-     * Returns the children of this achievement, if there are any.
+     * Returns the children of this achievement.
      *
      * @return The children of this achievement
      */
-    Optional<List<Achievement>> getChildren();
+    List<Achievement> getChildren();
 
 }
