@@ -74,7 +74,8 @@ public interface SymmetricSquareRegion extends Region {
     Vector2i getMaxChunkPosition();
 
     /**
-     * Gets the chunk's position matching to the given {@link AxisDirection}s.
+     * Gets the corner's chunk's position matching to the given
+     * {@link AxisDirection}s.
      *
      * <ul>
      * <li>{@link AxisDirection#MINUS} for the minimal chunk's position within
@@ -90,7 +91,7 @@ public interface SymmetricSquareRegion extends Region {
      * @param zDirection The direction for the given z-axis
      * @return The chunk's position matching the given specifications
      */
-    Vector2i getChunkPosition(AxisDirection xDirection, AxisDirection zDirection);
+    Vector2i getCornerChunkPosition(AxisDirection xDirection, AxisDirection zDirection);
 
     /**
      * Gets the minimal block's position located in this region.
@@ -107,7 +108,7 @@ public interface SymmetricSquareRegion extends Region {
     Vector3d getMaxBlockPosition();
 
     /**
-     * Gets the block's position matching to the given {@link AxisDirection}s.
+     * Gets the corner's position matching to the given {@link AxisDirection}s.
      *
      * <ul>
      * <li>{@link AxisDirection#MINUS} for the minimal block's position within
@@ -124,6 +125,6 @@ public interface SymmetricSquareRegion extends Region {
      * @param zDirection The direction for the given z-axis
      * @return The blocks's position matching the given specifications
      */
-    Vector3d getBlockPosition(AxisDirection xDirection, AxisDirection yDirection, AxisDirection zDirection);
+    Vector3d getCornerPosition(AxisDirection xDirection, AxisDirection yDirection, AxisDirection zDirection);
 
 }

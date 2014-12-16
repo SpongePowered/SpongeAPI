@@ -103,7 +103,7 @@ public interface ChunkData {
     Vector3d getMaxBlockPosition();
 
     /**
-     * Gets the block's position matching to the given {@link AxisDirection}s.
+     * Gets the corner's position matching to the given {@link AxisDirection}s.
      *
      * <ul>
      * <li>{@link AxisDirection#MINUS} for the minimal block's position within
@@ -120,7 +120,7 @@ public interface ChunkData {
      * @param zDirection The direction for the given z-axis
      * @return The blocks's position matching the given specifications
      */
-    Vector3d geBlockPosition(AxisDirection xDirection, AxisDirection yDirection, AxisDirection zDirection);
+    Vector3d getCornerPosition(AxisDirection xDirection, AxisDirection yDirection, AxisDirection zDirection);
 
     /**
      * Gets the chunk state for the chunk this chunk data belongs to.
