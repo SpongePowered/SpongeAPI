@@ -26,15 +26,13 @@
 package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.EulerDirection;
-import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3f;
+
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.Extent;
 
 import javax.annotation.Nullable;
 
@@ -57,71 +55,6 @@ import javax.annotation.Nullable;
 public interface Entity extends Identifiable, EntityState, DataHolder {
 
     /**
-     * Mark this entity for removal in the very near future, preferably
-     * within one game tick.
-     */
-    void remove();
-
-    /**
-     * Simulates the interaction with this object as if a player had done so.
-     *
-     * @param interactionType The type of interaction performed on this entity
-     */
-    void interact(EntityInteractionType interactionType);
-
-    /**
-     * Simulates the interaction with this object using the given item as if
-     * the player had done so.
-     *
-     * @param itemStack       The item
-     * @param interactionType The type of interaction performed on this entity
-     */
-    void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
-
-    /**
-     * Returns whether this entity is on the ground (not in the air) or not.
-     *
-     * @return Whether this entity is on the ground or not
-     */
-    boolean isOnGround();
-
-    /**
-     * Get the location of this entity.
-     *
-     * @return The location
-     */
-    Location getLocation();
-
-    /**
-     * Teleport the entity to a location.
-     *
-     * @param location The location
-     */
-    void teleport(Location location);
-
-    /**
-     * Teleport the entity to a location.
-     *
-     * @param extent The new extent
-     * @param position The new position
-     */
-    void teleport(Extent extent, Vector3d position);
-
-    /**
-     * Gets the position.
-     *
-     * @return The position
-     */
-    Vector3d getPosition();
-
-    /**
-     * Sets the position.
-     *
-     * @param position The position to set to
-     */
-    void setPosition(Vector3d position);
-
-    /**
      * Gets the current world this entity resides in.
      *
      * @return The current world this entity resides in
@@ -129,107 +62,90 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     World getWorld();
 
     /**
-     * Teleports this entity to the target position specified by the vector
-     * and, if available, the world.
+     * Get the location of this entity
      *
-     * @param position The position to teleport to
-     * @param world The world to teleport to, if available
+     * @return The location
      */
-    void teleport(Vector3d position, @Nullable World world);
+    Location getLocation();
 
     /**
-     * Teleports this entity to the target position specified by x, y, z,
-     * and world.
+     * Sets the location without vehicle if one exists.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
-     * @param world The world to teleport to, if available
+     * @param location The location to set
+     * @return <code>true</code> if the set was successful
      */
-    void teleport(double x, double y, double z, @Nullable World world);
+    boolean setLocation(Location location);
 
     /**
-     * Get the X component of this instance's position.
+     * Sets the location.
      *
-     * @return The x component
+     * @param location The location to set
+     * @param bringVehicle Whether the vehicle is moved with this entity
+     * @return <code>true</code> if the set was successful
      */
-    double getX();
+    boolean setLocation(Location location, boolean bringVehicle);
 
     /**
-     * Get the Y component of this instance's position.
+     * Sets the location.
      *
-     * @return The y component
+     * @param location The location to set
+     * @param bringVehicle Whether the vehicle is moved with this entity
+     * @param cause The cause that triggered this move
+     * @return <code>true</code> if the set was successful
      */
-    double getY();
+    boolean setLocation(Location location, boolean bringVehicle, Cause cause);
 
     /**
-     * Get the Z component of this instance's position.
+     * Gets the rotation as a Vector3f.
      *
-     * @return The z component
+     * @return The rotation as a Vector3f
      */
-    double getZ();
-
-    /**
-     * Gets the rotation as a vector.
-     * This does not support the roll component of the entity's rotation.
-     *
-     * @return A possibly, but not necessarily, unit vector
-     */
-    Vector3f getVectorRotation();
-
-    /**
-     * Sets the rotation to a vector.
-     * This does not support the roll component of the entity's rotation,
-     * any previous roll value will be removed.
-     *
-     * @param rotation The rotation to set the entity to
-     */
-    void setVectorRotation(Vector3f rotation);
-
-    /**
-     * Gets the rotation as a EulerDirection.
-     *
-     * @return The rotation as a EulerDirection
-     */
-    EulerDirection getRotation();
+    Vector3f getRotation();
 
     /**
      * Sets the rotation.
      *
      * @param rotation The rotation to set the entity to
      */
-    void setRotation(EulerDirection rotation);
+    void setRotation(Vector3f rotation);
 
     /**
-     * Mount the entity provided.
+     * Sets the rotation.
      *
-     * @param entity The entity to mount
+     * @param rotation The rotation to set the entity to
+     * @param cause The cause that triggered this rotation
      */
-    void mount(Entity entity);
+    void setRotation(Vector3f rotation, Cause cause);
 
     /**
-     * Dismount from the currently mounted entity.
-     */
-    void dismount();
-
-    /**
-     * Eject any entity mounted on this entity
-     */
-    void eject();
-
-    /**
-     * Gets the entity that is riding this entity.
+     * Gets the entity passenger, if available.
      *
-     * @return The riding entity, if it exists
+     * @return The passenger entity, if it exists
      */
-    Optional<Entity> getRider();
+    Optional<Entity> getPassenger();
 
     /**
-     * Gets the entity that this entity is riding.
+     * Gets the entity vehicle, if available.
      *
-     * @return The entity being ridden, if it exists
+     * @return The vehicle entity, if it exists
      */
-    Optional<Entity> getRiding();
+    Optional<Entity> getVehicle();
+
+    /**
+     * Sets the passenger entity.
+     *
+     * @param entity The entity passenger, or null to eject
+     * @return <code>true</code> if the set was successful
+     */
+    boolean setPassenger(@Nullable Entity entity);
+
+    /**
+     * Sets the vehicle entity.
+     *
+     * @param entity The entity vehicle, or null to dismount
+     * @return <code>true</code> if the set was successful
+     */
+    boolean setVehicle(@Nullable Entity entity);
 
     /**
      * Gets the current x/z size of this entity.
@@ -253,11 +169,18 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     float getScale();
 
     /**
-     * Returns whether this entity is considered dead and ready for removal.
+     * Returns whether this entity is on the ground (not in the air) or not.
      *
-     * @return True if this entity is dead
+     * @return Whether this entity is on the ground or not
      */
-    boolean isDead();
+    boolean isOnGround();
+
+    /**
+     * Returns whether this entity has been removed.
+     *
+     * @return True if this entity has been removed
+     */
+    boolean isRemoved();
 
     /**
      * Returns whether this entity is still loaded in a world/chunk.
@@ -265,6 +188,12 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @return True if this entity is still loaded
      */
     boolean isValid();
+
+    /**
+     * Mark this entity for removal in the very near future, preferably
+     * within one game tick.
+     */
+    void remove();
 
     /**
      * Gets the ticks remaining of being lit on fire.
@@ -286,5 +215,4 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @return The delay before catching fire
      */
     int getFireDelay();
-
 }
