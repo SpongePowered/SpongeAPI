@@ -140,7 +140,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * </p>
      * If you don't need the actual blocks or entities in the chunk you should
      * consider using
-     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i)}
+     * {@link #getChunkDataAsynchronously(Vector2i, Vector2i)}
      * 
      * @param min The minimum chunk position for the search
      * @param max The maximum chunk position for the search
@@ -160,7 +160,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * </p>
      * If you don't need the actual blocks or entities in the chunk you should
      * consider using
-     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i, Predicate)}
+     * {@link #getChunkDataAsynchronously(Vector2i, Vector2i, Predicate)}
      * 
      * @param min The minimum chunk position for the search
      * @param max The maximum chunk position for the search

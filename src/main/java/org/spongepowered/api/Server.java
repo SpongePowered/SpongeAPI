@@ -105,7 +105,7 @@ public interface Server {
      * 
      * @param name The name of the world to generate
      * @param generator The generator to generate new chunks.
-     * @param populatorm The populator to use
+     * @param populator The populator to use
      * @param decorator The decorator to use
      * @return The created or loaded world or Optional.absent() if not available
      * @throws IllegalStateException If the world is already loaded
@@ -118,7 +118,7 @@ public interface Server {
      * 
      * @param name The name of the world to generate
      * @param generator The generator to generate new chunks.
-     * @param populatorm The populator to use
+     * @param populator The populator to use
      * @param decorator The decorator to use
      * @return The created or loaded world
      * @throws IllegalStateException If the world is already loaded

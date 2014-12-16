@@ -93,10 +93,8 @@ public interface Region {
      * </p>
      * If you don't need the actual blocks or entities in the chunk you should
      * consider using
-     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i)}
+     * {@link #getChunkDataAsynchronously()}
      *
-     * @param min The minimum chunk position for the search
-     * @param max The maximum chunk position for the search
      * @return An iterable containing all existing chunks within the given
      *         bounds
      */
@@ -113,10 +111,8 @@ public interface Region {
      * </p>
      * If you don't need the actual blocks or entities in the chunk you should
      * consider using
-     * {@link #getExistingChunkDataAsynchronously(Vector2i, Vector2i, Predicate)}
+     * {@link #getChunkDataAsynchronously(Predicate)}
      *
-     * @param min The minimum chunk position for the search
-     * @param max The maximum chunk position for the search
      * @param filter The filter used to exclude a chunk from the search
      * @return An iterable containing all existing chunks within the given
      *         bounds matching the given filter
@@ -133,8 +129,6 @@ public interface Region {
      * on the IO and may wait for the main/world thread to process the request.
      * </p>
      *
-     * @param min The minimum chunk position for the search
-     * @param max The maximum chunk position for the search
      * @return An iterable containing all existing chunk data within the given
      *         bounds
      */
@@ -150,8 +144,6 @@ public interface Region {
      * on the IO and may wait for the main/world thread to process the request.
      * </p>
      *
-     * @param min The minimum chunk position for the search
-     * @param max The maximum chunk position for the search
      * @param filter The filter used to exclude a chunk from the search
      * @return An iterable containing all existing chunk data within the given
      *         bounds matching the given filter

@@ -70,8 +70,7 @@ public interface ChunkData {
      * @return The loaded or generated chunk at the given position or
      *         {@link Optional#absent()} if not found and not generated
      */
-
-    Optional<Chunk> loadChunk(boolean generate);
+    Optional<Chunk> loadChunk(boolean shouldGenerate);
 
     /**
      * Get the chunk belonging to this chunk data if it exists, generating it if
