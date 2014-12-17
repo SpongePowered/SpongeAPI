@@ -23,13 +23,30 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.world.chunk;
 
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.world.World;
+
+import com.flowpowered.math.vector.Vector2i;
 
 /**
- * Called when a {@link Chunk} is loaded in an existing {@link org.spongepowered.api.world.World} map
+ * Represents a chunk generator that is used to generate a {@link Chunk}.
  */
-public interface ChunkLoadEvent extends ChunkEvent {
+public interface ChunkGenerator {
+
+    /**
+     * Generates the blocks for the chunk for the given world at the given
+     * position. Generates an array of arrays containing 16*16*16 = 4096 blocks.
+     * Any null in this array inner array will be replaced by the worlds default
+     * block type usually air. Any null in the outer array can be used to
+     * decrease generation overhead and reduce the worlds save size.
+     *
+     * @param world The world the chunk will be generated in
+     * @param position The position of the new chunk
+     * @return The blocks contained in the chunk
+     * @see ChunkGeneratorUtil#getBlockLocation(int, int, int)
+     */
+    BlockType[][] generate(World world, Vector2i position);
 
 }

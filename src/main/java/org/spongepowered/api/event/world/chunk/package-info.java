@@ -23,13 +23,5 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.world;
-
-import org.spongepowered.api.world.Chunk;
-
-/**
- * Called when a {@link Chunk} is unloaded
- */
-public interface ChunkUnloadEvent extends ChunkEvent {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.event.world.chunk;
