@@ -32,6 +32,7 @@ import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
@@ -153,5 +154,20 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param reason The reason for the kick
      */
     void kick(Text.Literal reason);
+
+    /*
+     *
+     * Gets the {@link Scoreboard} displayed to the player.
+     *
+     * @return The scoreboard displayed to the player
+     */
+    Scoreboard getScoreboard();
+
+    /**
+     * Sets the {@link Scoreboard} displayed to the player.
+     *
+     * @param scoreboard The scoreboard to display
+     */
+    void setScoreboard(Scoreboard scoreboard);
 
 }

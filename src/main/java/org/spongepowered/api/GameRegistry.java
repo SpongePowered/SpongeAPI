@@ -64,6 +64,9 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.scoreboard.Visibility;
+import org.spongepowered.api.scoreboard.critieria.Criterion;
+import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
@@ -75,6 +78,7 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -736,6 +740,7 @@ public interface GameRegistry {
     FireworkEffectBuilder getFireworkEffectBuilder();
 
     /**
+<<<<<<< HEAD
      * Gets the {@link TextColor} with the provided name.
      *
      * @param name The name of the text color
@@ -840,5 +845,76 @@ public interface GameRegistry {
      * @return The {@link Translation} with the given ID or Optional.absent() if not found
      */
     Optional<Translation> getTranslationById(String id);
+
+    /*
+     * Gets the {@link DisplaySlot} with the provided name.
+     *
+     * @param name The name of the {@link DisplaySlot}
+     * @return The {@link DisplaySlot} with the given name, if available
+     */
+    Optional<DisplaySlot> getDisplaySlot(String name);
+
+    /**
+     * Gets a {@link DisplaySlot} which displays only for teams
+     * with the provided color.
+     *
+     * @param color The color for the display slot
+     * @return The {@link DisplaySlot} with the provided color, or Optional.absent() if not found
+     */
+    Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link DisplaySlot}s.
+     *
+     * <p>This includes {@link DisplaySlot}s for all possible {@link TextColor}s.</p>
+     *
+     * @return The Collection of all available {@link DisplaySlot}s
+     */
+    Collection<DisplaySlot> getDisplaySlots();
+
+    /**
+     * Gets the {@link Visibility} with the provided name.
+     *
+     * @param name The name of the {@link Visibility}
+     * @return The {@link Visibility} with the given name, if available
+     */
+    Optional<Visibility> getVisibility(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Visibility Visibilities}.
+     *
+     * @return The Collection of all available {@link Visibility Visibilities}
+     */
+    Collection<Visibility> getVisibilities();
+
+    /**
+     * Gets the {@link Criterion} with the provided name.
+     *
+     * @param name The name of the {@link Criterion}
+     * @return The {@link Criterion} with the given name, if available
+     */
+    Optional<Criterion> getCriterion(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Criterion Criteria}.
+     *
+     * @return The Collection of all available {@link Criterion Criteria}
+     */
+    Collection<Visibility> getCriteria();
+
+    /**
+     * Gets the {@link ObjectiveDisplayMode} with the provided name.
+     *
+     * @param name The name of the {@link ObjectiveDisplayMode}
+     * @return The {@link ObjectiveDisplayMode} with the given name, if available
+     */
+    Optional<ObjectiveDisplayMode> getObjectiveDisplayMode(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link ObjectiveDisplayMode}s.
+     *
+     * @return The Collection of all available {@link ObjectiveDisplayMode}s
+     */
+    Collection<ObjectiveDisplayMode> getObjectiveDisplayModes();
 
 }
