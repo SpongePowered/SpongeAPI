@@ -37,6 +37,7 @@ import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
@@ -280,5 +281,19 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * {@link Statistic} that are used to count for the {@link Achievement}s.
      */
     void revokeAchievements();
+    
+    /**
+     *
+     * Gets the {@link Scoreboard} displayed to the player.
+     *
+     * @return The scoreboard displayed to the player
+     */
+    Scoreboard getScoreboard();
 
+    /**
+     * Sets the {@link Scoreboard} displayed to the player.
+     *
+     * @param scoreboard The scoreboard to display
+     */
+    void setScoreboard(Scoreboard scoreboard);
 }
