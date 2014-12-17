@@ -26,6 +26,7 @@
 package org.spongepowered.api.world.chunk;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -37,7 +38,7 @@ import com.google.common.collect.ImmutableList;
  */
 public final class ChunkMultiDecorator implements ChunkDecorator {
 
-    private final List<ChunkDecorator> decorators = new ArrayList<ChunkDecorator>();
+    private final ImmutableList<ChunkDecorator> decorators;
 
     /**
      * Combines the given decorators to one {@link ChunkDecorator}.
@@ -46,15 +47,15 @@ public final class ChunkMultiDecorator implements ChunkDecorator {
      * @return The combined decorators
      */
     public static ChunkMultiDecorator of(final Iterable<ChunkDecorator> decorators) {
-        final ChunkMultiDecorator combined = new ChunkMultiDecorator();
+        final ImmutableList.Builder<ChunkDecorator> builder = ImmutableList.builder();
         for (final ChunkDecorator decorator : decorators) {
             if (decorator instanceof ChunkMultiDecorator) {
-                combined.decorators.addAll(((ChunkMultiDecorator) decorator).getDecorators());
+                builder.addAll(((ChunkMultiDecorator) decorator).getDecorators());
             } else {
-                combined.decorators.add(decorator);
+                builder.add(decorator);
             }
         }
-        return combined;
+        return new ChunkMultiDecorator(builder.build());
     }
 
     /**
@@ -64,18 +65,19 @@ public final class ChunkMultiDecorator implements ChunkDecorator {
      * @return The combined decorators
      */
     public static ChunkMultiDecorator of(final ChunkDecorator... decorators) {
-        final ChunkMultiDecorator combined = new ChunkMultiDecorator();
+        final ImmutableList.Builder<ChunkDecorator> builder = ImmutableList.builder();
         for (final ChunkDecorator decorator : decorators) {
             if (decorator instanceof ChunkMultiDecorator) {
-                combined.decorators.addAll(((ChunkMultiDecorator) decorator).getDecorators());
+                builder.addAll(((ChunkMultiDecorator) decorator).getDecorators());
             } else {
-                combined.decorators.add(decorator);
+                builder.add(decorator);
             }
         }
-        return combined;
+        return new ChunkMultiDecorator(builder.build());
     }
 
-    private ChunkMultiDecorator() {
+    private ChunkMultiDecorator(final ImmutableList<ChunkDecorator> decorators) {
+        this.decorators = decorators;
     }
 
     @Override
@@ -91,7 +93,7 @@ public final class ChunkMultiDecorator implements ChunkDecorator {
      * @return The list of decorators
      */
     public ImmutableList<ChunkDecorator> getDecorators() {
-        return ImmutableList.copyOf(decorators);
+        return decorators;
     }
 
 }

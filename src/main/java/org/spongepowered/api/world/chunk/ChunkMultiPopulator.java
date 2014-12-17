@@ -26,6 +26,7 @@
 package org.spongepowered.api.world.chunk;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -37,7 +38,7 @@ import com.google.common.collect.ImmutableList;
  */
 public final class ChunkMultiPopulator implements ChunkPopulator {
 
-    private final List<ChunkPopulator> populators = new ArrayList<ChunkPopulator>();
+    private final ImmutableList<ChunkPopulator> populators;
 
     /**
      * Combines the given populators to one {@link ChunkPopulator}.
@@ -46,15 +47,15 @@ public final class ChunkMultiPopulator implements ChunkPopulator {
      * @return The combined populators
      */
     public static ChunkMultiPopulator of(final Iterable<ChunkPopulator> populators) {
-        final ChunkMultiPopulator combined = new ChunkMultiPopulator();
+        final ImmutableList.Builder<ChunkPopulator> builder = ImmutableList.builder();
         for (final ChunkPopulator populator : populators) {
             if (populator instanceof ChunkMultiPopulator) {
-                combined.populators.addAll(((ChunkMultiPopulator) populator).getPopulators());
+                builder.addAll(((ChunkMultiPopulator) populator).getPopulators());
             } else {
-                combined.populators.add(populator);
+                builder.add(populator);
             }
         }
-        return combined;
+        return new ChunkMultiPopulator(builder.build());
     }
 
     /**
@@ -64,18 +65,19 @@ public final class ChunkMultiPopulator implements ChunkPopulator {
      * @return The combined populators
      */
     public static ChunkMultiPopulator of(final ChunkPopulator... populators) {
-        final ChunkMultiPopulator combined = new ChunkMultiPopulator();
+        final ImmutableList.Builder<ChunkPopulator> builder = ImmutableList.builder();
         for (final ChunkPopulator populator : populators) {
             if (populator instanceof ChunkMultiPopulator) {
-                combined.populators.addAll(((ChunkMultiPopulator) populator).getPopulators());
+                builder.addAll(((ChunkMultiPopulator) populator).getPopulators());
             } else {
-                combined.populators.add(populator);
+                builder.add(populator);
             }
         }
-        return combined;
+        return new ChunkMultiPopulator(builder.build());
     }
 
-    private ChunkMultiPopulator() {
+    private ChunkMultiPopulator(final ImmutableList<ChunkPopulator> populators) {
+        this.populators = populators;
     }
 
     @Override
@@ -91,7 +93,7 @@ public final class ChunkMultiPopulator implements ChunkPopulator {
      * @return The list of decorators
      */
     public ImmutableList<ChunkPopulator> getPopulators() {
-        return ImmutableList.copyOf(populators);
+        return populators;
     }
 
 }
