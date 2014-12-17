@@ -115,7 +115,7 @@ public class SimpleCommandService implements CommandService {
 
             Optional<CommandMapping> mapping = dispatcher.register(callable, aliasesWithPrefix, callback);
 
-            if (!mapping.isPresent()) {
+            if (mapping.isPresent()) {
                 owners.put(container, mapping.get());
             }
 
