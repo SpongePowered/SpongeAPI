@@ -298,7 +298,7 @@ public class SimpleDispatcher implements Dispatcher {
             passedParents.addAll(parents);
             passedParents.add(parts[0]);
 
-            mapping.get().getCallable().call(source, parts[1], Collections.unmodifiableList(passedParents));
+            mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
 
             return true;
         } else {
@@ -338,7 +338,7 @@ public class SimpleDispatcher implements Dispatcher {
             Optional<CommandMapping> mapping = get(parts[0]);
 
             if (mapping.isPresent()) {
-                mapping.get().getCallable().getSuggestions(source, parts[1]);
+                mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
             }
         }
 
