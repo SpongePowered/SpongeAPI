@@ -22,65 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.world.gen;
 
-package org.spongepowered.api.world.biome;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.biome.BiomeManager;
+import org.spongepowered.api.world.extent.MutableBlockBuffer;
 
-import org.spongepowered.api.world.gen.Populator;
+import com.flowpowered.math.vector.Vector3i;
 
 /**
- * Represents the biome at a particular location.
+ * Represents a generator for chunks into a world.
  */
-public interface Biome {
+public interface WorldGenerator {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
+     * Generates the chunk at the given position in the world. The position
+     * specified is the chunk position (ie. the world position divided by the
+     * chunk size).
+     * 
+     * @param world The world
+     * @param buffer The buffer to generate the region into
+     * @param position The chunk position
      */
-    BiomeType getType();
+    void generateChunk(World world, MutableBlockBuffer buffer, Vector3i position);
 
     /**
-     * Get the temperature of this biome.
-     *
-     * @return The temperature
+     * Gets whether map features are enabled.
+     * 
+     * @return Map features enabled
      */
-    double getTemperature();
-
-    /**
-     * Get the humidity of this biome.
-     *
-     * @return The humidity
-     */
-    double getHumidity();
+    boolean areMapFeaturesEnabled();
     
     /**
-     * Get the minimum terrain height of this biome.
-     * 
-     * @return The min height
-     */
-    float getMinHeight();
-    
-    /**
-     * Get the maximum terrain height of this biome.
-     * 
-     * @return The max height
-     */
-    float getMaxHeight();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
-
-    /**
-     * Returns an ordered Collection of {@link Populator}s specific to this
-     * biome.
+     * Gets an ordered collection of {@link Populator}s which are applied
+     * globally.
      * 
      * @return The populators
      */
-    Iterable<Populator> getPopulators();
+    Iterable<Populator> getGlobalPopulators();
 
     /**
      * Inserts a new populator to this Biome's ordered collection of
@@ -92,5 +71,19 @@ public interface Biome {
      * @param index THe index to insert the populator at
      */
     void insertPopulator(Populator populator, int index);
+    
+    /**
+     * Gets the {@link BiomeManager} for this world generator.
+     * 
+     * @return The biome manager
+     */
+    BiomeManager getBiomeManager();
+    
+    /**
+     * Sets the {@link BiomeManager} for this world generator.
+     * 
+     * @param biomeManager The new biome manger
+     */
+    void setBiomeManager(BiomeManager biomeManager);
 
 }

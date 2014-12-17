@@ -23,73 +23,30 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
- * Represents the biome at a particular location.
+ * Called when a {@link Chunk} is about to be populated.
  */
-public interface Biome {
+public interface ChunkPrePopulateEvent extends ChunkEvent {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
-     */
-    BiomeType getType();
-
-    /**
-     * Get the temperature of this biome.
-     *
-     * @return The temperature
-     */
-    double getTemperature();
-
-    /**
-     * Get the humidity of this biome.
-     *
-     * @return The humidity
-     */
-    double getHumidity();
-    
-    /**
-     * Get the minimum terrain height of this biome.
-     * 
-     * @return The min height
-     */
-    float getMinHeight();
-    
-    /**
-     * Get the maximum terrain height of this biome.
-     * 
-     * @return The max height
-     */
-    float getMaxHeight();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
-
-    /**
-     * Returns an ordered Collection of {@link Populator}s specific to this
-     * biome.
+     * Returns an iterator over all pending populators.
      * 
      * @return The populators
      */
-    Iterable<Populator> getPopulators();
+    Iterable<Populator> getPendingPopulators();
 
     /**
-     * Inserts a new populator to this Biome's ordered collection of
-     * populators. The new populator is inserted at the given index. If the
-     * index is larger than the current amount of populators then the new
-     * populator in inserted at the end of the collection.
+     * Adds a new populator to the list of pending populators at the given
+     * index. If the index is greater than the number of populators then the
+     * new populator is simply added to the end of the list.
      * 
      * @param populator The new populator
-     * @param index THe index to insert the populator at
+     * @param index The index to add the populator at
      */
     void insertPopulator(Populator populator, int index);
 
