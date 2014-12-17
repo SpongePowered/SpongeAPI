@@ -23,25 +23,35 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.gen;
+
+import org.spongepowered.api.world.World;
 
 /**
- * Represents the biome at a particular location.
+ * Represents a structure which can be placed into the world by a populator.
  */
-public interface Biome {
+public interface PopulatorObject {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
+     * Returns whether this object can be placed into the world at the given
+     * position.
+     * 
+     * @param world The world
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return Whether the placement is valid
      */
-    BiomeType getType();
+    boolean canPlaceAt(World world, int x, int y, int z);
 
     /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
+     * Places the object into the world at the given location.
+     * 
+     * @param world The world
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
      */
-    void replaceWith(BiomeType type);
+    void placeObject(World world, int x, int y, int z);
 
 }

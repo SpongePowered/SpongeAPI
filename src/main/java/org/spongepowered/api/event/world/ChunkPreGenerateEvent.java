@@ -23,25 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.event.world;
+
+import org.spongepowered.api.world.Chunk;
 
 /**
- * Represents the biome at a particular location.
+ * Called when a {@link Chunk} is about to be generated.
  */
-public interface Biome {
-
-    /**
-     * Get the biome type.
-     *
-     * @return The biome type
-     */
-    BiomeType getType();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
+public interface ChunkPreGenerateEvent extends ChunkEvent {
 
 }

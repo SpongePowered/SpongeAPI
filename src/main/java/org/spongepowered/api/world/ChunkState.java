@@ -1,4 +1,5 @@
 /*
+ /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
@@ -23,25 +24,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world;
 
 /**
- * Represents the biome at a particular location.
+ * Represents the state of a {@link Chunk}.
  */
-public interface Biome {
+public enum ChunkState {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
+     * The chunk is not loaded into memory. Whether the chunk has been
+     * generated is unknown while in this state.
      */
-    BiomeType getType();
-
+    UNLOADED,
     /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
+     * The chunk is loaded but has not yet been generated.
      */
-    void replaceWith(BiomeType type);
+    NOT_GENERATED,
+    /**
+     * The chunk has been generated (implying that the shape of the terrain
+     * has been formed out of a basic block) but none of the populators or
+     * structures have been applied yet.
+     */
+    NOT_POPULATED,
+    /**
+     * The chunk is fully generated and loaded into the world.
+     */
+    LOADED
 
 }

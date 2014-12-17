@@ -25,11 +25,13 @@
 
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector2i;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.biome.BiomeManager;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
 import java.util.Map;
@@ -61,13 +63,10 @@ public interface World extends Extent, Viewer, WeatherVolume {
     /**
      * Get the loaded chunk at the given position.
      *
-     * <p>If the chunk has not been loaded at the given position, then
-     * {@code null} will be returned.</p>
-     *
      * @param position The position
      * @return The chunk, if available
      */
-    Optional<Chunk> getChunk(Vector2i position);
+    Optional<Chunk> getChunk(Vector3i position);
 
     /**
      * Get the chunk at the given position if it exists or if
@@ -77,16 +76,25 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(Vector2i position, boolean shouldGenerate);
+    Optional<Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
 
     /**
-     * Get the chunk at the given position if it exists, generating it
-     * if the chunk does not exist.
-     *
-     * @param position The position
-     * @return The loaded or generated chunk
+     * Deletes the given chunk from the world. Returns a {@code boolean}
+     * flag for whether the operation was successful.
+     * 
+     * @param chunk The chunk to delete
+     * @return Whether the operation was successful
      */
-    Chunk loadChunk(Vector2i position);
+    boolean deleteChunk(Chunk chunk);
+
+    /**
+     * Returns a Collection of all actively loaded chunks in this world.
+     * 
+     * <p>The ordering of the returned chunks is undefined.</p>
+     * 
+     * @return The loaded chunks
+     */
+    Iterable<Chunk> getLoadedChunks();
 
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
@@ -138,5 +146,41 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return The {@link Environment}
      */
     Environment getEnvironment();
+
+    /**
+     * Gets the random seed for this world.
+     * 
+     * @return The seed
+     */
+    long getWorldSeed();
+    
+    /**
+     * Sets the random seed for this world.
+     * 
+     * @param seed The seed
+     */
+    void setSeed(long seed);
+
+    /**
+     * Gets the {@link WorldGenerator} for this world.
+     * 
+     * @return The world generator
+     */
+    WorldGenerator getWorldGenerator();
+    
+    /**
+     * Sets the {@link WorldGenerator} for this world to use to create new
+     * chunks.
+     * 
+     * @param generator The new generator
+     */
+    void setWorldGenerator(WorldGenerator generator);
+
+    /**
+     * Gets the {@link BiomeManager} for this world.
+     * 
+     * @return The biome manager
+     */
+    BiomeManager getBiomeManager();
 
 }

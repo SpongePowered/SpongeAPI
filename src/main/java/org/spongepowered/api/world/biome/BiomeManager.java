@@ -26,22 +26,18 @@
 package org.spongepowered.api.world.biome;
 
 /**
- * Represents the biome at a particular location.
+ * Manages the biomes for an extent.
  */
-public interface Biome {
+public interface BiomeManager {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
+     * Returns the {@link Biome} at the given coordinates within the extent.
+     * 
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The biome
      */
-    BiomeType getType();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
+    Biome getBiome(int x, int y, int z);
 
 }

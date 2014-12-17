@@ -23,25 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.gen;
+
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.MutableBlockBuffer;
+
+import java.util.Random;
 
 /**
- * Represents the biome at a particular location.
+ * Randomly distributes a specific {@link PopulatorObject} into the chunk.
  */
-public interface Biome {
+public interface Populator {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
+     * Applies the populator to the given chunk. Assumes that all adjacent
+     * chunks are already at least generated (although they do not have to be
+     * populated) to allow {@link PopulatorObject}s to overlap across chunk
+     * boundaries.
+     * 
+     * @param world The world
+     * @param blockData The buffer containing the region being populated
+     * @param random The random object
      */
-    BiomeType getType();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
+    void populate(World world, MutableBlockBuffer blockData, Random random);
 
 }

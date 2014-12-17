@@ -1,4 +1,5 @@
 /*
+ /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
@@ -22,26 +23,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.extent;
 
 /**
- * Represents the biome at a particular location.
+ * An immutable version of a {@link BlockBuffer}
  */
-public interface Biome {
-
-    /**
-     * Get the biome type.
-     *
-     * @return The biome type
-     */
-    BiomeType getType();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
+public interface ImmutableBlockBuffer extends BlockBuffer {
 
 }

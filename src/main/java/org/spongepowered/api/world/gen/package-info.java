@@ -23,25 +23,5 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
-
-/**
- * Represents the biome at a particular location.
- */
-public interface Biome {
-
-    /**
-     * Get the biome type.
-     *
-     * @return The biome type
-     */
-    BiomeType getType();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.world.gen;

@@ -22,26 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.world.extent;
 
-package org.spongepowered.api.world.biome;
+import org.spongepowered.api.block.BlockType;
 
 /**
- * Represents the biome at a particular location.
+ * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
+ * to the world and changes to it are not synchronized to the world.
  */
-public interface Biome {
+public interface MutableBlockBuffer extends BlockBuffer {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
+     * Sets the block in the buffer at the given position.
+     * 
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param block The new block
      */
-    BiomeType getType();
+    void setBlock(int x, int y, int z, BlockType block);
 
     /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
+     * Fills the entire buffer with the given block.
+     * 
+     * @param block The block to fill with
      */
-    void replaceWith(BiomeType type);
+    void fill(BlockType block);
+
+    /**
+     * Sets all horizontal layers between {@code y} (inclusive) and 
+     * {@code y+height} (exclusive) to the given block type.
+     * 
+     * @param y The starting Y position
+     * @param height The height
+     * @param block The block type
+     */
+    void setHorizontalLayer(int y, int height, BlockType block);
+    
+    /**
+     * Returns an immutable copy of this block buffer.
+     * 
+     * @return An immutable copy
+     */
+    ImmutableBlockBuffer getImmutableClone();
 
 }
