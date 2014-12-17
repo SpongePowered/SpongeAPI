@@ -28,6 +28,8 @@ package org.spongepowered.api.world.chunk;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
 /**
  * Represents multiple {@link ChunkDecorator}s merged to one. Useful if you
  * want to add some custom decoration to a chunk but still want to keep the
@@ -84,12 +86,12 @@ public final class ChunkMultiDecorator implements ChunkDecorator {
     }
 
     /**
-     * Gets the list of decorators included in this decorator.
+     * Gets the immutable list of decorators included in this decorator.
      *
      * @return The list of decorators
      */
-    public List<ChunkDecorator> getDecorators() {
-        return decorators;
+    public ImmutableList<ChunkDecorator> getDecorators() {
+        return ImmutableList.copyOf(decorators);
     }
 
 }

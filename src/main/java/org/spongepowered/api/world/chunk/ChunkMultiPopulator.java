@@ -28,6 +28,8 @@ package org.spongepowered.api.world.chunk;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
 /**
  * Represents multiple {@link ChunkPopulator}s merged to one. Useful if you want
  * to add some custom population to a chunk but still want to keep the original
@@ -84,12 +86,12 @@ public final class ChunkMultiPopulator implements ChunkPopulator {
     }
 
     /**
-     * Gets the list of populators included in this populator.
+     * Gets the immutable list of populators included in this populator.
      *
      * @return The list of decorators
      */
-    public List<ChunkPopulator> getPopulators() {
-        return populators;
+    public ImmutableList<ChunkPopulator> getPopulators() {
+        return ImmutableList.copyOf(populators);
     }
 
 }
