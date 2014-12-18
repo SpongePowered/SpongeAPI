@@ -34,23 +34,23 @@ import org.spongepowered.api.world.Location;
 public interface PlayerWakeUpEvent extends PlayerEvent {
 
     /**
-     *  Tells if the 'waking up' animation plays
+     *  Tells whether the 'waking up' animation plays
      *
-     * @return if the player is viewing the 'waking up' animation while waking.
+     * @return whether the player is viewing the 'waking up' animation while waking
      */
     boolean isWakingAnimationPlaying();
 
     /**
-     * Tells whether world needs to be updated for sleep changes.
+     * Tells whether world needs to be updated for sleep changes
      *
-     * @return if the world needs to update for sleep changes
+     * @return whether the world needs to update for sleep changes
      */
     boolean isWorldUpdated();
 
     /**
-     * Tells whether the spawn chunk was set to bed {@link Location}.
+     * Tells whether the spawn chunk was set to bed {@link Location}
      *
-     * @return if the spawn chunk we set to the bed {@link Location}.
+     * @return whether the spawn chunk we set to the bed {@link Location}
      */
     boolean isSpawnSetted();
 }

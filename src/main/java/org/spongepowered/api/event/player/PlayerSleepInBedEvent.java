@@ -34,9 +34,9 @@ import org.spongepowered.api.world.Location;
 public interface PlayerSleepInBedEvent extends PlayerEvent {
 
     /**
-     * Gets the {@link Location} of the bed the player sleeps in.
+     * Gets the {@link Location} of the bed the player sleeps in
      *
-     * @return The player falling asleep.
+     * @return The player falling asleep
      */
     Location getLocation();
 }
