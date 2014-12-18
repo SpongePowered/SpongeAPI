@@ -28,7 +28,6 @@ package org.spongepowered.api.entity;
 import com.google.common.base.Optional;
 import com.flowpowered.math.vector.Vector3f;
 
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
@@ -69,31 +68,13 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     Location getLocation();
 
     /**
-     * Sets the location without vehicle if one exists.
+     * Sets the location of this entity. This is equivalent to a teleport,
+     * and also moves this entity's passengers.
      *
      * @param location The location to set
-     * @return <code>true</code> if the set was successful
+     * @return True if the teleport was successful
      */
     boolean setLocation(Location location);
-
-    /**
-     * Sets the location.
-     *
-     * @param location The location to set
-     * @param bringVehicle Whether the vehicle is moved with this entity
-     * @return <code>true</code> if the set was successful
-     */
-    boolean setLocation(Location location, boolean bringVehicle);
-
-    /**
-     * Sets the location.
-     *
-     * @param location The location to set
-     * @param bringVehicle Whether the vehicle is moved with this entity
-     * @param cause The cause that triggered this move
-     * @return <code>true</code> if the set was successful
-     */
-    boolean setLocation(Location location, boolean bringVehicle, Cause cause);
 
     /**
      * Gets the rotation as a Vector3f.
@@ -103,47 +84,50 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     Vector3f getRotation();
 
     /**
-     * Sets the rotation.
+     * Sets the rotation of this entity.
      *
      * @param rotation The rotation to set the entity to
      */
     void setRotation(Vector3f rotation);
 
     /**
-     * Sets the rotation.
-     *
-     * @param rotation The rotation to set the entity to
-     * @param cause The cause that triggered this rotation
-     */
-    void setRotation(Vector3f rotation, Cause cause);
-
-    /**
-     * Gets the entity passenger, if available.
+     * Gets the entity passenger that rides this entity, if available.
      *
      * @return The passenger entity, if it exists
      */
     Optional<Entity> getPassenger();
 
     /**
-     * Gets the entity vehicle, if available.
+     * Gets the entity vehicle that this entity is riding, if available.
      *
      * @return The vehicle entity, if it exists
      */
     Optional<Entity> getVehicle();
 
     /**
-     * Sets the passenger entity.
+     * Gets the entity vehicle that is the base of what ever stack the current
+     * entity is a part of. This can be the current entity, if it is not riding any vehicle.
+     *
+     * <p>The returned entity can never ride another entity, that would make
+     * the ridden entity the base of the stack.</p>
+     *
+     * @return The vehicle entity
+     */
+    Entity getBaseVehicle();
+
+    /**
+     * Sets the passenger entity(the entity that rides this one).
      *
      * @param entity The entity passenger, or null to eject
-     * @return <code>true</code> if the set was successful
+     * @return True if the set was successful
      */
     boolean setPassenger(@Nullable Entity entity);
 
     /**
-     * Sets the vehicle entity.
+     * Sets the vehicle entity(the entity that is ridden by this one).
      *
      * @param entity The entity vehicle, or null to dismount
-     * @return <code>true</code> if the set was successful
+     * @return True if the set was successful
      */
     boolean setVehicle(@Nullable Entity entity);
 
