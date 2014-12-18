@@ -171,7 +171,7 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      *
      * @return True if this entity is still loaded
      */
-    boolean isValid();
+    boolean isLoaded();
 
     /**
      * Mark this entity for removal in the very near future, preferably
