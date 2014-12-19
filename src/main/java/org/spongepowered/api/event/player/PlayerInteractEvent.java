@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.event.Cancellable;
@@ -34,13 +33,6 @@ import org.spongepowered.api.util.event.Cancellable;
  * Called when a {@link Player} interacts with the world.
  */
 public interface PlayerInteractEvent extends PlayerEvent, Cancellable {
-
-    /**
-     * Gets the {@link BlockLoc} that the player has clicked.
-     * 
-     * @return The block
-     */
-    BlockLoc getBlock();
 
     /**
      * Gets the {@link EntityInteractionType} that the player used.

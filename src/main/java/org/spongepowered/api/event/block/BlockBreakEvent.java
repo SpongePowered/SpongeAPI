@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.event.ExperienceEvent;
 
 /**
- * Dispatched when a block is in the process of breaking, before
+ * Dispatched when a {@link BlockLoc} is in the process of breaking, before
  * the break has been made.
  */
 public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent {
