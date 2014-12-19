@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector2d;
+import com.flowpowered.math.vector.Vector3d;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
@@ -118,7 +118,7 @@ public interface WorldBorder {
      *
      * @return The center
      */
-    Vector2d getCenter();
+    Vector3d getCenter();
 
     /**
      * Get the time when a contracting world border will warn a player for whom
