@@ -25,13 +25,13 @@
 
 package org.spongepowered.api.util.command;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An immutable command mapping instance that returns the same objects that

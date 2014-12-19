@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.entity.explosive;
 
-import org.spongepowered.api.entity.explosive.Explosive;
-
 /**
  * Represents an explosive that detonates after its fuse has expired.
  */

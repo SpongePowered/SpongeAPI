@@ -26,7 +26,6 @@
 package org.spongepowered.api.entity.living.villager;
 
 import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.item.merchant.Merchant;
 
 /**

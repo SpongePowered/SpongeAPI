@@ -25,11 +25,11 @@
 
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.block.BlockLoc;
-import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.world.extent.Extent;
-
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.world.extent.Extent;
 
 /**
  * A position within a particular {@link Extent}.
