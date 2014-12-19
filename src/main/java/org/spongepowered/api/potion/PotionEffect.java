@@ -108,4 +108,21 @@ public interface PotionEffect {
      * @param showParticles If particles should be shown.
      */
     void setShowParticles(boolean showParticles);
+
+    /**
+     * Gets whether or not this potion is a splash
+     * potion.
+     *
+     * @return If the potion is a drink or a splash.
+     */
+    boolean isSplash();
+
+    /**
+     * Sets whether or not this potion should be a
+     * drinking or splash potion.
+     *
+     * @return If the potion is a drink or a splash.
+     */
+    void setSplash(boolean splash);
+
 }
