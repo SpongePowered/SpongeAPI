@@ -22,22 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Raised when entities are spawned.
+ * Called when a {@link Entity} interacts with an {@link Entity}.
  */
-public interface EntitySpawnEvent extends EntityEvent, Cancellable {
+public interface EntityInteractEntityEvent extends EntityInteractEvent {
 
     /**
-     * Returns the location where this entity is spawning.
+     * Get the entity being interacted with.
      *
-     * @return The location where this entity is spawning
+     * @return The target entity
      */
-    Location getLocation();
-
+    public Entity getTargetEntity();
 }

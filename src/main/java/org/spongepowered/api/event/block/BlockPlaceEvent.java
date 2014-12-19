@@ -22,22 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block;
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.block.BlockLoc;
 
 /**
- * Raised when entities are spawned.
+ * Dispatched when a {@link BlockLoc} is in the process of being placed, before
+ * the placement has been made.
  */
-public interface EntitySpawnEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Returns the location where this entity is spawning.
-     *
-     * @return The location where this entity is spawning
-     */
-    Location getLocation();
+public interface BlockPlaceEvent extends BlockChangeEvent {
 
 }
