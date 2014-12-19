@@ -29,19 +29,19 @@ import com.flowpowered.math.vector.Vector3d;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
- * <p/>
+ *
  * <p>It can gradually grow or shrink to a radius over a period of time.
  * A warning is displayed when a contracting world border will reach the player
  * in a certain amount of time, or when the player is a certain number of
  * blocks away.</p>
- * <p/>
+ *
  * <p>In Minecraft, a warning is displayed in the form of a reddish tint.</p>
  */
 public interface WorldBorder {
 
     /**
      * Get the diameter the world border is expanding or contracting to.
-     * <p/>
+     *
      * <p>This will return the same value as {@link #getDiameter} unless
      * {@link #getTimeRemaining} is greater than 0.</p>
      *
@@ -51,7 +51,7 @@ public interface WorldBorder {
 
     /**
      * Get the diameter of the world border.
-     * <p/>
+     *
      * <p>The returned diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
      *
@@ -61,7 +61,7 @@ public interface WorldBorder {
 
     /**
      * Set the diameter of the world border.
-     * <p/>
+     *
      * <p>The specified diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
      *
@@ -71,7 +71,7 @@ public interface WorldBorder {
 
     /**
      * Set the diameter of the world border, over the given period of time.
-     * <p/>
+     *
      * <p>The world border diameter increases/decrease linearly over the specified time.
      * The specified diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
@@ -83,7 +83,7 @@ public interface WorldBorder {
 
     /**
      * Set the diameter of the world border, over the given period of time.
-     * <p/>
+     *
      * <p>The world border diameter increases/diameter linearly over the specified time.
      * The specified diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
@@ -111,7 +111,7 @@ public interface WorldBorder {
 
     /**
      * Get the center of the world border.
-     * <p/>
+     *
      * <p>The returned position is three-dimensional. As the worldborder extends
      * over the entire y-axis, the returned position will always have
      * a {@code y} set to 0.</p>
@@ -123,7 +123,7 @@ public interface WorldBorder {
     /**
      * Get the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
-     * <p/>
+     *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
@@ -134,7 +134,7 @@ public interface WorldBorder {
     /**
      * Set the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
-     * <p/>
+     *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
@@ -145,7 +145,7 @@ public interface WorldBorder {
     /**
      * Get the distance when a contracting world border will warn a player for whom
      * the world border is {@code distance} blocks away.
-     * <p/>
+     *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
@@ -156,7 +156,7 @@ public interface WorldBorder {
     /**
      * Set the distance when a contracting world border will warn a player for whom
      * the world border is {@code distance} blocks away.
-     * <p/>
+     *
      * <p>In Minecraft, the warning is displayed in the form of a
      * reddish tint.</p>
      *
