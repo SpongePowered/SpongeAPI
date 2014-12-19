@@ -36,21 +36,21 @@ public interface PlayerWakeUpEvent extends PlayerEvent {
     /**
      *  Tells whether the 'waking up' animation plays
      *
-     * @return whether the player is viewing the 'waking up' animation while waking
+     * @return Whether the player is viewing the 'waking up' animation while waking
      */
     boolean isWakingAnimationPlaying();
 
     /**
      * Tells whether world needs to be updated for sleep changes
      *
-     * @return whether the world needs to update for sleep changes
+     * @return Whether the world needs to update for sleep changes
      */
     boolean isWorldUpdated();
 
     /**
      * Tells whether the spawn chunk was set to bed {@link Location}
      *
-     * @return whether the spawn chunk we set to the bed {@link Location}
+     * @return Whether the spawn chunk we set to the bed {@link Location}
      */
     boolean isSpawnSetted();
 }
