@@ -25,11 +25,11 @@
 
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
-import com.flowpowered.math.vector.Vector3d;
 
 import java.util.Collection;
 

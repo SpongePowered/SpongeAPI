@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.util.command.dispatcher;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
@@ -45,8 +47,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A simple implementation of a {@link Dispatcher}.

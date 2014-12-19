@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living;
 
 import com.flowpowered.math.vector.Vector3f;
-
 import org.spongepowered.api.entity.ArmorEquipable;
 
 /**

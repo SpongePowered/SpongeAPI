@@ -26,7 +26,6 @@
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.UUID;

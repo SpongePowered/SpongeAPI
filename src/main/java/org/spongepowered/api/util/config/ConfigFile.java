@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.util.config;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.io.Closer;
 import com.google.common.io.Files;
 import com.typesafe.config.Config;
@@ -50,8 +52,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A representation of a configuration file that exists on disk, backed by

@@ -25,9 +25,8 @@
 
 package org.spongepowered.api.entity;
 
-import com.google.common.base.Optional;
 import com.flowpowered.math.vector.Vector3f;
-
+import com.google.common.base.Optional;
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;

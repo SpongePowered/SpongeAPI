@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.service.command;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
@@ -44,7 +46,6 @@ import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,7 +53,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import javax.inject.Inject;
 
 public class SimpleCommandService implements CommandService {
 
