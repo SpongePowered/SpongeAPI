@@ -24,10 +24,44 @@
  */
 package org.spongepowered.api.service.persistence.data;
 
+import com.google.common.base.Optional;
+
 /**
- * Represents a data structure that contains data. A DataContainer is
- * an object that can be considered a root {@link DataView}.
+ * Represents a query to a {@link DataContainer} or {@link DataView} to fetch
+ * data.
  */
-public interface DataContainer extends DataView {
+public final class DataQuery {
+    private final char separator;
+    private final String path;
+
+    public DataQuery(final char separator, String path) {
+        this.separator = separator;
+        this.path = path;
+    }
+
+    public char getSeparator() {
+        return this.separator;
+    }
+
+    public String getFirst() {
+        return this.path.substring(this.path.indexOf(this.separator));
+    }
+
+    public String getPath() {
+        return this.path;
+    }
+
+    public boolean hasNext() {
+        return this.path.indexOf(this.separator) != -1;
+    }
+
+    public Optional<DataQuery> next() {
+        int index = this.path.indexOf(this.separator);
+        if (index == -1) {
+            return Optional.absent();
+        }
+
+        return Optional.of(new DataQuery(this.separator, this.path.substring(this.path.indexOf(this.separator) + 1)));
+    }
 
 }

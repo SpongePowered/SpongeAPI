@@ -31,23 +31,14 @@ import com.google.common.base.Optional;
  */
 public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 
-    private final DataOptions options = new MemoryDataOptions(this);
-
-    public MemoryDataContainer() {
-    }
-
     @Override
-    public Optional<DataView> getParent() {
+    public final Optional<DataView> getParent() {
         return Optional.absent();
     }
 
     @Override
-    public DataContainer getContainer() {
+    public final DataContainer getContainer() {
         return this;
     }
 
-    @Override
-    public DataOptions getOptions() {
-        return this.options;
-    }
 }

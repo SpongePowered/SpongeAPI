@@ -22,41 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.persistence.data;
+package org.spongepowered.api.world.storage;
+
+import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+
+import java.util.Iterator;
 
 /**
- * Represents the options for a {@link DataContainer}. Options may include
- * things such as path separators.
+ * A chunk iterator represents a buffer for obtaining chunk data from
+ * storage without having to explicitly load into memory all available
+ * chunks.
+ * <p>This avoid loading all chunks into memory at once, reducing the memory
+ * footprint and persistence operations.</p>
+ * <p>The chunks are loaded individually in sequence. Strong references to
+ * the chunks represented by {@link DataContainer}s should be avoided
+ * <strong>AT ALL COSTS</strong>. The data represented is a copy and
+ * therefore shouldn't be considered synchronized to live data.</p>
+ * <p>Removing is not supported <strong>AT ALL AND WILL THROW AN EXCEPTION</strong></p>
+ *
  */
-public interface DataOptions {
-
-    /**
-     * Gets the path separator.
-     * <p>When performing a {@link DataView#get(String)}, the string is parsed
-     * with the returning path separator, separating one {@link DataView} from
-     * it's parent DataView.</p>
-     *
-     * @return The character representing a separator in a path
-     */
-    char getPathSeparator();
-
-    /**
-     * Sets the path separator.
-     * <p>When performing a {@link DataView#get(String)}, the string is parsed
-     * with the returning path separator, separating one {@link DataView} from
-     * it's parent DataView.</p>
-     *
-     * @param separator The character to separate paths
-     * @return This instance of options for chaining
-     */
-    DataOptions setPathSeparator(char separator);
-
-    /**
-     * Gets the container this set of options is affecting. No container can
-     * exist without a form of DataOptions.
-     *
-     * @return The container this set of options affects
-     */
-    DataContainer getContainer();
+public interface ChunkIterator extends Iterator<Optional<DataContainer>> {
 
 }

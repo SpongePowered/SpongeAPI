@@ -45,14 +45,14 @@ public class MemoryDataView implements DataView {
     private final DataContainer container;
     private final DataView parent;
     private final String path;
-    private final String fullpath;
+    private final DataQuery fullpath;
 
     protected MemoryDataView() {
         if (!(this instanceof DataContainer)) {
             throw new IllegalStateException("Cannot construct a root MemoryDataView without a container!");
         }
         this.path = "";
-        this.fullpath = "";
+        this.fullpath = new DataQuery('/', "");
         this.parent = this;
         this.container = (DataContainer) this;
     }
@@ -63,39 +63,17 @@ public class MemoryDataView implements DataView {
         this.path = path;
         this.parent = parent;
         this.container = parent.getContainer();
-
         this.fullpath = createPath(parent, path);
     }
 
-    public static String createPath(final DataView section, final String key) {
-        return createPath(section, key, section.getContainer());
-    }
+    private static DataQuery createPath(DataView parent, String path) {
+        DataQuery parentQuery = parent.getCurrentPath();
+        return new DataQuery(parentQuery.getSeparator(), parentQuery.getPath() + parentQuery.getSeparator() + path);
 
-    public static String createPath(final DataView section, final String key, final DataView relativeTo) {
-        DataContainer root = section.getContainer();
-        char separator = root.getOptions().getPathSeparator();
-
-        StringBuilder builder = new StringBuilder();
-        for (DataView parent = section; parent.getParent().isPresent() && (parent != relativeTo); parent = parent.getParent().get()) {
-            if (builder.length() > 0) {
-                builder.insert(0, separator);
-            }
-            builder.insert(0, parent.getName());
-        }
-
-        if (!key.isEmpty()) {
-            if (builder.length() > 0) {
-                builder.append(separator);
-            }
-
-            builder.append(key);
-        }
-
-        return builder.toString();
     }
 
     @Override
-    public void remove(String path) {
+    public void remove(DataQuery path) {
         // TODO implement
     }
 
@@ -105,7 +83,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public String getCurrentPath() {
+    public DataQuery getCurrentPath() {
         return this.fullpath;
     }
 
@@ -130,78 +108,65 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public boolean contains(String path) {
+    public boolean contains(DataQuery path) {
         return false; // TODO implement
     }
 
     @Override
-    public Optional<Object> get(String path) {
-        if (path.length() == 0) {
+    public Optional<Object> get(DataQuery path) {
+        if (!path.hasNext()) {
             return Optional.<Object>of(this);
         }
 
-        DataContainer root = getContainer();
-
-        final char separator = root.getOptions().getPathSeparator();
-        int higher = -1;
-        int lower;
         DataView section = this;
-        while ((higher = path.indexOf(separator, lower = higher + 1)) != -1) {
-            if (section.getView(path.substring(lower, higher)).isPresent()) {
-                section = section.getView(path.substring(lower, higher)).get();
+        while (path.hasNext()) {
+            if (section.getView(path.next().get()).isPresent()) {
+                section = section.getView(path.next().get()).get();
             }
         }
 
-        String key = path.substring(lower);
         if (section == this) {
-            Object result = map.get(key);
+            Object result = map.get(path.getFirst());
             return Optional.fromNullable(result);
         }
-        return section.get(key);
+        return section.get(path);
     }
 
     @Override
-    public void set(String path, Object value) {
+    public void set(DataQuery path, Object value) {
         // TODO implement
     }
 
     @Override
-    public DataView createView(String path) {
-        DataContainer root = getContainer();
-
-        final char separator = root.getOptions().getPathSeparator();
-        // i1 is the leading (higher) index
-        // i2 is the trailing (lower) index
-        int higher = -1;
-        int lower;
+    public DataView createView(DataQuery path) {
         DataView section = this;
-        while ((higher = path.indexOf(separator, lower = higher + 1)) != -1) {
-            String node = path.substring(lower, higher);
-            if (section.getView(node).isPresent()) {
-                section = section.getView(node).get();
+        while (path.hasNext()) {
+            DataQuery next = path.next().get();
+            if (section.getView(next).isPresent()) {
+                section = section.getView(next).get();
             } else {
-                section = section.createView(node);
+                section = section.createView(next);
             }
         }
 
-        String key = path.substring(lower);
+        String key = path.getFirst();
         if (section == this) {
             DataView result = new MemoryDataView(this, key);
             map.put(key, result);
             return result;
         }
-        return section.createView(key);
+        return section.createView(path);
     }
 
     @Override
-    public DataView createView(String path, Map<?, ?> map) {
+    public DataView createView(DataQuery path, Map<?, ?> map) {
         DataView section = createView(path);
 
         for (Map.Entry<?, ?> entry : map.entrySet()) {
             if (entry.getValue() instanceof Map) {
-                section.createView(entry.getKey().toString(), (Map<?, ?>) entry.getValue());
+                section.createView(new DataQuery('.', entry.getKey().toString()), (Map<?, ?>) entry.getValue());
             } else {
-                section.set(entry.getKey().toString(), entry.getValue());
+                section.set(new DataQuery('.', entry.getKey().toString()), entry.getValue());
             }
         }
 
@@ -209,7 +174,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<DataView> getView(String path) {
+    public Optional<DataView> getView(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             if (val.get() instanceof DataView) {
@@ -220,7 +185,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<Boolean> getBoolean(String path) {
+    public Optional<Boolean> getBoolean(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             return PrimitiveUtil.asBoolean(val.get());
@@ -229,7 +194,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<Integer> getInt(String path) {
+    public Optional<Integer> getInt(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             return PrimitiveUtil.asInteger(val.get());
@@ -238,7 +203,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<Long> getLong(String path) {
+    public Optional<Long> getLong(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             return PrimitiveUtil.asLong(val.get());
@@ -247,7 +212,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<Double> getDouble(String path) {
+    public Optional<Double> getDouble(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             return PrimitiveUtil.asDouble(val.get());
@@ -256,7 +221,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<String> getString(String path) {
+    public Optional<String> getString(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             return PrimitiveUtil.asString(val.get());
@@ -264,7 +229,7 @@ public class MemoryDataView implements DataView {
         return Optional.absent();
     }
     @Override
-    public Optional<List<?>> getList(String path) {
+    public Optional<List<?>> getList(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             if (val.get() instanceof List<?>) {
@@ -275,7 +240,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<String>> getStringList(String path) {
+    public Optional<List<String>> getStringList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -294,7 +259,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Character>> getCharacterList(String path) {
+    public Optional<List<Character>> getCharacterList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -313,7 +278,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Boolean>> getBooleanList(String path) {
+    public Optional<List<Boolean>> getBooleanList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -332,7 +297,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Byte>> getByteList(String path) {
+    public Optional<List<Byte>> getByteList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -351,7 +316,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Short>> getShortList(String path) {
+    public Optional<List<Short>> getShortList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -370,7 +335,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Integer>> getIntegerList(String path) {
+    public Optional<List<Integer>> getIntegerList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -389,7 +354,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Long>> getLongList(String path) {
+    public Optional<List<Long>> getLongList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -408,7 +373,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Float>> getFloatList(String path) {
+    public Optional<List<Float>> getFloatList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -427,7 +392,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Double>> getDoubleList(String path) {
+    public Optional<List<Double>> getDoubleList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -446,7 +411,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public Optional<List<Map<?, ?>>> getMapList(String path) {
+    public Optional<List<Map<?, ?>>> getMapList(DataQuery path) {
         Optional<List<?>> list = getList(path);
 
         if (!list.isPresent()) {
@@ -465,7 +430,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public <T extends DataSerializable> Optional<T> getSerialiable(String path, Class<T> clazz) {
+    public <T extends DataSerializable> Optional<T> getSerialiable(DataQuery path, Class<T> clazz) {
         return Optional.absent(); // TODO implement
     }
 

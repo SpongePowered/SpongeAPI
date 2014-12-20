@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.serialization.DataPath;
 import org.spongepowered.api.service.persistence.serialization.DataSerializable;
 
 import java.util.List;
@@ -53,12 +54,11 @@ public interface DataView {
      * <p>For any {@link DataContainer} itself, this will return an
      * empty string as it is the root of the path.</p>
      * <p>The full path will always include this {@link DataView}s name
-     * at the end of the path, separated by the
-     * {@link DataOptions#getPathSeparator()}.</p>
+     * at the end of the path.</p>
      *
      * @return The path of this view originating from the root
      */
-    String getCurrentPath();
+    DataQuery getCurrentPath();
 
     /**
      * Gets the name of this individual {@link DataView} in the path.
@@ -106,14 +106,11 @@ public interface DataView {
 
     /**
      * Returns whether this {@link DataView} contains the given path.
-     * <p>Paths should respect the owning {@link DataContainer}s
-     * {@link DataOptions#getPathSeparator()} such that the path will be
-     * parsed correctly.</p>
      *
      * @param path The path relative to this data view
      * @return True if the path exists
      */
-    boolean contains(String path);
+    boolean contains(DataQuery path);
 
     /**
      * Gets an object from the desired path. If the path is not defined,
@@ -122,7 +119,7 @@ public interface DataView {
      * @param path The path to the Object
      * @return The Object, if available
      */
-    Optional<Object> get(String path);
+    Optional<Object> get(DataQuery path);
 
     /**
      * Sets the given Object value according to the given path relative to
@@ -131,7 +128,7 @@ public interface DataView {
      * @param path The path of the object to set
      * @param value The value of the data
      */
-    void set(String path, Object value);
+    void set(DataQuery path, Object value);
 
     /**
      * Removes the data associated to the given path relative to this
@@ -141,7 +138,7 @@ public interface DataView {
      *
      * @param path The path of data to remove
      */
-    void remove(String path);
+    void remove(DataQuery path);
 
     /**
      * Creates a new {@link DataView} at the desired path.
@@ -151,7 +148,7 @@ public interface DataView {
      * @param path The path of the new view
      * @return The newly created view
      */
-    DataView createView(String path);
+    DataView createView(DataQuery path);
 
     /**
      * Creates a new {@link DataView} with the given data at the desired
@@ -163,7 +160,7 @@ public interface DataView {
      * @param map The data to store in the new view
      * @return The new view
      */
-    DataView createView(String path, Map<?, ?> map);
+    DataView createView(DataQuery path, Map<?, ?> map);
 
     /**
      * Gets the {@link DataView} by path, if available.
@@ -174,7 +171,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The data view, if available
      */
-    Optional<DataView> getView(String path);
+    Optional<DataView> getView(DataQuery path);
 
     /**
      * Gets the {@link Boolean} by path, if available.
@@ -185,7 +182,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The boolean, if available
      */
-    Optional<Boolean> getBoolean(String path);
+    Optional<Boolean> getBoolean(DataQuery path);
 
     /**
      * Gets the {@link Integer} by path, if available.
@@ -196,7 +193,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The integer, if available
      */
-    Optional<Integer> getInt(String path);
+    Optional<Integer> getInt(DataQuery path);
 
     /**
      * Gets the {@link Long} by path, if available.
@@ -207,7 +204,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The long, if available
      */
-    Optional<Long> getLong(String path);
+    Optional<Long> getLong(DataQuery path);
 
     /**
      * Gets the {@link Double} by path, if available.
@@ -218,7 +215,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The double, if available
      */
-    Optional<Double> getDouble(String path);
+    Optional<Double> getDouble(DataQuery path);
 
     /**
      * Gets the {@link String} by path, if available.
@@ -229,7 +226,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The string, if available
      */
-    Optional<String> getString(String path);
+    Optional<String> getString(DataQuery path);
 
     /**
      * Gets the {@link List} of something by path, if available.
@@ -240,7 +237,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list, if available
      */
-    Optional<List<?>> getList(String path);
+    Optional<List<?>> getList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link String} by path, if available.
@@ -251,7 +248,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of strings, if available
      */
-    Optional<List<String>> getStringList(String path);
+    Optional<List<String>> getStringList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Character} by path, if available.
@@ -262,7 +259,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of characters, if available
      */
-    Optional<List<Character>> getCharacterList(String path);
+    Optional<List<Character>> getCharacterList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Boolean} by path, if available.
@@ -273,7 +270,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of booleans, if available
      */
-    Optional<List<Boolean>> getBooleanList(String path);
+    Optional<List<Boolean>> getBooleanList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Byte} by path, if available.
@@ -284,7 +281,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of bytes, if available
      */
-    Optional<List<Byte>> getByteList(String path);
+    Optional<List<Byte>> getByteList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Short} by path, if available.
@@ -295,7 +292,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of shorts, if available
      */
-    Optional<List<Short>> getShortList(String path);
+    Optional<List<Short>> getShortList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Integer} by path, if available.
@@ -306,7 +303,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of integers, if available
      */
-    Optional<List<Integer>> getIntegerList(String path);
+    Optional<List<Integer>> getIntegerList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Long} by path, if available.
@@ -317,7 +314,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of longs, if available
      */
-    Optional<List<Long>> getLongList(String path);
+    Optional<List<Long>> getLongList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Float} by path, if available.
@@ -328,7 +325,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of floats, if available
      */
-    Optional<List<Float>> getFloatList(String path);
+    Optional<List<Float>> getFloatList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Double} by path, if available.
@@ -339,7 +336,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of doubles, if available
      */
-    Optional<List<Double>> getDoubleList(String path);
+    Optional<List<Double>> getDoubleList(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Map} by path, if available.
@@ -350,7 +347,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of maps, if available
      */
-    Optional<List<Map<?, ?>>> getMapList(String path);
+    Optional<List<Map<?, ?>>> getMapList(DataQuery path);
 
     /**
      * Gets the {@link DataSerializable} object by path, if available.
@@ -362,6 +359,6 @@ public interface DataView {
      * @param <T> The type of {@link DataSerializable} object
      * @return The deserialized object, if available
      */
-    <T extends DataSerializable> Optional<T> getSerialiable(String path, Class<T> clazz);
+    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz);
 
 }
