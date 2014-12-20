@@ -26,7 +26,7 @@
 package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector2f;
 
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
@@ -77,18 +77,18 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     boolean setLocation(Location location);
 
     /**
-     * Gets the rotation as a Vector3f.
+     * Gets the rotation as a Vector2f.
      *
-     * @return The rotation as a Vector3f
+     * @return The rotation as a Vector2f
      */
-    Vector3f getRotation();
+    Vector2f getRotation();
 
     /**
      * Sets the rotation of this entity.
      *
      * @param rotation The rotation to set the entity to
      */
-    void setRotation(Vector3f rotation);
+    void setRotation(Vector2f rotation);
 
     /**
      * Gets the entity passenger that rides this entity, if available.
