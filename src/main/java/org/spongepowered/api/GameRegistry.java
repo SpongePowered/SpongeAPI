@@ -48,8 +48,6 @@ import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.world.biome.BiomeType;
 
-import java.util.List;
-
 import java.util.Collection;
 import java.util.List;
 

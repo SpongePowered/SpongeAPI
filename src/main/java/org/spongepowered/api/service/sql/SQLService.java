@@ -26,9 +26,10 @@ package org.spongepowered.api.service.sql;
 
 import com.google.common.base.Optional;
 
+import java.sql.SQLException;
+
 import javax.annotation.concurrent.ThreadSafe;
 import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /**
  * This service provides the basics for an abstraction over SQL connections.

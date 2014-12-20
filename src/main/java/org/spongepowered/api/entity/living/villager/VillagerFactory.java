@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
-import com.google.common.base.Optional;
-
 import java.util.List;
 
 /**

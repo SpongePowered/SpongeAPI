@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.effect;
 
-import org.spongepowered.api.item.ItemType;
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.item.ItemType;
 
 /**
  * A Viewer is something that sees effects.
