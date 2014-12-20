@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.world.biome;
 
-import org.spongepowered.api.world.gen.Populator;
-
 /**
  * Represents the biome at a particular location.
  */
@@ -40,57 +38,10 @@ public interface Biome {
     BiomeType getType();
 
     /**
-     * Get the temperature of this biome.
-     *
-     * @return The temperature
-     */
-    double getTemperature();
-
-    /**
-     * Get the humidity of this biome.
-     *
-     * @return The humidity
-     */
-    double getHumidity();
-    
-    /**
-     * Get the minimum terrain height of this biome.
-     * 
-     * @return The min height
-     */
-    float getMinHeight();
-    
-    /**
-     * Get the maximum terrain height of this biome.
-     * 
-     * @return The max height
-     */
-    float getMaxHeight();
-
-    /**
      * Replace with another biome type.
      *
      * @param type The new biome type
      */
     void replaceWith(BiomeType type);
-
-    /**
-     * Returns an ordered Collection of {@link Populator}s specific to this
-     * biome.
-     * 
-     * @return The populators
-     */
-    Iterable<Populator> getPopulators();
-
-    /**
-     * Inserts a new populator to this Biome's ordered collection of
-     * populators. The new populator is inserted at the given index. If the
-     * index is larger than the current amount of populators then the new
-     * populator in inserted at the end of the collection.
-     * 
-     * @param populator The new populator
-     * @param index THe index to insert the populator at
-     */
-    void insertPopulator(Populator populator, int index);
 
 }
