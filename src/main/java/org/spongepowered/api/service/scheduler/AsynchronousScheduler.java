@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
@@ -34,7 +33,10 @@ import java.util.UUID;
 /**
  * The base scheduler that schedules tasks.
  */
-public interface Scheduler {
+
+// WIP
+
+public interface AsynchronousScheduler {
 
     /**
      * Runs the task immediately.
@@ -67,7 +69,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<RepeatingTask> runRepeatingTask(Object plugin, Runnable task, long interval);
+    Optional<Task> runRepeatingTask(Object plugin, Runnable task, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -80,7 +82,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<RepeatingTask> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
+    Optional<Task> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
 
     /**
      * Retrieves a scheduled or running task by its unique ID.

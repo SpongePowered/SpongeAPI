@@ -22,18 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service.scheduler;
 
-/**
- * Represents a task that repeats on an interval.
- */
-public interface RepeatingTask extends Task {
+
+public interface SynchronousScheduler extends AsynchronousScheduler {
+
+    // WIP
 
     /**
-     * Gets the interval the task repeats on.
-     *
-     * @return The interval
+     * <p>Upon step(), the Synchronous scheduler processes all tasks due for resolution.
+     * Those tasks that are premature (and need to wait, are skipped), but the action
+     * to run a Task in the list of Synchronized Tasks is still bound to the step()
+     * function of the game.   By implication, we treat step() as a clock tick in the
+     * time-base of the Minecraft Server, eg, a "tick" (aka every 50ms on the Top Dead Center
+     * of the Minecraft "crankshaft")</p>
      */
-    long getInterval();
+    public void step();
+
 }
