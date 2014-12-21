@@ -31,10 +31,7 @@ import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.service.persistence.serialization.DataSerializable;
 import org.spongepowered.api.util.PrimitiveUtil;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Default implementation of a {@link DataView} being used in memory.
@@ -44,32 +41,24 @@ public class MemoryDataView implements DataView {
     protected final Map<String, Object> map = new LinkedHashMap<String, Object>();
     private final DataContainer container;
     private final DataView parent;
-    private final String path;
-    private final DataQuery fullpath;
+    private final DataQuery path;
 
     protected MemoryDataView() {
         if (!(this instanceof DataContainer)) {
             throw new IllegalStateException("Cannot construct a root MemoryDataView without a container!");
         }
-        this.path = "";
-        this.fullpath = new DataQuery('/', "");
+        this.path = new DataQuery();
         this.parent = this;
         this.container = (DataContainer) this;
     }
 
-    protected MemoryDataView(DataView parent, String path) {
-        checkArgument(!path.isEmpty(), "Path cannot be empty.");
+    protected MemoryDataView(DataView parent, DataQuery path) {
+        checkArgument(path.getParts().size() >= 1,
+                "Path must have at least one part");
 
-        this.path = path;
         this.parent = parent;
         this.container = parent.getContainer();
-        this.fullpath = createPath(parent, path);
-    }
-
-    private static DataQuery createPath(DataView parent, String path) {
-        DataQuery parentQuery = parent.getCurrentPath();
-        return new DataQuery(parentQuery.getSeparator(), parentQuery.getPath() + parentQuery.getSeparator() + path);
-
+        this.path = parent.getCurrentPath().then(path);
     }
 
     @Override
@@ -84,12 +73,13 @@ public class MemoryDataView implements DataView {
 
     @Override
     public DataQuery getCurrentPath() {
-        return this.fullpath;
+        return this.path;
     }
 
     @Override
     public String getName() {
-        return path;
+        List<String> parts = path.getParts();
+        return parts.get(parts.size() - 1);
     }
 
     @Override
@@ -114,22 +104,36 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Optional<Object> get(DataQuery path) {
-        if (!path.hasNext()) {
+        List<DataQuery> queryParts = path.getQueryParts();
+
+        int sz = queryParts.size();
+
+        if (sz == 0) {
             return Optional.<Object>of(this);
         }
 
-        DataView section = this;
-        while (path.hasNext()) {
-            if (section.getView(path.next().get()).isPresent()) {
-                section = section.getView(path.next().get()).get();
+        if (sz == 1) {
+            String key = queryParts.get(0).getParts().get(0);
+            if (map.containsKey(key)) {
+                return Optional.<Object>of(key);
+            } else {
+                return Optional.absent();
             }
         }
 
-        if (section == this) {
-            Object result = map.get(path.getFirst());
-            return Optional.fromNullable(result);
+        DataView view = this;
+        for (int i = 1; i < sz; i++) {
+            DataQuery part = queryParts.get(0);
+            Optional<DataView> nested = view.getView(part);
+            if (nested.isPresent()) {
+                view = nested.get();
+            } else {
+                return Optional.absent();
+            }
         }
-        return section.get(path);
+
+        DataQuery lastQueryPart = queryParts.get(sz - 1);
+        return view.get(lastQueryPart);
     }
 
     @Override
@@ -139,23 +143,29 @@ public class MemoryDataView implements DataView {
 
     @Override
     public DataView createView(DataQuery path) {
-        DataView section = this;
-        while (path.hasNext()) {
-            DataQuery next = path.next().get();
-            if (section.getView(next).isPresent()) {
-                section = section.getView(next).get();
-            } else {
-                section = section.createView(next);
-            }
-        }
+        List<DataQuery> queryParts = path.getQueryParts();
 
-        String key = path.getFirst();
-        if (section == this) {
+        int sz = queryParts.size();
+
+        checkArgument(sz == 0, "The size of the query must be at least 1");
+
+        if (sz == 1) {
+            DataQuery key = queryParts.get(0);
             DataView result = new MemoryDataView(this, key);
-            map.put(key, result);
+            map.put(key.getParts().get(0), result);
             return result;
         }
-        return section.createView(path);
+
+        DataView view = this;
+
+        for (int i = 1; i < sz; i++) {
+            DataQuery part = queryParts.get(0);
+            Optional<DataView> nested = view.getView(part);
+            view = nested.get();
+        }
+
+        DataQuery lastQueryPart = queryParts.get(sz - 1);
+        return view.createView(lastQueryPart);
     }
 
     @Override
@@ -430,8 +440,8 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public <T extends DataSerializable> Optional<T> getSerialiable(DataQuery path, Class<T> clazz) {
-        return Optional.absent(); // TODO implement
+    public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz) {
+        return null; // TODO implement
     }
 
 }

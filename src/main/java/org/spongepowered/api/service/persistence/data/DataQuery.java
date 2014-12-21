@@ -24,44 +24,139 @@
  */
 package org.spongepowered.api.service.persistence.data;
 
-import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
+
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
- * Represents a query to a {@link DataContainer} or {@link DataView} to fetch
- * data.
+ * Represents a query that can be done on views. Queries do not depend on
+ * their separator, it is just a way to construct them.
  */
 public final class DataQuery {
-    private final char separator;
-    private final String path;
 
-    public DataQuery(final char separator, String path) {
-        this.separator = separator;
-        this.path = path;
+    /**
+     * The parts that make up this query.
+     */
+    private final String[] parts;
+
+    /**
+     * Constructs a query using the given separator and path.
+     *
+     * <p>As an example, {@code new Query("/", "a/b/c")} and
+     * {@code new Query(".", "a.b.c")} represent the same path but are
+     * constructed using different separators.</p>
+     *
+     * @param separator The separator
+     * @param path The path
+     */
+    public DataQuery(String separator, String path) {
+        this.parts = path.split(Pattern.quote(separator));
     }
 
-    public char getSeparator() {
-        return this.separator;
+    /**
+     * Constructs a query using the given separator character and path.
+     *
+     * <p>As an example, {@code new Query('/', "a/b/c")} and
+     * {@code new Query('.', "a.b.c")} represent the same path but are
+     * constructed using different separators.</p>
+     *
+     * @param separator The separator
+     * @param path The path
+     */
+    public DataQuery(char separator, String path) {
+        this(String.valueOf(separator), path);
     }
 
-    public String getFirst() {
-        return this.path.substring(this.path.indexOf(this.separator));
+    /**
+     * Constructs a query using the given parts.
+     *
+     * @param parts The parts
+     */
+    public DataQuery(String... parts) {
+        this.parts = parts.clone();
     }
 
-    public String getPath() {
-        return this.path;
+    /**
+     * Constructs a query using the given parts.
+     *
+     * @param parts The parts
+     */
+    public DataQuery(List<String> parts) {
+       this(parts.toArray(new String[0]));
     }
 
-    public boolean hasNext() {
-        return this.path.indexOf(this.separator) != -1;
+    /**
+     * Gets the parts that make up this query.
+     *
+     * @return The parts of this query
+     */
+    public List<String> getParts() {
+        return new ImmutableList.Builder<String>().add(parts).build();
     }
 
-    public Optional<DataQuery> next() {
-        int index = this.path.indexOf(this.separator);
-        if (index == -1) {
-            return Optional.absent();
+    /**
+     * Returns a new query that is made up of this query's parts followed by the
+     * given query's parts.
+     *
+     * @param that The given query to follow this one
+     * @return The constructed query
+     */
+    public DataQuery then(DataQuery that) {
+        ImmutableList.Builder<String> builder =
+                new ImmutableList.Builder<String>();
+
+        builder.addAll(getParts());
+        builder.addAll(that.getParts());
+
+        return new DataQuery(builder.build());
+    }
+
+    /**
+     * Returns the parts of this query as individual queries.
+     *
+     * @return The constructed queries
+     */
+    public List<DataQuery> getQueryParts() {
+        ImmutableList.Builder<DataQuery> builder =
+                new ImmutableList.Builder<DataQuery>();
+
+        for (String part: getParts()) {
+            builder.add(new DataQuery(part));
         }
 
-        return Optional.of(new DataQuery(this.separator, this.path.substring(this.path.indexOf(this.separator) + 1)));
+        return builder.build();
+    }
+
+    /**
+     * Gets this query as a string separated by the given separator.
+     *
+     * @param separator The separator
+     * @return This query as a string
+     */
+    public String asString(String separator) {
+        StringBuilder builder = new StringBuilder();
+
+        if (parts.length > 0) {
+            builder.append(parts[0]);
+        }
+
+        for (int i = 1; i < parts.length; i++) {
+            builder.append(separator);
+            builder.append(parts[i]);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Gets this query as a string separated by the given separator character.
+     *
+     * @param separator The separator
+     * @return This query as a string
+     */
+    public String asString(char separator) {
+        return asString(String.valueOf(separator));
     }
 
 }

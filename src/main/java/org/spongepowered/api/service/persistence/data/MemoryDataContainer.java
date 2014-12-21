@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.serialization.DataSerializable;
 
 /**
  * Default implementaiton of a {@link DataContainer} being used in memory.
