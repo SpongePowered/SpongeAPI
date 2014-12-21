@@ -24,8 +24,12 @@
  */
 package org.spongepowered.api.service.scheduler;
 
+import com.google.common.base.Optional;
+import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
+
+import java.util.concurrent.Callable;
 
 /**
  * Represents a task that has been scheduled.
@@ -33,7 +37,7 @@ import org.spongepowered.api.util.Identifiable;
 
 // WIP
 
-public interface Task extends Identifiable {
+public interface Task<T> extends Identifiable {
 
     /**
      * Returns the plugin that scheduled this task.
@@ -61,5 +65,19 @@ public interface Task extends Identifiable {
      *
      * @return The runnable
      */
-    Runnable getRunnable();
+    Optional<Runnable> getRunnable();
+
+    /**
+     * Gets the {@link Callable} that this task is running.
+     *
+     * @return The callable
+     */
+    Optional<Callable<T>> getCallable();
+
+    /**
+     * Gets the {@link ListenableFuture} that represents the result of this task.
+     *
+     * @return The future
+     */
+    Optional<ListenableFuture<T>> getFuture();
 }
