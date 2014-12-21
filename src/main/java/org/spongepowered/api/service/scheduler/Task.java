@@ -80,4 +80,5 @@ public interface Task<T> extends Identifiable {
      * @return The future
      */
     Optional<ListenableFuture<T>> getFuture();
+
 }

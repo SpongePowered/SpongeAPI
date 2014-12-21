@@ -154,4 +154,5 @@ public interface AsynchronousScheduler {
      * @return A collection of scheduled tasks
      */
     Collection<Task> getScheduledTasks(Object plugin);
+
 }
