@@ -131,5 +131,12 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return A collection of GameRules.
      */
     Map<String, String> getGameRules();
-    
+
+    /**
+     * Returns the {@link Environment} of this world.
+     *
+     * @return The {@link Environment}
+     */
+    Environment getEnvironment();
+
 }
