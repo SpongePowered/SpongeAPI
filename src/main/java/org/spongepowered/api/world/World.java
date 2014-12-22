@@ -139,4 +139,11 @@ public interface World extends Extent, Viewer, WeatherVolume {
      */
     Environment getEnvironment();
 
+    /**
+     * Returns the {@link WorldType} of this world.
+     * 
+     * @return The {@link WorldType}
+     */
+    WorldType getWorldType();
+
 }

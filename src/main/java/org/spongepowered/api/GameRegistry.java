@@ -47,6 +47,7 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.world.Environment;
+import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.biome.BiomeType;
 
 import java.util.Collection;
@@ -380,5 +381,28 @@ public interface GameRegistry {
      * @return The environment list
      */
     List<Environment> getEnvironments();
+
+    /**
+     * Gets a the {@link WorldType} with the provided name.
+     * 
+     * @param name The name of the {@link WorldType}
+     * @return The {@link WorldType} with the given name or Optional.absent() if not found
+     */
+    Optional<WorldType> getWorldType(String name);
+
+    /**
+     * Gets a the {@link WorldType} with the provided id.
+     * 
+     * @param id The id of the {@link WorldType}
+     * @return The {@link WorldType} with the given id or Optional.absent() if not found
+     */
+    Optional<WorldType> getWorldType(int id);
+
+    /**
+     * Gets a {@link List} of all possible {@link WorldType}s.
+     *
+     * @return The world type list
+     */
+    List<WorldType> getWorldTypes();
 
 }
