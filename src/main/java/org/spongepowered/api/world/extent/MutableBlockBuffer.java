@@ -30,7 +30,7 @@ import org.spongepowered.api.block.BlockType;
  * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
  * to the world and changes to it are not synchronized to the world.
  */
-public interface MutableBlockBuffer extends ImmutableBlockBuffer {
+public interface MutableBlockBuffer extends BlockBuffer {
 
     /**
      * Sets the block in the buffer at the given position.
@@ -58,5 +58,12 @@ public interface MutableBlockBuffer extends ImmutableBlockBuffer {
      * @param block The block type
      */
     void setHorizontalLayer(int y, int height, BlockType block);
+    
+    /**
+     * Returns an immutable copy of this block buffer.
+     * 
+     * @return An immutable copy
+     */
+    ImmutableBlockBuffer getImmutableClone();
 
 }

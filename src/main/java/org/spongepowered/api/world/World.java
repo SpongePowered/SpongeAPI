@@ -25,15 +25,14 @@
 
 package org.spongepowered.api.world;
 
+import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.biome.BiomeManager;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.weather.WeatherVolume;
-
-import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
 
 import java.util.Map;
 import java.util.UUID;

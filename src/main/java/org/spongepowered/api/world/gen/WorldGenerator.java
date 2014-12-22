@@ -36,6 +36,13 @@ import com.flowpowered.math.vector.Vector3i;
 public interface WorldGenerator {
 
     /**
+     * Gets the name of this generator.
+     * 
+     * @return The name
+     */
+    String getName();
+    
+    /**
      * Generates the chunk at the given position in the world. The position
      * specified is the chunk position (ie. the world position divided by the
      * chunk size).
