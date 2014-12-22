@@ -36,4 +36,20 @@ public interface EntityType {
      * @return The id
      */
     String getId();
+
+    /**
+     * Checks whether this entity type does support the given feature class
+     * (including interfaces). A feature class is supported if every
+     * {@link Entity} of this entity type can be cast to the given feature
+     * class. This means that every {@link Entity} that is spawned using this
+     * entity type is an instance of either the given feature class or any
+     * subclass of the feature class. This method will always return
+     * <tt>true</tt> for {@link Entity}.class.
+     *
+     * @param featureClass The feature class or interface to check
+     * @return True if every spawned entity is guaranteed to be an instance of
+     *         the given feature class or any of its subclasses. False otherwise
+     */
+    boolean supportsFeatures(Class<?> featureClass);
+
 }
