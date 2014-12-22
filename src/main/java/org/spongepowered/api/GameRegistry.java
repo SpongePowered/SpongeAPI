@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.Particle;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.ai.AIRequirement;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.meta.DyeColor;
 import org.spongepowered.api.entity.living.meta.HorseColor;
@@ -319,6 +320,13 @@ public interface GameRegistry {
      * @return A list of all villager professions
      */
     List<Profession> getProfessions();
+
+    /**
+     * Gets all available {@link AIRequirement}s.
+     *
+     * @return A list of all AI requirements
+     */
+    List<AIRequirement> getAIRequirements();
 
     /**
      * Gets a list of all available {@link GameMode}s.
