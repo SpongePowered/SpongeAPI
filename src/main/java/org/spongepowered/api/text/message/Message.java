@@ -87,8 +87,8 @@ public interface Message {
     List<Message> getChildren();
 
     /**
-     * Returns an {@link Iterable} over this message and all of its children. This is
-     * recursive, the children of the children will be also included.
+     * Returns an {@link Iterable} over this message and all of its children.
+     * This is recursive, the children of the children will be also included.
      *
      * @return An iterable over this message and the children messages
      */
@@ -130,7 +130,8 @@ public interface Message {
     MessageBuilder builder();
 
     /**
-     * Returns a representation of this {@link Message} using the legacy color codes.
+     * Returns a representation of this {@link Message} using the legacy color
+     * codes.
      *
      * @return This message converted to the old color codes
      * @deprecated Legacy formatting codes are being phased out of Minecraft
@@ -139,7 +140,8 @@ public interface Message {
     String toLegacy();
 
     /**
-     * Returns a representation of this {@link Message} using the legacy color codes.
+     * Returns a representation of this {@link Message} using the legacy color
+     * codes.
      *
      * @param code The legacy char to use for the message
      * @return This message converted to the old color codes
@@ -196,14 +198,10 @@ public interface Message {
     /**
      * Represents a {@link Message} containing a selector that will be replaced
      * by the names of the matching entities on the client.
-     *
-     * @see <a
-     *      href="http://minecraft.gamepedia.com/Commands#Target_selectors">Selectors
-     *      on the Minecraft Wiki</a>
+     * 
+     * @see org.spongepowered.api.text.selector.Selector
      */
     interface Selector extends Message {
-
-        // TODO use Selector
 
         /**
          * Returns the selector used in this {@link Message}.
@@ -211,7 +209,7 @@ public interface Message {
          * @return The selector of this message
          */
         @Override
-        String getContent();
+        org.spongepowered.api.text.selector.Selector getContent();
 
         @Override
         MessageBuilder.Selector builder();
