@@ -251,6 +251,21 @@ public interface BlockLoc extends DataHolder {
     Collection<Direction> getIndirectlyPoweredFaces();
 
     /**
+     * Test whether the the block will block the movement of entities.
+     * 
+     * @return Blocks movement
+     */
+    boolean isPassable();
+    
+    /**
+     * Test whether the given face of the block can catch fire.
+     * 
+     * @param direction The face of the block to check
+     * @return Is flammable
+     */
+    boolean isFaceFlammable(Direction direction);
+
+    /**
      * Get a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was
