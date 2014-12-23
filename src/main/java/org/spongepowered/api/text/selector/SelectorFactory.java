@@ -24,10 +24,6 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * Represents the required implementation for the static methods in
  * {@link Selectors}.
@@ -48,22 +44,5 @@ interface SelectorFactory {
      * @return A new selector containing the given selector data
      */
     Selector parseRawSelector(String selector);
-
-    /**
-     * Gets the {@link SelectorVariable} with the specified name.
-     *
-     * @param name The identifier of the selector Variable, for example
-     *        "ALL_PLAYERS"
-     * @return The {@link SelectorVariable} with the specified name, or
-     *         {@link Optional#absent()} if not found
-     */
-    Optional<SelectorVariable> getVariableFromName(String name);
-
-    /**
-     * Returns a list of all available {@link SelectorVariable}s on this server.
-     *
-     * @return An immutable list of all selector variables
-     */
-    List<SelectorVariable> getVariables();
 
 }

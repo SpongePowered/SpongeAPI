@@ -30,6 +30,8 @@ import org.spongepowered.api.world.Location;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents an immutable selector. A selector starts with the {@code @} symbol
  * and is followed by a single character signifying which selector is being used
@@ -63,8 +65,17 @@ public interface Selector {
      * 
      * @param location The location to resolve the selector around
      * @return A list of entities that were resolved from this {@link Selector}
+     * @throws IllegalArgumentException If {@code location} is null and
+     *         {@link #requiresLocation()} returned {@code true}
      */
-    List<Entity> resolve(Location location);
+    List<Entity> resolve(@Nullable Location location) throws IllegalArgumentException;
+
+    /**
+     * Returns {@code true} if this selector will require a location to resolve.
+     * 
+     * @return {@code true} if this selector will require a location to resolve
+     */
+    boolean requiresLocation();
 
     /**
      * Converts this {@link Selector} to a valid selector string.
