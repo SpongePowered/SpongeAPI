@@ -23,15 +23,19 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity.living.player;
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
+package org.spongepowered.api.stats;
 
 /**
- * Called when a {@link Player} moves.
+ * Represents a grouped {@link Statistic} with a {@link StatisticType} that
+ * defines the grouping criteria.
  */
-public interface PlayerMoveEvent extends PlayerEvent, HumanMoveEvent, StatisticChangeEvent {
+public interface GroupedStatistic extends Statistic {
+
+    /**
+     * Gets the {@link StatisticType} this {@link Statistic} belongs to.
+     *
+     * @return The statistic type this statistic belongs to
+     */
+    StatisticType getType();
 
 }

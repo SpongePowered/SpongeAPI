@@ -23,15 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity.living.player;
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
+package org.spongepowered.api.stats;
 
 /**
- * Called when a {@link Player} moves.
+ * A utility class for getting all available {@link StatisticUnit}s.
  */
-public interface PlayerMoveEvent extends PlayerEvent, HumanMoveEvent, StatisticChangeEvent {
+public final class StatisticUnits {
+
+    /**
+     * A statistic without unit.
+     */
+    public static StatisticUnit COUNT = null;
+    /**
+     * A statistic measured in centimeters.
+     */
+    public static StatisticUnit DISTANCE_CM = null;
+    /**
+     * A statistic measured in 0.1 steps.
+     */
+    public static StatisticUnit FRACTIONAL1 = null;
+    /**
+     * A statistic measured in minutes.
+     */
+    public static StatisticUnit TIME_MINUTES = null;
+
+    private StatisticUnits() {
+    }
 
 }

@@ -23,15 +23,12 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.stats;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
+import org.spongepowered.api.item.ItemType;
 
 /**
- * Called when a {@link Player} moves.
+ * Represents a type of {@link Statistic}s for {@link ItemType}s.
  */
-public interface PlayerMoveEvent extends PlayerEvent, HumanMoveEvent, StatisticChangeEvent {
-
+public interface ItemStatisticType extends StatisticType {
 }
