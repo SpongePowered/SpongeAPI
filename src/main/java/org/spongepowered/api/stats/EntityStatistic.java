@@ -22,16 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanBreakBlockEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
-import org.spongepowered.api.world.Location;
+package org.spongepowered.api.stats;
+
+import org.spongepowered.api.entity.EntityType;
 
 /**
- * Called when a {@link Player} breaks a {@link Location}.
+ * Represents a {@link Statistic} with a {@link EntityStatisticType} for an
+ * {@link EntityType}.
  */
-public interface PlayerBreakBlockEvent extends HumanBreakBlockEvent, PlayerChangeBlockEvent, StatisticChangeEvent {
+public interface EntityStatistic extends GroupedStatistic {
+
+    /**
+     * Gets the {@link EntityStatisticType} this {@link Statistic} belongs to.
+     *
+     * @return The entity statistic type this statistic belongs to
+     */
+    @Override
+    EntityStatisticType getType();
+
+    /**
+     * Gets the {@link EntityType} this {@link Statistic} measures.
+     *
+     * @return The entity type this statistic measures
+     */
+    EntityType getEntityType();
 
 }

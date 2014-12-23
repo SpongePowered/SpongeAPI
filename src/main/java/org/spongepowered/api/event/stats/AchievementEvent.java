@@ -22,16 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
+
+package org.spongepowered.api.event.stats;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanBreakBlockEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.event.entity.player.PlayerEvent;
+import org.spongepowered.api.stats.achievement.Achievement;
 
 /**
- * Called when a {@link Player} breaks a {@link Location}.
+ * Represents an event that is called when a {@link Player} earns an
+ * {@link Achievement}.
  */
-public interface PlayerBreakBlockEvent extends HumanBreakBlockEvent, PlayerChangeBlockEvent, StatisticChangeEvent {
+public interface AchievementEvent extends PlayerEvent {
+
+    /**
+     * Gets the achievement that is granted to the {@link Player}.
+     *
+     * @return The achievement that is granted to the player
+     */
+    Achievement getAchievement();
 
 }

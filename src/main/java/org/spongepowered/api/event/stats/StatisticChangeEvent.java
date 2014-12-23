@@ -22,16 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanBreakBlockEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
-import org.spongepowered.api.world.Location;
+package org.spongepowered.api.event.stats;
+
+import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.util.event.Event;
+
+import java.util.Collection;
 
 /**
- * Called when a {@link Player} breaks a {@link Location}.
+ * Represents an event that is triggered if one or more {@link Statistic}s are
+ * about to change their values.
  */
-public interface PlayerBreakBlockEvent extends HumanBreakBlockEvent, PlayerChangeBlockEvent, StatisticChangeEvent {
+public interface StatisticChangeEvent extends Event {
+
+    /**
+     * Gets a {@link Collection} containing all {@link StatisticChange}s.
+     *
+     * @return A collection containing all changes to statistics
+     */
+    Collection<StatisticChange> getStatisticChanges();
 
 }

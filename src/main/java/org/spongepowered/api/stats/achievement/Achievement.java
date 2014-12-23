@@ -25,13 +25,22 @@
 package org.spongepowered.api.stats.achievement;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 
 import java.util.List;
 
 /**
  * Represents an in-game achievement which may be earned by or given to players.
  */
-public interface Achievement {
+public interface Achievement extends Translatable {
+
+    /**
+     * Returns the description that describes this achievement.
+     *
+     * @return The description of this achievement
+     */
+    Translation getDescription();
 
     /**
      * Returns the parent of this achievement, if there is one.
@@ -43,7 +52,7 @@ public interface Achievement {
     /**
      * Returns the children of this achievement.
      *
-     * @return The children of this achievement
+     * @return An immutable list of all children this achievement has
      */
     List<Achievement> getChildren();
 

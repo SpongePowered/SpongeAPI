@@ -27,10 +27,11 @@ package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
+import org.spongepowered.api.event.stats.StatisticChangeEvent;
 
 /**
  * Called when a {@link Player} moves.
  */
-public interface PlayerMoveEvent extends PlayerEvent, HumanMoveEvent {
+public interface PlayerMoveEvent extends PlayerEvent, HumanMoveEvent, StatisticChangeEvent {
 
 }

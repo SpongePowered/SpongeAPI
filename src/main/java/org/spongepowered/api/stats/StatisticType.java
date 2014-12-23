@@ -22,16 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanBreakBlockEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
-import org.spongepowered.api.world.Location;
+package org.spongepowered.api.stats;
 
 /**
- * Called when a {@link Player} breaks a {@link Location}.
+ * Represents a type of statistic that is used to uniquely identify a group
+ * {@link GroupedStatistic}s are belonging to.
  */
-public interface PlayerBreakBlockEvent extends HumanBreakBlockEvent, PlayerChangeBlockEvent, StatisticChangeEvent {
+public interface StatisticType {
+
+    /**
+     * Gets the {@link StatisticUnit} this statistic is measured in.
+     *
+     * @return The statistic unit this statistic is measured in
+     */
+    StatisticUnit getStatisticUnit();
 
 }
