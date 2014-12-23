@@ -26,14 +26,14 @@
 package org.spongepowered.api.stats;
 
 /**
- * A utility class for getting all available {@link ItemStatistic}s.
+ * A utility class for getting all available {@link ItemStatisticType}s.
  */
 public final class ItemStatisticTypes {
 
-    public static final ItemStatistic CRAFT = null;
-    public static final ItemStatistic USE = null;
-    public static final ItemStatistic BREAK = null;
-    public static final ItemStatistic MINE = null;
+    public static final ItemStatisticType CRAFT = null;
+    public static final ItemStatisticType USE = null;
+    public static final ItemStatisticType BREAK = null;
+    public static final ItemStatisticType MINE = null;
 
     private ItemStatisticTypes() {
     }

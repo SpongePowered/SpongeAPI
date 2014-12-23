@@ -26,12 +26,12 @@
 package org.spongepowered.api.stats;
 
 /**
- * A utility class for getting all available {@link EntityStatistic}s.
+ * A utility class for getting all available {@link EntityStatisticType}s.
  */
 public final class EntityStatisticTypes {
 
-    public static final EntityStatistic HASKILLED = null;
-    public static final EntityStatistic KILLEDBY = null;
+    public static final EntityStatisticType HASKILLED = null;
+    public static final EntityStatisticType KILLEDBY = null;
 
     private EntityStatisticTypes() {
     }
