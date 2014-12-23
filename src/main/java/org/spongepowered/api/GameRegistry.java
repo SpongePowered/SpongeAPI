@@ -44,6 +44,14 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.stats.EntityStatistic;
+import org.spongepowered.api.stats.EntityStatisticType;
+import org.spongepowered.api.stats.ItemStatistic;
+import org.spongepowered.api.stats.ItemStatisticType;
+import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.TeamStatistic;
+import org.spongepowered.api.stats.TeamStatisticType;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.world.biome.BiomeType;
 
 import java.util.List;
@@ -334,4 +342,60 @@ public interface GameRegistry {
      * @return The default GameRules.
      */
     Collection<String> getDefaultGameRules();
+
+    /**
+     * Gets the {@link Statistic} with the specified id.
+     *
+     * @param id The id of the statistic to return
+     * @return The statistic with the given id or Optional.absent() if not found
+     */
+    Optional<Statistic> getStatistic(String id);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link EntityStatisticType} and
+     * {@link EntityType}.
+     *
+     * @param statisticType The type of statistic to return
+     * @param entityType The entity type for the statistic to return
+     * @return The entity statistic matching the filter or Optional.absent() if
+     *         not found
+     */
+    Optional<EntityStatistic> getEntityStatistic(EntityStatisticType statisticType, EntityType entityType);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link ItemStatisticType} and
+     * {@link ItemType}.
+     *
+     * @param statisticType The type of statistic to return
+     * @param entityType The item type for the statistic to return
+     * @return The item statistic matching the filter or Optional.absent() if
+     *         not found
+     */
+    Optional<ItemStatistic> getItemStatistic(ItemStatisticType statisticType, ItemType itemType);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link TeamStatisticType} and
+     * team's {@link TextColor}.
+     *
+     * @param statisticType The type of statistic to return
+     * @param teamColor The team's color for the statistic to return
+     * @return The team statistic matching the filter or Optional.absent() if
+     *         not found
+     */
+    Optional<TeamStatistic> getTeamStatistic(TeamStatisticType statisticType, TextColor teamColor);
+
+    /**
+     * Gets a list of all available {@link Statistic}s.
+     *
+     * @return A list containing all simple statistics in registry
+     */
+    Collection<Statistic> getSimpleStatistics();
+
+    /**
+     * Gets a list of all available {@link Statistic}s.
+     *
+     * @return A list containing all statistics in registry
+     */
+    Collection<Statistic> getStatistics();
+
 }
