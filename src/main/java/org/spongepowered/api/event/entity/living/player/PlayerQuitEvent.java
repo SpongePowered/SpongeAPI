@@ -46,4 +46,5 @@ public interface PlayerQuitEvent extends PlayerEvent {
      * @param quitMessage The new player quit message.
      */
     void setQuitMessage(Message quitMessage);
+    
 }

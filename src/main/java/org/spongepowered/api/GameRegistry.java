@@ -59,6 +59,20 @@ import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.stats.EntityStatistic;
+import org.spongepowered.api.stats.EntityStatisticType;
+import org.spongepowered.api.stats.GroupedStatistic;
+import org.spongepowered.api.stats.ItemStatistic;
+import org.spongepowered.api.stats.ItemStatisticType;
+import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.StatisticBuilder;
+import org.spongepowered.api.stats.StatisticType;
+import org.spongepowered.api.stats.StatisticTypeBuilder;
+import org.spongepowered.api.stats.StatisticUnit;
+import org.spongepowered.api.stats.Statistics;
+import org.spongepowered.api.stats.TeamStatistic;
+import org.spongepowered.api.stats.TeamStatisticType;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
@@ -401,6 +415,113 @@ public interface GameRegistry {
     Collection<String> getDefaultGameRules();
 
     /**
+     * Gets the {@link Statistic} with the specified id.
+     *
+     * @param id The id of the statistic to return
+     * @return The statistic with the given id or Optional.absent() if not found
+     */
+    Optional<Statistic> getStatistic(String id);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link EntityStatisticType} and
+     * {@link EntityType}.
+     *
+     * @param statisticType The type of statistic to return
+     * @param entityType The entity type for the statistic to return
+     * @return The entity statistic matching the filter or Optional.absent() if
+     *         not found
+     */
+    Optional<EntityStatistic> getEntityStatistic(EntityStatisticType statisticType, EntityType entityType);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link ItemStatisticType} and
+     * {@link ItemType}.
+     *
+     * @param statisticType The type of statistic to return
+     * @param itemType The item type for the statistic to return
+     * @return The item statistic matching the filter or Optional.absent() if
+     *         not found
+     */
+    Optional<ItemStatistic> getItemStatistic(ItemStatisticType statisticType, ItemType itemType);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link TeamStatisticType} and
+     * team's {@link TextColor}.
+     *
+     * @param statisticType The type of statistic to return
+     * @param teamColor The team's color for the statistic to return
+     * @return The team statistic matching the filter or Optional.absent() if
+     *         not found
+     */
+    Optional<TeamStatistic> getTeamStatistic(TeamStatisticType statisticType, TextColor teamColor);
+
+    /**
+     * Gets a list of all available {@link Statistic}s that are not grouped.
+     *
+     * @return An immutable collection containing all statistics in registry
+     *         that are not grouped
+     * @see Statistics
+     */
+    Collection<Statistic> getSimpleStatistics();
+
+    /**
+     * Gets a list of all available {@link GroupedStatistic}s with the given
+     * {@link StatisticType}.
+     *
+     * @param statisticType The statisticType to return
+     * @return An immutable collection containing all statistics in registry
+     */
+    Collection<GroupedStatistic> getStatistics(StatisticType statisticType);
+
+    /**
+     * Gets a collection of all available {@link Statistic}s.
+     *
+     * @return An immutable collection containing all statistics in registry
+     */
+    Collection<Statistic> getStatistics();
+
+    /**
+     * Create a new {@link StatisticBuilder.Simple} to create new simple
+     * {@link Statistic}s (none grouped).
+     *
+     * @return The newly created simple statistic builder
+     */
+    StatisticBuilder.Simple newSimpleStatisticBuilder();
+
+    /**
+     * Create a new {@link StatisticBuilder.Grouped} to create new
+     * {@link GroupedStatistic}.
+     *
+     * @return The newly created grouped statistic builder
+     */
+    StatisticBuilder.Grouped newGroupedStatisticBuilder();
+
+    /**
+     * Create a new {@link StatisticTypeBuilder} to create new
+     * {@link StatisticType}.
+     *
+     * @return The newly created statistic type builder
+     */
+    StatisticTypeBuilder newStatisticTypeBuilder();
+
+    /**
+     * Gets the {@link StatisticUnit} with the specified name.
+     *
+     * @param name The name of the statistic unit to return
+     * @return The statistic unit with the given name or Optional.absent() if
+     *         not found
+     */
+    Optional<StatisticUnit> getStatisticUnit(String name);
+
+    /**
+     * Gets a collection of all available {@link StatisticUnit}s.
+     *
+     * @return An immutable collection containing all statistics units in
+     *         registry
+     */
+    Collection<StatisticUnit> getStatisticUnits();
+
+    /**
      * Gets the {@link DimensionType} with the provided name.
      *
      * @param name The name of the dimension type
@@ -623,5 +744,4 @@ public interface GameRegistry {
      * @return A new AttributeModifierBuilder
      */
     AttributeModifierBuilder getAttributeModifierBuilder();
-
 }

@@ -23,15 +23,26 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity.living.player;
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
+package org.spongepowered.api.stats;
 
 /**
- * Called when a {@link Player} moves.
+ * Represents a unit a statistic is measured in.
  */
-public interface PlayerMoveEvent extends PlayerEvent, HumanMoveEvent, StatisticChangeEvent {
+public interface StatisticUnit {
+
+    /**
+     * Gets the name of this statistic.
+     *
+     * @return The name of this statistic
+     */
+    String getName();
+
+    /**
+     * Formats the given value from the statistic to a human readable form.
+     *
+     * @param value The value to format
+     * @return The formated value
+     */
+    String format(long value);
 
 }
