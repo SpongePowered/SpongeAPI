@@ -22,28 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.entity.living.monster;
-
-import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+package org.spongepowered.api.entity.living;
 
 /**
- * Represents a Blaze.
+ * Represents an aquatic living entity that may normally spawn in water.
  */
-public interface Blaze extends Monster, ProjectileSource, Aerial {
+public interface Aquatic extends Agent {
 
-    /**
-     * Gets whether or not this blaze is currently on fire.
-     *
-     * @return Whether or not the blaze is on fire
-     */
-    boolean isOnFire();
-
-    /**
-     * Sets whether or not this blaze is currently on fire.
-     *
-     * @param onFire Whether the blaze should be on fire or not
-     */
-    void setOnFire(boolean onFire);
 }

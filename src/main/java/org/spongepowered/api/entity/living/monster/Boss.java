@@ -22,28 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-
 /**
- * Represents a Blaze.
+ * Represents a boss monster that may cause a boss healthbar to show
+ * on client interfaces.
  */
-public interface Blaze extends Monster, ProjectileSource, Aerial {
+public interface Boss extends Monster {
 
-    /**
-     * Gets whether or not this blaze is currently on fire.
-     *
-     * @return Whether or not the blaze is on fire
-     */
-    boolean isOnFire();
-
-    /**
-     * Sets whether or not this blaze is currently on fire.
-     *
-     * @param onFire Whether the blaze should be on fire or not
-     */
-    void setOnFire(boolean onFire);
 }

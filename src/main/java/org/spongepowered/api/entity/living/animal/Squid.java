@@ -25,9 +25,11 @@
 
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.entity.living.Aquatic;
+
 /**
  * Represents a Squid.
  */
-public interface Squid extends Animal {
+public interface Squid extends Aquatic, Animal {
 
 }

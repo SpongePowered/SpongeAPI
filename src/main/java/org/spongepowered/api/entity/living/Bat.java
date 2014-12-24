@@ -28,7 +28,7 @@ package org.spongepowered.api.entity.living;
 /**
  * Represents a Bat.
  */
-public interface Bat extends Agent {
+public interface Bat extends Ambient, Aerial {
 
     /**
      * Returns true whether this bat is awake and flying or hanging.
