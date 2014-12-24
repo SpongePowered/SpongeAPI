@@ -25,12 +25,11 @@
 
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link org.spongepowered.api.entity.Entity} moves.
+ * Called when an {@link Entity} moves.
  */
 public interface EntityMoveEvent extends EntityEvent, Cancellable {
 

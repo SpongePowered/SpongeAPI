@@ -25,12 +25,13 @@
 
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
  * Represents a Blaze.
  */
-public interface Blaze extends Monster, ProjectileSource {
+public interface Blaze extends Monster, ProjectileSource, Aerial {
 
     /**
      * Gets whether or not this blaze is currently on fire.

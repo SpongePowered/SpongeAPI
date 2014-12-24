@@ -44,10 +44,10 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.world.Environment;
 import org.spongepowered.api.world.biome.BiomeType;
-
-import java.util.List;
 
 import java.util.Collection;
 import java.util.List;
@@ -119,11 +119,18 @@ public interface GameRegistry {
     ItemStackBuilder getItemBuilder();
 
     /**
-     * Get an trade offer builder.
+     * Get a trade offer builder.
      *
      * @return The trade offer builder
      */
     TradeOfferBuilder getTradeOfferBuilder();
+
+    /**
+     * Get a potion effect builder.
+     *
+     * @return The potion effect builder
+     */
+    PotionEffectBuilder getPotionEffectBuilder();
 
     /**
      * Gets a {@link Particle} by id.
@@ -350,4 +357,28 @@ public interface GameRegistry {
      * @return The default GameRules.
      */
     Collection<String> getDefaultGameRules();
+
+    /**
+     * Gets the {@link Environment} with the provided name. 
+     *
+     * @param name The name of the environment
+     * @return The {@link Environment} with the given name or Optional.absent() if not found
+     */
+    Optional<Environment> getEnvironment(String name);
+
+    /**
+     * Gets the {@link Environment} with the provided id. 
+     *
+     * @param dimensionId The name of the environment
+     * @return The {@link Environment} with the given dimensionId or Optional.absent() if not found
+     */
+    Optional<Environment> getEnvironment(int dimensionId);
+
+    /**
+     * Gets a {@link List} of all possible {@link Environment}s.
+     *
+     * @return The environment list
+     */
+    List<Environment> getEnvironments();
+
 }

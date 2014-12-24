@@ -25,11 +25,12 @@
 
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
  * Represents a Ghast.
  */
-public interface Ghast extends Monster, ProjectileSource {
+public interface Ghast extends Aerial, Monster, ProjectileSource {
 
 }

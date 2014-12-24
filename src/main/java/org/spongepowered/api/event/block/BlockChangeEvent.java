@@ -26,15 +26,16 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Dispatched when a block is in the process of changing, before
  * the change has been made.
  */
-public interface BlockChangeEvent extends BlockEvent {
+public interface BlockChangeEvent extends BlockEvent, Cancellable {
     
     /**
-     * Get the block that will replace the block.
+     * Get the block that the current block will be replaced with.
      *
      * @return The block that will replace
      */
