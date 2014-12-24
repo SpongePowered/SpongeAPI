@@ -27,9 +27,9 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.biome.BiomeManager;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.weather.WeatherVolume;
@@ -167,7 +167,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();
-    
+
     /**
      * Sets the {@link WorldGenerator} for this world to use to create new
      * chunks.
@@ -175,13 +175,6 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @param generator The new generator
      */
     void setWorldGenerator(WorldGenerator generator);
-
-    /**
-     * Gets the {@link BiomeManager} for this world.
-     * 
-     * @return The biome manager
-     */
-    BiomeManager getBiomeManager();
 
     /**
      * Returns whether this {@link World}'s spawn chunks remain loaded when no players are present.
@@ -200,4 +193,5 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded without players
      */
     void setKeepSpawnLoaded(boolean keepLoaded);
+
 }

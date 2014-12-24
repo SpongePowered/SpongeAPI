@@ -23,25 +23,49 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.util.gen;
+
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
+
+import com.flowpowered.math.vector.Vector3i;
 
 /**
- * Represents the biome at a particular location.
+ * An buffer for {@link BlockType} data. This buffer has no direct relation
+ * to the world and changes to it are not synchronized to the world.
  */
-public interface Biome {
+public interface BlockBuffer {
 
     /**
-     * Get the biome type.
+     * Gets the block in the buffer at the given position.
      *
-     * @return The biome type
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The block
      */
-    BiomeType getType();
+    BlockState getBlock(int x, int y, int z);
 
     /**
-     * Replace with another biome type.
+     * Gets the minimal bound of the buffer's location.
      *
-     * @param type The new biome type
+     * @return The minimal bound
      */
-    void replaceWith(BiomeType type);
+    Vector3i getMinBound();
+
+    /**
+     * Gets the maximal bound of the buffer's location.
+     *
+     * @return The maximal bound
+     */
+    Vector3i getMaxBound();
+
+    /**
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
+     * {@link #getMinBound()}.
+     *
+     * @return The size
+     */
+    Vector3i getSize();
 
 }

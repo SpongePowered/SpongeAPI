@@ -22,8 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.util.gen;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 
 /**
@@ -38,16 +39,16 @@ public interface MutableBlockBuffer extends BlockBuffer {
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param block The new block
+     * @param block The new block state
      */
-    void setBlock(int x, int y, int z, BlockType block);
+    void setBlock(int x, int y, int z, BlockState block);
 
     /**
      * Fills the entire buffer with the given block.
      * 
      * @param block The block to fill with
      */
-    void fill(BlockType block);
+    void fill(BlockState block);
 
     /**
      * Sets all horizontal layers between {@code y} (inclusive) and 
@@ -57,7 +58,7 @@ public interface MutableBlockBuffer extends BlockBuffer {
      * @param height The height
      * @param block The block type
      */
-    void setHorizontalLayer(int y, int height, BlockType block);
+    void setHorizontalLayer(int y, int height, BlockState block);
     
     /**
      * Returns an immutable copy of this block buffer.

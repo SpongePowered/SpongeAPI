@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.util.gen;
 
 /**
  * An immutable version of a {@link BlockBuffer}.

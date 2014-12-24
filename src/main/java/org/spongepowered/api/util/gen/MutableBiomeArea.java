@@ -22,44 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
+package org.spongepowered.api.util.gen;
 
 import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * A volume containing biomes.
+ * A mutable buffer for {@link BiomeType} data. This buffer has no direct relation
+ * to the world and changes to it are not synchronized to the world.
  */
-public interface BiomeVolume {
+public interface MutableBiomeArea extends BiomeArea {
 
     /**
-     * Get an object representing the biome at the given position.
-     *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
-     *
-     * @param position The position
-     * @return The biome
+     * Sets the biome in the buffer at the given position.
+     * 
+     * @param x The X position
+     * @param z The Z position
+     * @param biome The new biome
      */
-    BiomeType getBiome(Vector3i position);
+    void setBiome(int x, int z, BiomeType biome);
+
+    /**
+     * Fills the entire buffer with the given biome.
+     * 
+     * @param biome The biome to fill the area with
+     */
+    void fill(BiomeType biome);
     
     /**
-     * Sets the biome at the given position in the world.
-     *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
+     * Returns an immutable copy of this biome buffer.
      * 
-     * @param position The position
-     * @param biome The biome
+     * @return An immutable copy
      */
-    void setBiome(Vector3i position, BiomeType biome);
-
+    ImmutableBiomeArea getImmutableClone();
+    
 }

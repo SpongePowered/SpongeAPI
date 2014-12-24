@@ -23,43 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.world.gen;
 
-import com.flowpowered.math.vector.Vector3i;
-
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.util.gen.MutableBiomeArea;
+import org.spongepowered.api.world.World;
 
 /**
- * A volume containing biomes.
+ * Manages the biome generation for an extent.
  */
-public interface BiomeVolume {
+public interface BiomeGenerator {
 
     /**
-     * Get an object representing the biome at the given position.
-     *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
-     *
-     * @param position The position
-     * @return The biome
-     */
-    BiomeType getBiome(Vector3i position);
-    
-    /**
-     * Sets the biome at the given position in the world.
-     *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
+     * Generates the biomes for the given area using only biomes from the given
+     * array of available biomes. The resultant biomes are placed into the
+     * given buffer.
      * 
-     * @param position The position
-     * @param biome The biome
+     * @param world The world these biomes are being generated for
+     * @param buffer The buffer to generate the biomes into
+     * @param x The X position of the lowest point
+     * @param z The Z position of the lowest point
+     * @param width The width of the area (X-axis size)
+     * @param length The length of the area (Z-axis size)
      */
-    void setBiome(Vector3i position, BiomeType biome);
+    void getBiomesForArea(World world, MutableBiomeArea buffer, int x, int z, int width, int length);
 
 }
