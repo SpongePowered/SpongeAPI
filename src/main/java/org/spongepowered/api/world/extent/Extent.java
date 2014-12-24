@@ -26,6 +26,7 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.google.common.base.Optional;
 
 /**
  * Contains blocks, entities, and possibly other game objects.
@@ -33,14 +34,14 @@ import com.flowpowered.math.vector.Vector3d;
 public interface Extent extends BlockVolume, EntityUniverse, BiomeVolume {
     
     /**
-     * Get the parent Extent. If this is an instance of World then this method
-     * will return it self.
+     * Get the parent Extent. Returns {@code Optional.absent()} if this is a World
+     * instance.
      * <p>
      * This method should always recursively find its way to a root World.
      * 
      * @return the parent Extent
      */
-    Extent getParent();
+    Optional<Extent> getParent();
     
     /**
      * Get the origin of this Extent relative to its parent. Returns {@code Vector3d.ZERO}

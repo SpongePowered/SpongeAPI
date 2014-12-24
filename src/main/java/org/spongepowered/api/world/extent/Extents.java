@@ -36,7 +36,7 @@ public class Extents {
             x -= extent.getOrigin().getX();
             y -= extent.getOrigin().getY();
             z -= extent.getOrigin().getZ();
-            extent = extent.getParent();
+            extent = extent.getParent().orNull();
         }
         
         return new Vector3d(x, y, z);
@@ -68,7 +68,7 @@ public class Extents {
         Stack<Extent> stack = new Stack<Extent>();
         while (extent != null) {
             stack.push(extent);
-            extent = extent.getParent();
+            extent = extent.getParent().orNull();
         }
         
         while (!stack.isEmpty()) {
