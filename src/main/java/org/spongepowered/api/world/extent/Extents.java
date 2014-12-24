@@ -1,0 +1,46 @@
+package org.spongepowered.api.world.extent;
+
+import java.util.Stack;
+
+import com.flowpowered.math.vector.Vector3d;
+
+public class Extents {
+    
+    public static Vector3d localToWorld(Extent extent, Vector3d position) {
+        return localToWorld(extent, position.getX(), position.getY(), position.getZ());
+    }
+    
+    public static Vector3d localToWorld(Extent extent, double x, double y, double z) {
+        while (extent != null) {
+            x -= extent.getOrigin().getX();
+            y -= extent.getOrigin().getY();
+            z -= extent.getOrigin().getZ();
+            extent = extent.getParent();
+        }
+        
+        return new Vector3d(x, y, z);
+    }
+    
+    public static Vector3d worldToLocal(Extent extent, Vector3d position) {
+        return worldToLocal(extent, position.getX(), position.getY(), position.getZ());
+    }
+    
+    public static Vector3d worldToLocal(Extent extent, double x, double y, double z) {
+        Stack<Extent> stack = new Stack<Extent>();
+        while (extent != null) {
+            stack.push(extent);
+            extent = extent.getParent();
+        }
+        
+        while (!stack.isEmpty()) {
+            Extent next = stack.pop();
+            x += next.getOrigin().getX();
+            y += next.getOrigin().getY();
+            z += next.getOrigin().getZ();
+        }
+        
+        return new Vector3d(x, y, z);
+    }
+    
+    private Extents(){}
+}

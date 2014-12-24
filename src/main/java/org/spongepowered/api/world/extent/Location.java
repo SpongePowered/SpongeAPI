@@ -23,13 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.extent;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
+
 import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.extent.Extent;
 
 /**
  * A position within a particular {@link Extent}.
@@ -95,6 +95,15 @@ public class Location {
     public Vector3d getPosition() {
         return position;
     }
+    
+    /**
+     * Get the world position.
+     * 
+     * @return The world position
+     */
+    public Vector3d getWorldPosition() {
+        return Extents.localToWorld(extent, position);
+    }
 
     /**
      * Create a new instance with a new position.
@@ -104,7 +113,7 @@ public class Location {
      */
     public Location setPosition(Vector3d position) {
         checkNotNull(position);
-        if (position == getPosition()) {
+        if (position.equals(getPosition())) {
             return this;
         }
         return new Location(getExtent(), position);
@@ -140,7 +149,7 @@ public class Location {
      * @return The block
      */
     public BlockLoc getBlock() {
-        return getExtent().getBlock(getPosition());
+        return getExtent().getBlock(getWorldPosition());
     }
-
+    
 }

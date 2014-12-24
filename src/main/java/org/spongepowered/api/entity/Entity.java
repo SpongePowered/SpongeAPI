@@ -27,10 +27,11 @@ package org.spongepowered.api.entity;
 
 import com.flowpowered.math.vector.Vector2f;
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.Location;
 
 import javax.annotation.Nullable;
 
