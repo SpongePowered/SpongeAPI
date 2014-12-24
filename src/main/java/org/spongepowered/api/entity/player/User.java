@@ -28,7 +28,6 @@ package org.spongepowered.api.entity.player;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.service.permission.Subject;
 
 import java.util.Date;
 
@@ -36,7 +35,7 @@ import java.util.Date;
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
-public interface User extends Identifiable, Subject, ArmorEquipable {
+public interface User extends Identifiable, ArmorEquipable {
 
     /**
      * Gets the player's last known username.
@@ -80,6 +79,53 @@ public interface User extends Identifiable, Subject, ArmorEquipable {
      * @return True If banned
      */
     boolean isBanned();
+	
+	/**
+     * Checks if this subject is server operator (of any level) or not.
+     * 
+     * @return True if corresponding subject is server operator
+     */
+    boolean isOp();
+    
+    /**
+     * <p>
+     * Returns OP permission level of this subject.
+     * </p>
+     * 
+     * <p>
+     * According to minecraft wiki, these permission levels are available:
+     * <ul>
+     * <li>1 - Ops can bypass spawn protection.</li>
+     * <li>2 - Ops can use /clear, /difficulty, /effect, /gamemode, /gamerule, /give, and /tp, and can edit command 
+     * blocks.</li>
+     * <li>3 - Ops can use /ban, /deop, /kick, and /op.</li>
+     * <li>4 - Ops can use /stop.</li>
+     * </ul>
+     * </p>
+     * 
+     * @return Permission level (1-4) if this player is OP, 0 is returned when player is not OP
+     */
+    int getOpPermissionLevel();
+    
+    /**
+     * <p>
+     * Sets new OP permission level. Use level of zero, if you want to remove OP from player.
+     * </p>
+     * 
+     * <p>
+     * These permission levels are available:
+     * <ul>
+     * <li>1 - Ops can bypass spawn protection.</li>
+     * <li>2 - Ops can use /clear, /difficulty, /effect, /gamemode, /gamerule, /give, and /tp, and can edit command 
+     * blocks.</li>
+     * <li>3 - Ops can use /ban, /deop, /kick, and /op.</li>
+     * <li>4 - Ops can use /stop.</li>
+     * </ul>
+     * </p>
+     * 
+     * @param level Permission level (1-4), zero if subject should be de-opped.
+     */
+    void setOpPermissionLevel(int level);
 
     /**
      * Checks if this player is whitelisted.
