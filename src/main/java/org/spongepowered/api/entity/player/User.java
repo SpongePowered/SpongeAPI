@@ -87,12 +87,12 @@ public interface User extends Identifiable, ArmorEquipable {
      */
     boolean isOp();
     
-	/**
-	 * Sets this User's OP permission level to OP permission level specified in server properties file (default is 4).
-	 * 
-	 * @param value Whether this User should be OP
-	 */
-	void setOp(boolean value);
+    /**
+     * Sets this User's OP permission level to OP permission level specified in server properties file (default is 4).
+     * 
+     * @param value Whether this User should be OP
+     */
+    void setOp(boolean value);
 	
     /**
      * <p>
