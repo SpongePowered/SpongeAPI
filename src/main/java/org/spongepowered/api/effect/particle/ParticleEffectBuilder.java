@@ -26,7 +26,7 @@ package org.spongepowered.api.effect.particle;
 
 import java.awt.Color;
 
-import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 import com.flowpowered.math.vector.Vector3f;
 
@@ -60,9 +60,8 @@ public interface ParticleEffectBuilder {
      * Builds an instance of a ParticleEffect.
      *
      * @return A new instance of a ParticleEffect
-     * @throws IllegalStateException If the particle effect is not completed
      */
-    ParticleEffect build() throws IllegalStateException;
+    ParticleEffect build();
 
     /**
      * Represents a particle that can be colored.
@@ -145,17 +144,17 @@ public interface ParticleEffectBuilder {
     }
 
     /**
-     * Represents a particle effect that utilizes a item type to be
+     * Represents a particle effect that utilizes a item stack to be
      * able to render on the client.
      */
     interface Material extends ParticleEffectBuilder {
 
         /**
-         * Sets the item type of the particle effect.
+         * Sets the item stack of the particle effect.
          *
-         * @param type The item type
+         * @param item The item stack
          */
-        Material withMaterial(ItemType type);
+        Material withMaterial(ItemStack item);
 
         @Override
         Material withMotion(Vector3f motion);

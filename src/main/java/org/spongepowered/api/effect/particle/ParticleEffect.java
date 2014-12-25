@@ -26,7 +26,7 @@ package org.spongepowered.api.effect.particle;
 
 import java.awt.Color;
 
-import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 import com.flowpowered.math.vector.Vector3f;
 
@@ -40,7 +40,7 @@ public interface ParticleEffect {
      * 
      * @return The particle type
      */
-    Particle getType();
+    ParticleType getType();
 
     /**
      * Gets the motion vector of the particle effect.
@@ -108,16 +108,16 @@ public interface ParticleEffect {
     }
 
     /**
-     * Represents a resized particle effect.
+     * Represents a particle effect that needs a item stack to be rendered on the client.
      */
     interface Materialized extends ParticleEffect {
 
         /**
-         * Gets the item type of the particle effect.
+         * Gets the item stack of the particle effect.
          * 
-         * @return The item type
+         * @return The item stack
          */
-        ItemType getItem();
+        ItemStack getItem();
 
     }
 

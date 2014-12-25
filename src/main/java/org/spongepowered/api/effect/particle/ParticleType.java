@@ -26,12 +26,12 @@ package org.spongepowered.api.effect.particle;
 
 import java.awt.Color;
 
-import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.
  */
-public interface Particle {
+public interface ParticleType {
 
     /**
      * Gets the particle name.
@@ -50,7 +50,7 @@ public interface Particle {
     /**
      * Represents a particle that can be colored.
      */
-    interface Colorable extends Particle {
+    interface Colorable extends ParticleType {
 
         /**
          * Gets the default color of this particle.
@@ -64,7 +64,7 @@ public interface Particle {
     /**
      * Represents a particle that can be resized.
      */
-    interface Resizable extends Particle {
+    interface Resizable extends ParticleType {
 
         /**
          * Gets the default size of this particle.
@@ -79,12 +79,12 @@ public interface Particle {
      * Represents a particle that uses a note value.
      * Scales between 0 and 24, similar to the note block values.
      */
-    interface Note extends Particle {
+    interface Note extends ParticleType {
 
         /**
          * Gets the default note value of this particle.
          * 
-         * <p>The value scales between 0 and 24</p>
+         * <p>The value scales between 0 and 24.</p>
          * 
          * @return The default note
          */
@@ -93,17 +93,17 @@ public interface Particle {
     }
 
     /**
-     * Represents a particle that utilizes a item type to be
+     * Represents a particle that utilizes a item stack to be
      * able to render on the client.
      */
-    interface Material extends Particle {
+    interface Material extends ParticleType {
 
         /**
          * Gets the default item type of this particle.
          * 
          * @return The item type
          */
-        ItemType getDefaultItem();
+        ItemStack getDefaultItem();
 
     }
 

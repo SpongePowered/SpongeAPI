@@ -24,127 +24,53 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import java.util.List;
-
-import com.google.common.base.Optional;
-
 /**
  * The particles that can be sent on a vanilla Minecraft client.
  */
 public final class Particles {
-    private static final ParticleFactory factory = null;
 
-    public static final Particle EXPLOSION_NORMAL = null;
-    public static final Particle.Resizable EXPLOSION_LARGE = null;
-    public static final Particle EXPLOSION_HUGE = null;
-    public static final Particle FIREWORKS_SPARK = null;
-    public static final Particle WATER_BUBBLE = null;
-    public static final Particle WATER_SPLASH = null;
-    public static final Particle WATER_WAKE = null;
-    public static final Particle SUSPENDED = null;
-    public static final Particle SUSPENDED_DEPTH = null;
-    public static final Particle CRIT = null;
-    public static final Particle CRIT_MAGIC = null;
-    public static final Particle SMOKE_NORMAL = null;
-    public static final Particle SMOKE_LARGE = null;
-    public static final Particle SPELL = null;
-    public static final Particle SPELL_INSTANT = null;
-    public static final Particle.Colorable SPELL_MOB = null;
-    public static final Particle.Colorable SPELL_MOB_AMBIENT = null;
-    public static final Particle SPELL_WITCH = null;
-    public static final Particle DRIP_WATER = null;
-    public static final Particle DRIP_LAVA = null;
-    public static final Particle VILLAGER_ANGRY = null;
-    public static final Particle VILLAGER_HAPPY = null;
-    public static final Particle TOWN_AURA = null;
-    public static final Particle.Note NOTE = null;
-    public static final Particle PORTAL = null;
-    public static final Particle ENCHANTMENT_TABLE = null;
-    public static final Particle FLAME = null;
-    public static final Particle LAVA = null;
-    public static final Particle FOOTSTEP = null;
-    public static final Particle CLOUD = null;
-    public static final Particle.Colorable REDSTONE = null;
-    public static final Particle SNOWBALL = null;
-    public static final Particle SNOW_SHOVEL = null;
-    public static final Particle SLIME = null;
-    public static final Particle HEART = null;
-    public static final Particle BARRIER = null;
-    public static final Particle.Material ITEM_CRACK = null;
-    public static final Particle.Material BLOCK_CRACK = null;
-    public static final Particle.Material BLOCK_DUST = null;
-    public static final Particle WATER_DROP = null;
-    public static final Particle ITEM_TAKE = null;
-    public static final Particle MOB_APPEARANCE = null;
-
-    /**
-     * Gets the particle type from it's name.
-     * 
-     * @param name The name
-     * @return The particle type
-     */
-    public static Optional<Particle> valueOf(String name) {
-        return factory.getFromName(name);
-    }
-
-    /**
-     * Gets a list with all the particle types.
-     * 
-     * @return The particle types
-     */
-    public static List<Particle> values() {
-        return factory.getParticles();
-    }
-
-    /**
-     * Gets a new particle builder for the particle type.
-     * 
-     * @param particle The particle type
-     * @return The builder
-     */
-    public static ParticleEffectBuilder builder(Particle particle) {
-        return factory.newBuilder(particle);
-    }
-
-    /**
-     * Gets a new particle builder for the particle type.
-     * 
-     * @param particle The particle type
-     * @return The builder
-     */
-    public static ParticleEffectBuilder.Colorable builder(Particle.Colorable particle) {
-        return factory.newBuilder(particle);
-    }
-
-    /**
-     * Gets a new particle builder for the particle type.
-     * 
-     * @param particle The particle type
-     * @return The builder
-     */
-    public static ParticleEffectBuilder.Material builder(Particle.Material particle) {
-        return factory.newBuilder(particle);
-    }
-
-    /**
-     * Gets a new particle builder for the particle type.
-     * 
-     * @param particle The particle type
-     * @return The builder
-     */
-    public static ParticleEffectBuilder.Note builder(Particle.Note particle) {
-        return factory.newBuilder(particle);
-    }
-
-    /**
-     * Gets a new particle builder for the particle type.
-     * 
-     * @param particle The particle type
-     * @return The builder
-     */
-    public static ParticleEffectBuilder.Resizable builder(Particle.Resizable particle) {
-        return factory.newBuilder(particle);
-    }
+    public static final ParticleType EXPLOSION_NORMAL = null;
+    public static final ParticleType.Resizable EXPLOSION_LARGE = null;
+    public static final ParticleType EXPLOSION_HUGE = null;
+    public static final ParticleType FIREWORKS_SPARK = null;
+    public static final ParticleType WATER_BUBBLE = null;
+    public static final ParticleType WATER_SPLASH = null;
+    public static final ParticleType WATER_WAKE = null;
+    public static final ParticleType SUSPENDED = null;
+    public static final ParticleType SUSPENDED_DEPTH = null;
+    public static final ParticleType CRIT = null;
+    public static final ParticleType CRIT_MAGIC = null;
+    public static final ParticleType SMOKE_NORMAL = null;
+    public static final ParticleType SMOKE_LARGE = null;
+    public static final ParticleType SPELL = null;
+    public static final ParticleType SPELL_INSTANT = null;
+    public static final ParticleType.Colorable SPELL_MOB = null;
+    public static final ParticleType.Colorable SPELL_MOB_AMBIENT = null;
+    public static final ParticleType SPELL_WITCH = null;
+    public static final ParticleType DRIP_WATER = null;
+    public static final ParticleType DRIP_LAVA = null;
+    public static final ParticleType VILLAGER_ANGRY = null;
+    public static final ParticleType VILLAGER_HAPPY = null;
+    public static final ParticleType TOWN_AURA = null;
+    public static final ParticleType.Note NOTE = null;
+    public static final ParticleType PORTAL = null;
+    public static final ParticleType ENCHANTMENT_TABLE = null;
+    public static final ParticleType FLAME = null;
+    public static final ParticleType LAVA = null;
+    public static final ParticleType FOOTSTEP = null;
+    public static final ParticleType CLOUD = null;
+    public static final ParticleType.Colorable REDSTONE = null;
+    public static final ParticleType SNOWBALL = null;
+    public static final ParticleType SNOW_SHOVEL = null;
+    public static final ParticleType SLIME = null;
+    public static final ParticleType HEART = null;
+    public static final ParticleType BARRIER = null;
+    public static final ParticleType.Material ITEM_CRACK = null;
+    public static final ParticleType.Material BLOCK_CRACK = null;
+    public static final ParticleType.Material BLOCK_DUST = null;
+    public static final ParticleType WATER_DROP = null;
+    public static final ParticleType ITEM_TAKE = null;
+    public static final ParticleType MOB_APPEARANCE = null;
 
     private Particles() {
     }
