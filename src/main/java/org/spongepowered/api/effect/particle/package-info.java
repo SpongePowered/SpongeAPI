@@ -22,18 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.effect;
 
-/**
- * Represents a particle that can be sent on a Minecraft client.
- */
-public interface Particle {
-
-    /**
-     * Gets the particle name.
-     *
-     * @return The particle's name
-     */
-    String getName();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.effect.particle;

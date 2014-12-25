@@ -26,8 +26,9 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.effect.Particle;
+import org.spongepowered.api.effect.particle.Particle;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.meta.DyeColor;
@@ -131,21 +132,6 @@ public interface GameRegistry {
      * @return The potion effect builder
      */
     PotionEffectBuilder getPotionEffectBuilder();
-
-    /**
-     * Gets a {@link Particle} by id.
-     *
-     * @param id The particle id
-     * @return The corresponding particle or Optional.absent() if not found
-     */
-    Optional<Particle> getParticle(String id);
-
-    /**
-     * Gets a list of all available {@link Particle}s.
-     *
-     * @return A list containing all item types in registry
-     */
-    List<Particle> getParticles();
 
     /**
      * Gets an {@link EntityType} by its identifier.
