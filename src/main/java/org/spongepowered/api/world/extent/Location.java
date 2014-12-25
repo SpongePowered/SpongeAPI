@@ -54,108 +54,108 @@ import org.spongepowered.api.block.BlockLoc;
  */
 public class Location {
 
-	private final Extent extent;
-	private final Vector3d position;
+    private final Extent extent;
+    private final Vector3d position;
 
-	/**
-	 * Create a new instance.
-	 *
-	 * @param extent The extent
-	 * @param position The position
-	 */
-	public Location(Extent extent, Vector3d position) {
-		checkNotNull(extent);
-		checkNotNull(position);
-		this.extent = extent;
-		this.position = position;
-	}
+    /**
+     * Create a new instance.
+     *
+     * @param extent The extent
+     * @param position The position
+     */
+    public Location(Extent extent, Vector3d position) {
+        checkNotNull(extent);
+        checkNotNull(position);
+        this.extent = extent;
+        this.position = position;
+    }
 
-	/**
-	 * Get the underlying extent.
-	 *
-	 * @return The extent
-	 */
-	public Extent getExtent() {
-		return extent;
-	}
+    /**
+     * Get the underlying extent.
+     *
+     * @return The extent
+     */
+    public Extent getExtent() {
+        return extent;
+    }
 
-	/**
-	 * Create a new instance with a new extent.
-	 *
-	 * @param extent The new extent
-	 * @return A new instance
-	 */
-	public Location setExtent(Extent extent) {
-		checkNotNull(extent);
-		if (extent == getExtent()) {
-			return this;
-		}
-		return new Location(extent, getPosition());
-	}
+    /**
+     * Create a new instance with a new extent.
+     *
+     * @param extent The new extent
+     * @return A new instance
+     */
+    public Location setExtent(Extent extent) {
+        checkNotNull(extent);
+        if (extent == getExtent()) {
+            return this;
+        }
+        return new Location(extent, getPosition());
+    }
 
-	/**
-	 * Get the underlying position.
-	 *
-	 * @return The underlying position
-	 */
-	public Vector3d getPosition() {
-		return position;
-	}
+    /**
+     * Get the underlying position.
+     *
+     * @return The underlying position
+     */
+    public Vector3d getPosition() {
+        return position;
+    }
 
-	/**
-	 * Get the world position.
-	 * 
-	 * @return The world position
-	 */
-	public Vector3d getWorldPosition() {
-		return Extents.localToWorld(extent, position);
-	}
+    /**
+     * Get the world position.
+     * 
+     * @return The world position
+     */
+    public Vector3d getWorldPosition() {
+        return Extents.localToWorld(extent, position);
+    }
 
-	/**
-	 * Create a new instance with a new position.
-	 *
-	 * @param position The new position
-	 * @return A new instance
-	 */
-	public Location setPosition(Vector3d position) {
-		checkNotNull(position);
-		if (position.equals(getPosition())) {
-			return this;
-		}
-		return new Location(getExtent(), position);
-	}
+    /**
+     * Create a new instance with a new position.
+     *
+     * @param position The new position
+     * @return A new instance
+     */
+    public Location setPosition(Vector3d position) {
+        checkNotNull(position);
+        if (position.equals(getPosition())) {
+            return this;
+        }
+        return new Location(getExtent(), position);
+    }
 
-	/**
-	 * Add another Vector3d to the position on this instance, returning a new
-	 * Location instance.
-	 *
-	 * @param v The vector to add
-	 * @return A new instance
-	 */
-	public Location add(Vector3d v) {
-		return setPosition(getPosition().add(v));
-	}
+    /**
+     * Add another Vector3d to the position on this instance, returning a new
+     * Location instance.
+     *
+     * @param v The vector to add
+     * @return A new instance
+     */
+    public Location add(Vector3d v) {
+        return setPosition(getPosition().add(v));
+    }
 
-	/**
-	 * Add vector components to the position on this instance, returning a new
-	 * Location instance.
-	 *
-	 * @param x The x component
-	 * @param y The y component
-	 * @param z The z component
-	 * @return A new instance
-	 */
-	public Location add(double x, double y, double z) {
-		return setPosition(getPosition().add(x, y, z));
-	}
+    /**
+     * Add vector components to the position on this instance, returning a new
+     * Location instance.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return A new instance
+     */
+    public Location add(double x, double y, double z) {
+        return setPosition(getPosition().add(x, y, z));
+    }
 
-	/**
-	 * Get the block at this position.
-	 *
-	 * @return The block
-	 */
-	public BlockLoc getBlock() {
-		return getExtent().getBlock(getWorldPosition());
-	}
+    /**
+     * Get the block at this position.
+     *
+     * @return The block
+     */
+    public BlockLoc getBlock() {
+        return getExtent().getBlock(getWorldPosition());
+    }
 
 }

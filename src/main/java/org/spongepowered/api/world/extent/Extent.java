@@ -33,21 +33,21 @@ import com.google.common.base.Optional;
  */
 public interface Extent extends BlockVolume, EntityUniverse, BiomeVolume {
 
-	/**
-	 * Get the parent Extent. Returns {@code Optional.absent()} if this is a
-	 * World instance.
-	 * <p>
-	 * This method should always recursively find its way to a root World.
-	 * 
-	 * @return the parent Extent
-	 */
-	Optional<Extent> getParent();
+    /**
+     * Get the parent Extent. Returns {@code Optional.absent()} if this is a
+     * World instance.
+     * <p>
+     * This method should always recursively find its way to a root World.
+     * 
+     * @return the parent Extent
+     */
+    Optional<Extent> getParent();
 
-	/**
-	 * Get the origin of this Extent relative to its parent. Returns
-	 * {@code Vector3d.ZERO} if this is an instance of World.
-	 * 
-	 * @return the relative origin
-	 */
-	Vector3d getOrigin();
+    /**
+     * Get the origin of this Extent relative to its parent. Returns
+     * {@code Vector3d.ZERO} if this is an instance of World.
+     * 
+     * @return the relative origin
+     */
+    Vector3d getOrigin();
 }
