@@ -27,7 +27,7 @@ package org.spongepowered.api.effect.particle;
 /**
  * The particles that can be sent on a vanilla Minecraft client.
  */
-public final class Particles {
+public final class ParticleTypes {
 
     public static final ParticleType EXPLOSION_NORMAL = null;
     public static final ParticleType.Resizable EXPLOSION_LARGE = null;
@@ -72,6 +72,6 @@ public final class Particles {
     public static final ParticleType ITEM_TAKE = null;
     public static final ParticleType MOB_APPEARANCE = null;
 
-    private Particles() {
+    private ParticleTypes() {
     }
 }

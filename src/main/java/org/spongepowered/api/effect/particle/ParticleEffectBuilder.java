@@ -26,6 +26,7 @@ package org.spongepowered.api.effect.particle;
 
 import java.awt.Color;
 
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import com.flowpowered.math.vector.Vector3f;
@@ -72,6 +73,7 @@ public interface ParticleEffectBuilder {
          * Sets the color of the particle effect.
          * 
          * @param color The color
+         * @return This builder
          */
         Colorable withColor(Color color);
 
@@ -85,7 +87,7 @@ public interface ParticleEffectBuilder {
         Colorable withCount(int count);
 
         @Override
-        ParticleEffect.Colored build() throws IllegalStateException;
+        ParticleEffect.Colorable build() throws IllegalStateException;
 
     }
 
@@ -97,7 +99,8 @@ public interface ParticleEffectBuilder {
         /**
          * Sets the size of the particle effect.
          * 
-         * @return The size
+         * @param size The size
+         * @return This builder
          */
         Resizable withSize(float size);
 
@@ -111,7 +114,7 @@ public interface ParticleEffectBuilder {
         Resizable withCount(int count);
 
         @Override
-        ParticleEffect.Resized build() throws IllegalStateException;
+        ParticleEffect.Resizable build() throws IllegalStateException;
 
     }
 
@@ -126,6 +129,7 @@ public interface ParticleEffectBuilder {
          * <p>The value scales between 0 and 24</p>
          * 
          * @param note The note
+         * @return This builder
          */
         Note withNote(float note);
 
@@ -153,8 +157,17 @@ public interface ParticleEffectBuilder {
          * Sets the item stack of the particle effect.
          *
          * @param item The item stack
+         * @return This builder
          */
-        Material withMaterial(ItemStack item);
+        Material withItem(ItemStack item);
+
+        /**
+         * Sets the item type of the particle effect.
+         *
+         * @param item The item type
+         * @return This builder
+         */
+        Material withItemType(ItemType item);
 
         @Override
         Material withMotion(Vector3f motion);
@@ -166,7 +179,7 @@ public interface ParticleEffectBuilder {
         Material withCount(int count);
 
         @Override
-        ParticleEffect.Materialized build() throws IllegalStateException;
+        ParticleEffect.Material build() throws IllegalStateException;
 
     }
 

@@ -66,7 +66,7 @@ public interface ParticleEffect {
     /**
      * Represents a colored particle effect.
      */
-    interface Colored extends ParticleEffect {
+    interface Colorable extends ParticleEffect {
 
         /**
          * Gets the color of the particle effect.
@@ -80,7 +80,7 @@ public interface ParticleEffect {
     /**
      * Represents a resized particle effect.
      */
-    interface Resized extends ParticleEffect {
+    interface Resizable extends ParticleEffect {
 
         /**
          * Gets the size of the particle effect.
@@ -99,7 +99,7 @@ public interface ParticleEffect {
         /**
          * Gets the note value of the particle effect.
          * 
-         * <p>The value scales between 0 and 24</p>
+         * <p>The value scales between 0 and 24.</p>
          * 
          * @return The note value
          */
@@ -110,7 +110,7 @@ public interface ParticleEffect {
     /**
      * Represents a particle effect that needs a item stack to be rendered on the client.
      */
-    interface Materialized extends ParticleEffect {
+    interface Material extends ParticleEffect {
 
         /**
          * Gets the item stack of the particle effect.

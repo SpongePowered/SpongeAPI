@@ -135,6 +135,29 @@ public interface GameRegistry {
     PotionEffectBuilder getPotionEffectBuilder();
 
     /**
+     * Gets a {@link ParticleType} by name.
+     *
+     * @param name The particle name
+     * @return The corresponding particle or Optional.absent() if not found
+     */
+    Optional<ParticleType> getParticleType(String name);
+
+    /**
+     * Gets a list of all available {@link ParticleType}s.
+     *
+     * @return A list containing all item types in registry
+     */
+    List<ParticleType> getParticleTypes();
+
+    /**
+     * Gets a new particle builder for the {@link ParticleType}.
+     * 
+     * @param particle The particle type
+     * @return The particle effect builder
+     */
+    ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
+
+    /**
      * Gets an {@link EntityType} by its identifier.
      *
      * @param id The id to look up
@@ -367,28 +390,5 @@ public interface GameRegistry {
      * @return The environment list
      */
     List<Environment> getEnvironments();
-
-    /**
-     * Gets a {@link ParticleType} by name.
-     *
-     * @param name The particle name
-     * @return The corresponding particle or Optional.absent() if not found
-     */
-    Optional<ParticleType> getParticleType(String id);
-
-    /**
-     * Gets a list of all available {@link ParticleType}s.
-     *
-     * @return A list containing all item types in registry
-     */
-    List<ParticleType> getParticleTypes();
-
-    /**
-     * Gets a new particle builder for the {@link ParticleType}.
-     * 
-     * @param particle The particle type
-     * @return The particle effect builder
-     */
-    ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
 
 }
