@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * A loaded Minecraft world
+ * A loaded Minecraft world.
  */
 public interface World extends Extent, Viewer, WeatherVolume {
 

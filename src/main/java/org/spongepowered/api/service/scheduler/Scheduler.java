@@ -90,7 +90,7 @@ public interface Scheduler {
     Optional<Task> getTaskById(UUID id);
 
     /**
-     * Returns a collection of all currently scheduled tasks
+     * Returns a collection of all currently scheduled tasks.
      *
      * @return A collection of scheduled tasks
      */
@@ -101,7 +101,6 @@ public interface Scheduler {
      * certain plugin.
      *
      * @param plugin The plugin to return tasks created by
-     *
      * @return A collection of scheduled tasks
      */
     Collection<Task> getScheduledTasks(Object plugin);

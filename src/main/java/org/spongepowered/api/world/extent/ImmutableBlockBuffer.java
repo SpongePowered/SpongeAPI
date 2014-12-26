@@ -26,7 +26,7 @@
 package org.spongepowered.api.world.extent;
 
 /**
- * An immutable version of a {@link BlockBuffer}
+ * An immutable version of a {@link BlockBuffer}.
  */
 public interface ImmutableBlockBuffer extends BlockBuffer {
 

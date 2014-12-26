@@ -61,7 +61,7 @@ public interface BlockState {
     ImmutableMap<BlockProperty<?>, ? extends Comparable<?>> getProperties();
 
     /**
-     * Get all property names defined on this BlockState
+     * Gets all property names defined on this BlockState.
      *
      * @return Collection of property names
      */

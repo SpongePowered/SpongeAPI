@@ -156,10 +156,10 @@
             <!--<property name="arrayInitIndent" value="2"/>-->
             <property name="arrayInitIndent" value="4"/>
         </module>
-        <module name="AbbreviationAsWordInName">
+        <!--<module name="AbbreviationAsWordInName">
             <property name="ignoreFinal" value="false"/>
             <property name="allowedAbbreviationLength" value="1"/>
-        </module>
+        </module>-->
         <module name="OverloadMethodsDeclarationOrder"/>
         <module name="VariableDeclarationUsageDistance"/>
         <module name="CustomImportOrder">

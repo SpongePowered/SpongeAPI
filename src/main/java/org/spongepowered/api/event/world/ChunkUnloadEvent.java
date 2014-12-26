@@ -28,7 +28,7 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.world.Chunk;
 
 /**
- * Called when a {@link Chunk} is unloaded
+ * Called when a {@link Chunk} is unloaded.
  */
 public interface ChunkUnloadEvent extends ChunkEvent {
 

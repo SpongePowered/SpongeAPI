@@ -25,9 +25,8 @@
 
 package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.block.BlockType;
-
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockType;
 
 /**
  * An buffer for {@link BlockType} data. This buffer has no direct relation
@@ -37,7 +36,7 @@ public interface BlockBuffer {
 
     /**
      * Gets the block in the buffer at the given position.
-     * 
+     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -47,29 +46,29 @@ public interface BlockBuffer {
 
     /**
      * Gets the minimal bound of the buffer's location.
-     * 
+     *
      * @return The minimal bound
      */
     Vector3i getMinBound();
 
     /**
      * Gets the maximal bound of the buffer's location.
-     * 
+     *
      * @return The maximal bound
      */
     Vector3i getMaxBound();
 
     /**
-     * Gets the size of the buffer. Defined as {@link #getMaxBound()} - 
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
      * {@link #getMinBound()}.
-     * 
+     *
      * @return The size
      */
     Vector3i getSize();
 
     /**
      * Gets the raw backing data of this buffer.
-     * 
+     *
      * @return The raw data
      */
     BlockType[] getData();
