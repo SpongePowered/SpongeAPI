@@ -24,55 +24,101 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.permission.context.Context;
+import com.google.common.base.Optional;
 import org.spongepowered.api.util.Tristate;
 
-import java.util.List;
 import java.util.Map;
 
 /**
- * Container for a subject's data.
+ * Container for a {@link Subject}'s data.
  */
 public interface SubjectData {
-    /**
-     * Return all permissions associated with this data object
-     * TODO: create permissions tree data structure that is used for all these methods rather than List&lt;String>
-     * @return
-     */
-    public Map<Context, List<String>> getAllPermissions();
-
-    public List<String> getPermissions(Context context);
 
     /**
-     * set permissions in context to the given permissions. Null unsets.
-     * @param context
-     * @param permission
-     */
-    public void setPermission(Context context, String permission, Tristate value);
-    public void setPermission(String permission, Tristate value);
-    public void clearPermissions();
-
-    /**
-     * Return all registered parent names for all contexts
-     * @return
-     */
-    public Map<Context, List<Subject>> getAllParents();
-
-
-    /**
+     * The {@link Subject} this data belong to.
      *
-     * @param context The context to check
-     * @return names of parents valid in the given context
+     * @return The subject this data belong to
      */
-    public List<Subject> getParents(Context context);
+    Subject getSubject();
 
     /**
-     * set permissions in context to the given permissions. Null unsets.
-     * @param context
+     * Checks whether the {@link Subject} belonging to this data
+     *
      * @param permission
+     * @return
      */
-    public void addParent(Context context, String parent);
-    public void removeParent(Context context, String parent);
-    public void clearParents();
+    boolean hasPermission(String permission);
+
+    /**
+     * Grants or declines or resets a permission for the associated
+     * {@link Subject}. This method does not include parents.
+     *
+     * @param permission The permission to grant or decline
+     * @return {@link Tristate#TRUE} if the given permission is granted.
+     *         {@link Tristate#FALSE} if the given permission is declined.
+     *         {@link Tristate#UNDEFINED} if the given permission is undefined
+     */
+    Tristate getPermission(String permission);
+
+    /**
+     * Return all permissions associated with this data object.
+     *
+     * @return A map of all permissions
+     */
+    Map<String, Tristate> getPermissions();
+
+    /**
+     * Gets the subject that actually granted or declined the given permission.
+     * If the authority granted or declined the permission itself it will return
+     * <tt>this</tt>. If more authorities grant or decline this permission the
+     * first one will be returned that is used to calculate the result for
+     * {@link #isPermitted(String)}.
+     *
+     * @param permission The permission string
+     * @return The subject that has granted or declined the given permission
+     */
+    Optional<Subject> getPermissionAuthority(String permission);
+
+    /**
+     * Gets the permission value for the given permission string. If this
+     * subject does not support permission values this will always return
+     * Optional.absent().
+     *
+     * @param permissionValue The permission string
+     * @param clazz The class the value should be converted to if found
+     * @return The permission value with the given type if available.
+     * @param <T> specifies the result type
+     * @throws ClassCastException If the value was found but could not be
+     *             converted to the given class.
+     */
+    <T> Optional<T> getPermissionValue(String permissionValue, Class<T> clazz) throws ClassCastException;
+
+    /**
+     * Gets the subject that provided the given permission value. If the
+     * authority provided/calculated the given permission value itself it will
+     * return <tt>this</tt>. If more authorities provide the same value the
+     * first one will be returned.
+     *
+     * @param permissionValue The permission string
+     * @return The subject that provides the given permission value if available
+     */
+    Optional<Subject> getPermissionValueAuthority(String permissionValue);
+
+    /**
+     * Checks whether this subject is a child of the given subject. This will
+     * also return true for any subsequent children the given subject may have.
+     *
+     * @param parent The parent subject to check
+     * @return True if this a child of the given parent or any of its subsequent
+     *         children it may have, false otherwise
+     */
+    boolean isChildOf(Subject parent);
+
+    /**
+     * Return all registered parents.
+     *
+     * @return An immutable iterable containing all parents.
+     */
+    public Iterable<Subject> getAllParents();
 
 }

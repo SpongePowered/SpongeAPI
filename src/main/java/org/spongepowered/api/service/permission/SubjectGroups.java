@@ -22,13 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
+
+package org.spongepowered.api.service.permission;
+
+import org.spongepowered.api.entity.player.Player;
 
 /**
- * A common interface for objects that have a relevant context
+ * A utility class to access all available {@link SubjectGroup}s. All plugins
+ * should register their permissions to these {@link SubjectGroup}s to allow
+ * fallback strategies using those nodes. These groups should not be used to
+ * list which {@link Player} is an operator or has operator rights
  */
-public interface Contextual {
+public class SubjectGroups {
 
-    public Context getContext();
+    public static final SubjectGroup DEFAULT = null;
+    public static final SubjectGroup OPERATOR = null;
+
+    private SubjectGroups() {
+    }
 
 }
