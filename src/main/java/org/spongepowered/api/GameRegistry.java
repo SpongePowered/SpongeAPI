@@ -49,6 +49,7 @@ import org.spongepowered.api.stats.EntityStatisticType;
 import org.spongepowered.api.stats.ItemStatistic;
 import org.spongepowered.api.stats.ItemStatisticType;
 import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.Statistics;
 import org.spongepowered.api.stats.TeamStatistic;
 import org.spongepowered.api.stats.TeamStatisticType;
 import org.spongepowered.api.text.format.TextColor;
@@ -385,9 +386,10 @@ public interface GameRegistry {
     Optional<TeamStatistic> getTeamStatistic(TeamStatisticType statisticType, TextColor teamColor);
 
     /**
-     * Gets a list of all available {@link Statistic}s.
+     * Gets a list of all available {@link Statistic}s that are not grouped.
      *
-     * @return A list containing all simple statistics in registry
+     * @return A list containing all statistics in registry that are not grouped
+     * @see Statistics
      */
     Collection<Statistic> getSimpleStatistics();
 
