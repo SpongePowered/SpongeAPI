@@ -24,34 +24,87 @@
  */
 package org.spongepowered.api.service.permission.context;
 
-import org.spongepowered.api.service.permission.Subject;
-
-import java.util.Map;
-
 /**
- * The context that a permission check occurs in. Instances of a context are designed
- * to function as cache keys, meaning they should be fairly lightweight and not hold references to large objects
+ * The context that a permission check occurs in. Instances of a context are
+ * designed to function as cache keys, meaning they should be fairly lightweight
+ * and not hold references to large objects
  */
 public final class Context {
-    private final String type, name;
 
-    public Context(String type, String name) {
+    public static final String TYPE_GLOBAL = "global";
+    public static final String TYPE_WORLD = "world";
+    public static final Context CONTEXT_GLOBAL = new Context(TYPE_GLOBAL, "global");
+
+    private final String type;
+    private final String name;
+
+    public Context(final String type, final String name) {
         this.type = type;
         this.name = name;
     }
 
     /**
-     * @return the type of item this context represents, for example for a world this would be {@code world}
+     * Gets the type of this context, for example {@code "world"} or
+     * {@code "global"}.
+     *
+     * @return the type of this context
+     * @see #TYPE_GLOBAL
+     * @see #TYPE_WORLD
      */
     public String getType() {
         return type;
     }
 
     /**
-     * @return the specific name of the item involved in this context, for example if
-     * the type were {@code world} this would be the name of the world.
+     * Get the name of this context or to be more precise the name of the item
+     * this context represents. The name should be unique in the same context
+     * type.
+     *
+     * @return The name of this context
      */
     public String getName() {
         return name;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + name.hashCode();
+        result = prime * result + type.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj == null) {
+            return false;
+        } else if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Context other = (Context) obj;
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (type == null) {
+            if (other.type != null) {
+                return false;
+            }
+        } else if (!type.equals(other.type)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return type + ":" + name;
+    }
+
 }

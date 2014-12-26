@@ -22,13 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
+
+package org.spongepowered.api.service.permission;
 
 /**
- * A common interface for objects that have a relevant context
+ * Represents a subject with other {@link Subject}s inheriting from this one.
  */
-public interface Contextual {
+public interface SubjectGroup extends Subject {
 
-    public Context getContext();
+    /**
+     * Gets the children for this subject.
+     * <p>
+     * In vanilla minecraft this will return all operators for the
+     * {@link SubjectGroups#OPERATOR}. But this may not be true, for modded
+     * server implementations or servers with plugins.
+     * </p>
+     *
+     * @param recursive True to return also the children of the children
+     *            recursively.
+     * @return A immutable iterable containing all children
+     */
+    Iterable<Subject> getChildren(boolean recursive);
 
 }

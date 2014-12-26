@@ -22,13 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
+
+package org.spongepowered.api.service.permission;
 
 /**
- * A common interface for objects that have a relevant context
+ * A utility class to access all available {@link SubjectType}s.
  */
-public interface Contextual {
+public final class SubjectTypes {
 
-    public Context getContext();
+    /**
+     * Subjects of this type use UUIDs as identifiers according to RFC4122
+     * string format. (This <b>does</b> have dashes. Mojang is stupid.)
+     */
+    public static final SubjectType USER = null;
+    public static final SubjectType GROUP = null;
+
+    private SubjectTypes() {
+    }
 
 }

@@ -25,43 +25,97 @@
 package org.spongepowered.api.service.permission;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.service.permission.context.Context;
 import org.spongepowered.api.service.permission.context.ContextCalculator;
-
-import java.util.UUID;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Represents a provider for permissions
- * Example:
- *
- * provide
+ * Simple server that can be used to get subjects for offline and online
+ * players, groups and registering new permissions.
  */
 public interface PermissionService {
-    public static final String SUBJECTS_USER = "user", SUBJECTS_GROUP = "group";
 
     /**
-     * Returns the permissions level that describes users.
-     * User identifiers are expected to be UUIDs in RFC4122 string format (This *does* have dashes. Mojang is stupid.)
+     * Registers a permission with the given string and description.
+     * <p>
+     * <b>Note:</b> This only registers the description. After this method is
+     * called the default values should be added to the default
+     * {@link SubjectGroup} listed in {@link SubjectGroups} to allow permission
+     * plugins to use those groups as fallback if they don't have the permission
+     * specified internally.
+     * </p>
      *
+     * @param permission The permission string
+     * @param description The description for the permission
+     * @see SubjectGroups
+     */
+    void registerPermission(String permission, Message description);
+
+    /**
+     * Gets all registered permissions with the given prefix.
      *
-     * @return A subject collection for users
+     * @param prefix The prefix to search
+     * @return An immutable collection containing all permissions with the given
+     *         prefix
+     */
+    ImmutableCollection<String> getRegisteredPermissions(String prefix);
+
+    /**
+     * Gets all registered permissions.
+     *
+     * @return An immutable collection containing all permissions
+     */
+    ImmutableCollection<String> getRegisteredPermissions();
+
+    /**
+     * Gets the description belonging to the given permission.
+     *
+     * @param permission The permission string
+     * @return The description belonging to the given permission
+     */
+    Optional<Message> getDescription(String permission);
+
+    /**
+     * Gets a {@link SubjectCollection} containing all user {@link Subject}s
+     * that are online or have persistent data/have been stored.
+     *
+     * @return A subject collection containing all users
      */
     public SubjectCollection getUserSubjects();
 
     /**
-     * Returns the collection of group subjects available. Implementation of this method is optional.
-     * @return Known group subjects
+     * Gets a {@link SubjectCollection} containing all group {@link Subject}s
+     * that are currently available.
+     *
+     * @return A subject collection containing all groups
      */
     public SubjectCollection getGroupSubjects();
 
+    /**
+     * ?????
+     */
     public void registerContextCalculator(ContextCalculator calculator);
 
     /**
-     * Returns a subject collection with the given identifier
+     * Gets a {@link SubjectCollection} containing {@link Subject}s of the
+     * specified type, which are not limited to a single {@link Context}. Useful
+     * for user collections.
      *
-     * @param identifier The identifier
-     * @param parentCollection The type of parent. If null is provided, this collection will use its own subjects as the parent type
-     * @return
+     * @param type The type of subjects this subject collection should contain
+     * @return The subject collection
      */
-    public <I, P> Optional<SubjectCollection> getSubjects(String identifier, SubjectCollection parentCollection);
+    public Optional<SubjectCollection> getSubjects(SubjectType type);
+
+    /**
+     * Gets a {@link SubjectCollection} containing {@link Subject}s of the
+     * specified type, which are limited to a single {@link Context}. Useful for
+     * per world group collections.
+     *
+     * @param type The type of subjects this subject collection should contain
+     * @param context The context for the user collection
+     * @return The subject collection
+     */
+    public Optional<SubjectCollection> getSubjects(SubjectType type, Context context);
+
 }

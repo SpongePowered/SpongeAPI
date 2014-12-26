@@ -22,13 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
+
+package org.spongepowered.api.service.permission;
 
 /**
- * A common interface for objects that have a relevant context
+ * Represents the type of a {@link Subject} for example a user or a group.
  */
-public interface Contextual {
+public interface SubjectType {
 
-    public Context getContext();
+    /**
+     * Gets the name of this subject type.
+     *
+     * @return The name of this subject type
+     */
+    String getName();
 
 }
