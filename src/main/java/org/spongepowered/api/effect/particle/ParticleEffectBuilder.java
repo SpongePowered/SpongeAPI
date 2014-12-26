@@ -39,7 +39,7 @@ public interface ParticleEffectBuilder {
      * @param motion The motion vector
      * @return This builder
      */
-    ParticleEffectBuilder withMotion(Vector3f motion);
+    ParticleEffectBuilder motion(Vector3f motion);
 
     /**
      * Sets the offset vector of the particle effect.
@@ -47,7 +47,7 @@ public interface ParticleEffectBuilder {
      * @param offset The offset vector
      * @return This builder
      */
-    ParticleEffectBuilder withOffset(Vector3f motion);
+    ParticleEffectBuilder offset(Vector3f offset);
 
     /**
      * Sets the amount of particles of the particle effect.
@@ -55,7 +55,7 @@ public interface ParticleEffectBuilder {
      * @param count The count particles
      * @return This builder
      */
-    ParticleEffectBuilder withCount(int count);
+    ParticleEffectBuilder count(int count);
 
     /**
      * Builds an instance of a ParticleEffect.
@@ -75,16 +75,16 @@ public interface ParticleEffectBuilder {
          * @param color The color
          * @return This builder
          */
-        Colorable withColor(Color color);
+        Colorable color(Color color);
 
         @Override
-        Colorable withMotion(Vector3f motion);
+        Colorable motion(Vector3f motion);
 
         @Override
-        Colorable withOffset(Vector3f motion);
+        Colorable offset(Vector3f offset);
 
         @Override
-        Colorable withCount(int count);
+        Colorable count(int count);
 
         @Override
         ParticleEffect.Colorable build() throws IllegalStateException;
@@ -102,16 +102,16 @@ public interface ParticleEffectBuilder {
          * @param size The size
          * @return This builder
          */
-        Resizable withSize(float size);
+        Resizable size(float size);
 
         @Override
-        Resizable withMotion(Vector3f motion);
+        Resizable motion(Vector3f motion);
 
         @Override
-        Resizable withOffset(Vector3f motion);
+        Resizable offset(Vector3f offset);
 
         @Override
-        Resizable withCount(int count);
+        Resizable count(int count);
 
         @Override
         ParticleEffect.Resizable build() throws IllegalStateException;
@@ -131,16 +131,16 @@ public interface ParticleEffectBuilder {
          * @param note The note
          * @return This builder
          */
-        Note withNote(float note);
+        Note note(float note);
 
         @Override
-        Note withMotion(Vector3f motion);
+        Note motion(Vector3f motion);
 
         @Override
-        Note withOffset(Vector3f motion);
+        Note offset(Vector3f offset);
 
         @Override
-        Note withCount(int count);
+        Note count(int count);
 
         @Override
         ParticleEffect.Note build() throws IllegalStateException;
@@ -159,7 +159,7 @@ public interface ParticleEffectBuilder {
          * @param item The item stack
          * @return This builder
          */
-        Material withItem(ItemStack item);
+        Material item(ItemStack item);
 
         /**
          * Sets the item type of the particle effect.
@@ -167,16 +167,16 @@ public interface ParticleEffectBuilder {
          * @param item The item type
          * @return This builder
          */
-        Material withItemType(ItemType item);
+        Material itemType(ItemType item);
 
         @Override
-        Material withMotion(Vector3f motion);
+        Material motion(Vector3f motion);
 
         @Override
-        Material withOffset(Vector3f motion);
+        Material offset(Vector3f offset);
 
         @Override
-        Material withCount(int count);
+        Material count(int count);
 
         @Override
         ParticleEffect.Material build() throws IllegalStateException;
