@@ -23,29 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.event.stats;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityDeathEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.util.event.Event;
 
 /**
- * Called when a {@link Player} is killed.
+ * Represents an event that is triggered if one or more {@link Statistic}s are
+ * about to change their values.
  */
-public interface PlayerDeathEvent extends EntityDeathEvent, PlayerEvent, StatisticChangeEvent {
+public interface StatisticChangeEvent extends Event {
 
     /**
-     * Gets the death message of this {@link Player}.
+     * Gets an {@link Iterable} containing all {@link StatisticChange}s.
      *
-     * @return The death message.
+     * @return An iterable containing all changes to statistics.
      */
-    Message getDeathMessage();
+    Iterable<StatisticChange> getStatisticChanges();
 
-    /**
-     * Sets the death message of this {@link Player}.
-     *
-     * @param deathMessage The new death message.
-     */
-    void setDeathMessage(Message deathMessage);
 }

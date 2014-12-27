@@ -23,29 +23,23 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.event.stats;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityDeathEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.event.player.PlayerEvent;
+import org.spongepowered.api.stats.achievement.Achievement;
 
 /**
- * Called when a {@link Player} is killed.
+ * Represents an event that is called when a {@link Player} earns an
+ * {@link Achievement}.
  */
-public interface PlayerDeathEvent extends EntityDeathEvent, PlayerEvent, StatisticChangeEvent {
+public interface GrantAchievementEvent extends PlayerEvent {
 
     /**
-     * Gets the death message of this {@link Player}.
+     * Gets the achievement that is granted to the {@link Player}.
      *
-     * @return The death message.
+     * @return The achievement that is granted to the player
      */
-    Message getDeathMessage();
+    Achievement getAchievement();
 
-    /**
-     * Sets the death message of this {@link Player}.
-     *
-     * @param deathMessage The new death message.
-     */
-    void setDeathMessage(Message deathMessage);
 }

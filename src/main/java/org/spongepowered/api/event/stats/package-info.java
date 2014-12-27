@@ -23,29 +23,5 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityDeathEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
-import org.spongepowered.api.text.message.Message;
-
-/**
- * Called when a {@link Player} is killed.
- */
-public interface PlayerDeathEvent extends EntityDeathEvent, PlayerEvent, StatisticChangeEvent {
-
-    /**
-     * Gets the death message of this {@link Player}.
-     *
-     * @return The death message.
-     */
-    Message getDeathMessage();
-
-    /**
-     * Sets the death message of this {@link Player}.
-     *
-     * @param deathMessage The new death message.
-     */
-    void setDeathMessage(Message deathMessage);
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.event.stats;

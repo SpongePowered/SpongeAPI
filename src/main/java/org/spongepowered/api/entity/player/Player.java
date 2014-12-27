@@ -25,15 +25,19 @@
 
 package org.spongepowered.api.entity.player;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * A Player represents the in-game entity of a human playing on a server.
@@ -117,5 +121,93 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     void clearTitle();
+
+    /**
+     * Gets the current value for the given {@link Statistic}.
+     * <p>
+     * This method may return a default value (usually 0) or Optional.absent()
+     * if the statistic has no entry for this player yet.
+     * </p>
+     *
+     * @param statistic The statistic to return
+     * @return The current value for the given statistic
+     */
+    Optional<Long> getStatistic(Statistic statistic);
+
+    /**
+     * Gets all {@link Statistic}s with their current values.
+     *
+     * @return A map containing all statistics with their current values.
+     */
+    Map<Statistic, Long> getStatistics();
+
+    /**
+     * Adds the specified amount to the given statistic.
+     *
+     * @param statistic The statistic to update
+     * @param newValue The new value for the
+     */
+    void addToStatistic(Statistic statistic, long amount);
+
+    /**
+     * Sets the given statistic to the given value.
+     *
+     * @param statistic The statistic to update
+     * @param newValue The new value for the
+     */
+    void setStatistic(Statistic statistic, long newValue);
+
+    /**
+     * Resets the given statistic. The entry may be removed from the stats or
+     * set to a default value (usually 0).
+     *
+     * @param statistic The statistic to reset
+     */
+    void resetStatistic(Statistic statistic);
+
+    /**
+     * Resets the all statistic. The entries may be removed from the stats or
+     * set to a default value (usually 0).
+     */
+    void resetStatistics();
+
+    /**
+     * Checks whether this player has earned the given {@link Achievement}.
+     *
+     * @param achievement The achievement to check
+     * @return True if the player has completely earned the achievement
+     */
+    boolean hasAchievement(Achievement achievement);
+
+    /**
+     * Gets an {@link Iterable} containing all {@link Achievement} this player
+     * has earned already.
+     *
+     * @return An iterable containing all earned achievements
+     */
+    Iterable<Achievement> getAchievements();
+
+    /**
+     * Grants the given {@link Achievement} to this player. An
+     * {@link Achievement} can be granted multiple times.
+     *
+     * @param achievement The achievement to grant
+     */
+    void grantAchievement(Achievement achievement);
+
+    /**
+     * Revokes the given {@link Achievement} from this player. This may also
+     * revokes dependent {@link Achievement}s or resets {@link Statistic}s that
+     * are used to count for the {@link Achievement}.
+     *
+     * @param achievement The achievement to revoke
+     */
+    void revokeAchievement(Achievement achievement);
+
+    /**
+     * Revokes all {@link Achievement}s from this player. This may also resets
+     * {@link Statistic} that are used to count for the {@link Achievement}s.
+     */
+    void revokeAchievements();
 
 }
