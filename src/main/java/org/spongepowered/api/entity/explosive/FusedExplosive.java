@@ -26,13 +26,10 @@ package org.spongepowered.api.entity.explosive;
 
 /**
  * Represents an explosive that detonates after its fuse has expired.
+ * <p>A FusedExplosive already implies that it has been ignited and will
+ * explode after the fuse has expired.</p>
  */
 public interface FusedExplosive extends Explosive {
-
-    /**
-     * Ignites this explosive to detonate after some fuse duration in ticks.
-     */
-    void ignite();
 
     /**
      * Ignites this explosive to detonate after the given fuse ticks.
