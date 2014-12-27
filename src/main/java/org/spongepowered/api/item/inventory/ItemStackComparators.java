@@ -87,7 +87,7 @@ public final class ItemStackComparators {
 
         @Override
         public int compare(final ItemStack o1, final ItemStack o2) {
-            return Integer.signum(o1.getItem().getId().compareTo(o2.getItem().getId()));
+            return o1.getItem().getId().compareTo(o2.getItem().getId());
         }
 
     }
@@ -96,7 +96,7 @@ public final class ItemStackComparators {
 
         @Override
         public int compare(final ItemStack o1, final ItemStack o2) {
-            return Integer.signum(o1.getDamage() - o2.getDamage());
+            return o1.getDamage() - o2.getDamage();
         }
 
     }
@@ -105,7 +105,7 @@ public final class ItemStackComparators {
 
         @Override
         public int compare(final ItemStack o1, final ItemStack o2) {
-            return Integer.signum(o1.getQuantity() - o2.getQuantity());
+            return o1.getQuantity() - o2.getQuantity();
         }
 
     }
