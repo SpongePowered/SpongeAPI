@@ -30,8 +30,8 @@ package org.spongepowered.api.stats;
  */
 public final class TeamStatisticTypes {
 
-    public static final TeamStatisticType HASKILLED = null;
-    public static final TeamStatisticType KILLEDBY = null;
+    public static final TeamStatisticType HAS_KILLED = null;
+    public static final TeamStatisticType KILLED_BY = null;
 
     private TeamStatisticTypes() {
     }

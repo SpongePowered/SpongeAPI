@@ -30,8 +30,8 @@ package org.spongepowered.api.stats;
  */
 public final class EntityStatisticTypes {
 
-    public static final EntityStatisticType HASKILLED = null;
-    public static final EntityStatisticType KILLEDBY = null;
+    public static final EntityStatisticType HAS_KILLED = null;
+    public static final EntityStatisticType KILLED_BY = null;
 
     private EntityStatisticTypes() {
     }
