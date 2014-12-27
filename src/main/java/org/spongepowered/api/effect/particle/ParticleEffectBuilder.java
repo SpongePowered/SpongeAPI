@@ -31,10 +31,15 @@ import org.spongepowered.api.item.inventory.ItemStack;
 
 import com.flowpowered.math.vector.Vector3f;
 
+/**
+ * Represents a builder to create a {@link ParticleEffect}.
+ */
 public interface ParticleEffectBuilder {
 
     /**
      * Sets the motion vector of the particle effect.
+     * 
+     * <p>The default motion vector is {@link Vector3f#ZERO}.</p>
      * 
      * @param motion The motion vector
      * @return This builder
@@ -44,6 +49,8 @@ public interface ParticleEffectBuilder {
     /**
      * Sets the offset vector of the particle effect.
      * 
+     * <p>The default offset vector is {@link Vector3f#ZERO}.</p>
+     * 
      * @param offset The offset vector
      * @return This builder
      */
@@ -52,10 +59,13 @@ public interface ParticleEffectBuilder {
     /**
      * Sets the amount of particles of the particle effect.
      * 
+     * <p>The default count is 1.</p>
+     * 
      * @param count The count particles
      * @return This builder
+     * @throws IllegalArgumentException If the count is less than one
      */
-    ParticleEffectBuilder count(int count);
+    ParticleEffectBuilder count(int count) throws IllegalArgumentException;
 
     /**
      * Builds an instance of a ParticleEffect.
@@ -65,12 +75,15 @@ public interface ParticleEffectBuilder {
     ParticleEffect build();
 
     /**
-     * Represents a particle that can be colored.
+     * Represents a particle builder to create a {@link ParticleEffect.Colorable}.
      */
     interface Colorable extends ParticleEffectBuilder {
 
         /**
          * Sets the color of the particle effect.
+         * 
+         * <p>The default color is retrieved from the colorable particle type,
+         * by using {@link ParticleType.Colorable#getDefaultColor()}.</p>
          * 
          * @param color The color
          * @return This builder
@@ -87,17 +100,20 @@ public interface ParticleEffectBuilder {
         Colorable count(int count);
 
         @Override
-        ParticleEffect.Colorable build() throws IllegalStateException;
+        ParticleEffect.Colorable build();
 
     }
 
     /**
-     * Represents a particle effect that can be resized.
+     * Represents a particle builder to create a {@link ParticleEffect.Resizable}.
      */
     interface Resizable extends ParticleEffectBuilder {
 
         /**
          * Sets the size of the particle effect.
+         * 
+         * <p>The default size is retrieved from the resizable particle type,
+         * by using {@link ParticleType.Resizable#getDefaultSize()}.</p>
          * 
          * @param size The size
          * @return This builder
@@ -114,19 +130,21 @@ public interface ParticleEffectBuilder {
         Resizable count(int count);
 
         @Override
-        ParticleEffect.Resizable build() throws IllegalStateException;
+        ParticleEffect.Resizable build();
 
     }
 
     /**
-     * Represents a particle effect that uses a note value.
+     * Represents a particle builder to create a {@link ParticleEffect.Note}.
      */
     interface Note extends ParticleEffectBuilder {
 
         /**
          * Sets the note value of the particle effect.
          * 
-         * <p>The value scales between 0 and 24</p>
+         * <p>The value scales between 0 and 24.</p>
+         * <p>The default note value is retrieved from the note particle type,
+         * by using {@link ParticleType.Note#getDefaultNote()}.</p>
          * 
          * @param note The note
          * @return This builder
@@ -143,18 +161,20 @@ public interface ParticleEffectBuilder {
         Note count(int count);
 
         @Override
-        ParticleEffect.Note build() throws IllegalStateException;
+        ParticleEffect.Note build();
 
     }
 
     /**
-     * Represents a particle effect that utilizes a item stack to be
-     * able to render on the client.
+     * Represents a particle builder to create a {@link ParticleEffect.Material}.
      */
     interface Material extends ParticleEffectBuilder {
 
         /**
          * Sets the item stack of the particle effect.
+         * 
+         * <p>The default item stack is retrieved from the note particle type,
+         * by using {@link ParticleType.Material#getDefaultItem()}.</p>
          *
          * @param item The item stack
          * @return This builder
@@ -179,7 +199,7 @@ public interface ParticleEffectBuilder {
         Material count(int count);
 
         @Override
-        ParticleEffect.Material build() throws IllegalStateException;
+        ParticleEffect.Material build();
 
     }
 
