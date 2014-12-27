@@ -31,7 +31,7 @@ package org.spongepowered.api.text.selector;
 interface SelectorFactory {
 
     /**
-     * Creates a {@link SelectorBuilder} with no variable set and no arguments.
+     * Creates a {@link SelectorBuilder} with no type set and no arguments.
      *
      * @return A new selector builder with no data
      */

@@ -25,30 +25,18 @@
 package org.spongepowered.api.text.selector;
 
 /**
- * Utility class to work with and create Selectors.
+ * Represents a selector type.
+ * 
+ * @see Selectors
  */
-public final class Selectors {
-    private static final SelectorFactory factory = null;
-
-    private Selectors() {}
+public interface SelectorType {
 
     /**
-     * Creates a {@link SelectorBuilder} with no data.
-     *
-     * @return A new selector builder with no data
-     */
-    public static SelectorBuilder builder() {
-        return factory.createEmptyBuilder();
-    }
-
-    /**
-     * Parses a {@link Selector} from the given selector string.
+     * Returns the ID of this {@link SelectorType}. For example, {@code @a}
+     * would return {@code "a"}.
      * 
-     * @param selector The raw selector string
-     * @return A new selector containing the given selector data
+     * @return The ID of this {@link SelectorType}
      */
-    public static Selector parseRaw(String selector) {
-        return factory.parseRawSelector(selector);
-    }
+    String getId();
 
 }

@@ -24,31 +24,31 @@
  */
 package org.spongepowered.api.text.selector;
 
+import com.google.common.base.Optional;
+
+import java.util.List;
+
 /**
- * Utility class to work with and create Selectors.
+ * Represents the required implementation for the static methods in
+ * {@link SelectorTypes}.
  */
-public final class Selectors {
-    private static final SelectorFactory factory = null;
-
-    private Selectors() {}
+public interface SelectorTypeFactory {
 
     /**
-     * Creates a {@link SelectorBuilder} with no data.
+     * Gets the {@link SelectorType} with the specified name.
      *
-     * @return A new selector builder with no data
+     * @param name The identifier of the selector type, for example
+     *        "ALL_PLAYERS"
+     * @return The {@link SelectorType} with the specified name, or
+     *         {@link Optional#absent()} if not found
      */
-    public static SelectorBuilder builder() {
-        return factory.createEmptyBuilder();
-    }
+    Optional<SelectorType> getTypeFromName(String name);
 
     /**
-     * Parses a {@link Selector} from the given selector string.
-     * 
-     * @param selector The raw selector string
-     * @return A new selector containing the given selector data
+     * Returns a list of all available {@link SelectorType}s on this server.
+     *
+     * @return An immutable list of all selector types
      */
-    public static Selector parseRaw(String selector) {
-        return factory.parseRawSelector(selector);
-    }
+    List<SelectorType> getTypes();
 
 }

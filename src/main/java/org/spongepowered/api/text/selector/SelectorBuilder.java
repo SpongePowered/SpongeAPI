@@ -35,12 +35,12 @@ import com.flowpowered.math.vector.Vector3i;
 public interface SelectorBuilder {
 
     /**
-     * Sets the variable of this selector.
+     * Sets the type of this selector.
      *
-     * @param variable The variable for this selector to use
+     * @param type The type to set
      * @return This selector builder
      */
-    SelectorBuilder variable(String variable);
+    SelectorBuilder type(SelectorType type);
 
     /**
      * Adds an argument to the arguments in this selector.

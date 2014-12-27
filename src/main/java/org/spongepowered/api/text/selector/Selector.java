@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 /**
  * Represents an immutable selector. A selector starts with the {@code @} symbol
  * and is followed by a single character signifying which selector is being used
- * (known as the variable), and finally the optional arguments in brackets. For
+ * (known as the type), and finally the optional arguments in brackets. For
  * example, the all player selector is {@code @a}, and with a radius of 20 it
  * would be {@code @a[r=20]}.
  * 
@@ -46,11 +46,11 @@ import javax.annotation.Nullable;
 public interface Selector {
 
     /**
-     * Returns the variable for this {@link Selector}.
+     * Returns the type of this {@link Selector}.
      * 
-     * @return The variable for this {@link Selector}
+     * @return The type of this {@link Selector}
      */
-    SelectorVariable getVariable();
+    SelectorType getType();
 
     /**
      * Returns the arguments for this {@link Selector}.
@@ -61,7 +61,7 @@ public interface Selector {
 
     /**
      * Resolves this {@link Selector} to a list of entities based on the
-     * arguments and variable.
+     * arguments and type.
      * 
      * @param location The location to resolve the selector around
      * @return A list of entities that were resolved from this {@link Selector}
@@ -83,7 +83,8 @@ public interface Selector {
      * @return A valid {@link Selector} string that can be inserted into a
      *         command
      */
-    String asString();
+    @Override
+    String toString();
 
     /**
      * Returns a new {@link SelectorBuilder} with the content of this selector.
