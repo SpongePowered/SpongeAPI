@@ -32,7 +32,7 @@ public class Arts {
     public static final Art KEBAB = null;
     public static final Art AZTEC = null;
     public static final Art ALBAN = null;
-    public static final Art AZTEC2 = null;
+    public static final Art AZTEC_2 = null;
     public static final Art BOMB = null;
     public static final Art PLANT = null;
     public static final Art WASTELAND = null;
