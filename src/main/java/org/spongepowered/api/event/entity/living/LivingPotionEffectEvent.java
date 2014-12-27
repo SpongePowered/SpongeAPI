@@ -22,34 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living;
 
-package org.spongepowered.api.event.entity;
+import org.spongepowered.api.potion.PotionEffect;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import java.util.List;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * An event that involves a living entity having effects added and removed.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface LivingPotionEffectEvent extends LivingEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets a copy of all current effects applied on the living entity.
      *
-     * @return The projectile that was launched
+     * @return A copy of the potion effects
      */
-    Projectile getLaunchedProjectile();
+    List<PotionEffect> getCurrentEffects();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the potion effect involved in this event.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return The potion effect involved in this event
      */
-    Optional<ProjectileSource> getSource();
+    PotionEffect getPotionEffect();
 
 }

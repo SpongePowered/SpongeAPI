@@ -22,34 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+package org.spongepowered.api.event.entity.living.human;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a human's level is changed.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface HumanLevelChangeEvent extends HumanEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the current level of the human.
      *
-     * @return The projectile that was launched
+     * @return The current level of the human
      */
-    Projectile getLaunchedProjectile();
+    int getLevel();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the new level of the human.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return The new level of the human
      */
-    Optional<ProjectileSource> getSource();
+    int getNewLevel();
 
+    /**
+     * Sets the new level of the human.
+     *
+     * <p>Technically, this can be set to the same level to
+     * cancel effects of the level being changed.</p>
+     *
+     * @param newLevel The level to change to
+     */
+    void setNewLevel(int newLevel);
 }

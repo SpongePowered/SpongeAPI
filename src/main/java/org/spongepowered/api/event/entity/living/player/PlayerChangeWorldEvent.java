@@ -23,33 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.entity.living.player;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when the {@link Player} changes {@link World}.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface PlayerChangeWorldEvent extends PlayerEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the {@link World} the player is leaving.
      *
-     * @return The projectile that was launched
+     * @return The from world.
      */
-    Projectile getLaunchedProjectile();
+    World getFromWorld();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the {@link World} the player is entering.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return The to world.
      */
-    Optional<ProjectileSource> getSource();
-
+    World getToWorld();
 }

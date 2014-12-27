@@ -23,33 +23,14 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.entity.living.human;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.event.entity.living.LivingDropItemEvent;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a {@link Human} drops an item(s).
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
-
-    /**
-     * Gets the projectile that was launched.
-     *
-     * @return The projectile that was launched
-     */
-    Projectile getLaunchedProjectile();
-
-    /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
-     */
-    Optional<ProjectileSource> getSource();
+public interface HumanDropItemEvent extends HumanEvent, LivingDropItemEvent {
 
 }

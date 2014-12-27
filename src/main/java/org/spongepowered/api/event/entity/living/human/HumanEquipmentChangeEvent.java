@@ -22,34 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living.human;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.living.LivingEquipmentChangeEvent;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when an entity changes an equipped item.
+ * <p>Examples include: A zombie picking up a weapon, a Player switching
+ * their current item in hand, etc.</p>
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface HumanEquipmentChangeEvent extends HumanEvent, LivingEquipmentChangeEvent {
 
-    /**
-     * Gets the projectile that was launched.
-     *
-     * @return The projectile that was launched
+    /*
+    TODO getHumanInventory()
      */
-    Projectile getLaunchedProjectile();
-
-    /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
-     */
-    Optional<ProjectileSource> getSource();
-
 }

@@ -23,33 +23,35 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.entity.living.human;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a {@link Human} changes {@link GameMode}.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface HumanChangeGameModeEvent extends HumanEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the old {@link GameMode} of the human.
      *
-     * @return The projectile that was launched
+     * @return The old {@link GameMode}.
      */
-    Projectile getLaunchedProjectile();
+    GameMode getOldGameMode();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the new {@link GameMode} of the human.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return The new {@link GameMode}.
      */
-    Optional<ProjectileSource> getSource();
+    GameMode getNewGameMode();
 
+    /**
+     * Sets the new {@link GameMode} of the human.
+     *
+     * @param newGameMode The new {@link GameMode} value.
+     */
+    void setNewGameMode(GameMode newGameMode);
 }

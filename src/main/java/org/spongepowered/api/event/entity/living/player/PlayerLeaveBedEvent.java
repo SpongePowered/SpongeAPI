@@ -22,34 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.entity.living.player;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.living.human.HumanLeaveBedEvent;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a Player leaves a bed.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets whether the spawn location for the player was set.
      *
-     * @return The projectile that was launched
+     * @return Whether the spawn location for the player was set
      */
-    Projectile getLaunchedProjectile();
+    boolean wasSpawnSet();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the spawn location of the player when leaving the bed.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
+     * <p>This may have not been set by the event, so checking
+     * {@link #wasSpawnSet()} is advisable. If spawn has not been set,
+     * it will return {@link Optional#absent()}.</p>
      *
-     * @return The projectile source, if available
+     * @return The players new spawn location, if available
      */
-    Optional<ProjectileSource> getSource();
+    Optional<Location> getSpawnLocation();
+
+    /**
+     * Sets the new spawn location of the player leaving the bed.
+     *
+     * <p>If spawn {@link #wasSpawnSet} was not infact set by this event,
+     * this does not override the return value. The given spawn should be
+     * a valid location.</p>
+     *
+     * @param location The new spawn location for the player
+     */
+    void setSpawnLocation(Location location);
 
 }

@@ -22,34 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * An event that is called when an entity becomes leashed.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface EntityLeashEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the leash holder of the leash.
      *
-     * @return The projectile that was launched
+     * @return The leash holder
      */
-    Projectile getLaunchedProjectile();
-
-    /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
-     */
-    Optional<ProjectileSource> getSource();
+    Entity getLeashHolder();
 
 }

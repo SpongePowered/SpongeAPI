@@ -22,34 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.data;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.block.data.Furnace;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * An event that occurs when a {@link Furnace}
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface FurnaceSmeltItemEvent extends FurnaceEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the freshly cooked {@link ItemStack}.
      *
-     * @return The projectile that was launched
+     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
+     * new items.</p>
+     *
+     * @return The cooked item
      */
-    Projectile getLaunchedProjectile();
+    ItemStack getCookedItem();
 
     /**
-     * Gets the source that shot the projectile.
+     * Sets the cooked {@link ItemStack}.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
+     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
+     * new items.</p>
      *
-     * @return The projectile source, if available
+     * @param item The resulting cooked item
      */
-    Optional<ProjectileSource> getSource();
+    void setCookedItem(ItemStack item);
+
+    /**
+     * Gets the source {@link ItemStack} that was cooked.
+     *
+     * @return The source item
+     */
+    ItemStack getSourceItem();
 
 }

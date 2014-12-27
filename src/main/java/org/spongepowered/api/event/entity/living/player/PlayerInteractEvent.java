@@ -23,33 +23,37 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.entity.living.player;
 
+import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.EntityInteractionType;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.event.entity.living.human.HumanInteractEvent;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a {@link Player} interacts with the world.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface PlayerInteractEvent extends PlayerEvent, HumanInteractEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the {@link EntityInteractionType} that the player used.
      *
-     * @return The projectile that was launched
+     * @return The type of click
      */
-    Projectile getLaunchedProjectile();
+    EntityInteractionType getInteractionType();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the clicked position of this interact event.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
+     * <p>This may not always be available, in which case
+     * {@link Optional#absent()} is returned. Specifically, when a player
+     * is interacting with an entity that requires a position, the position
+     * is given. IF a player interacts with a block, a position may be given
+     * depending on the circumstance of the block process.</p>
      *
-     * @return The projectile source, if available
+     * @return The position, if available
      */
-    Optional<ProjectileSource> getSource();
+    Optional<Vector3f> getClickedPosition();
 
 }

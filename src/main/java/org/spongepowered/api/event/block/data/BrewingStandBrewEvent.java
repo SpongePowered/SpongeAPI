@@ -22,34 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.data;
 
-package org.spongepowered.api.event.entity;
+import org.spongepowered.api.block.data.BrewingStand;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import java.util.List;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * An event when a {@link BrewingStand} freshly brews {@link ItemStack}s into new potions.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface BrewingStandBrewEvent extends BrewingStandEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the orignal {@link ItemStack}s that were being brewed.
      *
-     * @return The projectile that was launched
+     * @return The original item stacks
      */
-    Projectile getLaunchedProjectile();
+    List<ItemStack> getSourceItems();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the fuel source being brewed into the source items.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return The fuel source being brewed into the source items
      */
-    Optional<ProjectileSource> getSource();
+    ItemStack getFuelSource();
 
+    /**
+     * Gets the final brewed items.
+     *
+     * @return The resulting brewed items
+     */
+    List<ItemStack> getBrewedItems();
+
+    /**
+     * Sets the final brewed items.
+     *
+     * <p>Note that the brewed items must not exceed the inventory size of the {@link BrewingStand}.</p>
+     *
+     * @param items The newly brewed items
+     */
+    void setBrewedItems(List<ItemStack> items);
 }

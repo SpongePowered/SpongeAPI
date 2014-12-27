@@ -22,34 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when an entity consumes an itemstack for any reason.
+ * <p>Examples may include: A player eating food, a witch drinking a potion, etc.</p>
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface EntityItemConsumeEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the {@link ItemStack} being consumed.
      *
-     * @return The projectile that was launched
+     * @return The item being consumed
      */
-    Projectile getLaunchedProjectile();
+    ItemStack getConsumedItem();
 
     /**
-     * Gets the source that shot the projectile.
+     * Sets the item to be consumed.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @param item The item being consumed
      */
-    Optional<ProjectileSource> getSource();
+    void setItem(ItemStack item);
 
 }

@@ -22,34 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living.human;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a {@link org.spongepowered.api.entity.living.Human} interacts with a bed.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface HumanSleepEvent extends HumanEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the location of the human before entering the bed.
      *
-     * @return The projectile that was launched
+     * @return The location of the human
      */
-    Projectile getLaunchedProjectile();
+    Location getLocation();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the block of the bed being used.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return The block of the bed
      */
-    Optional<ProjectileSource> getSource();
+    BlockLoc getBed();
 
 }
