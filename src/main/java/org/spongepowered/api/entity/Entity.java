@@ -25,16 +25,12 @@
 
 package org.spongepowered.api.entity;
 
+import com.flowpowered.math.vector.Vector2f;
 import com.google.common.base.Optional;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.EulerDirection;
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.util.DataHolder;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.Extent;
 
 import javax.annotation.Nullable;
 
@@ -57,71 +53,6 @@ import javax.annotation.Nullable;
 public interface Entity extends Identifiable, EntityState, DataHolder {
 
     /**
-     * Mark this entity for removal in the very near future, preferably
-     * within one game tick.
-     */
-    void remove();
-
-    /**
-     * Simulates the interaction with this object as if a player had done so.
-     *
-     * @param interactionType The type of interaction performed on this entity
-     */
-    void interact(EntityInteractionType interactionType);
-
-    /**
-     * Simulates the interaction with this object using the given item as if
-     * the player had done so.
-     *
-     * @param itemStack       The item
-     * @param interactionType The type of interaction performed on this entity
-     */
-    void interactWith(ItemStack itemStack, EntityInteractionType interactionType);
-
-    /**
-     * Returns whether this entity is on the ground (not in the air) or not.
-     *
-     * @return Whether this entity is on the ground or not
-     */
-    boolean isOnGround();
-
-    /**
-     * Get the location of this entity.
-     *
-     * @return The location
-     */
-    Location getLocation();
-
-    /**
-     * Teleport the entity to a location.
-     *
-     * @param location The location
-     */
-    void teleport(Location location);
-
-    /**
-     * Teleport the entity to a location.
-     *
-     * @param extent The new extent
-     * @param position The new position
-     */
-    void teleport(Extent extent, Vector3d position);
-
-    /**
-     * Gets the position.
-     *
-     * @return The position
-     */
-    Vector3d getPosition();
-
-    /**
-     * Sets the position.
-     *
-     * @param position The position to set to
-     */
-    void setPosition(Vector3d position);
-
-    /**
      * Gets the current world this entity resides in.
      *
      * @return The current world this entity resides in
@@ -129,107 +60,75 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     World getWorld();
 
     /**
-     * Teleports this entity to the target position specified by the vector
-     * and, if available, the world.
+     * Get the location of this entity
      *
-     * @param position The position to teleport to
-     * @param world The world to teleport to, if available
+     * @return The location
      */
-    void teleport(Vector3d position, @Nullable World world);
+    Location getLocation();
 
     /**
-     * Teleports this entity to the target position specified by x, y, z,
-     * and world.
+     * Sets the location of this entity. This is equivalent to a teleport,
+     * and also moves this entity's passengers.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
-     * @param world The world to teleport to, if available
+     * @param location The location to set
+     * @return True if the teleport was successful
      */
-    void teleport(double x, double y, double z, @Nullable World world);
+    boolean setLocation(Location location);
 
     /**
-     * Get the X component of this instance's position.
+     * Gets the rotation as a Vector2f.
      *
-     * @return The x component
+     * @return The rotation as a Vector2f
      */
-    double getX();
+    Vector2f getRotation();
 
     /**
-     * Get the Y component of this instance's position.
-     *
-     * @return The y component
-     */
-    double getY();
-
-    /**
-     * Get the Z component of this instance's position.
-     *
-     * @return The z component
-     */
-    double getZ();
-
-    /**
-     * Gets the rotation as a vector.
-     * This does not support the roll component of the entity's rotation.
-     *
-     * @return A possibly, but not necessarily, unit vector
-     */
-    Vector3f getVectorRotation();
-
-    /**
-     * Sets the rotation to a vector.
-     * This does not support the roll component of the entity's rotation,
-     * any previous roll value will be removed.
+     * Sets the rotation of this entity.
      *
      * @param rotation The rotation to set the entity to
      */
-    void setVectorRotation(Vector3f rotation);
+    void setRotation(Vector2f rotation);
 
     /**
-     * Gets the rotation as a EulerDirection.
+     * Gets the entity passenger that rides this entity, if available.
      *
-     * @return The rotation as a EulerDirection
+     * @return The passenger entity, if it exists
      */
-    EulerDirection getRotation();
+    Optional<Entity> getPassenger();
 
     /**
-     * Sets the rotation.
+     * Gets the entity vehicle that this entity is riding, if available.
      *
-     * @param rotation The rotation to set the entity to
+     * @return The vehicle entity, if it exists
      */
-    void setRotation(EulerDirection rotation);
+    Optional<Entity> getVehicle();
 
     /**
-     * Mount the entity provided.
+     * Gets the entity vehicle that is the base of what ever stack the current
+     * entity is a part of. This can be the current entity, if it is not riding any vehicle.
      *
-     * @param entity The entity to mount
-     */
-    void mount(Entity entity);
-
-    /**
-     * Dismount from the currently mounted entity.
-     */
-    void dismount();
-
-    /**
-     * Eject any entity mounted on this entity
-     */
-    void eject();
-
-    /**
-     * Gets the entity that is riding this entity.
+     * <p>The returned entity can never ride another entity, that would make
+     * the ridden entity the base of the stack.</p>
      *
-     * @return The riding entity, if it exists
+     * @return The vehicle entity
      */
-    Optional<Entity> getRider();
+    Entity getBaseVehicle();
 
     /**
-     * Gets the entity that this entity is riding.
+     * Sets the passenger entity(the entity that rides this one).
      *
-     * @return The entity being ridden, if it exists
+     * @param entity The entity passenger, or null to eject
+     * @return True if the set was successful
      */
-    Optional<Entity> getRiding();
+    boolean setPassenger(@Nullable Entity entity);
+
+    /**
+     * Sets the vehicle entity(the entity that is ridden by this one).
+     *
+     * @param entity The entity vehicle, or null to dismount
+     * @return True if the set was successful
+     */
+    boolean setVehicle(@Nullable Entity entity);
 
     /**
      * Gets the current x/z size of this entity.
@@ -253,18 +152,31 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     float getScale();
 
     /**
-     * Returns whether this entity is considered dead and ready for removal.
+     * Returns whether this entity is on the ground (not in the air) or not.
      *
-     * @return True if this entity is dead
+     * @return Whether this entity is on the ground or not
      */
-    boolean isDead();
+    boolean isOnGround();
+
+    /**
+     * Returns whether this entity has been removed.
+     *
+     * @return True if this entity has been removed
+     */
+    boolean isRemoved();
 
     /**
      * Returns whether this entity is still loaded in a world/chunk.
      *
      * @return True if this entity is still loaded
      */
-    boolean isValid();
+    boolean isLoaded();
+
+    /**
+     * Mark this entity for removal in the very near future, preferably
+     * within one game tick.
+     */
+    void remove();
 
     /**
      * Gets the ticks remaining of being lit on fire.
@@ -286,5 +198,4 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @return The delay before catching fire
      */
     int getFireDelay();
-
 }

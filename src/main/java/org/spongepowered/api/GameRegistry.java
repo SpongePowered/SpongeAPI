@@ -26,8 +26,10 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.effect.Particle;
+import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
+import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.meta.DyeColor;
@@ -40,13 +42,14 @@ import org.spongepowered.api.entity.living.meta.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.world.Environment;
 import org.spongepowered.api.world.biome.BiomeType;
-
-import java.util.List;
 
 import java.util.Collection;
 import java.util.List;
@@ -118,26 +121,41 @@ public interface GameRegistry {
     ItemStackBuilder getItemBuilder();
 
     /**
-     * Get an trade offer builder.
+     * Get a trade offer builder.
      *
      * @return The trade offer builder
      */
     TradeOfferBuilder getTradeOfferBuilder();
 
     /**
-     * Gets a {@link Particle} by id.
+     * Get a potion effect builder.
      *
-     * @param id The particle id
-     * @return The corresponding particle or Optional.absent() if not found
+     * @return The potion effect builder
      */
-    Optional<Particle> getParticle(String id);
+    PotionEffectBuilder getPotionEffectBuilder();
 
     /**
-     * Gets a list of all available {@link Particle}s.
+     * Gets a {@link ParticleType} by name.
+     *
+     * @param name The particle name
+     * @return The corresponding particle or Optional.absent() if not found
+     */
+    Optional<ParticleType> getParticleType(String name);
+
+    /**
+     * Gets a list of all available {@link ParticleType}s.
      *
      * @return A list containing all item types in registry
      */
-    List<Particle> getParticles();
+    List<ParticleType> getParticleTypes();
+
+    /**
+     * Gets a new particle builder for the {@link ParticleType}.
+     * 
+     * @param particle The particle type
+     * @return The particle effect builder
+     */
+    ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
 
     /**
      * Gets an {@link EntityType} by its identifier.
@@ -329,9 +347,48 @@ public interface GameRegistry {
     List<PotionEffectType> getPotionEffects();
 
     /**
+     * Gets the {@link Enchantment} with the specified id.
+     *
+     * @param id The id of the enchantment to return
+     * @return The enchantment with the given id or Optional.absent() if not found
+     */
+    Optional<Enchantment> getEnchantment(String id);
+
+    /**
+     * Gets all available {@link Enchantment}s.
+     *
+     * @return A list of all enchantments
+     */
+    List<Enchantment> getEnchantments();
+
+    /**
      * Gets a {@link Collection} of the default GameRules.
      *
      * @return The default GameRules.
      */
     Collection<String> getDefaultGameRules();
+
+    /**
+     * Gets the {@link Environment} with the provided name. 
+     *
+     * @param name The name of the environment
+     * @return The {@link Environment} with the given name or Optional.absent() if not found
+     */
+    Optional<Environment> getEnvironment(String name);
+
+    /**
+     * Gets the {@link Environment} with the provided id. 
+     *
+     * @param dimensionId The name of the environment
+     * @return The {@link Environment} with the given dimensionId or Optional.absent() if not found
+     */
+    Optional<Environment> getEnvironment(int dimensionId);
+
+    /**
+     * Gets a {@link List} of all possible {@link Environment}s.
+     *
+     * @return The environment list
+     */
+    List<Environment> getEnvironments();
+
 }

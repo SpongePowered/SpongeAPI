@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.block.BlockLoc;
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.block.BlockLoc;
 
 /**
  * A volume containing blocks.

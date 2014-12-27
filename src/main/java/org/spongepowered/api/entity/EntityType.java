@@ -36,4 +36,12 @@ public interface EntityType {
      * @return The id
      */
     String getId();
+
+    /**
+     * Returns the entity class for this type.
+     *
+     * @return The entity class for this type
+     */
+    Class<? extends Entity> getEntityClass();
+
 }

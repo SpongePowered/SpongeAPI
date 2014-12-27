@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.entity.weather;
 
-import org.spongepowered.api.entity.weather.WeatherEffect;
-
 /**
  * Represents Lightning.
  * <p>Lightning usually deals damage to blocks and/or other entities nearby.</p>

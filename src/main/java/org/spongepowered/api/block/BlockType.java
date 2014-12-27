@@ -82,4 +82,43 @@ public interface BlockType extends Translatable {
      * @param tickRandomly If the BlockType should tick randomly.
      */
     void setTickRandomly(boolean tickRandomly);
+
+    /**
+     * Gets if the block type is representing a liquid.
+     *
+     * @return Is liquid
+     */
+    boolean isLiquid();
+
+    /**
+     * Gets if a block type is a full and solid block.
+     *
+     * @return Is solid block
+     */
+    boolean isSolidCube();
+
+    /**
+     * Gets if this block is affected by gravity (if it will fall when
+     * unsupported).
+     *
+     * @return Is affected by gravity
+     */
+    boolean isAffectedByGravity();
+
+    /**
+     * Gets if a block should be counted for statistics gathering.
+     * 
+     * @return Is counted for statistics
+     */
+    boolean areStatisticsEnabled();
+
+    /**
+     * Gets the amount of light emitted by this block type. The returned value
+     * is normalized to have a range of 0 to 1 (1 being the maximum light
+     * value), although it is not clamped to this range.
+     * 
+     * @return The amount of light
+     */
+    float getEmittedLight();
+
 }

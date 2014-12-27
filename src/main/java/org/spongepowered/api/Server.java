@@ -28,6 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.gen.WorldGenerator;
 
 import java.net.InetSocketAddress;
 import java.util.Collection;
@@ -83,7 +84,7 @@ public interface Server {
      * Gets a loaded {@link World} by its unique id ({@link UUID}), if any.
      *
      * @param uniqueId UUID to lookup
-     * @return The world or Optional.absent() if not found
+     * @return The world, if found
      */
     Optional<World> getWorld(UUID uniqueId);
 
@@ -91,9 +92,39 @@ public interface Server {
      * Gets a loaded {@link World} by name, if any.
      *
      * @param worldName Name to lookup
-     * @return The world or Optional.absent() if not found
+     * @return The world, if found
      */
     Optional<World> getWorld(String worldName);
+
+    /**
+     * Loads a {@link World} from the default storage container
+     * 
+     * @param worldName The name to lookup
+     * @return the world, if found
+     */
+    Optional<World> loadWorld(String worldName);
+
+    /**
+     * Unloads a {@link World}, if there are alive players in the given
+     * {@link World} the behavior is undefined.
+     * 
+     * @param world The world to unload
+     * @return Whether the operation was successful
+     */
+    boolean unloadWorld(World world);
+
+    /**
+     * Creates a new world with the given name and generator options.
+     * 
+     * <p>If a world with the given name is already loaded then it is returned
+     * instead.</p>
+     * 
+     * @param worldName The new world name
+     * @param generator The generator to generate the world with
+     * @param seed The random seed for the world
+     * @return The new world, if the creation was successful
+     */
+    Optional<World> createWorld(String worldName, WorldGenerator generator, long seed);
 
     /**
      * Gets the time, in ticks, since this server began running for the current session.
