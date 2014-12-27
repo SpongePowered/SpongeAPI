@@ -27,10 +27,11 @@ package org.spongepowered.api.event.player;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
+import org.spongepowered.api.event.stats.StatisticChangeEvent;
 
 /**
  * Called when a {@link Player} breaks a {@link BlockLoc}.
  */
-public interface PlayerBreakBlockEvent extends PlayerChangeBlockEvent, EntityBreakBlockEvent {
+public interface PlayerBreakBlockEvent extends PlayerChangeBlockEvent, EntityBreakBlockEvent, StatisticChangeEvent {
 
 }
