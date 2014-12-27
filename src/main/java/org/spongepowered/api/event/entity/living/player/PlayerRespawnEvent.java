@@ -22,34 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living.player;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a player respawns after death.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface PlayerRespawnEvent extends PlayerEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the respawn location of the player.
      *
-     * @return The projectile that was launched
+     * @return The respawn location of the player
      */
-    Projectile getLaunchedProjectile();
+    Location getRespawnLocation();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets whether the respawn location was set by a bed or not.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return Whether the respawn location was set by a bed
      */
-    Optional<ProjectileSource> getSource();
+    boolean isBedSpawn();
+
+    /**
+     * Sets the new player respawn location permanently.
+     *
+     * @param respawnLocation The new respawn location
+     */
+    void setSpawnLocation(Location respawnLocation);
 
 }

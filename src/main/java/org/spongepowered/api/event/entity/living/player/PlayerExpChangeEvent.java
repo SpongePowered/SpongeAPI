@@ -22,34 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living.player;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.living.human.HumanExpChangeEvent;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a player gains or looses experience.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
-
-    /**
-     * Gets the projectile that was launched.
-     *
-     * @return The projectile that was launched
-     */
-    Projectile getLaunchedProjectile();
-
-    /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
-     */
-    Optional<ProjectileSource> getSource();
+public interface PlayerExpChangeEvent extends HumanExpChangeEvent, PlayerEvent {
 
 }

@@ -22,34 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living.human;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.event.entity.living.LivingChangeBlockEvent;
+import org.spongepowered.api.util.Direction;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a {@link Human} changes a {@link BlockLoc}.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface HumanChangeBlockEvent extends HumanEvent, LivingChangeBlockEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the direction of the block face that the human is changing.
      *
-     * @return The projectile that was launched
+     * <p>Example, if a human is breaking a block and the block is infront of
+     * the human while the human is facing EAST, the block face will be WEST.</p>
+     *
+     * @return The direction of the block face
      */
-    Projectile getLaunchedProjectile();
-
-    /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
-     */
-    Optional<ProjectileSource> getSource();
-
+    Direction getBlockFaceDirection();
 }

@@ -22,34 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when an entity changes an equipped item.
+ * <p>Examples include: A zombie picking up a weapon, a Player switching
+ * their current item in hand, etc.</p>
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface EntityEquipmentChangeEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the previously equipped item stack.
+     * <p>The previously equipped item may have been empty.</p>
      *
-     * @return The projectile that was launched
+     * @return The original itemstack, if available
      */
-    Projectile getLaunchedProjectile();
+    Optional<ItemStack> getOriginalItem();
 
     /**
-     * Gets the source that shot the projectile.
+     * Gets the {@link ItemStack} that is being equipped in the relative
+     * armor slot.
+     * <p>The itemstack may not exist or the slot is being emptied.</p>
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @return The item stack, if available
      */
-    Optional<ProjectileSource> getSource();
+    Optional<ItemStack> getNewItemStack();
+
+    // TODO Discuss SpongeAPI#373 and Inventory
+    /*
+    ArmorSlot getArmorSlot();
+     */
 
 }

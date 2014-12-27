@@ -22,34 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.entity.EntityEvent;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Describes events which contain a {@link Living}.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface LivingEvent extends EntityEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the {@link Living} involved involved in this event.
      *
-     * @return The projectile that was launched
+     * @return The {@link Living} involved
      */
-    Projectile getLaunchedProjectile();
+    Living getLiving();
 
     /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * {@inheritDoc}
      */
-    Optional<ProjectileSource> getSource();
-
+    @Override
+    Living getEntity();
 }

@@ -23,33 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.entity.living.player;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a {@link Player} joins the game.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface PlayerJoinEvent extends PlayerEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the message displayed when the player joins.
      *
-     * @return The projectile that was launched
+     * @return The player join message.
      */
-    Projectile getLaunchedProjectile();
+    Message getJoinMessage();
 
     /**
-     * Gets the source that shot the projectile.
+     * Sets the message displayed when the player joins.
      *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * @param joinMessage The new player join message.
      */
-    Optional<ProjectileSource> getSource();
-
+    void setJoinMessage(Message joinMessage);
 }

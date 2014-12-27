@@ -72,6 +72,52 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable {
     void setSaturation(float saturation);
 
     /**
+     * Gets the current experience towards the next level.
+     *
+     * <p>This is not the total experience this human has.</p>
+     *
+     * @return The current experience towards the next level
+     */
+    int getExperience();
+
+    /**
+     * Gets the current experience level of this human.
+     *
+     * @return The current level
+     */
+    int getLevel();
+
+    /**
+     * Gets the total accumulated experience this human has, including
+     * the experience to achieve the current experience level and the
+     * experienced gained towards the next level.
+     *
+     * @return The current total accumulated experience
+     */
+    int getTotalExperinece();
+
+    /**
+     * Sets the experience accumulated towards the next level.
+     *
+     * @param experience The experience
+     */
+    void setExperience(int experience);
+
+    /**
+     * Sets the level of experience.
+     *
+     * @param level The level of experience
+     */
+    void setLevel(int level);
+
+    /**
+     * Sets the total accumulated experience starting from zero.
+     *
+     * @param totalExperience The total experience
+     */
+    void setTotalExperience(int totalExperience);
+
+    /**
      * Returns whether this human entity has an open inventory at the moment
      * or not.
      *

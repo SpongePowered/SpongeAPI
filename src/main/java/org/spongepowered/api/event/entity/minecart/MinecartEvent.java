@@ -22,34 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.minecart;
 
-package org.spongepowered.api.event.entity;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.vehicle.minecart.Minecart;
+import org.spongepowered.api.event.entity.EntityEvent;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when a {@link Minecart} is affected by anything.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface MinecartEvent extends EntityEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the {@link Minecart} associated with this event.
      *
-     * @return The projectile that was launched
+     * @return The minecart associated with this event
      */
-    Projectile getLaunchedProjectile();
+    Minecart getMinecart();
 
     /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * {@inheritDoc}
      */
-    Optional<ProjectileSource> getSource();
-
+    @Override
+    Minecart getEntity();
 }

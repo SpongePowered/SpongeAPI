@@ -23,33 +23,41 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.entity.living.player;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Describes events which contain a {@link Player}.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface PlayerEvent extends HumanEvent {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the {@link Player} involved involved in this event.
      *
-     * @return The projectile that was launched
+     * @return The {@link Player} involved
      */
-    Projectile getLaunchedProjectile();
+    Player getPlayer();
 
     /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
+     * {@inheritDoc}
      */
-    Optional<ProjectileSource> getSource();
+    @Override
+    Player getHuman();
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    Player getLiving();
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    Player getEntity();
 }

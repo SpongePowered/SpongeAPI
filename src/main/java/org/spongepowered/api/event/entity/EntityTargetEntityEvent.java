@@ -22,34 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when a {@link Projectile} is launched.
+ * Called when an {@link Entity} targets another entity.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface EntityTargetEntityEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the projectile that was launched.
+     * Gets the targeted entity associated with this event.
      *
-     * @return The projectile that was launched
+     * @return The targeted entity
      */
-    Projectile getLaunchedProjectile();
-
-    /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
-     */
-    Optional<ProjectileSource> getSource();
+    Optional<Entity> getTargetedEntity();
 
 }
