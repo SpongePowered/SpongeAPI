@@ -124,18 +124,16 @@ public interface Player extends Human, User, CommandSource, Viewer {
 
     /**
      * Gets the current value for the given {@link Statistic}.
-     * <p>
-     * This method may return either a default value (usually 0) or
-     * Optional.absent() if the statistic has no entry for this player yet.
-     * </p>
      *
      * @param statistic The statistic to return
-     * @return The current value for the given statistic
+     * @return The current value for the given statistic, if a value is set yet.
+     *         Optional.absent() otherwise
      */
     Optional<Long> getStatistic(Statistic statistic);
 
     /**
-     * Gets all {@link Statistic}s with their current values.
+     * Gets all {@link Statistic}s with their current values. Does not return
+     * statistics that does not have a value set yet.
      *
      * @return A map containing all statistics with their current values.
      */
@@ -158,16 +156,18 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void setStatistic(Statistic statistic, long newValue);
 
     /**
-     * Resets the given statistic. The entry may be removed from the stats or
-     * set to a default value (usually 0).
+     * Resets the given statistic. The entry will be removed from the stats so
+     * if you try to get it, it will return Optional.absent() until it is
+     * set again.
      *
      * @param statistic The statistic to reset
      */
     void resetStatistic(Statistic statistic);
 
     /**
-     * Resets the all statistic. The entries may be removed from the stats or
-     * set to a default value (usually 0).
+     * Resets all statistics. The entries will be removed from the stats so if
+     * you try to get any of them, it will return Optional.absent() until they
+     * are set again.
      */
     void resetStatistics();
 
