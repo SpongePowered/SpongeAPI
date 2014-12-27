@@ -22,41 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+
+package org.spongepowered.api.item.data;
+
+import org.spongepowered.api.item.ItemType;
 
 /**
- * Represents a builder interface to create an {@link ItemStack}.
+ * Represents an immutable item data that can be attached to an {@link ItemType}
+ * that modifies the item (example: colored wool, spawn eggs or written books).
  */
-public interface ItemStackBuilder {
+public interface ItemData {
 
     /**
-     * Sets the durability damage of the item.
+     * Gets the base {@link ItemType} used for this item data.
      *
-     * @param damage The durability of the item
-     * @return This builder
+     * @return The base item type
      */
-    ItemStackBuilder withDamage(int damage);
+    ItemType getItemType();
 
     /**
-     * Sets the quantity of the item stack.
-     *
-     * @param quantity The quantity of the item stack
-     * @return This builder
+     * Represents a builder for item data.
      */
-    ItemStackBuilder withQuantity(int quantity) throws IllegalArgumentException;
+    public static interface ItemDataBuilder {
 
-    /**
-     * Sets the maximum quantity of the specific item stack.
-     *
-     * @param quantity The maximum quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withMaxQuantity(int quantity);
+        /**
+         * Builds the {@link ItemData} using the set options.
+         *
+         * @return The built item data
+         */
+        ItemData build();
 
-    /**
-     * Builds an instance of an ItemStack.
-     * @return A new instance of an ItemStack
-     * @throws IllegalStateException If the item stack is not completed
-     */
-    ItemStack build() throws IllegalStateException;
+    }
+
 }

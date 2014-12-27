@@ -22,41 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+
+package org.spongepowered.api.item.data;
+
+import java.awt.Color;
 
 /**
- * Represents a builder interface to create an {@link ItemStack}.
+ * Represents a colored item type (example: colored leather armor).
  */
-public interface ItemStackBuilder {
+public interface Colored extends ItemData {
 
     /**
-     * Sets the durability damage of the item.
+     * Gets the {@link Color} of this item type.
      *
-     * @param damage The durability of the item
-     * @return This builder
+     * @return The color of this item type
      */
-    ItemStackBuilder withDamage(int damage);
+    Color getColor();
 
-    /**
-     * Sets the quantity of the item stack.
-     *
-     * @param quantity The quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withQuantity(int quantity) throws IllegalArgumentException;
+    public static interface ColoredBuilder extends ItemDataBuilder {
 
-    /**
-     * Sets the maximum quantity of the specific item stack.
-     *
-     * @param quantity The maximum quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withMaxQuantity(int quantity);
+        /**
+         * Set the {@link Color} of the item.
+         *
+         * @param color The color of the item
+         * @return The builder for chain calls
+         */
+        ColoredBuilder color(Color color);
 
-    /**
-     * Builds an instance of an ItemStack.
-     * @return A new instance of an ItemStack
-     * @throws IllegalStateException If the item stack is not completed
-     */
-    ItemStack build() throws IllegalStateException;
+        @Override
+        Colored build();
+
+    }
+
 }

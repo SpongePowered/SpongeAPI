@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.data.ItemData;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -43,6 +44,13 @@ public interface ItemStack extends Comparable<ItemStack>, Serializable {
      * @return The item type
      */
     ItemType getItem();
+
+    /**
+     * Gets the {@link ItemData} for this item.
+     *
+     * @return The item data for this item
+     */
+    ItemData getItemData();
 
     /**
      * Get the damage/durability value.

@@ -22,41 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+
+package org.spongepowered.api.item.data;
+
+import org.spongepowered.api.entity.EntityType;
 
 /**
- * Represents a builder interface to create an {@link ItemStack}.
+ * Represents a item type with a special entity type (example: spawn egg).
  */
-public interface ItemStackBuilder {
+public interface Entitied extends ItemData {
 
     /**
-     * Sets the durability damage of the item.
+     * Gets the {@link EntityType} of this item type.
      *
-     * @param damage The durability of the item
-     * @return This builder
+     * @return The entity type of this item type
      */
-    ItemStackBuilder withDamage(int damage);
+    EntityType getEntityType();
 
-    /**
-     * Sets the quantity of the item stack.
-     *
-     * @param quantity The quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withQuantity(int quantity) throws IllegalArgumentException;
+    public static interface EntitiedBuilder extends ItemDataBuilder {
 
-    /**
-     * Sets the maximum quantity of the specific item stack.
-     *
-     * @param quantity The maximum quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withMaxQuantity(int quantity);
+        /**
+         * Set the entityType of the item.
+         *
+         * @param entityType The entityType of the item
+         * @return The builder for chain calls
+         */
+        EntitiedBuilder entityType(EntityType entityType);
 
-    /**
-     * Builds an instance of an ItemStack.
-     * @return A new instance of an ItemStack
-     * @throws IllegalStateException If the item stack is not completed
-     */
-    ItemStack build() throws IllegalStateException;
+        @Override
+        Entitied build();
+
+    }
+
 }
