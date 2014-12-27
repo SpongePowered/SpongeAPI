@@ -125,8 +125,8 @@ public interface Player extends Human, User, CommandSource, Viewer {
     /**
      * Gets the current value for the given {@link Statistic}.
      * <p>
-     * This method may return a default value (usually 0) or Optional.absent()
-     * if the statistic has no entry for this player yet.
+     * This method may return either a default value (usually 0) or
+     * Optional.absent() if the statistic has no entry for this player yet.
      * </p>
      *
      * @param statistic The statistic to return
