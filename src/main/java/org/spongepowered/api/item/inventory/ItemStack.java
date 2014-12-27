@@ -32,10 +32,10 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * Represents a stack of a specific {@link ItemType}. Allows comparison to another
- * ItemStack, and supports serialization.
+ * Represents a stack of a specific {@link ItemType}. Supports serialization and
+ * can be compared using the comparators listed in {@link ItemStackComparators}.
  */
-public interface ItemStack extends Comparable<ItemStack>, Serializable {
+public interface ItemStack extends Serializable {
 
     /**
      * Gets the {@link ItemType} item type.
