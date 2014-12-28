@@ -25,7 +25,11 @@
 
 package org.spongepowered.api.entity;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.item.inventory.ItemStack;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents an Item entity.
@@ -33,9 +37,68 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface Item extends Entity {
 
     /**
-     * Get the {@link ItemStack} that this entity represents.
+     * Get the {@link ItemStack} that this Item represents.
      *
      * @return The represented {@link ItemStack}
      */
     ItemStack getItemStack();
+
+    /**
+     * Gets the number of ticks remaining until this Item can be picked up,
+     * or Optional.absent() if this Item has an infinite pickup delay.
+     *
+     * @return The number of ticks remaining, or Optional.absent()
+     */
+    Optional<Integer> getPickupDelay();
+
+    /**
+     * Sets the number of ticks remaining until this Item can be picked up.
+     *
+     * @param delay The number of ticks remaining
+     */
+    void setPickupDelay(int delay);
+
+    /**
+     * Sets whether this Item has an infinite pickup delay
+     *
+     * @param infinite whether this Item has an infinite pickup delay
+     */
+    void setInfinitePickupDelay(boolean infinite);
+
+    /**
+     * Gets the number of ticks remaining until this Item despawns,
+     * or Optional.absent() if this Item will never despawn.
+     *
+     * @return The number of ticks remaining, or Optional.absent()
+     */
+    Optional<Integer> getDespawnTime();
+
+    /**
+     * Sets the number of ticks remaining until this Item despawns.
+     *
+     * @param time The number of ticks remaining
+     */
+    void setDespawnTime(int time);
+
+    /**
+     * Sets whether this Item never despawns.
+     *
+     * @param infinite whether this Item never despawns
+     */
+    void setInfiniteDespawnTime(boolean infinite);
+
+    /**
+     * Gets the {@link Player} who threw this Item, or Optional.absent()
+     * if not available.
+     *
+     * @return The thrower, or Optional.absent()
+     */
+    Optional<Player> getThrower();
+
+    /**
+     * Sets the {@link Player} who threw this Item.
+     *
+     * @param thrower The player who threw this Item
+     */
+    void setThrower(@Nullable Player thrower);
 }
