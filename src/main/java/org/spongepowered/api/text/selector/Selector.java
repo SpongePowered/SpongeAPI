@@ -83,8 +83,7 @@ public interface Selector {
      * @return A valid {@link Selector} string that can be inserted into a
      *         command
      */
-    @Override
-    String toString();
+    String asString();
 
     /**
      * Returns a new {@link SelectorBuilder} with the content of this selector.
