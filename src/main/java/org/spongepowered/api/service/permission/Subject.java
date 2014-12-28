@@ -68,5 +68,4 @@ public interface Subject {
      * @return True if permission is granted
      */
     boolean isPermitted(String permission);
-
 }

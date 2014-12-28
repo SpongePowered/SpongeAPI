@@ -79,6 +79,60 @@ public interface User extends Identifiable, ArmorEquipable {
      * @return True If banned
      */
     boolean isBanned();
+	
+	/**
+     * Checks if this subject is server operator (of any level) or not.
+     * 
+     * @return True if corresponding subject is server operator
+     */
+    boolean isOp();
+    
+    /**
+     * Sets this User's OP permission level to OP permission level specified in server properties file (default is 4).
+     * 
+     * @param value Whether this User should be OP
+     */
+    void setOp(boolean value);
+	
+    /**
+     * <p>
+     * Returns OP permission level of this subject.
+     * </p>
+     * 
+     * <p>
+     * According to minecraft wiki, these permission levels are available:
+     * <ul>
+     * <li>1 - Ops can bypass spawn protection.</li>
+     * <li>2 - Ops can use /clear, /difficulty, /effect, /gamemode, /gamerule, /give, and /tp, and can edit command 
+     * blocks.</li>
+     * <li>3 - Ops can use /ban, /deop, /kick, and /op.</li>
+     * <li>4 - Ops can use /stop.</li>
+     * </ul>
+     * </p>
+     * 
+     * @return Permission level (1-4) if this player is OP, 0 is returned when player is not OP
+     */
+    int getOpPermissionLevel();
+    
+    /**
+     * <p>
+     * Sets new OP permission level. Use level of zero, if you want to remove OP from player.
+     * </p>
+     * 
+     * <p>
+     * These permission levels are available:
+     * <ul>
+     * <li>1 - Ops can bypass spawn protection.</li>
+     * <li>2 - Ops can use /clear, /difficulty, /effect, /gamemode, /gamerule, /give, and /tp, and can edit command 
+     * blocks.</li>
+     * <li>3 - Ops can use /ban, /deop, /kick, and /op.</li>
+     * <li>4 - Ops can use /stop.</li>
+     * </ul>
+     * </p>
+     * 
+     * @param level Permission level (1-4), zero if subject should be de-opped.
+     */
+    void setOpPermissionLevel(int level);
 
     /**
      * Checks if this player is whitelisted.
