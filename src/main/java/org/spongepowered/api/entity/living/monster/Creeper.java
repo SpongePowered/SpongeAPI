@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.entity.explosive.IgnitableExplosive;
 
 /**
  * Represents a Creeepr.
  */
-public interface Creeper extends Monster, FusedExplosive {
+public interface Creeper extends Monster, IgnitableExplosive {
 
     /**
      * Gets whether or not the creeper has been struck by lightning.

@@ -25,29 +25,20 @@
 package org.spongepowered.api.entity.explosive;
 
 /**
- * Represents an explosive that detonates after its fuse has expired.
- * <p>A FusedExplosive may already be ignited once spawned.</p>
+ * Represents an ignitable entity that has a fuse.
  */
-public interface FusedExplosive extends Explosive {
+public interface IgnitableExplosive extends FusedExplosive {
 
     /**
-     * Gets the current fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
-     *
-     * @return The current fuse duration in ticks
+     * Ignites this explosive to detonate after some fuse duration in ticks.
      */
-    int getFuseDuration();
+    void ignite();
 
     /**
-     * Sets the remainig fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
+     * Ignites this explosive to detonate after the given fuse ticks.
      *
-     * @param fuseTicks The ticks for the fuse
+     * @param fuseTicks The ticks to set the fuse
      */
-    void setFuseDuration(int fuseTicks);
+    void ignite(int fuseTicks);
 
 }
