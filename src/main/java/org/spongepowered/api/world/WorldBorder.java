@@ -40,46 +40,59 @@ import com.flowpowered.math.vector.Vector3d;
 public interface WorldBorder {
 
     /**
-     * Get the radius the world border is expanding or contracting to.
+     * Get the diameter the world border is expanding or contracting to.
      *
-     * <p>This will return the same value as {@link #getRadius} unless
+     * <p>This will return the same value as {@link #getDiameter} unless
      * {@link #getTimeRemaining} is greater than 0.</p>
      *
-     * @return The radius being changed to, in blocks
+     * @return The diameter being changed to, in blocks
      */
-    double getNewRadius();
+    double getNewDiameter();
 
     /**
-     * Get the radius of the world border.
+     * Get the diameter of the world border.
      *
-     * <p>The returned radius applies to the x and z axis. The world border
+     * <p>The returned diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
      *
-     * @return The radius, in blocks
+     * @return The diameter, in blocks
      */
-    double getRadius();
+    double getDiameter();
 
     /**
-     * Set the radius of the world border.
+     * Set the diameter of the world border.
      *
-     * <p>The specified radius applies to the x and z axis. The world border
+     * <p>The specified diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
      *
-     * @param radius The radius, in blocks
+     * @param diameter The diameter, in blocks
      */
-    void setRadius(double radius);
+    void setDiameter(double diameter);
 
     /**
-     * Set the radius of the world border, over the given period of time.
+     * Set the diameter of the world border, over the given period of time.
      *
-     * <p>The world border radius increases linearly over the specified time.
-     * The specified radius applies to the x and z axis. The world border
+     * <p>The world border diameter increases/decrease linearly over the specified time.
+     * The specified diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
      *
-     * @param radius The radius, in blocks
-     * @param time The time over which to change, in milliseconds
+     * @param diameter The diameter, in blocks
+     * @param time     The time over which to change, in milliseconds
      */
-    void setRadius(double radius, long time);
+    void setDiameter(double diameter, long time);
+
+    /**
+     * Set the diameter of the world border, over the given period of time.
+     *
+     * <p>The world border diameter increases/diameter linearly over the specified time.
+     * The specified diameter applies to the x and z axis. The world border
+     * extends over the entire y-axis.</p>
+     *
+     * @param startDiameter The diameter where the border will start, in blocks
+     * @param endDiameter   The diameter where the border will end, in blocks
+     * @param time          The time over which to change, in milliseconds
+     */
+    void setDiameter(double startDiameter, double endDiameter, long time);
 
     /**
      * Get the time remaining until the world border stops expanding or contracting.
@@ -155,17 +168,17 @@ public interface WorldBorder {
      * Get the distance a player may be outside the world border before
      * taking damage.
      *
-     * @return The distance, in blocks
+     * @return The distance
      */
-    int getBlockBuffer();
+    double getBuffer();
 
     /**
      * Set the distance a player may be be outside the world border before
      * taking damage.
      *
-     * @param distance The distance, in blocks
+     * @param distance The distance
      */
-    void setBlockBuffer(int distance);
+    void setBuffer(double distance);
 
     /**
      * Get the damage done to a player per second when outside the buffer.
