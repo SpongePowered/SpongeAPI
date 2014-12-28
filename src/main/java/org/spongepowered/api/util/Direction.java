@@ -183,9 +183,8 @@ public enum Direction {
             return getClosestHorizonal(vector);
         } else if (vector.getY() > 0) {
             return UP;
-        } else {
-            return DOWN;
         }
+        return DOWN;
     }
 
     /**
@@ -202,14 +201,13 @@ public enum Direction {
                 return NONE;
             } else if (vector.getZ() < 0) {
                 return NORTH;
-            } else {
-                return SOUTH;
             }
-        } else {
-            final double angle = Math.atan2(vector.getX(), -vector.getZ());
-            final int ordinal = (int) (angle * 8 / Math.PI + 16.5) % 16;
-            return values()[ordinal];
+            return SOUTH;
+            
         }
+        final double angle = Math.atan2(vector.getX(), -vector.getZ());
+        final int ordinal = (int) (angle * 8 / Math.PI + 16.5) % 16;
+        return values()[ordinal];
     }
 
     public static Direction getFromAxis(final Axis axis) {
