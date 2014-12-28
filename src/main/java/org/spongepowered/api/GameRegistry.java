@@ -44,6 +44,9 @@ import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.data.ItemData;
+import org.spongepowered.api.item.data.ItemData.ItemDataBuilder;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
@@ -97,6 +100,38 @@ public interface GameRegistry {
      * @return A list containing all item types in registry
      */
     List<ItemType> getItems();
+
+    /**
+     * Creates a new item data builder with the given item type.
+     *
+     * @param itemType The item type for the new item data builder
+     * @return The newly created item data builder
+     */
+    ItemDataBuilder createItemDataBuilder(ItemType itemType);
+
+    /**
+     * Creates a new item stack builder with the given item type.
+     *
+     * @param itemType The item type for the new item stack builder
+     * @return The newly created item stack builder
+     */
+    ItemStackBuilder createItemStackBuilder(ItemType itemType);
+
+    /**
+     * Creates a new item stack builder with the given item data.
+     *
+     * @param itemData The item data for the new item stack builder
+     * @return The newly created item stack builder
+     */
+    ItemStackBuilder createItemStackBuilder(ItemData itemData);
+
+    /**
+     * Creates a new item stack builder based on the given item stack.
+     *
+     * @param itemStack The item data for the new item stack builder
+     * @return The newly created item stack builder
+     */
+    ItemStackBuilder createItemStackBuilder(ItemStack itemStack);
 
     /**
      * Gets a {@link BiomeType} by its identifier.

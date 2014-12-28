@@ -22,41 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+
+package org.spongepowered.api.item.data;
+
+import org.spongepowered.api.item.ItemTypes;
 
 /**
- * Represents a builder interface to create an {@link ItemStack}.
+ * Represents the item data for enchantment storages like
+ * {@link ItemTypes#ENCHANTED_BOOK}.
  */
-public interface ItemStackBuilder {
+public interface EnchantmentStorage extends ItemData {
 
-    /**
-     * Sets the durability damage of the item.
-     *
-     * @param damage The durability of the item
-     * @return This builder
-     */
-    ItemStackBuilder withDamage(int damage);
+    // TODO: Implement
 
-    /**
-     * Sets the quantity of the item stack.
-     *
-     * @param quantity The quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withQuantity(int quantity) throws IllegalArgumentException;
-
-    /**
-     * Sets the maximum quantity of the specific item stack.
-     *
-     * @param quantity The maximum quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withMaxQuantity(int quantity);
-
-    /**
-     * Builds an instance of an ItemStack.
-     * @return A new instance of an ItemStack
-     * @throws IllegalStateException If the item stack is not completed
-     */
-    ItemStack build() throws IllegalStateException;
 }

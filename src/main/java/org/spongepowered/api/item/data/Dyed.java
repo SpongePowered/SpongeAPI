@@ -22,41 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+
+package org.spongepowered.api.item.data;
+
+import org.spongepowered.api.entity.living.meta.DyeColor;
 
 /**
- * Represents a builder interface to create an {@link ItemStack}.
+ * Represents a dyed item type (example: colored wool, dye).
  */
-public interface ItemStackBuilder {
+public interface Dyed extends ItemData {
 
     /**
-     * Sets the durability damage of the item.
+     * Gets the {@link DyeColor} of this item type.
      *
-     * @param damage The durability of the item
-     * @return This builder
+     * @return The dye color of this item type
      */
-    ItemStackBuilder withDamage(int damage);
+    DyeColor getDyeColor();
 
-    /**
-     * Sets the quantity of the item stack.
-     *
-     * @param quantity The quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withQuantity(int quantity) throws IllegalArgumentException;
+    public static interface DyedBuilder extends ItemDataBuilder {
 
-    /**
-     * Sets the maximum quantity of the specific item stack.
-     *
-     * @param quantity The maximum quantity of the item stack
-     * @return This builder
-     */
-    ItemStackBuilder withMaxQuantity(int quantity);
+        /**
+         * Set the {@link DyeColor} of the item.
+         *
+         * @param dyeColor The dye color of the item
+         * @return The builder for chain calls
+         */
+        DyedBuilder dyeColor(DyeColor dyeColor);
 
-    /**
-     * Builds an instance of an ItemStack.
-     * @return A new instance of an ItemStack
-     * @throws IllegalStateException If the item stack is not completed
-     */
-    ItemStack build() throws IllegalStateException;
+        @Override
+        Dyed build();
+
+    }
+
 }
