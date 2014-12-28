@@ -61,7 +61,7 @@ public interface Item extends Entity {
     /**
      * Sets whether this Item has an infinite pickup delay
      *
-     * @param infinite whether this Item has an infinite pickup delay
+     * @param infinite Whether this Item has an infinite pickup delay
      */
     void setInfinitePickupDelay(boolean infinite);
 
@@ -83,7 +83,7 @@ public interface Item extends Entity {
     /**
      * Sets whether this Item never despawns.
      *
-     * @param infinite whether this Item never despawns
+     * @param infinite Whether this Item never despawns
      */
     void setInfiniteDespawnTime(boolean infinite);
 
