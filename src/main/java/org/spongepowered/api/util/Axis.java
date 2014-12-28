@@ -62,9 +62,8 @@ public enum Axis {
             return AxisDirection.PLUS;
         } else if (component == 0) {
             return AxisDirection.ZERO;
-        } else {
-            return AxisDirection.MINUS;
-        }
+        } 
+        return AxisDirection.MINUS;
     }
 
     /**
@@ -103,14 +102,12 @@ public enum Axis {
         if (x < y) {
             if (z < y) {
                 return Y;
-            } else {
-                return Z;
             }
+            return Z;
         } else if (x < z) {
             return Z;
-        } else {
-            return X;
         }
+        return X;
     }
 
 }
