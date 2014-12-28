@@ -104,7 +104,6 @@ public enum Axis {
                 return Y;
             }
             return Z;
-            
         } else if (x < z) {
             return Z;
         }
