@@ -35,7 +35,7 @@ import java.util.Map;
  * Represents a stack of a specific {@link ItemType}. Allows comparison to another
  * ItemStack, and supports serialization.
  */
-public interface ItemStack extends Comparable<ItemStack>, Serializable {
+public interface ItemStack extends Serializable {
 
     /**
      * Gets the {@link ItemType} item type.
