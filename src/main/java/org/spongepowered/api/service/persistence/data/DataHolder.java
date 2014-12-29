@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util;
+package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Optional;
 

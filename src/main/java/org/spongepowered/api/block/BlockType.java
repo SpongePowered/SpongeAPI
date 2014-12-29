@@ -26,7 +26,7 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.DataHolder;
+import org.spongepowered.api.service.persistence.data.DataHolder;
 
 /**
  * Describes a base type of block.
