@@ -32,7 +32,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * A utility class for getting all available {@link ItemStackComparator}s.
+ * A utility class for getting all available {@link Comparator}s for {@link ItemStack}s.
  */
 public final class ItemStackComparators {
 
