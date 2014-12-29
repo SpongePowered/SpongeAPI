@@ -210,7 +210,7 @@ public interface MessageBuilder {
          * @param selector The selector for this message to use
          * @return This message builder
          */
-        Selector content(String selector);
+        Selector content(org.spongepowered.api.text.selector.Selector selector);
 
         @Override
         Selector append(Message... children);
