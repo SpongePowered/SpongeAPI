@@ -207,6 +207,58 @@ public class ClassGeneratorProviderTest {
         void setChar(Character v);
     }
 
+    @Test
+    public void testCreate_Arrays() throws Exception {
+        ClassGeneratorProvider provider = createProvider();
+        EventFactory<ArrayContainer> factory = provider.create(ArrayContainer.class, Object.class);
+
+        Object object = new Object();
+
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("bytes", new byte[] { 1 });
+        values.put("shorts", new short[] { 2 });
+        values.put("ints", new int[] { 3 });
+        values.put("longs", new long[] { 4 });
+        values.put("floats", new float[0]);
+        values.put("doubles", new double[0]);
+        values.put("booleans", new boolean[] { true });
+        values.put("chars", new char[] { 'a' });
+        values.put("objects", new Object[] { object });
+
+        ArrayContainer result = factory.apply(values);
+
+        assertThat(result.getBytes(), is(new byte[] { 1 }));
+        assertThat(result.getShorts(), is(new short[] { 2 }));
+        assertThat(result.getInts(), is(new int[] { 3 }));
+        assertThat(result.getLongs(), is(new long[] { 4 }));
+        assertThat(result.getFloats(), is(new float[0]));
+        assertThat(result.getDoubles(), is(new double[0]));
+        assertThat(result.getBooleans(), is(new boolean[] { true }));
+        assertThat(result.getChars(), is(new char[] { 'a' }));
+        assertThat(result.getObjects(), is(new Object[] { object }));
+    }
+
+    public static interface ArrayContainer {
+        byte[] getBytes();
+        void setBytes(byte[] v);
+        short[] getShorts();
+        void setShorts(short[] v);
+        int[] getInts();
+        void setInts(int[] v);
+        long[] getLongs();
+        void setLongs(long[] v);
+        float[] getFloats();
+        void setFloats(float[] v);
+        double[] getDoubles();
+        void setDoubles(double[] v);
+        boolean[] getBooleans();
+        void setBooleans(boolean[] v);
+        char[] getChars();
+        void setChars(char[] v);
+        Object[] getObjects();
+        void setObjects(Object[] v);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreate_ExcessParameters() throws Exception {
         ClassGeneratorProvider provider = createProvider();
