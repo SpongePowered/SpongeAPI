@@ -22,18 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.effect;
+package org.spongepowered.api.entity.living.monster;
 
 /**
- * Represents a particle that can be sent on a Minecraft client.
+ * Represents a boss monster that may cause a boss healthbar to show
+ * on client interfaces.
  */
-public interface Particle {
-
-    /**
-     * Gets the particle name.
-     *
-     * @return The particle's name
-     */
-    String getName();
+public interface Boss extends Monster {
 
 }

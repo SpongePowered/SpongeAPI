@@ -28,7 +28,7 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.GameState;
 
 /**
- * Represents {@link GameState#LOAD_COMPLETE} event
+ * Represents {@link GameState#LOAD_COMPLETE} event.
  */
 public interface LoadCompleteEvent extends StateEvent {
 

@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.EntityEvent;
 
 /**
- * Describes events which contain a {@link Player}
+ * Describes events which contain a {@link Player}.
  */
 public interface PlayerEvent extends EntityEvent {
 

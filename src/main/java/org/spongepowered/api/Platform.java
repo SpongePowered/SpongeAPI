@@ -34,11 +34,11 @@ package org.spongepowered.api;
 public enum Platform {
 
     /**
-     * The platform of a minecraft CLIENT is expected
+     * The platform of a minecraft CLIENT is expected.
      */
     CLIENT,
     /**
-     * The platform of a mincecraft SERVER is expected
+     * The platform of a mincecraft SERVER is expected.
      */
     SERVER
 

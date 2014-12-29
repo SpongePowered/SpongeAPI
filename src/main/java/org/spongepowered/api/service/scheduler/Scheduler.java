@@ -26,7 +26,6 @@
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -91,7 +90,7 @@ public interface Scheduler {
     Optional<Task> getTaskById(UUID id);
 
     /**
-     * Returns a collection of all currently scheduled tasks
+     * Returns a collection of all currently scheduled tasks.
      *
      * @return A collection of scheduled tasks
      */
@@ -102,7 +101,6 @@ public interface Scheduler {
      * certain plugin.
      *
      * @param plugin The plugin to return tasks created by
-     *
      * @return A collection of scheduled tasks
      */
     Collection<Task> getScheduledTasks(Object plugin);

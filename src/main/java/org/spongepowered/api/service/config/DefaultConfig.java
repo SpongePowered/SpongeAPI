@@ -54,7 +54,6 @@ public @interface DefaultConfig {
     /**
      * Whether the the shared root for configuration should be used.
      *
-     * @return True to use the shared root
      * @see ConfigRoot#getConfigFile() For information on what the shared root is
      */
     boolean sharedRoot();

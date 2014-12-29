@@ -26,24 +26,24 @@ package org.spongepowered.api.service.sql;
 
 import com.google.common.base.Optional;
 
+import java.sql.SQLException;
+
 import javax.annotation.concurrent.ThreadSafe;
 import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /**
  * This service provides the basics for an abstraction over SQL connections.
  *
- * Implementations of this service are expected to be thread-safe
+ * <p>Implementations of this service are expected to be thread-safe.</p>
  */
 @ThreadSafe
 public interface SQLService {
     /**
      * Returns a data source for the provided JDBC connection string or an alias
      *
-     * A jdbc connection url is expected to be of the form:
+     * <p>A jdbc connection url is expected to be of the form:
      * jdbc:&lt;engine&gt;://[&lt;username&gt;[:&lt;password&gt;]@]&lt;host&gt;/&lt;database&gt;
-     *
-     * or an alias (available aliases are known only by the service provider)
+     * or an alias (available aliases are known only by the service provider)</p>
      *
      * @param jdbcConnection The jdbc url or connection alias
      * @return A data source providing connections to the given URL.

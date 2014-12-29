@@ -28,7 +28,7 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.GameState;
 
 /**
- * Represents {@link GameState#SERVER_STOPPING} event
+ * Represents a {@link GameState#SERVER_STOPPING} event.
  */
 public interface ServerStoppingEvent extends StateEvent {
 

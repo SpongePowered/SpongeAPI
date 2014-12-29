@@ -29,12 +29,12 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.world.World;
 
 /**
- * Describes {@link World} events
+ * Represents an event that pertains to a {@link World}.
  */
 public interface WorldEvent extends GameEvent {
 
     /**
-     * Gets the {@link World} involved in the event
+     * Gets the {@link World} involved in this event.
      *
      * @return The world that this event is involved in
      */

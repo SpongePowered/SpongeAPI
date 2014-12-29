@@ -38,20 +38,6 @@ public interface Biome {
     BiomeType getType();
 
     /**
-     * Get the temperature of this biome.
-     *
-     * @return The temperature
-     */
-    double getTemperature();
-
-    /**
-     * Get the humidity of this biome.
-     *
-     * @return The humidity
-     */
-    double getHumidity();
-
-    /**
      * Replace with another biome type.
      *
      * @param type The new biome type

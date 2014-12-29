@@ -28,8 +28,6 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
  * Raised when entities are spawned.
  */

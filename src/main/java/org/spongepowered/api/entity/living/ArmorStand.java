@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
+import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.util.EulerDirection;
 
 /**
  * Represents an armor stand.
@@ -37,84 +37,84 @@ public interface ArmorStand extends Living, ArmorEquipable {
      *
      * @return The direction the headpiece is aiming at
      */
-    EulerDirection getHeadDirection();
+    Vector3f getHeadDirection();
 
     /**
      * Sets the direction of the head.
      *
      * @param direction The direction of the head
      */
-    void setHeadDirection(EulerDirection direction);
+    void setHeadDirection(Vector3f direction);
 
     /**
      * Gets the direction the body is aiming at.
      *
      * @return The direction the body is aiming at
      */
-    EulerDirection getBodyRotation();
+    Vector3f getBodyRotation();
 
     /**
      * Sets the direction of the body.
      *
      * @param direction The direction of the body
      */
-    void setBodyDirection(EulerDirection direction);
+    void setBodyDirection(Vector3f direction);
 
     /**
      * Gets the direction the left arm is aiming at.
      *
      * @return The direction the left arm is aiming at
      */
-    EulerDirection getLeftArmDirection();
+    Vector3f getLeftArmDirection();
 
     /**
      * Sets the direction of the left arm.
      *
      * @param direction The direction of the left arm
      */
-    void setLeftArmDirection(EulerDirection direction);
+    void setLeftArmDirection(Vector3f direction);
 
     /**
      * Gets the direction the right arm is aiming at.
      *
      * @return The direction the right arm is aiming at
      */
-    EulerDirection getRightArmDirection();
+    Vector3f getRightArmDirection();
 
     /**
      * Sets the direction of the right arm.
      *
      * @param direction The direction of the right arm
      */
-    void setRightArmDirection(EulerDirection direction);
+    void setRightArmDirection(Vector3f direction);
 
     /**
      * Gets the direction the left leg is aiming at.
      *
      * @return The direction the left leg is aiming at
      */
-    EulerDirection getLeftLegDirection();
+    Vector3f getLeftLegDirection();
 
     /**
      * Sets the direction of the left leg.
      *
      * @param direction The direction of the left leg
      */
-    void setLeftLegDirection(EulerDirection direction);
+    void setLeftLegDirection(Vector3f direction);
 
     /**
      * Gets the direction the right leg is aiming at.
      *
      * @return The direction the right leg is aiming at
      */
-    EulerDirection getRightLegDirection();
+    Vector3f getRightLegDirection();
 
     /**
      * Sets the direction of the right leg.
      *
      * @param direction The direction of the right leg
      */
-    void setRightLegDirection(EulerDirection direction);
+    void setRightLegDirection(Vector3f direction);
 
     /**
      * Returns whether this armor stand is a small armor stand or not.

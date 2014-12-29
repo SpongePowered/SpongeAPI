@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.living.Aquatic;
+
 /**
  * Represents a Guardian.
  */
-public interface Guardian extends Monster {
+public interface Guardian extends Aquatic, Monster {
 
     /**
      * Checks if this guardian is an elder or not.
