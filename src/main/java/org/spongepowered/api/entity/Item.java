@@ -104,6 +104,9 @@ public interface Item extends Entity {
     /**
      * Sets the {@link Player} who threw this Item.
      *
+     * <p>If the thrower is null, then {@link #getThrower()}
+     * will return Optional.absent()</p>
+     *
      * @param thrower The player who threw this Item
      */
     void setThrower(@Nullable Player thrower);
