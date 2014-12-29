@@ -73,6 +73,14 @@ public interface PotionEffectBuilder {
     PotionEffectBuilder particles(boolean showsParticles);
 
     /**
+     * Sets the potion to be a splash potion or a drinking potion.
+     *
+     * @param splash Whether the potion is a drink or splash
+     * @return This builder
+     */
+    PotionEffectBuilder splash(boolean splash);
+
+    /**
      * Resets all information regarding the item stack to be created.
      *
      * @return This builder
