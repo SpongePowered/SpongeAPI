@@ -143,7 +143,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Adds the specified amount to the given statistic.
      *
      * @param statistic The statistic to update
-     * @param newValue The new value for the
+     * @param amount The amount to add to the statistic
      */
     void addToStatistic(Statistic statistic, long amount);
 
@@ -151,7 +151,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Sets the given statistic to the given value.
      *
      * @param statistic The statistic to update
-     * @param newValue The new value for the
+     * @param newValue The new value for the statistic
      */
     void setStatistic(Statistic statistic, long newValue);
 
