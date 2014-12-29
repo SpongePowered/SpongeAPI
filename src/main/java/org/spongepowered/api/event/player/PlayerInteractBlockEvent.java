@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.player;
 
+import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
@@ -32,5 +33,16 @@ import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
  * Called when a {@link Player} interacts with a {@link BlockLoc}.
  */
 public interface PlayerInteractBlockEvent extends PlayerInteractEvent, EntityInteractBlockEvent {
+    /**
+     * Gets the position the player clicked on the block in 3d space. This is a @{link Vector3f} with the X, Y and Z
+     * being the relative position to the block that was clicked.
+     *
+     * This can be used to pick out which pixel of the texture the player clicked, allowing for some neat features.
+     *
+     * This may not be completely accurate, for some event types the client may not send enough information.
+     *
+     * @return A @{Vector3f} of the position the player clicked on the block.
+     */
 
+    Vector3f getHitPosition();
 }
