@@ -41,7 +41,7 @@ public interface PlayerInteractBlockEvent extends PlayerInteractEvent, EntityInt
      *
      * <p>This may not be completely accurate, for some event types the client may not send enough information.</p>
      *
-     * @return A @{Vector3f} of the position the player clicked on the block.
+     * @return A @{Vector3f} of the position the player clicked on the block
      */
     Vector3f getHitPosition();
 }
