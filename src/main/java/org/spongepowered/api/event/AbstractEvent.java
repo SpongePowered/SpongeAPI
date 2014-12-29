@@ -23,14 +23,18 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.event;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
+import org.spongepowered.api.util.event.Event;
+import org.spongepowered.api.util.event.callback.CallbackList;
 
-/**
- * Called when a {@link Player} is updated.
- */
-public interface PlayerUpdateEvent extends PlayerEvent, EntityUpdateEvent {
+public abstract class AbstractEvent implements Event {
+
+    private final CallbackList callbacks = new CallbackList();
+
+    @Override
+    public CallbackList getCallbacks() {
+        return callbacks;
+    }
 
 }

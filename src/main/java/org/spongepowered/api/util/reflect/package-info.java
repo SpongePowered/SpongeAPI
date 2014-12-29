@@ -23,14 +23,5 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
-
-/**
- * Called when a {@link Player} is updated.
- */
-public interface PlayerUpdateEvent extends PlayerEvent, EntityUpdateEvent {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.util.reflect;

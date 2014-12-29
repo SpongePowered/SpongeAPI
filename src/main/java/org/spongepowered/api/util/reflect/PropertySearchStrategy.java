@@ -23,14 +23,22 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.util.reflect;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
+import com.google.common.collect.ImmutableSet;
 
 /**
- * Called when a {@link Player} is updated.
+ * Finds all the properties in a class.
  */
-public interface PlayerUpdateEvent extends PlayerEvent, EntityUpdateEvent {
+public interface PropertySearchStrategy {
+
+    /**
+     * Enumerate a list of properties on a class, considering super types
+     * and implemented interfaces.
+     *
+     * @param type The class
+     * @return A set of properties
+     */
+    ImmutableSet<? extends Property> findProperties(final Class<?> type);
 
 }

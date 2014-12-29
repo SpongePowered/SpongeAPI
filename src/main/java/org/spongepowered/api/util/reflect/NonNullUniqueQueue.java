@@ -23,14 +23,44 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.util.reflect;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
+import java.util.*;
 
 /**
- * Called when a {@link Player} is updated.
+ * A queue implementation that only permits an object to be added to the
+ * queue once, while also rejecting null offers.
+ *
+ * @param <E> The contained type
  */
-public interface PlayerUpdateEvent extends PlayerEvent, EntityUpdateEvent {
+class NonNullUniqueQueue<E> extends AbstractQueue<E> implements Queue<E> {
 
+    private final Queue<E> queue = new ArrayDeque<E>();
+    private final Set<E> set = new HashSet<E>();
+
+    @Override
+    public Iterator<E> iterator() {
+        return queue.iterator();
+    }
+
+    @Override
+    public int size() {
+        return queue.size();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean offer(E o) {
+        return o != null && set.add(o) && queue.offer(o);
+    }
+
+    @Override
+    public E poll() {
+        return queue.poll();
+    }
+
+    @Override
+    public E peek() {
+        return queue.peek();
+    }
 }

@@ -23,14 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.util.event.factory;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * Called when a {@link Player} is updated.
+ * Determines how null parameters are handled.
  */
-public interface PlayerUpdateEvent extends PlayerEvent, EntityUpdateEvent {
+public enum NullPolicy {
+
+    /**
+     * Don't perform any null checking.
+     */
+    DISABLE_PRECONDITIONS,
+
+    /**
+     * Assume that all parameters are null unless they are annotated with
+     * {@link Nullable}.
+     */
+    NON_NULL_BY_DEFAULT,
+
+    /**
+     * Assume that all parameters are nullable unless they are annotated with
+     * {@link Nonnull}.
+     */
+    NULL_BY_DEFAULT;
 
 }

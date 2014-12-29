@@ -23,14 +23,16 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.player;
+package org.spongepowered.api.util.event.factory;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
+import com.google.common.base.Function;
+
+import java.util.Map;
 
 /**
- * Called when a {@link Player} is updated.
+ * Generates a new instance of an event using a given map of parameters.
+ *
+ * @param <E> The type of event
  */
-public interface PlayerUpdateEvent extends PlayerEvent, EntityUpdateEvent {
-
+public interface EventFactory<E> extends Function<Map<String, Object>, E> {
 }
