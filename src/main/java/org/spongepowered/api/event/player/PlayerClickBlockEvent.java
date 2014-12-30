@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.event.player;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
+import org.spongepowered.api.util.Direction;
 
-/**
- * Called when a {@link Player} breaks a {@link BlockLoc}.
- */
-public interface PlayerBreakBlockEvent extends PlayerChangeBlockEvent, EntityBreakBlockEvent, PlayerClickBlockEvent {
-
+public interface PlayerClickBlockEvent extends PlayerClickEvent {
+    /**
+     * Gets the face of the block that was clicked.
+     *
+     * @return The face of the block that was clicked
+     */
+    Direction getClickedFace();
 }

@@ -31,6 +31,6 @@ import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
 /**
  * Called when a {@link Player} interacts with a {@link BlockLoc}.
  */
-public interface PlayerInteractBlockEvent extends PlayerInteractEvent, EntityInteractBlockEvent {
+public interface PlayerInteractBlockEvent extends PlayerInteractEvent, EntityInteractBlockEvent, PlayerClickBlockEvent {
 
 }
