@@ -31,6 +31,6 @@ import org.spongepowered.api.event.entity.EntityPlaceBlockEvent;
 /**
  * Called when a {@link Player} places a {@link BlockLoc}.
  */
-public interface PlayerPlaceBlockEvent extends PlayerChangeBlockEvent, EntityPlaceBlockEvent {
+public interface PlayerPlaceBlockEvent extends PlayerChangeBlockEvent, EntityPlaceBlockEvent, PlayerClickBlockEvent {
 
 }

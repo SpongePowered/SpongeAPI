@@ -31,6 +31,6 @@ import org.spongepowered.api.event.entity.EntityInteractEntityEvent;
 /**
  * Called when a {@link Player} interacts with an {@link Entity}.
  */
-public interface PlayerInteractEntityEvent extends PlayerInteractEvent, EntityInteractEntityEvent {
+public interface PlayerInteractEntityEvent extends PlayerInteractEvent, EntityInteractEntityEvent, PlayerClickEvent {
 
 }
