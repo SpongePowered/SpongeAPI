@@ -27,11 +27,12 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.item.ItemDropEvent;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when an {@link Entity} is killed or removed due to unload.
  */
-public interface EntityDeathEvent extends EntityEvent, CauseTracked, Cancellable {
+public interface EntityDeathEvent extends EntityEvent, CauseTracked, Cancellable, ItemDropEvent {
     
 }
