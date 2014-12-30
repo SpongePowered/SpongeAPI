@@ -46,7 +46,7 @@ public interface TradeOfferBuilder {
      * @param item The second item to buy
      * @return This builder
      */
-    TradeOfferBuilder seconBuyingItem(ItemStack item);
+    TradeOfferBuilder secondBuyingItem(ItemStack item);
 
     /**
      * Sets the selling item of the trade offer to be generated.
