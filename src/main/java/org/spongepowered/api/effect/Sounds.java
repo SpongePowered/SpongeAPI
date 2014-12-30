@@ -24,13 +24,7 @@
  */
 package org.spongepowered.api.effect;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class Sounds {
-    private Sounds() {
-    }
 
     public static final Sound AMBIENCE_CAVE = null;
     public static final Sound AMBIENCE_RAIN = null;
@@ -239,12 +233,6 @@ public final class Sounds {
     public static final Sound VILLAGER_NO = null;
     public static final Sound VILLAGER_YES = null;
 
-    public static Optional<Sound> getByName(String soundName) {
-        return null;
+    private Sounds() {
     }
-
-    public static List<Sound> getValues() {
-        return null;
-    }
-    
 }

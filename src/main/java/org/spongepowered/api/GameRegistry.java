@@ -26,19 +26,13 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.effect.Sound;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
-import org.spongepowered.api.entity.living.meta.DyeColor;
-import org.spongepowered.api.entity.living.meta.HorseColor;
-import org.spongepowered.api.entity.living.meta.HorseStyle;
-import org.spongepowered.api.entity.living.meta.HorseVariant;
-import org.spongepowered.api.entity.living.meta.OcelotType;
-import org.spongepowered.api.entity.living.meta.RabbitType;
-import org.spongepowered.api.entity.living.meta.SkeletonType;
+import org.spongepowered.api.entity.living.meta.*;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -48,6 +42,7 @@ import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Environment;
 import org.spongepowered.api.world.biome.BiomeType;
 
@@ -390,5 +385,35 @@ public interface GameRegistry {
      * @return The environment list
      */
     List<Environment> getEnvironments();
+
+    /**
+     * Gets the {@link Sound} with the provided id.
+     *
+     * @param id The id of the sound
+     * @return The {@link Sound} with the given id or Optional.absent() if not found.
+     */
+    Optional<Sound> getSound(String id);
+
+    /**
+     * Gets a {@link List} of all possible {@link Sound}s.
+     *
+     * @return The sound list
+     */
+    List<Sound> getSounds();
+
+    /**
+     * Gets the {@link Rotation} with the provided angle.
+     *
+     * @param angle The angle of the rotation
+     * @return The {@link Rotation} with the given id or Optional.absent() if not found.
+     */
+    Optional<Rotation> getRotation(int angle);
+
+    /**
+     * Gets a {@link List} of all possible {@link Rotation}s.
+     *
+     * @return The rotation list
+     */
+    List<Rotation> getRotations();
 
 }
