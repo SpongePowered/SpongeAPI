@@ -45,11 +45,11 @@ public interface Item extends Entity {
 
     /**
      * Gets the number of ticks remaining until this Item can be picked up,
-     * or Optional.absent() if this Item has an infinite pickup delay.
+     * or -1 if this Item has an infinite pickup delay.
      *
      * @return The number of ticks remaining, or Optional.absent()
      */
-    Optional<Integer> getPickupDelay();
+    int getPickupDelay();
 
     /**
      * Sets the number of ticks remaining until this Item can be picked up.
@@ -70,11 +70,11 @@ public interface Item extends Entity {
 
     /**
      * Gets the number of ticks remaining until this Item despawns,
-     * or Optional.absent() if this Item will never despawn.
+     * or -1 if this Item will never despawn.
      *
      * @return The number of ticks remaining, or Optional.absent()
      */
-    Optional<Integer> getDespawnTime();
+    int getDespawnTime();
 
     /**
      * Sets the number of ticks remaining until this Item despawns.
