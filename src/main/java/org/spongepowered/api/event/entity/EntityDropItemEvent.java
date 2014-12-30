@@ -25,11 +25,8 @@
 
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.event.item.ItemDropEvent;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.event.inventory.ItemDropEvent;
 import org.spongepowered.api.util.event.Cancellable;
-
-import java.util.Collection;
 
 /**
  * Called when a player drops an item stack.
