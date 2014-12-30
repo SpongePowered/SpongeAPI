@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.player;
 
-import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
