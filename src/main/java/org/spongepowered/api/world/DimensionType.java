@@ -22,29 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world;
 
 /**
- * Holds all possible {@link Environment}s.
+ * Represents a type of {@link Dimension}.
  */
-public final class Environments {
+public interface DimensionType {
 
     /**
-     * The default environment of a {@link World}.
+     * Returns the name of this {@link DimensionType}.
+     *
+     * @return The name
      */
-    public static final Environment OVERWORLD = null;
+    String getName();
 
     /**
-     * The environment of a nether type {@link World}.
+     * Returns whether spawn chunks of this {@link DimensionType} remain loaded when no players are present.
+     *
+     * @return True if spawn chunks of this {@link DimensionType} remain loaded without players, false if not
      */
-    public static final Environment NETHER = null;
+    boolean doesKeepSpawnLoaded();
 
     /**
-     * Environment of the end.
-     */ 
-    public static final Environment END = null;
-
-    private Environments() {}
-
+    * Returns the dimension class for this type.
+    *
+    * @return The dimension class for this type
+    */
+    Class <? extends Dimension> getDimensionClass();
 }

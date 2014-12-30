@@ -26,22 +26,70 @@
 package org.spongepowered.api.world;
 
 /**
- * Represents the environment of a {@link World}.
+ * Represents the dimension of a {@link World}.
  */
-public interface Environment {
+public interface Dimension {
 
     /**
-     * Returns the dimension id of the current {@link Environment}.
+     * Returns the dimension id of the current {@link Dimension}.
      *
      * @return The dimension id
      */
     int getDimensionId();
 
     /**
-     * Returns the name of this {@link Environment}.
+     * Returns the name of this {@link Dimension}.
      *
      * @return The name
      */
     String getName();
 
+    /**
+     * Returns whether players can respawn within {@link Dimension} after death.
+     *
+     * @return True if players can respawn, false if not
+     */
+    boolean allowsPlayerRespawns();
+
+    /**
+     * Sets whether players in this {@link Dimension} can respawn.
+     *
+     * @param allow Whether players can respawn
+     */
+    void setAllowsPlayerRespawns(boolean allow);
+
+    /**
+     * Returns the minimum spawn height for {@link Dimension}.
+     *
+     * @return The minimum spawn height
+     */
+    int getMinimumSpawnHeight();
+
+    /**
+     * Returns whether water evaporates for {@link Dimension}.
+     *
+     * @return True if water evaporates, false if not
+     */
+    boolean doesWaterEvaporate();
+
+    /**
+     * Sets whether water in this {@link Dimension} evaporates.
+     *
+     * @param evaporates Whether water evaporates
+     */
+    void setWaterEvaporates(boolean evaporates);
+
+    /**
+     * Returns whether this {@link Dimension} has a sky (lack of bedrock).
+     *
+     * @return True if sky is present, false if not
+     */
+    boolean hasSky();
+
+    /**
+     * Get the type of dimension.
+     *
+     * @return The type of dimension
+     */
+    DimensionType getType();
 }
