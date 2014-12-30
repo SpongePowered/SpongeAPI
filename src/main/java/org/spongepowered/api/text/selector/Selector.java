@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.selector;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Location;
 
 import java.util.List;
 import java.util.Map;

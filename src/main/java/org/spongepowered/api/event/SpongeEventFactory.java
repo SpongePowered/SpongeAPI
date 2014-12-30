@@ -59,7 +59,7 @@ import org.spongepowered.api.util.event.factory.FactoryProvider;
 import org.spongepowered.api.util.event.factory.NullPolicy;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.ChunkManager.LoadingTicket;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
