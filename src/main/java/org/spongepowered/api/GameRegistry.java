@@ -26,8 +26,8 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
@@ -44,8 +44,11 @@ import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
+import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.world.Environment;
@@ -114,25 +117,46 @@ public interface GameRegistry {
     List<BiomeType> getBiomes();
 
     /**
-     * Get an item stack builder.
+     * Creates a new {@link ItemStack} builder.
      *
+     * @param itemType The type of item to create this builder for
      * @return The item stack builder
      */
-    ItemStackBuilder getItemBuilder();
+    ItemStackBuilder newItemBuilder(ItemType itemType);
 
     /**
-     * Get a trade offer builder.
+     * Creates a new {@link ItemStack} builder.
+     *
+     * @param itemStack The item stack to use as blueprint
+     * @return The item stack builder
+     */
+    ItemStackBuilder newItemBuilder(ItemStack itemStack);
+
+    /**
+     * Creates a new {@link ItemStack} builder. This method should be used if you want
+     * to transfer data from one item type's stack to another. All unsupported
+     * data will be dropped.
+     *
+     * @param itemType The type of item to create this builder for
+     * @param itemStack The item stack to use as blueprint
+     * @return The item stack builder
+     */
+    ItemStackBuilder newItemBuilder(ItemType itemType, ItemStack itemStack);
+
+    /**
+     * Creates a new {@link TradeOffer} builder.
      *
      * @return The trade offer builder
      */
-    TradeOfferBuilder getTradeOfferBuilder();
+    TradeOfferBuilder newTradeOfferBuilder();
 
     /**
-     * Get a potion effect builder.
+     * Creates a new {@link TradeOffer} builder.
      *
-     * @return The potion effect builder
+     * @param tradeOffer The trade offer to use as blueprint
+     * @return The trade offer builder
      */
-    PotionEffectBuilder getPotionEffectBuilder();
+    TradeOfferBuilder newTradeOfferBuilder(TradeOffer tradeOffer);
 
     /**
      * Gets a {@link ParticleType} by name.
@@ -150,12 +174,29 @@ public interface GameRegistry {
     List<ParticleType> getParticleTypes();
 
     /**
-     * Gets a new particle builder for the {@link ParticleType}.
-     * 
-     * @param particle The particle type
+     * Creates a new {@link ParticleEffect} builder.
+     *
+     * @param particleType The particle type
      * @return The particle effect builder
      */
-    ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
+    ParticleEffectBuilder newParticleEffectBuilder(ParticleType particleType);
+
+    /**
+     * Creates a new {@link ParticleEffect} builder.
+     *
+     * @param particleEffect The particle type
+     * @return The particle effect builder
+     */
+    ParticleEffectBuilder newParticleEffectBuilder(ParticleEffect particleEffect);
+
+    /**
+     * Creates a new {@link ParticleEffect} builder.
+     *
+     * @param particleType The particle effect type to create this builder for
+     * @param particleEffect The particle effect to use as blueprint
+     * @return The particle effect builder
+     */
+    ParticleEffectBuilder newParticleEffectBuilder(ParticleType particleType, ParticleEffect particleEffect);
 
     /**
      * Gets an {@link EntityType} by its identifier.
@@ -345,6 +386,33 @@ public interface GameRegistry {
      */
     // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
     List<PotionEffectType> getPotionEffects();
+
+    /**
+     * Creates a new {@link PotionEffect} builder.
+     *
+     * @param potionEffectType The potion effect type to create this builder for
+     * @return The potion effect builder
+     */
+    PotionEffectBuilder newPotionEffectBuilder(PotionEffectType potionEffectType);
+
+    /**
+     * Creates a new {@link PotionEffect} builder.
+     *
+     * @param potionEffect The potion effect to use as blueprint
+     * @return The potion effect builder
+     */
+    PotionEffectBuilder newPotionEffectBuilder(PotionEffect potionEffect);
+
+    /**
+     * Creates a new {@link PotionEffect} builder. This method should be used if
+     * you want to transfer data from one potion effect type to another. All
+     * unsupported data will be dropped.
+     *
+     * @param potionEffectType The potion effect type to create this builder for
+     * @param potionEffect The potion effect to use as blueprint
+     * @return The potion effect builder
+     */
+    PotionEffectBuilder newPotionEffectBuilder(PotionEffectType potionEffectType, PotionEffect potionEffect);
 
     /**
      * Gets the {@link Enchantment} with the specified id.
