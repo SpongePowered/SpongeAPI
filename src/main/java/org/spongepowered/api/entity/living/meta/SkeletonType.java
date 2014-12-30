@@ -24,15 +24,13 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
-import org.spongepowered.api.service.persistence.serialization.SerializableAs;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
  * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
  * can be. Certain skeleton types define the items a skeleton can equip and
  * can define the various status immunities, such as withering.
  */
-@SerializableAs(key = "SkeletonType", compoundable = true)
 public interface SkeletonType extends DataSerializable {
 
     /**

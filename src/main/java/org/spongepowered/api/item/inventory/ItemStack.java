@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 import java.io.Serializable;
 import java.util.Map;

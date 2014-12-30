@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
-import org.spongepowered.api.service.persistence.serialization.SerializableAs;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
-@SerializableAs(key = "RabbitType", compoundable = true)
 public interface RabbitType extends DataSerializable {
 
     /**

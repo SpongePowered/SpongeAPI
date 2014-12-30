@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.player;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.Date;

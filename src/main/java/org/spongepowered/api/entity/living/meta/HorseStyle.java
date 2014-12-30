@@ -24,15 +24,13 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
-import org.spongepowered.api.service.persistence.serialization.SerializableAs;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
  * Represents the style of a {@link org.spongepowered.api.entity.living.animal.Horse}.
  * <p>The style of a horse is applied on top of the {@link HorseColor} of the
  * horse. The style can be inherited to new born child horses.</p>
  */
-@SerializableAs(key = "style", compoundable = true)
 public interface HorseStyle extends DataSerializable {
 
     /**

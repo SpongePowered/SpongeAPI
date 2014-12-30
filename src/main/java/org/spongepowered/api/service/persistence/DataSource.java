@@ -26,12 +26,47 @@ package org.spongepowered.api.service.persistence;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.data.DataContainer;
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
 
+/**
+ * Represents a source that data may be serialized to and from. The source
+ * may exist asynchronous to the game server itself.
+ * <p>A {@link DataSource} may not always be available for serialization
+ * purposes, so {@link #isClosed()} should be checked to avoid exceptions.
+ * </p>
+ */
 public interface DataSource {
 
+    /**
+     * Deserializes the given class type from this source.
+     *
+     * <p>A DataSource may have restrictions on the type of data it can
+     * handle. Inferring that a source can handle a particular kind of data
+     * is not safe.</p>
+     *
+     * @param clazz The class to deserialize to
+     * @param <T> The type of object to produce
+     * @return The newly deserialized object, if available
+     * @throws InvalidDataException If the data is incompatible with this source
+     */
     <T extends DataSerializable> Optional<DataContainer> deserialize(Class<T> clazz) throws InvalidDataException;
 
+    /**
+     * Serializes the given {@link DataSerializable} to this source.
+     *
+     * <p>A DataSource may have restrictions on the type of data it can
+     * handle. Inferring that a source can handle a particular kind of data
+     * is not safe.</p>
+     *
+     * @param section The data object to serialize
+     * @throws InvalidDataException If the data object is incompatible with this source
+     */
     void serialize(DataSerializable section) throws InvalidDataException;
+
+    /**
+     * Checks whether this source is still available for serialization operations.
+     *
+     * @return Whether this source is still usable
+     */
+    boolean isClosed();
 
 }

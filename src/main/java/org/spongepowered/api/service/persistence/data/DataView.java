@@ -25,8 +25,7 @@
 package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.service.persistence.serialization.DataPath;
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 import java.util.List;
 import java.util.Map;

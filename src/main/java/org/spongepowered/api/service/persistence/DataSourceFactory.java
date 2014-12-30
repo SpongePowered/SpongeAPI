@@ -22,26 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.persistence.serialization;
+package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.service.persistence.DataSource;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import com.google.common.base.Optional;
+import com.typesafe.config.Config;
 
 /**
- * Represents an object that can be represented by a {@link DataContainer}.
- * <p>DataContainers received from {@link DataSerializable#serializeToContainer()}
- * should be considered to be copies of the original data, and therefor,
- * thread safe.</p>
+ * A standard factory to create {@link DataSource}s to serialize and deserialize
+ * {@link DataSerializable} objects.
  */
-public interface DataSerializable {
+public interface DataSourceFactory {
 
     /**
-     * Serializes this object into a comprehensible {@link DataContainer}.
+     * Creates a new {@link DataSource} according to the given configuration.
      *
-     * @return A newly created DataContainer
+     * <p>The configuration structure is yet to be defined, however, being
+     * that the factory is abstract, a DataSource can be represented by multiple
+     * implementations.</p>
+     *
+     * @param config The configuration to configure the DataSource
+     * @return The newly created data source, if available
      */
-    DataContainer serializeToContainer();
-
-    void serializeTo(DataSource source);
+    Optional<DataSource> createSource(Config config);
 
 }

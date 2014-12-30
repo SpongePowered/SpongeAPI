@@ -26,13 +26,11 @@
 package org.spongepowered.api.potion;
 
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.service.persistence.serialization.DataSerializable;
-import org.spongepowered.api.service.persistence.serialization.SerializableAs;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
  * Represents a possible Potion Effect.
  */
-@SerializableAs(key = "PotionEffect")
 public interface PotionEffect extends DataSerializable {
 
     /**

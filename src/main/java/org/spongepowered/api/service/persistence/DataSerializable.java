@@ -22,6 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.service.persistence;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.service.persistence.serialization;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+
+/**
+ * Represents an object that can be represented by a {@link DataContainer}.
+ * <p>DataContainers received from {@link DataSerializable#toContainer()}
+ * should be considered to be copies of the original data, and therefor,
+ * thread safe.</p>
+ */
+public interface DataSerializable {
+
+    /**
+     * Serializes this object into a comprehensible {@link DataContainer}.
+     *
+     * @return A newly created DataContainer
+     */
+    DataContainer toContainer();
+
+    /**
+     * Serializes this object into the given {@link DataSource}.
+     *
+     * @param source The source to serialize to
+     */
+    void serialize(DataSource source);
+
+}
