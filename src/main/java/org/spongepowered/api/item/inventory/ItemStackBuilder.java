@@ -24,20 +24,10 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.item.ItemType;
-
 /**
  * Represents a builder interface to create an {@link ItemStack}.
  */
 public interface ItemStackBuilder {
-
-    /**
-     * Sets the {@link ItemType} of the item stack.
-     *
-     * @param itemType The type of item
-     * @return This builder
-     */
-    ItemStackBuilder itemType(ItemType itemType);
 
     /**
      * Sets the durability damage of the item.
@@ -65,25 +55,11 @@ public interface ItemStackBuilder {
     ItemStackBuilder maxQuantity(int quantity);
 
     /**
-     * Creates a new builder with the given ItemStack as a blueprint with
-     * all the defaults.
-     *
-     * @param itemStack The item stack to copy
-     * @return This builder
-     */
-    ItemStackBuilder fromItemStack(ItemStack itemStack);
-
-    /**
-     * Resets all information regarding the item stack to be created.
-     *
-     * @return This builder
-     */
-    ItemStackBuilder reset();
-
-    /**
      * Builds an instance of an ItemStack.
+     *
      * @return A new instance of an ItemStack
      * @throws IllegalStateException If the item stack is not completed
      */
     ItemStack build() throws IllegalStateException;
+
 }

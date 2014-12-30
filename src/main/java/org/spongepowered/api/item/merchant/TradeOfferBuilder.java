@@ -91,21 +91,4 @@ public interface TradeOfferBuilder {
      */
     TradeOffer build() throws IllegalStateException;
 
-    /**
-     * Sets all the settings of this builder with the provided trade offer
-     * as a blueprint.
-     *
-     * @param offer The offer to copy
-     * @return This builder
-     */
-    TradeOfferBuilder fromTradeOffer(TradeOffer offer);
-
-    /**
-     * Clears all settings of this builder.
-     *
-     * @return This builder
-     */
-    TradeOfferBuilder reset();
-
-
 }

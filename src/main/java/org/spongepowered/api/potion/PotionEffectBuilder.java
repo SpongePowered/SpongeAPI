@@ -73,13 +73,6 @@ public interface PotionEffectBuilder {
     PotionEffectBuilder particles(boolean showsParticles);
 
     /**
-     * Resets all information regarding the item stack to be created.
-     *
-     * @return This builder
-     */
-    PotionEffectBuilder reset();
-
-    /**
      * Builds an instance of a PotionEffect.
      *
      * @return A new instance of a PotionEffect
