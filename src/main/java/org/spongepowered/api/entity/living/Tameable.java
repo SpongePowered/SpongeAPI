@@ -52,7 +52,7 @@ public interface Tameable extends Agent {
     void setTamed(boolean tame);
 
     /**
-     * Gets the current owning Tamer
+     * Gets the current owning Tamer.
      *
      * @return The tamer, if available
      */

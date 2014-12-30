@@ -38,15 +38,16 @@ import java.util.UUID;
  * Represents a typical Minecraft Server.
  */
 public interface Server {
+
     /**
-     * Gets the {@link Player}s currently online
+     * Gets the {@link Player}s currently online.
      *
      * @return A {@link Collection} of online players
      */
     Collection<Player> getOnlinePlayers();
 
     /**
-     * Gets the max players allowed on this server
+     * Gets the max players allowed on this server.
      *
      * @return Maximum number of connected players
      */
@@ -63,10 +64,10 @@ public interface Server {
     /**
      * Gets a {@link Player} by their name
      *
-     * This only works for online players.
+     * <p>This only works for online players.</p>
      *
-     * <b>Note: Do not use names for persistent storage, the
-     * Zidane of today may not be the Zidane of yesterday.</b>
+     * <p><b>Note: Do not use names for persistent storage, the
+     * Notch of today may not be the Notch of yesterday.</b></p>
      *
      * @param name The name to get the player from
      * @return {@link Player} or Optional.absent() if not found
@@ -97,7 +98,7 @@ public interface Server {
     Optional<World> getWorld(String worldName);
 
     /**
-     * Loads a {@link World} from the default storage container
+     * Loads a {@link World} from the default storage container.
      * 
      * @param worldName The name to lookup
      * @return the world, if found
@@ -137,7 +138,7 @@ public interface Server {
     int getRunningTimeTicks();
 
     /**
-     * Sends the given message to all online players
+     * Sends the given message to all online players.
      *
      * @param message The message to send
      */
@@ -175,4 +176,5 @@ public interface Server {
      * @return The servers MOTD
      */
     Message getMOTD();
+
 }

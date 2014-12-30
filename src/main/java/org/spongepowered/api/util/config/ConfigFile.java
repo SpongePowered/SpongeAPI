@@ -122,6 +122,28 @@ public final class ConfigFile implements Config {
     }
 
     /**
+     * Write the given data to the file.
+     *
+     * <p>Any parent directories that do not yet exist will be created
+     * automatically.</p>
+     *
+     * @param renderedString The data
+     * @throws IOException On write error
+     */
+    private void write(String renderedString) throws IOException {
+        //noinspection ResultOfMethodCallIgnored
+        file.getParentFile().mkdirs();
+
+        Closer closer = Closer.create();
+        try {
+            BufferedWriter bw = closer.register(Files.newWriter(file, CHARSET));
+            bw.write(renderedString);
+        } finally {
+            closer.close();
+        }
+    }
+
+    /**
      * Save the combined configuration (fallback configuration + loaded from
      * disk) to disk.
      *
@@ -183,28 +205,6 @@ public final class ConfigFile implements Config {
     }
 
     /**
-     * Write the given data to the file.
-     *
-     * <p>Any parent directories that do not yet exist will be created
-     * automatically.</p>
-     *
-     * @param renderedString The data
-     * @throws IOException On write error
-     */
-    private void write(String renderedString) throws IOException {
-        //noinspection ResultOfMethodCallIgnored
-        file.getParentFile().mkdirs();
-
-        Closer closer = Closer.create();
-        try {
-            BufferedWriter bw = closer.register(Files.newWriter(file, CHARSET));
-            bw.write(renderedString);
-        } finally {
-            closer.close();
-        }
-    }
-
-    /**
      * Compare two lists to see whether they are equal, using a shallow check
      * between entries using {@link Object#equals(Object)}.
      *
@@ -254,6 +254,18 @@ public final class ConfigFile implements Config {
         return withConfig(config.withFallback(other));
     }
 
+    /**
+     * Returns a new value computed by merging this value with another from a URL, with
+     * keys in this value "winning" over the other one.
+     *
+     * <p>For more documentation go to the method in ConfigMergeable:
+     * {@link ConfigMergeable#withFallback(ConfigMergeable other)}.</p>
+     *
+     * @param url The url for the fallback configuration
+     * @see ConfigMergeable#withFallback(ConfigMergeable other)
+     * @return a new object (or the original one, if the fallback doesn't get
+     *         used)
+     */
     public ConfigFile withFallback(URL url) {
         return withFallback(ConfigFactory.parseURL(url));
     }

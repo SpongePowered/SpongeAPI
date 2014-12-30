@@ -28,7 +28,7 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.GameState;
 
 /**
- * Represents the {@link GameState#CONSTRUCTION} event
+ * Represents the {@link GameState#CONSTRUCTION} event.
  */
 public interface ConstructionEvent extends StateEvent {
 

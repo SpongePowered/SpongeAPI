@@ -37,7 +37,7 @@ public interface ItemStackBuilder {
      * @param itemType The type of item
      * @return This builder
      */
-    ItemStackBuilder withItemType(ItemType itemType);
+    ItemStackBuilder itemType(ItemType itemType);
 
     /**
      * Sets the durability damage of the item.
@@ -45,15 +45,16 @@ public interface ItemStackBuilder {
      * @param damage The durability of the item
      * @return This builder
      */
-    ItemStackBuilder withDamage(int damage);
+    ItemStackBuilder damage(int damage);
 
     /**
      * Sets the quantity of the item stack.
      *
      * @param quantity The quantity of the item stack
      * @return This builder
+     * @throws IllegalArgumentException if the quantity is outside the allowed bounds
      */
-    ItemStackBuilder withQuantity(int quantity) throws IllegalArgumentException;
+    ItemStackBuilder quantity(int quantity) throws IllegalArgumentException;
 
     /**
      * Sets the maximum quantity of the specific item stack.
@@ -61,7 +62,7 @@ public interface ItemStackBuilder {
      * @param quantity The maximum quantity of the item stack
      * @return This builder
      */
-    ItemStackBuilder withMaxQuantity(int quantity);
+    ItemStackBuilder maxQuantity(int quantity);
 
     /**
      * Creates a new builder with the given ItemStack as a blueprint with
