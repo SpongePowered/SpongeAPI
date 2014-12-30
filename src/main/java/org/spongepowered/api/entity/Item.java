@@ -55,7 +55,7 @@ public interface Item extends Entity {
      * Sets the number of ticks remaining until this Item can be picked up.
      *
      * <p>If this Item currently has an infinite pickup delay, the infinite
-     * pickup delay will be removed, and {@param delay} will be set instead.</p>
+     * pickup delay will be removed, and delay will be set instead.</p>
      *
      * @param delay The number of ticks remaining
      */
@@ -80,7 +80,7 @@ public interface Item extends Entity {
      * Sets the number of ticks remaining until this Item despawns.
      *
      * <p>If this Item currently has an infinite despawn delay, the infinite
-     * despawn delay will be removed, and {@param time} will be set instead.</p>
+     * despawn delay will be removed, and time will be set instead.</p>
      *
      * @param time The number of ticks remaining
      */
