@@ -408,12 +408,12 @@ public interface GameRegistry {
     List<Sound> getSounds();
 
     /**
-     * Gets the {@link Rotation} with the provided angle.
+     * Gets the {@link Rotation} with the provided degrees.
      *
-     * @param angle The angle of the rotation
+     * @param degrees The degrees of the rotation
      * @return The {@link Rotation} with the given id or Optional.absent() if not found.
      */
-    Optional<Rotation> getRotation(int angle);
+    Optional<Rotation> getRotation(int degrees);
 
     /**
      * Gets a {@link List} of all possible {@link Rotation}s.
