@@ -32,7 +32,13 @@ import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
-import org.spongepowered.api.entity.living.meta.*;
+import org.spongepowered.api.entity.living.meta.DyeColor;
+import org.spongepowered.api.entity.living.meta.HorseColor;
+import org.spongepowered.api.entity.living.meta.HorseStyle;
+import org.spongepowered.api.entity.living.meta.HorseVariant;
+import org.spongepowered.api.entity.living.meta.OcelotType;
+import org.spongepowered.api.entity.living.meta.RabbitType;
+import org.spongepowered.api.entity.living.meta.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -70,14 +76,14 @@ public interface GameRegistry {
      * @return The block or Optional.absent() if not found
      */
     Optional<BlockType> getBlock(String id);
- 
+
     /**
      * Gets a list of all available {@link BlockType}s.
      *
      * @return A list containing all block types in registry
      */
     List<BlockType> getBlocks();
- 
+
     /**
      * Gets an {@link ItemType} by its identifier.
      *
@@ -85,7 +91,7 @@ public interface GameRegistry {
      * @return The item or Optional.absent() if not found
      */
     Optional<ItemType> getItem(String id);
- 
+
     /**
      * Gets a list of all available {@link ItemType}s.
      *
@@ -146,7 +152,7 @@ public interface GameRegistry {
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
-     * 
+     *
      * @param particle The particle type
      * @return The particle effect builder
      */
