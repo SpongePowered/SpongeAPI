@@ -26,8 +26,8 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.effect.Sound;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
@@ -48,6 +48,7 @@ import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Environment;
 import org.spongepowered.api.world.biome.BiomeType;
 
@@ -75,14 +76,14 @@ public interface GameRegistry {
      * @return The block or Optional.absent() if not found
      */
     Optional<BlockType> getBlock(String id);
- 
+
     /**
      * Gets a list of all available {@link BlockType}s.
      *
      * @return A list containing all block types in registry
      */
     List<BlockType> getBlocks();
- 
+
     /**
      * Gets an {@link ItemType} by its identifier.
      *
@@ -90,7 +91,7 @@ public interface GameRegistry {
      * @return The item or Optional.absent() if not found
      */
     Optional<ItemType> getItem(String id);
- 
+
     /**
      * Gets a list of all available {@link ItemType}s.
      *
@@ -151,7 +152,7 @@ public interface GameRegistry {
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
-     * 
+     *
      * @param particle The particle type
      * @return The particle effect builder
      */
@@ -390,5 +391,35 @@ public interface GameRegistry {
      * @return The environment list
      */
     List<Environment> getEnvironments();
+
+    /**
+     * Gets the {@link Sound} with the provided id.
+     *
+     * @param id The id of the sound
+     * @return The {@link Sound} with the given id or Optional.absent() if not found.
+     */
+    Optional<Sound> getSound(String id);
+
+    /**
+     * Gets a {@link List} of all possible {@link Sound}s.
+     *
+     * @return The sound list
+     */
+    List<Sound> getSounds();
+
+    /**
+     * Gets the {@link Rotation} with the provided degrees.
+     *
+     * @param degrees The degrees of the rotation
+     * @return The {@link Rotation} with the given id or Optional.absent() if not found.
+     */
+    Optional<Rotation> getRotation(int degrees);
+
+    /**
+     * Gets a {@link List} of all possible {@link Rotation}s.
+     *
+     * @return The rotation list
+     */
+    List<Rotation> getRotations();
 
 }
