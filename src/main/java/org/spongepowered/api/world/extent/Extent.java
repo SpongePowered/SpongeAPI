@@ -34,8 +34,8 @@ import com.google.common.base.Optional;
 public interface Extent extends BlockVolume, EntityUniverse, BiomeVolume {
 
     /**
-     * Get the parent Extent. Returns {@code Optional.absent()} if this is a
-     * World instance.
+     * Get the parent Extent. Returns {@code Optional.absent()} if and only if
+     * this is a World instance.
      * <p>
      * This method should always recursively find its way to a root World.
      * 
