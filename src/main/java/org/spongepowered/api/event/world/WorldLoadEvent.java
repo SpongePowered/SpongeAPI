@@ -29,7 +29,7 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when the {@link Game} loads a {@link World} map
+ * Called when a {@link Game} loads a {@link World} level.
  */
 public interface WorldLoadEvent extends WorldEvent {
 

@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.world.gen;
 
+import com.flowpowered.math.vector.Vector3i;
+
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.biome.BiomeManager;
 import org.spongepowered.api.world.extent.MutableBlockBuffer;
-
-import com.flowpowered.math.vector.Vector3i;
 
 /**
  * Represents a generator for chunks into a world.

@@ -60,7 +60,7 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     World getWorld();
 
     /**
-     * Get the location of this entity
+     * Get the location of this entity.
      *
      * @return The location
      */

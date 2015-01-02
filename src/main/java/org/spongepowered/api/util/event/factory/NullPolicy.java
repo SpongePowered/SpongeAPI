@@ -22,18 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.effect;
+
+package org.spongepowered.api.util.event.factory;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * Represents a particle that can be sent on a Minecraft client.
+ * Determines how null parameters are handled.
  */
-public interface Particle {
+public enum NullPolicy {
 
     /**
-     * Gets the particle name.
-     *
-     * @return The particle's name
+     * Don't perform any null checking.
      */
-    String getName();
+    DISABLE_PRECONDITIONS,
+
+    /**
+     * Assume that all parameters are null unless they are annotated with
+     * {@link Nullable}.
+     */
+    NON_NULL_BY_DEFAULT,
+
+    /**
+     * Assume that all parameters are nullable unless they are annotated with
+     * {@link Nonnull}.
+     */
+    NULL_BY_DEFAULT;
 
 }

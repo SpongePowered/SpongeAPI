@@ -25,7 +25,9 @@
 package org.spongepowered.api.effect;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.item.ItemType;
+
+import org.spongepowered.api.effect.particle.ParticleEffect;
+import org.spongepowered.api.effect.sound.SoundType;
 
 /**
  * A Viewer is something that sees effects.
@@ -34,79 +36,39 @@ import org.spongepowered.api.item.ItemType;
 public interface Viewer {
 
     /**
-     * Spawn some {@link Particle}s at a given position.
+     * Spawn a {@link ParticleEffect} at a given position.
      * All players within a default radius around the position will see the
      * particles.
      *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
+     * @param particleEffect The particle effect to spawn
+     * @param position The position at which to spawn the particle effect
      */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed);
+    void spawnParticles(ParticleEffect particleEffect, Vector3d position);
 
     /**
-     * Spawn some {@link Particle}s at a given position.
+     * Spawn a {@link ParticleEffect} at a given position.
      * All players within a given radius around the position will see the
      * particles.
      *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
+     * @param particleEffect The particle effect to spawn
+     * @param position The position at which to spawn the particle effect
      * @param radius The radius around the position where the particles can
      * be seen by players
      */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, int radius);
+    void spawnParticles(ParticleEffect particleEffect, Vector3d position, int radius);
 
     /**
-     * Spawn some {@link Particle}s at a given position. All
-     * players within a default radius around the position will see the particles.
-     * <p>Some particles like {@link Particles#ITEM_CRACK},
-     * {@link Particles#BLOCK_CRACK} and {@link Particles#BLOCK_DUST}
-     * require the item type to render correctly.</p>
-     *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
-     * @param itemType The type of item the particle will base off from
-     */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, ItemType itemType);
-
-    /**
-     * Spawn some {@link Particle}s at a given position. All
-     * players within a given radius around the position will see the particles.
-     * <p>Some particles like {@link Particles#ITEM_CRACK},
-     * {@link Particles#BLOCK_CRACK} and {@link Particles#BLOCK_DUST}
-     * require the item type to render correctly.</p>
-     *
-     * @param particle The particle to create
-     * @param particleCount The number of particle to create
-     * @param position The position at which to create the particle
-     * @param offset The offset to apply to each individual particle
-     * @param speed The speed of the particle, must be at least 0
-     * @param radius The radius around the position where the particles can
-     * be seen by players
-     * @param itemType The type of item the particle will base off from
-     */
-    void spawnParticles(Particle particle, int particleCount, Vector3d position, Vector3d offset, double speed, int radius, ItemType itemType);
-
-    /**
-     * Plays the given {@link Sound} at the given position. All
+     * Plays the given {@link SoundType} at the given position. All
      * players within range will hear the sound with the given volume.
      *
      * @param sound The sound to play
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
      */
-    void playSound(Sound sound, Vector3d position, double volume);
+    void playSound(SoundType sound, Vector3d position, double volume);
 
     /**
-     * Plays the given {@link Sound} at the given position. All
+     * Plays the given {@link SoundType} at the given position. All
      * players within range will hear the sound with the given volume.
      *
      * @param sound The sound to play
@@ -114,10 +76,10 @@ public interface Viewer {
      * @param volume The volume to play the sound at, usually between 0 and 2
      * @param pitch The modulation of the sound to play at, usually between 0 and 2
      */
-    void playSound(Sound sound, Vector3d position, double volume, double pitch);
+    void playSound(SoundType sound, Vector3d position, double volume, double pitch);
 
     /**
-     * Plays the given {@link Sound} at the given position. All
+     * Plays the given {@link SoundType} at the given position. All
      * players within range will hear the sound with the given volume.
      *
      * @param sound The sound to play
@@ -126,6 +88,6 @@ public interface Viewer {
      * @param pitch The modulation of the sound to play at, usually between 0 and 2
      * @param minVolume The minimum volume to play the sound at, usually between 0 and 2
      */
-    void playSound(Sound sound, Vector3d position, double volume, double pitch, double minVolume);
+    void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
 
 }

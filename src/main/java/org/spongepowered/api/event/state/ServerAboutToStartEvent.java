@@ -28,7 +28,7 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.GameState;
 
 /**
- * Represents {@link GameState#SERVER_ABOUT_TO_START} event
+ * Represents a {@link GameState#SERVER_ABOUT_TO_START} event.
  */
 public interface ServerAboutToStartEvent extends StateEvent {
 

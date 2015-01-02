@@ -29,14 +29,14 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
- * Describes events which involve a {@link Chunk}
+ * Describes events which involve a {@link Chunk}.
  */
 public interface ChunkEvent extends GameEvent {
 
     /**
-     * Gets the {@link Chunk} included in the event
+     * Gets the {@link Chunk} included in the event.
      *
-     * @return Event {@link Chunk}
+     * @return The {@link Chunk} in this event
      */
     Chunk getChunk();
 

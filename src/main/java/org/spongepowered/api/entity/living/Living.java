@@ -187,7 +187,7 @@ public interface Living extends Entity {
     void setLeashHolder(@Nullable Entity entity);
 
     /**
-     * Gets the height of the eye (camera) of this entity
+     * Gets the height of the eye (camera) of this entity.
      *
      * @return The camera height
      */
