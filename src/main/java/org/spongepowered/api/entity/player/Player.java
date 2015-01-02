@@ -122,7 +122,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Get a player's ping.
      * 
      * @return The player's ping
-     * /
+     */
     int getPing();
 
 }
