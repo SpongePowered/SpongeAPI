@@ -141,11 +141,11 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Map<String, String> getGameRules();
 
     /**
-     * Returns the {@link Environment} of this world.
+     * Returns the {@link Dimension} of this world.
      *
-     * @return The {@link Environment}
+     * @return The {@link Dimension}
      */
-    Environment getEnvironment();
+    Dimension getDimension();
 
     /**
      * Gets the random seed for this world.
@@ -183,4 +183,21 @@ public interface World extends Extent, Viewer, WeatherVolume {
      */
     BiomeManager getBiomeManager();
 
+    /**
+     * Returns whether this {@link World}'s spawn chunks remain loaded when no players are present.
+     * Note: This method will default to this {@link World}'s {@link DimensionType}'s
+     * keepLoaded value unless a plugin overrides it.
+     *
+     * @return True if {@link World} remains loaded without players, false if not
+     */
+    boolean doesKeepSpawnLoaded();
+
+    /**
+     * Sets whether this {@link World}'s spawn chunks remain loaded when no players are present.
+     * Note: This method will override the default {@link DimensionType}'s keepLoaded
+     * value.
+     *
+     * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded without players
+     */
+    void setKeepSpawnLoaded(boolean keepLoaded);
 }

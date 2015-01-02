@@ -48,7 +48,7 @@ import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
-import org.spongepowered.api.world.Environment;
+import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 
 import java.util.Collection;
@@ -369,26 +369,18 @@ public interface GameRegistry {
     Collection<String> getDefaultGameRules();
 
     /**
-     * Gets the {@link Environment} with the provided name. 
+     * Gets the {@link DimensionType} with the provided name. 
      *
-     * @param name The name of the environment
-     * @return The {@link Environment} with the given name or Optional.absent() if not found
+     * @param name The name of the dimension type
+     * @return The {@link DimensionType} with the given name or Optional.absent() if not found
      */
-    Optional<Environment> getEnvironment(String name);
+    Optional<DimensionType> getDimensionType(String name);
 
     /**
-     * Gets the {@link Environment} with the provided id. 
+     * Gets a {@link List} of all possible {@link DimensionType}s.
      *
-     * @param dimensionId The name of the environment
-     * @return The {@link Environment} with the given dimensionId or Optional.absent() if not found
+     * @return The list of all available {@link DimensionType}s
      */
-    Optional<Environment> getEnvironment(int dimensionId);
-
-    /**
-     * Gets a {@link List} of all possible {@link Environment}s.
-     *
-     * @return The environment list
-     */
-    List<Environment> getEnvironments();
+    List<DimensionType> getDimensionTypes();
 
 }
