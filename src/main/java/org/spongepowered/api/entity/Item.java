@@ -47,7 +47,7 @@ public interface Item extends Entity {
      * Gets the number of ticks remaining until this Item can be picked up,
      * or -1 if this Item has an infinite pickup delay.
      *
-     * @return The number of ticks remaining, or Optional.absent()
+     * @return The number of ticks remaining, or -1
      */
     int getPickupDelay();
 
@@ -72,7 +72,7 @@ public interface Item extends Entity {
      * Gets the number of ticks remaining until this Item despawns,
      * or -1 if this Item will never despawn.
      *
-     * @return The number of ticks remaining, or Optional.absent()
+     * @return The number of ticks remaining, or -1
      */
     int getDespawnTime();
 
@@ -94,8 +94,10 @@ public interface Item extends Entity {
     void setInfiniteDespawnTime(boolean infinite);
 
     /**
-     * Gets the {@link Player} who threw this Item, or Optional.absent()
-     * if not available.
+     * Gets the {@link Player} who threw this Item, if available
+     *
+     * <p>If this Item was not dropped from a player's inventory,
+     * then the thrower will not be available.</p>
      *
      * @return The thrower, or Optional.absent()
      */
@@ -103,9 +105,6 @@ public interface Item extends Entity {
 
     /**
      * Sets the {@link Player} who threw this Item.
-     *
-     * <p>If the thrower is null, then {@link #getThrower()}
-     * will return Optional.absent()</p>
      *
      * @param thrower The player who threw this Item
      */
