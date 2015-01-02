@@ -117,5 +117,12 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     void clearTitle();
+    
+    /**
+     * Get a player's ping.
+     * 
+     * @return The player's ping
+     * /
+    int getPing();
 
 }
