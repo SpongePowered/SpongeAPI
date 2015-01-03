@@ -92,5 +92,4 @@ public interface Chunk extends Extent {
      * @return Whether or not the chunk is regenerated
      */
     boolean regenerate();
-    
 }
