@@ -61,6 +61,13 @@ public interface Chunk extends Extent {
      * @return Whether or not this chunk is generated
      */
     boolean isGenerated();
+    
+    /**
+     * Gets whether or not this chunk is populated.
+     *
+     * @return Whether or not this chunk is populated
+     */
+    boolean isPopulated();
 
     /**
      * Loads this chunk, and generates if specified and required.
