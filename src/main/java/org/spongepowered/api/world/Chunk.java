@@ -87,7 +87,7 @@ public interface Chunk extends Extent {
     boolean remove();
     
     /**
-     * Reegenerates the chunk.
+     * Regenerates the chunk.
      *
      * @return If the chunk was successfully regenerated
      */
