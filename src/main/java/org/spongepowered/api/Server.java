@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.net.ChannelRegistrar;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.WorldGenerator;
@@ -37,7 +38,7 @@ import java.util.UUID;
 /**
  * Represents a typical Minecraft Server.
  */
-public interface Server {
+public interface Server extends ChannelRegistrar {
 
     /**
      * Gets the {@link Player}s currently online.
