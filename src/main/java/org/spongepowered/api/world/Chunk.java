@@ -54,6 +54,13 @@ public interface Chunk extends Extent {
      * @return Whether or not this chunk is loaded
      */
     boolean isLoaded();
+    
+    /**
+     * Gets whether or not this chunk is generated.
+     *
+     * @return Whether or not this chunk is generated
+     */
+    boolean isGenerated();
 
     /**
      * Loads this chunk, and generates if specified and required.
@@ -71,4 +78,19 @@ public interface Chunk extends Extent {
      * @return Whether or not the chunk unloaded
      */
     boolean unloadChunk();
+    
+    /**
+     * Removes the chunk.
+     *
+     * @return Whether or not the chunk is removed.
+     */
+    boolean remove();
+    
+    /**
+     * Reegenerates the chunk.
+     *
+     * @return Whether or not the chunk is regenerated
+     */
+    boolean regenerate();
+    
 }
