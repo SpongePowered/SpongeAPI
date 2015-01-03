@@ -29,6 +29,7 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
+import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
@@ -135,4 +136,12 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @see GameModes
      */
     void setGameMode(GameMode gameMode);
+    
+    /**
+     * Gets the appropriate {@link PlayerConnection} linking this Player
+     * to a client.
+     *
+     * @return The connection
+     */
+    PlayerConnection getConnection();
 }
