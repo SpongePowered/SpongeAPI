@@ -34,7 +34,7 @@ public interface WeatherEffect extends Entity {
   /**
    * Returns whether this weather effect is an effect and doesn't deal damage.
    *
-   * @return Whether this weather effecct is an effect
+   * @return Whether this weather effect is an effect
    */
   boolean isEffect();
   
