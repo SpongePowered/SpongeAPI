@@ -30,14 +30,14 @@ import org.spongepowered.api.entity.Entity;
  * Represents weather, such as {@link Lightning}.
  */
 public interface WeatherEffect extends Entity {
-  
+
   /**
    * Returns whether this weather effect is an effect and doesn't deal damage.
    *
    * @return Whether this weather effect is an effect
    */
   boolean isEffect();
-  
+
   /**
    * Sets whether this weather effect is an effect and doesn't deal damage.
    * 
