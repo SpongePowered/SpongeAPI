@@ -32,16 +32,16 @@ import org.spongepowered.api.entity.Entity;
 public interface WeatherEffect extends Entity {
   
   /**
-     * Returns whether this lightning strike is an effect and doesn't deal damage.
-     *
-     * @return Whether this strike is an effect
-     */
+   * Returns whether this weather effect is an effect and doesn't deal damage.
+   *
+   * @return Whether this weather effecct is an effect
+   */
   boolean isEffect();
   
   /**
-     * Sets whether this lightning strike is an effect and doesn't deal damage.
-     * 
-     * @param effect Whether this lightning strike is an effect
-     */
+   * Sets whether this weather effect is an effect and doesn't deal damage.
+   * 
+   * @param effect Whether this weather effect is an effect
+   */
   void setEffect(boolean effect);
 }
