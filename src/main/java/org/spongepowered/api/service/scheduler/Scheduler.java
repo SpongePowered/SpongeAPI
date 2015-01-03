@@ -36,7 +36,7 @@ import java.util.concurrent.Callable;
 
 // WIP
 
-public interface AsynchronousScheduler {
+public interface Scheduler {
 
     /**
      * Runs the task immediately.
