@@ -37,24 +37,24 @@ import javax.annotation.Nullable;
 public interface Item extends Entity {
 
     /**
-     * Get the {@link ItemStack} that this Item represents.
+     * Get the {@link ItemStack} that this item represents.
      *
      * @return The represented {@link ItemStack}
      */
     ItemStack getItemStack();
 
     /**
-     * Gets the number of ticks remaining until this Item can be picked up,
-     * or -1 if this Item has an infinite pickup delay.
+     * Gets the number of ticks remaining until this item can be picked up,
+     * or -1 if this item has an infinite pickup delay.
      *
      * @return The number of ticks remaining, or -1
      */
     int getPickupDelay();
 
     /**
-     * Sets the number of ticks remaining until this Item can be picked up.
+     * Sets the number of ticks remaining until this item can be picked up.
      *
-     * <p>If this Item currently has an infinite pickup delay, the infinite
+     * <p>If this item currently has an infinite pickup delay, the infinite
      * pickup delay will be removed, and delay will be set instead.</p>
      *
      * @param delay The number of ticks remaining
@@ -62,24 +62,24 @@ public interface Item extends Entity {
     void setPickupDelay(int delay);
 
     /**
-     * Sets whether this Item has an infinite pickup delay
+     * Sets whether this item has an infinite pickup delay
      *
-     * @param infinite Whether this Item has an infinite pickup delay
+     * @param infinite Whether this item has an infinite pickup delay
      */
     void setInfinitePickupDelay(boolean infinite);
 
     /**
-     * Gets the number of ticks remaining until this Item despawns,
-     * or -1 if this Item will never despawn.
+     * Gets the number of ticks remaining until this item despawns,
+     * or -1 if this item will never despawn.
      *
      * @return The number of ticks remaining, or -1
      */
     int getDespawnTime();
 
     /**
-     * Sets the number of ticks remaining until this Item despawns.
+     * Sets the number of ticks remaining until this item despawns.
      *
-     * <p>If this Item currently has an infinite despawn delay, the infinite
+     * <p>If this item currently has an infinite despawn delay, the infinite
      * despawn delay will be removed, and time will be set instead.</p>
      *
      * @param time The number of ticks remaining
@@ -87,16 +87,16 @@ public interface Item extends Entity {
     void setDespawnTime(int time);
 
     /**
-     * Sets whether this Item never despawns.
+     * Sets whether this item never despawns.
      *
-     * @param infinite Whether this Item never despawns
+     * @param infinite Whether this item never despawns
      */
     void setInfiniteDespawnTime(boolean infinite);
 
     /**
-     * Gets the {@link Player} who threw this Item, if available
+     * Gets the {@link Player} who threw this item, if available
      *
-     * <p>If this Item was not dropped from a player's inventory,
+     * <p>If this item was not dropped from a player's inventory,
      * then the thrower will not be available.</p>
      *
      * @return The thrower, or Optional.absent()
@@ -104,9 +104,9 @@ public interface Item extends Entity {
     Optional<Player> getThrower();
 
     /**
-     * Sets the {@link Player} who threw this Item.
+     * Sets the {@link Player} who threw this item.
      *
-     * @param thrower The player who threw this Item
+     * @param thrower The player who threw this item
      */
     void setThrower(@Nullable Player thrower);
 }
