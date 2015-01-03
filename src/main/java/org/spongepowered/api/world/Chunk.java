@@ -82,14 +82,14 @@ public interface Chunk extends Extent {
     /**
      * Removes the chunk.
      *
-     * @return Whether or not the chunk is removed.
+     * @return If the chunk was successfully removed
      */
     boolean remove();
     
     /**
      * Reegenerates the chunk.
      *
-     * @return Whether or not the chunk is regenerated
+     * @return If the chunk was successfully regenerated
      */
     boolean regenerate();
 }
