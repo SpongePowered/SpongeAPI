@@ -30,7 +30,7 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.service.scheduler.Scheduler;
+import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -84,11 +84,11 @@ public interface Game {
     ServiceManager getServiceManager();
 
     /**
-     * Gets the {@link Scheduler}.
+     * Gets the {@link AsynchronousScheduler}.
      *
      * @return The scheduler
      */
-    Scheduler getScheduler();
+    AsynchronousScheduler getScheduler();
 
     /**
      * Get the command dispatcher used for registering and dispatching

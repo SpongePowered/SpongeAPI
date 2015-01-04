@@ -25,10 +25,10 @@
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 
 /**
  * The base scheduler that schedules tasks.
@@ -36,7 +36,7 @@ import java.util.UUID;
 
 // WIP
 
-public interface Scheduler {
+public interface AsynchronousScheduler {
 
     /**
      * Runs the task immediately.
@@ -49,6 +49,16 @@ public interface Scheduler {
     Optional<Task> runTask(Object plugin, Runnable task);
 
     /**
+     * Runs the task immediately.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     *
+     * @return The scheduled task, if successful
+     */
+    <T> Optional<Task<T>> runTask(Object plugin, Callable<T> task);
+
+    /**
      * Runs the task after a delay in ticks.
      *
      * @param plugin The plugin requesting the task
@@ -58,6 +68,17 @@ public interface Scheduler {
      * @return The scheduled task, if successful
      */
     Optional<Task> runTaskAfter(Object plugin, Runnable task, long delay);
+
+    /**
+     * Runs the task after a delay in ticks.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     * @param delay The delay in ticks
+     *
+     * @return The scheduled task, if successful
+     */
+    <T> Optional<Task<T>> runTaskAfter(Object plugin, Callable<T> task, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
@@ -72,6 +93,18 @@ public interface Scheduler {
     Optional<Task> runRepeatingTask(Object plugin, Runnable task, long interval);
 
     /**
+     * Runs the task immediately, then repeats at an
+     * interval.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     * @param interval The interval between runs
+     *
+     * @return The scheduled task, if successful
+     */
+    <T> Optional<Task<T>> runRepeatingTask(Object plugin, Callable<T> task, long interval);
+
+    /**
      * Runs the task after a delay in ticks, then repeats
      * at an interval.
      *
@@ -83,6 +116,19 @@ public interface Scheduler {
      * @return The scheduled task, if successful
      */
     Optional<Task> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
+
+    /**
+     * Runs the task after a delay in ticks, then repeats
+     * at an interval.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     * @param interval The interval between runs
+     * @param delay The delay in ticks
+     *
+     * @return The scheduled task, if successful
+     */
+    <T> Optional<Task<T>> runRepeatingTaskAfter(Object plugin, Callable<T> task, long interval, long delay);
 
     /**
      * Retrieves a scheduled or running task by its unique ID.

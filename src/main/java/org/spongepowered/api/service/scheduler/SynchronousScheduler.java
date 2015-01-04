@@ -24,60 +24,19 @@
  */
 package org.spongepowered.api.service.scheduler;
 
-import com.google.common.base.Optional;
-import com.google.common.util.concurrent.ListenableFuture;
-import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.Identifiable;
 
-import java.util.concurrent.Callable;
+public interface SynchronousScheduler extends AsynchronousScheduler {
 
-/**
- * Represents a task that has been scheduled.
- */
-
-// WIP
-
-public interface Task<T> extends Identifiable {
+    // WIP
 
     /**
-     * Returns the plugin that scheduled this task.
-     *
-     * @return The plugin that scheduled the task
+     * <p>Upon step(), the Synchronous scheduler processes all tasks due for resolution.
+     * Those tasks that are premature (and need to wait, are skipped), but the action
+     * to run a Task in the list of Synchronized Tasks is still bound to the step()
+     * function of the game.   By implication, we treat step() as a clock tick in the
+     * time-base of the Minecraft Server, eg, a "tick" (aka every 50ms on the Top Dead Center
+     * of the Minecraft "crankshaft")</p>
      */
-    PluginContainer getOwner();
+    public void step();
 
-    /**
-     * Gets the delay that the task was scheduled to run after.
-     *
-     * @return The delay
-     */
-    long getDelay();
-
-    /**
-     * Cancels the task, if it has not already run.
-     *
-     * @return If the task was cancelled
-     */
-    boolean cancel();
-
-    /**
-     * Gets the {@link Runnable} that this task is running.
-     *
-     * @return The runnable
-     */
-    Optional<Runnable> getRunnable();
-
-    /**
-     * Gets the {@link Callable} that this task is running.
-     *
-     * @return The callable
-     */
-    Optional<Callable<T>> getCallable();
-
-    /**
-     * Gets the {@link ListenableFuture} that represents the result of this task.
-     *
-     * @return The future
-     */
-    Optional<ListenableFuture<T>> getFuture();
 }
