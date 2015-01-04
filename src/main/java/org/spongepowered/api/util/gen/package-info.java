@@ -23,21 +23,5 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
-
-/**
- * Manages the biomes for an extent.
- */
-public interface BiomeManager {
-
-    /**
-     * Returns the {@link Biome} at the given coordinates within the extent.
-     * 
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The biome
-     */
-    Biome getBiome(int x, int y, int z);
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.util.gen;

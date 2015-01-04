@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.MutableBlockBuffer;
 
 import java.util.Random;
 
@@ -42,9 +42,9 @@ public interface Populator {
      * boundaries.
      * 
      * @param world The world
-     * @param blockData The buffer containing the region being populated
+     * @param chunk The chunk being populated
      * @param random The random object
      */
-    void populate(World world, MutableBlockBuffer blockData, Random random);
+    void populate(World world, Chunk chunk, Random random);
 
 }
