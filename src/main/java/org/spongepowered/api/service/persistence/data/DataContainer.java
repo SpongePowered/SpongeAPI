@@ -22,35 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util;
-
-import com.google.common.base.Optional;
+package org.spongepowered.api.service.persistence.data;
 
 /**
- * A data holder object allows the access of additional data on the object
- * that is not simply expressed by its basic type.
- *
- * <p>For example, a chest block, which is of the chest type, also has
- * inventory. This inventory is considered extra data, which can
- * be accessed via {@link #getData(Class)}, provided that an implementation
- * exposes that extra data.</p>
+ * Represents a data structure that contains data. A DataContainer is
+ * an object that can be considered a root {@link DataView}.
  */
-public interface DataHolder {
-
-    /**
-     * Get an instance of the given data class for this block.
-     *
-     * <p>For example, if this block represents a sign,
-     * {@code getData(Sign.class)} would yield an instance of
-     * {@code Sign} to change the contents of the sign. However, if
-     * this block does not represent a sign, then an instance will not
-     * be returned.</p>
-     *
-     * @param dataClass The data class
-     * @param <T> The type of data
-     * @return An instance of the class
-     */
-    <T> Optional<T> getData(Class<T> dataClass);
+public interface DataContainer extends DataView {
 
 }

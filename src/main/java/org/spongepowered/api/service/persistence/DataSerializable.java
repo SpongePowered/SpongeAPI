@@ -22,22 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.data.DataContainer;
 
 /**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * Represents an object that can be represented by a {@link DataContainer}.
+ * <p>DataContainers received from {@link DataSerializable#toContainer()}
+ * should be considered to be copies of the original data, and therefor,
+ * thread safe.</p>
  */
-public interface SkeletonType extends DataSerializable {
+public interface DataSerializable {
 
     /**
-     * Gets the name of this skeleton type.
+     * Serializes this object into a comprehensible {@link DataContainer}.
      *
-     * @return The name of this skeleton type
+     * @return A newly created DataContainer
      */
-    String getName();
+    DataContainer toContainer();
+
+    /**
+     * Serializes this object into the given {@link DataSource}.
+     *
+     * @param source The source to serialize to
+     */
+    void serialize(DataSource source);
 
 }

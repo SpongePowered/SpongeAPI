@@ -22,22 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+package org.spongepowered.api.service.persistence.data;
+
+import com.google.common.base.Optional;
 
 /**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * A data holder object allows the access of additional data on the object
+ * that is not simply expressed by its basic type.
+ *
+ * <p>For example, a chest block, which is of the chest type, also has
+ * inventory. This inventory is considered extra data, which can
+ * be accessed via {@link #getData(Class)}, provided that an implementation
+ * exposes that extra data.</p>
  */
-public interface SkeletonType extends DataSerializable {
+public interface DataHolder {
 
     /**
-     * Gets the name of this skeleton type.
+     * Get an instance of the given data class for this block.
      *
-     * @return The name of this skeleton type
+     * <p>For example, if this block represents a sign,
+     * {@code getData(Sign.class)} would yield an instance of
+     * {@code Sign} to change the contents of the sign. However, if
+     * this block does not represent a sign, then an instance will not
+     * be returned.</p>
+     *
+     * @param dataClass The data class
+     * @param <T> The type of data
+     * @return An instance of the class
      */
-    String getName();
+    <T> Optional<T> getData(Class<T> dataClass);
 
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -35,7 +36,7 @@ import java.util.Map;
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
  * can be compared using the comparators listed in {@link ItemStackComparators}.
  */
-public interface ItemStack extends Serializable {
+public interface ItemStack extends Serializable, DataSerializable {
 
     /**
      * Gets the {@link ItemType} item type.

@@ -22,22 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+import com.google.common.base.Optional;
+import com.typesafe.config.Config;
 
 /**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * A standard factory to create {@link DataSource}s to serialize and deserialize
+ * {@link DataSerializable} objects.
  */
-public interface SkeletonType extends DataSerializable {
+public interface DataSourceFactory {
 
     /**
-     * Gets the name of this skeleton type.
+     * Creates a new {@link DataSource} according to the given configuration.
      *
-     * @return The name of this skeleton type
+     * <p>The configuration structure is yet to be defined, however, being
+     * that the factory is abstract, a DataSource can be represented by multiple
+     * implementations.</p>
+     *
+     * @param config The configuration to configure the DataSource
+     * @return The newly created data source, if available
      */
-    String getName();
+    Optional<DataSource> createSource(Config config);
 
 }

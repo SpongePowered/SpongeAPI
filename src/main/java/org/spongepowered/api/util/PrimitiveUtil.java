@@ -22,22 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+import com.google.common.base.Optional;
 
-/**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
- */
-public interface SkeletonType extends DataSerializable {
+public final class PrimitiveUtil {
 
-    /**
-     * Gets the name of this skeleton type.
-     *
-     * @return The name of this skeleton type
-     */
-    String getName();
+    public static Optional<String> asString(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Boolean> asBoolean(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Integer> asInteger(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Double> asDouble(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Short> asShort(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Float> asFloat(Object input) {
+
+        return Optional.absent();
+    }
+
+    public static Optional<Byte> asByte(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Long> asLong(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Character> asCharacter(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
 
 }

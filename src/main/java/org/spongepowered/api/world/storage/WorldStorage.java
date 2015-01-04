@@ -22,22 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.world.storage;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
-
-/**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
- */
-public interface SkeletonType extends DataSerializable {
+public interface WorldStorage {
 
     /**
-     * Gets the name of this skeleton type.
-     *
-     * @return The name of this skeleton type
+     * Gets a {@link ChunkIterator}
+     * @return
      */
-    String getName();
+    ChunkIterator getGeneratedChunks();
 
 }
