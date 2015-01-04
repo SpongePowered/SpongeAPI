@@ -121,17 +121,17 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void clearTitle();
 
     /**
-     * Gets the {@link GameMode} of the player.
+     * Gets the player's game mode.
      *
-     * @return The player's GameMode
+     * @return The player's game mode
      * @see GameModes
      */
     GameMode getGameMode();
 
     /**
-     * Sets the {@link GameMode} of the player.
+     * Sets the players's game mode.
      *
-     * @param gameMode The {@link GameMode} to set
+     * @param gameMode The game mode to set
      * @see GameModes
      */
     void setGameMode(GameMode gameMode);
