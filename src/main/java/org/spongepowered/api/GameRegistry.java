@@ -33,6 +33,7 @@ import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.effect.sound.SoundTypes;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.meta.DyeColor;
@@ -536,4 +537,18 @@ public interface GameRegistry {
      */
     List<BannerPatternShape> getBannerPatternShapes();
 
+    /**
+     * Gets the {@link SoundType} with the provided id.
+     *
+     * @param id The id of the sound type
+     * @return The {@link SoundType} with the given id or Optional.absent() if not found
+     */
+    Optional<SoundType> getSoundType(String id);
+
+    /**
+     * Gets a {@link List} of all possible {@link SoundTypes}s.
+     *
+     * @return The list of all available {@link SoundType}s
+     */
+    List<SoundType> getSoundTypes();
 }
