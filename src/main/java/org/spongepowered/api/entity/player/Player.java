@@ -135,7 +135,8 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Gets all {@link Statistic}s with their current values. Does not return
      * statistics that does not have a value set yet.
      *
-     * @return A map containing all statistics with their current values.
+     * @return An immutable map containing all statistics with their current
+     *         values.
      */
     Map<Statistic, Long> getStatistics();
 
@@ -180,7 +181,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     boolean hasAchievement(Achievement achievement);
 
     /**
-     * Gets an {@link Iterable} containing all {@link Achievement} this player
+     * Gets an {@link Iterable} containing all {@link Achievement}s this player
      * has earned already.
      *
      * @return An iterable containing all earned achievements

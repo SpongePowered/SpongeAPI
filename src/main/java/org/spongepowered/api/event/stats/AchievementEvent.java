@@ -33,7 +33,7 @@ import org.spongepowered.api.stats.achievement.Achievement;
  * Represents an event that is called when a {@link Player} earns an
  * {@link Achievement}.
  */
-public interface GrantAchievementEvent extends PlayerEvent {
+public interface AchievementEvent extends PlayerEvent {
 
     /**
      * Gets the achievement that is granted to the {@link Player}.
