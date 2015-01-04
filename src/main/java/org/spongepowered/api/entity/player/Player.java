@@ -27,6 +27,8 @@ package org.spongepowered.api.entity.player;
 
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
@@ -118,4 +120,19 @@ public interface Player extends Human, User, CommandSource, Viewer {
      */
     void clearTitle();
 
+    /**
+     * Gets the {@link GameMode} of the player.
+     *
+     * @return The player's GameMode
+     * @see GameModes
+     */
+    GameMode getGameMode();
+
+    /**
+     * Sets the {@link GameMode} of the player.
+     *
+     * @param gameMode The {@link GameMode} to set
+     * @see GameModes
+     */
+    void setGameMode(GameMode gameMode);
 }
