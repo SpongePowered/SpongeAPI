@@ -22,16 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+import com.google.common.base.Optional;
+import com.typesafe.config.Config;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * A standard factory to create {@link DataSource}s to serialize and deserialize
+ * {@link DataSerializable} objects.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent, ItemDropEvent {
+public interface DataSourceFactory {
+
+    /**
+     * Creates a new {@link DataSource} according to the given configuration.
+     *
+     * <p>The configuration structure is yet to be defined, however, being
+     * that the factory is abstract, a DataSource can be represented by multiple
+     * implementations.</p>
+     *
+     * @param config The configuration to configure the DataSource
+     * @return The newly created data source, if available
+     */
+    Optional<DataSource> createSource(Config config);
 
 }

@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-public interface RabbitType {
+import org.spongepowered.api.service.persistence.DataSerializable;
+
+public interface RabbitType extends DataSerializable {
 
     /**
      * Gets the name of this rabbit type.

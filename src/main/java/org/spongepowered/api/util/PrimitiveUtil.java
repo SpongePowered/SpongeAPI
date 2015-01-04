@@ -22,16 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+import com.google.common.base.Optional;
 
-/**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
- */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent, ItemDropEvent {
+public final class PrimitiveUtil {
+
+    public static Optional<String> asString(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Boolean> asBoolean(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Integer> asInteger(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Double> asDouble(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Short> asShort(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Float> asFloat(Object input) {
+
+        return Optional.absent();
+    }
+
+    public static Optional<Byte> asByte(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Long> asLong(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
+
+    public static Optional<Character> asCharacter(Object input) {
+        // TODO implement
+        return Optional.absent();
+    }
 
 }

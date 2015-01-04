@@ -22,16 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.util.gen;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * A mutable buffer for {@link BiomeType} data. This buffer has no direct relation
+ * to the world and changes to it are not synchronized to the world.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent, ItemDropEvent {
+public interface MutableBiomeArea extends BiomeArea {
 
+    /**
+     * Sets the biome in the buffer at the given position.
+     * 
+     * @param x The X position
+     * @param z The Z position
+     * @param biome The new biome
+     */
+    void setBiome(int x, int z, BiomeType biome);
+
+    /**
+     * Fills the entire buffer with the given biome.
+     * 
+     * @param biome The biome to fill the area with
+     */
+    void fill(BiomeType biome);
+    
+    /**
+     * Returns an immutable copy of this biome buffer.
+     * 
+     * @return An immutable copy
+     */
+    ImmutableBiomeArea getImmutableClone();
+    
 }

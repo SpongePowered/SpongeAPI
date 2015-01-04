@@ -22,16 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+import org.spongepowered.api.service.persistence.data.DataContainer;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * Represents an object that can be represented by a {@link DataContainer}.
+ * <p>DataContainers received from {@link DataSerializable#toContainer()}
+ * should be considered to be copies of the original data, and therefor,
+ * thread safe.</p>
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent, ItemDropEvent {
+public interface DataSerializable {
+
+    /**
+     * Serializes this object into a comprehensible {@link DataContainer}.
+     *
+     * @return A newly created DataContainer
+     */
+    DataContainer toContainer();
+
+    /**
+     * Serializes this object into the given {@link DataSource}.
+     *
+     * @param source The source to serialize to
+     */
+    void serialize(DataSource source);
 
 }

@@ -106,8 +106,8 @@ public interface Server {
     Optional<World> loadWorld(String worldName);
 
     /**
-     * Unloads a {@link World}, if there are alive players in the given
-     * {@link World} the behavior is undefined.
+     * Unloads a {@link World}, if there are any connected players in the given
+     * world then no operation will occur.
      * 
      * @param world The world to unload
      * @return Whether the operation was successful
@@ -123,9 +123,34 @@ public interface Server {
      * @param worldName The new world name
      * @param generator The generator to generate the world with
      * @param seed The random seed for the world
-     * @return The new world, if the creation was successful
+     * @return The new world
      */
-    Optional<World> createWorld(String worldName, WorldGenerator generator, long seed);
+    World createWorld(String worldName, WorldGenerator generator, long seed);
+
+    /**
+     * Creates a world with the given generator but using the default seed from
+     * the server settings.
+     * 
+     * <p>If a world with the given name is already loaded then it is returned
+     * instead.</p>
+     * 
+     * @param worldName The new world name
+     * @param generator The generator to generate the world with
+     * @return The new world
+     */
+    World createWorld(String worldName, WorldGenerator generator);
+
+    /**
+     * Creates a world using the default seed and generator from the server
+     * settings.
+     * 
+     * <p>If a world with the given name is already loaded then it is returned
+     * instead.</p>
+     * 
+     * @param worldName The new world name
+     * @return The new world
+     */
+    World createWorld(String worldName);
 
     /**
      * Gets the time, in ticks, since this server began running for the current session.

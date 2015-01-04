@@ -22,22 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.world.storage;
 
-package org.spongepowered.api.world.biome;
-
-/**
- * Manages the biomes for an extent.
- */
-public interface BiomeManager {
+public interface WorldStorage {
 
     /**
-     * Returns the {@link Biome} at the given coordinates within the extent.
-     * 
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The biome
+     * Gets a {@link ChunkIterator}
+     * @return
      */
-    Biome getBiome(int x, int y, int z);
+    ChunkIterator getGeneratedChunks();
 
 }

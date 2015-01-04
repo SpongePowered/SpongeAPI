@@ -27,7 +27,7 @@ package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.util.DataHolder;
+import org.spongepowered.api.service.persistence.data.DataHolder;
 
 import java.util.Collection;
 

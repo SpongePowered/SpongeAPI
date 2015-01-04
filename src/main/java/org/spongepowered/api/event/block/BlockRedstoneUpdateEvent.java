@@ -22,48 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.block.BlockType;
+package org.spongepowered.api.event.block;
 
 /**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * Called when the redstone signal of a block is updated.
+ *
+ * <p>Note: This event should be called for all blocks, regardless of their
+ * ability to conduct redstone. This event should occur for redstone wire, as well as
+ * stone, dirt, pumpkins, and cake.</p>
  */
-public interface MutableBlockBuffer extends BlockBuffer {
+public interface BlockRedstoneUpdateEvent extends BlockUpdateEvent {
 
     /**
-     * Sets the block in the buffer at the given position.
-     * 
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param block The new block
+     * Gets the signal strength of the block prior to the update.
+     *
+     * @return The old signal strength
      */
-    void setBlock(int x, int y, int z, BlockType block);
+    int getOldSignalStrength();
 
     /**
-     * Fills the entire buffer with the given block.
-     * 
-     * @param block The block to fill with
+     * Gets the signal strength that the block will have after the update.
+     *
+     * @return The new signal strength
      */
-    void fill(BlockType block);
+    int getNewSignalStrength();
 
     /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
-     * 
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
+     * Sets the signal strength that the block will have after the update.
+     *
+     * @param newSignalStrength The new signal strength.
      */
-    void setHorizontalLayer(int y, int height, BlockType block);
-    
-    /**
-     * Returns an immutable copy of this block buffer.
-     * 
-     * @return An immutable copy
-     */
-    ImmutableBlockBuffer getImmutableClone();
+    void setNewSignalStrength(int newSignalStrength);
 
 }

@@ -22,16 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
-
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+package org.spongepowered.api.effect.sound;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * Represents a sound that can be heard on clients.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent, ItemDropEvent {
+public interface SoundType {
+
+    /**
+     * Gets the sounds name.
+     *
+     * @return The name of this sound
+     */
+    String getName();
 
 }

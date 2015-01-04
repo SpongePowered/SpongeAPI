@@ -1,5 +1,4 @@
 /*
- /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
@@ -23,11 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.world.storage;
+
+import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+
+import java.util.Iterator;
 
 /**
- * An immutable version of a {@link BlockBuffer}.
+ * A chunk iterator represents a buffer for obtaining chunk data from
+ * storage without having to explicitly load into memory all available
+ * chunks.
+ * <p>This avoid loading all chunks into memory at once, reducing the memory
+ * footprint and persistence operations.</p>
+ * <p>The chunks are loaded individually in sequence. Strong references to
+ * the chunks represented by {@link DataContainer}s should be avoided
+ * <strong>AT ALL COSTS</strong>. The data represented is a copy and
+ * therefore shouldn't be considered synchronized to live data.</p>
+ * <p>Removing is not supported <strong>AT ALL AND WILL THROW AN EXCEPTION</strong></p>
+ *
  */
-public interface ImmutableBlockBuffer extends BlockBuffer {
+public interface ChunkIterator extends Iterator<Optional<DataContainer>> {
 
 }

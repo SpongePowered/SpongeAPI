@@ -22,16 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+package org.spongepowered.api.world;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * Holds all possible {@link DimensionType}s.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent, ItemDropEvent {
+public final class DimensionTypes {
+
+    /**
+     * Represents the default dimension type of a {@link World}.
+     */
+    public static final DimensionType OVERWORLD = null;
+
+    /**
+     * Represents a nether based dimension.
+     */
+    public static final DimensionType NETHER = null;
+
+    /**
+     * Represents an "end" based dimension.
+     */ 
+    public static final DimensionType END = null;
+
+    private DimensionTypes() {}
 
 }

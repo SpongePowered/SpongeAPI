@@ -22,16 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.GameEvent;
+
+import java.util.Collection;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * Handles when any item or items are dropped on the ground.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent, ItemDropEvent {
-
+public interface ItemDropEvent extends GameEvent {
+    /**
+     * Gets the items that are being dropped.
+     *
+     * @return The dropped item entities
+     */
+    Collection<Item> getDroppedItems();
 }

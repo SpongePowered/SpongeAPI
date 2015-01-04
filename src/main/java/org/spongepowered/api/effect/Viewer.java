@@ -27,6 +27,7 @@ package org.spongepowered.api.effect;
 import com.flowpowered.math.vector.Vector3d;
 
 import org.spongepowered.api.effect.particle.ParticleEffect;
+import org.spongepowered.api.effect.sound.SoundType;
 
 /**
  * A Viewer is something that sees effects.
@@ -57,17 +58,17 @@ public interface Viewer {
     void spawnParticles(ParticleEffect particleEffect, Vector3d position, int radius);
 
     /**
-     * Plays the given {@link Sound} at the given position. All
+     * Plays the given {@link SoundType} at the given position. All
      * players within range will hear the sound with the given volume.
      *
      * @param sound The sound to play
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
      */
-    void playSound(Sound sound, Vector3d position, double volume);
+    void playSound(SoundType sound, Vector3d position, double volume);
 
     /**
-     * Plays the given {@link Sound} at the given position. All
+     * Plays the given {@link SoundType} at the given position. All
      * players within range will hear the sound with the given volume.
      *
      * @param sound The sound to play
@@ -75,10 +76,10 @@ public interface Viewer {
      * @param volume The volume to play the sound at, usually between 0 and 2
      * @param pitch The modulation of the sound to play at, usually between 0 and 2
      */
-    void playSound(Sound sound, Vector3d position, double volume, double pitch);
+    void playSound(SoundType sound, Vector3d position, double volume, double pitch);
 
     /**
-     * Plays the given {@link Sound} at the given position. All
+     * Plays the given {@link SoundType} at the given position. All
      * players within range will hear the sound with the given volume.
      *
      * @param sound The sound to play
@@ -87,6 +88,6 @@ public interface Viewer {
      * @param pitch The modulation of the sound to play at, usually between 0 and 2
      * @param minVolume The minimum volume to play the sound at, usually between 0 and 2
      */
-    void playSound(Sound sound, Vector3d position, double volume, double pitch, double minVolume);
+    void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
 
 }

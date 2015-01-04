@@ -25,8 +25,9 @@
 
 package org.spongepowered.api.world.extent;
 
-import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.world.biome.Biome;
+import com.flowpowered.math.vector.Vector3i;
+
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
  * A volume containing biomes.
@@ -45,6 +46,20 @@ public interface BiomeVolume {
      * @param position The position
      * @return The biome
      */
-    Biome getBiome(Vector3d position);
+    BiomeType getBiome(Vector3i position);
+    
+    /**
+     * Sets the biome at the given position in the world.
+     *
+     * <p>While {@code position} is a 3-dimensional position, biomes in
+     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
+     * for all the blocks in a certain column will all be the same and changing
+     * the biome of one block in a column will change the biome for the
+     * entire column.</p>
+     * 
+     * @param position The position
+     * @param biome The biome
+     */
+    void setBiome(Vector3i position, BiomeType biome);
 
 }

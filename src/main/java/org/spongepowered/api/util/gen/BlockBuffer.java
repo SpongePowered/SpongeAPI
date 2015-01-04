@@ -23,34 +23,49 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util;
+package org.spongepowered.api.util.gen;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
+
+import com.flowpowered.math.vector.Vector3i;
 
 /**
- * A data holder object allows the access of additional data on the object
- * that is not simply expressed by its basic type.
- *
- * <p>For example, a chest block, which is of the chest type, also has
- * inventory. This inventory is considered extra data, which can
- * be accessed via {@link #getData(Class)}, provided that an implementation
- * exposes that extra data.</p>
+ * An buffer for {@link BlockType} data. This buffer has no direct relation
+ * to the world and changes to it are not synchronized to the world.
  */
-public interface DataHolder {
+public interface BlockBuffer {
 
     /**
-     * Get an instance of the given data class for this block.
+     * Gets the block in the buffer at the given position.
      *
-     * <p>For example, if this block represents a sign,
-     * {@code getData(Sign.class)} would yield an instance of
-     * {@code Sign} to change the contents of the sign. However, if
-     * this block does not represent a sign, then an instance will not
-     * be returned.</p>
-     *
-     * @param dataClass The data class
-     * @param <T> The type of data
-     * @return An instance of the class
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The block
      */
-    <T> Optional<T> getData(Class<T> dataClass);
+    BlockState getBlock(int x, int y, int z);
+
+    /**
+     * Gets the minimal bound of the buffer's location.
+     *
+     * @return The minimal bound
+     */
+    Vector3i getMinBound();
+
+    /**
+     * Gets the maximal bound of the buffer's location.
+     *
+     * @return The maximal bound
+     */
+    Vector3i getMaxBound();
+
+    /**
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
+     * {@link #getMinBound()}.
+     *
+     * @return The size
+     */
+    Vector3i getSize();
 
 }

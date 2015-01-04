@@ -27,11 +27,12 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.biome.BiomeManager;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
 import java.util.Map;
@@ -141,11 +142,11 @@ public interface World extends Extent, Viewer, WeatherVolume {
     Map<String, String> getGameRules();
 
     /**
-     * Returns the {@link Environment} of this world.
+     * Returns the {@link Dimension} of this world.
      *
-     * @return The {@link Environment}
+     * @return The {@link Dimension}
      */
-    Environment getEnvironment();
+    Dimension getDimension();
 
     /**
      * Gets the random seed for this world.
@@ -167,7 +168,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();
-    
+
     /**
      * Sets the {@link WorldGenerator} for this world to use to create new
      * chunks.
@@ -177,10 +178,28 @@ public interface World extends Extent, Viewer, WeatherVolume {
     void setWorldGenerator(WorldGenerator generator);
 
     /**
-     * Gets the {@link BiomeManager} for this world.
-     * 
-     * @return The biome manager
+     * Returns whether this {@link World}'s spawn chunks remain loaded when no players are present.
+     * Note: This method will default to this {@link World}'s {@link DimensionType}'s
+     * keepLoaded value unless a plugin overrides it.
+     *
+     * @return True if {@link World} remains loaded without players, false if not
      */
-    BiomeManager getBiomeManager();
+    boolean doesKeepSpawnLoaded();
 
+    /**
+     * Sets whether this {@link World}'s spawn chunks remain loaded when no players are present.
+     * Note: This method will override the default {@link DimensionType}'s keepLoaded
+     * value.
+     *
+     * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded without players
+     */
+    void setKeepSpawnLoaded(boolean keepLoaded);
+
+    /**
+     * Gets the associated {@link WorldStorage} persisting this world.
+     *
+     * @return The associated world storage
+     */
+    WorldStorage getWorldStorage();
+    
 }

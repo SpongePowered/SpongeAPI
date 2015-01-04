@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.biome.BiomeManager;
-import org.spongepowered.api.world.extent.MutableBlockBuffer;
+import org.spongepowered.api.util.gen.ImmutableBiomeArea;
+import org.spongepowered.api.util.gen.MutableBlockBuffer;
 
 /**
  * A populator which acts directly on the {@link MutableBlockBuffer} during the
@@ -49,6 +49,6 @@ public interface GeneratorPopulator {
      * @param biomes The biomes for generation
      * @param seed The random seed
      */
-    void populate(MutableBlockBuffer buffer, int x, int y, int z, BiomeManager biomes, long seed);
+    void populate(MutableBlockBuffer buffer, int x, int y, int z, ImmutableBiomeArea biomes, long seed);
 
 }
