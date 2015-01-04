@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Location;
 
 /**
  * Raised when entities are spawned.

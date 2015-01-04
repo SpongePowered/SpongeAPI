@@ -23,28 +23,34 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.extent;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
+
 import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.extent.Extent;
 
 /**
  * A position within a particular {@link Extent}.
  *
- * <p>This class is primarily a helper class to represent a location in a
- * particular {@link Extent}. The methods provided are proxy methods to ones
- * on {@link Extent}.</p>
+ * <p>
+ * This class is primarily a helper class to represent a location in a
+ * particular {@link Extent}. The methods provided are proxy methods to ones on
+ * {@link Extent}.
+ * </p>
  *
- * <p>Each instance can be used to either represent a block or a location on
- * a continuous coordinate system. Internally, positions are stored using
- * doubles. When a block-related method is used, the components of the
- * position are each rounded to an integer.</p>
+ * <p>
+ * Each instance can be used to either represent a block or a location on a
+ * continuous coordinate system. Internally, positions are stored using doubles.
+ * When a block-related method is used, the components of the position are each
+ * rounded to an integer.
+ * </p>
  *
- * <p>Locations are immutable. Methods that change the properties of the
- * location create a new instance.</p>
+ * <p>
+ * Locations are immutable. Methods that change the properties of the location
+ * create a new instance.
+ * </p>
  */
 public class Location {
 
@@ -97,6 +103,15 @@ public class Location {
     }
 
     /**
+     * Get the world position.
+     * 
+     * @return The world position
+     */
+    public Vector3d getWorldPosition() {
+        return Extents.localToWorld(extent, position);
+    }
+
+    /**
      * Create a new instance with a new position.
      *
      * @param position The new position
@@ -104,15 +119,15 @@ public class Location {
      */
     public Location setPosition(Vector3d position) {
         checkNotNull(position);
-        if (position == getPosition()) {
+        if (position.equals(getPosition())) {
             return this;
         }
         return new Location(getExtent(), position);
     }
 
     /**
-     * Add another Vector3d to the position on this instance, returning
-     * a new Location instance.
+     * Add another Vector3d to the position on this instance, returning a new
+     * Location instance.
      *
      * @param v The vector to add
      * @return A new instance
@@ -122,8 +137,8 @@ public class Location {
     }
 
     /**
-     * Add vector components to the position on this instance, returning
-     * a new Location instance.
+     * Add vector components to the position on this instance, returning a new
+     * Location instance.
      *
      * @param x The x component
      * @param y The y component
@@ -140,7 +155,7 @@ public class Location {
      * @return The block
      */
     public BlockLoc getBlock() {
-        return getExtent().getBlock(getPosition());
+        return getExtent().getBlock(getWorldPosition());
     }
 
 }
