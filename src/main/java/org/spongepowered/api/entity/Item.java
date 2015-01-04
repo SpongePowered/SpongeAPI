@@ -26,7 +26,7 @@
 package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import javax.annotation.Nullable;
@@ -94,19 +94,19 @@ public interface Item extends Entity {
     void setInfiniteDespawnTime(boolean infinite);
 
     /**
-     * Gets the {@link Player} who threw this item, if available
+     * Gets the {@link User} who threw this item, if available
      *
      * <p>If this item was not dropped from a player's inventory,
      * then the thrower will not be available.</p>
      *
      * @return The thrower, or Optional.absent()
      */
-    Optional<Player> getThrower();
+    Optional<User> getThrower();
 
     /**
-     * Sets the {@link Player} who threw this item.
+     * Sets the {@link User} who threw this item.
      *
-     * @param thrower The player who threw this item
+     * @param thrower The user who threw this item
      */
-    void setThrower(@Nullable Player thrower);
+    void setThrower(@Nullable User thrower);
 }
