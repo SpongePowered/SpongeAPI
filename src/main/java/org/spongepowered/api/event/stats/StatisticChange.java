@@ -25,8 +25,9 @@
 
 package org.spongepowered.api.event.stats;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.stats.Statistic;
 
@@ -44,7 +45,7 @@ public final class StatisticChange {
     private Optional<Long> newValue;
 
     /**
-     * Creates a new statistic change for the given player,
+     * Creates a new statistic change for the given player.
      *
      * @param statistic The statistic that has changed
      * @param player The player whose statistic has changed
@@ -53,9 +54,9 @@ public final class StatisticChange {
      * @param newValue The new value for this statistic
      */
     public StatisticChange(final Statistic statistic, final Player player, final Type type, final Optional<Long> oldValue, final Optional<Long> newValue) {
-        Preconditions.checkNotNull(statistic, "Statistic cannot be null!");
-        Preconditions.checkNotNull(player, "Player cannot be null!");
-        Preconditions.checkNotNull(type, "Type cannot be null!");
+        checkNotNull(statistic, "Statistic cannot be null!");
+        checkNotNull(player, "Player cannot be null!");
+        checkNotNull(type, "Type cannot be null!");
         this.statistic = statistic;
         this.player = player;
         this.type = type;
