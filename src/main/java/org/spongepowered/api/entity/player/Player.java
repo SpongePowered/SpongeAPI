@@ -184,7 +184,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Gets an {@link Iterable} containing all {@link Achievement}s this player
      * has earned already.
      *
-     * @return An iterable containing all earned achievements
+     * @return An immutable iterable containing all earned achievements
      */
     Iterable<Achievement> getAchievements();
 
