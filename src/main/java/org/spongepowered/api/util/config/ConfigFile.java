@@ -24,6 +24,7 @@
  */
 
 package org.spongepowered.api.util.config;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,129 +35,134 @@ import java.util.Map.Entry;
 
 public class ConfigFile {
 
-	private File file;
-	private Config config;
+    private File file;
+    private Config config;
 
-	private ConfigFile(File file) {
-		this.file = file;
-		this.config = new Config(this.file);
-	}
+    private ConfigFile(File file) {
+        this.file = file;
+        this.config = new Config(this.file);
+    }
 
-	public void set(String path, String value) {
-		config.set(path, value);
-	}
+    public void set(String path, String value) {
+        config.set(path, value);
+    }
 
-	public void save() {
-		config.save();
-	}
+    public void save() {
+        config.save();
+    }
 
-	public File getConfigFile() {
-		return file;
-	}
+    public File getConfigFile() {
+        return file;
+    }
 
-	public Object get(String path) {
-		return config.get(path);
-	}
+    public Object get(String path) {
+        return config.get(path);
+    }
 
-	public String getString(String path) {
-		return config.getString(path);
-	}
+    public String getString(String path) {
+        return config.getString(path);
+    }
 
-	public int getInt(String path) {
-		return config.getInt(path);
-	}
+    public int getInt(String path) {
+        return config.getInt(path);
+    }
 
-	public double getDouble(String path) {
-		return config.getDouble(path);
-	}
+    public double getDouble(String path) {
+        return config.getDouble(path);
+    }
 
-	public float getFloat(String path) {
-		return config.getFloat(path);
-	}
+    public float getFloat(String path) {
+        return config.getFloat(path);
+    }
 
-	private class Config {
+    private class Config {
 
-		File file;
-		BufferedReader is;
-		OutputStream os;
-		HashMap<String, Object> data;
+        File file;
+        BufferedReader is;
+        OutputStream os;
+        HashMap<String, Object> data;
 
-		Config(File file) {
-			try {
-				this.file = file;
-				this.is = new BufferedReader(new FileReader(this.file));
-				this.os = new FileOutputStream(this.file);
+        Config(File file) {
+            try {
+                this.file = file;
+                this.is = new BufferedReader(new FileReader(this.file));
+                this.os = new FileOutputStream(this.file);
 
-				init();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+                init();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-		void set(String path, Object value) {
-			data.put(path, value);
-		}
+        void set(String path, Object value) {
+            data.put(path, value);
+        }
 
-		void save() {
-			try {
-				for (Entry<String, Object> entry : data.entrySet()) {
-					String path = entry.getKey();
-					Object value = entry.getValue();
+        void save() {
+            // TODO: Implement Tabs/Whitespaces
+            try {
+                for (Entry<String, Object> entry : data.entrySet()) {
+                    String path = entry.getKey();
+                    Object value = entry.getValue();
 
-					String s = path + ": " + value;
-					os.write(s.getBytes());
-				}
-				os.flush();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+                    String s = path + ": " + value;
+                    os.write(s.getBytes());
+                }
+                os.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-		void init() throws Exception {
-			String line;
-			while ((line = is.readLine()) != null) {
-				String[] kv = line.split(": ");
+        void init() throws Exception {
+            String line;
+            while ((line = is.readLine()) != null) {
+                line = line.trim();
+                String[] kv = line.split(": ");
+                if (kv.length == 0)
+                    kv = line.split(":");
 
-				data.put(kv[0], kv[1]);
-			}
-		}
+                if (kv.length == 2)
+                    data.put(kv[0], kv[1]);
+            }
+        }
 
-		Object get(String path) {
-			return data.get(path);
-		}
+        Object get(String path) {
+            return data.get(path);
+        }
 
-		String getString(String path) {
-			Object s = data.get(path);
-			if (s instanceof String)
-				return (String) s;
-			else
-				return "";
-		}
+        String getString(String path) {
+            Object s = data.get(path);
+            if (s instanceof String) {
+                return (String) s;
+            }
+            return "";
+        }
 
-		int getInt(String path) {
-			Object i = data.get(path);
-			if (i instanceof Integer)
-				return (int) i;
-			else
-				return 0;
-		}
+        int getInt(String path) {
+            Object i = data.get(path);
+            if (i instanceof Integer) {
+                return ((Integer) i).intValue();
+            }
+            return 0;
+        }
 
-		double getDouble(String path) {
-			Object d = data.get(path);
-			if (d instanceof Double)
-				return (double) d;
-			else
-				return 0;
-		}
+        double getDouble(String path) {
+            Object d = data.get(path);
+            if (d instanceof Double) {
+                return ((Double) d).doubleValue();
+            }
+            return 0.0;
+        }
 
-		float getFloat(String path) {
-			Object f = data.get(path);
-			if (f instanceof Float)
-				return (float) f;
-			else
-				return 0;
-		}
+        float getFloat(String path) {
+            Object f = data.get(path);
+            if (f instanceof Float) {
+                return ((Float) f).floatValue();
+            }
+            return 0;
+        }
 
-	}
+    }
 
 }
