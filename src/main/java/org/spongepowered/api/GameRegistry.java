@@ -27,6 +27,9 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.meta.BannerPatternShape;
+import org.spongepowered.api.block.meta.NotePitch;
+import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
@@ -479,5 +482,58 @@ public interface GameRegistry {
      * @throws IOException If the favicon couldn't be loaded
      */
     Favicon loadFavicon(BufferedImage image) throws IOException;
+    
+    /**
+     * Gets the {@link NotePitch} with the provided name. 
+     *
+     * @param name The name of the note pitch
+     * @return The {@link NotePitch} with the given name or Optional.absent() if not found
+     */
+    Optional<NotePitch> getNotePitch(String name);
+
+    /**
+     * Gets a {@link List} of all possible {@link NotePitch}s.
+     *
+     * @return The list of all available {@link NotePitch}s
+     */
+    List<NotePitch> getNotePitches();
+
+    /**
+     * Gets the {@link SkullType} with the provided name. 
+     *
+     * @param name The name of the skull type
+     * @return The {@link SkullType} with the given name or Optional.absent() if not found
+     */
+    Optional<SkullType> getSkullType(String name);
+
+    /**
+     * Gets a {@link List} of all possible {@link SkullType}s.
+     *
+     * @return The list of all available {@link SkullType}s
+     */
+    List<SkullType> getSkullTypes();
+
+    /**
+     * Gets the {@link BannerPatternShape} with the provided name. 
+     *
+     * @param name The name of the BannerPatternShape
+     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
+     */
+    Optional<BannerPatternShape> getBannerPatternShape(String name);
+    
+    /**
+     * Gets the {@link BannerPatternShape} with the provided name. 
+     *
+     * @param id The id of the BannerPatternShape
+     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
+     */
+    Optional<BannerPatternShape> getBannerPatternShapeById(String id);
+
+    /**
+     * Gets a {@link List} of all possible {@link BannerPatternShape}s.
+     *
+     * @return The list of all available {@link BannerPatternShape}s
+     */
+    List<BannerPatternShape> getBannerPatternShapes();
 
 }
