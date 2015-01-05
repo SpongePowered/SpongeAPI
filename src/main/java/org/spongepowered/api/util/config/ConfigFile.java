@@ -119,11 +119,13 @@ public class ConfigFile {
             while ((line = is.readLine()) != null) {
                 line = line.trim();
                 String[] kv = line.split(": ");
-                if (kv.length == 0)
+                if (kv.length == 0) {
                     kv = line.split(":");
+                }
 
-                if (kv.length == 2)
+                if (kv.length == 2) {
                     data.put(kv[0], kv[1]);
+                }
             }
         }
 
