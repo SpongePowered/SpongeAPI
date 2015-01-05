@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.player;
 
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
@@ -117,5 +118,19 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     void clearTitle();
+    
+    /**
+     * Set the player {@link GameMode}.
+     * 
+     * @param gamemode The {@link GameMode} to set
+     */
+     void setGameMode(GameMode gm);
+
+    /**
+     * Get the player {@link GameMode}.
+     * 
+     * @return gamemode The {@link GameMode} of this player
+     */
+     GameMode getGameMode();
 
 }
