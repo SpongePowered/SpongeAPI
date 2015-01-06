@@ -53,7 +53,7 @@ public final class StatisticChange {
      * @param oldValue The old value of this statistic
      * @param newValue The new value for this statistic
      */
-    public StatisticChange(final Statistic statistic, final Player player, final Type type, final Long oldValue, final Long newValue) {
+    public StatisticChange(final Statistic statistic, final Player player, final Type type, @Nullable final Long oldValue, @Nullable final Long newValue) {
         this.statistic = checkNotNull(statistic, "Statistic cannot be null!");
         this.player = checkNotNull(player, "Player cannot be null!");
         this.type = checkNotNull(type, "Type cannot be null!");
