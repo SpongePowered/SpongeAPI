@@ -41,24 +41,32 @@ public interface Minecart extends Entity {
     boolean isOnRail();
 
     /**
-     * Gets the maximum speed that this cart is
-     * allowed to travel at.
+     * Gets the absolute maximum speed that this cart is allowed to travel at.
      *
-     * <p>The Default value is 0.4.</p>
+     * <p>The default value is 0.4.</p>
      *
      * @return The maximum speed
      */
-    double getMaxSpeed();
+    double getSwiftness();
 
     /**
-     * Sets the maximum speed that this cart is
-     * allowed to travel at.
+     * Sets the absolute maximum speed that this cart is allowed to travel at.
      *
-     * <p>The Default value is 0.4.</p>
+     * <p>The default value is 0.4.</p>
      *
-     * @param maxSpeed The new max speed
+     * @param swiftness The new max speed
      */
-    void setMaxSpeed(double maxSpeed);
+    void setSwiftness(double swiftness);
+
+    /**
+     * Gets the maximum speed that this cart is allowed to travel at at the
+     * instant this method is called.
+     *
+     * <p>This differs from {@link Minecart#getSwiftness()} in that its value
+     * is affected by the block/rail beneath the cart. However, it is still
+     * impacted and limited by the cart's swiftness.</p>
+     */
+    double getPotentialMaxSpeed();
 
     /**
      * Gets whether or not the minecart slows down
