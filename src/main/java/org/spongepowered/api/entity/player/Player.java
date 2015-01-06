@@ -198,7 +198,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
 
     /**
      * Revokes the given {@link Achievement} from this player. This may also
-     * revokes dependent {@link Achievement}s or resets {@link Statistic}s that
+     * revoke dependent {@link Achievement}s or reset {@link Statistic}s that
      * are used to count for the {@link Achievement}.
      *
      * @param achievement The achievement to revoke
