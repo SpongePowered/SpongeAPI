@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.util.gen.BlockBuffer;
+import org.spongepowered.api.util.gen.MutableBlockBuffer;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.biome.BiomeManager;
-import org.spongepowered.api.world.extent.MutableBlockBuffer;
 
 import com.flowpowered.math.vector.Vector3i;
 
@@ -34,18 +34,12 @@ import com.flowpowered.math.vector.Vector3i;
  * Represents a generator for chunks into a world.
  */
 public interface WorldGenerator {
-
-    /**
-     * Gets the name of this generator.
-     * 
-     * @return The name
-     */
-    String getName();
     
     /**
      * Generates the chunk at the given position in the world. The position
      * specified is the chunk position (ie. the world position divided by the
-     * chunk size).
+     * chunk size). The newly generated chunk should be placed into the given
+     * {@link BlockBuffer}.
      * 
      * @param world The world
      * @param buffer The buffer to generate the region into
@@ -54,7 +48,8 @@ public interface WorldGenerator {
     void generateChunk(World world, MutableBlockBuffer buffer, Vector3i position);
 
     /**
-     * Gets whether map features are enabled.
+     * Gets whether map features are enabled and if this generator will be
+     * creating structures (such as villages and strongholds etc.)
      * 
      * @return Map features enabled
      */
@@ -80,17 +75,17 @@ public interface WorldGenerator {
     void insertPopulator(Populator populator, int index);
     
     /**
-     * Gets the {@link BiomeManager} for this world generator.
+     * Gets the {@link BiomeGenerator} for this world generator.
      * 
-     * @return The biome manager
+     * @return The biome generator
      */
-    BiomeManager getBiomeManager();
+    BiomeGenerator getBiomeGenerator();
     
     /**
-     * Sets the {@link BiomeManager} for this world generator.
+     * Sets the {@link BiomeGenerator} for this world generator.
      * 
-     * @param biomeManager The new biome manger
+     * @param biomeManager The new biome generator
      */
-    void setBiomeManager(BiomeManager biomeManager);
+    void setBiomeGenerator(BiomeGenerator biomeManager);
 
 }

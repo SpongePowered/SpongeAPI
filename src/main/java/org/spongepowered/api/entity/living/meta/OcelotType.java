@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
+import org.spongepowered.api.service.persistence.DataSerializable;
+
 /**
  * Represents the type of ocelot an ocelot is.
  */
-public interface OcelotType {
+public interface OcelotType extends DataSerializable {
 
     /**
      * Gets the name of this ocelot type.

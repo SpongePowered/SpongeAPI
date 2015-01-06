@@ -23,25 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.util.event.factory;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * Represents the biome at a particular location.
+ * Determines how null parameters are handled.
  */
-public interface Biome {
+public enum NullPolicy {
 
     /**
-     * Get the biome type.
-     *
-     * @return The biome type
+     * Don't perform any null checking.
      */
-    BiomeType getType();
+    DISABLE_PRECONDITIONS,
 
     /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
+     * Assume that all parameters are null unless they are annotated with
+     * {@link Nullable}.
      */
-    void replaceWith(BiomeType type);
+    NON_NULL_BY_DEFAULT,
+
+    /**
+     * Assume that all parameters are nullable unless they are annotated with
+     * {@link Nonnull}.
+     */
+    NULL_BY_DEFAULT;
 
 }

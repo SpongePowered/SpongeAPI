@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity.living.meta;
 
-public interface DyeColor {
+import org.spongepowered.api.service.persistence.DataSerializable;
+
+public interface DyeColor extends DataSerializable {
 
     /**
      * Gets the name of this color.

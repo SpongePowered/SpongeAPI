@@ -15,6 +15,12 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 ## Prerequisites
 * [Java] 6
 
+## Clone
+The following steps will ensure your project is cloned properly.  
+1. `git clone git@github.com:SpongePowered/SpongeAPI.git`  
+2. `cd SpongeAPI`  
+3. `cp scripts/pre-commit .git/hooks`
+
 ## Building
 __Note:__ If you do not have [Gradle] installed then use ./gradlew for Unix systems or Git Bash and gradlew.bat for Windows systems in place of any 'gradle' command.
 

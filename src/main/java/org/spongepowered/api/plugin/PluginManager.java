@@ -57,7 +57,7 @@ public interface PluginManager {
     Logger getLogger(PluginContainer plugin);
 
     /**
-     * Gets a {@link Collection} of all {@link PluginContainer}s
+     * Gets a {@link Collection} of all {@link PluginContainer}s.
      *
      * @return The plugins
      */

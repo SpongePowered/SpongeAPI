@@ -22,48 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.extent;
-
-import org.spongepowered.api.block.BlockType;
+package org.spongepowered.api.world;
 
 /**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * Represents a type of {@link Dimension}.
  */
-public interface MutableBlockBuffer extends BlockBuffer {
+public interface DimensionType {
 
     /**
-     * Sets the block in the buffer at the given position.
-     * 
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param block The new block
+     * Returns the name of this {@link DimensionType}.
+     *
+     * @return The name
      */
-    void setBlock(int x, int y, int z, BlockType block);
+    String getName();
 
     /**
-     * Fills the entire buffer with the given block.
-     * 
-     * @param block The block to fill with
+     * Returns whether spawn chunks of this {@link DimensionType} remain loaded when no players are present.
+     *
+     * @return True if spawn chunks of this {@link DimensionType} remain loaded without players, false if not
      */
-    void fill(BlockType block);
+    boolean doesKeepSpawnLoaded();
 
     /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
-     * 
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
-     */
-    void setHorizontalLayer(int y, int height, BlockType block);
-    
-    /**
-     * Returns an immutable copy of this block buffer.
-     * 
-     * @return An immutable copy
-     */
-    ImmutableBlockBuffer getImmutableClone();
-
+    * Returns the dimension class for this type.
+    *
+    * @return The dimension class for this type
+    */
+    Class <? extends Dimension> getDimensionClass();
 }

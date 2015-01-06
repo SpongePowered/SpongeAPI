@@ -44,7 +44,7 @@ public interface Minecart extends Entity {
      * Gets the maximum speed that this cart is
      * allowed to travel at.
      *
-     * Default value is 0.4
+     * <p>The Default value is 0.4.</p>
      *
      * @return The maximum speed
      */
@@ -54,7 +54,7 @@ public interface Minecart extends Entity {
      * Sets the maximum speed that this cart is
      * allowed to travel at.
      *
-     * Default value is 0.4
+     * <p>The Default value is 0.4.</p>
      *
      * @param maxSpeed The new max speed
      */

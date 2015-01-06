@@ -1,5 +1,4 @@
 /*
- /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
@@ -23,11 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.util.gen;
+
+import org.spongepowered.api.world.biome.BiomeType;
+
+import com.flowpowered.math.vector.Vector2i;
 
 /**
- * An immutable version of a {@link BlockBuffer}
+ * A two-dimensional buffer for {@link BiomeType} data. This buffer has no
+ * direct relation to the world and changes to it are not synchronized to the
+ * world.
  */
-public interface ImmutableBlockBuffer extends BlockBuffer {
+public interface BiomeArea {
+
+    /**
+     * Gets the {@link BiomeType} at the given location.
+     * 
+     * @param x The X position
+     * @param z The Z position
+     * @return The biome
+     */
+    BiomeType getBiome(int x, int z);
+
+    /**
+     * Gets the minimal bound of the buffer's location.
+     * 
+     * @return The minimal bound
+     */
+    Vector2i getMinBound();
+
+    /**
+     * Gets the maximal bound of the buffer's location.
+     * 
+     * @return The maximal bound
+     */
+    Vector2i getMaxBound();
+
+    /**
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} - 
+     * {@link #getMinBound()}.
+     * 
+     * @return The size
+     */
+    Vector2i getSize();
 
 }

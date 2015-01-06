@@ -23,28 +23,16 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.util.event.factory;
+
+import com.google.common.base.Function;
+
+import java.util.Map;
 
 /**
- * Holds all possible {@link Environment}s.
+ * Generates a new instance of an event using a given map of parameters.
+ *
+ * @param <E> The type of event
  */
-public final class Environments {
-
-    /**
-     * The default environment of a {@link World}.
-     */
-    public static final Environment OVERWORLD = null;
-
-    /**
-     * The environment of a nether type {@link World}.
-     */
-    public static final Environment NETHER = null;
-
-    /**
-     * Environment of the end.
-     */ 
-    public static final Environment END = null;
-
-    private Environments() {}
-
+public interface EventFactory<E> extends Function<Map<String, Object>, E> {
 }

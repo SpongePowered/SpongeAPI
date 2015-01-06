@@ -1,4 +1,5 @@
 /*
+ /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
@@ -22,22 +23,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.util.gen;
 
 /**
- * Manages the biomes for an extent.
+ * An immutable version of a {@link BlockBuffer}.
  */
-public interface BiomeManager {
-
-    /**
-     * Returns the {@link Biome} at the given coordinates within the extent.
-     * 
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The biome
-     */
-    Biome getBiome(int x, int y, int z);
+public interface ImmutableBlockBuffer extends BlockBuffer {
 
 }
