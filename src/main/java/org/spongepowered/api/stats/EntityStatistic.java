@@ -28,17 +28,18 @@ package org.spongepowered.api.stats;
 import org.spongepowered.api.entity.EntityType;
 
 /**
- * Represents a {@link Statistic} with a {@link ItemStatisticType} for an
+ * Represents a {@link Statistic} with a {@link EntityStatisticType} for an
  * {@link EntityType}.
  */
 public interface EntityStatistic extends GroupedStatistic {
 
     /**
-     * Gets the {@link ItemStatisticType} this {@link Statistic} belongs to.
+     * Gets the {@link EntityStatisticType} this {@link Statistic} belongs to.
      *
-     * @return The item statistic type this statistic belongs to
+     * @return The entity statistic type this statistic belongs to
      */
-    ItemStatisticType getType();
+    @Override
+    EntityStatisticType getType();
 
     /**
      * Gets the {@link EntityType} this {@link Statistic} measures.

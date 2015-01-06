@@ -38,6 +38,7 @@ public interface ItemStatistic extends GroupedStatistic {
      *
      * @return The item statistic type this statistic belongs to
      */
+    @Override
     ItemStatisticType getType();
 
     /**

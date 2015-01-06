@@ -38,6 +38,7 @@ public interface TeamStatistic extends GroupedStatistic {
      *
      * @return The team statistic type this statistic belongs to
      */
+    @Override
     TeamStatisticType getType();
 
     /**
