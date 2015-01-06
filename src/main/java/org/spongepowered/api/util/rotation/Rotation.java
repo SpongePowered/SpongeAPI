@@ -25,7 +25,7 @@
 package org.spongepowered.api.util.rotation;
 
 /**
- * Represents an angle of rotation
+ * Represents an angle of rotation.
  */
 public interface Rotation {
 

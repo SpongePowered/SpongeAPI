@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity;
 
 /**
- * Represents an ender crystal
+ * Represents an ender crystal.
  */
 public interface EnderCrystal extends Entity {
 

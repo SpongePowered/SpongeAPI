@@ -210,7 +210,7 @@ public class TextStyle {
     public TextStyle andNot(TextStyle... styles) {
         TextStyle[] negated = new TextStyle[styles.length];
         for (int i = 0; i < negated.length; i++) {
-           negated[i] = styles[i].negate();
+            negated[i] = styles[i].negate();
         }
         return and(negated);
     }

@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.util.command.dispatcher;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
@@ -45,8 +47,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A simple implementation of a {@link Dispatcher}.
@@ -298,7 +298,7 @@ public class SimpleDispatcher implements Dispatcher {
             passedParents.addAll(parents);
             passedParents.add(parts[0]);
 
-            mapping.get().getCallable().call(source, parts[1], Collections.unmodifiableList(passedParents));
+            mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
 
             return true;
         } else {
@@ -338,7 +338,7 @@ public class SimpleDispatcher implements Dispatcher {
             Optional<CommandMapping> mapping = get(parts[0]);
 
             if (mapping.isPresent()) {
-                mapping.get().getCallable().getSuggestions(source, parts[1]);
+                mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
             }
         }
 

@@ -57,7 +57,7 @@ public interface CommandMapping {
     Set<String> getAllAliases();
 
     /**
-     * Get the callable
+     * Gets the callable.
      *
      * @return The callable
      */

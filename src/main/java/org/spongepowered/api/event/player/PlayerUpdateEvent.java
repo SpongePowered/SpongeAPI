@@ -31,6 +31,6 @@ import org.spongepowered.api.event.entity.EntityUpdateEvent;
 /**
  * Called when a {@link Player} is updated.
  */
-public interface PlayerUpdateEvent extends EntityUpdateEvent {
+public interface PlayerUpdateEvent extends PlayerEvent, EntityUpdateEvent {
 
 }

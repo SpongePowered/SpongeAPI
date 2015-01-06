@@ -50,5 +50,12 @@ public interface ItemType extends Translatable {
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
+    
+    /**
+     * Returns the maximum damage an item can take.
+     * 
+     * @return The max damage
+     */
+    int getMaxDamage();
 
 }

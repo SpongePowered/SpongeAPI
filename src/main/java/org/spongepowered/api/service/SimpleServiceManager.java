@@ -25,16 +25,17 @@
 
 package org.spongepowered.api.service;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.MapMaker;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
-import javax.annotation.Nullable;
-import javax.inject.Inject;
 import java.util.concurrent.ConcurrentMap;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 public class SimpleServiceManager implements ServiceManager {
 

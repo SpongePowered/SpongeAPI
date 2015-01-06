@@ -25,9 +25,9 @@
 
 package org.spongepowered.api.entity.living;
 
+import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
-import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
 
@@ -187,7 +187,7 @@ public interface Living extends Entity {
     void setLeashHolder(@Nullable Entity entity);
 
     /**
-     * Gets the height of the eye (camera) of this entity
+     * Gets the height of the eye (camera) of this entity.
      *
      * @return The camera height
      */
@@ -316,4 +316,17 @@ public interface Living extends Entity {
      */
     void setCustomNameVisible(boolean visible);
 
+    /**
+     * Returns whether this entity will be persistent when no player is near.
+     *
+     * @return True if this entity is persistent
+     */
+    boolean isPersistent();
+
+    /**
+     * Sets whether this entity will be persistent when no player is near.
+     *
+     * @param persistent Whether the entity will be persistent
+     */
+    void setPersistent(boolean persistent);
 }

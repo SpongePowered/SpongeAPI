@@ -25,11 +25,13 @@
 
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
-import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.service.persistence.data.DataContainer;
 
 import java.util.Collection;
 
@@ -51,6 +53,21 @@ public interface EntityUniverse {
     Collection<Entity> getEntities();
 
     /**
+     * Return a collection of entities contained within this universe,
+     * possibly only returning entities only in loaded areas. The returned
+     * entities are filtered by the given {@link Predicate} before being
+     * returned.
+     *
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method will only return entities within those loaded
+     * parts.</p>
+     *
+     * @param filter The filter to apply to the returned entities
+     * @return A collection of filtered entities
+     */
+    Collection<Entity> getEntities(Predicate<Entity> filter);
+
+    /**
      * Create an entity instance at the given position.
      *
      * @param type The type
@@ -68,4 +85,11 @@ public interface EntityUniverse {
      */
     Optional<Entity> createEntity(EntitySnapshot snapshot, Vector3d position);
 
+    /**
+     * Create an entity instance at the given position.
+     *
+     * @param entityContainer The data container of the entity
+     * @return An entity, if one was created
+     */
+    Optional<Entity> createEntity(DataContainer entityContainer);
 }

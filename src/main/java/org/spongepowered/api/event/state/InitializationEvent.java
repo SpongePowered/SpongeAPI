@@ -28,7 +28,7 @@ package org.spongepowered.api.event.state;
 import org.spongepowered.api.GameState;
 
 /**
- * Represents the {@link GameState#INITIALIZATION} event
+ * Represents the {@link GameState#INITIALIZATION} event.
  */
 public interface InitializationEvent extends StateEvent {
 

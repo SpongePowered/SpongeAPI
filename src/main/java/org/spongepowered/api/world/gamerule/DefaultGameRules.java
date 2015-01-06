@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.world.gamerule;
 
-import java.util.List;
-
 /**
  * An enumeration of all possible GameRule names in vanilla minecraft.
  */

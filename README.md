@@ -9,11 +9,17 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Wiki]
 * [Community Chat]: #sponge on irc.esper.net
 * [Development Chat]: #spongedev on irc.esper.net
-* [Plugin Workspace Info(temporary link)]
+* [Plugin Workspace Info]
 * [Javadocs(temporary link)]
 
 ## Prerequisites
 * [Java] 6
+
+## Clone
+The following steps will ensure your project is cloned properly.  
+1. `git clone git@github.com:SpongePowered/SpongeAPI.git`  
+2. `cd SpongeAPI`  
+3. `cp scripts/pre-commit .git/hooks`
 
 ## Building
 __Note:__ If you do not have [Gradle] installed then use ./gradlew for Unix systems or Git Bash and gradlew.bat for Windows systems in place of any 'gradle' command.
@@ -36,5 +42,5 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [MIT License]: http://www.tldrlegal.com/license/mit-license
 [Community Chat]: https://webchat.esper.net/?channels=sponge
 [Development Chat]: https://webchat.esper.net/?channels=spongedev
-[Plugin Workspace Info(temporary link)]: https://github.com/SpongePowered/SpongeAPI/blob/master/pluginWorkspace.rst
+[Plugin Workspace Info]: https://docs.spongepowered.org/en/latest/plugins/workspace/
 [Javadocs(temporary link)]: http://spongepowered.github.io/SpongeAPI/

@@ -68,7 +68,7 @@ public enum Axis {
     }
 
     /**
-     * Get the Vector3d.
+     * Gets the Vector3d backing this axis.
      *
      * @return the Vector3d
      */
@@ -77,7 +77,7 @@ public enum Axis {
     }
 
     /**
-     * Get the Vector3d with the given {@link AxisDirection}.
+     * Gets the Vector3d with the given {@link AxisDirection}.
      *
      * @param axisDirection The direction along the axis.
      * @return the Vector3d

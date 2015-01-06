@@ -22,40 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity;
 
-package org.spongepowered.api.world.biome;
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.block.BlockInteractEvent;
 
 /**
- * Represents the biome at a particular location.
+ * Called when a {@link Entity} interacts with a {@link BlockLoc}.
  */
-public interface Biome {
-
-    /**
-     * Get the biome type.
-     *
-     * @return The biome type
-     */
-    BiomeType getType();
-
-    /**
-     * Get the temperature of this biome.
-     *
-     * @return The temperature
-     */
-    double getTemperature();
-
-    /**
-     * Get the humidity of this biome.
-     *
-     * @return The humidity
-     */
-    double getHumidity();
-
-    /**
-     * Replace with another biome type.
-     *
-     * @param type The new biome type
-     */
-    void replaceWith(BiomeType type);
+public interface EntityInteractBlockEvent extends EntityInteractEvent, BlockInteractEvent {
 
 }
