@@ -43,7 +43,7 @@ public interface Achievement {
     /**
      * Returns the children of this achievement.
      *
-     * @return The children of this achievement
+     * @return An immutable list of all children this achievement has
      */
     List<Achievement> getChildren();
 

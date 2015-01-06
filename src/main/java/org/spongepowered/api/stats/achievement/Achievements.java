@@ -27,7 +27,7 @@ package org.spongepowered.api.stats.achievement;
 /**
  * A list of the default achievements that are contained in Minecraft.
  */
-public class Achievements {
+public final class Achievements {
 
     public static final Achievement OPEN_INVENTORY = null;
     public static final Achievement MINE_WOOD = null;
@@ -63,5 +63,8 @@ public class Achievements {
     public static final Achievement BREED_COW = null;
     public static final Achievement DIAMONDS_TO_YOU = null;
     public static final Achievement OVERPOWERED = null;
+
+    public Achievements() {
+    }
 
 }
