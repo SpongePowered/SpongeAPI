@@ -592,7 +592,7 @@ public final class SpongeEventFactory {
         return createEvent(AchievementEvent.class, values);
     }
 
-    public static StatisticChangeEvent createAchievementEvent(Collection<StatisticChange> statisticChanges) {
+    public static StatisticChangeEvent createStatisticChangeEvent(Collection<StatisticChange> statisticChanges) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("statisticChanges", statisticChanges);
         return createEvent(StatisticChangeEvent.class, values);
