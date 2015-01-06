@@ -65,7 +65,7 @@ public interface Scheduler {
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param interval The interval between runs
+     * @param interval The interval between runs (in ticks)
      *
      * @return The scheduled task, if successful
      */
@@ -77,7 +77,7 @@ public interface Scheduler {
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param interval The interval between runs
+     * @param interval The interval between runs (in ticks)
      * @param delay The delay in ticks
      *
      * @return The scheduled task, if successful
