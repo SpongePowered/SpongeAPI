@@ -37,7 +37,7 @@ public interface StatisticChangeEvent extends Event {
     /**
      * Gets an {@link Iterable} containing all {@link StatisticChange}s.
      *
-     * @return An iterable containing all changes to statistics.
+     * @return An iterable containing all changes to statistics
      */
     Iterable<StatisticChange> getStatisticChanges();
 
