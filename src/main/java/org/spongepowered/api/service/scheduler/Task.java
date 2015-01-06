@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service.scheduler;
 
 import org.spongepowered.api.plugin.PluginContainer;
@@ -31,14 +30,10 @@ import org.spongepowered.api.util.Identifiable;
 /**
  * Represents a task that has been scheduled.
  */
-public interface Task extends Identifiable {
 
-    /**
-     * Gets the name of this task.
-     *
-     * @return The name of the task
-     */
-    String getName();
+// WIP
+
+public interface Task extends Identifiable {
 
     /**
      * Returns the plugin that scheduled this task.
