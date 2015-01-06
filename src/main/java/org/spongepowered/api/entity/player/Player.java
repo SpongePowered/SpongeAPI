@@ -136,7 +136,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * statistics that does not have a value set yet.
      *
      * @return An immutable map containing all statistics with their current
-     *         values.
+     *         values
      */
     Map<Statistic, Long> getStatistics();
 
