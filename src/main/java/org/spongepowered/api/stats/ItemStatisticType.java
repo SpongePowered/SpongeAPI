@@ -30,5 +30,5 @@ import org.spongepowered.api.item.ItemType;
 /**
  * Represents a type of {@link Statistic}s for {@link ItemType}s.
  */
-public interface ItemStatisticType {
+public interface ItemStatisticType extends StatisticType {
 }

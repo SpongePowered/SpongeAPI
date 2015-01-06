@@ -50,9 +50,11 @@ import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.stats.EntityStatistic;
 import org.spongepowered.api.stats.EntityStatisticType;
+import org.spongepowered.api.stats.GroupedStatistic;
 import org.spongepowered.api.stats.ItemStatistic;
 import org.spongepowered.api.stats.ItemStatisticType;
 import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.StatisticType;
 import org.spongepowered.api.stats.Statistics;
 import org.spongepowered.api.stats.TeamStatistic;
 import org.spongepowered.api.stats.TeamStatisticType;
@@ -383,7 +385,7 @@ public interface GameRegistry {
      * @param id The id of the statistic to return
      * @return The statistic with the given id or Optional.absent() if not found
      */
-    Optional<Statistic> getStatistic(String id);
+    Optional<? extends Statistic> getStatistic(String id);
 
     /**
      * Gets the {@link Statistic} for the given {@link EntityStatisticType} and
@@ -394,7 +396,7 @@ public interface GameRegistry {
      * @return The entity statistic matching the filter or Optional.absent() if
      *         not found
      */
-    Optional<EntityStatistic> getEntityStatistic(EntityStatisticType statisticType, EntityType entityType);
+    Optional<? extends EntityStatistic> getEntityStatistic(EntityStatisticType statisticType, EntityType entityType);
 
     /**
      * Gets the {@link Statistic} for the given {@link ItemStatisticType} and
@@ -405,7 +407,7 @@ public interface GameRegistry {
      * @return The item statistic matching the filter or Optional.absent() if
      *         not found
      */
-    Optional<ItemStatistic> getItemStatistic(ItemStatisticType statisticType, ItemType itemType);
+    Optional<? extends ItemStatistic> getItemStatistic(ItemStatisticType statisticType, ItemType itemType);
 
     /**
      * Gets the {@link Statistic} for the given {@link TeamStatisticType} and
@@ -416,22 +418,32 @@ public interface GameRegistry {
      * @return The team statistic matching the filter or Optional.absent() if
      *         not found
      */
-    Optional<TeamStatistic> getTeamStatistic(TeamStatisticType statisticType, TextColor teamColor);
+    Optional<? extends TeamStatistic> getTeamStatistic(TeamStatisticType statisticType, TextColor teamColor);
 
     /**
      * Gets a list of all available {@link Statistic}s that are not grouped.
      *
-     * @return A list containing all statistics in registry that are not grouped
+     * @return An immutable collection containing all statistics in registry
+     *         that are not grouped
      * @see Statistics
      */
-    Collection<Statistic> getSimpleStatistics();
+    Collection<? extends Statistic> getSimpleStatistics();
 
     /**
-     * Gets a list of all available {@link Statistic}s.
+     * Gets a list of all available {@link GroupedStatistic}s with the given
+     * {@link StatisticType}.
      *
-     * @return A list containing all statistics in registry
+     * @param statisticType The statisticType to return
+     * @return An immutable collection containing all statistics in registry
      */
-    Collection<Statistic> getStatistics();
+    Collection<? extends GroupedStatistic> getStatistics(StatisticType statisticType);
+
+    /**
+     * Gets a collection of all available {@link Statistic}s.
+     *
+     * @return An immutable collection containing all statistics in registry
+     */
+    Collection<? extends Statistic> getStatistics();
 
     /**
      * Gets the {@link DimensionType} with the provided name. 

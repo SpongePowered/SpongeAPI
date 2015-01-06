@@ -25,26 +25,17 @@
 
 package org.spongepowered.api.stats;
 
-import org.spongepowered.api.text.format.TextColor;
-
 /**
- * Represents a {@link Statistic} with a {@link TeamStatisticType} for a team's
- * {@link TextColor}.
+ * Represents a grouped {@link Statistic} with a {@link StatisticType} that
+ * defines the grouping criteria.
  */
-public interface TeamStatistic extends GroupedStatistic {
+public interface GroupedStatistic extends Statistic {
 
     /**
-     * Gets the {@link TeamStatisticType} this {@link Statistic} belongs to.
+     * Gets the {@link StatisticType} this {@link Statistic} belongs to.
      *
-     * @return The team statistic type this statistic belongs to
+     * @return The statistic type this statistic belongs to
      */
-    TeamStatisticType getType();
-
-    /**
-     * Gets the team's {@link TextColor} this {@link Statistic} measures.
-     *
-     * @return The team's text color this statistic measures
-     */
-    TextColor getTeamColor();
+    StatisticType getType();
 
 }

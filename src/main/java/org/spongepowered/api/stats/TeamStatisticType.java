@@ -28,5 +28,5 @@ package org.spongepowered.api.stats;
 /**
  * Represents a type of {@link Statistic}s for teams.
  */
-public interface TeamStatisticType {
+public interface TeamStatisticType extends StatisticType {
 }

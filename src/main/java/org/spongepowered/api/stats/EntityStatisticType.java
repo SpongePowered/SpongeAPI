@@ -30,5 +30,5 @@ import org.spongepowered.api.entity.EntityType;
 /**
  * Represents a type of {@link Statistic}s for {@link EntityType}s.
  */
-public interface EntityStatisticType {
+public interface EntityStatisticType extends StatisticType {
 }

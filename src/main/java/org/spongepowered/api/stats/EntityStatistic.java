@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.EntityType;
  * Represents a {@link Statistic} with a {@link ItemStatisticType} for an
  * {@link EntityType}.
  */
-public interface EntityStatistic extends Statistic {
+public interface EntityStatistic extends GroupedStatistic {
 
     /**
      * Gets the {@link ItemStatisticType} this {@link Statistic} belongs to.
