@@ -66,7 +66,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<RepeatingTask> runRepeatingTask(Object plugin, Runnable task, long interval);
+    Optional<Task> runRepeatingTask(Object plugin, Runnable task, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -79,7 +79,7 @@ public interface Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<RepeatingTask> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
+    Optional<Task> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
 
     /**
      * Retrieves a scheduled or running task by its unique ID.
