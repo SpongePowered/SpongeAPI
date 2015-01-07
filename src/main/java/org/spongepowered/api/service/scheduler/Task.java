@@ -50,6 +50,13 @@ public interface Task extends Identifiable {
     long getDelay();
 
     /**
+     * Gets the interval period of the task in ticks.
+     *
+     * @return The period of the task in ticks.
+     */
+    long getInterval();
+
+    /**
      * Cancels the task, if it has not already run.
      *
      * @return If the task was cancelled
