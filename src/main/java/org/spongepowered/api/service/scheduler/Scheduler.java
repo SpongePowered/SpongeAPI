@@ -34,8 +34,6 @@ import java.util.UUID;
  * The base scheduler that schedules tasks.
  */
 
-// WIP
-
 public interface Scheduler {
 
     /**
