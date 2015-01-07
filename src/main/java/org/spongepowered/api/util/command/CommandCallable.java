@@ -50,7 +50,6 @@ public interface CommandCallable extends CommandCompleter {
      *                the root command
      * @return Whether a command was processed
      * @throws CommandException Thrown on a command error
-     * @throws CommandAuthorizationException Thrown on unauthorized command execution
      */
     boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
 

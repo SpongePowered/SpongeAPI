@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.command;
+package org.spongepowered.api.util.command;
 
 import javax.annotation.Nullable;
 
@@ -34,6 +34,7 @@ import javax.annotation.Nullable;
 public class CommandAuthorizationException extends CommandException {
 
     private static final long serialVersionUID = 6013332030938687625L;
+    private static String defaultMessage = "You do not have the permission to use this command!";
     private final CommandCallable command;
     private final String permissionNode;
 
@@ -43,7 +44,7 @@ public class CommandAuthorizationException extends CommandException {
      * @param permissionNode The permission node missing
      */
     public CommandAuthorizationException(String permissionNode, CommandCallable command) {
-        this(null, permissionNode, command);
+        this(defaultMessage, permissionNode, command);
     }
 
     /**
