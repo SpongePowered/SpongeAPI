@@ -1,3 +1,4 @@
+
 /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
@@ -22,18 +23,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.service.scheduler;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
 
 /**
  * Represents a task that has been scheduled.
  */
-
-// WIP
-
 public interface Task extends Identifiable {
+
+    /**
+     * Gets the name of this task.
+     *
+     * @return The name of the task
+     */
+    Optional<String> getName();
 
     /**
      * Returns the plugin that scheduled this task.
@@ -47,14 +54,14 @@ public interface Task extends Identifiable {
      *
      * @return The delay
      */
-    long getDelay();
+    Optional<Long> getDelay();
 
     /**
-     * Gets the interval period of the task in ticks.
+     * Gets the interval for repeating tasks in ticks.
      *
-     * @return The period of the task in ticks.
+     * @return The interval (period) in ticks.
      */
-    long getInterval();
+    Optional<Long> getInterval();
 
     /**
      * Cancels the task, if it has not already run.
