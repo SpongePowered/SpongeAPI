@@ -33,7 +33,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class ClassGeneratorProvider implements FactoryProvider {
 
-    private final LocalClassLoader classLoader = new LocalClassLoader();
+    private final LocalClassLoader classLoader = new LocalClassLoader(ClassGeneratorProvider.class.getClassLoader());
     private final ClassGenerator builder = new ClassGenerator();
     private final String targetPackage;;
 
@@ -90,6 +90,10 @@ public class ClassGeneratorProvider implements FactoryProvider {
      * Class loader to use to call {@link #defineClass(String, byte[])}.
      */
     private static class LocalClassLoader extends ClassLoader {
+        public LocalClassLoader(ClassLoader parent) {
+            super(parent);
+        }
+
         public Class<?> defineClass(String name, byte[] b) {
             return defineClass(name, b, 0, b.length);
         }
