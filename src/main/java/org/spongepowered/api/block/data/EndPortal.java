@@ -25,11 +25,9 @@
 
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
-
 /**
  * Represents an End Portal.
  */
-public interface EndPortal extends DataSerializable {
+public interface EndPortal extends Tile {
 
 }

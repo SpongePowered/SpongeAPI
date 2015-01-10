@@ -28,7 +28,6 @@ package org.spongepowered.api.block.data;
 import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.block.meta.SkullTypes;
 import org.spongepowered.api.entity.player.User;
-import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Direction;
 
 import com.google.common.base.Optional;
@@ -36,7 +35,7 @@ import com.google.common.base.Optional;
 /**
  * Represents a skull.
  */
-public interface Skull extends DataSerializable {
+public interface Skull extends Tile {
 
     /**
      * Gets the rotation of the skull.

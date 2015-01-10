@@ -25,11 +25,9 @@
 
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
-
 /**
  * Represents an Ender Chest.
  */
-public interface EnderChest extends DataSerializable {
+public interface EnderChest extends Tile {
 
 }

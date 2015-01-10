@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
-
 /**
  * Represents a Redstone Comparator.
  */
-public interface Comparator extends DataSerializable {
+public interface Comparator extends Tile {
 
     /**
      * Gets the output signal strength.
@@ -37,12 +35,12 @@ public interface Comparator extends DataSerializable {
      * @return The signal strength
      */
     int getOutputSignal();
-    
+
     /**
      * Sets the output signal strength.
      * 
      * @param signal The new signal strength
      */
     void setOutputSignal(int signal);
-    
+
 }

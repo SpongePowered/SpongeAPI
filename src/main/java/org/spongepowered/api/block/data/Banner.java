@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.block.data;
 
+import java.util.List;
+
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.entity.living.meta.DyeColor;
 import org.spongepowered.api.service.persistence.DataSerializable;
 
-import java.util.List;
-
 /**
  * Represents a Banner.
  */
-public interface Banner extends DataSerializable {
+public interface Banner extends Tile {
 
     /**
      * Gets the base color of this banner.

@@ -25,11 +25,9 @@
 
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
-
 /**
  * Represents an Enchantment Table.
  */
-public interface EnchantmentTable extends DataSerializable {
+public interface EnchantmentTable extends Tile {
 
 }

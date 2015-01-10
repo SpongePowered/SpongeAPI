@@ -25,13 +25,12 @@
 
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.text.message.Message;
 
 /**
  * Represents for a Sign.
  */
-public interface Sign extends DataSerializable {
+public interface Sign extends Tile {
 
     /**
      * Gets all lines of text on the sign.

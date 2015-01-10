@@ -25,11 +25,9 @@
 
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
-
 /**
  * Represents a DaylightDetector.
  */
-public interface DaylightDetector extends DataSerializable {
+public interface DaylightDetector extends Tile {
 
 }

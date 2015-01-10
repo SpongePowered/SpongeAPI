@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -33,7 +32,7 @@ import com.google.common.base.Optional;
 /**
  * Represents a Command Block
  */
-public interface CommandBlock extends DataSerializable, CommandSource {
+public interface CommandBlock extends Tile, CommandSource {
 
     /**
      * Gets the currently stored command.

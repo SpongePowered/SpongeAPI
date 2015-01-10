@@ -28,7 +28,6 @@ package org.spongepowered.api.block.data;
 import java.util.Collection;
 
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.util.WeightedRandomEntity;
 
@@ -37,7 +36,7 @@ import com.google.common.base.Optional;
 /**
  * Represents a Monster Spawner.
  */
-public interface MobSpawner extends DataSerializable {
+public interface MobSpawner extends Tile {
 
     /**
      * Gets the remaining delay until the next batch of monsters is spawned.
