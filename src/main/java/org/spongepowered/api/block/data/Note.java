@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.block.data;
 
+import org.spongepowered.api.block.meta.NotePitch;
+
 /**
  * Represents a note block.
  */
@@ -35,13 +37,13 @@ public interface Note extends Tile {
      * 
      * @return The note
      */
-    byte getNote();
+    NotePitch getNote();
 
     /**
      * Sets the note to be played by this note block.
      * 
      * @param note The new note
      */
-    void setNote(byte note);
+    void setNote(NotePitch note);
 
 }

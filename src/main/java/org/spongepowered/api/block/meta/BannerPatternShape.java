@@ -37,7 +37,7 @@ public interface BannerPatternShape {
     String getName();
     
     /**
-     * Gets the id for this pattern shape
+     * Gets the id for this pattern shape.
      * 
      * @return The id
      */

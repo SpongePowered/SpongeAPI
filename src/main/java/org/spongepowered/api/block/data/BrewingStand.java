@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.data;
 
 /**
- * Represents a Brewing Stand
+ * Represents a Brewing Stand.
  */
 public interface BrewingStand extends Lockable {
 
@@ -43,6 +43,6 @@ public interface BrewingStand extends Lockable {
      * 
      * @param time The new remaining time, in ticks
      */
-    void setRemainingBrewTile(int time);
+    void setRemainingBrewTime(int time);
 
 }

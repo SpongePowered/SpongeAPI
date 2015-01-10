@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.block.data;
 
+import com.google.common.base.Optional;
+
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.CommandSource;
 
-import com.google.common.base.Optional;
-
 /**
- * Represents a Command Block
+ * Represents a Command Block.
  */
 public interface CommandBlock extends Tile, CommandSource {
 

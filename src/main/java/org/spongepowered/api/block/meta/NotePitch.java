@@ -25,13 +25,15 @@
 
 package org.spongepowered.api.block.meta;
 
+import org.spongepowered.api.block.data.Note;
+
 /**
- * Represents a type of skull.
+ * Represents a NotePitch which may be played by a {@link Note} block.
  */
-public interface SkullType {
+public interface NotePitch {
 
     /**
-     * Gets the id of this skull.
+     * Gets the id of this {@link NotePitch}.
      * 
      * @return The id
      */

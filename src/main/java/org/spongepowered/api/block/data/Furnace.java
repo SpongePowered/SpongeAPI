@@ -47,8 +47,6 @@ public interface Furnace extends Lockable {
     /**
      * Gets the remaining time until the next item is cooked.
      * 
-     * TODO two options here
-     * 
      * @return The remaining time, in ticks
      */
     int getRemainingCookTime();

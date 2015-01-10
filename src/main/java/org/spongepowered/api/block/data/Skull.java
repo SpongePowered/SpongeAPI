@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.block.data;
 
+import com.google.common.base.Optional;
+
+import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.block.meta.SkullTypes;
-import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.util.Direction;
-
-import com.google.common.base.Optional;
 
 /**
  * Represents a skull.
@@ -61,11 +61,11 @@ public interface Skull extends Tile {
 
     /**
      * If the type of the skull is {@link SkullTypes#PLAYER} then this will
-     * return the associated {@link User}.
+     * return the associated {@link GameProfile}.
      * 
      * @return The player
      */
-    Optional<User> getPlayer();
+    Optional<GameProfile> getPlayer();
 
     /**
      * Sets the player associated with this skull. Also ensures that
@@ -74,7 +74,7 @@ public interface Skull extends Tile {
      * 
      * @param player The new player
      */
-    void setPlayer(User player);
+    void setPlayer(GameProfile player);
 
     /**
      * Gets the type of skull.

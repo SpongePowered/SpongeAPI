@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.block.data;
 
+import com.google.common.base.Optional; 
+
 import org.spongepowered.api.potion.PotionEffectType;
 
 /**
- * Represents a Beacon.
+ * Represents a Beacon. 
  */
 public interface Beacon extends Lockable {
 
@@ -36,7 +38,7 @@ public interface Beacon extends Lockable {
      * 
      * @return The primary effect
      */
-    PotionEffectType getPrimaryEffect();
+    Optional<PotionEffectType> getPrimaryEffect();
 
     /**
      * Sets the primary effect for this beacon.
@@ -50,7 +52,7 @@ public interface Beacon extends Lockable {
      * 
      * @return The secondary effect
      */
-    PotionEffectType getSecondaryEffect();
+    Optional<PotionEffectType> getSecondaryEffect();
 
     /**
      * Sets the secondary effect for this beacon.
@@ -58,6 +60,11 @@ public interface Beacon extends Lockable {
      * @param effect The new secondary effect
      */
     void setSecondaryEffect(PotionEffectType effect);
+    
+    /**
+     * Clears all selected potion effects for this beacon.
+     */
+    void clearEffects();
 
     /**
      * Gets the number of completed levels of valid beacon structure blocks

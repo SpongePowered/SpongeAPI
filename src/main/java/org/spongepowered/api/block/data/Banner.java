@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.block.data;
 
-import java.util.List;
-
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.entity.living.meta.DyeColor;
 import org.spongepowered.api.service.persistence.DataSerializable;
+
+import java.util.List;
 
 /**
  * Represents a Banner.
@@ -74,7 +74,7 @@ public interface Banner extends Tile {
      * @param patternShape The pattern shape
      * @param color The layer color
      */
-    void addPatternLayer(BannerPatternShape patternShape, int color);
+    void addPatternLayer(BannerPatternShape patternShape, DyeColor color);
 
     /**
      * A representation on a single layer of a {@link Banner}'s pattern.

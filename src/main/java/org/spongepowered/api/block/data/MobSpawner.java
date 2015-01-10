@@ -25,13 +25,13 @@
 
 package org.spongepowered.api.block.data;
 
-import java.util.Collection;
-
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.util.WeightedRandomEntity;
 
-import com.google.common.base.Optional;
+import java.util.Collection;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a Monster Spawner.
@@ -182,9 +182,9 @@ public interface MobSpawner extends Tile {
      * Sets the next entity type and properties to be spawned.
      * 
      * @param type The entity type
-     * @param additionalProperties Additional properties to apply to the entity
+     * @param additionalProperties Additional properties to apply to the entity, may be null
      */
-    void setNextEntityToSpawn(EntityType type, Optional<DataContainer> additionalProperties);
+    void setNextEntityToSpawn(EntityType type, @Nullable DataContainer additionalProperties);
 
     /**
      * Sets the next {@link WeightedRandomEntity} to be spawned.
@@ -200,6 +200,14 @@ public interface MobSpawner extends Tile {
      * @param entities The possible entities
      */
     void setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
+
+    /**
+     * Defines a number of {@link WeightedRandomEntity}s from which the type of
+     * each batch will be randomly selected based on the weighting value.
+     * 
+     * @param entities The possible entities
+     */
+    void setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
 
     /**
      * Gets the collection of {@link WeightedRandomEntity} from which the type
