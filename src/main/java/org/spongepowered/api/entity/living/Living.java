@@ -159,34 +159,6 @@ public interface Living extends Entity {
     void setLastAttacker(@Nullable Living lastAttacker);
 
     /**
-     * Returns whether this entity is leashed.
-     *
-     * @return True if this entity is leashed
-     */
-    boolean isLeashed();
-
-    /**
-     * Sets whether this entity is leashed or not.
-     *
-     * @param leashed Whether this entity is leashed or not
-     */
-    void setLeashed(boolean leashed);
-
-    /**
-     * Gets the holder of this leashed entity, if available.
-     *
-     * @return The leash holder, if available
-     */
-    Optional<Entity> getLeashHolder();
-
-    /**
-     * Sets the holder of this leashed entity.
-     *
-     * @param entity The entity to hold the leash
-     */
-    void setLeashHolder(@Nullable Entity entity);
-
-    /**
      * Gets the height of the eye (camera) of this entity.
      *
      * @return The camera height
@@ -271,20 +243,6 @@ public interface Living extends Entity {
     void setMaxInvulnerabilityTicks(int ticks);
 
     /**
-     * Returns whether this living entity can pick up items.
-     *
-     * @return Whether this entity can pick up items
-     */
-    boolean getCanPickupItems();
-
-    /**
-     * Sets whether this entity can pick up items or not.
-     *
-     * @param canPickupItems Whether this entity can pick up items
-     */
-    void setCanPickupItems(boolean canPickupItems);
-
-    /**
      * Gets the custom display name of this entity.
      * <p>Custom names may appear overhead or when in the line of sight
      * of a player.</p>
@@ -315,18 +273,4 @@ public interface Living extends Entity {
      * @param visible Whether the custom name is visible
      */
     void setCustomNameVisible(boolean visible);
-
-    /**
-     * Returns whether this entity will be persistent when no player is near.
-     *
-     * @return True if this entity is persistent
-     */
-    boolean isPersistent();
-
-    /**
-     * Sets whether this entity will be persistent when no player is near.
-     *
-     * @param persistent Whether the entity will be persistent
-     */
-    void setPersistent(boolean persistent);
 }

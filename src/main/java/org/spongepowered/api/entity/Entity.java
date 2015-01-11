@@ -198,4 +198,18 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @return The delay before catching fire
      */
     int getFireDelay();
+
+    /**
+     * Returns whether this entity will be persistent when no player is near.
+     *
+     * @return True if this entity is persistent
+     */
+    boolean isPersistent();
+
+    /**
+     * Sets whether this entity will be persistent when no player is near.
+     *
+     * @param persistent Whether the entity will be persistent
+     */
+    void setPersistent(boolean persistent);
 }

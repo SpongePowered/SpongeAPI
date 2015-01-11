@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 /**
  * Represents a HumanEntity in game, such as {@link org.spongepowered.api.entity.player.Player}
  */
-public interface Human extends Agent, ProjectileSource {
+public interface Human extends Living, ProjectileSource {
 
     /**
      * Gets the hunger value of this human entity.
