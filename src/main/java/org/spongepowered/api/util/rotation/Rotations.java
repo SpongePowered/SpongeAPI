@@ -34,8 +34,6 @@ import java.util.List;
  * an {@link org.spongepowered.api.entity.hanging.ItemFrame}.
  */
 public final class Rotations {
-    private Rotations() {
-    }
 
     public static final Rotation TOP = null;
     public static final Rotation TOP_RIGHT = null;
@@ -46,12 +44,6 @@ public final class Rotations {
     public static final Rotation LEFT = null;
     public static final Rotation TOP_LEFT = null;
 
-    public static List<Rotation> getValues() {
-        return null;
+    private Rotations() {
     }
-
-    public static Optional<Rotation> getRotationForDegree(int degrees) {
-        return Optional.absent();
-    }
-
 }

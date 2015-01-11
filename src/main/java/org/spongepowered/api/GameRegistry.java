@@ -48,6 +48,7 @@ import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 
@@ -382,5 +383,20 @@ public interface GameRegistry {
      * @return The list of all available {@link DimensionType}s
      */
     List<DimensionType> getDimensionTypes();
+
+    /**
+     * Gets the {@link Rotation} with the provided degrees.
+     *
+     * @param degrees The degrees of the rotation
+     * @return The {@link Rotation} with the given degrees or Optional.absent() if not found
+     */
+    Optional<Rotation> getRotationFromDegree(int degrees);
+
+    /**
+     * Gets a {@link List} of all possible {@link Rotation}s.
+     *
+     * @return The list of all available {@link Rotation}s
+     */
+    List<Rotation> getRotations();
 
 }
