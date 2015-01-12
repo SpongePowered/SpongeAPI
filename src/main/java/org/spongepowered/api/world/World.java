@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.service.permission.context.Contextual;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -40,7 +41,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, Viewer, WeatherVolume {
+public interface World extends Extent, Viewer, WeatherVolume, Contextual {
 
     /**
      * Gets the unique identifier for this world.
@@ -81,7 +82,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
     /**
      * Deletes the given chunk from the world. Returns a {@code boolean}
      * flag for whether the operation was successful.
-     * 
+     *
      * @param chunk The chunk to delete
      * @return Whether the operation was successful
      */
@@ -89,9 +90,9 @@ public interface World extends Extent, Viewer, WeatherVolume {
 
     /**
      * Returns a Collection of all actively loaded chunks in this world.
-     * 
+     *
      * <p>The ordering of the returned chunks is undefined.</p>
-     * 
+     *
      * @return The loaded chunks
      */
     Iterable<Chunk> getLoadedChunks();
@@ -149,21 +150,21 @@ public interface World extends Extent, Viewer, WeatherVolume {
 
     /**
      * Gets the random seed for this world.
-     * 
+     *
      * @return The seed
      */
     long getWorldSeed();
-    
+
     /**
      * Sets the random seed for this world.
-     * 
+     *
      * @param seed The seed
      */
     void setSeed(long seed);
 
     /**
      * Gets the {@link WorldGenerator} for this world.
-     * 
+     *
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();
@@ -171,7 +172,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
     /**
      * Sets the {@link WorldGenerator} for this world to use to create new
      * chunks.
-     * 
+     *
      * @param generator The new generator
      */
     void setWorldGenerator(WorldGenerator generator);
@@ -200,5 +201,5 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @return The associated world storage
      */
     WorldStorage getWorldStorage();
-    
+
 }

@@ -22,42 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.service.permission.context;
 
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
+
+import java.util.Set;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * RCON clients, web-based clients, command blocks, and so on.</p>
+ * Calculate the availability of contexts. These methods may be invoked
+ * frequently, and therefore should be fast.
  */
-public interface CommandSource extends Subject {
+public interface ContextCalculator {
+    /**
+     * Add any contexts this calculator determines to be applicable to the
+     * provided accumulator.
+     *
+     * @param subject The subject being checked
+     * @param accumulator The accumulator to add to
+     */
+    void accumulateContexts(Subject subject, Set<Context> accumulator);
 
     /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
+     * Checks if a single context is currently applicable to a single subject.
+     * If this calculator does not handle the given type of context, this method
+     * should return false.
      *
-     * @param messages The message(s)
+     * @param context The context being checked
+     * @param subject The subject this context is being checked against
+     * @return Whether the given context is handled by this calculator and is
+     *         applicable to the given subject
      */
-    void sendMessage(String... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(Message... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Message> messages);
-
+    boolean matches(Context context, Subject subject);
 }

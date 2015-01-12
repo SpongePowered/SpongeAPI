@@ -22,27 +22,68 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service.permission;
 
-import com.google.common.annotations.Beta;
-import org.spongepowered.api.entity.player.Player;
+import com.google.common.base.Optional;
+import org.spongepowered.api.service.permission.context.ContextCalculator;
+
+import java.util.Map;
+
 
 /**
- * Returns {@link Subject}s that can be used to test permission.
+ * Represents a provider for permissions. This is the interface that a
+ * permissions plugin must implement to provide permissions for a user.
  */
 public interface PermissionService {
+    static final String SUBJECTS_USER = "user";
+    static final String SUBJECTS_GROUP = "group";
 
     /**
-     * Return a subject for the given player.
+     * Returns the permissions level that describes users. User identifiers are
+     * expected to be UUIDs in RFC4122 string format (This *does* have dashes.
+     * Mojang is stupid).
      *
-     * <p>This method is subject to change because some sort of
-     * "user" object may be introduced.</p>
-     *
-     * @param player The player
-     * @return A subject
+     * @return A subject collection for users
      */
-    @Beta
-    Subject login(Player player);
+    SubjectCollection getUserSubjects();
 
+    /**
+     * Returns the collection of group subjects available.
+     *
+     * @return A collection managing group subjects
+     */
+    SubjectCollection getGroupSubjects();
+
+    /**
+     * This is a transient data object that contains data that will be applied
+     * by default to all subjects.
+     *
+     * @return The default data object, which will accept modifications but which is transient
+     */
+    SubjectData getDefaultData();
+
+    /**
+     * Returns a subject collection with the given identifier.
+     *
+     * @param identifier The identifier
+     * @return a subject collection, or null if this permission service does not
+     *          support alternate subject collections.
+     */
+    Optional<SubjectCollection> getSubjects(String identifier);
+
+    /**
+     * Returns an immutable copy of the mapping of all subject collections
+     * stored by this permission service.
+     *
+     * @return The known subjects for this map
+     */
+    Map<String, SubjectCollection> getKnownSubjects();
+
+    /**
+     * Register a function that calculates contexts relevant to a given user at
+     * the time the function is called.
+     *
+     * @param calculator The context calculator to register
+     */
+    void registerContextCalculator(ContextCalculator calculator);
 }
