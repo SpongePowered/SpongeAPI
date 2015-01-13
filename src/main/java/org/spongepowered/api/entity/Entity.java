@@ -152,20 +152,6 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     float getScale();
 
     /**
-     * Returns whether this entity is rendered invisible.
-     *
-     * @return Whether this entity is invisible
-     */
-    boolean isInvisible();
-
-    /**
-     * Sets whether this entity is invisible or not.
-     *
-     * @param invisible Whether this entity is invisible or not
-     */
-    void setInvisible(boolean invisible);
-
-    /**
      * Returns whether this entity is on the ground (not in the air) or not.
      *
      * @return Whether this entity is on the ground or not
