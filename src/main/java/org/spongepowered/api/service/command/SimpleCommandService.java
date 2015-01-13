@@ -42,6 +42,7 @@ import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.ImmutableCommandMapping;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
@@ -61,7 +62,7 @@ public class SimpleCommandService implements CommandService {
 
     private final PluginManager pluginManager;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();
-    private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
+    private final Multimap<PluginContainer, ImmutableCommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
     @Inject
@@ -83,17 +84,17 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
+    public Optional<ImmutableCommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
         return register(plugin, callable, Arrays.asList(alias));
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
+    public Optional<ImmutableCommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
         return register(plugin, callable, aliases, Functions.<List<String>>identity());
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
+    public Optional<ImmutableCommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
                                              Function<List<String>, List<String>> callback) {
         checkNotNull(plugin);
 
@@ -114,7 +115,7 @@ public class SimpleCommandService implements CommandService {
                 aliasesWithPrefix.add(container.getId() + ":" + alias);
             }
 
-            Optional<CommandMapping> mapping = dispatcher.register(callable, aliasesWithPrefix, callback);
+            Optional<ImmutableCommandMapping> mapping = dispatcher.register(callable, aliasesWithPrefix, callback);
 
             if (mapping.isPresent()) {
                 owners.put(container, mapping.get());
@@ -125,9 +126,9 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> remove(String alias) {
+    public Optional<ImmutableCommandMapping> remove(String alias) {
         synchronized (lock) {
-            Optional<CommandMapping> removed = dispatcher.remove(alias);
+            Optional<ImmutableCommandMapping> removed = dispatcher.remove(alias);
 
             if (removed.isPresent()) {
                 forgetMapping(removed.get());
@@ -138,9 +139,9 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> removeMapping(CommandMapping mapping) {
+    public Optional<ImmutableCommandMapping> removeMapping(CommandMapping mapping) {
         synchronized (lock) {
-            Optional<CommandMapping> removed = dispatcher.removeMapping(mapping);
+            Optional<ImmutableCommandMapping> removed = dispatcher.removeMapping(mapping);
 
             if (removed.isPresent()) {
                 forgetMapping(removed.get());
@@ -151,7 +152,7 @@ public class SimpleCommandService implements CommandService {
     }
 
     private void forgetMapping(CommandMapping mapping) {
-        Iterator<CommandMapping> it = owners.values().iterator();
+        Iterator<ImmutableCommandMapping> it = owners.values().iterator();
         while (it.hasNext()) {
             if (it.next().equals(mapping)) {
                 it.remove();
@@ -168,12 +169,12 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<CommandMapping> getCommands() {
+    public Set<ImmutableCommandMapping> getCommands() {
         return dispatcher.getCommands();
     }
 
     @Override
-    public Set<CommandMapping> getOwnedBy(PluginContainer container) {
+    public Set<ImmutableCommandMapping> getOwnedBy(PluginContainer container) {
         synchronized (lock) {
             return ImmutableSet.copyOf(owners.get(container));
         }
@@ -190,7 +191,7 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> get(String alias) {
+    public Optional<ImmutableCommandMapping> get(String alias) {
         return dispatcher.get(alias);
     }
 

@@ -53,7 +53,7 @@ import java.util.Set;
  */
 public class SimpleDispatcher implements Dispatcher {
 
-    private final Map<String, CommandMapping> commands = Maps.newHashMap();
+    private final Map<String, ImmutableCommandMapping> commands = Maps.newHashMap();
 
     /**
      * Register a given command using the given list of aliases.
@@ -70,7 +70,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
+    public Optional<ImmutableCommandMapping> register(CommandCallable callable, String... alias) {
         checkNotNull(alias);
         return register(callable, Arrays.asList(alias));
     }
@@ -90,7 +90,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @param aliases A list of aliases
      * @return The registered command mapping, unless no aliases could be registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, List<String> aliases) {
+    public Optional<ImmutableCommandMapping> register(CommandCallable callable, List<String> aliases) {
         return register(callable, aliases, Functions.<List<String>>identity());
     }
 
@@ -114,7 +114,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be registered
      * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
      */
-    public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
+    public synchronized Optional<ImmutableCommandMapping> register(CommandCallable callable, List<String> aliases,
                                                           Function<List<String>, List<String>> callback) {
         checkNotNull(aliases);
         checkNotNull(callable);
@@ -143,7 +143,7 @@ public class SimpleDispatcher implements Dispatcher {
 
             String primary = free.get(0);
             List<String> secondary = free.subList(1, free.size());
-            CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
+            ImmutableCommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
 
             for (String alias : free) {
                 commands.put(alias.toLowerCase(), mapping);
@@ -161,7 +161,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @param alias The alias
      * @return The previous mapping associated with the alias, if one was found
      */
-    public synchronized Optional<CommandMapping> remove(String alias) {
+    public synchronized Optional<ImmutableCommandMapping> remove(String alias) {
         return Optional.of(commands.remove(alias.toLowerCase()));
     }
 
@@ -190,14 +190,14 @@ public class SimpleDispatcher implements Dispatcher {
      * @param mapping The mapping
      * @return The previous mapping associated with the alias, if one was found
      */
-    public synchronized Optional<CommandMapping> removeMapping(CommandMapping mapping) {
+    public synchronized Optional<ImmutableCommandMapping> removeMapping(CommandMapping mapping) {
         checkNotNull(mapping);
 
-        CommandMapping found = null;
+        ImmutableCommandMapping found = null;
 
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<ImmutableCommandMapping> it = commands.values().iterator();
         while (it.hasNext()) {
-            CommandMapping current = it.next();
+            ImmutableCommandMapping current = it.next();
             if (current.equals(mapping)) {
                 it.remove();
                 found = current;
@@ -218,7 +218,7 @@ public class SimpleDispatcher implements Dispatcher {
 
         boolean found = false;
 
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<ImmutableCommandMapping> it = commands.values().iterator();
         while (it.hasNext()) {
             if (c.contains(it.next())) {
                 it.remove();
@@ -230,7 +230,7 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public synchronized Set<CommandMapping> getCommands() {
+    public synchronized Set<ImmutableCommandMapping> getCommands() {
         return ImmutableSet.copyOf(commands.values());
     }
 
@@ -257,7 +257,7 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public synchronized Optional<CommandMapping> get(String alias) {
+    public synchronized Optional<ImmutableCommandMapping> get(String alias) {
         return Optional.fromNullable(commands.get(alias.toLowerCase()));
     }
 
@@ -291,7 +291,7 @@ public class SimpleDispatcher implements Dispatcher {
     @Override
     public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         String[] parts = arguments.split(" +", 2);
-        Optional<CommandMapping> mapping = get(parts[0]);
+        Optional<ImmutableCommandMapping> mapping = get(parts[0]);
 
         if (mapping.isPresent()) {
             List<String> passedParents = new ArrayList<String>(parents.size() + 1);
@@ -335,7 +335,7 @@ public class SimpleDispatcher implements Dispatcher {
                 }
             }
         } else { // Complete using subcommand
-            Optional<CommandMapping> mapping = get(parts[0]);
+            Optional<ImmutableCommandMapping> mapping = get(parts[0]);
 
             if (mapping.isPresent()) {
                 mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
