@@ -97,7 +97,7 @@ public class SimpleCommandService implements CommandService {
                                              Function<List<String>, List<String>> callback) {
         checkNotNull(plugin);
 
-        Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
+        Optional<? extends PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "

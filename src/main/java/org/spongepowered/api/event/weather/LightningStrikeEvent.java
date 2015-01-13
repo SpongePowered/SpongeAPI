@@ -48,12 +48,12 @@ public interface LightningStrikeEvent extends WeatherEvent {
      *
      * @return A list of struck entities.
      */
-    List<Entity> getStruckEntities();
+    List<? extends Entity> getStruckEntities();
 
     /**
      * Gets a {@link List} of all struck {@link BlockLoc}s.
      *
      * @return A list of struck blocks.
      */
-    List<BlockLoc> getStruckBlocks();
+    List<? extends BlockLoc> getStruckBlocks();
 }

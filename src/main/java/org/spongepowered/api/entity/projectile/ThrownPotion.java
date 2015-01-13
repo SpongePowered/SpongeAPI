@@ -58,5 +58,5 @@ public interface ThrownPotion extends Projectile {
      *
      * @return The list of {@link PotionEffect}s.
      */
-    List<PotionEffect> getPotionEffects();
+    List<? extends PotionEffect> getPotionEffects();
 }

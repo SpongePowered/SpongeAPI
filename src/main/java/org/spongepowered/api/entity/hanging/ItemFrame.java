@@ -40,7 +40,7 @@ public interface ItemFrame extends Hanging {
      *
      * @return The currently displayed item, if available
      */
-    Optional<ItemStack> getItem();
+    Optional<? extends ItemStack> getItem();
 
     /**
      * Sets the item to be displayed.

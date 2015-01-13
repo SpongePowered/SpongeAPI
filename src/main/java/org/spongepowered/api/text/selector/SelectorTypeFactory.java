@@ -42,13 +42,13 @@ public interface SelectorTypeFactory {
      * @return The {@link SelectorType} with the specified name, or
      *         {@link Optional#absent()} if not found
      */
-    Optional<SelectorType> getTypeFromName(String name);
+    Optional<? extends SelectorType> getTypeFromName(String name);
 
     /**
      * Returns a list of all available {@link SelectorType}s on this server.
      *
      * @return An immutable list of all selector types
      */
-    List<SelectorType> getTypes();
+    List<? extends SelectorType> getTypes();
 
 }

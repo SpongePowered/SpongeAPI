@@ -43,7 +43,7 @@ public interface ArmorEquipable extends Identifiable {
      *
      * @return The helmet, if available
      */
-    Optional<ItemStack> getHelmet();
+    Optional<? extends ItemStack> getHelmet();
 
     /**
      * Sets the helmet currently being worn by this entity.
@@ -61,7 +61,7 @@ public interface ArmorEquipable extends Identifiable {
      *
      * @return The chestplate, if available
      */
-    Optional<ItemStack> getChestplate();
+    Optional<? extends ItemStack> getChestplate();
 
     /**
      * Sets the chestplate currently being worn by this entity.
@@ -79,7 +79,7 @@ public interface ArmorEquipable extends Identifiable {
      *
      * @return The leggings, if available
      */
-    Optional<ItemStack> getLeggings();
+    Optional<? extends ItemStack> getLeggings();
 
     /**
      * Sets the leggings currently being worn by this entity.
@@ -97,7 +97,7 @@ public interface ArmorEquipable extends Identifiable {
      *
      * @return The boots, if available
      */
-    Optional<ItemStack> getBoots();
+    Optional<? extends ItemStack> getBoots();
 
     /**
      * Sets the boots currently being worn by this entity.
@@ -115,7 +115,7 @@ public interface ArmorEquipable extends Identifiable {
      *
      * @return The current item in hand, if available
      */
-    Optional<ItemStack> getItemInHand();
+    Optional<? extends ItemStack> getItemInHand();
 
     /**
      * Sets the item in hand for this entity.

@@ -55,7 +55,7 @@ public class SimpleServiceManager implements ServiceManager {
         checkNotNull(service, "service");
         checkNotNull(provider, "provider");
 
-        Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
+        Optional<? extends PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "

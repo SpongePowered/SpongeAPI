@@ -43,6 +43,6 @@ public interface DataSourceFactory {
      * @param config The configuration to configure the DataSource
      * @return The newly created data source, if available
      */
-    Optional<DataSource> createSource(Config config);
+    Optional<? extends DataSource> createSource(Config config);
 
 }

@@ -40,6 +40,6 @@ interface TranslationFactory {
      * @return A {@link Translation} instance with the specified ID, or
      *         {@link Optional#absent()} if not found
      */
-    Optional<Translation> getTranslationFromId(String id);
+    Optional<? extends Translation> getTranslationFromId(String id);
 
 }

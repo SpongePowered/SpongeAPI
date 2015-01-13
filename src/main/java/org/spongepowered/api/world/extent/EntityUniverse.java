@@ -50,7 +50,7 @@ public interface EntityUniverse {
      *
      * @return A collection of entities
      */
-    Collection<Entity> getEntities();
+    Collection<? extends Entity> getEntities();
 
     /**
      * Return a collection of entities contained within this universe,
@@ -65,7 +65,7 @@ public interface EntityUniverse {
      * @param filter The filter to apply to the returned entities
      * @return A collection of filtered entities
      */
-    Collection<Entity> getEntities(Predicate<Entity> filter);
+    Collection<? extends Entity> getEntities(Predicate<Entity> filter);
 
     /**
      * Create an entity instance at the given position.
@@ -74,7 +74,7 @@ public interface EntityUniverse {
      * @param position The position
      * @return An entity, if one was created
      */
-    Optional<Entity> createEntity(EntityType type, Vector3d position);
+    Optional<? extends Entity> createEntity(EntityType type, Vector3d position);
 
     /**
      * Create an entity instance at the given position.
@@ -83,7 +83,7 @@ public interface EntityUniverse {
      * @param position The position
      * @return An entity, if one was created
      */
-    Optional<Entity> createEntity(EntitySnapshot snapshot, Vector3d position);
+    Optional<? extends Entity> createEntity(EntitySnapshot snapshot, Vector3d position);
 
     /**
      * Create an entity instance at the given position.
@@ -91,5 +91,5 @@ public interface EntityUniverse {
      * @param entityContainer The data container of the entity
      * @return An entity, if one was created
      */
-    Optional<Entity> createEntity(DataContainer entityContainer);
+    Optional<? extends Entity> createEntity(DataContainer entityContainer);
 }

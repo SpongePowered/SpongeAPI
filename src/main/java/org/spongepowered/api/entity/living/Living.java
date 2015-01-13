@@ -140,7 +140,7 @@ public interface Living extends Entity {
      *
      * @return The list of {@link PotionEffect}s.
      */
-    List<PotionEffect> getPotionEffects();
+    List<? extends PotionEffect> getPotionEffects();
 
     /**
      * Gets the living entity that last attacked this one.
@@ -148,7 +148,7 @@ public interface Living extends Entity {
      *
      * @return The last attacker of this entity
      */
-    Optional<Living> getLastAttacker();
+    Optional<? extends Living> getLastAttacker();
 
     /**
      * Sets the last living entity to have attacked this entity.

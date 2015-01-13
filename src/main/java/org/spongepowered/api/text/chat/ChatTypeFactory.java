@@ -41,13 +41,13 @@ interface ChatTypeFactory {
      * @return The {@link ChatType} with the specified name, or
      *         {@link Optional#absent()} if not found
      */
-    Optional<ChatType> getTypeFromName(String name);
+    Optional<? extends ChatType> getTypeFromName(String name);
 
     /**
      * Returns a list of all available {@link ChatType}s on this server.
      *
      * @return An immutable list of all chat types
      */
-    List<ChatType> getTypes();
+    List<? extends ChatType> getTypes();
 
 }

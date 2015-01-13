@@ -48,7 +48,7 @@ public interface BulkBlockEvent extends GameEvent, CauseTracked {
      *
      * @return An list of blocks
      */
-    List<BlockLoc> getBlocks();
+    List<? extends BlockLoc> getBlocks();
 
     /**
      * Apply the given predicate to the list of blocks.

@@ -69,7 +69,7 @@ public final class ChatTypes {
      * @return The {@link ChatType} with the specified name, or
      *         {@link Optional#absent()} if not found
      */
-    public static Optional<ChatType> valueOf(String name) {
+    public static Optional<? extends ChatType> valueOf(String name) {
         return factory.getTypeFromName(name);
     }
 
@@ -78,7 +78,7 @@ public final class ChatTypes {
      *
      * @return An immutable list of all chat types
      */
-    public static List<ChatType> getValues() {
+    public static List<? extends ChatType> getValues() {
         return factory.getTypes();
     }
 

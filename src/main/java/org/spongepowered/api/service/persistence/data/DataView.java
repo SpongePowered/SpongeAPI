@@ -75,7 +75,7 @@ public interface DataView {
      *
      * @return The parent data view containing this view
      */
-    Optional<DataView> getParent();
+    Optional<? extends DataView> getParent();
 
     /**
      * Gets a set containing all keys in this {@link DataView}.
@@ -170,7 +170,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The data view, if available
      */
-    Optional<DataView> getView(DataQuery path);
+    Optional<? extends DataView> getView(DataQuery path);
 
     /**
      * Gets the {@link Boolean} by path, if available.

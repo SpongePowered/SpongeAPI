@@ -41,14 +41,14 @@ interface TextFormatFactory {
      * @return The {@link TextColor} with the specified name, or
      *         {@link Optional#absent()} if not found
      */
-    Optional<TextColor> getColorFromName(String name);
+    Optional<? extends TextColor> getColorFromName(String name);
 
     /**
      * Returns a list of all available {@link TextColor}s on this server.
      *
      * @return An immutable list of all text colors
      */
-    List<TextColor> getColors();
+    List<? extends TextColor> getColors();
 
     /**
      * Gets the {@link TextStyle} with the specified name.

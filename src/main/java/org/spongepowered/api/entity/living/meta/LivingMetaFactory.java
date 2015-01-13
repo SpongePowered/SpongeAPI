@@ -33,31 +33,31 @@ import java.util.List;
  */
 interface LivingMetaFactory {
 
-    List<SkeletonType> getSkeletonTypes();
+    List<? extends SkeletonType> getSkeletonTypes();
 
     SkeletonType getSkeletonTypeFromName(String name);
 
-    List<OcelotType> getOcelotTypes();
+    List<? extends OcelotType> getOcelotTypes();
 
     OcelotType getOcelotTypeFromName(String name);
 
-    List<DyeColor> getDyeColors();
+    List<? extends DyeColor> getDyeColors();
 
     DyeColor getDyeColorFromName(String name);
 
-    List<HorseColor> getHorseColors();
+    List<? extends HorseColor> getHorseColors();
 
     HorseColor getHorseColorFromName(String name);
 
-    List<HorseStyle> getHorseStyles();
+    List<? extends HorseStyle> getHorseStyles();
 
     HorseStyle getHorseStyleFromName(String name);
 
-    List<HorseVariant> getHorseVariants();
+    List<? extends HorseVariant> getHorseVariants();
 
     HorseVariant getHorseVariantFromName(String name);
 
-    List<RabbitType> getRabbitTypes();
+    List<? extends RabbitType> getRabbitTypes();
 
     RabbitType getRabbitTypeFromName(String name);
 }

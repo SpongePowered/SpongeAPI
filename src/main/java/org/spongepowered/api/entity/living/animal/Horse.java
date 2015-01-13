@@ -93,7 +93,7 @@ public interface Horse extends Animal, Tameable {
      *
      * @return The saddle, if available
      */
-    Optional<ItemStack> getSaddle();
+    Optional<? extends ItemStack> getSaddle();
 
     /**
      * Sets the horse to be equipped with the given saddle.

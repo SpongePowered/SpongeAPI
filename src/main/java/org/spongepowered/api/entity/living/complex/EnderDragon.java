@@ -41,14 +41,14 @@ import javax.annotation.Nullable;
 public interface EnderDragon extends ComplexLiving, Boss, Aerial {
 
     @Override
-    Set<EnderDragonPart> getParts();
+    Set<? extends EnderDragonPart> getParts();
 
     /**
      * Gets the ender crystal healing this Ender Dragon.
      *
      * @return The crystal, if available
      */
-    Optional<EnderCrystal> getHealingCrystal();
+    Optional<? extends EnderCrystal> getHealingCrystal();
 
     /**
      * Sets the ender crystal curretly healing this dragon.

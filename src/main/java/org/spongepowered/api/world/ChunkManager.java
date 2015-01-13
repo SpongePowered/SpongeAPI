@@ -60,7 +60,7 @@ public interface ChunkManager {
      * @param world World that chunks will be loaded in
      * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
      */
-    Optional<LoadingTicket> createTicket(Object plugin, World world);
+    Optional<? extends LoadingTicket> createTicket(Object plugin, World world);
 
     /**
      * Attempts to create a new loading ticket for a plugin to load chunks in a world.
@@ -74,7 +74,7 @@ public interface ChunkManager {
      * @param world World that chunks will be loaded in
      * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
      */
-    Optional<EntityLoadingTicket> createEntityTicket(Object plugin, World world);
+    Optional<? extends EntityLoadingTicket> createEntityTicket(Object plugin, World world);
 
 
     /**
@@ -88,7 +88,7 @@ public interface ChunkManager {
      * @param player Player that chunks are being loaded for
      * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
      */
-    Optional<PlayerLoadingTicket> createPlayerTicket(Object plugin, World world, UUID player);
+    Optional<? extends PlayerLoadingTicket> createPlayerTicket(Object plugin, World world, UUID player);
 
 
     /**
@@ -105,7 +105,7 @@ public interface ChunkManager {
      * @param player Player that chunks are being loaded for
      * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
      */
-    Optional<PlayerEntityLoadingTicket> createPlayerEntityTicket(Object plugin, World world, UUID player);
+    Optional<? extends PlayerEntityLoadingTicket> createPlayerEntityTicket(Object plugin, World world, UUID player);
 
     /**
      * Gets the maximum allowed per-world tickets for a plugin.
@@ -140,7 +140,7 @@ public interface ChunkManager {
      * @return The set of all force-loaded chunk coordinates and the tickets
      *         that are loading those chunks
      */
-    ImmutableSetMultimap<Vector2i, LoadingTicket> getForcedChunks(World world);
+    ImmutableSetMultimap<Vector2i, ? extends LoadingTicket> getForcedChunks(World world);
 
     interface LoadingTicket {
 

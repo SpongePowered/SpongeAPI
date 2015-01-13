@@ -47,7 +47,7 @@ public interface Merchant {
      *
      * @return The currently trading customer if available
      */
-    Optional<Human> getCustomer();
+    Optional<? extends Human> getCustomer();
 
     /**
      * Gets an immutable list of {@link TradeOffer}s that this merchant
@@ -55,7 +55,7 @@ public interface Merchant {
      *
      * @return An immutable list of trade offers
      */
-    List<TradeOffer> getOffers();
+    List<? extends TradeOffer> getOffers();
 
     /**
      * Adds the given offer to the list of offers provided by this merchant.

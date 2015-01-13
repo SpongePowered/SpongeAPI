@@ -48,7 +48,7 @@ public interface BulkEntityEvent extends GameEvent {
      *
      * @return A list of entities
      */
-    List<Entity> getEntities();
+    List<? extends Entity> getEntities();
 
     /**
      * Apply the given predicate to the list of entities.

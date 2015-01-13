@@ -38,7 +38,7 @@ public interface PluginManager {
      * @param instance The instance
      * @return The container
      */
-    Optional<PluginContainer> fromInstance(Object instance);
+    Optional<? extends PluginContainer> fromInstance(Object instance);
 
     /**
      * Retrieves a {@link PluginContainer} based on its ID.
@@ -46,7 +46,7 @@ public interface PluginManager {
      * @param id The plugin ID
      * @return The plugin, if available
      */
-    Optional<PluginContainer> getPlugin(String id);
+    Optional<? extends PluginContainer> getPlugin(String id);
 
     /**
      * Gets the {@link Logger} for the {@link PluginContainer}.
@@ -61,7 +61,7 @@ public interface PluginManager {
      *
      * @return The plugins
      */
-    Collection<PluginContainer> getPlugins();
+    Collection<? extends PluginContainer> getPlugins();
 
     /**
      * Checks if a plugin is loaded based on its ID.

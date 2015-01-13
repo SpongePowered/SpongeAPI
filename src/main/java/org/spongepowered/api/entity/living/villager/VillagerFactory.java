@@ -62,14 +62,14 @@ interface VillagerFactory {
      *
      * @return A list of all professions
      */
-    List<Profession> getProfessions();
+    List<? extends Profession> getProfessions();
 
     /**
      * Gets the currently available careers.
      *
      * @return A list of all careers
      */
-    List<Career> getCareers();
+    List<? extends Career> getCareers();
 
     /**
      * Gets all available careers for the given {@link Profession}.
@@ -77,5 +77,5 @@ interface VillagerFactory {
      * @param profession The profession in question
      * @return A list of careers
      */
-    List<Career> getCareersFromProfession(Profession profession);
+    List<? extends Career> getCareersFromProfession(Profession profession);
 }

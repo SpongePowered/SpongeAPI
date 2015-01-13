@@ -59,7 +59,7 @@ public interface TradeOffer {
      *
      * @return The second buying item, if available
      */
-    Optional<ItemStack> getSecondBuyingItem();
+    Optional<? extends ItemStack> getSecondBuyingItem();
 
     /**
      * Gets the selling item the {@link Merchant} will give to the customer

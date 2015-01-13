@@ -44,7 +44,7 @@ public final class Translations {
      * @return A {@link Translation} instance with the specified ID, or
      *         {@link Optional#absent()} if not found
      */
-    public static Optional<Translation> of(String id) {
+    public static Optional<? extends Translation> of(String id) {
         return factory.getTranslationFromId(id);
     }
 

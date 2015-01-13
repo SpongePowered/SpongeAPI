@@ -40,6 +40,6 @@ public interface CauseTracked {
      *
      * @return The last cause
      */
-    Optional<Cause> getCause();
+    Optional<? extends Cause> getCause();
 
 }

@@ -51,6 +51,6 @@ public interface DataHolder {
      * @param <T> The type of data
      * @return An instance of the class
      */
-    <T> Optional<T> getData(Class<T> dataClass);
+    <T> Optional<? extends T> getData(Class<T> dataClass);
 
 }
