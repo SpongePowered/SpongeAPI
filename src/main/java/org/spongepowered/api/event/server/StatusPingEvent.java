@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  * sending any response.
  * </p>
  */
-public interface StatusPingEvent extends GameEvent, Cancellable, StatusResponse {
+public interface StatusPingEvent extends GameEvent, Cancellable {
 
     /**
      * Gets the client pinging the server.
@@ -54,67 +54,81 @@ public interface StatusPingEvent extends GameEvent, Cancellable, StatusResponse 
     StatusClient getClient();
 
     /**
-     * Sets the description (MOTD) of the status response.
+     * Gets the response that is about to be sent to the client.
      *
-     * @param description The description to display
+     * @return The response to the status request
      */
-    void setDescription(Message description);
-
-    @Override
-    Optional<Players> getPlayers();
+    Response getResponse();
 
     /**
-     * Sets whether the player count and the list of players on this server is
-     * hidden and doesn't get sent to the client. This will restore
-     * {@link #getPlayers()} if the players were previously hidden.
-     * <p>
-     * Use {@link #getPlayers()}.{@link Optional#isPresent() isPresent()} to
-     * check if the players are already hidden.
-     * </p>
-     * <p>
-     * In Vanilla, this will display {@code ???} instead of the player count in
-     * the server list.
-     * </p>
-     *
-     * @param hide {@code True} if the players should be hidden
+     * Represents a mutable response to a status request.
      */
-    void setHidePlayers(boolean hide);
-
-    /**
-     * Represents the information about the players on the server, sent after
-     * the {@link StatusPingEvent}.
-     */
-    interface Players extends StatusResponse.Players {
+    interface Response extends StatusResponse {
 
         /**
-         * Sets the amount of online players to display on the client.
+         * Sets the description (MOTD) of the status response.
          *
-         * @param online The amount of online players
+         * @param description The description to display
          */
-        void setOnline(int online);
+        void setDescription(Message description);
 
-        /**
-         * Sets the maximum amount of allowed players to display on the client.
-         *
-         * @param max The maximum amount of players
-         */
-        void setMax(int max);
-
-        /**
-         * Gets an mutable list of online players on the server to display on
-         * the client.
-         *
-         * @return A mutable list of online players
-         */
         @Override
-        List<PlayerProfile> getPlayers();
-    }
+        Optional<Players> getPlayers();
 
-    /**
-     * Sets the {@link Favicon} to display on the client.
-     *
-     * @param favicon The favicon, or {@code null} for none
-     */
-    void setFavicon(@Nullable Favicon favicon);
+        /**
+         * Sets whether the player count and the list of players on this server is
+         * hidden and doesn't get sent to the client. This will restore
+         * {@link #getPlayers()} if the players were previously hidden.
+         * <p>
+         * Use {@link #getPlayers()}.{@link Optional#isPresent() isPresent()} to
+         * check if the players are already hidden.
+         * </p>
+         * <p>
+         * In Vanilla, this will display {@code ???} instead of the player count in
+         * the server list.
+         * </p>
+         *
+         * @param hide {@code True} if the players should be hidden
+         */
+        void setHidePlayers(boolean hide);
+
+        /**
+         * Represents the information about the players on the server, sent after
+         * the {@link StatusPingEvent}.
+         */
+        interface Players extends StatusResponse.Players {
+
+            /**
+             * Sets the amount of online players to display on the client.
+             *
+             * @param online The amount of online players
+             */
+            void setOnline(int online);
+
+            /**
+             * Sets the maximum amount of allowed players to display on the client.
+             *
+             * @param max The maximum amount of players
+             */
+            void setMax(int max);
+
+            /**
+             * Gets an mutable list of online players on the server to display on
+             * the client.
+             *
+             * @return A mutable list of online players
+             */
+            @Override
+            List<PlayerProfile> getPlayers();
+        }
+
+        /**
+         * Sets the {@link Favicon} to display on the client.
+         *
+         * @param favicon The favicon, or {@code null} for none
+         */
+        void setFavicon(@Nullable Favicon favicon);
+
+    }
 
 }
