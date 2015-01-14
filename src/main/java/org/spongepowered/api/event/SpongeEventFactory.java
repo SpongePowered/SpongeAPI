@@ -49,10 +49,12 @@ import org.spongepowered.api.event.entity.*;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.player.*;
+import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.event.weather.LightningStrikeEvent;
 import org.spongepowered.api.event.weather.WeatherChangeEvent;
 import org.spongepowered.api.event.world.*;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
@@ -675,6 +677,14 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("world", world);
         return createEvent(WorldUnloadEvent.class, values);
+    }
+
+    public static StatusPingEvent createStatusPing(Game game, StatusClient client, StatusPingEvent.Response response) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("client", client);
+        values.put("response", response);
+        return createEvent(StatusPingEvent.class, values);
     }
 
 }
