@@ -32,7 +32,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.message.Message;
@@ -83,7 +82,6 @@ public class SimpleDispatcher implements Dispatcher {
     	CommandMapping commandMapping = new ImmutableCommandMapping(command, primaryAlias, plugin, aliases);
     	commands.put(plugin, commandMapping);
     	
-    	
     	return Optional.of(commandMapping);
     }
 
@@ -130,24 +128,24 @@ public class SimpleDispatcher implements Dispatcher {
     public synchronized Optional<CommandMapping> remove(String alias, boolean primaryOnly, Optional<String> plugin) {
     	checkNotNull(alias);
         Iterator<String> it = commands.keys().iterator();
-        while(it.hasNext()){
+        while (it.hasNext()){
         	String k = it.next();
         	Iterator<CommandMapping> mappings = commands.get(k).iterator();
         		
-            while(mappings.hasNext()){
+            while (mappings.hasNext()){
             	CommandMapping v = mappings.next();
             	boolean remove = true;
             		
-            	if(primaryOnly){
+            	if (primaryOnly){
             		remove = v.getPrimaryAlias().equalsIgnoreCase(alias);
-            	}
-            	else{
+            	
+            	} else {
             		remove = v.getAllAliases().contains(alias);
             	}
-            	if(plugin.isPresent()){
+            	if (plugin.isPresent()){
             		remove = remove && (k.equalsIgnoreCase(plugin.get()));
             	}
-            	if(remove){
+            	if (remove){
             		return this.removeMapping(v);
             	}
             }
@@ -201,7 +199,7 @@ public class SimpleDispatcher implements Dispatcher {
         boolean found = false;
         
         for (Object alias : c) {
-            if(this.remove((String)alias, primaryOnly, plugin).isPresent()){
+            if (this.remove((String)alias, primaryOnly, plugin).isPresent()){
             	found = true;
             }
         }
@@ -272,10 +270,10 @@ public class SimpleDispatcher implements Dispatcher {
         Map<String, Integer> aliases = new HashMap<String, Integer>();
 
         for (CommandMapping mapping : commands.values()) {
-        	if(aliases.containsKey(mapping.getPrimaryAlias())){
+        	if (aliases.containsKey(mapping.getPrimaryAlias())){
         		aliases.put(mapping.getPrimaryAlias(), aliases.get(mapping.getPrimaryAlias()) + 1);
-        	}
-        	else{
+        	
+        	} else {
         		aliases.put(mapping.getPrimaryAlias(), 1);
         	}
         }
@@ -292,11 +290,10 @@ public class SimpleDispatcher implements Dispatcher {
     	Map<String, Integer> aliases = new HashMap<String, Integer>();
 
         for (CommandMapping mapping : commands.values()) {
-            for(String alias : mapping.getAllAliases()){
-            	if(aliases.containsKey(alias)){
+            for (String alias : mapping.getAllAliases()){
+            	if (aliases.containsKey(alias)){
             		aliases.put(alias, aliases.get(alias) + 1);
-            	}
-            	else{
+            	} else {
             		aliases.put(alias, 1);
             	}
             }
@@ -339,19 +336,20 @@ public class SimpleDispatcher implements Dispatcher {
      */
     public synchronized Optional<Set<? extends CommandMapping>> getAll(String alias, boolean primaryOnly, Optional<String> plugin) {
     	Set<CommandMapping> mappings = new HashSet<CommandMapping>();
-        for(String k : commands.keys()){
-        	for(CommandMapping v : commands.get(k)){
+        for (String k : commands.keys()){
+        	for (CommandMapping v : commands.get(k)){
             	boolean found = true;
-            	if(primaryOnly){
+            	if (primaryOnly){
             		found = v.getPrimaryAlias().equalsIgnoreCase(alias);
-            	}
-            	else{
+            	
+            	} else {
             		found = v.getAllAliases().contains(alias);
             	}
-            	if(plugin.isPresent()){
+            	
+            	if (plugin.isPresent()){
             		found = found && k.equalsIgnoreCase(plugin.get());
             	}
-            	if(found){
+            	if (found){
             		mappings.add(v);
             	}
             }
@@ -437,7 +435,7 @@ public class SimpleDispatcher implements Dispatcher {
         } else if(alias.contains(":") && (alias.indexOf(":") < (alias.length() - 1)) && !isExtended){
         	//TODO: Support vanilla commands in this command-suggestion system.
         	Optional<Set<? extends CommandMapping>> possibleMappings = this.getAll(alias);
-            if(possibleMappings.isPresent()){
+            if (possibleMappings.isPresent()){
             	int colonIndex = alias.indexOf(":");
                 String plugin = alias.substring(0, colonIndex - 1);
                 String cmdName = alias.substring(colonIndex + 1);
@@ -447,11 +445,11 @@ public class SimpleDispatcher implements Dispatcher {
                 String text = pluginName + " does not contain a command called " + cmdName + ". Did you mean: ";
             	Set<? extends CommandMapping> mappings = possibleMappings.get();
             	int pos = 0;
-            	for(CommandMapping m : mappings){
+            	for (CommandMapping m : mappings){
             		MessageBuilder builder1 = Messages.builder("/" + m.getRegistrarId() + ":" + cmdName);
             		builder1.color(TextColors.GOLD);
             		messages.add(builder1.build());
-            		if(mappings.size() > 1 && (pos != mappings.size() - 1)){
+            		if (mappings.size() > 1 && (pos != mappings.size() - 1)){
             			String msg = (pos == mappings.size() - 2) ? ", or" : ", ";
             			MessageBuilder builder2 = Messages.builder(msg);
                 		builder2.color(TextColors.RED);
@@ -518,22 +516,22 @@ public class SimpleDispatcher implements Dispatcher {
 	@Override
 	public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
 		Optional<String> plugin = Optional.absent();
-		if(!isExtended){
-			if(alias.contains(":") && alias.indexOf(":") < (alias.length() - 1)){
+		if (!isExtended){
+			if (alias.contains(":") && alias.indexOf(":") < (alias.length() - 1)){
 				int colonIndex = alias.indexOf(":");
 				plugin = Optional.of(alias.substring(0, colonIndex - 1));
 				alias = alias.substring(colonIndex + 1);
 			}
 		}
 		
-		if(this.containsAlias(alias, true, plugin)){
-			for(CommandMapping m : this.getAll(alias, true, plugin).get()){
-				if(m.getCallable().testPermission(source, true)){
+		if (this.containsAlias(alias, true, plugin)){
+			for (CommandMapping m : this.getAll(alias, true, plugin).get()){
+				if (m.getCallable().testPermission(source, true)){
 					return Optional.of(m);
 				}
 			}
-			for(CommandMapping m : this.getAll(alias, false, plugin).get()){
-				if(m.getCallable().testPermission(source, true)){
+			for (CommandMapping m : this.getAll(alias, false, plugin).get()){
+				if (m.getCallable().testPermission(source, true)){
 					return Optional.of(m);
 				}
 			}
