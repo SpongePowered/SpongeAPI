@@ -34,8 +34,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * An immutable command mapping instance that returns the same objects that
- * this instance is constructed with.
+ * An immutable command mapping instance that returns the same objects that this
+ * instance is constructed with.
  */
 public class ImmutableCommandMapping implements CommandMapping {
 
@@ -75,25 +75,21 @@ public class ImmutableCommandMapping implements CommandMapping {
 
     @Override
     public String getPrimaryAlias() {
-        return this.primary;
+        return primary;
     }
 
     @Override
     public Set<String> getAllAliases() {
-        return Collections.unmodifiableSet(this.aliases);
+        return Collections.unmodifiableSet(aliases);
     }
 
     @Override
     public CommandCallable getCallable() {
-        return this.callable;
+        return callable;
     }
 
     @Override
     public String toString() {
-        return "ImmutableCommandMapping{"
-                + "primary='" + this.primary + '\''
-                + ", aliases=" + this.aliases
-                + ", callable=" + this.callable
-                + '}';
+        return "ImmutableCommandMapping{" + "primary='" + primary + '\'' + ", aliases=" + aliases + ", callable=" + callable + '}';
     }
 }

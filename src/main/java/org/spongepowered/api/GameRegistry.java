@@ -75,6 +75,7 @@ import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.TeamStatistic;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.stats.achievement.AchievementBuilder;
+import org.spongepowered.api.service.command.sponge.CommandResultBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
@@ -1021,5 +1022,12 @@ public interface GameRegistry {
      *         none could be found
      */
     Optional<ResourcePack> getById(String id);
+
+    /**
+     * Gets a new {@link CommandResultBuilder}.
+     * 
+     * @return A new {@link CommandResultBuilder}
+     */
+    CommandResultBuilder getCommandResultBuilder();
 
 }
