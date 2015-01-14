@@ -253,6 +253,19 @@ public final class ConfigFile implements Config {
         return new ConfigFile(saveFile, config);
     }
 
+    /**
+     * Parse a resource file and save it to the file.
+     *
+     * @param resourceName The name of the resourceFile
+     * @param saveFile The file where the configFile will be saved
+     * @return
+     */
+    public static ConfigFile parseAndSaveResource(String resourceName, File saveFile){
+        ConfigFile config = parseResource(resourceName, saveFile);
+        config.save(true);
+        return config;
+    }
+
     @Override
     public ConfigObject root() {
         return config.root();
