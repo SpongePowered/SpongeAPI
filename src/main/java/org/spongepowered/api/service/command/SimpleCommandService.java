@@ -27,12 +27,11 @@ package org.spongepowered.api.service.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.event.message.CommandEvent;
@@ -46,11 +45,11 @@ import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -60,7 +59,7 @@ public class SimpleCommandService implements CommandService {
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
 
     private final PluginManager pluginManager;
-    private final SimpleDispatcher dispatcher = new SimpleDispatcher();
+    private final SimpleDispatcher dispatcher;
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
@@ -68,6 +67,7 @@ public class SimpleCommandService implements CommandService {
     public SimpleCommandService(PluginManager pluginManager) {
         checkNotNull(pluginManager, "pluginManager");
         this.pluginManager = pluginManager;
+        this.dispatcher = new SimpleDispatcher(pluginManager);
     }
 
     @Subscribe(order = Order.LAST)
@@ -89,32 +89,23 @@ public class SimpleCommandService implements CommandService {
 
     @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
-        return register(plugin, callable, aliases, Functions.<List<String>>identity());
-    }
-
-    @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
-                                             Function<List<String>, List<String>> callback) {
         checkNotNull(plugin);
-
+        
         Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
                             + "(in other words, is 'plugin' actually your plugin object?");
         }
-
+        for(String alias : aliases){
+        	if(alias.contains(":")){
+        		throw new IllegalArgumentException("Command name must not include the the character ':'.");
+        	}
+        }
         PluginContainer container = containerOptional.get();
 
         synchronized (lock) {
-            // <namespace>:<alias> for all commands
-            List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
-            for (String alias : aliases) {
-                aliasesWithPrefix.add(alias);
-                aliasesWithPrefix.add(container.getId() + ":" + alias);
-            }
-
-            Optional<CommandMapping> mapping = dispatcher.register(callable, aliasesWithPrefix, callback);
+            Optional<CommandMapping> mapping = dispatcher.register(callable, aliases.get(0), aliases, container.getId());
 
             if (mapping.isPresent()) {
                 owners.put(container, mapping.get());
@@ -180,18 +171,18 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<String> getPrimaryAliases() {
+    public Map<String, Integer> getPrimaryAliases() {
         return dispatcher.getPrimaryAliases();
     }
 
     @Override
-    public Set<String> getAliases() {
+    public Map<String, Integer> getAliases() {
         return dispatcher.getAliases();
     }
 
     @Override
-    public Optional<CommandMapping> get(String alias) {
-        return dispatcher.get(alias);
+    public Optional<Set<? extends CommandMapping>> getAll(String alias) {
+        return dispatcher.getAll(alias);
     }
 
     @Override
@@ -210,8 +201,8 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean testPermission(CommandSource source) {
-        return dispatcher.testPermission(source);
+    public boolean testPermission(CommandSource source, boolean ignorePermissions) {
+        return dispatcher.testPermission(source, ignorePermissions);
     }
 
     @Override
@@ -238,5 +229,11 @@ public class SimpleCommandService implements CommandService {
     public int size() {
         return dispatcher.size();
     }
+
+	@Override
+	public Optional<CommandMapping> resolveMapping(String alias,
+			CommandSource source) {
+		return dispatcher.resolveMapping(alias, source);
+	}
 
 }

@@ -59,12 +59,14 @@ public interface CommandCallable extends CommandCompleter {
      * <p>If implementations are unsure if the command can be executed by
      * the source, {@code true} should be returned. Return values of this method
      * may be used to determine whether this command is listed in command
-     * listings.</p>
+     * listings. If ignorePermissions is {@code true}, the method should
+     * return {@code true} so as long as the sender is the proper type.</p>
      *
      * @param source The caller of the command
+     * @param ignorePermissions If the source's permissions should be ignored.
      * @return Whether permission is (probably) granted
      */
-    boolean testPermission(CommandSource source);
+    boolean testPermission(CommandSource source, boolean ignorePermissions);
 
     /**
      * Get a short one-line description of this command.

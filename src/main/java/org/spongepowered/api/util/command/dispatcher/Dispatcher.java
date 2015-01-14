@@ -26,9 +26,12 @@
 package org.spongepowered.api.util.command.dispatcher;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandSource;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -53,7 +56,7 @@ public interface Dispatcher extends CommandCallable {
      *
      * @return A list of aliases
      */
-    Set<String> getPrimaryAliases();
+    Map<String, Integer> getPrimaryAliases();
 
     /**
      * Get a list of all the command aliases, which includes the primary alias.
@@ -61,18 +64,19 @@ public interface Dispatcher extends CommandCallable {
      * <p>A command may have more than one alias assigned to it. The returned 
      * collection cannot be modified.</p>
      *
-     * @return A list of aliases
+     * @return A list of aliases and how many times they've been registered.
      */
-    Set<String> getAliases();
-
+    Map<String, Integer> getAliases();
+    
+    
     /**
-     * Get the {@link CommandCallable} associated with an alias. Returns
-     * null if no command is named by the given alias.
+     * Get the {@link CommandMapping}s associated with an alias. Returns
+     * Optional.absent() if no command is named by the given alias.
      *
      * @param alias The alias
-     * @return The command mapping, if available
+     * @return The command mappings, if available
      */
-    Optional<? extends CommandMapping> get(String alias);
+    Optional<Set<? extends CommandMapping>> getAll(String alias);
 
     /**
      * Returns whether the dispatcher contains a registered command for the
@@ -90,5 +94,15 @@ public interface Dispatcher extends CommandCallable {
      * @return True if a mapping exists
      */
     boolean containsMapping(CommandMapping mapping);
+    
+    /**
+     * Resolves the given alias and source to a CommandMapping
+     * @param alias The command's alias
+     * @param source The {@link CommandSource} sending the command.
+     * @return The CommandMapping corresponding to the alias.
+     */
+    Optional<CommandMapping> resolveMapping(String alias, CommandSource source);
+    
+    
 
 }

@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.service.command;
 
-import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandCallable;
@@ -78,30 +77,6 @@ public interface CommandService extends Dispatcher {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
-
-    /**
-     * Register a given command using a given list of aliases.
-     *
-     * <p>The provided callback function will be called with a list of aliases
-     * that are not taken (from the list of aliases that were requested) and
-     * it should return a list of aliases to actually register. Aliases may be
-     * removed, and if no aliases remain, then the command will not be
-     * registered. It may be possible that no aliases are available, and thus
-     * the callback would receive an empty list. New aliases should not be added
-     * to the list in the callback as this may cause
-     * {@link IllegalArgumentException} to be thrown.</p>
-     *
-     * <p>The first non-conflicted alias becomes the "primary alias."</p>
-     *
-     * @param plugin A plugin instance
-     * @param callable The command
-     * @param aliases A list of aliases
-     * @param callback The callback
-     * @return The registered command mapping, unless no aliases could be registered
-     * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
-     */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
 
     /**
      * Remove a mapping identified by the given alias.
