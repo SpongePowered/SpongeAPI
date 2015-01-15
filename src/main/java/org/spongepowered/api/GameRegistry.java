@@ -52,6 +52,7 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -428,5 +429,14 @@ public interface GameRegistry {
      * @throws IOException If the favicon couldn't be loaded
      */
     Favicon loadFavicon(InputStream in) throws IOException;
+
+    /**
+     * Loads a favicon from a specified {@link BufferedImage}.
+     *
+     * @param image The favicon image
+     * @return The loaded favicon from the image
+     * @throws IOException If the favicon couldn't be loaded
+     */
+    Favicon loadFavicon(BufferedImage image) throws IOException;
 
 }
