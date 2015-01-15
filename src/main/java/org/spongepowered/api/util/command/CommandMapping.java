@@ -37,42 +37,42 @@ import java.util.Set;
  */
 public interface CommandMapping {
 
-  /**
-   * Get the primary alias.
-   *
-   * @return The primary alias
-   */
-  String getPrimaryAlias();
+    /**
+     * Get the primary alias.
+     *
+     * @return The primary alias
+     */
+    String getPrimaryAlias();
 
-  /**
-   * Get an immutable list of all aliases.
-   *
-   * <p>
-   * The returned list must contain at least one entry, of which one must be the
-   * one returned by {@link #getPrimaryAlias()}.
-   * </p>
-   *
-   * <p>
-   * There may be several versions of the same alias with different casing,
-   * although generally implementations should ignore the casing of aliases.
-   * </p>
-   *
-   * @return A set of aliases
-   */
-  Set<String> getAllAliases();
+    /**
+     * Get an immutable list of all aliases.
+     *
+     * <p>
+     * The returned list must contain at least one entry, of which one must be
+     * the one returned by {@link #getPrimaryAlias()}.
+     * </p>
+     *
+     * <p>
+     * There may be several versions of the same alias with different casing,
+     * although generally implementations should ignore the casing of aliases.
+     * </p>
+     *
+     * @return A set of aliases
+     */
+    Set<String> getAllAliases();
 
-  /**
-   * Get the callable
-   *
-   * @return The callable
-   */
-  CommandCallable getCallable();
+    /**
+     * Get the callable
+     *
+     * @return The callable
+     */
+    CommandCallable getCallable();
 
-  /**
-   * Get the plugin who registered this command.
-   * 
-   * @return The plugin who registered this command.
-   */
-  String getRegistrarId();
+    /**
+     * Get the plugin who registered this command.
+     * 
+     * @return The plugin who registered this command.
+     */
+    String getRegistrarId();
 
 }

@@ -58,190 +58,190 @@ import javax.inject.Inject;
 
 public class SimpleCommandService implements CommandService {
 
-  private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
+    private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
 
-  private final PluginManager pluginManager;
-  private final SimpleDispatcher dispatcher;
-  private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
-  private final Object lock = new Object();
+    private final PluginManager pluginManager;
+    private final SimpleDispatcher dispatcher;
+    private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
+    private final Object lock = new Object();
 
-  @Inject
-  public SimpleCommandService(PluginManager pluginManager) {
-    checkNotNull(pluginManager, "pluginManager");
-    this.pluginManager = pluginManager;
-    this.dispatcher = new SimpleDispatcher(pluginManager);
-  }
-
-  @Subscribe(order = Order.LAST)
-  public void onCommandEvent(final CommandEvent event) {
-    try {
-      if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String> emptyList())) {
-        event.setCancelled(true);
-      }
-    } catch (CommandException e) {
-      event.setCancelled(true);
-      log.warn("Failed to execute a command", e);
+    @Inject
+    public SimpleCommandService(PluginManager pluginManager) {
+        checkNotNull(pluginManager, "pluginManager");
+        this.pluginManager = pluginManager;
+        this.dispatcher = new SimpleDispatcher(pluginManager);
     }
-  }
 
-  @Override
-  public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
-    return register(plugin, callable, Arrays.asList(alias));
-  }
-
-  @Override
-  public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
-    checkNotNull(plugin);
-
-    Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
-    if (!containerOptional.isPresent()) {
-      throw new IllegalArgumentException("The provided plugin object does not have an associated plugin container "
-          + "(in other words, is 'plugin' actually your plugin object?");
+    @Subscribe(order = Order.LAST)
+    public void onCommandEvent(final CommandEvent event) {
+        try {
+            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String> emptyList())) {
+                event.setCancelled(true);
+            }
+        } catch (CommandException e) {
+            event.setCancelled(true);
+            log.warn("Failed to execute a command", e);
+        }
     }
-    for (String alias : aliases) {
-      if (alias.contains(":")) {
-        throw new IllegalArgumentException("Command name must not include the the character ':'.");
-      }
+
+    @Override
+    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
+        return register(plugin, callable, Arrays.asList(alias));
     }
-    PluginContainer container = containerOptional.get();
 
-    synchronized (lock) {
-      Optional<CommandMapping> mapping = dispatcher.register(callable, aliases.get(0), aliases, container.getId());
+    @Override
+    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
+        checkNotNull(plugin);
 
-      if (mapping.isPresent()) {
-        owners.put(container, mapping.get());
-      }
+        Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
+        if (!containerOptional.isPresent()) {
+            throw new IllegalArgumentException("The provided plugin object does not have an associated plugin container "
+                    + "(in other words, is 'plugin' actually your plugin object?");
+        }
+        for (String alias : aliases) {
+            if (alias.contains(":")) {
+                throw new IllegalArgumentException("Command name must not include the the character ':'.");
+            }
+        }
+        PluginContainer container = containerOptional.get();
 
-      return mapping;
+        synchronized (lock) {
+            Optional<CommandMapping> mapping = dispatcher.register(callable, aliases.get(0), aliases, container.getId());
+
+            if (mapping.isPresent()) {
+                owners.put(container, mapping.get());
+            }
+
+            return mapping;
+        }
     }
-  }
 
-  @Override
-  public Optional<CommandMapping> remove(String alias) {
-    synchronized (lock) {
-      Optional<CommandMapping> removed = dispatcher.remove(alias);
+    @Override
+    public Optional<CommandMapping> remove(String alias) {
+        synchronized (lock) {
+            Optional<CommandMapping> removed = dispatcher.remove(alias);
 
-      if (removed.isPresent()) {
-        forgetMapping(removed.get());
-      }
+            if (removed.isPresent()) {
+                forgetMapping(removed.get());
+            }
 
-      return removed;
+            return removed;
+        }
     }
-  }
 
-  @Override
-  public Optional<CommandMapping> removeMapping(CommandMapping mapping) {
-    synchronized (lock) {
-      Optional<CommandMapping> removed = dispatcher.removeMapping(mapping);
+    @Override
+    public Optional<CommandMapping> removeMapping(CommandMapping mapping) {
+        synchronized (lock) {
+            Optional<CommandMapping> removed = dispatcher.removeMapping(mapping);
 
-      if (removed.isPresent()) {
-        forgetMapping(removed.get());
-      }
+            if (removed.isPresent()) {
+                forgetMapping(removed.get());
+            }
 
-      return removed;
+            return removed;
+        }
     }
-  }
 
-  private void forgetMapping(CommandMapping mapping) {
-    Iterator<CommandMapping> it = owners.values().iterator();
-    while (it.hasNext()) {
-      if (it.next().equals(mapping)) {
-        it.remove();
-        break;
-      }
+    private void forgetMapping(CommandMapping mapping) {
+        Iterator<CommandMapping> it = owners.values().iterator();
+        while (it.hasNext()) {
+            if (it.next().equals(mapping)) {
+                it.remove();
+                break;
+            }
+        }
     }
-  }
 
-  @Override
-  public Set<PluginContainer> getPluginContainers() {
-    synchronized (lock) {
-      return ImmutableSet.copyOf(owners.keySet());
+    @Override
+    public Set<PluginContainer> getPluginContainers() {
+        synchronized (lock) {
+            return ImmutableSet.copyOf(owners.keySet());
+        }
     }
-  }
 
-  @Override
-  public Set<CommandMapping> getCommands() {
-    return dispatcher.getCommands();
-  }
-
-  @Override
-  public Set<CommandMapping> getOwnedBy(PluginContainer container) {
-    synchronized (lock) {
-      return ImmutableSet.copyOf(owners.get(container));
+    @Override
+    public Set<CommandMapping> getCommands() {
+        return dispatcher.getCommands();
     }
-  }
 
-  @Override
-  public Map<String, Integer> getPrimaryAliases() {
-    return dispatcher.getPrimaryAliases();
-  }
+    @Override
+    public Set<CommandMapping> getOwnedBy(PluginContainer container) {
+        synchronized (lock) {
+            return ImmutableSet.copyOf(owners.get(container));
+        }
+    }
 
-  @Override
-  public Map<String, Integer> getAliases() {
-    return dispatcher.getAliases();
-  }
+    @Override
+    public Map<String, Integer> getPrimaryAliases() {
+        return dispatcher.getPrimaryAliases();
+    }
 
-  @Override
-  public Optional<Set<? extends CommandMapping>> getAll(String alias) {
-    return dispatcher.getAll(alias);
-  }
+    @Override
+    public Map<String, Integer> getAliases() {
+        return dispatcher.getAliases();
+    }
 
-  @Override
-  public boolean containsAlias(String alias) {
-    return dispatcher.containsAlias(alias);
-  }
+    @Override
+    public Optional<Set<? extends CommandMapping>> getAll(String alias) {
+        return dispatcher.getAll(alias);
+    }
 
-  @Override
-  public boolean containsMapping(CommandMapping mapping) {
-    return dispatcher.containsMapping(mapping);
-  }
+    @Override
+    public boolean containsAlias(String alias) {
+        return dispatcher.containsAlias(alias);
+    }
 
-  @Override
-  public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
-    return dispatcher.call(source, arguments, parents);
-  }
+    @Override
+    public boolean containsMapping(CommandMapping mapping) {
+        return dispatcher.containsMapping(mapping);
+    }
 
-  @Override
-  public boolean testPermission(CommandSource source, boolean ignorePermissions) {
-    return dispatcher.testPermission(source, ignorePermissions);
-  }
+    @Override
+    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+        return dispatcher.call(source, arguments, parents);
+    }
 
-  @Override
-  public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-    return dispatcher.getSuggestions(source, arguments);
-  }
+    @Override
+    public boolean testPermission(CommandSource source, boolean ignorePermissions) {
+        return dispatcher.testPermission(source, ignorePermissions);
+    }
 
-  @Override
-  public Optional<String> getShortDescription() {
-    return dispatcher.getShortDescription();
-  }
+    @Override
+    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
+        return dispatcher.getSuggestions(source, arguments);
+    }
 
-  @Override
-  public Optional<String> getHelp() {
-    return dispatcher.getHelp();
-  }
+    @Override
+    public Optional<String> getShortDescription() {
+        return dispatcher.getShortDescription();
+    }
 
-  @Override
-  public String getUsage() {
-    return dispatcher.getUsage();
-  }
+    @Override
+    public Optional<String> getHelp() {
+        return dispatcher.getHelp();
+    }
 
-  @Override
-  public int size() {
-    return dispatcher.size();
-  }
+    @Override
+    public String getUsage() {
+        return dispatcher.getUsage();
+    }
 
-  @Override
-  public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
-    return dispatcher.resolveMapping(alias, source);
-  }
+    @Override
+    public int size() {
+        return dispatcher.size();
+    }
 
-  public void addAliasContext(String alias, AliasContext context) {
-    dispatcher.addAliasContext(alias, context);
-  }
+    @Override
+    public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
+        return dispatcher.resolveMapping(alias, source);
+    }
 
-  public void removeAliasContext(String alias) {
-    dispatcher.removeAliasContext(alias);
-  }
+    public void addAliasContext(String alias, AliasContext context) {
+        dispatcher.addAliasContext(alias, context);
+    }
+
+    public void removeAliasContext(String alias) {
+        dispatcher.removeAliasContext(alias);
+    }
 
 }

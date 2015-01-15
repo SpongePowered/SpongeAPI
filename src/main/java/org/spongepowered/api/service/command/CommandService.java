@@ -40,101 +40,101 @@ import java.util.Set;
  */
 public interface CommandService extends Dispatcher {
 
-  /**
-   * Register a given command using the given list of aliases.
-   *
-   * <p>
-   * If there is a conflict with one of the aliases (i.e. that alias is already
-   * assigned to another command), then the alias will be skipped. It is
-   * possible for there to be no alias to be available out of the provided list
-   * of aliases, which would mean that the command would not be assigned to any
-   * aliases.
-   * </p>
-   *
-   * <p>
-   * The first non-conflicted alias becomes the "primary alias."
-   * </p>
-   *
-   * @param plugin
-   *          A plugin instance
-   * @param callable
-   *          The command
-   * @param alias
-   *          An array of aliases
-   * @return The registered command mapping, unless no aliases could be
-   *         registered
-   * @throws IllegalArgumentException
-   *           Thrown if {@code plugin} is not a plugin instance
-   */
-  Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
+    /**
+     * Register a given command using the given list of aliases.
+     *
+     * <p>
+     * If there is a conflict with one of the aliases (i.e. that alias is
+     * already assigned to another command), then the alias will be skipped. It
+     * is possible for there to be no alias to be available out of the provided
+     * list of aliases, which would mean that the command would not be assigned
+     * to any aliases.
+     * </p>
+     *
+     * <p>
+     * The first non-conflicted alias becomes the "primary alias."
+     * </p>
+     *
+     * @param plugin
+     *            A plugin instance
+     * @param callable
+     *            The command
+     * @param alias
+     *            An array of aliases
+     * @return The registered command mapping, unless no aliases could be
+     *         registered
+     * @throws IllegalArgumentException
+     *             Thrown if {@code plugin} is not a plugin instance
+     */
+    Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
 
-  /**
-   * Register a given command using the given list of aliases.
-   *
-   * <p>
-   * If there is a conflict with one of the aliases (i.e. that alias is already
-   * assigned to another command), then the alias will be skipped. It is
-   * possible for there to be no alias to be available out of the provided list
-   * of aliases, which would mean that the command would not be assigned to any
-   * aliases.
-   * </p>
-   *
-   * <p>
-   * The first non-conflicted alias becomes the "primary alias."
-   * </p>
-   *
-   * @param plugin
-   *          A plugin instance
-   * @param callable
-   *          The command
-   * @param aliases
-   *          A list of aliases
-   * @return The registered command mapping, unless no aliases could be
-   *         registered
-   * @throws IllegalArgumentException
-   *           Thrown if {@code plugin} is not a plugin instance
-   */
-  Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
+    /**
+     * Register a given command using the given list of aliases.
+     *
+     * <p>
+     * If there is a conflict with one of the aliases (i.e. that alias is
+     * already assigned to another command), then the alias will be skipped. It
+     * is possible for there to be no alias to be available out of the provided
+     * list of aliases, which would mean that the command would not be assigned
+     * to any aliases.
+     * </p>
+     *
+     * <p>
+     * The first non-conflicted alias becomes the "primary alias."
+     * </p>
+     *
+     * @param plugin
+     *            A plugin instance
+     * @param callable
+     *            The command
+     * @param aliases
+     *            A list of aliases
+     * @return The registered command mapping, unless no aliases could be
+     *         registered
+     * @throws IllegalArgumentException
+     *             Thrown if {@code plugin} is not a plugin instance
+     */
+    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
 
-  /**
-   * Remove a mapping identified by the given alias.
-   *
-   * @param alias
-   *          The alias
-   * @return The previous mapping associated with the alias, if one was found
-   */
-  Optional<CommandMapping> remove(String alias);
+    /**
+     * Remove a mapping identified by the given alias.
+     *
+     * @param alias
+     *            The alias
+     * @return The previous mapping associated with the alias, if one was found
+     */
+    Optional<CommandMapping> remove(String alias);
 
-  /**
-   * Remove a command identified by the given mapping.
-   *
-   * @param mapping
-   *          The mapping
-   * @return The previous mapping associated with the alias, if one was found
-   */
-  Optional<CommandMapping> removeMapping(CommandMapping mapping);
+    /**
+     * Remove a command identified by the given mapping.
+     *
+     * @param mapping
+     *            The mapping
+     * @return The previous mapping associated with the alias, if one was found
+     */
+    Optional<CommandMapping> removeMapping(CommandMapping mapping);
 
-  /**
-   * Get a set of plugin containers that have commands registered.
-   *
-   * @return A set of plugin containers
-   */
-  Set<PluginContainer> getPluginContainers();
+    /**
+     * Get a set of plugin containers that have commands registered.
+     *
+     * @return A set of plugin containers
+     */
+    Set<PluginContainer> getPluginContainers();
 
-  /**
-   * Get a set of commands owned by the given plugin container.
-   *
-   * @param container
-   *          The plugin container
-   * @return A set of mappings
-   */
-  Set<CommandMapping> getOwnedBy(PluginContainer container);
+    /**
+     * Get a set of commands owned by the given plugin container.
+     *
+     * @param container
+     *            The plugin container
+     * @return A set of mappings
+     */
+    Set<CommandMapping> getOwnedBy(PluginContainer container);
 
-  /**
-   * Get the number of registered aliases.
-   *
-   * @return The number of aliases
-   */
-  int size();
+    /**
+     * Get the number of registered aliases.
+     *
+     * @return The number of aliases
+     */
+    int size();
 
 }

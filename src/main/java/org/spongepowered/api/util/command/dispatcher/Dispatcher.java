@@ -39,79 +39,79 @@ import java.util.Set;
  */
 public interface Dispatcher extends CommandCallable {
 
-  /**
-   * Get a list of commands. Each command, regardless of how many aliases it may
-   * have, will only appear once in the returned set.
-   *
-   * <p>
-   * The returned collection cannot be modified.
-   * </p>
-   *
-   * @return A list of registrations
-   */
-  Set<? extends CommandMapping> getCommands();
+    /**
+     * Get a list of commands. Each command, regardless of how many aliases it
+     * may have, will only appear once in the returned set.
+     *
+     * <p>
+     * The returned collection cannot be modified.
+     * </p>
+     *
+     * @return A list of registrations
+     */
+    Set<? extends CommandMapping> getCommands();
 
-  /**
-   * Get a list of primary aliases.
-   *
-   * <p>
-   * The returned collection cannot be modified.
-   * </p>
-   *
-   * @return A list of aliases
-   */
-  Map<String, Integer> getPrimaryAliases();
+    /**
+     * Get a list of primary aliases.
+     *
+     * <p>
+     * The returned collection cannot be modified.
+     * </p>
+     *
+     * @return A list of aliases
+     */
+    Map<String, Integer> getPrimaryAliases();
 
-  /**
-   * Get a list of all the command aliases, which includes the primary alias.
-   *
-   * <p>
-   * A command may have more than one alias assigned to it. The returned
-   * collection cannot be modified.
-   * </p>
-   *
-   * @return A list of aliases and how many times they've been registered.
-   */
-  Map<String, Integer> getAliases();
+    /**
+     * Get a list of all the command aliases, which includes the primary alias.
+     *
+     * <p>
+     * A command may have more than one alias assigned to it. The returned
+     * collection cannot be modified.
+     * </p>
+     *
+     * @return A list of aliases and how many times they've been registered.
+     */
+    Map<String, Integer> getAliases();
 
-  /**
-   * Get the {@link CommandMapping}s associated with an alias. Returns
-   * Optional.absent() if no command is named by the given alias.
-   *
-   * @param alias
-   *          The alias
-   * @return The command mappings, if available
-   */
-  Optional<Set<? extends CommandMapping>> getAll(String alias);
+    /**
+     * Get the {@link CommandMapping}s associated with an alias. Returns
+     * Optional.absent() if no command is named by the given alias.
+     *
+     * @param alias
+     *            The alias
+     * @return The command mappings, if available
+     */
+    Optional<Set<? extends CommandMapping>> getAll(String alias);
 
-  /**
-   * Returns whether the dispatcher contains a registered command for the given
-   * alias.
-   *
-   * @param alias
-   *          The alias
-   * @return True if a registered command exists
-   */
-  boolean containsAlias(String alias);
+    /**
+     * Returns whether the dispatcher contains a registered command for the
+     * given alias.
+     *
+     * @param alias
+     *            The alias
+     * @return True if a registered command exists
+     */
+    boolean containsAlias(String alias);
 
-  /**
-   * Returns whether the dispatcher contains the given mapping.
-   *
-   * @param mapping
-   *          The mapping
-   * @return True if a mapping exists
-   */
-  boolean containsMapping(CommandMapping mapping);
+    /**
+     * Returns whether the dispatcher contains the given mapping.
+     *
+     * @param mapping
+     *            The mapping
+     * @return True if a mapping exists
+     */
+    boolean containsMapping(CommandMapping mapping);
 
-  /**
-   * Resolves the given alias and source to a CommandMapping
-   * 
-   * @param alias
-   *          The command's alias
-   * @param source
-   *          The {@link CommandSource} sending the command.
-   * @return The CommandMapping corresponding to the alias.
-   */
-  Optional<CommandMapping> resolveMapping(String alias, CommandSource source);
+    /**
+     * Resolves the given alias and source to a CommandMapping
+     * 
+     * @param alias
+     *            The command's alias
+     * @param source
+     *            The {@link CommandSource} sending the command.
+     * @return The CommandMapping corresponding to the alias.
+     */
+    Optional<CommandMapping> resolveMapping(String alias, CommandSource source);
 
 }
