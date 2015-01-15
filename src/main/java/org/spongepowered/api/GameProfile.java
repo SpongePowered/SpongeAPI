@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.status;
+package org.spongepowered.api;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.util.Identifiable;
 
 /**
- * Holds basic player information about a player for the {@link StatusResponse}.
+ * Represents a name and an associated unique identifier.
  */
-public interface PlayerProfile extends Identifiable {
+public interface GameProfile extends Identifiable {
 
     /**
      * Gets the player's last known username.
@@ -37,5 +39,12 @@ public interface PlayerProfile extends Identifiable {
      * @return The player's last known username
      */
     String getName();
+
+    /**
+     * Gets the associated persistent {@link User} data of this profile.
+     *
+     * @return The persistent {@link User} data, if available
+     */
+    Optional<User> getUser();
 
 }

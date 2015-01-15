@@ -27,7 +27,7 @@ package org.spongepowered.api.event.server;
 import com.google.common.base.Optional;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.status.Favicon;
-import org.spongepowered.api.status.PlayerProfile;
+import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.status.StatusResponse;
 import org.spongepowered.api.text.message.Message;
@@ -119,7 +119,7 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
              * @return A mutable list of online players
              */
             @Override
-            List<PlayerProfile> getPlayers();
+            List<GameProfile> getProfiles();
         }
 
         /**
