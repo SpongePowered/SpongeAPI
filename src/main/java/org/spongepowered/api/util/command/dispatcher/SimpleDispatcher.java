@@ -27,12 +27,6 @@ package org.spongepowered.api.util.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Optional;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.message.Message;
@@ -43,6 +37,12 @@ import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
+
+import com.google.common.base.Optional;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -68,18 +68,43 @@ public class SimpleDispatcher implements Dispatcher {
      */
     private final Multimap<String, CommandMapping> commands = HashMultimap.create();
 
+    /**
+     * Field used to check if this is a modification of the default
+     * SimpleDispatcher, to disable plugin-prefixing and command-source
+     * resolution.
+     */
     private final boolean isExtended = !(this.getClass() == SimpleDispatcher.class);
 
+    /**
+     * The {@link PluginManager}.
+     */
     private final PluginManager pluginManager;
 
+    /**
+     * A map used for configuring certain aliases to certain plugins under
+     * certain {@link CommandSource}s.
+     */
     private final Map<String, AliasContext> aliasContexts = Maps.newHashMap();
 
-    public Optional<CommandMapping> register(CommandCallable command, String primaryAlias, List<String> aliases, String plugin) {
+    /**
+     * Register a command with this Dispatcher.
+     * 
+     * @param command The {@link CommandCallable} representing this command.
+     * @param primaryAlias The primary alias for the command.
+     * @param aliases All aliases for the command.
+     * @param plugin The ID of the plugin registering the command.
+     * @return If present, a {@link CommandMapping} representing the command.
+     */
+    public Optional<CommandMapping> register(CommandCallable command, String primaryAlias, List<String> aliases, String plugin)
+            throws IllegalArgumentException {
 
         checkNotNull(command);
         checkNotNull(primaryAlias);
         checkNotNull(aliases);
         checkNotNull(plugin);
+
+        if (!pluginManager.isLoaded(plugin))
+            throw new IllegalArgumentException("There is no plugin by the name of " + plugin + "!");
 
         CommandMapping commandMapping = new ImmutableCommandMapping(command, primaryAlias, plugin, aliases);
         commands.put(plugin, commandMapping);
@@ -90,11 +115,9 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove a mapping identified by the given alias.
      *
-     * @param alias
-     *            The alias
-     * @param plugin
-     *            The plugin the mapping is owned by. If this is
-     *            Optional.absent(), the plugin is ignored.
+     * @param alias The alias
+     * @param plugin The plugin the mapping is owned by. If this is
+     *        Optional.absent(), the plugin is ignored.
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias, Optional<String> plugin) {
@@ -104,10 +127,8 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove a mapping identified by the given alias.
      *
-     * @param alias
-     *            The alias
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
+     * @param alias The alias
+     * @param primaryOnly If the search should ignore non-primary aliases.
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias, boolean primaryOnly) {
@@ -117,8 +138,7 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove a mapping identified by the given alias.
      *
-     * @param alias
-     *            The alias
+     * @param alias The alias
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias) {
@@ -128,13 +148,10 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove a mapping identified by the given alias.
      *
-     * @param alias
-     *            The alias
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
-     * @param plugin
-     *            The plugin the mapping is owned by. If this is
-     *            Optional.absent(), the plugin is ignored.
+     * @param alias The alias
+     * @param primaryOnly If the search should ignore non-primary aliases.
+     * @param plugin The plugin the mapping is owned by. If this is
+     *        Optional.absent(), the plugin is ignored.
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias, boolean primaryOnly, Optional<String> plugin) {
@@ -168,11 +185,9 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings identified by the given aliases.
      *
-     * @param c
-     *            A collection of aliases
-     * @param plugin
-     *            The plugin the mapping is owned by. If this is
-     *            Optional.absent(), the plugin is ignored.
+     * @param c A collection of aliases
+     * @param plugin The plugin the mapping is owned by. If this is
+     *        Optional.absent(), the plugin is ignored.
      * @return Whether any were found
      */
     public synchronized boolean removeAll(Collection<?> c, Optional<String> plugin) {
@@ -182,10 +197,8 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings identified by the given aliases.
      *
-     * @param c
-     *            A collection of aliases
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
+     * @param c A collection of aliases
+     * @param primaryOnly If the search should ignore non-primary aliases.
      * @return Whether any were found
      */
     public synchronized boolean removeAll(Collection<?> c, boolean primaryOnly) {
@@ -195,8 +208,7 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings identified by the given aliases.
      *
-     * @param c
-     *            A collection of aliases
+     * @param c A collection of aliases
      * @return Whether any were found
      */
     public synchronized boolean removeAll(Collection<?> c) {
@@ -206,13 +218,10 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings identified by the given aliases.
      *
-     * @param c
-     *            A collection of aliases
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
-     * @param plugin
-     *            The plugin the mapping is owned by. If this is
-     *            Optional.absent(), the plugin is ignored.
+     * @param c A collection of aliases
+     * @param primaryOnly If the search should ignore non-primary aliases.
+     * @param plugin The plugin the mapping is owned by. If this is
+     *        Optional.absent(), the plugin is ignored.
      * @return Whether any were found
      */
     public synchronized boolean removeAll(Collection<?> c, boolean primaryOnly, Optional<String> plugin) {
@@ -232,8 +241,7 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove a command identified by the given mapping.
      *
-     * @param mapping
-     *            The mapping
+     * @param mapping The mapping
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> removeMapping(CommandMapping mapping) {
@@ -256,8 +264,7 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings contained with the given collection.
      *
-     * @param c
-     *            The collection
+     * @param c The collection
      * @return Whether the at least one command was removed
      */
     public synchronized boolean removeMappings(Collection<?> c) {
@@ -332,10 +339,8 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Returns all {@link CommandMapping}s that fit the search parameters.
      * 
-     * @param alias
-     *            The alias of the command.
-     * @param plugin
-     *            The plugin to search for commands in.
+     * @param alias The alias of the command.
+     * @param plugin The plugin to search for commands in.
      * @return The command mappings that fit the search parameters. If none were
      *         found, Optional.absent().
      */
@@ -346,10 +351,8 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Returns all {@link CommandMapping}s that fit the search parameters.
      * 
-     * @param alias
-     *            The alias of the command.
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
+     * @param alias The alias of the command.
+     * @param primaryOnly If the search should ignore non-primary aliases.
      * @return The command mappings that fit the search parameters. If none were
      *         found, Optional.absent().
      */
@@ -365,12 +368,9 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Returns all {@link CommandMapping}s that fit the search parameters.
      * 
-     * @param alias
-     *            The alias of the command.
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
-     * @param plugin
-     *            The plugin to search for commands in.
+     * @param alias The alias of the command.
+     * @param primaryOnly If the search should ignore non-primary aliases.
+     * @param plugin The plugin to search for commands in.
      * @return The command mappings that fit the search parameters. If none were
      *         found, Optional.absent().
      */
@@ -401,10 +401,8 @@ public class SimpleDispatcher implements Dispatcher {
      * Returns true if there are any registered commands that fit the search
      * parameters.
      * 
-     * @param alias
-     *            The command's alias.
-     * @param plugin
-     *            The plugin to search in.
+     * @param alias The command's alias.
+     * @param plugin The plugin to search in.
      * @return If there are any registered commands that fit the search
      *         parameters.
      */
@@ -416,10 +414,8 @@ public class SimpleDispatcher implements Dispatcher {
      * Returns true if there are any registered commands that fit the search
      * parameters.
      * 
-     * @param alias
-     *            The command's alias.
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
+     * @param alias The command's alias.
+     * @param primaryOnly If the search should ignore non-primary aliases.
      * @return If there are any registered commands that fit the search
      *         parameters.
      */
@@ -436,12 +432,9 @@ public class SimpleDispatcher implements Dispatcher {
      * Returns true if there are any registered commands that fit the search
      * parameters.
      * 
-     * @param alias
-     *            The command's alias.
-     * @param primaryOnly
-     *            If the search should ignore non-primary aliases.
-     * @param plugin
-     *            The plugin to search in.
+     * @param alias The command's alias.
+     * @param primaryOnly If the search should ignore non-primary aliases.
+     * @param plugin The plugin to search in.
      * @return If there are any registered commands that fit the search
      *         parameters.
      */
@@ -577,6 +570,16 @@ public class SimpleDispatcher implements Dispatcher {
         return this.resolveMapping(alias, source);
     }
 
+    /**
+     * Resolves the alias of a command to a {@link CommandMapping} with a
+     * certain {@link CommandSource}.
+     * 
+     * @param alias The alias of the command.
+     * @param source The {@link CommandSource} the command is being sent from.
+     * @param ignoreOverride If commandsource-configuration should be disabled.
+     * @return A mapping for the command, if one was found. Otherwise,
+     *         Optional.absent().
+     */
     public Optional<CommandMapping> resolveMapping(String alias, CommandSource source, boolean ignoreOverride) {
         Optional<String> plugin = Optional.absent();
         boolean override = false;
@@ -637,10 +640,21 @@ public class SimpleDispatcher implements Dispatcher {
         return "<sub-command>"; // TODO: Translate
     }
 
+    /**
+     * Set a certain alias to go to certain plugins by {@link CommandSource}s.
+     * 
+     * @param alias The alias.
+     * @param context The {@link AliasContext} to get the plugins from.
+     */
     public void addAliasContext(String alias, AliasContext context) {
         aliasContexts.put(alias.toLowerCase(), context);
     }
 
+    /**
+     * Remove a certain alias from the contexts list.
+     * 
+     * @param alias The alias to remove.
+     */
     public void removeAliasContext(String alias) {
         aliasContexts.remove(alias.toLowerCase());
     }

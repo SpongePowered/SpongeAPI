@@ -55,16 +55,13 @@ public interface CommandService extends Dispatcher {
      * The first non-conflicted alias becomes the "primary alias."
      * </p>
      *
-     * @param plugin
-     *            A plugin instance
-     * @param callable
-     *            The command
-     * @param alias
-     *            An array of aliases
+     * @param plugin A plugin instance
+     * @param callable The command
+     * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be
      *         registered
-     * @throws IllegalArgumentException
-     *             Thrown if {@code plugin} is not a plugin instance
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
+     *         instance
      */
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
 
@@ -83,24 +80,20 @@ public interface CommandService extends Dispatcher {
      * The first non-conflicted alias becomes the "primary alias."
      * </p>
      *
-     * @param plugin
-     *            A plugin instance
-     * @param callable
-     *            The command
-     * @param aliases
-     *            A list of aliases
+     * @param plugin A plugin instance
+     * @param callable The command
+     * @param aliases A list of aliases
      * @return The registered command mapping, unless no aliases could be
      *         registered
-     * @throws IllegalArgumentException
-     *             Thrown if {@code plugin} is not a plugin instance
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
+     *         instance
      */
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
 
     /**
      * Remove a mapping identified by the given alias.
      *
-     * @param alias
-     *            The alias
+     * @param alias The alias
      * @return The previous mapping associated with the alias, if one was found
      */
     Optional<CommandMapping> remove(String alias);
@@ -108,8 +101,7 @@ public interface CommandService extends Dispatcher {
     /**
      * Remove a command identified by the given mapping.
      *
-     * @param mapping
-     *            The mapping
+     * @param mapping The mapping
      * @return The previous mapping associated with the alias, if one was found
      */
     Optional<CommandMapping> removeMapping(CommandMapping mapping);
@@ -124,8 +116,7 @@ public interface CommandService extends Dispatcher {
     /**
      * Get a set of commands owned by the given plugin container.
      *
-     * @param container
-     *            The plugin container
+     * @param container The plugin container
      * @return A set of mappings
      */
     Set<CommandMapping> getOwnedBy(PluginContainer container);

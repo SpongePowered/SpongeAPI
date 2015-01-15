@@ -25,11 +25,11 @@
 
 package org.spongepowered.api.util.command.dispatcher;
 
-import com.google.common.base.Optional;
-
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
+
+import com.google.common.base.Optional;
 
 import java.util.Map;
 import java.util.Set;
@@ -78,8 +78,7 @@ public interface Dispatcher extends CommandCallable {
      * Get the {@link CommandMapping}s associated with an alias. Returns
      * Optional.absent() if no command is named by the given alias.
      *
-     * @param alias
-     *            The alias
+     * @param alias The alias
      * @return The command mappings, if available
      */
     Optional<Set<? extends CommandMapping>> getAll(String alias);
@@ -88,8 +87,7 @@ public interface Dispatcher extends CommandCallable {
      * Returns whether the dispatcher contains a registered command for the
      * given alias.
      *
-     * @param alias
-     *            The alias
+     * @param alias The alias
      * @return True if a registered command exists
      */
     boolean containsAlias(String alias);
@@ -97,20 +95,19 @@ public interface Dispatcher extends CommandCallable {
     /**
      * Returns whether the dispatcher contains the given mapping.
      *
-     * @param mapping
-     *            The mapping
+     * @param mapping The mapping
      * @return True if a mapping exists
      */
     boolean containsMapping(CommandMapping mapping);
 
     /**
-     * Resolves the given alias and source to a CommandMapping
+     * Resolves the alias of a command to a {@link CommandMapping} with a
+     * certain {@link CommandSource}.
      * 
-     * @param alias
-     *            The command's alias
-     * @param source
-     *            The {@link CommandSource} sending the command.
-     * @return The CommandMapping corresponding to the alias.
+     * @param alias The alias of the command.
+     * @param source The CommandSource the command is being sent from.
+     * @return A mapping for the command, if one was found. Otherwise,
+     *         Optional.absent().
      */
     Optional<CommandMapping> resolveMapping(String alias, CommandSource source);
 
