@@ -244,12 +244,14 @@ public final class ConfigFile implements Config {
      *
      * @param resourceName The name of the resourceFile
      * @param saveFile The file where the configFile will be saved
+     * @param pluginObject The plugin object to get the resource from
      * @return
      */
-    public static ConfigFile parseResource(String resourceName, File saveFile){
+    public static ConfigFile parseResource(String resourceName, File saveFile, Object pluginObject){
+
         checkNotNull(resourceName);
         checkNotNull(saveFile);
-        Config config = ConfigFactory.parseResources(resourceName);
+        Config config = ConfigFactory.parseResources(pluginObject.getClass().getClassLoader(),resourceName);
         return new ConfigFile(saveFile, config);
     }
 
@@ -258,10 +260,11 @@ public final class ConfigFile implements Config {
      *
      * @param resourceName The name of the resourceFile
      * @param saveFile The file where the configFile will be saved
+     * @param pluginObject The plugin object to get the resource from
      * @return
      */
-    public static ConfigFile parseAndSaveResource(String resourceName, File saveFile){
-        ConfigFile config = parseResource(resourceName, saveFile);
+    public static ConfigFile parseAndSaveResource(String resourceName, File saveFile, Object pluginObject){
+        ConfigFile config = parseResource(resourceName, saveFile, pluginObject);
         config.save(true);
         return config;
     }
