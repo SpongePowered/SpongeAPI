@@ -30,6 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 
 import org.spongepowered.api.plugin.PluginManager;
@@ -71,6 +72,8 @@ public class SimpleDispatcher implements Dispatcher {
 	private final boolean isExtended = !(this.getClass() == SimpleDispatcher.class);
 	
 	private final PluginManager pluginManager;
+	
+	private final Map<String, AliasContext> aliasContexts = Maps.newHashMap();
 
     public Optional<CommandMapping> register(CommandCallable command, String primaryAlias, List<String> aliases, String plugin){
     	
@@ -513,14 +516,31 @@ public class SimpleDispatcher implements Dispatcher {
         return Collections.unmodifiableList(suggestions);
     }
 
-	@Override
-	public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
+    @Override
+    public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
+    	return this.resolveMapping(alias, source);
+    }
+    
+	public Optional<CommandMapping> resolveMapping(String alias, CommandSource source, boolean ignoreOverride) {
 		Optional<String> plugin = Optional.absent();
+		boolean override = false;
+		alias = alias.toLowerCase();
 		if (!isExtended){
 			if (alias.contains(":") && alias.indexOf(":") < (alias.length() - 1)){
 				int colonIndex = alias.indexOf(":");
 				plugin = Optional.of(alias.substring(0, colonIndex - 1));
 				alias = alias.substring(colonIndex + 1);
+			}
+		}
+		
+		if (!plugin.isPresent() && this.aliasContexts.containsKey(alias) && !isExtended && !ignoreOverride){
+			AliasContext context = this.aliasContexts.get(alias);
+			if (context.appliesTo(source)){
+				String contextPlugin = context.getPluginId(source);
+				if (this.pluginManager.isLoaded(contextPlugin)){
+					plugin = Optional.of(contextPlugin);
+					override = true;
+				}
 			}
 		}
 		
@@ -537,7 +557,12 @@ public class SimpleDispatcher implements Dispatcher {
 			}
 			//TODO: Implement vanilla commands here. The code that handles them should be ignored when isExtended is true!
 		}
-		return Optional.absent();
+		
+		if (override){
+			return this.resolveMapping(alias, source, true);
+		} else {
+			return Optional.absent();
+		}
 	}
 	
 	@Override
@@ -555,7 +580,13 @@ public class SimpleDispatcher implements Dispatcher {
         return "<sub-command>"; // TODO: Translate
     }
     
-
+    public void addAliasContext(String alias, AliasContext context){
+    	aliasContexts.put(alias.toLowerCase(), context);
+    }
+    
+    public void removeAliasContext(String alias){
+    	aliasContexts.remove(alias.toLowerCase());
+    }
 	
 	
 

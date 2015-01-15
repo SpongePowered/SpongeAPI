@@ -30,6 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.dispatcher.AliasContext;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
@@ -62,6 +64,7 @@ public class SimpleCommandService implements CommandService {
     private final SimpleDispatcher dispatcher;
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
+    
 
     @Inject
     public SimpleCommandService(PluginManager pluginManager) {
@@ -234,6 +237,14 @@ public class SimpleCommandService implements CommandService {
 	public Optional<CommandMapping> resolveMapping(String alias,
 			CommandSource source) {
 		return dispatcher.resolveMapping(alias, source);
+	}
+	
+	public void addAliasContext(String alias, AliasContext context){
+		dispatcher.addAliasContext(alias, context);
+	}
+	
+	public void removeAliasContext(String alias){
+		dispatcher.removeAliasContext(alias);
 	}
 
 }
