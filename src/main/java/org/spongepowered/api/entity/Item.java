@@ -62,11 +62,9 @@ public interface Item extends Entity {
     void setPickupDelay(int delay);
 
     /**
-     * Sets whether this item has an infinite pickup delay
-     *
-     * @param infinite Whether this item has an infinite pickup delay
+     * Sets an infinite pickup time for this item.
      */
-    void setInfinitePickupDelay(boolean infinite);
+    void setInfinitePickupDelay();
 
     /**
      * Gets the number of ticks remaining until this item despawns,
@@ -87,11 +85,9 @@ public interface Item extends Entity {
     void setDespawnTime(int time);
 
     /**
-     * Sets whether this item never despawns.
-     *
-     * @param infinite Whether this item never despawns
+     * Sets an infinite despawn time for this item.
      */
-    void setInfiniteDespawnTime(boolean infinite);
+    void setInfiniteDespawnTime();
 
     /**
      * Gets the {@link User} who threw this item, if available
