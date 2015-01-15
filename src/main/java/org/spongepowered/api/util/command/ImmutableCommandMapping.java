@@ -34,74 +34,78 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * An immutable command mapping instance that returns the same objects that
- * this instance is constructed with.
+ * An immutable command mapping instance that returns the same objects that this
+ * instance is constructed with.
  */
 public class ImmutableCommandMapping implements CommandMapping {
 
-    private final String primary;
-    private final Set<String> aliases;
-    private final CommandCallable callable;
-    private final String registrar;
+  private final String primary;
+  private final Set<String> aliases;
+  private final CommandCallable callable;
+  private final String registrar;
 
-    /**
-     * Create a new instance.
-     *
-     * @param callable The command callable
-     * @param primary The primary alias
-     * @param alias A list of all aliases
-     * @throws IllegalArgumentException Thrown if aliases are duplicated
-     */
-    public ImmutableCommandMapping(CommandCallable callable, String primary, String registrar, String... alias) {
-        this(callable, primary, registrar, Arrays.asList(checkNotNull(alias)));
-    }
+  /**
+   * Create a new instance.
+   *
+   * @param callable
+   *          The command callable
+   * @param primary
+   *          The primary alias
+   * @param alias
+   *          A list of all aliases
+   * @throws IllegalArgumentException
+   *           Thrown if aliases are duplicated
+   */
+  public ImmutableCommandMapping(CommandCallable callable, String primary, String registrar, String... alias) {
+    this(callable, primary, registrar, Arrays.asList(checkNotNull(alias)));
+  }
 
-    /**
-     * Create a new instance.
-     *
-     * @param callable The command callable
-     * @param primary The primary alias
-     * @param aliases A collection of all aliases
-     * @throws IllegalArgumentException Thrown if aliases are duplicated
-     */
-    public ImmutableCommandMapping(CommandCallable callable, String primary, String registrar, Collection<String> aliases) {
-        checkNotNull(callable);
-        checkNotNull(primary);
-        checkNotNull(aliases);
-        this.primary = primary;
-        this.aliases = new HashSet<String>(aliases);
-        this.aliases.add(primary);
-        this.callable = callable;
-        this.registrar = registrar;
-    }
+  /**
+   * Create a new instance.
+   *
+   * @param callable
+   *          The command callable
+   * @param primary
+   *          The primary alias
+   * @param aliases
+   *          A collection of all aliases
+   * @throws IllegalArgumentException
+   *           Thrown if aliases are duplicated
+   */
+  public ImmutableCommandMapping(CommandCallable callable, String primary, String registrar, Collection<String> aliases) {
+    checkNotNull(callable);
+    checkNotNull(primary);
+    checkNotNull(aliases);
+    this.primary = primary;
+    this.aliases = new HashSet<String>(aliases);
+    this.aliases.add(primary);
+    this.callable = callable;
+    this.registrar = registrar;
+  }
 
-    @Override
-    public String getPrimaryAlias() {
-        return primary;
-    }
+  @Override
+  public String getPrimaryAlias() {
+    return primary;
+  }
 
-    @Override
-    public Set<String> getAllAliases() {
-        return Collections.unmodifiableSet(aliases);
-    }
+  @Override
+  public Set<String> getAllAliases() {
+    return Collections.unmodifiableSet(aliases);
+  }
 
-    @Override
-    public CommandCallable getCallable() {
-        return callable;
-    }
+  @Override
+  public CommandCallable getCallable() {
+    return callable;
+  }
 
-    @Override
-    public String toString() {
-        return "ImmutableCommandMapping{"
-               + "primary='" + primary + '\''
-               + ", aliases=" + aliases
-               + ", callable=" + callable
-               + ", registrar=" + registrar
-               + '}';
-    }
+  @Override
+  public String toString() {
+    return "ImmutableCommandMapping{" + "primary='" + primary + '\'' + ", aliases=" + aliases + ", callable=" + callable + ", registrar=" + registrar
+        + '}';
+  }
 
-	@Override
-	public String getRegistrarId() {
-		return registrar;
-	}
+  @Override
+  public String getRegistrarId() {
+    return registrar;
+  }
 }
