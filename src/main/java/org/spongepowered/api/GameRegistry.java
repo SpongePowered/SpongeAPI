@@ -60,6 +60,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
@@ -391,6 +392,15 @@ public interface GameRegistry {
     List<DimensionType> getDimensionTypes();
 
     // TODO: Find a better place for these methods
+
+    /**
+     * Creates a new {@link GameProfile} using the specified unique identifier and name.
+     *
+     * @param uuid The unique identifier for the profile
+     * @param name The name for the profile
+     * @return The created profile
+     */
+    GameProfile createGameProfile(UUID uuid, String name);
 
     /**
      * Loads a {@link Favicon} from the specified encoded string. The format of
