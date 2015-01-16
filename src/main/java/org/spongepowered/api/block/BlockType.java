@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.service.persistence.data.DataHolder;
+import org.spongepowered.api.text.translation.Translatable;
 
 /**
  * Describes a base type of block.
@@ -107,7 +107,7 @@ public interface BlockType extends Translatable {
 
     /**
      * Gets if a block should be counted for statistics gathering.
-     * 
+     *
      * @return Is counted for statistics
      */
     boolean areStatisticsEnabled();
@@ -116,7 +116,7 @@ public interface BlockType extends Translatable {
      * Gets the amount of light emitted by this block type. The returned value
      * is normalized to have a range of 0 to 1 (1 being the maximum light
      * value), although it is not clamped to this range.
-     * 
+     *
      * @return The amount of light
      */
     float getEmittedLight();

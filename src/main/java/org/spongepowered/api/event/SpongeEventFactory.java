@@ -161,7 +161,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockBreakEvent}.
+     * Creates a new {@link BlockBreakEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -184,7 +184,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockBurnEvent}.
+     * Creates a new {@link BlockBurnEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -202,7 +202,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockChangeEvent}.
+     * Creates a new {@link BlockChangeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -220,7 +220,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockDispenseEvent}.
+     * Creates a new {@link BlockDispenseEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -240,7 +240,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockIgniteEvent}.
+     * Creates a new {@link BlockIgniteEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -256,7 +256,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockInteractEvent}.
+     * Creates a new {@link BlockInteractEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -272,7 +272,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockMoveEvent}.
+     * Creates a new {@link BlockMoveEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -288,7 +288,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockPlaceEvent}.
+     * Creates a new {@link BlockPlaceEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -306,7 +306,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockRandomTickEvent}.
+     * Creates a new {@link BlockRandomTickEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -322,7 +322,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link BlockUpdateEvent}.
+     * Creates a new {@link BlockUpdateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -340,7 +340,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link FloraGrowEvent}.
+     * Creates a new {@link FloraGrowEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -358,7 +358,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link FluidSpreadEvent}.
+     * Creates a new {@link FluidSpreadEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -374,7 +374,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link LeafDecayEvent}.
+     * Creates a new {@link LeafDecayEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -392,7 +392,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityBreakBlockEvent}.
+     * Creates a new {@link EntityBreakBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -417,7 +417,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityChangeBlockEvent}.
+     * Creates a new {@link EntityChangeBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -438,7 +438,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityChangeHealthEvent}.
+     * Creates a new {@link EntityChangeHealthEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -458,7 +458,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityCollisionEvent}.
+     * Creates a new {@link EntityCollisionEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -474,7 +474,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityCollisionWithBlockEvent}.
+     * Creates a new {@link EntityCollisionWithBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -492,7 +492,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityCollisionWithEntityEvent}.
+     * Creates a new {@link EntityCollisionWithEntityEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -510,7 +510,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityDeathEvent}.
+     * Creates a new {@link EntityDeathEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -528,7 +528,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityDismountEvent}.
+     * Creates a new {@link EntityDismountEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -544,7 +544,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityDropItemEvent}.
+     * Creates a new {@link EntityDropItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -560,7 +560,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityInteractBlockEvent}.
+     * Creates a new {@link EntityInteractBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -578,7 +578,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityInteractEntityEvent}.
+     * Creates a new {@link EntityInteractEntityEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -594,7 +594,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityInteractEvent}.
+     * Creates a new {@link EntityInteractEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -608,7 +608,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityMountEvent}.
+     * Creates a new {@link EntityMountEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -624,7 +624,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityMoveEvent}.
+     * Creates a new {@link EntityMoveEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -642,7 +642,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityPickUpItemEvent}.
+     * Creates a new {@link EntityPickUpItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -658,7 +658,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityPlaceBlockEvent}.
+     * Creates a new {@link EntityPlaceBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -679,7 +679,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntitySpawnEvent}.
+     * Creates a new {@link EntitySpawnEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -695,7 +695,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityTameEvent}.
+     * Creates a new {@link EntityTameEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -709,7 +709,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityTeleportEvent}.
+     * Creates a new {@link EntityTeleportEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -729,7 +729,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link EntityUpdateEvent}.
+     * Creates a new {@link EntityUpdateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
@@ -743,7 +743,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ProjectileLaunchEvent}.
+     * Creates a new {@link ProjectileLaunchEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -759,7 +759,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link CommandEvent}.
+     * Creates a new {@link CommandEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param arguments The arguments provided
@@ -777,7 +777,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link MessageEvent}.
+     * Creates a new {@link MessageEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param source The source of the message
@@ -793,7 +793,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerBreakBlockEvent}.
+     * Creates a new {@link PlayerBreakBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -819,7 +819,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerChangeBlockEvent}.
+     * Creates a new {@link PlayerChangeBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -841,7 +841,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerChangeGameModeEvent}.
+     * Creates a new {@link PlayerChangeGameModeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -860,7 +860,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerChangeWorldEvent}.
+     * Creates a new {@link PlayerChangeWorldEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -879,7 +879,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerChatEvent}.
+     * Creates a new {@link PlayerChatEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -898,7 +898,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerDeathEvent}.
+     * Creates a new {@link PlayerDeathEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -919,7 +919,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerDropItemEvent}.
+     * Creates a new {@link PlayerDropItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -936,7 +936,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerInteractBlockEvent}.
+     * Creates a new {@link PlayerInteractBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -958,7 +958,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerInteractEntityEvent}.
+     * Creates a new {@link PlayerInteractEntityEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -978,7 +978,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerInteractEvent}.
+     * Creates a new {@link PlayerInteractEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -995,7 +995,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerJoinEvent}.
+     * Creates a new {@link PlayerJoinEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -1012,7 +1012,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerMoveEvent}.
+     * Creates a new {@link PlayerMoveEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -1031,7 +1031,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerPickUpItemEvent}.
+     * Creates a new {@link PlayerPickUpItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -1048,7 +1048,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerPlaceBlockEvent}.
+     * Creates a new {@link PlayerPlaceBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -1070,7 +1070,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerQuitEvent}.
+     * Creates a new {@link PlayerQuitEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -1087,7 +1087,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerUpdateEvent}.
+     * Creates a new {@link PlayerUpdateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
@@ -1102,7 +1102,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link LightningStrikeEvent}.
+     * Creates a new {@link LightningStrikeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param weatherVolume The volume the weather changed in
@@ -1123,7 +1123,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link WeatherChangeEvent}.
+     * Creates a new {@link WeatherChangeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param weatherVolume The volume the weather changed in
@@ -1141,7 +1141,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkForcedEvent}.
+     * Creates a new {@link ChunkForcedEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param ticket The ticket that will load the chunk
@@ -1157,7 +1157,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkLoadEvent}.
+     * Creates a new {@link ChunkLoadEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
@@ -1171,7 +1171,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkPostGenerateEvent}.
+     * Creates a new {@link ChunkPostGenerateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
@@ -1185,7 +1185,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkPostPopulateEvent}.
+     * Creates a new {@link ChunkPostPopulateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
@@ -1199,7 +1199,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkPreGenerateEvent}.
+     * Creates a new {@link ChunkPreGenerateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
@@ -1213,7 +1213,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkPrePopulateEvent}.
+     * Creates a new {@link ChunkPrePopulateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
@@ -1229,7 +1229,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkUnforcedEvent}.
+     * Creates a new {@link ChunkUnforcedEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunkCoords The coordinates of the removed chunk
@@ -1245,7 +1245,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link ChunkUnloadEvent}.
+     * Creates a new {@link ChunkUnloadEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
@@ -1259,7 +1259,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link GameRuleChangeEvent}.
+     * Creates a new {@link GameRuleChangeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param world The world involved in this event
@@ -1279,7 +1279,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link WorldLoadEvent}.
+     * Creates a new {@link WorldLoadEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param world The world involved in this event
@@ -1293,7 +1293,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link WorldUnloadEvent}.
+     * Creates a new {@link WorldUnloadEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param world The world involved in this event
@@ -1307,7 +1307,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link StatusPingEvent}.
+     * Creates a new {@link StatusPingEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param client The client that is pinging the server

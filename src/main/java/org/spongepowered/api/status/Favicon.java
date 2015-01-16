@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.status;
 
-import org.spongepowered.api.Server;
+import org.spongepowered.api.GameRegistry;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -33,13 +33,13 @@ import java.net.URL;
 
 /**
  * Represents an icon for the server sent in the {@link StatusResponse}. It can
- * be loaded by calling one of the {@code loadFavicon} methods on {@link Server}
+ * be loaded by calling one of the {@code loadFavicon} methods on {@link GameRegistry}
  * .
  *
- * @see Server#loadFavicon(String)
- * @see Server#loadFavicon(File)
- * @see Server#loadFavicon(URL)
- * @see Server#loadFavicon(InputStream)
+ * @see GameRegistry#loadFavicon(String)
+ * @see GameRegistry#loadFavicon(File)
+ * @see GameRegistry#loadFavicon(URL)
+ * @see GameRegistry#loadFavicon(InputStream)
  */
 public interface Favicon {
 

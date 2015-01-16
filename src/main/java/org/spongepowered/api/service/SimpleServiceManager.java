@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.MapMaker;
+
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
@@ -94,7 +95,7 @@ public class SimpleServiceManager implements ServiceManager {
     }
 
     private static class Provider {
-        private final PluginContainer container;
+        @SuppressWarnings("unused") private final PluginContainer container;
         private final Object provider;
 
         private Provider(PluginContainer container, Object provider) {

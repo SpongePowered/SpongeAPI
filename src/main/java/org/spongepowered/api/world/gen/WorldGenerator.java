@@ -24,23 +24,23 @@
  */
 package org.spongepowered.api.world.gen;
 
+import com.flowpowered.math.vector.Vector3i;
+
 import org.spongepowered.api.util.gen.BlockBuffer;
 import org.spongepowered.api.util.gen.MutableBlockBuffer;
 import org.spongepowered.api.world.World;
-
-import com.flowpowered.math.vector.Vector3i;
 
 /**
  * Represents a generator for chunks into a world.
  */
 public interface WorldGenerator {
-    
+
     /**
      * Generates the chunk at the given position in the world. The position
      * specified is the chunk position (ie. the world position divided by the
      * chunk size). The newly generated chunk should be placed into the given
      * {@link BlockBuffer}.
-     * 
+     *
      * @param world The world
      * @param buffer The buffer to generate the region into
      * @param position The chunk position
@@ -50,15 +50,15 @@ public interface WorldGenerator {
     /**
      * Gets whether map features are enabled and if this generator will be
      * creating structures (such as villages and strongholds etc.)
-     * 
+     *
      * @return Map features enabled
      */
     boolean areMapFeaturesEnabled();
-    
+
     /**
      * Gets an ordered collection of {@link Populator}s which are applied
      * globally.
-     * 
+     *
      * @return The populators
      */
     Iterable<Populator> getGlobalPopulators();
@@ -68,22 +68,22 @@ public interface WorldGenerator {
      * populators. The new populator is inserted at the given index. If the
      * index is larger than the current amount of populators then the new
      * populator in inserted at the end of the collection.
-     * 
+     *
      * @param populator The new populator
      * @param index THe index to insert the populator at
      */
     void insertPopulator(Populator populator, int index);
-    
+
     /**
      * Gets the {@link BiomeGenerator} for this world generator.
-     * 
+     *
      * @return The biome generator
      */
     BiomeGenerator getBiomeGenerator();
-    
+
     /**
      * Sets the {@link BiomeGenerator} for this world generator.
-     * 
+     *
      * @param biomeManager The new biome generator
      */
     void setBiomeGenerator(BiomeGenerator biomeManager);

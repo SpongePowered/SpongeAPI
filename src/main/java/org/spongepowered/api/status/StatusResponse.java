@@ -25,8 +25,9 @@
 package org.spongepowered.api.status;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.GameVersion;
+
 import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.GameVersion;
 import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.text.message.Message;
 
@@ -39,7 +40,7 @@ import java.util.List;
  * This interface exists mostly for convenience and can be implemented in a
  * library pinging other servers for example.
  * </p>
- * 
+ *
  * @see StatusPingEvent
  */
 public interface StatusResponse {
