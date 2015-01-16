@@ -48,5 +48,5 @@ public interface DimensionType {
     *
     * @return The dimension class for this type
     */
-    Class <? extends Dimension> getDimensionClass();
+    Class<? extends Dimension> getDimensionClass();
 }

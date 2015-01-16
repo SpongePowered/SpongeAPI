@@ -28,6 +28,8 @@ package org.spongepowered.api.entity.living.monster;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockState;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents an Enderman.
  */
@@ -43,9 +45,9 @@ public interface Enderman extends Monster {
     /**
      * Sets the {@link BlockState} currently carried by the enderman.
      *
-     * @param carriedBlock The carried {@link BlockState}
+     * @param carriedBlock The carried {@link BlockState} or null for no block
      */
-    void setCarriedBlock(BlockState carriedBlock);
+    void setCarriedBlock(@Nullable BlockState carriedBlock);
 
     /**
      * Gets if the enderman is currently screaming.

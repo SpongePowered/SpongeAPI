@@ -43,6 +43,12 @@ public class SimpleServiceManager implements ServiceManager {
             new MapMaker().concurrencyLevel(3).makeMap();
     private final PluginManager pluginManager;
 
+    /**
+     * Construct a simple {@link ServiceManager}.
+     *
+     * @param pluginManager The plugin manager to get the
+     *            {@link PluginContainer} for a given plugin
+     */
     @Inject
     public SimpleServiceManager(PluginManager pluginManager) {
         checkNotNull(pluginManager, "pluginManager");
@@ -88,7 +94,7 @@ public class SimpleServiceManager implements ServiceManager {
     }
 
     private static class Provider {
-        private final PluginContainer container;
+        @SuppressWarnings("unused") private final PluginContainer container;
         private final Object provider;
 
         private Provider(PluginContainer container, Object provider) {

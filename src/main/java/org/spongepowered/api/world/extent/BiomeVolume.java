@@ -26,7 +26,6 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
-
 import org.spongepowered.api.world.biome.BiomeType;
 
 /**

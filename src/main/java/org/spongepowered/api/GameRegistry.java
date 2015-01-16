@@ -26,10 +26,10 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
+import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.meta.DyeColor;
@@ -49,14 +49,15 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
+import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
@@ -83,14 +84,14 @@ public interface GameRegistry {
      * @return The block or Optional.absent() if not found
      */
     Optional<BlockType> getBlock(String id);
- 
+
     /**
      * Gets a list of all available {@link BlockType}s.
      *
      * @return A list containing all block types in registry
      */
     List<BlockType> getBlocks();
- 
+
     /**
      * Gets an {@link ItemType} by its identifier.
      *
@@ -98,7 +99,7 @@ public interface GameRegistry {
      * @return The item or Optional.absent() if not found
      */
     Optional<ItemType> getItem(String id);
- 
+
     /**
      * Gets a list of all available {@link ItemType}s.
      *
@@ -153,17 +154,32 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link ParticleType}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all particle types in registry
      */
     List<ParticleType> getParticleTypes();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
-     * 
+     *
      * @param particle The particle type
      * @return The particle effect builder
      */
     ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
+
+    /**
+     * Gets a {@link SoundType} by name.
+     *
+     * @param name The sound name
+     * @return The sound or Optional.absent() if not found
+     */
+    Optional<SoundType> getSound(String name);
+
+    /**
+     * Gets a list of all known {@link SoundType}s.
+     *
+     * @return A list containing all sounds in the registry
+     */
+    List<SoundType> getSounds();
 
     /**
      * Gets an {@link EntityType} by its identifier.
@@ -176,7 +192,7 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link EntityType}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all entity types in registry
      */
     List<EntityType> getEntities();
 
@@ -196,7 +212,7 @@ public interface GameRegistry {
     List<Art> getArts();
 
     /**
-     * Gets an {@link DyeColor} by its identifier.
+     * Gets a {@link DyeColor} by its identifier.
      *
      * @param id The id to look up
      * @return The dye color or Optional.absent() if not found
@@ -206,12 +222,12 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link DyeColor}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all dyes in registry
      */
     List<DyeColor> getDyes();
 
     /**
-     * Gets an {@link HorseColor} by its identifier.
+     * Gets a {@link HorseColor} by its identifier.
      *
      * @param id The id to look up
      * @return The horse color or Optional.absent() if not found
@@ -221,12 +237,12 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link HorseColor}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all horse colors in registry
      */
     List<HorseColor> getHorseColors();
 
     /**
-     * Gets an {@link HorseStyle} by its identifier.
+     * Gets a {@link HorseStyle} by its identifier.
      *
      * @param id The id to look up
      * @return The horse style or Optional.absent() if not found
@@ -236,12 +252,12 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link HorseStyle}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all horse styles in registry
      */
     List<HorseStyle> getHorseStyles();
 
     /**
-     * Gets an {@link HorseVariant} by its identifier.
+     * Gets a {@link HorseVariant} by its identifier.
      *
      * @param id The id to look up
      * @return The horse variant or Optional.absent() if not found
@@ -251,7 +267,7 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link HorseVariant}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all horse variants in registry
      */
     List<HorseVariant> getHorseVariants();
 
@@ -266,12 +282,12 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link OcelotType}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all ocelot types in registry
      */
     List<OcelotType> getOcelotTypes();
 
     /**
-     * Gets an {@link RabbitType} by its identifier.
+     * Gets a {@link RabbitType} by its identifier.
      *
      * @param id The id to look up
      * @return The rabbit type or Optional.absent() if not found
@@ -281,12 +297,12 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link RabbitType}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all rabbit types in registry
      */
     List<RabbitType> getRabbitTypes();
 
     /**
-     * Gets an {@link SkeletonType} by its identifier.
+     * Gets a {@link SkeletonType} by its identifier.
      *
      * @param id The id to look up
      * @return The skeleton type or Optional.absent() if not found
@@ -296,7 +312,7 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link SkeletonType}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all skeleton types in registry
      */
     List<SkeletonType> getSkeletonTypes();
 
@@ -341,7 +357,7 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link GameMode}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all game modes in registry
      */
     // TODO: GameMode from string? Should add 'String getId()' to GameMode if so.
     List<GameMode> getGameModes();
@@ -349,7 +365,7 @@ public interface GameRegistry {
     /**
      * Gets a list of all available {@link PotionEffectType}s.
      *
-     * @return A list containing all item types in registry
+     * @return A list containing all potion effect types in registry
      */
     // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
     List<PotionEffectType> getPotionEffects();
@@ -377,7 +393,7 @@ public interface GameRegistry {
     Collection<String> getDefaultGameRules();
 
     /**
-     * Gets the {@link DimensionType} with the provided name. 
+     * Gets the {@link DimensionType} with the provided name.
      *
      * @param name The name of the dimension type
      * @return The {@link DimensionType} with the given name or Optional.absent() if not found
@@ -390,6 +406,21 @@ public interface GameRegistry {
      * @return The list of all available {@link DimensionType}s
      */
     List<DimensionType> getDimensionTypes();
+
+    /**
+     * Gets the {@link Rotation} with the provided degrees.
+     *
+     * @param degrees The degrees of the rotation
+     * @return The {@link Rotation} with the given degrees or Optional.absent() if not found
+     */
+    Optional<Rotation> getRotationFromDegree(int degrees);
+
+    /**
+     * Gets a {@link List} of all possible {@link Rotation}s.
+     *
+     * @return The list of all available {@link Rotation}s
+     */
+    List<Rotation> getRotations();
 
     // TODO: Find a better place for these methods
 

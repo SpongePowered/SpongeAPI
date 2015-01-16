@@ -28,6 +28,8 @@ package org.spongepowered.api.util.event;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+import org.spongepowered.api.service.event.EventManager;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -35,8 +37,16 @@ import java.lang.annotation.Target;
 @Target(value = METHOD)
 public @interface Subscribe {
 
+    /**
+     * The order this handler should be called in relation to other handlers in
+     * the {@link EventManager}.
+     */
     Order order() default Order.DEFAULT;
 
+    /**
+     * Whether this handler should execute even if the event has been cancelled
+     * by another handler.
+     */
     boolean ignoreCancelled() default true;
 
 }

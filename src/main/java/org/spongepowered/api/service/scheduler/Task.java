@@ -1,4 +1,3 @@
-
 /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
