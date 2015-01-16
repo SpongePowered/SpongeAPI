@@ -41,7 +41,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings({"UnusedDeclaration"})
 public class ClassGeneratorProviderTest {
 
     private static final double ERROR = 0.03;
@@ -369,12 +368,12 @@ public class ClassGeneratorProviderTest {
 
         IncorrectMutatorContainer result = factory.apply(Collections.<String, Object>emptyMap());
         assertThat(result.getAddress(), is(Matchers.nullValue()));
-        result.setAddress(new ArrayList()); // Nonconforming method
+        result.setAddress(new ArrayList<Object>()); // Nonconforming method
     }
 
     public static interface IncorrectMutatorContainer {
-        List getAddress();
-        void setAddress(ArrayList address);
+        List<?> getAddress();
+        void setAddress(ArrayList<?> address);
     }
 
     @Test
@@ -400,14 +399,13 @@ public class ClassGeneratorProviderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreate_AbstractImplAndExcessParams() throws Exception {
-        ClassGeneratorProvider provider = createProvider();
-        EventFactory<AbstractImplContainer> factory = provider.create(AbstractImplContainer.class, AbstractImpl.class);
-
         Map<String, Object> values = Maps.newHashMap();
         values.put("name", "Vincent");
         values.put("age", 56);
         values.put("cool", false);
 
+        ClassGeneratorProvider provider = createProvider();
+        EventFactory<AbstractImplContainer> factory = provider.create(AbstractImplContainer.class, AbstractImpl.class);
         factory.apply(values);
     }
 
