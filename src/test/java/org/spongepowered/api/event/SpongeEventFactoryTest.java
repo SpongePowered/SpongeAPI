@@ -79,7 +79,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == short.class) {
             return (short) 0;
         } else if (paramType == int.class) {
-            return (int) 0;
+            return 0;
         } else if (paramType == long.class) {
             return (long) 0;
         } else if (paramType == float.class) {
