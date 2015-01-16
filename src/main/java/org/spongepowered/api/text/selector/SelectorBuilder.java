@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.text.selector;
 
-import org.spongepowered.api.entity.EntityType;
-
 import com.flowpowered.math.vector.Vector3i;
+
+import org.spongepowered.api.entity.EntityType;
 
 /**
  * Represents a builder interface to create immutable {@link Selector}
@@ -40,7 +40,7 @@ public interface SelectorBuilder {
      * @param type The type to set
      * @return This selector builder
      */
-    SelectorBuilder type(SelectorType type);
+    SelectorBuilder selectorType(SelectorType type);
 
     /**
      * Adds an argument to the arguments in this selector.

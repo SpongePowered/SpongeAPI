@@ -25,7 +25,14 @@
 
 package org.spongepowered.api.util.event.factory;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.closeTo;
+import static org.junit.Assert.assertThat;
+
 import com.google.common.collect.Maps;
+
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -33,10 +40,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.closeTo;
-import static org.junit.Assert.assertThat;
 
 @SuppressWarnings({"UnusedDeclaration"})
 public class ClassGeneratorProviderTest {
