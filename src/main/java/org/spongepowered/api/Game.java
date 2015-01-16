@@ -30,6 +30,7 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
+import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
 import org.spongepowered.api.service.scheduler.Scheduler;
 
 /**
@@ -89,6 +90,13 @@ public interface Game {
      * @return The scheduler
      */
     Scheduler getScheduler();
+
+    /**
+     * Gets the {@link Scheduler}.
+     *
+     * @return The scheduler
+     */
+    AsynchronousScheduler getAsyncScheduler();
 
     /**
      * Get the command dispatcher used for registering and dispatching
