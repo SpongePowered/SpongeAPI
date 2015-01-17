@@ -64,7 +64,7 @@ public final class Achievements {
     public static final Achievement DIAMONDS_TO_YOU = null;
     public static final Achievement OVERPOWERED = null;
 
-    public Achievements() {
+    private Achievements() {
     }
 
 }
