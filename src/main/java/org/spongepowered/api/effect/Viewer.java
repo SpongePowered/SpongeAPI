@@ -25,7 +25,6 @@
 package org.spongepowered.api.effect;
 
 import com.flowpowered.math.vector.Vector3d;
-
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
 

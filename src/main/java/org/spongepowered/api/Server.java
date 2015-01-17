@@ -25,7 +25,6 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.world.World;

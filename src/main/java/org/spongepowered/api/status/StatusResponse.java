@@ -25,7 +25,6 @@
 package org.spongepowered.api.status;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.GameVersion;
 import org.spongepowered.api.event.server.StatusPingEvent;

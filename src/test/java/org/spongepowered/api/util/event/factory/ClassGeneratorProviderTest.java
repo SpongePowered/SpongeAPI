@@ -32,7 +32,6 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertThat;
 
 import com.google.common.collect.Maps;
-
 import org.hamcrest.Matchers;
 import org.junit.Test;
 

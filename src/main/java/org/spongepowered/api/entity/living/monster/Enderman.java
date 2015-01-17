@@ -26,7 +26,6 @@
 package org.spongepowered.api.entity.living.monster;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.block.BlockState;
 
 import javax.annotation.Nullable;

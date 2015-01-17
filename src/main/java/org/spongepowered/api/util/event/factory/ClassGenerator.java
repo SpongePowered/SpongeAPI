@@ -59,7 +59,6 @@ import static org.objectweb.asm.Opcodes.V1_6;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
-
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;

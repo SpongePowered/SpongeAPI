@@ -25,7 +25,6 @@
 package org.spongepowered.api.util.gen;
 
 import com.flowpowered.math.vector.Vector2i;
-
 import org.spongepowered.api.world.biome.BiomeType;
 
 /**

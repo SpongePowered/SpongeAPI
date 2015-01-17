@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.gen;
 
 import com.flowpowered.math.vector.Vector3i;
-
 import org.spongepowered.api.util.gen.BlockBuffer;
 import org.spongepowered.api.util.gen.MutableBlockBuffer;
 import org.spongepowered.api.world.World;

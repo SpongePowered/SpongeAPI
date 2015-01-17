@@ -25,7 +25,6 @@
 package org.spongepowered.api.text.selector;
 
 import com.flowpowered.math.vector.Vector3i;
-
 import org.spongepowered.api.entity.EntityType;
 
 /**

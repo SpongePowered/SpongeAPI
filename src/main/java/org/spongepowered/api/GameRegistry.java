@@ -26,7 +26,6 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
