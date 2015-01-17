@@ -426,8 +426,8 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static EntityChangeBlockEvent
-            createEntityChangeBlock(Game game, Cause cause, Entity entity, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static EntityChangeBlockEvent createEntityChangeBlock(Game game, Cause cause, Entity entity, BlockLoc block,
+            BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -667,8 +667,8 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static EntityPlaceBlockEvent
-        createEntityPlaceBlock(Game game, Cause cause, Entity entity, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static EntityPlaceBlockEvent createEntityPlaceBlock(Game game, Cause cause, Entity entity, BlockLoc block,
+            BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -828,8 +828,8 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static PlayerChangeBlockEvent
-            createPlayerChangeBlock(Game game, Cause cause, Player player, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static PlayerChangeBlockEvent createPlayerChangeBlock(Game game, Cause cause, Player player, BlockLoc block,
+            BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1057,8 +1057,8 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static PlayerPlaceBlockEvent
-        createPlayerPlaceBlock(Game game, Cause cause, Player player, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static PlayerPlaceBlockEvent createPlayerPlaceBlock(Game game, Cause cause, Player player, BlockLoc block,
+            BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
