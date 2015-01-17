@@ -32,8 +32,10 @@ import org.spongepowered.api.util.Identifiable;
 
 /**
  * Represents a task that has been scheduled.
+ *
+ * @param <V> The type returned by the computation of this task
  */
-public interface Task extends Identifiable {
+public interface Task<V> extends Identifiable {
 
     /**
      * Gets the name of this task.
