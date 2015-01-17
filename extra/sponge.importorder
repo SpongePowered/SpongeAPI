@@ -1,7 +1,5 @@
 #Organize Import Order
-5=javax
-4=java
-3=org
-2=net
-1=com
 0=\#
+1=
+2=java
+3=javax
