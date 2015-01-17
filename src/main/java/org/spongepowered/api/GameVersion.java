@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.event.server.StatusPingEvent;
+import org.spongepowered.api.status.StatusResponse;
+
 /**
  * Represents a specific game version of a client or a server.
  */
@@ -41,5 +44,18 @@ public interface GameVersion extends Comparable<GameVersion> {
      * @return The version name
      */
     String getName();
+
+    /**
+     * Returns whether this version an older version that doesn't support
+     * all of the features in {@link StatusResponse}. These versions are only
+     * supported for the {@link StatusPingEvent}, normally they should not be
+     * able to join the server.
+     * <p>
+     * For Vanilla, this returns {@code true} for all clients older than 1.7.
+     * </p>
+     *
+     * @return {@code True} if this version is a legacy version
+     */
+    boolean isLegacy();
 
 }

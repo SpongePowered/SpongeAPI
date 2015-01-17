@@ -58,15 +58,4 @@ public interface StatusClient {
      */
     Optional<InetSocketAddress> getVirtualHost();
 
-    /**
-     * Returns whether the client is using an older version that doesn't support
-     * all of the features in {@link StatusResponse}.
-     * <p>
-     * For Vanilla, this returns {@code true} for all clients older than 1.7.
-     * </p>
-     *
-     * @return {@code True} if the client is using an older version
-     */
-    boolean isLegacy();
-
 }
