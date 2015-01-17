@@ -30,9 +30,8 @@ import java.util.Collection;
 import java.util.UUID;
 
 /**
- * The base scheduler that schedules tasks.
+ * A scheduler that executes tasks synchronously.
  */
-
 public interface SynchronousScheduler extends Scheduler {
 
     /**

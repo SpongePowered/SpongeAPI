@@ -26,6 +26,9 @@ package org.spongepowered.api.service.scheduler;
 
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 
+/**
+ * The base scheduler that schedules tasks.
+ */
 public interface Scheduler {
 
     /**
