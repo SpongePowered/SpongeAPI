@@ -28,6 +28,7 @@ import com.google.common.base.Optional;
 
 import java.util.Collection;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 
 /**
  * A scheduler that executes tasks synchronously.
@@ -42,7 +43,18 @@ public interface SynchronousScheduler extends Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runTask(Object plugin, Runnable task);
+    Optional<? extends Task<?>> runTask(Object plugin, Runnable task);
+
+    /**
+     * Runs the task immediately.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     * @param <V> The type returned by the computation of this task
+     *
+     * @return The scheduled task, if successful
+     */
+    <V> Optional<? extends Task<V>> runTask(Object plugin, Callable<V> task);
 
     /**
      * Runs the task after a delay in ticks.
@@ -53,7 +65,19 @@ public interface SynchronousScheduler extends Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runTaskAfter(Object plugin, Runnable task, long delay);
+    Optional<? extends Task<?>> runTaskAfter(Object plugin, Runnable task, long delay);
+
+    /**
+     * Runs the task after a delay in ticks.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     * @param delay The delay in ticks
+     * @param <V> The type returned by the computation of this task
+     *
+     * @return The scheduled task, if successful
+     */
+    <V> Optional<? extends Task<V>> runTaskAfter(Object plugin, Callable<V> task, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
@@ -65,7 +89,20 @@ public interface SynchronousScheduler extends Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runRepeatingTask(Object plugin, Runnable task, long interval);
+    Optional<? extends Task<?>> runRepeatingTask(Object plugin, Runnable task, long interval);
+
+    /**
+     * Runs the task immediately, then repeats at an
+     * interval.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     * @param interval The interval between runs (in ticks)
+     * @param <V> The type returned by the computation of this task
+     *
+     * @return The scheduled task, if successful
+     */
+    <V> Optional<? extends Task<V>> runRepeatingTask(Object plugin, Callable<V> task, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -78,7 +115,21 @@ public interface SynchronousScheduler extends Scheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
+    Optional<? extends Task<?>> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
+
+    /**
+     * Runs the task after a delay in ticks, then repeats
+     * at an interval.
+     *
+     * @param plugin The plugin requesting the task
+     * @param task The task to run
+     * @param interval The interval between runs (in ticks)
+     * @param delay The delay in ticks
+     * @param <V> The type returned by the computation of this task
+     *
+     * @return The scheduled task, if successful
+     */
+    <V> Optional<? extends Task<V>> runRepeatingTaskAfter(Object plugin, Callable<V> task, long interval, long delay);
 
     /**
      * Retrieves a scheduled or running task by its unique ID.
@@ -86,14 +137,14 @@ public interface SynchronousScheduler extends Scheduler {
      * @param id The id of the task
      * @return The scheduled or running task, or {@link Optional#absent()}
      */
-    Optional<Task> getTaskById(UUID id);
+    Optional<? extends Task<?>> getTaskById(UUID id);
 
     /**
      * Returns a collection of all currently scheduled tasks.
      *
      * @return A collection of scheduled tasks
      */
-    Collection<Task> getScheduledTasks();
+    Collection<? extends Task<?>> getScheduledTasks();
 
     /**
      * Returns a collection of all currently scheduled tasks owned by a
@@ -102,6 +153,6 @@ public interface SynchronousScheduler extends Scheduler {
      * @param plugin The plugin to return tasks created by
      * @return A collection of scheduled tasks
      */
-    Collection<Task> getScheduledTasks(Object plugin);
+    Collection<? extends Task<?>> getScheduledTasks(Object plugin);
 
 }
