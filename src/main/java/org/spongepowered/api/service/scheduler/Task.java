@@ -32,6 +32,7 @@ import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Represents a task that has been scheduled.
@@ -62,11 +63,20 @@ public interface Task<V> extends Identifiable {
     Optional<Long> getDelay();
 
     /**
-     * Gets the interval for repeating tasks in ticks.
+     * Gets the interval for repeating tasks.
      *
-     * @return The interval (period) in ticks.
+     * @return The interval (period)
      */
     Optional<Long> getInterval();
+
+    /**
+     * Gets the {@link TimeUnit} of the interval and delay.
+     *
+     * <p>If {@link Optional#isPresent() isPresent()} returns false, the unit is ticks.</p>
+     *
+     * @return The time unit
+     */
+    Optional<TimeUnit> getTimeUnit();
 
     /**
      * Cancels the task, if it has not already run.
@@ -95,5 +105,12 @@ public interface Task<V> extends Identifiable {
      * @return The future
      */
     ListenableFuture<V> getFuture();
+
+    /**
+     * Gets the method of execution of this task.
+     *
+     * @return True if this task was executed asynchronously, false if synchronously
+     */
+    boolean isAsynchronous();
 
 }
