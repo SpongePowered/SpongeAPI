@@ -138,28 +138,4 @@ public interface AsynchronousScheduler extends Scheduler {
      */
     <V> Optional<? extends Task<V>> runRepeatingTaskAfter(Object plugin, Callable<V> task, long interval, long delay, TimeUnit unit);
 
-    /**
-     * Retrieves a scheduled or running task by its unique ID.
-     *
-     * @param id The id of the task
-     * @return The scheduled or running task, or {@link Optional#absent()}
-     */
-    Optional<? extends Task<?>> getTaskById(UUID id);
-
-    /**
-     * Returns a collection of all currently scheduled tasks.
-     *
-     * @return A collection of scheduled tasks
-     */
-    Collection<? extends Task<?>> getScheduledTasks();
-
-    /**
-     * Returns a collection of all currently scheduled tasks owned by a
-     * certain plugin.
-     *
-     * @param plugin The plugin to return tasks created by
-     * @return A collection of scheduled tasks
-     */
-    Collection<? extends Task<?>> getScheduledTasks(Object plugin);
-
 }

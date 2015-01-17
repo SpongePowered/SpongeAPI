@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.service.scheduler;
 
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 
+import java.util.Collection;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -63,5 +66,31 @@ public interface Scheduler {
      * @return The duration in the specified unit
      */
     long fromTicks(long ticks, TimeUnit unit);
+
+    /**
+     * Retrieves a scheduled or running task by its unique ID.
+     *
+     * @param id The id of the task
+     *
+     * @return The scheduled or running task, or {@link Optional#absent()}
+     */
+    Optional<? extends Task<?>> getTaskById(UUID id);
+
+    /**
+     * Returns a collection of all currently scheduled tasks.
+     *
+     * @return A collection of scheduled tasks
+     */
+    Collection<? extends Task<?>> getScheduledTasks();
+
+    /**
+     * Returns a collection of all currently scheduled tasks owned by a
+     * certain plugin.
+     *
+     * @param plugin The plugin to return tasks created by
+     *
+     * @return A collection of scheduled tasks
+     */
+    Collection<? extends Task<?>> getScheduledTasks(Object plugin);
 
 }
