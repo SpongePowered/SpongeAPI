@@ -26,6 +26,8 @@ package org.spongepowered.api.service.scheduler;
 
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * The base scheduler that schedules tasks.
  */
@@ -39,5 +41,27 @@ public interface Scheduler {
      * @return The executor service
      */
     ListeningScheduledExecutorService getExecutorService(Object plugin);
+
+    /**
+     * Converts a duration to ticks.
+     *
+     * <p>Note that the accuracy of this method is not guaranteed due to server latencies.</p>
+     *
+     * @param duration The duration of time
+     * @param unit The time unit of the duration
+     *
+     * @return The duration in ticks.
+     */
+    long toTicks(long duration, TimeUnit unit);
+
+    /**
+     * Converts a duration in ticks to the specified unit.
+     *
+     * @param ticks The tick count
+     * @param unit The time unit to convert to
+     *
+     * @return The duration in the specified unit
+     */
+    long fromTicks(long ticks, TimeUnit unit);
 
 }
