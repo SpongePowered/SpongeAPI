@@ -33,7 +33,7 @@ import java.util.UUID;
  * The base scheduler that schedules tasks.
  */
 
-public interface SynchronousScheduler {
+public interface SynchronousScheduler extends Scheduler {
 
     /**
      * Runs the task immediately.
