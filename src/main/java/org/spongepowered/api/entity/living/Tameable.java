@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.animal.Animal;
 
 /**
- * Represents an Agent that can be tamed by a Tamer.
+ * Represents an Animal that can be tamed by a Tamer.
  */
 public interface Tameable extends Animal {
 
