@@ -26,11 +26,12 @@ package org.spongepowered.api.entity.living;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.living.animal.Animal;
 
 /**
- * Represents an Agent that can be tamed by a Tamer.
+ * Represents an Animal that can be tamed by a Tamer.
  */
-public interface Tameable extends Agent {
+public interface Tameable extends Animal {
 
     /**
      * Checks if this is tamed
@@ -66,5 +67,4 @@ public interface Tameable extends Agent {
      * @param tamer The Tamer who should own this
      */
     void setOwner(Tamer tamer);
-
 }

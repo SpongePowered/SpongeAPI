@@ -31,6 +31,5 @@ import org.spongepowered.api.entity.living.Sittable;
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends Animal, Sittable, Dyeable {
-
+public interface Wolf extends Sittable, Dyeable {
 }

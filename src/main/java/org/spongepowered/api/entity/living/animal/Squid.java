@@ -30,6 +30,5 @@ import org.spongepowered.api.entity.living.Aquatic;
 /**
  * Represents a Squid.
  */
-public interface Squid extends Aquatic, Animal {
-
+public interface Squid extends Aquatic {
 }
