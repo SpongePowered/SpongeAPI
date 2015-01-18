@@ -54,7 +54,7 @@ public interface StatusClient {
      *
      * @return The address the player is connecting to, or
      *         {@link Optional#absent()} if not available (for example because
-     *         of {@link #isLegacy()}).
+     *         of {@link GameVersion#isLegacy()}).
      */
     Optional<InetSocketAddress> getVirtualHost();
 

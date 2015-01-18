@@ -62,6 +62,7 @@ import javax.inject.Inject;
  * Note: An instance of this class should be registered with the sponge
  * {@link EventManager} in order to receive {@link CommandEvent}s in the
  * {@link #onCommandEvent(CommandEvent)} method.
+ * </p>
  */
 public class SimpleCommandService implements CommandService {
 

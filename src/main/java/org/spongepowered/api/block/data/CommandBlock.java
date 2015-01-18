@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.data;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.CommandSource;
 

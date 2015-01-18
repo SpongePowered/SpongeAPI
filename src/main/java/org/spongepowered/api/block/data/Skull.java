@@ -26,7 +26,6 @@
 package org.spongepowered.api.block.data;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.block.meta.SkullTypes;
