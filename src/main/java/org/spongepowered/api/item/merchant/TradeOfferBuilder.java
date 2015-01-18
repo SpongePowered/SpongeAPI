@@ -38,7 +38,7 @@ public interface TradeOfferBuilder {
      * @param item The first item to buy
      * @return This builder
      */
-    TradeOfferBuilder withFirstBuyingItem(ItemStack item);
+    TradeOfferBuilder firstBuyingItem(ItemStack item);
 
     /**
      * Sets the second selling item of the trade offer to be generated.
@@ -46,7 +46,7 @@ public interface TradeOfferBuilder {
      * @param item The second item to buy
      * @return This builder
      */
-    TradeOfferBuilder withSeconBuyingItem(ItemStack item);
+    TradeOfferBuilder secondBuyingItem(ItemStack item);
 
     /**
      * Sets the selling item of the trade offer to be generated.
@@ -54,7 +54,7 @@ public interface TradeOfferBuilder {
      * @param item The item to sell
      * @return This builder
      */
-    TradeOfferBuilder withSellingItem(ItemStack item);
+    TradeOfferBuilder sellingItem(ItemStack item);
 
     /**
      * Sets the existing uses of the trade offer to be generated.
@@ -63,7 +63,7 @@ public interface TradeOfferBuilder {
      * @param uses The uses
      * @return This builder
      */
-    TradeOfferBuilder withUses(int uses);
+    TradeOfferBuilder uses(int uses);
 
     /**
      * Sets the maximum uses the generated trade offer will have. A
@@ -72,7 +72,7 @@ public interface TradeOfferBuilder {
      * @param maxUses The maximum uses of the trade offer
      * @return This builder
      */
-    TradeOfferBuilder withMaxUses(int maxUses);
+    TradeOfferBuilder maxUses(int maxUses);
 
     /**
      * Sets the trade offer to be generated to grant experience upon use.
@@ -106,6 +106,5 @@ public interface TradeOfferBuilder {
      * @return This builder
      */
     TradeOfferBuilder reset();
-
 
 }

@@ -26,6 +26,6 @@ package org.spongepowered.api.service.persistence;
 
 public class InvalidDataException extends UnsupportedOperationException {
 
-
+    private static final long serialVersionUID = -754482190837922531L;
 
 }

@@ -27,8 +27,8 @@ package org.spongepowered.api.world.storage;
 public interface WorldStorage {
 
     /**
-     * Gets a {@link ChunkIterator}
-     * @return
+     * Gets a {@link ChunkIterator}.
+     * @return An iterator of generated chunks
      */
     ChunkIterator getGeneratedChunks();
 

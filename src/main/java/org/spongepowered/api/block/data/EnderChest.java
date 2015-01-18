@@ -22,42 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
 
-import java.util.List;
+package org.spongepowered.api.block.data;
 
 /**
- * Represents the required implementation for the static methods in
- * {@link DyeColors}, {@link HorseColors}, {@link HorseStyles},
- * {@link HorseVariants}, {@link OcelotTypes}, and {@link SkeletonTypes}.
+ * Represents an Ender Chest.
  */
-interface LivingMetaFactory {
+public interface EnderChest extends TileEntity {
 
-    List<SkeletonType> getSkeletonTypes();
-
-    SkeletonType getSkeletonTypeFromName(String name);
-
-    List<OcelotType> getOcelotTypes();
-
-    OcelotType getOcelotTypeFromName(String name);
-
-    List<DyeColor> getDyeColors();
-
-    DyeColor getDyeColorFromName(String name);
-
-    List<HorseColor> getHorseColors();
-
-    HorseColor getHorseColorFromName(String name);
-
-    List<HorseStyle> getHorseStyles();
-
-    HorseStyle getHorseStyleFromName(String name);
-
-    List<HorseVariant> getHorseVariants();
-
-    HorseVariant getHorseVariantFromName(String name);
-
-    List<RabbitType> getRabbitTypes();
-
-    RabbitType getRabbitTypeFromName(String name);
 }

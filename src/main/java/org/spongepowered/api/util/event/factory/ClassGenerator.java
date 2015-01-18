@@ -25,19 +25,53 @@
 
 package org.spongepowered.api.util.event.factory;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.objectweb.asm.Opcodes.ACC_BRIDGE;
+import static org.objectweb.asm.Opcodes.ACC_PRIVATE;
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
+import static org.objectweb.asm.Opcodes.ACC_SUPER;
+import static org.objectweb.asm.Opcodes.ACC_SYNTHETIC;
+import static org.objectweb.asm.Opcodes.ALOAD;
+import static org.objectweb.asm.Opcodes.ARETURN;
+import static org.objectweb.asm.Opcodes.ASTORE;
+import static org.objectweb.asm.Opcodes.ATHROW;
+import static org.objectweb.asm.Opcodes.CHECKCAST;
+import static org.objectweb.asm.Opcodes.DLOAD;
+import static org.objectweb.asm.Opcodes.DRETURN;
+import static org.objectweb.asm.Opcodes.DUP;
+import static org.objectweb.asm.Opcodes.FLOAD;
+import static org.objectweb.asm.Opcodes.FRETURN;
+import static org.objectweb.asm.Opcodes.GETFIELD;
+import static org.objectweb.asm.Opcodes.IFNE;
+import static org.objectweb.asm.Opcodes.IFNONNULL;
+import static org.objectweb.asm.Opcodes.IFNULL;
+import static org.objectweb.asm.Opcodes.ILOAD;
+import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
+import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+import static org.objectweb.asm.Opcodes.IRETURN;
+import static org.objectweb.asm.Opcodes.LLOAD;
+import static org.objectweb.asm.Opcodes.LRETURN;
+import static org.objectweb.asm.Opcodes.NEW;
+import static org.objectweb.asm.Opcodes.PUTFIELD;
+import static org.objectweb.asm.Opcodes.RETURN;
+import static org.objectweb.asm.Opcodes.V1_6;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
-import org.objectweb.asm.*;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.FieldVisitor;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Type;
 import org.spongepowered.api.util.reflect.AccessorFirstStrategy;
 import org.spongepowered.api.util.reflect.Property;
 import org.spongepowered.api.util.reflect.PropertySearchStrategy;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.objectweb.asm.Opcodes.*;
+import javax.annotation.Nullable;
 
 /**
  * Generates the bytecode for classes needed by
@@ -45,7 +79,7 @@ import static org.objectweb.asm.Opcodes.*;
  */
 class ClassGenerator {
 
-    private PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
+    private final PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
 
     /**
@@ -94,7 +128,8 @@ class ClassGenerator {
 
         // Create the constructor
         {
-            MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
+            MethodVisitor mv =
+                    cw.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
             mv.visitCode();
 
             // super()
@@ -105,8 +140,6 @@ class ClassGenerator {
                 if (hasImplementation(parentType, property.getAccessor())) {
                     continue;
                 }
-
-                Label afterPut = new Label();
 
                 // Object value = map.get("key")
                 mv.visitVarInsn(ALOAD, 1);
@@ -132,6 +165,8 @@ class ClassGenerator {
                         mv.visitLabel(afterNullTest);
                     }
                 }
+
+                Label afterPut = new Label();
 
                 // if (value != null) {
                 mv.visitVarInsn(ALOAD, 2);
@@ -379,6 +414,7 @@ class ClassGenerator {
                     return true;
                 }
             } catch (NoSuchMethodException ignored) {
+                // Try the superclass
             }
 
             type = type.getSuperclass();

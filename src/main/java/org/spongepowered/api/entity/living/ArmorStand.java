@@ -132,18 +132,18 @@ public interface ArmorStand extends Living, ArmorEquipable {
     void setSmall(boolean small);
 
     /**
-     * Returns whether this armor stand is rendered invisible.
+     * Returns whether this armor stand is affected by gravity or not.
      *
-     * @return Whether this armor stand is invisible
+     * @return Whether this armor stand is affected by gravity or not
      */
-    boolean isInvisible();
+    boolean hasGravity();
 
     /**
-     * Sets whether this armor stand is invisible or not.
+     * Sets whether this armor stand is affected by gravity or not.
      *
-     * @param invisible Whether this armor stand is invisible or not
+     * @param gravity Whether this armor stand is affected by gravity
      */
-    void setInvisible(boolean invisible);
+    void setGravity(boolean gravity);
 
     /**
      * Returns whether this armor stand shows arms or not.

@@ -25,13 +25,14 @@
 
 package org.spongepowered.api.util.reflect;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Optional;
+
+import java.lang.reflect.Method;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.lang.reflect.Method;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A property is a getter with possibly a setter pair.
@@ -40,8 +41,8 @@ public final class Property {
 
     private final String name;
     private final Class<?> type;
-    private Method accessor;
-    private Optional<Method> mutator;
+    private final Method accessor;
+    private final Optional<Method> mutator;
 
     /**
      * Create a new property.

@@ -39,10 +39,22 @@ public enum Axis {
         this.direction = vector3d;
     }
 
+    /**
+     * Returns whether the given vector is along this axis.
+     *
+     * @param vector The vector to test
+     * @return True if it is along this axis
+     */
     public boolean isVectorAlongAxis(final Vector3d vector) {
         return vector.abs().normalize().sub(direction).lengthSquared() == 0;
     }
 
+    /**
+     * Gets the component of the vector denoted by this axis.
+     *
+     * @param vector3d The vector
+     * @return The value of the component
+     */
     public double getComponent(final Vector3d vector3d) {
         switch (this) {
             case X :
@@ -56,6 +68,12 @@ public enum Axis {
         }
     }
 
+    /**
+     * Gets the direction of the vector's component denoted by this axis.
+     *
+     * @param vector3d The vector
+     * @return The direction of the component
+     */
     public AxisDirection getDirection(final Vector3d vector3d) {
         final double component = getComponent(vector3d);
         if (component > 0) {

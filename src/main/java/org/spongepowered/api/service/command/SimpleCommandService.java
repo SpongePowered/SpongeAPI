@@ -75,8 +75,9 @@ public class SimpleCommandService implements CommandService {
     /**
      * Construct a simple {@link CommandService}.
      *
-     * @param pluginManager The plugin manager to get the
-     *        {@link PluginContainer} for a given plugin
+     * @param pluginManager The plugin manager to get the <<<<<<< HEAD
+     *        {@link PluginContainer} for a given plugin =======
+     *        {@link PluginContainer} for a given plugin >>>>>>> upstream/master
      */
     @Inject
     public SimpleCommandService(PluginManager pluginManager) {
