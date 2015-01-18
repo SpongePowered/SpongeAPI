@@ -63,6 +63,13 @@ public interface Task extends Identifiable {
     Optional<Long> getInterval();
 
     /**
+     * Gets the interval for repeating tasks in ticks.
+     *
+     * @return The interval (period) in ticks.
+     */
+    long getInterval();
+
+    /**
      * Cancels the task, if it has not already run.
      *
      * @return If the task was cancelled
