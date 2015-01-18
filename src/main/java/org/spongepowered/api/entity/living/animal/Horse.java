@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 /**
  * Represents a Horse.
  */
-public interface Horse extends Animal, Tameable {
+public interface Horse extends Tameable {
 
     /**
      * Gets the current style of this Horse.
@@ -102,5 +102,4 @@ public interface Horse extends Animal, Tameable {
      * @param itemStack The saddle item
      */
     void setSaddle(@Nullable ItemStack itemStack);
-
 }

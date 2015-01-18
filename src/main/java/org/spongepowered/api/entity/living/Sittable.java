@@ -42,5 +42,4 @@ public interface Sittable extends Tameable {
      * @param sitting Whether this entity is sitting
      */
     void setSitting(boolean sitting);
-
 }
