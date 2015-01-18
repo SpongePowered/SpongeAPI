@@ -56,23 +56,30 @@ public @interface Plugin {
     String version() default "unknown";
 
     /**
-     * A simple dependency string for this mod separated by a ";"
-     * example:
-     * <pre>"required-after:Sponge@[1.2.3.2222,);required-after:myLibraryPlugin;after:towny;before:worldguard"</pre>
+     * A simple dependency string for this mod separated by a ";" example:
+     * 
+     * <pre>
+     * &quot;required-after:Sponge@[1.2.3.2222,);required-after:myLibraryPlugin;after:towny;before:worldguard&quot;
+     * </pre>
+     * 
      * supported options:
      * <dl>
-     *   <dt>after</dt>
-     *   <dd>when present this plugin will run after plugin x</dd>
-     *   <dt>required-after</dt>
-     *   <dd>plugin x must be present, load after plugin x</dd>
-     *   <dt>before</dt>
-     *   <dd>when present run before plugin x</dd>
-     *   <dt>required-before</dt>
-     *   <dd>plugin x must be present, load before plugin x</dd>
+     * <dt>after</dt>
+     * <dd>when present this plugin will run after plugin x</dd>
+     * <dt>required-after</dt>
+     * <dd>plugin x must be present, load after plugin x</dd>
+     * <dt>before</dt>
+     * <dd>when present run before plugin x</dd>
+     * <dt>required-before</dt>
+     * <dd>plugin x must be present, load before plugin x</dd>
      * </dl>
      * supports maven version ranges after @ in any field
      */
     String dependencies() default "";
 
-
+    /**
+     * If this plugin is not purely a Sponge plugin. (Forge Mods, Vanilla
+     * Command Wrapper...)
+     */
+    boolean wrapper() default false;
 }
