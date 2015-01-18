@@ -49,7 +49,7 @@ public interface World extends Extent, Viewer, WeatherVolume, Contextual, Identi
      * 
      * @return difficulty of world
      */
-    String getDifficulty();
+    Difficulty getDifficulty();
     
     /**
      * Gets the name of the world.
