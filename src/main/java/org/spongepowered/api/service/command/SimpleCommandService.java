@@ -57,13 +57,11 @@ import java.util.Set;
 import javax.inject.Inject;
 
 /**
- * A simple implementation of {@link CommandService}. </p>
- *
+ * A simple implementation of {@link CommandService}.
  * <p>
  * Note: An instance of this class should be registered with the sponge
  * {@link EventManager} in order to receive {@link CommandEvent}s in the
  * {@link #onCommandEvent(CommandEvent)} method.
- * </p>
  */
 public class SimpleCommandService implements CommandService {
 
