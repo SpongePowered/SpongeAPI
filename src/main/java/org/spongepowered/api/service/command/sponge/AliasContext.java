@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.command.dispatcher;
+package org.spongepowered.api.service.command.sponge;
 
 import org.spongepowered.api.util.command.CommandSource;
 

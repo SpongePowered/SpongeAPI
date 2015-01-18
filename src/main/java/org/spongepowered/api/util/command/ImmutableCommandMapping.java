@@ -42,37 +42,28 @@ public class ImmutableCommandMapping implements CommandMapping {
     private final String primary;
     private final Set<String> aliases;
     private final CommandCallable callable;
-    private final String registrar;
 
     /**
      * Create a new instance.
      *
-     * @param callable
-     *            The command callable
-     * @param primary
-     *            The primary alias
-     * @param alias
-     *            A list of all aliases
-     * @throws IllegalArgumentException
-     *             Thrown if aliases are duplicated
+     * @param callable The command callable
+     * @param primary The primary alias
+     * @param alias A list of all aliases
+     * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
-    public ImmutableCommandMapping(CommandCallable callable, String primary, String registrar, String... alias) {
-        this(callable, primary, registrar, Arrays.asList(checkNotNull(alias)));
+    public ImmutableCommandMapping(CommandCallable callable, String primary, String... alias) {
+        this(callable, primary, Arrays.asList(checkNotNull(alias)));
     }
 
     /**
      * Create a new instance.
      *
-     * @param callable
-     *            The command callable
-     * @param primary
-     *            The primary alias
-     * @param aliases
-     *            A collection of all aliases
-     * @throws IllegalArgumentException
-     *             Thrown if aliases are duplicated
+     * @param callable The command callable
+     * @param primary The primary alias
+     * @param aliases A collection of all aliases
+     * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
-    public ImmutableCommandMapping(CommandCallable callable, String primary, String registrar, Collection<String> aliases) {
+    public ImmutableCommandMapping(CommandCallable callable, String primary, Collection<String> aliases) {
         checkNotNull(callable);
         checkNotNull(primary);
         checkNotNull(aliases);
@@ -80,7 +71,6 @@ public class ImmutableCommandMapping implements CommandMapping {
         this.aliases = new HashSet<String>(aliases);
         this.aliases.add(primary);
         this.callable = callable;
-        this.registrar = registrar;
     }
 
     @Override
@@ -100,12 +90,6 @@ public class ImmutableCommandMapping implements CommandMapping {
 
     @Override
     public String toString() {
-        return "ImmutableCommandMapping{" + "primary='" + primary + '\'' + ", aliases=" + aliases + ", callable=" + callable + ", registrar="
-                + registrar + '}';
-    }
-
-    @Override
-    public String getRegistrarId() {
-        return registrar;
+        return "ImmutableCommandMapping{" + "primary='" + primary + '\'' + ", aliases=" + aliases + ", callable=" + callable + '}';
     }
 }

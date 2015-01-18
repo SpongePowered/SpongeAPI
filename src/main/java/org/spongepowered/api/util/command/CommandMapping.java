@@ -68,11 +68,4 @@ public interface CommandMapping {
      */
     CommandCallable getCallable();
 
-    /**
-     * Get the plugin who registered this command.
-     * 
-     * @return The plugin who registered this command.
-     */
-    String getRegistrarId();
-
 }

@@ -75,13 +75,12 @@ public interface Dispatcher extends CommandCallable {
     Map<String, Integer> getAliases();
 
     /**
-     * Get the {@link CommandMapping}s associated with an alias. Returns
-     * Optional.absent() if no command is named by the given alias.
-     *
+     * Get the {@link CommandMapping}(s) associated with an alias.
+     * 
      * @param alias The alias
      * @return The command mappings, if available
      */
-    Optional<Set<? extends CommandMapping>> getAll(String alias);
+    Set<CommandMapping> getAll(String alias);
 
     /**
      * Returns whether the dispatcher contains a registered command for the
