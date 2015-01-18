@@ -109,10 +109,21 @@ public enum Direction {
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
     }
 
+    /**
+     * Gets the opposite direction i.e. 180 degrees from this direction.
+     *
+     * @return The opposite direction
+     */
     public Direction getOpposite() {
         return this.opposite;
     }
 
+    /**
+     * Returns whether the given direction is opposite this.
+     *
+     * @param d Direction to test
+     * @return True if it is opposite
+     */
     public boolean isOpposite(Direction d) {
         return this.opposite.equals(d);
     }
@@ -174,7 +185,7 @@ public enum Direction {
      * has the same horizontal and vertical length, a horizontal direction will
      * be returned. If the vector has the same angle to two directions the
      * clockwise next will be selected.
-     * 
+     *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
@@ -192,7 +203,7 @@ public enum Direction {
      * Gets the closest horizontal direction from the given vector. If the
      * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
      * has the same angle to two directions the clockwise next will be selected.
-     * 
+     *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
@@ -212,6 +223,12 @@ public enum Direction {
         }
     }
 
+    /**
+     * Gets the direction associated with the given axis.
+     *
+     * @param axis The axis
+     * @return The direction
+     */
     public static Direction getFromAxis(final Axis axis) {
         switch (axis) {
             case X :
@@ -225,6 +242,13 @@ public enum Direction {
         }
     }
 
+    /**
+     * Gets the direction of the axis along the given {@link AxisDirection}.
+     *
+     * @param axis The axis
+     * @param direction The direction along the axis
+     * @return The direction
+     */
     public static Direction getFromAxis(final Axis axis, final AxisDirection direction) {
         switch (direction) {
             case PLUS :
@@ -240,12 +264,12 @@ public enum Direction {
 
     public static final class Flag {
 
-        public static int CARDINAL = 0x1;
-        public static int ORDINAL = 0x2;
-        public static int SECONDARY_ORDINAL = 0x4;
-        public static int UPRIGHT = 0x8;
+        public static final int CARDINAL = 0x1;
+        public static final int ORDINAL = 0x2;
+        public static final int SECONDARY_ORDINAL = 0x4;
+        public static final int UPRIGHT = 0x8;
 
-        public static int ALL = CARDINAL | ORDINAL | SECONDARY_ORDINAL | UPRIGHT;
+        public static final int ALL = CARDINAL | ORDINAL | SECONDARY_ORDINAL | UPRIGHT;
 
         private Flag() {
         }

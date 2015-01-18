@@ -38,6 +38,7 @@ import org.slf4j.LoggerFactory;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -55,6 +56,13 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+/**
+ * A simple implementation of {@link CommandService}.
+ * <p>
+ * Note: An instance of this class should be registered with the sponge
+ * {@link EventManager} in order to receive {@link CommandEvent}s in the
+ * {@link #onCommandEvent(CommandEvent)} method.
+ */
 public class SimpleCommandService implements CommandService {
 
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
@@ -64,12 +72,23 @@ public class SimpleCommandService implements CommandService {
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
+    /**
+     * Construct a simple {@link CommandService}.
+     *
+     * @param pluginManager The plugin manager to get the
+     *            {@link PluginContainer} for a given plugin
+     */
     @Inject
     public SimpleCommandService(PluginManager pluginManager) {
         checkNotNull(pluginManager, "pluginManager");
         this.pluginManager = pluginManager;
     }
 
+    /**
+     * Receive {@link CommandEvent}s.
+     *
+     * @param event The event received
+     */
     @Subscribe(order = Order.LAST)
     public void onCommandEvent(final CommandEvent event) {
         try {

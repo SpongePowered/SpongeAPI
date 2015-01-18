@@ -273,4 +273,18 @@ public interface Living extends Entity {
      * @param visible Whether the custom name is visible
      */
     void setCustomNameVisible(boolean visible);
+
+    /**
+     * Returns whether this entity is rendered invisible.
+     *
+     * @return Whether this entity is invisible
+     */
+    boolean isInvisible();
+
+    /**
+     * Sets whether this entity is invisible or not.
+     *
+     * @param invisible Whether this entity is invisible or not
+     */
+    void setInvisible(boolean invisible);
 }

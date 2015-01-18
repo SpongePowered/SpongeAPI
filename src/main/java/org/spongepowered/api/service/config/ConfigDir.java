@@ -52,6 +52,8 @@ public @interface ConfigDir {
      * the plugin-specific configuration directory.
      *
      * @see ConfigRoot#getConfigFile() For information on what the shared root is
+     *
+     * @return True to use a shared root configuration
      */
     boolean sharedRoot();
 

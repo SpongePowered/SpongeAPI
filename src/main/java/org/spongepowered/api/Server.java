@@ -197,9 +197,11 @@ public interface Server {
     boolean getOnlineMode();
 
     /**
-     * Gets the message that is displayed in the server list of the client.
-     * @return The servers MOTD
+     * Gets the default message that is displayed in the server list of the
+     * client.
+     * 
+     * @return The server's default description (MOTD)
      */
-    Message getMOTD();
+    Message getMotd();
 
 }

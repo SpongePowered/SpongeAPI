@@ -39,9 +39,8 @@ import javax.annotation.Nullable;
  * example, the all player selector is {@code @a}, and with a radius of 20 it
  * would be {@code @a[r=20]}.
  *
- * @see <a
- *      href="http://minecraft.gamepedia.com/Selector#Target_selectors">Target
- *      Selectors on the Minecraft Wiki</a>
+ * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
+ *      TargetSelectors on the Minecraft Wiki</a>
  */
 public interface Selector {
 
