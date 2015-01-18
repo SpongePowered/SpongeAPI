@@ -93,13 +93,14 @@ license {
 }
 
 checkstyle {
+    configFile = file('checkstyle.xml')
     configProperties = [
-            "name"        : project.name,
+            "name": project.name,
             "organization": project.organization,
-            "url"         : project.url,
-            "year"        : project.inceptionYear
+            "url": project.url,
+            "year": project.inceptionYear,
+            "suppressions": file('checkstyle-suppressions.xml')
     ]
-    configFile = file("checkstyle.xml")
 }
 
 // Source compiler configuration
