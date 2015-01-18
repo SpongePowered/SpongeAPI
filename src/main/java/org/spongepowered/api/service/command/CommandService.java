@@ -57,7 +57,7 @@ public interface CommandService extends Dispatcher {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
      *         instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
+    Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... aliases);
 
     /**
      * Register a given command using a given list of aliases.

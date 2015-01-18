@@ -103,8 +103,9 @@ public class SpongeDispatcher implements Dispatcher {
         checkNotNull(aliases);
         checkNotNull(plugin);
 
-        if (!pluginManager.isLoaded(plugin))
+        if (!pluginManager.isLoaded(plugin)) {
             throw new IllegalArgumentException("There is no plugin by the name of " + plugin + "!");
+        }
 
         CommandMapping commandMapping = new SpongeCommandMapping(command, primaryAlias, plugin, aliases);
         commands.put(plugin, commandMapping);
