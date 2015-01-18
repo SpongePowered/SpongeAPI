@@ -25,46 +25,33 @@
 
 package org.spongepowered.api.item;
 
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.block.BlockType;
 
 /**
- * A type of item.
+ * Represents the Silk Touch enchantment, Enchantments.SILK_TOUCH.
  */
-public interface ItemType extends Translatable {
+public interface EnchantmentSilkTouch extends Enchantment {
 
     /**
-     * Gets the id of this item.
+     * Register a block that can be harvested with silk touch.
      *
-     * <p>Ex. Minecraft registers a golden carrot as
-     * "minecraft:golden_carrot".</p>
-     *
-     * @return The id
+     * @param block The block to register
      */
-    String getId();
+    void registerBlock(BlockType block);
 
     /**
-     * Get the default maximum quantity for {@link ItemStack}s
-     * of this item.
+     * Unregister a block so it can no longer be harvested with silk touch.
      *
-     * @return Max stack quantity
+     * @param block The block to unregister
      */
-    int getMaxStackQuantity();
+    void unregisterBlock(BlockType block);
 
     /**
-     * Gets if the item can be damaged.
+     * Gets whether the block can be harvested with silk touch.
      *
-     * <p>Ex. Tools, weapons and armor can all be damaged.</p>
-     *
-     * @return If it can be damaged
+     * @param block The block to test for
+     * @return Whether it can be harvested
      */
-    boolean isDamageable();
-
-    /**
-     * Returns the maximum damage an item can take.
-     * 
-     * @return The max damage
-     */
-    int getMaxDamage();
+    boolean canHarvest(BlockType block);
 
 }

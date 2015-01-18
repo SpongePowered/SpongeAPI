@@ -23,48 +23,17 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.item;
-
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.translation.Translatable;
+package org.spongepowered.api.util;
 
 /**
- * A type of item.
+ * Represents the possible ways entity positions can be modified.
  */
-public interface ItemType extends Translatable {
+public enum RelativePositions {
 
-    /**
-     * Gets the id of this item.
-     *
-     * <p>Ex. Minecraft registers a golden carrot as
-     * "minecraft:golden_carrot".</p>
-     *
-     * @return The id
-     */
-    String getId();
-
-    /**
-     * Get the default maximum quantity for {@link ItemStack}s
-     * of this item.
-     *
-     * @return Max stack quantity
-     */
-    int getMaxStackQuantity();
-
-    /**
-     * Gets if the item can be damaged.
-     *
-     * <p>Ex. Tools, weapons and armor can all be damaged.</p>
-     *
-     * @return If it can be damaged
-     */
-    boolean isDamageable();
-
-    /**
-     * Returns the maximum damage an item can take.
-     * 
-     * @return The max damage
-     */
-    int getMaxDamage();
+    X,
+    Y,
+    Z,
+    PITCH,
+    YAW
 
 }

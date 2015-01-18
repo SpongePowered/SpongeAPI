@@ -29,8 +29,11 @@ import com.flowpowered.math.vector.Vector2f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+
+import java.util.EnumSet;
 
 import javax.annotation.Nullable;
 
@@ -74,6 +77,17 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @return True if the teleport was successful
      */
     boolean setLocation(Location location);
+
+    /**
+     * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
+     * listed inside the EnumSet are considered relative.
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @param relativePositions The coordinates to set relatively
+     * @return True if the teleport was successful
+     */
+    boolean setLocationAndRotation(Location location, Vector2f rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Gets the rotation as a Vector2f.
