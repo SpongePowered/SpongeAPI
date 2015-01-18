@@ -28,6 +28,6 @@ package org.spongepowered.api.block.data;
 /**
  * Represents an End Portal.
  */
-public interface EndPortal extends Tile {
+public interface EndPortal extends TileEntity {
 
 }

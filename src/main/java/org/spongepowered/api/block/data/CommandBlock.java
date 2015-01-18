@@ -32,7 +32,7 @@ import org.spongepowered.api.util.command.CommandSource;
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends Tile, CommandSource {
+public interface CommandBlock extends TileEntity, CommandSource {
 
     /**
      * Gets the currently stored command.

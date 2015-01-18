@@ -31,7 +31,7 @@ package org.spongepowered.api.block.data;
  * player who is holding an item with a name equal to the lock token.
  * </p>
  */
-public interface Lockable extends Inventory {
+public interface Lockable extends TileEntity { //extends Inventory {
 
     /**
      * Gets the lock token for this tile entity. Will be empty if this tile

@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 /**
  * Represents a Monster Spawner.
  */
-public interface MobSpawner extends Tile {
+public interface MobSpawner extends TileEntity {
 
     /**
      * Gets the remaining delay until the next batch of monsters is spawned.

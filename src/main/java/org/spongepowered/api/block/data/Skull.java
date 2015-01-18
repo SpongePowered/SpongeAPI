@@ -35,7 +35,7 @@ import org.spongepowered.api.util.Direction;
 /**
  * Represents a skull.
  */
-public interface Skull extends Tile {
+public interface Skull extends TileEntity {
 
     /**
      * Gets the rotation of the skull.

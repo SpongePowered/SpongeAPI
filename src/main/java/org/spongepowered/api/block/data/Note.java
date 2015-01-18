@@ -30,7 +30,7 @@ import org.spongepowered.api.block.meta.NotePitch;
 /**
  * Represents a note block.
  */
-public interface Note extends Tile {
+public interface Note extends TileEntity {
 
     /**
      * Gets the note played by this note block.

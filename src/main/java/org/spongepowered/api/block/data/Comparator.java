@@ -27,7 +27,7 @@ package org.spongepowered.api.block.data;
 /**
  * Represents a Redstone Comparator.
  */
-public interface Comparator extends Tile {
+public interface Comparator extends TileEntity {
 
     /**
      * Gets the output signal strength.

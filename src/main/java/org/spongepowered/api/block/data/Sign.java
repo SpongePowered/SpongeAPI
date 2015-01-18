@@ -30,7 +30,7 @@ import org.spongepowered.api.text.message.Message;
 /**
  * Represents for a Sign.
  */
-public interface Sign extends Tile {
+public interface Sign extends TileEntity {
 
     /**
      * Gets all lines of text on the sign.

@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Represents a Banner.
  */
-public interface Banner extends Tile {
+public interface Banner extends TileEntity {
 
     /**
      * Gets the base color of this banner.

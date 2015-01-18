@@ -28,6 +28,6 @@ package org.spongepowered.api.block.data;
 /**
  * Represents a DaylightDetector.
  */
-public interface DaylightDetector extends Tile {
+public interface DaylightDetector extends TileEntity {
 
 }

@@ -22,12 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.block.data;
 
-/**
- * A placeholder pending a proper inventory api. TODO: delete me and replace
- * with proper inventory interface
- */
-public interface Inventory extends Tile {
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.world.World;
 
+/**
+ * Represents an abstract Tile Entity.
+ */
+public interface TileEntity extends DataSerializable {
+
+    /**
+     * Gets the world that this Tile is within.
+     * 
+     * @return The world
+     */
+    World getWorld();
+    
+    /**
+     * Gets the BlockLoc that this tile is in.
+     * 
+     * @return The BlockLoc
+     */
+    BlockLoc getBlock();
+    
 }
