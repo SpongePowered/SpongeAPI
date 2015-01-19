@@ -90,9 +90,9 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     boolean setLocationAndRotation(Location location, Vector3f rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
-     * Gets the rotation as a Vector2f.
+     * Gets the rotation as a Vector3f.
      *
-     * @return The rotation as a Vector2f
+     * @return The rotation as a Vector3f
      */
     Vector3f getRotation();
 
