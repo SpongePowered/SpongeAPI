@@ -67,7 +67,7 @@ public interface Selector {
      * @throws IllegalArgumentException If {@code location} is null and
      *         {@link #requiresLocation()} returned {@code true}
      */
-    List<Entity> resolve(@Nullable Location location) throws IllegalArgumentException;
+    List<? extends Entity> resolve(@Nullable Location location) throws IllegalArgumentException;
 
     /**
      * Returns {@code true} if this selector will require a location to resolve.

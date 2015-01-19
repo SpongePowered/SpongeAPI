@@ -66,7 +66,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @param position The position
      * @return The chunk, if available
      */
-    Optional<Chunk> getChunk(Vector3i position);
+    Optional<? extends Chunk> getChunk(Vector3i position);
 
     /**
      * Get the chunk at the given position if it exists or if
@@ -76,7 +76,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
+    Optional<? extends Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
 
     /**
      * Deletes the given chunk from the world. Returns a {@code boolean}
@@ -94,7 +94,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * 
      * @return The loaded chunks
      */
-    Iterable<Chunk> getLoadedChunks();
+    Iterable<? extends Chunk> getLoadedChunks();
 
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
@@ -107,7 +107,7 @@ public interface World extends Extent, Viewer, WeatherVolume {
      * @param uuid The unique id
      * @return An entity, if available
      */
-    Optional<Entity> getEntityFromUUID(UUID uuid);
+    Optional<? extends Entity> getEntityFromUUID(UUID uuid);
 
     /**
      * Gets the world border for the world.

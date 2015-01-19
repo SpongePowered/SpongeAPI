@@ -40,7 +40,7 @@ public interface Enderman extends Monster {
      *
      * @return The {@link BlockState}, if available
      */
-    Optional<BlockState> getCarriedBlock();
+    Optional<? extends BlockState> getCarriedBlock();
 
     /**
      * Sets the {@link BlockState} currently carried by the enderman.

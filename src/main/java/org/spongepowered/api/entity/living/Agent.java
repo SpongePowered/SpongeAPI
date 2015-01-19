@@ -69,7 +69,7 @@ public interface Agent extends Living {
      *
      * @return The leash holder, if available
      */
-    Optional<Entity> getLeashHolder();
+    Optional<? extends Entity> getLeashHolder();
 
     /**
      * Sets the holder of this leashed entity.

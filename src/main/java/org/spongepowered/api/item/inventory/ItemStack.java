@@ -99,7 +99,7 @@ public interface ItemStack extends Serializable, DataSerializable {
      *
      * @return Map of enchantments to current levels
      */
-    Map<Enchantment, Integer> getEnchantments();
+    Map<? extends Enchantment, Integer> getEnchantments();
 
     /**
      * Test if this stack has enchantments.

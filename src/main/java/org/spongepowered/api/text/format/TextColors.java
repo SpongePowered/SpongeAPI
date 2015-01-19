@@ -66,7 +66,7 @@ public final class TextColors {
      * @return The {@link TextColor} with the specified name, or
      *         {@link Optional#absent()} if not found
      */
-    public static Optional<TextColor> valueOf(String name) {
+    public static Optional<? extends TextColor> valueOf(String name) {
         return TextStyles.factory.getColorFromName(name);
     }
 
@@ -75,7 +75,7 @@ public final class TextColors {
      *
      * @return An immutable list of all text colors
      */
-    public static List<TextColor> getValues() {
+    public static List<? extends TextColor> getValues() {
         return TextStyles.factory.getColors();
     }
 

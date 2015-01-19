@@ -44,7 +44,7 @@ public interface Server {
      *
      * @return A {@link Collection} of online players
      */
-    Collection<Player> getOnlinePlayers();
+    Collection<? extends Player> getOnlinePlayers();
 
     /**
      * Gets the max players allowed on this server.
@@ -59,7 +59,7 @@ public interface Server {
      * @param uniqueId The UUID to get the player from
      * @return {@link Player} or Optional.absent() if not found
      */
-    Optional<Player> getPlayer(UUID uniqueId);
+    Optional<? extends Player> getPlayer(UUID uniqueId);
 
     /**
      * Gets a {@link Player} by their name
@@ -72,14 +72,14 @@ public interface Server {
      * @param name The name to get the player from
      * @return {@link Player} or Optional.absent() if not found
      */
-    Optional<Player> getPlayer(String name);
+    Optional<? extends Player> getPlayer(String name);
 
     /**
      * Gets all currently loaded {@link World}s.
      *
      * @return Collection of loaded worlds
      */
-    Collection<World> getWorlds();
+    Collection<? extends World> getWorlds();
 
     /**
      * Gets a loaded {@link World} by its unique id ({@link UUID}), if any.
@@ -87,7 +87,7 @@ public interface Server {
      * @param uniqueId UUID to lookup
      * @return The world, if found
      */
-    Optional<World> getWorld(UUID uniqueId);
+    Optional<? extends World> getWorld(UUID uniqueId);
 
     /**
      * Gets a loaded {@link World} by name, if any.
@@ -95,7 +95,7 @@ public interface Server {
      * @param worldName Name to lookup
      * @return The world, if found
      */
-    Optional<World> getWorld(String worldName);
+    Optional<? extends World> getWorld(String worldName);
 
     /**
      * Loads a {@link World} from the default storage container.
@@ -103,7 +103,7 @@ public interface Server {
      * @param worldName The name to lookup
      * @return the world, if found
      */
-    Optional<World> loadWorld(String worldName);
+    Optional<? extends World> loadWorld(String worldName);
 
     /**
      * Unloads a {@link World}, if there are any connected players in the given

@@ -108,14 +108,14 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      *
      * @return The passenger entity, if it exists
      */
-    Optional<Entity> getPassenger();
+    Optional<? extends Entity> getPassenger();
 
     /**
      * Gets the entity vehicle that this entity is riding, if available.
      *
      * @return The vehicle entity, if it exists
      */
-    Optional<Entity> getVehicle();
+    Optional<? extends Entity> getVehicle();
 
     /**
      * Gets the entity vehicle that is the base of what ever stack the current

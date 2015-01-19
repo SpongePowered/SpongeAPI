@@ -37,6 +37,6 @@ public interface PrimedTNT extends FusedExplosive {
      *
      * @return The living entity that set off this primed tnt, if available
      */
-    Optional<Living> getDetonator();
+    Optional<? extends Living> getDetonator();
 
 }

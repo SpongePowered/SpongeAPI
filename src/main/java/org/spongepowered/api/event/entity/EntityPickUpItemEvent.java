@@ -41,5 +41,5 @@ public interface EntityPickUpItemEvent extends EntityEvent, Cancellable {
      *
      * @return The items as entities
      */
-    Collection<Item> getItems();
+    Collection<? extends Item> getItems();
 }

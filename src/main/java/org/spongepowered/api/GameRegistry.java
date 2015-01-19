@@ -86,14 +86,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The block or Optional.absent() if not found
      */
-    Optional<BlockType> getBlock(String id);
+    Optional<? extends BlockType> getBlock(String id);
 
     /**
      * Gets a list of all available {@link BlockType}s.
      *
      * @return A list containing all block types in registry
      */
-    List<BlockType> getBlocks();
+    List<? extends BlockType> getBlocks();
 
     /**
      * Gets an {@link ItemType} by its identifier.
@@ -101,14 +101,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The item or Optional.absent() if not found
      */
-    Optional<ItemType> getItem(String id);
+    Optional<? extends ItemType> getItem(String id);
 
     /**
      * Gets a list of all available {@link ItemType}s.
      *
      * @return A list containing all item types in registry
      */
-    List<ItemType> getItems();
+    List<? extends ItemType> getItems();
 
     /**
      * Gets a {@link BiomeType} by its identifier.
@@ -116,14 +116,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The biome or Optional.absent() if not found
      */
-    Optional<BiomeType> getBiome(String id);
+    Optional<? extends BiomeType> getBiome(String id);
 
     /**
      * Gets a list of all available {@link BiomeType}s.
      *
      * @return A list containing all biome types
      */
-    List<BiomeType> getBiomes();
+    List<? extends BiomeType> getBiomes();
 
     /**
      * Get an item stack builder.
@@ -152,14 +152,14 @@ public interface GameRegistry {
      * @param name The particle name
      * @return The corresponding particle or Optional.absent() if not found
      */
-    Optional<ParticleType> getParticleType(String name);
+    Optional<? extends ParticleType> getParticleType(String name);
 
     /**
      * Gets a list of all available {@link ParticleType}s.
      *
      * @return A list containing all particle types in registry
      */
-    List<ParticleType> getParticleTypes();
+    List<? extends ParticleType> getParticleTypes();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
@@ -175,14 +175,14 @@ public interface GameRegistry {
      * @param name The sound name
      * @return The sound or Optional.absent() if not found
      */
-    Optional<SoundType> getSound(String name);
+    Optional<? extends SoundType> getSound(String name);
 
     /**
      * Gets a list of all known {@link SoundType}s.
      *
      * @return A list containing all sounds in the registry
      */
-    List<SoundType> getSounds();
+    List<? extends SoundType> getSounds();
 
     /**
      * Gets an {@link EntityType} by its identifier.
@@ -190,14 +190,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The entity type or Optional.absent() if not found
      */
-    Optional<EntityType> getEntity(String id);
+    Optional<? extends EntityType> getEntity(String id);
 
     /**
      * Gets a list of all available {@link EntityType}s.
      *
      * @return A list containing all entity types in registry
      */
-    List<EntityType> getEntities();
+    List<? extends EntityType> getEntities();
 
     /**
      * Gets an {@link Art} by its identifier.
@@ -205,14 +205,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The art piece or Optional.absent() if not found
      */
-    Optional<Art> getArt(String id);
+    Optional<? extends Art> getArt(String id);
 
     /**
      * Gets a list of all available {@link Art} pieces.
      *
      * @return A list of all available art pieces
      */
-    List<Art> getArts();
+    List<? extends Art> getArts();
 
     /**
      * Gets a {@link DyeColor} by its identifier.
@@ -220,14 +220,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The dye color or Optional.absent() if not found
      */
-    Optional<DyeColor> getDye(String id);
+    Optional<? extends DyeColor> getDye(String id);
 
     /**
      * Gets a list of all available {@link DyeColor}s.
      *
      * @return A list containing all dyes in registry
      */
-    List<DyeColor> getDyes();
+    List<? extends DyeColor> getDyes();
 
     /**
      * Gets a {@link HorseColor} by its identifier.
@@ -235,14 +235,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The horse color or Optional.absent() if not found
      */
-    Optional<HorseColor> getHorseColor(String id);
+    Optional<? extends HorseColor> getHorseColor(String id);
 
     /**
      * Gets a list of all available {@link HorseColor}s.
      *
      * @return A list containing all horse colors in registry
      */
-    List<HorseColor> getHorseColors();
+    List<? extends HorseColor> getHorseColors();
 
     /**
      * Gets a {@link HorseStyle} by its identifier.
@@ -250,14 +250,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The horse style or Optional.absent() if not found
      */
-    Optional<HorseStyle> getHorseStyle(String id);
+    Optional<? extends HorseStyle> getHorseStyle(String id);
 
     /**
      * Gets a list of all available {@link HorseStyle}s.
      *
      * @return A list containing all horse styles in registry
      */
-    List<HorseStyle> getHorseStyles();
+    List<? extends HorseStyle> getHorseStyles();
 
     /**
      * Gets a {@link HorseVariant} by its identifier.
@@ -265,14 +265,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The horse variant or Optional.absent() if not found
      */
-    Optional<HorseVariant> getHorseVariant(String id);
+    Optional<? extends HorseVariant> getHorseVariant(String id);
 
     /**
      * Gets a list of all available {@link HorseVariant}s.
      *
      * @return A list containing all horse variants in registry
      */
-    List<HorseVariant> getHorseVariants();
+    List<? extends HorseVariant> getHorseVariants();
 
     /**
      * Gets an {@link OcelotType} by its identifier.
@@ -280,14 +280,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The ocelot type or Optional.absent() if not found
      */
-    Optional<OcelotType> getOcelotType(String id);
+    Optional<? extends OcelotType> getOcelotType(String id);
 
     /**
      * Gets a list of all available {@link OcelotType}s.
      *
      * @return A list containing all ocelot types in registry
      */
-    List<OcelotType> getOcelotTypes();
+    List<? extends OcelotType> getOcelotTypes();
 
     /**
      * Gets a {@link RabbitType} by its identifier.
@@ -295,14 +295,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The rabbit type or Optional.absent() if not found
      */
-    Optional<RabbitType> getRabbitType(String id);
+    Optional<? extends RabbitType> getRabbitType(String id);
 
     /**
      * Gets a list of all available {@link RabbitType}s.
      *
      * @return A list containing all rabbit types in registry
      */
-    List<RabbitType> getRabbitTypes();
+    List<? extends RabbitType> getRabbitTypes();
 
     /**
      * Gets a {@link SkeletonType} by its identifier.
@@ -310,14 +310,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The skeleton type or Optional.absent() if not found
      */
-    Optional<SkeletonType> getSkeletonType(String id);
+    Optional<? extends SkeletonType> getSkeletonType(String id);
 
     /**
      * Gets a list of all available {@link SkeletonType}s.
      *
      * @return A list containing all skeleton types in registry
      */
-    List<SkeletonType> getSkeletonTypes();
+    List<? extends SkeletonType> getSkeletonTypes();
 
     /**
      * Gets the villager {@link Career} with the specified id.
@@ -325,14 +325,14 @@ public interface GameRegistry {
      * @param id The id of the career to return
      * @return The career with the given id or Optional.absent() if not found
      */
-    Optional<Career> getCareer(String id);
+    Optional<? extends Career> getCareer(String id);
 
     /**
      * Gets all available villager {@link Career}s.
      *
      * @return A list of all villager careers
      */
-    List<Career> getCareers();
+    List<? extends Career> getCareers();
 
     /**
      * Gets all available villager {@link Career}s for the given profession.
@@ -340,7 +340,7 @@ public interface GameRegistry {
      * @param profession The villager profession to list careers from
      * @return A list of all villager careers associated with the profession
      */
-    List<Career> getCareers(Profession profession);
+    List<? extends Career> getCareers(Profession profession);
 
     /**
      * Gets the villager {@link Profession} with the specified id.
@@ -348,14 +348,14 @@ public interface GameRegistry {
      * @param id The id of the profession to return
      * @return The profession with the given id or Optional.absent() if not found
      */
-    Optional<Profession> getProfession(String id);
+    Optional<? extends Profession> getProfession(String id);
 
     /**
      * Gets all available villager {@link Profession}s.
      *
      * @return A list of all villager professions
      */
-    List<Profession> getProfessions();
+    List<? extends Profession> getProfessions();
 
     /**
      * Gets a list of all available {@link GameMode}s.
@@ -363,7 +363,7 @@ public interface GameRegistry {
      * @return A list containing all game modes in registry
      */
     // TODO: GameMode from string? Should add 'String getId()' to GameMode if so.
-    List<GameMode> getGameModes();
+    List<? extends GameMode> getGameModes();
 
     /**
      * Gets a list of all available {@link PotionEffectType}s.
@@ -371,7 +371,7 @@ public interface GameRegistry {
      * @return A list containing all potion effect types in registry
      */
     // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
-    List<PotionEffectType> getPotionEffects();
+    List<? extends PotionEffectType> getPotionEffects();
 
     /**
      * Gets the {@link Enchantment} with the specified id.
@@ -379,14 +379,14 @@ public interface GameRegistry {
      * @param id The id of the enchantment to return
      * @return The enchantment with the given id or Optional.absent() if not found
      */
-    Optional<Enchantment> getEnchantment(String id);
+    Optional<? extends Enchantment> getEnchantment(String id);
 
     /**
      * Gets all available {@link Enchantment}s.
      *
      * @return A list of all enchantments
      */
-    List<Enchantment> getEnchantments();
+    List<? extends Enchantment> getEnchantments();
 
     /**
      * Gets a {@link Collection} of the default GameRules.
@@ -401,14 +401,14 @@ public interface GameRegistry {
      * @param name The name of the dimension type
      * @return The {@link DimensionType} with the given name or Optional.absent() if not found
      */
-    Optional<DimensionType> getDimensionType(String name);
+    Optional<? extends DimensionType> getDimensionType(String name);
 
     /**
      * Gets a {@link List} of all possible {@link DimensionType}s.
      *
      * @return The list of all available {@link DimensionType}s
      */
-    List<DimensionType> getDimensionTypes();
+    List<? extends DimensionType> getDimensionTypes();
 
     /**
      * Gets the {@link Rotation} with the provided degrees.
@@ -416,14 +416,14 @@ public interface GameRegistry {
      * @param degrees The degrees of the rotation
      * @return The {@link Rotation} with the given degrees or Optional.absent() if not found
      */
-    Optional<Rotation> getRotationFromDegree(int degrees);
+    Optional<? extends Rotation> getRotationFromDegree(int degrees);
 
     /**
      * Gets a {@link List} of all possible {@link Rotation}s.
      *
      * @return The list of all available {@link Rotation}s
      */
-    List<Rotation> getRotations();
+    List<? extends Rotation> getRotations();
 
     // TODO: Find a better place for these methods
 
@@ -489,14 +489,14 @@ public interface GameRegistry {
      * @param name The name of the note pitch
      * @return The {@link NotePitch} with the given name or Optional.absent() if not found
      */
-    Optional<NotePitch> getNotePitch(String name);
+    Optional<? extends NotePitch> getNotePitch(String name);
 
     /**
      * Gets a {@link List} of all possible {@link NotePitch}s.
      *
      * @return The list of all available {@link NotePitch}s
      */
-    List<NotePitch> getNotePitches();
+    List<? extends NotePitch> getNotePitches();
 
     /**
      * Gets the {@link SkullType} with the provided name. 
@@ -504,14 +504,14 @@ public interface GameRegistry {
      * @param name The name of the skull type
      * @return The {@link SkullType} with the given name or Optional.absent() if not found
      */
-    Optional<SkullType> getSkullType(String name);
+    Optional<? extends SkullType> getSkullType(String name);
 
     /**
      * Gets a {@link List} of all possible {@link SkullType}s.
      *
      * @return The list of all available {@link SkullType}s
      */
-    List<SkullType> getSkullTypes();
+    List<? extends SkullType> getSkullTypes();
 
     /**
      * Gets the {@link BannerPatternShape} with the provided name. 
@@ -519,7 +519,7 @@ public interface GameRegistry {
      * @param name The name of the BannerPatternShape
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
-    Optional<BannerPatternShape> getBannerPatternShape(String name);
+    Optional<? extends BannerPatternShape> getBannerPatternShape(String name);
     
     /**
      * Gets the {@link BannerPatternShape} with the provided name. 
@@ -527,13 +527,13 @@ public interface GameRegistry {
      * @param id The id of the BannerPatternShape
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
-    Optional<BannerPatternShape> getBannerPatternShapeById(String id);
+    Optional<? extends BannerPatternShape> getBannerPatternShapeById(String id);
 
     /**
      * Gets a {@link List} of all possible {@link BannerPatternShape}s.
      *
      * @return The list of all available {@link BannerPatternShape}s
      */
-    List<BannerPatternShape> getBannerPatternShapes();
+    List<? extends BannerPatternShape> getBannerPatternShapes();
 
 }

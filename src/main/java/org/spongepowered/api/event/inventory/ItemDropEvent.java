@@ -38,5 +38,5 @@ public interface ItemDropEvent extends GameEvent {
      *
      * @return The dropped item entities
      */
-    Collection<Item> getDroppedItems();
+    Collection<? extends Item> getDroppedItems();
 }

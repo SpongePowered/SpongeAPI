@@ -39,7 +39,7 @@ import org.spongepowered.api.plugin.PluginManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SimpleServiceManagerTest {
-    private static final PluginManager manager = Mockito.mock(PluginManager.class);
+    private static final SimplePluginManager manager = Mockito.mock(SimplePluginManager.class);
     private static final Object testPlugin = new Object();
     private static final PluginContainer testPluginContainer = Mockito.mock(PluginContainer.class);
     {
@@ -138,6 +138,13 @@ public class SimpleServiceManagerTest {
         public String bark() {
             return "woof";
         }
+    }
+
+    private interface SimplePluginManager extends PluginManager {
+
+        // Using Optional<? extends PluginContainer> causes issues for mocking.
+        @Override
+        public Optional<PluginContainer> fromInstance(Object instance);
     }
 
 }

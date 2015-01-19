@@ -60,5 +60,5 @@ public interface Wither extends Monster, ProjectileSource, Boss, Aerial {
      *
      * @return The Wither's targets
      */
-    List<Living> getTargets();
+    List<? extends Living> getTargets();
 }

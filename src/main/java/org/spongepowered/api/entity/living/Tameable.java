@@ -56,7 +56,7 @@ public interface Tameable extends Agent {
      *
      * @return The tamer, if available
      */
-    Optional<Tamer> getOwner();
+    Optional<? extends Tamer> getOwner();
 
     /**
      * Sets this to be owned by given {@link Tamer}.

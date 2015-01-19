@@ -50,7 +50,7 @@ public interface Game {
      * Gets the running {@link Server}, if any.
      * @return The server
      */
-    Optional<Server> getServer();
+    Optional<? extends Server> getServer();
 
     /**
      * Gets the {@link PluginManager}.

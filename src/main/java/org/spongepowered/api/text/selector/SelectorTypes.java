@@ -66,7 +66,7 @@ public final class SelectorTypes {
      * @return The {@link SelectorType} with the specified ID, or
      *         {@link Optional#absent()} if not found
      */
-    public static Optional<SelectorType> valueOf(String id) {
+    public static Optional<? extends SelectorType> valueOf(String id) {
         return factory.getTypeFromName(id);
     }
 
@@ -75,7 +75,7 @@ public final class SelectorTypes {
      *
      * @return An immutable list of all selector types
      */
-    public static List<SelectorType> getValues() {
+    public static List<? extends SelectorType> getValues() {
         return factory.getTypes();
     }
 

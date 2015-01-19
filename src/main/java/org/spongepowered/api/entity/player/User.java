@@ -109,5 +109,5 @@ public interface User extends Identifiable, ArmorEquipable, DataSerializable {
      *
      * @return The associated online Player, if available
      */
-    Optional<Player> getPlayer();
+    Optional<? extends Player> getPlayer();
 }

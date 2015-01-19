@@ -41,7 +41,7 @@ public interface FishHook extends Projectile {
      *
      * @return The hooked item, if available
      */
-    Optional<ItemStack> getHookedItem();
+    Optional<? extends ItemStack> getHookedItem();
 
     /**
      * Sets the hooked item for this fish hook.
