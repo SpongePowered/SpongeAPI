@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.entity;
 
-import com.flowpowered.math.vector.Vector2f;
+import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Identifiable;
@@ -87,21 +87,21 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @param relativePositions The coordinates to set relatively
      * @return True if the teleport was successful
      */
-    boolean setLocationAndRotation(Location location, Vector2f rotation, EnumSet<RelativePositions> relativePositions);
+    boolean setLocationAndRotation(Location location, Vector3f rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Gets the rotation as a Vector2f.
      *
      * @return The rotation as a Vector2f
      */
-    Vector2f getRotation();
+    Vector3f getRotation();
 
     /**
      * Sets the rotation of this entity.
      *
      * @param rotation The rotation to set the entity to
      */
-    void setRotation(Vector2f rotation);
+    void setRotation(Vector3f rotation);
 
     /**
      * Gets the entity passenger that rides this entity, if available.
