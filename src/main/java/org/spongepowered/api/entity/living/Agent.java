@@ -50,35 +50,6 @@ public interface Agent extends Living {
     void setAiEnabled(boolean aiEnabled);
 
     /**
-     * Returns whether this entity is leashed.
-     *
-     * @return True if this entity is leashed
-     */
-    boolean isLeashed();
-
-    /**
-     * Sets whether this entity is leashed or not.
-     *
-     * @param leashed Whether this entity is leashed or not
-     */
-    void setLeashed(boolean leashed);
-
-
-    /**
-     * Gets the holder of this leashed entity, if available.
-     *
-     * @return The leash holder, if available
-     */
-    Optional<Entity> getLeashHolder();
-
-    /**
-     * Sets the holder of this leashed entity.
-     *
-     * @param entity The entity to hold the leash
-     */
-    void setLeashHolder(@Nullable Entity entity);
-
-    /**
      * Returns whether this living entity can pick up items.
      *
      * @return Whether this entity can pick up items
