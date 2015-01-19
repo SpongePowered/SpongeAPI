@@ -25,10 +25,13 @@
 
 package org.spongepowered.api.util.command.dispatcher;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandSource;
 
+import com.google.common.base.Optional;
+
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -37,10 +40,12 @@ import java.util.Set;
 public interface Dispatcher extends CommandCallable {
 
     /**
-     * Get a list of commands. Each command, regardless of how many aliases
-     * it may have, will only appear once in the returned set.
+     * Get a list of commands. Each command, regardless of how many aliases it
+     * may have, will only appear once in the returned set.
      *
-     * <p>The returned collection cannot be modified.</p>
+     * <p>
+     * The returned collection cannot be modified.
+     * </p>
      *
      * @return A list of registrations
      */
@@ -49,30 +54,33 @@ public interface Dispatcher extends CommandCallable {
     /**
      * Get a list of primary aliases.
      *
-     * <p>The returned collection cannot be modified.</p>
+     * <p>
+     * The returned collection cannot be modified.
+     * </p>
      *
      * @return A list of aliases
      */
-    Set<String> getPrimaryAliases();
+    Map<String, Integer> getPrimaryAliases();
 
     /**
      * Get a list of all the command aliases, which includes the primary alias.
      *
-     * <p>A command may have more than one alias assigned to it. The returned 
-     * collection cannot be modified.</p>
+     * <p>
+     * A command may have more than one alias assigned to it. The returned
+     * collection cannot be modified.
+     * </p>
      *
-     * @return A list of aliases
+     * @return A list of aliases and how many times they've been registered.
      */
-    Set<String> getAliases();
+    Map<String, Integer> getAliases();
 
     /**
-     * Get the {@link CommandCallable} associated with an alias. Returns
-     * null if no command is named by the given alias.
-     *
+     * Get the {@link CommandMapping}(s) associated with an alias.
+     * 
      * @param alias The alias
-     * @return The command mapping, if available
+     * @return The command mappings, if available
      */
-    Optional<? extends CommandMapping> get(String alias);
+    Set<CommandMapping> getAll(String alias);
 
     /**
      * Returns whether the dispatcher contains a registered command for the
@@ -90,5 +98,16 @@ public interface Dispatcher extends CommandCallable {
      * @return True if a mapping exists
      */
     boolean containsMapping(CommandMapping mapping);
+
+    /**
+     * Resolves the alias of a command to a {@link CommandMapping} with a
+     * certain {@link CommandSource}.
+     * 
+     * @param alias The alias of the command.
+     * @param source The CommandSource the command is being sent from.
+     * @return A mapping for the command, if one was found. Otherwise,
+     *         Optional.absent().
+     */
+    Optional<CommandMapping> resolveMapping(String alias, CommandSource source);
 
 }

@@ -22,19 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.command;
+
+package org.spongepowered.api.service.command.sponge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.service.event.EventManager;
+import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
 
@@ -42,13 +42,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Function;
-import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -58,38 +56,22 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-/**
- * A simple implementation of {@link CommandService}.
- * <p>
- * Note: An instance of this class should be registered with the sponge
- * {@link EventManager} in order to receive {@link CommandEvent}s in the
- * {@link #onCommandEvent(CommandEvent)} method.
- * </p>
- */
-public class SimpleCommandService implements CommandService {
-    private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
+public class SpongeCommandService implements CommandService {
+
+    private static final Logger log = LoggerFactory.getLogger(SpongeCommandService.class);
+
     private final PluginManager pluginManager;
-    private final SimpleDispatcher dispatcher = new SimpleDispatcher();
+    private final SpongeDispatcher dispatcher;
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
-    /**
-     * Construct a simple {@link CommandService}.
-     *
-     * @param pluginManager The plugin manager to get the
-     *        {@link PluginContainer} for a given plugin
-     */
     @Inject
-    public SimpleCommandService(PluginManager pluginManager) {
+    public SpongeCommandService(PluginManager pluginManager) {
         checkNotNull(pluginManager, "pluginManager");
         this.pluginManager = pluginManager;
+        this.dispatcher = new SpongeDispatcher(pluginManager);
     }
 
-    /**
-     * Receive {@link CommandEvent}s.
-     *
-     * @param event The event received
-     */
     @Subscribe(order = Order.LAST)
     public void onCommandEvent(final CommandEvent event) {
         try {
@@ -104,30 +86,37 @@ public class SimpleCommandService implements CommandService {
 
     @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... aliases) {
-        return register(plugin, callable, Arrays.asList(aliases), Functions.<List<String>>identity());
+        return register(plugin, callable, Arrays.asList(aliases));
     }
 
     @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
+        return register(plugin, callable, aliases);
+    }
+
+    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
         checkNotNull(plugin);
+
         Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException("The provided plugin object does not have an associated plugin container "
                     + "(in other words, is 'plugin' actually your plugin object?");
         }
-        PluginContainer container = containerOptional.get();
-        synchronized (lock) {
-            // <namespace>:<alias> for all commands
-            List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
-            for (String alias : aliases) {
-                aliasesWithPrefix.add(alias);
-                aliasesWithPrefix.add(container.getId() + ":" + alias);
+        for (String alias : aliases) {
+            if (alias.contains(":")) {
+                throw new IllegalArgumentException("Command name must not include the the character ':'.");
             }
-            Optional<CommandMapping> mapping = dispatcher.register(callable, aliasesWithPrefix, callback);
+        }
+        PluginContainer container = containerOptional.get();
+
+        synchronized (lock) {
+            Optional<CommandMapping> mapping = dispatcher.register(callable, aliases.get(0), aliases, container.getId());
+
             if (mapping.isPresent()) {
                 owners.put(container, mapping.get());
             }
+
             return mapping;
         }
     }
@@ -136,9 +125,11 @@ public class SimpleCommandService implements CommandService {
     public Optional<CommandMapping> remove(String alias) {
         synchronized (lock) {
             Optional<CommandMapping> removed = dispatcher.remove(alias);
+
             if (removed.isPresent()) {
                 forgetMapping(removed.get());
             }
+
             return removed;
         }
     }
@@ -147,9 +138,11 @@ public class SimpleCommandService implements CommandService {
     public Optional<CommandMapping> removeMapping(CommandMapping mapping) {
         synchronized (lock) {
             Optional<CommandMapping> removed = dispatcher.removeMapping(mapping);
+
             if (removed.isPresent()) {
                 forgetMapping(removed.get());
             }
+
             return removed;
         }
     }
@@ -191,6 +184,11 @@ public class SimpleCommandService implements CommandService {
     @Override
     public Map<String, Integer> getAliases() {
         return dispatcher.getAliases();
+    }
+
+    @Override
+    public Set<CommandMapping> getAll(String alias) {
+        return dispatcher.getAll(alias);
     }
 
     @Override
@@ -239,12 +237,16 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<CommandMapping> getAll(String alias) {
-        return dispatcher.getAll(alias);
-    }
-
-    @Override
     public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
         return dispatcher.resolveMapping(alias, source);
     }
+
+    public void addAliasContext(String alias, AliasContext context) {
+        dispatcher.addAliasContext(alias, context);
+    }
+
+    public void removeAliasContext(String alias) {
+        dispatcher.removeAliasContext(alias);
+    }
+
 }

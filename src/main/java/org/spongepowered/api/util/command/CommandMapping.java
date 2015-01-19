@@ -30,8 +30,10 @@ import java.util.Set;
 /**
  * Provides information about a mapping between a command and its aliases.
  *
- * <p>Implementations are not required to implement a sane
- * {@link java.lang.Object#equals(Object)} but may choose to do so.</p>
+ * <p>
+ * Implementations are not required to implement a sane
+ * {@link java.lang.Object#equals(Object)} but may choose to do so.
+ * </p>
  */
 public interface CommandMapping {
 
@@ -45,19 +47,22 @@ public interface CommandMapping {
     /**
      * Get an immutable list of all aliases.
      *
-     * <p>The returned list must contain at least one entry, of which one must
-     * be the one returned by {@link #getPrimaryAlias()}.</p>
+     * <p>
+     * The returned list must contain at least one entry, of which one must be
+     * the one returned by {@link #getPrimaryAlias()}.
+     * </p>
      *
-     * <p>There may be several versions of the same alias with different
-     * casing, although generally implementations should ignore the casing
-     * of aliases.</p>
+     * <p>
+     * There may be several versions of the same alias with different casing,
+     * although generally implementations should ignore the casing of aliases.
+     * </p>
      *
      * @return A set of aliases
      */
     Set<String> getAllAliases();
 
     /**
-     * Gets the callable.
+     * Get the callable
      *
      * @return The callable
      */

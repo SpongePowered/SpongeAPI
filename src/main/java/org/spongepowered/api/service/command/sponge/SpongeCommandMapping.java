@@ -23,48 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.service.command.sponge;
 
-/**
- * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
- * information from the annotation for easier use.
- */
-public interface PluginContainer {
+import org.spongepowered.api.util.command.CommandCallable;
+import org.spongepowered.api.util.command.ImmutableCommandMapping;
 
-    /**
-     * Gets the id of the {@link Plugin} within this container.
-     *
-     * @return The id
-     */
-    String getId();
+import java.util.Collection;
 
-    /**
-     * Gets the name of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getName();
+public class SpongeCommandMapping extends ImmutableCommandMapping {
 
-    /**
-     * Gets the version of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getVersion();
+    private String registrar;
 
-    /**
-     * Returns the created instance of {@link Plugin}.
-     *
-     * @return The instance
-     */
-    Object getInstance();
+    public SpongeCommandMapping(CommandCallable callable, String primary, String registrar, Collection<String> aliases) {
+        super(callable, primary, aliases);
+        this.registrar = registrar;
+    }
 
-    /**
-     * Gets if this PluginContainer wraps something that isn't a 'real' plugin.
-     * 
-     * @return if this PluginContainer wraps something that isn't a 'real'
-     *         plugin.
-     */
-    boolean isWrapper();
+    public SpongeCommandMapping(CommandCallable callable, String primary, String registrar, String... aliases) {
+        super(callable, primary, aliases);
+        this.registrar = registrar;
+    }
 
+    public String getRegistrar() {
+        return registrar;
+    }
 }

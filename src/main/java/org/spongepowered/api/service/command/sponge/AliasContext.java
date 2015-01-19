@@ -23,48 +23,30 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.service.command.sponge;
 
-/**
- * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
- * information from the annotation for easier use.
- */
-public interface PluginContainer {
+import org.spongepowered.api.util.command.CommandSource;
+
+public interface AliasContext {
 
     /**
-     * Gets the id of the {@link Plugin} within this container.
-     *
-     * @return The id
-     */
-    String getId();
-
-    /**
-     * Gets the name of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getName();
-
-    /**
-     * Gets the version of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getVersion();
-
-    /**
-     * Returns the created instance of {@link Plugin}.
-     *
-     * @return The instance
-     */
-    Object getInstance();
-
-    /**
-     * Gets if this PluginContainer wraps something that isn't a 'real' plugin.
+     * Gets if this alias context should be used when running from the specified
+     * command source.
      * 
-     * @return if this PluginContainer wraps something that isn't a 'real'
-     *         plugin.
+     * @param source The command source to check.
+     * @return If this alias context should be used when running from the
+     *         specified command source.
      */
-    boolean isWrapper();
+    public boolean appliesTo(CommandSource source);
+
+    /**
+     * Gets the ID of the plugin to use when running from the specified command
+     * source.
+     * 
+     * @param source The command source to check.
+     * @return The ID of the plugin to use when running from the specified
+     *         command source.
+     */
+    public String getPluginId(CommandSource source);
 
 }
