@@ -103,4 +103,26 @@ public interface Horse extends Animal, Tameable {
      */
     void setSaddle(@Nullable ItemStack itemStack);
 
+    /**
+     * Gets this horse's temper.
+     *
+     * <p>Temper defines how close a horse can become tamed by
+     * {@link org.spongepowered.api.entity.Tamer}s. The higher the temper,
+     * the more likely a tamer will tame the horse.</p>
+     *
+     * @return This horses current temper
+     */
+    int getTemper();
+
+    /**
+     * Sets this horse's temper.
+     *
+     * <p>Temper defines how close a horse can become tamed by
+     * {@link org.spongepowered.api.entity.Tamer}s. The higher the temper,
+     * the more likely a tamer will tame the horse.</p>
+     *
+     * @param temper The temper of this horse
+     */
+    void setTemper(int temper);
+
 }
