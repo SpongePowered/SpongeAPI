@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.potion;
 
+import org.spongepowered.api.attribute.AttributeSource;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.service.persistence.DataSerializable;
 
@@ -34,7 +35,7 @@ import org.spongepowered.api.service.persistence.DataSerializable;
  * <p>PotionEffects can be added to {@link Living} entities via
  * {@link Living#addPotionEffect(PotionEffect, boolean)}.</p>
  */
-public interface PotionEffect extends DataSerializable {
+public interface PotionEffect extends DataSerializable, AttributeSource {
 
     /**
      * Gets the {@link PotionEffectType} of this potion.
