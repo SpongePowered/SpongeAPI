@@ -25,11 +25,13 @@
 
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.attributes.AttributeModifier;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -130,4 +132,22 @@ public interface ItemStack extends Serializable, DataSerializable {
      * @return The level of the enchantment, or -1 if the enchantment is not applied to this stack
      */
     int getEnchantment(Enchantment enchant);
+    
+    /**
+     * Gets all {@link AttributeModifier}s on this ItemStack.
+     * @return All AttributeModifiers on this ItemStack.
+     */
+    Collection<AttributeModifier> getAttributeModifiers();
+    
+    /**
+     * Adds a {@link AttributeModifier} to this ItemStack.
+     * @param modifier The AttributeModifier to add to this ItemStack.
+     */
+    void addAttributeModifier(AttributeModifier modifier);
+    
+    /**
+     * Removes a {@link AttributeModifier} from this ItemStack.
+     * @param modifier The AttributeModifier to remove from this ItemStack.
+     */
+    void removeAttributeModifier(AttributeModifier modifier);
 }
