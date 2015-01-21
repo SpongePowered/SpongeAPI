@@ -36,6 +36,8 @@ public final class TextColors {
     private TextColors() {
     }
 
+    public static final TextColor NONE = null;
+
     public static final TextColor.Base BLACK = null;
     public static final TextColor.Base DARK_BLUE = null;
     public static final TextColor.Base DARK_GREEN = null;
