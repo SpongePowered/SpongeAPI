@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
  * The base scheduler that schedules tasks.
  */
 
-public interface AsynchronousScheduler {
+public interface AsynchronousScheduler extends Scheduler {
 
     /**
      * Runs the task immediately.
