@@ -44,7 +44,7 @@ public interface TextBuilder {
      * @param color The new text color for this message
      * @return This message builder
      */
-    TextBuilder color(@Nullable TextColor color);
+    TextBuilder color(TextColor color);
 
     /**
      * Sets the text styles of this message. This will construct a composite
