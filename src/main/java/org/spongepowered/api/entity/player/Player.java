@@ -78,15 +78,6 @@ public interface Player extends Human, User, CommandSource, Viewer {
     Locale getLocale();
 
     /**
-     * Sends the plain text message(s) with the specified {@link ChatType} on the client.
-     * <p>Use {@link #sendMessage(ChatType, Text...)} for a formatted message.</p>
-     *
-     * @param type The chat type to send the messages to
-     * @param message The message(s) to send
-     */
-    void sendMessage(ChatType type, String... message);
-
-    /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
      *
      * @param type The chat type to send the messages to

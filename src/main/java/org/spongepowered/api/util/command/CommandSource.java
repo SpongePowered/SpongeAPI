@@ -36,14 +36,6 @@ import org.spongepowered.api.text.Text;
 public interface CommandSource {
 
     /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Text...)} for a formatted message.</p>
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(String... messages);
-
-    /**
      * Sends the formatted text message(s) to source when possible. If text formatting
      * is not supported in the implementation it will be displayed as plain text.
      *
