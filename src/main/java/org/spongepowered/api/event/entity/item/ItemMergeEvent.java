@@ -34,16 +34,16 @@ import org.spongepowered.api.util.event.Cancellable;
 public interface ItemMergeEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the first item to be merged.
+     * Gets a copy of the first item to be merged.
      *
-     * @return The first item to be merged
+     * @return A copy of the first item to be merged
      */
     Item getEntity();
 
     /**
-     * Gets the second item to be merged.
+     * Gets a copy of the second item to be merged.
      *
-     * @return The second item to be merged
+     * @return A copy of the second item to be merged
      */
     Item getItemToMerge();
 }
