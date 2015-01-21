@@ -39,24 +39,6 @@ import javax.annotation.Nullable;
 public interface TextBuilder {
 
     /**
-     * Appends the specified {@link Text Messages} to the end of this
-     * message.
-     *
-     * @param children The messages to append
-     * @return This message builder
-     */
-    TextBuilder append(Text... children);
-
-    /**
-     * Appends the specified {@link Text Messages} to the end of this
-     * message.
-     *
-     * @param children The messages to append
-     * @return This message builder
-     */
-    TextBuilder append(Iterable<Text> children);
-
-    /**
      * Sets the {@link TextColor} of this message.
      *
      * @param color The new text color for this message
@@ -100,6 +82,30 @@ public interface TextBuilder {
      * @return This message builder
      */
     TextBuilder onShiftClick(@Nullable ShiftClickAction<?> action);
+
+    /**
+     * Appends the specified {@link Text Messages} to the end of this
+     * message.
+     *
+     * @param children The messages to append
+     * @return This message builder
+     */
+    TextBuilder append(Text... children);
+
+    /**
+     * Appends the specified {@link Text Messages} to the end of this
+     * message.
+     *
+     * @param children The messages to append
+     * @return This message builder
+     */
+    TextBuilder append(Iterable<Text> children);
+
+    void remove(Text... children);
+
+    void remove(Iterable<Text> children);
+
+    void removeAll();
 
     /**
      * Builds an immutable instance of the current state of this message
