@@ -57,13 +57,6 @@ import java.util.List;
 public interface Text {
 
     /**
-     * Returns the content of this {@link Text}.
-     *
-     * @return The content of this message
-     */
-    Object getContent();
-
-    /**
      * Returns the color of this {@link Text}.
      *
      * @return The color of this message
@@ -160,8 +153,7 @@ public interface Text {
          *
          * @return The content of this message
          */
-        @Override
-        String getContent();
+        String getLiteral();
 
         @Override
         TextBuilder.Literal builder();
@@ -179,8 +171,7 @@ public interface Text {
          *
          * @return The translation of this message
          */
-        @Override
-        Translation getContent();
+        Translation getTranslation();
 
         /**
          * Returns the list of {@link Translation} arguments used to format this
@@ -208,8 +199,7 @@ public interface Text {
          *
          * @return The selector of this message
          */
-        @Override
-        org.spongepowered.api.text.selector.Selector getContent();
+        org.spongepowered.api.text.selector.Selector getSelector();
 
         @Override
         TextBuilder.Selector builder();
@@ -228,8 +218,7 @@ public interface Text {
          *
          * @return The score in this message
          */
-        @Override
-        Object getContent();
+        Object getScore();
 
         /**
          * Returns a value that is displayed instead of the real score.

@@ -122,7 +122,7 @@ public interface TextBuilder {
          * @param text The text of this message
          * @return This message builder
          */
-        Literal content(String text);
+        Literal literal(String text);
 
         @Override
         Literal append(Text... children);
@@ -162,7 +162,7 @@ public interface TextBuilder {
          * @param args The arguments for the translation
          * @return This message builder
          */
-        Translatable content(Translation translation, Object... args);
+        Translatable translation(Translation translation, Object... args);
 
         /**
          * Sets the translation of this message.
@@ -171,7 +171,7 @@ public interface TextBuilder {
          * @param args The arguments for the translation
          * @return This message builder
          */
-        Translatable content(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
+        Translatable translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
 
         @Override
         Translatable append(Text... children);
@@ -210,7 +210,7 @@ public interface TextBuilder {
          * @param selector The selector for this message to use
          * @return This message builder
          */
-        Selector content(org.spongepowered.api.text.selector.Selector selector);
+        Selector selector(org.spongepowered.api.text.selector.Selector selector);
 
         @Override
         Selector append(Text... children);
@@ -249,7 +249,7 @@ public interface TextBuilder {
          * @param score The score for this message to use
          * @return This message builder
          */
-        Score content(Object score); // TODO
+        Score score(Object score); // TODO
 
         /**
          * Overrides the real score and displays a custom text instead.
