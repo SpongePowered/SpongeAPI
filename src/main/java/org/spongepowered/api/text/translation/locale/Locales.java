@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.text.translation.locale;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
 import java.util.Locale;
 
 /**
  * Utility class for working with languages/locales in Minecraft.
  */
 public final class Locales {
+
+    private Locales() {
+    }
 
     public static final Locale AFRIKAANS = null;
     public static final Locale ARABIC = null;
@@ -108,41 +108,5 @@ public final class Locales {
     public static final Locale VIETNAMESE = null;
     public static final Locale SIMPLIFIED_CHINESE = null;
     public static final Locale TRADITIONAL_CHINESE = null;
-    private static final LocaleFactory factory = null;
-
-    private Locales() {
-
-    }
-
-    /**
-     * Gets the {@link Locale} of the specified Minecraft locale code.
-     *
-     * @param id The ID for the locale, for example "en_US" or "de_DE"
-     * @return The {@link Locale} with the specified ID, or
-     *         {@link Optional#absent} if not found
-     */
-    public static Optional<Locale> of(String id) {
-        return factory.getLocaleFromId(id);
-    }
-
-    /**
-     * Gets the {@link Locale} with the specified name.
-     *
-     * @param name The name of the locale, for example "ENGLISH" or "GERMAN"
-     * @return The {@link Locale} with the specified name, or
-     *         {@link Optional#absent()} if not found
-     */
-    public static Optional<Locale> valueOf(String name) {
-        return factory.getLocaleFromName(name);
-    }
-
-    /**
-     * Returns a list of all available {@link Locale}s on this server.
-     *
-     * @return An immutable list of all locales
-     */
-    public static List<Locale> getValues() {
-        return factory.getLocales();
-    }
 
 }

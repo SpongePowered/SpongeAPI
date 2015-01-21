@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
- * Lore is a list of {@link Message}s that are displayed on an item
+ * Lore is a list of {@link Text}s that are displayed on an item
  * tooltip that can say anything and everything.
  */
-public interface LoreItemData extends ListItemData<Message, LoreItemData> {
+public interface LoreItemData extends ListItemData<Text, LoreItemData> {
 
 }

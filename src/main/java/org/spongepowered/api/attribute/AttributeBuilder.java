@@ -26,7 +26,7 @@
 package org.spongepowered.api.attribute;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * A builder for plugins to create custom {@link Attribute}s.
@@ -79,7 +79,7 @@ public interface AttributeBuilder {
      * @param name The name to use
      * @return This builder, for chaining
      */
-    AttributeBuilder name(Message name);
+    AttributeBuilder name(Text name);
     
     /**
      * Builds the {@link Attribute} with the set parameters.

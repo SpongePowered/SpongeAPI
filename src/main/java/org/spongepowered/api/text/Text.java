@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.message;
+package org.spongepowered.api.text;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.action.ClickAction;
@@ -44,34 +44,27 @@ import java.util.List;
  * but also in other places like books or signs.
  * </p>
  * <p>
- * Message instances can be created using the {@link MessageBuilder} available
- * through one of the {@link Messages#builder()} methods.
+ * Message instances can be created using the {@link TextBuilder} available
+ * through one of the {@link Texts#builder()} methods.
  * </p>
  *
- * @see Messages#builder()
- * @see Message.Text
+ * @see Texts#builder()
+ * @see Literal
  * @see Translatable
  * @see Selector
  * @see Score
  */
-public interface Message {
+public interface Text {
 
     /**
-     * Returns the content of this {@link Message}.
-     *
-     * @return The content of this message
-     */
-    Object getContent();
-
-    /**
-     * Returns the color of this {@link Message}.
+     * Returns the color of this {@link Text}.
      *
      * @return The color of this message
      */
     TextColor getColor();
 
     /**
-     * Returns the style of this {@link Message}. This will return a compound
+     * Returns the style of this {@link Text}. This will return a compound
      * {@link TextStyle} if multiple different styles have been set.
      *
      * @return The style of this message
@@ -80,11 +73,11 @@ public interface Message {
 
     /**
      * Returns the list of children appended after the content of this
-     * {@link Message}.
+     * {@link Text}.
      *
      * @return The list of children
      */
-    List<Message> getChildren();
+    List<Text> getChildren();
 
     /**
      * Returns an {@link Iterable} over this message and all of its children.
@@ -92,11 +85,11 @@ public interface Message {
      *
      * @return An iterable over this message and the children messages
      */
-    Iterable<Message> withChildren();
+    Iterable<Text> withChildren();
 
     /**
      * Returns the {@link ClickAction} executed on the client when this
-     * {@link Message} gets clicked.
+     * {@link Text} gets clicked.
      *
      * @return The click action of this message, or {@link Optional#absent()} if
      *         not set
@@ -105,7 +98,7 @@ public interface Message {
 
     /**
      * Returns the {@link HoverAction} executed on the client when this
-     * {@link Message} gets hovered.
+     * {@link Text} gets hovered.
      *
      * @return The hover action of this message, or {@link Optional#absent()} if
      *         not set
@@ -114,7 +107,7 @@ public interface Message {
 
     /**
      * Returns the {@link ShiftClickAction} executed on the client when this
-     * {@link Message} gets shift-clicked.
+     * {@link Text} gets shift-clicked.
      *
      * @return The shift-click action of this message, or
      *         {@link Optional#absent()} if not set
@@ -122,15 +115,19 @@ public interface Message {
     Optional<ShiftClickAction<?>> getShiftClickAction();
 
     /**
-     * Returns a new {@link MessageBuilder} with the content of this message.
-     * This can be used to edit an immutable {@link Message} instance.
+     * Returns a new {@link TextBuilder} with the content of this message.
+     * This can be used to edit an immutable {@link Text} instance.
      *
      * @return A new message builder with the content of this message
      */
-    MessageBuilder builder();
+    TextBuilder builder();
+
+    String toPlain();
+
+    String toJson();
 
     /**
-     * Returns a representation of this {@link Message} using the legacy color
+     * Returns a representation of this {@link Text} using the legacy color
      * codes.
      *
      * @return This message converted to the old color codes
@@ -140,7 +137,7 @@ public interface Message {
     String toLegacy();
 
     /**
-     * Returns a representation of this {@link Message} using the legacy color
+     * Returns a representation of this {@link Text} using the legacy color
      * codes.
      *
      * @param code The legacy char to use for the message
@@ -151,85 +148,81 @@ public interface Message {
     String toLegacy(char code);
 
     /**
-     * Represents a {@link Message} containing a plain text {@link String}.
+     * Represents a {@link Text} containing a plain text {@link String}.
      */
-    interface Text extends Message {
+    interface Literal extends Text {
 
         /**
-         * Returns the plain text content of this {@link Message}.
+         * Returns the plain text content of this {@link Text}.
          *
          * @return The content of this message
          */
-        @Override
-        String getContent();
+        String getLiteral();
 
         @Override
-        MessageBuilder.Text builder();
+        TextBuilder.Literal builder();
 
     }
 
     /**
-     * Represents a {@link Message} containing a {@link Translation} identifier
+     * Represents a {@link Text} containing a {@link Translation} identifier
      * that gets translated into the current locale on the client.
      */
-    interface Translatable extends Message {
+    interface Translatable extends Text {
 
         /**
-         * Returns the translation of this {@link Message}.
+         * Returns the translation of this {@link Text}.
          *
          * @return The translation of this message
          */
-        @Override
-        Translation getContent();
+        Translation getTranslation();
 
         /**
          * Returns the list of {@link Translation} arguments used to format this
-         * {@link Message}.
+         * {@link Text}.
          *
          * @return The list of translation arguments
          */
         List<Object> getArguments();
 
         @Override
-        MessageBuilder.Translatable builder();
+        TextBuilder.Translatable builder();
 
     }
 
     /**
-     * Represents a {@link Message} containing a selector that will be replaced
+     * Represents a {@link Text} containing a selector that will be replaced
      * by the names of the matching entities on the client.
      *
      * @see org.spongepowered.api.text.selector.Selector
      */
-    interface Selector extends Message {
+    interface Selector extends Text {
 
         /**
-         * Returns the selector used in this {@link Message}.
+         * Returns the selector used in this {@link Text}.
          *
          * @return The selector of this message
          */
-        @Override
-        org.spongepowered.api.text.selector.Selector getContent();
+        org.spongepowered.api.text.selector.Selector getSelector();
 
         @Override
-        MessageBuilder.Selector builder();
+        TextBuilder.Selector builder();
     }
 
     /**
-     * Represents a {@link Message} displaying the current player's score in an
+     * Represents a {@link Text} displaying the current player's score in an
      * objective.
      */
-    interface Score extends Message {
+    interface Score extends Text {
 
         // TODO use Score
 
         /**
-         * Returns the score displayed by this {@link Message}.
+         * Returns the score displayed by this {@link Text}.
          *
          * @return The score in this message
          */
-        @Override
-        Object getContent();
+        Object getScore();
 
         /**
          * Returns a value that is displayed instead of the real score.
@@ -241,7 +234,7 @@ public interface Message {
         Optional<String> getOverride();
 
         @Override
-        MessageBuilder.Score builder();
+        TextBuilder.Score builder();
     }
 
 }

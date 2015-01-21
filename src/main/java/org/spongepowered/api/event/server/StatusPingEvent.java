@@ -30,7 +30,7 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.status.StatusResponse;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.Cancellable;
 
 import java.util.List;
@@ -70,7 +70,7 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
          *
          * @param description The description to display
          */
-        void setDescription(Message description);
+        void setDescription(Text description);
 
         @Override
         Optional<Players> getPlayers();

@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.text.format;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * TextStyles is a list of the text styles provided by Vanilla Minecraft.
  */
 public final class TextStyles {
+
+    private TextStyles() {
+    }
 
     public static final TextStyle.Base OBFUSCATED = null;
     public static final TextStyle.Base BOLD = null;
@@ -41,34 +40,11 @@ public final class TextStyles {
     // NONE and ZERO represent the same thing, the "zero" text style.
     public static final TextStyle NONE = new TextStyle();
     public static final TextStyle ZERO = NONE;
+
     /**
      * Resets all currently applied text styles to their default values.
      */
     public static final TextStyle.Base RESET = null;
-    static final TextFormatFactory factory = null;
-
-    private TextStyles() {
-    }
-
-    /**
-     * Gets the {@link TextStyle} with the specified name.
-     *
-     * @param name The identifier of the text style, for example "UNDERLINE"
-     * @return The {@link TextStyle} with the specified name, or
-     *         {@link Optional#absent()} if not found
-     */
-    public static Optional<TextStyle> valueOf(String name) {
-        return factory.getStyleFromName(name);
-    }
-
-    /**
-     * Returns a list of all available {@link TextStyle}s on this server.
-     *
-     * @return An immutable list of all text styles
-     */
-    public static List<TextStyle> getValues() {
-        return factory.getStyles();
-    }
 
     /**
      * Constructs a composite text style from the specified styles. This will
@@ -79,7 +55,7 @@ public final class TextStyles {
      * @return A composite text style from the specified styles
      */
     public static TextStyle of(TextStyle... styles) {
-        return factory.createStyle(styles);
+        return NONE.and(styles);
     }
 
 }

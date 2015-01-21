@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.player.tab;
 
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Represents the information attached to a player in a {@link TabList}.
@@ -73,14 +73,14 @@ public interface PlayerTabInfo {
      * 
      * @return This player's display name
      */
-    Message getDisplayName();
+    Text getDisplayName();
 
     /**
      * Sets this player's display name.
      * 
      * @param displayName The new display name
      */
-    void setDisplayName(Message displayName);
+    void setDisplayName(Text displayName);
 
     /**
      * Gets this player's username.

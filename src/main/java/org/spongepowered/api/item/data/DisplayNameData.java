@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.data;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 import javax.annotation.Nullable;
 
@@ -40,19 +40,19 @@ import javax.annotation.Nullable;
 public interface DisplayNameData extends ItemData<DisplayNameData> {
 
     /**
-     * Gets the display name as a {@link Message}. The display name may be
+     * Gets the display name as a {@link Text}. The display name may be
      * player set, or it may be undefined.
      *
      * @return The display name, if available
      */
-    Optional<Message> getDisplayName();
+    Optional<Text> getDisplayName();
 
     /**
-     * Sets the display name as a {@link Message}. If set to null,
+     * Sets the display name as a {@link Text}. If set to null,
      * the display name is erased.
      *
      * @param displayName The display name
      */
-    void setDisplayName(@Nullable Message displayName);
+    void setDisplayName(@Nullable Text displayName);
 
 }

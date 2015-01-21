@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Called when a {@link Player} joins the game.
@@ -38,12 +38,12 @@ public interface PlayerJoinEvent extends PlayerEvent {
      *
      * @return The player join message.
      */
-    Message getJoinMessage();
+    Text getJoinMessage();
 
     /**
      * Sets the message displayed when the player joins.
      *
      * @param joinMessage The new player join message.
      */
-    void setJoinMessage(Message joinMessage);
+    void setJoinMessage(Text joinMessage);
 }

@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.text.format;
 
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 import java.awt.Color;
 
 /**
- * Represents the color of the text of a {@link Message}.
+ * Represents the color of the text of a {@link Text}.
  *
  * @see TextColors
  */

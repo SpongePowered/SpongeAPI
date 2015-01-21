@@ -130,7 +130,7 @@ import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.TileInventory;
 import org.spongepowered.api.status.StatusClient;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
@@ -1105,7 +1105,7 @@ public final class SpongeEventFactory {
      * @param keepsInventory Whether the player should keep inventory
      * @return A new instance of the event
      */
-    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Message deathMessage,
+    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text deathMessage,
             Collection<Item> droppedItems, int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1253,7 +1253,7 @@ public final class SpongeEventFactory {
      * @param joinMessage The message displayed when the player joins
      * @return A new instance of the event
      */
-    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Message joinMessage) {
+    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Text joinMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1341,7 +1341,7 @@ public final class SpongeEventFactory {
      * @param quitMessage The message to display to the player because they quit
      * @return A new instance of the event
      */
-    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Message quitMessage) {
+    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text quitMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
