@@ -35,8 +35,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Represents a task that has been scheduled.
+ *
+ * @param <V> The type returned by the computation of this task
  */
-public interface Task extends Identifiable {
+public interface Task<V> extends Identifiable {
 
     /**
      * Gets the name of this task.
@@ -60,11 +62,20 @@ public interface Task extends Identifiable {
     Optional<Long> getDelay();
 
     /**
-     * Gets the interval for repeating tasks
+     * Gets the interval for repeating tasks.
      *
      * @return The interval (period) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
     Optional<Long> getInterval();
+
+    /**
+     * Gets the {@link TimeUnit} of the interval and delay.
+     *
+     * <p>If {@link Optional#isPresent() isPresent()} returns false, the unit is ticks.</p>
+     *
+     * @return The time unit
+     */
+    Optional<TimeUnit> getTimeUnit();
 
     /**
      * Cancels the task, if it has not already run.
@@ -74,18 +85,31 @@ public interface Task extends Identifiable {
     boolean cancel();
 
     /**
-     * Gets the {@link Runnable} that this task is running.
+     * Gets the {@link Runnable} that this task may be running.
      *
      * @return The runnable
      */
-    Optional<Runnable> getRunnable();
+    Optional<? extends Runnable> getRunnable();
 
     /**
-     * Gets the truth if the Task is Synchronous
+     * Gets the {@link Callable} that this task may be running.
+     *
+     * @return The callable
+     */
+    Optional<? extends Callable<V>> getCallable();
+
+    /**
+     * Gets the {@link ListenableFuture} that represents the result of the computation of this task.
+     *
+     * @return The future
+     */
+    Optional<? extends ListenableFuture<V>> getFuture();
+
+    /**
+     * Gets the truth if the Task is Synchronous.
      *
      * @return The truth if the task is synchronous
      */
-    public boolean isSynchronous();
+    boolean isSynchronous();
 
 }
-

@@ -87,14 +87,14 @@ public interface Game {
     /**
      * Gets the {@link org.spongepowered.api.service.scheduler.SynchronousScheduler}.
      *
-     * @return The scheduler
+     * @return The synchronous scheduler
      */
     SynchronousScheduler getSyncScheduler();
 
     /**
-     * Gets the {@link org.spongepowered.api.service.scheduler.SynchronousScheduler}.
+     * Gets the {@link org.spongepowered.api.service.scheduler.AsynchronousScheduler}.
      *
-     * @return The scheduler
+     * @return The asynchronous scheduler
      */
     AsynchronousScheduler getAsyncScheduler();
 
