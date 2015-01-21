@@ -52,6 +52,11 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
+import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.selector.SelectorType;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
@@ -64,6 +69,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -535,5 +541,96 @@ public interface GameRegistry {
      * @return The list of all available {@link BannerPatternShape}s
      */
     List<BannerPatternShape> getBannerPatternShapes();
+
+    /**
+     * Gets a {@link List} of all possible {@link TextColor}s.
+     *
+     * @return The list of all available {@link TextColor}s
+     */
+    List<TextColor> getTextColors();
+
+    /**
+     * Gets the {@link TextColor} with the provided name.
+     *
+     * @param name The name of the text color
+     * @return The {@link TextColor} with the given name or Optional.absent() if not found
+     */
+    Optional<TextColor> getTextColor(String name);
+
+    /**
+     * Gets a {@link List} of all possible {@link TextStyle}s.
+     *
+     * @return The list of all available {@link TextStyle}s
+     */
+    List<TextStyle> getTextStyles();
+
+    /**
+     * Gets the {@link TextStyle} with the provided name.
+     *
+     * @param name The name of the text style
+     * @return The {@link TextStyle} with the given name or Optional.absent() if not found
+     */
+    Optional<TextStyle> getTextStyle(String name);
+
+    /**
+     * Gets a {@link List} of all possible {@link TextStyle}s.
+     *
+     * @return The list of all available {@link TextStyle}s
+     */
+    List<ChatType> getChatTypes();
+
+    /**
+     * Gets the {@link ChatType} with the provided name.
+     *
+     * @param name The name of the chat type
+     * @return The {@link ChatType} with the given name or Optional.absent() if not found
+     */
+    Optional<ChatType> getChatType(String name);
+
+    /**
+     * Gets a {@link List} of all possible {@link SelectorType}s.
+     *
+     * @return The list of all available {@link SelectorType}s
+     */
+    List<SelectorType> getSelectorTypes();
+
+    /**
+     * Gets the {@link SelectorType} with the provided name.
+     *
+     * @param name The name of the selector type
+     * @return The {@link SelectorType} with the given name or Optional.absent() if not found
+     */
+    Optional<SelectorType> getSelectorType(String name);
+
+    /**
+     * Gets a {@link List} of all possible {@link Locale}s.
+     *
+     * @return The list of all available {@link Locale}s
+     */
+    List<Locale> getLocales();
+
+    /**
+     * Gets the {@link Locale} with the provided name.
+     *
+     * @param name The name of the locale
+     * @return The {@link Locale} with the given name or Optional.absent() if not found
+     */
+    Optional<Locale> getLocale(String name);
+
+    /**
+     * Gets the {@link Locale} with the provided ID.
+     *
+     * @param id The ID of the locale
+     * @return The {@link Locale} with the given ID or Optional.absent() if not found
+     */
+    Optional<Locale> getLocaleById(String id);
+
+    /**
+     * Gets the {@link Translation} with the provided ID.
+     *
+     * @param id The ID of the translation
+     * @return The {@link Translation} with the given ID or Optional.absent() if not found
+     */
+    Optional<Translation> getTranslationById(String id);
 
 }

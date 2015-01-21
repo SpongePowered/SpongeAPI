@@ -24,17 +24,11 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * SelectorTypes is a list of the default selector types that are
  * available in Vanilla Minecraft.
  */
 public final class SelectorTypes {
-
-    private static final SelectorTypeFactory factory = null;
 
     private SelectorTypes() {}
 
@@ -57,26 +51,5 @@ public final class SelectorTypes {
      * The random player selector type.
      */
     public static final SelectorType RANDOM_PLAYER = null;
-
-    /**
-     * Gets the {@link SelectorType} with the specified ID.
-     *
-     * @param id The identifier of the selector type, for example
-     *        {@code "a"} for {@code ALL_PLAYERS}.
-     * @return The {@link SelectorType} with the specified ID, or
-     *         {@link Optional#absent()} if not found
-     */
-    public static Optional<SelectorType> valueOf(String id) {
-        return factory.getTypeFromName(id);
-    }
-
-    /**
-     * Returns a list of all available {@link SelectorType}s on this server.
-     *
-     * @return An immutable list of all selector types
-     */
-    public static List<SelectorType> getValues() {
-        return factory.getTypes();
-    }
 
 }

@@ -24,20 +24,13 @@
  */
 package org.spongepowered.api.text.chat;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * ChatTypes is a list of the default chat types that are available in Vanilla
  * Minecraft.
  */
 public final class ChatTypes {
 
-    private static final ChatTypeFactory factory = null;
-
     private ChatTypes() {
-
     }
 
     /**
@@ -61,25 +54,5 @@ public final class ChatTypes {
      * etc. bars.
      */
     public static final ChatType ACTION_BAR = null;
-
-    /**
-     * Gets the {@link ChatType} with the specified name.
-     *
-     * @param name The identifier of the chat type, for example "ACTION_BAR"
-     * @return The {@link ChatType} with the specified name, or
-     *         {@link Optional#absent()} if not found
-     */
-    public static Optional<ChatType> valueOf(String name) {
-        return factory.getTypeFromName(name);
-    }
-
-    /**
-     * Returns a list of all available {@link ChatType}s on this server.
-     *
-     * @return An immutable list of all chat types
-     */
-    public static List<ChatType> getValues() {
-        return factory.getTypes();
-    }
 
 }
