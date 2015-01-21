@@ -30,7 +30,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The base scheduler that schedules tasks.
+ * A scheduler that executes tasks asynchronously.
  */
 
 public interface AsynchronousScheduler extends Scheduler {
