@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.text.action;
 
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents an action happening as a response to an event on a {@link Message}
+ * Represents an action happening as a response to an event on a {@link Text}
  * .
  *
  * @param <R> the type of the result of the action

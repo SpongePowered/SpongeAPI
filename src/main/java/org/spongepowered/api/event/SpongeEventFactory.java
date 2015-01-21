@@ -111,7 +111,7 @@ import org.spongepowered.api.event.world.WorldLoadEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.status.StatusClient;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
@@ -906,7 +906,7 @@ public final class SpongeEventFactory {
      * @param droppedItems The items to drop
      * @return A new instance of the event
      */
-    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Message deathMessage, Collection<Item> droppedItems) {
+    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Text deathMessage, Collection<Item> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1001,7 +1001,7 @@ public final class SpongeEventFactory {
      * @param joinMessage The message displayed when the player joins
      * @return A new instance of the event
      */
-    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Message joinMessage) {
+    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Text joinMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1076,7 +1076,7 @@ public final class SpongeEventFactory {
      * @param quitMessage The message to display to the player because they quit
      * @return A new instance of the event
      */
-    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Message quitMessage) {
+    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text quitMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);

@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.data;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
@@ -99,14 +99,14 @@ public interface CommandBlock extends TileEntity, CommandSource {
      * 
      * @return The last command output, if available
      */
-    Optional<Message> getLastOutput();
+    Optional<Text> getLastOutput();
 
     /**
      * Sets the last output message.
      * 
      * @param message The new message
      */
-    void setLastOutput(Message message);
+    void setLastOutput(Text message);
 
     /**
      * Executes the currently stored command.

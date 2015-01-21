@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.message;
+package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
@@ -30,94 +30,94 @@ import org.spongepowered.api.text.translation.Translation;
 /**
  * Utility class to work with and create Messages.
  */
-public final class Messages {
+public final class Texts {
 
-    private static final MessageFactory factory = null;
+    private static final TextFactory factory = null;
 
-    private Messages() {
+    private Texts() {
     }
 
     /**
-     * Creates a {@link MessageBuilder} with empty text.
+     * Creates a {@link TextBuilder} with empty text.
      *
      * @return A new message builder with empty text
      */
-    public static MessageBuilder builder() {
+    public static TextBuilder builder() {
         return factory.createEmptyBuilder();
     }
 
     /**
-     * Creates a {@link MessageBuilder.Text} with the specified text.
+     * Creates a {@link TextBuilder.Literal} with the specified text.
      *
      * @param text The text for the message
      * @return A new message builder with the specified text
-     * @see Message.Text
+     * @see Text.Literal
      */
-    public static MessageBuilder.Text builder(String text) {
+    public static TextBuilder.Literal builder(String text) {
         return factory.createTextBuilder(text);
     }
 
     /**
-     * Creates a {@link MessageBuilder.Translatable} with the specified
+     * Creates a {@link TextBuilder.Translatable} with the specified
      * translation and arguments.
      *
      * @param translation The translation to use for the message
      * @param args The arguments for the translation, can be empty
      * @return A new message builder with the specified translation and
      *         arguments
-     * @see Message.Translatable
+     * @see Text.Translatable
      */
-    public static MessageBuilder.Translatable builder(Translation translation, Object... args) {
+    public static TextBuilder.Translatable builder(Translation translation, Object... args) {
         return factory.createTranslatableBuilder(translation, args);
     }
 
     /**
-     * Creates a {@link MessageBuilder.Translatable} with the specified
+     * Creates a {@link TextBuilder.Translatable} with the specified
      * {@link Translatable} object and arguments.
      *
      * @param translatable The translatable object to insert to the message
      * @param args The arguments for the translation, can be empty
      * @return A new message builder with the translation of the translatable
      *         object
-     * @see Message.Translatable
+     * @see Text.Translatable
      */
-    public static MessageBuilder.Translatable builder(Translatable translatable, Object... args) {
+    public static TextBuilder.Translatable builder(Translatable translatable, Object... args) {
         return builder(translatable.getTranslation(), args);
     }
 
     // TODO: Change to builder() when possible?
 
     /**
-     * Creates a new {@link MessageBuilder.Selector} with the specified
+     * Creates a new {@link TextBuilder.Selector} with the specified
      * selector.
      *
      * @param selector The selector for the message
      * @return A new message builder with the specified selector
-     * @see Message.Selector
+     * @see Text.Selector
      */
-    public static MessageBuilder.Selector selector(String selector) {
+    public static TextBuilder.Selector selector(String selector) {
         return factory.createSelectorBuilder(selector);
     }
 
     /**
-     * Creates a new {@link MessageBuilder.Score} with the specified score.
+     * Creates a new {@link TextBuilder.Score} with the specified score.
      *
      * @param score The score for the message
      * @return A new message builder with the specified score
-     * @see Message.Score
+     * @see Text.Score
      */
-    public static MessageBuilder.Score score(Object score) {
+    public static TextBuilder.Score score(Object score) {
         return factory.createScoreBuilder(score);
     }
 
     /**
-     * Creates a {@link Message} with the specified plain text. The created
+     * Creates a {@link Text} with the specified plain text. The created
      * message won't have any formatting or events configured.
      *
      * @param content The content of the Message
-     * @return The created {@link Message}
+     * @return The created {@link Text}
      */
-    public static Message.Text of(String content) {
+    public static Text.Literal of(String content) {
         return factory.createPlain(content);
     }
 
@@ -140,7 +140,7 @@ public final class Messages {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Message.Text fromLegacy(String text) {
+    public static Text.Literal fromLegacy(String text) {
         return fromLegacy(text, getLegacyChar());
     }
 
@@ -153,7 +153,7 @@ public final class Messages {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static Message.Text fromLegacy(String text, char color) {
+    public static Text.Literal fromLegacy(String text, char color) {
         return factory.parseLegacyMessage(text, color);
     }
 

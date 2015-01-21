@@ -26,7 +26,7 @@ package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Represents a {@link TextAction} that responds to hovers.
@@ -38,7 +38,7 @@ public interface HoverAction<R> extends TextAction<R> {
     /**
      * Shows some text.
      */
-    interface ShowText extends HoverAction<Message> {
+    interface ShowText extends HoverAction<Text> {
 
     }
 

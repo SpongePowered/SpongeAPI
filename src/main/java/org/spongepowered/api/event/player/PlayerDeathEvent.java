@@ -27,7 +27,7 @@ package org.spongepowered.api.event.player;
 
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.EntityDeathEvent;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Called when a {@link Player} is killed.
@@ -39,12 +39,12 @@ public interface PlayerDeathEvent extends EntityDeathEvent, PlayerEvent {
      *
      * @return The death message.
      */
-    Message getDeathMessage();
+    Text getDeathMessage();
 
     /**
      * Sets the death message of this {@link Player}.
      *
      * @param deathMessage The new death message.
      */
-    void setDeathMessage(Message deathMessage);
+    void setDeathMessage(Text deathMessage);
 }
