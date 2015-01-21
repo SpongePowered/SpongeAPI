@@ -121,6 +121,14 @@ public final class Texts {
         return factory.createPlain(content);
     }
 
+    public static Text parse(String json) {
+        throw new UnsupportedOperationException(); // TODO
+    }
+
+    public static Text parseLenient(String json) {
+        throw new UnsupportedOperationException(); // TODO
+    }
+
     /**
      * Returns the default legacy formatting character.
      *

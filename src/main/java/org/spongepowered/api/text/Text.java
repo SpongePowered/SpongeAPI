@@ -122,6 +122,10 @@ public interface Text {
      */
     TextBuilder builder();
 
+    String toPlain();
+
+    String toJson();
+
     /**
      * Returns a representation of this {@link Text} using the legacy color
      * codes.
