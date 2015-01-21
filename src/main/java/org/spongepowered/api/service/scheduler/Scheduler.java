@@ -25,7 +25,7 @@
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
-import com.google.common.util.concurrent.ListeningScheduledExecutorService;
+import com.google.common.util.concurrent.ListeningExecutorService;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -37,13 +37,13 @@ import java.util.concurrent.TimeUnit;
 public interface Scheduler {
 
     /**
-     * Returns a {@link ListeningScheduledExecutorService} that wraps the scheduler.
+     * Returns a {@link ListeningExecutorService} that wraps the scheduler.
      *
      * @param plugin The plugin requesting the execution of the tasks
      *
      * @return The executor service
      */
-    ListeningScheduledExecutorService getExecutorService(Object plugin);
+    ListeningExecutorService getExecutorService(Object plugin);
 
     /**
      * Converts a duration to ticks.
