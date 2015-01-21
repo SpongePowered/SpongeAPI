@@ -45,6 +45,7 @@ import java.util.Collection;
  * <p>Not all properties are serialized to disk; they may only exist only during
  * the runtime of the game, which implies that their state are initialized based
  * on their environment.</p>
+ * @param <T> The type of property
  *
  * @see BlockState Contains a collection of properties
  */

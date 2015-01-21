@@ -26,15 +26,14 @@ package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
 
-import java.util.Collection;
-import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A scheduler that executes tasks asynchronously.
+ * The base scheduler that schedules tasks.
  */
-public interface AsynchronousScheduler extends Scheduler {
+
+public interface AsynchronousScheduler {
 
     /**
      * Runs the task immediately.
@@ -62,25 +61,25 @@ public interface AsynchronousScheduler extends Scheduler {
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param delay The delay
-     * @param unit The unit of time of the delay
+     * @param scale The scale units
+     * @param delay The delay in scale units
      *
      * @return The scheduled task, if successful
      */
-    Optional<? extends Task<?>> runTaskAfter(Object plugin, Runnable task, long delay, TimeUnit unit);
+    Optional<? extends Task<?>> runTaskAfter(Object plugin, Runnable task, TimeUnit scale, long delay);
 
     /**
      * Runs the task after a delay in ticks.
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param delay The delay
-     * @param unit The unit of time of the delay
+     * @param scale The scale units
+     * @param delay The delay in scale units
      * @param <V> The type returned by the computation of this task
      *
      * @return The scheduled task, if successful
      */
-    <V> Optional<? extends Task<V>> runTaskAfter(Object plugin, Callable<V> task, long delay, TimeUnit unit);
+    <V> Optional<? extends Task<V>> runTaskAfter(Object plugin, Callable<V> task, TimeUnit scale, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
@@ -88,12 +87,12 @@ public interface AsynchronousScheduler extends Scheduler {
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param interval The interval between runs
-     * @param unit The unit of time of the interval
+     * @param scale The scale units
+     * @param interval The interval between runs in scale units
      *
      * @return The scheduled task, if successful
      */
-    Optional<? extends Task<?>> runRepeatingTask(Object plugin, Runnable task, long interval, TimeUnit unit);
+    Optional<? extends Task<?>> runRepeatingTask(Object plugin, Runnable task, TimeUnit scale, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -101,12 +100,12 @@ public interface AsynchronousScheduler extends Scheduler {
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param interval The interval between runs
-     * @param delay The delay
-     * @param unit The unit of time of the delay and interval
+     * @param scale The scale units
+     * @param interval The interval between runs in scale units
+     * @param delay The delay in scale units
      *
      * @return The scheduled task, if successful
      */
-    Optional<? extends Task<?>> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay, TimeUnit unit);
+    Optional<? extends Task<?>> runRepeatingTaskAfter(Object plugin, Runnable task, TimeUnit scale, long interval, long delay);
 
 }

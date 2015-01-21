@@ -1,4 +1,3 @@
-
 /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
@@ -58,14 +57,14 @@ public interface Task<V> extends Identifiable {
     /**
      * Gets the delay that the task was scheduled to run after.
      *
-     * @return The delay
+     * @return The delay (offset) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
     Optional<Long> getDelay();
 
     /**
      * Gets the interval for repeating tasks.
      *
-     * @return The interval (period)
+     * @return The interval (period) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
     Optional<Long> getInterval();
 
@@ -107,10 +106,10 @@ public interface Task<V> extends Identifiable {
     Optional<? extends ListenableFuture<V>> getFuture();
 
     /**
-     * Gets the method of execution of this task.
+     * Gets the truth if the Task is Synchronous.
      *
-     * @return True if this task was executed asynchronously, false if synchronously
+     * @return The truth if the task is synchronous
      */
-    boolean isAsynchronous();
+    boolean isSynchronous();
 
 }

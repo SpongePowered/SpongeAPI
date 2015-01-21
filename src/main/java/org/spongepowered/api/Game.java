@@ -85,14 +85,14 @@ public interface Game {
     ServiceManager getServiceManager();
 
     /**
-     * Gets the {@link SynchronousScheduler} used to schedule tasks on the main server thread.
+     * Gets the {@link org.spongepowered.api.service.scheduler.SynchronousScheduler}.
      *
      * @return The synchronous scheduler
      */
     SynchronousScheduler getSyncScheduler();
 
     /**
-     * Gets the {@link AsynchronousScheduler} used to schedule tasks in their own threads.
+     * Gets the {@link org.spongepowered.api.service.scheduler.AsynchronousScheduler}.
      *
      * @return The asynchronous scheduler
      */
@@ -119,5 +119,12 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+
+    /**
+     * Gets the version of this game.
+     *
+     * @return The game version
+     */
+    GameVersion getVersion();
 
 }

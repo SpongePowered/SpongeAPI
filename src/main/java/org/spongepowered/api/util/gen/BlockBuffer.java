@@ -25,10 +25,9 @@
 
 package org.spongepowered.api.util.gen;
 
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-
-import com.flowpowered.math.vector.Vector3i;
 
 /**
  * An buffer for {@link BlockType} data. This buffer has no direct relation

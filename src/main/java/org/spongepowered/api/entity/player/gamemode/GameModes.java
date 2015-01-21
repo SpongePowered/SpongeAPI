@@ -34,6 +34,8 @@ public final class GameModes {
     public static final GameMode ADVENTURE = null;
     public static final GameMode SPECTATOR = null;
 
+    public static final GameMode NOT_SET = null;
+
     private GameModes() {
     }
 
