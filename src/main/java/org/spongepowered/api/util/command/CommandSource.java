@@ -26,7 +26,7 @@
 package org.spongepowered.api.util.command;
 
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Something that can execute commands.
@@ -44,20 +44,12 @@ public interface CommandSource extends Subject {
     String getName();
 
     /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(String... messages);
-
-    /**
      * Sends the formatted text message(s) to source when possible. If text formatting
      * is not supported in the implementation it will be displayed as plain text.
      *
      * @param messages The message(s)
      */
-    void sendMessage(Message... messages);
+    void sendMessage(Text... messages);
 
     /**
      * Sends the formatted text message(s) to source when possible. If text formatting
@@ -65,6 +57,6 @@ public interface CommandSource extends Subject {
      *
      * @param messages The messages
      */
-    void sendMessage(Iterable<Message> messages);
+    void sendMessage(Iterable<Text> messages);
 
 }

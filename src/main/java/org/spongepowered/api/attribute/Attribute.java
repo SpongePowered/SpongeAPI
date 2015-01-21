@@ -26,7 +26,6 @@
 package org.spongepowered.api.attribute;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.text.message.Message;
 
 /**
  * Represents an type of attribute that can be applied to a

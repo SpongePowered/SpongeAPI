@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Represents an item that has pages, like a book.
  */
-public interface PagedItemData extends ListItemData<Message, PagedItemData> {
+public interface PagedItemData extends ListItemData<Text, PagedItemData> {
 
 }

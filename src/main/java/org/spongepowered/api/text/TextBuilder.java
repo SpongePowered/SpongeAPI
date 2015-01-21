@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.message;
+package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -34,27 +34,9 @@ import org.spongepowered.api.text.translation.Translation;
 import javax.annotation.Nullable;
 
 /**
- * Represents a builder interface to create immutable {@link Message} instances.
+ * Represents a builder interface to create immutable {@link Text} instances.
  */
-public interface MessageBuilder {
-
-    /**
-     * Appends the specified {@link Message Messages} to the end of this
-     * message.
-     *
-     * @param children The messages to append
-     * @return This message builder
-     */
-    MessageBuilder append(Message... children);
-
-    /**
-     * Appends the specified {@link Message Messages} to the end of this
-     * message.
-     *
-     * @param children The messages to append
-     * @return This message builder
-     */
-    MessageBuilder append(Iterable<Message> children);
+public interface TextBuilder {
 
     /**
      * Sets the {@link TextColor} of this message.
@@ -62,7 +44,7 @@ public interface MessageBuilder {
      * @param color The new text color for this message
      * @return This message builder
      */
-    MessageBuilder color(@Nullable TextColor color);
+    TextBuilder color(TextColor color);
 
     /**
      * Sets the text styles of this message. This will construct a composite
@@ -72,7 +54,7 @@ public interface MessageBuilder {
      * @param styles The text styles to apply
      * @return This message builder
      */
-    MessageBuilder style(TextStyle... styles);
+    TextBuilder style(TextStyle... styles);
 
     /**
      * Sets the {@link ClickAction} that will be executed if this message is
@@ -81,7 +63,7 @@ public interface MessageBuilder {
      * @param action The new click action for this message
      * @return This message builder
      */
-    MessageBuilder onClick(@Nullable ClickAction<?> action);
+    TextBuilder onClick(@Nullable ClickAction<?> action);
 
     /**
      * Sets the {@link HoverAction} that will be executed if this message is
@@ -90,7 +72,7 @@ public interface MessageBuilder {
      * @param action The new hover action for this message
      * @return This message builder
      */
-    MessageBuilder onHover(@Nullable HoverAction<?> action);
+    TextBuilder onHover(@Nullable HoverAction<?> action);
 
     /**
      * Sets the {@link ShiftClickAction} that will be executed if this message
@@ -99,22 +81,46 @@ public interface MessageBuilder {
      * @param action The new shift click action for this message
      * @return This message builder
      */
-    MessageBuilder onShiftClick(@Nullable ShiftClickAction<?> action);
+    TextBuilder onShiftClick(@Nullable ShiftClickAction<?> action);
+
+    /**
+     * Appends the specified {@link Text Messages} to the end of this
+     * message.
+     *
+     * @param children The messages to append
+     * @return This message builder
+     */
+    TextBuilder append(Text... children);
+
+    /**
+     * Appends the specified {@link Text Messages} to the end of this
+     * message.
+     *
+     * @param children The messages to append
+     * @return This message builder
+     */
+    TextBuilder append(Iterable<Text> children);
+
+    TextBuilder remove(Text... children);
+
+    TextBuilder remove(Iterable<Text> children);
+
+    TextBuilder removeAll();
 
     /**
      * Builds an immutable instance of the current state of this message
      * builder.
      *
-     * @return An immutable {@link Message} with the current properties of this
+     * @return An immutable {@link Text} with the current properties of this
      *         builder
      */
-    Message build();
+    Text build();
 
     /**
-     * Represents a {@link MessageBuilder} creating immutable
-     * {@link Message.Text} instances.
+     * Represents a {@link TextBuilder} creating immutable
+     * {@link Text.Literal} instances.
      */
-    interface Text extends MessageBuilder {
+    interface Literal extends TextBuilder {
 
         /**
          * Sets the text of this message.
@@ -122,38 +128,47 @@ public interface MessageBuilder {
          * @param text The text of this message
          * @return This message builder
          */
-        Text content(String text);
+        Literal literal(String text);
 
         @Override
-        Text append(Message... children);
+        Literal color(@Nullable TextColor color);
 
         @Override
-        Text append(Iterable<Message> children);
+        Literal style(TextStyle... styles);
 
         @Override
-        Text color(@Nullable TextColor color);
+        Literal onClick(@Nullable ClickAction<?> action);
 
         @Override
-        Text style(TextStyle... styles);
+        Literal onHover(@Nullable HoverAction<?> action);
 
         @Override
-        Text onClick(@Nullable ClickAction<?> action);
+        Literal onShiftClick(@Nullable ShiftClickAction<?> action);
 
         @Override
-        Text onHover(@Nullable HoverAction<?> action);
+        Literal append(Text... children);
 
         @Override
-        Text onShiftClick(@Nullable ShiftClickAction<?> action);
+        Literal append(Iterable<Text> children);
 
         @Override
-        Message.Text build();
+        Literal remove(Text... children);
+
+        @Override
+        Literal remove(Iterable<Text> children);
+
+        @Override
+        Literal removeAll();
+
+        @Override
+        Text.Literal build();
     }
 
     /**
-     * Represents a {@link MessageBuilder} creating immutable
-     * {@link Message.Translatable} instances.
+     * Represents a {@link TextBuilder} creating immutable
+     * {@link Text.Translatable} instances.
      */
-    interface Translatable extends MessageBuilder {
+    interface Translatable extends TextBuilder {
 
         /**
          * Sets the translation of this message.
@@ -162,7 +177,7 @@ public interface MessageBuilder {
          * @param args The arguments for the translation
          * @return This message builder
          */
-        Translatable content(Translation translation, Object... args);
+        Translatable translation(Translation translation, Object... args);
 
         /**
          * Sets the translation of this message.
@@ -171,13 +186,7 @@ public interface MessageBuilder {
          * @param args The arguments for the translation
          * @return This message builder
          */
-        Translatable content(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
-
-        @Override
-        Translatable append(Message... children);
-
-        @Override
-        Translatable append(Iterable<Message> children);
+        Translatable translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
 
         @Override
         Translatable color(@Nullable TextColor color);
@@ -195,14 +204,29 @@ public interface MessageBuilder {
         Translatable onShiftClick(@Nullable ShiftClickAction<?> action);
 
         @Override
-        Message.Translatable build();
+        Translatable append(Text... children);
+
+        @Override
+        Translatable append(Iterable<Text> children);
+
+        @Override
+        Translatable remove(Text... children);
+
+        @Override
+        Translatable remove(Iterable<Text> children);
+
+        @Override
+        Translatable removeAll();
+
+        @Override
+        Text.Translatable build();
     }
 
     /**
-     * Represents a {@link MessageBuilder} creating immutable
-     * {@link Message.Selector} instances.
+     * Represents a {@link TextBuilder} creating immutable
+     * {@link Text.Selector} instances.
      */
-    interface Selector extends MessageBuilder {
+    interface Selector extends TextBuilder {
 
         /**
          * Sets the selector of this message.
@@ -210,13 +234,7 @@ public interface MessageBuilder {
          * @param selector The selector for this message to use
          * @return This message builder
          */
-        Selector content(org.spongepowered.api.text.selector.Selector selector);
-
-        @Override
-        Selector append(Message... children);
-
-        @Override
-        Selector append(Iterable<Message> children);
+        Selector selector(org.spongepowered.api.text.selector.Selector selector);
 
         @Override
         Selector color(@Nullable TextColor color);
@@ -234,14 +252,29 @@ public interface MessageBuilder {
         Selector onShiftClick(@Nullable ShiftClickAction<?> action);
 
         @Override
-        Message.Selector build();
+        Selector append(Text... children);
+
+        @Override
+        Selector append(Iterable<Text> children);
+
+        @Override
+        Selector remove(Text... children);
+
+        @Override
+        Selector remove(Iterable<Text> children);
+
+        @Override
+        Selector removeAll();
+
+        @Override
+        Text.Selector build();
     }
 
     /**
-     * Represents a {@link MessageBuilder} creating immutable
-     * {@link Message.Score} instances.
+     * Represents a {@link TextBuilder} creating immutable
+     * {@link Text.Score} instances.
      */
-    interface Score extends MessageBuilder {
+    interface Score extends TextBuilder {
 
         /**
          * Sets the score of this message.
@@ -249,7 +282,7 @@ public interface MessageBuilder {
          * @param score The score for this message to use
          * @return This message builder
          */
-        Score content(Object score); // TODO
+        Score score(Object score); // TODO
 
         /**
          * Overrides the real score and displays a custom text instead.
@@ -258,12 +291,6 @@ public interface MessageBuilder {
          * @return This message builder
          */
         Score override(@Nullable String override);
-
-        @Override
-        Score append(Message... children);
-
-        @Override
-        Score append(Iterable<Message> children);
 
         @Override
         Score color(@Nullable TextColor color);
@@ -281,7 +308,22 @@ public interface MessageBuilder {
         Score onShiftClick(@Nullable ShiftClickAction<?> action);
 
         @Override
-        Message.Score build();
+        Score append(Text... children);
+
+        @Override
+        Score append(Iterable<Text> children);
+
+        @Override
+        Score remove(Text... children);
+
+        @Override
+        Score remove(Iterable<Text> children);
+
+        @Override
+        Score removeAll();
+
+        @Override
+        Text.Score build();
     }
 
 }
