@@ -101,11 +101,11 @@ public interface TextBuilder {
      */
     TextBuilder append(Iterable<Text> children);
 
-    void remove(Text... children);
+    TextBuilder remove(Text... children);
 
-    void remove(Iterable<Text> children);
+    TextBuilder remove(Iterable<Text> children);
 
-    void removeAll();
+    TextBuilder removeAll();
 
     /**
      * Builds an immutable instance of the current state of this message
@@ -131,12 +131,6 @@ public interface TextBuilder {
         Literal literal(String text);
 
         @Override
-        Literal append(Text... children);
-
-        @Override
-        Literal append(Iterable<Text> children);
-
-        @Override
         Literal color(@Nullable TextColor color);
 
         @Override
@@ -150,6 +144,21 @@ public interface TextBuilder {
 
         @Override
         Literal onShiftClick(@Nullable ShiftClickAction<?> action);
+
+        @Override
+        Literal append(Text... children);
+
+        @Override
+        Literal append(Iterable<Text> children);
+
+        @Override
+        Literal remove(Text... children);
+
+        @Override
+        Literal remove(Iterable<Text> children);
+
+        @Override
+        Literal removeAll();
 
         @Override
         Text.Literal build();
@@ -180,12 +189,6 @@ public interface TextBuilder {
         Translatable translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args);
 
         @Override
-        Translatable append(Text... children);
-
-        @Override
-        Translatable append(Iterable<Text> children);
-
-        @Override
         Translatable color(@Nullable TextColor color);
 
         @Override
@@ -199,6 +202,21 @@ public interface TextBuilder {
 
         @Override
         Translatable onShiftClick(@Nullable ShiftClickAction<?> action);
+
+        @Override
+        Translatable append(Text... children);
+
+        @Override
+        Translatable append(Iterable<Text> children);
+
+        @Override
+        Translatable remove(Text... children);
+
+        @Override
+        Translatable remove(Iterable<Text> children);
+
+        @Override
+        Translatable removeAll();
 
         @Override
         Text.Translatable build();
@@ -219,12 +237,6 @@ public interface TextBuilder {
         Selector selector(org.spongepowered.api.text.selector.Selector selector);
 
         @Override
-        Selector append(Text... children);
-
-        @Override
-        Selector append(Iterable<Text> children);
-
-        @Override
         Selector color(@Nullable TextColor color);
 
         @Override
@@ -238,6 +250,21 @@ public interface TextBuilder {
 
         @Override
         Selector onShiftClick(@Nullable ShiftClickAction<?> action);
+
+        @Override
+        Selector append(Text... children);
+
+        @Override
+        Selector append(Iterable<Text> children);
+
+        @Override
+        Selector remove(Text... children);
+
+        @Override
+        Selector remove(Iterable<Text> children);
+
+        @Override
+        Selector removeAll();
 
         @Override
         Text.Selector build();
@@ -266,12 +293,6 @@ public interface TextBuilder {
         Score override(@Nullable String override);
 
         @Override
-        Score append(Text... children);
-
-        @Override
-        Score append(Iterable<Text> children);
-
-        @Override
         Score color(@Nullable TextColor color);
 
         @Override
@@ -285,6 +306,21 @@ public interface TextBuilder {
 
         @Override
         Score onShiftClick(@Nullable ShiftClickAction<?> action);
+
+        @Override
+        Score append(Text... children);
+
+        @Override
+        Score append(Iterable<Text> children);
+
+        @Override
+        Score remove(Text... children);
+
+        @Override
+        Score remove(Iterable<Text> children);
+
+        @Override
+        Score removeAll();
 
         @Override
         Text.Score build();
