@@ -92,19 +92,6 @@ public interface SynchronousScheduler extends Scheduler {
     Optional<? extends Task<?>> runRepeatingTask(Object plugin, Runnable task, long interval);
 
     /**
-     * Runs the task immediately, then repeats at an
-     * interval.
-     *
-     * @param plugin The plugin requesting the task
-     * @param task The task to run
-     * @param interval The interval between runs (in ticks)
-     * @param <V> The type returned by the computation of this task
-     *
-     * @return The scheduled task, if successful
-     */
-    <V> Optional<? extends Task<V>> runRepeatingTask(Object plugin, Callable<V> task, long interval);
-
-    /**
      * Runs the task after a delay in ticks, then repeats
      * at an interval.
      *
@@ -116,19 +103,5 @@ public interface SynchronousScheduler extends Scheduler {
      * @return The scheduled task, if successful
      */
     Optional<? extends Task<?>> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
-
-    /**
-     * Runs the task after a delay in ticks, then repeats
-     * at an interval.
-     *
-     * @param plugin The plugin requesting the task
-     * @param task The task to run
-     * @param interval The interval between runs (in ticks)
-     * @param delay The delay in ticks
-     * @param <V> The type returned by the computation of this task
-     *
-     * @return The scheduled task, if successful
-     */
-    <V> Optional<? extends Task<V>> runRepeatingTaskAfter(Object plugin, Callable<V> task, long interval, long delay);
 
 }
