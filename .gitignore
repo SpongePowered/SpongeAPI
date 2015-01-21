@@ -63,6 +63,7 @@ Thumbs.db
 .nb-gradle
 .idea
 .project
+.metadata
 .settings
 eclipse
 nbproject
