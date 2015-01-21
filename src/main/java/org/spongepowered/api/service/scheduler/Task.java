@@ -90,21 +90,21 @@ public interface Task<V> extends Identifiable {
      *
      * @return The runnable
      */
-    Optional<Runnable> getRunnable();
+    Optional<? extends Runnable> getRunnable();
 
     /**
      * Gets the {@link Callable} that this task may be running.
      *
      * @return The callable
      */
-    Optional<Callable<V>> getCallable();
+    Optional<? extends Callable<V>> getCallable();
 
     /**
      * Gets the {@link ListenableFuture} that represents the result of the computation of this task.
      *
      * @return The future
      */
-    ListenableFuture<V> getFuture();
+    Optional<? extends ListenableFuture<V>> getFuture();
 
     /**
      * Gets the method of execution of this task.
