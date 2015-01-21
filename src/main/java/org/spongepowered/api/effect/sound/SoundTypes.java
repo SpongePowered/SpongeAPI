@@ -24,11 +24,8 @@
  */
 package org.spongepowered.api.effect.sound;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 public final class SoundTypes {
+
     private SoundTypes() {
     }
 
@@ -239,12 +236,4 @@ public final class SoundTypes {
     public static final SoundType VILLAGER_NO = null;
     public static final SoundType VILLAGER_YES = null;
 
-    public static Optional<SoundType> getByName(String soundName) {
-        return null;
-    }
-
-    public static List<SoundType> getValues() {
-        return null;
-    }
-    
 }

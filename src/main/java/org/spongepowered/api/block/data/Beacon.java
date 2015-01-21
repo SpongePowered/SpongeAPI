@@ -22,60 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.villager;
+package org.spongepowered.api.block.data;
 
-import java.util.List;
+import com.google.common.base.Optional;
+import org.spongepowered.api.potion.PotionEffectType;
 
 /**
- * A utility factory to retrieve available {@link Profession}s and
- * {@link Career}s.
+ * Represents a Beacon. 
  */
-interface VillagerFactory {
+public interface Beacon extends Lockable {
 
     /**
-     * Gets the career by name, if available.
-     *
-     * @param name The name of the career
-     * @return The career, if available
+     * Gets the primary effect provided by this beacon.
+     * 
+     * @return The primary effect
      */
-    Career getCareerFromName(String name);
+    Optional<PotionEffectType> getPrimaryEffect();
 
     /**
-     * Gets the profession by name, if available.
-     *
-     * @param name The name of the profession
-     * @return The profession if available
+     * Sets the primary effect for this beacon.
+     * 
+     * @param effect The new primary effect
      */
-    Profession getProfessionFromName(String name);
+    void setPrimaryEffect(PotionEffectType effect);
 
     /**
-     * Gets the profession the given {@link Career} is associated with.
-     * <p>This can be simplified with {@link Career#getProfession()}</p>
-     *
-     * @param career The career
-     * @return The profession
+     * Gets the secondary effect provided by this beacon.
+     * 
+     * @return The secondary effect
      */
-    Profession getProfessionFromCareer(Career career);
+    Optional<PotionEffectType> getSecondaryEffect();
 
     /**
-     * Gets the currently available professions.
-     *
-     * @return A list of all professions
+     * Sets the secondary effect for this beacon.
+     * 
+     * @param effect The new secondary effect
      */
-    List<Profession> getProfessions();
+    void setSecondaryEffect(PotionEffectType effect);
+    
+    /**
+     * Clears all selected potion effects for this beacon.
+     */
+    void clearEffects();
 
     /**
-     * Gets the currently available careers.
-     *
-     * @return A list of all careers
+     * Gets the number of completed levels of valid beacon structure blocks
+     * beneath this beacon.
+     * 
+     * @return The number of levels
      */
-    List<Career> getCareers();
+    int getCompletedLevels();
 
-    /**
-     * Gets all available careers for the given {@link Profession}.
-     *
-     * @param profession The profession in question
-     * @return A list of careers
-     */
-    List<Career> getCareersFromProfession(Profession profession);
 }

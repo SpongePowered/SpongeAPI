@@ -1,4 +1,3 @@
-
 /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
@@ -89,3 +88,4 @@ public interface Task extends Identifiable {
     public boolean isSynchronous();
 
 }
+

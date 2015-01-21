@@ -1,8 +1,11 @@
+sudo: false
 language: java
+jdk:
+  - openjdk6
+  - openjdk7
+  - oraclejdk7
+  - oraclejdk8
+install: gradle assemble
+script: gradle build
 notifications:
   email: false
-install: true
-matrix:
-  include:
-  - jdk: openjdk6
-    script: gradle build

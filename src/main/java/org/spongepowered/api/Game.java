@@ -120,4 +120,11 @@ public interface Game {
      */
     String getImplementationVersion();
 
+    /**
+     * Gets the version of this game.
+     *
+     * @return The game version
+     */
+    GameVersion getVersion();
+
 }
