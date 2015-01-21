@@ -39,7 +39,7 @@ public interface SelectorBuilder {
      * @param type The type to set
      * @return This selector builder
      */
-    SelectorBuilder selectorType(SelectorType type);
+    SelectorBuilder type(SelectorType type);
 
     /**
      * Adds an argument to the arguments in this selector.
@@ -122,12 +122,12 @@ public interface SelectorBuilder {
 
     /**
      * Sets the type argument. Equivalent to calling
-     * {@link #type(EntityType, boolean)} with {@code invert = false}.
+     * {@link #entityType(EntityType, boolean)} with {@code invert = false}.
      *
      * @param type The entity type
      * @return This selector builder
      */
-    SelectorBuilder type(EntityType type);
+    SelectorBuilder entityType(EntityType type);
 
     /**
      * Sets the type argument. Equivalent to calling
@@ -140,7 +140,7 @@ public interface SelectorBuilder {
      *        the type
      * @return This selector builder
      */
-    SelectorBuilder type(EntityType type, boolean invert);
+    SelectorBuilder entityType(EntityType type, boolean invert);
 
     /**
      * Builds an immutable instance of the current state of this selector
