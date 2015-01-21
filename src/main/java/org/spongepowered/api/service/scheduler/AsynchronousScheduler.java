@@ -28,6 +28,7 @@ import com.google.common.base.Optional;
 
 import java.util.Collection;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The base scheduler that schedules tasks.
@@ -50,11 +51,11 @@ public interface AsynchronousScheduler {
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param delay The delay in milliseconds
+     * @param delay The delay in scale units
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runTaskAfter(Object plugin, Runnable task, long delay);
+    Optional<Task> runTaskAfter(Object plugin, Runnable task, TimeUnit scale, long delay);
 
     /**
      * Runs the task immediately, then repeats at an
@@ -62,11 +63,11 @@ public interface AsynchronousScheduler {
      *
      * @param plugin The plugin requesting the task
      * @param task The task to run
-     * @param interval The interval between runs (in milliseconds)
+     * @param interval The interval between runs in scale units
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runRepeatingTask(Object plugin, Runnable task, long interval);
+    Optional<Task> runRepeatingTask(Object plugin, Runnable task, TimeUnit scale, long interval);
 
     /**
      * Runs the task after a delay in ticks, then repeats
@@ -79,7 +80,7 @@ public interface AsynchronousScheduler {
      *
      * @return The scheduled task, if successful
      */
-    Optional<Task> runRepeatingTaskAfter(Object plugin, Runnable task, long interval, long delay);
+    Optional<Task> runRepeatingTaskAfter(Object plugin, Runnable task, TimeUnit scale, long interval, long delay);
 
     /**
      * Retrieves a scheduled or running task by its unique ID.

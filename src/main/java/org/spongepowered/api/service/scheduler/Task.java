@@ -27,8 +27,12 @@
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
+import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Represents a task that has been scheduled.
@@ -52,14 +56,14 @@ public interface Task extends Identifiable {
     /**
      * Gets the delay that the task was scheduled to run after.
      *
-     * @return The delay
+     * @return The delay (offset) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
     Optional<Long> getDelay();
 
     /**
-     * Gets the interval for repeating tasks in ticks.
+     * Gets the interval for repeating tasks
      *
-     * @return The interval (period) in ticks.
+     * @return The interval (period) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
     Optional<Long> getInterval();
 
@@ -75,5 +79,13 @@ public interface Task extends Identifiable {
      *
      * @return The runnable
      */
-    Runnable getRunnable();
+    Optional<Runnable> getRunnable();
+
+    /**
+     * Gets the truth if the Task is Synchronous
+     *
+     * @return The truth if the task is synchronous
+     */
+    public boolean isSynchronous();
+
 }
