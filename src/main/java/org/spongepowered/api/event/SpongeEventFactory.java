@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.event;
 
-import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -1147,7 +1147,7 @@ public final class SpongeEventFactory {
      * @param chunkCoords The coordinates of the chunk being added
      * @return A new instance of the event
      */
-    public static ChunkForcedEvent createChunkForced(Game game, LoadingTicket ticket, Vector2i chunkCoords) {
+    public static ChunkForcedEvent createChunkForced(Game game, LoadingTicket ticket, Vector3i chunkCoords) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("ticket", ticket);
@@ -1235,7 +1235,7 @@ public final class SpongeEventFactory {
      * @param ticket The ticket the chunk was removed from
      * @return A new instance of the event
      */
-    public static ChunkUnforcedEvent createChunkUnforced(Game game, Vector2i chunkCoords, LoadingTicket ticket) {
+    public static ChunkUnforcedEvent createChunkUnforced(Game game, Vector3i chunkCoords, LoadingTicket ticket) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("ticket", ticket);
