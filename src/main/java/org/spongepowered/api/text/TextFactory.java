@@ -22,71 +22,71 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.message;
+package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.translation.Translation;
 
 /**
  * Represents the required implementation for the static methods in
- * {@link Messages}.
+ * {@link Texts}.
  */
-interface MessageFactory {
+interface TextFactory {
 
     /**
-     * Creates a {@link MessageBuilder} with empty text.
+     * Creates a {@link TextBuilder} with empty text.
      *
      * @return A new message builder with empty text
      */
-    MessageBuilder createEmptyBuilder();
+    TextBuilder createEmptyBuilder();
 
     /**
-     * Creates a {@link MessageBuilder.Text} with the specified text.
+     * Creates a {@link TextBuilder.Literal} with the specified text.
      *
      * @param text The text for the message
      * @return A new message builder with the specified text
-     * @see Message.Text
+     * @see Text.Literal
      */
-    MessageBuilder.Text createTextBuilder(String text);
+    TextBuilder.Literal createTextBuilder(String text);
 
     /**
-     * Creates a {@link MessageBuilder.Translatable} with the specified
+     * Creates a {@link TextBuilder.Translatable} with the specified
      * translation and arguments.
      *
      * @param translation The translation to use for the message
      * @param args The arguments for the translation, can be empty
      * @return A new message builder with the specified translation and
      *         arguments
-     * @see Message.Translatable
+     * @see Text.Translatable
      */
-    MessageBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
+    TextBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
 
     /**
-     * Creates a new {@link MessageBuilder.Selector} with the specified
+     * Creates a new {@link TextBuilder.Selector} with the specified
      * selector.
      *
      * @param selector The selector for the message
      * @return A new message builder with the specified selector
-     * @see Message.Selector
+     * @see Text.Selector
      */
-    MessageBuilder.Selector createSelectorBuilder(String selector);
+    TextBuilder.Selector createSelectorBuilder(String selector);
 
     /**
-     * Creates a new {@link MessageBuilder.Score} with the specified score.
+     * Creates a new {@link TextBuilder.Score} with the specified score.
      *
      * @param score The score for the message
      * @return A new message builder with the specified score
-     * @see Message.Score
+     * @see Text.Score
      */
-    MessageBuilder.Score createScoreBuilder(Object score); // TODO
+    TextBuilder.Score createScoreBuilder(Object score); // TODO
 
     /**
-     * Creates a {@link Message} with the specified plain text. The created
+     * Creates a {@link Text} with the specified plain text. The created
      * message won't have any formatting or events configured.
      *
      * @param text The content of the Message
-     * @return The created {@link Message}
+     * @return The created {@link Text}
      */
-    Message.Text createPlain(String text);
+    Text.Literal createPlain(String text);
 
     /**
      * Returns the default legacy formatting character.
@@ -102,7 +102,7 @@ interface MessageFactory {
      * @param color The color character to be replaced
      * @return The converted Message
      */
-    Message.Text parseLegacyMessage(String text, char color);
+    Text.Literal parseLegacyMessage(String text, char color);
 
     /**
      * Removes the legacy formatting character from a legacy string.

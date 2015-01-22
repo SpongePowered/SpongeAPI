@@ -26,7 +26,7 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.WorldGenerator;
 
@@ -167,7 +167,7 @@ public interface Server {
      *
      * @param message The message to send
      */
-    void broadcastMessage(Message message);
+    void broadcastMessage(Text message);
 
     /**
      * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
@@ -202,7 +202,7 @@ public interface Server {
      * 
      * @return The server's default description (MOTD)
      */
-    Message getMotd();
+    Text getMotd();
 
     /**
      * Shuts down the server, and kicks all players with the given message.

@@ -28,7 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.GameVersion;
 import org.spongepowered.api.event.server.StatusPingEvent;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public interface StatusResponse {
      *
      * @return The description to display
      */
-    Message getDescription();
+    Text getDescription();
 
     /**
      * Gets player count and the list of players currently playing on the

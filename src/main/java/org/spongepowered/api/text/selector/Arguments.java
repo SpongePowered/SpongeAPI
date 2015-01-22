@@ -22,24 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.translation;
-
-import com.google.common.base.Optional;
+package org.spongepowered.api.text.selector;
 
 /**
- * Represents the required implementation for the static methods in
- * {@link Translations}.
+ * Arguments is a utility class to work with and create Arguments.
  */
-interface TranslationFactory {
+public final class Arguments {
+
+    private static final ArgumentFactory factory = null;
+
+    private Arguments() {
+    }
 
     /**
-     * Returns a {@link Translation} instance for the translation with the
-     * specified ID.
+     * Creates a {@link ArgumentBuilder} with no data.
      *
-     * @param id The translation ID
-     * @return A {@link Translation} instance with the specified ID, or
-     *         {@link Optional#absent()} if not found
+     * @return A new argument builder with no data
      */
-    Optional<Translation> getTranslationFromId(String id);
+    public static ArgumentBuilder builder() {
+        return factory.createEmptyBuilder();
+    }
+
+    /**
+     * Parses an {@link Argument} from the given argument string.
+     *
+     * @param argument
+     *            The raw argument string
+     * @return A new Argument containing the given argument data
+     * @throws IllegalArgumentException
+     *             If the selector could not be parsed
+     */
+    public static Argument parseRaw(String argument)
+            throws IllegalArgumentException {
+        return factory.parseRawArgument(argument);
+    }
 
 }

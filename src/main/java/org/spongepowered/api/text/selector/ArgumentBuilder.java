@@ -24,31 +24,60 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
- * Represents the required implementation for the static methods in
- * {@link SelectorTypes}.
+ * Represents a builder interface to create immutable {@link Argument}
+ * instances.
  */
-public interface SelectorTypeFactory {
+public interface ArgumentBuilder {
 
     /**
-     * Gets the {@link SelectorType} with the specified name.
-     *
-     * @param name The identifier of the selector type, for example
-     *        "ALL_PLAYERS"
-     * @return The {@link SelectorType} with the specified name, or
-     *         {@link Optional#absent()} if not found
+     * Sets the key.
+     * 
+     * @param key
+     *            The key
+     * @return This argument builder
      */
-    Optional<SelectorType> getTypeFromName(String name);
+    ArgumentBuilder key(String key);
 
     /**
-     * Returns a list of all available {@link SelectorType}s on this server.
-     *
-     * @return An immutable list of all selector types
+     * Sets the value.
+     * 
+     * @param value
+     *            The value
+     * @return This argument builder
      */
-    List<SelectorType> getTypes();
+    ArgumentBuilder value(String value);
+
+    /**
+     * Sets the value, converting it to a String first.
+     * 
+     * @param value
+     *            The value
+     * @return This argument builder
+     */
+    ArgumentBuilder value(int value);
+
+    /**
+     * Inverts this builder's value.
+     * 
+     * <p>
+     * It may not be possible to invert the value, in which case a
+     * {@link IllegalStateException} is thrown.
+     * </p>
+     * 
+     * @return This argument builder
+     * @throws IllegalStateException
+     *             If it is not possible to invert the value
+     */
+    ArgumentBuilder invert() throws IllegalStateException;
+
+    /**
+     * Builds an immutable instance of the current state of this argument
+     * builder.
+     *
+     * @return An immutable {@link Argument} with the current properties of this
+     *         builder
+     */
+    Argument build();
 
 }

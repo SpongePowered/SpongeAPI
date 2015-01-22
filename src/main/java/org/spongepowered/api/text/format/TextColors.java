@@ -24,10 +24,6 @@
  */
 package org.spongepowered.api.text.format;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * TextColors is a list of text colors provided by Vanilla Minecraft.
  */
@@ -35,6 +31,8 @@ public final class TextColors {
 
     private TextColors() {
     }
+
+    public static final TextColor NONE = null;
 
     public static final TextColor.Base BLACK = null;
     public static final TextColor.Base DARK_BLUE = null;
@@ -58,25 +56,5 @@ public final class TextColors {
      * this should be the same as {@link #WHITE}.
      */
     public static final TextColor.Base RESET = null;
-
-    /**
-     * Gets the {@link TextColor} with the specified name.
-     *
-     * @param name The identifier of the text colors, for example "DARK_BLUE"
-     * @return The {@link TextColor} with the specified name, or
-     *         {@link Optional#absent()} if not found
-     */
-    public static Optional<TextColor> valueOf(String name) {
-        return TextStyles.factory.getColorFromName(name);
-    }
-
-    /**
-     * Returns a list of all available {@link TextColor}s on this server.
-     *
-     * @return An immutable list of all text colors
-     */
-    public static List<TextColor> getValues() {
-        return TextStyles.factory.getColors();
-    }
 
 }

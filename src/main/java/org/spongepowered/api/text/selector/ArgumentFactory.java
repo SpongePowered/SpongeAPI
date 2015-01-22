@@ -22,32 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.chat;
-
-import com.google.common.base.Optional;
-
-import java.util.List;
+package org.spongepowered.api.text.selector;
 
 /**
  * Represents the required implementation for the static methods in
- * {@link ChatTypes}.
+ * {@link Arguments}.
  */
-interface ChatTypeFactory {
+interface ArgumentFactory {
 
     /**
-     * Gets the {@link ChatType} with the specified name.
+     * Creates a {@link ArgumentBuilder} with no data.
      *
-     * @param name The identifier of the chat type, for example "ACTION_BAR"
-     * @return The {@link ChatType} with the specified name, or
-     *         {@link Optional#absent()} if not found
+     * @return A new argument builder with no data
      */
-    Optional<ChatType> getTypeFromName(String name);
+    ArgumentBuilder createEmptyBuilder();
 
     /**
-     * Returns a list of all available {@link ChatType}s on this server.
+     * Parses an {@link Argument} from the given argument string.
      *
-     * @return An immutable list of all chat types
+     * @param argument
+     *            The raw argument string
+     * @return A new Argument containing the given argument data
+     * @throws IllegalArgumentException
+     *             If the selector could not be parsed
      */
-    List<ChatType> getTypes();
+    Argument parseRawArgument(String argument) throws IllegalArgumentException;
 
 }

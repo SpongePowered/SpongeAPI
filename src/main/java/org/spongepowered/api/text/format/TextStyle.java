@@ -26,13 +26,13 @@ package org.spongepowered.api.text.format;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A TextStyle represents an immutable text style of a {@link Message}.
+ * A TextStyle represents an immutable text style of a {@link Text}.
  * It is a utility that is not normally present in Minecraft.
  *
  * <p>

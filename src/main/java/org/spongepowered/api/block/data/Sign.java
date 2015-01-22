@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * Represents for a Sign.
@@ -37,7 +37,7 @@ public interface Sign extends TileEntity {
      * 
      * @return The lines of text
      */
-    Message[] getLines();
+    Text[] getLines();
 
     /**
      * Sets the lines of text on the sign. Any lines past the maximum number of
@@ -45,7 +45,7 @@ public interface Sign extends TileEntity {
      * 
      * @param lines The new lines
      */
-    void setLines(Message... lines);
+    void setLines(Text... lines);
 
     /**
      * Gets the line at the given index.
@@ -55,7 +55,7 @@ public interface Sign extends TileEntity {
      * @throws IndexOutOfBoundsException If the index is outside of the allowed
      *             indices
      */
-    Message getLine(int index) throws IndexOutOfBoundsException;
+    Text getLine(int index) throws IndexOutOfBoundsException;
 
     /**
      * Sets the line at the given index.
@@ -65,6 +65,6 @@ public interface Sign extends TileEntity {
      * @throws IndexOutOfBoundsException If the index is outside
      *            of the allowed indices
      */
-    void setLine(int index, Message text) throws IndexOutOfBoundsException;
+    void setLine(int index, Text text) throws IndexOutOfBoundsException;
 
 }
