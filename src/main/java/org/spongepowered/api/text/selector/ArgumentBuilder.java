@@ -24,65 +24,60 @@
  */
 package org.spongepowered.api.text.selector;
 
-import java.util.Collection;
-
 /**
- * Represents a builder interface to create immutable {@link Selector}
+ * Represents a builder interface to create immutable {@link Argument}
  * instances.
  */
-public interface SelectorBuilder {
+public interface ArgumentBuilder {
 
     /**
-     * Sets the type of this selector.
-     *
-     * @param type
-     *            The type to set
-     * @return This selector builder
+     * Sets the key.
+     * 
+     * @param key
+     *            The key
+     * @return This argument builder
      */
-    SelectorBuilder type(SelectorType type);
+    ArgumentBuilder key(String key);
 
     /**
-     * Adds an argument to the arguments in this selector.
-     *
-     * @param argument
-     *            The argument to add
-     * @return This selector builder
+     * Sets the value.
+     * 
+     * @param value
+     *            The value
+     * @return This argument builder
      */
-    SelectorBuilder addArgument(Argument argument);
-    
-    /**
-     * Adds some arguments to the arguments in this selector.
-     *
-     * @param arguments
-     *            The arguments to add
-     * @return This selector builder
-     */
-    SelectorBuilder addArguments(Argument... arguments);
+    ArgumentBuilder value(String value);
 
     /**
-     * Adds some arguments to the arguments in this selector.
-     *
-     * @param arguments
-     *            The arguments to add
-     * @return This selector builder
+     * Sets the value, converting it to a String first.
+     * 
+     * @param value
+     *            The value
+     * @return This argument builder
      */
-    SelectorBuilder addArguments(Collection<Argument> arguments);
+    ArgumentBuilder value(int value);
 
     /**
-     * Removes the specified argument, if it exists.
-     *
-     * @param argument The argument to remove
-     * @return This selector builder
+     * Inverts this builder's value.
+     * 
+     * <p>
+     * It may not be possible to invert the value, in which case a
+     * {@link IllegalStateException} is thrown.
+     * </p>
+     * 
+     * @return This argument builder
+     * @throws IllegalStateException
+     *             If it is not possible to invert the value
      */
-    SelectorBuilder removeArgument(Argument argument);
+    ArgumentBuilder invert() throws IllegalStateException;
 
     /**
-     * Builds an immutable instance of the current state of this selector
+     * Builds an immutable instance of the current state of this argument
      * builder.
      *
-     * @return An immutable {@link Selector} with the current properties of this
+     * @return An immutable {@link Argument} with the current properties of this
      *         builder
      */
-    Selector build();
+    Argument build();
 
 }

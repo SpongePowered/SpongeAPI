@@ -88,7 +88,7 @@ public interface Selector {
      * Returns a new {@link SelectorBuilder} with the content of this selector.
      * This can be used to edit an immutable {@link Selector} instance.
      *
-     * @return A new message builder with the content of this selector
+     * @return A new selector builder with the content of this selector
      */
     SelectorBuilder builder();
 
