@@ -1,3 +1,27 @@
+/*
+ * This file is part of Sponge, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package org.spongepowered.api.attributes;
 
 import com.google.common.base.Optional;
@@ -8,72 +32,72 @@ import java.util.List;
 public interface AttributeHolder {
 
     /**
-     * Calculates the value of a certain {@link Attribute} on this holder.
+     * Calculates the value of a certain {@link Attribute} on this holder
      * 
-     * @param attribute The Attribute to find the value of.
+     * @param attribute The Attribute to find the value of
      * @return The value of a certain Attribute on this holder, or
-     *         Optional.absent() if the attribute is not applicable.
+     *         Optionalabsent() if the attribute is not applicable
      */
     Optional<Double> getAttributeValue(Attribute attribute);
 
     /**
-     * Sets the base value of a certain {@link Attribute} on this holder.
+     * Sets the base value of a certain {@link Attribute} on this holder
      * 
-     * @param attribute The Attribute to set the base value of.
-     * @param base The new base value.
+     * @param attribute The Attribute to set the base value of
+     * @param base The new base value
      * @throws IllegalArgumentException If the base value exceeds the maximum or
-     *         is below the minimum of the {@link Attribute}.
+     *         is below the minimum of the {@link Attribute}
      */
     void setBase(Attribute attribute, double base) throws IllegalArgumentException;
 
     /**
-     * Gets the base value of a certain {@link Attribute} on this holder.
+     * Gets the base value of a certain {@link Attribute} on this holder
      * 
-     * @param attribute The attribute to get the base value of.
-     * @return The base value of a certain Attribute on this holder.
+     * @param attribute The attribute to get the base value of
+     * @return The base value of a certain Attribute on this holder
      */
     double getBase(Attribute attribute);
 
     /**
-     * Gets a list of all applied modifiers.
+     * Gets a list of all applied modifiers
      * 
-     * @return A list of all applied modifiers.
+     * @return A list of all applied modifiers
      */
     List<AttributeModifier> getAllModifiers();
 
     /**
-     * Adds a {@link AttributeModifier} to this holder.
+     * Adds a {@link AttributeModifier} to this holder
      * 
-     * @param modifier The AttributeModifier to add.
+     * @param modifier The AttributeModifier to add
      * @throws IllegalArgumentException If the AttributeModifier's
      *         {@link Attribute}'s {@link AttributeTarget} cannot apply to this
-     *         holder.
+     *         holder
      */
     void addModifier(AttributeModifier modifier) throws IllegalArgumentException;
 
     /**
-     * Adds multiple {@link AttributeModifier} to this holder.
+     * Adds multiple {@link AttributeModifier} to this holder
      * 
-     * @param modifiers The AttributeModifiers to add.
+     * @param modifiers The AttributeModifiers to add
      * @throws IllegalArgumentException If any of the AttributeModifiers'
      *         {@link Attribute}s' {@link AttributeTarget}s' cannot apply to
-     *         this holder.
+     *         this holder
      */
     void addModifiers(Collection<AttributeModifier> modifiers) throws IllegalArgumentException;
 
     /**
      * Gets all {@link AttributeModifiers} that apply to a certain
-     * {@link Attribute}.
+     * {@link Attribute}
      * 
-     * @param attribute The attribute to find modifiers of.
-     * @return All AttributeModifiers that apply to a certain Attribute.
+     * @param attribute The attribute to find modifiers of
+     * @return All AttributeModifiers that apply to a certain Attribute
      */
     List<AttributeModifier> getModifiersFor(Attribute attribute);
 
     /**
-     * Removes a {@link AttributeModifiers} from this holder.
+     * Removes a {@link AttributeModifiers} from this holder
      * 
-     * @param modifier The AttributeModifier to remove.
+     * @param modifier The AttributeModifier to remove
      */
     void removeModifier(AttributeModifier modifier);
 
