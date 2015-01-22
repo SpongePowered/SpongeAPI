@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.attributes.Attribute;
+import org.spongepowered.api.attributes.AttributeModifierBuilder;
 import org.spongepowered.api.attributes.Operation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
@@ -71,13 +72,10 @@ import java.util.UUID;
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
  *
- * <p>Note that the registries may be in flux, especially during game
- * initialization. These will be accurate for the time they are called, however
- * they may change at a later point. Do not assume that the contents of a list
- * will be all the entries that will exist.</p>
+ * <p>Note that the registries may be in flux, especially during game initialization. These will be accurate for the time they are called, however
+ * they may change at a later point. Do not assume that the contents of a list will be all the entries that will exist.</p>
  *
- * <p>Some of the returned instances my become incorrect if they are later
- * overwritten. However, this should occur prior to
+ * <p>Some of the returned instances my become incorrect if they are later overwritten. However, this should occur prior to
  * {@link GameState#POST_INITIALIZATION}.</p>
  */
 public interface GameRegistry {
@@ -347,8 +345,7 @@ public interface GameRegistry {
      * Gets the villager {@link Profession} with the specified id.
      *
      * @param id The id of the profession to return
-     * @return The profession with the given id or Optional.absent() if not
-     *         found
+     * @return The profession with the given id or Optional.absent() if not found
      */
     Optional<Profession> getProfession(String id);
 
@@ -381,8 +378,7 @@ public interface GameRegistry {
      * Gets the {@link Enchantment} with the specified id.
      *
      * @param id The id of the enchantment to return
-     * @return The enchantment with the given id or Optional.absent() if not
-     *         found
+     * @return The enchantment with the given id or Optional.absent() if not found
      */
     Optional<Enchantment> getEnchantment(String id);
 
@@ -404,8 +400,7 @@ public interface GameRegistry {
      * Gets the {@link DimensionType} with the provided name.
      *
      * @param name The name of the dimension type
-     * @return The {@link DimensionType} with the given name or
-     *         Optional.absent() if not found
+     * @return The {@link DimensionType} with the given name or Optional.absent() if not found
      */
     Optional<DimensionType> getDimensionType(String name);
 
@@ -420,8 +415,7 @@ public interface GameRegistry {
      * Gets the {@link Rotation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or Optional.absent()
-     *         if not found
+     * @return The {@link Rotation} with the given degrees or Optional.absent() if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
 
@@ -434,8 +428,7 @@ public interface GameRegistry {
 
     // TODO: Find a better place for these methods
     /**
-     * Creates a new {@link GameProfile} using the specified unique identifier
-     * and name.
+     * Creates a new {@link GameProfile} using the specified unique identifier and name.
      *
      * @param uuid The unique identifier for the profile
      * @param name The name for the profile
@@ -444,8 +437,7 @@ public interface GameRegistry {
     GameProfile createGameProfile(UUID uuid, String name);
 
     /**
-     * Loads a {@link Favicon} from the specified encoded string. The format of
-     * the input depends on the implementation.
+     * Loads a {@link Favicon} from the specified encoded string. The format of the input depends on the implementation.
      *
      * @param raw The encoded favicon
      * @return The loaded favicon
@@ -494,8 +486,7 @@ public interface GameRegistry {
      * Gets the {@link NotePitch} with the provided name.
      *
      * @param name The name of the note pitch
-     * @return The {@link NotePitch} with the given name or Optional.absent() if
-     *         not found
+     * @return The {@link NotePitch} with the given name or Optional.absent() if not found
      */
     Optional<NotePitch> getNotePitch(String name);
 
@@ -510,8 +501,7 @@ public interface GameRegistry {
      * Gets the {@link SkullType} with the provided name.
      *
      * @param name The name of the skull type
-     * @return The {@link SkullType} with the given name or Optional.absent() if
-     *         not found
+     * @return The {@link SkullType} with the given name or Optional.absent() if not found
      */
     Optional<SkullType> getSkullType(String name);
 
@@ -526,8 +516,7 @@ public interface GameRegistry {
      * Gets the {@link BannerPatternShape} with the provided name.
      *
      * @param name The name of the BannerPatternShape
-     * @return The {@link BannerPatternShape} with the given name or
-     *         Optional.absent() if not found
+     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShape(String name);
 
@@ -535,8 +524,7 @@ public interface GameRegistry {
      * Gets the {@link BannerPatternShape} with the provided name.
      *
      * @param id The id of the BannerPatternShape
-     * @return The {@link BannerPatternShape} with the given name or
-     *         Optional.absent() if not found
+     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShapeById(String id);
 
@@ -558,8 +546,15 @@ public interface GameRegistry {
     /**
      * Gets an {@link Operation} by id.
      * 
-     * @param name The id to find
+     * @param id The id to find
      * @return An Operation if one could be found, otherwise Optional.absent()
      */
     Optional<Operation> getOperation(int id);
+
+    /**
+     * Gets a new {@link AttributeModifierBuilder}.
+     * 
+     * @return A new AttributeModifierBuilder.
+     */
+    AttributeModifierBuilder getAttributeModifierBuilder();
 }
