@@ -36,4 +36,8 @@ public final class Attributes {
 
     public static final Attribute ZOMBIE_SPAWN_REINFORCEMENTS = null;
 
+    private Attributes() {
+
+    }
+
 }

@@ -31,7 +31,7 @@ public interface Attribute {
      * 
      * @return The ID of this attribute as a string
      */
-    String getStringId();
+    String getId();
 
     /**
      * Gets the minimum value for this attribute.

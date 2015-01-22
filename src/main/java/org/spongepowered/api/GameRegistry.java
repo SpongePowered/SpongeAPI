@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api;
 
 import org.spongepowered.api.attributes.Attribute;
@@ -72,21 +71,16 @@ import java.util.UUID;
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
  *
- * <p>
- * Note that the registries may be in flux, especially during game
+ * <p>Note that the registries may be in flux, especially during game
  * initialization. These will be accurate for the time they are called, however
  * they may change at a later point. Do not assume that the contents of a list
- * will be all the entries that will exist.
- * </p>
+ * will be all the entries that will exist.</p>
  *
- * <p>
- * Some of the returned instances my become incorrect if they are later
+ * <p>Some of the returned instances my become incorrect if they are later
  * overwritten. However, this should occur prior to
- * {@link GameState#POST_INITIALIZATION}.
- * </p>
+ * {@link GameState#POST_INITIALIZATION}.</p>
  */
 public interface GameRegistry {
-
     /**
      * Gets a {@link BlockType} by its identifier.
      *
@@ -439,7 +433,6 @@ public interface GameRegistry {
     List<Rotation> getRotations();
 
     // TODO: Find a better place for these methods
-
     /**
      * Creates a new {@link GameProfile} using the specified unique identifier
      * and name.
@@ -555,19 +548,18 @@ public interface GameRegistry {
     List<BannerPatternShape> getBannerPatternShapes();
 
     /**
-     * Gets an {@link Attribute} by the specified name.
+     * Gets an {@link Attribute} by name.
      * 
-     * @param name The name of the Attribute
-     * @return An Attribute by the specified name, or Optional.absent() if one
-     *         could not be found
+     * @param name The name to find
+     * @return An Attribute if one could be found, otherwise Optional.absent()
      */
     Optional<Attribute> getAttribute(String name);
 
     /**
-     * Gets a {@link Operation} with the specified id.
+     * Gets an {@link Operation} by id.
      * 
-     * @param id The id of the Operation
-     * @return A Operation with the specified id
+     * @param name The id to find
+     * @return An Operation if one could be found, otherwise Optional.absent()
      */
     Optional<Operation> getOperation(int id);
 }

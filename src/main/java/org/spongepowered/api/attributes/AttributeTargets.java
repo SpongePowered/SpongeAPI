@@ -31,4 +31,8 @@ public final class AttributeTargets {
     public static final AttributeTarget ZOMBIE = null;
     public static final AttributeTarget UNKNOWN = null;
 
+    private AttributeTargets() {
+
+    }
+
 }

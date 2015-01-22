@@ -30,4 +30,8 @@ public final class Operations {
     public static final Operation MULTIPLY_BASE = null;
     public static final Operation MULTIPLY = null;
 
+    private Operations() {
+
+    }
+
 }
