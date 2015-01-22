@@ -25,52 +25,12 @@
 package org.spongepowered.api.text.selector;
 
 /**
- * Represents the required implementation for the static methods in
- * {@link Selectors}, {@link Arguments} and {@link ArgumentTypes}.
+ * Utility class to create {@link Argument}s.
  */
-interface SelectorFactory {
+public final class Arguments {
 
-    /**
-     * Creates a {@link SelectorBuilder} with no type set and no arguments.
-     *
-     * @return A new selector builder with no data
-     */
-    SelectorBuilder createEmptyBuilder();
-
-    /**
-     * Parses a {@link Selector} from the given selector string.
-     *
-     * @param selector The raw selector string
-     * @return A new selector containing the given selector data
-     */
-    Selector parseRawSelector(String selector);
-
-    /**
-     * Creates a minimum and maximum {@link ArgumentType} filtering depending on
-     * the score of the specified objective.
-     *
-     * @param name The objective name to use
-     * @return The created argument type
-     */
-    ArgumentType.Limit<ArgumentType<Integer>> createScoreArgumentType(String name);
-
-    /**
-     * Creates a custom {@link ArgumentType} with the specified key.
-     *
-     * @param key The key to use for the argument
-     * @return The created argument type
-     */
-    ArgumentType<String> createArgumentType(String key);
-
-    /**
-     * Creates a custom {@link ArgumentType} with the specified key and value.
-     *
-     * @param key The key to use for the argument
-     * @param type The class of the argument's value type
-     * @param <T> The argument's value type
-     * @return The created argument type
-     */
-    <T> ArgumentType<T> createArgumentType(String key, Class<T> type);
+    private Arguments() {
+    }
 
     /**
      * Creates a new {@link Argument} using the specified type and value.
@@ -80,7 +40,22 @@ interface SelectorFactory {
      * @param <T> The type of the argument value
      * @return The created argument
      */
-    <T> Argument<T> createArgument(ArgumentType<T> type, T value);
+    public static <T> Argument<T> create(ArgumentType<T> type, T value) {
+        return Selectors.factory.createArgument(type, value);
+    }
+
+    /**
+     * Creates a new {@link Argument.Invertible} using the specified type and
+     * value. The created {@link Argument} will not be inverted.
+     *
+     * @param type The type of the invertible argument
+     * @param value The value of the invertible argument
+     * @param <T> The type of the argument value
+     * @return The created invertible argument
+     */
+    public static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value) {
+        return create(type, value, false);
+    }
 
     /**
      * Creates a new {@link Argument.Invertible} using the specified type and
@@ -93,7 +68,9 @@ interface SelectorFactory {
      * @param <T> The type of the argument value
      * @return The created invertible argument
      */
-    <T> Argument.Invertible<T> createArgument(ArgumentType.Invertible<T> type, T value, boolean inverted);
+    public static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value, boolean inverted) {
+        return Selectors.factory.createArgument(type, value, inverted);
+    }
 
     /**
      * Parses an {@link Argument} from the given argument string.
@@ -105,6 +82,8 @@ interface SelectorFactory {
      * @throws IllegalArgumentException If the argument couldn't be parsed (e.g.
      *             due to invalid format)
      */
-    Argument<?> parseArgument(String argument) throws IllegalArgumentException;
+    public static Argument<?> parse(String argument) throws IllegalArgumentException {
+        return Selectors.factory.parseArgument(argument);
+    }
 
 }

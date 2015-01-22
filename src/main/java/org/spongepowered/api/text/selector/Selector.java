@@ -24,39 +24,61 @@
  */
 package org.spongepowered.api.text.selector;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Location;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents an immutable selector. A selector starts with the {@code @} symbol
- * and is followed by a single character signifying which selector is being used
- * (known as the type), and finally the optional arguments in brackets. For
- * example, the all player selector is {@code @a}, and with a radius of 20 it
- * would be {@code @a[r=20]}.
+ * Represents an immutable selector of targets, as used in commands.
+ *
+ * <p>In Vanilla, selectors are mostly represented as plain text, starting with
+ * an {@code @} symbol and followed by a single character signifying the type,
+ * and finally the (optional) arguments in brackets.</p> <p>As an example, the
+ * all player selector is {@code @a}, and with a radius of 20 it would be
+ * {@code @a[r=20]}.</p>
  *
  * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
- *      TargetSelectors on the Minecraft Wiki</a>
+ *      Target selectors on the Minecraft Wiki</a>
  */
 public interface Selector {
 
     /**
      * Returns the type of this {@link Selector}.
      *
-     * @return The type of this {@link Selector}
+     * @return The type of this selector
      */
     SelectorType getType();
+
+    /**
+     * Returns the argument value for the specified {@link ArgumentType} in this
+     * {@link Selector}.
+     *
+     * @param type The argument type
+     * @param <T> The type of the value
+     * @return The value of the argument, if available
+     */
+    <T> Optional<T> get(ArgumentType<T> type);
+
+    /**
+     * Returns the {@link Argument} for the specified {@link ArgumentType} in
+     * this {@link Selector}.
+     *
+     * @param type The argument type
+     * @param <T> The type of the argument value
+     * @return The argument, if available
+     */
+    <T> Optional<Argument<T>> getArgument(ArgumentType<T> type);
 
     /**
      * Returns the arguments for this {@link Selector}.
      *
      * @return The arguments for this {@link Selector}
      */
-    Map<String, String> getArguments();
+    List<Argument<?>> getArguments();
 
     /**
      * Resolves this {@link Selector} to a list of entities based on the
@@ -65,7 +87,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return A list of entities that were resolved from this {@link Selector}
      * @throws IllegalArgumentException If {@code location} is null and
-     *         {@link #requiresLocation()} returned {@code true}
+     *             {@link #requiresLocation()} returned {@code true}
      */
     List<Entity> resolve(@Nullable Location location) throws IllegalArgumentException;
 
@@ -82,13 +104,13 @@ public interface Selector {
      * @return A valid {@link Selector} string that can be inserted into a
      *         command
      */
-    String asString();
+    String toPlain();
 
     /**
      * Returns a new {@link SelectorBuilder} with the content of this selector.
      * This can be used to edit an immutable {@link Selector} instance.
      *
-     * @return A new message builder with the content of this selector
+     * @return A new selector builder with the content of this selector
      */
     SelectorBuilder builder();
 
