@@ -95,7 +95,7 @@ public interface AttributeHolder {
     List<AttributeModifier> getModifiersFor(Attribute attribute);
 
     /**
-     * Removes a {@link AttributeModifiers} from this holder.
+     * Removes a {@link AttributeModifier} from this holder.
      * 
      * @param modifier The AttributeModifier to remove
      */
