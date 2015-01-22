@@ -71,5 +71,9 @@ public interface PluginManager {
      * @return {@code true} if loaded {@code false} if not loaded.
      */
     boolean isLoaded(String id);
+    /**
+     * Load or unload a plugin based on its ID.
+     */
+    void setLoaded(String id, boolean loaded);
 
 }
