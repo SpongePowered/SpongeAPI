@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.attributes;
 
-public class AttributeTargets {
+public final class AttributeTargets {
 
     public static final AttributeTarget GENERIC = null;
     public static final AttributeTarget HORSE = null;

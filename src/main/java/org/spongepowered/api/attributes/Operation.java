@@ -27,7 +27,7 @@ package org.spongepowered.api.attributes;
 public interface Operation {
 
     /**
-     * Returns the value of an Attribute after it has been operated upon
+     * Returns the value of an Attribute after it has been operated upon.
      * 
      * @param base The base value of the Attribute
      * @param modifier The modifier to modify the Attribute with

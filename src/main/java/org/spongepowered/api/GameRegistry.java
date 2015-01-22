@@ -25,7 +25,8 @@
 
 package org.spongepowered.api;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.attributes.Attribute;
+import org.spongepowered.api.attributes.Operation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -56,11 +57,13 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 
+import com.google.common.base.Optional;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
@@ -69,14 +72,18 @@ import java.util.UUID;
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
  *
- * <p>Note that the registries may be in flux, especially during game
+ * <p>
+ * Note that the registries may be in flux, especially during game
  * initialization. These will be accurate for the time they are called, however
  * they may change at a later point. Do not assume that the contents of a list
- * will be all the entries that will exist.</p>
+ * will be all the entries that will exist.
+ * </p>
  *
- * <p>Some of the returned instances my become incorrect if they are later
+ * <p>
+ * Some of the returned instances my become incorrect if they are later
  * overwritten. However, this should occur prior to
- * {@link GameState#POST_INITIALIZATION}.</p>
+ * {@link GameState#POST_INITIALIZATION}.
+ * </p>
  */
 public interface GameRegistry {
 
@@ -346,7 +353,8 @@ public interface GameRegistry {
      * Gets the villager {@link Profession} with the specified id.
      *
      * @param id The id of the profession to return
-     * @return The profession with the given id or Optional.absent() if not found
+     * @return The profession with the given id or Optional.absent() if not
+     *         found
      */
     Optional<Profession> getProfession(String id);
 
@@ -362,7 +370,8 @@ public interface GameRegistry {
      *
      * @return A list containing all game modes in registry
      */
-    // TODO: GameMode from string? Should add 'String getId()' to GameMode if so.
+    // TODO: GameMode from string? Should add 'String getId()' to GameMode if
+    // so.
     List<GameMode> getGameModes();
 
     /**
@@ -370,14 +379,16 @@ public interface GameRegistry {
      *
      * @return A list containing all potion effect types in registry
      */
-    // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
+    // TODO: PotionEffectType from string? Should add 'String getId()' to
+    // PotionEffectType if so.
     List<PotionEffectType> getPotionEffects();
 
     /**
      * Gets the {@link Enchantment} with the specified id.
      *
      * @param id The id of the enchantment to return
-     * @return The enchantment with the given id or Optional.absent() if not found
+     * @return The enchantment with the given id or Optional.absent() if not
+     *         found
      */
     Optional<Enchantment> getEnchantment(String id);
 
@@ -399,7 +410,8 @@ public interface GameRegistry {
      * Gets the {@link DimensionType} with the provided name.
      *
      * @param name The name of the dimension type
-     * @return The {@link DimensionType} with the given name or Optional.absent() if not found
+     * @return The {@link DimensionType} with the given name or
+     *         Optional.absent() if not found
      */
     Optional<DimensionType> getDimensionType(String name);
 
@@ -414,7 +426,8 @@ public interface GameRegistry {
      * Gets the {@link Rotation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or Optional.absent() if not found
+     * @return The {@link Rotation} with the given degrees or Optional.absent()
+     *         if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
 
@@ -428,7 +441,8 @@ public interface GameRegistry {
     // TODO: Find a better place for these methods
 
     /**
-     * Creates a new {@link GameProfile} using the specified unique identifier and name.
+     * Creates a new {@link GameProfile} using the specified unique identifier
+     * and name.
      *
      * @param uuid The unique identifier for the profile
      * @param name The name for the profile
@@ -482,12 +496,13 @@ public interface GameRegistry {
      * @throws IOException If the favicon couldn't be loaded
      */
     Favicon loadFavicon(BufferedImage image) throws IOException;
-    
+
     /**
-     * Gets the {@link NotePitch} with the provided name. 
+     * Gets the {@link NotePitch} with the provided name.
      *
      * @param name The name of the note pitch
-     * @return The {@link NotePitch} with the given name or Optional.absent() if not found
+     * @return The {@link NotePitch} with the given name or Optional.absent() if
+     *         not found
      */
     Optional<NotePitch> getNotePitch(String name);
 
@@ -499,10 +514,11 @@ public interface GameRegistry {
     List<NotePitch> getNotePitches();
 
     /**
-     * Gets the {@link SkullType} with the provided name. 
+     * Gets the {@link SkullType} with the provided name.
      *
      * @param name The name of the skull type
-     * @return The {@link SkullType} with the given name or Optional.absent() if not found
+     * @return The {@link SkullType} with the given name or Optional.absent() if
+     *         not found
      */
     Optional<SkullType> getSkullType(String name);
 
@@ -514,18 +530,20 @@ public interface GameRegistry {
     List<SkullType> getSkullTypes();
 
     /**
-     * Gets the {@link BannerPatternShape} with the provided name. 
+     * Gets the {@link BannerPatternShape} with the provided name.
      *
      * @param name The name of the BannerPatternShape
-     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
+     * @return The {@link BannerPatternShape} with the given name or
+     *         Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShape(String name);
-    
+
     /**
-     * Gets the {@link BannerPatternShape} with the provided name. 
+     * Gets the {@link BannerPatternShape} with the provided name.
      *
      * @param id The id of the BannerPatternShape
-     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
+     * @return The {@link BannerPatternShape} with the given name or
+     *         Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShapeById(String id);
 
@@ -536,4 +554,20 @@ public interface GameRegistry {
      */
     List<BannerPatternShape> getBannerPatternShapes();
 
+    /**
+     * Gets an {@link Attribute} by the specified name.
+     * 
+     * @param name The name of the Attribute
+     * @return An Attribute by the specified name, or Optional.absent() if one
+     *         could not be found
+     */
+    Optional<Attribute> getAttribute(String name);
+
+    /**
+     * Gets a {@link Operation} with the specified id.
+     * 
+     * @param id The id of the Operation
+     * @return A Operation with the specified id
+     */
+    Optional<Operation> getOperation(int id);
 }

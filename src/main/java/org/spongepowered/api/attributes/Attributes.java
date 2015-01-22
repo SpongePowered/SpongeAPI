@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.attributes;
 
-public class Attributes {
+public final class Attributes {
 
     public static final Attribute GENERIC_MAX_HEALTH = null;
     public static final Attribute GENERIC_FOLLOW_RANGE = null;
