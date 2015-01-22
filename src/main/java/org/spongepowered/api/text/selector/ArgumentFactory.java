@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.text.selector;
 
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.EntityType;
+
+import java.util.Collection;
+
 /**
  * Represents the required implementation for the static methods in
  * {@link Arguments}.
@@ -31,20 +36,75 @@ package org.spongepowered.api.text.selector;
 interface ArgumentFactory {
 
     /**
-     * Creates a {@link ArgumentBuilder} with no data.
+     * Creates an {@link Argument}.
+     * 
+     * @param key The key for the Argument
+     * @param value The value for the Argument
      *
-     * @return A new argument builder with no data
+     * @return A new argument with {@code key} mapped to {@code value}
      */
-    ArgumentBuilder createEmptyBuilder();
+    Argument createArgument(String key, String value);
+
+    /**
+     * Creates an {@link Argument}.
+     * 
+     * @param key The key for the Argument
+     * @param value The value for the Argument
+     *
+     * @return A new argument with {@code key} mapped to {@code value}
+     */
+    Argument createArgument(String key, int value);
+
+
+
+    /**
+     * Creates 3 {@link Argument Arguments} with the key for x, y, and z and the
+     * corresponding values from the {@link Vector3i} as the values.
+     * 
+     * @param center The value for the Argument
+     *
+     * @return 3 new arguments with {@code "x"} mapped to {@code center.getX()},
+     *         {@code "y"} mapped to {@code center.getY()}, and {@code "z"}
+     *         mapped to {@code center.getZ()}
+     */
+    Collection<Argument> createCenterArguments(Vector3i center);
+
+    /**
+     * Creates an {@link Argument} with the key for name and the given String as
+     * the value.
+     * 
+     * @param name The value for the Argument
+     *
+     * @return A new argument with {@code "name"} mapped to {@code name}
+     */
+    Argument createNameArgument(String name);
+
+    /**
+     * Creates an {@link Argument} with the key for team and the given String as
+     * the value.
+     * 
+     * @param team The value for the Argument
+     *
+     * @return A new argument with {@code "team"} mapped to {@code team}
+     */
+    Argument createTeamArgument(String team);
+
+    /**
+     * Creates an {@link Argument} with the key for type and the given
+     * {@link EntityType} as the value.
+     * 
+     * @param type The EntityType value for the Argument
+     *
+     * @return A new argument with {@code "type"} mapped to {@code type}
+     */
+    Argument createEntityTypeArgument(EntityType type);
 
     /**
      * Parses an {@link Argument} from the given argument string.
      *
-     * @param argument
-     *            The raw argument string
+     * @param argument The raw argument string
      * @return A new Argument containing the given argument data
-     * @throws IllegalArgumentException
-     *             If the selector could not be parsed
+     * @throws IllegalArgumentException If the selector could not be parsed
      */
     Argument parseRawArgument(String argument) throws IllegalArgumentException;
 

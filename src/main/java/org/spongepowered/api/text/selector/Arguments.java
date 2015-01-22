@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.text.selector;
 
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.EntityType;
+
+import java.util.Collection;
+
 /**
  * Arguments is a utility class to work with and create Arguments.
  */
@@ -31,29 +36,90 @@ public final class Arguments {
 
     private static final ArgumentFactory factory = null;
 
-    private Arguments() {
+    private Arguments() {}
+
+    /**
+     * Creates an {@link Argument}.
+     * 
+     * @param key The key for the Argument
+     * @param value The value for the Argument
+     *
+     * @return A new argument with {@code key} mapped to {@code value}
+     */
+    public static Argument create(String key, String value) {
+        return factory.createArgument(key, value);
     }
 
     /**
-     * Creates a {@link ArgumentBuilder} with no data.
+     * Creates an {@link Argument}.
+     * 
+     * @param key The key for the Argument
+     * @param value The value for the Argument
      *
-     * @return A new argument builder with no data
+     * @return A new argument with {@code key} mapped to {@code value}
      */
-    public static ArgumentBuilder builder() {
-        return factory.createEmptyBuilder();
+    public static Argument create(String key, int value) {
+        return factory.createArgument(key, value);
+    }
+
+    /**
+     * Creates 3 {@link Argument Arguments} with the key for x, y, and z and the
+     * corresponding values from the {@link Vector3i} as the values.
+     * 
+     * @param center The value for the Argument
+     *
+     * @return 3 new arguments with {@code "x"} mapped to {@code center.getX()},
+     *         {@code "y"} mapped to {@code center.getY()}, and {@code "z"}
+     *         mapped to {@code center.getZ()}
+     */
+    public static Collection<Argument> center(Vector3i center) {
+        return factory.createCenterArguments(center);
+    }
+
+    /**
+     * Creates an {@link Argument} with the key for name and the given String as
+     * the value.
+     * 
+     * @param name The value for the Argument
+     *
+     * @return A new argument with {@code "name"} mapped to {@code name}
+     */
+    public static Argument name(String name) {
+        return factory.createNameArgument(name);
+    }
+
+    /**
+     * Creates an {@link Argument} with the key for team and the given String as
+     * the value.
+     * 
+     * @param team The value for the Argument
+     *
+     * @return A new argument with {@code "team"} mapped to {@code team}
+     */
+    public static Argument team(String team) {
+        return factory.createTeamArgument(team);
+    }
+
+    /**
+     * Creates an {@link Argument} with the key for type and the given
+     * {@link EntityType} as the value.
+     * 
+     * @param type The EntityType value for the Argument
+     *
+     * @return A new argument with {@code "type"} mapped to {@code type}
+     */
+    public static Argument type(EntityType type) {
+        return factory.createEntityTypeArgument(type);
     }
 
     /**
      * Parses an {@link Argument} from the given argument string.
      *
-     * @param argument
-     *            The raw argument string
+     * @param argument The raw argument string
      * @return A new Argument containing the given argument data
-     * @throws IllegalArgumentException
-     *             If the selector could not be parsed
+     * @throws IllegalArgumentException If the selector could not be parsed
      */
-    public static Argument parseRaw(String argument)
-            throws IllegalArgumentException {
+    public static Argument parseRaw(String argument) throws IllegalArgumentException {
         return factory.parseRawArgument(argument);
     }
 

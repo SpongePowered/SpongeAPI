@@ -56,8 +56,8 @@ public interface Argument {
      * </p>
      * 
      * @return An inverted argument, if possible
-     * @throws IllegalStateException
-     *             If it is not possible to invert this Argument's value
+     * @throws IllegalStateException If it is not possible to invert this
+     *         Argument's value
      */
     Argument invert() throws IllegalStateException;
 
@@ -68,14 +68,5 @@ public interface Argument {
      *         {@link Arguments#parseRaw(String)}
      */
     String asString();
-
-    /**
-     * Returns a new {@linkplain ArgumentBuilder} with the content of this
-     * argument. This can be used to edit an immutable {@link Argument}
-     * instance.
-     *
-     * @return A new builder with the content of this argument
-     */
-    ArgumentBuilder builder();
 
 }

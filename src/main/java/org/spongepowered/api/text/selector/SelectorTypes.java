@@ -25,8 +25,8 @@
 package org.spongepowered.api.text.selector;
 
 /**
- * SelectorTypes is a list of the default selector types that are
- * available in Vanilla Minecraft.
+ * SelectorTypes is a list of the default selector types that are available in
+ * Vanilla Minecraft.
  */
 public final class SelectorTypes {
 

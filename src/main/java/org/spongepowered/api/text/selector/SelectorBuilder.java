@@ -35,8 +35,7 @@ public interface SelectorBuilder {
     /**
      * Sets the type of this selector.
      *
-     * @param type
-     *            The type to set
+     * @param type The type to set
      * @return This selector builder
      */
     SelectorBuilder type(SelectorType type);
@@ -44,17 +43,15 @@ public interface SelectorBuilder {
     /**
      * Adds an argument to the arguments in this selector.
      *
-     * @param argument
-     *            The argument to add
+     * @param argument The argument to add
      * @return This selector builder
      */
     SelectorBuilder addArgument(Argument argument);
-    
+
     /**
      * Adds some arguments to the arguments in this selector.
      *
-     * @param arguments
-     *            The arguments to add
+     * @param arguments The arguments to add
      * @return This selector builder
      */
     SelectorBuilder addArguments(Argument... arguments);
@@ -62,8 +59,7 @@ public interface SelectorBuilder {
     /**
      * Adds some arguments to the arguments in this selector.
      *
-     * @param arguments
-     *            The arguments to add
+     * @param arguments The arguments to add
      * @return This selector builder
      */
     SelectorBuilder addArguments(Collection<Argument> arguments);
