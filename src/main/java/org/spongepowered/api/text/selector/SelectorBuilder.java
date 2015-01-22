@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.entity.EntityType;
-
 /**
  * Represents a builder interface to create immutable {@link Selector}
  * instances.
@@ -42,105 +39,55 @@ public interface SelectorBuilder {
     SelectorBuilder type(SelectorType type);
 
     /**
-     * Adds an argument to the arguments in this selector.
+     * Adds some arguments to this selector.
      *
-     * @param key The argument key, like {@code r} for radius
-     * @param value The argument value
+     * @param arguments The arguments to add
      * @return This selector builder
      */
-    SelectorBuilder addArgument(String key, String value);
+    SelectorBuilder add(Argument<?>... arguments);
 
     /**
-     * Adds an argument to the arguments in this selector.
+     * Adds some arguments to this selector.
      *
-     * @param key The argument key, like {@code r} for radius
-     * @param value The argument value
+     * @param arguments The arguments to add
      * @return This selector builder
      */
-    SelectorBuilder addArgument(String key, int value);
+    SelectorBuilder add(Iterable<Argument<?>> arguments);
 
     /**
-     * Removes the specified argument, if it exists.
+     * Adds a new {@link Argument} with the specified {@link ArgumentType} and
+     * value to this selector.
      *
-     * @param key The argument key to remove
+     * @param type The type of the argument
+     * @param value The value of the argument
+     * @param <T> The type of the argument value
      * @return This selector builder
      */
-    SelectorBuilder removeArgument(String key);
+    <T> SelectorBuilder add(ArgumentType<T> type, T value);
 
     /**
-     * Sets the x, y, and z arguments. Equivalent to calling
-     * {@link #addArgument(String, int)} for each part of the vector.
+     * Removes the specified arguments, if they exist.
      *
-     * @param center The values for the x, y, and z arguments
+     * @param arguments The arguments to remove
      * @return This selector builder
      */
-    SelectorBuilder center(Vector3i center);
+    SelectorBuilder remove(Argument<?>... arguments);
 
     /**
-     * Sets the name argument. Equivalent to calling
-     * {@link #name(String, boolean)} with {@code invert = false}.
+     * Removes the specified arguments, if they exist.
      *
-     * @param name The name to set
+     * @param arguments The arguments to remove
      * @return This selector builder
      */
-    SelectorBuilder name(String name);
+    SelectorBuilder remove(Iterable<Argument<?>> arguments);
 
     /**
-     * Sets the name argument. Equivalent to calling
-     * {@link #addArgument(String, String)} with {@code "name"} and
-     * {@code name}, with a ! before the name if {@code invert} is
-     * true.
+     * Removes the arguments with the specified {@link ArgumentType}, if they exist.
      *
-     * @param name The name to set
-     * @param invert If true, the argument will be inverted to select all but
-     *        entities with the given name
+     * @param types The argument types
      * @return This selector builder
      */
-    SelectorBuilder name(String name, boolean invert);
-
-    /**
-     * Sets the team argument. Equivalent to calling
-     * {@link #team(String, boolean)} with {@code invert = false}.
-     *
-     * @param team The team to set
-     * @return This selector builder
-     */
-    SelectorBuilder team(String team);
-
-    /**
-     * Sets the team argument. Equivalent to calling
-     * {@link #addArgument(String, String)} with {@code "team"} and
-     * {@code team}, with a ! before the team if {@code invert} is
-     * true.
-     *
-     * @param team The team to set
-     * @param invert If true, the argument will be inverted to select all but
-     *        members of the team
-     * @return This selector builder
-     */
-    SelectorBuilder team(String team, boolean invert);
-
-    /**
-     * Sets the type argument. Equivalent to calling
-     * {@link #entityType(EntityType, boolean)} with {@code invert = false}.
-     *
-     * @param type The entity type
-     * @return This selector builder
-     */
-    SelectorBuilder entityType(EntityType type);
-
-    /**
-     * Sets the type argument. Equivalent to calling
-     * {@link #addArgument(String, String)} with {@code "type"} and
-     * {@link EntityType#getId()}, with a ! before the ID if {@code invert} is
-     * true.
-     *
-     * @param type The entity type
-     * @param invert If true, the argument will be inverted to select all but
-     *        the type
-     * @return This selector builder
-     */
-    SelectorBuilder entityType(EntityType type, boolean invert);
+    SelectorBuilder remove(ArgumentType<?>... types);
 
     /**
      * Builds an immutable instance of the current state of this selector
