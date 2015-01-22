@@ -204,4 +204,11 @@ public interface Server {
      */
     Message getMotd();
 
+    /**
+     * Shuts down the server, and kicks all players with the given message.
+     *
+     * @param kickMessage The message to kick players with
+     */
+    void shutdownServer(String kickMessage);
+
 }
