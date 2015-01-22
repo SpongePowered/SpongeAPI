@@ -1,6 +1,6 @@
 package org.spongepowered.api.attributes;
 
-interface AttributeModifier {
+public interface AttributeModifier {
 
     /**
      * Gets the operation used to modify a holder.

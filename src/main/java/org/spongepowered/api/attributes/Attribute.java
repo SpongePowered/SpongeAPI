@@ -1,6 +1,6 @@
 package org.spongepowered.api.attributes;
 
-interface Attribute {
+public interface Attribute {
 
     /**
      * Gets the ID of this attribute as a string.

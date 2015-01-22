@@ -5,7 +5,7 @@ import com.google.common.base.Optional;
 import java.util.Collection;
 import java.util.List;
 
-interface AttributeHolder {
+public interface AttributeHolder {
 
     /**
      * Calculates the value of a certain {@link Attribute} on this holder.
