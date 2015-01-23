@@ -543,13 +543,6 @@ public interface GameRegistry {
     List<BannerPatternShape> getBannerPatternShapes();
 
     /**
-     * Gets a {@link List} of all possible {@link TextColor}s.
-     *
-     * @return The list of all available {@link TextColor}s
-     */
-    List<TextColor> getTextColors();
-
-    /**
      * Gets the {@link TextColor} with the provided name.
      *
      * @param name The name of the text color
@@ -558,11 +551,11 @@ public interface GameRegistry {
     Optional<TextColor> getTextColor(String name);
 
     /**
-     * Gets a {@link List} of all possible {@link TextStyle}s.
+     * Gets a {@link List} of all possible {@link TextColor}s.
      *
-     * @return The list of all available {@link TextStyle}s
+     * @return The list of all available {@link TextColor}s
      */
-    List<TextStyle> getTextStyles();
+    List<TextColor> getTextColors();
 
     /**
      * Gets the {@link TextStyle} with the provided name.
@@ -577,7 +570,7 @@ public interface GameRegistry {
      *
      * @return The list of all available {@link TextStyle}s
      */
-    List<ChatType> getChatTypes();
+    List<TextStyle> getTextStyles();
 
     /**
      * Gets the {@link ChatType} with the provided name.
@@ -588,11 +581,11 @@ public interface GameRegistry {
     Optional<ChatType> getChatType(String name);
 
     /**
-     * Gets a {@link List} of all possible {@link SelectorType}s.
+     * Gets a {@link List} of all possible {@link TextStyle}s.
      *
-     * @return The list of all available {@link SelectorType}s
+     * @return The list of all available {@link TextStyle}s
      */
-    List<SelectorType> getSelectorTypes();
+    List<ChatType> getChatTypes();
 
     /**
      * Gets the {@link SelectorType} with the provided name.
@@ -603,11 +596,11 @@ public interface GameRegistry {
     Optional<SelectorType> getSelectorType(String name);
 
     /**
-     * Gets a {@link List} of all possible {@link Locale}s.
+     * Gets a {@link List} of all possible {@link SelectorType}s.
      *
-     * @return The list of all available {@link Locale}s
+     * @return The list of all available {@link SelectorType}s
      */
-    List<Locale> getLocales();
+    List<SelectorType> getSelectorTypes();
 
     /**
      * Gets the {@link Locale} with the provided name.
@@ -624,6 +617,13 @@ public interface GameRegistry {
      * @return The {@link Locale} with the given ID or Optional.absent() if not found
      */
     Optional<Locale> getLocaleById(String id);
+
+    /**
+     * Gets a {@link List} of all possible {@link Locale}s.
+     *
+     * @return The list of all available {@link Locale}s
+     */
+    List<Locale> getLocales();
 
     /**
      * Gets the {@link Translation} with the provided ID.
