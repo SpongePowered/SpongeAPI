@@ -209,6 +209,6 @@ public interface Server {
      *
      * @param kickMessage The message to kick players with
      */
-    void shutdownServer(String kickMessage);
+    void shutdown(Message kickMessage);
 
 }
