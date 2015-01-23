@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.text.selector;
 
+import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.player.gamemode.GameMode;
+
 /**
  * ArgumentTypes is a list of the default argument types that are available in
  * Vanilla Minecraft.
@@ -46,6 +51,12 @@ public final class ArgumentTypes {
     public static final ArgumentType<Integer, Argument<Integer>> Z = null;
 
     /**
+     * The argument type for a combination of the "x", "y", and "z" keys. It
+     * cannot be inverted.
+     */
+    public static final ArgumentType<Vector3i, Argument<Vector3i>> POSITION = null;
+
+    /**
      * The argument type for the "r" key. It cannot be inverted.
      */
     public static final ArgumentType<Integer, Argument<Integer>> RADIUS_MAXIMUM = null;
@@ -58,7 +69,7 @@ public final class ArgumentTypes {
     /**
      * The argument type for the "m" key. It cannot be inverted.
      */
-    public static final ArgumentType<Integer, Argument<Integer>> GAMEMODE = null;
+    public static final ArgumentType<GameMode, Argument<GameMode>> GAMEMODE = null;
 
     /**
      * The argument type for the "c" key. Its inverse is made by putting a '-'
@@ -107,34 +118,55 @@ public final class ArgumentTypes {
     public static final ArgumentType<Integer, Argument<Integer>> DIMENSION_Z = null;
 
     /**
-     * The argument type for the "rx" key. It cannot be inverted.
+     * The argument type for a combination of the "dx", "dy", and "dz" keys. It
+     * cannot be inverted.
      */
-    public static final ArgumentType<Integer, Argument<Integer>> PTICH_MAXIMUM = null;
+    public static final ArgumentType<Vector3i, Argument<Vector3i>> BOX_DIMENSIONS = null;
 
     /**
-     * The argument type for the "rxm" key. It cannot be inverted.
+     * The argument type for the "rx" key. The float will be floored to an
+     * integer in Vanilla Minecraft. It cannot be inverted.
      */
-    public static final ArgumentType<Integer, Argument<Integer>> PITCH_MINIMUM = null;
+    public static final ArgumentType<Float, Argument<Float>> PTICH_MAXIMUM = null;
 
     /**
-     * The argument type for the "ry" key. It cannot be inverted.
+     * The argument type for the "rxm" key. The float will be floored to an
+     * integer in Vanilla Minecraft. It cannot be inverted.
      */
-    public static final ArgumentType<Integer, Argument<Integer>> YAW_MAXIMUM = null;
+    public static final ArgumentType<Float, Argument<Float>> PITCH_MINIMUM = null;
 
     /**
-     * The argument type for the "rym" key. It cannot be inverted.
+     * The argument type for the "ry" key. The float will be floored to an
+     * integer in Vanilla Minecraft. It cannot be inverted.
      */
-    public static final ArgumentType<Integer, Argument<Integer>> YAW_MINIMUM = null;
+    public static final ArgumentType<Float, Argument<Float>> YAW_MAXIMUM = null;
+
+    /**
+     * The argument type for the "rym" key. The float will be floored to an
+     * integer in Vanilla Minecraft. It cannot be inverted.
+     */
+    public static final ArgumentType<Float, Argument<Float>> YAW_MINIMUM = null;
+
+    /**
+     * The argument type for a combination of the "rx" and "ry" keys. The floats
+     * will be floored to integers in Vanilla Minecraft, and the third float is
+     * currently ignored. It cannot be inverted.
+     */
+    public static final ArgumentType<Vector3f, Argument<Vector3f>> ROTATION_MAXIMUM = null;
+
+    /**
+     * The argument type for a combination of the "rxm" and "rym" keys. The
+     * floats will be floored to integers in Vanilla Minecraft, and the third
+     * float is currently ignored. It cannot be inverted.
+     */
+    public static final ArgumentType<Vector3f, Argument<Vector3f>> ROTATION_MINIMUM = null;
 
     /**
      * The argument type for the "type" key. Its inverse is made by putting a
      * '!' in front of the current type, or removing it if the type is already
      * negated.
      */
-    public static final ArgumentType<String, InvertibleArgument<String, String>> TYPE = null;
-
-    private static final ArgumentTypeFactory factory = null;
-
+    public static final ArgumentType<EntityType, InvertibleArgument<EntityType, String>> TYPE = null;
 
     /**
      * Creates a score maximum {@linkplain ArgumentType} for the given objective
@@ -145,7 +177,7 @@ public final class ArgumentTypes {
      * @return An ArgumentType for the objective name
      */
     public static final ArgumentType<Integer, Argument<Integer>> scoreMaximum(String name) {
-        return factory.createScoreMaxArgument(name);
+        return Selectors.factory.createScoreMaxArgument(name);
     }
 
     /**
@@ -157,7 +189,7 @@ public final class ArgumentTypes {
      * @return An ArgumentType for the objective name
      */
     public static final ArgumentType<Integer, Argument<Integer>> scoreMinimum(String name) {
-        return factory.createScoreMinArgument(name);
+        return Selectors.factory.createScoreMinArgument(name);
     }
 
 }

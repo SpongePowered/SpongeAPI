@@ -25,10 +25,10 @@
 package org.spongepowered.api.text.selector;
 
 /**
- * Represents a {@linkplain Selector selector} argument. An Argument is a
- * key-to-value mapping ({@code key=value}) used only for building a selector,
- * as Map provides a better way of getting this information than iterating over
- * a list of Arguments.
+ * Represents a {@linkplain Selector selector} argument. An Argument is one or
+ * more key-to-value mappings ({@code key=value}) used only for building a
+ * selector, as Map provides a better way of getting this information than
+ * iterating over a list of Arguments.
  * 
  * @param <T> The type of the value
  */

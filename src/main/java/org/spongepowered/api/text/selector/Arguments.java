@@ -30,8 +30,6 @@ package org.spongepowered.api.text.selector;
  */
 public final class Arguments {
 
-    private static final ArgumentFactory factory = null;
-
     private Arguments() {}
 
     /**
@@ -43,7 +41,7 @@ public final class Arguments {
      * @return A new argument with {@code type.getKey()} mapped to {@code value}
      */
     public static <T, A extends Argument<T>> A create(ArgumentType<T, A> type, T value) {
-        return factory.createArgument(type, value);
+        return Selectors.factory.createArgument(type, value);
     }
 
     /**
@@ -56,7 +54,7 @@ public final class Arguments {
      * @return A new argument with {@code key} mapped to {@code value}
      */
     public static <T> Argument<T> createCustom(String key, T value) {
-        return factory.createCustomArgument(key, value);
+        return Selectors.factory.createCustomArgument(key, value);
     }
 
     /**
@@ -69,7 +67,7 @@ public final class Arguments {
      * @return A new argument with {@code key} mapped to {@code value}
      */
     public static Argument<Integer> createCustom(String key, int value) {
-        return factory.createCustomArgument(key, Integer.valueOf(value));
+        return Selectors.factory.createCustomArgument(key, Integer.valueOf(value));
     }
 
     /**
@@ -82,22 +80,22 @@ public final class Arguments {
      * @throws IllegalArgumentException If the argument could not be parsed
      */
     public static Argument<?> parseRaw(String argument) throws IllegalArgumentException {
-        return factory.parseRawArgument(argument);
+        return Selectors.factory.parseRawArgument(argument);
     }
 
     /**
      * Parses an {@link Argument} from the given argument string, and attempts
-     * to cover it to the requested type. Any ArgumentTypes defined in
+     * to convert it to the requested type. Any ArgumentTypes defined in
      * ArgumentTypes are used to generate the returned Argument.
      *
      * @param argument The raw argument string
      * @param type The type to convert to
      * @return A new Argument containing the given argument data
      * @throws IllegalArgumentException If the argument could not be parsed and
-     *         conveyed
+     *         converted
      */
     public static <T> Argument<T> parseRaw(String argument, Class<? extends T> type) throws IllegalArgumentException {
-        return factory.parseRawArgument(argument, type);
+        return Selectors.factory.parseRawArgument(argument, type);
     }
 
 }
