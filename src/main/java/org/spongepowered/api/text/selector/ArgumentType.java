@@ -24,53 +24,19 @@
  */
 package org.spongepowered.api.text.selector;
 
-import java.util.Collection;
-
 /**
- * Represents a builder interface to create immutable {@link Selector}
- * instances.
+ * Represents an argument type.
+ *
+ * @param <T> The type of the values this ArgumentType is paired with
+ * @param <A> The Argument class this ArgumentType is paired with
  */
-public interface SelectorBuilder {
+public interface ArgumentType<T, A extends Argument<T>> {
 
     /**
-     * Sets the type of this selector.
-     *
-     * @param type The type to set
-     * @return This selector builder
+     * Returns the key that this ArgumentType represents.
+     * 
+     * @return The key that this ArgumentType represents
      */
-    SelectorBuilder type(SelectorType type);
-
-    /**
-     * Adds an argument to the arguments in this selector.
-     *
-     * @param argument The argument to add
-     * @return This selector builder
-     */
-    SelectorBuilder addArgument(Argument<?> argument);
-
-    /**
-     * Adds some arguments to the arguments in this selector.
-     *
-     * @param arguments The arguments to add
-     * @return This selector builder
-     */
-    SelectorBuilder addArguments(Collection<Argument<?>> arguments);
-
-    /**
-     * Removes the specified argument, if it exists.
-     *
-     * @param argument The argument to remove
-     * @return This selector builder
-     */
-    SelectorBuilder removeArgument(Argument<?> argument);
-
-    /**
-     * Builds an immutable instance of the current state of this selector
-     * builder.
-     *
-     * @return An immutable {@link Selector} with the current properties of this
-     *         builder
-     */
-    Selector build();
+    String getKey();
 
 }

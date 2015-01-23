@@ -24,53 +24,26 @@
  */
 package org.spongepowered.api.text.selector;
 
-import java.util.Collection;
-
 /**
- * Represents a builder interface to create immutable {@link Selector}
- * instances.
+ * Represents an invertible argument. An invertible argument is exactly like a
+ * normal {@linkplain Argument} but also supports being inverted via the
+ * {@link #invert()} method.
+ *
+ * @param <T> The type of the value
+ * @param <I> The type of the inverted value
  */
-public interface SelectorBuilder {
+public interface InvertibleArgument<T, I> extends Argument<T> {
 
     /**
-     * Sets the type of this selector.
-     *
-     * @param type The type to set
-     * @return This selector builder
+     * Returns the result of inverting this {@linkplain InvertibleArgument}'s
+     * value. For example, {@code type=Player} is inverted to
+     * {@code type=!Player}. The only restriction on the invert method is that
+     * for any InvertibleArgument {@code a} and {@code b = a.invert()},
+     * {@code a.equals(b.invert())} is {@code true}. In other words, it is
+     * reflexive.
+     * 
+     * @return The result of inverting this InvertableArgument
      */
-    SelectorBuilder type(SelectorType type);
-
-    /**
-     * Adds an argument to the arguments in this selector.
-     *
-     * @param argument The argument to add
-     * @return This selector builder
-     */
-    SelectorBuilder addArgument(Argument<?> argument);
-
-    /**
-     * Adds some arguments to the arguments in this selector.
-     *
-     * @param arguments The arguments to add
-     * @return This selector builder
-     */
-    SelectorBuilder addArguments(Collection<Argument<?>> arguments);
-
-    /**
-     * Removes the specified argument, if it exists.
-     *
-     * @param argument The argument to remove
-     * @return This selector builder
-     */
-    SelectorBuilder removeArgument(Argument<?> argument);
-
-    /**
-     * Builds an immutable instance of the current state of this selector
-     * builder.
-     *
-     * @return An immutable {@link Selector} with the current properties of this
-     *         builder
-     */
-    Selector build();
+    InvertibleArgument<I, T> invert();
 
 }

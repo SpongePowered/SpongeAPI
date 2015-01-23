@@ -24,11 +24,6 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.entity.EntityType;
-
-import java.util.Collection;
-
 /**
  * Represents the required implementation for the static methods in
  * {@link Arguments}.
@@ -38,74 +33,47 @@ interface ArgumentFactory {
     /**
      * Creates an {@link Argument}.
      * 
+     * @param type The type for the Argument
+     * @param value The value for the Argument
+     *
+     * @return A new argument with {@code type.getKey()} mapped to {@code value}
+     */
+    <T, A extends Argument<T>> A createArgument(ArgumentType<T, A> type, T value);
+
+    /**
+     * Creates a custom {@link Argument}. Using a key defined by an ArgumentType
+     * will not offer the features of the ArgumentType, such as inversion.
+     * 
      * @param key The key for the Argument
      * @param value The value for the Argument
      *
      * @return A new argument with {@code key} mapped to {@code value}
      */
-    Argument createArgument(String key, String value);
+    <T> Argument<T> createCustomArgument(String key, T value);
 
     /**
-     * Creates an {@link Argument}.
-     * 
-     * @param key The key for the Argument
-     * @param value The value for the Argument
-     *
-     * @return A new argument with {@code key} mapped to {@code value}
-     */
-    Argument createArgument(String key, int value);
-
-
-
-    /**
-     * Creates 3 {@link Argument Arguments} with the key for x, y, and z and the
-     * corresponding values from the {@link Vector3i} as the values.
-     * 
-     * @param center The value for the Argument
-     *
-     * @return 3 new arguments with {@code "x"} mapped to {@code center.getX()},
-     *         {@code "y"} mapped to {@code center.getY()}, and {@code "z"}
-     *         mapped to {@code center.getZ()}
-     */
-    Collection<Argument> createCenterArguments(Vector3i center);
-
-    /**
-     * Creates an {@link Argument} with the key for name and the given String as
-     * the value.
-     * 
-     * @param name The value for the Argument
-     *
-     * @return A new argument with {@code "name"} mapped to {@code name}
-     */
-    Argument createNameArgument(String name);
-
-    /**
-     * Creates an {@link Argument} with the key for team and the given String as
-     * the value.
-     * 
-     * @param team The value for the Argument
-     *
-     * @return A new argument with {@code "team"} mapped to {@code team}
-     */
-    Argument createTeamArgument(String team);
-
-    /**
-     * Creates an {@link Argument} with the key for type and the given
-     * {@link EntityType} as the value.
-     * 
-     * @param type The EntityType value for the Argument
-     *
-     * @return A new argument with {@code "type"} mapped to {@code type}
-     */
-    Argument createEntityTypeArgument(EntityType type);
-
-    /**
-     * Parses an {@link Argument} from the given argument string.
+     * Parses an {@link Argument} from the given argument string. Any
+     * ArgumentTypes defined in ArgumentTypes are used to generate the returned
+     * Argument.
      *
      * @param argument The raw argument string
      * @return A new Argument containing the given argument data
-     * @throws IllegalArgumentException If the selector could not be parsed
+     * @throws IllegalArgumentException If the argument could not be parsed
      */
-    Argument parseRawArgument(String argument) throws IllegalArgumentException;
+    Argument<?> parseRawArgument(String argument) throws IllegalArgumentException;
+
+
+    /**
+     * Parses an {@link Argument} from the given argument string, and attempts
+     * to cover it to the requested type. Any ArgumentTypes defined in
+     * ArgumentTypes are used to generate the returned Argument.
+     *
+     * @param argument The raw argument string
+     * @param type The type to convert to
+     * @return A new Argument containing the given argument data
+     * @throws IllegalArgumentException If the argument could not be parsed and
+     *         conveyed
+     */
+    <T> Argument<T> parseRawArgument(String argument, Class<? extends T> type) throws IllegalArgumentException;
 
 }

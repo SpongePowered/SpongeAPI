@@ -29,8 +29,10 @@ package org.spongepowered.api.text.selector;
  * key-to-value mapping ({@code key=value}) used only for building a selector,
  * as Map provides a better way of getting this information than iterating over
  * a list of Arguments.
+ * 
+ * @param <T> The type of the value
  */
-public interface Argument {
+public interface Argument<T> {
 
     /**
      * Returns the key for this {@linkplain Argument}.
@@ -44,22 +46,7 @@ public interface Argument {
      * 
      * @return The value for this Argument
      */
-    String getValue();
-
-    /**
-     * Returns the result of inverting this {@linkplain Argument}'s value. For
-     * example, {@code type=Player} is inverted to {@code type=!Player}.
-     * 
-     * <p>
-     * It may not be possible to invert this Argument's value, in which case a
-     * {@link IllegalStateException} is thrown.
-     * </p>
-     * 
-     * @return An inverted argument, if possible
-     * @throws IllegalStateException If it is not possible to invert this
-     *         Argument's value
-     */
-    Argument invert() throws IllegalStateException;
+    T getValue();
 
     /**
      * Converts this {@linkplain Argument} to a valid argument string.

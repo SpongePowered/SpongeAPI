@@ -24,53 +24,30 @@
  */
 package org.spongepowered.api.text.selector;
 
-import java.util.Collection;
-
 /**
- * Represents a builder interface to create immutable {@link Selector}
- * instances.
+ * Represents the required implementation for the static methods in
+ * {@link ArgumentTypes}.
  */
-public interface SelectorBuilder {
+interface ArgumentTypeFactory {
 
     /**
-     * Sets the type of this selector.
+     * Creates a score maximum {@linkplain ArgumentType} for the given objective
+     * name.
+     * 
+     * @param name The objective name to use
      *
-     * @param type The type to set
-     * @return This selector builder
+     * @return An ArgumentType for the objective name
      */
-    SelectorBuilder type(SelectorType type);
+    ArgumentType<Integer, Argument<Integer>> createScoreMaxArgument(String name);
 
     /**
-     * Adds an argument to the arguments in this selector.
+     * Creates a score minimum {@linkplain ArgumentType} for the given objective
+     * name.
+     * 
+     * @param name The objective name to use
      *
-     * @param argument The argument to add
-     * @return This selector builder
+     * @return An ArgumentType for the objective name
      */
-    SelectorBuilder addArgument(Argument<?> argument);
-
-    /**
-     * Adds some arguments to the arguments in this selector.
-     *
-     * @param arguments The arguments to add
-     * @return This selector builder
-     */
-    SelectorBuilder addArguments(Collection<Argument<?>> arguments);
-
-    /**
-     * Removes the specified argument, if it exists.
-     *
-     * @param argument The argument to remove
-     * @return This selector builder
-     */
-    SelectorBuilder removeArgument(Argument<?> argument);
-
-    /**
-     * Builds an immutable instance of the current state of this selector
-     * builder.
-     *
-     * @return An immutable {@link Selector} with the current properties of this
-     *         builder
-     */
-    Selector build();
+    ArgumentType<Integer, Argument<Integer>> createScoreMinArgument(String name);
 
 }

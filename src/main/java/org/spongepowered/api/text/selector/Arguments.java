@@ -24,10 +24,6 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.entity.EntityType;
-
-import java.util.Collection;
 
 /**
  * Arguments is a utility class to work with and create Arguments.
@@ -41,86 +37,67 @@ public final class Arguments {
     /**
      * Creates an {@link Argument}.
      * 
+     * @param type The type for the Argument
+     * @param value The value for the Argument
+     *
+     * @return A new argument with {@code type.getKey()} mapped to {@code value}
+     */
+    public static <T, A extends Argument<T>> A create(ArgumentType<T, A> type, T value) {
+        return factory.createArgument(type, value);
+    }
+
+    /**
+     * Creates a custom {@link Argument}. Using a key defined by an ArgumentType
+     * will not offer the features of the ArgumentType, such as inversion.
+     * 
      * @param key The key for the Argument
      * @param value The value for the Argument
      *
      * @return A new argument with {@code key} mapped to {@code value}
      */
-    public static Argument create(String key, String value) {
-        return factory.createArgument(key, value);
+    public static <T> Argument<T> createCustom(String key, T value) {
+        return factory.createCustomArgument(key, value);
     }
 
     /**
-     * Creates an {@link Argument}.
+     * Creates a custom {@link Argument}. Using a key defined by an ArgumentType
+     * will not offer the features of the ArgumentType, such as inversion.
      * 
      * @param key The key for the Argument
      * @param value The value for the Argument
      *
      * @return A new argument with {@code key} mapped to {@code value}
      */
-    public static Argument create(String key, int value) {
-        return factory.createArgument(key, value);
+    public static Argument<Integer> createCustom(String key, int value) {
+        return factory.createCustomArgument(key, Integer.valueOf(value));
     }
 
     /**
-     * Creates 3 {@link Argument Arguments} with the key for x, y, and z and the
-     * corresponding values from the {@link Vector3i} as the values.
-     * 
-     * @param center The value for the Argument
-     *
-     * @return 3 new arguments with {@code "x"} mapped to {@code center.getX()},
-     *         {@code "y"} mapped to {@code center.getY()}, and {@code "z"}
-     *         mapped to {@code center.getZ()}
-     */
-    public static Collection<Argument> center(Vector3i center) {
-        return factory.createCenterArguments(center);
-    }
-
-    /**
-     * Creates an {@link Argument} with the key for name and the given String as
-     * the value.
-     * 
-     * @param name The value for the Argument
-     *
-     * @return A new argument with {@code "name"} mapped to {@code name}
-     */
-    public static Argument name(String name) {
-        return factory.createNameArgument(name);
-    }
-
-    /**
-     * Creates an {@link Argument} with the key for team and the given String as
-     * the value.
-     * 
-     * @param team The value for the Argument
-     *
-     * @return A new argument with {@code "team"} mapped to {@code team}
-     */
-    public static Argument team(String team) {
-        return factory.createTeamArgument(team);
-    }
-
-    /**
-     * Creates an {@link Argument} with the key for type and the given
-     * {@link EntityType} as the value.
-     * 
-     * @param type The EntityType value for the Argument
-     *
-     * @return A new argument with {@code "type"} mapped to {@code type}
-     */
-    public static Argument type(EntityType type) {
-        return factory.createEntityTypeArgument(type);
-    }
-
-    /**
-     * Parses an {@link Argument} from the given argument string.
+     * Parses an {@link Argument} from the given argument string. Any
+     * ArgumentTypes defined in ArgumentTypes are used to generate the returned
+     * Argument.
      *
      * @param argument The raw argument string
      * @return A new Argument containing the given argument data
-     * @throws IllegalArgumentException If the selector could not be parsed
+     * @throws IllegalArgumentException If the argument could not be parsed
      */
-    public static Argument parseRaw(String argument) throws IllegalArgumentException {
+    public static Argument<?> parseRaw(String argument) throws IllegalArgumentException {
         return factory.parseRawArgument(argument);
+    }
+
+    /**
+     * Parses an {@link Argument} from the given argument string, and attempts
+     * to cover it to the requested type. Any ArgumentTypes defined in
+     * ArgumentTypes are used to generate the returned Argument.
+     *
+     * @param argument The raw argument string
+     * @param type The type to convert to
+     * @return A new Argument containing the given argument data
+     * @throws IllegalArgumentException If the argument could not be parsed and
+     *         conveyed
+     */
+    public static <T> Argument<T> parseRaw(String argument, Class<? extends T> type) throws IllegalArgumentException {
+        return factory.parseRawArgument(argument, type);
     }
 
 }
