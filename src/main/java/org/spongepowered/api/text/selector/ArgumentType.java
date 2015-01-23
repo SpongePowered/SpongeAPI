@@ -25,31 +25,18 @@
 package org.spongepowered.api.text.selector;
 
 /**
- * SelectorTypes is a list of the default selector types that are available in
- * Vanilla Minecraft.
+ * Represents an argument type.
+ *
+ * @param <T> The type of the values this ArgumentType is paired with
+ * @param <A> The Argument class this ArgumentType is paired with
  */
-public final class SelectorTypes {
-
-    private SelectorTypes() {}
+public interface ArgumentType<T, A extends Argument<T>> {
 
     /**
-     * The all players selector type.
+     * Returns the key that this ArgumentType represents.
+     * 
+     * @return The key that this ArgumentType represents
      */
-    public static final SelectorType ALL_PLAYERS = null;
-
-    /**
-     * The all entities selector type.
-     */
-    public static final SelectorType ALL_ENTITIES = null;
-
-    /**
-     * The nearest player selector type.
-     */
-    public static final SelectorType NEAREST_PLAYER = null;
-
-    /**
-     * The random player selector type.
-     */
-    public static final SelectorType RANDOM_PLAYER = null;
+    String getKey();
 
 }

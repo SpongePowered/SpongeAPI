@@ -24,46 +24,13 @@
  */
 package org.spongepowered.api.text.selector;
 
+
 /**
- * Represents the required implementation for the static methods in
- * {@link Selectors}, {@link Arguments} and {@link ArgumentTypes}.
+ * Arguments is a utility class to work with and create Arguments.
  */
-interface SelectorFactory {
+public final class Arguments {
 
-    /**
-     * Creates a {@link SelectorBuilder} with no type set and no arguments.
-     *
-     * @return A new selector builder with no data
-     */
-    SelectorBuilder createEmptyBuilder();
-
-    /**
-     * Parses a {@link Selector} from the given selector string.
-     *
-     * @param selector The raw selector string
-     * @return A new selector containing the given selector data
-     */
-    Selector parseRawSelector(String selector);
-
-    /**
-     * Creates a score maximum {@link ArgumentType} for the given objective
-     * name.
-     * 
-     * @param name The objective name to use
-     *
-     * @return An ArgumentType for the objective name
-     */
-    ArgumentType<Integer, Argument<Integer>> createScoreMaxArgument(String name);
-
-    /**
-     * Creates a score minimum {@link ArgumentType} for the given objective
-     * name.
-     * 
-     * @param name The objective name to use
-     *
-     * @return An ArgumentType for the objective name
-     */
-    ArgumentType<Integer, Argument<Integer>> createScoreMinArgument(String name);
+    private Arguments() {}
 
     /**
      * Creates an {@link Argument}.
@@ -75,7 +42,9 @@ interface SelectorFactory {
      *
      * @return A new argument with {@code type.getKey()} mapped to {@code value}
      */
-    <T, A extends Argument<T>> A createArgument(ArgumentType<T, A> type, T value);
+    public static <T, A extends Argument<T>> A create(ArgumentType<T, A> type, T value) {
+        return Selectors.factory.createArgument(type, value);
+    }
 
     /**
      * Creates a custom {@link Argument}. Using a key defined by an ArgumentType
@@ -87,7 +56,22 @@ interface SelectorFactory {
      *
      * @return A new argument with {@code key} mapped to {@code value}
      */
-    <T> Argument<T> createCustomArgument(String key, T value);
+    public static <T> Argument<T> createCustom(String key, T value) {
+        return Selectors.factory.createCustomArgument(key, value);
+    }
+
+    /**
+     * Creates a custom {@link Argument}. Using a key defined by an ArgumentType
+     * will not offer the features of the ArgumentType, such as inversion.
+     * 
+     * @param key The key for the Argument
+     * @param value The value for the Argument
+     *
+     * @return A new argument with {@code key} mapped to {@code value}
+     */
+    public static Argument<Integer> createCustom(String key, int value) {
+        return Selectors.factory.createCustomArgument(key, Integer.valueOf(value));
+    }
 
     /**
      * Parses an {@link Argument} from the given argument string. Any
@@ -98,7 +82,9 @@ interface SelectorFactory {
      * @return A new Argument containing the given argument data
      * @throws IllegalArgumentException If the argument could not be parsed
      */
-    Argument<?> parseRawArgument(String argument) throws IllegalArgumentException;
+    public static Argument<?> parseRaw(String argument) throws IllegalArgumentException {
+        return Selectors.factory.parseRawArgument(argument);
+    }
 
     /**
      * Parses an {@link Argument} from the given argument string, and attempts
@@ -112,6 +98,8 @@ interface SelectorFactory {
      * @throws IllegalArgumentException If the argument could not be parsed and
      *         converted
      */
-    <T> Argument<T> parseRawArgument(String argument, Class<? extends T> type) throws IllegalArgumentException;
+    public static <T> Argument<T> parseRaw(String argument, Class<? extends T> type) throws IllegalArgumentException {
+        return Selectors.factory.parseRawArgument(argument, type);
+    }
 
 }

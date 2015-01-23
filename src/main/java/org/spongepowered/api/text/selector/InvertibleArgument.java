@@ -25,31 +25,25 @@
 package org.spongepowered.api.text.selector;
 
 /**
- * SelectorTypes is a list of the default selector types that are available in
- * Vanilla Minecraft.
+ * Represents an invertible argument. An invertible argument is exactly like a
+ * normal {@link Argument} but also supports being inverted via the
+ * {@link #invert()} method.
+ *
+ * @param <T> The type of the value
+ * @param <I> The type of the inverted value
  */
-public final class SelectorTypes {
-
-    private SelectorTypes() {}
+public interface InvertibleArgument<T, I> extends Argument<T> {
 
     /**
-     * The all players selector type.
+     * Returns the result of inverting this {@link InvertibleArgument}'s
+     * value. For example, {@code type=Player} is inverted to
+     * {@code type=!Player}. The only restriction on the invert method is that
+     * for any InvertibleArgument {@code a} and {@code b = a.invert()},
+     * {@code a.equals(b.invert())} is {@code true}. In other words, it is
+     * reflexive.
+     * 
+     * @return The result of inverting this InvertableArgument
      */
-    public static final SelectorType ALL_PLAYERS = null;
-
-    /**
-     * The all entities selector type.
-     */
-    public static final SelectorType ALL_ENTITIES = null;
-
-    /**
-     * The nearest player selector type.
-     */
-    public static final SelectorType NEAREST_PLAYER = null;
-
-    /**
-     * The random player selector type.
-     */
-    public static final SelectorType RANDOM_PLAYER = null;
+    InvertibleArgument<I, T> invert();
 
 }

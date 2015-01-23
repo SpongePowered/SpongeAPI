@@ -28,7 +28,7 @@ package org.spongepowered.api.text.selector;
  * Utility class to work with and create Selectors.
  */
 public final class Selectors {
-    private static final SelectorFactory factory = null;
+    static final SelectorFactory factory = null;
 
     private Selectors() {}
 

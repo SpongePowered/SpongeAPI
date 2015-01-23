@@ -55,6 +55,7 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.selector.ArgumentType;
 import org.spongepowered.api.text.selector.SelectorType;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -594,6 +595,21 @@ public interface GameRegistry {
      * @return The {@link SelectorType} with the given name or Optional.absent() if not found
      */
     Optional<SelectorType> getSelectorType(String name);
+
+    /**
+     * Gets a {@link List} of all possible {@link ArgumentType}s.
+     *
+     * @return The list of all available {@link ArgumentType}s
+     */
+    List<ArgumentType<?, ?>> getArgumentTypes();
+
+    /**
+     * Gets the {@link ArgumentType} with the provided name.
+     *
+     * @param name The name of the argument type
+     * @return The {@link ArgumentType} with the given name or Optional.absent() if not found
+     */
+    Optional<ArgumentType<?, ?>> getArgumentType(String name);
 
     /**
      * Gets a {@link List} of all possible {@link SelectorType}s.
