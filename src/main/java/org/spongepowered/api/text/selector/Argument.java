@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.selector;
 
 /**
- * Represents a {@linkplain Selector selector} argument. An Argument is one or
+ * Represents a {@link Selector selector} argument. An Argument is one or
  * more key-to-value mappings ({@code key=value}) used only for building a
  * selector, as Map provides a better way of getting this information than
  * iterating over a list of Arguments.
@@ -35,21 +35,21 @@ package org.spongepowered.api.text.selector;
 public interface Argument<T> {
 
     /**
-     * Returns the key for this {@linkplain Argument}.
+     * Returns the key for this {@link Argument}.
      * 
      * @return The key for this Argument
      */
     String getKey();
 
     /**
-     * Returns the value for this {@linkplain Argument}.
+     * Returns the value for this {@link Argument}.
      * 
      * @return The value for this Argument
      */
     T getValue();
 
     /**
-     * Converts this {@linkplain Argument} to a valid argument string.
+     * Converts this {@link Argument} to a valid argument string.
      *
      * @return A valid Argument string that can be parsed with
      *         {@link Arguments#parseRaw(String)}

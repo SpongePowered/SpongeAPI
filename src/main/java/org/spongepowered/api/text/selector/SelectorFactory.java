@@ -46,7 +46,7 @@ interface SelectorFactory {
     Selector parseRawSelector(String selector);
 
     /**
-     * Creates a score maximum {@linkplain ArgumentType} for the given objective
+     * Creates a score maximum {@link ArgumentType} for the given objective
      * name.
      * 
      * @param name The objective name to use
@@ -56,7 +56,7 @@ interface SelectorFactory {
     ArgumentType<Integer, Argument<Integer>> createScoreMaxArgument(String name);
 
     /**
-     * Creates a score minimum {@linkplain ArgumentType} for the given objective
+     * Creates a score minimum {@link ArgumentType} for the given objective
      * name.
      * 
      * @param name The objective name to use

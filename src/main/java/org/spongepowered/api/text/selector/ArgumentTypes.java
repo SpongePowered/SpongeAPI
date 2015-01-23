@@ -169,7 +169,7 @@ public final class ArgumentTypes {
     public static final ArgumentType<EntityType, InvertibleArgument<EntityType, String>> TYPE = null;
 
     /**
-     * Creates a score maximum {@linkplain ArgumentType} for the given objective
+     * Creates a score maximum {@link ArgumentType} for the given objective
      * name.
      * 
      * @param name The objective name to use
@@ -181,7 +181,7 @@ public final class ArgumentTypes {
     }
 
     /**
-     * Creates a score minimum {@linkplain ArgumentType} for the given objective
+     * Creates a score minimum {@link ArgumentType} for the given objective
      * name.
      * 
      * @param name The objective name to use

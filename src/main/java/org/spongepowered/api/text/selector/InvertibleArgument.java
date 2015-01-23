@@ -26,7 +26,7 @@ package org.spongepowered.api.text.selector;
 
 /**
  * Represents an invertible argument. An invertible argument is exactly like a
- * normal {@linkplain Argument} but also supports being inverted via the
+ * normal {@link Argument} but also supports being inverted via the
  * {@link #invert()} method.
  *
  * @param <T> The type of the value
@@ -35,7 +35,7 @@ package org.spongepowered.api.text.selector;
 public interface InvertibleArgument<T, I> extends Argument<T> {
 
     /**
-     * Returns the result of inverting this {@linkplain InvertibleArgument}'s
+     * Returns the result of inverting this {@link InvertibleArgument}'s
      * value. For example, {@code type=Player} is inverted to
      * {@code type=!Player}. The only restriction on the invert method is that
      * for any InvertibleArgument {@code a} and {@code b = a.invert()},
