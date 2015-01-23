@@ -35,6 +35,8 @@ public final class Arguments {
     /**
      * Creates an {@link Argument}.
      * 
+     * @param <T> - The type for the value
+     * @param <A> - The type for the Argument
      * @param type The type for the Argument
      * @param value The value for the Argument
      *
@@ -48,6 +50,7 @@ public final class Arguments {
      * Creates a custom {@link Argument}. Using a key defined by an ArgumentType
      * will not offer the features of the ArgumentType, such as inversion.
      * 
+     * @param <T> - The type for the value
      * @param key The key for the Argument
      * @param value The value for the Argument
      *
@@ -88,6 +91,7 @@ public final class Arguments {
      * to convert it to the requested type. Any ArgumentTypes defined in
      * ArgumentTypes are used to generate the returned Argument.
      *
+     * @param <T> - The type for the value
      * @param argument The raw argument string
      * @param type The type to convert to
      * @return A new Argument containing the given argument data
