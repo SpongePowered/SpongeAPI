@@ -30,6 +30,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
@@ -284,4 +285,11 @@ public interface BlockLoc extends DataHolder {
      * @return A snapshot
      */
     BlockSnapshot getSnapshot();
+    
+    /**
+     * Gets the current world this block resides in.
+     *
+     * @return The current world this block resides in
+     */
+    World getWorld();
 }
