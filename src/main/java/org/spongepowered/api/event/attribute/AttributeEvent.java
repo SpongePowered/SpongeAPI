@@ -39,7 +39,8 @@ public interface AttributeEvent extends Cancellable {
     AttributeHolder getHolder();
 
     /**
-     * Gets the {@link Attribute} that is being changed.
+     * Gets the {@link org.spongepowered.api.attribute.Attribute} that is being
+     * changed.
      * 
      * @return The Attribute that is being changed
      */

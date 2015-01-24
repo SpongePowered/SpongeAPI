@@ -30,9 +30,10 @@ import org.spongepowered.api.attribute.AttributeModifier;
 public interface AttributeModifiedEvent extends AttributeEvent {
 
     /**
-     * Gets the {@link AttributeModifer} that was added or removed in this event.
+     * Gets the {@link AttributeModifier} that was added or removed in this
+     * event.
      * 
-     * @return The AttributeModifer that was added or removed in this event
+     * @return The AttributeModifier that was added or removed in this event
      */
     AttributeModifier getModifier();
 
