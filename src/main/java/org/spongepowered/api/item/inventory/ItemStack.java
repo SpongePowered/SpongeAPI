@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.attributes.AttributeModifier;
+import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.service.persistence.DataSerializable;

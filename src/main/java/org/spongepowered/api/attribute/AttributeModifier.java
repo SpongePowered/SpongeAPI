@@ -22,43 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.attributes;
+package org.spongepowered.api.attribute;
 
-public interface Attribute {
-
-    /**
-     * Gets the ID of this attribute as a string.
-     * 
-     * @return The ID of this attribute as a string
-     */
-    String getId();
+public interface AttributeModifier {
 
     /**
-     * Gets the minimum value for this attribute.
+     * Gets the operation used to modify a holder.
      * 
-     * @return The minimum value for this attribute
+     * @return The operation used to modify a holder
      */
-    double getMinimum();
+    Operation getOperation();
 
     /**
-     * Gets the maximum value for this attribute.
+     * Sets the operation used to modify a holder.
      * 
-     * @return The maximum value for this attribute
+     * @param operation The new operation used to modify a holder
      */
-    double getMaximum();
+    void setOperation(Operation operation);
 
     /**
-     * Gets the default value for this attribute.
+     * Gets the value used in modification.
      * 
-     * @return The default value for this attribute
+     * @return The value used in modification
      */
-    double getDefaultBase();
+    double getValue();
 
     /**
-     * Gets the target of this attribute.
+     * Sets the value used in modification.
      * 
-     * @return The target of this attribute
+     * @param value The new value to be used in modification
      */
-    AttributeTarget getTarget();
+    void setValue(double value);
+
+    /**
+     * Gets the attribute to modify.
+     * 
+     * @return The attribute to modify
+     */
+    Attribute getAttribute();
+
+    /**
+     * Sets the attribute to modify.
+     * 
+     * @param attribute The new attribute to modify
+     */
+    void setAttribute(Attribute attribute);
 
 }

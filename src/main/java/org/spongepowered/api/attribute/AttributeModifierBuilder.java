@@ -22,16 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.attributes;
+package org.spongepowered.api.attribute;
 
-public final class Operations {
+public interface AttributeModifierBuilder {
 
-    public static final Operation ADD_AMOUNT = null;
-    public static final Operation MULTIPLY_BASE = null;
-    public static final Operation MULTIPLY = null;
+    /**
+     * Sets the {@link Attribute} of the {@link AttributeModifier} to be built.
+     * 
+     * @param attribute The Attribute to use
+     * @return This builder, for chaining
+     */
+    AttributeModifierBuilder attribute(Attribute attribute);
 
-    private Operations() {
+    /**
+     * Sets the value of the {@link AttributeModifier} to be built.
+     * 
+     * @param value The value to use
+     * @return This builder, for chaining
+     * @throws IllegalArgumentException If the value is under the minimum or
+     *         above the maximum of the attribute
+     */
+    AttributeModifierBuilder value(double value) throws IllegalArgumentException;
 
-    }
+    /**
+     * Sets the {@link Operation} of the {@link AttributeModifier} to be built.
+     * 
+     * @param operation The Operation to use
+     * @return This builder, for chaining
+     */
+    AttributeModifierBuilder operation(Operation operation);
+
+    /**
+     * Builds the {@link AttributeModifier} with the set parameters.
+     * 
+     * @return The AttributeModifier with the set parameters
+     */
+    AttributeModifier build();
 
 }

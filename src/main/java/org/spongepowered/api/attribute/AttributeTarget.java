@@ -22,7 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.attribute;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.attributes;
+public interface AttributeTarget {
 
+    /**
+     * If this attribute target can apply to the specified.
+     * {@link AttributeHolder}
+     * 
+     * @param holder The AttributeHolder to check with
+     * @return If this attribute target can apply to the specified
+     *         AttributeHolder
+     */
+    boolean canApply(AttributeHolder holder);
+
+}

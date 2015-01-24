@@ -22,41 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.attributes;
+package org.spongepowered.api.attribute;
 
-public interface AttributeModifierBuilder {
-
-    /**
-     * Sets the {@link Attribute} of the {@link AttributeModifier} to be built.
-     * 
-     * @param attribute The Attribute to use
-     * @return This builder, for chaining
-     */
-    AttributeModifierBuilder attribute(Attribute attribute);
+public interface Attribute {
 
     /**
-     * Sets the value of the {@link AttributeModifier} to be built.
+     * Gets the ID of this attribute as a string.
      * 
-     * @param value The value to use
-     * @return This builder, for chaining
-     * @throws IllegalArgumentException If the value is under the minimum or
-     *         above the maximum of the attribute
+     * @return The ID of this attribute as a string
      */
-    AttributeModifierBuilder value(double value) throws IllegalArgumentException;
+    String getId();
 
     /**
-     * Sets the {@link Operation} of the {@link AttributeModifier} to be built.
+     * Gets the minimum value for this attribute.
      * 
-     * @param operation The Operation to use
-     * @return This builder, for chaining
+     * @return The minimum value for this attribute
      */
-    AttributeModifierBuilder operation(Operation operation);
+    double getMinimum();
 
     /**
-     * Builds the {@link AttributeModifier} with the set parameters.
+     * Gets the maximum value for this attribute.
      * 
-     * @return The AttributeModifier with the set parameters
+     * @return The maximum value for this attribute
      */
-    AttributeModifier build();
+    double getMaximum();
+
+    /**
+     * Gets the default value for this attribute.
+     * 
+     * @return The default value for this attribute
+     */
+    double getDefaultBase();
+
+    /**
+     * Gets the target of this attribute.
+     * 
+     * @return The target of this attribute
+     */
+    AttributeTarget getTarget();
 
 }

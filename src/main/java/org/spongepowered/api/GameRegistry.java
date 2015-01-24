@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.attributes.Attribute;
-import org.spongepowered.api.attributes.AttributeModifierBuilder;
-import org.spongepowered.api.attributes.Operation;
+import org.spongepowered.api.attribute.Attribute;
+import org.spongepowered.api.attribute.AttributeModifierBuilder;
+import org.spongepowered.api.attribute.Operation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;

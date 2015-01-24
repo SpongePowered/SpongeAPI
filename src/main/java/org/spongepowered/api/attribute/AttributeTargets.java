@@ -22,50 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.attributes;
+package org.spongepowered.api.attribute;
 
-public interface AttributeModifier {
+public final class AttributeTargets {
 
-    /**
-     * Gets the operation used to modify a holder.
-     * 
-     * @return The operation used to modify a holder
-     */
-    Operation getOperation();
+    public static final AttributeTarget GENERIC = null;
+    public static final AttributeTarget HORSE = null;
+    public static final AttributeTarget ZOMBIE = null;
+    public static final AttributeTarget UNKNOWN = null;
 
-    /**
-     * Sets the operation used to modify a holder.
-     * 
-     * @param operation The new operation used to modify a holder
-     */
-    void setOperation(Operation operation);
+    private AttributeTargets() {
 
-    /**
-     * Gets the value used in modification.
-     * 
-     * @return The value used in modification
-     */
-    double getValue();
-
-    /**
-     * Sets the value used in modification.
-     * 
-     * @param value The new value to be used in modification
-     */
-    void setValue(double value);
-
-    /**
-     * Gets the attribute to modify.
-     * 
-     * @return The attribute to modify
-     */
-    Attribute getAttribute();
-
-    /**
-     * Sets the attribute to modify.
-     * 
-     * @param attribute The new attribute to modify
-     */
-    void setAttribute(Attribute attribute);
+    }
 
 }

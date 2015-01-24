@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.attributes.AttributeHolder;
+import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;

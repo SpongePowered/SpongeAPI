@@ -22,18 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.attributes;
+package org.spongepowered.api.attribute;
 
-public interface Operation {
+public final class Operations {
 
-    /**
-     * Returns the value of an Attribute after it has been operated upon.
-     * 
-     * @param base The base value of the Attribute
-     * @param modifier The modifier to modify the Attribute with
-     * @param currentValue The current value of the Attribute
-     * @return The value of an Attribute after it has been operated upon
-     */
-    double modify(double base, double modifier, double currentValue);
+    public static final Operation ADD_AMOUNT = null;
+    public static final Operation MULTIPLY_BASE = null;
+    public static final Operation MULTIPLY = null;
+
+    private Operations() {
+
+    }
 
 }

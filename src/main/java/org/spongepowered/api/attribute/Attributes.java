@@ -22,16 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.attributes;
+package org.spongepowered.api.attribute;
 
-public final class AttributeTargets {
+public final class Attributes {
 
-    public static final AttributeTarget GENERIC = null;
-    public static final AttributeTarget HORSE = null;
-    public static final AttributeTarget ZOMBIE = null;
-    public static final AttributeTarget UNKNOWN = null;
+    public static final Attribute GENERIC_MAX_HEALTH = null;
+    public static final Attribute GENERIC_FOLLOW_RANGE = null;
+    public static final Attribute GENERIC_KNOCKBACK_RESISTANCE = null;
+    public static final Attribute GENERIC_MOVEMENT_SPEED = null;
+    public static final Attribute GENERIC_ATTACK_DAMAGE = null;
 
-    private AttributeTargets() {
+    public static final Attribute HORSE_JUMP_STRENGTH = null;
+
+    public static final Attribute ZOMBIE_SPAWN_REINFORCEMENTS = null;
+
+    private Attributes() {
 
     }
 

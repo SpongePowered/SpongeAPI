@@ -22,18 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.attributes;
+package org.spongepowered.api.attribute;
 
-public interface AttributeTarget {
+public interface Operation {
 
     /**
-     * If this attribute target can apply to the specified.
-     * {@link AttributeHolder}
+     * Returns the value of an Attribute after it has been operated upon.
      * 
-     * @param holder The AttributeHolder to check with
-     * @return If this attribute target can apply to the specified
-     *         AttributeHolder
+     * @param base The base value of the Attribute
+     * @param modifier The modifier to modify the Attribute with
+     * @param currentValue The current value of the Attribute
+     * @return The value of an Attribute after it has been operated upon
      */
-    boolean canApply(AttributeHolder holder);
+    double modify(double base, double modifier, double currentValue);
 
 }
