@@ -66,7 +66,7 @@ public interface Minecart extends Entity {
      * impacted and limited by the cart's swiftness.</p>
      *
      * @return The maximum speed at which the minecart may travel at the instant
-     *         this method is called
+     *     this method is called
      */
     double getPotentialMaxSpeed();
 

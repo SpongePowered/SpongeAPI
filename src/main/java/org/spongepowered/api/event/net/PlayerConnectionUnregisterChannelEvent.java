@@ -27,7 +27,7 @@ package org.spongepowered.api.event.net;
 import org.spongepowered.api.net.PlayerConnection;
 
 /**
- * An event that occurs when a {@link PlayerConnection} unregsiters a channel with the server.
+ * An event that occurs when a {@link PlayerConnection} unregisters a channel with the server.
  */
 public interface PlayerConnectionUnregisterChannelEvent extends PlayerConnectionEvent {
 
