@@ -51,6 +51,14 @@ public interface CommandSource extends Subject {
      * @param messages The message(s)
      */
     void sendMessage(Message... messages);
+    
+    /**
+     * Sends the plain text message(s) to source when possible. 
+     * <p>Use {@link #sendMessage(Iterable<Message>} for a formatted message.</p>
+     *
+     * @param messages The messages
+     */
+    void sendMessage(Iterable<String> messages);
 
     /**
      * Sends the formatted text message(s) to source when possible. If text formatting
