@@ -35,18 +35,11 @@ public interface FullQueryEvent extends QueryEvent {
     /**
      * Gets the GameID to respond with.
      *
-     * <p>By default, this is <code>MINECRAFT</code>.</p>
+     * <p>This is currently hardcoded to <code>MINECRAFT</code>.</p>
      *
      * @return The GameID to respond with.
      */
     String getGameID();
-
-    /**
-     * Sets the GameID to respond with.
-     *
-     * @param gameID The GameID to respond with.
-     */
-    void setGameID(String gameID);
 
     /**
      * Gets the version to respond with.
