@@ -37,7 +37,7 @@ public interface AttributeBaseChangedEvent extends AttributeEvent {
     /**
      * Gets the new value of the changed {@link Attribute}.
      * 
-     * @return The new value of the changed @link Attribute
+     * @return The new value of the changed Attribute
      */
     double getNewValue();
 

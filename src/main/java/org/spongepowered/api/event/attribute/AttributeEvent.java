@@ -41,7 +41,7 @@ public interface AttributeEvent extends Cancellable {
     /**
      * Gets the {@link Attribute} that is being changed.
      * 
-     * @return The {@link Attribute} that is being changed
+     * @return The Attribute that is being changed
      */
     Attribute getAttribute();
 
