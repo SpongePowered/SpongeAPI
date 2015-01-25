@@ -56,6 +56,13 @@ public interface Chunk extends Extent {
     boolean isLoaded();
     
     /**
+     * Gets the world the chunk is in.
+     * 
+     * @return The world
+     */ 
+    World getWorld();
+    
+    /**
      * Gets if the chunk has been populated by the generator.
      * 
      * @return Whether or not the chunk has been populated.
