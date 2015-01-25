@@ -22,39 +22,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.bans;
 
-package org.spongepowered.api.event.entity.player;
+import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.util.command.CommandSource;
 
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import javax.annotation.Nullable;
+import java.util.Date;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Represents a builder that creates bans.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public interface BanBuilder {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Sets the user to be banned.
      *
-     * @return The {@link Player} involved
+     * @param user The user
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
-    @Override
-    Player getEntity();
+    void user(User user);
 
     /**
-     * {@inheritDoc}
+     * Sets the reason to be banned.
+     *
+     * @param reason The reason
      */
-    @Override
-    Player getUser();
+    void reason(Message.Text reason);
+
+    /**
+     * Sets the date that the ban starts.
+     *
+     * @param date The start date
+     */
+    void banDate(Date date);
+
+    /**
+     * Sets the expiration date of the ban.
+     *
+     * @param date The expiration date
+     */
+    void expirationDate(Date date);
+
+    /**
+     * Sets the source of the ban, or removes it if {@code null} is passed in.
+     *
+     * @param source The source of the ban, or {@code null}
+     */
+    void source(@Nullable CommandSource source);
+
+    /**
+     * Creates a new Ban from this builder.
+     *
+     * @return A new Ban
+     */
+    Ban build();
 
 }

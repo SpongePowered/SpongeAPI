@@ -22,39 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.user;
 
-package org.spongepowered.api.event.entity.player;
-
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import org.spongepowered.api.entity.player.User;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Represents an event that involves a User.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public interface UserEvent {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Gets the user involved in this event.
      *
-     * @return The {@link Player} involved
+     * @return The user
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
-    @Override
-    Player getEntity();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    Player getUser();
+    User getUser();
 
 }

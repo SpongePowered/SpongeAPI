@@ -22,39 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.bans;
 
-package org.spongepowered.api.event.entity.player;
-
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Interface representing the contract of bans.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public interface BanFactory {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Obtains an instance of a {@link BanBuilder}.
      *
-     * @return The {@link Player} involved
+     * @return A new BanBuilder
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
-    @Override
-    Player getEntity();
+    BanBuilder builder();
 
     /**
-     * {@inheritDoc}
+     * Creates an indefinite ban on a user.
+     *
+     * @param user The user
+     * @return The created ban
      */
-    @Override
-    Player getUser();
+    Ban of(User user);
+
+    /**
+     * Creates an indefinite ban with a reason on a user.
+     *
+     * @param user The user
+     * @param reason The reason
+     * @return The created ban
+     */
+    Ban of(User user, Message.Text reason);
 
 }

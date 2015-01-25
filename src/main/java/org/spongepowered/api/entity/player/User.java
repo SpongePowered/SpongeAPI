@@ -33,8 +33,10 @@ import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.bans.Ban;
 import org.spongepowered.api.world.Location;
 
+import java.util.Collection;
 import java.util.Date;
 import javax.annotation.Nullable;
 
@@ -89,16 +91,9 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
     Date getLastPlayed();
 
     /**
-     * Checks if this player is banned.
+     * Checks if this user is whitelisted.
      *
-     * @return True If banned
-     */
-    boolean isBanned();
-
-    /**
-     * Checks if this player is whitelisted.
-     *
-     * @return True If whitelisted
+     * @return True if whitelisted
      */
     boolean isWhitelisted();
 
@@ -132,5 +127,31 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      * @return The associated online Player, if available
      */
     Optional<Player> getPlayer();
+
+    /**
+     * Bans the user using the default banning system.
+     *
+     * @param ban The ban to put on the user
+     */
+    void ban(Ban ban);
+
+    /**
+     * Removes all bans registered for this User.
+     */
+    void pardon();
+
+    /**
+     * Gets the bans registered for this User.
+     *
+     * @return Bans on this user
+     */
+    Collection<Ban> getBans();
+
+    /**
+     * Checks if the user is banned or not.
+     *
+     * @return Banned state of player
+     */
+    boolean isBanned();
 
 }

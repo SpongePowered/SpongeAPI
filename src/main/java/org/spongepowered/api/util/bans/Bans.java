@@ -22,39 +22,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.bans;
 
-package org.spongepowered.api.event.entity.player;
-
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Utility class for working with and creating {@link Ban}s.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public final class Bans {
+
+    private static final BanFactory factory = null;
+
+    private Bans() {
+    }
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Creates a new BanBuilder.
      *
-     * @return The {@link Player} involved
+     * @return A new ban builder
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
-    @Override
-    Player getEntity();
+    public static BanBuilder builder() {
+        return factory.builder();
+    }
 
     /**
-     * {@inheritDoc}
+     * Creates an indefinite ban on a user.
+     *
+     * @param user The user
+     * @return The created ban
      */
-    @Override
-    Player getUser();
+    public static Ban of(User user) {
+        return factory.of(user);
+    }
+
+    /**
+     * Creates an indefinite ban with a reason on a user.
+     *
+     * @param user The user
+     * @param reason The reason
+     * @return The created ban
+     */
+    public static Ban of(User user, Message.Text reason) {
+        return factory.of(user, reason);
+    }
 
 }
