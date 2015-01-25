@@ -48,13 +48,13 @@ public interface EntityDeathEvent extends EntityEvent, CauseTracked, Cancellable
      *
      * @return The amount of experience that will be dropped on death
      */
-    int getDroppedExperience();
+    double getDroppedExperience();
 
     /**
      * Sets the amount of experience that will be dropped on death.
      *
      * @param experience The amount of experience that will be dropped on death
      */
-    void setDroppedExperience(int experience);
+    void setDroppedExperience(double experience);
 
 }

@@ -79,7 +79,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer {
      *
      * @return The current experience towards the next level
      */
-    int getExperience();
+    double getExperience();
 
     /**
      * Gets the current experience level of this human.
@@ -95,14 +95,14 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer {
      *
      * @return The current total accumulated experience
      */
-    int getTotalExperinece();
+    double getTotalExperinece();
 
     /**
      * Sets the experience accumulated towards the next level.
      *
      * @param experience The experience
      */
-    void setExperience(int experience);
+    void setExperience(double experience);
 
     /**
      * Sets the level of experience.
@@ -116,7 +116,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer {
      *
      * @param totalExperience The total experience
      */
-    void setTotalExperience(int totalExperience);
+    void setTotalExperience(double totalExperience);
 
     /**
      * Returns whether this human entity has an open inventory at the moment
