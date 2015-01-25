@@ -26,6 +26,8 @@ package org.spongepowered.api.text.title;
 
 import org.spongepowered.api.text.Text;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents a builder interface to create immutable {@link Title}
  * configurations.
@@ -33,63 +35,60 @@ import org.spongepowered.api.text.Text;
 public interface TitleBuilder {
 
     /**
-     * Set the title to send to the player.
+     * Sets the title to send to the player.
      *
-     * @param message The text to use as the title
+     * @param message The text to use as the title, or {@code null} to reset
      * @return This title builder
      */
-    TitleBuilder title(Text message);
+    TitleBuilder title(@Nullable Text message);
 
     /**
-     * Set the subtitle to send to the player.
+     * Sets the subtitle to send to the player.
      *
-     * @param message The text to use as the subtitle
+     * @param message The text to use as the subtitle, or {@code null} to reset
      * @return This title builder
      */
-    TitleBuilder subtitle(Text message);
+    TitleBuilder subtitle(@Nullable Text message);
 
     /**
-     * Set the duration in ticks of the fade in effect of the title. Once this
+     * Sets the duration in ticks of the fade in effect of the title. Once this
      * period of time is over the title will stay for the amount of time
-     * specified in {@link #stay(int)}.
+     * specified in {@link #stay(Integer)}.
      *
-     * <p>
-     * The default value for Vanilla is 20 (1 second).
-     * </p>
+     * <p> The default value for Vanilla is 20 (1 second). </p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade in effect
+     * @param ticks The amount of ticks (1/20 second) for the fade in effect, or
+     *            {@code null} to reset
      * @return This title builder
      */
-    TitleBuilder fadeIn(int ticks);
+    TitleBuilder fadeIn(@Nullable Integer ticks);
 
     /**
-     * Set the duration in ticks how long the title should stay on the screen.
+     * Sets the duration in ticks how long the title should stay on the screen.
      * Once this period of time is over the title will fade out using the
-     * duration specified in {@link #fadeOut(int)}.
+     * duration specified in {@link #fadeOut(Integer)}.
      *
-     * <p>
-     * The default value for Vanilla is 60 (3 seconds).
-     * </p>
+     * <p> The default value for Vanilla is 60 (3 seconds). </p>
      *
-     * @param ticks The amount of ticks (1/20 second) to stay
+     * @param ticks The amount of ticks (1/20 second) to stay, or {@code null}
+     *            to reset
      * @return This title builder
      */
-    TitleBuilder stay(int ticks);
+    TitleBuilder stay(@Nullable Integer ticks);
 
     /**
-     * Set the duration in ticks of the fade out effect of the title.
+     * Sets the duration in ticks of the fade out effect of the title.
      *
-     * <p>
-     * The default value for Vanilla is 20 (1 second).
-     * </p>
+     * <p> The default value for Vanilla is 20 (1 second). </p>
      *
-     * @param ticks The amount of ticks (1/20 second) for the fade out effect
+     * @param ticks The amount of ticks (1/20 second) for the fade out effect,
+     *            or {@code null} to reset
      * @return This title builder
      */
-    TitleBuilder fadeOut(int ticks);
+    TitleBuilder fadeOut(@Nullable Integer ticks);
 
     /**
-     * Remove the currently displayed title from the player's screen. This will
+     * Removes the currently displayed title from the player's screen. This will
      * keep the currently used display times and will only remove the title.
      *
      * @return This title builder
@@ -97,12 +96,30 @@ public interface TitleBuilder {
     TitleBuilder clear();
 
     /**
-     * Remove the currently displayed title from the player's screen and set the
-     * configuration back to the default values.
+     * Sets whether the the currently displayed title should be removed from the
+     * player's screen and will keep the currently used display times.
+     *
+     * @param clear Whether this title should clear
+     * @return This title builder
+     */
+    TitleBuilder clear(boolean clear);
+
+    /**
+     * Removes the currently displayed title from the player's screen and set
+     * the configuration back to the default values.
      *
      * @return This title builder
      */
     TitleBuilder reset();
+
+    /**
+     * Sets whether the currently displayed title should be removed from the
+     * player's screen and the configuration set back to the default values.
+     *
+     * @param reset Whether this title should reset
+     * @return This title builder
+     */
+    TitleBuilder reset(boolean reset);
 
     /**
      * Builds an immutable instance of the current configuration.

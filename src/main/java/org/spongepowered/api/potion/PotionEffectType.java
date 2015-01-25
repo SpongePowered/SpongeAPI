@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.potion;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Represents a possible type of {@link PotionEffect}.
  */
-public interface PotionEffectType {
+public interface PotionEffectType extends Translatable {
 
     /**
      * Gets whether this potion effect is applied

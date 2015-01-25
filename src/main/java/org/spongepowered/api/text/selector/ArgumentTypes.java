@@ -66,7 +66,9 @@ public final class ArgumentTypes {
      * Negative values will reverse the order of targets - for example the
      * farthest targets will be returned first.
      *
-     * <p>The default count for the {@link SelectorTypes#RANDOM_PLAYER} and {@link SelectorTypes#NEAREST_PLAYER} is {@code 1}, therefore a higher number will increase the count instead of limiting it.</p>
+     * <p>The default count for the {@link SelectorTypes#RANDOM_PLAYER} and
+     * {@link SelectorTypes#NEAREST_PLAYER} is {@code 1}, therefore a higher
+     * number will increase the count instead of limiting it.</p>
      *
      * <p>In Vanilla, this is represented by the {@code c} selector key.</p>
      */

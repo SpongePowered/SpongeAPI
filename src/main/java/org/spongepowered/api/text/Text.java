@@ -122,8 +122,18 @@ public interface Text {
      */
     TextBuilder builder();
 
+    /**
+     * Returns a plain text representation of this {@link Text} without any formattings.
+     *
+     * @return This message converted to plain text
+     */
     String toPlain();
 
+    /**
+     * Returns a JSON representation of this {@link Text} as used in commands.
+     *
+     * @return This message converted to JSON
+     */
     String toJson();
 
     /**

@@ -82,7 +82,8 @@ public interface SelectorBuilder {
     SelectorBuilder remove(Iterable<Argument<?>> arguments);
 
     /**
-     * Removes the arguments with the specified {@link ArgumentType}, if they exist.
+     * Removes the arguments with the specified {@link ArgumentType}, if they
+     * exist.
      *
      * @param types The argument types
      * @return This selector builder

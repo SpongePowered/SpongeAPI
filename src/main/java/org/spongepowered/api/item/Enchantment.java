@@ -26,8 +26,9 @@
 package org.spongepowered.api.item;
 
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.translation.Translatable;
 
-public interface Enchantment {
+public interface Enchantment extends Translatable {
 
     /**
      * Gets the id of this enchantment.

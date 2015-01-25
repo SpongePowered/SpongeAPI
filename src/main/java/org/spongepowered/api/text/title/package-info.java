@@ -23,4 +23,5 @@
  * THE SOFTWARE.
  */
 
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.text.title;
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.title;

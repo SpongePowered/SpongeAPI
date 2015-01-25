@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Represents a Villager Profession. A profession defines the genre of
  * trade offers a villager may offer to a player.
  */
-public interface Profession {
+public interface Profession extends Translatable {
 
     /**
      * Gets the name of this profession.
