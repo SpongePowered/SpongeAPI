@@ -22,39 +22,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.bans;
 
-package org.spongepowered.api.event.entity.player;
+import org.spongepowered.api.entity.player.User;
 
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import java.util.Collection;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Represents something that can provide information for bans.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public interface BanProvider {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Gets all bans registered in this provider.
      *
-     * @return The {@link Player} involved
+     * @return The bans
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
-    @Override
-    Player getEntity();
+    Collection<Ban> getBans();
 
     /**
-     * {@inheritDoc}
+     * Gets all bans registered in this provider to the given user.
+     *
+     * @param user The user
+     * @return The bans
      */
-    @Override
-    Player getUser();
+    Collection<Ban> getBansFor(User user);
+
+    /**
+     * Removes all bans in this system for a certain user.
+     *
+     * @param user The user
+     */
+    void pardon(User user);
+
+    /**
+     * Removes the ban from this system.
+     *
+     * @param ban The ban
+     */
+    void remove(Ban ban);
+
+    /**
+     * Checks if the specified ban is contained in this provider.
+     *
+     * @param ban The ban
+     * @return True if the ban exists in this provider, false otherwise
+     */
+    boolean hasBan(Ban ban);
+
+    /**
+     * Checks if a user has any bans.
+     *
+     * @param user The user
+     * @return True if the user has any bans, false otherwise
+     */
+    boolean isBanned(User user);
 
 }

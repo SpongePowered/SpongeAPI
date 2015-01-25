@@ -22,39 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.user;
 
-package org.spongepowered.api.event.entity.player;
-
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import org.spongepowered.api.util.bans.Ban;
+import org.spongepowered.api.util.bans.BanProvider;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Represents an event that involves a ban.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public interface BanEvent {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Gets the ban involved in this event.
      *
-     * @return The {@link Player} involved
+     * @return The ban
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
-    @Override
-    Player getEntity();
+    Ban getBan();
 
     /**
-     * {@inheritDoc}
+     * Gets the provider that provided the ban.
+     *
+     * @return The ban provider
      */
-    @Override
-    Player getUser();
+    BanProvider getBanProvider();
 
 }

@@ -22,39 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living.player;
 
-package org.spongepowered.api.event.entity.player;
-
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import com.google.common.base.Optional;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Called when a player is kicked.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public interface PlayerKickEvent extends PlayerEvent {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Gets the reason for the kick.
      *
-     * @return The {@link Player} involved
+     * @return The kick reason as a String
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
-    @Override
-    Player getEntity();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    Player getUser();
+    Optional<Message.Text> getReason();
 
 }
