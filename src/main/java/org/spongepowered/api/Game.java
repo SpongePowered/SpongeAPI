@@ -113,10 +113,10 @@ public interface Game {
     String getImplementationVersion();
 
     /**
-     * Gets the version of this game.
+     * Gets the Minecraft version of this game.
      *
-     * @return The game version
+     * @return The Minecraft version
      */
-    GameVersion getVersion();
+    MinecraftVersion getMinecraftVersion();
 
 }

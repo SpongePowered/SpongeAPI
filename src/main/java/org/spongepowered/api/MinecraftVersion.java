@@ -28,12 +28,12 @@ import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.status.StatusResponse;
 
 /**
- * Represents a specific game version of a client or a server.
+ * Represents a specific Minecraft version of a client or a server.
  */
-public interface GameVersion extends Comparable<GameVersion> {
+public interface MinecraftVersion extends Comparable<MinecraftVersion> {
 
     /**
-     * Gets the name of this game version.
+     * Gets the name of this Minecraft version.
      *
      * <p>
      * <strong>Note:</strong> The returned name does not necessarily represent
