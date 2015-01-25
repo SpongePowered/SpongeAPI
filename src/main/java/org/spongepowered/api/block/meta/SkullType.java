@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.block.meta;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Represents a type of skull.
  */
-public interface SkullType {
+public interface SkullType extends Translatable {
 
     /**
      * Gets the id of this skull.

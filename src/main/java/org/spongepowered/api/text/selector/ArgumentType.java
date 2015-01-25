@@ -57,7 +57,8 @@ public interface ArgumentType<T> {
     }
 
     /**
-     * Represents a compound {@link ArgumentType} representing a 3-dimensional vector.
+     * Represents a compound {@link ArgumentType} representing a 3-dimensional
+     * vector.
      *
      * @param <V> The type of the vector
      * @param <T> The type of the components of the vector

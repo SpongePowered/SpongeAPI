@@ -27,10 +27,9 @@ package org.spongepowered.api.text.selector;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
 
 import java.util.List;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an immutable selector of targets, as used in commands.
@@ -81,22 +80,22 @@ public interface Selector {
     List<Argument<?>> getArguments();
 
     /**
-     * Resolves this {@link Selector} to a list of entities based on the
-     * arguments and type.
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent}.
      *
-     * @param location The location to resolve the selector around
-     * @return A list of entities that were resolved from this {@link Selector}
-     * @throws IllegalArgumentException If {@code location} is null and
-     *             {@link #requiresLocation()} returned {@code true}
+     * @param extent The extent to search for targets
+     * @return The matched entities
      */
-    List<Entity> resolve(@Nullable Location location) throws IllegalArgumentException;
+    List<Entity> resolve(Extent extent);
 
     /**
-     * Returns {@code true} if this selector will require a location to resolve.
+     * Resolves this {@link Selector} to a list of entities around the given
+     * {@link Location}.
      *
-     * @return {@code true} if this selector will require a location to resolve
+     * @param location The location to resolve the selector around
+     * @return The matched entities
      */
-    boolean requiresLocation();
+    List<Entity> resolve(Location location);
 
     /**
      * Converts this {@link Selector} to a valid selector string.

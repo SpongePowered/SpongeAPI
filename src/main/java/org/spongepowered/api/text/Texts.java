@@ -121,10 +121,26 @@ public final class Texts {
         return factory.createPlain(content);
     }
 
-    public static Text parse(String json) {
+    /**
+     * Parses the specified JSON text and returns the parsed result.
+     *
+     * @param json The valid JSON text
+     * @return The parsed text
+     * @throws IllegalArgumentException If the JSON is invalid
+     */
+    public static Text parse(String json) throws IllegalArgumentException {
         throw new UnsupportedOperationException(); // TODO
     }
 
+    /**
+     * Parses the specified JSON text and returns the parsed result.
+     *
+     * <p>Unlike {@link #parse(String)} this will ignore some formatting errors and parse the JSON data more leniently.</p>
+     *
+     * @param json The JSON text
+     * @return The parsed text
+     * @throws IllegalArgumentException If the JSON couldn't be parsed
+     */
     public static Text parseLenient(String json) {
         throw new UnsupportedOperationException(); // TODO
     }

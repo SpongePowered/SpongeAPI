@@ -22,13 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.player.gamemode;
 
-import org.spongepowered.api.text.translation.Translatable;
-
-/**
- * Represents a game mode that a {@link org.spongepowered.api.entity.player.Player} may have.
- */
-public interface GameMode extends Translatable {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.selector;

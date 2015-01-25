@@ -33,10 +33,8 @@ import org.spongepowered.api.text.Text;
  * interface can be created through the {@link TitleBuilder} by calling
  * {@link Titles#builder()}.
  *
- * <p>
- * All properties of a title are optional - if they are not set it will use the
- * current default values from the client.
- * </p>
+ * <p> All properties of a title are optional - if they are not set it will use
+ * the current default values from the client. </p>
  */
 public interface Title {
 
@@ -59,9 +57,7 @@ public interface Title {
      * period of time is over, the title will stay for the amount of time from
      * {@link #getStay}.
      *
-     * <p>
-     * The default value for Vanilla is 20 (1 second).
-     * </p>
+     * <p> The default value for Vanilla is 20 (1 second). </p>
      *
      * @return The amount of ticks (1/20 second) for the fade in effect
      */
@@ -72,9 +68,7 @@ public interface Title {
      * Once this period of time is over, the title will fade out using the
      * duration specified from {@link #getFadeOut}.
      *
-     * <p>
-     * The default value for Vanilla is 60 (3 second).
-     * </p>
+     * <p> The default value for Vanilla is 60 (3 second). </p>
      *
      * @return The amount of ticks (1/20 second) for the stay effect
      */
@@ -83,9 +77,7 @@ public interface Title {
     /**
      * Returns the specified time to fade out the title on the client.
      *
-     * <p>
-     * The default value for Vanilla is 20 (1 second).
-     * </p>
+     * <p> The default value for Vanilla is 20 (1 second). </p>
      *
      * @return The amount of ticks (1/20 second) for the fade out effect
      */
@@ -104,9 +96,8 @@ public interface Title {
      * Returns whether this configuration is clearing the current title from the
      * screen and resetting the current configuration to the default values.
      *
-     * <p>
-     * This is recommended when you want to make sure to display a single title.
-     * </p>
+     * <p> This is recommended when you want to make sure to display a single
+     * title. </p>
      *
      * @return True if the current settings will be reset to the defaults
      */
