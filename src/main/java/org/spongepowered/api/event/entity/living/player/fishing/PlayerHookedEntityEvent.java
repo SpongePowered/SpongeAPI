@@ -37,18 +37,4 @@ import javax.annotation.Nullable;
  * {@link org.spongepowered.api.entity.Entity} with a fishing rod.
  */
 public interface PlayerHookedEntityEvent extends HumanHookedEntityEvent, PlayerFishEvent {
-
-    /**
-     * Gets the {@link org.spongepowered.api.entity.Entity} hooked, if available.
-     *
-     * @return The hooked {@link org.spongepowered.api.entity.Entity}
-     */
-    Optional<Entity> getCaughtEntity();
-
-    /**
-     * Sets the {@link org.spongepowered.api.entity.Entity} hooked, if available.
-     *
-     * @param entity The hooked {@Entity} to set
-     */
-    void setCaughtEntity(@Nullable Entity entity);
 }

@@ -38,32 +38,4 @@ import javax.annotation.Nullable;
  * a fishing line.
  */
 public interface PlayerRetractFishingLineEvent extends HumanRetractFishingLineEvent, PlayerFishEvent {
-
-    /**
-     * Gets the {@link org.spongepowered.api.item.inventory.ItemStack} that will be given, if available.
-     *
-     * @return The {@link org.spongepowered.api.item.inventory.ItemStack} that will be given
-     */
-    Optional<ItemStack> getCaughtItem();
-
-    /**
-     * Sets the {@link org.spongepowered.api.item.inventory.ItemStack} that will be given, if available.
-     *
-     * @param item The {@link org.spongepowered.api.item.inventory.ItemStack} to set
-     */
-    void setCaughtItem(@Nullable ItemStack item);
-
-    /**
-     * Gets the {@link org.spongepowered.api.entity.Entity} hooked, if available.
-     *
-     * @return The hooked {@link org.spongepowered.api.entity.Entity}
-     */
-    Optional<Entity> getCaughtEntity();
-
-    /**
-     * Sets the {@link org.spongepowered.api.entity.Entity} hooked, if available.
-     *
-     * @param entity The hooked {@Entity} to set
-     */
-    void setCaughtEntity(@Nullable Entity entity);
 }
