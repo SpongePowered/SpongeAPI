@@ -32,10 +32,11 @@ import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.achievement.Achievement;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
@@ -44,6 +45,7 @@ import org.spongepowered.api.util.command.CommandSource;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.annotation.Nullable;
 
 /**
@@ -82,6 +84,18 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @see Locales
      */
     Locale getLocale();
+
+    /**
+     * Sends the plain text message(s) with the specified {@link ChatType} on
+     * the client.
+     * <p>
+     * Use {@link #sendMessage(ChatType, Text...)} for a formatted message.
+     * </p>
+     *
+     * @param type The chat type to send the messages to
+     * @param message The message(s) to send
+     */
+    void sendMessage(ChatType type, String... message);
 
     /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
@@ -142,6 +156,13 @@ public interface Player extends Human, User, CommandSource, Viewer {
     PlayerConnection getConnection();
 
     /**
+     * Sends a given {@link ResourcePack} to this player.
+     *
+     * @param pack The ResourcePack to send
+     */
+    void sendResourcePack(ResourcePack pack);
+
+    /**
      * Gets this player's {@link TabList}.
      *
      * @return This player's TabList.
@@ -159,7 +180,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param reason The reason for the kick
      */
     void kick(Text.Literal reason);
-    
+
     /**
      * Gets the current value for the given {@link Statistic}. If the statistic
      * has not been set yet then {@link Optional#absent()} will be returned.
@@ -182,7 +203,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * Gets all {@link Statistic}s which belong to the given group, along with
      * their current values. Does not return statistics which have not been set
      * yet.
-     * 
+     *
      * @param group The group to retrieve
      * @return An immutable map containing all statistics within the group, and
      *         their values
