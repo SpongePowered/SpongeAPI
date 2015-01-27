@@ -23,3 +23,4 @@
  * THE SOFTWARE.
  */
 package org.spongepowered.api.event.entity.living.player.fishing;
+
