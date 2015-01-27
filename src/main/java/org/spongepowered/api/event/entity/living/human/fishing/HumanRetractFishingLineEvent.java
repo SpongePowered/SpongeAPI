@@ -61,7 +61,7 @@ public interface HumanRetractFishingLineEvent extends HumanFishEvent, Experience
     /**
      * Sets the {@link Entity} hooked, if available.
      *
-     * @param entity The hooked {@Entity} to set
+     * @param entity The hooked {@link Entity} to set
      */
     void setCaughtEntity(@Nullable Entity entity);
 }

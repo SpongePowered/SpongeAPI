@@ -36,8 +36,9 @@ import org.spongepowered.api.util.event.Cancellable;
 public interface HumanFishEvent extends HumanEvent, Cancellable {
 
     /**
-     * Gets the {@link org.spongepowered.api.entity.projectile.FishHook} used in this event
-     * @return
+     * Gets the {@link FishHook} used in this event.
+     * 
+     * @return The {@link FishHook used} in this event
      */
     FishHook getFishHook();
 }

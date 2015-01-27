@@ -37,16 +37,16 @@ import javax.annotation.Nullable;
 public interface HumanHookedEntityEvent extends HumanFishEvent, HumanEvent {
 
     /**
-     * Gets the {@link org.spongepowered.api.entity.Entity} hooked, if available.
+     * Gets the {@link Entity} hooked, if available.
      *
-     * @return The hooked {@link org.spongepowered.api.entity.Entity}
+     * @return The hooked {@link Entity}
      */
     Optional<Entity> getCaughtEntity();
 
     /**
      * Sets the {@link Entity} hooked, if available.
      *
-     * @param entity The hooked {@Entity} to set
+     * @param entity The hooked {@link Entity} to set
      */
     void setCaughtEntity(@Nullable Entity entity);
 }
