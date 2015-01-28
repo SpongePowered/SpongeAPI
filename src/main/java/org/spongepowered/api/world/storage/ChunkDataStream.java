@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.world.storage;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.world.Chunk;
 
-import java.util.Iterator;
+import java.util.concurrent.Future;
+
+import javax.annotation.Nullable;
 
 /**
  * A chunk iterator represents a buffer for obtaining chunk data from
@@ -39,9 +41,44 @@ import java.util.Iterator;
  * the chunks represented by {@link DataContainer}s should be avoided
  * <strong>AT ALL COSTS</strong>. The data represented is a copy and
  * therefore shouldn't be considered synchronized to live data.</p>
- * <p>Removing is not supported <strong>AT ALL AND WILL THROW AN EXCEPTION</strong></p>
+ *
+ * <p>This is a data stream from the chunk storage system and should be
+ * used in an asynchronous thread from the main thread.</p>
  *
  */
-public interface ChunkIterator extends Iterator<Optional<DataContainer>> {
+public interface ChunkDataStream {
+
+    /**
+     * Gets the next {@link Chunk} represented by a read only {@link DataContainer}.
+     *
+     * <p>This method BLOCKS the thread until the next available data has been
+     * read.</p>
+     *
+     * <p>This may not return a {@link DataContainer} in the event there is no
+     * chunk data available to read.</p>
+     *
+     * @return The chunk data represented by a data container
+     */
+    @Nullable DataContainer next();
+
+    /**
+     * Checks if there is an available chunk to represent.
+     *
+     * @return Whether there is more data that can be read
+     */
+    boolean hasNext();
+
+    /**
+     * Gets the number of chunks available to read as {@link DataContainer}s.
+     *
+     * @return The number of remaining chunks available to read
+     */
+    int available();
+
+    /**
+     * Resets this stream to read from the beginning of the collection of
+     * chunks.
+     */
+    void reset();
 
 }
