@@ -26,6 +26,7 @@
 package org.spongepowered.api.block;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Direction;
@@ -261,14 +262,14 @@ public interface BlockLoc extends DataHolder {
 
     /**
      * Test whether the the block will block the movement of entities.
-     * 
+     *
      * @return Blocks movement
      */
     boolean isPassable();
-    
+
     /**
      * Test whether the given face of the block can catch fire.
-     * 
+     *
      * @param direction The face of the block to check
      * @return Is flammable
      */
@@ -284,4 +285,13 @@ public interface BlockLoc extends DataHolder {
      * @return A snapshot
      */
     BlockSnapshot getSnapshot();
+
+    /**
+     * Test whether a player can harvest this block with silk touch.
+     *
+     * @param player The player who will destroy the block
+     * @return Whether it can be harvested with silk touch
+     */
+    boolean willSilkTouchHarvest(Player player);
+
 }
