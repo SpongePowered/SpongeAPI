@@ -26,13 +26,22 @@
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
+import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Represents a task that has been scheduled.
  */
 public interface Task extends Identifiable {
+
+    public enum TaskSynchroncity {
+        SYNCHRONOUS,
+        ASYNCHRONOUS
+    }
 
     /**
      * Gets the name of this task.
@@ -51,14 +60,14 @@ public interface Task extends Identifiable {
     /**
      * Gets the delay that the task was scheduled to run after.
      *
-     * @return The delay
+     * @return The delay (offset) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
     Optional<Long> getDelay();
 
     /**
-     * Gets the interval for repeating tasks in ticks.
+     * Gets the interval for repeating tasks
      *
-     * @return The interval (period) in ticks.
+     * @return The interval (period) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
     Optional<Long> getInterval();
 
@@ -74,5 +83,45 @@ public interface Task extends Identifiable {
      *
      * @return The runnable
      */
-    Runnable getRunnable();
+    Optional<Runnable> getRunnable();
+
+    /**
+     * Gets the truth if the Task is Synchronous
+     *
+     * @return The truth if the task is synchronous
+     */
+    public boolean isSynchronous();
+
+    /**
+     * <p>Set the name of the Task.</p>
+     *
+     * <p>If the name is not set by the user, by default, the name of
+     * the task will be the form:<br>
+     * <tt>PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID</tt>
+     * </p>
+     *
+     * <p>The default name of the task is set when the Task is created by the Scheduler.</p>
+     *
+     * <p>If the <tt>PLUGIN_ID</tt> is not known, the string
+     * <tt>Unknown</tt> will be used.</p>
+     *
+     * <p>
+     * Examples of default Task names:<br>
+     *
+     * <tt>FooPlugin-A12"</tt><br>
+     * <tt>"BarPlugin-S4322"</tt><br>
+     * </p>
+     *
+     * <p>No two active Synchronous Tasks will have the same Sequence number.
+     * No two active Asynchronous Tasks will have the same Sequence number.</p>
+     *
+     * <p>There is no check made on the requested Task name.   It can be any String
+     * that is not null.  If the requested name is null, the name of the task is
+     * not changed.</p>
+     *
+     * @param name  The name of the task requested.
+     * @return The current name of the Task after trying to set the name of the task.
+     */
+    public String setName(String name);
+
 }
