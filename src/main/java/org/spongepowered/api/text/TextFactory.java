@@ -30,7 +30,7 @@ import org.spongepowered.api.text.translation.Translation;
  * Represents the required implementation for the static methods in
  * {@link Texts}.
  */
-interface TextFactory {
+public interface TextFactory {
 
     /**
      * Creates a {@link TextBuilder} with empty text.

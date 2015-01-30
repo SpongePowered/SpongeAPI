@@ -34,7 +34,7 @@ import java.net.URL;
  * Represents the required implementation for the static methods in
  * {@link TextActions}.
  */
-interface TextActionFactory {
+public interface TextActionFactory {
 
     /**
      * Creates a new {@link ClickAction.OpenUrl} instance that will ask the
