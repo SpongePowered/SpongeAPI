@@ -30,6 +30,7 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
+import org.spongepowered.api.text.message.Message;
 
 import javax.annotation.Nullable;
 
@@ -123,7 +124,7 @@ public interface Objective {
      * @param entry The entry whose score to get
      * @return The {@link Score} for the specified entry
      */
-    Score getScore(String entry);
+    Score getScore(Message entry);
 
     /**
      * Unregisters this objective from the Scoreboard.

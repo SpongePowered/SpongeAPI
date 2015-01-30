@@ -26,6 +26,7 @@ package org.spongepowered.api.scoreboard;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.objective.Objective;
+import org.spongepowered.api.text.message.Message;
 
 /**
  * A score entry for an {@link Objective}. Changing this will not affect any other
@@ -38,7 +39,7 @@ public interface Score {
      *
      * @return The name of this score's entry
      */
-    String getEntry();
+    Message getEntry();
 
     /**
      * Gets the {@link Objective} this score belongs to, if it hasn't been removed.

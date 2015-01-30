@@ -29,6 +29,7 @@ import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
+import org.spongepowered.api.text.message.Message;
 
 import java.util.Set;
 
@@ -90,14 +91,14 @@ public interface Scoreboard {
      * @param entry The entry whose scores are being retrieved
      * @return A set of all scores for the entry
      */
-    Set<Score> getScores(String entry);
+    Set<Score> getScores(Message entry);
 
     /**
      * Removes all scores for an entry on this scoreboard.
      *
      * @param entry The entry to drop all current scores for
      */
-    void removeScores(String entry);
+    void removeScores(Message entry);
 
     /**
      * Gets a {@link User}'s {@link Team} on this scoreboard.
