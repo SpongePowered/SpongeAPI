@@ -25,31 +25,35 @@
 package org.spongepowered.api.entity.projectile;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.entity.Entity;
 
 import javax.annotation.Nullable;
 
 /**
  * Represents a fish hook.
  */
-public interface FishHook extends Projectile {
+public interface FishHook extends DamagingProjectile {
 
     /**
-     * Sets the hooked item for this fish hook.
-     * <p>The hooked item may change depending on the type of fishing rod
-     * used to cast this fish hook. The hooked item may also be null.</p>
+     * Gets the hooked entity for this fish hook.
+     *
+     * <p>Fishooks can attach to {@link Entity} objects in the world,
+     * as though they are temporarily leashed. The hooked entity may
+     * also be null.</p>
      *
      * @return The hooked item, if available
      */
-    Optional<ItemStack> getHookedItem();
+    Optional<Entity> getHookedEntity();
 
     /**
-     * Sets the hooked item for this fish hook.
-     * <p>The hooked item may change depending on the type of fishing rod
-     * used to cast this fish hook. The hooked item may also be null.</p>
+     * Sets the hooked entity for this fish hook.
      *
-     * @param item The hooked item
+     * <p>Fishooks can attach to {@link Entity} objects in the world,
+     * as though they are temporarily leashed. The hooked entity may
+     * also be null.</p>
+     *
+     * @param entity The hooked entity
      */
-    void setHookedItem(@Nullable ItemStack item);
+    void setHookedEntity(@Nullable Entity entity);
 
 }
