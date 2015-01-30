@@ -37,7 +37,7 @@ public interface HumanFishEvent extends HumanEvent, Cancellable {
 
     /**
      * Gets the {@link FishHook} used in this event.
-     * 
+     *
      * @return The {@link FishHook used} in this event
      */
     FishHook getFishHook();
