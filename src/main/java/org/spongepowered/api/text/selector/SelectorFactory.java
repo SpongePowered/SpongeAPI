@@ -28,7 +28,7 @@ package org.spongepowered.api.text.selector;
  * Represents the required implementation for the static methods in
  * {@link Selectors}, {@link Arguments} and {@link ArgumentTypes}.
  */
-interface SelectorFactory {
+public interface SelectorFactory {
 
     /**
      * Creates a {@link SelectorBuilder} with no type set and no arguments.
