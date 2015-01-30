@@ -38,6 +38,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public interface Living extends Entity, AttributeHolder {
+
     /**
      * Subtracts from the health by the given amount.
      *
@@ -48,12 +49,16 @@ public interface Living extends Entity, AttributeHolder {
     /**
      * Returns the health amount.
      *
-     * <p>The range of the health depends on the object on which this method is
+     * <p>
+     * The range of the health depends on the object on which this method is
      * defined. For players in Minecraft, the nominal range is between 0 and 20,
-     * inclusive, but the range can be adjusted.</p>
+     * inclusive, but the range can be adjusted.
+     * </p>
      *
-     * <p>Convention dictates that health does not follow below 0 but this
-     * convention may be broken.</p>
+     * <p>
+     * Convention dictates that health does not follow below 0 but this
+     * convention may be broken.
+     * </p>
      *
      * @return Health value
      */
@@ -62,12 +67,16 @@ public interface Living extends Entity, AttributeHolder {
     /**
      * Sets the health amount.
      *
-     * <p>The range of the health depends on the object on which this method is
+     * <p>
+     * The range of the health depends on the object on which this method is
      * defined. For players in Minecraft, the nominal range is between 0 and 20,
-     * inclusive, but the range can be adjusted.</p>
+     * inclusive, but the range can be adjusted.
+     * </p>
      *
-     * <p>Convention dictates that health does not follow below 0 but this
-     * convention may be broken.</p>
+     * <p>
+     * Convention dictates that health does not follow below 0 but this
+     * convention may be broken.
+     * </p>
      *
      * @param health The health to set to
      */
@@ -76,18 +85,22 @@ public interface Living extends Entity, AttributeHolder {
     /**
      * Gets the current maximum health.
      *
-     * <p>The maximum health may or may not include all attribute increasing
-     * health points.</p>
+     * <p>
+     * The maximum health may or may not include all attribute increasing health
+     * points.
+     * </p>
      *
      * @return This entities maximum health
      */
     double getMaxHealth();
 
     /**
-     * Sets the current maximum health. <p>The maximum health set here may
-     * affect the attribute increasing health points. The base health should be
-     * minded that it may be lower than the total maximum health of this
-     * entity.</p>
+     * Sets the current maximum health.
+     * <p>
+     * The maximum health set here may affect the attribute increasing health
+     * points. The base health should be minded that it may be lower than the
+     * total maximum health of this entity.
+     * </p>
      *
      * @param maxHealth The maximum health for this entity
      */
@@ -96,8 +109,10 @@ public interface Living extends Entity, AttributeHolder {
     /**
      * Adds a {@link PotionEffect} to this entity.
      *
-     * <p> If a conflicting {@link PotionEffect} already exists, this will not
-     * be applied unless force is specified. </p>
+     * <p>
+     * If a conflicting {@link PotionEffect} already exists, this will not be
+     * applied unless force is specified.
+     * </p>
      *
      * @param potionEffect The {@link PotionEffect} to add.
      * @param force Whether or not to forcibly add it.
@@ -107,8 +122,10 @@ public interface Living extends Entity, AttributeHolder {
     /**
      * Adds a list of {@link PotionEffect}s to this entity.
      *
-     * <p> If a conflicting {@link PotionEffect} already exists, this will not
-     * be applied unless force is specified. </p>
+     * <p>
+     * If a conflicting {@link PotionEffect} already exists, this will not be
+     * applied unless force is specified.
+     * </p>
      *
      * @param potionEffects The {@link PotionEffect}s to add.
      * @param force Whether or not to forcibly add it.
@@ -139,16 +156,20 @@ public interface Living extends Entity, AttributeHolder {
     List<PotionEffect> getPotionEffects();
 
     /**
-     * Gets the living entity that last attacked this one. <p>The last attacker
-     * may expire over time or when the attacker died.</p>
+     * Gets the living entity that last attacked this one.
+     * <p>
+     * The last attacker may expire over time or when the attacker died.
+     * </p>
      *
      * @return The last attacker of this entity
      */
     Optional<Living> getLastAttacker();
 
     /**
-     * Sets the last living entity to have attacked this entity. <p>The last
-     * attacker may expire over time or when the attacker died.</p>
+     * Sets the last living entity to have attacked this entity.
+     * <p>
+     * The last attacker may expire over time or when the attacker died.
+     * </p>
      *
      * @param lastAttacker The last attacker
      */
@@ -239,16 +260,22 @@ public interface Living extends Entity, AttributeHolder {
     void setMaxInvulnerabilityTicks(int ticks);
 
     /**
-     * Gets the custom display name of this entity. <p>Custom names may appear
-     * overhead or when in the line of sight of a player.</p>
+     * Gets the custom display name of this entity.
+     * <p>
+     * Custom names may appear overhead or when in the line of sight of a
+     * player.
+     * </p>
      *
      * @return The custom name
      */
     String getCustomName();
 
     /**
-     * Sets the custom display name of this entity. <p>Custom names may appear
-     * overhead or when in the line of sight of a player.</p>
+     * Sets the custom display name of this entity.
+     * <p>
+     * Custom names may appear overhead or when in the line of sight of a
+     * player.
+     * </p>
      *
      * @param name The custom name
      */
