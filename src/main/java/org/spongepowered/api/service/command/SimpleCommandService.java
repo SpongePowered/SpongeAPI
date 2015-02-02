@@ -39,6 +39,7 @@ import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.event.EventManager;
+import org.spongepowered.api.util.command.CommandAuthorizationException;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -100,7 +101,10 @@ public class SimpleCommandService implements CommandService {
         } catch (CommandException e) {
             event.setCancelled(true);
             log.warn("Failed to execute a command", e);
-        }
+        } catch (CommandAuthorizationException e) {
+			event.setCancelled(true);
+			log.warn("Failed to authorize the execution of a command", e);
+		}
     }
 
     @Override
