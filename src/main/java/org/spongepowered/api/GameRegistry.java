@@ -72,13 +72,17 @@ import java.util.UUID;
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
  *
- * <p>Note that the registries may be in flux, especially during game initialization. These will be accurate for the time they are called, however
- * they may change at a later point. Do not assume that the contents of a list will be all the entries that will exist.</p>
+ * <p>Note that the registries may be in flux, especially during game
+ * initialization. These will be accurate for the time they are called, however
+ * they may change at a later point. Do not assume that the contents of a list
+ * will be all the entries that will exist.</p>
  *
- * <p>Some of the returned instances my become incorrect if they are later overwritten. However, this should occur prior to
+ * <p>Some of the returned instances my become incorrect if they are later
+ * overwritten. However, this should occur prior to
  * {@link GameState#POST_INITIALIZATION}.</p>
  */
 public interface GameRegistry {
+
     /**
      * Gets a {@link BlockType} by its identifier.
      *
@@ -361,8 +365,7 @@ public interface GameRegistry {
      *
      * @return A list containing all game modes in registry
      */
-    // TODO: GameMode from string? Should add 'String getId()' to GameMode if
-    // so.
+    // TODO: GameMode from string? Should add 'String getId()' to GameMode if so.
     List<GameMode> getGameModes();
 
     /**
@@ -370,8 +373,7 @@ public interface GameRegistry {
      *
      * @return A list containing all potion effect types in registry
      */
-    // TODO: PotionEffectType from string? Should add 'String getId()' to
-    // PotionEffectType if so.
+    // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
     List<PotionEffectType> getPotionEffects();
 
     /**
@@ -427,6 +429,7 @@ public interface GameRegistry {
     List<Rotation> getRotations();
 
     // TODO: Find a better place for these methods
+
     /**
      * Creates a new {@link GameProfile} using the specified unique identifier and name.
      *
@@ -437,7 +440,8 @@ public interface GameRegistry {
     GameProfile createGameProfile(UUID uuid, String name);
 
     /**
-     * Loads a {@link Favicon} from the specified encoded string. The format of the input depends on the implementation.
+     * Loads a {@link Favicon} from the specified encoded string. The format of
+     * the input depends on the implementation.
      *
      * @param raw The encoded favicon
      * @return The loaded favicon
@@ -481,9 +485,9 @@ public interface GameRegistry {
      * @throws IOException If the favicon couldn't be loaded
      */
     Favicon loadFavicon(BufferedImage image) throws IOException;
-
+    
     /**
-     * Gets the {@link NotePitch} with the provided name.
+     * Gets the {@link NotePitch} with the provided name. 
      *
      * @param name The name of the note pitch
      * @return The {@link NotePitch} with the given name or Optional.absent() if not found
@@ -498,7 +502,7 @@ public interface GameRegistry {
     List<NotePitch> getNotePitches();
 
     /**
-     * Gets the {@link SkullType} with the provided name.
+     * Gets the {@link SkullType} with the provided name. 
      *
      * @param name The name of the skull type
      * @return The {@link SkullType} with the given name or Optional.absent() if not found
@@ -513,15 +517,15 @@ public interface GameRegistry {
     List<SkullType> getSkullTypes();
 
     /**
-     * Gets the {@link BannerPatternShape} with the provided name.
+     * Gets the {@link BannerPatternShape} with the provided name. 
      *
      * @param name The name of the BannerPatternShape
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShape(String name);
-
+    
     /**
-     * Gets the {@link BannerPatternShape} with the provided name.
+     * Gets the {@link BannerPatternShape} with the provided name. 
      *
      * @param id The id of the BannerPatternShape
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
