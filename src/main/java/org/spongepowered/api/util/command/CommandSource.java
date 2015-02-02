@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.util.command;
 
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.message.Message;
 
 /**
@@ -33,7 +34,7 @@ import org.spongepowered.api.text.message.Message;
  * <p>Examples of potential implementations include players, the server console,
  * RCON clients, web-based clients, command blocks, and so on.</p>
  */
-public interface CommandSource {
+public interface CommandSource extends Subject {
 
     /**
      * Sends the plain text message(s) to source when possible.

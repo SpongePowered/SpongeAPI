@@ -26,7 +26,7 @@ package org.spongepowered.api.status;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
-import org.spongepowered.api.GameVersion;
+import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.text.message.Message;
 
@@ -66,7 +66,7 @@ public interface StatusResponse {
      *
      * @return The server version
      */
-    GameVersion getVersion();
+    MinecraftVersion getVersion();
 
     /**
      * Represents the player count, slots and a list of players current playing

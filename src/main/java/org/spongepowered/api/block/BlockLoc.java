@@ -89,6 +89,15 @@ public interface BlockLoc extends DataHolder {
     int getZ();
 
     /**
+     * Gets the block in the given direction of this block.
+     *
+     * @param direction The direction to look in
+     *
+     * @return The block in that direction
+     */
+    BlockLoc getRelative(Direction direction);
+
+    /**
      * Get the base type of block.
      *
      * <p>The type does not include block data such as the contents of

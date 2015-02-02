@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector2i;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableListMultimap;
@@ -140,7 +140,7 @@ public interface ChunkManager {
      * @return The set of all force-loaded chunk coordinates and the tickets
      *         that are loading those chunks
      */
-    ImmutableSetMultimap<Vector2i, LoadingTicket> getForcedChunks(World world);
+    ImmutableSetMultimap<Vector3i, LoadingTicket> getForcedChunks(World world);
 
     interface LoadingTicket {
 
@@ -182,7 +182,7 @@ public interface ChunkManager {
          *
          * @return The set of force-loaded chunks
          */
-        ImmutableSet<Vector2i> getChunkList();
+        ImmutableSet<Vector3i> getChunkList();
 
         /**
          * Force-loads a chunk using this ticket. If the configured concurrently
@@ -194,14 +194,14 @@ public interface ChunkManager {
          *
          * @param chunk The chunk to force-load
          */
-        void forceChunk(Vector2i chunk);
+        void forceChunk(Vector3i chunk);
 
         /**
          * Removes a chunk from the force-loaded set of this ticket.
          *
          * @param chunk The chunk to remove from force-loading
          */
-        void unforceChunk(Vector2i chunk);
+        void unforceChunk(Vector3i chunk);
 
         /**
          * Reorders a chunk to count as the 'newest' loaded chunk, making it
@@ -209,7 +209,7 @@ public interface ChunkManager {
          *
          * @param chunk The chunk to reorder
          */
-        void prioritizeChunk(Vector2i chunk);
+        void prioritizeChunk(Vector3i chunk);
 
         /**
          * Releases this ticket, removing all associated chunks and freeing up the

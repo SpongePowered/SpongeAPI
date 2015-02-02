@@ -27,7 +27,7 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 
 /**
- * Called when an {@link Entity} is interacted with.
+ * Called when an {@link Entity} is interacting with something.
  */
 public interface EntityInteractEvent extends EntityEvent {
 

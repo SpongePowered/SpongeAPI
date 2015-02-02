@@ -28,7 +28,7 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents an Arrow.
  */
-public interface Arrow extends Projectile {
+public interface Arrow extends DamagingProjectile {
 
     /**
      * Returns whether this arrow is a critical arrow or not.
