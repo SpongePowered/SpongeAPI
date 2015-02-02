@@ -558,7 +558,7 @@ public interface GameRegistry {
     /**
      * Gets a new {@link AttributeModifierBuilder}.
      * 
-     * @return A new AttributeModifierBuilder.
+     * @return A new AttributeModifierBuilder
      */
     AttributeModifierBuilder getAttributeModifierBuilder();
 }
