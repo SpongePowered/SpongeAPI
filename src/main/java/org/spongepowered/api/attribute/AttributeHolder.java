@@ -35,7 +35,8 @@ public interface AttributeHolder {
      * Calculates the value of a certain {@link Attribute} on this holder.
      * 
      * @param attribute The Attribute to find the value of
-     * @return The value of a certain Attribute on this holder, or Optional.absent() if the attribute is not applicable
+     * @return The value of a certain Attribute on this holder, or
+     *         Optional.absent() if the attribute is not applicable
      */
     Optional<Double> getAttributeValue(Attribute attribute);
 
@@ -44,7 +45,8 @@ public interface AttributeHolder {
      * 
      * @param attribute The Attribute to set the base value of
      * @param base The new base value
-     * @throws IllegalArgumentException If the base value exceeds the maximum or is below the minimum of the {@link Attribute}
+     * @throws IllegalArgumentException If the base value exceeds the maximum or
+     *         is below the minimum of the {@link Attribute}
      */
     void setBase(Attribute attribute, double base) throws IllegalArgumentException;
 
@@ -57,17 +59,19 @@ public interface AttributeHolder {
     double getBase(Attribute attribute);
 
     /**
-     * Gets a list of all applied modifiers.
+     * Gets a collection of all applied modifiers.
      * 
-     * @return A list of all applied modifiers
+     * @return A collection all applied modifiers
      */
-    List<AttributeModifier> getAllModifiers();
+    Collection<AttributeModifier> getAllModifiers();
 
     /**
      * Adds a {@link AttributeModifier} to this holder.
      * 
      * @param modifier The AttributeModifier to add
-     * @throws IllegalArgumentException If the AttributeModifier's {@link Attribute}'s {@link AttributeTarget} cannot apply to this holder
+     * @throws IllegalArgumentException If the AttributeModifier's
+     *         {@link Attribute}'s {@link AttributeTarget} cannot apply to this
+     *         holder
      */
     void addModifier(AttributeModifier modifier) throws IllegalArgumentException;
 
@@ -75,12 +79,15 @@ public interface AttributeHolder {
      * Adds multiple {@link AttributeModifier} to this holder.
      * 
      * @param modifiers The AttributeModifiers to add
-     * @throws IllegalArgumentException If any of the AttributeModifiers' {@link Attribute}s' {@link AttributeTarget}s' cannot apply to this holder
+     * @throws IllegalArgumentException If any of the AttributeModifiers'
+     *         {@link Attribute}s' {@link AttributeTarget}s' cannot apply to
+     *         this holder
      */
     void addModifiers(Collection<AttributeModifier> modifiers) throws IllegalArgumentException;
 
     /**
-     * Gets all {@link AttributeModifier}s that apply to a certain {@link Attribute}.
+     * Gets all {@link AttributeModifier}s that apply to a certain
+     * {@link Attribute}.
      * 
      * @param attribute The attribute to find modifiers of
      * @return All AttributeModifiers that apply to a certain Attribute
