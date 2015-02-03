@@ -22,15 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living;
 
-package org.spongepowered.api.entity.living.animal;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
 
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.entity.living.Leashable;
+import javax.annotation.Nullable;
 
 /**
- * Represents an Animal, such as a Cow.
+ * Leashables are entities that can be interacted with by players wielding a {@link org.spongepowered.api.item.ItemTypes#LEAD}
  */
-public interface Animal extends Ageable, Leashable {
+public interface Leashable {
+
+    /**
+     * Returns whether this Leashable is leashed.
+     *
+     * @return True if this Leashable is leashed
+     */
+    boolean isLeashed();
+
+    /**
+     * Sets whether this Leashable is leashed or not.
+     *
+     * @param leashed Whether this Leashable is leashed or not
+     */
+    void setLeashed(boolean leashed);
+
+    /**
+     * Gets the holder of this leashed entity, if available.
+     *
+     * @return The leash holder, if available
+     */
+    Optional<Entity> getLeashHolder();
+
+    /**
+     * Sets the holder of this leashed entity.
+     *
+     * @param entity The entity to hold the leash
+     */
+    void setLeashHolder(@Nullable Entity entity);
 
 }
