@@ -27,6 +27,10 @@ package org.spongepowered.api.event.attribute;
 
 import org.spongepowered.api.attribute.AttributeModifier;
 
+/**
+ * An event fired when an {@link Attribute} is modified by an
+ * {@link AttributeModifier}.
+ */
 public interface AttributeModifiedEvent extends AttributeEvent {
 
     /**

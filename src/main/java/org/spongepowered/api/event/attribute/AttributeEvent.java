@@ -29,12 +29,15 @@ import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.util.event.Cancellable;
 
+/**
+ * An event fired when an {@link Attribute} is changed in any way.
+ */
 public interface AttributeEvent extends Cancellable {
 
     /**
-     * Gets the {@link AttributeHolder} who's attributes are being changed.
+     * Gets the {@link AttributeHolder} whose attributes are being changed.
      * 
-     * @return The AttributeHolder who's attributes are being changed
+     * @return The AttributeHolder whose attributes are being changed
      */
     AttributeHolder getHolder();
 
