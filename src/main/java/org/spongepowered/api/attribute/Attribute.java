@@ -63,16 +63,18 @@ public interface Attribute {
     double getDefaultBase();
 
     /**
-     * Gets the target of this attribute.
+     * Gets a predicate to decide if a given {@link AttributeHolder} can have
+     * this attribute applied to it.
      * 
-     * @return The target of this attribute
+     * @return A predicate to decide if a given AttributeHolder can have this
+     *         attribute applied to it
      */
-    Predicate<AttributeHolder> getTarget();
+    Predicate<AttributeHolder> getTargets();
 
     /**
      * Gets the name of this attribute.
      * 
-     * @return The name of this attribute.
+     * @return The name of this attribute
      */
     Message getName();
 
