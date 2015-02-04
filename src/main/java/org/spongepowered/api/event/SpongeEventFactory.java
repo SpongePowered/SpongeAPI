@@ -870,7 +870,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("fishHook", fishHook);
-        values.put("caughtEntity", caughtEntity);
+        values.put("caughtEntity", Optional.fromNullable(caughtEntity));
         return createEvent(PlayerHookedEntityEvent.class, values);
     }
 
@@ -892,7 +892,8 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("fishHook", fishHook);
-        values.put("caughtEntity", caughtEntity);
+        values.put("caughtEntity", Optional.fromNullable(caughtEntity));
+        values.put("caughtItem", Optional.fromNullable(caughtItem));
         return createEvent(PlayerRetractFishingLineEvent.class, values);
     }
 
