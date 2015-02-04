@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.attribute;
 
+/**
+ * Represents an type of attribute that can be applied to a
+ * {@link AttributeHolder}.
+ */
 public interface Attribute {
 
     /**

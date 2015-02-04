@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.attribute;
 
+/**
+ * An enumeration of all {@link AttributeTarget}s present in vanilla Minecraft.
+ */
 public final class AttributeTargets {
 
     public static final AttributeTarget GENERIC = null;

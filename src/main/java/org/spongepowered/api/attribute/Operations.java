@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.attribute;
 
+/**
+ * An enumeration of all {@link Operation}s present in vanilla Minecraft.
+ */
 public final class Operations {
 
     public static final Operation ADD_AMOUNT = null;

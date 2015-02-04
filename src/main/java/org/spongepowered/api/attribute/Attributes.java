@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.attribute;
 
+/**
+ * An enumeration of all {@link Attribute}s present in vanilla Minecraft.
+ */
 public final class Attributes {
 
     public static final Attribute GENERIC_MAX_HEALTH = null;

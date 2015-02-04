@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.attribute;
 
+/**
+ * A builder used to create {@link AttributeModifier}s.
+ */
 public interface AttributeModifierBuilder {
 
     /**

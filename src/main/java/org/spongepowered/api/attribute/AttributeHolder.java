@@ -29,6 +29,10 @@ import com.google.common.base.Optional;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Represents some kind of object that can have {@link Attribute}s assigned to
+ * it that can be modified by {@link AttributeModifier}s.
+ */
 public interface AttributeHolder {
 
     /**

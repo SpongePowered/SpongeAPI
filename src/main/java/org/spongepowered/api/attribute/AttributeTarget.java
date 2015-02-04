@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.attribute;
 
+/**
+ * Represents a function to find out if an {@link AttributeHolder} can have a
+ * certain {@link Attribute} applied to it.
+ */
 public interface AttributeTarget {
 
     /**

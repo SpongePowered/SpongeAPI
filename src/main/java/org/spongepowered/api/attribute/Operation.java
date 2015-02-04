@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.attribute;
 
+/**
+ * Represents a function used by an {@link AttributeModifier} to modify the
+ * value of an {@link Attribute}.
+ */
 public interface Operation {
 
     /**
