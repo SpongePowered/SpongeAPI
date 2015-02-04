@@ -193,9 +193,9 @@ public interface Team {
     Optional<Scoreboard> getScoreboard();
 
     /**
-     * Adds the specified {@link User} to this team for the scoreboard.
+     * Adds the specified {@link User} to this team for the {@link Scoreboard}.
      *
-     * <p>This will remove the {@link User} from any other team on the scoreboard.</p>
+     * <p>This will remove the {@link User} from any other team on the {@link Scoreboard}.</p>
      *
      * @param user The {@link User} to add
      */
@@ -210,7 +210,7 @@ public interface Team {
     boolean removeUser(User user);
 
     /**
-     * Unregisters this team from the Scoreboard.
+     * Unregisters this team from the {@link Scoreboard}.
      */
     void unregister();
 

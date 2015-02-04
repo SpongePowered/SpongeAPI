@@ -34,7 +34,7 @@ public interface Visibility {
     /**
      * Gets the name of this visibility.
      *
-     * @return The name of this Visibility
+     * @return The name of this visibility
      */
     String getName();
 

@@ -54,7 +54,7 @@ public interface Objective {
      *
      * @return The objective's display name
      */
-    String getDisplayName();
+    Message getDisplayName();
 
     /**
      * Sets the name displayed to players.
@@ -63,7 +63,7 @@ public interface Objective {
      * @throws IllegalArgumentException if displayName is longer than 32
      *     characters
      */
-    void setDisplayName(String displayName) throws IllegalArgumentException;
+    void setDisplayName(Message displayName) throws IllegalArgumentException;
 
     /**
      * Gets the criterion for this objective.
@@ -87,17 +87,6 @@ public interface Objective {
     void setScoreboard(Scoreboard scoreboard);
 
     /**
-     * Sets this objective to display on the specified slot for the
-     * scoreboard, removing it from any other display slot.
-     *
-     * <p>If another objective is set to the same display slot, that objective will
-     * have it's display slot set to <code>null</code>.</p>
-     *
-     * @param slot The display slot to change, or null to not display
-     */
-    void setDisplaySlot(@Nullable DisplaySlot slot);
-
-    /**
      * Gets the {@link ObjectiveDisplayMode} used to display this objective.
      *
      * @return The {@link ObjectiveDisplayMode} used to display this objective
@@ -117,6 +106,17 @@ public interface Objective {
      * @return The display slot for this objective, if set
      */
     Optional<DisplaySlot> getDisplaySlot();
+
+    /**
+     * Sets this objective to display on the specified slot for the
+     * scoreboard, removing it from any other display slot.
+     *
+     * <p>If another objective is set to the same display slot, that objective will
+     * have it's display slot set to <code>null</code>.</p>
+     *
+     * @param slot The display slot to change, or null to not display
+     */
+    void setDisplaySlot(@Nullable DisplaySlot slot);
 
     /**
      * Gets an entry's {@link Score} for this Objective.
