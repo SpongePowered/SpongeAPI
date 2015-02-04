@@ -26,6 +26,8 @@ package org.spongepowered.api.attribute;
 
 import org.spongepowered.api.text.message.Message;
 
+import com.google.common.base.Predicate;
+
 /**
  * Represents an type of attribute that can be applied to a
  * {@link AttributeHolder}.
@@ -65,7 +67,7 @@ public interface Attribute {
      * 
      * @return The target of this attribute
      */
-    AttributeTarget getTarget();
+    Predicate<AttributeHolder> getTarget();
 
     /**
      * Gets the name of this attribute.

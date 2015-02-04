@@ -543,7 +543,8 @@ public interface GameRegistry {
      * Gets an {@link Attribute} by name.
      * 
      * @param name The name to find
-     * @return An Attribute if one could be found, otherwise Optional.absent()
+     * @return An Attribute if one could be found, otherwise
+     *         {@link Optional#absent()}.
      */
     Optional<Attribute> getAttribute(String name);
 
@@ -551,7 +552,8 @@ public interface GameRegistry {
      * Gets an {@link Operation} by id.
      * 
      * @param id The id to find
-     * @return An Operation if one could be found, otherwise Optional.absent()
+     * @return An Operation if one could be found, otherwise
+     *         {@link Optional#absent()}.
      */
     Optional<Operation> getOperation(int id);
 

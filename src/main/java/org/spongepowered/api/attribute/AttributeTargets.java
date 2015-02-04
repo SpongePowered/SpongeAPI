@@ -24,15 +24,17 @@
  */
 package org.spongepowered.api.attribute;
 
+import com.google.common.base.Predicate;
+
 /**
- * An enumeration of all {@link AttributeTarget}s present in vanilla Minecraft.
+ * An enumeration of all attribute targets present in vanilla Minecraft.
  */
 public final class AttributeTargets {
 
-    public static final AttributeTarget GENERIC = null;
-    public static final AttributeTarget HORSE = null;
-    public static final AttributeTarget ZOMBIE = null;
-    public static final AttributeTarget UNKNOWN = null;
+    public static final Predicate<AttributeHolder> GENERIC = null;
+    public static final Predicate<AttributeHolder> HORSE = null;
+    public static final Predicate<AttributeHolder> ZOMBIE = null;
+    public static final Predicate<AttributeHolder> UNKNOWN = null;
 
     private AttributeTargets() {
 
