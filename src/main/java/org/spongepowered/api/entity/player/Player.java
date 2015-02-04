@@ -36,6 +36,7 @@ import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
+import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
 
@@ -181,12 +182,12 @@ public interface Player extends Human, User, CommandSource, Viewer {
     boolean hasAchievement(Achievement achievement);
 
     /**
-     * Gets an {@link Iterable} containing all {@link Achievement}s this player
+     * Gets an {@link Collection} containing all {@link Achievement}s this player
      * has earned already.
      *
-     * @return An immutable iterable containing all earned achievements
+     * @return An immutable collection containing all earned achievements
      */
-    Iterable<Achievement> getAchievements();
+    Collection<Achievement> getAchievements();
 
     /**
      * Grants the given {@link Achievement} to this player. An
