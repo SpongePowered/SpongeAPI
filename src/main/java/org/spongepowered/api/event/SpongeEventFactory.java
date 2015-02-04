@@ -949,6 +949,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("player", player);
+        values.put("user", player);
         values.put("human", player);
         values.put("living", player);
         values.put("fishHook", fishHook);
@@ -969,6 +970,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("player", player);
+        values.put("user", player);
         values.put("human", player);
         values.put("living", player);
         values.put("fishHook", fishHook);
@@ -993,6 +995,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("player", player);
+        values.put("user", player);
         values.put("human", player);
         values.put("living", player);
         values.put("fishHook", fishHook);
