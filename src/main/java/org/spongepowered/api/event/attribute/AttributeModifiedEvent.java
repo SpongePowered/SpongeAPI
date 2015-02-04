@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.event.attribute;
 
+import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifier;
 
 /**
