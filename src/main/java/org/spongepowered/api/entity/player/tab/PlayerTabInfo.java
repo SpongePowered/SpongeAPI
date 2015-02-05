@@ -32,8 +32,7 @@ public interface PlayerTabInfo {
 
     /**
      * <p>Sets the connection time for this player. The client displays
-     * connection bars based on this number.</p> <table summary=""> <col
-     * width="25%"/> <col width="75%"/> <thead>
+     * connection bars based on this number.</p> <table summary=""> <thead>
      * <tr><th>Bars</th><th>Time</th></tr> </thead> <tbody> <tr><td>0</td><td>
      * Less than 0 </td></tr> <tr><td>1</td><td> 1000+ </td></tr>
      * <tr><td>2</td><td> 600 - 999</td></tr> <tr><td>3</td><td> 300 -
