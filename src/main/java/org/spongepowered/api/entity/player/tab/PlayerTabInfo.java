@@ -28,6 +28,9 @@ import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.text.message.Message;
 
+/**
+ * Represents the information attached to a player in a {@link TabList}.
+ */
 public interface PlayerTabInfo {
 
     /**

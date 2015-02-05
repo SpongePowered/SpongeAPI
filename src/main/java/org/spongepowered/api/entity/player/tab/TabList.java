@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.player.tab;
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
 
 import com.google.common.base.Optional;
@@ -31,6 +32,9 @@ import com.google.common.base.Optional;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Represents a {@link Player}'s tab list.
+ */
 public interface TabList {
 
     /**
