@@ -27,25 +27,26 @@ package org.spongepowered.api.event.attribute;
 
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifier;
+import org.spongepowered.api.attribute.AttributeSource;
+
+import com.google.common.base.Optional;
 
 /**
  * An event fired when an {@link Attribute} is modified by an
  * {@link AttributeModifier}.
  */
-public interface AttributeModifiedEvent extends AttributeEvent {
+public interface AttributeModifierAddedEvent extends AttributeEvent {
 
     /**
-     * Gets the {@link AttributeModifier} that was added or removed in this
-     * event.
+     * Gets the {@link AttributeModifier} that was added in this event.
      * 
-     * @return The AttributeModifier that was added or removed in this event
+     * @return The AttributeModifier that was added in this event
      */
     AttributeModifier getModifier();
 
     /**
-     * Gets if this event represent the removal of the specified modifier.
-     * 
-     * @return If this event represent the removal of the specified modifier
+     * Gets the {@link AttributeSource} that caused this event, if there was one.
+     * @return The AttributeSource that caused this event, if there was one
      */
-    boolean isRemoval();
+    Optional<AttributeSource> getSource();
 }
