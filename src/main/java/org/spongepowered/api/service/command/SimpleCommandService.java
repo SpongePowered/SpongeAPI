@@ -68,6 +68,7 @@ import javax.inject.Inject;
  * </p>
  */
 public class SimpleCommandService implements CommandService {
+
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
     private final PluginManager pluginManager;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();

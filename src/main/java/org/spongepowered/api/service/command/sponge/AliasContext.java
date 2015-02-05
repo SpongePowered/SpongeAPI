@@ -27,6 +27,11 @@ package org.spongepowered.api.service.command.sponge;
 
 import org.spongepowered.api.util.command.CommandSource;
 
+/**
+ * Represents an alias that has been set to resolve to certain plugins under
+ * certain circumstances.
+ *
+ */
 public interface AliasContext {
 
     /**

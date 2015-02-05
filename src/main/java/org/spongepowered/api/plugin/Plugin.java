@@ -39,55 +39,54 @@ import java.lang.annotation.Target;
 public @interface Plugin {
 
     /**
-     * An ID for the plugin to be used internally. The ID should be unique as to
-     * not conflict with other plugins.
-     *
-     * @return The plugin identifier
-     */
+    * An ID for the plugin to be used internally. The ID should be unique as to
+    * not conflict with other plugins.
+    *
+    * @return The plugin identifier
+    */
+    
     String id();
-
     /**
-     * The human readable name of the plugin as to be used in descriptions and
-     * similar things.
-     *
-     * @return The plugin name
-     */
+    * The human readable name of the plugin as to be used in descriptions and
+    * similar things.
+    *
+    * @return The plugin name
+    */
+    
     String name();
-
     /**
-     * The version of the plugin.
-     *
-     * @return The plugin version
-     */
+    * The version of the plugin.
+    *
+    * @return The plugin version
+    */
+    
     String version() default "unknown";
-
     /**
-     * A simple dependency string for this mod separated by a ";" example:
-     * 
-     * <pre>
-     * &quot;required-after:Sponge@[1.2.3.2222,);required-after:myLibraryPlugin;after:towny;before:worldguard&quot;
-     * </pre>
-     * 
-     * supported options:
-     * <dl>
-     * <dt>after</dt>
-     * <dd>when present this plugin will run after plugin x</dd>
-     * <dt>required-after</dt>
-     * <dd>plugin x must be present, load after plugin x</dd>
-     * <dt>before</dt>
-     * <dd>when present run before plugin x</dd>
-     * <dt>required-before</dt>
-     * <dd>plugin x must be present, load before plugin x</dd>
-     * </dl>
-     * supports maven version ranges after @ in any field
-     *
-     * @return The plugin dependencies
-     */
+    * A simple dependency string for this mod separated by a ";"
+    * example:
+    * <pre>"required-after:Sponge@[1.2.3.2222,);required-after:myLibraryPlugin;after:towny;before:worldguard"</pre>
+    * supported options:
+    * <dl>
+    * <dt>after</dt>
+    * <dd>when present this plugin will run after plugin x</dd>
+    * <dt>required-after</dt>
+    * <dd>plugin x must be present, load after plugin x</dd>
+    * <dt>before</dt>
+    * <dd>when present run before plugin x</dd>
+    * <dt>required-before</dt>
+    * <dd>plugin x must be present, load before plugin x</dd>
+    * </dl>
+    * supports maven version ranges after @ in any field
+    *
+    * @return The plugin dependencies
+    */
     String dependencies() default "";
 
     /**
-     * If this plugin is not purely a Sponge plugin. (Forge Mods, Vanilla
+     * Checks if this plugin is not purely a Sponge plugin. (Forge Mods, Vanilla
      * Command Wrapper...)
+     * 
+     * @return If this plugin is not purely a Sponge plugin.
      */
-    boolean wrapper() default false;
+    boolean dummy() default false;
 }
