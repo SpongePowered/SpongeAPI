@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.potion;
 
+import org.spongepowered.api.attribute.AttributeSource;
+
 /**
  * Represents a possible type of {@link PotionEffect}.
  */
-public interface PotionEffectType {
+public interface PotionEffectType extends AttributeSource {
 
     /**
      * Gets whether this potion effect is applied
