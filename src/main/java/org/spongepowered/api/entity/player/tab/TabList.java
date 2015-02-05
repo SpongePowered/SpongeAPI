@@ -34,39 +34,40 @@ import java.util.UUID;
 public interface TabList {
 
     /**
-     * Sets this list's header.
-     * 
-     * @param header The new header
-     */
-    public void setHeader(Message header);
-
-    /**
      * Gets this list's header.
      * 
      * @return The current header
      */
-    public Message getHeader();
+    Message getHeader();
+
 
     /**
-     * Sets this list's footer.
+     * Sets this list's header.
      * 
-     * @param footer The new footer
+     * @param header The new header
      */
-    public void setFooter(Message footer);
+    void setHeader(Message header);
 
     /**
      * Gets this list's footer.
      * 
      * @return The current footer
      */
-    public Message getFooter();
+    Message getFooter();
 
     /**
-     * Gets the players on the list.
+     * Sets this list's footer.
+     * 
+     * @param footer The new footer
+     */
+    void setFooter(Message footer);
+
+    /**
+     * Gets the players on the list. The list should be immutable.
      * 
      * @return The players on the list
      */
-    public List<PlayerTabInfo> getPlayers();
+    List<PlayerTabInfo> getPlayers();
 
     /**
      * Adds a player to the list.
@@ -77,7 +78,7 @@ public interface TabList {
      * 
      * @param player The player to add
      */
-    public void addPlayer(PlayerTabInfo player) throws IllegalArgumentException;
+    void addPlayer(PlayerTabInfo player) throws IllegalArgumentException;
 
     /**
      * <p>Removes a player from the list. This should only be used to completely
@@ -87,7 +88,7 @@ public interface TabList {
      * @param playerId the UUID of the player to remove
      * @return The {@link PlayerTabInfo} that was associated with the UUID
      */
-    public PlayerTabInfo removePlayer(UUID playerId);
+    PlayerTabInfo removePlayer(UUID playerId);
 
     /**
      * <p>Finds a {@link PlayerTabInfo} matching the specified UUID. If none
@@ -96,6 +97,6 @@ public interface TabList {
      * @param uuid The UUID to search for
      * @return An Optional containing a PlayerTabInfo if one was found
      */
-    public Optional<PlayerTabInfo> getPlayer(UUID uuid);
+    Optional<PlayerTabInfo> getPlayer(UUID uuid);
 
 }
