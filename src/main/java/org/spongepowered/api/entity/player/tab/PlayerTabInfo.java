@@ -7,7 +7,13 @@ import org.spongepowered.api.text.message.Message;
 public interface PlayerTabInfo {
 
     /**
-     * Sets the connection time for this player.
+     * <p>Sets the connection time for this player. The client displays
+     * connection bars based on this number.</p> <table> <col width="25%"/> <col
+     * width="75%"/> <thead> <tr><th>Bars</th><th>Time</th></tr> <thead> <tbody>
+     * <tr><td>0</td><td> Less than 0 </td></tr> <tr><td>1</td><td> 1000+
+     * </td></tr> <tr><td>2</td><td> 600 - 999</td></tr> <tr><td>3</td><td> 300
+     * - 599</td></tr> <tr><td>4</td><td> 150 - 299 </td></tr>
+     * <tr><td>5</td><td> 0 - 149 </td></tr> </tbody> </table>
      * 
      * @param milliseconds The new connection time, in milliseconds
      */
