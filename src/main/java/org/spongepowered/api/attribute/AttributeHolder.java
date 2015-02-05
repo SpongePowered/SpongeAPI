@@ -72,9 +72,10 @@ public interface AttributeHolder {
     /**
      * Adds a {@link AttributeModifier} to this holder.
      * 
-     * @param modifier The AttributeModifier to add
+     * @param modifier The {@link AttributeModifier} to add
      * @throws IllegalArgumentException If the AttributeModifier's
-     *         {@link Attribute}'s trget cannot apply to this holder
+     *         {@link Attribute}'s target cannot apply to this holder, or if the
+     *         AttributeModifier has already been added.
      */
     void addModifier(AttributeModifier modifier) throws IllegalArgumentException;
 
@@ -83,7 +84,8 @@ public interface AttributeHolder {
      * 
      * @param modifiers The AttributeModifiers to add
      * @throws IllegalArgumentException If any of the AttributeModifiers'
-     *         {@link Attribute}s' targets cannot apply to this holder
+     *         {@link Attribute}s' targets cannot apply to this holder or any of
+     *         them have already been added.
      */
     void addModifiers(Iterable<AttributeModifier> modifiers) throws IllegalArgumentException;
 
