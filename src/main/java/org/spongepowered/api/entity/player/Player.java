@@ -29,6 +29,7 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
+import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
@@ -144,4 +145,11 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @return The connection
      */
     PlayerConnection getConnection();
+
+    /**
+     * Gets this player's {@link TabList}.
+     * 
+     * @return This player's TabList.
+     */
+    TabList getTabList();
 }
