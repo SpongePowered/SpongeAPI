@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.block;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.item.ItemBlock;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.text.translation.Translatable;
 
@@ -120,5 +122,12 @@ public interface BlockType extends Translatable {
      * @return The amount of light
      */
     float getEmittedLight();
+    
+    /**
+     * Gets the equivalent {@link ItemBlock} for this BlockType.
+     *
+     * @return The equivalent {@link ItemBlock}, if available
+     */
+    Optional<ItemBlock> getHeldItem();
 
 }

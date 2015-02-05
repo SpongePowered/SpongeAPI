@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.block.data;
 
-import com.google.common.base.Optional; 
-
+import com.google.common.base.Optional;
 import org.spongepowered.api.potion.PotionEffectType;
 
 /**

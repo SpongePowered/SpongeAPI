@@ -28,11 +28,17 @@ package org.spongepowered.api.service;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import com.google.common.collect.MapMaker;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -41,6 +47,8 @@ public class SimpleServiceManager implements ServiceManager {
 
     private final ConcurrentMap<Class<?>, Provider> providers =
             new MapMaker().concurrencyLevel(3).makeMap();
+    private final ConcurrentMap<Class<?>, SimpleServiceReference<?>> potentials =
+            new MapMaker().concurrencyLevel(3).weakKeys().makeMap();
     private final PluginManager pluginManager;
 
     /**
@@ -65,12 +73,35 @@ public class SimpleServiceManager implements ServiceManager {
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
-                            + "(in other words, is 'plugin' actually your plugin object?");
+                            + "(in other words, is 'plugin' actually your plugin object?)");
         }
 
         PluginContainer container = containerOptional.get();
 
-        providers.put(service, new Provider(container, provider));
+        Provider existing = providers.putIfAbsent(service, new Provider(container, provider));
+        if (existing != null) {
+            throw new ProviderExistsException("Provider for service " + service.getCanonicalName() +  " has already been registered!");
+        }
+        @SuppressWarnings("unchecked")
+        SimpleServiceReference<T> ref = (SimpleServiceReference)potentials.remove(service);
+        if (ref != null) {
+            ref.registered(provider);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> ServiceReference<T> potentiallyProvide(Class<T> service) {
+        SimpleServiceReference<T> ref = new SimpleServiceReference<T>(provide(service));
+        @SuppressWarnings("rawtypes")
+        SimpleServiceReference newRef = potentials.putIfAbsent(service, ref);
+        if (newRef != null) {
+            ref = newRef;
+        }
+        if (ref.ref().isPresent()) {
+            potentials.remove(service, ref);
+        }
+        return ref;
     }
 
     @SuppressWarnings("unchecked")
@@ -100,6 +131,62 @@ public class SimpleServiceManager implements ServiceManager {
         private Provider(PluginContainer container, Object provider) {
             this.container = container;
             this.provider = provider;
+        }
+    }
+
+    private static class SimpleServiceReference<T> implements ServiceReference<T> {
+        private volatile Optional<T> service;
+        private final List<Predicate<T>> actionsOnPresent = new CopyOnWriteArrayList<Predicate<T>>();
+        private final Lock waitLock = new ReentrantLock();
+        private final Condition waitCondition = waitLock.newCondition();
+
+        public SimpleServiceReference(Optional<T> service) {
+            this.service = service;
+        }
+
+        @Override
+        public Optional<T> ref() {
+            return service;
+        }
+
+        @Override
+        public T await() throws InterruptedException {
+            while (true) {
+                waitLock.lock();
+                try {
+                    Optional<T> service = this.service;
+                    if (service.isPresent()) {
+                        return service.get();
+                    }
+                    waitCondition.await();
+                } finally {
+                    waitLock.unlock();
+                }
+            }
+        }
+
+        @Override
+        public void executeWhenPresent(Predicate<T> run) {
+            if (!service.isPresent()) {
+                actionsOnPresent.add(run);
+            } else {
+                run.apply(service.get());
+            }
+        }
+
+        public void registered(T service) {
+            this.service = Optional.of(service);
+            this.waitLock.lock();
+            try {
+                this.waitCondition.signalAll();
+            } finally {
+                this.waitLock.unlock();
+            }
+            for (Predicate<T> func : actionsOnPresent) {
+                func.apply(service);
+            }
+            actionsOnPresent.clear();
+
         }
     }
 

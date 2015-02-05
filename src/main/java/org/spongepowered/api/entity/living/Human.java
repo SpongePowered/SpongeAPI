@@ -25,12 +25,14 @@
 
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
  * Represents a HumanEntity in game, such as {@link org.spongepowered.api.entity.player.Player}
  */
-public interface Human extends Living, ProjectileSource {
+public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer {
 
     /**
      * Gets the hunger value of this human entity.
@@ -69,6 +71,52 @@ public interface Human extends Living, ProjectileSource {
      * @param saturation The saturation level to set
      */
     void setSaturation(float saturation);
+
+    /**
+     * Gets the current experience towards the next level.
+     *
+     * <p>This is not the total experience this human has.</p>
+     *
+     * @return The current experience towards the next level
+     */
+    double getExperience();
+
+    /**
+     * Gets the current experience level of this human.
+     *
+     * @return The current level
+     */
+    int getLevel();
+
+    /**
+     * Gets the total accumulated experience this human has, including
+     * the experience to achieve the current experience level and the
+     * experienced gained towards the next level.
+     *
+     * @return The current total accumulated experience
+     */
+    double getTotalExperinece();
+
+    /**
+     * Sets the experience accumulated towards the next level.
+     *
+     * @param experience The experience
+     */
+    void setExperience(double experience);
+
+    /**
+     * Sets the level of experience.
+     *
+     * @param level The level of experience
+     */
+    void setLevel(int level);
+
+    /**
+     * Sets the total accumulated experience starting from zero.
+     *
+     * @param totalExperience The total experience
+     */
+    void setTotalExperience(double totalExperience);
 
     /**
      * Returns whether this human entity has an open inventory at the moment

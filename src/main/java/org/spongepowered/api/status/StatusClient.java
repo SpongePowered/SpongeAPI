@@ -25,7 +25,7 @@
 package org.spongepowered.api.status;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.GameVersion;
+import org.spongepowered.api.MinecraftVersion;
 
 import java.net.InetSocketAddress;
 
@@ -47,26 +47,15 @@ public interface StatusClient {
      *
      * @return The version of the client
      */
-    GameVersion getVersion();
+    MinecraftVersion getVersion();
 
     /**
      * Gets the address the player is connecting to.
      *
      * @return The address the player is connecting to, or
      *         {@link Optional#absent()} if not available (for example because
-     *         of {@link #isLegacy()}).
+     *         of {@link MinecraftVersion#isLegacy()}).
      */
     Optional<InetSocketAddress> getVirtualHost();
-
-    /**
-     * Returns whether the client is using an older version that doesn't support
-     * all of the features in {@link StatusResponse}.
-     * <p>
-     * For Vanilla, this returns {@code true} for all clients older than 1.7.
-     * </p>
-     *
-     * @return {@code True} if the client is using an older version
-     */
-    boolean isLegacy();
 
 }
