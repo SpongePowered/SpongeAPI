@@ -22,21 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * Represents the type of ocelot an ocelot is.
  */
-public interface SkeletonType extends DataSerializable {
+public interface OcelotType extends DataSerializable {
 
     /**
-     * Gets the name of this skeleton type.
+     * Gets the name of this ocelot type.
      *
-     * @return The name of this skeleton type
+     * @return The name of this ocelot type
      */
     String getName();
 

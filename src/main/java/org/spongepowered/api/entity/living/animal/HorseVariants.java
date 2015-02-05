@@ -22,23 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+public final class HorseVariants {
 
-/**
- * Represents the variant of a {@link org.spongepowered.api.entity.living.animal.Horse}.
- * <p>The variant of a horse defines the various behaviors the horse can have.
- * Some behaviors limit whether a horse can be chested, wear horse armor, or
- * can be saddled.</p>
- */
-public interface HorseVariant extends DataSerializable {
+    public static final HorseVariant HORSE = null;
+    public static final HorseVariant DONKEY = null;
+    public static final HorseVariant MULE = null;
+    public static final HorseVariant UNDEAD_HORSE = null;
+    public static final HorseVariant SKELETON_HORSE = null;
 
-    /**
-     * Gets the name of this variant.
-     *
-     * @return The name of this variant
-     */
-    String getName();
-
+    private HorseVariants() {
+    }
 }

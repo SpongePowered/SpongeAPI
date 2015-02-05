@@ -22,18 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.monster;
 
-public final class HorseColors {
+import org.spongepowered.api.service.persistence.DataSerializable;
 
-    public static final HorseColor WHITE = null;
-    public static final HorseColor CREAMY = null;
-    public static final HorseColor CHESTNUT = null;
-    public static final HorseColor BROWN = null;
-    public static final HorseColor BLACK = null;
-    public static final HorseColor GRAY = null;
-    public static final HorseColor DARK_BROWN = null;
+/**
+ * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
+ * can be. Certain skeleton types define the items a skeleton can equip and
+ * can define the various status immunities, such as withering.
+ */
+public interface SkeletonType extends DataSerializable {
 
-    private HorseColors() {
-    }
+    /**
+     * Gets the name of this skeleton type.
+     *
+     * @return The name of this skeleton type
+     */
+    String getName();
+
 }

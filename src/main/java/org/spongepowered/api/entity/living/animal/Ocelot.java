@@ -26,7 +26,6 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.entity.living.Sittable;
-import org.spongepowered.api.entity.living.meta.OcelotType;
 
 /**
  * Represents an Ocelot.
