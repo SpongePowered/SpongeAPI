@@ -34,7 +34,6 @@ public final class AttributeTargets {
     public static final Predicate<AttributeHolder> GENERIC = null;
     public static final Predicate<AttributeHolder> HORSE = null;
     public static final Predicate<AttributeHolder> ZOMBIE = null;
-    public static final Predicate<AttributeHolder> UNKNOWN = null;
 
     private AttributeTargets() {
 
