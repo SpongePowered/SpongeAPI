@@ -31,4 +31,5 @@ import org.spongepowered.api.event.entity.living.human.fishing.HumanCastFishingL
  * a fishing line.
  */
 public interface PlayerCastFishingLineEvent extends HumanCastFishingLineEvent, PlayerFishEvent {
+
 }

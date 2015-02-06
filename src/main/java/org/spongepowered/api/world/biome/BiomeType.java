@@ -48,14 +48,14 @@ public interface BiomeType {
 
     /**
      * Get the minimum terrain height of this biome.
-     * 
+     *
      * @return The min height
      */
     float getMinHeight();
 
     /**
      * Get the maximum terrain height of this biome.
-     * 
+     *
      * @return The max height
      */
     float getMaxHeight();
@@ -63,7 +63,7 @@ public interface BiomeType {
     /**
      * Returns an ordered Collection of {@link Populator}s specific to this
      * biome.
-     * 
+     *
      * @return The populators
      */
     Iterable<Populator> getPopulators();
@@ -73,7 +73,7 @@ public interface BiomeType {
      * populators. The new populator is inserted at the given index. If the
      * index is larger than the current amount of populators then the new
      * populator in inserted at the end of the collection.
-     * 
+     *
      * @param populator The new populator
      * @param index THe index to insert the populator at
      */

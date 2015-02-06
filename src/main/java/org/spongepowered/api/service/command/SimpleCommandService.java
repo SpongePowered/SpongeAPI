@@ -122,7 +122,7 @@ public class SimpleCommandService implements CommandService {
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
-                            + "(in other words, is 'plugin' actually your plugin object?");
+                    + "(in other words, is 'plugin' actually your plugin object?");
         }
 
         PluginContainer container = containerOptional.get();

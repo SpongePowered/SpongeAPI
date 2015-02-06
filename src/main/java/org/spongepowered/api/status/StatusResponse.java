@@ -69,6 +69,13 @@ public interface StatusResponse {
     MinecraftVersion getVersion();
 
     /**
+     * Gets the {@link Favicon} of the server.
+     *
+     * @return The favicon, or {@link Optional#absent()} if not available
+     */
+    Optional<Favicon> getFavicon();
+
+    /**
      * Represents the player count, slots and a list of players current playing
      * on a server.
      */
@@ -97,12 +104,5 @@ public interface StatusResponse {
         List<GameProfile> getProfiles();
 
     }
-
-    /**
-     * Gets the {@link Favicon} of the server.
-     *
-     * @return The favicon, or {@link Optional#absent()} if not available
-     */
-    Optional<Favicon> getFavicon();
 
 }

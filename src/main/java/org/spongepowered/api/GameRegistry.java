@@ -59,8 +59,8 @@ import org.spongepowered.api.world.biome.BiomeType;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
@@ -482,7 +482,7 @@ public interface GameRegistry {
      * @throws IOException If the favicon couldn't be loaded
      */
     Favicon loadFavicon(BufferedImage image) throws IOException;
-    
+
     /**
      * Gets the {@link NotePitch} with the provided name. 
      *
@@ -520,7 +520,7 @@ public interface GameRegistry {
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShape(String name);
-    
+
     /**
      * Gets the {@link BannerPatternShape} with the provided name. 
      *

@@ -39,9 +39,11 @@ import org.spongepowered.api.plugin.PluginManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SimpleServiceManagerTest {
+
     private static final PluginManager manager = Mockito.mock(PluginManager.class);
     private static final Object testPlugin = new Object();
     private static final PluginContainer testPluginContainer = Mockito.mock(PluginContainer.class);
+
     {
         Mockito.when(testPluginContainer.getId()).thenReturn("TestPlugin");
         Mockito.when(manager.fromInstance(testPlugin)).thenReturn(Optional.of(testPluginContainer));
@@ -121,6 +123,7 @@ public class SimpleServiceManagerTest {
     }
 
     public interface TestInterface {
+
         public String bark();
     }
 

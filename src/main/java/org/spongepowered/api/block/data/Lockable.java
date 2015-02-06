@@ -36,14 +36,14 @@ public interface Lockable extends TileEntity { //extends Inventory {
     /**
      * Gets the lock token for this tile entity. Will be empty if this tile
      * entity is not locked.
-     * 
+     *
      * @return The lock token
      */
     String getLockToken();
 
     /**
      * Sets the lock token for this tile entity.
-     * 
+     *
      * @param token The new lock token
      */
     void setLockToken(String token);

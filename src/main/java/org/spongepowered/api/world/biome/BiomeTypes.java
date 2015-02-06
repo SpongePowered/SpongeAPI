@@ -30,9 +30,6 @@ package org.spongepowered.api.world.biome;
  */
 public final class BiomeTypes {
 
-    private BiomeTypes() {
-    }
-
     // Standard Biomes
     public static final BiomeType OCEAN = null;
     public static final BiomeType PLAINS = null;
@@ -74,7 +71,6 @@ public final class BiomeTypes {
     public static final BiomeType MESA = null;
     public static final BiomeType MESA_PLATEAU_FOREST = null;
     public static final BiomeType MESA_PLATEAU = null;
-
     // Mutated Biomes
     public static final BiomeType SUNFLOWER_PLAINS = null;
     public static final BiomeType DESERT_MOUNTAINS = null;
@@ -88,7 +84,7 @@ public final class BiomeTypes {
     public static final BiomeType SAVANNA_MOUNTAINS = null;
     public static final BiomeType SAVANNA_PLATEAU_MOUNTAINS = null;
     public static final BiomeType MESA_BRYCE = null;
-    public static final BiomeType MESA_PLATEAU_FOREST_MOUNTAINS  = null;
+    public static final BiomeType MESA_PLATEAU_FOREST_MOUNTAINS = null;
     public static final BiomeType MESA_PLATEAU_MOUNTAINS = null;
     public static final BiomeType BIRCH_FOREST_MOUNTAINS = null;
     public static final BiomeType BIRCH_FOREST_HILLS_MOUNTAINS = null;
@@ -97,4 +93,6 @@ public final class BiomeTypes {
     public static final BiomeType EXTREME_HILLS_MOUNTAINS = null;
     public static final BiomeType EXTREME_HILLS_PLUS_MOUNTAINS = null;
     public static final BiomeType MEGA_SPRUCE_TAIGA_HILLS = null;
+    private BiomeTypes() {
+    }
 }

@@ -26,9 +26,6 @@ package org.spongepowered.api.effect.sound;
 
 public final class SoundTypes {
 
-    private SoundTypes() {
-    }
-
     public static final SoundType AMBIENCE_CAVE = null;
     public static final SoundType AMBIENCE_RAIN = null;
     public static final SoundType AMBIENCE_THUNDER = null;
@@ -235,5 +232,7 @@ public final class SoundTypes {
     public static final SoundType VILLAGER_IDLE = null;
     public static final SoundType VILLAGER_NO = null;
     public static final SoundType VILLAGER_YES = null;
+    private SoundTypes() {
+    }
 
 }

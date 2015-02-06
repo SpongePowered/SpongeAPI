@@ -31,13 +31,13 @@ package org.spongepowered.api.block.meta;
 public final class SkullTypes {
 
     // These values will not be null at runtime
-    
+
     public static SkullType SKELETON = null;
     public static SkullType WITHER_SKELETON = null;
     public static SkullType ZOMBIE = null;
     public static SkullType PLAYER = null;
     public static SkullType CREEPER = null;
-    
+
     private SkullTypes() {
     }
 }

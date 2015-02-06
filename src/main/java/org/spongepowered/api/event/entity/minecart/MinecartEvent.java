@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity.minecart;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.event.entity.EntityEvent;
 

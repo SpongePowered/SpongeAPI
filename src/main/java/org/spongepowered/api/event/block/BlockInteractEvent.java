@@ -29,4 +29,5 @@ package org.spongepowered.api.event.block;
  * Dispatched when a block is being interacted with.
  */
 public interface BlockInteractEvent extends BlockEvent {
+
 }

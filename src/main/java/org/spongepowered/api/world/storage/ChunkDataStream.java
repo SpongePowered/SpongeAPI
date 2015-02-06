@@ -27,8 +27,6 @@ package org.spongepowered.api.world.storage;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.world.Chunk;
 
-import java.util.concurrent.Future;
-
 import javax.annotation.Nullable;
 
 /**
@@ -59,7 +57,8 @@ public interface ChunkDataStream {
      *
      * @return The chunk data represented by a data container
      */
-    @Nullable DataContainer next();
+    @Nullable
+    DataContainer next();
 
     /**
      * Checks if there is an available chunk to represent.

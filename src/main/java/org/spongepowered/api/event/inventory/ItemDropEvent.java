@@ -33,6 +33,7 @@ import java.util.Collection;
  * Handles when any item or items are dropped on the ground.
  */
 public interface ItemDropEvent extends GameEvent {
+
     /**
      * Gets the items that are being dropped.
      *

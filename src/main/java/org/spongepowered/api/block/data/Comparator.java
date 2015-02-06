@@ -31,14 +31,14 @@ public interface Comparator extends TileEntity {
 
     /**
      * Gets the output signal strength.
-     * 
+     *
      * @return The signal strength
      */
     int getOutputSignal();
 
     /**
      * Sets the output signal strength.
-     * 
+     *
      * @param signal The new signal strength
      */
     void setOutputSignal(int signal);

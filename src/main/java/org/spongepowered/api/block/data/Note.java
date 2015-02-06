@@ -34,14 +34,14 @@ public interface Note extends TileEntity {
 
     /**
      * Gets the note played by this note block.
-     * 
+     *
      * @return The note
      */
     NotePitch getNote();
 
     /**
      * Sets the note to be played by this note block.
-     * 
+     *
      * @param note The new note
      */
     void setNote(NotePitch note);

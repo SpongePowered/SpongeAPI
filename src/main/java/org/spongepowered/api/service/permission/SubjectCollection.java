@@ -33,6 +33,7 @@ import java.util.Set;
  * Object that manages subjects of a certain type (user, group, etc).
  */
 public interface SubjectCollection {
+
     /**
      * Return the identifier for the type of subjects this collection contains.
      *

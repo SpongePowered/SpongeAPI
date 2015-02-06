@@ -39,6 +39,7 @@ import java.util.Set;
  * than the higher-level query methods available in {@link Subject}
  */
 public interface SubjectData {
+
     /**
      * A convenience constant for the global context combination (the empty
      * set), if you want your code to look especially fancy.

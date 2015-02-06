@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity.living.human.fishing;
 
 import org.spongepowered.api.entity.projectile.FishHook;
-import org.spongepowered.api.event.ExperienceEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.util.event.Cancellable;
 

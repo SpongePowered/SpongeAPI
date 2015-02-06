@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.service.permission;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -32,7 +34,6 @@ import com.google.common.collect.Maps;
 import org.spongepowered.api.service.permission.context.Context;
 import org.spongepowered.api.util.Tristate;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +41,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import javax.annotation.Nullable;
 
 /**
  * A subject data implementation storing all contained data in memory.
@@ -48,6 +49,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * <p>This class is thread-safe.
  */
 public class MemorySubjectData implements SubjectData {
+
     private final PermissionService service;
     private final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
     private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = Maps.newConcurrentMap();
@@ -144,7 +146,7 @@ public class MemorySubjectData implements SubjectData {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             Map.Entry<String, String> newEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
-                    parent.getIdentifier());
+                                                                   parent.getIdentifier());
             List<Map.Entry<String, String>> oldParents = parents.get(contexts);
             List<Map.Entry<String, String>> newParents = ImmutableList.<Map.Entry<String, String>>builder()
                     .addAll(oldParents == null ? Collections.<Map.Entry<String, String>>emptyList() : oldParents)
@@ -178,7 +180,7 @@ public class MemorySubjectData implements SubjectData {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             Map.Entry<String, String> removeEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
-                    parent.getIdentifier());
+                                                                      parent.getIdentifier());
             List<Map.Entry<String, String>> oldParents = parents.get(contexts);
             List<Map.Entry<String, String>> newParents;
 
@@ -187,7 +189,6 @@ public class MemorySubjectData implements SubjectData {
             }
             newParents = new ArrayList<Map.Entry<String, String>>(oldParents);
             newParents.remove(removeEnt);
-
 
             if (updateCollection(parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
                 return true;

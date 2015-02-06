@@ -50,6 +50,7 @@ import java.util.Collection;
  * @see BlockState Contains a collection of properties
  */
 public interface BlockProperty<T extends Comparable<T>> {
+
     /**
      * Get the name of this property.
      *

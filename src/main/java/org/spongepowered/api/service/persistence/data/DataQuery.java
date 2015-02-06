@@ -70,7 +70,7 @@ public final class DataQuery {
      * @param parts The parts
      */
     public DataQuery(List<String> parts) {
-       this.parts = ImmutableList.copyOf(parts);
+        this.parts = ImmutableList.copyOf(parts);
     }
 
     /**
@@ -108,7 +108,7 @@ public final class DataQuery {
         ImmutableList.Builder<DataQuery> builder =
                 new ImmutableList.Builder<DataQuery>();
 
-        for (String part: getParts()) {
+        for (String part : getParts()) {
             builder.add(new DataQuery(part));
         }
 
