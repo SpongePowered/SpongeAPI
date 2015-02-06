@@ -54,6 +54,7 @@ import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.world.Difficulty;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 
@@ -550,4 +551,10 @@ public interface GameRegistry {
      */
     RecipeRegistry getRecipeRegistry();
 
+	/**
+     * Gets a list of all available {@link Difficulty Difficulty}(ies).
+     *
+     * @return A list containing all Difficulty(ies) in registry
+     */
+    Collection<Difficulty> getDifficulties();
 }
