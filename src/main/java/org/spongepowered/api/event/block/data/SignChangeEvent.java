@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.data;
 
 import org.spongepowered.api.block.data.Sign;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
@@ -40,20 +40,20 @@ public interface SignChangeEvent extends SignEvent, Cancellable {
      *
      * @return The previous messages
      */
-    Message[] getPreviousMessages();
+    Text[] getPreviousLines();
 
     /**
      * Gets the changed messages.
      *
      * @return The new messages
      */
-    Message[] getNewMessages();
+    Text[] getNewLines();
 
     /**
      * Sets the changed messages.
      *
      * @param messages The new messages
      */
-    void setNewMessages(Message[] messages);
+    void setNewMessages(Text[] messages);
 
 }

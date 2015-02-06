@@ -31,37 +31,84 @@ import org.spongepowered.api.text.Text;
 /**
  * Represents a {@link TextAction} that responds to hovers.
  *
- * @param <R> the type of the result of the action
+ * @param <R> The type of the result of the action
  */
-public interface HoverAction<R> extends TextAction<R> {
+public abstract class HoverAction<R> extends TextAction<R> {
+
+    /**
+     * Constructs a new {@link HoverAction} with the given result.
+     *
+     * @param result The result of the hover action
+     */
+    protected HoverAction(R result) {
+        super(result);
+    }
 
     /**
      * Shows some text.
      */
-    interface ShowText extends HoverAction<Text> {
+    public static final class ShowText extends HoverAction<Text> {
 
+        /**
+         * Constructs a new {@link ShowText} instance that will show text when
+         * it is hovered.
+         *
+         * @param text The message to show
+         */
+        public ShowText(Text text) {
+            super(text);
+        }
     }
 
     /**
      * Shows information about an item.
      */
-    interface ShowItem extends HoverAction<ItemStack> {
+    public static final class ShowItem extends HoverAction<ItemStack> {
+
+        /**
+         * Constructs a new {@link ShowItem} instance that will show information
+         * about an item when it is hovered.
+         *
+         * @param item The item to display
+         */
+        public ShowItem(ItemStack item) {
+            super(item);
+        }
 
     }
-
-    // TODO replace with achievement
 
     /**
      * Shows information about an achievement.
      */
-    interface ShowAchievement extends HoverAction<Object> {
+    // TODO: Replace with achievement
+    public static final class ShowAchievement extends HoverAction<Object> {
+
+        /**
+         * Constructs a new {@link ShowAchievement} instance that will show
+         * information about an achievement when it is hovered.
+         *
+         * @param achievement The achievement to display
+         */
+        public ShowAchievement(Object achievement) {
+            super(achievement);
+        }
 
     }
 
     /**
      * Shows information about an entity.
      */
-    interface ShowEntity extends HoverAction<Entity> {
+    public static final class ShowEntity extends HoverAction<Entity> {
+
+        /**
+         * Constructs a new {@link ShowEntity} that will show information about
+         * an entity when it is hovered.
+         *
+         * @param entity The entity to display
+         */
+        public ShowEntity(Entity entity) {
+            super(entity);
+        }
 
     }
 

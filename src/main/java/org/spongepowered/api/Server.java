@@ -171,7 +171,7 @@ public interface Server extends ChannelRegistrar {
     void broadcastMessage(Text message);
 
     /**
-     * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
+     * Gets the bound {@link InetSocketAddress} from where this server is accepting connections.
      * @return The address or Optional.absent() if not found
      */
     Optional<InetSocketAddress> getBoundAddress();

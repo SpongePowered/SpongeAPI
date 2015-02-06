@@ -898,7 +898,7 @@ public final class SpongeEventFactory {
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static MessageEvent createMessage(Game game, CommandSource source, Message message) {
+    public static MessageEvent createMessage(Game game, CommandSource source, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);
@@ -1077,7 +1077,7 @@ public final class SpongeEventFactory {
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Message message) {
+    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);

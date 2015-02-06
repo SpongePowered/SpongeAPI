@@ -130,6 +130,7 @@ public final class ArgumentTypes {
     public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE = null;
 
     // TODO: Scoreboard API
+
     /**
      * Creates a minimum and maximum {@link ArgumentType} filtering depending on
      * the score of the specified objective.

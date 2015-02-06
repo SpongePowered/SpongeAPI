@@ -765,11 +765,11 @@ public interface GameRegistry {
     Optional<SelectorType> getSelectorType(String name);
 
     /**
-     * Gets a {@link Collection} of all possible {@link ArgumentType}s.
+     * Gets a {@link Collection} of all possible {@link SelectorType}s.
      *
-     * @return The collection of all available {@link ArgumentType}s
+     * @return The list of all available {@link SelectorType}s
      */
-    Collection<ArgumentType<?>> getArgumentTypes();
+    Collection<SelectorType> getSelectorTypes();
 
     /**
      * Gets the {@link ArgumentType} with the provided name.
@@ -780,11 +780,11 @@ public interface GameRegistry {
     Optional<ArgumentType<?>> getArgumentType(String name);
 
     /**
-     * Gets a {@link Collection} of all possible {@link SelectorType}s.
+     * Gets a {@link Collection} of all possible {@link ArgumentType}s.
      *
-     * @return The collection of all available {@link SelectorType}s
+     * @return The list of all available {@link ArgumentType}s
      */
-    Collection<SelectorType> getSelectorTypes();
+    Collection<ArgumentType<?>> getArgumentTypes();
 
     /**
      * Gets the {@link Locale} with the provided name.

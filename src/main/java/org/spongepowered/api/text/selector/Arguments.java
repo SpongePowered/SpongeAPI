@@ -80,7 +80,7 @@ public final class Arguments {
      * @param argument The argument string
      * @return The parsed argument
      * @throws IllegalArgumentException If the argument couldn't be parsed (e.g.
-     *             due to invalid format)
+     *         due to invalid format)
      */
     public static Argument<?> parse(String argument) throws IllegalArgumentException {
         return Selectors.factory.parseArgument(argument);

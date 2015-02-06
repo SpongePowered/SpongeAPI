@@ -43,9 +43,7 @@ public final class ChatTypes {
      * this position are still seen when chat is turned off on the Minecraft
      * client.
      *
-     * <p>
-     * Use wisely as to not annoy players.
-     * </p>
+     * <p>Use wisely as to not annoy players.</p>
      */
     public static final ChatType SYSTEM = null;
 

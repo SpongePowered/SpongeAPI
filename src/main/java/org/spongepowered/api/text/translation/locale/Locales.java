@@ -96,6 +96,7 @@ public final class Locales {
     public static final Locale QUENYA = null;
     public static final Locale ROMANIAN = null;
     public static final Locale RUSSIAN = null;
+    public static final Locale NORTHERN_SAMI = null;
     public static final Locale SLOVAK = null;
     public static final Locale SLOVENE = null;
     public static final Locale SERBIAN = null;
