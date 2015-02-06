@@ -523,9 +523,20 @@ public class SpongeDispatcher implements Dispatcher {
      * @return If the given source can use all the registered commands.
      */
     @Override
-    public synchronized boolean testPermission(CommandSource source, boolean ignorePermissions) {
+    public synchronized boolean testPermission(CommandSource source) {
         for (CommandMapping mapping : commands.values()) {
-            if (!mapping.getCallable().testPermission(source, ignorePermissions)) {
+            if (!mapping.getCallable().testPermission(source)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public synchronized boolean testSource(CommandSource source) {
+        for (CommandMapping mapping : commands.values()) {
+            if (!mapping.getCallable().testSource(source)) {
                 return false;
             }
         }
@@ -606,17 +617,15 @@ public class SpongeDispatcher implements Dispatcher {
 
         if (this.containsAlias(alias, true, plugin)) {
             for (CommandMapping m : this.getAll(alias, true, plugin)) {
-                if (m.getCallable().testPermission(source, true)) {
+                if (m.getCallable().testSource(source)) {
                     return Optional.of(m);
                 }
             }
             for (CommandMapping m : this.getAll(alias, false, plugin)) {
-                if (m.getCallable().testPermission(source, true)) {
+                if (m.getCallable().testSource(source)) {
                     return Optional.of(m);
                 }
             }
-            // TODO: Implement vanilla commands here. The code that handles them
-            // should be ignored when isExtended is true!
         }
 
         if (override) {

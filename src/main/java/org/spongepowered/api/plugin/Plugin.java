@@ -44,7 +44,7 @@ public @interface Plugin {
     *
     * @return The plugin identifier
     */
-    
+
     String id();
     /**
     * The human readable name of the plugin as to be used in descriptions and
@@ -52,14 +52,14 @@ public @interface Plugin {
     *
     * @return The plugin name
     */
-    
+
     String name();
     /**
     * The version of the plugin.
     *
     * @return The plugin version
     */
-    
+
     String version() default "unknown";
     /**
     * A simple dependency string for this mod separated by a ";"

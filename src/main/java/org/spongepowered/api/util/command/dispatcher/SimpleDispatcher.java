@@ -295,9 +295,9 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public synchronized boolean testPermission(CommandSource source, boolean ignorePermissions) {
+    public synchronized boolean testPermission(CommandSource source) {
         for (CommandMapping mapping : commands.values()) {
-            if (!mapping.getCallable().testPermission(source, ignorePermissions)) {
+            if (!mapping.getCallable().testPermission(source)) {
                 return false;
             }
         }
@@ -356,5 +356,15 @@ public class SimpleDispatcher implements Dispatcher {
     @Override
     public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
         return Optional.fromNullable(commands.get(alias.toLowerCase()));
+    }
+
+    @Override
+    public boolean testSource(CommandSource source) {
+        for (CommandMapping mapping : commands.values()) {
+            if (!mapping.getCallable().testSource(source)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -211,8 +211,13 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean testPermission(CommandSource source, boolean ignorePermissions) {
-        return dispatcher.testPermission(source, ignorePermissions);
+    public boolean testPermission(CommandSource source) {
+        return dispatcher.testPermission(source);
+    }
+
+    @Override
+    public boolean testSource(CommandSource source) {
+        return dispatcher.testSource(source);
     }
 
     @Override
