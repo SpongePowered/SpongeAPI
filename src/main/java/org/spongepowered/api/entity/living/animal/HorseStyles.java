@@ -22,18 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-public final class RabbitTypes {
+public final class HorseStyles {
 
-    public static final RabbitType BROWN = null;
-    public static final RabbitType WHITE = null;
-    public static final RabbitType BLACK = null;
-    public static final RabbitType BLACK_AND_WHITE = null;
-    public static final RabbitType GOLD = null;
-    public static final RabbitType SALT_AND_PEPPER = null;
-    public static final RabbitType KILLER = null;
+    public static final HorseStyle NONE = null;
+    public static final HorseStyle WHITE = null;
+    public static final HorseStyle WHITEFIELD = null;
+    public static final HorseStyle WHITE_DOTS = null;
+    public static final HorseStyle BLACK_DOTS = null;
 
-    private RabbitTypes() {
+    private HorseStyles() {
     }
 }

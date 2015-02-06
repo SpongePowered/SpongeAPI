@@ -34,29 +34,26 @@ import java.util.List;
  */
 public final class SelectorTypes {
 
-    private static final SelectorTypeFactory factory = null;
-
-    private SelectorTypes() {}
-
     /**
      * The all players selector type.
      */
     public static final SelectorType ALL_PLAYERS = null;
-
     /**
      * The all entities selector type.
      */
     public static final SelectorType ALL_ENTITIES = null;
-
     /**
      * The nearest player selector type.
      */
     public static final SelectorType NEAREST_PLAYER = null;
-
     /**
      * The random player selector type.
      */
     public static final SelectorType RANDOM_PLAYER = null;
+    private static final SelectorTypeFactory factory = null;
+
+    private SelectorTypes() {
+    }
 
     /**
      * Gets the {@link SelectorType} with the specified ID.

@@ -26,8 +26,6 @@
 package org.spongepowered.api.event.entity.living.player;
 
 
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 

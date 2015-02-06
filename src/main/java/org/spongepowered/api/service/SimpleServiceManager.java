@@ -73,17 +73,17 @@ public class SimpleServiceManager implements ServiceManager {
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
-                            + "(in other words, is 'plugin' actually your plugin object?)");
+                    + "(in other words, is 'plugin' actually your plugin object?)");
         }
 
         PluginContainer container = containerOptional.get();
 
         Provider existing = providers.putIfAbsent(service, new Provider(container, provider));
         if (existing != null) {
-            throw new ProviderExistsException("Provider for service " + service.getCanonicalName() +  " has already been registered!");
+            throw new ProviderExistsException("Provider for service " + service.getCanonicalName() + " has already been registered!");
         }
         @SuppressWarnings("unchecked")
-        SimpleServiceReference<T> ref = (SimpleServiceReference)potentials.remove(service);
+        SimpleServiceReference<T> ref = (SimpleServiceReference) potentials.remove(service);
         if (ref != null) {
             ref.registered(provider);
         }
@@ -125,7 +125,9 @@ public class SimpleServiceManager implements ServiceManager {
     }
 
     private static class Provider {
-        @SuppressWarnings("unused") private final PluginContainer container;
+
+        @SuppressWarnings("unused")
+        private final PluginContainer container;
         private final Object provider;
 
         private Provider(PluginContainer container, Object provider) {
@@ -135,10 +137,11 @@ public class SimpleServiceManager implements ServiceManager {
     }
 
     private static class SimpleServiceReference<T> implements ServiceReference<T> {
-        private volatile Optional<T> service;
+
         private final List<Predicate<T>> actionsOnPresent = new CopyOnWriteArrayList<Predicate<T>>();
         private final Lock waitLock = new ReentrantLock();
         private final Condition waitCondition = waitLock.newCondition();
+        private volatile Optional<T> service;
 
         public SimpleServiceReference(Optional<T> service) {
             this.service = service;

@@ -122,7 +122,7 @@ public interface BlockType extends Translatable {
      * @return The amount of light
      */
     float getEmittedLight();
-    
+
     /**
      * Gets the equivalent {@link ItemBlock} for this BlockType.
      *

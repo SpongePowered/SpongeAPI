@@ -22,6 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.animal;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.entity.living.meta;
+import org.spongepowered.api.service.persistence.DataSerializable;
+
+/**
+ * Represents the style of a {@link org.spongepowered.api.entity.living.animal.Horse}.
+ * <p>The style of a horse is applied on top of the {@link HorseColor} of the
+ * horse. The style can be inherited to new born child horses.</p>
+ */
+public interface HorseStyle extends DataSerializable {
+
+    /**
+     * Gets the name of this style.
+     *
+     * @return The name of this style
+     */
+    String getName();
+
+}

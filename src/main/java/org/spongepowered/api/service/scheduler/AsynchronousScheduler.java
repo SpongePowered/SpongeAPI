@@ -26,7 +26,6 @@ package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
 
-import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -70,7 +69,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @see AsynchronousScheduler#runTask(Object, Runnable)
  * @see AsynchronousScheduler#runTaskAfter(Object, Runnable, TimeUnit, long)
- * @see AsynchronousScheduler#runRepeatingTask(Object, Runnable,TimeUnit, long)
+ * @see AsynchronousScheduler#runRepeatingTask(Object, Runnable, TimeUnit, long)
  * @see AsynchronousScheduler#runRepeatingTaskAfter(Object, Runnable, TimeUnit, long, long)
  *
  * <p>Utility methods are in the interface to query the Scheduler for Tasks</p>

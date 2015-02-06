@@ -25,9 +25,6 @@
 
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-
 /**
  * Represents entities that act as projectiles and can fly in the air.
  * For example, Arrows.

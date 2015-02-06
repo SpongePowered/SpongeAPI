@@ -22,17 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+public final class DyeColors {
 
-public interface DyeColor extends DataSerializable {
+    public static final DyeColor WHITE = null;
+    public static final DyeColor ORANGE = null;
+    public static final DyeColor MAGENTA = null;
+    public static final DyeColor LIGHT_BLUE = null;
+    public static final DyeColor YELLOW = null;
+    public static final DyeColor LIME = null;
+    public static final DyeColor PINK = null;
+    public static final DyeColor GRAY = null;
+    public static final DyeColor SILVER = null;
+    public static final DyeColor CYAN = null;
+    public static final DyeColor PURPLE = null;
+    public static final DyeColor BLUE = null;
+    public static final DyeColor BROWN = null;
+    public static final DyeColor GREEN = null;
+    public static final DyeColor RED = null;
+    public static final DyeColor BLACK = null;
 
-    /**
-     * Gets the name of this color.
-     *
-     * @return The name of this color
-     */
-    String getName();
-
+    private DyeColors() {
+    }
 }

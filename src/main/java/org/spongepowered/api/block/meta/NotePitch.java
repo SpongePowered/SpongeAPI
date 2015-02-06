@@ -34,16 +34,16 @@ public interface NotePitch {
 
     /**
      * Gets the id of this {@link NotePitch}.
-     * 
+     *
      * @return The id
      */
     byte getId();
-    
+
     /**
      * Gets the name of this pitch.
-     * 
+     *
      * @return The name
      */
     String getName();
-    
+
 }

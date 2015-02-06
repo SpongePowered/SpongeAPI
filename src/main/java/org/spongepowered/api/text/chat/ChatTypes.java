@@ -34,17 +34,10 @@ import java.util.List;
  */
 public final class ChatTypes {
 
-    private static final ChatTypeFactory factory = null;
-
-    private ChatTypes() {
-
-    }
-
     /**
      * The standard chat position in prompt at the bottom-left.
      */
     public static final ChatType CHAT = null;
-
     /**
      * The same position as the {@link #CHAT} position, except messages sent to
      * this position are still seen when chat is turned off on the Minecraft
@@ -55,12 +48,16 @@ public final class ChatTypes {
      * </p>
      */
     public static final ChatType SYSTEM = null;
-
     /**
      * The position right above the inventory, experience, health, item name,
      * etc. bars.
      */
     public static final ChatType ACTION_BAR = null;
+    private static final ChatTypeFactory factory = null;
+
+    private ChatTypes() {
+
+    }
 
     /**
      * Gets the {@link ChatType} with the specified name.

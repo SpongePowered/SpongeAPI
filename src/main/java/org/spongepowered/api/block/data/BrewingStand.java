@@ -32,7 +32,7 @@ public interface BrewingStand extends Lockable {
     /**
      * Gets the remaining time until the brewing is complete. Will be zero if
      * the brewing stand is not currently brewing anything.
-     * 
+     *
      * @return The remaining time, in ticks
      */
     int getRemainingBrewTime();
@@ -40,7 +40,7 @@ public interface BrewingStand extends Lockable {
     /**
      * Sets the remaining time until the brewing is complete. This will only
      * have effect if the current items within the brewing stand are valid.
-     * 
+     *
      * @param time The new remaining time, in ticks
      */
     void setRemainingBrewTime(int time);

@@ -32,4 +32,5 @@ import org.spongepowered.api.event.entity.living.player.PlayerEvent;
  * a fishing-related action
  */
 public interface PlayerFishEvent extends HumanFishEvent, PlayerEvent {
+
 }

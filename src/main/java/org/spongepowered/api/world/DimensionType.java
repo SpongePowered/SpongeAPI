@@ -44,9 +44,9 @@ public interface DimensionType {
     boolean doesKeepSpawnLoaded();
 
     /**
-    * Returns the dimension class for this type.
-    *
-    * @return The dimension class for this type
-    */
+     * Returns the dimension class for this type.
+     *
+     * @return The dimension class for this type
+     */
     Class<? extends Dimension> getDimensionClass();
 }

@@ -34,7 +34,7 @@ public interface Sign extends TileEntity {
 
     /**
      * Gets all lines of text on the sign.
-     * 
+     *
      * @return The lines of text
      */
     Message[] getLines();
@@ -42,14 +42,14 @@ public interface Sign extends TileEntity {
     /**
      * Sets the lines of text on the sign. Any lines past the maximum number of
      * lines displayable on the sign will be ignored.
-     * 
+     *
      * @param lines The new lines
      */
     void setLines(Message... lines);
 
     /**
      * Gets the line at the given index.
-     * 
+     *
      * @param index The index
      * @return The line of text
      * @throws IndexOutOfBoundsException If the index is outside of the allowed
@@ -59,7 +59,7 @@ public interface Sign extends TileEntity {
 
     /**
      * Sets the line at the given index.
-     * 
+     *
      * @param index The index to set the line at
      * @param text The new text
      * @throws IndexOutOfBoundsException If the index is outside

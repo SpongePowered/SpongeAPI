@@ -37,18 +37,10 @@ import java.util.regex.Pattern;
  * Segments of nodes are split by the '.' character
  */
 public class NodeTree {
+
     private static final Pattern SPLIT_REGEX = Pattern.compile("\\.");
     private final Node rootNode;
 
-
-    private static class Node {
-        private Tristate value = Tristate.UNDEFINED;
-        private final Map<String, Node> children;
-
-        private Node(Map<String, Node> children) {
-            this.children = children;
-        }
-    }
 
     private NodeTree(Tristate value) {
         this.rootNode = new Node(new HashMap<String, Node>());
@@ -57,6 +49,42 @@ public class NodeTree {
 
     private NodeTree(Node rootNode) {
         this.rootNode = rootNode;
+    }
+
+    /**
+     * Create a new node tree with the given values, and a default value of UNDEFINED.
+     *
+     * @param values The values to set
+     * @return The new node tree
+     */
+    public static NodeTree of(Map<String, Boolean> values) {
+        return of(values, Tristate.UNDEFINED);
+    }
+
+    /**
+     * Create a new node tree with the given values, and the specified root fallback value.
+     *
+     * @param values The values to be contained in this node tree
+     * @param defaultValue The fallback value for any completely undefined nodes
+     * @return The newly created node tree
+     */
+    public static NodeTree of(Map<String, Boolean> values, Tristate defaultValue) {
+        NodeTree newTree = new NodeTree(defaultValue);
+        for (Map.Entry<String, Boolean> value : values.entrySet()) {
+            String[] parts = SPLIT_REGEX.split(value.getKey().toLowerCase());
+            Node currentNode = newTree.rootNode;
+            for (String part : parts) {
+                if (currentNode.children.containsKey(part)) {
+                    currentNode = currentNode.children.get(part);
+                } else {
+                    Node newNode = new Node(new HashMap<String, Node>());
+                    currentNode.children.put(part, newNode);
+                    currentNode = newNode;
+                }
+            }
+            currentNode.value = Tristate.fromBoolean(value.getValue());
+        }
+        return newTree;
     }
 
     /**
@@ -143,39 +171,13 @@ public class NodeTree {
         return ret;
     }
 
-    /**
-     * Create a new node tree with the given values, and a default value of UNDEFINED.
-     *
-     * @param values The values to set
-     * @return The new node tree
-     */
-    public static NodeTree of(Map<String, Boolean> values) {
-        return of(values, Tristate.UNDEFINED);
-    }
+    private static class Node {
 
-    /**
-     * Create a new node tree with the given values, and the specified root fallback value.
-     *
-     * @param values The values to be contained in this node tree
-     * @param defaultValue The fallback value for any completely undefined nodes
-     * @return The newly created node tree
-     */
-    public static NodeTree of(Map<String, Boolean> values, Tristate defaultValue) {
-        NodeTree newTree = new NodeTree(defaultValue);
-        for (Map.Entry<String, Boolean> value : values.entrySet()) {
-            String[] parts = SPLIT_REGEX.split(value.getKey().toLowerCase());
-            Node currentNode = newTree.rootNode;
-            for (String part : parts) {
-                if (currentNode.children.containsKey(part)) {
-                    currentNode = currentNode.children.get(part);
-                } else {
-                    Node newNode = new Node(new HashMap<String, Node>());
-                    currentNode.children.put(part, newNode);
-                    currentNode = newNode;
-                }
-            }
-            currentNode.value = Tristate.fromBoolean(value.getValue());
+        private final Map<String, Node> children;
+        private Tristate value = Tristate.UNDEFINED;
+
+        private Node(Map<String, Node> children) {
+            this.children = children;
         }
-        return newTree;
     }
 }

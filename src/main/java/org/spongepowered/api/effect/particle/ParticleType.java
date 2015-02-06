@@ -26,7 +26,7 @@ package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.item.inventory.ItemStack;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.

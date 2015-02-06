@@ -32,6 +32,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * and not hold references to large objects
  */
 public final class Context {
+
     public static final String WORLD_KEY = "world";
 
     private final String type;
@@ -83,7 +84,7 @@ public final class Context {
         Context context = (Context) o;
 
         if (!name.equals(context.name)
-                || !type.equals(context.type)) {
+            || !type.equals(context.type)) {
             return false;
         }
 

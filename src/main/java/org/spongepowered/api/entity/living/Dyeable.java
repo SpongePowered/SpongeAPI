@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.entity.living.meta.DyeColor;
+import org.spongepowered.api.entity.living.animal.DyeColor;
 
 /**
  * Represents something that can be dyed, such as a

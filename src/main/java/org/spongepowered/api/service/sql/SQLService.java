@@ -38,6 +38,7 @@ import javax.sql.DataSource;
  */
 @ThreadSafe
 public interface SQLService {
+
     /**
      * Returns a data source for the provided JDBC connection string or an alias
      *

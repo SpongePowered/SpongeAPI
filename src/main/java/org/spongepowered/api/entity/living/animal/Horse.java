@@ -27,9 +27,6 @@ package org.spongepowered.api.entity.living.animal;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Tameable;
-import org.spongepowered.api.entity.living.meta.HorseColor;
-import org.spongepowered.api.entity.living.meta.HorseStyle;
-import org.spongepowered.api.entity.living.meta.HorseVariant;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import javax.annotation.Nullable;
