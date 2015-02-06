@@ -37,7 +37,7 @@ import java.util.Set;
 /**
  * Executes a command based on user input.
  */
-public interface Dispatcher extends CommandCallable {
+public interface Dispatcher<T> extends CommandCallable<T> {
 
     /**
      * Get a list of commands. Each command, regardless of how many aliases it

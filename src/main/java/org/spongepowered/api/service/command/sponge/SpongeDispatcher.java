@@ -27,6 +27,7 @@ package org.spongepowered.api.service.command.sponge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.Game;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.message.Message;
@@ -57,10 +58,11 @@ import java.util.Set;
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
-public class SpongeDispatcher implements Dispatcher {
+public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
-    public SpongeDispatcher(PluginManager pluginManager) {
+    public SpongeDispatcher(PluginManager pluginManager, Game game) {
         this.pluginManager = pluginManager;
+        this.game = game;
     }
 
     /**
@@ -86,6 +88,8 @@ public class SpongeDispatcher implements Dispatcher {
      */
     private final Map<String, AliasContext> aliasContexts = Maps.newHashMap();
 
+    private final Game game;
+
     /**
      * Register a command with this Dispatcher.
      * 
@@ -95,7 +99,7 @@ public class SpongeDispatcher implements Dispatcher {
      * @param plugin The ID of the plugin registering the command.
      * @return If present, a {@link CommandMapping} representing the command.
      */
-    public Optional<CommandMapping> register(CommandCallable command, String primaryAlias, List<String> aliases, String plugin)
+    public Optional<CommandMapping> register(CommandCallable<CommandResult> command, String primaryAlias, List<String> aliases, String plugin)
             throws IllegalArgumentException {
 
         checkNotNull(command);
@@ -469,8 +473,9 @@ public class SpongeDispatcher implements Dispatcher {
      * 
      * @return If the command was successful.
      */
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+    public CommandResult call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         String[] parts = arguments.split(" +", 2);
         String alias = parts[0];
         Optional<CommandMapping> mapping = resolveMapping(alias, source);
@@ -480,9 +485,8 @@ public class SpongeDispatcher implements Dispatcher {
             passedParents.addAll(parents);
             passedParents.add(alias);
 
-            mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
+            return ((CommandCallable<CommandResult>) mapping.get().getCallable()).call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
 
-            return true;
         } else if (alias.contains(":") && (alias.indexOf(":") < (alias.length() - 1)) && !isExtended) {
             // TODO: Support vanilla commands in this command-suggestion system.
             Set<CommandMapping> mappings = this.getAll(alias);
@@ -510,11 +514,11 @@ public class SpongeDispatcher implements Dispatcher {
                 }
                 source.sendMessage(Messages.builder(text).color(TextColors.RED).build());
                 source.sendMessage(finalBuilder.append(messages).build());
-                return false;
+                return game.getRegistry().getCommandResultBuilder().processed(false).build();
             }
         }
         source.sendMessage(Messages.builder("Error: Command not found.").color(TextColors.RED).build());
-        return false;
+        return game.getRegistry().getCommandResultBuilder().processed(false).build();
     }
 
     /**

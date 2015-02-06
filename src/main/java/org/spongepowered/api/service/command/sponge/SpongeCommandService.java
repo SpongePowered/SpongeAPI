@@ -27,6 +27,7 @@ package org.spongepowered.api.service.command.sponge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.Game;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
@@ -56,7 +57,7 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-public class SpongeCommandService implements CommandService {
+public class SpongeCommandService implements CommandService<CommandResult> {
 
     private static final Logger log = LoggerFactory.getLogger(SpongeCommandService.class);
 
@@ -66,16 +67,16 @@ public class SpongeCommandService implements CommandService {
     private final Object lock = new Object();
 
     @Inject
-    public SpongeCommandService(PluginManager pluginManager) {
+    public SpongeCommandService(PluginManager pluginManager, Game game) {
         checkNotNull(pluginManager, "pluginManager");
         this.pluginManager = pluginManager;
-        this.dispatcher = new SpongeDispatcher(pluginManager);
+        this.dispatcher = new SpongeDispatcher(pluginManager, game);
     }
 
     @Subscribe(order = Order.LAST)
     public void onCommandEvent(final CommandEvent event) {
         try {
-            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList())) {
+            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String> emptyList()).wasProcessed()) {
                 event.setCancelled(true);
             }
         } catch (CommandException e) {
@@ -85,17 +86,17 @@ public class SpongeCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... aliases) {
+    public Optional<CommandMapping> register(Object plugin, CommandCallable<CommandResult> callable, String... aliases) {
         return register(plugin, callable, Arrays.asList(aliases));
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
+    public Optional<CommandMapping> register(Object plugin, CommandCallable<CommandResult> callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         return register(plugin, callable, aliases);
     }
 
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
+    public Optional<CommandMapping> register(Object plugin, CommandCallable<CommandResult> callable, List<String> aliases) {
         checkNotNull(plugin);
 
         Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
@@ -202,7 +203,7 @@ public class SpongeCommandService implements CommandService {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+    public CommandResult call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         return dispatcher.call(source, arguments, parents);
     }
 

@@ -39,27 +39,22 @@ import java.util.List;
  * {@link java.lang.Object#equals(Object)} but may choose to do so.
  * </p>
  */
-public interface CommandCallable extends CommandCompleter {
+public interface CommandCallable<T> extends CommandCompleter {
 
     /**
      * Execute the command based on input arguments.
      *
-     * <p>
-     * The implementing class must perform the necessary permission checks.
+     * <p> The implementing class must perform the necessary permission checks.
      * </p>
      *
-     * @param source
-     *            The caller of the command
-     * @param arguments
-     *            The raw arguments for this command
-     * @param parents
-     *            A stack of parent commands, where the first entry is the root
-     *            command
-     * @return Whether a command was processed
-     * @throws CommandException
-     *             Thrown on a command error
+     * @param source The caller of the command
+     * @param arguments The raw arguments for this command
+     * @param parents A stack of parent commands, where the first entry is the
+     *        root command
+     * @return Some object indicating the status of the command.
+     * @throws CommandException Thrown on a command error
      */
-    boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
+    T call(CommandSource source, String arguments, List<String> parents) throws CommandException;
 
     /**
      * Test whether this command can probably be executed by the given source.

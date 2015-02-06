@@ -40,7 +40,7 @@ import java.util.Set;
  * A command dispatcher watches for commands (such as those said in chat) and
  * dispatches them to the correct command handler.
  */
-public interface CommandService extends Dispatcher {
+public interface CommandService<T> extends Dispatcher<T> {
 
     /**
      * Register a given command using a given list of aliases.
@@ -57,7 +57,7 @@ public interface CommandService extends Dispatcher {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
      *         instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... aliases);
+    Optional<CommandMapping> register(Object plugin, CommandCallable<T> callable, String... aliases);
 
     /**
      * Register a given command using a given list of aliases.
@@ -90,7 +90,7 @@ public interface CommandService extends Dispatcher {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
      *         instance
      */
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
+    public Optional<CommandMapping> register(Object plugin, CommandCallable<T> callable, List<String> aliases,
             Function<List<String>, List<String>> callback);
 
     /**

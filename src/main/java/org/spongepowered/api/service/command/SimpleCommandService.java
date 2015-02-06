@@ -67,7 +67,7 @@ import javax.inject.Inject;
  * {@link #onCommandEvent(CommandEvent)} method.
  * </p>
  */
-public class SimpleCommandService implements CommandService {
+public class SimpleCommandService implements CommandService<Boolean> {
 
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
     private final PluginManager pluginManager;
@@ -105,12 +105,12 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... aliases) {
+    public Optional<CommandMapping> register(Object plugin, CommandCallable<Boolean> callable, String... aliases) {
         return register(plugin, callable, Arrays.asList(aliases), Functions.<List<String>>identity());
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
+    public Optional<CommandMapping> register(Object plugin, CommandCallable<Boolean> callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(plugin);
         Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
@@ -206,7 +206,7 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+    public Boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         return dispatcher.call(source, arguments, parents);
     }
 

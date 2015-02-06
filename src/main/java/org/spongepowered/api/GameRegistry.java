@@ -25,7 +25,6 @@
 
 package org.spongepowered.api;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -51,10 +50,13 @@ import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.service.command.sponge.CommandResultBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
+
+import com.google.common.base.Optional;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -535,5 +537,12 @@ public interface GameRegistry {
      * @return The list of all available {@link BannerPatternShape}s
      */
     List<BannerPatternShape> getBannerPatternShapes();
+
+    /**
+     * Gets a new {@link CommandResultBuilder}.
+     * 
+     * @return A new {@link CommandResultBuilder}
+     */
+    CommandResultBuilder getCommandResultBuilder();
 
 }

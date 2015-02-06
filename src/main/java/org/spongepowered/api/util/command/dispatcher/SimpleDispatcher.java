@@ -52,7 +52,7 @@ import java.util.Set;
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
-public class SimpleDispatcher implements Dispatcher {
+public class SimpleDispatcher implements Dispatcher<Boolean> {
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
 
     /**
@@ -75,7 +75,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be
      *         registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
+    public Optional<CommandMapping> register(CommandCallable<Boolean> callable, String... alias) {
         checkNotNull(alias);
         return register(callable, Arrays.asList(alias));
     }
@@ -100,7 +100,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be
      *         registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, List<String> aliases) {
+    public Optional<CommandMapping> register(CommandCallable<Boolean> callable, List<String> aliases) {
         return register(callable, aliases, Functions.<List<String>>identity());
     }
 
@@ -130,7 +130,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @throws IllegalArgumentException Thrown if new conflicting aliases are
      *         added in the callback
      */
-    public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
+    public synchronized Optional<CommandMapping> register(CommandCallable<Boolean> callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(aliases);
         checkNotNull(callable);
@@ -280,7 +280,7 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+    public Boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         String[] parts = arguments.split(" +", 2);
         Optional<CommandMapping> mapping = resolveMapping(parts[0], source);
         if (mapping.isPresent()) {
