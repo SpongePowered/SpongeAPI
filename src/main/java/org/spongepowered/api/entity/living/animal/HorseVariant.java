@@ -22,18 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-public final class RabbitTypes {
+import org.spongepowered.api.service.persistence.DataSerializable;
 
-    public static final RabbitType BROWN = null;
-    public static final RabbitType WHITE = null;
-    public static final RabbitType BLACK = null;
-    public static final RabbitType BLACK_AND_WHITE = null;
-    public static final RabbitType GOLD = null;
-    public static final RabbitType SALT_AND_PEPPER = null;
-    public static final RabbitType KILLER = null;
+/**
+ * Represents the variant of a {@link org.spongepowered.api.entity.living.animal.Horse}.
+ * <p>The variant of a horse defines the various behaviors the horse can have.
+ * Some behaviors limit whether a horse can be chested, wear horse armor, or
+ * can be saddled.</p>
+ */
+public interface HorseVariant extends DataSerializable {
 
-    private RabbitTypes() {
-    }
+    /**
+     * Gets the name of this variant.
+     *
+     * @return The name of this variant
+     */
+    String getName();
+
 }

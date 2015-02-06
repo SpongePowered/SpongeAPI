@@ -42,9 +42,10 @@ public final class DimensionTypes {
 
     /**
      * Represents an "end" based dimension.
-     */ 
+     */
     public static final DimensionType END = null;
 
-    private DimensionTypes() {}
+    private DimensionTypes() {
+    }
 
 }

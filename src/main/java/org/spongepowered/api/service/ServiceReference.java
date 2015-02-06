@@ -31,6 +31,7 @@ import com.google.common.base.Predicate;
  * A reference to a service that may or may not be currently registered, but will be updated if a registration does happen.
  */
 public interface ServiceReference<T> {
+
     /**
      * Get the reference to the current state of this service.
      *

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * may not be attempted.</p>
  */
 public class Cause {
-    
+
     private final Optional<Cause> parent;
     private final Object cause;
     private final Optional<Reason> reason;

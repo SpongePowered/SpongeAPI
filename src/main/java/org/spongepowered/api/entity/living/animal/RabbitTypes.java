@@ -22,22 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+public final class RabbitTypes {
 
-/**
- * Represents the style of a {@link org.spongepowered.api.entity.living.animal.Horse}.
- * <p>The style of a horse is applied on top of the {@link HorseColor} of the
- * horse. The style can be inherited to new born child horses.</p>
- */
-public interface HorseStyle extends DataSerializable {
+    public static final RabbitType BROWN = null;
+    public static final RabbitType WHITE = null;
+    public static final RabbitType BLACK = null;
+    public static final RabbitType BLACK_AND_WHITE = null;
+    public static final RabbitType GOLD = null;
+    public static final RabbitType SALT_AND_PEPPER = null;
+    public static final RabbitType KILLER = null;
 
-    /**
-     * Gets the name of this style.
-     *
-     * @return The name of this style
-     */
-    String getName();
-
+    private RabbitTypes() {
+    }
 }

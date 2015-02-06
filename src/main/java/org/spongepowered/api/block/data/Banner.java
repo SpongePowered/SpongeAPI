@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.data;
 
 import org.spongepowered.api.block.meta.BannerPatternShape;
-import org.spongepowered.api.entity.living.meta.DyeColor;
+import org.spongepowered.api.entity.living.animal.DyeColor;
 import org.spongepowered.api.service.persistence.DataSerializable;
 
 import java.util.List;
@@ -37,21 +37,21 @@ public interface Banner extends TileEntity {
 
     /**
      * Gets the base color of this banner.
-     * 
+     *
      * @return The base color
      */
     DyeColor getBaseColor();
 
     /**
      * Sets the base color of this banner.
-     * 
+     *
      * @param color The new color
      */
     void setBaseColor(DyeColor color);
 
     /**
      * Gets an ordered list of this Banner's pattern layers.
-     * 
+     *
      * @return The pattern layers
      */
     List<PatternLayer> getPatternList();
@@ -63,14 +63,14 @@ public interface Banner extends TileEntity {
 
     /**
      * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
-     * 
+     *
      * @param pattern The new pattern layer
      */
     void addPatternLayer(PatternLayer pattern);
 
     /**
      * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
-     * 
+     *
      * @param patternShape The pattern shape
      * @param color The layer color
      */
@@ -83,14 +83,14 @@ public interface Banner extends TileEntity {
 
         /**
          * Gets the pattern shape for this layer.
-         * 
+         *
          * @return The shape
          */
         BannerPatternShape getId();
 
         /**
          * Gets the color for this layer.
-         * 
+         *
          * @return The color
          */
         DyeColor getColor();

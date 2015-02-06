@@ -22,22 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.event.entity.living.human.fishing;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.entity.projectile.FishHook;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * Called when a {@link org.spongepowered.api.entity.living.Human} performs
+ * a fishing-related action.
  */
-public interface SkeletonType extends DataSerializable {
+public interface HumanFishEvent extends HumanEvent, Cancellable {
 
     /**
-     * Gets the name of this skeleton type.
+     * Gets the {@link FishHook} used in this event.
      *
-     * @return The name of this skeleton type
+     * @return The {@link FishHook used} in this event
      */
-    String getName();
-
+    FishHook getFishHook();
 }

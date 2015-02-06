@@ -40,7 +40,7 @@ public interface MobSpawner extends TileEntity {
 
     /**
      * Gets the remaining delay until the next batch of monsters is spawned.
-     * 
+     *
      * @return The remaining delay, in ticks
      */
     short getRemainingDelay();
@@ -49,7 +49,7 @@ public interface MobSpawner extends TileEntity {
      * Sets the remaining delay until the next batch of monsters is spawned.
      * Setting this to zero will cause the monsters to be spawned upon the next
      * tick.
-     * 
+     *
      * @param delay The new delay, in ticks
      */
     void setRemainingDelay(short delay);
@@ -60,7 +60,7 @@ public interface MobSpawner extends TileEntity {
      * Each time the timer is reset the new delay is chosen randomly from
      * between the minimum (inclusive) and maximum (exclusive) delays.
      * </p>
-     * 
+     *
      * @return The minimum delay, in ticks
      */
     short getMinimumSpawnDelay();
@@ -71,7 +71,7 @@ public interface MobSpawner extends TileEntity {
      * Each time the timer is reset the new delay is chosen randomly from
      * between the minimum (inclusive) and maximum (exclusive) delays.
      * </p>
-     * 
+     *
      * @param delay The new minimum delay, in ticks
      */
     void setMinimumSpawnDelay(short delay);
@@ -82,7 +82,7 @@ public interface MobSpawner extends TileEntity {
      * Each time the timer is reset the new delay is chosen randomly from
      * between the minimum (inclusive) and maximum (exclusive) delays.
      * </p>
-     * 
+     *
      * @return The maximum delay, in ticks
      */
     short getMaximumSpawnDelay();
@@ -93,7 +93,7 @@ public interface MobSpawner extends TileEntity {
      * Each time the timer is reset the new delay is chosen randomly from
      * between the minimum (inclusive) and maximum (exclusive) delays.
      * </p>
-     * 
+     *
      * @param delay The new maximum delay, in ticks
      */
     void setMaximumSpawnDelay(short delay);
@@ -104,7 +104,7 @@ public interface MobSpawner extends TileEntity {
      * The actual number of monsters spawned may be less than the attempted
      * amount if the maximum number of entities allowed in the area is reached.
      * </p>
-     * 
+     *
      * @return The count
      */
     short getSpawnCount();
@@ -115,7 +115,7 @@ public interface MobSpawner extends TileEntity {
      * The actual number of monsters spawned may be less than the attempted
      * amount if the maximum number of entities allowed in the area is reached.
      * </p>
-     * 
+     *
      * @param count The new count
      */
     void setSpawnCount(short count);
@@ -124,7 +124,7 @@ public interface MobSpawner extends TileEntity {
      * Gets the maximum amount of entities that may be within the spawn range.
      * This monster spawner will cease spawning new entities if this cap is
      * reached.
-     * 
+     *
      * @return The maximum amount of nearby entities
      */
     short getMaximumNearbyEntities();
@@ -133,7 +133,7 @@ public interface MobSpawner extends TileEntity {
      * Sets the maximum amount of entities that may be within the spawn range.
      * This monster spawner will cease spawning new entities if this cap is
      * reached.
-     * 
+     *
      * @param count The new maximum amount of nearby entities
      */
     void setMaximumNearbyEntities(short count);
@@ -141,7 +141,7 @@ public interface MobSpawner extends TileEntity {
     /**
      * Gets the minimum range to the nearest player before this monster spawner
      * will activate.
-     * 
+     *
      * @return The required range
      */
     short getRequiredPlayerRange();
@@ -149,7 +149,7 @@ public interface MobSpawner extends TileEntity {
     /**
      * Sets the minimum range to the nearest player before this monster spawner
      * will activate.
-     * 
+     *
      * @param range The new required range
      */
     void setRequiredPlayerRange(short range);
@@ -161,7 +161,7 @@ public interface MobSpawner extends TileEntity {
      * cuboid with dimensions of {@code range*2+1 x 3 x range*2+1} centered
      * around the monster spawner.
      * </p>
-     * 
+     *
      * @return The range
      */
     short getSpawnRange();
@@ -173,14 +173,14 @@ public interface MobSpawner extends TileEntity {
      * cuboid with dimensions of {@code range*2+1 x 3 x range*2+1} centered
      * around the monster spawner.
      * </p>
-     * 
+     *
      * @param range The new range
      */
     void setSpawnRange(short range);
 
     /**
      * Sets the next entity type and properties to be spawned.
-     * 
+     *
      * @param type The entity type
      * @param additionalProperties Additional properties to apply to the entity, may be null
      */
@@ -188,7 +188,7 @@ public interface MobSpawner extends TileEntity {
 
     /**
      * Sets the next {@link WeightedRandomEntity} to be spawned.
-     * 
+     *
      * @param entity The random entity entry
      */
     void setNextEntityToSpawn(WeightedRandomEntity entity);
@@ -196,26 +196,26 @@ public interface MobSpawner extends TileEntity {
     /**
      * Defines a number of {@link WeightedRandomEntity}s from which the type of
      * each batch will be randomly selected based on the weighting value.
-     * 
+     *
      * @param entities The possible entities
      */
     void setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
 
     /**
-     * Defines a number of {@link WeightedRandomEntity}s from which the type of
-     * each batch will be randomly selected based on the weighting value.
-     * 
-     * @param entities The possible entities
-     */
-    void setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
-
-    /**
      * Gets the collection of {@link WeightedRandomEntity} from which the type
      * of each batch of spawned entities will be selected from.
-     * 
+     *
      * @return The possible entities
      */
     Collection<WeightedRandomEntity> getPossibleEntitiesToSpawn();
+
+    /**
+     * Defines a number of {@link WeightedRandomEntity}s from which the type of
+     * each batch will be randomly selected based on the weighting value.
+     *
+     * @param entities The possible entities
+     */
+    void setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
 
     /**
      * Trigger an immediate spawn of a batch of entities.
@@ -223,7 +223,7 @@ public interface MobSpawner extends TileEntity {
      * This will obey the restrictions of maximum nearby entities and player
      * range unless the {@code force} flag is set.
      * </p>
-     * 
+     *
      * @param force Whether to ignore spawning restrictions
      */
     void spawnEntityBatchImmediately(boolean force);

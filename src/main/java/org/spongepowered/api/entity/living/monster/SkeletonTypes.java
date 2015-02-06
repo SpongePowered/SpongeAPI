@@ -22,17 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+public final class SkeletonTypes {
 
-public interface DyeColor extends DataSerializable {
+    public static final SkeletonType NORMAL = null;
+    public static final SkeletonType WITHER = null;
 
-    /**
-     * Gets the name of this color.
-     *
-     * @return The name of this color
-     */
-    String getName();
-
+    private SkeletonTypes() {
+    }
 }

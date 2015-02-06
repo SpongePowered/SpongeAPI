@@ -22,19 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
- * Represents the type of ocelot an ocelot is.
+ * Represents the color of a {@link org.spongepowered.api.entity.living.animal.Horse}.
+ * <p>The color of a horse is a genetic trait that can be inherited to a new
+ * born horse.</p>
  */
-public interface OcelotType extends DataSerializable {
+public interface HorseColor extends DataSerializable {
 
     /**
-     * Gets the name of this ocelot type.
+     * Gets the name of this color.
      *
-     * @return The name of this ocelot type
+     * @return The name of this color
      */
     String getName();
 

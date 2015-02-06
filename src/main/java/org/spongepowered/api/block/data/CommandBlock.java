@@ -35,14 +35,14 @@ public interface CommandBlock extends TileEntity, CommandSource {
 
     /**
      * Gets the currently stored command.
-     * 
+     *
      * @return The command
      */
     String getStoredCommand();
 
     /**
      * Sets the currently stored command.
-     * 
+     *
      * @param command The new command
      */
     void setStoredCommand(String command);
@@ -61,14 +61,14 @@ public interface CommandBlock extends TileEntity, CommandSource {
      * <p>
      * This success count can also be polled via a redstone comparator.
      * </p>
-     * 
+     *
      * @return The last success count
      */
     int getSuccessCount();
 
     /**
      * Sets the last success count for this command block.
-     * 
+     *
      * @param count The new success count
      * @see #getSuccessCount()
      */
@@ -77,7 +77,7 @@ public interface CommandBlock extends TileEntity, CommandSource {
     /**
      * Gets whether this command block will keep track of the output from the
      * last command it executed.
-     * 
+     *
      * @return Whether the command output is tracked
      */
     boolean doesTrackOutput();
@@ -85,7 +85,7 @@ public interface CommandBlock extends TileEntity, CommandSource {
     /**
      * Sets whether this command block should track the output from future
      * commands that it executes.
-     * 
+     *
      * @param track Whether the command outputs should be tracked
      */
     void shouldTrackOutput(boolean track);
@@ -96,14 +96,14 @@ public interface CommandBlock extends TileEntity, CommandSource {
      * This will only be available if {@link #doesTrackOutput()} is set to true,
      * otherwise {@link Optional#absent()} will be returned.
      * </p>
-     * 
+     *
      * @return The last command output, if available
      */
     Optional<Message> getLastOutput();
 
     /**
      * Sets the last output message.
-     * 
+     *
      * @param message The new message
      */
     void setLastOutput(Message message);

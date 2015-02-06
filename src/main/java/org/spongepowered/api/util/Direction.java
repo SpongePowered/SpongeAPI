@@ -39,40 +39,34 @@ import com.flowpowered.math.vector.Vector3d;
  * </ul>
  */
 public enum Direction {
-    NORTH           (new Vector3d( 0,       0, -1       ), Flag.CARDINAL         ),
-    NORTH_NORTHEAST (new Vector3d( C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
-    NORTHEAST       (new Vector3d( 1,       0, -1       ), Flag.ORDINAL          ),
-    EAST_NORTHEAST  (new Vector3d( C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
+    NORTH(new Vector3d(0, 0, -1), Flag.CARDINAL),
+    NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
+    NORTHEAST(new Vector3d(1, 0, -1), Flag.ORDINAL),
+    EAST_NORTHEAST(new Vector3d(C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
 
-    EAST            (new Vector3d( 1,       0,  0       ), Flag.CARDINAL         ),
-    EAST_SOUTHEAST  (new Vector3d( C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
-    SOUTHEAST       (new Vector3d( 1,       0,  1       ), Flag.ORDINAL          ),
-    SOUTH_SOUTHEAST (new Vector3d( C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
+    EAST(new Vector3d(1, 0, 0), Flag.CARDINAL),
+    EAST_SOUTHEAST(new Vector3d(C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
+    SOUTHEAST(new Vector3d(1, 0, 1), Flag.ORDINAL),
+    SOUTH_SOUTHEAST(new Vector3d(C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
 
-    SOUTH           (new Vector3d( 0,       0,  1       ), Flag.CARDINAL         ),
-    SOUTH_SOUTHWEST (new Vector3d(-C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
-    SOUTHWEST       (new Vector3d(-1,       0,  1       ), Flag.ORDINAL          ),
-    WEST_SOUTHWEST  (new Vector3d(-C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
+    SOUTH(new Vector3d(0, 0, 1), Flag.CARDINAL),
+    SOUTH_SOUTHWEST(new Vector3d(-C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
+    SOUTHWEST(new Vector3d(-1, 0, 1), Flag.ORDINAL),
+    WEST_SOUTHWEST(new Vector3d(-C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
 
-    WEST            (new Vector3d(-1,       0,  0       ), Flag.CARDINAL         ),
-    WEST_NORTHWEST  (new Vector3d(-C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
-    NORTHWEST       (new Vector3d(-1,       0, -1       ), Flag.ORDINAL          ),
-    NORTH_NORTHWEST (new Vector3d(-C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
+    WEST(new Vector3d(-1, 0, 0), Flag.CARDINAL),
+    WEST_NORTHWEST(new Vector3d(-C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
+    NORTHWEST(new Vector3d(-1, 0, -1), Flag.ORDINAL),
+    NORTH_NORTHWEST(new Vector3d(-C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
 
-    UP              (new Vector3d( 0,       1,  0       ), Flag.UPRIGHT          ),
-    DOWN            (new Vector3d( 0,      -1,  0       ), Flag.UPRIGHT          ),
+    UP(new Vector3d(0, 1, 0), Flag.UPRIGHT),
+    DOWN(new Vector3d(0, -1, 0), Flag.UPRIGHT),
 
-    NONE            (new Vector3d( 0,       0,  0       ), 0                     );
-
-    private interface C {
-        public static final double C8 = Math.cos(Math.PI / 8);
-        public static final double S8 = Math.sin(Math.PI / 8);
-    }
+    NONE(new Vector3d(0, 0, 0), 0);
 
     private final Vector3d direction;
     private final int flags;
     private Direction opposite;
-
     private Direction(Vector3d vector3d, int flags) {
         if (vector3d.length() == 0) {
             // Prevent normalization of the zero direction
@@ -82,15 +76,14 @@ public enum Direction {
         }
         this.flags = flags;
     }
-
     static {
         NORTH.opposite = SOUTH;
-        EAST.opposite  = WEST;
+        EAST.opposite = WEST;
         SOUTH.opposite = NORTH;
-        WEST.opposite  = EAST;
+        WEST.opposite = EAST;
 
-        UP.opposite    = DOWN;
-        DOWN.opposite  = UP;
+        UP.opposite = DOWN;
+        DOWN.opposite = UP;
 
         NONE.opposite = NONE;
 
@@ -99,14 +92,97 @@ public enum Direction {
         SOUTHEAST.opposite = NORTHWEST;
         SOUTHWEST.opposite = NORTHEAST;
 
-        WEST_NORTHWEST.opposite  = EAST_SOUTHEAST;
-        WEST_SOUTHWEST.opposite  = EAST_NORTHEAST;
+        WEST_NORTHWEST.opposite = EAST_SOUTHEAST;
+        WEST_SOUTHWEST.opposite = EAST_NORTHEAST;
         NORTH_NORTHWEST.opposite = SOUTH_SOUTHEAST;
         NORTH_NORTHEAST.opposite = SOUTH_SOUTHWEST;
-        EAST_SOUTHEAST.opposite  = WEST_NORTHWEST;
-        EAST_NORTHEAST.opposite  = WEST_SOUTHWEST;
+        EAST_SOUTHEAST.opposite = WEST_NORTHWEST;
+        EAST_NORTHEAST.opposite = WEST_SOUTHWEST;
         SOUTH_SOUTHEAST.opposite = NORTH_NORTHWEST;
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
+    }
+
+    /**
+     * Gets the closest horizontal direction from the given vector. If the
+     * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
+     * has the same horizontal and vertical length, a horizontal direction will
+     * be returned. If the vector has the same angle to two directions the
+     * clockwise next will be selected.
+     *
+     * @param vector The vector to convert to a direction
+     * @return The closest horizontal direction.
+     */
+    public static Direction getClosest(Vector3d vector) {
+        if (Math.pow(vector.getY(), 2) <= Math.pow(vector.getX(), 2) + Math.pow(vector.getZ(), 2)) {
+            return getClosestHorizonal(vector);
+        } else if (vector.getY() > 0) {
+            return UP;
+        } else {
+            return DOWN;
+        }
+    }
+
+    /**
+     * Gets the closest horizontal direction from the given vector. If the
+     * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
+     * has the same angle to two directions the clockwise next will be selected.
+     *
+     * @param vector The vector to convert to a direction
+     * @return The closest horizontal direction.
+     */
+    public static Direction getClosestHorizonal(Vector3d vector) {
+        if (vector.getX() == 0) {
+            if (vector.getZ() == 0) {
+                return NONE;
+            } else if (vector.getZ() < 0) {
+                return NORTH;
+            } else {
+                return SOUTH;
+            }
+        } else {
+            final double angle = Math.atan2(vector.getX(), -vector.getZ());
+            final int ordinal = (int) (angle * 8 / Math.PI + 16.5) % 16;
+            return values()[ordinal];
+        }
+    }
+
+    /**
+     * Gets the direction associated with the given axis.
+     *
+     * @param axis The axis
+     * @return The direction
+     */
+    public static Direction getFromAxis(final Axis axis) {
+        switch (axis) {
+            case X:
+                return SOUTH;
+            case Y:
+                return UP;
+            case Z:
+                return EAST;
+            default:
+                throw new IllegalStateException("Not capable of handling the " + axis.name() + " axis!");
+        }
+    }
+
+    /**
+     * Gets the direction of the axis along the given {@link AxisDirection}.
+     *
+     * @param axis The axis
+     * @param direction The direction along the axis
+     * @return The direction
+     */
+    public static Direction getFromAxis(final Axis axis, final AxisDirection direction) {
+        switch (direction) {
+            case PLUS:
+                return getFromAxis(axis);
+            case ZERO:
+                return NONE;
+            case MINUS:
+                return getFromAxis(axis).getOpposite();
+            default:
+                throw new IllegalStateException("Not capable of handling the " + direction.name() + " direction!");
+        }
     }
 
     /**
@@ -179,87 +255,10 @@ public enum Direction {
         return direction;
     }
 
-    /**
-     * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
-     * has the same horizontal and vertical length, a horizontal direction will
-     * be returned. If the vector has the same angle to two directions the
-     * clockwise next will be selected.
-     *
-     * @param vector The vector to convert to a direction
-     * @return The closest horizontal direction.
-     */
-    public static Direction getClosest(Vector3d vector) {
-        if (Math.pow(vector.getY(), 2) <= Math.pow(vector.getX(), 2) + Math.pow(vector.getZ(), 2)) {
-            return getClosestHorizonal(vector);
-        } else if (vector.getY() > 0) {
-            return UP;
-        } else {
-            return DOWN;
-        }
-    }
+    private interface C {
 
-    /**
-     * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
-     * has the same angle to two directions the clockwise next will be selected.
-     *
-     * @param vector The vector to convert to a direction
-     * @return The closest horizontal direction.
-     */
-    public static Direction getClosestHorizonal(Vector3d vector) {
-        if (vector.getX() == 0) {
-            if (vector.getZ() == 0) {
-                return NONE;
-            } else if (vector.getZ() < 0) {
-                return NORTH;
-            } else {
-                return SOUTH;
-            }
-        } else {
-            final double angle = Math.atan2(vector.getX(), -vector.getZ());
-            final int ordinal = (int) (angle * 8 / Math.PI + 16.5) % 16;
-            return values()[ordinal];
-        }
-    }
-
-    /**
-     * Gets the direction associated with the given axis.
-     *
-     * @param axis The axis
-     * @return The direction
-     */
-    public static Direction getFromAxis(final Axis axis) {
-        switch (axis) {
-            case X :
-                return SOUTH;
-            case Y :
-                return UP;
-            case Z :
-                return EAST;
-            default :
-                throw new IllegalStateException("Not capable of handling the " + axis.name() + " axis!");
-        }
-    }
-
-    /**
-     * Gets the direction of the axis along the given {@link AxisDirection}.
-     *
-     * @param axis The axis
-     * @param direction The direction along the axis
-     * @return The direction
-     */
-    public static Direction getFromAxis(final Axis axis, final AxisDirection direction) {
-        switch (direction) {
-            case PLUS :
-                return getFromAxis(axis);
-            case ZERO :
-                return NONE;
-            case MINUS :
-                return getFromAxis(axis).getOpposite();
-            default :
-                throw new IllegalStateException("Not capable of handling the " + direction.name() + " direction!");
-        }
+        public static final double C8 = Math.cos(Math.PI / 8);
+        public static final double S8 = Math.sin(Math.PI / 8);
     }
 
     public static final class Flag {

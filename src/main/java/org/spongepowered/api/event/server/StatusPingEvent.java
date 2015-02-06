@@ -93,6 +93,13 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
         void setHidePlayers(boolean hide);
 
         /**
+         * Sets the {@link Favicon} to display on the client.
+         *
+         * @param favicon The favicon, or {@code null} for none
+         */
+        void setFavicon(@Nullable Favicon favicon);
+
+        /**
          * Represents the information about the players on the server, sent after
          * the {@link StatusPingEvent}.
          */
@@ -121,13 +128,6 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
             @Override
             List<GameProfile> getProfiles();
         }
-
-        /**
-         * Sets the {@link Favicon} to display on the client.
-         *
-         * @param favicon The favicon, or {@code null} for none
-         */
-        void setFavicon(@Nullable Favicon favicon);
 
     }
 

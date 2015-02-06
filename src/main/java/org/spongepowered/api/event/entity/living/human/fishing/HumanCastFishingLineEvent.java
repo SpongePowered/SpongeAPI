@@ -22,22 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
-
-import org.spongepowered.api.service.persistence.DataSerializable;
+package org.spongepowered.api.event.entity.living.human.fishing;
 
 /**
- * Represents the color of a {@link org.spongepowered.api.entity.living.animal.Horse}.
- * <p>The color of a horse is a genetic trait that can be inherited to a new
- * born horse.</p>
+ * Called when a {@link org.spongepowered.api.entity.living.Human} casts
+ * a fishing line.
  */
-public interface HorseColor extends DataSerializable {
-
-    /**
-     * Gets the name of this color.
-     *
-     * @return The name of this color
-     */
-    String getName();
+public interface HumanCastFishingLineEvent extends HumanFishEvent {
 
 }

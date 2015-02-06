@@ -62,7 +62,7 @@ public interface ItemType extends Translatable {
 
     /**
      * Returns the maximum damage an item can take.
-     * 
+     *
      * @return The max damage
      */
     int getMaxDamage();

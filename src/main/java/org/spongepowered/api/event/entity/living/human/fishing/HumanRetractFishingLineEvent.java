@@ -22,6 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity.living.human.fishing;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.util.config;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.ExperienceEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
+
+import javax.annotation.Nullable;
+
+/**
+ * Called when a {@link org.spongepowered.api.entity.living.Human} retracts
+ * a fishing line.
+ */
+public interface HumanRetractFishingLineEvent extends HumanFishEvent, ExperienceEvent {
+
+    /**
+     * Gets the {@link ItemStack} that will be given, if available.
+     *
+     * @return The {@link ItemStack} that will be given
+     */
+    Optional<ItemStack> getCaughtItem();
+
+    /**
+     * Sets the {@link ItemStack} that will be given, if available.
+     *
+     * @param item The {@link ItemStack} to set
+     */
+    void setCaughtItem(@Nullable ItemStack item);
+
+    /**
+     * Gets the {@link Entity} hooked, if available.
+     *
+     * @return The hooked {@link Entity}
+     */
+    Optional<Entity> getCaughtEntity();
+
+    /**
+     * Sets the {@link Entity} hooked, if available.
+     *
+     * @param entity The hooked {@link Entity} to set
+     */
+    void setCaughtEntity(@Nullable Entity entity);
+}

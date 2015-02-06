@@ -22,26 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.storage;
+package org.spongepowered.api.entity.living.monster;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.service.persistence.data.DataContainer;
-
-import java.util.Iterator;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
- * A chunk iterator represents a buffer for obtaining chunk data from
- * storage without having to explicitly load into memory all available
- * chunks.
- * <p>This avoid loading all chunks into memory at once, reducing the memory
- * footprint and persistence operations.</p>
- * <p>The chunks are loaded individually in sequence. Strong references to
- * the chunks represented by {@link DataContainer}s should be avoided
- * <strong>AT ALL COSTS</strong>. The data represented is a copy and
- * therefore shouldn't be considered synchronized to live data.</p>
- * <p>Removing is not supported <strong>AT ALL AND WILL THROW AN EXCEPTION</strong></p>
- *
+ * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
+ * can be. Certain skeleton types define the items a skeleton can equip and
+ * can define the various status immunities, such as withering.
  */
-public interface ChunkIterator extends Iterator<Optional<DataContainer>> {
+public interface SkeletonType extends DataSerializable {
+
+    /**
+     * Gets the name of this skeleton type.
+     *
+     * @return The name of this skeleton type
+     */
+    String getName();
 
 }

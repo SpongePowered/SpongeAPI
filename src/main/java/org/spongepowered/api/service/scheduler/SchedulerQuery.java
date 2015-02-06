@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.scheduler;
 
 import com.google.common.base.Optional;
+
 import java.util.Collection;
 import java.util.UUID;
 
@@ -58,7 +59,7 @@ public interface SchedulerQuery {
     /**
      * <p>Get the UUID of the task by name.</p>
      * @param name  The name of the task to search
-     * @return  The Optional&lt;UUID&gt; result from the search by name.
+     * @return The Optional&lt;UUID&gt; result from the search by name.
      */
     public Optional<UUID> getUuidOfTaskByName(String name);
 

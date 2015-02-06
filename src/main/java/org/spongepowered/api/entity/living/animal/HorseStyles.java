@@ -22,16 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-public final class HorseVariants {
+public final class HorseStyles {
 
-    public static final HorseVariant HORSE = null;
-    public static final HorseVariant DONKEY = null;
-    public static final HorseVariant MULE = null;
-    public static final HorseVariant UNDEAD_HORSE = null;
-    public static final HorseVariant SKELETON_HORSE = null;
+    public static final HorseStyle NONE = null;
+    public static final HorseStyle WHITE = null;
+    public static final HorseStyle WHITEFIELD = null;
+    public static final HorseStyle WHITE_DOTS = null;
+    public static final HorseStyle BLACK_DOTS = null;
 
-    private HorseVariants() {
+    private HorseStyles() {
     }
 }

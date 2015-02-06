@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.persistence.data;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 
 import java.util.List;
@@ -38,21 +39,7 @@ public final class DataQuery {
     /**
      * The parts that make up this query.
      */
-    private final String[] parts;
-
-    /**
-     * Constructs a query using the given separator and path.
-     *
-     * <p>As an example, {@code new Query("/", "a/b/c")} and
-     * {@code new Query(".", "a.b.c")} represent the same path but are
-     * constructed using different separators.</p>
-     *
-     * @param separator The separator
-     * @param path The path
-     */
-    public DataQuery(String separator, String path) {
-        this.parts = path.split(Pattern.quote(separator));
-    }
+    private final ImmutableList<String> parts;
 
     /**
      * Constructs a query using the given separator character and path.
@@ -65,7 +52,7 @@ public final class DataQuery {
      * @param path The path
      */
     public DataQuery(char separator, String path) {
-        this(String.valueOf(separator), path);
+        this(path.split(Pattern.quote(String.valueOf(separator))));
     }
 
     /**
@@ -74,7 +61,7 @@ public final class DataQuery {
      * @param parts The parts
      */
     public DataQuery(String... parts) {
-        this.parts = parts.clone();
+        this.parts = ImmutableList.copyOf(parts);
     }
 
     /**
@@ -83,7 +70,7 @@ public final class DataQuery {
      * @param parts The parts
      */
     public DataQuery(List<String> parts) {
-       this(parts.toArray(new String[0]));
+        this.parts = ImmutableList.copyOf(parts);
     }
 
     /**
@@ -91,8 +78,8 @@ public final class DataQuery {
      *
      * @return The parts of this query
      */
-    public List<String> getParts() {
-        return new ImmutableList.Builder<String>().add(parts).build();
+    public ImmutableList<String> getParts() {
+        return this.parts;
     }
 
     /**
@@ -106,8 +93,8 @@ public final class DataQuery {
         ImmutableList.Builder<String> builder =
                 new ImmutableList.Builder<String>();
 
-        builder.addAll(getParts());
-        builder.addAll(that.getParts());
+        builder.addAll(this.parts);
+        builder.addAll(that.parts);
 
         return new DataQuery(builder.build());
     }
@@ -117,11 +104,11 @@ public final class DataQuery {
      *
      * @return The constructed queries
      */
-    public List<DataQuery> getQueryParts() {
+    public ImmutableList<DataQuery> getQueryParts() {
         ImmutableList.Builder<DataQuery> builder =
                 new ImmutableList.Builder<DataQuery>();
 
-        for (String part: getParts()) {
+        for (String part : getParts()) {
             builder.add(new DataQuery(part));
         }
 
@@ -135,18 +122,7 @@ public final class DataQuery {
      * @return This query as a string
      */
     public String asString(String separator) {
-        StringBuilder builder = new StringBuilder();
-
-        if (parts.length > 0) {
-            builder.append(parts[0]);
-        }
-
-        for (int i = 1; i < parts.length; i++) {
-            builder.append(separator);
-            builder.append(parts[i]);
-        }
-
-        return builder.toString();
+        return Joiner.on(separator).join(this.parts);
     }
 
     /**

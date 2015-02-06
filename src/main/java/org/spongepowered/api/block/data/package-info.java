@@ -23,5 +23,4 @@
  * THE SOFTWARE.
  */
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.block.data;
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.block.data;

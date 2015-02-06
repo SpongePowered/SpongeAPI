@@ -22,27 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.event.entity.living.player.fishing;
 
-public final class DyeColors {
+import org.spongepowered.api.event.entity.living.human.fishing.HumanRetractFishingLineEvent;
 
-    public static final DyeColor WHITE = null;
-    public static final DyeColor ORANGE = null;
-    public static final DyeColor MAGENTA = null;
-    public static final DyeColor LIGHT_BLUE = null;
-    public static final DyeColor YELLOW = null;
-    public static final DyeColor LIME = null;
-    public static final DyeColor PINK = null;
-    public static final DyeColor GRAY = null;
-    public static final DyeColor SILVER = null;
-    public static final DyeColor CYAN = null;
-    public static final DyeColor PURPLE = null;
-    public static final DyeColor BLUE = null;
-    public static final DyeColor BROWN = null;
-    public static final DyeColor GREEN = null;
-    public static final DyeColor RED = null;
-    public static final DyeColor BLACK = null;
+/**
+ * Called when a {@link org.spongepowered.api.entity.player.Player} retracts
+ * a fishing line.
+ */
+public interface PlayerRetractFishingLineEvent extends HumanRetractFishingLineEvent, PlayerFishEvent {
 
-    private DyeColors() {
-    }
 }

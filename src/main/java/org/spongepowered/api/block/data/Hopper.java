@@ -32,14 +32,14 @@ public interface Hopper extends Lockable {
 
     /**
      * Gets the remaining time before the next item will be transfered.
-     * 
+     *
      * @return The remaining time, in ticks
      */
     int getTransferCooldown();
-    
+
     /**
      * Sets the cooldown before the next item will be transfered.
-     * 
+     *
      * @param time The new time, in ticks
      */
     void setTransferCooldown(int time);

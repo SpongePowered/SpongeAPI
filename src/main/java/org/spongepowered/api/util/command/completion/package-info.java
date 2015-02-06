@@ -23,5 +23,4 @@
  * THE SOFTWARE.
  */
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.util.command.completion;
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.util.command.completion;

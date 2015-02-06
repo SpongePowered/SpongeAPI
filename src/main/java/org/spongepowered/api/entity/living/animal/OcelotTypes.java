@@ -22,13 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-public final class SkeletonTypes {
+public final class OcelotTypes {
 
-    public static final SkeletonType NORMAL = null;
-    public static final SkeletonType WITHER = null;
+    public static final OcelotType WILD_OCELOT = null;
+    public static final OcelotType BLACK_CAT = null;
+    public static final OcelotType RED_CAT = null;
+    public static final OcelotType SIAMESE_CAT = null;
 
-    private SkeletonTypes() {
+    private OcelotTypes() {
     }
 }

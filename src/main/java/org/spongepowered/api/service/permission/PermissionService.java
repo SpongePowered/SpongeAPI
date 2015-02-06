@@ -35,6 +35,7 @@ import java.util.Map;
  * permissions plugin must implement to provide permissions for a user.
  */
 public interface PermissionService {
+
     static final String SUBJECTS_USER = "user";
     static final String SUBJECTS_GROUP = "group";
 

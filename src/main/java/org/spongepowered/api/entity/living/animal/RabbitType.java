@@ -22,15 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-public final class OcelotTypes {
+import org.spongepowered.api.service.persistence.DataSerializable;
 
-    public static final OcelotType WILD_OCELOT = null;
-    public static final OcelotType BLACK_CAT = null;
-    public static final OcelotType RED_CAT = null;
-    public static final OcelotType SIAMESE_CAT = null;
+public interface RabbitType extends DataSerializable {
 
-    private OcelotTypes() {
-    }
+    /**
+     * Gets the name of this rabbit type.
+     *
+     * @return The name of this rabbit type
+     */
+    String getName();
+
 }

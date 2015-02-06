@@ -28,6 +28,7 @@ package org.spongepowered.api.service.permission.context;
  * A common interface for objects that have a relevant context.
  */
 public interface Contextual {
+
     /**
      * Returns the context most relevant to this object. This context may be the
      * same across multiple invocations (but may not, so don't count on this

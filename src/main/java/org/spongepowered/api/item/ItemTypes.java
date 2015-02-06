@@ -366,6 +366,7 @@ public final class ItemTypes {
     public static final ItemType RECORD_WARD = null;
     public static final ItemType RECORD_11 = null;
     public static final ItemType RECORD_WAIT = null;
+
     private ItemTypes() {
     }
 }

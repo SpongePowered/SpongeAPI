@@ -22,16 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
-public final class HorseStyles {
+import org.spongepowered.api.service.persistence.DataSerializable;
 
-    public static final HorseStyle NONE = null;
-    public static final HorseStyle WHITE = null;
-    public static final HorseStyle WHITEFIELD = null;
-    public static final HorseStyle WHITE_DOTS = null;
-    public static final HorseStyle BLACK_DOTS = null;
+/**
+ * Represents the type of ocelot an ocelot is.
+ */
+public interface OcelotType extends DataSerializable {
 
-    private HorseStyles() {
-    }
+    /**
+     * Gets the name of this ocelot type.
+     *
+     * @return The name of this ocelot type
+     */
+    String getName();
+
 }

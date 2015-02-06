@@ -36,13 +36,13 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
-import org.spongepowered.api.entity.living.meta.DyeColor;
-import org.spongepowered.api.entity.living.meta.HorseColor;
-import org.spongepowered.api.entity.living.meta.HorseStyle;
-import org.spongepowered.api.entity.living.meta.HorseVariant;
-import org.spongepowered.api.entity.living.meta.OcelotType;
-import org.spongepowered.api.entity.living.meta.RabbitType;
-import org.spongepowered.api.entity.living.meta.SkeletonType;
+import org.spongepowered.api.entity.living.animal.DyeColor;
+import org.spongepowered.api.entity.living.animal.HorseColor;
+import org.spongepowered.api.entity.living.animal.HorseStyle;
+import org.spongepowered.api.entity.living.animal.HorseVariant;
+import org.spongepowered.api.entity.living.animal.OcelotType;
+import org.spongepowered.api.entity.living.animal.RabbitType;
+import org.spongepowered.api.entity.living.monster.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -485,7 +485,7 @@ public interface GameRegistry {
      * @throws IOException If the favicon couldn't be loaded
      */
     Favicon loadFavicon(BufferedImage image) throws IOException;
-    
+
     /**
      * Gets the {@link NotePitch} with the provided name. 
      *
@@ -523,7 +523,7 @@ public interface GameRegistry {
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShape(String name);
-    
+
     /**
      * Gets the {@link BannerPatternShape} with the provided name. 
      *

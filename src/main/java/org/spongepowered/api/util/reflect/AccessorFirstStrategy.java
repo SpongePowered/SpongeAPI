@@ -52,46 +52,6 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
     private static final Pattern ACCESSOR_BOOL = Pattern.compile("^is([A-Z].*)");
     private static final Pattern MUTATOR = Pattern.compile("^set([A-Z].*)");
 
-    @Override
-    public ImmutableSet<? extends Property> findProperties(final Class<?> type) {
-        checkNotNull(type, "type");
-
-        final Map<String, Method> accessors = Maps.newHashMap();
-        final Multimap<String, Method> mutators = HashMultimap.create();
-        final Queue<Class<?>> queue = new NonNullUniqueQueue<Class<?>>();
-
-        queue.add(type); // Start off with our target type
-
-        Class<?> scannedType;
-        while ((scannedType = queue.poll()) != null) {
-            for (Method method : scannedType.getMethods()) {
-                String name;
-
-                if ((name = getAccessorName(method)) != null) {
-                    accessors.put(name, method);
-                } else if ((name = getMutatorName(method)) != null) {
-                    mutators.put(name, method);
-                }
-            }
-
-            for (Class<?> implInterfaces : scannedType.getInterfaces()) {
-                queue.offer(implInterfaces);
-            }
-
-            queue.offer(scannedType.getSuperclass());
-        }
-
-        final ImmutableSet.Builder<Property> result = ImmutableSet.builder();
-
-        for (Map.Entry<String, Method> entry : accessors.entrySet()) {
-            Method accessor = entry.getValue();
-            @Nullable Method mutator = findMutator(entry.getValue(), mutators.get(entry.getKey()));
-            result.add(new Property(entry.getKey(), accessor.getReturnType(), accessor, mutator));
-        }
-
-        return result.build();
-    }
-
     /**
      * Find the corresponding mutator for an accessor method from a collection
      * of candidates.
@@ -169,6 +129,46 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
      */
     private static String getPropertyName(String name) {
         return Character.toLowerCase(name.charAt(0)) + name.substring(1);
+    }
+
+    @Override
+    public ImmutableSet<? extends Property> findProperties(final Class<?> type) {
+        checkNotNull(type, "type");
+
+        final Map<String, Method> accessors = Maps.newHashMap();
+        final Multimap<String, Method> mutators = HashMultimap.create();
+        final Queue<Class<?>> queue = new NonNullUniqueQueue<Class<?>>();
+
+        queue.add(type); // Start off with our target type
+
+        Class<?> scannedType;
+        while ((scannedType = queue.poll()) != null) {
+            for (Method method : scannedType.getMethods()) {
+                String name;
+
+                if ((name = getAccessorName(method)) != null) {
+                    accessors.put(name, method);
+                } else if ((name = getMutatorName(method)) != null) {
+                    mutators.put(name, method);
+                }
+            }
+
+            for (Class<?> implInterfaces : scannedType.getInterfaces()) {
+                queue.offer(implInterfaces);
+            }
+
+            queue.offer(scannedType.getSuperclass());
+        }
+
+        final ImmutableSet.Builder<Property> result = ImmutableSet.builder();
+
+        for (Map.Entry<String, Method> entry : accessors.entrySet()) {
+            Method accessor = entry.getValue();
+            @Nullable Method mutator = findMutator(entry.getValue(), mutators.get(entry.getKey()));
+            result.add(new Property(entry.getKey(), accessor.getReturnType(), accessor, mutator));
+        }
+
+        return result.build();
     }
 
 }
