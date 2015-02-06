@@ -129,4 +129,27 @@ public interface QueryEvent extends GameEvent {
      * @param address The address to respond with
      */
     void setAddress(InetSocketAddress address);
+
+    /**
+     * Gets the current size of the data to respond with.
+     *
+     * <p>This value is implementation-defined - it is only meaningful when
+     * compared with {@link #getMaxSize()}.</p>
+     *
+     * @return The current size of the data to respond with
+     */
+    int getSize();
+
+    /**
+     * Gets the maximum size of the data to respond with.
+     *
+     * <p>If the size of the data is greater than the returned value,
+     * it will be automatically truncated.
+     *
+     * This value is implementation-defined - it is only meaningful when
+     * compared with {@link #getSize()} ()}.</p>
+     *
+     * @return The maximum size of the data to respond with
+     */
+    int getMaxSize();
 }
