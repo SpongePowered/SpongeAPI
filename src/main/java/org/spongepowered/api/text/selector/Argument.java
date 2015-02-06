@@ -28,21 +28,21 @@ package org.spongepowered.api.text.selector;
  * Represents the argument of a {@link Selector selector}. An Argument is one or
  * more key-to-value mappings ({@code key=value}) with the key represented by an
  * {@link ArgumentType}.
- * 
+ *
  * @param <T> The type of the value
  */
 public interface Argument<T> {
 
     /**
      * Returns the type of this {@link Argument}.
-     * 
+     *
      * @return The type of this argument
      */
     ArgumentType<T> getType();
 
     /**
      * Returns the value of this {@link Argument}.
-     * 
+     *
      * @return The value of this argument
      */
     T getValue();

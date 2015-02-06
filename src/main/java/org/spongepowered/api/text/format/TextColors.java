@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.text.Text;
+
+import java.awt.Color;
+
 /**
  * TextColors is a list of text colors provided by Vanilla Minecraft.
  */
@@ -32,7 +36,21 @@ public final class TextColors {
     private TextColors() {
     }
 
-    public static final TextColor NONE = null;
+    /**
+     * Represents a base color that is used as default if no color is specified.
+     * This will result in either the default color of the receiver or inherit
+     * it from a parent {@link Text}.
+     */
+    public static final TextColor NONE = new TextColor() {
+
+        private final Color color = new Color(0, 0, 0, 0);
+
+        @Override
+        public Color getColor() {
+            return this.color;
+        }
+
+    };
 
     public static final TextColor.Base BLACK = null;
     public static final TextColor.Base DARK_BLUE = null;

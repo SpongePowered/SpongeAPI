@@ -49,7 +49,7 @@ public final class Selectors {
      * @param selector The raw selector string
      * @return A new selector containing the given selector data
      */
-    public static Selector parseRaw(String selector) {
+    public static Selector parse(String selector) {
         return factory.parseRawSelector(selector);
     }
 

@@ -40,7 +40,7 @@ public interface ArgumentType<T> {
     /**
      * Returns the key associated with this {@link ArgumentType}. This will be
      * available if the argument type is not a compound of several ones.
-     * 
+     *
      * @return The key of this argument type, if available
      */
     Optional<String> getKey();
@@ -92,7 +92,7 @@ public interface ArgumentType<T> {
     }
 
     /**
-     * Represents the holder of two {@link ArgumentType} with a minimal and
+     * Represents the holder of two {@link ArgumentType}s with a minimal and
      * maximal argument type.
      *
      * @param <T> The type of the argument type

@@ -24,168 +24,338 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterators;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.translation.Translation;
 
-import java.util.List;
+import java.util.Iterator;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents an immutable instance of formatted text that can be displayed on
- * the client. Each instance consists of content and a list of children messages
- * appended after the content of this message. The content of the message is
- * available through one of the subinterfaces.
- * <p>
- * Messages are primarily used for sending formatted chat messages to players,
- * but also in other places like books or signs.
- * </p>
- * <p>
- * Message instances can be created using the {@link TextBuilder} available
- * through one of the {@link Texts#builder()} methods.
- * </p>
+ * the client. Each instance consists of content and a list of children texts
+ * appended after the content of this text. The content of the text is available
+ * through one of the subclasses.
+ *
+ * <p>Text is primarily used for sending formatted chat messages to players, but
+ * also in other places like books or signs.</p>
+ *
+ * <p>Text instances can be either directly created through the available
+ * constructor or using the {@link TextBuilder} available through one of the
+ * {@link Texts#builder()} methods, which is the recommended way.</p>
  *
  * @see Texts#builder()
+ * @see TextBuilder
  * @see Literal
  * @see Translatable
  * @see Selector
  * @see Score
  */
-public interface Text {
+public abstract class Text {
+
+    protected final TextColor color;
+    protected final TextStyle style;
+    protected final ImmutableList<Text> children;
+    protected final Optional<ClickAction<?>> clickAction;
+    protected final Optional<HoverAction<?>> hoverAction;
+    protected final Optional<ShiftClickAction<?>> shiftClickAction;
+
+    /**
+     * An {@link Iterable} providing an {@link Iterator} over this {@link Text}
+     * as well as all children text and their children.
+     */
+    protected final Iterable<Text> childrenIterable = new Iterable<Text>() {
+
+        @Override
+        public Iterator<Text> iterator() {
+            return Text.this.children.isEmpty() ? Iterators.singletonIterator(Text.this) : new TextIterator(Text.this);
+        }
+
+    };
+
+    Text() {
+        this(TextColors.NONE, TextStyles.NONE, ImmutableList.<Text>of(), null, null, null);
+    }
+
+    /**
+     * Constructs a new immutable {@link Text} with the specified formatting and
+     * text actions applied.
+     *
+     * @param color The color of the text
+     * @param style The style of the text
+     * @param children The immutable list of children of the text
+     * @param clickAction The click action of the text, or {@code null} for none
+     * @param hoverAction The hover action of the text, or {@code null} for none
+     * @param shiftClickAction The shift click action of the text, or
+     *        {@code null} for none
+     */
+    protected Text(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+            @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction) {
+        this.color = checkNotNull(color, "color");
+        this.style = checkNotNull(style, "style");
+        this.children = checkNotNull(children, "children");
+        this.clickAction = Optional.<ClickAction<?>>fromNullable(clickAction);
+        this.hoverAction = Optional.<HoverAction<?>>fromNullable(hoverAction);
+        this.shiftClickAction = Optional.<ShiftClickAction<?>>fromNullable(shiftClickAction);
+    }
 
     /**
      * Returns the color of this {@link Text}.
      *
-     * @return The color of this message
+     * @return The color of this text
      */
-    TextColor getColor();
+    public final TextColor getColor() {
+        return this.color;
+    }
 
     /**
      * Returns the style of this {@link Text}. This will return a compound
      * {@link TextStyle} if multiple different styles have been set.
      *
-     * @return The style of this message
+     * @return The style of this text
      */
-    TextStyle getStyle();
+    public final TextStyle getStyle() {
+        return this.style;
+    }
 
     /**
-     * Returns the list of children appended after the content of this
+     * Returns the immutable list of children appended after the content of this
      * {@link Text}.
      *
-     * @return The list of children
+     * @return The immutable list of children
      */
-    List<Text> getChildren();
+    public final ImmutableList<Text> getChildren() {
+        return this.children;
+    }
 
     /**
-     * Returns an {@link Iterable} over this message and all of its children.
-     * This is recursive, the children of the children will be also included.
+     * Returns an immutable {@link Iterable} over this text and all of its
+     * children. This is recursive, the children of the children will be also
+     * included.
      *
-     * @return An iterable over this message and the children messages
+     * @return An iterable over this text and the children texts
      */
-    Iterable<Text> withChildren();
+    public final Iterable<Text> withChildren() {
+        return this.childrenIterable;
+    }
 
     /**
      * Returns the {@link ClickAction} executed on the client when this
      * {@link Text} gets clicked.
      *
-     * @return The click action of this message, or {@link Optional#absent()} if
+     * @return The click action of this text, or {@link Optional#absent()} if
      *         not set
      */
-    Optional<ClickAction<?>> getClickAction();
+    public final Optional<ClickAction<?>> getClickAction() {
+        return this.clickAction;
+    }
 
     /**
      * Returns the {@link HoverAction} executed on the client when this
      * {@link Text} gets hovered.
      *
-     * @return The hover action of this message, or {@link Optional#absent()} if
+     * @return The hover action of this text, or {@link Optional#absent()} if
      *         not set
      */
-    Optional<HoverAction<?>> getHoverAction();
+    public final Optional<HoverAction<?>> getHoverAction() {
+        return this.hoverAction;
+    }
 
     /**
      * Returns the {@link ShiftClickAction} executed on the client when this
      * {@link Text} gets shift-clicked.
      *
-     * @return The shift-click action of this message, or
-     *         {@link Optional#absent()} if not set
+     * @return The shift-click action of this text, or {@link Optional#absent()}
+     *         if not set
      */
-    Optional<ShiftClickAction<?>> getShiftClickAction();
+    public final Optional<ShiftClickAction<?>> getShiftClickAction() {
+        return this.shiftClickAction;
+    }
 
     /**
-     * Returns a new {@link TextBuilder} with the content of this message.
-     * This can be used to edit an immutable {@link Text} instance.
+     * Returns a new {@link TextBuilder} with the content, formatting and
+     * actions of this text. This can be used to edit an otherwise immutable
+     * {@link Text} instance.
      *
-     * @return A new message builder with the content of this message
+     * @return A new message builder with the content of this text
      */
-    TextBuilder builder();
+    public abstract TextBuilder builder();
 
-    /**
-     * Returns a plain text representation of this {@link Text} without any formattings.
-     *
-     * @return This message converted to plain text
-     */
-    String toPlain();
+    @Override
+    public boolean equals(@Nullable Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Text)) {
+            return false;
+        }
 
-    /**
-     * Returns a JSON representation of this {@link Text} as used in commands.
-     *
-     * @return This message converted to JSON
-     */
-    String toJson();
+        Text that = (Text) o;
+        return this.color.equals(that.color)
+                && this.style.equals(that.style)
+                && this.children.equals(that.children)
+                && this.clickAction.equals(that.clickAction)
+                && this.hoverAction.equals(that.hoverAction)
+                && this.shiftClickAction.equals(that.shiftClickAction);
+    }
 
-    /**
-     * Returns a representation of this {@link Text} using the legacy color
-     * codes.
-     *
-     * @return This message converted to the old color codes
-     * @deprecated Legacy formatting codes are being phased out of Minecraft
-     */
-    @Deprecated
-    String toLegacy();
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.color, this.style, this.children, this.clickAction, this.hoverAction, this.shiftClickAction);
+    }
 
-    /**
-     * Returns a representation of this {@link Text} using the legacy color
-     * codes.
-     *
-     * @param code The legacy char to use for the message
-     * @return This message converted to the old color codes
-     * @deprecated Legacy formatting codes are being phased out of Minecraft
-     */
-    @Deprecated
-    String toLegacy(char code);
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(Text.class)
+                .add("color", this.color)
+                .add("style", this.style)
+                .add("children", this.children)
+                .add("clickAction", this.clickAction)
+                .add("hoverAction", this.hoverAction)
+                .add("shiftClickAction", this.shiftClickAction)
+                .toString();
+    }
 
     /**
      * Represents a {@link Text} containing a plain text {@link String}.
+     *
+     * @see TextBuilder.Literal
      */
-    interface Literal extends Text {
+    public static class Literal extends Text {
+
+        protected final String content;
+
+        Literal() {
+            this("");
+        }
+
+        Literal(String content) {
+            this.content = checkNotNull(content, "content");
+        }
+
+        /**
+         * Constructs a new immutable {@link Literal} for the given plain text
+         * content with the specified formatting and text actions applied.
+         *
+         * @param color The color of the text
+         * @param style The style of the text
+         * @param children The immutable list of children of the text
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
+         * @param content The plain text content of the text
+         */
+        public Literal(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String content) {
+            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            this.content = checkNotNull(content, "content");
+        }
 
         /**
          * Returns the plain text content of this {@link Text}.
          *
-         * @return The content of this message
+         * @return The content of this text
          */
-        String getLiteral();
+        public final String getContent() {
+            return this.content;
+        }
 
         @Override
-        TextBuilder.Literal builder();
+        public TextBuilder.Literal builder() {
+            return new TextBuilder.Literal(this);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Literal) || !super.equals(o)) {
+                return false;
+            }
+
+            Literal that = (Literal) o;
+            return this.content.equals(that.content);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.content);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .addValue(super.toString())
+                    .add("content", this.content)
+                    .toString();
+        }
 
     }
 
     /**
      * Represents a {@link Text} containing a {@link Translation} identifier
      * that gets translated into the current locale on the client.
+     *
+     * @see TextBuilder.Translatable
      */
-    interface Translatable extends Text {
+    public static class Translatable extends Text {
+
+        protected final Translation translation;
+        protected final ImmutableList<Object> arguments;
+
+        Translatable(Translation translation, ImmutableList<Object> arguments) {
+            this.translation = checkNotNull(translation, "translation");
+            this.arguments = checkNotNull(arguments, "arguments");
+        }
+
+        /**
+         * Constructs a new immutable {@link Translatable} for the given
+         * translation with the specified formatting and text actions applied.
+         *
+         * @param color The color of the text
+         * @param style The style of the text
+         * @param children The immutable list of children of the text
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
+         * @param translation The translation of the text
+         * @param arguments The arguments for the translation
+         */
+        public Translatable(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Translation translation,
+                ImmutableList<Object> arguments) {
+            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            this.translation = checkNotNull(translation, "translation");
+            this.arguments = checkNotNull(arguments, "arguments");
+        }
 
         /**
          * Returns the translation of this {@link Text}.
          *
-         * @return The translation of this message
+         * @return The translation of this text
          */
-        Translation getTranslation();
+        public final Translation getTranslation() {
+            return this.translation;
+        }
 
         /**
          * Returns the list of {@link Translation} arguments used to format this
@@ -193,46 +363,172 @@ public interface Text {
          *
          * @return The list of translation arguments
          */
-        List<Object> getArguments();
+        public final ImmutableList<Object> getArguments() {
+            return this.arguments;
+        }
 
         @Override
-        TextBuilder.Translatable builder();
+        public TextBuilder.Translatable builder() {
+            return new TextBuilder.Translatable(this);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Translatable) || !super.equals(o)) {
+                return false;
+            }
+
+            Translatable that = (Translatable) o;
+            return this.translation.equals(that.translation)
+                    && this.arguments.equals(that.arguments);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.translation, this.arguments);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .addValue(super.toString())
+                    .add("translation", this.translation)
+                    .add("arguments", this.arguments)
+                    .toString();
+        }
 
     }
 
     /**
-     * Represents a {@link Text} containing a selector that will be replaced
-     * by the names of the matching entities on the client.
+     * Represents a {@link Text} containing a selector that will be replaced by
+     * the names of the matching entities on the client.
      *
      * @see org.spongepowered.api.text.selector.Selector
+     * @see TextBuilder.Score
      */
-    interface Selector extends Text {
+    public static class Selector extends Text {
+
+        protected final org.spongepowered.api.text.selector.Selector selector;
+
+        Selector(org.spongepowered.api.text.selector.Selector selector) {
+            this.selector = checkNotNull(selector, "selector");
+        }
+
+        /**
+         * Constructs a new immutable {@link Selector} for the given selector
+         * with the specified formatting and text actions applied.
+         *
+         * @param color The color of the text
+         * @param style The style of the text
+         * @param children The immutable list of children of the text
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
+         * @param selector The selector of the text
+         */
+        public Selector(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
+                org.spongepowered.api.text.selector.Selector selector) {
+            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            this.selector = checkNotNull(selector, "selector");
+        }
 
         /**
          * Returns the selector used in this {@link Text}.
          *
-         * @return The selector of this message
+         * @return The selector of this text
          */
-        org.spongepowered.api.text.selector.Selector getSelector();
+        public final org.spongepowered.api.text.selector.Selector getSelector() {
+            return this.selector;
+        }
 
         @Override
-        TextBuilder.Selector builder();
+        public TextBuilder.Selector builder() {
+            return new TextBuilder.Selector(this);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Selector) || !super.equals(o)) {
+                return false;
+            }
+
+            Selector that = (Selector) o;
+            return this.selector.equals(that.selector);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.selector);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .addValue(super.toString())
+                    .add("selector", this.selector)
+                    .toString();
+        }
+
     }
 
     /**
-     * Represents a {@link Text} displaying the current player's score in an
-     * objective.
+     * Represents a {@link Text} displaying the current score of a player.
+     *
+     * @see TextBuilder.Score
      */
-    interface Score extends Text {
+    public static class Score extends Text {
 
-        // TODO use Score
+        // TODO: Update with Statistic API
+        protected final Object score;
+        protected final Optional<String> override;
+
+        Score(Object score) {
+            this.score = checkNotNull(score, "score");
+            this.override = Optional.absent();
+        }
+
+        /**
+         * Constructs a new immutable {@link Score} for the given score with the
+         * specified formatting and text actions applied.
+         *
+         * @param color The color of the text
+         * @param style The style of the text
+         * @param children The immutable list of children of the text
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
+         * @param score The score of the text
+         * @param override The text to override the score with, or {@code null}
+         *        for none
+         */
+        public Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Object score, @Nullable String override) {
+            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            this.score = checkNotNull(score, "score");
+            this.override = Optional.fromNullable(override);
+        }
 
         /**
          * Returns the score displayed by this {@link Text}.
          *
-         * @return The score in this message
+         * @return The score in this text
          */
-        Object getScore();
+        public final Object getScore() {
+            return this.score;
+        }
 
         /**
          * Returns a value that is displayed instead of the real score.
@@ -241,10 +537,42 @@ public interface Text {
          *         {@link Optional#absent()} if the real score will be displayed
          *         instead
          */
-        Optional<String> getOverride();
+        public final Optional<String> getOverride() {
+            return this.override;
+        }
 
         @Override
-        TextBuilder.Score builder();
+        public TextBuilder.Score builder() {
+            return new TextBuilder.Score(this);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Score) || !super.equals(o)) {
+                return false;
+            }
+
+            Score that = (Score) o;
+            return this.override.equals(that.override) && this.score.equals(that.score);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.score, this.override);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .addValue(super.toString())
+                    .add("score", this.score)
+                    .add("override", this.override)
+                    .toString();
+        }
+
     }
 
 }

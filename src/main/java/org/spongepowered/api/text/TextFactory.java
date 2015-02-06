@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.text;
 
-import org.spongepowered.api.text.translation.Translation;
-
 /**
  * Represents the required implementation for the static methods in
  * {@link Texts}.
@@ -33,85 +31,64 @@ import org.spongepowered.api.text.translation.Translation;
 public interface TextFactory {
 
     /**
-     * Creates a {@link TextBuilder} with empty text.
+     * Parses the specified JSON text and returns the parsed result.
      *
-     * @return A new message builder with empty text
+     * @param json The valid JSON text
+     * @return The parsed text
+     * @throws IllegalArgumentException If the JSON is invalid
      */
-    TextBuilder createEmptyBuilder();
+    Text parseJson(String json) throws IllegalArgumentException;
 
     /**
-     * Creates a {@link TextBuilder.Literal} with the specified text.
+     * Parses the specified JSON text leniently and returns the parsed result.
      *
-     * @param text The text for the message
-     * @return A new message builder with the specified text
-     * @see Text.Literal
+     * @param json The JSON text
+     * @return The parsed text
+     * @throws IllegalArgumentException If the JSON couldn't be parsed
      */
-    TextBuilder.Literal createTextBuilder(String text);
+    Text parseJsonLenient(String json) throws IllegalArgumentException;
 
     /**
-     * Creates a {@link TextBuilder.Translatable} with the specified
-     * translation and arguments.
+     * Returns a plain text representation of the {@link Text} without any
+     * formattings.
      *
-     * @param translation The translation to use for the message
-     * @param args The arguments for the translation, can be empty
-     * @return A new message builder with the specified translation and
-     *         arguments
-     * @see Text.Translatable
+     * @param text The text to convert
+     * @return The text converted to plain text
      */
-    TextBuilder.Translatable createTranslatableBuilder(Translation translation, Object[] args);
+    String toPlain(Text text);
 
     /**
-     * Creates a new {@link TextBuilder.Selector} with the specified
-     * selector.
+     * Returns a JSON representation of the {@link Text} as used in commands.
      *
-     * @param selector The selector for the message
-     * @return A new message builder with the specified selector
-     * @see Text.Selector
+     * @param text The text to convert
+     * @return The text converted to JSON
      */
-    TextBuilder.Selector createSelectorBuilder(String selector);
-
-    /**
-     * Creates a new {@link TextBuilder.Score} with the specified score.
-     *
-     * @param score The score for the message
-     * @return A new message builder with the specified score
-     * @see Text.Score
-     */
-    TextBuilder.Score createScoreBuilder(Object score); // TODO
-
-    /**
-     * Creates a {@link Text} with the specified plain text. The created
-     * message won't have any formatting or events configured.
-     *
-     * @param text The content of the Message
-     * @return The created {@link Text}
-     */
-    Text.Literal createPlain(String text);
+    String toJson(Text text);
 
     /**
      * Returns the default legacy formatting character.
      *
      * @return The legacy formatting character
      */
-    char getColorChar();
+    char getLegacyChar();
 
     /**
      * Creates a Message from a legacy string, given a color character.
      *
      * @param text The text to be converted as a String
-     * @param color The color character to be replaced
+     * @param code The color character to be replaced
      * @return The converted Message
      */
-    Text.Literal parseLegacyMessage(String text, char color);
+    Text.Literal parseLegacyMessage(String text, char code);
 
     /**
      * Removes the legacy formatting character from a legacy string.
      *
      * @param text The legacy text as a String
-     * @param color The color character to be replaced
+     * @param code The color character to be replaced
      * @return The stripped text
      */
-    String stripLegacyCodes(String text, char color);
+    String stripLegacyCodes(String text, char code);
 
     /**
      * Replaces the given formatting character with another given formatting
@@ -123,5 +100,15 @@ public interface TextFactory {
      * @return The replaced text
      */
     String replaceLegacyCodes(String text, char from, char to);
+
+    /**
+     * Returns a representation of the {@link Text} using the legacy color
+     * codes.
+     *
+     * @param text The text to convert
+     * @param code The legacy char to use for the message
+     * @return The text converted to the old color codes
+     */
+    String toLegacy(Text text, char code);
 
 }

@@ -30,14 +30,12 @@ import org.spongepowered.api.text.translation.locale.Locales;
  * Represents an identifier for text that can be translated into multiple
  * languages. This is usually sent directly to the client and translated there,
  * not on the server.
- * <p>
- * Some translations require parameters to be sent together with them, if
- * they're not given they will be filled with empty text.
- * </p>
- * <p>
- * While the client has multiple locales available, most implementations support
- * only {@link Locales#ENGLISH}.
- * </p>
+ *
+ * <p>Some translations require parameters to be sent together with them, if
+ * they're not given they will be filled with empty text.</p>
+ *
+ * <p>While the client has multiple locales available, most implementations
+ * support only {@link Locales#ENGLISH}.</p>
  */
 public interface Translation {
 

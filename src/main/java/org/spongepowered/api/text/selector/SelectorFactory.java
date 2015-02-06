@@ -103,7 +103,7 @@ public interface SelectorFactory {
      * @param argument The argument string
      * @return The parsed argument
      * @throws IllegalArgumentException If the argument couldn't be parsed (e.g.
-     *             due to invalid format)
+     *         due to invalid format)
      */
     Argument<?> parseArgument(String argument) throws IllegalArgumentException;
 

@@ -35,8 +35,6 @@ import java.net.URL;
  */
 public final class TextActions {
 
-    private static final TextActionFactory factory = null;
-
     private TextActions() {
     }
 
@@ -48,7 +46,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.OpenUrl openUrl(URL url) {
-        return factory.createOpenUrl(url);
+        return new ClickAction.OpenUrl(url);
     }
 
     /**
@@ -59,7 +57,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.RunCommand runCommand(String command) {
-        return factory.createRunCommand(command);
+        return new ClickAction.RunCommand(command);
     }
 
     /**
@@ -70,7 +68,7 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.ChangePage changePage(int page) {
-        return factory.createChangePage(page);
+        return new ClickAction.ChangePage(page);
     }
 
     /**
@@ -81,18 +79,18 @@ public final class TextActions {
      * @return The created click action instance
      */
     public static ClickAction.SuggestCommand suggestCommand(String command) {
-        return factory.createSuggestCommand(command);
+        return new ClickAction.SuggestCommand(command);
     }
 
     /**
      * Creates a new {@link HoverAction} that will show a text on the client
      * when it is hovered.
      *
-     * @param message The text to display
+     * @param text The text to display
      * @return The created hover action instance
      */
-    public static HoverAction.ShowText showText(Text message) {
-        return factory.createShowText(message);
+    public static HoverAction.ShowText showText(Text text) {
+        return new HoverAction.ShowText(text);
     }
 
     /**
@@ -103,7 +101,7 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowItem showItem(ItemStack item) {
-        return factory.createShowItem(item);
+        return new HoverAction.ShowItem(item);
     }
 
     /**
@@ -114,7 +112,7 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowAchievement showAchievement(Object achievement) {
-        return factory.createShowAchievement(achievement);
+        return new HoverAction.ShowAchievement(achievement);
     }
 
     /**
@@ -125,7 +123,7 @@ public final class TextActions {
      * @return The created hover action instance
      */
     public static HoverAction.ShowEntity showEntity(Entity entity) {
-        return factory.createShowEntity(entity);
+        return new HoverAction.ShowEntity(entity);
     }
 
     /**
@@ -136,7 +134,7 @@ public final class TextActions {
      * @return The created shift click action instance
      */
     public static ShiftClickAction.InsertText insertText(String text) {
-        return factory.createInsertText(text);
+        return new ShiftClickAction.InsertText(text);
     }
 
 }

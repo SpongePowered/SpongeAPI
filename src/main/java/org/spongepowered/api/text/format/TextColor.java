@@ -43,14 +43,8 @@ public interface TextColor {
     Color getColor();
 
     /**
-     * Returns whether this color resets the color to the default one.
-     *
-     * @return True if this color is the reset color
-     */
-    boolean isReset();
-
-    /**
-     * Represents a base {@link TextColor} in Minecraft. It can be represented using legacy formatting codes.
+     * Represents a base {@link TextColor} in Minecraft. It can be represented
+     * using legacy formatting codes.
      *
      * @see TextColors
      */
