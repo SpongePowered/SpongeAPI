@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.entity.player;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -36,6 +37,7 @@ import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.world.Location;
 
 import java.util.Locale;
 
@@ -58,18 +60,14 @@ public interface Player extends Human, User, CommandSource, Viewer {
     Message getDisplayName();
 
     /**
-     * Returns whether the {@link Player} can fly via the fly key.
+     * Sets the player's diaplay name.
      *
-     * @return {@code True} if the {@link Player} is allowed to fly
-     */
-    boolean getAllowFlight();
-
-    /**
-     * Sets if the {@link Player} can fly via the fly key.
+     * <p>Passing {@link com.google.common.base.Optional#absent()} will set the
+     * player's display name to their name.</p>
      *
-     * @param allowFlight {@code True} if the player is allowed to fly
+     * @param displayName The new display name of this player.
      */
-    void setAllowFlight(boolean allowFlight);
+    void setDisplayName(Optional<Message> displayName);
 
     /**
      * Gets the locale used by the player.
@@ -137,6 +135,37 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @see GameModes
      */
     void setGameMode(GameMode gameMode);
+
+    /**
+     * Gets the location of this player's bed spawn.
+     *
+     * @return The location of this player's bed spawn
+     */
+    Optional<Location> getBedLocation();
+
+    /**
+     * Sets the location of this player's bed spawn. Passing
+     * {@link com.google.common.base.Optional#absent()} will clear it.
+     *
+     * @param location The new location of this player's bed spawn
+     */
+    void setBedLocation(Optional<Location> location);
+
+    /**
+     * Returns whether this player is invisible to another given player.
+     *
+     * @param otherPlayer The player to toggle visibility of this player for
+     * @return Whether this player is invisible to another given player
+     */
+    boolean isInvisible(Player otherPlayer);
+
+    /**
+     * Sets whether this player is invisible to the given player.
+     *
+     * @param otherPlayer The player to toggle visibility of this player for
+     * @param invisible Whether this player is invisible to the given player
+     */
+    void setInvisible(Player otherPlayer, boolean invisible);
 
     /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
