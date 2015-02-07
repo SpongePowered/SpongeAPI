@@ -98,7 +98,14 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
     boolean isWhitelisted();
 
     /**
-     * Checks if this player is online or not.
+     * Sets this user's whitelist status.
+     *
+     * @param whitelisted The new whitelist status
+     */
+    void setWhitelisted(boolean whitelisted);
+
+    /**
+     * Checks if this user is online or not.
      *
      * @return True if the corresponding player is online
      */
@@ -119,6 +126,20 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      * @param location The new location of this player's bed spawn
      */
     void setBedLocation(@Nullable Location location);
+
+    /**
+     * Check whether this user has an operator status.
+     *
+     * @return Whether this user is an operator
+     */
+    boolean isOperator();
+
+    /**
+     * Sets whether this user has an operator status.
+     *
+     * @param op The new operator status of this user
+     */
+    void setOperator(boolean op);
 
     /**
      * Gets the related online {@link Player} if the player is
