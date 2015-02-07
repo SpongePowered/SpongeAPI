@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.entity.player;
 
-import com.google.common.base.Optional;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -37,7 +37,8 @@ import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.world.Location;
+
+import com.google.common.base.Optional;
 
 import java.util.Locale;
 
@@ -137,19 +138,20 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void setGameMode(GameMode gameMode);
 
     /**
-     * Gets the location of this player's bed spawn.
+     * Gets the location in dimension 0 of this player's bed spawn.
      *
-     * @return The location of this player's bed spawn
+     * @return The location of this player's bed spawn, or
+     * {@link Optional#absent} if it is not set
      */
-    Optional<Location> getBedLocation();
+    Optional<Vector3i> getBedPosition();
 
     /**
-     * Sets the location of this player's bed spawn. Passing
+     * Sets the position in dimension 0 of this player's bed spawn. Passing
      * {@link com.google.common.base.Optional#absent()} will clear it.
      *
      * @param location The new location of this player's bed spawn
      */
-    void setBedLocation(Optional<Location> location);
+    void setBedPosition(Optional<Vector3i> location);
 
     /**
      * Returns whether this player is invisible to another given player.

@@ -104,7 +104,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return The current experience towards the next level
      */
-    int getExperience();
+    double getExpereienceToLevel();
 
     /**
      * Sets the experience accumulated towards the next level.
@@ -116,7 +116,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @param experience The experience towards the next level
      */
-    void setExperience(int experience);
+    void setExpereienceToLevel(double experience);
 
     /**
      * Gets the current experience level of this human.
