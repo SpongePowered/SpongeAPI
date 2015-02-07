@@ -22,41 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.util.command.source;
 
-import org.spongepowered.api.util.command.source.CommandBlockSource;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
- * Represents a minecart with a command block inside it.
+ * Represents a CommandBlock source, either a placed block or a MinecartCommandBlock.
  */
-public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
+public interface CommandBlockSource extends CommandSource {
 
     /**
-     * Gets the current command within this command minecart.
-     *
-     * @return The current command stored
+     * Gets the location of the source.
+     * 
+     * @return The location
      */
-    String getCommand();
+    Location getLocation();
 
     /**
-     * Sets the stored command within this command minecart.
-     *
-     * @param command The command
+     * Gets the world that this source resides in.
+     * 
+     * @return The World
      */
-    void setCommand(String command);
+    World getWorld();
 
-    /**
-     * Gets the current custom name of this command minecart.
-     *
-     * @return The current command name
-     */
-    String getCommandName();
-
-    /**
-     * Sets the custom command name of this command minecart.
-     * <p>Setting the name to null may default to "@".</p>
-     *
-     * @param name The custom name
-     */
-    void setCommandName(String name);
 }
