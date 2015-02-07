@@ -80,13 +80,13 @@ public interface World extends Extent, Viewer, WeatherVolume, Contextual {
     Optional<Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
 
     /**
-     * Deletes the given chunk from the world. Returns a {@code boolean}
+     * Unloads the given chunk from the world. Returns a {@code boolean}
      * flag for whether the operation was successful.
      *
-     * @param chunk The chunk to delete
+     * @param chunk The chunk to unload
      * @return Whether the operation was successful
      */
-    boolean deleteChunk(Chunk chunk);
+    boolean unloadChunk(Chunk chunk);
 
     /**
      * Returns a Collection of all actively loaded chunks in this world.
