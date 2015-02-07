@@ -831,6 +831,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("blockFaceDirection", direction);
+        values.put("droppedItems", droppedItems);
         return createEvent(PlayerBreakBlockEvent.class, values);
     }
 
