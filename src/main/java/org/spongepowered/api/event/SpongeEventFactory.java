@@ -831,6 +831,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("blockFaceDirection", direction);
+        values.put("exp", exp);
         values.put("droppedItems", droppedItems);
         return createEvent(PlayerBreakBlockEvent.class, values);
     }
@@ -883,10 +884,11 @@ public final class SpongeEventFactory {
      * @param fishHook The {@link FishHook} affected by this event
      * @param caughtItem The {@link ItemStack} caught by the player, can be null
      * @param caughtEntity The {@link Entity} caught by the player, can be null
+     * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
     public static PlayerRetractFishingLineEvent createPlayerRetractFishingLineEvent(Game game, Player player, FishHook fishHook, ItemStack caughtItem,
-                                                                                    Entity caughtEntity) {
+                                                                                    Entity caughtEntity, double exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -896,6 +898,7 @@ public final class SpongeEventFactory {
         values.put("fishHook", fishHook);
         values.put("caughtEntity", Optional.fromNullable(caughtEntity));
         values.put("caughtItem", Optional.fromNullable(caughtItem));
+        values.put("exp", exp);
         return createEvent(PlayerRetractFishingLineEvent.class, values);
     }
 
