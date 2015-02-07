@@ -33,6 +33,8 @@ import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
 import org.spongepowered.api.service.scheduler.SynchronousScheduler;
 
+import java.io.File;
+
 /**
  * The core accessor of the API. The implementation uses this to pass
  * constructed objects.
@@ -119,6 +121,13 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+    
+    /**
+     * Gets the game directory.
+     * 
+     * @return The game directory
+     */ 
+    File getDirectory();
 
     /**
      * Gets the Minecraft version of this game.
