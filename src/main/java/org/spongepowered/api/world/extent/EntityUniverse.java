@@ -111,4 +111,12 @@ public interface EntityUniverse {
      * @return An entity, if one was created
      */
     Optional<Entity> createEntity(DataContainer entityContainer);
+
+    /**
+     * Spawns an entity using the already set properties (extent, position, rotation).
+     *
+     * @param entity The entity to spawn
+     * @return True if successful, false if not
+     */
+    boolean spawnEntity(Entity entity);
 }
