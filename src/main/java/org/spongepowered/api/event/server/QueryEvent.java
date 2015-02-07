@@ -46,6 +46,9 @@ public interface QueryEvent extends GameEvent {
     /**
      * Sets the MOTD to respond with.
      *
+     * <p>If setting the string causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
+     *
      * @param motd The MOTD to respond with
      */
     void setMotd(String motd);
@@ -53,7 +56,10 @@ public interface QueryEvent extends GameEvent {
     /**
      * Gets the GameType to respond with.
      *
-     * <p>By default, this is <code>SMP</code>.</p>
+     * <p>By default, this is <code>SMP</code>.
+     *
+     * If setting the string causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
      *
      * @return The GameType to respond with
      */
@@ -61,6 +67,9 @@ public interface QueryEvent extends GameEvent {
 
     /**
      * Sets the GameType to respond with.
+     *
+     * <p>If setting the string causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
      *
      * @param gameType The GameType to respond with
      */
@@ -78,6 +87,9 @@ public interface QueryEvent extends GameEvent {
     /**
      * Sets the map (world) to respond with.
      *
+     * <p>If setting the string causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
+     *
      * @param map The map to respond with
      */
     void setMap(String map);
@@ -85,7 +97,10 @@ public interface QueryEvent extends GameEvent {
     /**
      * Gets the player count to respond with.
      *
-     * <p>By default, this is the number of players present on the server.</p>
+     * <p>By default, this is the number of players present on the server.
+     *
+     * If setting the string causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
      *
      * @return The player count to respond with
      */
@@ -93,6 +108,9 @@ public interface QueryEvent extends GameEvent {
 
     /**
      * Sets the player count to respond with.
+     *
+     * <p>If setting the int causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
      *
      * @param playerCount The player count to respond with
      */
@@ -109,6 +127,9 @@ public interface QueryEvent extends GameEvent {
 
     /**
      * Sets the max player count to respond with.
+     *
+     * <p>If setting the int causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
      *
      * @param maxPlayerCount The max player count to respond with
      */

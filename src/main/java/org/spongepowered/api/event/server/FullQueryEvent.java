@@ -53,6 +53,9 @@ public interface FullQueryEvent extends QueryEvent {
     /**
      * Sets the version to respond with.
      *
+     * <p>If setting the string causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
+     *
      * @param version The version to respond with
      */
     void setVersion(String version);
@@ -67,12 +70,19 @@ public interface FullQueryEvent extends QueryEvent {
     /**
      * Sets the list of plugins to respond with.
      *
+     * <p>If setting the string causes the message to go over the
+     * maximum size, the message will be automatically truncated.</p>
+     *
      * @param plugins The list of plugins to respond with
      */
     void setPlugins(String plugins);
 
     /**
      * Gets the map of custom keys and values to respond with.
+     *
+     * <p>If settings any of the keys or values causes the message
+     * to go oer the maximum size, the message will be automatically
+     * truncated.</p>
      *
      * @return The map of custom keys and values to respond with
      */
