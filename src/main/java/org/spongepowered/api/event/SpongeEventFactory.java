@@ -66,6 +66,7 @@ import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
 import org.spongepowered.api.event.entity.EntityCollisionEvent;
 import org.spongepowered.api.event.entity.EntityCollisionWithBlockEvent;
 import org.spongepowered.api.event.entity.EntityCollisionWithEntityEvent;
+import org.spongepowered.api.event.entity.EntityConstructingEvent;
 import org.spongepowered.api.event.entity.EntityDeathEvent;
 import org.spongepowered.api.event.entity.EntityDismountEvent;
 import org.spongepowered.api.event.entity.EntityDropItemEvent;
@@ -703,6 +704,20 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("location", location);
         return createEvent(EntitySpawnEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link EntityConstructingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @return A new instance of the event
+     */
+    public static EntityConstructingEvent createEntityConstructing(Game game, Entity entity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        return createEvent(EntityConstructingEvent.class, values);
     }
 
     /**
