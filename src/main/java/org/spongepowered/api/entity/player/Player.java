@@ -61,7 +61,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     Message getDisplayName();
 
     /**
-     * Sets the player's diaplay name.
+     * Sets the player's display name.
      *
      * <p>Passing {@link com.google.common.base.Optional#absent()} will set the
      * player's display name to their name.</p>
