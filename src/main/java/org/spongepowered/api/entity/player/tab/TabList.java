@@ -44,7 +44,6 @@ public interface TabList {
      */
     Message getHeader();
 
-
     /**
      * Sets this list's header.
      * 

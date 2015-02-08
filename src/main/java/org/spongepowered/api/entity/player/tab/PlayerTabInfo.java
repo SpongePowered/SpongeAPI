@@ -68,7 +68,6 @@ public interface PlayerTabInfo {
      */
     void setGameMode(GameMode gamemode);
 
-
     /**
      * Gets this player's display name.
      * 
@@ -110,6 +109,5 @@ public interface PlayerTabInfo {
      * @param profile The new GameProfile for this player
      */
     void setProfile(GameProfile profile);
-
 
 }
