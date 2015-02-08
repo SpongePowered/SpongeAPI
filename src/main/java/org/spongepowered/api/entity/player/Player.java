@@ -70,7 +70,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      *
      * @param displayName The new display name of this player.
      */
-    void setDisplayName(Optional<Message> displayName);
+    void setDisplayName(@Nullable Message displayName);
 
     /**
      * Gets the locale used by the player.
