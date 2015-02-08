@@ -39,6 +39,7 @@ import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.world.Location;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
@@ -139,20 +140,20 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void setGameMode(GameMode gameMode);
 
     /**
-     * Gets the location in dimension 0 of this player's bed spawn.
+     * Gets the location of this player's bed spawn.
      *
      * @return The location of this player's bed spawn, or
      * {@link Optional#absent} if it is not set
      */
-    Optional<Vector3i> getBedPosition();
+    Optional<Location> getBedLocation();
 
     /**
-     * Sets the position in dimension 0 of this player's bed spawn. Passing
-     * {@link com.google.common.base.Optional#absent()} will clear it.
+     * Sets the location of this player's bed spawn. Passing <code>null</code>
+     * will clear it.
      *
      * @param location The new location of this player's bed spawn
      */
-    void setBedPosition(@Nullable Vector3i location);
+    void setBedLocation(@Nullable Location location);
 
     /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
