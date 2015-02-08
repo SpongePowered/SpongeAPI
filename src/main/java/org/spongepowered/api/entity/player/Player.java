@@ -40,6 +40,7 @@ import org.spongepowered.api.util.command.CommandSource;
 
 import com.google.common.base.Optional;
 
+import javax.annotation.Nullable;
 import java.util.Locale;
 
 /**
@@ -151,23 +152,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      *
      * @param location The new location of this player's bed spawn
      */
-    void setBedPosition(Optional<Vector3i> location);
-
-    /**
-     * Returns whether this player is invisible to another given player.
-     *
-     * @param otherPlayer The player to toggle visibility of this player for
-     * @return Whether this player is invisible to another given player
-     */
-    boolean isInvisible(Player otherPlayer);
-
-    /**
-     * Sets whether this player is invisible to the given player.
-     *
-     * @param otherPlayer The player to toggle visibility of this player for
-     * @param invisible Whether this player is invisible to the given player
-     */
-    void setInvisible(Player otherPlayer, boolean invisible);
+    void setBedPosition(@Nullable Vector3i location);
 
     /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
