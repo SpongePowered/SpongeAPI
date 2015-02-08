@@ -44,7 +44,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return The current exhaustion level
      */
-    double getExhaustion();
+    float getExhaustion();
 
     /**
      * Sets the exhaustion value of this human entity.
@@ -62,7 +62,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return The current saturation level
      */
-    double getSaturation();
+    float getSaturation();
 
     /**
      * Sets the saturation level of this human entity.
@@ -71,7 +71,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @param saturation The new saturation level
      */
-    void setSaturation(double saturation);
+    void setSaturation(float saturation);
 
     /**
      * Gets the current food saturation of this human entity.
