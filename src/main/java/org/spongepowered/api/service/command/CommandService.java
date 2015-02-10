@@ -45,9 +45,14 @@ public interface CommandService<T> extends Dispatcher<T> {
     /**
      * Register a given command using a given list of aliases.
      *
-     * <p>
-     * The first alias that could be registered becomes the "primary alias."
-     * </p>
+     * <p>If there is a conflict with one of the aliases (i.e. that alias* is
+     * already assigned to another command), then the alias will be skipped. It
+     * is possible for there to be no alias to be available out of the provided
+     * list of aliases, which would mean that the command would not be assigned
+     * to any aliases.</p>
+     *
+     * <p> The first alias that could be registered becomes the
+     * "primary alias."</p>
      *
      * @param plugin A plugin instance
      * @param callable The command

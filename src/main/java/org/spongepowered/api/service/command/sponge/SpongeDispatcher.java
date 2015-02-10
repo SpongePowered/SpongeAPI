@@ -98,8 +98,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      * @param plugin The ID of the plugin registering the command.
      * @return If present, a {@link CommandMapping} representing the command.
      */
-    public Optional<CommandMapping> register(CommandCallable<CommandResult> command, String primaryAlias, List<String> aliases, String plugin)
-            throws IllegalArgumentException {
+    public Optional<CommandMapping> register(CommandCallable<CommandResult> command, String primaryAlias, List<String> aliases, String plugin) throws IllegalArgumentException {
 
         checkNotNull(command);
         checkNotNull(primaryAlias);
@@ -136,7 +135,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias, boolean primaryOnly) {
-        return this.remove(alias, primaryOnly, Optional.<String>absent());
+        return this.remove(alias, primaryOnly, Optional.<String> absent());
     }
 
     /**
@@ -146,7 +145,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias) {
-        return this.remove(alias, false, Optional.<String>absent());
+        return this.remove(alias, false, Optional.<String> absent());
     }
 
     /**
@@ -206,7 +205,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      * @return Whether any were found
      */
     public synchronized boolean removeAll(Collection<?> c, boolean primaryOnly) {
-        return this.removeAll(c, primaryOnly, Optional.<String>absent());
+        return this.removeAll(c, primaryOnly, Optional.<String> absent());
     }
 
     /**
@@ -216,7 +215,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      * @return Whether any were found
      */
     public synchronized boolean removeAll(Collection<?> c) {
-        return this.removeAll(c, false, Optional.<String>absent());
+        return this.removeAll(c, false, Optional.<String> absent());
     }
 
     /**
@@ -361,12 +360,12 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      *         found, Optional.absent().
      */
     public synchronized Set<CommandMapping> getAll(String alias, boolean primaryOnly) {
-        return this.getAll(alias, primaryOnly, Optional.<String>absent());
+        return this.getAll(alias, primaryOnly, Optional.<String> absent());
     }
 
     @Override
     public synchronized Set<CommandMapping> getAll(String alias) {
-        return this.getAll(alias, false, Optional.<String>absent());
+        return this.getAll(alias, false, Optional.<String> absent());
     }
 
     /**
@@ -424,12 +423,12 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      *         parameters.
      */
     public synchronized boolean containsAlias(String alias, boolean primaryOnly) {
-        return this.containsAlias(alias, primaryOnly, Optional.<String>absent());
+        return this.containsAlias(alias, primaryOnly, Optional.<String> absent());
     }
 
     @Override
     public synchronized boolean containsAlias(String alias) {
-        return this.containsAlias(alias, false, Optional.<String>absent());
+        return this.containsAlias(alias, false, Optional.<String> absent());
     }
 
     /**
