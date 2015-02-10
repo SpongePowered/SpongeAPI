@@ -483,7 +483,9 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
             passedParents.addAll(parents);
             passedParents.add(alias);
 
-            return ((CommandCallable<CommandResult>) mapping.get().getCallable()).call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
+            String fParam = parts.length > 1 ? parts[1] : "";
+
+            return ((CommandCallable<CommandResult>) mapping.get().getCallable()).call(source, fParam, Collections.unmodifiableList(passedParents));
 
         } else if (alias.contains(":") && (alias.indexOf(":") < (alias.length() - 1)) && !isExtended) {
             // TODO: Support vanilla commands in this command-suggestion system.
