@@ -32,7 +32,8 @@ import org.spongepowered.api.item.inventory.types.CarriedInventory;
  * guarantee that (at a minimum) the following subinventory types can be queried
  * for:
  * 
- * <li><ul>{@link CraftingInventory}</ul></li>
+ * <ul><li>{@link
+ * org.spongepowered.api.item.inventory.crafting.CraftingInventory}</li></ul>
  */
 public interface HumanInventory extends CarriedInventory<Human> {
     

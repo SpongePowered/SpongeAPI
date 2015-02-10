@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.InventoryProperty;
 
 /**
  * A property type intended for use with {@link
- * org.spongepowered.api.item.inventory.type.InputSlot}s in order to query for
+ * org.spongepowered.api.item.inventory.slots.InputSlot}s in order to query for
  * slots which can accept items of the specified type. It is intended that the
  * semantics of the {@link #equals} will be such that the method will return
  * true if the other property contains <em>any</em> item present in this
