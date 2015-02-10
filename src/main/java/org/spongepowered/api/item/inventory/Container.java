@@ -41,27 +41,27 @@ public interface Container extends Interactable<Human> {
      *
      * @return The current viewers of this inventory
      */
-    public abstract Set<Human> getViewers();
+    Set<Human> getViewers();
 
     /**
      * Checks for whether this Inventory currently has viewers.
      *
      * @return True if viewers are currently looking at this inventory
      */
-    public abstract boolean hasViewers();
+    boolean hasViewers();
 
     /**
      * Shows this Inventory to the given viewer.
      *
      * @param viewer The viewer to show this inventory to
      */
-    public abstract void open(Human viewer);
+    void open(Human viewer);
 
     /**
      * Stops showing this Inventory to the given viewer.
      *
      * @param viewer The viewer to stop showing this inventory to
      */
-    public abstract void close(Human viewer);
+    void close(Human viewer);
 
 }

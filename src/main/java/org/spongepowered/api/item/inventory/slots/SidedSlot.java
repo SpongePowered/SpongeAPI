@@ -37,15 +37,15 @@ public interface SidedSlot extends Slot {
     /**
      * Get whether this slot can accept the specified item from the specified direction
      */
-    public abstract boolean canAccept(ItemStack stack, Direction from);
+    boolean canAccept(ItemStack stack, Direction from);
 
     /**
      * Attempts to insert the supplied stack into this inventory from the specified direction
      */
-    public abstract boolean offer(ItemStack stack, Direction from);
+    boolean offer(ItemStack stack, Direction from);
     
     /**
      * Get whether automation can extract the specified item from the specified direction
      */
-    public abstract boolean canGet(ItemStack stack, Direction from);
+    boolean canGet(ItemStack stack, Direction from);
 }

@@ -35,7 +35,7 @@ public interface Slot extends Inventory {
      * slot.peek().getQuantity(); but faster because it avoids the Optional
      * boxing.
      */
-    public abstract int getStackSize();
+    int getStackSize();
     
     /**
      * Takes {@code count} items away from the ItemStack in this slot and
@@ -44,5 +44,5 @@ public interface Slot extends Inventory {
      * @param count The number of items to remove from the ItemStack
      * @return The items that have been taken out as a new ItemStack
      */
-     public abstract ItemStack take(int count);
+     ItemStack take(int count);
 }

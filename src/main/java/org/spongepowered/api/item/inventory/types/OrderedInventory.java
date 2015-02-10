@@ -40,20 +40,20 @@ public interface OrderedInventory extends Inventory {
     /**
      * Get and remove the stack at the supplied index in this Inventory
      */
-    public abstract Optional<ItemStack> get(int index);
+    Optional<ItemStack> get(int index);
     
     /**
      * Get without removing the stack at the supplied index in this Inventory
      */
-    public abstract Optional<ItemStack> peek(int index);
+    Optional<ItemStack> peek(int index);
 
     /**
      * Set the item in the specified slot 
      */
-    public abstract void set(int index, ItemStack stack);
+    void set(int index, ItemStack stack);
     
     /**
      * Get the {@link Slot} at the specified index
      */
-    public abstract Optional<Slot> getSlot(int index);
+    Optional<Slot> getSlot(int index);
 }

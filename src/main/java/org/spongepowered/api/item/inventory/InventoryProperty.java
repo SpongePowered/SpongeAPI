@@ -77,11 +77,11 @@ public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<K,
      * more than one property of a particular type. If the property has no
      * specific key, the property class name is returned.
      */
-    public abstract K getKey();
+    K getKey();
     
     /**
      * Get the "value" of this property. "Value" may have different meanings
      * depending on the exact type of this property.
      */
-    public abstract V getValue();
+    V getValue();
 }

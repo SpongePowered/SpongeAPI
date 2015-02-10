@@ -42,49 +42,49 @@ public interface GridInventory extends Inventory2D {
      *
      * @return The width of this ItemGrid.
      */
-    public abstract int getColumns();
+    int getColumns();
 
     /**
      * Gets the number of rows in the inventory.
      *
      * @return The height of this ItemGrid.
      */
-    public abstract int getRows();
+    int getRows();
 
     /**
      * Returns the dimensions of this GridInventory as a {@link Vector2i}.
      *
      * @return The dimensions of this GridInventory.
      */
-    public abstract Vector2i getDimensions();
+    Vector2i getDimensions();
     
     /**
      * Get and remove the stack at the supplied position in this Inventory
      */
-    public abstract Optional<ItemStack> get(int x, int y);
+    Optional<ItemStack> get(int x, int y);
     
     /**
      * Get without removing the stack at the supplied position in this Inventory
      */
-    public abstract Optional<ItemStack> peek(int x, int y);
+    Optional<ItemStack> peek(int x, int y);
     
     /**
      * Set the item in the specified slot 
      */
-    public abstract void set(int x, int y, ItemStack stack);
+    void set(int x, int y, ItemStack stack);
     
     /**
      * Get the {@link Slot} at the specified position
      */
-    public abstract Optional<Slot> getSlot(int x, int y);
+    Optional<Slot> getSlot(int x, int y);
     
     /**
      * Get the row at the specified index
      */
-    public abstract Optional<InventoryRow> getRow(int y);
+    Optional<InventoryRow> getRow(int y);
     
     /**
      * Get the column at the specified index
      */
-    public abstract Optional<InventoryColumn> getColumn(int x);
+    Optional<InventoryColumn> getColumn(int x);
 }

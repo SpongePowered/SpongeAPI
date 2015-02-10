@@ -33,5 +33,5 @@ public interface ArmourType {
     /**
      * Identifier for this armour type
      */
-    public abstract String getId();
+    String getId();
 }

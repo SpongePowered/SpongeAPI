@@ -43,43 +43,43 @@ public interface ArmourInventory extends OrderedInventory, CarriedInventory<Armo
     /**
      * Get and remove the stack for the specified armour type in this Inventory
      */
-    public abstract Optional<ItemStack> get(ArmourSlotType armourType);
+    Optional<ItemStack> get(ArmourSlotType armourType);
 
     /**
      * Get and remove the stack for the specified armour type in this Inventory
      */
-    public abstract Optional<ItemStack> get(ArmourType armourType);
+    Optional<ItemStack> get(ArmourType armourType);
     
     /**
      * Get without removing the stack for the specified armour type in this
      * Inventory
      */
-    public abstract Optional<ItemStack> peek(ArmourSlotType armourType);
+    Optional<ItemStack> peek(ArmourSlotType armourType);
     
     /**
      * Get without removing the stack for the specified armour type in this
      * Inventory
      */
-    public abstract Optional<ItemStack> peek(ArmourType armourType);
+    Optional<ItemStack> peek(ArmourType armourType);
 
     /**
      * Set the item for the specified armour type 
      */
-    public abstract void set(ArmourSlotType armourType, ItemStack stack);
+    void set(ArmourSlotType armourType, ItemStack stack);
 
     /**
      * Set the item for the specified armour type 
      */
-    public abstract void set(ArmourType armourType, ItemStack stack);
+    void set(ArmourType armourType, ItemStack stack);
     
     /**
      * Get the {@link Slot} for the specified armour type
      */
-    public abstract Optional<Slot> getSlot(ArmourSlotType armourType);
+    Optional<Slot> getSlot(ArmourSlotType armourType);
     
     /**
      * Get the {@link Slot} for the specified armour type
      */
-    public abstract Optional<Slot> getSlot(ArmourType armourType);
+    Optional<Slot> getSlot(ArmourType armourType);
 
 }

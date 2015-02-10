@@ -33,10 +33,11 @@ import org.spongepowered.api.item.ItemType;
 import java.util.List;
 
 /**
- * A Recipe represents some craftable recipe in the game.
- * It is essentially a Predicate that checks for if a recipe is valid as well
+ * <p>A Recipe represents some craftable recipe in the game.</p>
+ * 
+ * <p>It is essentially a Predicate that checks for if a recipe is valid as well
  * as a function from a crafting matrix to a list of {@link ItemStack}
- * (the crafting result), therefore making it an immutable interface.
+ * (the crafting result), therefore making it an immutable interface.</p>
  *
  * <p>The passed in ItemGrid is usually a crafting inventory, e.g.
  * a 2x2 or 3x3 crafting matrix.</p>
@@ -47,15 +48,16 @@ import java.util.List;
 public interface Recipe {
 
     /**
-     * Returns the list of item types that result when successful crafting
-     * of this Recipe is completed.
+     * Returns the list of item types that result when successful crafting of
+     * this Recipe is completed.
      *
      * @return The resultant list of item types
      */
     List<ItemType> getResultTypes();
 
     /**
-     * Checks if the given ItemGrid fits the required constraints to craft this Recipe.
+     * Checks if the given {@link GridInventory} fits the required constraints 
+     * to craft this Recipe.
      *
      * @param grid The ItemGrid to check for validity
      * @return True if the given input matches this recipe's requirements
@@ -63,7 +65,7 @@ public interface Recipe {
     boolean isValid(GridInventory grid);
 
     /**
-     * Returns the results for running this Recipe over an ItemGrid
+     * Returns the results for running this Recipe over an {@link GridInventory}
      *
      * @param grid An ItemGrid as input
      * @return A list of ItemStacks or {@link Optional#absent()} if the given

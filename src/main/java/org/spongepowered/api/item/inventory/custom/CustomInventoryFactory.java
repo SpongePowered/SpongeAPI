@@ -33,6 +33,6 @@ public interface CustomInventoryFactory {
     /**
      * Get a new builder for a custom inventory
      */
-    public abstract CustomInventoryBuilder builder();
+    CustomInventoryBuilder builder();
     
 }

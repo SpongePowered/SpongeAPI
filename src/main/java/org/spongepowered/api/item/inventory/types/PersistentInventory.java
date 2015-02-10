@@ -36,5 +36,5 @@ public interface PersistentInventory extends Inventory {
      * Mark this inventory as dirty to serve as a flag to the serialisation
      * mechanism.
      */
-    public abstract void markDirty();
+    void markDirty();
 }

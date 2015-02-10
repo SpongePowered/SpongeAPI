@@ -44,7 +44,7 @@ public interface AcceptsItems extends InventoryProperty<String, Collection<ItemT
      * Get the list of {@link ItemType}s accepted by this slot
      */
     @Override
-    public abstract Collection<ItemType> getValue();
+    Collection<ItemType> getValue();
     
     /**
      * Returns true if <em>other</em> is also an {@link AcceptsItems} property
@@ -54,5 +54,5 @@ public interface AcceptsItems extends InventoryProperty<String, Collection<ItemT
      * greater than zero.
      */
     @Override
-    public abstract boolean equals(Object other);
+    boolean equals(Object other);
 }

@@ -25,6 +25,9 @@
 package org.spongepowered.api.item.inventory.armour;
 
 
+/**
+ * All built-in armour types
+ */
 public final class ArmourTypes {
 
     public static final ArmourType GENERIC = null; 
@@ -34,5 +37,8 @@ public final class ArmourTypes {
     public static final ArmourType LEGGINGS = null;
     public static final ArmourType BOOTS = null;
     
+    /**
+     * No subclasses for you
+     */
     private ArmourTypes() {}
 }

@@ -37,6 +37,6 @@ public interface Nameable {
      *
      * @return The name of this object
      */
-    public abstract Translatable getName();
+    Translatable getName();
 
 }
