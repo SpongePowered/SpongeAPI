@@ -42,13 +42,13 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     /**
      * Get the parent {@link Inventory} of this {@link Inventory} 
      */
-    public abstract Inventory parent();
+    Inventory parent();
 
     /**
      * Returns an iterable view of all {@link Slot}s (leaf nodes) in this
      * Inventory
      */
-    public abstract <T extends Inventory> Iterable<T> slots();
+    <T extends Inventory> Iterable<T> slots();
 
     /**
      * Return the first child inventory, effectively the same as
@@ -57,24 +57,24 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * to allow easy pseudo-duck-typing. If no children, then returns
      * <code>this</code>.
      */
-    public abstract <T extends Inventory> T first();
+    <T extends Inventory> T first();
 
     /**
      * Return the next sibling inventory, allows traversing the inventory
      * hierarchy without using an iterator. If no more children, returns an
      * {@link EmptyInventory}.
      */
-    public abstract <T extends Inventory> T next();
+    <T extends Inventory> T next();
 
     /**
      * Get and remove the first available stack from this Inventory
      */
-    public abstract Optional<ItemStack> poll();
+    Optional<ItemStack> poll();
     
     /**
      * Get without removing the first available stack from this Inventory
      */
-    public abstract Optional<ItemStack> peek();
+    Optional<ItemStack> peek();
     
     /**
      * Try to put an ItemStack into this Inventory. Just like {@link
@@ -82,36 +82,36 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * stack and false if not, the size of the supplied stack is reduced by the
      * number of items successfully consumed by the Inventory.
      */
-    public abstract boolean offer(ItemStack stack);
+    boolean offer(ItemStack stack);
     
     /**
      * Forcibly put the supplied stack into this inventory. Overwrites existing
      * objects in the inventory as required to accomodate the entire stack. The
      * entire stack is always consumed.
      */
-    public abstract void set(ItemStack stack);
+    void set(ItemStack stack);
     
     /**
      * Clears this inventory if it is clearable. 
      */
-    public abstract void clear();
+    void clear();
     
     /**
      * The number of stacks currently in the Inventory. Either 1 or 0 for
      * {@link Slot}s and always 0 for {@link EmptyInventory}s.
      */
-    public abstract int size();
+    int size();
     
     /**
      * The maximum number of stacks the Inventory can hold. Always 1 for
      * {@link Slot}s and always 0 for {@link EmptyInventory}s.
      */
-    public abstract int capacity();
+    int capacity();
     
     /**
      * Returns true if this Inventory contains no children.
      */
-    public abstract boolean isEmpty();
+    boolean isEmpty();
 
     /**
      * Checks for whether the given stack is contained in this Inventory. This
@@ -120,7 +120,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @param stack The stack to check for
      * @return True if the stack is present in this list
      */
-    public abstract boolean contains(ItemStack stack);
+    boolean contains(ItemStack stack);
 
     /**
      * Checks for whether there is a stack in this Inventory with the given
@@ -130,27 +130,27 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @param type The type to search for
      * @return True if at least one stack in this list has the given type
      */
-    public abstract boolean contains(ItemType type);
+    boolean contains(ItemType type);
 
     /**
      * Returns the maximum size of any stack in this Inventory.
      *
      * @return The maximum stack size of this list
      */
-    public abstract int getMaxStackSize();
+    int getMaxStackSize();
 
     /**
      * Sets the maximum stack size of any stack in this ItemList.
      *
      * @param size The new maximum stack size
      */
-    public abstract void setMaxStackSize(int size);
+    void setMaxStackSize(int size);
 
     /**
      * Get a property defined in <em>this</em> inventory for the specified
      * (immediate) sub-inventory.
      */
-    public abstract <T extends InventoryProperty<?, ?>> T getProperty(Inventory child, Class<T> property);
+    <T extends InventoryProperty<?, ?>> T getProperty(Inventory child, Class<T> property);
     
     /**
      * Get a property defined directly on this Inventory. For sub-inventories
@@ -158,14 +158,14 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * property);</code> but for top-level inventories may include properties
      * defined on the inventory directly. 
      */
-    public abstract <T extends InventoryProperty<?, ?>> T getProperty(Class<T> property);
+    <T extends InventoryProperty<?, ?>> T getProperty(Class<T> property);
     
     /**
      * Query this inventory for inventories matching any of the supplied types.
      * This is effectively an <code>instanceof</code> check against each child
      * inventory. Logical <code>OR</code> is applied between operands.
      */
-    public abstract <T extends Inventory> T query(Class<?>... types);
+    <T extends Inventory> T query(Class<?>... types);
     
     /**
      * Query this inventory for inventories containing any of the supplied item
@@ -173,7 +173,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * inventory and will always return a collection containing only {@link
      * Slot} instances. Logical <code>OR</code> is applied between operands.
      */
-    public abstract <T extends Inventory> T query(ItemTypes... types);
+    <T extends Inventory> T query(ItemTypes... types);
     
     /**
      * Query this inventory for inventories containing any stacks which match
@@ -182,7 +182,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * containing only {@link Slot} instances. Logical <code>OR</code> is
      * applied between operands.
      */
-    public abstract <T extends Inventory> T query(ItemStack... types);
+    <T extends Inventory> T query(ItemStack... types);
     
     /**
      * Query this inventory for inventories which match any of the supplied
@@ -192,7 +192,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * the same as calling {@link #query} with an {@link
      * InventoryProperty.Operator} of {@link InventoryProperty.Operator#EQUAL}.
      */
-    public abstract <T extends Inventory> T query(InventoryProperty<?, ?>... props);
+    <T extends Inventory> T query(InventoryProperty<?, ?>... props);
     
     /**
      * Query this inventory for inventories which match any of the supplied
@@ -200,19 +200,19 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * property is called on each child inventory which has the supplied
      * property. Logical <code>OR</code> is applied between operands.
      */
-    public abstract <T extends Inventory> T query(InventoryProperty.Operator op, InventoryProperty<?, ?>... props);
+    <T extends Inventory> T query(InventoryProperty.Operator op, InventoryProperty<?, ?>... props);
     
     /**
      * Query this inventory for inventories matching any of the supplied titles.
      * Logical <code>OR</code> is applied between operands.
      */
-    public abstract <T extends Inventory> T query(Translatable... names);
+    <T extends Inventory> T query(Translatable... names);
     
     /**
      * Query this inventory for inventories matching any of the supplied titles.
      * Logical <code>OR</code> is applied between operands.
      */
-    public abstract <T extends Inventory> T query(String... names);
+    <T extends Inventory> T query(String... names);
     
     /**
      * <p>Query this inventory by dynamically inspecting each operand. Each
@@ -226,5 +226,5 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * against the child inventory passing the unknown operand as an argument.
      * </p>
      */
-    public abstract <T extends Inventory> T query(Object... args);
+    <T extends Inventory> T query(Object... args);
 }

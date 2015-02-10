@@ -38,11 +38,11 @@ public interface InventorySize extends InventoryProperty<String, Vector2i> {
     /**
      * Get the number of columns in this inventory 
      */
-    public abstract int getColumns();
+    int getColumns();
     
     /**
      * Get the number of rows in this inventory 
      */
-    public abstract int getRows();
+    int getRows();
 
 }

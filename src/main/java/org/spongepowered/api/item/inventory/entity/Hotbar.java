@@ -37,13 +37,13 @@ public interface Hotbar extends InventoryRow {
      *
      * @return The slot being currently held as an integer from 0-8, inclusive
      */
-    public abstract int getSelectedSlotIndex();
+    int getSelectedSlotIndex();
 
     /**
      * Sets the slot selected by the Human.
      *
      * @param index The slot to hold as an integer from 0-8, inclusive
      */
-    public abstract void setSelectedSlot(int index);
+    void setSelectedSlotIndex(int index);
 
 }

@@ -39,13 +39,13 @@ public interface FilteringSlot extends Slot {
      * false from this method implies that {@link #offer} <b>would always return
      * false</b> for this item. 
      */
-    public abstract boolean isValidItem(ItemStack stack);
+    boolean isValidItem(ItemStack stack);
 
     /**
      * Check whether the supplied item can be inserted into this slot. Returning
      * false from this method implies that {@link #offer} <b>would always return
      * false</b> for this item. 
      */
-    public abstract boolean isValidItem(ItemType type);
+    boolean isValidItem(ItemType type);
     
 }

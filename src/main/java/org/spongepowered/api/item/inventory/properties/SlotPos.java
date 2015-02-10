@@ -38,10 +38,10 @@ public interface SlotPos extends InventoryProperty<String, Vector2i> {
     /**
      * Get the X position of this slot within the queried parent. 
      */
-    public abstract int getX();
+    int getX();
     
     /**
      * Get the Y position of this slot within the queried parent. 
      */
-    public abstract int getY();
+    int getY();
 }

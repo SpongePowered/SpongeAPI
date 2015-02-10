@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.item.inventory.types.CarriedInventory;
 
 /**
- * A Carrier is simply something that carries an inventory.
+ * A Carrier is simply something that carries an {@link Inventory}
  */
 public interface Carrier {
 

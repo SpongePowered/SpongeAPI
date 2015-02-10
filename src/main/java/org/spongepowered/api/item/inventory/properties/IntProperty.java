@@ -37,5 +37,5 @@ public interface IntProperty extends InventoryProperty<Integer, Integer> {
     /**
      * Set this property to the specified value
      */
-    public abstract void setValue(int value);
+    void setValue(int value);
 }

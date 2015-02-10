@@ -36,6 +36,6 @@ public interface SlotSide extends InventoryProperty<String, Direction> {
     /**
      * Get the side of the parent that this slot occupies
      */
-    public abstract Direction getSide();
+    Direction getSide();
     
 }

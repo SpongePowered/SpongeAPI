@@ -39,21 +39,21 @@ public interface Inventory2D extends OrderedInventory {
     /**
      * Get and remove the stack at the supplied position in this Inventory
      */
-    public abstract Optional<ItemStack> get(SlotPos pos);
+    Optional<ItemStack> get(SlotPos pos);
     
     /**
      * Get without removing the stack at the supplied position in this Inventory
      */
-    public abstract Optional<ItemStack> peek(SlotPos pos);
+    Optional<ItemStack> peek(SlotPos pos);
 
     /**
      * Set the item in the specified slot 
      */
-    public abstract void set(SlotPos pos, ItemStack stack);
+    void set(SlotPos pos, ItemStack stack);
     
     /**
      * Get the {@link Slot} at the specified position
      */
-    public abstract Optional<Slot> getSlot(SlotPos pos);
+    Optional<Slot> getSlot(SlotPos pos);
 
 }
