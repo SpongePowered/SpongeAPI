@@ -43,7 +43,7 @@ public interface Hanging extends Entity {
      * Sets the facing direction of this entity.
      *
      * @param direction The direction to face
-     * @param forced Whether physics is ignored
+     * @param forced    Whether physics is ignored
      */
     void setHangingDirection(Direction direction, boolean forced);
 
