@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Human;
  * A ViewerEvent is an {@link InventoryEvent} that happens with a
  * specific viewer in a transaction.
  */
-public interface ViewerEvent extends InventoryEvent {
+public interface ViewerEvent extends ContainerEvent {
 
     /**
      * Retrieves the Human involved with this inventory event.

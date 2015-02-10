@@ -22,48 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.properties;
+
+import java.util.Collection;
 
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 
-import java.util.List;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * A property type intended for use with {@link
+ * org.spongepowered.api.item.inventory.type.InputSlot}s in order to query for
+ * slots which can accept items of the specified type. It is intended that the
+ * semantics of the {@link #equals} will be such that the method will return
+ * true if the other property contains <em>any</em> item present in this
+ * property's collection.
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface AcceptsItems extends InventoryProperty<String, Collection<ItemType>> {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
-     *
-     * @return The crafting inventory
+     * Get the list of {@link ItemType}s accepted by this slot
      */
-    CraftingInventory getInventory();
-
+    @Override
+    public abstract Collection<ItemType> getValue();
+    
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
+     * Returns true if <em>other</em> is also an {@link AcceptsItems} property
+     * and <b>any</b> item appearing in the other property's collecion appears
+     * in this property's collection. In formal terms, the method returns true
+     * if the size of the intersection between the two item type collections is
+     * greater than zero.
      */
-    Recipe getRecipe();
-
-    /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
-     */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
-
+    @Override
+    public abstract boolean equals(Object other);
 }

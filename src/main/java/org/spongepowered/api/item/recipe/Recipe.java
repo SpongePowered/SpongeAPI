@@ -27,7 +27,7 @@ package org.spongepowered.api.item.recipe;
 import com.google.common.base.Optional;
 
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.list.ItemGrid;
+import org.spongepowered.api.item.inventory.types.GridInventory;
 import org.spongepowered.api.item.ItemType;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public interface Recipe {
      * @param grid The ItemGrid to check for validity
      * @return True if the given input matches this recipe's requirements
      */
-    boolean isValid(ItemGrid grid);
+    boolean isValid(GridInventory grid);
 
     /**
      * Returns the results for running this Recipe over an ItemGrid
@@ -70,6 +70,6 @@ public interface Recipe {
      * @return A list of ItemStacks or {@link Optional#absent()} if the given
      *          ItemGrid does not match this recipe's requirements.
      */
-    Optional<List<ItemStack>> getResults(ItemGrid grid);
+    Optional<List<ItemStack>> getResults(GridInventory grid);
 
 }

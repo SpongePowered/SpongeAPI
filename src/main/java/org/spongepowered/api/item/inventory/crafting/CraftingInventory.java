@@ -22,48 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.crafting;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
+import org.spongepowered.api.item.inventory.types.GridInventory;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
 
-import java.util.List;
+import com.google.common.base.Optional;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * A CraftingInventory represents the inventory of something that can craft items.
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface CraftingInventory extends GridInventory {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
+     * Gets the crafting matrix of this CraftingInventory.
      *
-     * @return The crafting inventory
+     * @return The crafting matrix
      */
-    CraftingInventory getInventory();
+    GridInventory getCraftingGrid();
 
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
+     * Gets the result slot of this CraftingInventory.
      *
-     * @return The recipe
+     * @return The result slot
      */
-    Recipe getRecipe();
+    CraftingOutput getResult();
 
     /**
-     * Gets the ItemStacks that are a result of this crafting event.
+     * Retrieves the recipe formed by this CraftingInventory, if any.
      *
-     * @return The results
+     * @return The recipe or {@link Optional#absent()} if no recipe is formed
      */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
+    Optional<Recipe> getRecipe();
 
 }

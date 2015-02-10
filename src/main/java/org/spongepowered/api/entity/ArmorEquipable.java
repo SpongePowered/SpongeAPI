@@ -28,7 +28,6 @@ package org.spongepowered.api.entity;
 import com.google.common.base.Optional;
 
 import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.EquipmentInventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Identifiable;
 
@@ -128,12 +127,5 @@ public interface ArmorEquipable extends Identifiable, Carrier {
      * @param itemInHand The item in hand
      */
     void setItemInHand(@Nullable ItemStack itemInHand);
-
-    /**
-     * Gets the equipment inventory of this ArmorEquipable.
-     *
-     * @return The equipment inventory
-     */
-    EquipmentInventory<? extends ArmorEquipable> getInventory();
 
 }
