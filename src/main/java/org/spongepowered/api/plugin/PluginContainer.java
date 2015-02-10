@@ -60,11 +60,10 @@ public interface PluginContainer {
     Object getInstance();
 
     /**
-     * Gets if this PluginContainer wraps something that isn't a 'real' plugin.
+     * Gets if this PluginContainer wraps a dummy plugin.
      * 
-     * @return if this PluginContainer wraps something that isn't a 'real'
-     *         plugin.
+     * @return if this PluginContainer wraps wraps a dummy plugin.
      */
-    boolean isWrapper();
+    boolean isDummy();
 
 }
