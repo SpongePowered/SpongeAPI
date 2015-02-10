@@ -36,13 +36,5 @@ public interface Slot extends Inventory {
      * boxing.
      */
     int getStackSize();
-    
-    /**
-     * Takes {@code count} items away from the ItemStack in this slot and
-     * returns them as a new ItemStack. If fewer than the specified 
-     *
-     * @param count The number of items to remove from the ItemStack
-     * @return The items that have been taken out as a new ItemStack
-     */
-     ItemStack take(int count);
+
 }

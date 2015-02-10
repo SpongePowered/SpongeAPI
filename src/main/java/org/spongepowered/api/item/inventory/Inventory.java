@@ -72,6 +72,39 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     Optional<ItemStack> poll();
     
     /**
+     * <p>Get and remove up to <code>limit</code> items of the type in the first
+     * available stack in this Inventory from all stacks in this Inventory. If
+     * no stack is available then {@link Optional#absent()} is returned (as per
+     * the usual behaviour of {@link #poll()}, otherwise a new {@link ItemStack}
+     * is returned containing the removed items, the contents of the stack in
+     * the inventory are reduced by the number of items consumed. Note that this
+     * method attempts to consume items into the ouput up to <code>limit</code>,
+     * which may consume items from an abitrary number of internal slots.</p>
+     * 
+     * <p>For example, assume an inventory containing 4 slots contains stacks as
+     * follows:</p>
+     * 
+     * <blockquote>
+     *     <pre>[Stone x10] [Dirt x3] [Arrows x9] [Stone x32]</pre>
+     * </blockquote>
+     * 
+     * <p>Calling <code>poll(16)</code> on this inventory will consume <em>Stone
+     * </em> from the Inventory (because the first stack contains stone), and
+     * will then consume the remaining 6 items from the 4th slot.</p>
+     * 
+     * <p>It is intended that this method is used in conjunction with a query
+     * which returns a set of slots containing a specific item type:</p>
+     * 
+     * <blockquote>
+     *     <pre>Optional&lt;ItemStack&gt; q = inv.query(ItemTypes.DIRT).poll(1);
+     *     </pre>
+     * </blockquote>
+     * 
+     * @param limit Maximum number of items to consume from the stack
+     */
+    Optional<ItemStack> poll(int limit);
+    
+    /**
      * Get without removing the first available stack from this Inventory
      */
     Optional<ItemStack> peek();
