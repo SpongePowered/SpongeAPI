@@ -30,7 +30,6 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Tameable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.entity.HorseInventory;
 
 
 import javax.annotation.Nullable;
@@ -103,7 +102,5 @@ public interface Horse extends Animal, Tameable, Carrier {
      * @param itemStack The saddle item
      */
     void setSaddle(@Nullable ItemStack itemStack);
-
-    HorseInventory getInventory();
 
 }

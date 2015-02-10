@@ -22,48 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.entity;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.item.inventory.types.InventoryRow;
 
-import java.util.List;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * A human's hotbar
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface Hotbar extends InventoryRow {
+    
+    /**
+     * Gets the slot that is currently selected by the Human.
+     *
+     * @return The slot being currently held as an integer from 0-8, inclusive
+     */
+    public abstract int getSelectedSlot();
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
+     * Sets the slot selected by the Human.
      *
-     * @return The crafting inventory
+     * @param index The slot to hold as an integer from 0-8, inclusive
      */
-    CraftingInventory getInventory();
-
-    /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
-     */
-    Recipe getRecipe();
-
-    /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
-     */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
+    public abstract void setSelectedSlot(int index);
 
 }

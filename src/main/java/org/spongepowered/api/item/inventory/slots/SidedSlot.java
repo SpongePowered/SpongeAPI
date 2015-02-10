@@ -22,48 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.slots;
 
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.util.Direction;
 
-import java.util.List;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * A slot which belongs to a particular side of a "sided" inventory
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface SidedSlot extends Slot {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
-     *
-     * @return The crafting inventory
+     * Get whether this slot can accept the specified item from the specified direction
      */
-    CraftingInventory getInventory();
+    public abstract boolean canAccept(ItemStack stack, Direction from);
 
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
+     * Attempts to insert the supplied stack into this inventory from the specified direction
      */
-    Recipe getRecipe();
-
+    public abstract boolean offer(ItemStack stack, Direction from);
+    
     /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
+     * Get whether automation can extract the specified item from the specified direction
      */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
-
+    public abstract boolean canGet(ItemStack stack, Direction from);
 }

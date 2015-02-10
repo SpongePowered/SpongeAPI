@@ -25,20 +25,12 @@
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.block.FurnaceInventory;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Fired when a furnace smelts a source ItemStack into a resultant ItemStack.
  */
 public interface FurnaceSmeltEvent extends BlockInventoryEvent, ItemResultEvent, Cancellable {
-
-    /**
-     * Gets the FurnaceInventory involved in this event.
-     *
-     * @return The furnace inventory
-     */
-    FurnaceInventory getInventory();
 
     /**
      * Retrieves the source for this smelt event.

@@ -25,34 +25,19 @@
 package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.CraftingInventory;
-import org.spongepowered.api.item.inventory.EquipmentInventory;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.message.Message;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import org.spongepowered.api.item.inventory.types.CarriedInventory;
 
 /**
- * Represents the inventory of a Human or Player.
+ * Represents the inventory of a Human or Player. Implementors of this interface
+ * guarantee that (at a minimum) the following subinventory types can be queried
+ * for:
+ * 
+ * <li><ul>{@link CraftingInventory}</ul></li>
  */
-public interface HumanInventory extends EntityInventory<Human>, EquipmentInventory<Human>, CraftingInventory {
-
+public interface HumanInventory extends CarriedInventory<Human> {
+    
     /**
-     * Gets the slot that is currently being held by the Human.
-     *
-     * @return The slot being currently held as an integer from 0-8, inclusive
+     * Get the hotbar inventory
      */
-    int getHeldSlot();
-
-    /**
-     * Sets the slot to be held by the Human.
-     *
-     * @param index The slot to hold as an integer from 0-8, inclusive
-     */
-    void setHeldSlot(int index);
-
+    public abstract Hotbar getHotbar();
 }

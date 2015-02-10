@@ -24,75 +24,207 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.item.list.ItemList;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.Nameable;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.text.translation.Translatable;
 
-import java.util.Set;
+import com.google.common.base.Optional;
 
 /**
- * An Inventory is an ItemList that can be viewed by Humans
- * and be carried by a Carrier.
- *
- * <p>It also has title-related methods, which applies mainly to chest
- * inventories.</p>
- *
- * <p>Most inventory sub-interfaces are currently useless because of possible
- * tinkering from Forge mods. Once this gets sorted out, more usefull methods
- * will be added to the Inventory sub-interfaces.</p>
+ * Base interface for queryable inventories.
+ * 
+ * TODO Flesh out javadoc from proposal document. For now, see proposal doc
+ * here: https://github.com/SpongePowered/SpongeAPI/pull/443
  */
-public interface Inventory extends ItemList {
+public interface Inventory extends Iterable<Inventory>, Nameable {
+    
+    /**
+     * Get the parent {@link Inventory} of this {@link Inventory} 
+     */
+    public abstract Inventory parent();
 
     /**
-     * Gets the title of this Inventory, viewable by players looking
-     * at this inventory.
-     *
-     * @return The title of this inventory
+     * Returns an iterable view of all {@link Slot}s (leaf nodes) in this
+     * Inventory
      */
-    Message getTitle();
+    public abstract <T extends Inventory> Iterable<T> slots();
 
     /**
-     * Sets the title of this Inventory, viewable by players looking
-     * at this inventory.
-     *
-     * @param title The new title of this inventory
+     * Return the first child inventory, effectively the same as
+     * <code>Inventory::iterator().next()</code> but more convenient when we are
+     * expecting a result set with only a single entry. Also use type specifier
+     * to allow easy pseudo-duck-typing. If no children, then returns
+     * <code>this</code>.
      */
-    void setTitle(Message title);
+    public abstract <T extends Inventory> T first();
 
     /**
-     * Gets the current viewers looking at this Inventory.
-     *
-     * @return The current viewers of this inventory
+     * Return the next sibling inventory, allows traversing the inventory
+     * hierarchy without using an iterator. If no more children, returns an
+     * {@link EmptyInventory}.
      */
-    Set<Human> getViewers();
+    public abstract <T extends Inventory> T next();
 
     /**
-     * Checks for whether this Inventory currently has viewers.
-     *
-     * @return True if viewers are currently looking at this inventory
+     * Get and remove the first available stack from this Inventory
      */
-    boolean hasViewers();
+    public abstract Optional<ItemStack> poll();
+    
+    /**
+     * Get without removing the first available stack from this Inventory
+     */
+    public abstract Optional<ItemStack> peek();
+    
+    /**
+     * Try to put an ItemStack into this Inventory. Just like {@link
+     * java.util.Queue}, this method returns true if the Inventory accepted the
+     * stack and false if not, the size of the supplied stack is reduced by the
+     * number of items successfully consumed by the Inventory.
+     */
+    public abstract boolean offer(ItemStack stack);
+    
+    /**
+     * Forcibly put the supplied stack into this inventory. Overwrites existing
+     * objects in the inventory as required to accomodate the entire stack. The
+     * entire stack is always consumed.
+     */
+    public abstract void set(ItemStack stack);
+    
+    /**
+     * Clears this inventory if it is clearable. 
+     */
+    public abstract void clear();
+    
+    /**
+     * The number of stacks currently in the Inventory. Either 1 or 0 for
+     * {@link Slot}s and always 0 for {@link EmptyInventory}s.
+     */
+    public abstract int size();
+    
+    /**
+     * The maximum number of stacks the Inventory can hold. Always 1 for
+     * {@link Slot}s and always 0 for {@link EmptyInventory}s.
+     */
+    public abstract int capacity();
+    
+    /**
+     * Returns true if this Inventory contains no children.
+     */
+    public abstract boolean isEmpty();
 
     /**
-     * Shows this Inventory to the given viewer.
+     * Checks for whether the given stack is contained in this Inventory. This
+     * is equivalent to calling <code>!inv.query(stack).isEmpty();</code>
      *
-     * @param viewer The viewer to show this inventory to
+     * @param stack The stack to check for
+     * @return True if the stack is present in this list
      */
-    void open(Human viewer);
+    public abstract boolean contains(ItemStack stack);
 
     /**
-     * Stops showing this Inventory to the given viewer.
+     * Checks for whether there is a stack in this Inventory with the given
+     * ItemType. This is equivalent to calling <code>!inv.query(stack)
+     * .isEmpty();</code>
      *
-     * @param viewer The viewer to stop showing this inventory to
+     * @param type The type to search for
+     * @return True if at least one stack in this list has the given type
      */
-    void close(Human viewer);
+    public abstract boolean contains(ItemType type);
 
     /**
-     * Returns the Carrier of this Inventory. It can be an entity,
-     * block, or other object.
+     * Returns the maximum size of any stack in this Inventory.
      *
-     * @return This inventory's carrier
+     * @return The maximum stack size of this list
      */
-    Carrier getCarrier();
+    public abstract int getMaxStackSize();
 
+    /**
+     * Sets the maximum stack size of any stack in this ItemList.
+     *
+     * @param size The new maximum stack size
+     */
+    public abstract void setMaxStackSize(int size);
+
+    /**
+     * Get a property defined in <em>this</em> inventory for the specified
+     * (immediate) sub-inventory.
+     */
+    public abstract <T extends InventoryProperty<?, ?>> T getProperty(Inventory child, Class<T> property);
+    
+    /**
+     * Get a property defined directly on this Inventory. For sub-inventories
+     * this is effectively the same as <code>inv.getParent().getProperty(inv,
+     * property);</code> but for top-level inventories may include properties
+     * defined on the inventory directly. 
+     */
+    public abstract <T extends InventoryProperty<?, ?>> T getProperty(Class<T> property);
+    
+    /**
+     * Query this inventory for inventories matching any of the supplied types.
+     * This is effectively an <code>instanceof</code> check against each child
+     * inventory. Logical <code>OR</code> is applied between operands.
+     */
+    public abstract <T extends Inventory> T query(Class<?>... types);
+    
+    /**
+     * Query this inventory for inventories containing any of the supplied item
+     * types. This query operates directly on {@link Slot} leaf nodes in the
+     * inventory and will always return a collection containing only {@link
+     * Slot} instances. Logical <code>OR</code> is applied between operands.
+     */
+    public abstract <T extends Inventory> T query(ItemTypes... types);
+    
+    /**
+     * Query this inventory for inventories containing any stacks which match
+     * the supplied stack operands. This query operates directly on {@link Slot}
+     * leaf nodes in the inventory and will always return a collection
+     * containing only {@link Slot} instances. Logical <code>OR</code> is
+     * applied between operands.
+     */
+    public abstract <T extends Inventory> T query(ItemStack... types);
+    
+    /**
+     * Query this inventory for inventories which match any of the supplied
+     * properties. The <code>equals</code> method of each property is called on
+     * each child inventory which has the supplied property. Logical
+     * <code>OR</code> is applied between operands. This method is effectively
+     * the same as calling {@link #query} with an {@link
+     * InventoryProperty.Operator} of {@link InventoryProperty.Operator#EQUAL}.
+     */
+    public abstract <T extends Inventory> T query(InventoryProperty<?, ?>... props);
+    
+    /**
+     * Query this inventory for inventories which match any of the supplied
+     * properties with the specified operator. The relevant method of each
+     * property is called on each child inventory which has the supplied
+     * property. Logical <code>OR</code> is applied between operands.
+     */
+    public abstract <T extends Inventory> T query(InventoryProperty.Operator op, InventoryProperty<?, ?>... props);
+    
+    /**
+     * Query this inventory for inventories matching any of the supplied titles.
+     * Logical <code>OR</code> is applied between operands.
+     */
+    public abstract <T extends Inventory> T query(Translatable... names);
+    
+    /**
+     * Query this inventory for inventories matching any of the supplied titles.
+     * Logical <code>OR</code> is applied between operands.
+     */
+    public abstract <T extends Inventory> T query(String... names);
+    
+    /**
+     * <p>Query this inventory by dynamically inspecting each operand. Each
+     * operand in turn is checked for a match against the other query methods,
+     * and if a matching method is found the query is performed using the
+     * operand. This is repeated until all operands are consumed and allows a
+     * union of multiple query types to be aggregated into a single view.</p>
+     * 
+     * <p>For operands with no matching type, the behaviour is determined by the
+     * individual inventory. A naive match may be obtained by calling .equals()
+     * against the child inventory passing the unknown operand as an argument.
+     * </p>
+     */
+    public abstract <T extends Inventory> T query(Object... args);
 }

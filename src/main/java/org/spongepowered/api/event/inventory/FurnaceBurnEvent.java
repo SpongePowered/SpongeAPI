@@ -25,20 +25,12 @@
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.block.FurnaceInventory;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Fired when an ItemStack is burned in a furnace as fuel.
  */
 public interface FurnaceBurnEvent extends BlockInventoryEvent, Cancellable {
-
-    /**
-     * Gets the FurnaceInventory involved in this event.
-     *
-     * @return The furnace inventory
-     */
-    FurnaceInventory getInventory();
 
     /**
      * Retrieves the fuel that has been burnt in this event.

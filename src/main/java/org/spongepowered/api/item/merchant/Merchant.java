@@ -27,7 +27,6 @@ package org.spongepowered.api.item.merchant;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.MerchantInventory;
 
 import java.util.List;
 
@@ -78,11 +77,4 @@ public interface Merchant extends Carrier {
      * @param offer The offer to add
      */
     void addOffer(TradeOffer offer);
-
-    /*
-     * Returns the inventory of this Merchant.
-     *
-     * @return The inventory of this merchant
-     */
-    MerchantInventory getInventory();
 }

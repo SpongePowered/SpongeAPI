@@ -24,19 +24,11 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.item.inventory.block.BrewingStandInventory;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Fired when an item is brewed.
  */
 public interface BrewEvent extends BlockInventoryEvent, ItemResultEvent, Cancellable {
-
-    /**
-     * Gets the BrewingStandInventory involved with this event.
-     *
-     * @return The brewing stand's inventory
-     */
-    BrewingStandInventory getInventory();
 
 }

@@ -22,48 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.slots;
 
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.item.inventory.Slot;
 
-import java.util.List;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * An inventory slot which can only accept certain types of item
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface FilteringSlot extends Slot {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
-     *
-     * @return The crafting inventory
+     * Check whether the supplied item can be inserted into this slot. Returning
+     * false from this method implies that {@link #offer} <b>would always return
+     * false</b> for this item. 
      */
-    CraftingInventory getInventory();
+    public abstract boolean isValidItem(ItemStack stack);
 
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
+     * Check whether the supplied item can be inserted into this slot. Returning
+     * false from this method implies that {@link #offer} <b>would always return
+     * false</b> for this item. 
      */
-    Recipe getRecipe();
-
-    /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
-     */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
-
+    public abstract boolean isValidItem(ItemType type);
+    
 }

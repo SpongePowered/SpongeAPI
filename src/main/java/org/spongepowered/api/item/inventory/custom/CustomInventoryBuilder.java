@@ -22,48 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.custom;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
-
-import java.util.List;
+import org.spongepowered.api.text.translation.Translatable;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * Builds a CustomInventory instance.
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface CustomInventoryBuilder {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
+     * Sets the title of the custom inventory, viewable by players looking
+     * at the inventory.
      *
-     * @return The crafting inventory
+     * @param name The title
      */
-    CraftingInventory getInventory();
+    CustomInventoryBuilder setName(Translatable name);
 
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
+     * Sets the size of the custom inventory.
      *
-     * @return The recipe
+     * @param size The size
      */
-    Recipe getRecipe();
+    CustomInventoryBuilder setSize(int size);
 
     /**
-     * Gets the ItemStacks that are a result of this crafting event.
+     * Builds the inventory instance.
      *
-     * @return The results
+     * @return A new custom inventory
      */
-    List<ItemStack> getResults();
+    CustomInventory build();
 
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
+    // TODO add nbt persistence methods
 
 }

@@ -22,48 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.properties;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.item.inventory.InventoryProperty;
 
-import java.util.List;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * A generic integer property. This is primarily used for supporting the
+ * "fields" on the beacon inventory for the moment. This property is also
+ * settable.
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface IntProperty extends InventoryProperty<Integer, Integer> {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
-     *
-     * @return The crafting inventory
+     * Set this property to the specified value
      */
-    CraftingInventory getInventory();
-
-    /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
-     */
-    Recipe getRecipe();
-
-    /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
-     */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
-
+    public abstract void setValue(int value);
 }

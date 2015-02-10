@@ -22,48 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.types;
 
-import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.item.inventory.Slot;
 
-import java.util.List;
+import com.google.common.base.Optional;
+
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * An Ordered Inventory contains {@link Slots} in some pre-determined order with
+ * indices between 0 and 1-{@link #capacity} 
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface OrderedInventory extends Inventory {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
-     *
-     * @return The crafting inventory
+     * Get and remove the stack at the supplied index in this Inventory
      */
-    CraftingInventory getInventory();
+    public abstract Optional<ItemStack> get(int index);
+    
+    /**
+     * Get without removing the stack at the supplied index in this Inventory
+     */
+    public abstract Optional<ItemStack> peek(int index);
 
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
+     * Set the item in the specified slot 
      */
-    Recipe getRecipe();
-
+    public abstract void set(int index, ItemStack stack);
+    
     /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
+     * Get the {@link Slot} at the specified index
      */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
-
+    public abstract Optional<Slot> getSlot(int index);
 }
