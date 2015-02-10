@@ -39,22 +39,25 @@ public interface ShapedRecipeBuilder {
      * Sets the width of the grid for the ShapedRecipe.
      *
      * @param width The width of the grid
+     * @return fluent interface
      */
-    void setWidth(int width);
+    ShapedRecipeBuilder width(int width);
 
     /**
      * Sets the height of the grid for the ShapedRecipe.
      *
      * @param height The height of the grid
+     * @return fluent interface
      */
-    void setHeight(int height);
+    ShapedRecipeBuilder height(int height);
 
     /**
      * Sets the dimensions of the grid for the ShapedRecipe in one method call.
      *
      * @param dimensions The dimensions of the grid
+     * @return fluent interface
      */
-    void setDimensions(Vector2i dimensions);
+    ShapedRecipeBuilder dimensions(Vector2i dimensions);
 
     /**
      * Sets the ingredient required by the recipe in the given coordinates.
@@ -62,16 +65,18 @@ public interface ShapedRecipeBuilder {
      * @param x The x coordinate
      * @param y The y coordinate
      * @param ingredient The ingredient to set, or remove if null
+     * @return fluent interface
      */
-    void setIngredient(int x, int y, @Nullable ItemStack ingredient);
+    ShapedRecipeBuilder ingredient(int x, int y, @Nullable ItemStack ingredient);
 
     /**
      * Sets the ingredient required by the recipe in the given position.
      *
      * @param pos The position
      * @param ingredient The ingredient to set, or remove if null
+     * @return fluent interface
      */
-    void setIngredient(Vector2i pos, @Nullable ItemStack ingredient);
+    ShapedRecipeBuilder ingredient(Vector2i pos, @Nullable ItemStack ingredient);
 
     /**
      * Sets the ingredients required by the recipe in the given row.
@@ -80,16 +85,18 @@ public interface ShapedRecipeBuilder {
      * @param ingredients A list of ItemStacks to set as ingredients. If one
      *                    of them is null the ingredient in that position is
      *                    not added.
+     * @return fluent interface
      */
-    void setRow(int row, ItemStack... ingredients);
+    ShapedRecipeBuilder row(int row, ItemStack... ingredients);
 
     /**
-     * Adds a resultant ItemStack for when this ShapedRecipe is
-     * correctly crafted.
+     * Adds a resultant ItemStack for when this ShapedRecipe is correctly
+     * crafted.
      *
      * @param result The result
+     * @return fluent interface
      */
-    void addResult(ItemStack result);
+    ShapedRecipeBuilder addResult(ItemStack result);
 
     /**
      * Builds a ShapedRecipe from this builder.

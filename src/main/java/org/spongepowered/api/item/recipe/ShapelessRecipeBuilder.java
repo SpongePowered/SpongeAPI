@@ -35,22 +35,24 @@ public interface ShapelessRecipeBuilder  {
      * Adds an ingredient to the requirements of this ShapelessRecipe
      *
      * @param ingredient The ingredient
+     * @return fluent interface
      */
-    void addIngredient(ItemStack ingredient);
+    ShapelessRecipeBuilder addIngredient(ItemStack ingredient);
 
     /**
      * Adds a resultant ItemStack for when this ShapelessRecipe is
      * correctly crafted.
      *
      * @param result The result
+     * @return fluent interface
      */
-    void addResult(ItemStack result);
+    ShapelessRecipeBuilder addResult(ItemStack result);
 
     /**
      * Builds a new ShapelessRecipe from this builder.
      *
      * @return A new ShapelessRecipe
+     * @return fluent interface
      */
     ShapelessRecipe build();
-
 }
