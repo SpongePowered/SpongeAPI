@@ -22,21 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.event.cause;
+
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Base event for events affecting a single block.
+ * Represents a cause of damage against an {@link Entity}.
  */
-public interface BlockEvent extends GameEvent {
+public interface DamageCause extends HealthChangeCause {
 
     /**
-     * Get the block affected by the event (the target block).
-     *
-     * @return Related block
+     * Gets whether this damage cause ignores the affected entities armor.
+     * 
+     * @return Ignores armor
      */
-    BlockLoc getBlock();
+    boolean bypassesArmor();
+
+    /**
+     * Gets whether this damage cause may be blocked.
+     * 
+     * @return May be blocked
+     */
+    boolean isBlockable();
+
+    /**
+     * Gets whether this damage cause is of the given type.
+     * 
+     * @param type The type to compare
+     * @return Is of the type
+     */
+    boolean isOfType(DamageType type);
 
 }

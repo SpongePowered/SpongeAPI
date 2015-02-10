@@ -23,14 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause.reason;
+package org.spongepowered.api.event.cause;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * A reason explains a {@link Cause}. For example, a cause might be a fire
- * block, and the reason would be fire spread.
+ * A {@link DamageCause} which was caused directly by an entity.
  */
-public interface Reason {
+public interface EntityDamageCause extends DamageCause {
+
+    /**
+     * Gets the source {@link Entity} for this damage cause.
+     * 
+     * @return The source entity
+     */
+    Entity getSourceEntity();
 
 }

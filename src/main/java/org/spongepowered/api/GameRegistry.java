@@ -33,6 +33,7 @@ import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.animal.DyeColor;
@@ -45,6 +46,14 @@ import org.spongepowered.api.entity.living.monster.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.event.cause.DamageCause;
+import org.spongepowered.api.event.cause.DamageCauseBuilder;
+import org.spongepowered.api.event.cause.DamageCauseBuilder.EntityDamageCauseBuilder;
+import org.spongepowered.api.event.cause.DamageCauseBuilder.ProjectileDamageCauseBuilder;
+import org.spongepowered.api.event.cause.EntityDamageCause;
+import org.spongepowered.api.event.cause.HealthChangeCause;
+import org.spongepowered.api.event.cause.ProjectileDamageCause;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
@@ -549,5 +558,66 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
+
+    /**
+     * Gets the {@link HealthChangeCause} with the given name.
+     * 
+     * @param name The name of the cause
+     * @return The {@link HealthChangeCause} or Optional.absent() if not found
+     */
+    Optional<HealthChangeCause> getHealthChangeChause(String name);
+
+    /**
+     * Gets the {@link DamageCause} with the given name.
+     * 
+     * @param name The name of the cause
+     * @return The {@link DamageCause} or Optional.absent() if not found
+     */
+    Optional<DamageCause> getDamageCause(String name);
+
+    /**
+     * Gets a new {@link DamageCauseBuilder} for creating custom damage causes.
+     * 
+     * @return A new builder
+     */
+    DamageCauseBuilder getDamageCauseBuilder();
+
+    /**
+     * Gets a new {@link DamageCauseBuilder.EntityDamageCauseBuilder} for
+     * creating entity sourced damage causes.
+     * 
+     * @param source The entity source
+     * @return A new builder
+     */
+    EntityDamageCauseBuilder getEntityDamageCauseBuilder(Entity source);
+
+    /**
+     * Gets a new {@link EntityDamageCause} with all the characteristics of the
+     * baseCause and sourced by the given entity.
+     * 
+     * @param source The entity source
+     * @param baseCause The base damage cause
+     * @return The damage cause
+     */
+    EntityDamageCause getEntityDamageCause(Entity source, DamageCause baseCause);
+
+    /**
+     * Gets a new {@link DamageCauseBuilder.ProjectileDamageCauseBuilder} for
+     * creating projectile sourced damage causes.
+     * 
+     * @param projectile The projectile source
+     * @return A new builder
+     */
+    ProjectileDamageCauseBuilder getProjectileDamageCauseBuilder(Projectile projectile);
+
+    /**
+     * Gets a new {@link ProjectileDamageCause} with all the characteristics of
+     * the baseCause and sourced by the given projectile.
+     * 
+     * @param projectile The projectile source
+     * @param baseCause The base damage cause
+     * @return The damage cause
+     */
+    ProjectileDamageCause getProjectileDamageCause(Projectile projectile, DamageCause baseCause);
 
 }

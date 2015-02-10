@@ -28,7 +28,6 @@ package org.spongepowered.api.event.block;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.event.Cancellable;
 
 import java.util.List;
@@ -36,7 +35,7 @@ import java.util.List;
 /**
  * A base event for events affecting several blocks (as their target).
  */
-public interface BulkBlockEvent extends GameEvent, CauseTracked {
+public interface BulkBlockEvent extends GameEvent {
 
     /**
      * Get a list of affected blocks.

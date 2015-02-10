@@ -26,11 +26,18 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.cause.TeleportCause;
 
 /**
  * Called when an {@link Entity} teleports.
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked {
+public interface EntityTeleportEvent extends EntityMoveEvent {
+
+    /**
+     * Gets the cause of this entities teleportation.
+     * 
+     * @return The cause
+     */
+    TeleportCause getCause();
 
 }

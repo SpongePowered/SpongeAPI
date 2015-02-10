@@ -25,76 +25,16 @@
 
 package org.spongepowered.api.event.cause;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.reason.Reason;
-
-import javax.annotation.Nullable;
-
 /**
- * A cause represents the reason or initiator of an event.
- *
- * <p>For example, if a block of sand is placed where it drops, the block
- * of sand would create a falling sand entity, which then would place another
- * block of sand. The block place event for the final block of sand would have
- * the cause chain of the block of sand -&gt; falling sand entity.</p>
- *
- * <p>It is not possible to accurately the describe the chain of causes in
- * all scenarios so a best effort approach is generally acceptable. For
- * example, a player might press a lever, activating a complex Redstone
- * circuit, which would then launch TNT and cause the destruction of
- * some blocks, but tracing this event would be too complicated and thus
- * may not be attempted.</p>
+ * A generic cause.
  */
-public class Cause {
-
-    private final Optional<Cause> parent;
-    private final Object cause;
-    private final Optional<Reason> reason;
+public interface Cause {
 
     /**
-     * Create a new cause instance.
-     *
-     * @param parent An optional parent
-     * @param cause The causing object (may be a block, entity, etc.)
-     * @param reason An optional reason
+     * Gets the name of this cause.
+     * 
+     * @return The name
      */
-    public Cause(@Nullable Cause parent, Object cause, @Nullable Reason reason) {
-        checkNotNull(cause);
-        this.parent = Optional.fromNullable(parent);
-        this.cause = cause;
-        this.reason = Optional.fromNullable(reason);
-    }
-
-    /**
-     * Get the parent cause of this cause.
-     *
-     * @return The parent cause
-     */
-    public Optional<Cause> getParent() {
-        return this.parent;
-    }
-
-    /**
-     * Get the causing object (it may be an {@link Entity}, {@link BlockLoc},
-     * etc.).
-     *
-     * @return The cause
-     */
-    public Object getCause() {
-        return this.cause;
-    }
-
-    /**
-     * Get the reason.
-     *
-     * @return The reason
-     */
-    public Optional<Reason> getReason() {
-        return this.reason;
-    }
+    String getCauseName();
 
 }

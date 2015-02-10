@@ -22,21 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.event.cause;
+
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+
+import com.google.common.base.Optional;
 
 /**
- * Base event for events affecting a single block.
+ * A {@link DamageCause} which was caused by a projectile.
  */
-public interface BlockEvent extends GameEvent {
+public interface ProjectileDamageCause extends DamageCause {
 
     /**
-     * Get the block affected by the event (the target block).
-     *
-     * @return Related block
+     * Gets the {@link ProjectileSource} which cast the projectile, if available.
+     * 
+     * @return The projectile source
      */
-    BlockLoc getBlock();
+    Optional<ProjectileSource> getProjectileSource();
+
+    /**
+     * Gets the source {@link Projectile} for this damage cause.
+     * 
+     * @return The projectile
+     */
+    Projectile getProjectile();
 
 }

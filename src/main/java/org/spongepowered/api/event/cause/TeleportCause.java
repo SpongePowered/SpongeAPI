@@ -25,21 +25,11 @@
 
 package org.spongepowered.api.event.cause;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.event.entity.EntityTeleportEvent;
 
 /**
- * Something that keeps track of the cause.
+ * Represents the cause of an {@link EntityTeleportEvent}.
  */
-public interface CauseTracked {
-
-    /**
-     * Get the last cause.
-     *
-     * <p>Parent causes, including possibly the root cause, can be
-     * retrieved using {@link Cause#getParent()}.</p>
-     *
-     * @return The last cause
-     */
-    Optional<Cause> getCause();
+public interface TeleportCause extends Cause {
 
 }
