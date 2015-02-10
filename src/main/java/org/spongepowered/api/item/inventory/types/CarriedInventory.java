@@ -22,48 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory.types;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.Inventory;
 
-import java.util.List;
+import com.google.common.base.Optional;
+
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * An {@link Inventory} which is owned or otherwise carried by a {@link Carrier}
+ *
+ * @param <C> Carrier type
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface CarriedInventory<C extends Carrier> extends Inventory {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
+     * Returns the Carrier of this Inventory. It can be an entity, block, or
+     * other object.
      *
-     * @return The crafting inventory
+     * @return This inventory's carrier
      */
-    CraftingInventory getInventory();
-
-    /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
-     */
-    Recipe getRecipe();
-
-    /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
-     */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
+    public abstract Optional<C> getCarrier();
 
 }

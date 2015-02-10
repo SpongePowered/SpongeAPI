@@ -22,48 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
+import java.util.Set;
 
-import java.util.List;
+import org.spongepowered.api.entity.living.Human;
+
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * A Container is effectively a <em>ViewModel</em> for a particular set of
+ * {@link Inventory} objects used to allow players ({@link Human}s) to interact
+ * with the Inventories, usually via a GUI (the View).
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
+public interface Container extends Interactable<Human> {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
+     * Gets the current viewers looking at this Inventory.
      *
-     * @return The crafting inventory
+     * @return The current viewers of this inventory
      */
-    CraftingInventory getInventory();
+    public abstract Set<Human> getViewers();
 
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
+     * Checks for whether this Inventory currently has viewers.
      *
-     * @return The recipe
+     * @return True if viewers are currently looking at this inventory
      */
-    Recipe getRecipe();
+    public abstract boolean hasViewers();
 
     /**
-     * Gets the ItemStacks that are a result of this crafting event.
+     * Shows this Inventory to the given viewer.
      *
-     * @return The results
+     * @param viewer The viewer to show this inventory to
      */
-    List<ItemStack> getResults();
+    public abstract void open(Human viewer);
 
     /**
-     * Gets the types of the results of this crafting event.
+     * Stops showing this Inventory to the given viewer.
      *
-     * @return The result types
+     * @param viewer The viewer to stop showing this inventory to
      */
-    List<ItemType> getResultTypes();
+    public abstract void close(Human viewer);
 
 }

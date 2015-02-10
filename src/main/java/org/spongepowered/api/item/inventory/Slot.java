@@ -22,48 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
-
-import java.util.List;
 
 /**
- * A CraftItemEvent is fired when an item is crafted from a
- * player inventory or workbench inventory, or any other crafting inventory.
+ * A slot is an {@link Inventory} with only a single stack.
  */
-public interface CraftItemEvent extends ViewerEvent, Cancellable {
-
+public interface Slot extends Inventory {
+    
     /**
-     * Retrieves the CraftingInventory involved with this event.
-     *
-     * @return The crafting inventory
+     * Get the size of the stack in this slot. Essentially the same as calling
+     * slot.peek().getQuantity(); but faster because it avoids the Optional
+     * boxing.
      */
-    CraftingInventory getInventory();
-
+    public abstract int getStackSize();
+    
     /**
-     * Retrieves the recipe that has been crafted as a result of this event.
+     * Takes {@code count} items away from the ItemStack in this slot and
+     * returns them as a new ItemStack. If fewer than the specified 
      *
-     * @return The recipe
+     * @param count The number of items to remove from the ItemStack
+     * @return The items that have been taken out as a new ItemStack
      */
-    Recipe getRecipe();
-
-    /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
-     */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
-
+     public abstract ItemStack take(int count);
 }

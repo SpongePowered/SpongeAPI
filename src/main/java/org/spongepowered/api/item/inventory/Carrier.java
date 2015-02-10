@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.item.inventory.types.CarriedInventory;
+
 /**
  * A Carrier is simply something that carries an inventory.
  */
@@ -34,6 +36,6 @@ public interface Carrier {
      *
      * @return The inventory this Carrier is holding
      */
-    Inventory getInventory();
+    CarriedInventory<? extends Carrier> getInventory();
 
 }

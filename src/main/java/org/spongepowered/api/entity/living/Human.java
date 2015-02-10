@@ -131,13 +131,6 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
     boolean isViewingInventory();
 
     /**
-     * Gets the inventory of this human entity.
-     *
-     * @return The inventory
-     */
-    HumanInventory getInventory();
-
-    /**
      * Gets the currently viewed inventory of this human entity, if it is
      * currently viewing one.
      *

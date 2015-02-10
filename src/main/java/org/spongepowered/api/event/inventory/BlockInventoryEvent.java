@@ -25,18 +25,10 @@
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.event.block.BlockEvent;
-import org.spongepowered.api.item.inventory.block.BlockInventory;
 
 /**
  * Represents an InventoryEvent that involves a Block as a carrier.
  */
 public interface BlockInventoryEvent extends InventoryEvent, BlockEvent {
-
-    /**
-     * Retrieves the BlockInventory involved in this event.
-     *
-     * @return The block inventory
-     */
-    BlockInventory getInventory();
 
 }

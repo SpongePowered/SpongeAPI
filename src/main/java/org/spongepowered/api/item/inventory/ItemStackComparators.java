@@ -27,8 +27,6 @@ package org.spongepowered.api.item.inventory;
 
 import com.google.common.collect.Ordering;
 
-import org.spongepowered.api.item.ItemType;
-
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -87,7 +85,7 @@ public final class ItemStackComparators {
     private ItemStackComparators() {
     }
 
-    private static final class Type implements Comparator<ItemStack> {
+    static final class Type implements Comparator<ItemStack> {
 
         @Override
         public int compare(final ItemStack o1, final ItemStack o2) {
@@ -96,7 +94,7 @@ public final class ItemStackComparators {
 
     }
 
-    private static final class Damage implements Comparator<ItemStack> {
+    static final class Damage implements Comparator<ItemStack> {
 
         @Override
         public int compare(final ItemStack o1, final ItemStack o2) {
@@ -105,7 +103,7 @@ public final class ItemStackComparators {
 
     }
 
-    private static final class Size implements Comparator<ItemStack> {
+    static final class Size implements Comparator<ItemStack> {
 
         @Override
         public int compare(final ItemStack o1, final ItemStack o2) {
