@@ -31,9 +31,9 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 
 /**
- * An GridInventory is an {@link Inventory} which is ordered into a coherent
- * grid format, meaning that its slots can be referred to by X-Y coordinates
- * as well as single indices.
+ * An GridInventory is an {@link org.spongepowered.api.item.inventory.Inventory}
+ * which is ordered into a coherent grid format, meaning that its slots can be
+ * referred to by X-Y coordinates as well as single indices.
  */
 public interface GridInventory extends Inventory2D {
 

@@ -35,7 +35,8 @@ import com.google.common.base.Optional;
 
 
 /**
- * Armour inventory for {@link Carrier}s that can wear armour
+ * Armour inventory for {@link org.spongepowered.api.item.inventory.Carrier}s
+ * that can wear armour.
  */
 public interface ArmourInventory extends OrderedInventory, CarriedInventory<ArmorEquipable> {
 

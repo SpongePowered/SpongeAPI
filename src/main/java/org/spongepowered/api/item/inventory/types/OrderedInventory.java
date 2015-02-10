@@ -32,7 +32,7 @@ import com.google.common.base.Optional;
 
 
 /**
- * An Ordered Inventory contains {@link Slots} in some pre-determined order with
+ * An Ordered Inventory contains {@link Slot}s in some pre-determined order with
  * indices between 0 and 1-{@link #capacity} 
  */
 public interface OrderedInventory extends Inventory {

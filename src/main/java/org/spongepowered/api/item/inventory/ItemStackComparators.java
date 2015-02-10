@@ -36,49 +36,62 @@ import java.util.Comparator;
 public final class ItemStackComparators {
 
     /**
-     * Compares ItemStacks based on {@link ItemType}. This comparator will not
-     * return the same results as ItemStack.equals(ItemStack) for ItemStacks
-     * with extra attached data, different damage values, or different sizes.
+     * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType}.
+     * This comparator will not return the same results as
+     * ItemStack.equals(ItemStack) for ItemStacks with extra attached data,
+     * different damage values, or different sizes.
      */
     public static final Comparator<ItemStack> TYPE = new Type();
+    
     /**
-     * Compares ItemStacks based on {@link ItemStack} damage. This comparator
-     * will not return the same results as ItemStack.equals(ItemStack) for
-     * ItemStacks with extra attached data, different types, or different sizes.
+     * Compares ItemStacks based on
+     * {@link org.spongepowered.api.item.inventory.ItemStack} damage. This
+     * comparator will not return the same results as
+     * ItemStack.equals(ItemStack) for ItemStacks with extra attached data,
+     * different types, or different sizes.
      */
     public static final Comparator<ItemStack> DAMAGE = new Damage();
+    
     /**
-     * Compares ItemStacks based on {@link ItemStack} size. This comparator will
-     * not return the same results as ItemStack.equals(ItemStack) for ItemStacks
-     * with extra attached data, different types, or different damage values.
+     * Compares ItemStacks based on
+     * {@link org.spongepowered.api.item.inventory.ItemStack} size. This
+     * comparator will not return the same results as
+     * ItemStack.equals(ItemStack) for ItemStacks with extra attached data,
+     * different types, or different damage values.
      */
     public static final Comparator<ItemStack> SIZE = new Size();
+    
     /**
-     * Compares ItemStacks based on {@link ItemType} and {@link ItemStack}
+     * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType}
+     * and {@link ItemStack}
      * damage. This comparator will not return the same results as
      * ItemStack.equals(ItemStack) for ItemStacks with extra attached data or
      * different sizes.
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_DAMAGE = Ordering.compound(Arrays.asList(TYPE, DAMAGE));
+    
     /**
-     * Compares ItemStacks based on {@link ItemType} and {@link ItemStack} size.
-     * This comparator will not return the same results as
+     * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType}
+     * and {@link org.spongepowered.api.item.inventory.ItemStack} size. This
+     * comparator will not return the same results as
      * ItemStack.equals(ItemStack) for ItemStacks with extra attached data or
      * different damage values.
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_SIZE = Ordering.compound(Arrays.asList(TYPE, SIZE));
+    
     /**
-     * Compares ItemStacks based on {@link ItemType}, {@link ItemStack} damage
-     * and {@link ItemStack} size. This comparator will not return the same
-     * results as ItemStack.equals(ItemStack) for ItemStacks with extra attached
-     * data.
+     * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType},
+     * {@link org.spongepowered.api.item.inventory.ItemStack} damage and
+     * {@link ItemStack} size. This comparator will not return the same results
+     * as ItemStack.equals(ItemStack) for ItemStacks with extra attached data.
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_DAMAGE_SIZE = Ordering.compound(Arrays.asList(TYPE, DAMAGE, SIZE));
+    
     /**
-     * The default comparator for {@link ItemStack}s.
+     * The default comparator for {@link org.spongepowered.api.item.inventory.ItemStack}s.
      */
     public static final Comparator<ItemStack> DEFAULT = TYPE_DAMAGE_SIZE;
 
