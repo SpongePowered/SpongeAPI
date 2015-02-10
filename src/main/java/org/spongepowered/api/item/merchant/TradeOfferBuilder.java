@@ -87,7 +87,8 @@ public interface TradeOfferBuilder {
      * the builder.
      *
      * @return A new trade offer instance
-     * @throws IllegalStateException If the resulting trade offer would be invalid
+     * @throws IllegalStateException If the resulting trade offer would be
+     *      invalid
      */
     TradeOffer build() throws IllegalStateException;
 
@@ -98,7 +99,7 @@ public interface TradeOfferBuilder {
      * @param offer The offer to copy
      * @return This builder
      */
-    TradeOfferBuilder fromTradeOffer(TradeOffer offer);
+    TradeOfferBuilder from(TradeOffer offer);
 
     /**
      * Clears all settings of this builder.

@@ -37,14 +37,14 @@ public interface CustomInventoryBuilder {
      *
      * @param name The title
      */
-    CustomInventoryBuilder setName(Translatable name);
+    CustomInventoryBuilder name(Translatable name);
 
     /**
      * Sets the size of the custom inventory.
      *
      * @param size The size
      */
-    CustomInventoryBuilder setSize(int size);
+    CustomInventoryBuilder size(int size);
 
     /**
      * Builds the inventory instance.
@@ -53,6 +53,6 @@ public interface CustomInventoryBuilder {
      */
     CustomInventory build();
 
-    // TODO add nbt persistence methods
+    // TODO add persistence methods
 
 }
