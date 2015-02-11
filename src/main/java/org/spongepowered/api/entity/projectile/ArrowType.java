@@ -22,15 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile;
 
-package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
-
-/**
- * Represents a Dispenser.
- */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
-
+public enum ArrowType {
+    PICKUP, NO_PICKUP, CREATIVE_PICKUP
 }

@@ -33,4 +33,18 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
  */
 public interface Ghast extends Aerial, Monster, ProjectileSource {
 
+    /**
+     * Gets the explosion power of this ghast's fireballs.
+     * 
+     * @return The explosion power of this ghast's fireballs
+     */
+    int getExplosionPower();
+
+    /**
+     * Sets the explosion power of this ghast's fireballs.
+     * 
+     * @param power The new explosion power of this ghast's fireballs
+     */
+    void setExplosionPower(int power);
+
 }

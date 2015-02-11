@@ -77,4 +77,18 @@ public interface Villager extends Ageable, Merchant {
      */
     void setCareer(Career career);
 
+    /**
+     * Gets the career level of this villager.
+     * 
+     * @return The career level of this villager
+     */
+    int getCareerLevel();
+
+    /**
+     * Sets the career level of this villager.
+     * 
+     * @param level The new career level of this villager
+     */
+    void setCareerLevel(int level);
+
 }

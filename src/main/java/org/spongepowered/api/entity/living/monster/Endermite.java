@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.TimedDespawnable;
+
 /**
  * Represents an endermite.
  */
-public interface Endermite extends Monster {
+public interface Endermite extends Monster, TimedDespawnable {
 
     /**
      * Gets if this {@link Endermite} was created by a player.
@@ -42,4 +44,5 @@ public interface Endermite extends Monster {
      * @param playerCreated If the {@link Endermite} should be created by a player
      */
     void setPlayerCreated(boolean playerCreated);
+
 }

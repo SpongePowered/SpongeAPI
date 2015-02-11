@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.source.CommandBlockSource;
+
+import com.google.common.base.Optional;
 
 /**
  * Represents a minecart with a command block inside it.
@@ -32,31 +35,74 @@ import org.spongepowered.api.util.command.source.CommandBlockSource;
 public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
 
     /**
-     * Gets the current command within this command minecart.
+     * Gets the currently stored command.
      *
-     * @return The current command stored
+     * @return The command
      */
-    String getCommand();
+    String getStoredCommand();
 
     /**
-     * Sets the stored command within this command minecart.
+     * Sets the currently stored command.
      *
-     * @param command The command
+     * @param command The new command
      */
-    void setCommand(String command);
+    void setStoredCommand(String command);
 
     /**
-     * Gets the current custom name of this command minecart.
+     * Gets the success count of the last executed command. <p> The success
+     * count is the number of times the most recently used command of this
+     * command block succeeded. </p> <p> Most commands can only succeed once per
+     * execution, but certain commands (such as those which accept players as
+     * arguments) can succeed multiple times, and this value will be set
+     * accordingly. </p> <p> This success count can also be polled via a
+     * redstone comparator. </p>
      *
-     * @return The current command name
+     * @return The last success count
      */
-    String getCommandName();
+    int getSuccessCount();
 
     /**
-     * Sets the custom command name of this command minecart.
-     * <p>Setting the name to null may default to "@".</p>
+     * Sets the last success count for this command block.
      *
-     * @param name The custom name
+     * @param count The new success count
+     * @see #getSuccessCount()
      */
-    void setCommandName(String name);
+    void setSuccessCount(int count);
+
+    /**
+     * Gets whether this command block will keep track of the output from the
+     * last command it executed.
+     *
+     * @return Whether the command output is tracked
+     */
+    boolean doesTrackOutput();
+
+    /**
+     * Sets whether this command block should track the output from future
+     * commands that it executes.
+     *
+     * @param track Whether the command outputs should be tracked
+     */
+    void shouldTrackOutput(boolean track);
+
+    /**
+     * Gets the last command output. <p> This will only be available if
+     * {@link #doesTrackOutput()} is set to true, otherwise
+     * {@link Optional#absent()} will be returned. </p>
+     *
+     * @return The last command output, if available
+     */
+    Optional<Message> getLastOutput();
+
+    /**
+     * Sets the last output message.
+     *
+     * @param message The new message
+     */
+    void setLastOutput(Message message);
+
+    /**
+     * Executes the currently stored command.
+     */
+    void execute();
 }

@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Named;
+
+import com.flowpowered.math.vector.Vector3d;
 
 /**
  * Represents a Minecart entity.
  */
-public interface Minecart extends Entity {
+public interface Minecart extends Entity, Named {
 
     /**
      * Gets whether or not the minecart is currently on a valid rail block.
@@ -111,4 +114,12 @@ public interface Minecart extends Entity {
      * @param derailedVelocityMod The new derailed velocity modifier
      */
     void setDerailedVelocityMod(Vector3d derailedVelocityMod);
+
+    BlockState getDisplay();
+
+    void setDisplay(BlockState state);
+
+    int getOffset();
+
+    void setOffset(int offset);
 }

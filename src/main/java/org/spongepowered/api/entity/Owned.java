@@ -22,15 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity;
 
-package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
+public interface Owned {
 
-/**
- * Represents a Dispenser.
- */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
+    /**
+     * Gets the name of this Owned's owner.
+     * 
+     * @return The name of this Owned's owner
+     */
+    String getOwnerName();
+
+    /**
+     * Sets the name of this Owned's owner.
+     * 
+     * @param name The new name of this Owned's owner
+     */
+    void setOwnerName(String name);
 
 }

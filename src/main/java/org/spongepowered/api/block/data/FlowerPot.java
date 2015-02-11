@@ -22,15 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
+import org.spongepowered.api.block.BlockState;
 
 /**
- * Represents a Dispenser.
+ * Represents a Flower Pot.
  */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
+public interface FlowerPot extends TileEntity {
+
+    /**
+     * Gets the block currently in this flower pot.
+     * 
+     * @return The block currently in this flower pot
+     */
+    public BlockState getHeldState();
+
+    /**
+     * Sets the block currently in this flower pot.
+     * 
+     * @param state The new block to put in this flower pot
+     */
+    public void setHeldState(BlockState state);
 
 }

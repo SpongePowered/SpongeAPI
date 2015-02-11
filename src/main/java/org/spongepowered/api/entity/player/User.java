@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.entity.player;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
@@ -33,11 +32,16 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
 
+import com.google.common.base.Optional;
+
 import java.util.Date;
 
 /**
- * A User is the data usually associated with a Player that is persisted across server restarts.
- * This is in contrast to Player which represents the ingame entity associated with an online User.
+ * <p>A User is the data usually associated with a Player that exists even when
+ * that player has not joined the server. This is in contrast to Player which
+ * represents the ingame entity associated with an online User and JoinedUser
+ * which represents the data associated with a User that has at least once
+ * joined the server.</p>
  */
 public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject {
 
@@ -53,6 +57,7 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      *
      * @return The player's last known username
      */
+    @Override
     String getName();
 
     /**
@@ -112,4 +117,13 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      * @return The associated online Player, if available
      */
     Optional<Player> getPlayer();
+
+    /**
+     * Gets the related {@link JoinedUser} if this user has joined at least
+     * once.
+     * 
+     * @return The associated JoinedUser, if available
+     */
+    Optional<JoinedUser> getJoinedUser();
+
 }

@@ -25,9 +25,10 @@
 
 package org.spongepowered.api.entity.living.animal;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Tameable;
 import org.spongepowered.api.item.inventory.ItemStack;
+
+import com.google.common.base.Optional;
 
 import javax.annotation.Nullable;
 
@@ -99,5 +100,12 @@ public interface Horse extends Animal, Tameable {
      * @param itemStack The saddle item
      */
     void setSaddle(@Nullable ItemStack itemStack);
+
+    /**
+     * Gets if this horse is currently eating.
+     * 
+     * @return If this horse is currently eating.
+     */
+    boolean isEating();
 
 }

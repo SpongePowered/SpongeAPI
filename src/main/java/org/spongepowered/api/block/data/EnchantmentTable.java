@@ -25,9 +25,11 @@
 
 package org.spongepowered.api.block.data;
 
+import org.spongepowered.api.util.Named;
+
 /**
  * Represents an Enchantment Table.
  */
-public interface EnchantmentTable extends TileEntity {
+public interface EnchantmentTable extends Named {
 
 }

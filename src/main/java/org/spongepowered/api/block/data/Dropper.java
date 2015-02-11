@@ -25,9 +25,11 @@
 
 package org.spongepowered.api.block.data;
 
+import org.spongepowered.api.util.Named;
+
 /**
  * Represents a Dropper.
  */
-public interface Dropper extends Lockable {
+public interface Dropper extends Lockable, Named {
 
 }

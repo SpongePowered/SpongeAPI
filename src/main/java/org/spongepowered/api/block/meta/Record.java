@@ -22,15 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.block.meta;
 
-package org.spongepowered.api.block.data;
+import org.spongepowered.api.block.data.RecordPlayer;
+import org.spongepowered.api.item.ItemType;
 
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
+import com.google.common.base.Optional;
 
-/**
- * Represents a Dispenser.
- */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
+
+public interface Record {
+
+    /**
+     * Gets the ItemType that plays this record in a {@link RecordPlayer}.
+     * 
+     * @return The ItemType that plays this record in a RecordPlayer
+     */
+    Optional<ItemType> getItem();
+
+    /**
+     * Gets the name of this record.
+     * 
+     * @return The name of this record
+     */
+    String getName();
+
+    /**
+     * Gets the composer of this record.
+     * 
+     * @return The composer of this record
+     */
+    String getComposer();
+
+    /**
+     * Gets the length of this record, in seconds.
+     * 
+     * @return The length of this record, in seconds
+     */
+    int getLength();
 
 }

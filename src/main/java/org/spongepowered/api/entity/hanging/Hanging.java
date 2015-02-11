@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.hanging;
 
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Direction;
 
@@ -44,7 +45,16 @@ public interface Hanging extends Entity {
      *
      * @param direction The direction to face
      * @param forced Whether physics is ignored
+     * @throws IllegalArgumentException When the specified {@link Direction}
+     *         cannot be applied to this hanging entity.
      */
-    void setHangingDirection(Direction direction, boolean forced);
+    void setHangingDirection(Direction direction, boolean forced) throws IllegalArgumentException;
+
+    /**
+     * Gets the {@link BlockLoc} that this entity is hanging on.
+     * 
+     * @return The BlockLoc that this entity is hanging on
+     */
+    BlockLoc getBlockPosition();
 
 }
