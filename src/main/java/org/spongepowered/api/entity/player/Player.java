@@ -27,8 +27,6 @@ package org.spongepowered.api.entity.player;
 
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.player.gamemode.GameMode;
-import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
@@ -39,14 +37,14 @@ import org.spongepowered.api.util.command.CommandSource;
 import java.util.Locale;
 
 /**
- * A Player represents the in-game entity of a human playing on a server.
- * This is in contrast to User which represents the storage and data
+ * A Player represents the in-game entity of a human playing on a server. This
+ * is in contrast to JoinedUser and User which represent the storage and data
  * associated with a Player.
  *
- * <p>Any methods called on Player that are not on User do not store any data
- * that persists across server restarts.</p>
+ * <p>Any methods called on Player that are not on User or JoinedUser do not
+ * store any data that persists across server restarts.</p>
  */
-public interface Player extends Human, User, CommandSource, Viewer {
+public interface Player extends Human, JoinedUser, CommandSource, Viewer {
 
     /**
      * Gets the player's display name. If none set, returns their current
@@ -55,20 +53,6 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @return The player's display name
      */
     Message getDisplayName();
-
-    /**
-     * Returns whether the {@link Player} can fly via the fly key.
-     *
-     * @return {@code True} if the {@link Player} is allowed to fly
-     */
-    boolean getAllowFlight();
-
-    /**
-     * Sets if the {@link Player} can fly via the fly key.
-     *
-     * @param allowFlight {@code True} if the player is allowed to fly
-     */
-    void setAllowFlight(boolean allowFlight);
 
     /**
      * Gets the locale used by the player.
@@ -122,26 +106,11 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void clearTitle();
 
     /**
-     * Gets the player's game mode.
-     *
-     * @return The player's game mode
-     * @see GameModes
-     */
-    GameMode getGameMode();
-
-    /**
-     * Sets the players's game mode.
-     *
-     * @param gameMode The game mode to set
-     * @see GameModes
-     */
-    void setGameMode(GameMode gameMode);
-
-    /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
      * to a client.
      *
      * @return The connection
      */
     PlayerConnection getConnection();
+
 }

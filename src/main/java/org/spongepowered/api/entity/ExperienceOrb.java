@@ -27,7 +27,7 @@ package org.spongepowered.api.entity;
 /**
  * Represents an experience orb.
  */
-public interface ExperienceOrb extends Entity {
+public interface ExperienceOrb extends Entity, TimedDespawnable {
 
     /**
      * Gets how much experience will be added to the player on pickup.

@@ -24,14 +24,16 @@
  */
 package org.spongepowered.api.block.data;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.util.Named;
 import org.spongepowered.api.util.command.source.CommandBlockSource;
+
+import com.google.common.base.Optional;
 
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends TileEntity, CommandBlockSource {
+public interface CommandBlock extends Named, CommandBlockSource {
 
     /**
      * Gets the currently stored command.

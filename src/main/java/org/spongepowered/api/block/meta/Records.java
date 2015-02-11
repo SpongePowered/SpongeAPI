@@ -22,15 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.block.meta;
 
-package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
+public final class Records {
 
-/**
- * Represents a Dispenser.
- */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
+    public static Record THIRTEEN = null;
+    public static Record CAT = null;
+    public static Record BLOCKS = null;
+    public static Record CHIRP = null;
+    public static Record FAR = null;
+    public static Record MALL = null;
+    public static Record MELLOHI = null;
+    public static Record STAL = null;
+    public static Record STRAD = null;
+    public static Record WARD = null;
+    public static Record ELEVEN = null;
+    public static Record WAIT = null;
+
+    private Records() {
+
+    }
 
 }

@@ -22,15 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util;
 
-package org.spongepowered.api.block.data;
-
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
+import org.spongepowered.api.block.data.TileEntity;
 
 /**
- * Represents a Dispenser.
+ * Represents a {@link TileEntity} that can be named.
  */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
+public interface Named extends TileEntity {
+
+    /**
+     * Gets the name of this tile entity.
+     * 
+     * @return The name of this tile entity
+     */
+    String getName();
+
+    /**
+     * Sets the name of this tile entity.
+     * 
+     * @param name The new name for this tile entity.
+     */
+    void setName(String name);
 
 }

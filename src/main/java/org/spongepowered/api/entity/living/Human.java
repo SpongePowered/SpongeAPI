@@ -27,96 +27,14 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.player.HumanInfo;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+
 
 /**
  * Represents a HumanEntity in game, such as {@link org.spongepowered.api.entity.player.Player}
  */
-public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer {
-
-    /**
-     * Gets the hunger value of this human entity.
-     * <p>Hunger is a type of exhaustion such that when the exhaustion
-     * depletes, saturation may begin to diminish.</p>
-     *
-     * @return The current hunger
-     */
-    float getHunger();
-
-    /**
-     * Sets the hunger value of this human entity.
-     * <p>Hunger is a type of exhaustion such that when the exhaustion
-     * depletes, saturation may begin to diminish.</p>
-     *
-     * @param hunger The hunger level
-     */
-    void setHunger(float hunger);
-
-    /**
-     * Gets the current food saturation of this human entity.
-     * <p>Saturation has health effects, depending on game difficulty and
-     * hunger levels. If the saturation is high enough, the human entity
-     * may heal. If the saturation is at 0, the human entity may starve.</p>
-     *
-     * @return The current saturation level
-     */
-    float getSaturation();
-
-    /**
-     * Sets the current food saturation of this human entity.
-     * <p>Saturation has health effects, depending on game difficulty and
-     * hunger levels. If the saturation is high enough, the human entity
-     * may heal. If the saturation is at 0, the human entity may starve.</p>
-     *
-     * @param saturation The saturation level to set
-     */
-    void setSaturation(float saturation);
-
-    /**
-     * Gets the current experience towards the next level.
-     *
-     * <p>This is not the total experience this human has.</p>
-     *
-     * @return The current experience towards the next level
-     */
-    double getExperience();
-
-    /**
-     * Sets the experience accumulated towards the next level.
-     *
-     * @param experience The experience
-     */
-    void setExperience(double experience);
-
-    /**
-     * Gets the current experience level of this human.
-     *
-     * @return The current level
-     */
-    int getLevel();
-
-    /**
-     * Sets the level of experience.
-     *
-     * @param level The level of experience
-     */
-    void setLevel(int level);
-
-    /**
-     * Gets the total accumulated experience this human has, including
-     * the experience to achieve the current experience level and the
-     * experienced gained towards the next level.
-     *
-     * @return The current total accumulated experience
-     */
-    double getTotalExperinece();
-
-    /**
-     * Sets the total accumulated experience starting from zero.
-     *
-     * @param totalExperience The total experience
-     */
-    void setTotalExperience(double totalExperience);
+public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, HumanInfo {
 
     /**
      * Returns whether this human entity has an open inventory at the moment
@@ -128,10 +46,32 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer {
 
     // TODO inventory api
     /*
-    Container getOpenInventory();
-
-    void closeInventory();
-
+     * Container getOpenInventory();
+     * 
+     * void closeInventory();
+     * 
+     * Container getEnderItems();
      */
+
+    /**
+     * Gets if this human is currently sleeping.
+     * 
+     * @return If this human is currently sleeping
+     */
+    boolean isSleeping();
+
+    /**
+     * Gets how long in ticks this human has been sleeping.
+     * 
+     * @return How long in ticks this human has been sleeping
+     */
+    int getSleepTicks();
+
+    /**
+     * Gets if this human is currently flying.
+     * 
+     * @return If this human is currently flying.
+     */
+    boolean isFlying();
 
 }

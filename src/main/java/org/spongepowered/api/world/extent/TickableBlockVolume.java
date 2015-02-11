@@ -22,33 +22,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.world.extent;
 
-package org.spongepowered.api.entity.living.animal;
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.world.TileTick;
 
-/**
- * Represents a Chicken.
- */
-public interface Chicken extends Animal {
+import com.flowpowered.math.vector.Vector3d;
 
-    /**
-     * Gets if this chicken is a chicken jockey.
-     * 
-     * @return If this chicken is a chicken jockey
-     */
-    boolean isChickenJockey();
+import java.util.Set;
+
+public interface TickableBlockVolume extends BlockVolume {
 
     /**
-     * Gets the time until this chicken lays an egg, in ticks.
+     * Gets a set of {@link TileTick}s in this volume.
      * 
-     * @return The time until this chicken lays an egg, in ticks
+     * @return A set of TileTicks in this volume
      */
-    int getTimeToLayEgg();
+    public Set<TileTick> getTileTicks();
 
     /**
-     * Sets the time until this chicken lays an egg, in ticks.
+     * Adds a {@link TileTick} to this volume.
      * 
-     * @param time The new time until this chicken lays an egg
+     * @param tick The TileTick to add to this volume
      */
-    void setTimeToLayEgg(int time);
+    public void addTick(TileTick tick);
+
+    /**
+     * Adds a new {@link TileTick} to this volume.
+     * 
+     * @param location The location of the TileTick
+     * @param ticks How long until the TileTick should be processed
+     * @param priority The priority of the TileTick
+     * @return The created TileTick
+     */
+    public TileTick addTick(BlockLoc location, int ticks, int priority);
+
+    /**
+     * Removes a {@link TileTick} from this volume.
+     * 
+     * @param tick The TileTick to remove
+     */
+    public void removeTick(TileTick tick);
+
+    /**
+     * Gets a set of {@link TileTick}s at a certain position in this volume.
+     * 
+     * @param position The position to check
+     * @return The TileTicks found at the position.
+     */
+    public Set<TileTick> getTicksAt(Vector3d position);
 
 }

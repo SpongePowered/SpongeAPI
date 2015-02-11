@@ -25,16 +25,12 @@
 
 package org.spongepowered.api.entity;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.item.inventory.ItemStack;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents an Item entity.
  */
-public interface Item extends Entity {
+public interface Item extends Entity, TimedDespawnable, Owned {
 
     /**
      * Get the {@link ItemStack} that this item represents.
@@ -61,48 +57,4 @@ public interface Item extends Entity {
      */
     void setPickupDelay(int delay);
 
-    /**
-     * Sets an infinite pickup time for this item.
-     */
-    void setInfinitePickupDelay();
-
-    /**
-     * Gets the number of ticks remaining until this item despawns,
-     * or -1 if this item will never despawn.
-     *
-     * @return The number of ticks remaining, or -1
-     */
-    int getDespawnTime();
-
-    /**
-     * Sets the number of ticks remaining until this item despawns.
-     *
-     * <p>If this item currently has an infinite despawn delay, the infinite
-     * despawn delay will be removed, and time will be set instead.</p>
-     *
-     * @param time The number of ticks remaining
-     */
-    void setDespawnTime(int time);
-
-    /**
-     * Sets an infinite despawn time for this item.
-     */
-    void setInfiniteDespawnTime();
-
-    /**
-     * Gets the {@link User} who threw this item, if available
-     *
-     * <p>If this item was not dropped from a player's inventory,
-     * then the thrower will not be available.</p>
-     *
-     * @return The thrower, or Optional.absent()
-     */
-    Optional<User> getThrower();
-
-    /**
-     * Sets the {@link User} who threw this item.
-     *
-     * @param thrower The user who threw this item
-     */
-    void setThrower(@Nullable User thrower);
 }

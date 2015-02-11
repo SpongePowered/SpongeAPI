@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.block.data;
 
+import org.spongepowered.api.util.Named;
+
 /**
  * Represents a Furnace.
  */
-public interface Furnace extends Lockable {
+public interface Furnace extends Lockable, Named {
 
     /**
      * Gets the remaining time until another piece of fuel will be consumed.

@@ -25,9 +25,11 @@
 
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.entity.Owned;
+
 /**
  * Represents an Ender Pearl.
  */
-public interface EnderPearl extends Projectile {
+public interface EnderPearl extends Projectile, Owned {
 
 }

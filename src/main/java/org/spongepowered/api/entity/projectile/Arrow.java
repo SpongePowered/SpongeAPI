@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.entity.TimedDespawnable;
+
 /**
  * Represents an Arrow.
  */
-public interface Arrow extends DamagingProjectile {
+public interface Arrow extends DamagingProjectile, TimedDespawnable {
 
     /**
      * Returns whether this arrow is a critical arrow or not.
@@ -63,5 +65,15 @@ public interface Arrow extends DamagingProjectile {
      * @param knockbackStrength The knockback strength
      */
     void setKnockbackStrength(int knockbackStrength);
+
+    ArrowType getArrowType();
+
+    void setArrowType(ArrowType type);
+
+    @Override
+    int getLifetime();
+
+    @Override
+    void setLifetime(int time);
 
 }

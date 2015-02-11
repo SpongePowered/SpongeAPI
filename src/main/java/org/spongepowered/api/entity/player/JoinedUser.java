@@ -22,15 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block.data;
-
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
+package org.spongepowered.api.entity.player;
 
 /**
- * Represents a Dispenser.
+ * Represents the saved data for a User that has joined the server.
  */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
+public interface JoinedUser extends User, HumanInfo {
 
 }

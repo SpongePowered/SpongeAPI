@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.block.data;
 
+import org.spongepowered.api.util.Named;
+
 /**
  * Represents a Brewing Stand.
  */
-public interface BrewingStand extends Lockable {
+public interface BrewingStand extends Lockable, Named {
 
     /**
      * Gets the remaining time until the brewing is complete. Will be zero if

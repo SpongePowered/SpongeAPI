@@ -25,9 +25,11 @@
 
 package org.spongepowered.api.block.data;
 
+import org.spongepowered.api.util.Named;
+
 /**
  * Represents a Chest.
  */
-public interface Chest extends Lockable {
+public interface Chest extends Lockable, Named {
 
 }

@@ -25,8 +25,9 @@
 
 package org.spongepowered.api.world;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.extent.Extent;
+
+import com.flowpowered.math.vector.Vector3i;
 
 /**
  * A chunk is a specific grid-aligned partition of a {@link Extent}.
@@ -85,4 +86,25 @@ public interface Chunk extends Extent {
      * @return Whether or not the chunk unloaded
      */
     boolean unloadChunk();
+
+    /**
+     * Gets the regional difficulty of this chunk.
+     * 
+     * @return The regional difficulty of this chunk
+     */
+    int getRegionalDifficulty();
+
+    /**
+     * Gets the inhabited time of this chunk.
+     * 
+     * @return The inhabited time of this chunk
+     */
+    int getInhabitedTime();
+
+    /**
+     * Sets the inhabited time of this chunk.
+     * 
+     * @param ticks The new inhabited time of this chunk
+     */
+    void setInhabitedTime(int ticks);
 }

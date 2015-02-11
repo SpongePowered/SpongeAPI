@@ -24,11 +24,17 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.entity.TimedDespawnable;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * Represents a firework.
  */
-public interface Firework extends Projectile, FusedExplosive {
+public interface Firework extends Projectile, FusedExplosive, TimedDespawnable {
+
+    public ItemStack getItem();
+
+    public void setItem(ItemStack stack);
 
 }

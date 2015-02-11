@@ -46,4 +46,39 @@ public interface Zombie extends Monster, ArmorEquipable, Ageable {
      * @param villagerZombie If the Zombie should be a villager Zombie
      */
     void setVillagerZombie(boolean villagerZombie);
+
+    /**
+     * Gets if this zombie can break doors.
+     * 
+     * @return If this zombie can break doors
+     */
+    boolean canBreakDoors();
+
+    /**
+     * Sets if this zombie can break doors.
+     * 
+     * @param canBreakDoors If this zombie can now break doors
+     */
+    void setCanBreakDoors(boolean canBreakDoors);
+
+    /**
+     * Gets the time until this zombie is converted into a villager, in ticks.
+     * 
+     * @return The time until this zombie is converted into a villager
+     */
+    int getTimeToConversion();
+
+    /**
+     * Sets the time until this zombie is converted into a villager, in ticks.
+     * 
+     * @param time The new time until this zombie is converted into a villager
+     */
+    void setTimeToConversion(int time);
+
+    /**
+     * Gets if this zombie is currently being converted into a villager.
+     * 
+     * @return If this zombie is currently being converted into a villager
+     */
+    boolean isBeingConverted();
 }

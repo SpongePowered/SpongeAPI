@@ -22,15 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity;
 
-package org.spongepowered.api.block.data;
 
-import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
-import org.spongepowered.api.util.Named;
+public interface TimedDespawnable {
 
-/**
- * Represents a Dispenser.
- */
-public interface Dispenser extends Lockable, BlockProjectileSource, Named {
+    /**
+     * Gets how many ticks this TimedDespawnable has been ticking down.
+     * 
+     * @return How many ticks this TimedDespawnable has been ticking down
+     */
+    int getLifetime();
+
+    /**
+     * Sets how many ticks this TimedDespawnable has been ticking down.
+     * 
+     * @param time How many ticks this TimedDespawnable has now been ticking
+     *        down
+     */
+    void setLifetime(int time);
+
+    /**
+     * Gets how many ticks this TimedDespawnable must have to despawn.
+     * 
+     * @return How many ticks this TimedDespawnable must have to despawn
+     */
+    int getDespawnThreshold();
 
 }
