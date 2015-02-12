@@ -22,30 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.slots;
-
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.Slot;
 
 
-/**
- * An inventory slot which can only accept certain types of item
- */
-public interface FilteringSlot extends Slot {
-
-    /**
-     * Check whether the supplied item can be inserted into this slot. Returning
-     * false from this method implies that {@link #offer} <b>would always return
-     * false</b> for this item. 
-     */
-    boolean isValidItem(ItemStack stack);
-
-    /**
-     * Check whether the supplied item can be inserted into this slot. Returning
-     * false from this method implies that {@link #offer} <b>would always return
-     * false</b> for items of this type. 
-     */
-    boolean isValidItem(ItemType type);
-    
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.inventory.equipment;

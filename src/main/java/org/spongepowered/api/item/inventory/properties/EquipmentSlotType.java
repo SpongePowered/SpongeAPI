@@ -25,27 +25,27 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
-import org.spongepowered.api.item.inventory.armour.ArmourType;
-import org.spongepowered.api.item.inventory.armour.ArmourTypes;
+import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.inventory.Coerce;
 
 
 /**
  * Inventory property which allows queries to be constructed for a particular
- * armour slot type.
+ * equipment slot type.
  */
-public class ArmourSlotType extends AbstractInventoryProperty<String, ArmourType> {
+public class EquipmentSlotType extends AbstractInventoryProperty<String, EquipmentType> {
 
-    public ArmourSlotType(ArmourType value) {
+    public EquipmentSlotType(EquipmentType value) {
         super(value);
     }
 
-    public ArmourSlotType(ArmourType value, Operator operator) {
+    public EquipmentSlotType(EquipmentType value, Operator operator) {
         super(value, operator);
     }
     
-    public ArmourSlotType(Object value, Operator operator) {
-        super(Coerce.<ArmourType>toPseudoEnum(value, ArmourType.class, ArmourTypes.class, ArmourTypes.WORN), operator);
+    public EquipmentSlotType(Object value, Operator operator) {
+        super(Coerce.<EquipmentType>toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
     }
     
     /* (non-Javadoc)
@@ -57,24 +57,24 @@ public class ArmourSlotType extends AbstractInventoryProperty<String, ArmourType
             return 1;
         }
         
-        ArmourType otherValue = Coerce.<ArmourType>toPseudoEnum(other.getValue(), ArmourType.class, ArmourTypes.class, ArmourTypes.WORN);
+        EquipmentType otherValue = Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
         return this.getValue().getId().compareTo(otherValue.getId());
     }
     
     /**
-     * Create an ArmourSlotType property which matches ArmourSlotType properties
-     * with equal value
+     * Create an EquipmentSlotType property which matches EquipmentSlotType
+     * properties with equal value
      */
-    public static ArmourSlotType of(Object value) {
-        return new ArmourSlotType(value, Operator.EQUAL);
+    public static EquipmentSlotType of(Object value) {
+        return new EquipmentSlotType(value, Operator.EQUAL);
     }
-    
+
     /**
-     * Create an ArmourSlotType property which matches ArmourSlotType properties
-     * with unequal value
+     * Create an EquipmentSlotType property which matches EquipmentSlotType
+     * properties with unequal value
      */
-    public static ArmourSlotType not(Object value) {
-        return new ArmourSlotType(value, Operator.NOTEQUAL);
+    public static EquipmentSlotType not(Object value) {
+        return new EquipmentSlotType(value, Operator.NOTEQUAL);
     }
 
 }

@@ -22,12 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.armour;
+package org.spongepowered.api.item.inventory.equipment;
 
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.properties.ArmourSlotType;
+import org.spongepowered.api.item.inventory.properties.EquipmentSlotType;
 import org.spongepowered.api.item.inventory.types.CarriedInventory;
 import org.spongepowered.api.item.inventory.types.OrderedInventory;
 
@@ -35,51 +35,53 @@ import com.google.common.base.Optional;
 
 
 /**
- * Armour inventory for {@link org.spongepowered.api.item.inventory.Carrier}s
- * that can wear armour.
+ * Equipment inventory for {@link org.spongepowered.api.item.inventory.Carrier}s
+ * that can carry equipment.
  */
-public interface ArmourInventory extends OrderedInventory, CarriedInventory<ArmorEquipable> {
+public interface EquipmentInventory extends OrderedInventory, CarriedInventory<ArmorEquipable> {
 
     /**
-     * Get and remove the stack for the specified armour type in this Inventory
-     */
-    Optional<ItemStack> get(ArmourSlotType armourType);
-
-    /**
-     * Get and remove the stack for the specified armour type in this Inventory
-     */
-    Optional<ItemStack> get(ArmourType armourType);
-    
-    /**
-     * Get without removing the stack for the specified armour type in this
+     * Get and remove the stack for the specified equipment type in this
      * Inventory
      */
-    Optional<ItemStack> peek(ArmourSlotType armourType);
-    
+    Optional<ItemStack> get(EquipmentSlotType equipmentType);
+
     /**
-     * Get without removing the stack for the specified armour type in this
+     * Get and remove the stack for the specified equipment type in this
      * Inventory
      */
-    Optional<ItemStack> peek(ArmourType armourType);
+    Optional<ItemStack> get(EquipmentType equipmentType);
 
     /**
-     * Set the item for the specified armour type 
+     * Get without removing the stack for the specified equipment type in this
+     * Inventory
      */
-    void set(ArmourSlotType armourType, ItemStack stack);
+    Optional<ItemStack> peek(EquipmentSlotType equipmentType);
 
     /**
-     * Set the item for the specified armour type 
+     * Get without removing the stack for the specified equipment type in this
+     * Inventory
      */
-    void set(ArmourType armourType, ItemStack stack);
-    
+    Optional<ItemStack> peek(EquipmentType equipmentType);
+
     /**
-     * Get the {@link Slot} for the specified armour type
+     * Set the item for the specified equipment type
      */
-    Optional<Slot> getSlot(ArmourSlotType armourType);
-    
+    void set(EquipmentSlotType equipmentType, ItemStack stack);
+
     /**
-     * Get the {@link Slot} for the specified armour type
+     * Set the item for the specified equipment type
      */
-    Optional<Slot> getSlot(ArmourType armourType);
+    void set(EquipmentType equipmentType, ItemStack stack);
+
+    /**
+     * Get the {@link Slot} for the specified equipment type
+     */
+    Optional<Slot> getSlot(EquipmentSlotType equipmentType);
+
+    /**
+     * Get the {@link Slot} for the specified equipment type
+     */
+    Optional<Slot> getSlot(EquipmentType equipmentType);
 
 }
