@@ -40,8 +40,16 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
         super(value);
     }
 
+    public InventorySize(int x, int y) {
+        super(new Vector2i(x, y));
+    }
+
     public InventorySize(Vector2i value, Operator operator) {
         super(value, operator);
+    }
+
+    public InventorySize(int x, int y, Operator operator) {
+        super(new Vector2i(x, y), operator);
     }
 
     public InventorySize(Object value, Operator operator) {
@@ -80,6 +88,14 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
      */
     public static InventorySize of(Object value) {
         return new InventorySize(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create an InventorySize property which matches InventorySize properties
+     * with equal value
+     */
+    public static InventorySize of(int x, int y) {
+        return new InventorySize(new Vector2i(x, y), Operator.EQUAL);
     }
     
     /**
