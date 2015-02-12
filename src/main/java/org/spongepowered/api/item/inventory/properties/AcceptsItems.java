@@ -25,9 +25,11 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.util.inventory.Coerce;
 
 
 /**
@@ -38,14 +40,30 @@ import org.spongepowered.api.item.inventory.InventoryProperty;
  * true if the other property contains <em>any</em> item present in this
  * property's collection.
  */
-public interface AcceptsItems extends InventoryProperty<String, Collection<ItemType>> {
+public class AcceptsItems extends AbstractInventoryProperty<String, Collection<ItemType>> {
 
-    /**
-     * Get the list of {@link ItemType}s accepted by this slot
+    public AcceptsItems(Collection<ItemType> value) {
+        super(value);
+    }
+
+    public AcceptsItems(Collection<ItemType> value, Operator operator) {
+        super(value, operator);
+    }
+    
+    public AcceptsItems(Object value, Operator operator) {
+        super(Coerce.toListOf(value, ItemType.class), operator);
+    }
+    
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
-    Collection<ItemType> getValue();
-    
+    public int compareTo(InventoryProperty<?, ?> other) {
+        // This breaks the contract of Comparable, but we don't have a meaningful
+        // way of providing a natural ordering
+        return this.equals(other) ? 0 : this.hashCode() - this.hashCodeOf(other);
+    }
+
     /**
      * Returns true if <em>other</em> is also an {@link AcceptsItems} property
      * and <b>any</b> item appearing in the other property's collecion appears
@@ -54,5 +72,31 @@ public interface AcceptsItems extends InventoryProperty<String, Collection<ItemT
      * greater than zero.
      */
     @Override
-    boolean equals(Object other);
+    public boolean equals(Object obj) {
+        if (!(obj instanceof InventoryProperty)) {
+            return false;
+        }
+        
+        InventoryProperty<?, ?> other = (InventoryProperty<?, ?>)obj;
+        if (!other.getKey().equals(this.getKey())) {
+            return false;
+        }
+        
+        List<ItemType> otherTypes = Coerce.toListOf(other.getValue(), ItemType.class);
+        for (ItemType t : this.value) {
+            if (otherTypes.contains(t)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Create an AcceptsItems property which matches AcceptsItems properties
+     * with containing one or more of the supplied values
+     */
+    public static AcceptsItems of(Object... value) {
+        return new AcceptsItems(value, Operator.EQUAL);
+    }
 }

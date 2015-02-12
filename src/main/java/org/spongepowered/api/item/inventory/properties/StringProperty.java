@@ -25,11 +25,84 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.util.inventory.Coerce;
 
 
 /**
  * A generic String property for an inventory
  */
-public interface StringProperty extends InventoryProperty<String, String> {
+public class StringProperty extends AbstractInventoryProperty<String, String> {
+
+    public StringProperty(String value) {
+        super(value);
+    }
+    
+    public StringProperty(String value, Operator operator) {
+        super(value, operator);
+    }
+
+    public StringProperty(Object value, Operator operator) {
+        super(Coerce.toString(value), operator);
+    }
+    
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+        
+        return this.getValue().compareTo(Coerce.toString(other.getValue()));
+    }
+    
+    /**
+     * Create a StringProperty property which matches StringProperty properties
+     * with equal value
+     */
+    public static StringProperty of(Object value) {
+        return new StringProperty(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create a StringProperty property which matches StringProperty properties
+     * with unequal value
+     */
+    public static StringProperty not(Object value) {
+        return new StringProperty(value, Operator.NOTEQUAL);
+    }
+    
+    /**
+     * Create a StringProperty property which matches StringProperty properties
+     * with value greater than this value
+     */
+    public static StringProperty greaterThan(Object value) {
+        return new StringProperty(value, Operator.GREATER);
+    }
+    
+    /**
+     * Create a StringProperty property which matches StringProperty properties
+     * with value greater than or equal to this value
+     */
+    public static StringProperty greaterThanOrEqual(Object value) {
+        return new StringProperty(value, Operator.GEQUAL);
+    }
+    
+    /**
+     * Create a StringProperty property which matches StringProperty properties
+     * with value less than this value
+     */
+    public static StringProperty lessThan(Object value) {
+        return new StringProperty(value, Operator.LESS);
+    }
+    
+    /**
+     * Create a StringProperty property which matches StringProperty properties
+     * with value less than or equal to this value
+     */
+    public static StringProperty lessThanOrEqual(Object value) {
+        return new StringProperty(value, Operator.LEQUAL);
+    }
 
 }
