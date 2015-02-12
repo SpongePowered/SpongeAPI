@@ -539,8 +539,7 @@ public interface GameRegistry {
     Collection<BannerPatternShape> getBannerPatternShapes();
 
     /**
-     * Retrieves the ItemDictionary for this GameRegistry
-     * (and, by proxy, Game).
+     * Retrieves the GameDictionary (item dictionary) for this GameRegistry
      *
      * @return The item dictionary
      */
@@ -548,7 +547,6 @@ public interface GameRegistry {
 
     /**
      * Retrieves the RecipeRegistry for this GameRegistry
-     * (and, by proxy, Game).
      *
      * @return The recipe registry
      */
