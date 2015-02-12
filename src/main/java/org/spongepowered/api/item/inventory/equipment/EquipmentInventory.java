@@ -28,6 +28,7 @@ import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.properties.EquipmentSlotType;
+import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 import org.spongepowered.api.item.inventory.types.CarriedInventory;
 import org.spongepowered.api.item.inventory.types.OrderedInventory;
 
@@ -67,12 +68,12 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Set the item for the specified equipment type
      */
-    void set(EquipmentSlotType equipmentType, ItemStack stack);
+    InventoryOperationResult set(EquipmentSlotType equipmentType, ItemStack stack);
 
     /**
      * Set the item for the specified equipment type
      */
-    void set(EquipmentType equipmentType, ItemStack stack);
+    InventoryOperationResult set(EquipmentType equipmentType, ItemStack stack);
 
     /**
      * Get the {@link Slot} for the specified equipment type

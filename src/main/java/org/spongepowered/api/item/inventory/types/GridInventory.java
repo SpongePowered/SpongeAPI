@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 
 /**
  * An GridInventory is an {@link org.spongepowered.api.item.inventory.Inventory}
@@ -61,7 +62,12 @@ public interface GridInventory extends Inventory2D {
     /**
      * Get and remove the stack at the supplied position in this Inventory
      */
-    Optional<ItemStack> get(int x, int y);
+    Optional<ItemStack> poll(int x, int y);
+    
+    /**
+     * Get and remove the stack at the supplied position in this Inventory
+     */
+    Optional<ItemStack> poll(int x, int y, int limit);
     
     /**
      * Get without removing the stack at the supplied position in this Inventory
@@ -69,9 +75,14 @@ public interface GridInventory extends Inventory2D {
     Optional<ItemStack> peek(int x, int y);
     
     /**
+     * Get without removing the stack at the supplied position in this Inventory
+     */
+    Optional<ItemStack> peek(int x, int y, int limit);
+    
+    /**
      * Set the item in the specified slot 
      */
-    void set(int x, int y, ItemStack stack);
+    InventoryOperationResult set(int x, int y, ItemStack stack);
     
     /**
      * Get the {@link Slot} at the specified position

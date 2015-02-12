@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 import org.spongepowered.api.text.translation.Translatable;
 
 import com.google.common.base.Optional;
@@ -100,7 +101,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *     </pre>
      * </blockquote>
      * 
-     * @param limit Maximum number of items to consume from the stack
+     * @param limit Maximum number of items to consume from the inventory
      */
     Optional<ItemStack> poll(int limit);
     
@@ -108,6 +109,17 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * Get without removing the first available stack from this Inventory
      */
     Optional<ItemStack> peek();
+    
+    /**
+     * Uses the same semantics as {@link #poll(int)} but <b>does not remove the
+     * items from the inventory</b>. The {@link ItemStack} returned is thus a
+     * new ItemStack containing <b>a copy of</b> the items in inventory. Use
+     * this method only if you wish to determine whether a call to
+     * {@link #poll(int)} is likely to succeed.
+     *   
+     * @param limit Maximum number of items to consume from the inventory
+     */
+    Optional<ItemStack> peek(int limit);
     
     /**
      * Try to put an ItemStack into this Inventory. Just like {@link
@@ -122,7 +134,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * objects in the inventory as required to accomodate the entire stack. The
      * entire stack is always consumed.
      */
-    void set(ItemStack stack);
+    InventoryOperationResult set(ItemStack stack);
     
     /**
      * Clears this inventory if it is clearable. 
@@ -134,6 +146,12 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * {@link Slot}s and always 0 for {@link EmptyInventory}s.
      */
     int size();
+    
+    /**
+     * Returns the number total number of individual <em>items</em> in this
+     * inventory.
+     */
+    int totalItems();
     
     /**
      * The maximum number of stacks the Inventory can hold. Always 1 for
