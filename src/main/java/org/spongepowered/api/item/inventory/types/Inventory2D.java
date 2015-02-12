@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory.types;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.properties.SlotPos;
+import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 
 import com.google.common.base.Optional;
 
@@ -39,17 +40,27 @@ public interface Inventory2D extends OrderedInventory {
     /**
      * Get and remove the stack at the supplied position in this Inventory
      */
-    Optional<ItemStack> get(SlotPos pos);
+    Optional<ItemStack> poll(SlotPos pos);
+
+    /**
+     * Get and remove the stack at the supplied position in this Inventory
+     */
+    Optional<ItemStack> poll(SlotPos pos, int limit);
     
     /**
      * Get without removing the stack at the supplied position in this Inventory
      */
     Optional<ItemStack> peek(SlotPos pos);
+    
+    /**
+     * Get without removing the stack at the supplied position in this Inventory
+     */
+    Optional<ItemStack> peek(SlotPos pos, int limit);
 
     /**
      * Set the item in the specified slot 
      */
-    void set(SlotPos pos, ItemStack stack);
+    InventoryOperationResult set(SlotPos pos, ItemStack stack);
     
     /**
      * Get the {@link Slot} at the specified position
