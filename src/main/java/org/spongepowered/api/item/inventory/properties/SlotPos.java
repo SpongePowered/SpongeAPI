@@ -40,8 +40,16 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
         super(value);
     }
 
+    public SlotPos(int x, int y) {
+        super(new Vector2i(x, y));
+    }
+
     public SlotPos(Vector2i value, Operator operator) {
         super(value, operator);
+    }
+
+    public SlotPos(int x, int y, Operator operator) {
+        super(new Vector2i(x, y), operator);
     }
 
     public SlotPos(Object value, Operator operator) {
@@ -80,6 +88,14 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
      */
     public static SlotPos of(Object value) {
         return new SlotPos(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create an SlotPos property which matches SlotPos properties with equal
+     * value
+     */
+    public static SlotPos of(int x, int y) {
+        return new SlotPos(new Vector2i(x, y), Operator.EQUAL);
     }
     
     /**
