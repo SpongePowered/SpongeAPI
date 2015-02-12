@@ -57,9 +57,11 @@ import com.google.common.primitives.Shorts;
  */
 public class Coerce {
     
-    private static final Pattern listPattern = Pattern.compile("^([\\(\\[\\{]?)(.+)\\1$");
+    private static final Pattern listPattern = Pattern.compile("^([\\(\\[\\{]?)(.+?)([\\)\\]\\}]?)$");
     
-    private static final Pattern vector2Pattern = Pattern.compile("^\\((-?[\\d\\.]{1,10}), (-?[\\d\\.]{1,10})\\)$");
+    private static final String[] listPairings = { "([{", ")]}" }; 
+    
+    private static final Pattern vector2Pattern = Pattern.compile("^\\( *(-?[\\d\\.]{1,10}), *(-?[\\d\\.]{1,10}) *\\)$");
     
     /**
      * Coerce the supplied object to a string
@@ -68,7 +70,15 @@ public class Coerce {
      * @return Object as a string, empty string if the object is null
      */
     public static String toString(@Nullable Object obj) {
-        return (obj == null) ? "" : obj.toString(); 
+        if (obj == null) {
+            return ""; 
+        }
+        
+        if (obj.getClass().isArray()) {
+            return Coerce.toList(obj).toString();
+        }
+        
+        return obj.toString();
     }
     
     /**
@@ -163,8 +173,14 @@ public class Coerce {
             return ((Number)obj).intValue();
         }
         
-        Integer parsed = Ints.tryParse(obj.toString());
-        return parsed != null ? parsed.intValue() : 0;
+        String strObj = Coerce.sanitiseNumber(obj);
+        Integer iParsed = Ints.tryParse(strObj);
+        if (iParsed != null) {
+            return iParsed.intValue();
+        }
+
+        Double dParsed = Doubles.tryParse(strObj);
+        return dParsed != null ? dParsed.intValue(): 0;
     }
     
     /**
@@ -184,7 +200,7 @@ public class Coerce {
             return ((Number)obj).doubleValue();
         }
         
-        Double parsed = Doubles.tryParse(obj.toString());
+        Double parsed = Doubles.tryParse(Coerce.sanitiseNumber(obj));
         return parsed != null ? parsed.doubleValue() : 0.0;
     }
 
@@ -312,16 +328,53 @@ public class Coerce {
         }
         
         Matcher vecMatch = Coerce.vector2Pattern.matcher(obj.toString());
-        if (vecMatch.matches()) {
+        if (listBracketsMatch(vecMatch)) {
             return new Vector2i(Integer.parseInt(vecMatch.group(1)), Integer.parseInt(vecMatch.group(2)));
         }
         
         List<?> list = Coerce.toList(obj);
         if (list.size() == 2) {
-            return new Vector2i(Coerce.toInteger(list.get(0)), Coerce.toInteger(list.get(0)));
+            return new Vector2i(Coerce.toInteger(list.get(0)), Coerce.toInteger(list.get(1)));
         }
 
         return Vector2i.ZERO;
+    }
+
+    /**
+     * Sanitise a string containing a common representation of a number to make
+     * it parseable. Strips thousand-separating commas and trims later members
+     * of a comma-separated list. For example the string "(9.5, 10.6, 33.2)"
+     * will be sanitised to "9.5".  
+     * 
+     * @param obj Object to sanitise
+     * @return Sanitised number-format string to parse
+     */
+    private static String sanitiseNumber(Object obj) {
+        String string = obj.toString().trim();
+        if (string.length() < 1) {
+            return "0";
+        }
+        
+        Matcher candidate = Coerce.listPattern.matcher(string);
+        if (Coerce.listBracketsMatch(candidate)) {
+            string = candidate.group(2).trim();
+        }
+        
+        int decimal = string.indexOf('.');
+        int comma = string.indexOf(',', decimal);
+        if (decimal > -1 && comma > -1) {
+            return Coerce.sanitiseNumber(string.substring(0, comma));
+        }
+        
+        if (string.indexOf('-', 1) != -1) {
+            return "0";
+        }
+        
+        return string.replace(",", "").split(" ")[0];
+    }
+
+    private static boolean listBracketsMatch(Matcher candidate) {
+        return candidate.matches() && Coerce.listPairings[0].indexOf(candidate.group(1)) == Coerce.listPairings[1].indexOf(candidate.group(3));
     }
 
     private static List<?> primitiveArrayToList(Object obj) {
@@ -348,7 +401,7 @@ public class Coerce {
     
     private static List<?> parseStringToList(String string) {
         Matcher candidate = Coerce.listPattern.matcher(string);
-        if (!candidate.matches()) {
+        if (!Coerce.listBracketsMatch(candidate)) {
             return Collections.<Object>emptyList();
         }
         
