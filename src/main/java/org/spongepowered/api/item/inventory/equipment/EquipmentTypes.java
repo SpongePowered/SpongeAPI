@@ -22,7 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.item.inventory.equipment;
 
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.item.inventory.armour;
+/**
+ * All built-in equipment types
+ */
+public final class EquipmentTypes {
+
+    /**
+     * Any type, all other types should sublass this to allow instanceof checks
+     * to succeed.
+     */
+    public static final EquipmentType ANY = null;
+    
+    /**
+     * Held or otherwise equipped items 
+     */
+    public static final EquipmentType EQUIPPED = null; 
+
+    /**
+     * Armor types, HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS should subclass
+     * this 
+     */
+    public static final EquipmentTypeWorn WORN = null;
+    
+    // Armor
+    public static final EquipmentTypeWorn HEADWEAR = null;
+    public static final EquipmentTypeWorn CHESTPLATE = null;
+    public static final EquipmentTypeWorn LEGGINGS = null;
+    public static final EquipmentTypeWorn BOOTS = null;
+    
+    /**
+     * No subclasses for you
+     */
+    private EquipmentTypes() {}
+}

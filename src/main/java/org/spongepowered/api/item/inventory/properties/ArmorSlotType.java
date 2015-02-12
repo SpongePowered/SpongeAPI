@@ -22,23 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.armour;
+package org.spongepowered.api.item.inventory.properties;
+
+import org.spongepowered.api.item.inventory.equipment.EquipmentTypeWorn;
+import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
+import org.spongepowered.api.util.inventory.Coerce;
 
 
 /**
- * All built-in armour types
+ * Inventory property which allows queries to be constructed for a particular
+ * worn equipment slot type.
  */
-public final class ArmourTypes {
+public class ArmorSlotType extends EquipmentSlotType {
 
-    public static final ArmourType GENERIC = null; 
-    public static final ArmourType WORN = null;
-    public static final ArmourType HEADWEAR = null;
-    public static final ArmourType CHESTPLATE = null; 
-    public static final ArmourType LEGGINGS = null;
-    public static final ArmourType BOOTS = null;
+    public ArmorSlotType(EquipmentTypeWorn value) {
+        super(value);
+    }
+
+    public ArmorSlotType(EquipmentTypeWorn value, Operator operator) {
+        super(value, operator);
+    }
+
+    public ArmorSlotType(Object value, Operator operator) {
+        super(Coerce.<EquipmentTypeWorn>toPseudoEnum(value, EquipmentTypeWorn.class, EquipmentTypeWorn.class, EquipmentTypes.WORN), operator);
+    }
     
     /**
-     * No subclasses for you
+     * Create an ArmourSlotType property which matches ArmourSlotType properties
+     * with equal value
      */
-    private ArmourTypes() {}
+    public static ArmorSlotType of(Object value) {
+        return new ArmorSlotType(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create an ArmourSlotType property which matches ArmourSlotType properties
+     * with unequal value
+     */
+    public static ArmorSlotType not(Object value) {
+        return new ArmorSlotType(value, Operator.NOTEQUAL);
+    }
+
 }
