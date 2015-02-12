@@ -26,16 +26,52 @@ package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.inventory.Coerce;
 
 /**
  * Property which represents a "side" for a particular slot, for use in querying
  * "sided inventories".
  */
-public interface SlotSide extends InventoryProperty<String, Direction> {
+public class SlotSide extends AbstractInventoryProperty<String, Direction> {
 
-    /**
-     * Get the side of the parent that this slot occupies
+    public SlotSide(Direction value) {
+        super(value);
+    }
+    
+    public SlotSide(Direction value, Operator operator) {
+        super(value, operator);
+    }
+
+    public SlotSide(Object value, Operator operator) {
+        super(Coerce.<Direction>toEnum(value, Direction.class, Direction.NONE), operator);
+    }
+    
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    Direction getSide();
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+        
+        return this.getValue().compareTo(Coerce.<Direction>toEnum(other.getValue(), Direction.class, Direction.NONE));
+    }
+    
+    /**
+     * Create a SlotSide property which matches SlotSide properties with equal
+     * value
+     */
+    public static SlotSide of(Object value) {
+        return new SlotSide(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create a SlotSide property which matches SlotSide properties with unequal
+     * value
+     */
+    public static SlotSide not(Object value) {
+        return new SlotSide(value, Operator.NOTEQUAL);
+    }
     
 }

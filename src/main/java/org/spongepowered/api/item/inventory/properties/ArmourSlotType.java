@@ -26,12 +26,55 @@ package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.item.inventory.armour.ArmourType;
+import org.spongepowered.api.item.inventory.armour.ArmourTypes;
+import org.spongepowered.api.util.inventory.Coerce;
 
 
 /**
  * Inventory property which allows queries to be constructed for a particular
  * armour slot type.
  */
-public interface ArmourSlotType extends InventoryProperty<String, ArmourType> {
+public class ArmourSlotType extends AbstractInventoryProperty<String, ArmourType> {
+
+    public ArmourSlotType(ArmourType value) {
+        super(value);
+    }
+
+    public ArmourSlotType(ArmourType value, Operator operator) {
+        super(value, operator);
+    }
+    
+    public ArmourSlotType(Object value, Operator operator) {
+        super(Coerce.<ArmourType>toPseudoEnum(value, ArmourType.class, ArmourTypes.class, ArmourTypes.WORN), operator);
+    }
+    
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+        
+        ArmourType otherValue = Coerce.<ArmourType>toPseudoEnum(other.getValue(), ArmourType.class, ArmourTypes.class, ArmourTypes.WORN);
+        return this.getValue().getId().compareTo(otherValue.getId());
+    }
+    
+    /**
+     * Create an ArmourSlotType property which matches ArmourSlotType properties
+     * with equal value
+     */
+    public static ArmourSlotType of(Object value) {
+        return new ArmourSlotType(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create an ArmourSlotType property which matches ArmourSlotType properties
+     * with unequal value
+     */
+    public static ArmourSlotType not(Object value) {
+        return new ArmourSlotType(value, Operator.NOTEQUAL);
+    }
 
 }

@@ -25,17 +25,80 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.util.inventory.Coerce;
 
 
 /**
- * A generic integer property. This is primarily used for supporting the
- * "fields" on the beacon inventory for the moment. This property is also
- * settable.
+ * A generic integer property. 
  */
-public interface IntProperty extends InventoryProperty<Integer, Integer> {
+public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
-    /**
-     * Set this property to the specified value
+    public IntProperty(int value) {
+        super(Coerce.toInteger(value));
+    }
+    
+    public IntProperty(int value, Operator operator) {
+        super(value, operator);
+    }
+
+    public IntProperty(Object value, Operator operator) {
+        super(Coerce.toInteger(value), operator);
+    }
+    
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    void setValue(int value);
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        return this.getValue().compareTo(other == null ? 1 : Coerce.toInteger(other.getValue()));
+    }
+    
+    /**
+     * Create an IntProperty property which matches IntProperty properties with
+     * equal value
+     */
+    public static IntProperty of(Object value) {
+        return new IntProperty(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create an IntProperty property which matches IntProperty properties with
+     * unequal value
+     */
+    public static IntProperty not(Object value) {
+        return new IntProperty(value, Operator.NOTEQUAL);
+    }
+    
+    /**
+     * Create an IntProperty property which matches IntProperty properties with
+     * value greater than this value
+     */
+    public static IntProperty greaterThan(Object value) {
+        return new IntProperty(value, Operator.GREATER);
+    }
+    
+    /**
+     * Create an IntProperty property which matches IntProperty properties with
+     * value greater than or equal to this value
+     */
+    public static IntProperty greaterThanOrEqual(Object value) {
+        return new IntProperty(value, Operator.GEQUAL);
+    }
+    
+    /**
+     * Create an IntProperty property which matches IntProperty properties with
+     * value less than this value
+     */
+    public static IntProperty lessThan(Object value) {
+        return new IntProperty(value, Operator.LESS);
+    }
+    
+    /**
+     * Create an IntProperty property which matches IntProperty properties with
+     * value less than or equal to this value
+     */
+    public static IntProperty lessThanOrEqual(Object value) {
+        return new IntProperty(value, Operator.LEQUAL);
+    }
+
 }

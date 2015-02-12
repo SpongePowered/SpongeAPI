@@ -24,12 +24,70 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
-import org.spongepowered.api.item.inventory.InventoryProperty;
-
 
 /**
  * An inventory property which represents an index within an ordered inventory
  */
-public interface SlotIndex extends InventoryProperty<String, Integer> {
+public class SlotIndex extends IntProperty {
+
+    public SlotIndex(int value, Operator operator) {
+        super(value, operator);
+    }
+
+    public SlotIndex(int value) {
+        super(value);
+    }
+
+    public SlotIndex(Object value, Operator operator) {
+        super(value, operator);
+    }
+    
+    /**
+     * Create a SlotIndex property which matches SlotIndex properties with
+     * equal value
+     */
+    public static SlotIndex of(Object value) {
+        return new SlotIndex(value, Operator.EQUAL);
+    }
+    
+    /**
+     * Create a SlotIndex property which matches SlotIndex properties with
+     * unequal value
+     */
+    public static SlotIndex not(Object value) {
+        return new SlotIndex(value, Operator.NOTEQUAL);
+    }
+    
+    /**
+     * Create a SlotIndex property which matches SlotIndex properties with
+     * value greater than this value
+     */
+    public static SlotIndex greaterThan(Object value) {
+        return new SlotIndex(value, Operator.GREATER);
+    }
+    
+    /**
+     * Create a SlotIndex property which matches SlotIndex properties with
+     * value greater than or equal to this value
+     */
+    public static SlotIndex greaterThanOrEqual(Object value) {
+        return new SlotIndex(value, Operator.GEQUAL);
+    }
+    
+    /**
+     * Create a SlotIndex property which matches SlotIndex properties with
+     * value less than this value
+     */
+    public static SlotIndex lessThan(Object value) {
+        return new SlotIndex(value, Operator.LESS);
+    }
+    
+    /**
+     * Create a SlotIndex property which matches SlotIndex properties with
+     * value less than or equal to this value
+     */
+    public static SlotIndex lessThanOrEqual(Object value) {
+        return new SlotIndex(value, Operator.LEQUAL);
+    }
     
 }
