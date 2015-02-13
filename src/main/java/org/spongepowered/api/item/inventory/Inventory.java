@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import java.util.Collection;
+
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
@@ -198,33 +200,35 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     void setMaxStackSize(int size);
 
     /**
-     * Get a property defined in <em>this</em> inventory for the specified
-     * (immediate) sub-inventory.
+     * Returns all properties matching the supplied type defined in
+     * <em>this</em> inventory for the specified (immediate) sub-inventory. If
+     * no matching properties are defined an empty collection is returned.
      */
-    <T extends InventoryProperty<?, ?>> T getProperty(Inventory child, Class<T> property);
+    <T extends InventoryProperty<?, ?>> Collection<T> getProperties(Inventory child, Class<T> property);
     
     /**
      * Gets the property with the specified key defined in <em>this</em>
      * inventory for the specified (immediate) sub-inventory.
      */
-    <T extends InventoryProperty<?, ?>> T getProperty(Inventory child, Class<T> property, Object key);
+    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property, Object key);
     
     /**
-     * Get a property defined directly on this Inventory. For sub-inventories
-     * this is effectively the same as <code>inv.getParent().getProperty(inv,
-     * property);</code> but for top-level inventories may include properties
-     * defined on the inventory directly. 
-     */
-    <T extends InventoryProperty<?, ?>> T getProperty(Class<T> property);
-
-    /**
-     * Gets a property with the specified key defined directly on this
+     * Gets all properties of the specified type defined directly on this
      * Inventory. For sub-inventories this is effectively the same as
      * <code>inv.getParent().getProperty(inv, property);</code> but for
      * top-level inventories may include properties defined on the inventory
      * directly. 
      */
-    <T extends InventoryProperty<?, ?>> T getProperty(Class<T> property, Object key);
+    <T extends InventoryProperty<?, ?>> Collection<T> getProperties(Class<T> property);
+
+    /**
+     * Gets a property with the specified key defined directly on this Inventory
+     * if one is defined. For sub-inventories this is effectively the same as
+     * <code>inv.getParent().getProperty(inv, property, key);</code> but for
+     * top-level inventories may include properties defined on the inventory
+     * directly.
+     */
+    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property, Object key);
     
     /**
      * Query this inventory for inventories matching any of the supplied types.
