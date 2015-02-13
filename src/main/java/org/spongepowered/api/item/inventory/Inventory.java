@@ -204,12 +204,27 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     <T extends InventoryProperty<?, ?>> T getProperty(Inventory child, Class<T> property);
     
     /**
+     * Gets the property with the specified key defined in <em>this</em>
+     * inventory for the specified (immediate) sub-inventory.
+     */
+    <T extends InventoryProperty<?, ?>> T getProperty(Inventory child, Class<T> property, Object key);
+    
+    /**
      * Get a property defined directly on this Inventory. For sub-inventories
      * this is effectively the same as <code>inv.getParent().getProperty(inv,
      * property);</code> but for top-level inventories may include properties
      * defined on the inventory directly. 
      */
     <T extends InventoryProperty<?, ?>> T getProperty(Class<T> property);
+
+    /**
+     * Gets a property with the specified key defined directly on this
+     * Inventory. For sub-inventories this is effectively the same as
+     * <code>inv.getParent().getProperty(inv, property);</code> but for
+     * top-level inventories may include properties defined on the inventory
+     * directly. 
+     */
+    <T extends InventoryProperty<?, ?>> T getProperty(Class<T> property, Object key);
     
     /**
      * Query this inventory for inventories matching any of the supplied types.
