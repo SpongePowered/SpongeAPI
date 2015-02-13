@@ -55,13 +55,18 @@ import com.google.common.primitives.Shorts;
 /**
  * Utility class for coercing unknown values to specific target types
  */
-public class Coerce {
+public final class Coerce {
     
     private static final Pattern listPattern = Pattern.compile("^([\\(\\[\\{]?)(.+?)([\\)\\]\\}]?)$");
     
     private static final String[] listPairings = { "([{", ")]}" }; 
     
     private static final Pattern vector2Pattern = Pattern.compile("^\\( *(-?[\\d\\.]{1,10}), *(-?[\\d\\.]{1,10}) *\\)$");
+    
+    /**
+     * No subclasses for you! 
+     */
+    private Coerce() {}
     
     /**
      * Coerce the supplied object to a string
