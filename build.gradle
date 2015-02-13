@@ -164,6 +164,14 @@ uploadArchives {
                     description 'Sponge API'
                     url 'http://www.spongepowered.org/'
 
+                    repositories {
+                        repository {
+                            name 'sonatypeSnapshot'
+                            id 'sonatype'
+                            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+                        }
+                    }
+
                     scm {
                         url 'https://github.com/SpongePowered/SpongeAPI'
                         connection 'scm:git:git://github.com/SpongePowered/SpongeAPI.git'
