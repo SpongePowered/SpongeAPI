@@ -22,23 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.persistence;
+package org.spongepowered.api.service.persistence.data;
 
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import com.google.common.base.Optional;
 
-/**
- * Represents an object that can be represented by a {@link DataContainer}.
- * <p>DataContainers received from {@link DataSerializable#toContainer()}
- * should be considered to be copies of the original data, and therefor,
- * thread safe.</p>
- */
-public interface DataSerializable {
+public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 
-    /**
-     * Serializes this object into a comprehensible {@link DataContainer}.
-     *
-     * @return A newly created DataContainer
-     */
-    DataContainer toContainer();
+    @Override
+    public Optional<DataView> getParent() {
+        return Optional.absent();
+    }
 
+    @Override
+    public final DataContainer getContainer() {
+        return this;
+    }
 }

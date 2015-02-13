@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 
 import java.util.List;
@@ -135,4 +136,20 @@ public final class DataQuery {
         return asString(String.valueOf(separator));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.parts);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final DataQuery other = (DataQuery) obj;
+        return Objects.equal(this.parts, other.parts);
+    }
 }
