@@ -45,13 +45,25 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
      * Get and remove the stack for the specified equipment type in this
      * Inventory
      */
-    Optional<ItemStack> get(EquipmentSlotType equipmentType);
+    Optional<ItemStack> poll(EquipmentSlotType equipmentType);
+
+    /**
+     * Get and remove the items from the stack for the specified equipment type
+     * in this Inventory
+     */
+    Optional<ItemStack> poll(EquipmentSlotType equipmentType, int limit);
 
     /**
      * Get and remove the stack for the specified equipment type in this
      * Inventory
      */
-    Optional<ItemStack> get(EquipmentType equipmentType);
+    Optional<ItemStack> poll(EquipmentType equipmentType);
+
+    /**
+     * Get and remove the items from the stack for the specified equipment type
+     * in this Inventory
+     */
+    Optional<ItemStack> poll(EquipmentType equipmentType, int limit);
 
     /**
      * Get without removing the stack for the specified equipment type in this
@@ -60,10 +72,22 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> peek(EquipmentSlotType equipmentType);
 
     /**
+     * Get without removing the items from the stack for the specified equipment
+     * type in this Inventory
+     */
+    Optional<ItemStack> peek(EquipmentSlotType equipmentType, int limit);
+
+    /**
      * Get without removing the stack for the specified equipment type in this
      * Inventory
      */
     Optional<ItemStack> peek(EquipmentType equipmentType);
+
+    /**
+     * Get without removing the items from the stack for the specified equipment
+     * type in this Inventory
+     */
+    Optional<ItemStack> peek(EquipmentType equipmentType, int limit);
 
     /**
      * Set the item for the specified equipment type
