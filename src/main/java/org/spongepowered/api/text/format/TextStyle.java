@@ -148,8 +148,8 @@ public class TextStyle {
      * @see org.spongepowered.api.text.format.TextStyle.TextStyleComponent
      */
     public TextStyleComponent applied(Base style) {
-        if (components.containsKey(style)) {
-            return components.get(style);
+        if (this.components.containsKey(style)) {
+            return this.components.get(style);
         } else {
             return TextStyleComponent.UNAPPLIED;
         }
@@ -165,7 +165,7 @@ public class TextStyle {
         // Do a negation of each component
         ImmutableMap.Builder<Base, TextStyleComponent> newComponents =
                 new ImmutableMap.Builder<Base, TextStyleComponent>();
-        for (Map.Entry<Base, TextStyleComponent> entry : components.entrySet()) {
+        for (Map.Entry<Base, TextStyleComponent> entry : this.components.entrySet()) {
             newComponents.put(entry.getKey(), entry.getValue().negate());
         }
         return new TextStyle(newComponents.build());
@@ -181,7 +181,7 @@ public class TextStyle {
         // We can't use a builder here because we have to remove values
         Map<Base, TextStyleComponent> newComponents =
                 new HashMap<Base, TextStyleComponent>();
-        newComponents.putAll(components);
+        newComponents.putAll(this.components);
         for (TextStyle style : styles) {
             for (Map.Entry<Base, TextStyleComponent> entry : style.components.entrySet()) {
                 Base base = entry.getKey();
@@ -301,7 +301,7 @@ public class TextStyle {
          * @return A new TextStyleComponent
          */
         public TextStyleComponent add(TextStyleComponent that) {
-            return valueOf(intValue + that.intValue);
+            return valueOf(this.intValue + that.intValue);
         }
 
         /**
@@ -310,7 +310,7 @@ public class TextStyle {
          * @return The negated TextStyleComponent
          */
         public TextStyleComponent negate() {
-            return valueOf(-intValue);
+            return valueOf(-this.intValue);
         }
 
         /**
@@ -329,7 +329,7 @@ public class TextStyle {
          * @return The integer form of this component
          */
         public int toInteger() {
-            return intValue;
+            return this.intValue;
         }
 
         /**
@@ -339,7 +339,7 @@ public class TextStyle {
          * @return This component as a boolean or {@link Optional#absent()}
          */
         public Optional<Boolean> toBoolean() {
-            return boolValue;
+            return this.boolValue;
         }
 
     }
@@ -373,7 +373,7 @@ public class TextStyle {
             ImmutableMap.Builder<Base, TextStyleComponent> builder =
                     new ImmutableMap.Builder<Base, TextStyleComponent>();
             builder.put(this, TextStyleComponent.APPLIED);
-            components = builder.build();
+            this.components = builder.build();
             this.name = name;
             this.code = code;
         }
@@ -386,13 +386,13 @@ public class TextStyle {
 
         @Override
         public String getName() {
-            return name;
+            return this.name;
         }
 
         @Override
         @Deprecated
         public char getCode() {
-            return code;
+            return this.code;
         }
 
     }

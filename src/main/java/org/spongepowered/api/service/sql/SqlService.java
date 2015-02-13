@@ -37,7 +37,7 @@ import javax.sql.DataSource;
  * <p>Implementations of this service are expected to be thread-safe.</p>
  */
 @ThreadSafe
-public interface SQLService {
+public interface SqlService {
 
     /**
      * Returns a data source for the provided JDBC connection string or an alias
@@ -50,7 +50,7 @@ public interface SQLService {
      * @return A data source providing connections to the given URL.
      * @throws java.sql.SQLException if a connection to the given database could not be established
      */
-    public DataSource getDataSource(String jdbcConnection) throws SQLException;
+    DataSource getDataSource(String jdbcConnection) throws SQLException;
 
     /**
      * Returns a possible connection URL for a given alias.
@@ -59,5 +59,5 @@ public interface SQLService {
      * @return The connection url as a String if it exists,
      *          or {@link Optional#absent()}
      */
-    public Optional<String> getConnectionURLFromAlias(String alias);
+    Optional<String> getConnectionUrlFromAlias(String alias);
 }

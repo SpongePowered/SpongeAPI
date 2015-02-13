@@ -34,13 +34,13 @@ public interface ExperienceOrb extends Entity {
      *
      * @return Amount of experience
      */
-    public double getExperience();
+    double getExperience();
 
     /**
      * Sets how much experience will be added to the player on pickup.
      *
      * @param experience The new amount of experience
      */
-    public void setExperience(double experience);
+    void setExperience(double experience);
 
 }

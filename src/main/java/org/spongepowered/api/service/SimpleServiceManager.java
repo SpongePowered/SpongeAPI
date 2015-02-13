@@ -69,21 +69,21 @@ public class SimpleServiceManager implements ServiceManager {
         checkNotNull(service, "service");
         checkNotNull(provider, "provider");
 
-        Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
+        Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
-                    + "(in other words, is 'plugin' actually your plugin object?)");
+                            + "(in other words, is 'plugin' actually your plugin object?)");
         }
 
         PluginContainer container = containerOptional.get();
 
-        Provider existing = providers.putIfAbsent(service, new Provider(container, provider));
+        Provider existing = this.providers.putIfAbsent(service, new Provider(container, provider));
         if (existing != null) {
             throw new ProviderExistsException("Provider for service " + service.getCanonicalName() + " has already been registered!");
         }
         @SuppressWarnings("unchecked")
-        SimpleServiceReference<T> ref = (SimpleServiceReference) potentials.remove(service);
+        SimpleServiceReference<T> ref = (SimpleServiceReference<T>) this.potentials.remove(service);
         if (ref != null) {
             ref.registered(provider);
         }
@@ -94,12 +94,12 @@ public class SimpleServiceManager implements ServiceManager {
     public <T> ServiceReference<T> potentiallyProvide(Class<T> service) {
         SimpleServiceReference<T> ref = new SimpleServiceReference<T>(provide(service));
         @SuppressWarnings("rawtypes")
-        SimpleServiceReference newRef = potentials.putIfAbsent(service, ref);
+        SimpleServiceReference newRef = this.potentials.putIfAbsent(service, ref);
         if (newRef != null) {
             ref = newRef;
         }
         if (ref.ref().isPresent()) {
-            potentials.remove(service, ref);
+            this.potentials.remove(service, ref);
         }
         return ref;
     }
@@ -108,7 +108,7 @@ public class SimpleServiceManager implements ServiceManager {
     @Override
     public <T> Optional<T> provide(Class<T> service) {
         checkNotNull(service, "service");
-        @Nullable Provider provider = providers.get(service);
+        @Nullable Provider provider = this.providers.get(service);
         return provider != null ? (Optional<T>) Optional.of(provider.provider) : Optional.<T>absent();
     }
 
@@ -116,7 +116,7 @@ public class SimpleServiceManager implements ServiceManager {
     @Override
     public <T> T provideUnchecked(Class<T> service) throws ProvisioningException {
         checkNotNull(service, "service");
-        @Nullable Provider provider = providers.get(service);
+        @Nullable Provider provider = this.providers.get(service);
         if (provider != null) {
             return (T) provider.provider;
         } else {
@@ -140,7 +140,7 @@ public class SimpleServiceManager implements ServiceManager {
 
         private final List<Predicate<T>> actionsOnPresent = new CopyOnWriteArrayList<Predicate<T>>();
         private final Lock waitLock = new ReentrantLock();
-        private final Condition waitCondition = waitLock.newCondition();
+        private final Condition waitCondition = this.waitLock.newCondition();
         private volatile Optional<T> service;
 
         public SimpleServiceReference(Optional<T> service) {
@@ -149,31 +149,31 @@ public class SimpleServiceManager implements ServiceManager {
 
         @Override
         public Optional<T> ref() {
-            return service;
+            return this.service;
         }
 
         @Override
         public T await() throws InterruptedException {
             while (true) {
-                waitLock.lock();
+                this.waitLock.lock();
                 try {
                     Optional<T> service = this.service;
                     if (service.isPresent()) {
                         return service.get();
                     }
-                    waitCondition.await();
+                    this.waitCondition.await();
                 } finally {
-                    waitLock.unlock();
+                    this.waitLock.unlock();
                 }
             }
         }
 
         @Override
         public void executeWhenPresent(Predicate<T> run) {
-            if (!service.isPresent()) {
-                actionsOnPresent.add(run);
+            if (!this.service.isPresent()) {
+                this.actionsOnPresent.add(run);
             } else {
-                run.apply(service.get());
+                run.apply(this.service.get());
             }
         }
 
@@ -185,10 +185,10 @@ public class SimpleServiceManager implements ServiceManager {
             } finally {
                 this.waitLock.unlock();
             }
-            for (Predicate<T> func : actionsOnPresent) {
+            for (Predicate<T> func : this.actionsOnPresent) {
                 func.apply(service);
             }
-            actionsOnPresent.clear();
+            this.actionsOnPresent.clear();
 
         }
     }

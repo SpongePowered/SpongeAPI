@@ -28,9 +28,6 @@ import org.spongepowered.api.block.data.Furnace;
 
 public interface FurnaceEvent extends TileEntityEvent {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Furnace getTileEntity();
 }

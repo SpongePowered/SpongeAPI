@@ -36,7 +36,6 @@ public class ClassGeneratorProvider implements FactoryProvider {
     private final LocalClassLoader classLoader = new LocalClassLoader(ClassGeneratorProvider.class.getClassLoader());
     private final ClassGenerator builder = new ClassGenerator();
     private final String targetPackage;
-    ;
 
     /**
      * Create a new instance.
@@ -50,12 +49,12 @@ public class ClassGeneratorProvider implements FactoryProvider {
 
     @Override
     public NullPolicy getNullPolicy() {
-        return builder.getNullPolicy();
+        return this.builder.getNullPolicy();
     }
 
     @Override
     public void setNullPolicy(NullPolicy nullPolicy) {
-        builder.setNullPolicy(nullPolicy);
+        this.builder.setNullPolicy(nullPolicy);
     }
 
     /**
@@ -66,7 +65,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
      * @return Canonical name
      */
     protected String getClassName(Class<?> clazz, String classifier) {
-        return targetPackage + "." + clazz.getSimpleName() + "$" + classifier;
+        return this.targetPackage + "." + clazz.getSimpleName() + "$" + classifier;
     }
 
     @Override
@@ -75,8 +74,8 @@ public class ClassGeneratorProvider implements FactoryProvider {
         String eventName = getClassName(type, "Impl");
         String factoryName = getClassName(type, "Factory");
 
-        Class<?> eventClass = classLoader.defineClass(eventName, builder.createClass(type, eventName, parentType));
-        Class<?> factoryClass = classLoader.defineClass(factoryName, builder.createFactory(eventClass, factoryName));
+        Class<?> eventClass = this.classLoader.defineClass(eventName, this.builder.createClass(type, eventName, parentType));
+        Class<?> factoryClass = this.classLoader.defineClass(factoryName, this.builder.createFactory(eventClass, factoryName));
 
         try {
             return (EventFactory<T>) factoryClass.newInstance();

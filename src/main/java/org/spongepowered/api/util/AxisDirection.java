@@ -46,7 +46,7 @@ public enum AxisDirection {
      * @return The signum
      */
     public int getSignum() {
-        return signum;
+        return this.signum;
     }
 
 }

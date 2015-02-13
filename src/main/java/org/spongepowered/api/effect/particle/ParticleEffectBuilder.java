@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Represents a builder to create a {@link ParticleEffect}.

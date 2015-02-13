@@ -27,7 +27,7 @@ package org.spongepowered.api.effect.particle;
 import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.item.inventory.ItemStack;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.
