@@ -39,9 +39,6 @@ public interface LivingEvent extends EntityEvent {
      */
     Living getLiving();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Living getEntity();
 }

@@ -190,7 +190,7 @@ class ClassGenerator {
      * @return The null policy
      */
     public NullPolicy getNullPolicy() {
-        return nullPolicy;
+        return this.nullPolicy;
     }
 
     /**
@@ -216,7 +216,7 @@ class ClassGenerator {
         checkNotNull(name, "name");
         checkNotNull(parentType, "parentType");
 
-        final ImmutableSet<? extends Property> properties = propertySearch.findProperties(type);
+        final ImmutableSet<? extends Property> properties = this.propertySearch.findProperties(type);
         final String internalName = name.replace('.', '/');
 
         final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
@@ -251,9 +251,9 @@ class ClassGenerator {
 
                 // Only if we have a null policy:
                 // if (value == null) throw new NullPointerException(...)
-                if (nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
-                    boolean useNullTest = (nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
-                                          || (nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull());
+                if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
+                    boolean useNullTest = (this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
+                            || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull());
 
                     if (useNullTest && !property.getType().isPrimitive()) {
                         Label afterNullTest = new Label();
@@ -381,10 +381,10 @@ class ClassGenerator {
         // Main apply()
         {
             MethodVisitor mv = cw.visitMethod(ACC_PUBLIC,
-                                              "apply",
-                                              "(Ljava/util/Map;)" + Type.getDescriptor(type),
-                                              "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)" + Type.getDescriptor(type),
-                                              null);
+                    "apply",
+                    "(Ljava/util/Map;)" + Type.getDescriptor(type),
+                    "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)" + Type.getDescriptor(type),
+                    null);
             mv.visitCode();
             mv.visitTypeInsn(NEW, Type.getInternalName(type));
             mv.visitInsn(DUP);

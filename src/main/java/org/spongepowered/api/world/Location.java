@@ -70,7 +70,7 @@ public class Location {
      * @return The extent
      */
     public Extent getExtent() {
-        return extent;
+        return this.extent;
     }
 
     /**
@@ -93,7 +93,7 @@ public class Location {
      * @return The underlying position
      */
     public Vector3d getPosition() {
-        return position;
+        return this.position;
     }
 
     /**

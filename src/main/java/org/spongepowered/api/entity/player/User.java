@@ -53,6 +53,7 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      *
      * @return The player's last known username
      */
+    @Override
     String getName();
 
     /**

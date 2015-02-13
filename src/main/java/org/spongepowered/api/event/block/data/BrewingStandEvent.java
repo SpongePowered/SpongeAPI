@@ -38,9 +38,6 @@ public interface BrewingStandEvent extends TileEntityEvent {
      */
     BrewingStand getBrewingStand();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     BrewingStand getTileEntity();
 }

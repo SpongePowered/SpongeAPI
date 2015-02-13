@@ -41,21 +41,12 @@ public interface PlayerEvent extends HumanEvent {
      */
     Player getPlayer();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Player getHuman();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Player getLiving();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Player getEntity();
 }

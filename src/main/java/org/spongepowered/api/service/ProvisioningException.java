@@ -94,7 +94,7 @@ public class ProvisioningException extends RuntimeException {
      * @return The service
      */
     public Class<?> getService() {
-        return service;
+        return this.service;
     }
 
 }

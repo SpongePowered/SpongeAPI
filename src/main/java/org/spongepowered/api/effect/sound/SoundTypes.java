@@ -232,6 +232,7 @@ public final class SoundTypes {
     public static final SoundType VILLAGER_IDLE = null;
     public static final SoundType VILLAGER_NO = null;
     public static final SoundType VILLAGER_YES = null;
+
     private SoundTypes() {
     }
 

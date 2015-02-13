@@ -51,23 +51,26 @@ public class SpongeEventFactoryTest {
                 } catch (Exception e) {
                     throw new RuntimeException(
                             "Runtime creation of the '" + method.getReturnType().getName() + "' event failed\n\n"
-                            + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
-                            + "interfaces, the " + SpongeEventFactory.class.getSimpleName() + " class dynamically creates concrete classes at "
-                            + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
-                            + "are caught during development.)\n\n"
-                            + "The failure of this test is in regards to creation of the '" + method.getReturnType().getName() + "' event.\n\n"
-                            + "Reasons for failure include:\n"
-                            + "(1) The event was changed and there are new, removed, or modified properties (most likely)\n"
-                            + "\tSolution: Make appropriate changes to " + SpongeEventFactory.class.getName() + "." + method.getName() + "(). "
-                            + "See the wrapped exception for more details.\n"
-                            + "(2) A bug in the class generator was found\n"
-                            + "\tSolution: Look into " + EventFactory.class.getName() + " and its implementations.\n"
-                            + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
-                            + "was added (i.e. blockList())\n"
-                            + "\tSolution: Revisit " + method.getReturnType().getName() + " and its supertypes. If the method in question "
-                            + "must exist, then the event factory is capable of accepting a base class to build the "
-                            + "runtime concrete class upon (i.e. " + AbstractEvent.class.getName()
-                            + " is the supertype of all generated event classes).\n", e);
+                                    + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
+                                    + "interfaces, the " + SpongeEventFactory.class.getSimpleName()
+                                    + " class dynamically creates concrete classes at "
+                                    + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
+                                    + "are caught during development.)\n\n"
+                                    + "The failure of this test is in regards to creation of the '" + method.getReturnType().getName()
+                                    + "' event.\n\n"
+                                    + "Reasons for failure include:\n"
+                                    + "(1) The event was changed and there are new, removed, or modified properties (most likely)\n"
+                                    + "\tSolution: Make appropriate changes to " + SpongeEventFactory.class.getName() + "." + method.getName()
+                                    + "(). "
+                                    + "See the wrapped exception for more details.\n"
+                                    + "(2) A bug in the class generator was found\n"
+                                    + "\tSolution: Look into " + EventFactory.class.getName() + " and its implementations.\n"
+                                    + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
+                                    + "was added (i.e. blockList())\n"
+                                    + "\tSolution: Revisit " + method.getReturnType().getName() + " and its supertypes. If the method in question "
+                                    + "must exist, then the event factory is capable of accepting a base class to build the "
+                                    + "runtime concrete class upon (i.e. " + AbstractEvent.class.getName()
+                                    + " is the supertype of all generated event classes).\n", e);
                 }
             }
         }

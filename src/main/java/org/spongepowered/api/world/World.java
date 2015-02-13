@@ -30,6 +30,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.service.permission.context.Contextual;
+import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -41,14 +42,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, Viewer, WeatherVolume, Contextual {
-
-    /**
-     * Gets the unique identifier for this world.
-     *
-     * @return The unique id or UUID
-     */
-    UUID getUniqueID();
+public interface World extends Extent, Viewer, WeatherVolume, Contextual, Identifiable {
 
     /**
      * Gets the name of the world.
@@ -57,7 +51,7 @@ public interface World extends Extent, Viewer, WeatherVolume, Contextual {
      * may not be safe to be used in a filename.</p>
      *
      * @return The world name
-     * @see #getUniqueID() A method to get a unique identifier
+     * @see #getUniqueId() A method to get a unique identifier
      */
     String getName();
 
@@ -108,7 +102,7 @@ public interface World extends Extent, Viewer, WeatherVolume, Contextual {
      * @param uuid The unique id
      * @return An entity, if available
      */
-    Optional<Entity> getEntityFromUUID(UUID uuid);
+    Optional<Entity> getEntity(UUID uuid);
 
     /**
      * Gets the world border for the world.

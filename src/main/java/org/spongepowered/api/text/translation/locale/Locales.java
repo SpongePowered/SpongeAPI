@@ -109,6 +109,7 @@ public final class Locales {
     public static final Locale SIMPLIFIED_CHINESE = null;
     public static final Locale TRADITIONAL_CHINESE = null;
     private static final LocaleFactory factory = null;
+
     private Locales() {
 
     }

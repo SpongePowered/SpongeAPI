@@ -36,8 +36,8 @@ import java.util.Map;
  */
 public interface PermissionService {
 
-    static final String SUBJECTS_USER = "user";
-    static final String SUBJECTS_GROUP = "group";
+    String SUBJECTS_USER = "user";
+    String SUBJECTS_GROUP = "group";
 
     /**
      * Returns the permissions level that describes users. User identifiers are

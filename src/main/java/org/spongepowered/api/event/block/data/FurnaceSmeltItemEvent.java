@@ -29,7 +29,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * An event that occurs when a {@link Furnace}
+ * An event that occurs when a {@link Furnace} smelt an item.
  */
 public interface FurnaceSmeltItemEvent extends FurnaceEvent, Cancellable {
 
