@@ -549,6 +549,13 @@ public interface GameRegistry {
     Optional<Attribute> getAttribute(String name);
 
     /**
+     * Gets a {@link Collection} of all possible {@link Attribute}s.
+     * 
+     * @return The collection of all available {@link Attribute}s
+     */
+    Collection<Attribute> getAttributes();
+
+    /**
      * Gets an {@link Operation} by id.
      * 
      * @param id The id to find
@@ -556,6 +563,13 @@ public interface GameRegistry {
      *         {@link Optional#absent()}.
      */
     Optional<Operation> getOperation(int id);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Operation}s.
+     * 
+     * @return The collection of all available {@link Operation}s
+     */
+    Collection<Operation> getOperations();
 
     /**
      * Gets a new {@link AttributeModifierBuilder}.
