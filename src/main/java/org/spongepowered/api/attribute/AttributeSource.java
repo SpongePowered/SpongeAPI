@@ -22,19 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.attribute;
 
 import java.util.Collection;
 
-
+/**
+ * Represents a source of {@link AttributeModifier}s. For example some potions
+ * like the speed potion also affect the entity's SPEED attribute.
+ *
+ * <p>
+ * <b>Note:</b> You can achieve the same effects (attribute wise) if you apply
+ * the {@link AttributeModifier}s from an AttributeSource (like a potion effect
+ * type) to an entity without adding the potion directly. If you apply an
+ * attribute modifier from an AttributeSource it will not be added another time,
+ * if you apply the entire AttributeSource to that entity, but it will be
+ * removed if you remove the AttributeSource from the entity.
+ * </p>
+ */
 public interface AttributeSource {
 
     /**
-     * Gets all {@link AttributeModifier}s on this ItemStack.
+     * Gets all {@link AttributeModifier}s on this AttributeSource.
      *
-     * @return All AttributeModifiers on this ItemStack
+     * @return All AttributeModifiers on this AttributeSource
      */
     Collection<AttributeModifier> getAttributeModifiers();
-
 
 }

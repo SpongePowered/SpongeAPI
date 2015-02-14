@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.attribute;
 
 /**
@@ -40,7 +41,6 @@ public final class Attributes {
     public static final Attribute ZOMBIE_SPAWN_REINFORCEMENTS = null;
 
     private Attributes() {
-
     }
 
 }

@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.attribute;
 
 /**
@@ -31,7 +32,7 @@ public interface AttributeModifierBuilder {
 
     /**
      * Sets the {@link Attribute} of the {@link AttributeModifier} to be built.
-     * 
+     *
      * @param attribute The Attribute to use
      * @return This builder, for chaining
      */
@@ -39,7 +40,7 @@ public interface AttributeModifierBuilder {
 
     /**
      * Sets the value of the {@link AttributeModifier} to be built.
-     * 
+     *
      * @param value The value to use
      * @return This builder, for chaining
      * @throws IllegalArgumentException If the value is under the minimum or
@@ -49,7 +50,7 @@ public interface AttributeModifierBuilder {
 
     /**
      * Sets the {@link Operation} of the {@link AttributeModifier} to be built.
-     * 
+     *
      * @param operation The Operation to use
      * @return This builder, for chaining
      */
@@ -57,7 +58,7 @@ public interface AttributeModifierBuilder {
 
     /**
      * Builds the {@link AttributeModifier} with the set parameters.
-     * 
+     *
      * @return The AttributeModifier with the set parameters
      */
     AttributeModifier build();

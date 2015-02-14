@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.attribute;
 
 /**
@@ -33,7 +34,7 @@ public interface Operation {
     /**
      * Returns the value of an {@link Attribute} after it has been operated
      * upon.
-     * 
+     *
      * @param base The base value of the Attribute
      * @param modifier The modifier to modify the Attribute with
      * @param currentValue The current value of the Attribute
