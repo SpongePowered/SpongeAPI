@@ -32,6 +32,13 @@ package org.spongepowered.api.attribute;
 public interface Operation {
 
     /**
+     * Gets the name of this operation.
+     *
+     * @return The name of this operation
+     */
+    String getName();
+
+    /**
      * Returns the value of an {@link Attribute} after it has been operated
      * upon.
      *
