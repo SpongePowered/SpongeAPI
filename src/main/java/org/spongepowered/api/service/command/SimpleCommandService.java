@@ -39,10 +39,7 @@ import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.CommandException;
-import org.spongepowered.api.util.command.CommandMapping;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.*;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
@@ -97,6 +94,10 @@ public class SimpleCommandService implements CommandService {
             if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList())) {
                 event.setCancelled(true);
             }
+        } catch (CommandAuthorizationException e) {
+            // Should be handled by plugins, but in the event they don't we'll provide a default handler
+            event.setCancelled(true);
+            event.getSource().sendMessage("You don't have authorization for that command.");
         } catch (CommandException e) {
             event.setCancelled(true);
             log.warn("Failed to execute a command", e);
