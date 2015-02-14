@@ -38,7 +38,7 @@ public interface AttributeHolder {
 
     /**
      * Calculates the value of a certain {@link Attribute} on this holder.
-     * 
+     *
      * @param attribute The Attribute to find the value of
      * @return The value of a certain Attribute on this holder, or
      *         Optional.absent() if the attribute is not applicable
@@ -47,7 +47,7 @@ public interface AttributeHolder {
 
     /**
      * Sets the base value of a certain {@link Attribute} on this holder.
-     * 
+     *
      * @param attribute The Attribute to set the base value of
      * @param base The new base value
      * @throws IllegalArgumentException If the base value exceeds the maximum or
@@ -57,7 +57,7 @@ public interface AttributeHolder {
 
     /**
      * Gets the base value of a certain {@link Attribute} on this holder.
-     * 
+     *
      * @param attribute The attribute to get the base value of
      * @return The base value of a certain Attribute on this holder
      */
@@ -65,14 +65,14 @@ public interface AttributeHolder {
 
     /**
      * Gets a collection of all applied modifiers.
-     * 
+     *
      * @return A collection all applied modifiers
      */
     Collection<AttributeModifier> getAllModifiers();
 
     /**
      * Adds a {@link AttributeModifier} to this holder.
-     * 
+     *
      * @param modifier The {@link AttributeModifier} to add
      * @throws IllegalArgumentException If the AttributeModifier's
      *         {@link Attribute}'s target cannot apply to this holder, or if the
@@ -82,7 +82,7 @@ public interface AttributeHolder {
 
     /**
      * Adds multiple {@link AttributeModifier} to this holder.
-     * 
+     *
      * @param modifiers The AttributeModifiers to add
      * @throws IllegalArgumentException If any of the AttributeModifiers'
      *         {@link Attribute}s' targets cannot apply to this holder or any of
@@ -93,7 +93,7 @@ public interface AttributeHolder {
     /**
      * Gets all {@link AttributeModifier}s that apply to a certain
      * {@link Attribute}.
-     * 
+     *
      * @param attribute The attribute to find modifiers of
      * @return All AttributeModifiers that apply to a certain Attribute
      */
@@ -101,7 +101,7 @@ public interface AttributeHolder {
 
     /**
      * Removes a {@link AttributeModifier} from this holder.
-     * 
+     *
      * @param modifier The AttributeModifier to remove
      */
     void removeModifier(AttributeModifier modifier);

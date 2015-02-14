@@ -36,28 +36,28 @@ public interface Attribute {
 
     /**
      * Gets the ID of this attribute as a string.
-     * 
+     *
      * @return The ID of this attribute as a string
      */
     String getId();
 
     /**
      * Gets the minimum value for this attribute.
-     * 
+     *
      * @return The minimum value for this attribute
      */
     double getMinimum();
 
     /**
      * Gets the maximum value for this attribute.
-     * 
+     *
      * @return The maximum value for this attribute
      */
     double getMaximum();
 
     /**
      * Gets the default value for this attribute.
-     * 
+     *
      * @return The default value for this attribute
      */
     double getDefaultBase();
@@ -65,7 +65,7 @@ public interface Attribute {
     /**
      * Gets a predicate to decide if a given {@link AttributeHolder} can have
      * this attribute applied to it.
-     * 
+     *
      * @return A predicate to decide if a given AttributeHolder can have this
      *         attribute applied to it
      */
@@ -73,7 +73,7 @@ public interface Attribute {
 
     /**
      * Gets the name of this attribute.
-     * 
+     *
      * @return The name of this attribute
      */
     Message getName();

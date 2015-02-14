@@ -33,21 +33,21 @@ public interface AttributeModifier {
 
     /**
      * Gets the operation used to modify a holder.
-     * 
+     *
      * @return The operation used to modify a holder
      */
     Operation getOperation();
 
     /**
      * Gets the value used in modification.
-     * 
+     *
      * @return The value used in modification
      */
     double getValue();
 
     /**
      * Gets the attribute to modify.
-     * 
+     *
      * @return The attribute to modify
      */
     Attribute getAttribute();

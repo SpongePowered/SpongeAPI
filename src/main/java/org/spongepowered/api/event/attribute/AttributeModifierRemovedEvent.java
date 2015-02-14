@@ -25,13 +25,18 @@
 
 package org.spongepowered.api.event.attribute;
 
+import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.attribute.AttributeModifier;
 
+/**
+ * An event fired when an {@link AttributeModifier} is added to an
+ * {@link AttributeHolder}.
+ */
 public interface AttributeModifierRemovedEvent extends AttributeEvent {
 
     /**
      * Gets the {@link AttributeModifier} that was removed in this event.
-     * 
+     *
      * @return The AttributeModifier that was removed in this event
      */
     AttributeModifier getModifier();

@@ -25,19 +25,29 @@
 
 package org.spongepowered.api.attribute;
 
+/**
+ * Represents a mutable {@link AttributeSource}.
+ *
+ * <p>
+ * <b>Note:</b> Extra care should be taken, when modifying global game
+ * {@link AttributeSource}s like potion effect types.
+ * </p>
+ */
 public interface MutableAttributeSource extends AttributeSource {
 
     /**
-     * Adds a {@link AttributeModifier} to this ItemStack.
+     * Adds a {@link AttributeModifier} to this MutableAttributeSource.
      *
-     * @param modifier The AttributeModifier to add to this ItemStack
+     * @param modifier The AttributeModifier to add to this
+     *            MutableAttributeSource
      */
     void addAttributeModifier(AttributeModifier modifier);
 
     /**
-     * Removes a {@link AttributeModifier} from this ItemStack.
+     * Removes a {@link AttributeModifier} from this MutableAttributeSource.
      *
-     * @param modifier The AttributeModifier to remove from this ItemStack
+     * @param modifier The AttributeModifier to remove from this
+     *            MutableAttributeSource
      */
     void removeAttributeModifier(AttributeModifier modifier);
 
