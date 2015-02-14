@@ -25,18 +25,28 @@
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.event.Cancellable;
+
+import java.util.List;
 
 /**
- * Fired when an ItemStack is burned in a furnace as fuel.
+ * Fired when some inventory event causes multiple resulting items.
+ *
+ * <p>This is usually a smelt or brew.</p>
  */
-public interface FurnaceBurnEvent extends BlockInventoryEvent, Cancellable {
+public interface BulkItemResultEvent extends InventoryEvent {
 
     /**
-     * Retrieves the fuel that has been burnt in this event.
+     * Retrieves the results for this event.
      *
-     * @return The fuel
+     * @return The results
      */
-    ItemStack getFuel();
+    List<ItemStack> getResults();
+
+    /**
+     * Sets the results for this event.
+     *
+     * @param results The new result
+     */
+    void setResults(List<ItemStack> results);
 
 }
