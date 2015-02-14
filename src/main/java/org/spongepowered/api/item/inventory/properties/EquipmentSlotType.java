@@ -29,7 +29,6 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.inventory.Coerce;
 
-
 /**
  * Inventory property which allows queries to be constructed for a particular
  * equipment slot type.
@@ -43,24 +42,11 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
     public EquipmentSlotType(EquipmentType value, Operator operator) {
         super(value, operator);
     }
-    
+
     public EquipmentSlotType(Object value, Operator operator) {
         super(Coerce.<EquipmentType>toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
     }
-    
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-        
-        EquipmentType otherValue = Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
-        return this.getValue().getId().compareTo(otherValue.getId());
-    }
-    
+
     /**
      * Create an EquipmentSlotType property which matches EquipmentSlotType
      * properties with equal value
@@ -75,6 +61,21 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
      */
     public static EquipmentSlotType not(Object value) {
         return new EquipmentSlotType(value, Operator.NOTEQUAL);
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+
+        EquipmentType
+                otherValue =
+                Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
+        return this.getValue().getId().compareTo(otherValue.getId());
     }
 
 }

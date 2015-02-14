@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory.slots;
 
-
 /**
  * An input slot used to supply items to a crafting, smelting, enchanting or
  * other automated process. 

@@ -24,21 +24,19 @@
  */
 package org.spongepowered.api.item.inventory.transaction;
 
-import java.util.Collection;
-
+import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
-import com.google.common.base.Optional;
-
+import java.util.Collection;
 
 /**
  * An interface for structs returned by inventory operations which encapsulate
  * the result of an attempted operation
  */
 public interface InventoryOperationResult {
-    
+
     public enum Type {
-        
+
         /**
          * The actual result of the operation is undefined, this probably
          * indicates that something went wrong with the operation that the
@@ -48,23 +46,23 @@ public interface InventoryOperationResult {
         UNDEFINED,
 
         /**
-         * The inventory operation succeeded 
+         * The inventory operation succeeded.
          */
         SUCCESS,
-        
+
         /**
          * The inventory operation failed for an <em>expected</em> reason (such
          * as the inventory being full or not accepting items of a supplied
          * type. The condition of the inventory is unchanged.
          */
         FAILURE,
-        
+
         /**
          * The inventory operation failed because an <em>unexpected</em>
          * condition occurred. The state of the inventory is undefined.
          */
         ERROR,
-        
+
         /**
          * An operation was cancelled by a third party (eg. an inventory event
          * was cancelled). The condition of the inventory is unchanged.
@@ -76,17 +74,17 @@ public interface InventoryOperationResult {
      * Get the type of result
      */
     Type getType();
-    
+
     /**
      * If items were supplied to the operation, this collection will return any
      * items which were rejected by the target inventory.
      */
     Optional<Collection<ItemStack>> getRejectedItems();
-    
+
     /**
      * If the operation replaced items in the inventory, this collection returns
      * the ItemStacks which were replaced.
      */
     Optional<Collection<ItemStack>> getReplacedItems();
-    
+
 }

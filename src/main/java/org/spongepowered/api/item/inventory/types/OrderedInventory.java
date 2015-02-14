@@ -24,36 +24,34 @@
  */
 package org.spongepowered.api.item.inventory.types;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.properties.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 
-import com.google.common.base.Optional;
-
-
 /**
  * An Ordered Inventory contains {@link Slot}s in some pre-determined order with
- * indices between 0 and 1-{@link #capacity} 
+ * indices between 0 and 1-{@link #capacity}
  */
 public interface OrderedInventory extends Inventory {
-    
+
     /**
      * Get and remove the stack at the supplied index in this Inventory
      */
     Optional<ItemStack> poll(SlotIndex index);
-    
+
     /**
      * Get and remove the stack at the supplied index in this Inventory
      */
     Optional<ItemStack> poll(SlotIndex index, int limit);
-    
+
     /**
      * Get without removing the stack at the supplied index in this Inventory
      */
     Optional<ItemStack> peek(SlotIndex index);
-    
+
     /**
      * Get without removing the stack at the supplied index in this Inventory
      */
@@ -63,7 +61,7 @@ public interface OrderedInventory extends Inventory {
      * Set the item in the specified slot 
      */
     InventoryOperationResult set(SlotIndex index, ItemStack stack);
-    
+
     /**
      * Get the {@link Slot} at the specified index
      */

@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.types;
 
 import org.spongepowered.api.item.inventory.Inventory;
 
-
 /**
  * An inventory with some kind of backing storage, for example Tile Entities
  */

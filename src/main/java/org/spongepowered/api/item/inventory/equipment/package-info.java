@@ -24,5 +24,4 @@
  */
 
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.item.inventory.equipment;
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.item.inventory.equipment;

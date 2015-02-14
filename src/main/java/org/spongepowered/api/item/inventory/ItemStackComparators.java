@@ -42,7 +42,7 @@ public final class ItemStackComparators {
      * different damage values, or different sizes.
      */
     public static final Comparator<ItemStack> TYPE = new Type();
-    
+
     /**
      * Compares ItemStacks based on
      * {@link org.spongepowered.api.item.inventory.ItemStack} damage. This
@@ -51,7 +51,7 @@ public final class ItemStackComparators {
      * different types, or different sizes.
      */
     public static final Comparator<ItemStack> DAMAGE = new Damage();
-    
+
     /**
      * Compares ItemStacks based on
      * {@link org.spongepowered.api.item.inventory.ItemStack} size. This
@@ -60,7 +60,7 @@ public final class ItemStackComparators {
      * different types, or different damage values.
      */
     public static final Comparator<ItemStack> SIZE = new Size();
-    
+
     /**
      * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType}
      * and {@link ItemStack}
@@ -70,7 +70,7 @@ public final class ItemStackComparators {
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_DAMAGE = Ordering.compound(Arrays.asList(TYPE, DAMAGE));
-    
+
     /**
      * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType}
      * and {@link org.spongepowered.api.item.inventory.ItemStack} size. This
@@ -80,7 +80,7 @@ public final class ItemStackComparators {
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_SIZE = Ordering.compound(Arrays.asList(TYPE, SIZE));
-    
+
     /**
      * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType},
      * {@link org.spongepowered.api.item.inventory.ItemStack} damage and
@@ -89,7 +89,7 @@ public final class ItemStackComparators {
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_DAMAGE_SIZE = Ordering.compound(Arrays.asList(TYPE, DAMAGE, SIZE));
-    
+
     /**
      * The default comparator for {@link org.spongepowered.api.item.inventory.ItemStack}s.
      */

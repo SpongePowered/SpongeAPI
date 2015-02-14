@@ -28,7 +28,6 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentTypeWorn;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.inventory.Coerce;
 
-
 /**
  * Inventory property which allows queries to be constructed for a particular
  * worn equipment slot type.
@@ -46,7 +45,7 @@ public class ArmorSlotType extends EquipmentSlotType {
     public ArmorSlotType(Object value, Operator operator) {
         super(Coerce.<EquipmentTypeWorn>toPseudoEnum(value, EquipmentTypeWorn.class, EquipmentTypeWorn.class, EquipmentTypes.WORN), operator);
     }
-    
+
     /**
      * Create an ArmourSlotType property which matches ArmourSlotType properties
      * with equal value
@@ -54,7 +53,7 @@ public class ArmorSlotType extends EquipmentSlotType {
     public static ArmorSlotType of(Object value) {
         return new ArmorSlotType(value, Operator.EQUAL);
     }
-    
+
     /**
      * Create an ArmourSlotType property which matches ArmourSlotType properties
      * with unequal value

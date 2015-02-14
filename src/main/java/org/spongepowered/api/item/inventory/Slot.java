@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.item.inventory;
 
-
 /**
  * A slot is an {@link Inventory} with only a single stack.
  */
 public interface Slot extends Inventory {
-    
+
     /**
      * Get the size of the stack in this slot. Essentially the same as calling
      * slot.peek().getQuantity(); but faster because it avoids the Optional

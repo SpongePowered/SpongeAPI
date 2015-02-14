@@ -25,15 +25,14 @@
 package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * <p>Represents a trade offer that a {@link Merchant} may offer a
  * {@link org.spongepowered.api.entity.living.Human}.</p>
- * 
+ *
  * <p>TradeOffers usually have a limited amount of times they can be used.</p>
- * 
+ *
  * <p>Also, trade offers are not guaranteed to have two buying items.</p>
  */
 public interface TradeOffer {
@@ -57,7 +56,7 @@ public interface TradeOffer {
 
     /**
      * <p>Gets the second buying item.</p>
-     * 
+     *
      * <p>The second buying item is an item that the customer is selling to the
      * merchant, along with the {@link #getFirstBuyingItem()}, in exchange for
      * {@link #getSellingItem()}.</p>
@@ -78,7 +77,7 @@ public interface TradeOffer {
 
     /**
      * <p>Gets the current uses of this offer.</p>
-     * 
+     *
      * <p>Usually, the uses of an offer a re limited by the amount of
      * {@link #getMaxUses()}. Once the uses reaches the max uses, the offer may
      * temporariliy become disabled.</p>
@@ -89,7 +88,7 @@ public interface TradeOffer {
 
     /**
      * <p>Gets the current maximum uses of this offer.</p>
-     * 
+     *
      * <p>Usually, the uses of an offer a re limited by the amount of maximum
      * uses. Once the uses reaches the max uses, the offer may temporariliy
      * become disabled.</p>

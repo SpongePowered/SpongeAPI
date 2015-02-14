@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.slots;
 
 import org.spongepowered.api.item.inventory.Slot;
 
-
 /**
  * A slot which contains the output of an automated process such as smelting,
  * crafting, enchanting, etc. and does not accept items placed by humans.

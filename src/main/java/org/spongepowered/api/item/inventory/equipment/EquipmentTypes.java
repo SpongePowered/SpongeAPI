@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
-
 /**
  * All built-in equipment types
  */
@@ -35,26 +34,27 @@ public final class EquipmentTypes {
      * to succeed.
      */
     public static final EquipmentType ANY = null;
-    
+
     /**
      * Held or otherwise equipped items 
      */
-    public static final EquipmentType EQUIPPED = null; 
+    public static final EquipmentType EQUIPPED = null;
 
     /**
      * Armor types, HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS should subclass
      * this 
      */
     public static final EquipmentTypeWorn WORN = null;
-    
+
     // Armor
     public static final EquipmentTypeWorn HEADWEAR = null;
     public static final EquipmentTypeWorn CHESTPLATE = null;
     public static final EquipmentTypeWorn LEGGINGS = null;
     public static final EquipmentTypeWorn BOOTS = null;
-    
+
     /**
      * No subclasses for you
      */
-    private EquipmentTypes() {}
+    private EquipmentTypes() {
+    }
 }

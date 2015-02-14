@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
+import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.util.inventory.Coerce;
-
-import com.flowpowered.math.vector.Vector2i;
 
 /**
  * An inventory property which represents a position within a grid. Bear in mind
@@ -57,14 +56,70 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the X position of this slot within the queried parent. 
+     * Create an SlotPos property which matches SlotPos properties with equal
+     * value
+     */
+    public static SlotPos of(Object value) {
+        return new SlotPos(value, Operator.EQUAL);
+    }
+
+    /**
+     * Create an SlotPos property which matches SlotPos properties with equal
+     * value
+     */
+    public static SlotPos of(int x, int y) {
+        return new SlotPos(new Vector2i(x, y), Operator.EQUAL);
+    }
+
+    /**
+     * Create an SlotPos property which matches SlotPos properties with unequal
+     * value
+     */
+    public static SlotPos not(Object value) {
+        return new SlotPos(value, Operator.NOTEQUAL);
+    }
+
+    /**
+     * Create an SlotPos property which matches SlotPos properties with value
+     * greater than this value
+     */
+    public static SlotPos greaterThan(Object value) {
+        return new SlotPos(value, Operator.GREATER);
+    }
+
+    /**
+     * Create an SlotPos property which matches SlotPos properties with value
+     * greater than or equal to this value
+     */
+    public static SlotPos greaterThanOrEqual(Object value) {
+        return new SlotPos(value, Operator.GEQUAL);
+    }
+
+    /**
+     * Create an SlotPos property which matches SlotPos properties with value
+     * less than this value
+     */
+    public static SlotPos lessThan(Object value) {
+        return new SlotPos(value, Operator.LESS);
+    }
+
+    /**
+     * Create an SlotPos property which matches SlotPos properties with value
+     * less than or equal to this value
+     */
+    public static SlotPos lessThanOrEqual(Object value) {
+        return new SlotPos(value, Operator.LEQUAL);
+    }
+
+    /**
+     * Get the X position of this slot within the queried parent.
      */
     public int getX() {
         return this.getValue().getX();
     }
-    
+
     /**
-     * Get the Y position of this slot within the queried parent. 
+     * Get the Y position of this slot within the queried parent.
      */
     public int getY() {
         return this.getValue().getY();
@@ -82,60 +137,4 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
         return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
     }
 
-    /**
-     * Create an SlotPos property which matches SlotPos properties with equal
-     * value
-     */
-    public static SlotPos of(Object value) {
-        return new SlotPos(value, Operator.EQUAL);
-    }
-    
-    /**
-     * Create an SlotPos property which matches SlotPos properties with equal
-     * value
-     */
-    public static SlotPos of(int x, int y) {
-        return new SlotPos(new Vector2i(x, y), Operator.EQUAL);
-    }
-    
-    /**
-     * Create an SlotPos property which matches SlotPos properties with unequal
-     * value
-     */
-    public static SlotPos not(Object value) {
-        return new SlotPos(value, Operator.NOTEQUAL);
-    }
-    
-    /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * greater than this value
-     */
-    public static SlotPos greaterThan(Object value) {
-        return new SlotPos(value, Operator.GREATER);
-    }
-    
-    /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * greater than or equal to this value
-     */
-    public static SlotPos greaterThanOrEqual(Object value) {
-        return new SlotPos(value, Operator.GEQUAL);
-    }
-    
-    /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * less than this value
-     */
-    public static SlotPos lessThan(Object value) {
-        return new SlotPos(value, Operator.LESS);
-    }
-    
-    /**
-     * Create an SlotPos property which matches SlotPos properties with value
-     * less than or equal to this value
-     */
-    public static SlotPos lessThanOrEqual(Object value) {
-        return new SlotPos(value, Operator.LEQUAL);
-    }
-    
 }
