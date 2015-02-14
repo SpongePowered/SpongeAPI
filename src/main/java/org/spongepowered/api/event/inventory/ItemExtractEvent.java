@@ -24,5 +24,5 @@
  */
 package org.spongepowered.api.event.inventory;
 
-public class ItemExtractEvent {
+public interface ItemExtractEvent {
 }

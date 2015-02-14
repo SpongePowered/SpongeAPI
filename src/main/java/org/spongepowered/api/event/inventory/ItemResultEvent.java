@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.inventory;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -38,7 +39,7 @@ public interface ItemResultEvent extends InventoryEvent {
      *
      * @return The result
      */
-    ItemStack getResult();
+    Optional<ItemStack> getResult();
 
     /**
      * Sets the result for this event.

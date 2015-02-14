@@ -26,7 +26,6 @@ package org.spongepowered.api;
 
 import org.spongepowered.api.text.translation.Translatable;
 
-
 /**
  * An object which has a name
  */
