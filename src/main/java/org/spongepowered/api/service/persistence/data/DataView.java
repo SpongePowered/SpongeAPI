@@ -88,7 +88,7 @@ public interface DataView {
      * @param deep Whether or not to get all children keys
      * @return A set of current keys in this container
      */
-    Set<String> getKeys(boolean deep);
+    Set<DataQuery> getKeys(boolean deep);
 
     /**
      * Gets a Map containing all keys and their values for this {@link DataView}.
@@ -101,7 +101,7 @@ public interface DataView {
      * @param deep Whether or not to get a deep list of all children or not
      * @return Map of keys and values of this container
      */
-    Map<String, Object> getValues(boolean deep);
+    Map<DataQuery, Object> getValues(boolean deep);
 
     /**
      * Returns whether this {@link DataView} contains the given path.

@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.stats;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.player.PlayerEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.stats.achievement.Achievement;
 
 /**

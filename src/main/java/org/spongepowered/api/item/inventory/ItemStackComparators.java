@@ -83,6 +83,9 @@ public final class ItemStackComparators {
      */
     public static final Comparator<ItemStack> DEFAULT = TYPE_DAMAGE_SIZE;
 
+    private ItemStackComparators() {
+    }
+
     private static final class Type implements Comparator<ItemStack> {
 
         @Override
@@ -108,9 +111,6 @@ public final class ItemStackComparators {
             return o1.getQuantity() - o2.getQuantity();
         }
 
-    }
-
-    private ItemStackComparators() {
     }
 
 }

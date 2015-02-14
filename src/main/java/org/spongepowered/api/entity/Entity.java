@@ -25,12 +25,15 @@
 
 package org.spongepowered.api.entity;
 
-import com.flowpowered.math.vector.Vector2f;
+import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+
+import java.util.EnumSet;
 
 import javax.annotation.Nullable;
 
@@ -76,18 +79,29 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     boolean setLocation(Location location);
 
     /**
-     * Gets the rotation as a Vector2f.
+     * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
+     * listed inside the EnumSet are considered relative.
      *
-     * @return The rotation as a Vector2f
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @param relativePositions The coordinates to set relatively
+     * @return True if the teleport was successful
      */
-    Vector2f getRotation();
+    boolean setLocationAndRotation(Location location, Vector3f rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Gets the rotation as a Vector3f.
+     *
+     * @return The rotation as a Vector3f
+     */
+    Vector3f getRotation();
 
     /**
      * Sets the rotation of this entity.
      *
      * @param rotation The rotation to set the entity to
      */
-    void setRotation(Vector2f rotation);
+    void setRotation(Vector3f rotation);
 
     /**
      * Gets the entity passenger that rides this entity, if available.
@@ -198,4 +212,18 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @return The delay before catching fire
      */
     int getFireDelay();
+
+    /**
+     * Returns whether this entity will be persistent when no player is near.
+     *
+     * @return True if this entity is persistent
+     */
+    boolean isPersistent();
+
+    /**
+     * Sets whether this entity will be persistent when no player is near.
+     *
+     * @param persistent Whether the entity will be persistent
+     */
+    void setPersistent(boolean persistent);
 }

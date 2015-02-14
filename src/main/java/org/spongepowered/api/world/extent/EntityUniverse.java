@@ -26,6 +26,7 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
@@ -83,6 +84,24 @@ public interface EntityUniverse {
      * @param position The position
      * @return An entity, if one was created
      */
+    Optional<Entity> createEntity(EntitySnapshot snapshot, Vector3i position);
+
+    /**
+     * Create an entity instance at the given position.
+     *
+     * @param type The type
+     * @param position The position
+     * @return An entity, if one was created
+     */
+    Optional<Entity> createEntity(EntityType type, Vector3i position);
+
+    /**
+     * Create an entity instance at the given position.
+     *
+     * @param snapshot The snapshot
+     * @param position The position
+     * @return An entity, if one was created
+     */
     Optional<Entity> createEntity(EntitySnapshot snapshot, Vector3d position);
 
     /**
@@ -92,4 +111,12 @@ public interface EntityUniverse {
      * @return An entity, if one was created
      */
     Optional<Entity> createEntity(DataContainer entityContainer);
+
+    /**
+     * Spawns an entity using the already set properties (extent, position, rotation).
+     *
+     * @param entity The entity to spawn
+     * @return True if successful, false if not
+     */
+    boolean spawnEntity(Entity entity);
 }

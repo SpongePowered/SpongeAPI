@@ -32,10 +32,10 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * Base event for events affecting a single block.
  */
 public interface BlockEvent extends GameEvent, CauseTracked {
-    
+
     /**
      * Get the block affected by the event (the target block).
-     * 
+     *
      * @return Related block
      */
     BlockLoc getBlock();

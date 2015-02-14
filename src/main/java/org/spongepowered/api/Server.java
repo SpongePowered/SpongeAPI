@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.net.ChannelRegistrar;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.WorldGenerator;
@@ -37,7 +38,7 @@ import java.util.UUID;
 /**
  * Represents a typical Minecraft Server.
  */
-public interface Server {
+public interface Server extends ChannelRegistrar {
 
     /**
      * Gets the {@link Player}s currently online.
@@ -99,7 +100,7 @@ public interface Server {
 
     /**
      * Loads a {@link World} from the default storage container.
-     * 
+     *
      * @param worldName The name to lookup
      * @return the world, if found
      */
@@ -108,7 +109,7 @@ public interface Server {
     /**
      * Unloads a {@link World}, if there are any connected players in the given
      * world then no operation will occur.
-     * 
+     *
      * @param world The world to unload
      * @return Whether the operation was successful
      */
@@ -116,10 +117,10 @@ public interface Server {
 
     /**
      * Creates a new world with the given name and generator options.
-     * 
+     *
      * <p>If a world with the given name is already loaded then it is returned
      * instead.</p>
-     * 
+     *
      * @param worldName The new world name
      * @param generator The generator to generate the world with
      * @param seed The random seed for the world
@@ -130,10 +131,10 @@ public interface Server {
     /**
      * Creates a world with the given generator but using the default seed from
      * the server settings.
-     * 
+     *
      * <p>If a world with the given name is already loaded then it is returned
      * instead.</p>
-     * 
+     *
      * @param worldName The new world name
      * @param generator The generator to generate the world with
      * @return The new world
@@ -143,10 +144,10 @@ public interface Server {
     /**
      * Creates a world using the default seed and generator from the server
      * settings.
-     * 
+     *
      * <p>If a world with the given name is already loaded then it is returned
      * instead.</p>
-     * 
+     *
      * @param worldName The new world name
      * @return The new world
      */
@@ -197,9 +198,18 @@ public interface Server {
     boolean getOnlineMode();
 
     /**
-     * Gets the message that is displayed in the server list of the client.
-     * @return The servers MOTD
+     * Gets the default message that is displayed in the server list of the
+     * client.
+     *
+     * @return The server's default description (MOTD)
      */
-    Message getMOTD();
+    Message getMotd();
+
+    /**
+     * Shuts down the server, and kicks all players with the given message.
+     *
+     * @param kickMessage The message to kick players with
+     */
+    void shutdown(Message kickMessage);
 
 }

@@ -25,19 +25,53 @@
 
 package org.spongepowered.api.util.event.factory;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.objectweb.asm.Opcodes.ACC_BRIDGE;
+import static org.objectweb.asm.Opcodes.ACC_PRIVATE;
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
+import static org.objectweb.asm.Opcodes.ACC_SUPER;
+import static org.objectweb.asm.Opcodes.ACC_SYNTHETIC;
+import static org.objectweb.asm.Opcodes.ALOAD;
+import static org.objectweb.asm.Opcodes.ARETURN;
+import static org.objectweb.asm.Opcodes.ASTORE;
+import static org.objectweb.asm.Opcodes.ATHROW;
+import static org.objectweb.asm.Opcodes.CHECKCAST;
+import static org.objectweb.asm.Opcodes.DLOAD;
+import static org.objectweb.asm.Opcodes.DRETURN;
+import static org.objectweb.asm.Opcodes.DUP;
+import static org.objectweb.asm.Opcodes.FLOAD;
+import static org.objectweb.asm.Opcodes.FRETURN;
+import static org.objectweb.asm.Opcodes.GETFIELD;
+import static org.objectweb.asm.Opcodes.IFNE;
+import static org.objectweb.asm.Opcodes.IFNONNULL;
+import static org.objectweb.asm.Opcodes.IFNULL;
+import static org.objectweb.asm.Opcodes.ILOAD;
+import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
+import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+import static org.objectweb.asm.Opcodes.IRETURN;
+import static org.objectweb.asm.Opcodes.LLOAD;
+import static org.objectweb.asm.Opcodes.LRETURN;
+import static org.objectweb.asm.Opcodes.NEW;
+import static org.objectweb.asm.Opcodes.PUTFIELD;
+import static org.objectweb.asm.Opcodes.RETURN;
+import static org.objectweb.asm.Opcodes.V1_6;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
-import org.objectweb.asm.*;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.FieldVisitor;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Type;
 import org.spongepowered.api.util.reflect.AccessorFirstStrategy;
 import org.spongepowered.api.util.reflect.Property;
 import org.spongepowered.api.util.reflect.PropertySearchStrategy;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.objectweb.asm.Opcodes.*;
+import javax.annotation.Nullable;
 
 /**
  * Generates the bytecode for classes needed by
@@ -45,8 +79,110 @@ import static org.objectweb.asm.Opcodes.*;
  */
 class ClassGenerator {
 
-    private PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
+    private final PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
+
+    /**
+     * Insert the necessary methods to unbox a primitive type (if the given type
+     * is a primitive).
+     *
+     * @param mv The method visitor
+     * @param type The type to unbox
+     */
+    private static void visitUnboxingMethod(MethodVisitor mv, Class<?> type) {
+        if (type == boolean.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Boolean");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Boolean", "booleanValue", "()Z", false);
+        } else if (type == int.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Integer");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Integer", "intValue", "()I", false);
+        } else if (type == byte.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Byte");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Byte", "byteValue", "()B", false);
+        } else if (type == short.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Short");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Short", "shortValue", "()S", false);
+        } else if (type == long.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Long");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Long", "longValue", "()J", false);
+        } else if (type == float.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Float");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Float", "floatValue", "()F", false);
+        } else if (type == double.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Double");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Double", "doubleValue", "()D", false);
+        } else if (type == char.class) {
+            mv.visitTypeInsn(CHECKCAST, "java/lang/Character");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Character", "charValue", "()C", false);
+        } else {
+            mv.visitTypeInsn(CHECKCAST, Type.getInternalName(type));
+        }
+
+    }
+
+    /**
+     * Get the opcode used for loading a local variable.
+     *
+     * @param type The type being loaded
+     * @return The opcode
+     */
+    private static int getLoadOpcode(Class<?> type) {
+        if (long.class.isAssignableFrom(type)) {
+            return LLOAD;
+        } else if (float.class.isAssignableFrom(type)) {
+            return FLOAD;
+        } else if (double.class.isAssignableFrom(type)) {
+            return DLOAD;
+        } else if (Object.class.isAssignableFrom(type)) {
+            return ALOAD;
+        } else {
+            return ILOAD;
+        }
+    }
+
+    /**
+     * Get the opcode used for returning from a method.
+     *
+     * @param type The type being returned
+     * @return The opcode
+     */
+    private static int getReturnOpcode(Class<?> type) {
+        if (long.class.isAssignableFrom(type)) {
+            return LRETURN;
+        } else if (float.class.isAssignableFrom(type)) {
+            return FRETURN;
+        } else if (double.class.isAssignableFrom(type)) {
+            return DRETURN;
+        } else if (Object.class.isAssignableFrom(type)) {
+            return ARETURN;
+        } else {
+            return IRETURN;
+        }
+    }
+
+    /**
+     * Tests whether a method has been implemented.
+     *
+     * @param type The type
+     * @param method The method
+     * @return Whether the method has been implemented
+     */
+    public static boolean hasImplementation(@Nullable Class<?> type, final Method method) {
+        while (type != null) {
+            try {
+                Method found = type.getMethod(method.getName(), method.getParameterTypes());
+                if (!Modifier.isAbstract(found.getModifiers())) {
+                    return true;
+                }
+            } catch (NoSuchMethodException ignored) {
+                // Try the superclass
+            }
+
+            type = type.getSuperclass();
+        }
+
+        return false;
+    }
 
     /**
      * Get the policy regarding how null parameters are handled.
@@ -54,7 +190,7 @@ class ClassGenerator {
      * @return The null policy
      */
     public NullPolicy getNullPolicy() {
-        return nullPolicy;
+        return this.nullPolicy;
     }
 
     /**
@@ -80,11 +216,11 @@ class ClassGenerator {
         checkNotNull(name, "name");
         checkNotNull(parentType, "parentType");
 
-        final ImmutableSet<? extends Property> properties = propertySearch.findProperties(type);
+        final ImmutableSet<? extends Property> properties = this.propertySearch.findProperties(type);
         final String internalName = name.replace('.', '/');
 
         final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[] { Type.getInternalName(type) });
+        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[]{Type.getInternalName(type)});
 
         // Create the fields
         for (Property property : properties) {
@@ -94,7 +230,8 @@ class ClassGenerator {
 
         // Create the constructor
         {
-            MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
+            MethodVisitor mv =
+                    cw.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
             mv.visitCode();
 
             // super()
@@ -106,8 +243,6 @@ class ClassGenerator {
                     continue;
                 }
 
-                Label afterPut = new Label();
-
                 // Object value = map.get("key")
                 mv.visitVarInsn(ALOAD, 1);
                 mv.visitLdcInsn(property.getName());
@@ -116,9 +251,9 @@ class ClassGenerator {
 
                 // Only if we have a null policy:
                 // if (value == null) throw new NullPointerException(...)
-                if (nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
-                    boolean useNullTest = (nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
-                            || (nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull());
+                if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
+                    boolean useNullTest = (this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
+                            || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull());
 
                     if (useNullTest && !property.getType().isPrimitive()) {
                         Label afterNullTest = new Label();
@@ -132,6 +267,8 @@ class ClassGenerator {
                         mv.visitLabel(afterNullTest);
                     }
                 }
+
+                Label afterPut = new Label();
 
                 // if (value != null) {
                 mv.visitVarInsn(ALOAD, 2);
@@ -228,7 +365,7 @@ class ClassGenerator {
         String internalName = name.replace('.', '/');
 
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, "java/lang/Object", new String[] { Type.getInternalName(EventFactory.class) });
+        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, "java/lang/Object", new String[]{Type.getInternalName(EventFactory.class)});
 
         // Create the constructor
         {
@@ -284,107 +421,6 @@ class ClassGenerator {
         cw.visitEnd();
 
         return cw.toByteArray();
-    }
-
-    /**
-     * Insert the necessary methods to unbox a primitive type (if the given type
-     * is a primitive).
-     *
-     * @param mv The method visitor
-     * @param type The type to unbox
-     */
-    private static void visitUnboxingMethod(MethodVisitor mv, Class<?> type) {
-        if (type == boolean.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Boolean");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Boolean", "booleanValue", "()Z", false);
-        } else if (type == int.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Integer");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Integer", "intValue", "()I", false);
-        } else if (type == byte.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Byte");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Byte", "byteValue", "()B", false);
-        } else if (type == short.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Short");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Short", "shortValue", "()S", false);
-        } else if (type == long.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Long");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Long", "longValue", "()J", false);
-        } else if (type == float.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Float");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Float", "floatValue", "()F", false);
-        } else if (type == double.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Double");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Double", "doubleValue", "()D", false);
-        } else if (type == char.class) {
-            mv.visitTypeInsn(CHECKCAST, "java/lang/Character");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Character", "charValue", "()C", false);
-        } else {
-            mv.visitTypeInsn(CHECKCAST, Type.getInternalName(type));
-        }
-
-    }
-
-    /**
-     * Get the opcode used for loading a local variable.
-     *
-     * @param type The type being loaded
-     * @return The opcode
-     */
-    private static int getLoadOpcode(Class<?> type) {
-        if (long.class.isAssignableFrom(type)) {
-            return LLOAD;
-        } else if (float.class.isAssignableFrom(type)) {
-            return FLOAD;
-        } else if (double.class.isAssignableFrom(type)) {
-            return DLOAD;
-        } else if (Object.class.isAssignableFrom(type)) {
-            return ALOAD;
-        } else {
-            return ILOAD;
-        }
-    }
-
-    /**
-     * Get the opcode used for returning from a method.
-     *
-     * @param type The type being returned
-     * @return The opcode
-     */
-    private static int getReturnOpcode(Class<?> type) {
-        if (long.class.isAssignableFrom(type)) {
-            return LRETURN;
-        } else if (float.class.isAssignableFrom(type)) {
-            return FRETURN;
-        } else if (double.class.isAssignableFrom(type)) {
-            return DRETURN;
-        } else if (Object.class.isAssignableFrom(type)) {
-            return ARETURN;
-        } else {
-            return IRETURN;
-        }
-    }
-
-    /**
-     * Tests whether a method has been implemented.
-     *
-     * @param type The type
-     * @param method The method
-     * @return Whether the method has been implemented
-     */
-    public static boolean hasImplementation(@Nullable Class<?> type, final Method method) {
-        while (type != null) {
-            try {
-                Method found = type.getMethod(method.getName(), method.getParameterTypes());
-                if (!Modifier.isAbstract(found.getModifiers())) {
-                    return true;
-                }
-            } catch (NoSuchMethodException ignored) {
-            }
-
-            type = type.getSuperclass();
-        }
-
-        return false;
     }
 
 }

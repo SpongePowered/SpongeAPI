@@ -89,6 +89,15 @@ public interface BlockLoc extends DataHolder {
     int getZ();
 
     /**
+     * Gets the block in the given direction of this block.
+     *
+     * @param direction The direction to look in
+     *
+     * @return The block in that direction
+     */
+    BlockLoc getRelative(Direction direction);
+
+    /**
      * Get the base type of block.
      *
      * <p>The type does not include block data such as the contents of
@@ -252,14 +261,14 @@ public interface BlockLoc extends DataHolder {
 
     /**
      * Test whether the the block will block the movement of entities.
-     * 
+     *
      * @return Blocks movement
      */
     boolean isPassable();
-    
+
     /**
      * Test whether the given face of the block can catch fire.
-     * 
+     *
      * @param direction The face of the block to check
      * @return Is flammable
      */

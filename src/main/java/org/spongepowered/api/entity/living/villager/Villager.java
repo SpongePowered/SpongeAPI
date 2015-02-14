@@ -26,6 +26,7 @@
 package org.spongepowered.api.entity.living.villager;
 
 import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.merchant.Merchant;
 
 /**
@@ -51,9 +52,9 @@ public interface Villager extends Ageable, Merchant {
     void setPlaying(boolean playing);
 
     /**
-     * Returns true if this villager is currently trading with another {@link
-     * org.spongepowered.api.entity.living.Human}. A villager is normally unable to trade with multiple
-     * HumanEntities at the same time.
+     * Returns true if this villager is currently trading with another
+     * {@link Human}. A villager is normally
+     * unable to trade with multiple HumanEntities at the same time.
      *
      * @return True if this villager is trading with another player
      */

@@ -35,7 +35,7 @@ public interface PopulatorObject {
     /**
      * Returns whether this object can be placed into the world at the given
      * position.
-     * 
+     *
      * @param world The world
      * @param x The X position
      * @param y The Y position
@@ -46,7 +46,7 @@ public interface PopulatorObject {
 
     /**
      * Places the object into the world at the given location.
-     * 
+     *
      * @param world The world
      * @param x The X position
      * @param y The Y position

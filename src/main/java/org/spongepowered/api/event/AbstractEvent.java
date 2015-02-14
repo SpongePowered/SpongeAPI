@@ -34,7 +34,7 @@ public abstract class AbstractEvent implements Event {
 
     @Override
     public CallbackList getCallbacks() {
-        return callbacks;
+        return this.callbacks;
     }
 
 }

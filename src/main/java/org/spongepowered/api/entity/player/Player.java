@@ -28,6 +28,9 @@ package org.spongepowered.api.entity.player;
 import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.entity.player.gamemode.GameModes;
+import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
@@ -53,7 +56,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     /**
      * Gets the player's display name. If none set, returns their current
      * username.
-     * 
+     *
      * @return The player's display name
      */
     Message getDisplayName();
@@ -211,5 +214,29 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * {@link Statistic} that are used to count for the {@link Achievement}s.
      */
     void revokeAchievements();
+
+    /**
+     * Gets the player's game mode.
+     *
+     * @return The player's game mode
+     * @see GameModes
+     */
+    GameMode getGameMode();
+
+    /**
+     * Sets the players's game mode.
+     *
+     * @param gameMode The game mode to set
+     * @see GameModes
+     */
+    void setGameMode(GameMode gameMode);
+
+    /**
+     * Gets the appropriate {@link PlayerConnection} linking this Player
+     * to a client.
+     *
+     * @return The connection
+     */
+    PlayerConnection getConnection();
 
 }

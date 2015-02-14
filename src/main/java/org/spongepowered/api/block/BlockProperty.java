@@ -45,10 +45,12 @@ import java.util.Collection;
  * <p>Not all properties are serialized to disk; they may only exist only during
  * the runtime of the game, which implies that their state are initialized based
  * on their environment.</p>
+ * @param <T> The type of property
  *
  * @see BlockState Contains a collection of properties
  */
 public interface BlockProperty<T extends Comparable<T>> {
+
     /**
      * Get the name of this property.
      *
@@ -80,19 +82,19 @@ public interface BlockProperty<T extends Comparable<T>> {
     Optional<T> getValueForName(String name);
 
     // Subinterface markers for vanilla property types
-    public interface BooleanProperty extends BlockProperty<Boolean> {
+    interface BooleanProperty extends BlockProperty<Boolean> {
 
     }
 
-    public interface EnumProperty<E extends Enum<E>> extends BlockProperty<E> {
+    interface EnumProperty<E extends Enum<E>> extends BlockProperty<E> {
 
     }
 
-    public interface DirectionProperty extends EnumProperty<Direction> {
+    interface DirectionProperty extends EnumProperty<Direction> {
 
     }
 
-    public interface IntegerProperty extends BlockProperty<Integer> {
+    interface IntegerProperty extends BlockProperty<Integer> {
 
     }
 }
