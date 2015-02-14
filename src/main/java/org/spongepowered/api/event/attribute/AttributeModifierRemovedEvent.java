@@ -31,7 +31,7 @@ import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.attribute.AttributeSource;
 
 /**
- * An event fired when an {@link AttributeModifier} is added to an
+ * An event fired when an {@link AttributeModifier} is removed from an
  * {@link AttributeHolder}.
  */
 public interface AttributeModifierRemovedEvent extends AttributeEvent {
