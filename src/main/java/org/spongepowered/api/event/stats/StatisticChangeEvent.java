@@ -28,6 +28,8 @@ package org.spongepowered.api.event.stats;
 import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.util.event.Event;
 
+import java.util.Collection;
+
 /**
  * Represents an event that is triggered if one or more {@link Statistic}s are
  * about to change their values.
@@ -35,10 +37,10 @@ import org.spongepowered.api.util.event.Event;
 public interface StatisticChangeEvent extends Event {
 
     /**
-     * Gets an {@link Iterable} containing all {@link StatisticChange}s.
+     * Gets a {@link Collection} containing all {@link StatisticChange}s.
      *
-     * @return An iterable containing all changes to statistics
+     * @return A collection containing all changes to statistics
      */
-    Iterable<StatisticChange> getStatisticChanges();
+    Collection<StatisticChange> getStatisticChanges();
 
 }
