@@ -22,10 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.attribute;
 
 import org.spongepowered.api.attribute.AttributeModifier;
-
 
 public interface AttributeModifierRemovedEvent extends AttributeEvent {
 
@@ -35,4 +35,5 @@ public interface AttributeModifierRemovedEvent extends AttributeEvent {
      * @return The AttributeModifier that was removed in this event
      */
     AttributeModifier getModifier();
+
 }

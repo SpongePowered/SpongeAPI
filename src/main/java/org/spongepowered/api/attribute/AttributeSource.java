@@ -22,10 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.attribute;
 
 import java.util.Collection;
-
 
 public interface AttributeSource {
 
@@ -35,6 +35,5 @@ public interface AttributeSource {
      * @return All AttributeModifiers on this ItemStack
      */
     Collection<AttributeModifier> getAttributeModifiers();
-
 
 }

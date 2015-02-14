@@ -563,4 +563,5 @@ public interface GameRegistry {
      * @return A new AttributeModifierBuilder
      */
     AttributeModifierBuilder getAttributeModifierBuilder();
+
 }

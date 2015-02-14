@@ -25,11 +25,10 @@
 
 package org.spongepowered.api.event.attribute;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.attribute.AttributeSource;
-
-import com.google.common.base.Optional;
 
 /**
  * An event fired when an {@link Attribute} is modified by an
@@ -49,4 +48,5 @@ public interface AttributeModifierAddedEvent extends AttributeEvent {
      * @return The AttributeSource that caused this event, if there was one
      */
     Optional<AttributeSource> getSource();
+
 }

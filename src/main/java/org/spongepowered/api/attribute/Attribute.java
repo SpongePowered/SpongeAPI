@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.attribute;
 
-import org.spongepowered.api.text.message.Message;
-
 import com.google.common.base.Predicate;
+import org.spongepowered.api.text.message.Message;
 
 /**
  * Represents an type of attribute that can be applied to a
