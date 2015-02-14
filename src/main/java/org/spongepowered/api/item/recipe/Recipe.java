@@ -25,16 +25,15 @@
 package org.spongepowered.api.item.recipe;
 
 import com.google.common.base.Optional;
-
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.GridInventory;
-import org.spongepowered.api.item.ItemType;
 
 import java.util.List;
 
 /**
  * <p>A Recipe represents some craftable recipe in the game.</p>
- * 
+ *
  * <p>It is essentially a Predicate that checks for if a recipe is valid as well
  * as a function from a crafting matrix to a list of {@link ItemStack}
  * (the crafting result), therefore making it an immutable interface.</p>

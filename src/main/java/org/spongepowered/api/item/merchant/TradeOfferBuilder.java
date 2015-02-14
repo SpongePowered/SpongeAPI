@@ -33,7 +33,7 @@ public interface TradeOfferBuilder {
 
     /**
      * <p>Sets the first selling item of the trade offer to be generated.</p>
-     * 
+     *
      * <p>Trade offers require at least one item to be generated.</p>
      *
      * @param item The first item to buy

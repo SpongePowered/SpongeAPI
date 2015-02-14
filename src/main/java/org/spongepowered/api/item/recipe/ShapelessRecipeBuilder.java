@@ -29,7 +29,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * A ShapelessRecipeBuilder builds shapeless recipes.
  */
-public interface ShapelessRecipeBuilder  {
+public interface ShapelessRecipeBuilder {
 
     /**
      * Adds an ingredient to the requirements of this ShapelessRecipe

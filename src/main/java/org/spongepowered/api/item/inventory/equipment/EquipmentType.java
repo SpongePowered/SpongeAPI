@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
-
 /**
  * Equipment types
  */
 public interface EquipmentType {
-    
+
     /**
      * Identifier for this equipment type
      */

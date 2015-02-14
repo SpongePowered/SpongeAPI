@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory.types;
 
-
 /**
  * Represents a row within a {@link GridInventory}
  */

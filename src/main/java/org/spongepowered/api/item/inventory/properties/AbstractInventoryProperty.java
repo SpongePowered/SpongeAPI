@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
-import javax.annotation.Nullable;
-
 import org.spongepowered.api.item.inventory.InventoryProperty;
 
+import javax.annotation.Nullable;
 
 /**
  * Base class for InventoryProperty implementations which stubs out all of the
  * common boilerplate functionality.
- * 
+ *
  * @param <K> Key type, use {@link String} if no particular key type is required
  * @param <V> Value type
  */
@@ -44,12 +43,12 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      * pattern
      */
     protected final Operator operator;
-    
+
     /**
      * The key 
      */
     private final K key;
-    
+
     /**
      * The value
      */
@@ -62,14 +61,14 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     protected AbstractInventoryProperty() {
         this(null);
     }
-    
+
     /**
      * Initialise key to default, and value to the supplied value
      */
     protected AbstractInventoryProperty(@Nullable V value) {
         this(null, value);
     }
-    
+
     /**
      * Initialise the value to the specified value and use the specified
      * operator, use the default key
@@ -77,14 +76,14 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     protected AbstractInventoryProperty(@Nullable V value, Operator op) {
         this(null, value, op);
     }
-    
+
     /**
      * Use the specified key and value and set operator to the default
      */
     protected AbstractInventoryProperty(@Nullable K key, @Nullable V value) {
         this(key, value, null);
     }
-    
+
     protected AbstractInventoryProperty(@Nullable K key, @Nullable V value, Operator op) {
         this.key = key != null ? key : this.getDefaultKey(value);
         this.value = value;
@@ -96,19 +95,19 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      * (since we can't have a null key). In general this should return the class
      * name of the property itself but subclasses are free to alter this
      * behaviour if they wish.
-     * 
+     *
      * @param value Value passed in to the ctor, supplied in case a subclass
      *      wants to return a specific default key based on the value
      * @return default key to use. Must not be null!
      */
     @SuppressWarnings("unchecked")
     protected K getDefaultKey(@Nullable V value) {
-        return (K)this.getClass().getSimpleName();
+        return (K) this.getClass().getSimpleName();
     }
-    
+
     /**
      * Return the default operator to use, based on the supplied key and value.
-     * 
+     *
      * @param key Property key
      * @param value Property initial value, may be null
      * @return operator to use
@@ -132,7 +131,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     public V getValue() {
         return this.value;
     }
-    
+
     /* (non-Javadoc)
      * @see org.spongepowered.api.item.inventory.InventoryProperty#getOperator()
      */
@@ -149,7 +148,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     public boolean matches(InventoryProperty<?, ?> other) {
         return this.getOperator().compare(this, other);
     }
-    
+
     /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
@@ -158,15 +157,15 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
         if (!(obj instanceof InventoryProperty)) {
             return false;
         }
-        
-        InventoryProperty<?, ?> other = (InventoryProperty<?, ?>)obj;
+
+        InventoryProperty<?, ?> other = (InventoryProperty<?, ?>) obj;
         if (!other.getKey().equals(this.getKey())) {
             return false;
         }
-        
+
         return other.getValue().equals(this.getValue());
     }
-    
+
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
      */

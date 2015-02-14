@@ -31,12 +31,12 @@ import org.spongepowered.api.item.inventory.types.CarriedInventory;
  * Represents the inventory of a Human or Player. Implementors of this interface
  * guarantee that (at a minimum) the following subinventory types can be queried
  * for:
- * 
+ *
  * <ul><li>{@link
  * org.spongepowered.api.item.inventory.crafting.CraftingInventory}</li></ul>
  */
 public interface HumanInventory extends CarriedInventory<Human> {
-    
+
     /**
      * Get the hotbar inventory
      */

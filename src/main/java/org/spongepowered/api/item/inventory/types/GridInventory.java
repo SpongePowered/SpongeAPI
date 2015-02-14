@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.types;
 
 import com.flowpowered.math.vector.Vector2i;
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
@@ -58,42 +57,42 @@ public interface GridInventory extends Inventory2D {
      * @return The dimensions of this GridInventory.
      */
     Vector2i getDimensions();
-    
+
     /**
      * Get and remove the stack at the supplied position in this Inventory
      */
     Optional<ItemStack> poll(int x, int y);
-    
+
     /**
      * Get and remove the stack at the supplied position in this Inventory
      */
     Optional<ItemStack> poll(int x, int y, int limit);
-    
+
     /**
      * Get without removing the stack at the supplied position in this Inventory
      */
     Optional<ItemStack> peek(int x, int y);
-    
+
     /**
      * Get without removing the stack at the supplied position in this Inventory
      */
     Optional<ItemStack> peek(int x, int y, int limit);
-    
+
     /**
      * Set the item in the specified slot 
      */
     InventoryOperationResult set(int x, int y, ItemStack stack);
-    
+
     /**
      * Get the {@link Slot} at the specified position
      */
     Optional<Slot> getSlot(int x, int y);
-    
+
     /**
      * Get the row at the specified index
      */
     Optional<InventoryRow> getRow(int y);
-    
+
     /**
      * Get the column at the specified index
      */

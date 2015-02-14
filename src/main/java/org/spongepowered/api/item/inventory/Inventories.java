@@ -27,18 +27,18 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.item.inventory.custom.CustomInventoryBuilder;
 import org.spongepowered.api.item.inventory.custom.CustomInventoryFactory;
 
-
 /**
  * Inventory convenience functionality
  */
 public class Inventories {
-    
+
     private static final CustomInventoryFactory factory = null;
 
     /**
      * No subclasses for you!
      */
-    private Inventories() {}
+    private Inventories() {
+    }
 
     /**
      * Get a new custom inventory builder

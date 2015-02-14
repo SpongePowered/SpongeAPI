@@ -27,7 +27,6 @@ package org.spongepowered.api.item.inventory.properties;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.util.inventory.Coerce;
 
-
 /**
  * An integer-mapped integer property. This is primarily used for supporting the
  * "fields" on the beacon inventory for the moment. This property is also
@@ -46,25 +45,6 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
     public MappedIntProperty(Object key, Object value, Operator op) {
         super(Coerce.toInteger(key), Coerce.toInteger(value), op);
     }
-    
-    /**
-     * Set this property to the specified value
-     */
-    void setValue(int value) {
-        this.value = value;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
-        if (other instanceof IntProperty || (other instanceof MappedIntProperty && other.getKey().equals(this.getKey()))) {
-            return this.getValue().compareTo(Coerce.toInteger(other.getValue()));
-        }
-        
-        return 1;
-    }
 
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
@@ -73,7 +53,7 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
     public static MappedIntProperty of(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.EQUAL);
     }
-    
+
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
      * properties with unequal value and matching key
@@ -81,7 +61,7 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
     public static MappedIntProperty not(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.NOTEQUAL);
     }
-    
+
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
      * properties with value greater than this value and matching key
@@ -113,5 +93,24 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
      */
     public static MappedIntProperty lessThanOrEqual(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.LEQUAL);
+    }
+
+    /**
+     * Set this property to the specified value
+     */
+    void setValue(int value) {
+        this.value = value;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other instanceof IntProperty || (other instanceof MappedIntProperty && other.getKey().equals(this.getKey()))) {
+            return this.getValue().compareTo(Coerce.toInteger(other.getValue()));
+        }
+
+        return 1;
     }
 }

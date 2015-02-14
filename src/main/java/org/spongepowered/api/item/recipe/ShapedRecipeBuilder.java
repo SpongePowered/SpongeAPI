@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.recipe;
 
 import com.flowpowered.math.vector.Vector2i;
-
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import javax.annotation.Nullable;

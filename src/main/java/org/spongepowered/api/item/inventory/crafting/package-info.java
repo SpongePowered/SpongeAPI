@@ -23,6 +23,4 @@
  * THE SOFTWARE.
  */
 
-
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.item.inventory.crafting;
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.item.inventory.crafting;

@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.item.inventory.crafting;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.types.GridInventory;
 import org.spongepowered.api.item.recipe.Recipe;
-
-import com.google.common.base.Optional;
 
 /**
  * A CraftingInventory represents the inventory of something that can craft items.

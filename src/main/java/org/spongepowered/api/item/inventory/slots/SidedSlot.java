@@ -28,7 +28,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.Direction;
 
-
 /**
  * A slot which belongs to a particular side of a "sided" inventory
  */
@@ -43,7 +42,7 @@ public interface SidedSlot extends Slot {
      * Attempts to insert the supplied stack into this inventory from the specified direction
      */
     boolean offer(ItemStack stack, Direction from);
-    
+
     /**
      * Get whether automation can extract the specified item from the specified direction
      */

@@ -24,11 +24,9 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
+import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.util.inventory.Coerce;
-
-import com.flowpowered.math.vector.Vector2i;
-
 
 /**
  * Property for inventories of a particular size. For example to allow querying
@@ -57,14 +55,70 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the number of columns in this inventory 
+     * Create an InventorySize property which matches InventorySize properties
+     * with equal value
+     */
+    public static InventorySize of(Object value) {
+        return new InventorySize(value, Operator.EQUAL);
+    }
+
+    /**
+     * Create an InventorySize property which matches InventorySize properties
+     * with equal value
+     */
+    public static InventorySize of(int x, int y) {
+        return new InventorySize(new Vector2i(x, y), Operator.EQUAL);
+    }
+
+    /**
+     * Create an InventorySize property which matches InventorySize properties
+     * with unequal value
+     */
+    public static InventorySize not(Object value) {
+        return new InventorySize(value, Operator.NOTEQUAL);
+    }
+
+    /**
+     * Create an InventorySize property which matches InventorySize properties
+     * with value greater than this value
+     */
+    public static InventorySize greaterThan(Object value) {
+        return new InventorySize(value, Operator.GREATER);
+    }
+
+    /**
+     * Create an InventorySize property which matches InventorySize properties
+     * with value greater than or equal to this value
+     */
+    public static InventorySize greaterThanOrEqual(Object value) {
+        return new InventorySize(value, Operator.GEQUAL);
+    }
+
+    /**
+     * Create an InventorySize property which matches InventorySize properties
+     * with value less than this value
+     */
+    public static InventorySize lessThan(Object value) {
+        return new InventorySize(value, Operator.LESS);
+    }
+
+    /**
+     * Create an InventorySize property which matches InventorySize properties
+     * with value less than or equal to this value
+     */
+    public static InventorySize lessThanOrEqual(Object value) {
+        return new InventorySize(value, Operator.LEQUAL);
+    }
+
+    /**
+     * Get the number of columns in this inventory
      */
     public int getColumns() {
         return this.getValue().getX();
     }
-    
+
     /**
-     * Get the number of rows in this inventory 
+     * Get the number of rows in this inventory
      */
     public int getRows() {
         return this.getValue().getY();
@@ -80,61 +134,5 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
         }
 
         return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
-    }
-
-    /**
-     * Create an InventorySize property which matches InventorySize properties
-     * with equal value
-     */
-    public static InventorySize of(Object value) {
-        return new InventorySize(value, Operator.EQUAL);
-    }
-    
-    /**
-     * Create an InventorySize property which matches InventorySize properties
-     * with equal value
-     */
-    public static InventorySize of(int x, int y) {
-        return new InventorySize(new Vector2i(x, y), Operator.EQUAL);
-    }
-    
-    /**
-     * Create an InventorySize property which matches InventorySize properties
-     * with unequal value
-     */
-    public static InventorySize not(Object value) {
-        return new InventorySize(value, Operator.NOTEQUAL);
-    }
-    
-    /**
-     * Create an InventorySize property which matches InventorySize properties
-     * with value greater than this value
-     */
-    public static InventorySize greaterThan(Object value) {
-        return new InventorySize(value, Operator.GREATER);
-    }
-    
-    /**
-     * Create an InventorySize property which matches InventorySize properties
-     * with value greater than or equal to this value
-     */
-    public static InventorySize greaterThanOrEqual(Object value) {
-        return new InventorySize(value, Operator.GEQUAL);
-    }
-    
-    /**
-     * Create an InventorySize property which matches InventorySize properties
-     * with value less than this value
-     */
-    public static InventorySize lessThan(Object value) {
-        return new InventorySize(value, Operator.LESS);
-    }
-    
-    /**
-     * Create an InventorySize property which matches InventorySize properties
-     * with value less than or equal to this value
-     */
-    public static InventorySize lessThanOrEqual(Object value) {
-        return new InventorySize(value, Operator.LEQUAL);
     }
 }

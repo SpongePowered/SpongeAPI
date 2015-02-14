@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.util.inventory.Coerce;
 
+import java.util.Collection;
+import java.util.List;
 
 /**
  * A property type intended for use with {@link
@@ -49,11 +48,19 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
     public AcceptsItems(Collection<ItemType> value, Operator operator) {
         super(value, operator);
     }
-    
+
     public AcceptsItems(Object value, Operator operator) {
         super(Coerce.toListOf(value, ItemType.class), operator);
     }
-    
+
+    /**
+     * Create an AcceptsItems property which matches AcceptsItems properties
+     * with containing one or more of the supplied values
+     */
+    public static AcceptsItems of(Object... value) {
+        return new AcceptsItems(value, Operator.EQUAL);
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
@@ -76,27 +83,19 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
         if (!(obj instanceof InventoryProperty)) {
             return false;
         }
-        
-        InventoryProperty<?, ?> other = (InventoryProperty<?, ?>)obj;
+
+        InventoryProperty<?, ?> other = (InventoryProperty<?, ?>) obj;
         if (!other.getKey().equals(this.getKey())) {
             return false;
         }
-        
+
         List<ItemType> otherTypes = Coerce.toListOf(other.getValue(), ItemType.class);
         for (ItemType t : this.value) {
             if (otherTypes.contains(t)) {
                 return true;
             }
         }
-        
+
         return false;
-    }
-    
-    /**
-     * Create an AcceptsItems property which matches AcceptsItems properties
-     * with containing one or more of the supplied values
-     */
-    public static AcceptsItems of(Object... value) {
-        return new AcceptsItems(value, Operator.EQUAL);
     }
 }

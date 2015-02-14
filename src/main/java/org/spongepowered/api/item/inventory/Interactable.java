@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.entity.Entity;
 
-
 /**
  * Interface for inventories which may be interacted with by specific types of
  * Entity 

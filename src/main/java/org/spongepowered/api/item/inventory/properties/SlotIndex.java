@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
-
 /**
  * An inventory property which represents an index within an ordered inventory
  */
@@ -41,7 +40,7 @@ public class SlotIndex extends IntProperty {
     public SlotIndex(Object value, Operator operator) {
         super(value, operator);
     }
-    
+
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * equal value
@@ -49,7 +48,7 @@ public class SlotIndex extends IntProperty {
     public static SlotIndex of(Object value) {
         return new SlotIndex(value, Operator.EQUAL);
     }
-    
+
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * unequal value
@@ -57,7 +56,7 @@ public class SlotIndex extends IntProperty {
     public static SlotIndex not(Object value) {
         return new SlotIndex(value, Operator.NOTEQUAL);
     }
-    
+
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value greater than this value
@@ -65,7 +64,7 @@ public class SlotIndex extends IntProperty {
     public static SlotIndex greaterThan(Object value) {
         return new SlotIndex(value, Operator.GREATER);
     }
-    
+
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value greater than or equal to this value
@@ -73,7 +72,7 @@ public class SlotIndex extends IntProperty {
     public static SlotIndex greaterThanOrEqual(Object value) {
         return new SlotIndex(value, Operator.GEQUAL);
     }
-    
+
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value less than this value
@@ -81,7 +80,7 @@ public class SlotIndex extends IntProperty {
     public static SlotIndex lessThan(Object value) {
         return new SlotIndex(value, Operator.LESS);
     }
-    
+
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value less than or equal to this value
@@ -89,5 +88,5 @@ public class SlotIndex extends IntProperty {
     public static SlotIndex lessThanOrEqual(Object value) {
         return new SlotIndex(value, Operator.LEQUAL);
     }
-    
+
 }

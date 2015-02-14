@@ -24,11 +24,9 @@
  */
 package org.spongepowered.api.item.inventory.types;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
-
-import com.google.common.base.Optional;
-
 
 /**
  * An {@link Inventory} which is owned or otherwise carried by a {@link Carrier}

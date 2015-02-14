@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.item.inventory;
 
-
 /**
  * An EmptyInventory is an Inventory with exactly zero slots, no children and
  * a guarantee that all queries will only every return an EmptyInventory.
  */
 public interface EmptyInventory extends Inventory {
-    
+
 }

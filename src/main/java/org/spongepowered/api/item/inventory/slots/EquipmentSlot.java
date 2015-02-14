@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.slots;
 
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 
-
 /**
  * An inventory slot which can only contain equipment
  */

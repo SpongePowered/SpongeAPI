@@ -28,7 +28,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 
-
 /**
  * An inventory slot which can only accept certain types of item
  */
@@ -47,5 +46,5 @@ public interface FilteringSlot extends Slot {
      * false</b> for items of this type. 
      */
     boolean isValidItem(ItemType type);
-    
+
 }

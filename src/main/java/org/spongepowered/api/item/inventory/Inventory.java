@@ -24,26 +24,25 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import java.util.Collection;
-
+import com.google.common.base.Optional;
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 import org.spongepowered.api.text.translation.Translatable;
 
-import com.google.common.base.Optional;
+import java.util.Collection;
 
 /**
  * Base interface for queryable inventories.
- * 
+ *
  * TODO Flesh out javadoc from proposal document. For now, see proposal doc
  * here: https://github.com/SpongePowered/SpongeAPI/pull/443
  */
 public interface Inventory extends Iterable<Inventory>, Nameable {
-    
+
     /**
-     * Get the parent {@link Inventory} of this {@link Inventory} 
+     * Get the parent {@link Inventory} of this {@link Inventory}
      */
     Inventory parent();
 
@@ -73,7 +72,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * Get and remove the first available stack from this Inventory
      */
     Optional<ItemStack> poll();
-    
+
     /**
      * <p>Get and remove up to <code>limit</code> items of the type in the first
      * available stack in this Inventory from all stacks in this Inventory. If
@@ -83,46 +82,46 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * the inventory are reduced by the number of items consumed. Note that this
      * method attempts to consume items into the ouput up to <code>limit</code>,
      * which may consume items from an abitrary number of internal slots.</p>
-     * 
+     *
      * <p>For example, assume an inventory containing 4 slots contains stacks as
      * follows:</p>
-     * 
+     *
      * <blockquote>
      *     <pre>[Stone x10] [Dirt x3] [Arrows x9] [Stone x32]</pre>
      * </blockquote>
-     * 
+     *
      * <p>Calling <code>poll(16)</code> on this inventory will consume <em>Stone
      * </em> from the Inventory (because the first stack contains stone), and
      * will then consume the remaining 6 items from the 4th slot.</p>
-     * 
+     *
      * <p>It is intended that this method is used in conjunction with a query
      * which returns a set of slots containing a specific item type:</p>
-     * 
+     *
      * <blockquote>
      *     <pre>Optional&lt;ItemStack&gt; q = inv.query(ItemTypes.DIRT).poll(1);
      *     </pre>
      * </blockquote>
-     * 
+     *
      * @param limit Maximum number of items to consume from the inventory
      */
     Optional<ItemStack> poll(int limit);
-    
+
     /**
      * Get without removing the first available stack from this Inventory
      */
     Optional<ItemStack> peek();
-    
+
     /**
      * Uses the same semantics as {@link #poll(int)} but <b>does not remove the
      * items from the inventory</b>. The {@link ItemStack} returned is thus a
      * new ItemStack containing <b>a copy of</b> the items in inventory. Use
      * this method only if you wish to determine whether a call to
      * {@link #poll(int)} is likely to succeed.
-     *   
+     *
      * @param limit Maximum number of items to consume from the inventory
      */
     Optional<ItemStack> peek(int limit);
-    
+
     /**
      * Try to put an ItemStack into this Inventory. Just like {@link
      * java.util.Queue}, this method returns true if the Inventory accepted the
@@ -130,37 +129,37 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * number of items successfully consumed by the Inventory.
      */
     boolean offer(ItemStack stack);
-    
+
     /**
      * Forcibly put the supplied stack into this inventory. Overwrites existing
      * objects in the inventory as required to accomodate the entire stack. The
      * entire stack is always consumed.
      */
     InventoryOperationResult set(ItemStack stack);
-    
+
     /**
      * Clears this inventory if it is clearable. 
      */
     void clear();
-    
+
     /**
      * The number of stacks currently in the Inventory. Either 1 or 0 for
      * {@link Slot}s and always 0 for {@link EmptyInventory}s.
      */
     int size();
-    
+
     /**
      * Returns the number total number of individual <em>items</em> in this
      * inventory.
      */
     int totalItems();
-    
+
     /**
      * The maximum number of stacks the Inventory can hold. Always 1 for
      * {@link Slot}s and always 0 for {@link EmptyInventory}s.
      */
     int capacity();
-    
+
     /**
      * Returns true if this Inventory contains no children.
      */
@@ -205,13 +204,13 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * no matching properties are defined an empty collection is returned.
      */
     <T extends InventoryProperty<?, ?>> Collection<T> getProperties(Inventory child, Class<T> property);
-    
+
     /**
      * Gets the property with the specified key defined in <em>this</em>
      * inventory for the specified (immediate) sub-inventory.
      */
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property, Object key);
-    
+
     /**
      * Gets all properties of the specified type defined directly on this
      * Inventory. For sub-inventories this is effectively the same as
@@ -229,14 +228,14 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * directly.
      */
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property, Object key);
-    
+
     /**
      * Query this inventory for inventories matching any of the supplied types.
      * This is effectively an <code>instanceof</code> check against each child
      * inventory. Logical <code>OR</code> is applied between operands.
      */
     <T extends Inventory> T query(Class<?>... types);
-    
+
     /**
      * Query this inventory for inventories containing any of the supplied item
      * types. This query operates directly on {@link Slot} leaf nodes in the
@@ -244,7 +243,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * Slot} instances. Logical <code>OR</code> is applied between operands.
      */
     <T extends Inventory> T query(ItemTypes... types);
-    
+
     /**
      * Query this inventory for inventories containing any stacks which match
      * the supplied stack operands. This query operates directly on {@link Slot}
@@ -253,7 +252,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * applied between operands.
      */
     <T extends Inventory> T query(ItemStack... types);
-    
+
     /**
      * Query this inventory for inventories which match any of the supplied
      * properties. The <code>equals</code> method of each property is called on
@@ -263,7 +262,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * InventoryProperty.Operator} of {@link InventoryProperty.Operator#EQUAL}.
      */
     <T extends Inventory> T query(InventoryProperty<?, ?>... props);
-    
+
     /**
      * Query this inventory for inventories which match any of the supplied
      * properties with the specified operator. The relevant method of each
@@ -271,26 +270,26 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * property. Logical <code>OR</code> is applied between operands.
      */
     <T extends Inventory> T query(InventoryProperty.Operator op, InventoryProperty<?, ?>... props);
-    
+
     /**
      * Query this inventory for inventories matching any of the supplied titles.
      * Logical <code>OR</code> is applied between operands.
      */
     <T extends Inventory> T query(Translatable... names);
-    
+
     /**
      * Query this inventory for inventories matching any of the supplied titles.
      * Logical <code>OR</code> is applied between operands.
      */
     <T extends Inventory> T query(String... names);
-    
+
     /**
      * <p>Query this inventory by dynamically inspecting each operand. Each
      * operand in turn is checked for a match against the other query methods,
      * and if a matching method is found the query is performed using the
      * operand. This is repeated until all operands are consumed and allows a
      * union of multiple query types to be aggregated into a single view.</p>
-     * 
+     *
      * <p>For operands with no matching type, the behaviour is determined by the
      * individual inventory. A naive match may be obtained by calling .equals()
      * against the child inventory passing the unknown operand as an argument.

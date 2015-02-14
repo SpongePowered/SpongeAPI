@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import java.util.Set;
-
 import org.spongepowered.api.entity.living.Human;
 
+import java.util.Set;
 
 /**
  * A Container is effectively a <em>ViewModel</em> for a particular set of

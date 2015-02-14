@@ -37,7 +37,7 @@ public class SlotSide extends AbstractInventoryProperty<String, Direction> {
     public SlotSide(Direction value) {
         super(value);
     }
-    
+
     public SlotSide(Direction value, Operator operator) {
         super(value, operator);
     }
@@ -45,7 +45,23 @@ public class SlotSide extends AbstractInventoryProperty<String, Direction> {
     public SlotSide(Object value, Operator operator) {
         super(Coerce.<Direction>toEnum(value, Direction.class, Direction.NONE), operator);
     }
-    
+
+    /**
+     * Create a SlotSide property which matches SlotSide properties with equal
+     * value
+     */
+    public static SlotSide of(Object value) {
+        return new SlotSide(value, Operator.EQUAL);
+    }
+
+    /**
+     * Create a SlotSide property which matches SlotSide properties with unequal
+     * value
+     */
+    public static SlotSide not(Object value) {
+        return new SlotSide(value, Operator.NOTEQUAL);
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
@@ -54,24 +70,8 @@ public class SlotSide extends AbstractInventoryProperty<String, Direction> {
         if (other == null) {
             return 1;
         }
-        
+
         return this.getValue().compareTo(Coerce.<Direction>toEnum(other.getValue(), Direction.class, Direction.NONE));
     }
-    
-    /**
-     * Create a SlotSide property which matches SlotSide properties with equal
-     * value
-     */
-    public static SlotSide of(Object value) {
-        return new SlotSide(value, Operator.EQUAL);
-    }
-    
-    /**
-     * Create a SlotSide property which matches SlotSide properties with unequal
-     * value
-     */
-    public static SlotSide not(Object value) {
-        return new SlotSide(value, Operator.NOTEQUAL);
-    }
-    
+
 }
