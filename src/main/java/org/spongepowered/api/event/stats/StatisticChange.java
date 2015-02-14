@@ -118,16 +118,6 @@ public final class StatisticChange {
     }
 
     /**
-     * Sets the new value for this statistic. If the new value is not present
-     * the statistic will be reset.
-     *
-     * @param newValue The new value for this statistic
-     */
-    public void setNewValue(final Optional<Long> newValue) {
-        this.newValue = newValue;
-    }
-
-    /**
      * Represents the possible types of changes to the {@link Statistic}.
      */
     public static enum Type {
