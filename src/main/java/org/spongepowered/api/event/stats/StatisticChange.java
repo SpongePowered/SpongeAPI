@@ -67,7 +67,7 @@ public final class StatisticChange {
      * @return The statistic that has changed
      */
     public Statistic getStatistic() {
-        return statistic;
+        return this.statistic;
     }
 
     /**
@@ -76,7 +76,7 @@ public final class StatisticChange {
      * @return The player whose statistic has changed
      */
     public Player getPlayer() {
-        return player;
+        return this.player;
     }
 
     /**
@@ -85,7 +85,7 @@ public final class StatisticChange {
      * @return The type of change
      */
     public Type getType() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -94,7 +94,7 @@ public final class StatisticChange {
      * @return The old value of this statistic
      */
     public Optional<Long> getOldValue() {
-        return oldValue;
+        return this.oldValue;
     }
 
     /**
@@ -104,7 +104,7 @@ public final class StatisticChange {
      * @return The new value for this statistic
      */
     public Optional<Long> getNewValue() {
-        return newValue;
+        return this.newValue;
     }
 
     /**
