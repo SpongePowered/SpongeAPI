@@ -47,6 +47,25 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
     }
 
     /**
+     * Set this property to the specified value
+     */
+    void setValue(int value) {
+        this.value = value;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other instanceof IntProperty || (other instanceof MappedIntProperty && other.getKey().equals(this.getKey()))) {
+            return this.getValue().compareTo(Coerce.toInteger(other.getValue()));
+        }
+
+        return 1;
+    }
+
+    /**
      * Create a MappedIntProperty property which matches MappedIntProperty
      * properties with equal value and matching key
      */
@@ -95,22 +114,4 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
         return new MappedIntProperty(key, value, Operator.LEQUAL);
     }
 
-    /**
-     * Set this property to the specified value
-     */
-    void setValue(int value) {
-        this.value = value;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
-        if (other instanceof IntProperty || (other instanceof MappedIntProperty && other.getKey().equals(this.getKey()))) {
-            return this.getValue().compareTo(Coerce.toInteger(other.getValue()));
-        }
-
-        return 1;
-    }
 }

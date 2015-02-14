@@ -31,7 +31,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * A utility class for getting all available {@link Comparator}s for {@link ItemStack}s.
+ * A utility class for getting all available {@link Comparator}s for
+ * {@link ItemStack}s.
  */
 public final class ItemStackComparators {
 
@@ -73,19 +74,18 @@ public final class ItemStackComparators {
 
     /**
      * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType}
-     * and {@link org.spongepowered.api.item.inventory.ItemStack} size. This
-     * comparator will not return the same results as
-     * ItemStack.equals(ItemStack) for ItemStacks with extra attached data or
-     * different damage values.
+     * and {@link ItemStack} size. This comparator will not return the same
+     * results as ItemStack.equals(ItemStack) for ItemStacks with extra attached
+     * data or different damage values.
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_SIZE = Ordering.compound(Arrays.asList(TYPE, SIZE));
 
     /**
      * Compares ItemStacks based on {@link org.spongepowered.api.item.ItemType},
-     * {@link org.spongepowered.api.item.inventory.ItemStack} damage and
-     * {@link ItemStack} size. This comparator will not return the same results
-     * as ItemStack.equals(ItemStack) for ItemStacks with extra attached data.
+     * {@link ItemStack} damage and {@link ItemStack} size. This comparator will
+     * not return the same results as ItemStack.equals(ItemStack) for ItemStacks
+     * with extra attached data.
      */
     @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_DAMAGE_SIZE = Ordering.compound(Arrays.asList(TYPE, DAMAGE, SIZE));
@@ -95,8 +95,7 @@ public final class ItemStackComparators {
      */
     public static final Comparator<ItemStack> DEFAULT = TYPE_DAMAGE_SIZE;
 
-    private ItemStackComparators() {
-    }
+    private ItemStackComparators() {}
 
     static final class Type implements Comparator<ItemStack> {
 

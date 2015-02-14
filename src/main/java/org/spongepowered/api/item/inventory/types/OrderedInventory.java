@@ -66,4 +66,5 @@ public interface OrderedInventory extends Inventory {
      * Get the {@link Slot} at the specified index
      */
     Optional<Slot> getSlot(SlotIndex index);
+    
 }

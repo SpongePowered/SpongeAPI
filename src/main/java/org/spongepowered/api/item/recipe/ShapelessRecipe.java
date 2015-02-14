@@ -26,7 +26,7 @@ package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.item.inventory.ItemStack;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A ShapelessRecipe is a Recipe that does not have shape and just has a
@@ -39,6 +39,6 @@ public interface ShapelessRecipe extends Recipe {
      *
      * @return The ingredients
      */
-    List<ItemStack> getIngredients();
+    Collection<ItemStack> getIngredients();
 
 }

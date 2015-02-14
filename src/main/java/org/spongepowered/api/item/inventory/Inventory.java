@@ -296,4 +296,5 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * </p>
      */
     <T extends Inventory> T query(Object... args);
+    
 }

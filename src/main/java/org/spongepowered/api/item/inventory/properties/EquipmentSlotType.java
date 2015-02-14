@@ -47,6 +47,21 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
         super(Coerce.<EquipmentType>toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+
+        EquipmentType
+                otherValue =
+                Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
+        return this.getValue().getId().compareTo(otherValue.getId());
+    }
+
     /**
      * Create an EquipmentSlotType property which matches EquipmentSlotType
      * properties with equal value
@@ -61,21 +76,6 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
      */
     public static EquipmentSlotType not(Object value) {
         return new EquipmentSlotType(value, Operator.NOTEQUAL);
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        EquipmentType
-                otherValue =
-                Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
-        return this.getValue().getId().compareTo(otherValue.getId());
     }
 
 }

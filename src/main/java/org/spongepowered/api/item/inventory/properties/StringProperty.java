@@ -44,6 +44,18 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
         super(Coerce.toString(value), operator);
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+
+        return this.getValue().compareTo(Coerce.toString(other.getValue()));
+    }
+
     /**
      * Create a StringProperty property which matches StringProperty properties
      * with equal value
@@ -90,18 +102,6 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
      */
     public static StringProperty lessThanOrEqual(Object value) {
         return new StringProperty(value, Operator.LEQUAL);
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        return this.getValue().compareTo(Coerce.toString(other.getValue()));
     }
 
 }

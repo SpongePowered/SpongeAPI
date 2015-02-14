@@ -53,14 +53,6 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
         super(Coerce.toListOf(value, ItemType.class), operator);
     }
 
-    /**
-     * Create an AcceptsItems property which matches AcceptsItems properties
-     * with containing one or more of the supplied values
-     */
-    public static AcceptsItems of(Object... value) {
-        return new AcceptsItems(value, Operator.EQUAL);
-    }
-
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
@@ -98,4 +90,13 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
 
         return false;
     }
+
+    /**
+     * Create an AcceptsItems property which matches AcceptsItems properties
+     * with containing one or more of the supplied values
+     */
+    public static AcceptsItems of(Object... value) {
+        return new AcceptsItems(value, Operator.EQUAL);
+    }
+    
 }

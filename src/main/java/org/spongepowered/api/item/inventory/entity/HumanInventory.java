@@ -41,4 +41,5 @@ public interface HumanInventory extends CarriedInventory<Human> {
      * Get the hotbar inventory
      */
     Hotbar getHotbar();
+    
 }

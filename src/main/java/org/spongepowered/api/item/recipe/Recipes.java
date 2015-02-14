@@ -31,8 +31,7 @@ public class Recipes {
 
     private static final RecipeFactory factory = null;
 
-    private Recipes() {
-    }
+    private Recipes() {}
 
     /**
      * Creates a new {@link ShapedRecipeBuilder} instance.
@@ -40,7 +39,7 @@ public class Recipes {
      * @return The created ShapedRecipeBuilder
      */
     public static ShapedRecipeBuilder shapedBuilder() {
-        return factory.shapedBuilder();
+        return Recipes.factory.shapedBuilder();
     }
 
     /**
@@ -49,7 +48,7 @@ public class Recipes {
      * @return The created ShapelessRecipeBuilder
      */
     public static ShapelessRecipeBuilder shapelessBuilder() {
-        return factory.shapelessBuilder();
+        return Recipes.factory.shapelessBuilder();
     }
 
 }

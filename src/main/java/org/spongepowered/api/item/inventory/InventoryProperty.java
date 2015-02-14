@@ -35,46 +35,6 @@ import javax.annotation.Nullable;
 public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?, ?>> {
 
     /**
-     * Get the key for this property. Key is only used if an inventory can have
-     * more than one property of a particular type. If the property has no
-     * specific key, the property class name is returned so that properties of
-     * the same type are implicitly comparable.
-     */
-    K getKey();
-
-    /**
-     * Get the "value" of this property. "Value" may have different meanings
-     * depending on the exact type of this property.
-     */
-    @Nullable
-    V getValue();
-
-    /**
-     * Get the operator to use when comparing another property with this
-     * property
-     */
-    Operator getOperator();
-
-    /**
-     * <p>Compares this property to <code>other</code> using this property's
-     * operator. This is equivalent to the code:</p>
-     *
-     * <blockquote>
-     *     <pre>thisObject.getOperator().compare(thisObject, other);</pre>
-     * </blockquote>
-     *
-     * <p>The order of the operands is important, since {@link Operator} treats
-     * its type as infix between the two operands, and thus (for example) if
-     * this property's operator is set to GREATER, then when calling this method
-     * we want to know whether <b>this</b> is <em>GREATER</em> than <b>other</b>
-     * and must pass in the operands in the corresponding order.</p>
-     *
-     * @param other Property to compare to
-     * @return
-     */
-    boolean matches(@Nullable InventoryProperty<?, ?> other);
-
-    /**
      * Operator used to indicate to a query what operation to use when comparing
      * this property with properties present on a child inventory
      */
@@ -170,13 +130,6 @@ public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?,
         };
 
         /**
-         * Get the default operator to use if none is specified
-         */
-        public static Operator defaultOperator() {
-            return Operator.DELEGATE;
-        }
-
-        /**
          * <p>Compare the two operands by applying this operator <em>infix</em>
          * with respect to them. For example, if this object is {@link GREATER}
          * then calling this method with <code>object1</code> and <code>object2
@@ -214,5 +167,53 @@ public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?,
          * @return First operand's comparison to second
          */
         protected abstract boolean apply(InventoryProperty<?, ?> operand1, InventoryProperty<?, ?> operand2);
+
+        /**
+         * Get the default operator to use if none is specified
+         */
+        public static Operator defaultOperator() {
+            return Operator.DELEGATE;
+        }
+
     }
+
+    /**
+     * Get the key for this property. Key is only used if an inventory can have
+     * more than one property of a particular type. If the property has no
+     * specific key, the property class name is returned so that properties of
+     * the same type are implicitly comparable.
+     */
+    K getKey();
+
+    /**
+     * Get the "value" of this property. "Value" may have different meanings
+     * depending on the exact type of this property.
+     */
+    @Nullable V getValue();
+
+    /**
+     * Get the operator to use when comparing another property with this
+     * property
+     */
+    Operator getOperator();
+
+    /**
+     * <p>Compares this property to <code>other</code> using this property's
+     * operator. This is equivalent to the code:</p>
+     *
+     * <blockquote>
+     *     <pre>thisObject.getOperator().compare(thisObject, other);</pre>
+     * </blockquote>
+     *
+     * <p>The order of the operands is important, since {@link Operator} treats
+     * its type as infix between the two operands, and thus (for example) if
+     * this property's operator is set to GREATER, then when calling this method
+     * we want to know whether <b>this</b> is <em>GREATER</em> than <b>other</b>
+     * and must pass in the operands in the corresponding order.</p>
+     *
+     * @param other Property to compare to
+     * @return
+     */
+    boolean matches(@Nullable InventoryProperty<?, ?> other);
+
 }
