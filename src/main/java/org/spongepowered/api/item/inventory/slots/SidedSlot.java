@@ -47,4 +47,5 @@ public interface SidedSlot extends Slot {
      * Get whether automation can extract the specified item from the specified direction
      */
     boolean canGet(ItemStack stack, Direction from);
+    
 }

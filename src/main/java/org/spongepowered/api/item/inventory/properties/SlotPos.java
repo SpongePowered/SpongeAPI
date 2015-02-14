@@ -55,6 +55,18 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
         super(Coerce.toVector2i(value), operator);
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+
+        return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
+    }
+
     /**
      * Create an SlotPos property which matches SlotPos properties with equal
      * value
@@ -123,18 +135,6 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
      */
     public int getY() {
         return this.getValue().getY();
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
     }
 
 }

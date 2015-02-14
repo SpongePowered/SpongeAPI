@@ -97,4 +97,5 @@ public interface GridInventory extends Inventory2D {
      * Get the column at the specified index
      */
     Optional<InventoryColumn> getColumn(int x);
+    
 }

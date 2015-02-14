@@ -46,4 +46,5 @@ public class Inventories {
     public static CustomInventoryBuilder customInventoryBuilder() {
         return Inventories.factory.builder();
     }
+    
 }

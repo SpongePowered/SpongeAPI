@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+package org.spongepowered.api.item.inventory.types;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.Inventory;
 
 /**
  * Interface for inventories which may be interacted with by specific types of
@@ -38,4 +39,5 @@ public interface Interactable<T extends Entity> extends Inventory {
      * Get whether the specified entity can interact with this object
      */
     public boolean canInteractWith(T entity);
+    
 }

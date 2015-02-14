@@ -25,11 +25,10 @@
 package org.spongepowered.api.item.inventory.types;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.block.data.TileEntity;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.Interactable;
-import org.spongepowered.api.item.inventory.Inventory;
 
 /**
  * An {@link Inventory} which is owned by a {@link TileEntity}. In Sponge, a TE

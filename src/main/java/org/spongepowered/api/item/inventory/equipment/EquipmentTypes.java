@@ -55,6 +55,6 @@ public final class EquipmentTypes {
     /**
      * No subclasses for you
      */
-    private EquipmentTypes() {
-    }
+    private EquipmentTypes() {}
+    
 }

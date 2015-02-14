@@ -55,6 +55,32 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
+     * Get the number of columns in this inventory
+     */
+    public int getColumns() {
+        return this.getValue().getX();
+    }
+
+    /**
+     * Get the number of rows in this inventory
+     */
+    public int getRows() {
+        return this.getValue().getY();
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(InventoryProperty<?, ?> other) {
+        if (other == null) {
+            return 1;
+        }
+
+        return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
+    }
+
+    /**
      * Create an InventorySize property which matches InventorySize properties
      * with equal value
      */
@@ -110,29 +136,4 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
         return new InventorySize(value, Operator.LEQUAL);
     }
 
-    /**
-     * Get the number of columns in this inventory
-     */
-    public int getColumns() {
-        return this.getValue().getX();
-    }
-
-    /**
-     * Get the number of rows in this inventory
-     */
-    public int getRows() {
-        return this.getValue().getY();
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
-        if (other == null) {
-            return 1;
-        }
-
-        return this.getValue().compareTo(Coerce.toVector2i(other.getValue()));
-    }
 }
