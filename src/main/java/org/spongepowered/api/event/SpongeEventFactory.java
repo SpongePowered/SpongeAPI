@@ -37,6 +37,7 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.data.BrewingStand;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Item;
@@ -59,6 +60,7 @@ import org.spongepowered.api.event.block.BlockUpdateEvent;
 import org.spongepowered.api.event.block.FloraGrowEvent;
 import org.spongepowered.api.event.block.FluidSpreadEvent;
 import org.spongepowered.api.event.block.LeafDecayEvent;
+import org.spongepowered.api.event.block.data.BrewingStandBrewEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
@@ -1463,6 +1465,27 @@ public final class SpongeEventFactory {
         values.put("client", client);
         values.put("response", response);
         return createEvent(StatusPingEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link BrewingStandBrewEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param brewingStand The {@link BrewingStand} involved in this event
+     * @param sourceItems The {@link Item}s being modified
+     * @param fuelSource The {@link Item} used as the reagent to modify the source items
+     * @param brewedItems The {@link Item}s produced as a result
+     * @return A new instance of the event
+     */
+    public static BrewingStandBrewEvent createBrewingStandBrewEvent(Game game, BrewingStand brewingStand, List<ItemStack> sourceItems, ItemStack fuelSource, List<ItemStack> brewedItems) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("tileEntity", brewingStand);
+        values.put("brewingStand", brewingStand);
+        values.put("sourceItems", sourceItems);
+        values.put("fuelSource", fuelSource);
+        values.put("brewedItems", brewedItems);
+        return createEvent(BrewingStandBrewEvent.class, values);
     }
 
 }
