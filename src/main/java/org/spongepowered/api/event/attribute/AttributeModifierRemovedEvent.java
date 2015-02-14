@@ -25,8 +25,10 @@
 
 package org.spongepowered.api.event.attribute;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.attribute.AttributeModifier;
+import org.spongepowered.api.attribute.AttributeSource;
 
 /**
  * An event fired when an {@link AttributeModifier} is added to an
@@ -40,5 +42,13 @@ public interface AttributeModifierRemovedEvent extends AttributeEvent {
      * @return The AttributeModifier that was removed in this event
      */
     AttributeModifier getModifier();
+
+    /**
+     * Gets the {@link AttributeSource} that caused this event, if there was
+     * one.
+     *
+     * @return The AttributeSource that caused this event, if there was one
+     */
+    Optional<AttributeSource> getSource();
 
 }
