@@ -23,5 +23,4 @@
  * THE SOFTWARE.
  */
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.util.annotation;
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.util.annotation;

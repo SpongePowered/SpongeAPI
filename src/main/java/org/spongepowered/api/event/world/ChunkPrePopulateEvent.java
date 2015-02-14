@@ -35,7 +35,7 @@ public interface ChunkPrePopulateEvent extends ChunkEvent {
 
     /**
      * Returns an iterator over all pending populators.
-     * 
+     *
      * @return The populators
      */
     Iterable<Populator> getPendingPopulators();
@@ -44,7 +44,7 @@ public interface ChunkPrePopulateEvent extends ChunkEvent {
      * Adds a new populator to the list of pending populators at the given
      * index. If the index is greater than the number of populators then the
      * new populator is simply added to the end of the list.
-     * 
+     *
      * @param populator The new populator
      * @param index The index to add the populator at
      */

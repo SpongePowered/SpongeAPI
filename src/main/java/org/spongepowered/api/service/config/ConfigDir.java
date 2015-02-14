@@ -44,7 +44,7 @@ import java.lang.annotation.Target;
  */
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.PARAMETER, ElementType.FIELD })
+@Target({ElementType.PARAMETER, ElementType.FIELD})
 public @interface ConfigDir {
 
     /**
@@ -52,6 +52,8 @@ public @interface ConfigDir {
      * the plugin-specific configuration directory.
      *
      * @see ConfigRoot#getConfigFile() For information on what the shared root is
+     *
+     * @return True to use a shared root configuration
      */
     boolean sharedRoot();
 

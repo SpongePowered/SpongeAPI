@@ -40,7 +40,7 @@ public interface Populator {
      * chunks are already at least generated (although they do not have to be
      * populated) to allow {@link PopulatorObject}s to overlap across chunk
      * boundaries.
-     * 
+     *
      * @param world The world
      * @param chunk The chunk being populated
      * @param random The random object

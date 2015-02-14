@@ -33,9 +33,9 @@ import org.spongepowered.api.entity.living.Living;
 public interface PrimedTNT extends FusedExplosive {
 
     /**
-     * Gets the living entity that set off this primed tnt.
+     * Gets the living entity that set off this primed TNT.
      *
-     * @return The living entity that set off this primed tnt, if available
+     * @return The living entity that set off this primed TNT, if available
      */
     Optional<Living> getDetonator();
 

@@ -30,7 +30,8 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.service.scheduler.Scheduler;
+import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
+import org.spongepowered.api.service.scheduler.SynchronousScheduler;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -84,11 +85,18 @@ public interface Game {
     ServiceManager getServiceManager();
 
     /**
-     * Gets the {@link Scheduler}.
+     * Gets the {@link org.spongepowered.api.service.scheduler.SynchronousScheduler}.
      *
      * @return The scheduler
      */
-    Scheduler getScheduler();
+    SynchronousScheduler getSyncScheduler();
+
+    /**
+     * Gets the {@link org.spongepowered.api.service.scheduler.AsynchronousScheduler}.
+     *
+     * @return The scheduler
+     */
+    AsynchronousScheduler getAsyncScheduler();
 
     /**
      * Get the command dispatcher used for registering and dispatching
@@ -103,7 +111,7 @@ public interface Game {
      *
      * @return The API version
      */
-    String getAPIVersion();
+    String getApiVersion();
 
     /**
      * Gets the implementation version.
@@ -111,5 +119,12 @@ public interface Game {
      * @return The implementation version
      */
     String getImplementationVersion();
+
+    /**
+     * Gets the Minecraft version of this game.
+     *
+     * @return The Minecraft version
+     */
+    MinecraftVersion getMinecraftVersion();
 
 }

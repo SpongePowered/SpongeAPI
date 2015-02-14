@@ -76,6 +76,17 @@ public interface ServiceManager {
     <T> Optional<T> provide(Class<T> service);
 
     /**
+     * Return reference to a provider for the given service that may exist now or at any point in the future.
+     *
+     * <p>This allows performing actions when a service is registered, or on the existing service if it is already registered
+     *
+     * @param service The service
+     * @param <T> The type of service
+     * @return A reference to a current or future provider
+     */
+    <T> ServiceReference<T> potentiallyProvide(Class<T> service);
+
+    /**
      * Return a provider for the given service, raising an unchecked exception
      * if a provider does not exist.
      *

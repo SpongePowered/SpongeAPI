@@ -33,17 +33,40 @@ public class ProviderExistsException extends Exception {
 
     private static final long serialVersionUID = -1485684535160048461L;
 
+    /**
+     * Constructs a new provider exists exception with a null message and a null
+     * cause.
+     */
     public ProviderExistsException() {
     }
 
+    /**
+     * Constructs a new provider exists exception with the specified message and
+     * with a null cause.
+     *
+     * @param message The exception message
+     */
     public ProviderExistsException(String message) {
         super(message);
     }
 
+    /**
+     * Constructs a new provider exists exception with the specified message and
+     * cause.
+     *
+     * @param message The exception message
+     * @param cause The cause of this exception
+     */
     public ProviderExistsException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Constructs a new provider exists exception with the specified cause and a
+     * null message.
+     *
+     * @param cause The cause of this exception
+     */
     public ProviderExistsException(Throwable cause) {
         super(cause);
     }

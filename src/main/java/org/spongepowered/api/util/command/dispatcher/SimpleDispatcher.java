@@ -115,7 +115,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
      */
     public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
-                                                          Function<List<String>, List<String>> callback) {
+            Function<List<String>, List<String>> callback) {
         checkNotNull(aliases);
         checkNotNull(callable);
         checkNotNull(callback);
@@ -124,7 +124,7 @@ public class SimpleDispatcher implements Dispatcher {
 
         // Filter out commands that are already registered
         for (String alias : aliases) {
-            if (!commands.containsKey(alias.toLowerCase())) {
+            if (!this.commands.containsKey(alias.toLowerCase())) {
                 free.add(alias);
             }
         }
@@ -136,7 +136,7 @@ public class SimpleDispatcher implements Dispatcher {
         if (!free.isEmpty()) {
             // The callback should /not/ have added any new commands
             for (String alias : free) {
-                if (commands.containsKey(alias.toLowerCase())) {
+                if (this.commands.containsKey(alias.toLowerCase())) {
                     throw new IllegalArgumentException("A command by the name of '" + alias + "' already exists");
                 }
             }
@@ -146,7 +146,7 @@ public class SimpleDispatcher implements Dispatcher {
             CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
 
             for (String alias : free) {
-                commands.put(alias.toLowerCase(), mapping);
+                this.commands.put(alias.toLowerCase(), mapping);
             }
 
             return Optional.of(mapping);
@@ -162,7 +162,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias) {
-        return Optional.of(commands.remove(alias.toLowerCase()));
+        return Optional.of(this.commands.remove(alias.toLowerCase()));
     }
 
     /**
@@ -177,7 +177,7 @@ public class SimpleDispatcher implements Dispatcher {
         boolean found = false;
 
         for (Object alias : c) {
-            commands.remove(alias.toString().toLowerCase());
+            this.commands.remove(alias.toString().toLowerCase());
             found = true;
         }
 
@@ -195,7 +195,7 @@ public class SimpleDispatcher implements Dispatcher {
 
         CommandMapping found = null;
 
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             CommandMapping current = it.next();
             if (current.equals(mapping)) {
@@ -218,7 +218,7 @@ public class SimpleDispatcher implements Dispatcher {
 
         boolean found = false;
 
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             if (c.contains(it.next())) {
                 it.remove();
@@ -231,14 +231,14 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Set<CommandMapping> getCommands() {
-        return ImmutableSet.copyOf(commands.values());
+        return ImmutableSet.copyOf(this.commands.values());
     }
 
     @Override
     public synchronized Set<String> getPrimaryAliases() {
         Set<String> aliases = new HashSet<String>();
 
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             aliases.add(mapping.getPrimaryAlias());
         }
 
@@ -249,7 +249,7 @@ public class SimpleDispatcher implements Dispatcher {
     public synchronized Set<String> getAliases() {
         Set<String> aliases = new HashSet<String>();
 
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             aliases.addAll(mapping.getAllAliases());
         }
 
@@ -258,19 +258,19 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Optional<CommandMapping> get(String alias) {
-        return Optional.fromNullable(commands.get(alias.toLowerCase()));
+        return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
     }
 
     @Override
     public synchronized boolean containsAlias(String alias) {
-        return commands.containsKey(alias.toLowerCase());
+        return this.commands.containsKey(alias.toLowerCase());
     }
 
     @Override
     public boolean containsMapping(CommandMapping mapping) {
         checkNotNull(mapping);
 
-        for (CommandMapping test : commands.values()) {
+        for (CommandMapping test : this.commands.values()) {
             if (mapping.equals(test)) {
                 return true;
             }
@@ -285,7 +285,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The number of aliases
      */
     public synchronized int size() {
-        return commands.size();
+        return this.commands.size();
     }
 
     @Override
@@ -308,7 +308,7 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized boolean testPermission(CommandSource source) {
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             if (!mapping.getCallable().testPermission(source)) {
                 return false;
             }
@@ -326,7 +326,7 @@ public class SimpleDispatcher implements Dispatcher {
             String incompleteCommand = parts[0].toLowerCase();
 
             synchronized (this) {
-                for (CommandMapping mapping : commands.values()) {
+                for (CommandMapping mapping : this.commands.values()) {
                     for (String alias : mapping.getAllAliases()) {
                         if (alias.toLowerCase().startsWith(incompleteCommand)) {
                             suggestions.add(alias);

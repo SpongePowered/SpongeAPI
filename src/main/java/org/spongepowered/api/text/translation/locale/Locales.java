@@ -34,12 +34,6 @@ import java.util.Locale;
  */
 public final class Locales {
 
-    private static final LocaleFactory factory = null;
-
-    private Locales() {
-
-    }
-
     public static final Locale AFRIKAANS = null;
     public static final Locale ARABIC = null;
     public static final Locale ASTURIAN = null;
@@ -114,6 +108,11 @@ public final class Locales {
     public static final Locale VIETNAMESE = null;
     public static final Locale SIMPLIFIED_CHINESE = null;
     public static final Locale TRADITIONAL_CHINESE = null;
+    private static final LocaleFactory factory = null;
+
+    private Locales() {
+
+    }
 
     /**
      * Gets the {@link Locale} of the specified Minecraft locale code.

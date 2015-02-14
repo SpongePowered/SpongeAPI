@@ -37,7 +37,7 @@ public interface BiomeGenerator {
      * Generates the biomes for the given area using only biomes from the given
      * array of available biomes. The resultant biomes are placed into the
      * given buffer.
-     * 
+     *
      * @param world The world these biomes are being generated for
      * @param buffer The buffer to generate the biomes into
      * @param x The X position of the lowest point

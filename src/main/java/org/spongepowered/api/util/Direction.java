@@ -39,35 +39,30 @@ import com.flowpowered.math.vector.Vector3d;
  * </ul>
  */
 public enum Direction {
-    NORTH           (new Vector3d( 0,       0, -1       ), Flag.CARDINAL         ),
-    NORTH_NORTHEAST (new Vector3d( C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
-    NORTHEAST       (new Vector3d( 1,       0, -1       ), Flag.ORDINAL          ),
-    EAST_NORTHEAST  (new Vector3d( C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
+    NORTH(new Vector3d(0, 0, -1), Flag.CARDINAL),
+    NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
+    NORTHEAST(new Vector3d(1, 0, -1), Flag.ORDINAL),
+    EAST_NORTHEAST(new Vector3d(C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
 
-    EAST            (new Vector3d( 1,       0,  0       ), Flag.CARDINAL         ),
-    EAST_SOUTHEAST  (new Vector3d( C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
-    SOUTHEAST       (new Vector3d( 1,       0,  1       ), Flag.ORDINAL          ),
-    SOUTH_SOUTHEAST (new Vector3d( C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
+    EAST(new Vector3d(1, 0, 0), Flag.CARDINAL),
+    EAST_SOUTHEAST(new Vector3d(C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
+    SOUTHEAST(new Vector3d(1, 0, 1), Flag.ORDINAL),
+    SOUTH_SOUTHEAST(new Vector3d(C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
 
-    SOUTH           (new Vector3d( 0,       0,  1       ), Flag.CARDINAL         ),
-    SOUTH_SOUTHWEST (new Vector3d(-C.S8,    0,  C.C8    ), Flag.SECONDARY_ORDINAL),
-    SOUTHWEST       (new Vector3d(-1,       0,  1       ), Flag.ORDINAL          ),
-    WEST_SOUTHWEST  (new Vector3d(-C.C8,    0,  C.S8    ), Flag.SECONDARY_ORDINAL),
+    SOUTH(new Vector3d(0, 0, 1), Flag.CARDINAL),
+    SOUTH_SOUTHWEST(new Vector3d(-C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
+    SOUTHWEST(new Vector3d(-1, 0, 1), Flag.ORDINAL),
+    WEST_SOUTHWEST(new Vector3d(-C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
 
-    WEST            (new Vector3d(-1,       0,  0       ), Flag.CARDINAL         ),
-    WEST_NORTHWEST  (new Vector3d(-C.C8,    0, -C.S8    ), Flag.SECONDARY_ORDINAL),
-    NORTHWEST       (new Vector3d(-1,       0, -1       ), Flag.ORDINAL          ),
-    NORTH_NORTHWEST (new Vector3d(-C.S8,    0, -C.C8    ), Flag.SECONDARY_ORDINAL),
+    WEST(new Vector3d(-1, 0, 0), Flag.CARDINAL),
+    WEST_NORTHWEST(new Vector3d(-C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
+    NORTHWEST(new Vector3d(-1, 0, -1), Flag.ORDINAL),
+    NORTH_NORTHWEST(new Vector3d(-C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
 
-    UP              (new Vector3d( 0,       1,  0       ), Flag.UPRIGHT          ),
-    DOWN            (new Vector3d( 0,      -1,  0       ), Flag.UPRIGHT          ),
+    UP(new Vector3d(0, 1, 0), Flag.UPRIGHT),
+    DOWN(new Vector3d(0, -1, 0), Flag.UPRIGHT),
 
-    NONE            (new Vector3d( 0,       0,  0       ), 0                     );
-
-    private interface C {
-        public static final double C8 = Math.cos(Math.PI / 8);
-        public static final double S8 = Math.sin(Math.PI / 8);
-    }
+    NONE(new Vector3d(0, 0, 0), 0);
 
     private final Vector3d direction;
     private final int flags;
@@ -85,12 +80,12 @@ public enum Direction {
 
     static {
         NORTH.opposite = SOUTH;
-        EAST.opposite  = WEST;
+        EAST.opposite = WEST;
         SOUTH.opposite = NORTH;
-        WEST.opposite  = EAST;
+        WEST.opposite = EAST;
 
-        UP.opposite    = DOWN;
-        DOWN.opposite  = UP;
+        UP.opposite = DOWN;
+        DOWN.opposite = UP;
 
         NONE.opposite = NONE;
 
@@ -99,73 +94,14 @@ public enum Direction {
         SOUTHEAST.opposite = NORTHWEST;
         SOUTHWEST.opposite = NORTHEAST;
 
-        WEST_NORTHWEST.opposite  = EAST_SOUTHEAST;
-        WEST_SOUTHWEST.opposite  = EAST_NORTHEAST;
+        WEST_NORTHWEST.opposite = EAST_SOUTHEAST;
+        WEST_SOUTHWEST.opposite = EAST_NORTHEAST;
         NORTH_NORTHWEST.opposite = SOUTH_SOUTHEAST;
         NORTH_NORTHEAST.opposite = SOUTH_SOUTHWEST;
-        EAST_SOUTHEAST.opposite  = WEST_NORTHWEST;
-        EAST_NORTHEAST.opposite  = WEST_SOUTHWEST;
+        EAST_SOUTHEAST.opposite = WEST_NORTHWEST;
+        EAST_NORTHEAST.opposite = WEST_SOUTHWEST;
         SOUTH_SOUTHEAST.opposite = NORTH_NORTHWEST;
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
-    }
-
-    public Direction getOpposite() {
-        return this.opposite;
-    }
-
-    public boolean isOpposite(Direction d) {
-        return this.opposite.equals(d);
-    }
-
-    /**
-     * Return true if the direction is of a cardinal direction (north, west
-     * east, and south).
-     *
-     * <p>This evaluates as false for directions that have a non-zero
-     * Y-component.</p>
-     *
-     * @return True if cardinal
-     */
-    public boolean isCardinal() {
-        return (flags & Flag.CARDINAL) > 0;
-    }
-
-    /**
-     * Return true if the direction is of an ordinal direction (northwest,
-     * southwest, southeast, northeaast).
-     *
-     * @return True if ordinal
-     */
-    public boolean isOrdinal() {
-        return (flags & Flag.ORDINAL) > 0;
-    }
-
-    /**
-     * Return true if the direction is of a secondary ordinal direction
-     * (north-northwest, north-northeast, south-southwest, etc.).
-     *
-     * @return True if secondary ordinal
-     */
-    public boolean isSecondaryOrdinal() {
-        return (flags & Flag.SECONDARY_ORDINAL) > 0;
-    }
-
-    /**
-     * Return whether Y component is non-zero.
-     *
-     * @return True if the Y component is non-zero
-     */
-    public boolean isUpright() {
-        return (flags & Flag.UPRIGHT) > 0;
-    }
-
-    /**
-     * Get the Vector3d.
-     *
-     * @return The Vector3d
-     */
-    public Vector3d toVector3d() {
-        return direction;
     }
 
     /**
@@ -174,7 +110,7 @@ public enum Direction {
      * has the same horizontal and vertical length, a horizontal direction will
      * be returned. If the vector has the same angle to two directions the
      * clockwise next will be selected.
-     * 
+     *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
@@ -192,7 +128,7 @@ public enum Direction {
      * Gets the closest horizontal direction from the given vector. If the
      * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
      * has the same angle to two directions the clockwise next will be selected.
-     * 
+     *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
@@ -212,40 +148,129 @@ public enum Direction {
         }
     }
 
+    /**
+     * Gets the direction associated with the given axis.
+     *
+     * @param axis The axis
+     * @return The direction
+     */
     public static Direction getFromAxis(final Axis axis) {
         switch (axis) {
-            case X :
+            case X:
                 return SOUTH;
-            case Y :
+            case Y:
                 return UP;
-            case Z :
+            case Z:
                 return EAST;
-            default :
+            default:
                 throw new IllegalStateException("Not capable of handling the " + axis.name() + " axis!");
         }
     }
 
+    /**
+     * Gets the direction of the axis along the given {@link AxisDirection}.
+     *
+     * @param axis The axis
+     * @param direction The direction along the axis
+     * @return The direction
+     */
     public static Direction getFromAxis(final Axis axis, final AxisDirection direction) {
         switch (direction) {
-            case PLUS :
+            case PLUS:
                 return getFromAxis(axis);
-            case ZERO :
+            case ZERO:
                 return NONE;
-            case MINUS :
+            case MINUS:
                 return getFromAxis(axis).getOpposite();
-            default :
+            default:
                 throw new IllegalStateException("Not capable of handling the " + direction.name() + " direction!");
         }
     }
 
+    /**
+     * Gets the opposite direction i.e. 180 degrees from this direction.
+     *
+     * @return The opposite direction
+     */
+    public Direction getOpposite() {
+        return this.opposite;
+    }
+
+    /**
+     * Returns whether the given direction is opposite this.
+     *
+     * @param d Direction to test
+     * @return True if it is opposite
+     */
+    public boolean isOpposite(Direction d) {
+        return this.opposite.equals(d);
+    }
+
+    /**
+     * Return true if the direction is of a cardinal direction (north, west
+     * east, and south).
+     *
+     * <p>This evaluates as false for directions that have a non-zero
+     * Y-component.</p>
+     *
+     * @return True if cardinal
+     */
+    public boolean isCardinal() {
+        return (this.flags & Flag.CARDINAL) > 0;
+    }
+
+    /**
+     * Return true if the direction is of an ordinal direction (northwest,
+     * southwest, southeast, northeaast).
+     *
+     * @return True if ordinal
+     */
+    public boolean isOrdinal() {
+        return (this.flags & Flag.ORDINAL) > 0;
+    }
+
+    /**
+     * Return true if the direction is of a secondary ordinal direction
+     * (north-northwest, north-northeast, south-southwest, etc.).
+     *
+     * @return True if secondary ordinal
+     */
+    public boolean isSecondaryOrdinal() {
+        return (this.flags & Flag.SECONDARY_ORDINAL) > 0;
+    }
+
+    /**
+     * Return whether Y component is non-zero.
+     *
+     * @return True if the Y component is non-zero
+     */
+    public boolean isUpright() {
+        return (this.flags & Flag.UPRIGHT) > 0;
+    }
+
+    /**
+     * Get the Vector3d.
+     *
+     * @return The Vector3d
+     */
+    public Vector3d toVector3d() {
+        return this.direction;
+    }
+
+    private interface C {
+
+        double C8 = Math.cos(Math.PI / 8);
+        double S8 = Math.sin(Math.PI / 8);
+    }
+
     public static final class Flag {
 
-        public static int CARDINAL = 0x1;
-        public static int ORDINAL = 0x2;
-        public static int SECONDARY_ORDINAL = 0x4;
-        public static int UPRIGHT = 0x8;
+        public static final int CARDINAL = 0x1;
+        public static final int ORDINAL = 0x2;
+        public static final int SECONDARY_ORDINAL = 0x4;
+        public static final int UPRIGHT = 0x8;
 
-        public static int ALL = CARDINAL | ORDINAL | SECONDARY_ORDINAL | UPRIGHT;
+        public static final int ALL = CARDINAL | ORDINAL | SECONDARY_ORDINAL | UPRIGHT;
 
         private Flag() {
         }

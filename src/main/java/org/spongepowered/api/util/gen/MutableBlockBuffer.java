@@ -35,7 +35,7 @@ public interface MutableBlockBuffer extends BlockBuffer {
 
     /**
      * Sets the block in the buffer at the given position.
-     * 
+     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -45,7 +45,7 @@ public interface MutableBlockBuffer extends BlockBuffer {
 
     /**
      * Fills the entire buffer with the given block.
-     * 
+     *
      * @param block The block to fill with
      */
     void fill(BlockState block);
@@ -53,16 +53,16 @@ public interface MutableBlockBuffer extends BlockBuffer {
     /**
      * Sets all horizontal layers between {@code y} (inclusive) and 
      * {@code y+height} (exclusive) to the given block type.
-     * 
+     *
      * @param y The starting Y position
      * @param height The height
      * @param block The block type
      */
     void setHorizontalLayer(int y, int height, BlockState block);
-    
+
     /**
      * Returns an immutable copy of this block buffer.
-     * 
+     *
      * @return An immutable copy
      */
     ImmutableBlockBuffer getImmutableClone();
