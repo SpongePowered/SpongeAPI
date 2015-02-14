@@ -39,53 +39,6 @@ public enum Axis {
         this.direction = vector3d;
     }
 
-    public boolean isVectorAlongAxis(final Vector3d vector) {
-        return vector.abs().normalize().sub(direction).lengthSquared() == 0;
-    }
-
-    public double getComponent(final Vector3d vector3d) {
-        switch (this) {
-            case X :
-                return direction.getX();
-            case Y :
-                return direction.getY();
-            case Z :
-                return direction.getZ();
-            default :
-                throw new IllegalStateException("Not capable of handling the " + name() + " axis!");
-        }
-    }
-
-    public AxisDirection getDirection(final Vector3d vector3d) {
-        final double component = getComponent(vector3d);
-        if (component > 0) {
-            return AxisDirection.PLUS;
-        } else if (component == 0) {
-            return AxisDirection.ZERO;
-        } else {
-            return AxisDirection.MINUS;
-        }
-    }
-
-    /**
-     * Gets the Vector3d backing this axis.
-     *
-     * @return the Vector3d
-     */
-    public Vector3d toVector3d() {
-        return direction;
-    }
-
-    /**
-     * Gets the Vector3d with the given {@link AxisDirection}.
-     *
-     * @param axisDirection The direction along the axis.
-     * @return the Vector3d
-     */
-    public Vector3d toVector3dWithDirection(final AxisDirection axisDirection) {
-        return direction.mul(axisDirection.getSignum());
-    }
-
     /**
      * Gets the closest horizontal direction from the given vector. If the
      * vector is the 0-Vector, this method returns {@link #X}. If the vector has
@@ -111,6 +64,71 @@ public enum Axis {
         } else {
             return X;
         }
+    }
+
+    /**
+     * Returns whether the given vector is along this axis.
+     *
+     * @param vector The vector to test
+     * @return True if it is along this axis
+     */
+    public boolean isVectorAlongAxis(final Vector3d vector) {
+        return vector.abs().normalize().sub(this.direction).lengthSquared() == 0;
+    }
+
+    /**
+     * Gets the component of the vector denoted by this axis.
+     *
+     * @param vector3d The vector
+     * @return The value of the component
+     */
+    public double getComponent(final Vector3d vector3d) {
+        switch (this) {
+            case X:
+                return this.direction.getX();
+            case Y:
+                return this.direction.getY();
+            case Z:
+                return this.direction.getZ();
+            default:
+                throw new IllegalStateException("Not capable of handling the " + name() + " axis!");
+        }
+    }
+
+    /**
+     * Gets the direction of the vector's component denoted by this axis.
+     *
+     * @param vector3d The vector
+     * @return The direction of the component
+     */
+    public AxisDirection getDirection(final Vector3d vector3d) {
+        final double component = getComponent(vector3d);
+        if (component > 0) {
+            return AxisDirection.PLUS;
+        } else if (component == 0) {
+            return AxisDirection.ZERO;
+        } else {
+            return AxisDirection.MINUS;
+        }
+    }
+
+    /**
+     * Gets the Vector3d backing this axis.
+     *
+     * @return the Vector3d
+     */
+    public Vector3d toVector3d() {
+        return this.direction;
+    }
+
+    /**
+     * Gets the Vector3d with the given {@link AxisDirection}.
+     *
+     * @param axisDirection The direction along the axis.
+     * @return the Vector3d
+     */
+    public Vector3d toVector3dWithDirection(final AxisDirection axisDirection) {
+        return this.direction.mul(axisDirection.getSignum());
     }
 
 }

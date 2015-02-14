@@ -33,7 +33,7 @@ import org.spongepowered.api.entity.explosive.IgnitableExplosive;
 public interface Creeper extends Monster, IgnitableExplosive {
 
     /**
-     * Gets whether or not the creeper has been struck by lightning.
+     * Gets whether or not the creeper is powered.
      * <p>Powered creepers may affect the overall blast radius/size.</p>
      *
      * @return If the creeper is powered

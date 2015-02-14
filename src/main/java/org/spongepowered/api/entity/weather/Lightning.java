@@ -30,10 +30,4 @@ package org.spongepowered.api.entity.weather;
  */
 public interface Lightning extends WeatherEffect {
 
-    /**
-     * Returns whether this lightning strike is an effect and doesn't deal damage.
-     *
-     * @return Whether this strike is an effect
-     */
-    boolean isEffect();
 }

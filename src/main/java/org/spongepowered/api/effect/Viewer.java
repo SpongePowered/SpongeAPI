@@ -25,7 +25,6 @@
 package org.spongepowered.api.effect;
 
 import com.flowpowered.math.vector.Vector3d;
-
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
 
@@ -52,8 +51,8 @@ public interface Viewer {
      *
      * @param particleEffect The particle effect to spawn
      * @param position The position at which to spawn the particle effect
-     * @param radius The radius around the position where the particles can
-     * be seen by players
+     * @param radius The radius around the position where the particles can be
+     *            seen by players
      */
     void spawnParticles(ParticleEffect particleEffect, Vector3d position, int radius);
 

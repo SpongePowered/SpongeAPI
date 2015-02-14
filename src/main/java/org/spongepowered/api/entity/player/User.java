@@ -26,7 +26,10 @@
 package org.spongepowered.api.entity.player;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
 
@@ -36,18 +39,26 @@ import java.util.Date;
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
-public interface User extends Identifiable, ArmorEquipable, DataSerializable {
+public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject {
+
+    /**
+     * Gets the associated {@link GameProfile} of this player.
+     *
+     * @return The user's profile
+     */
+    GameProfile getProfile();
 
     /**
      * Gets the player's last known username.
-     * 
+     *
      * @return The player's last known username
      */
+    @Override
     String getName();
 
     /**
      * Checks if this player has joined the server before.
-     * 
+     *
      * @return True If player has joined before
      */
     boolean hasJoinedBefore();
@@ -76,14 +87,14 @@ public interface User extends Identifiable, ArmorEquipable, DataSerializable {
 
     /**
      * Checks if this player is banned.
-     * 
+     *
      * @return True If banned
      */
     boolean isBanned();
 
     /**
      * Checks if this player is whitelisted.
-     * 
+     *
      * @return True If whitelisted
      */
     boolean isWhitelisted();

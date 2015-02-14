@@ -34,6 +34,13 @@ import javax.annotation.Nullable;
 public interface Merchant {
 
     /**
+     * Gets the currently trading customer with this merchant.
+     *
+     * @return The currently trading customer if available
+     */
+    Optional<Human> getCustomer();
+
+    /**
      * Sets the currently trading customer with this merchant.
      * <p>If the human entity is available, a new trading window may open
      * with this merchant.</p>
@@ -41,13 +48,6 @@ public interface Merchant {
      * @param human The human to trade with
      */
     void setCustomer(@Nullable Human human);
-
-    /**
-     * Gets the currently trading customer with this merchant.
-     *
-     * @return The currently trading customer if available
-     */
-    Optional<Human> getCustomer();
 
     /**
      * Gets an immutable list of {@link TradeOffer}s that this merchant
@@ -58,13 +58,6 @@ public interface Merchant {
     List<TradeOffer> getOffers();
 
     /**
-     * Adds the given offer to the list of offers provided by this merchant.
-     *
-     * @param offer The offer to add
-     */
-    void addOffer(TradeOffer offer);
-
-    /**
      * Replaces the entire list of trade offers this merchant can trade
      * with a {@link org.spongepowered.api.entity.living.Human}.
      * <p>When a merchant is in the middle of a trade, the offers may change
@@ -73,5 +66,12 @@ public interface Merchant {
      * @param offers The offers to set
      */
     void setOffers(List<TradeOffer> offers);
+
+    /**
+     * Adds the given offer to the list of offers provided by this merchant.
+     *
+     * @param offer The offer to add
+     */
+    void addOffer(TradeOffer offer);
 
 }

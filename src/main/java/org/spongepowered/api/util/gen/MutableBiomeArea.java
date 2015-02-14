@@ -34,7 +34,7 @@ public interface MutableBiomeArea extends BiomeArea {
 
     /**
      * Sets the biome in the buffer at the given position.
-     * 
+     *
      * @param x The X position
      * @param z The Z position
      * @param biome The new biome
@@ -43,16 +43,16 @@ public interface MutableBiomeArea extends BiomeArea {
 
     /**
      * Fills the entire buffer with the given biome.
-     * 
+     *
      * @param biome The biome to fill the area with
      */
     void fill(BiomeType biome);
-    
+
     /**
      * Returns an immutable copy of this biome buffer.
-     * 
+     *
      * @return An immutable copy
      */
     ImmutableBiomeArea getImmutableClone();
-    
+
 }

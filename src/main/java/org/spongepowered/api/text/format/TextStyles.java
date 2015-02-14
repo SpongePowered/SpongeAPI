@@ -33,25 +33,22 @@ import java.util.List;
  */
 public final class TextStyles {
 
-    static final TextFormatFactory factory = null;
-
-    private TextStyles() {
-    }
-
     public static final TextStyle.Base OBFUSCATED = null;
     public static final TextStyle.Base BOLD = null;
     public static final TextStyle.Base STRIKETHROUGH = null;
     public static final TextStyle.Base UNDERLINE = null;
     public static final TextStyle.Base ITALIC = null;
-
     // NONE and ZERO represent the same thing, the "zero" text style.
     public static final TextStyle NONE = new TextStyle();
     public static final TextStyle ZERO = NONE;
-
     /**
      * Resets all currently applied text styles to their default values.
      */
     public static final TextStyle.Base RESET = null;
+    static final TextFormatFactory factory = null;
+
+    private TextStyles() {
+    }
 
     /**
      * Gets the {@link TextStyle} with the specified name.

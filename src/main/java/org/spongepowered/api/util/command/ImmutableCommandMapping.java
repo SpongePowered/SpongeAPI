@@ -75,25 +75,25 @@ public class ImmutableCommandMapping implements CommandMapping {
 
     @Override
     public String getPrimaryAlias() {
-        return primary;
+        return this.primary;
     }
 
     @Override
     public Set<String> getAllAliases() {
-        return Collections.unmodifiableSet(aliases);
+        return Collections.unmodifiableSet(this.aliases);
     }
 
     @Override
     public CommandCallable getCallable() {
-        return callable;
+        return this.callable;
     }
 
     @Override
     public String toString() {
         return "ImmutableCommandMapping{"
-               + "primary='" + primary + '\''
-               + ", aliases=" + aliases
-               + ", callable=" + callable
-               + '}';
+                + "primary='" + this.primary + '\''
+                + ", aliases=" + this.aliases
+                + ", callable=" + this.callable
+                + '}';
     }
 }

@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.world;
 
-import com.flowpowered.math.vector.Vector2i;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.world.ChunkManager;
 
@@ -44,5 +44,5 @@ public interface ChunkForcedEvent extends GameEvent {
      *
      * @return The coordinated of the added chunk
      */
-    Vector2i getChunkCoords();
+    Vector3i getChunkCoords();
 }

@@ -88,7 +88,7 @@ public class InvalidUsageException extends CommandException {
      * @return The command
      */
     public CommandCallable getCommand() {
-        return command;
+        return this.command;
     }
 
     /**
@@ -97,7 +97,7 @@ public class InvalidUsageException extends CommandException {
      * @return Show full usage
      */
     public boolean isFullHelpSuggested() {
-        return fullHelpSuggested;
+        return this.fullHelpSuggested;
     }
 
 }

@@ -36,8 +36,17 @@ public enum AxisDirection {
         this.signum = signum;
     }
 
+    /**
+     * Gets the signum for this direction.
+     * <p>
+     * A positive direction has a value of 1, negative direction -1 and 0 for no
+     * direction.
+     * </p>
+     *
+     * @return The signum
+     */
     public int getSignum() {
-        return signum;
+        return this.signum;
     }
 
 }

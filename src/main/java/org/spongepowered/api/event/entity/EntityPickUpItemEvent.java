@@ -26,6 +26,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.util.event.Cancellable;
 
 import java.util.Collection;
@@ -37,8 +38,8 @@ public interface EntityPickUpItemEvent extends EntityEvent, Cancellable {
 
     /**
      * Gets the items as an {@link Entity} that the entity is picking up.
-     * 
+     *
      * @return The items as entities
      */
-    Collection<Entity> getItems();
+    Collection<Item> getItems();
 }
