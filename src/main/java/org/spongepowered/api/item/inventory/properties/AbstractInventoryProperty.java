@@ -64,6 +64,8 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
 
     /**
      * Initialise key to default, and value to the supplied value.
+     *
+     * @param value The value of the property
      */
     protected AbstractInventoryProperty(@Nullable V value) {
         this(null, value);
@@ -72,6 +74,9 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     /**
      * Initialise the value to the specified value and use the specified
      * operator, use the default key.
+     *
+     * @param value The property value
+     * @param op The operator for the property
      */
     protected AbstractInventoryProperty(@Nullable V value, Operator op) {
         this(null, value, op);
@@ -79,6 +84,9 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
 
     /**
      * Use the specified key and value and set operator to the default.
+     *
+     * @param key The key identifying the property
+     * @param value The property value
      */
     protected AbstractInventoryProperty(@Nullable K key, @Nullable V value) {
         this(key, value, null);
@@ -177,6 +185,9 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     /**
      * Convenience method to avoid null-checking. Returns 0 if <em>value</em> is
      * null.
+     *
+     * @param value The value to get the hashcode of
+     * @return The hashcode value
      */
     protected int hashCodeOf(Object value) {
         return value != null ? value.hashCode() : 0;

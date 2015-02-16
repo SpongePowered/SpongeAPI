@@ -39,6 +39,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.data.BrewingStand;
 import org.spongepowered.api.block.data.Furnace;
+import org.spongepowered.api.block.data.Lockable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Item;
@@ -123,6 +124,7 @@ import org.spongepowered.api.event.world.GameRuleChangeEvent;
 import org.spongepowered.api.event.world.WorldLoadEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.types.TileInventory;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.Direction;
@@ -1478,9 +1480,14 @@ public final class SpongeEventFactory {
      * @param sourceItems The {@link ItemStack}s being modified
      * @param fuelSource The {@link ItemStack} used as the reagent to modify the source items
      * @param brewedItems The {@link ItemStack}s produced as a result
+     * @param cause The cause
+     * @param inventory The inventory of the brewing stand
+     * @param blockLoc The location of the brewing stand
      * @return A new instance of the event
      */
-    public static BrewingStandBrewEvent createBrewingStandBrewEvent(Game game, BrewingStand brewingStand, List<ItemStack> sourceItems, ItemStack fuelSource, List<ItemStack> brewedItems) {
+    public static BrewingStandBrewEvent createBrewingStandBrewEvent(Game game, BrewingStand brewingStand, List<ItemStack> sourceItems,
+                                                                    ItemStack fuelSource, List<ItemStack> brewedItems, Cause cause,
+                                                                    TileInventory<Lockable> inventory, BlockLoc blockLoc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tileEntity", brewingStand);
@@ -1488,6 +1495,10 @@ public final class SpongeEventFactory {
         values.put("sourceItems", sourceItems);
         values.put("fuelSource", fuelSource);
         values.put("brewedItems", brewedItems);
+        values.put("results", brewedItems);
+        values.put("inventory", inventory);
+        values.put("cause", Optional.fromNullable(cause));
+        values.put("block", blockLoc);
         return createEvent(BrewingStandBrewEvent.class, values);
     }
 
@@ -1498,14 +1509,22 @@ public final class SpongeEventFactory {
      * @param furnace The {@link Furnace} involved in this event
      * @param burnedItem The {@link ItemStack} consumed for fuel
      * @param remainingFuel The {@link ItemStack} representing the remaining fuel, can be null
+     * @param cause The cause
+     * @param inventory The inventory of the furnace
+     * @param loc The location of the furnace
      * @return A new instance of the event
      */
-    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(Game game, Furnace furnace, ItemStack burnedItem, ItemStack remainingFuel) {
+    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(Game game, Furnace furnace, ItemStack burnedItem, ItemStack remainingFuel,
+                                                                        Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tileEntity", furnace);
         values.put("burnedItem", burnedItem);
         values.put("remainingFuel", Optional.fromNullable(remainingFuel));
+        values.put("result", Optional.fromNullable(remainingFuel));
+        values.put("inventory", inventory);
+        values.put("cause", Optional.fromNullable(cause));
+        values.put("block", loc);
         return createEvent(FurnaceConsumeFuelEvent.class, values);
     }
 
@@ -1516,14 +1535,22 @@ public final class SpongeEventFactory {
      * @param furnace The {@link Furnace} involved in this event
      * @param cookedItem The {@link ItemStack} resulting from smelting the source item
      * @param sourceItem The {@link ItemStack} smelted to create the cooked item
+     * @param cause The cause
+     * @param inventory The inventory of the furnace
+     * @param loc The location of the furnace
      * @return A new instance of the event
      */
-    public static FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(Game game, Furnace furnace, ItemStack cookedItem, ItemStack sourceItem) {
+    public static FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(Game game, Furnace furnace, ItemStack cookedItem, ItemStack sourceItem,
+                                                                    Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tileEntity", furnace);
         values.put("cookedItem", cookedItem);
         values.put("sourceItem", sourceItem);
+        values.put("result", Optional.fromNullable(cookedItem));
+        values.put("cause", Optional.fromNullable(cause));
+        values.put("inventory", inventory);
+        values.put("block", loc);
         return createEvent(FurnaceSmeltItemEvent.class, values);
     }
 

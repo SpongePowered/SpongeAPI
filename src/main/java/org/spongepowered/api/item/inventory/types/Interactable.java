@@ -41,6 +41,6 @@ public interface Interactable<T extends Entity> extends Inventory {
      * @param entity the Entity wishing to interact with this Inventory
      * @return true if the Entity is able to interact with this Inventory
      */
-    public boolean canInteractWith(T entity);
+    boolean canInteractWith(T entity);
     
 }
