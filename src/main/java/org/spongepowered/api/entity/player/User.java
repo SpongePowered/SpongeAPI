@@ -29,9 +29,9 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.persistence.DataSerializable;
-import org.spongepowered.api.item.inventory.Carrier;
 
 import org.spongepowered.api.util.Identifiable;
 

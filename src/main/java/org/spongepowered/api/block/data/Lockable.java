@@ -55,5 +55,5 @@ public interface Lockable extends TileEntity, Carrier {
      * @see org.spongepowered.api.item.inventory.Carrier#getInventory()
      */
     @Override
-    public TileInventory<Lockable> getInventory();
+    TileInventory<Lockable> getInventory();
 }
