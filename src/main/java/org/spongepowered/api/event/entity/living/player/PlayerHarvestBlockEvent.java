@@ -22,15 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+
+package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.event.entity.living.human.HumanHarvestBlockEvent;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * Called when a {@link Player} harvests a {@link BlockLoc}.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent {
+public interface PlayerHarvestBlockEvent extends PlayerEvent, HumanHarvestBlockEvent {
 
 }
