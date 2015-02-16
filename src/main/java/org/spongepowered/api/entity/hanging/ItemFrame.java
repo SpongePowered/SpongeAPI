@@ -25,9 +25,8 @@
 package org.spongepowered.api.entity.hanging;
 
 import com.google.common.base.Optional;
-
-import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.rotation.Rotation;
 
 import javax.annotation.Nullable;
 
