@@ -30,8 +30,9 @@ import org.spongepowered.api.entity.EnderCrystal;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.monster.Boss;
 
-import javax.annotation.Nullable;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents an Ender Dragon.

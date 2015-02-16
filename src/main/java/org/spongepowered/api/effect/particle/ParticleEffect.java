@@ -25,7 +25,6 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3f;
-
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.awt.Color;

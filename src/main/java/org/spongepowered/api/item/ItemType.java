@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 
 /**
@@ -44,7 +45,7 @@ public interface ItemType extends Translatable {
 
     /**
      * Get the default maximum quantity for
-     * {@link org.spongepowered.api.item.inventory.ItemStack}s of this item.
+     * {@link ItemStack}s of this item.
      *
      * @return Max stack quantity
      */
