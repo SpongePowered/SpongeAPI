@@ -35,24 +35,75 @@ import org.spongepowered.api.util.inventory.Coerce;
  */
 public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
+    /**
+     * Create a new SlotPos property for matching the specified value.
+     * 
+     * @param value the value to match
+     */
     public SlotPos(Vector2i value) {
         super(value);
     }
 
+    /**
+     * Create a new SlotPos property for matching the specified value.
+     * 
+     * @param x slot x position
+     * @param y slot y position
+     */
     public SlotPos(int x, int y) {
         super(new Vector2i(x, y));
     }
 
+    /**
+     * Create a new SlotPos property for matching the specified value with the
+     * specified operator.
+     * 
+     * @param value the value to match
+     * @param operator the operator to use when comparing with other properties
+     */
     public SlotPos(Vector2i value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Create a new SlotPos property for matching the specified value with the
+     * specified operator.
+     * 
+     * @param x slot x position
+     * @param y slot y position
+     * @param operator the operator to use when comparing with other properties
+     */
     public SlotPos(int x, int y, Operator operator) {
         super(new Vector2i(x, y), operator);
     }
 
+    /**
+     * Create a new SlotPos property for matching the specified value with the
+     * specified operator.
+     * 
+     * @param value the value to match
+     * @param operator the operator to use when comparing with other properties
+     */
     public SlotPos(Object value, Operator operator) {
         super(Coerce.toVector2i(value), operator);
+    }
+
+    /**
+     * Get the X position of this slot within the queried parent.
+     * 
+     * @return slot x coordinate
+     */
+    public int getX() {
+        return this.getValue().getX();
+    }
+
+    /**
+     * Get the Y position of this slot within the queried parent.
+     * 
+     * @return slot y coordinate
+     */
+    public int getY() {
+        return this.getValue().getY();
     }
 
     /* (non-Javadoc)
@@ -69,7 +120,10 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with equal
-     * value
+     * value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotPos of(Object value) {
         return new SlotPos(value, Operator.EQUAL);
@@ -77,7 +131,11 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with equal
-     * value
+     * value.
+     * 
+     * @param x the x position of the slot to match
+     * @param y the y position of the slot to match
+     * @return new property
      */
     public static SlotPos of(int x, int y) {
         return new SlotPos(new Vector2i(x, y), Operator.EQUAL);
@@ -85,7 +143,10 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with unequal
-     * value
+     * value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotPos not(Object value) {
         return new SlotPos(value, Operator.NOTEQUAL);
@@ -93,7 +154,10 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with value
-     * greater than this value
+     * greater than this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotPos greaterThan(Object value) {
         return new SlotPos(value, Operator.GREATER);
@@ -101,7 +165,10 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with value
-     * greater than or equal to this value
+     * greater than or equal to this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotPos greaterThanOrEqual(Object value) {
         return new SlotPos(value, Operator.GEQUAL);
@@ -109,7 +176,10 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with value
-     * less than this value
+     * less than this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotPos lessThan(Object value) {
         return new SlotPos(value, Operator.LESS);
@@ -117,24 +187,13 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an SlotPos property which matches SlotPos properties with value
-     * less than or equal to this value
+     * less than or equal to this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotPos lessThanOrEqual(Object value) {
         return new SlotPos(value, Operator.LEQUAL);
-    }
-
-    /**
-     * Get the X position of this slot within the queried parent.
-     */
-    public int getX() {
-        return this.getValue().getX();
-    }
-
-    /**
-     * Get the Y position of this slot within the queried parent.
-     */
-    public int getY() {
-        return this.getValue().getY();
     }
 
 }

@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ShapelessRecipeBuilder {
 
     /**
-     * Adds an ingredient to the requirements of this ShapelessRecipe
+     * Adds an ingredient to the requirements of this ShapelessRecipe.
      *
      * @param ingredient The ingredient
      * @return fluent interface
@@ -52,7 +52,6 @@ public interface ShapelessRecipeBuilder {
      * Builds a new ShapelessRecipe from this builder.
      *
      * @return A new ShapelessRecipe
-     * @return fluent interface
      */
     ShapelessRecipe build();
 }

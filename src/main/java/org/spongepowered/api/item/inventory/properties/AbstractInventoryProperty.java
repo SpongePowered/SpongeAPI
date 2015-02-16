@@ -45,12 +45,12 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     protected final Operator operator;
 
     /**
-     * The key 
+     * The key.
      */
     private final K key;
 
     /**
-     * The value
+     * The value.
      */
     protected V value;
 
@@ -63,7 +63,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     }
 
     /**
-     * Initialise key to default, and value to the supplied value
+     * Initialise key to default, and value to the supplied value.
      */
     protected AbstractInventoryProperty(@Nullable V value) {
         this(null, value);
@@ -71,14 +71,14 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
 
     /**
      * Initialise the value to the specified value and use the specified
-     * operator, use the default key
+     * operator, use the default key.
      */
     protected AbstractInventoryProperty(@Nullable V value, Operator op) {
         this(null, value, op);
     }
 
     /**
-     * Use the specified key and value and set operator to the default
+     * Use the specified key and value and set operator to the default.
      */
     protected AbstractInventoryProperty(@Nullable K key, @Nullable V value) {
         this(key, value, null);

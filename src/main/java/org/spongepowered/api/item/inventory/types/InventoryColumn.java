@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.types;
 
 /**
- * Represents a column within a {@link GridInventory}
+ * Represents a column within a {@link GridInventory}.
  */
 public interface InventoryColumn extends Inventory2D {
 

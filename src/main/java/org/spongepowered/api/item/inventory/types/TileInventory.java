@@ -31,12 +31,12 @@ import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
 
 /**
- * An {@link Inventory} which is owned by a {@link TileEntity}. In Sponge, a TE
- * is never seen as an Inventory itself and Tile Entities are instead considered
- * to "own" their own Inventory (much like equipable entities do). Underlying
- * implementations are of course completely at liberty to return the TE object
- * directly but as far as consumers are concerned the TE instance and the
- * inventory are separate things.
+ * An {@link org.spongepowered.api.item.inventory.Inventory} which is owned by a
+ * {@link TileEntity}. In Sponge, a TE is never seen as an Inventory itself and
+ * Tile Entities are instead considered to "own" their own Inventory (much like
+ * equipable entities do). Underlying implementations are of course completely
+ * at liberty to return the TE object directly but as far as consumers are
+ * concerned the TE instance and the inventory are separate things.
  *
  * <p>This is intented to provide a consistent way of dealing with inventories
  * regardless of the "owner" of the inventory. Thus, any code capable of dealing

@@ -31,24 +31,44 @@ import org.spongepowered.api.util.inventory.Coerce;
 import java.util.Collection;
 import java.util.List;
 
+
 /**
- * A property type intended for use with {@link
- * org.spongepowered.api.item.inventory.slots.InputSlot}s in order to query for
- * slots which can accept items of the specified type. It is intended that the
- * semantics of the {@link #equals} will be such that the method will return
- * true if the other property contains <em>any</em> item present in this
+ * A property type intended for use with
+ * {@link org.spongepowered.api.item.inventory.slots.InputSlot}s in order to
+ * query for slots which can accept items of the specified type. It is intended
+ * that the semantics of the {@link #equals} will be such that the method will
+ * return true if the other property contains <em>any</em> item present in this
  * property's collection.
  */
 public class AcceptsItems extends AbstractInventoryProperty<String, Collection<ItemType>> {
 
+    /**
+     * Create a new AcceptsItems property with the supplied value.
+     * 
+     * @param value Item types to accept
+     */
     public AcceptsItems(Collection<ItemType> value) {
         super(value);
     }
 
+    /**
+     * Create a new AcceptsItems property with the supplied value and operator.
+     * 
+     * @param value Item types to accept
+     * @param operator Logical operator to apply when comparing with other
+     *      properties
+     */
     public AcceptsItems(Collection<ItemType> value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Create a new AcceptsItems property with the supplied value and operator.
+     * 
+     * @param value Item types to accept
+     * @param operator Logical operator to apply when comparing with other
+     *      properties
+     */
     public AcceptsItems(Object value, Operator operator) {
         super(Coerce.toListOf(value, ItemType.class), operator);
     }
@@ -93,7 +113,10 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
 
     /**
      * Create an AcceptsItems property which matches AcceptsItems properties
-     * with containing one or more of the supplied values
+     * with containing one or more of the supplied values.
+     * 
+     * @param value {@link ItemType}s to accept
+     * @return new property
      */
     public static AcceptsItems of(Object... value) {
         return new AcceptsItems(value, Operator.EQUAL);

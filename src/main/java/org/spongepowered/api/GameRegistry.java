@@ -50,6 +50,7 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
@@ -60,13 +61,11 @@ import org.spongepowered.api.world.biome.BiomeType;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.UUID;
-
-import org.spongepowered.api.item.recipe.RecipeRegistry;
 
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
@@ -539,14 +538,14 @@ public interface GameRegistry {
     Collection<BannerPatternShape> getBannerPatternShapes();
 
     /**
-     * Retrieves the GameDictionary (item dictionary) for this GameRegistry
+     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
      *
      * @return The item dictionary
      */
     GameDictionary getGameDictionary();
 
     /**
-     * Retrieves the RecipeRegistry for this GameRegistry
+     * Retrieves the RecipeRegistry for this GameRegistry.
      *
      * @return The recipe registry
      */

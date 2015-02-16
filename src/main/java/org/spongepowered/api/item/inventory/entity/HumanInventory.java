@@ -32,13 +32,16 @@ import org.spongepowered.api.item.inventory.types.CarriedInventory;
  * guarantee that (at a minimum) the following subinventory types can be queried
  * for:
  *
- * <ul><li>{@link
- * org.spongepowered.api.item.inventory.crafting.CraftingInventory}</li></ul>
+ * <ul><li>
+ *   {@link org.spongepowered.api.item.inventory.crafting.CraftingInventory}
+ * </li></ul>
  */
 public interface HumanInventory extends CarriedInventory<Human> {
 
     /**
-     * Get the hotbar inventory
+     * Get the hotbar inventory.
+     * 
+     * @return the hotbar
      */
     Hotbar getHotbar();
     

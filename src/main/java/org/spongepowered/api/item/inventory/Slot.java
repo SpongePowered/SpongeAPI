@@ -33,6 +33,8 @@ public interface Slot extends Inventory {
      * Get the size of the stack in this slot. Essentially the same as calling
      * slot.peek().getQuantity(); but faster because it avoids the Optional
      * boxing.
+     * 
+     * @return the stack size
      */
     int getStackSize();
 

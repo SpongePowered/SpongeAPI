@@ -25,25 +25,45 @@
 package org.spongepowered.api.item.inventory.properties;
 
 /**
- * An inventory property which represents an index within an ordered inventory
+ * An inventory property which represents an index within an ordered inventory.
  */
 public class SlotIndex extends IntProperty {
 
-    public SlotIndex(int value, Operator operator) {
-        super(value, operator);
-    }
-
+    /**
+     * Creates a new SlotIndex property for the specified value.
+     * 
+     * @param value value to match
+     */
     public SlotIndex(int value) {
         super(value);
     }
 
+    /**
+     * Creates a new SlotIndex property for the specified value and operator.
+     * 
+     * @param value value to match
+     * @param operator the operator to use when comparing with other properties
+     */
+    public SlotIndex(int value, Operator operator) {
+        super(value, operator);
+    }
+
+    /**
+     * Creates a new SlotIndex property for the specified value and operator.
+     * 
+     * @param value value to match
+     * @param operator the operator to use when comparing with other properties
+     */
     public SlotIndex(Object value, Operator operator) {
         super(value, operator);
     }
 
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
-     * equal value
+     * equal value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotIndex of(Object value) {
         return new SlotIndex(value, Operator.EQUAL);
@@ -51,7 +71,10 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
-     * unequal value
+     * unequal value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotIndex not(Object value) {
         return new SlotIndex(value, Operator.NOTEQUAL);
@@ -59,7 +82,10 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
-     * value greater than this value
+     * value greater than this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotIndex greaterThan(Object value) {
         return new SlotIndex(value, Operator.GREATER);
@@ -67,7 +93,10 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
-     * value greater than or equal to this value
+     * value greater than or equal to this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotIndex greaterThanOrEqual(Object value) {
         return new SlotIndex(value, Operator.GEQUAL);
@@ -75,7 +104,10 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
-     * value less than this value
+     * value less than this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotIndex lessThan(Object value) {
         return new SlotIndex(value, Operator.LESS);
@@ -83,7 +115,10 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
-     * value less than or equal to this value
+     * value less than or equal to this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotIndex lessThanOrEqual(Object value) {
         return new SlotIndex(value, Operator.LEQUAL);
