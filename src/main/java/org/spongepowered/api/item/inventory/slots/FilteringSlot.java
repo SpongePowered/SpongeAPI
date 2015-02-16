@@ -29,14 +29,17 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 
 /**
- * An inventory slot which can only accept certain types of item
+ * An inventory slot which can only accept certain types of item.
  */
 public interface FilteringSlot extends Slot {
 
     /**
      * Check whether the supplied item can be inserted into this slot. Returning
      * false from this method implies that {@link #offer} <b>would always return
-     * false</b> for this item. 
+     * false</b> for this item.
+     * 
+     * @param stack ItemStack to check
+     * @return true if the stack is valid for this slot
      */
     boolean isValidItem(ItemStack stack);
 
@@ -44,6 +47,9 @@ public interface FilteringSlot extends Slot {
      * Check whether the supplied item can be inserted into this slot. Returning
      * false from this method implies that {@link #offer} <b>would always return
      * false</b> for items of this type. 
+     * 
+     * @param type ItemType to check
+     * @return true if the item type is valid for this slot
      */
     boolean isValidItem(ItemType type);
 

@@ -29,7 +29,8 @@ import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 
 /**
- * An {@link Inventory} which is owned or otherwise carried by a {@link Carrier}
+ * An {@link Inventory} which is owned or otherwise carried by a
+ * {@link Carrier}.
  *
  * @param <C> Carrier type
  */

@@ -33,37 +33,64 @@ import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult
 
 /**
  * An Ordered Inventory contains {@link Slot}s in some pre-determined order with
- * indices between 0 and 1-{@link #capacity}
+ * indices between 0 and 1-{@link #capacity}.
  */
 public interface OrderedInventory extends Inventory {
 
     /**
-     * Get and remove the stack at the supplied index in this Inventory
+     * Get and remove the stack at the supplied index in this Inventory.
+     * 
+     * @see Inventory#poll()
+     * @param index slot index to query
+     * @return matching stacks, as per the semantics of {@link Inventory#poll()}  
      */
     Optional<ItemStack> poll(SlotIndex index);
 
     /**
-     * Get and remove the stack at the supplied index in this Inventory
+     * Get and remove the stack at the supplied index in this Inventory.
+     * 
+     * @see Inventory#poll()
+     * @param index slot index to query
+     * @param limit item limit
+     * @return matching stacks, as per the semantics of {@link Inventory#poll()}  
      */
     Optional<ItemStack> poll(SlotIndex index, int limit);
 
     /**
-     * Get without removing the stack at the supplied index in this Inventory
+     * Get without removing the stack at the supplied index in this Inventory.
+     * 
+     * @see Inventory#peek()
+     * @param index slot index to query
+     * @return matching stacks, as per the semantics of {@link Inventory#peek()}  
      */
     Optional<ItemStack> peek(SlotIndex index);
 
     /**
-     * Get without removing the stack at the supplied index in this Inventory
+     * Get without removing the stack at the supplied index in this Inventory.
+     * 
+     * @see Inventory#peek()
+     * @param index slot index to query
+     * @param limit item limit
+     * @return matching stacks, as per the semantics of {@link Inventory#peek()}  
      */
     Optional<ItemStack> peek(SlotIndex index, int limit);
 
     /**
-     * Set the item in the specified slot 
+     * Set the item in the specified slot. 
+     * 
+     * @see Inventory#set(ItemStack)
+     * @param index Slot index to set
+     * @param stack Stack to insert
+     * @return matching stacks, as per the semantics of {@link Inventory#set}  
      */
     InventoryOperationResult set(SlotIndex index, ItemStack stack);
 
     /**
-     * Get the {@link Slot} at the specified index
+     * Get the {@link Slot} at the specified position.
+     * 
+     * @param index Slot index to retrieve
+     * @return slot at the specified position, or {@link Optional#absent()} if
+     *      no matching slot  
      */
     Optional<Slot> getSlot(SlotIndex index);
     

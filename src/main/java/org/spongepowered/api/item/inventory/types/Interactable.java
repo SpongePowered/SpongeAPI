@@ -29,14 +29,17 @@ import org.spongepowered.api.item.inventory.Inventory;
 
 /**
  * Interface for inventories which may be interacted with by specific types of
- * Entity 
+ * Entity.
  *
  * @param <T> Base type of entity which may interact with this object  
  */
 public interface Interactable<T extends Entity> extends Inventory {
 
     /**
-     * Get whether the specified entity can interact with this object
+     * Get whether the specified entity can interact with this object.
+     * 
+     * @param entity the Entity wishing to interact with this Inventory
+     * @return true if the Entity is able to interact with this Inventory
      */
     public boolean canInteractWith(T entity);
     

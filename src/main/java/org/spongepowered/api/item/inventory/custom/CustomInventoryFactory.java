@@ -25,12 +25,14 @@
 package org.spongepowered.api.item.inventory.custom;
 
 /**
- * Factory interface for custom inventories
+ * Factory interface for custom inventories.
  */
 public interface CustomInventoryFactory {
 
     /**
-     * Get a new builder for a custom inventory
+     * Get a new builder for a custom inventory.
+     * 
+     * @return a new {@link CustomInventoryBuilder}
      */
     CustomInventoryBuilder builder();
 

@@ -35,14 +35,36 @@ import org.spongepowered.api.util.inventory.Coerce;
  */
 public class EquipmentSlotType extends AbstractInventoryProperty<String, EquipmentType> {
 
+    /**
+     * Create a new EquipmentSlotType property to match items of the specified
+     * value.
+     * 
+     * @param value EquipmentType to match
+     */
     public EquipmentSlotType(EquipmentType value) {
         super(value);
     }
 
+    /**
+     * Create a new EquipmentSlotType property to match items of the specified
+     * value.
+     * 
+     * @param value EquipmentType to match
+     * @param operator logical operator to apply when comparing with other
+     *      properties
+     */
     public EquipmentSlotType(EquipmentType value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Create a new EquipmentSlotType property to match items of the specified
+     * value.
+     * 
+     * @param value EquipmentType to match
+     * @param operator logical operator to apply when comparing with other
+     *      properties
+     */
     public EquipmentSlotType(Object value, Operator operator) {
         super(Coerce.<EquipmentType>toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
     }
@@ -64,7 +86,10 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
 
     /**
      * Create an EquipmentSlotType property which matches EquipmentSlotType
-     * properties with equal value
+     * properties with equal value.
+     * 
+     * @param value EquipmentType to match
+     * @return new property
      */
     public static EquipmentSlotType of(Object value) {
         return new EquipmentSlotType(value, Operator.EQUAL);
@@ -72,7 +97,10 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
 
     /**
      * Create an EquipmentSlotType property which matches EquipmentSlotType
-     * properties with unequal value
+     * properties with unequal value.
+     * 
+     * @param value EquipmentType to match
+     * @return new property
      */
     public static EquipmentSlotType not(Object value) {
         return new EquipmentSlotType(value, Operator.NOTEQUAL);

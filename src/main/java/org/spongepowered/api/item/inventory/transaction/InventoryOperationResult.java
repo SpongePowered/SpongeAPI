@@ -31,7 +31,7 @@ import java.util.Collection;
 
 /**
  * An interface for structs returned by inventory operations which encapsulate
- * the result of an attempted operation
+ * the result of an attempted operation.
  */
 public interface InventoryOperationResult {
 
@@ -71,19 +71,25 @@ public interface InventoryOperationResult {
     }
 
     /**
-     * Get the type of result
+     * Get the type of result.
+     * 
+     * @return the type of result
      */
     Type getType();
 
     /**
      * If items were supplied to the operation, this collection will return any
      * items which were rejected by the target inventory.
+     * 
+     * @return any items which were rejected as part of the inventory operation
      */
     Optional<Collection<ItemStack>> getRejectedItems();
 
     /**
      * If the operation replaced items in the inventory, this collection returns
      * the ItemStacks which were replaced.
+     * 
+     * @return any items which were ejected as part of the inventory operation
      */
     Optional<Collection<ItemStack>> getReplacedItems();
 

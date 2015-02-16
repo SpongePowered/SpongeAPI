@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.slots;
 
 /**
- * A slot which consumes fuel of some kind for smelting or other purposes
+ * A slot which consumes fuel of some kind for smelting or other purposes.
  */
 public interface FuelSlot extends InputSlot {
 

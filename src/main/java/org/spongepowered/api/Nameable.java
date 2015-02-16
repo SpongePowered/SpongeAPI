@@ -27,12 +27,12 @@ package org.spongepowered.api;
 import org.spongepowered.api.text.translation.Translatable;
 
 /**
- * An object which has a name
+ * An object which has a name.
  */
 public interface Nameable {
 
     /**
-     * Gets the human-readable name of this object
+     * Gets the human-readable name of this object.
      *
      * @return The name of this object
      */

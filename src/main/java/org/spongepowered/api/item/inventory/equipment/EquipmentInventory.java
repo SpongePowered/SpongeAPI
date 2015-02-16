@@ -25,7 +25,9 @@
 package org.spongepowered.api.item.inventory.equipment;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.properties.EquipmentSlotType;
@@ -41,69 +43,121 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
 
     /**
      * Get and remove the stack for the specified equipment type in this
-     * Inventory
+     * Inventory.
+     * 
+     * @see Inventory#poll()
+     * @param equipmentType Type of equipment slot to query for
+     * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
      */
     Optional<ItemStack> poll(EquipmentSlotType equipmentType);
 
     /**
      * Get and remove the items from the stack for the specified equipment type
-     * in this Inventory
+     * in this Inventory.
+     * 
+     * @see Inventory#poll()
+     * @param equipmentType Type of equipment slot to query for
+     * @param limit item limit
+     * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
      */
     Optional<ItemStack> poll(EquipmentSlotType equipmentType, int limit);
 
     /**
      * Get and remove the stack for the specified equipment type in this
-     * Inventory
+     * Inventory.
+     * 
+     * @see Inventory#poll()
+     * @param equipmentType Type of equipment slot to query for
+     * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
      */
     Optional<ItemStack> poll(EquipmentType equipmentType);
 
     /**
      * Get and remove the items from the stack for the specified equipment type
-     * in this Inventory
+     * in this Inventory.
+     * 
+     * @see Inventory#poll()
+     * @param equipmentType Type of equipment slot to query for
+     * @param limit item limit
+     * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
      */
     Optional<ItemStack> poll(EquipmentType equipmentType, int limit);
 
     /**
      * Get without removing the stack for the specified equipment type in this
-     * Inventory
+     * Inventory.
+     * 
+     * @see Inventory#peek()
+     * @param equipmentType Type of equipment slot to query for
+     * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
      */
     Optional<ItemStack> peek(EquipmentSlotType equipmentType);
 
     /**
      * Get without removing the items from the stack for the specified equipment
-     * type in this Inventory
+     * type in this Inventory.
+     * 
+     * @see Inventory#peek()
+     * @param equipmentType Type of equipment slot to query for
+     * @param limit item limit
+     * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
      */
     Optional<ItemStack> peek(EquipmentSlotType equipmentType, int limit);
 
     /**
      * Get without removing the stack for the specified equipment type in this
-     * Inventory
+     * Inventory.
+     * 
+     * @see Inventory#peek()
+     * @param equipmentType Type of equipment slot to query for
+     * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
      */
     Optional<ItemStack> peek(EquipmentType equipmentType);
 
     /**
      * Get without removing the items from the stack for the specified equipment
-     * type in this Inventory
+     * type in this Inventory.
+     * 
+     * @see Inventory#peek()
+     * @param equipmentType Type of equipment slot to query for
+     * @param limit item limit
+     * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
      */
     Optional<ItemStack> peek(EquipmentType equipmentType, int limit);
 
     /**
-     * Set the item for the specified equipment type
+     * Set the item for the specified equipment type.
+     * 
+     * @see Inventory#set(ItemStack)
+     * @param equipmentType Type of equipment slot to set
+     * @param stack stack to insert
+     * @return operation result, for details see {@link Inventory#set}
      */
     InventoryOperationResult set(EquipmentSlotType equipmentType, ItemStack stack);
 
     /**
-     * Set the item for the specified equipment type
+     * Set the item for the specified equipment type.
+     * 
+     * @see Inventory#set(ItemStack)
+     * @param equipmentType Type of equipment slot to set
+     * @param stack stack to insert
+     * @return operation result, for details see {@link Inventory#set}
      */
     InventoryOperationResult set(EquipmentType equipmentType, ItemStack stack);
 
     /**
-     * Get the {@link Slot} for the specified equipment type
+     * Get the {@link Slot} for the specified equipment type.
+     * 
+     * @param equipmentType Type of equipment slot to set
+     * @return matching slot or {@link Optional#absent()} if no matching slot
      */
     Optional<Slot> getSlot(EquipmentSlotType equipmentType);
 
     /**
-     * Get the {@link Slot} for the specified equipment type
+     * Get the {@link Slot} for the specified equipment type.
+     * 
+     * @param equipmentType Type of equipment slot to set
+     * @return matching slot or {@link Optional#absent()} if no matching slot
      */
     Optional<Slot> getSlot(EquipmentType equipmentType);
 

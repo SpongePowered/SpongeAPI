@@ -32,14 +32,35 @@ import org.spongepowered.api.util.inventory.Coerce;
  */
 public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
+    /**
+     * Create a new integer property with the specified value.
+     * 
+     * @param value value to match
+     */
     public IntProperty(int value) {
         super(Coerce.toInteger(value));
     }
 
+    /**
+     * Create a new integer property with the specified value and logical
+     * operator.
+     * 
+     * @param value value to match
+     * @param operator logical operator to use when comparing to other
+     *      properties
+     */
     public IntProperty(int value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Create a new integer property with the specified value and logical
+     * operator.
+     * 
+     * @param value value to match
+     * @param operator logical operator to use when comparing to other
+     *      properties
+     */
     public IntProperty(Object value, Operator operator) {
         super(Coerce.toInteger(value), operator);
     }
@@ -54,7 +75,10 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
     /**
      * Create an IntProperty property which matches IntProperty properties with
-     * equal value
+     * equal value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static IntProperty of(Object value) {
         return new IntProperty(value, Operator.EQUAL);
@@ -62,7 +86,10 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
     /**
      * Create an IntProperty property which matches IntProperty properties with
-     * unequal value
+     * unequal value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static IntProperty not(Object value) {
         return new IntProperty(value, Operator.NOTEQUAL);
@@ -70,7 +97,10 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
     /**
      * Create an IntProperty property which matches IntProperty properties with
-     * value greater than this value
+     * value greater than this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static IntProperty greaterThan(Object value) {
         return new IntProperty(value, Operator.GREATER);
@@ -78,7 +108,10 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
     /**
      * Create an IntProperty property which matches IntProperty properties with
-     * value greater than or equal to this value
+     * value greater than or equal to this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static IntProperty greaterThanOrEqual(Object value) {
         return new IntProperty(value, Operator.GEQUAL);
@@ -86,7 +119,10 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
     /**
      * Create an IntProperty property which matches IntProperty properties with
-     * value less than this value
+     * value less than this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static IntProperty lessThan(Object value) {
         return new IntProperty(value, Operator.LESS);
@@ -94,7 +130,10 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
 
     /**
      * Create an IntProperty property which matches IntProperty properties with
-     * value less than or equal to this value
+     * value less than or equal to this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static IntProperty lessThanOrEqual(Object value) {
         return new IntProperty(value, Operator.LEQUAL);

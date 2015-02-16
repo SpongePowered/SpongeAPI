@@ -28,20 +28,21 @@ import org.spongepowered.api.item.inventory.custom.CustomInventoryBuilder;
 import org.spongepowered.api.item.inventory.custom.CustomInventoryFactory;
 
 /**
- * Inventory convenience functionality
+ * Inventory convenience functionality.
  */
 public class Inventories {
 
     private static final CustomInventoryFactory factory = null;
 
     /**
-     * No subclasses for you!
+     * No subclasses for you.
      */
-    private Inventories() {
-    }
+    private Inventories() {}
 
     /**
-     * Get a new custom inventory builder
+     * Get a new custom inventory builder.
+     * 
+     * @return new CustomInventoryBuilder
      */
     public static CustomInventoryBuilder customInventoryBuilder() {
         return Inventories.factory.builder();

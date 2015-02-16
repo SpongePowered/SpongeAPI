@@ -36,6 +36,7 @@ public interface CustomInventoryBuilder {
      * at the inventory.
      *
      * @param name The title
+     * @return fluent pattern
      */
     CustomInventoryBuilder name(Translatable name);
 
@@ -43,6 +44,7 @@ public interface CustomInventoryBuilder {
      * Sets the size of the custom inventory.
      *
      * @param size The size
+     * @return fluent pattern
      */
     CustomInventoryBuilder size(int size);
 

@@ -24,6 +24,22 @@
  */
 package org.spongepowered.api.util.inventory;
 
+import com.flowpowered.math.vector.Vector2i;
+import com.flowpowered.math.vector.Vector3i;
+import com.flowpowered.math.vector.Vector4i;
+import com.flowpowered.math.vector.Vectord;
+import com.flowpowered.math.vector.Vectorf;
+import com.flowpowered.math.vector.Vectorl;
+import com.flowpowered.math.vector.VectorNi;
+import com.google.common.primitives.Booleans;
+import com.google.common.primitives.Bytes;
+import com.google.common.primitives.Chars;
+import com.google.common.primitives.Doubles;
+import com.google.common.primitives.Floats;
+import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
+import com.google.common.primitives.Shorts;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -35,25 +51,9 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 
-import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3i;
-import com.flowpowered.math.vector.Vector4i;
-import com.flowpowered.math.vector.VectorNi;
-import com.flowpowered.math.vector.Vectord;
-import com.flowpowered.math.vector.Vectorf;
-import com.flowpowered.math.vector.Vectorl;
-import com.google.common.primitives.Booleans;
-import com.google.common.primitives.Bytes;
-import com.google.common.primitives.Chars;
-import com.google.common.primitives.Doubles;
-import com.google.common.primitives.Floats;
-import com.google.common.primitives.Ints;
-import com.google.common.primitives.Longs;
-import com.google.common.primitives.Shorts;
-
 
 /**
- * Utility class for coercing unknown values to specific target types
+ * Utility class for coercing unknown values to specific target types.
  */
 public final class Coerce {
     
@@ -64,12 +64,12 @@ public final class Coerce {
     private static final Pattern vector2Pattern = Pattern.compile("^\\( *(-?[\\d\\.]{1,10}), *(-?[\\d\\.]{1,10}) *\\)$");
     
     /**
-     * No subclasses for you! 
+     * No subclasses for you.
      */
     private Coerce() {}
     
     /**
-     * Coerce the supplied object to a string
+     * Coerce the supplied object to a string.
      * 
      * @param obj Object to coerce
      * @return Object as a string, empty string if the object is null
@@ -122,6 +122,7 @@ public final class Coerce {
      * 
      * @param obj Object to coerce
      * @param ofClass Class to coerce to
+     * @param <T> type of list (notional)
      * @return List of coerced values
      */
     @SuppressWarnings("unchecked")
@@ -149,7 +150,7 @@ public final class Coerce {
     
     /**
      * Coerce the supplied object to a boolean, matches strings such as "yes" as
-     * well as literal boolean values 
+     * well as literal boolean values.
      * 
      * @param obj Object to coerce
      * @return Object as a boolean, <code>false</code> if the object is null
@@ -163,7 +164,7 @@ public final class Coerce {
     }
     
     /**
-     * Coerce the supplied object to an integer, parse it if necessary
+     * Coerce the supplied object to an integer, parse it if necessary.
      * 
      * @param obj Object to coerce
      * @return Object as an integer, <code>0</code> if the object is null or
@@ -185,7 +186,7 @@ public final class Coerce {
         }
 
         Double dParsed = Doubles.tryParse(strObj);
-        return dParsed != null ? dParsed.intValue(): 0;
+        return dParsed != null ? dParsed.intValue() : 0;
     }
     
     /**
@@ -211,10 +212,11 @@ public final class Coerce {
 
     /**
      * Coerce the specified object to an enum of the supplied type, returns the
-     * first enum constant in the enum if parsing fails
+     * first enum constant in the enum if parsing fails.
      * 
      * @param obj Object to coerce
      * @param enumClass Enum class to coerce to
+     * @param <E> enum type
      * @return Coerced enum value
      */
     public static <E extends Enum<E>> E toEnum(@Nullable Object obj, Class<E> enumClass) {
@@ -223,11 +225,12 @@ public final class Coerce {
 
     /**
      * Coerce the specified object to an enum of the supplied type, returns the
-     * specified default value if parsing fails
+     * specified default value if parsing fails.
      * 
      * @param obj Object to coerce
      * @param enumClass Enum class to coerce to
      * @param defaultValue default value to return if coercion fails 
+     * @param <E> enum type
      * @return Coerced enum value
      */
     public static <E extends Enum<E>> E toEnum(@Nullable Object obj, Class<E> enumClass, E defaultValue) {
@@ -268,6 +271,7 @@ public final class Coerce {
      * @param pseudoEnumClass The pseudo-enum class
      * @param dictionaryClass Pseudo-enum dictionary class to look in
      * @param defaultValue Value to return if lookup fails
+     * @param <T> pseudo-enum type
      * @return Coerced value or default if coercion fails
      */
     public static <T> T toPseudoEnum(@Nullable Object obj, Class<T> pseudoEnumClass, Class<?> dictionaryClass, T defaultValue) {
@@ -284,10 +288,8 @@ public final class Coerce {
         String strObj = obj.toString().trim();
         
         try {
-            for (Field field : dictionaryClass.getFields())
-            {
-                if ((field.getModifiers() & Modifier.STATIC) != 0 && pseudoEnumClass.isAssignableFrom(field.getType()))
-                {
+            for (Field field : dictionaryClass.getFields()) {
+                if ((field.getModifiers() & Modifier.STATIC) != 0 && pseudoEnumClass.isAssignableFrom(field.getType())) {
                     String fieldName = field.getName();
                     @SuppressWarnings("unchecked")
                     T entry = (T)field.get(null);

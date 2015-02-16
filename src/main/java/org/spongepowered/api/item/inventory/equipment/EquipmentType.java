@@ -25,12 +25,14 @@
 package org.spongepowered.api.item.inventory.equipment;
 
 /**
- * Equipment types
+ * Equipment types.
  */
 public interface EquipmentType {
 
     /**
-     * Identifier for this equipment type
+     * Identifier for this equipment type.
+     * 
+     * @return the identifier
      */
     String getId();
 }

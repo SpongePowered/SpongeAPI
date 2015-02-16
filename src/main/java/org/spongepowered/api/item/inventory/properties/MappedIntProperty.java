@@ -34,22 +34,46 @@ import org.spongepowered.api.util.inventory.Coerce;
  */
 public class MappedIntProperty extends AbstractInventoryProperty<Integer, Integer> {
 
+    /**
+     * Create a new MappedIntProperty with the specified key and value.
+     * 
+     * @param key key to match
+     * @param value value to match
+     */
     public MappedIntProperty(Integer key, Integer value) {
         super(key, value);
     }
 
-    public MappedIntProperty(Integer key, Integer value, Operator op) {
-        super(key, value, op);
-    }
-
-    public MappedIntProperty(Object key, Object value, Operator op) {
-        super(Coerce.toInteger(key), Coerce.toInteger(value), op);
+    /**
+     * Create a new MappedIntProperty with the specified key and value.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @param operator logical operator to use when comparing this property with
+     *      other properties
+     */
+    public MappedIntProperty(Integer key, Integer value, Operator operator) {
+        super(key, value, operator);
     }
 
     /**
-     * Set this property to the specified value
+     * Create a new MappedIntProperty with the specified key and value.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @param operator logical operator to use when comparing this property with
+     *      other properties
      */
-    void setValue(int value) {
+    public MappedIntProperty(Object key, Object value, Operator operator) {
+        super(Coerce.toInteger(key), Coerce.toInteger(value), operator);
+    }
+
+    /**
+     * Set this property to the specified value.
+     * 
+     * @param value value to set
+     */
+    void setValue(Integer value) {
         this.value = value;
     }
 
@@ -67,7 +91,11 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
 
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
-     * properties with equal value and matching key
+     * properties with equal value and matching key.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @return new property
      */
     public static MappedIntProperty of(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.EQUAL);
@@ -75,7 +103,11 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
 
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
-     * properties with unequal value and matching key
+     * properties with unequal value and matching key.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @return new property
      */
     public static MappedIntProperty not(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.NOTEQUAL);
@@ -83,7 +115,11 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
 
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
-     * properties with value greater than this value and matching key
+     * properties with value greater than this value and matching key.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @return new property
      */
     public static MappedIntProperty greaterThan(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.GREATER);
@@ -92,7 +128,11 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
      * properties with value greater than or equal to this value and matching
-     * key
+     * key.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @return new property
      */
     public static MappedIntProperty greaterThanOrEqual(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.GEQUAL);
@@ -100,7 +140,11 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
 
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
-     * properties with value less than this value and matching key
+     * properties with value less than this value and matching key.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @return new property
      */
     public static MappedIntProperty lessThan(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.LESS);
@@ -108,7 +152,11 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
 
     /**
      * Create a MappedIntProperty property which matches MappedIntProperty
-     * properties with value less than or equal to this value and matching key
+     * properties with value less than or equal to this value and matching key.
+     * 
+     * @param key key to match
+     * @param value value to match
+     * @return new property
      */
     public static MappedIntProperty lessThanOrEqual(Object key, Object value) {
         return new MappedIntProperty(key, value, Operator.LEQUAL);

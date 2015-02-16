@@ -24,18 +24,17 @@
  */
 package org.spongepowered.api.entity;
 
-import javax.annotation.Nullable;
+import com.google.common.base.Optional;
 
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.util.Identifiable;
 
-import com.google.common.base.Optional;
-
+import javax.annotation.Nullable;
 
 /**
- * Represents an entity that has an EquipmentInventory
+ * Represents an entity that has an EquipmentInventory.
  */
 public interface Equipable extends Identifiable, Carrier {
     
@@ -45,6 +44,7 @@ public interface Equipable extends Identifiable, Carrier {
      * have this type of slot. 
      * 
      * @param type The type of equipment slot to query
+     * @return true if this entity can equip items of the specified type
      */
     boolean canEquip(EquipmentType type);
     
@@ -55,6 +55,7 @@ public interface Equipable extends Identifiable, Carrier {
      * 
      * @param type The type of equipment slot to query
      * @param equipment The equipment to check for
+     * @return true if can equip the supplied equipment
      */
     boolean canEquip(EquipmentType type, @Nullable ItemStack equipment);
     

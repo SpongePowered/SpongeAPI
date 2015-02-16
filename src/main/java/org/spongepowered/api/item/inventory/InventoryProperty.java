@@ -24,19 +24,20 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.item.inventory.properties.AbstractInventoryProperty;
+
 import javax.annotation.Nullable;
 
 /**
  * Base interface for Inventory Properties. It is recommended that implementors
- * subclass {@link
- * org.spongepowered.api.item.inventory.properties.AbstractInventoryProperty}
- * instead of implementing this interface directly. 
+ * subclass {@link AbstractInventoryProperty} instead of implementing this
+ * interface directly. 
  */
 public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?, ?>> {
 
     /**
      * Operator used to indicate to a query what operation to use when comparing
-     * this property with properties present on a child inventory
+     * this property with properties present on a child inventory.
      */
     public static enum Operator {
 
@@ -131,12 +132,12 @@ public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?,
 
         /**
          * <p>Compare the two operands by applying this operator <em>infix</em>
-         * with respect to them. For example, if this object is {@link GREATER}
-         * then calling this method with <code>object1</code> and <code>object2
-         * </code> would effectively return:</p>
+         * with respect to them. For example, if this object is
+         * {@link Operator#GREATER} then calling this method with
+         * <code>object1</code> and <code>object2</code> would effectively
+         * return:</p>
          *
-         * <blockquote>
-         *     <code>returnValue = object1 &gt; object2;</code>
+         * <blockquote> <code>returnValue = object1 &gt; object2;</code>
          * </blockquote>
          *
          * @param operand1 First operand
@@ -169,7 +170,9 @@ public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?,
         protected abstract boolean apply(InventoryProperty<?, ?> operand1, InventoryProperty<?, ?> operand2);
 
         /**
-         * Get the default operator to use if none is specified
+         * Get the default operator to use if none is specified.
+         * 
+         * @return the default operator
          */
         public static Operator defaultOperator() {
             return Operator.DELEGATE;
@@ -182,18 +185,25 @@ public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?,
      * more than one property of a particular type. If the property has no
      * specific key, the property class name is returned so that properties of
      * the same type are implicitly comparable.
+     * 
+     * @return the key for this property
      */
     K getKey();
 
     /**
      * Get the "value" of this property. "Value" may have different meanings
      * depending on the exact type of this property.
+     * 
+     * @return the value of this property
      */
     @Nullable V getValue();
 
     /**
      * Get the operator to use when comparing another property with this
-     * property
+     * property.
+     * 
+     * @return the operator to use when comparing another property with this
+     *      property
      */
     Operator getOperator();
 
@@ -212,7 +222,8 @@ public interface InventoryProperty<K, V> extends Comparable<InventoryProperty<?,
      * and must pass in the operands in the corresponding order.</p>
      *
      * @param other Property to compare to
-     * @return
+     * @return true if the other property matches this one according to the
+     *      rules defined by this property's {@link #getOperator()}
      */
     boolean matches(@Nullable InventoryProperty<?, ?> other);
 

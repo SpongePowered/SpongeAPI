@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory.entity;
 import org.spongepowered.api.item.inventory.types.InventoryRow;
 
 /**
- * A human's hotbar
+ * A human's hotbar.
  */
 public interface Hotbar extends InventoryRow {
 

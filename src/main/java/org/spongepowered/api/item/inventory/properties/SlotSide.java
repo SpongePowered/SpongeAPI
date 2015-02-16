@@ -34,14 +34,33 @@ import org.spongepowered.api.util.inventory.Coerce;
  */
 public class SlotSide extends AbstractInventoryProperty<String, Direction> {
 
+    /**
+     * Create a new SlotSide property for matching the specified value.
+     * 
+     * @param value the value to match
+     */
     public SlotSide(Direction value) {
         super(value);
     }
 
+    /**
+     * Create a new SlotSide property for matching the specified value with the
+     * specified operator.
+     * 
+     * @param value the value to match
+     * @param operator the operator to use when comparing with other properties
+     */
     public SlotSide(Direction value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Create a new SlotSide property for matching the specified value with the
+     * specified operator.
+     * 
+     * @param value the value to match
+     * @param operator the operator to use when comparing with other properties
+     */
     public SlotSide(Object value, Operator operator) {
         super(Coerce.<Direction>toEnum(value, Direction.class, Direction.NONE), operator);
     }
@@ -60,7 +79,10 @@ public class SlotSide extends AbstractInventoryProperty<String, Direction> {
 
     /**
      * Create a SlotSide property which matches SlotSide properties with equal
-     * value
+     * value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotSide of(Object value) {
         return new SlotSide(value, Operator.EQUAL);
@@ -68,7 +90,10 @@ public class SlotSide extends AbstractInventoryProperty<String, Direction> {
 
     /**
      * Create a SlotSide property which matches SlotSide properties with unequal
-     * value
+     * value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static SlotSide not(Object value) {
         return new SlotSide(value, Operator.NOTEQUAL);

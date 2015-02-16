@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.types;
 
 /**
- * Represents a row within a {@link GridInventory}
+ * Represents a row within a {@link GridInventory}.
  */
 public interface InventoryRow extends Inventory2D {
 

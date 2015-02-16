@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory.crafting;
 import org.spongepowered.api.item.inventory.slots.OutputSlot;
 
 /**
- * A crafting output slot
+ * A crafting output slot.
  */
 public interface CraftingOutput extends OutputSlot {
 

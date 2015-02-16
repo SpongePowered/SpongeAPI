@@ -34,35 +34,72 @@ import org.spongepowered.api.util.inventory.Coerce;
  */
 public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
+    /**
+     * Create a new InventorySize property with the specified value.
+     * 
+     * @param value size to match
+     */
     public InventorySize(Vector2i value) {
         super(value);
     }
 
-    public InventorySize(int x, int y) {
-        super(new Vector2i(x, y));
+    /**
+     * Create a new InventorySize property with the specified dimensions.
+     * 
+     * @param width width of the inventory to match
+     * @param height height of the inventory to match
+     */
+    public InventorySize(int width, int height) {
+        super(new Vector2i(width, height));
     }
 
+    /**
+     * Create a new InventorySize property with the specified value.
+     * 
+     * @param value size to match
+     * @param operator logical operator to use when comparing this property with
+     *      other properties
+     */
     public InventorySize(Vector2i value, Operator operator) {
         super(value, operator);
     }
 
-    public InventorySize(int x, int y, Operator operator) {
-        super(new Vector2i(x, y), operator);
+    /**
+     * Create a new InventorySize property with the specified dimensions.
+     * 
+     * @param width width of the inventory to match
+     * @param height height of the inventory to match
+     * @param operator logical operator to use when comparing this property with
+     *      other properties
+     */
+    public InventorySize(int width, int height, Operator operator) {
+        super(new Vector2i(width, height), operator);
     }
 
+    /**
+     * Create a new InventorySize property with the specified value.
+     * 
+     * @param value size to match
+     * @param operator logical operator to use when comparing this property with
+     *      other properties
+     */
     public InventorySize(Object value, Operator operator) {
         super(Coerce.toVector2i(value), operator);
     }
 
     /**
-     * Get the number of columns in this inventory
+     * Get the number of columns in this inventory.
+     * 
+     * @return column count
      */
     public int getColumns() {
         return this.getValue().getX();
     }
 
     /**
-     * Get the number of rows in this inventory
+     * Get the number of rows in this inventory.
+     * 
+     * @return row count
      */
     public int getRows() {
         return this.getValue().getY();
@@ -82,7 +119,10 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an InventorySize property which matches InventorySize properties
-     * with equal value
+     * with equal value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static InventorySize of(Object value) {
         return new InventorySize(value, Operator.EQUAL);
@@ -90,15 +130,22 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an InventorySize property which matches InventorySize properties
-     * with equal value
+     * with equal value.
+     * 
+     * @param width x coordinate to match
+     * @param height y coordinate to match
+     * @return new property
      */
-    public static InventorySize of(int x, int y) {
-        return new InventorySize(new Vector2i(x, y), Operator.EQUAL);
+    public static InventorySize of(int width, int height) {
+        return new InventorySize(new Vector2i(width, height), Operator.EQUAL);
     }
 
     /**
      * Create an InventorySize property which matches InventorySize properties
-     * with unequal value
+     * with unequal value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static InventorySize not(Object value) {
         return new InventorySize(value, Operator.NOTEQUAL);
@@ -106,7 +153,10 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an InventorySize property which matches InventorySize properties
-     * with value greater than this value
+     * with value greater than this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static InventorySize greaterThan(Object value) {
         return new InventorySize(value, Operator.GREATER);
@@ -114,7 +164,10 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an InventorySize property which matches InventorySize properties
-     * with value greater than or equal to this value
+     * with value greater than or equal to this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static InventorySize greaterThanOrEqual(Object value) {
         return new InventorySize(value, Operator.GEQUAL);
@@ -122,7 +175,10 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an InventorySize property which matches InventorySize properties
-     * with value less than this value
+     * with value less than this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static InventorySize lessThan(Object value) {
         return new InventorySize(value, Operator.LESS);
@@ -130,7 +186,10 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
     /**
      * Create an InventorySize property which matches InventorySize properties
-     * with value less than or equal to this value
+     * with value less than or equal to this value.
+     * 
+     * @param value value to match
+     * @return new property
      */
     public static InventorySize lessThanOrEqual(Object value) {
         return new InventorySize(value, Operator.LEQUAL);

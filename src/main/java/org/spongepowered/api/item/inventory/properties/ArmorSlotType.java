@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
-import org.spongepowered.api.item.inventory.equipment.EquipmentTypeWorn;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
+import org.spongepowered.api.item.inventory.equipment.EquipmentTypeWorn;
 import org.spongepowered.api.util.inventory.Coerce;
 
 /**
@@ -34,21 +34,44 @@ import org.spongepowered.api.util.inventory.Coerce;
  */
 public class ArmorSlotType extends EquipmentSlotType {
 
+    /**
+     * Create a new ArmorSlotType property which matches armour slots of the
+     * specified type.
+     * 
+     * @param value armour type to match
+     */
     public ArmorSlotType(EquipmentTypeWorn value) {
         super(value);
     }
 
+    /**
+     * Create a new ArmorSlotType property which matches armour slots of the
+     * specified type.
+     * 
+     * @param value armour type to match
+     * @param operator logical operator (either EQUAL or NOTEQUAL) to apply
+     */
     public ArmorSlotType(EquipmentTypeWorn value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Create a new ArmorSlotType property which matches armour slots of the
+     * specified type.
+     * 
+     * @param value armour type to match
+     * @param operator logical operator (either EQUAL or NOTEQUAL) to apply
+     */
     public ArmorSlotType(Object value, Operator operator) {
         super(Coerce.<EquipmentTypeWorn>toPseudoEnum(value, EquipmentTypeWorn.class, EquipmentTypeWorn.class, EquipmentTypes.WORN), operator);
     }
 
     /**
      * Create an ArmourSlotType property which matches ArmourSlotType properties
-     * with equal value
+     * with equal value.
+     * 
+     * @param value Type of worn equipment to match
+     * @return new property
      */
     public static ArmorSlotType of(Object value) {
         return new ArmorSlotType(value, Operator.EQUAL);
@@ -56,7 +79,10 @@ public class ArmorSlotType extends EquipmentSlotType {
 
     /**
      * Create an ArmourSlotType property which matches ArmourSlotType properties
-     * with unequal value
+     * with unequal value.
+     * 
+     * @param value Type of worn equipment to match
+     * @return new property
      */
     public static ArmorSlotType not(Object value) {
         return new ArmorSlotType(value, Operator.NOTEQUAL);

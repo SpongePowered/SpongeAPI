@@ -28,18 +28,37 @@ import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.util.inventory.Coerce;
 
 /**
- * A generic String property for an inventory
+ * A generic String property for an inventory.
  */
 public class StringProperty extends AbstractInventoryProperty<String, String> {
 
+    /**
+     * Create a new String property for matching the specified value.
+     * 
+     * @param value the value to match
+     */
     public StringProperty(String value) {
         super(value);
     }
 
+    /**
+     * Create a new String property for matching the specified value with the
+     * specified operator.
+     * 
+     * @param value the value to match
+     * @param operator the operator to use when comparing with other properties
+     */
     public StringProperty(String value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Create a new String property for matching the specified value with the
+     * specified operator.
+     * 
+     * @param value the value to match
+     * @param operator the operator to use when comparing with other properties
+     */
     public StringProperty(Object value, Operator operator) {
         super(Coerce.toString(value), operator);
     }
@@ -58,7 +77,10 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
 
     /**
      * Create a StringProperty property which matches StringProperty properties
-     * with equal value
+     * with equal value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static StringProperty of(Object value) {
         return new StringProperty(value, Operator.EQUAL);
@@ -66,7 +88,10 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
 
     /**
      * Create a StringProperty property which matches StringProperty properties
-     * with unequal value
+     * with unequal value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static StringProperty not(Object value) {
         return new StringProperty(value, Operator.NOTEQUAL);
@@ -74,7 +99,10 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
 
     /**
      * Create a StringProperty property which matches StringProperty properties
-     * with value greater than this value
+     * with value greater than this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static StringProperty greaterThan(Object value) {
         return new StringProperty(value, Operator.GREATER);
@@ -82,7 +110,10 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
 
     /**
      * Create a StringProperty property which matches StringProperty properties
-     * with value greater than or equal to this value
+     * with value greater than or equal to this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static StringProperty greaterThanOrEqual(Object value) {
         return new StringProperty(value, Operator.GEQUAL);
@@ -90,7 +121,10 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
 
     /**
      * Create a StringProperty property which matches StringProperty properties
-     * with value less than this value
+     * with value less than this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static StringProperty lessThan(Object value) {
         return new StringProperty(value, Operator.LESS);
@@ -98,7 +132,10 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
 
     /**
      * Create a StringProperty property which matches StringProperty properties
-     * with value less than or equal to this value
+     * with value less than or equal to this value.
+     * 
+     * @param value the value to match
+     * @return new property
      */
     public static StringProperty lessThanOrEqual(Object value) {
         return new StringProperty(value, Operator.LEQUAL);
