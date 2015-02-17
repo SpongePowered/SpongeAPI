@@ -32,18 +32,90 @@ package org.spongepowered.api.stats;
 public final class Statistics {
 
     public static final Statistic ANIMALS_BRED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic ARMOR_CLEANED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic BANNER_CLEANED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic BEACON_INTERACTION = null;
     public static final Statistic BOAT_DISTANCE = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic BREWINGSTAND_INTERACTION = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic CAKE_SLICES_EATEN = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic CAULDRON_FILLED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic CAULDRON_USED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic CHEST_OPENED = null;
     public static final Statistic CLIMB_DISTANCE = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic CRAFTING_TABLE_INTERACTION = null;
     public static final Statistic CROUCH_DISTANCE = null;
     public static final Statistic DAMAGE_DEALT = null;
     public static final Statistic DAMAGE_TAKEN = null;
     public static final Statistic DEATHS = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic DISPENSER_INSPECTED = null;
     public static final Statistic DIVE_DISTANCE = null;
     public static final Statistic DROP = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic DROPPER_INSPECTED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic ENDERCHEST_OPENED = null;
     public static final Statistic FALL_DISTANCE = null;
     public static final Statistic FISH_CAUGHT = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic FLOWER_POTTED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic FURNACE_INTERACTION = null;
     public static final Statistic FLY_DISTANCE = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic HOPPER_INSPECTED = null;
     public static final Statistic HORSE_DISTANCE = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic ITEM_ENCHANTED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic NOTEBLOCK_PLAYED = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic NOTEBLOCK_TUNED = null;
     public static final Statistic JUMP = null;
     public static final Statistic JUNK_FISHED = null;
     public static final Statistic LEAVE_GAME = null;
@@ -52,11 +124,19 @@ public final class Statistics {
     public static final Statistic PIG_DISTANCE = null;
     public static final Statistic PLAYER_KILLS = null;
     public static final Statistic PLAY_ONE_MINUTE = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic RECORD_PLAYED = null;
     public static final Statistic SPRINT_DISTANCE = null;
     public static final Statistic SWIM_DISTANCE = null;
     public static final Statistic TALKED_TO_VILLAGER = null;
     public static final Statistic TIME_SINCE_DEATH = null;
     public static final Statistic TRADED_WITH_VILLAGER = null;
+    /**
+     * @since Minecraft 1.8.2
+     */
+    public static final Statistic TRAPPED_CHEST_TRIGGERED = null;
     public static final Statistic TREASURE_FISHED = null;
     public static final Statistic WALK_DISTANCE = null;
 
