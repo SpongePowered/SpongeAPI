@@ -32,235 +32,235 @@ package org.spongepowered.api.stats;
 public final class Statistics {
 
     /**
-     * Total count of animals bred.
+     * The total count of animals bred.
      */
     public static final Statistic ANIMALS_BRED = null;
     /**
-     * Total count of armor removed.
+     * The total count of armor removed.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic ARMOR_CLEANED = null;
     /**
-     * Total count of banners cleaned.
+     * The total count of banners cleaned.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic BANNER_CLEANED = null;
     /**
-     * Total count of times interacted with a beacon.
+     * The total times interacted with a beacon.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic BEACON_INTERACTION = null;
     /**
-     * Total distance traveled by boat.
+     * The total distance traveled by boat in cm.
      */
     public static final Statistic BOAT_DISTANCE = null;
     /**
-     * Total count of times interacted with a brewing stand.
+     * The total times interacted with a brewing stand.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic BREWINGSTAND_INTERACTION = null;
     /**
-     * Total count of cake slices eaten.
+     * The total count of cake slices eaten.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic CAKE_SLICES_EATEN = null;
     /**
-     * Total count filled cauldrons.
+     * The total count filled cauldrons.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic CAULDRON_FILLED = null;
     /**
-     * Total count used cauldrons.
+     * The total count used cauldrons.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic CAULDRON_USED = null;
     /**
-     * Total count of opened chests.
+     * The total count of opened chests.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic CHEST_OPENED = null;
     /**
-     * Total distance climbed.
+     * The total distance climbed in cm.
      */
     public static final Statistic CLIMB_DISTANCE = null;
     /**
-     * Total count of crafting table interactions.
+     * The total count of crafting table interactions.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic CRAFTING_TABLE_INTERACTION = null;
     /**
-     * Total distance crouched.
+     * The total distance crouched in cm.
      */
     public static final Statistic CROUCH_DISTANCE = null;
     /**
-     * Total damage dealt to entities directly.
+     * The total damage dealt to entities directly.
      */
     public static final Statistic DAMAGE_DEALT = null;
     /**
-     * Total damage taken.
+     * The total damage taken.
      */
     public static final Statistic DAMAGE_TAKEN = null;
     /**
-     * Total count of deaths.
+     * The total count of deaths.
      */
     public static final Statistic DEATHS = null;
     /**
-     * Total count of inspected dispensers.
+     * The total count of inspected dispensers.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic DISPENSER_INSPECTED = null;
     /**
-     * Total distance walked underwater.
+     * The total distance walked underwater in cm.
      */
     public static final Statistic DIVE_DISTANCE = null;
     /**
-     * Total number of items dropped on purpose.
+     * The total number of items dropped on purpose.
      */
     public static final Statistic DROP = null;
     /**
-     * Total count of inspected droppers.
+     * The total count of inspected droppers.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic DROPPER_INSPECTED = null;
     /**
-     * Total count of opened enderchests.
+     * The total count of opened enderchests.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic ENDERCHEST_OPENED = null;
     /**
-     * Total distance falling.
+     * The total distance falling in cm.
      */
     public static final Statistic FALL_DISTANCE = null;
     /**
-     * Total count of caught fishes.
+     * The total count of caught fishes.
      */
     public static final Statistic FISH_CAUGHT = null;
     /**
-     * Total count of flowers potted.
+     * The total count of flowers potted.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic FLOWER_POTTED = null;
     /**
-     * Total count of furnance interactions.
+     * The total count of furnance interactions.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic FURNACE_INTERACTION = null;
     /**
-     * Total distance flying.
+     * The total distance flying in cm.
      */
     public static final Statistic FLY_DISTANCE = null;
     /**
-     * Total count of inspected hoppers.
+     * The total count of inspected hoppers.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic HOPPER_INSPECTED = null;
     /**
-     * Total distance travelled by horse.
+     * The total distance travelled by horse in cm.
      */
     public static final Statistic HORSE_DISTANCE = null;
     /**
-     * Total count of enchanted items.
+     * The total count of enchanted items.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic ITEM_ENCHANTED = null;
     /**
-     * Total count of played noteblocks.
+     * The total count of played noteblocks.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic NOTEBLOCK_PLAYED = null;
     /**
-     * Total count of tuned noteblocks.
+     * The total count of tuned noteblocks.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic NOTEBLOCK_TUNED = null;
     /**
-     * Total count of jumps.
+     * The total count of jumps.
      */
     public static final Statistic JUMP = null;
     /**
-     * Total count of fished junk.
+     * The total count of fished junk.
      */
     public static final Statistic JUNK_FISHED = null;
     /**
-     * Total count of leaving the game.
+     * The total count of leaving the game.
      */
     public static final Statistic LEAVE_GAME = null;
     /**
-     * Total distance traveled by minecart.
+     * The total distance traveled by minecart in cm.
      */
     public static final Statistic MINECART_DISTANCE = null;
     /**
-     * Total number of killed mobs.
+     * The total number of killed mobs.
      */
     public static final Statistic MOB_KILLS = null;
     /**
-     * Total distance traveled by pig.
+     * The total distance traveled by pig in cm.
      */
     public static final Statistic PIG_DISTANCE = null;
     /**
-     * Total number of killed players.
+     * The total number of killed players.
      */
     public static final Statistic PLAYER_KILLS = null;
     /**
-     * Total minutes playing this game/on this server.
+     * The total minutes playing this game/on this server.
      */
     public static final Statistic PLAY_ONE_MINUTE = null;
     /**
-     * Total count of played records.
+     * The total count of played records.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic RECORD_PLAYED = null;
     /**
-     * Total distance sprinted.
+     * The total distance sprinted in cm.
      */
     public static final Statistic SPRINT_DISTANCE = null;
     /**
-     * Total distance swum.
+     * The total distance swum in cm.
      */
     public static final Statistic SWIM_DISTANCE = null;
     /**
-     * Total times talking to a villager.
+     * The total times talking to a villager.
      */
     public static final Statistic TALKED_TO_VILLAGER = null;
     /**
-     * Total minutes alive since the last death.
+     * The total minutes alive since the last death.
      */
     public static final Statistic TIME_SINCE_DEATH = null;
     /**
-     * Total times traded with a villager.
+     * The total times traded with a villager.
      */
     public static final Statistic TRADED_WITH_VILLAGER = null;
     /**
-     * Total count of triggered trapped chests.
+     * The total count of triggered trapped chests.
      *
      * @since Minecraft 1.8.2
      */
     public static final Statistic TRAPPED_CHEST_TRIGGERED = null;
     /**
-     * Total count of fished treasures.
+     * The total count of fished treasures.
      */
     public static final Statistic TREASURE_FISHED = null;
     /**
-     * Total distance walked.
+     * The total distance walked in cm.
      */
     public static final Statistic WALK_DISTANCE = null;
 
