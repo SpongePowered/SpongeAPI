@@ -25,13 +25,14 @@
 package org.spongepowered.api.event.block.data;
 
 import org.spongepowered.api.block.data.Furnace;
+import org.spongepowered.api.event.inventory.ItemResultEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event that occurs when a {@link Furnace} smelt an item.
  */
-public interface FurnaceSmeltItemEvent extends FurnaceEvent, Cancellable {
+public interface FurnaceSmeltItemEvent extends FurnaceEvent, ItemResultEvent, Cancellable {
 
     /**
      * Gets the freshly cooked {@link ItemStack}.

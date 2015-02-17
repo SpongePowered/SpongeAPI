@@ -25,11 +25,12 @@
 package org.spongepowered.api.event.block.data;
 
 import org.spongepowered.api.block.data.BrewingStand;
+import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**
  * An event related to a {@link BrewingStand}.
  */
-public interface BrewingStandEvent extends TileEntityEvent {
+public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent {
 
     /**
      * Gets the {@link BrewingStand} related to this event.
