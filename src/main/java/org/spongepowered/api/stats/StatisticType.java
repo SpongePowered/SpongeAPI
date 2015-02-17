@@ -30,4 +30,12 @@ package org.spongepowered.api.stats;
  * {@link GroupedStatistic}s are belonging to.
  */
 public interface StatisticType {
+
+    /**
+     * Gets the {@link StatisticUnit} this statistic is measured in.
+     *
+     * @return The statistic unit this statistic is measured in
+     */
+    StatisticUnit getStatisticUnit();
+
 }
