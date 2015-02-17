@@ -26,7 +26,6 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -61,8 +60,8 @@ import org.spongepowered.api.world.biome.BiomeType;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.UUID;

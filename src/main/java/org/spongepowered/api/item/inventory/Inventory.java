@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;

@@ -26,11 +26,9 @@
 package org.spongepowered.api.entity.living.animal;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.entity.living.Tameable;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ItemStack;
-
 
 import javax.annotation.Nullable;
 

@@ -32,7 +32,6 @@ import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.persistence.DataSerializable;
-
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.Date;

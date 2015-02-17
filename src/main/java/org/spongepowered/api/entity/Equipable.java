@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;

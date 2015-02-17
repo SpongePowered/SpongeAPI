@@ -31,7 +31,6 @@ import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.entity.HumanInventory;
 
 /**
  * Represents a HumanEntity in game, such as {@link org.spongepowered.api.entity.player.Player}
