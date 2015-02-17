@@ -26,7 +26,7 @@ package org.spongepowered.api.stats.achievement;
 
 import com.google.common.base.Optional;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Represents an in-game achievement which may be earned by or given to players.
@@ -43,8 +43,8 @@ public interface Achievement {
     /**
      * Returns the children of this achievement.
      *
-     * @return The children of this achievement
+     * @return An immutable collection of all children this achievement has
      */
-    List<Achievement> getChildren();
+    Collection<Achievement> getChildren();
 
 }
