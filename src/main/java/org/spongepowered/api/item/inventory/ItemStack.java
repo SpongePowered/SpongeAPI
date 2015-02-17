@@ -130,4 +130,5 @@ public interface ItemStack extends Serializable, DataSerializable {
      * @return The level of the enchantment, or -1 if the enchantment is not applied to this stack
      */
     int getEnchantment(Enchantment enchant);
+    
 }

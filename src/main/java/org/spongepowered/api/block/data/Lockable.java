@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.block.data;
 
+import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.types.TileInventory;
+
 /**
  * A representation of the persisted data for a tile entity with a 'lock'.
  * <p>
@@ -31,7 +34,7 @@ package org.spongepowered.api.block.data;
  * player who is holding an item with a name equal to the lock token.
  * </p>
  */
-public interface Lockable extends TileEntity { //extends Inventory {
+public interface Lockable extends TileEntity, Carrier {
 
     /**
      * Gets the lock token for this tile entity. Will be empty if this tile
@@ -47,5 +50,10 @@ public interface Lockable extends TileEntity { //extends Inventory {
      * @param token The new lock token
      */
     void setLockToken(String token);
-
+    
+    /* (non-Javadoc)
+     * @see org.spongepowered.api.item.inventory.Carrier#getInventory()
+     */
+    @Override
+    TileInventory<Lockable> getInventory();
 }
