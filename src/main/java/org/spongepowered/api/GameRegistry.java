@@ -49,6 +49,7 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.stats.EntityStatistic;
@@ -629,5 +630,19 @@ public interface GameRegistry {
      * @return The collection of all available {@link BannerPatternShape}s
      */
     Collection<BannerPatternShape> getBannerPatternShapes();
+
+    /**
+     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
+     *
+     * @return The item dictionary
+     */
+    GameDictionary getGameDictionary();
+
+    /**
+     * Retrieves the RecipeRegistry for this GameRegistry.
+     *
+     * @return The recipe registry
+     */
+    RecipeRegistry getRecipeRegistry();
 
 }

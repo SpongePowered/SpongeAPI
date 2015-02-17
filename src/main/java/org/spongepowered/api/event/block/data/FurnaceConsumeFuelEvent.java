@@ -26,12 +26,13 @@ package org.spongepowered.api.event.block.data;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.data.Furnace;
+import org.spongepowered.api.event.inventory.ItemResultEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * An event when a {@link Furnace} consumes an {@link ItemStack} as fuel.
  */
-public interface FurnaceConsumeFuelEvent extends FurnaceEvent {
+public interface FurnaceConsumeFuelEvent extends FurnaceEvent, ItemResultEvent {
 
     /**
      * Gets the burned item.

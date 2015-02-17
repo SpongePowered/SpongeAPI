@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.service.config;
 
+import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 
 import java.io.File;
@@ -72,7 +73,7 @@ public interface ConfigRoot {
      * @return A configuration object
      * @see #getConfigFile()
      */
-    ConfigurationLoader getConfig();
+    ConfigurationLoader<CommentedConfigurationNode> getConfig();
 
     /**
      * Get the directory that this configuration root refers to.
