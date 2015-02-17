@@ -22,25 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.stats;
 
 /**
- * Represents some statistic in Minecraft with a string ID.
+ * Represents a unit a statistic is measured in.
  */
-public interface Statistic {
+public interface StatisticUnit {
 
     /**
-     * Gets the ID for this Statistic.
+     * Gets the name of this statistic.
      *
-     * @return The String ID
+     * @return The name of this statistic
      */
-    String getId();
+    String getName();
 
     /**
-     * Gets the {@link StatisticUnit} this statistic is measured in.
+     * Formats the given value from the statistic to a human readable form.
      *
-     * @return The statistic unit this statistic is measured in
+     * @param value The value to format
+     * @return The formated value
      */
-    StatisticUnit getStatisticUnit();
+    String format(long value);
 
 }

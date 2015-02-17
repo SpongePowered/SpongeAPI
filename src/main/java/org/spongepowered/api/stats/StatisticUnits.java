@@ -22,25 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.stats;
 
 /**
- * Represents some statistic in Minecraft with a string ID.
+ * A utility class for getting all available {@link StatisticUnit}s.
  */
-public interface Statistic {
+public final class StatisticUnits {
 
     /**
-     * Gets the ID for this Statistic.
-     *
-     * @return The String ID
+     * A statistic without unit.
      */
-    String getId();
-
+    public static StatisticUnit COUNT = null;
     /**
-     * Gets the {@link StatisticUnit} this statistic is measured in.
-     *
-     * @return The statistic unit this statistic is measured in
+     * A statistic measured in centimeters.
      */
-    StatisticUnit getStatisticUnit();
+    public static StatisticUnit DISTANCE_CM = null;
+    /**
+     * A statistic measured in 0.1 steps.
+     */
+    public static StatisticUnit FRACTIONAL1 = null;
+    /**
+     * A statistic measured in minutes.
+     */
+    public static StatisticUnit TIME_MINUTES = null;
+
+    private StatisticUnits() {
+    }
 
 }

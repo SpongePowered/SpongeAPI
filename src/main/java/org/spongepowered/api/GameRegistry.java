@@ -58,6 +58,7 @@ import org.spongepowered.api.stats.ItemStatistic;
 import org.spongepowered.api.stats.ItemStatisticType;
 import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.StatisticType;
+import org.spongepowered.api.stats.StatisticUnit;
 import org.spongepowered.api.stats.Statistics;
 import org.spongepowered.api.stats.TeamStatistic;
 import org.spongepowered.api.stats.TeamStatisticType;
@@ -470,6 +471,23 @@ public interface GameRegistry {
      * @return An immutable collection containing all statistics in registry
      */
     Collection<? extends Statistic> getStatistics();
+
+    /**
+     * Gets the {@link StatisticUnit} with the specified name.
+     *
+     * @param name The name of the statistic unit to return
+     * @return The statistic unit with the given name or Optional.absent() if
+     *         not found
+     */
+    Optional<? extends StatisticUnit> getStatisticUnit(String name);
+
+    /**
+     * Gets a collection of all available {@link StatisticUnit}s.
+     *
+     * @return An immutable collection containing all statistics units in
+     *         registry
+     */
+    Collection<? extends StatisticUnit> getStatisticUnitss();
 
     /**
      * Gets the {@link DimensionType} with the provided name.
