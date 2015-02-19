@@ -25,6 +25,7 @@
 
 package org.spongepowered.api;
 
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
@@ -74,8 +75,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -474,6 +477,100 @@ public interface GameRegistry {
     Collection<? extends Statistic> getStatistics();
 
     /**
+     * Registers a new simple {@link Statistic}.
+     *
+     * <p>
+     * <b>Note:</b> Manually registered statistics have to be registered every
+     * time the server starts, otherwise the value may be dropped. In addition
+     * to that the value is not increased automatically so the plugin which
+     * registered it has to increase the value on its own.
+     * </p>
+     *
+     * @param id The id for the new statistic
+     * @param unit The unit for the new statistic
+     * @return The newly created or the existing statistic with the given id and
+     *         unit
+     * @throws IllegalArgumentException If a statistic with the given id already
+     *             exists, but has a different unit
+     * @throws IllegalArgumentException If subId contains invalid characters or
+     *             starts or ends with a grouping char (usually '.')
+     */
+    Statistic registerSimpleStatistic(String id, StatisticUnit unit) throws IllegalArgumentException;
+
+    /**
+     * Registers a new {@link GroupedStatistic}. In order to create a new
+     * instance of a grouped statistic, it is required to pass all required
+     * information to initialize it. For more information which data are
+     * required for the {@link StatisticType} see the different extending
+     * interfaces and
+     * {@link #registerStatisticType(String, StatisticUnit, Function, Class...)}
+     * .
+     *
+     * <p>
+     * <b>Note:</b> Manually registered statistics have to be registered every
+     * time the server starts, otherwise the value may be dropped. In addition
+     * to that the value is not increased automatically so the plugin which
+     * registered it has to increase the value on its own.
+     * </p>
+     *
+     * @param type The type for the new statistic
+     * @param subId The id for the new statistic appended to the id of the
+     *            statistic type
+     * @param data The data that are required to create an instance of the
+     *            specific statistic instance
+     * @return The newly created or the existing statistic with the given id,
+     *         unit and data
+     * @throws IllegalArgumentException If a statistic with the given sub id
+     *             already exists, but has a different unit or different data
+     *             values
+     * @throws IllegalArgumentException If subId contains invalid characters or
+     *             starts or ends with a grouping char (usually '.') or data is
+     *             missing some required values
+     */
+    Statistic registerGroupedStatistic(StatisticType type, String subId, Map<String, ?> data) throws IllegalArgumentException;
+
+    /**
+     * Registers a new {@link StatisticType} extending the given classes. All
+     * getter methods are mapped to the according camel case data key.
+     *
+     * @param baseId The base id for all future {@link GroupedStatistic}
+     *            connected to this type
+     * @param unit The unit for the new statistic type
+     * @param interfaces The interfaces this statistic type should implement
+     * @return The newly created statistic type which implements the given
+     *         interfaces
+     * @throws IllegalArgumentException If a statistic type with the given base
+     *             id already exists, but has a different unit or different
+     *             classes
+     * @throws IllegalArgumentException If baseId contains invalid characters or
+     *             starts or ends with a grouping char (usually '.') or the
+     *             provided classes are not supported
+     */
+    StatisticType registerStatisticType(String baseId, StatisticUnit unit, Class<? extends StatisticType>... interfaces) throws IllegalArgumentException;
+
+    /**
+     * Registers a new {@link StatisticType} extending the given classes. The
+     * getter methods are mapped using the provided {@link Function}. If the
+     * function returns null, then the camel case data key is used.
+     *
+     * @param baseId The base id for all future {@link GroupedStatistic}
+     *            connected to this type
+     * @param unit The unit for the new statistic type
+     * @param methodMapper The method mapper that maps the interfaces' methods
+     *            to data keys
+     * @param interfaces The interfaces this statistic type should implement
+     * @return The newly created statistic type which implements the given
+     *         interfaces
+     * @throws IllegalArgumentException If a statistic type with the given base
+     *             id already exists, but has a different unit or different
+     *             classes
+     * @throws IllegalArgumentException If baseId contains invalid characters or
+     *             starts or ends with a grouping char (usually '.') or the
+     *             provided classes are not supported
+     */
+    StatisticType registerStatisticType(String baseId, StatisticUnit unit, Function<Method, String> methodMapper, Class<? extends StatisticType>... interfaces) throws IllegalArgumentException;;
+
+    /**
      * Gets the {@link StatisticUnit} with the specified name.
      *
      * @param name The name of the statistic unit to return
@@ -488,7 +585,7 @@ public interface GameRegistry {
      * @return An immutable collection containing all statistics units in
      *         registry
      */
-    Collection<? extends StatisticUnit> getStatisticUnitss();
+    Collection<? extends StatisticUnit> getStatisticUnits();
 
     /**
      * Gets the {@link DimensionType} with the provided name.
