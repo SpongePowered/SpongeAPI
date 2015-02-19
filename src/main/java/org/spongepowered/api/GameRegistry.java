@@ -546,7 +546,8 @@ public interface GameRegistry {
      *             starts or ends with a grouping char (usually '.') or the
      *             provided classes are not supported
      */
-    StatisticType registerStatisticType(String baseId, StatisticUnit unit, Class<? extends StatisticType>... interfaces) throws IllegalArgumentException;
+    StatisticType registerStatisticType(String baseId, StatisticUnit unit, Class<? extends StatisticType>... interfaces)
+            throws IllegalArgumentException;
 
     /**
      * Registers a new {@link StatisticType} extending the given classes. The
@@ -568,7 +569,8 @@ public interface GameRegistry {
      *             starts or ends with a grouping char (usually '.') or the
      *             provided classes are not supported
      */
-    StatisticType registerStatisticType(String baseId, StatisticUnit unit, Function<Method, String> methodMapper, Class<? extends StatisticType>... interfaces) throws IllegalArgumentException;;
+    StatisticType registerStatisticType(String baseId, StatisticUnit unit, Function<Method, String> methodMapper,
+            Class<? extends StatisticType>... interfaces) throws IllegalArgumentException;
 
     /**
      * Gets the {@link StatisticUnit} with the specified name.
