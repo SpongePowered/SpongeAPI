@@ -95,28 +95,33 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
     void setFoodLevel(float foodLevel);
 
     /**
-     * Gets the current experience towards the next level.
-     *
-     * <p>This value ranges from 0 to 1, with the experience bar
-     * being empty at 0, and the player leveling up at 1.</p>
+     * Gets the current experience accumulated since the last level-up.
      *
      * <p>This is not the total experience this human has.</p>
      *
-     * @return The current experience towards the next level
+     * @return The current experience accumulated since the last level-up.
      */
-    double getExperienceToLevel();
+    double getExperienceSinceLevel();
 
     /**
-     * Sets the experience accumulated towards the next level.
-     *
-     * <p>This value ranges from 0 to 1, with the experience bar
-     * being empty at 0, and the player leveling up at 1.</p>
+     * Sets the experience accumulated since the last level-up.
      *
      * <p>This is not the total experience this human has.</p>
      *
-     * @param experience The experience towards the next level
+     * @param experience The experience accumulated since the last level-up.
      */
-    void setExperienceToLevel(double experience);
+    void setExperienceSinceLevel(double experience);
+
+    /**
+     * Gets the experience required since the last level to level up.
+     *
+     * <p>For example, if level 14 reqiures 280 experience points, level 15
+     * requires 315, and the player is at level 14, this method will return 35.
+     * 35.</p>
+     *
+     * @return the experience required since the last level to level up
+     */
+    double getExperienceBetweenLevels();
 
     /**
      * Gets the current experience level of this human.
@@ -172,54 +177,12 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
     /**
      * Sets whether this human entity is currently flying.
      *
-     * <p>Note: this will have no effect if {@link Human#isFlightAllowed()}
-     * returns <code>false</code>.</p>
+     * <p>Note: this will have no effect if flight is disabled for this human.
+     * </p>
      *
      * @param flying Whether this human entity should be flying
      */
     void setFlying(boolean flying);
-
-    /**
-     * Returns whether this human entity is allowed to fly.
-     *
-     * @return Whether this human entity is allowed to fly
-     */
-    boolean isFlightAllowed();
-
-    /**
-     * Sets if this human entity is allowed to fly.
-     *
-     * @param allowFlight Whether this human entity is allowed to fly.
-     */
-    void setFlightAllowed(boolean allowFlight);
-
-    /**
-     * Gets the speed this human entity may fly at.
-     *
-     * @return the speed this human entity may fly at
-     */
-    double getFlySpeed();
-
-    /**
-     * Sets the speed this human entity may fly at.
-     *
-     * @param speed the speed this human entity may fly at
-     */
-    void setFlySpeed(double speed);
-
-    /**
-     * Gets the speed this human entity may walk at.
-     *
-     * @return the speed this human entity may walk at
-     */
-    double getWalkSpeed();
-
-    /**
-     * Sets the speed this human entity may walk at.
-     *
-     * @param speed the speed this human entity may walk at
-     */
-    void setWalkSpeed(double speed);
 
     /**
      * Returns whether this human entity has an open inventory at the moment

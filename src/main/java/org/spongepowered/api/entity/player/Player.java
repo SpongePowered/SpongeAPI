@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.entity.player;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -37,9 +36,6 @@ import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.world.Location;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
@@ -65,10 +61,11 @@ public interface Player extends Human, User, CommandSource, Viewer {
     /**
      * Sets the player's display name.
      *
-     * <p>Passing {@link com.google.common.base.Optional#absent()} will set the
+     * <p>Passing <code>null</code> will set the
      * player's display name to their name.</p>
      *
-     * @param displayName The new display name of this player.
+     * @param displayName The new display name of this player, or
+     *                    <code>null</code> to reset it
      */
     void setDisplayName(@Nullable Message displayName);
 
@@ -138,22 +135,6 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @see GameModes
      */
     void setGameMode(GameMode gameMode);
-
-    /**
-     * Gets the location of this player's bed spawn.
-     *
-     * @return The location of this player's bed spawn, or
-     * {@link Optional#absent} if it is not set
-     */
-    Optional<Location> getBedLocation();
-
-    /**
-     * Sets the location of this player's bed spawn. Passing <code>null</code>
-     * will clear it.
-     *
-     * @param location The new location of this player's bed spawn
-     */
-    void setBedLocation(@Nullable Location location);
 
     /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
