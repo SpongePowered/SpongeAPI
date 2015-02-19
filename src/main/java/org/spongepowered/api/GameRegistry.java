@@ -527,7 +527,7 @@ public interface GameRegistry {
      *             starts or ends with a grouping char (usually '.') or data is
      *             missing some required values
      */
-    Statistic registerGroupedStatistic(StatisticType type, String subId, Map<String, ?> data) throws IllegalArgumentException;
+    GroupedStatistic registerGroupedStatistic(StatisticType type, String subId, Map<String, ?> data) throws IllegalArgumentException;
 
     /**
      * Registers a new {@link StatisticType} extending the given classes. All
