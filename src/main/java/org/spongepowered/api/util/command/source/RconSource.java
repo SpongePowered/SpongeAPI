@@ -22,49 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.command.source;
 
-package org.spongepowered.api.util.command;
-
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
+import java.net.InetSocketAddress;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * Represents an Rcon client
  */
-public interface CommandSource extends Subject {
+public interface RconSource extends RemoteSource {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets the {@link InetSocketAddress} used by the client to connect
+     * to the server.
      *
-     * @return The name of this command source
+     * @return The {@link InetSocketAddress} used by the client
      */
-    String getName();
+    InetSocketAddress getAddress();
 
     /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
+     * Gets whether this client is logged in, or authenticated.
      *
-     * @param messages The message(s)
+     * @return Whether this client is logged in
      */
-    void sendMessage(String... messages);
+    boolean getLoggedIn();
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * Sets whether this client is logged in, or authenticated.
      *
-     * @param messages The message(s)
+     * @param loggedIn Whether this client is logged in
      */
-    void sendMessage(Message... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Message> messages);
-
+    void setLoggedIn(boolean loggedIn);
 }

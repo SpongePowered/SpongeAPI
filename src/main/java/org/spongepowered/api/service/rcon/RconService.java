@@ -22,49 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util.command;
-
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
+package org.spongepowered.api.service.rcon;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * Manages Rcon-related settings.
  */
-public interface CommandSource extends Subject {
+public interface RconService {
 
     /**
-     * Gets the name identifying this command source.
+     * Tests whether Rcon is enabled for this service.
      *
-     * @return The name of this command source
+     * <p>Rcon allows commands to be remotely run on the server, after Rcon
+     * client have authenticated with a password.</p>
+     *
+     * @return Where Rcon is enabled
      */
-    String getName();
+    boolean isRconEnabled();
 
     /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
+     * Gets the Rcon password for this service
      *
-     * @param messages The message(s)
-     */
-    void sendMessage(String... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * <p>This password is used by Rcon clients to authenticate.</p>
      *
-     * @param messages The message(s)
+     * @return The Rcon password for this service
      */
-    void sendMessage(Message... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Message> messages);
+    String getRconPassword();
 
 }

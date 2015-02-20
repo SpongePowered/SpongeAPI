@@ -22,49 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.rcon;
 
-package org.spongepowered.api.util.command;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.util.command.source.RconSource;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.message.Message;
-
-/**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- */
-public interface CommandSource extends Subject {
+public interface RconEvent extends GameEvent {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets the ID provided by the client for this request
      *
-     * @return The name of this command source
+     * <p>The provided ID is sent back in the response to the client.</p>
+     *
+     * <p>If authorization failed (password is incorrect, or client didn't authenticate),
+     * the ID will be set to -1 in the response.</p>
+     *
+     * @return The ID provided by the client
      */
-    String getName();
+    int getId();
 
     /**
-     * Sends the plain text message(s) to source when possible.
-     * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
+     * Gets the raw payload provided by the client.
      *
-     * @param messages The message(s)
+     * <p>If the client is authenticating, this will be the supplied password.
+     *
+     * If the client is running a command, this will be the command to run.</p>
+     *
+     * @return The raw payload provided by the client
      */
-    void sendMessage(String... messages);
+    String getRawPayload();
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * Gets the {@link RconSource} responsible for the event.
      *
-     * @param messages The message(s)
+     * @return The {@link RconSource} responsible for the event
      */
-    void sendMessage(Message... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Message> messages);
-
+    RconSource getSource();
 }

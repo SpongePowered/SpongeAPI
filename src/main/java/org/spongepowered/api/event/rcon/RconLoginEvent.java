@@ -22,13 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.event.rcon;
 
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.event.Cancellable;
 
-/**
- * Represents a remote source, such as Rcon, web-app, etc.
- */
-public interface RemoteSource extends CommandSource {
+public interface RconLoginEvent extends RconEvent, Cancellable {
 
+    /**
+     * Gets the password provided by the client.
+     *
+     * @return The password provided by the client
+     */
+    String getPassword();
 }
