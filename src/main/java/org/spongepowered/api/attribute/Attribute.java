@@ -60,7 +60,7 @@ public interface Attribute {
      * 
      * @return The default value for this attribute
      */
-    double getDefaultBase();
+    double getDefaultValue();
 
     /**
      * Gets a predicate to decide if a given {@link AttributeHolder} can have
