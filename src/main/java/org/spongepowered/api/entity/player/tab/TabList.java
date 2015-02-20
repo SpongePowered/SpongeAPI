@@ -84,9 +84,9 @@ public interface TabList {
     void addPlayer(PlayerTabInfo player) throws IllegalArgumentException;
 
     /**
-     * <p>Removes a player from the list. This should only be used to completely
+     * Removes a player from the list. This should only be used to completely
      * remove a player, not add it back later. Note that if this is used on a
-     * player, but they remain visible in-game, their skin will not work.</p>
+     * player, but they remain visible in-game, their skin will not work.
      * 
      * @param playerId the UUID of the player to remove
      * @return The {@link PlayerTabInfo} that was associated with the UUID
@@ -94,9 +94,9 @@ public interface TabList {
     PlayerTabInfo removePlayer(UUID playerId);
 
     /**
-     * <p>Finds a {@link PlayerTabInfo} matching the specified UUID. If none
-     * were found, it returns Optional.absent().</p>
-     * 
+     * Finds a {@link PlayerTabInfo} matching the specified UUID. If none were
+     * found, it returns Optional.absent().
+     *
      * @param uuid The UUID to search for
      * @return An Optional containing a PlayerTabInfo if one was found
      */
