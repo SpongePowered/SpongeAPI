@@ -26,12 +26,14 @@
 package org.spongepowered.api.event.message;
 
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Fired when a chat message is said.
  */
-public interface MessageEvent extends GameEvent {
+public interface MessageEvent extends GameEvent, Cancellable {
 
     /**
      * Get the command source.
@@ -45,6 +47,13 @@ public interface MessageEvent extends GameEvent {
      *
      * @return The message said
      */
-    String getMessage();
+    Message getMessage();
+
+    /**
+     * Set the message said.
+     *
+     * @param message The message said
+     */
+    void setMessage(Message message);
 
 }

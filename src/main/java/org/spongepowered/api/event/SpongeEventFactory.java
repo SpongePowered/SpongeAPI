@@ -49,61 +49,13 @@ import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.entity.weather.Lightning;
-import org.spongepowered.api.event.block.BlockBreakEvent;
-import org.spongepowered.api.event.block.BlockBurnEvent;
-import org.spongepowered.api.event.block.BlockChangeEvent;
-import org.spongepowered.api.event.block.BlockDispenseEvent;
-import org.spongepowered.api.event.block.BlockIgniteEvent;
-import org.spongepowered.api.event.block.BlockInteractEvent;
-import org.spongepowered.api.event.block.BlockMoveEvent;
-import org.spongepowered.api.event.block.BlockPlaceEvent;
-import org.spongepowered.api.event.block.BlockRandomTickEvent;
-import org.spongepowered.api.event.block.BlockUpdateEvent;
-import org.spongepowered.api.event.block.FloraGrowEvent;
-import org.spongepowered.api.event.block.FluidSpreadEvent;
-import org.spongepowered.api.event.block.LeafDecayEvent;
+import org.spongepowered.api.event.block.*;
 import org.spongepowered.api.event.block.data.BrewingStandBrewEvent;
 import org.spongepowered.api.event.block.data.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.data.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
-import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
-import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
-import org.spongepowered.api.event.entity.EntityCollisionEvent;
-import org.spongepowered.api.event.entity.EntityCollisionWithBlockEvent;
-import org.spongepowered.api.event.entity.EntityCollisionWithEntityEvent;
-import org.spongepowered.api.event.entity.EntityConstructingEvent;
-import org.spongepowered.api.event.entity.EntityDeathEvent;
-import org.spongepowered.api.event.entity.EntityDismountEvent;
-import org.spongepowered.api.event.entity.EntityDropItemEvent;
-import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
-import org.spongepowered.api.event.entity.EntityInteractEntityEvent;
-import org.spongepowered.api.event.entity.EntityInteractEvent;
-import org.spongepowered.api.event.entity.EntityMountEvent;
-import org.spongepowered.api.event.entity.EntityMoveEvent;
-import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
-import org.spongepowered.api.event.entity.EntityPlaceBlockEvent;
-import org.spongepowered.api.event.entity.EntitySpawnEvent;
-import org.spongepowered.api.event.entity.EntityTameEvent;
-import org.spongepowered.api.event.entity.EntityTeleportEvent;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
-import org.spongepowered.api.event.entity.ProjectileLaunchEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerBreakBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeGameModeEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeWorldEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChatEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerDeathEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerDropItemEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractEntityEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerMoveEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerPickUpItemEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerPlaceBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerQuitEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerUpdateEvent;
+import org.spongepowered.api.event.entity.*;
+import org.spongepowered.api.event.entity.living.player.*;
 import org.spongepowered.api.event.entity.living.player.fishing.PlayerCastFishingLineEvent;
 import org.spongepowered.api.event.entity.living.player.fishing.PlayerHookedEntityEvent;
 import org.spongepowered.api.event.entity.living.player.fishing.PlayerRetractFishingLineEvent;
@@ -112,17 +64,7 @@ import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.event.weather.LightningStrikeEvent;
 import org.spongepowered.api.event.weather.WeatherChangeEvent;
-import org.spongepowered.api.event.world.ChunkForcedEvent;
-import org.spongepowered.api.event.world.ChunkLoadEvent;
-import org.spongepowered.api.event.world.ChunkPostGenerateEvent;
-import org.spongepowered.api.event.world.ChunkPostPopulateEvent;
-import org.spongepowered.api.event.world.ChunkPreGenerateEvent;
-import org.spongepowered.api.event.world.ChunkPrePopulateEvent;
-import org.spongepowered.api.event.world.ChunkUnforcedEvent;
-import org.spongepowered.api.event.world.ChunkUnloadEvent;
-import org.spongepowered.api.event.world.GameRuleChangeEvent;
-import org.spongepowered.api.event.world.WorldLoadEvent;
-import org.spongepowered.api.event.world.WorldUnloadEvent;
+import org.spongepowered.api.event.world.*;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.TileInventory;
 import org.spongepowered.api.status.StatusClient;
@@ -141,11 +83,10 @@ import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherVolume;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Nullable;
 
 /**
  * Generates Sponge event implementations.
@@ -820,7 +761,7 @@ public final class SpongeEventFactory {
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static MessageEvent createMessage(Game game, CommandSource source, String message) {
+    public static MessageEvent createMessage(Game game, CommandSource source, Message message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);
@@ -1001,7 +942,7 @@ public final class SpongeEventFactory {
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, String message) {
+    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Message message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
