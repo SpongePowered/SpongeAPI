@@ -25,28 +25,30 @@
 
 package org.spongepowered.api.event.attribute;
 
-import org.spongepowered.api.attribute.Attribute;
+import com.google.common.base.Optional;
+import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.attribute.AttributeSource;
 
-import com.google.common.base.Optional;
-
 /**
- * An event fired when an {@link Attribute} is modified by an
- * {@link AttributeModifier}.
+ * An event fired when an {@link AttributeModifier} is added to an
+ * {@link AttributeHolder}.
  */
 public interface AttributeModifierAddedEvent extends AttributeEvent {
 
     /**
      * Gets the {@link AttributeModifier} that was added in this event.
-     * 
+     *
      * @return The AttributeModifier that was added in this event
      */
     AttributeModifier getModifier();
 
     /**
-     * Gets the {@link AttributeSource} that caused this event, if there was one.
+     * Gets the {@link AttributeSource} that caused this event, if there was
+     * one.
+     *
      * @return The AttributeSource that caused this event, if there was one
      */
     Optional<AttributeSource> getSource();
+
 }

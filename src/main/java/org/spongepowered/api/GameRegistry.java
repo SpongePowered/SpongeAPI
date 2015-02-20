@@ -22,8 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.attribute.Operation;
@@ -56,8 +58,6 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
-
-import com.google.common.base.Optional;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -542,20 +542,34 @@ public interface GameRegistry {
     /**
      * Gets an {@link Attribute} by name.
      * 
-     * @param name The name to find
-     * @return An Attribute if one could be found, otherwise
-     *         {@link Optional#absent()}.
+     * @param name The name of the Attribute
+     * @return The {@link Attribute} with the given name or
+     *         {@link Optional#absent()} if not found
      */
     Optional<Attribute> getAttribute(String name);
 
     /**
-     * Gets an {@link Operation} by id.
+     * Gets a {@link Collection} of all possible {@link Attribute}s.
      * 
-     * @param id The id to find
-     * @return An Operation if one could be found, otherwise
-     *         {@link Optional#absent()}.
+     * @return The collection of all available {@link Attribute}s
      */
-    Optional<Operation> getOperation(int id);
+    Collection<Attribute> getAttributes();
+
+    /**
+     * Gets an {@link Operation} by name.
+     * 
+     * @param name The name of the Operation
+     * @return The {@link Operation} with the given name or
+     *         {@link Optional#absent()} if not found
+     */
+    Optional<Operation> getOperation(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Operation}s.
+     * 
+     * @return The collection of all available {@link Operation}s
+     */
+    Collection<Operation> getOperations();
 
     /**
      * Gets a new {@link AttributeModifierBuilder}.
@@ -563,4 +577,5 @@ public interface GameRegistry {
      * @return A new AttributeModifierBuilder
      */
     AttributeModifierBuilder getAttributeModifierBuilder();
+
 }

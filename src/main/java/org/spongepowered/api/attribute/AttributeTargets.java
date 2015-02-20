@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.attribute;
 
 import com.google.common.base.Predicate;
@@ -36,7 +37,6 @@ public final class AttributeTargets {
     public static final Predicate<AttributeHolder> ZOMBIE = null;
 
     private AttributeTargets() {
-
     }
 
 }

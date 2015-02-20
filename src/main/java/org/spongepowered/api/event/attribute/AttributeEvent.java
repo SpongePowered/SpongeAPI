@@ -37,7 +37,7 @@ public interface AttributeEvent extends Cancellable, GameEvent {
 
     /**
      * Gets the {@link AttributeHolder} whose attributes are being changed.
-     * 
+     *
      * @return The AttributeHolder whose attributes are being changed
      */
     AttributeHolder getHolder();
@@ -45,7 +45,7 @@ public interface AttributeEvent extends Cancellable, GameEvent {
     /**
      * Gets the {@link org.spongepowered.api.attribute.Attribute} that is being
      * changed.
-     * 
+     *
      * @return The Attribute that is being changed
      */
     Attribute getAttribute();
