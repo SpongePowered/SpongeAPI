@@ -206,6 +206,25 @@ public interface Server extends ChannelRegistrar {
     Message getMotd();
 
     /**
+     * Tests whether the server has RCon enabled.
+     *
+     * <p>RCon allows commands to be remotely run on the server, after RCon
+     * client have authenticated with a password.</p>
+     *
+     * @return True if enabled, false if not
+     */
+    boolean getRConEnabled();
+
+    /**
+     * Gets the RCon password for the server
+     *
+     * <p>This password is used by RCon clients to authenticate.</p>
+     *
+     * @return The RCon password for the server.
+     */
+    String getRConPassword();
+
+    /**
      * Shuts down the server, and kicks all players with the given message.
      *
      * @param kickMessage The message to kick players with
