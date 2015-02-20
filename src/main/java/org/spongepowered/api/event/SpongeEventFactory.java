@@ -66,6 +66,7 @@ import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
 import org.spongepowered.api.event.entity.EntityCollisionEvent;
 import org.spongepowered.api.event.entity.EntityCollisionWithBlockEvent;
 import org.spongepowered.api.event.entity.EntityCollisionWithEntityEvent;
+import org.spongepowered.api.event.entity.EntityConstructingEvent;
 import org.spongepowered.api.event.entity.EntityDeathEvent;
 import org.spongepowered.api.event.entity.EntityDismountEvent;
 import org.spongepowered.api.event.entity.EntityDropItemEvent;
@@ -706,6 +707,20 @@ public final class SpongeEventFactory {
     }
 
     /**
+     * Creates a new {@link EntityConstructingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @return A new instance of the event
+     */
+    public static EntityConstructingEvent createEntityConstructing(Game game, Entity entity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        return createEvent(EntityConstructingEvent.class, values);
+    }
+
+    /**
      * Creates a new {@link EntityTameEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
@@ -831,6 +846,8 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("blockFaceDirection", direction);
+        values.put("exp", exp);
+        values.put("droppedItems", droppedItems);
         return createEvent(PlayerBreakBlockEvent.class, values);
     }
 
@@ -882,10 +899,11 @@ public final class SpongeEventFactory {
      * @param fishHook The {@link FishHook} affected by this event
      * @param caughtItem The {@link ItemStack} caught by the player, can be null
      * @param caughtEntity The {@link Entity} caught by the player, can be null
+     * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
     public static PlayerRetractFishingLineEvent createPlayerRetractFishingLineEvent(Game game, Player player, FishHook fishHook, ItemStack caughtItem,
-                                                                                    Entity caughtEntity) {
+                                                                                    Entity caughtEntity, double exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -895,6 +913,7 @@ public final class SpongeEventFactory {
         values.put("fishHook", fishHook);
         values.put("caughtEntity", Optional.fromNullable(caughtEntity));
         values.put("caughtItem", Optional.fromNullable(caughtItem));
+        values.put("exp", exp);
         return createEvent(PlayerRetractFishingLineEvent.class, values);
     }
 

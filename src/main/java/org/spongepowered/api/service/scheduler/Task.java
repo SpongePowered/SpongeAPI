@@ -115,7 +115,7 @@ public interface Task extends Identifiable {
      */
     public String setName(String name);
 
-    public enum TaskSynchroncity {
+    public enum TaskSynchronicity {
         SYNCHRONOUS,
         ASYNCHRONOUS
     }

@@ -22,41 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.util.command.source.CommandBlockSource;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a minecart with a command block inside it.
+ * Called during the construction of a {@link Entity}.
  */
-public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
+public interface EntityConstructingEvent extends EntityEvent {
 
-    /**
-     * Gets the current command within this command minecart.
-     *
-     * @return The current command stored
-     */
-    String getCommand();
-
-    /**
-     * Sets the stored command within this command minecart.
-     *
-     * @param command The command
-     */
-    void setCommand(String command);
-
-    /**
-     * Gets the current custom name of this command minecart.
-     *
-     * @return The current command name
-     */
-    String getCommandName();
-
-    /**
-     * Sets the custom command name of this command minecart.
-     * <p>Setting the name to null may default to "@".</p>
-     *
-     * @param name The custom name
-     */
-    void setCommandName(String name);
 }
