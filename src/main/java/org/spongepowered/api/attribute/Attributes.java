@@ -40,6 +40,9 @@ public final class Attributes {
 
     public static final Attribute ZOMBIE_SPAWN_REINFORCEMENTS = null;
 
+    public static final Attribute HUMAN_WALK_SPEED = null;
+    public static final Attribute HUMAN_FLY_SPEED = null;
+
     private Attributes() {
     }
 
