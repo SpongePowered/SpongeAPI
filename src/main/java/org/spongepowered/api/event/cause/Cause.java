@@ -35,6 +35,6 @@ public interface Cause {
      * 
      * @return The name
      */
-    String getCauseName();
+    String getName();
 
 }

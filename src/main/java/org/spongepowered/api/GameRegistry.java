@@ -565,7 +565,7 @@ public interface GameRegistry {
      * @param name The name of the cause
      * @return The {@link HealthChangeCause} or Optional.absent() if not found
      */
-    Optional<HealthChangeCause> getHealthChangeChause(String name);
+    Optional<HealthChangeCause> getHealthChangeCause(String name);
 
     /**
      * Gets the {@link DamageCause} with the given name.

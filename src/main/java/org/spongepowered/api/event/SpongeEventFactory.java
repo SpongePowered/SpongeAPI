@@ -42,6 +42,7 @@ import org.spongepowered.api.block.data.Furnace;
 import org.spongepowered.api.block.data.Lockable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -498,7 +499,6 @@ public final class SpongeEventFactory {
      * Creates a new {@link EntityDeathEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-
      * @param entity The entity involved in this event
      * @param location The location of death
      * @param droppedItems The items to drop
@@ -653,7 +653,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static EntityPlaceBlockEvent createEntityPlaceBlock(Game game, Entity entity, BlockLoc block,
-                                                               BlockSnapshot replacementBlock) {
+            BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("block", block);
@@ -678,6 +678,24 @@ public final class SpongeEventFactory {
         values.put("location", location);
         values.put("cause", cause);
         return createEvent(EntitySpawnEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link EntityAboutToConstructEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entityType The entity type involved in this event
+     * @param location The location the entity will spawn at
+     * @param cause The cause
+     * @return A new instance of the event
+     */
+    public static EntityAboutToConstructEvent createEntityAboutToConstructEvent(Game game, EntityType entityType, Location location, EntitySpawnCause cause) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entityType", entityType);
+        values.put("location", location);
+        values.put("cause", cause);
+        return createEvent(EntityAboutToConstructEvent.class, values);
     }
 
     /**
@@ -1159,8 +1177,8 @@ public final class SpongeEventFactory {
      * @param direction The direction the block was placed
      * @return A new instance of the event
      */
-    public static PlayerPlaceBlockEvent createPlayerPlaceBlock(Game game, Player player, BlockLoc block,
-                                                               BlockSnapshot replacementBlock, Direction direction) {
+    public static PlayerPlaceBlockEvent createPlayerPlaceBlock(Game game, Player player, BlockLoc block, BlockSnapshot replacementBlock,
+            Direction direction) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("block", block);
