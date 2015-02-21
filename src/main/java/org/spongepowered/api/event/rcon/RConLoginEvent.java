@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.event.rcon;
 
-public interface RConLoginEvent extends RConEvent {
+import org.spongepowered.api.util.event.Cancellable;
+
+public interface RConLoginEvent extends RConEvent, Cancellable {
 
     /**
      * Gets the password provided by the client.

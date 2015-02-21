@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.event.rcon;
 
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.util.command.source.RConSource;
 
-public interface RConEvent {
+public interface RConEvent extends GameEvent {
 
     /**
      * Gets the ID provided by the client for this request
