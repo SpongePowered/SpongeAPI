@@ -56,7 +56,7 @@ public interface RCONCommandEvent extends CommandEvent, RCONEvent {
      * The opposite scenario, preventing the execution of a command by a logged in
      * client, can be achieved with {@link #setCancelled(boolean)}.</p>
      *
-     * @return Whether to override the client's logged in status
+     * @param ignoringLoginStatus Whether to ignore the client's logged in status
      */
-    void setIgnoringLoginStatus(boolean overrideLoggedIn);
+    void setIgnoringLoginStatus(boolean ignoringLoginStatus);
 }
