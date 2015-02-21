@@ -44,7 +44,7 @@ public interface RCONCommandEvent extends CommandEvent, RCONEvent {
      *
      * @return Whether to override the client's logged in status
      */
-    boolean overrideLoggedIn();
+    boolean isIgnoringLoginStatus();
 
     /**
      * Sets whether {@link RCONSource#getLoggedIn()} will be ignored when
@@ -58,5 +58,5 @@ public interface RCONCommandEvent extends CommandEvent, RCONEvent {
      *
      * @return Whether to override the client's logged in status
      */
-    void setOverrideLoggedIn(boolean overrideLoggedIn);
+    void setIgnoringLoginStatus(boolean overrideLoggedIn);
 }
