@@ -416,7 +416,7 @@ public interface GameRegistry {
      * @param id The id of the statistic to return
      * @return The statistic with the given id or Optional.absent() if not found
      */
-    Optional<? extends Statistic> getStatistic(String id);
+    Optional<Statistic> getStatistic(String id);
 
     /**
      * Gets the {@link Statistic} for the given {@link EntityStatisticType} and
@@ -427,7 +427,7 @@ public interface GameRegistry {
      * @return The entity statistic matching the filter or Optional.absent() if
      *         not found
      */
-    Optional<? extends EntityStatistic> getEntityStatistic(EntityStatisticType statisticType, EntityType entityType);
+    Optional<EntityStatistic> getEntityStatistic(EntityStatisticType statisticType, EntityType entityType);
 
     /**
      * Gets the {@link Statistic} for the given {@link ItemStatisticType} and
@@ -438,7 +438,7 @@ public interface GameRegistry {
      * @return The item statistic matching the filter or Optional.absent() if
      *         not found
      */
-    Optional<? extends ItemStatistic> getItemStatistic(ItemStatisticType statisticType, ItemType itemType);
+    Optional<ItemStatistic> getItemStatistic(ItemStatisticType statisticType, ItemType itemType);
 
     /**
      * Gets the {@link Statistic} for the given {@link TeamStatisticType} and
@@ -449,7 +449,7 @@ public interface GameRegistry {
      * @return The team statistic matching the filter or Optional.absent() if
      *         not found
      */
-    Optional<? extends TeamStatistic> getTeamStatistic(TeamStatisticType statisticType, TextColor teamColor);
+    Optional<TeamStatistic> getTeamStatistic(TeamStatisticType statisticType, TextColor teamColor);
 
     /**
      * Gets a list of all available {@link Statistic}s that are not grouped.
@@ -458,7 +458,7 @@ public interface GameRegistry {
      *         that are not grouped
      * @see Statistics
      */
-    Collection<? extends Statistic> getSimpleStatistics();
+    Collection<Statistic> getSimpleStatistics();
 
     /**
      * Gets a list of all available {@link GroupedStatistic}s with the given
@@ -467,14 +467,14 @@ public interface GameRegistry {
      * @param statisticType The statisticType to return
      * @return An immutable collection containing all statistics in registry
      */
-    Collection<? extends GroupedStatistic> getStatistics(StatisticType statisticType);
+    Collection<GroupedStatistic> getStatistics(StatisticType statisticType);
 
     /**
      * Gets a collection of all available {@link Statistic}s.
      *
      * @return An immutable collection containing all statistics in registry
      */
-    Collection<? extends Statistic> getStatistics();
+    Collection<Statistic> getStatistics();
 
     /**
      * Registers a new simple {@link Statistic}.
@@ -579,7 +579,7 @@ public interface GameRegistry {
      * @return The statistic unit with the given name or Optional.absent() if
      *         not found
      */
-    Optional<? extends StatisticUnit> getStatisticUnit(String name);
+    Optional<StatisticUnit> getStatisticUnit(String name);
 
     /**
      * Gets a collection of all available {@link StatisticUnit}s.
@@ -587,7 +587,7 @@ public interface GameRegistry {
      * @return An immutable collection containing all statistics units in
      *         registry
      */
-    Collection<? extends StatisticUnit> getStatisticUnits();
+    Collection<StatisticUnit> getStatisticUnits();
 
     /**
      * Gets the {@link DimensionType} with the provided name.
