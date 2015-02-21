@@ -557,8 +557,8 @@ public interface GameRegistry {
      * @param baseId The base id for all future {@link GroupedStatistic}
      *            connected to this type
      * @param unit The unit for the new statistic type
-     * @param methodMapper The method mapper that maps the interfaces' methods
-     *            to data keys
+     * @param methodMapper The method mapper that maps the grouped statistic
+     *            interfaces' methods to data keys
      * @param interfaces The interfaces this statistic type should implement
      * @return The newly created statistic type which implements the given
      *         interfaces
