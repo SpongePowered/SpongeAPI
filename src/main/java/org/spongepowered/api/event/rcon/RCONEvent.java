@@ -25,9 +25,9 @@
 package org.spongepowered.api.event.rcon;
 
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.command.source.RConSource;
+import org.spongepowered.api.util.command.source.RCONSource;
 
-public interface RConEvent extends GameEvent {
+public interface RCONEvent extends GameEvent {
 
     /**
      * Gets the ID provided by the client for this request
@@ -53,9 +53,9 @@ public interface RConEvent extends GameEvent {
     String getRawPayload();
 
     /**
-     * Gets the {@link RConSource} responsible for the event.
+     * Gets the {@link RCONSource} responsible for the event.
      *
-     * @return The {@link RConSource} responsible for the event
+     * @return The {@link RCONSource} responsible for the event
      */
-    RConSource getSource();
+    RCONSource getSource();
 }

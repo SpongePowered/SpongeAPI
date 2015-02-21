@@ -22,34 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.event.rcon;
 
-import java.net.InetSocketAddress;
+import org.spongepowered.api.util.event.Cancellable;
 
-/**
- * Represents an RCon client
- */
-public interface RConSource extends RemoteSource {
+public interface RCONLoginEvent extends RCONEvent, Cancellable {
 
     /**
-     * Gets the {@link InetSocketAddress} used by the client to connect
-     * to the server.
+     * Gets the password provided by the client.
      *
-     * @return The {@link InetSocketAddress} used by the client
+     * @return The password provided by the client
      */
-    InetSocketAddress getAddress();
+    String getPassword();
 
-    /**
-     * Gets whether this client is logged in, or authenticated.
-     *
-     * @return Whether this client is logged in
-     */
-    boolean getLoggedIn();
-
-    /**
-     * Sets whether this client is logged in, or authenticated.
-     *
-     * @param loggedIn Whether this client is logged in
-     */
-    void setLoggedIn(boolean loggedIn);
+    @Override
+    String getRawPayload();
 }
