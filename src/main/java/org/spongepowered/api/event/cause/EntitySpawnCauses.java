@@ -23,29 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.event.cause.EntitySpawnCause;
-import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.world.Location;
+package org.spongepowered.api.event.cause;
 
 /**
- * Raised when entities are spawned.
+ * An enumeration of {@link EntitySpawnCause}s.
  */
-public interface EntitySpawnEvent extends EntityEvent, Cancellable {
+public final class EntitySpawnCauses {
 
-    /**
-     * Returns the location where this entity is spawning.
-     *
-     * @return The location where this entity is spawning
-     */
-    Location getLocation();
-    
-    /**
-     * Gets the cause of this entity spawning.
-     * 
-     * @return The cause
-     */
-    EntitySpawnCause getCause();
+    public static final EntitySpawnCause BLOCK_SPAWNING = null;
+    public static final EntitySpawnCause BREEDING = null;
+    public static final EntitySpawnCause DISPENSE = null;
+    public static final EntitySpawnCause DROPPED_ITEM = null;
+    public static final EntitySpawnCause EXPERIENCE = null;
+    public static final EntitySpawnCause FALLING_BLOCK = null;
+    public static final EntitySpawnCause MOB_SPAWNER = null;
+    public static final EntitySpawnCause PASSIVE = null;
+    public static final EntitySpawnCause PLACEMENT = null;
+    public static final EntitySpawnCause PROJECTILE = null;
+    public static final EntitySpawnCause SPAWN_EGG = null;
+    public static final EntitySpawnCause STRUCTURE = null;
+    public static final EntitySpawnCause TNT_IGNITE = null;
+    public static final EntitySpawnCause WEATHER = null;
+
+    private EntitySpawnCauses() {}
 
 }

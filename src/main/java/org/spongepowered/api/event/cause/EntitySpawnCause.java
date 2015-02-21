@@ -23,29 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.event.cause.EntitySpawnCause;
-import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.world.Location;
+package org.spongepowered.api.event.cause;
 
 /**
- * Raised when entities are spawned.
+ * Represents the cause of an entity spawning into the world.
  */
-public interface EntitySpawnEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Returns the location where this entity is spawning.
-     *
-     * @return The location where this entity is spawning
-     */
-    Location getLocation();
-    
-    /**
-     * Gets the cause of this entity spawning.
-     * 
-     * @return The cause
-     */
-    EntitySpawnCause getCause();
+public interface EntitySpawnCause extends Cause {
 
 }
