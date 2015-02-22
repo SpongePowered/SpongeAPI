@@ -25,26 +25,57 @@
 
 package org.spongepowered.api.event.cause.reason;
 
-import org.spongepowered.api.block.BlockLoc;
-
 /**
- * A generic reason. Usually attached to a cause which may be chained
- * recursively.
- * 
- * <p>
- * For example if there is an event for an entity spawning from a mob spawner
- * the primary reason would be {@link EntitySpawnReasons#MOB_SPAWNER} which
- * would have a parent cause with a {@link BlockReason} containing a reference
- * to the {@link BlockLoc} of the mob spawner.
- * </p>
+ * Represents a builder for creating custom or complex damage reasons.
  */
-public interface Reason {
+public interface DamageReasonBuilder {
 
     /**
-     * Gets the name of this reason.
+     * Sets whether this damage reason should affect users in creative mode,
+     * defaults to false.
      * 
-     * @return The name
+     * @return This builder
      */
-    String getName();
+    DamageReasonBuilder affectCreativeMode();
+
+    /**
+     * Sets whether this damage reason should scale with difficulty, defaults to
+     * false.
+     * 
+     * @return This builder
+     */
+    DamageReasonBuilder scaleWithDifficulty();
+
+    /**
+     * Sets whether this damage reason bypasses armor protection, defaults to
+     * false.
+     * 
+     * @return This builder
+     */
+    DamageReasonBuilder bypassArmor();
+
+    /**
+     * Sets whether this damage reason is blockable, defaults to false.
+     * 
+     * @return This builder
+     */
+    DamageReasonBuilder blockable();
+
+    /**
+     * Sets the type, or types, of this damage reason, defaults to having no
+     * type.
+     * 
+     * @param types The types of this reason
+     * @return This builder
+     */
+    DamageReasonBuilder type(DamageType... types);
+
+    /**
+     * Builds an instance of {@link DamageReason}.
+     * 
+     * @return A new instance
+     * @throws IllegalStateException If the damage reason is not complete
+     */
+    DamageReason build() throws IllegalStateException;
 
 }

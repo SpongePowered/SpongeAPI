@@ -26,6 +26,8 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+
+import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -33,6 +35,7 @@ import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.animal.DyeColor;
@@ -44,9 +47,25 @@ import org.spongepowered.api.entity.living.animal.RabbitType;
 import org.spongepowered.api.entity.living.monster.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.event.cause.reason.BlockReason;
+import org.spongepowered.api.event.cause.reason.DamageReason;
+import org.spongepowered.api.event.cause.reason.DamageReasonBuilder;
+import org.spongepowered.api.event.cause.reason.DamageType;
+import org.spongepowered.api.event.cause.reason.EntityReason;
+import org.spongepowered.api.event.cause.reason.EntitySpawnReason;
+import org.spongepowered.api.event.cause.reason.HealthChangeReason;
+import org.spongepowered.api.event.cause.reason.ItemReason;
+import org.spongepowered.api.event.cause.reason.PlayerReason;
+import org.spongepowered.api.event.cause.reason.ProjectileReason;
+import org.spongepowered.api.event.cause.reason.ProjectileSourceReason;
+import org.spongepowered.api.event.cause.reason.TeleportReason;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
@@ -549,5 +568,100 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
+
+    /**
+     * Gets the {@link BlockReason} with the given block.
+     * 
+     * @param block The block
+     * @return The {@link BlockReason}
+     */
+    BlockReason getBlockReason(BlockLoc block);
+
+    /**
+     * Gets the {@link DamageReason} with the given name.
+     * 
+     * @param name The name of the reason
+     * @return The {@link DamageReason} or Optional.absent() if not found
+     */
+    Optional<DamageReason> getDamageReason(String name);
+
+    /**
+     * Gets a new {@link DamageReasonBuilder} for creating custom damage reasons.
+     * 
+     * @return A new builder
+     */
+    DamageReasonBuilder getDamageReasonBuilder();
+
+    /**
+     * Gets the {@link DamageType} with the given name.
+     * 
+     * @param name The name of the type
+     * @return The {@link DamageType} or Optional.absent() if not found
+     */
+    Optional<DamageType> getDamageType(String name);
+
+    /**
+     * Gets the {@link EntityReason} with the given entity.
+     * 
+     * @param entity The entity
+     * @return The {@link EntityReason}
+     */
+    EntityReason getEntityReason(Entity entity);
+
+    /**
+     * Gets the {@link EntitySpawnReason} with the given name.
+     * 
+     * @param name The name of the reason
+     * @return The {@link EntitySpawnReason} or Optional.absent() if not found
+     */
+    Optional<EntitySpawnReason> getEntitySpawnReason(String name);
+
+    /**
+     * Gets the {@link HealthChangeReason} with the given name.
+     * 
+     * @param name The name of the reason
+     * @return The {@link HealthChangeReason} or Optional.absent() if not found
+     */
+    Optional<HealthChangeReason> getHealthChangeReason(String name);
+
+    /**
+     * Gets the {@link ItemReason} with the given item.
+     * 
+     * @param item The item
+     * @return The {@link ItemReason} or Optional.absent() if not found
+     */
+    ItemReason getItemReason(ItemStack item);
+
+    /**
+     * Gets the {@link PlayerReason} with the given player.
+     * 
+     * @param player The player
+     * @return The {@link PlayerReason}
+     */
+    PlayerReason getPlayerReason(Player player);
+
+    /**
+     * Gets the {@link ProjectileReason} with the given projectile.
+     * 
+     * @param projectile The projectile
+     * @return The {@link ProjectileReason}
+     */
+    ProjectileReason getProjectileReason(Projectile projectile);
+
+    /**
+     * Gets the {@link ProjectileSourceReason} with the given projectile source.
+     * 
+     * @param source The projectile source
+     * @return The {@link ProjectileSourceReason}
+     */
+    ProjectileSourceReason getProjectileSourceReason(ProjectileSource source);
+
+    /**
+     * Gets the {@link TeleportReason} with the given name.
+     * 
+     * @param name The name of the reason
+     * @return The {@link TeleportReason} or Optional.absent() if not found
+     */
+    Optional<TeleportReason> getTeleportReason(String name);
 
 }

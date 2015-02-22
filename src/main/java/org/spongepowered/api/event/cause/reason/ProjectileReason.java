@@ -22,21 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.event.cause.reason;
+
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Base event for events affecting a single block.
+ * Represents a reason sourced from a specific {@link Projectile}.
  */
-public interface BlockEvent extends GameEvent {
+public interface ProjectileReason extends Reason {
 
     /**
-     * Get the block affected by the event (the target block).
-     *
-     * @return Related block
+     * Gets the {@link Projectile} for this reason.
+     * 
+     * @return The reason
      */
-    BlockLoc getBlock();
+    Projectile getProjectile();
 
 }

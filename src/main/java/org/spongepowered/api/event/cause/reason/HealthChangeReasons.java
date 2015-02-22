@@ -22,21 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.event.cause.reason;
 
 /**
- * Base event for events affecting a single block.
+ * An enumeration of standard {@link DamageReason}s.
  */
-public interface BlockEvent extends GameEvent {
+public final class HealthChangeReasons {
 
-    /**
-     * Get the block affected by the event (the target block).
-     *
-     * @return Related block
-     */
-    BlockLoc getBlock();
+    public static final HealthChangeReason GENERIC = null;
+
+    //Healing causes
+    public static final HealthChangeReason FOOD = null;
+    public static final HealthChangeReason PASSIVE = null;
+    public static final HealthChangeReason LIFE_STEAL = null;
+
+    //Damage causes
+    public static final DamageReason IN_FIRE = null;
+    public static final DamageReason ON_FIRE = null;
+    public static final DamageReason LIGHTNING_BOLT = null;
+    public static final DamageReason LAVA = null;
+    public static final DamageReason IN_WALL = null;
+    public static final DamageReason DROWN = null;
+    public static final DamageReason STARVE = null;
+    public static final DamageReason CACTUS = null;
+    public static final DamageReason FALL = null;
+    public static final DamageReason OUT_OF_WORLD = null;
+    public static final DamageReason MAGIC = null;
+    public static final DamageReason WITHER = null;
+    public static final DamageReason ANVIL = null;
+    public static final DamageReason FALLING_BLOCK = null;
+
+    private HealthChangeReasons() {}
 
 }

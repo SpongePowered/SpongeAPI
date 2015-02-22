@@ -22,21 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.event.cause.reason;
 
 /**
- * Base event for events affecting a single block.
+ * An enumeration of {@link EntitySpawnReason}s.
  */
-public interface BlockEvent extends GameEvent {
+public final class EntitySpawnReasons {
 
-    /**
-     * Get the block affected by the event (the target block).
-     *
-     * @return Related block
-     */
-    BlockLoc getBlock();
+    public static final EntitySpawnReason BLOCK_SPAWNING = null;
+    public static final EntitySpawnReason BREEDING = null;
+    public static final EntitySpawnReason DISPENSE = null;
+    public static final EntitySpawnReason DROPPED_ITEM = null;
+    public static final EntitySpawnReason EXPERIENCE = null;
+    public static final EntitySpawnReason FALLING_BLOCK = null;
+    public static final EntitySpawnReason MOB_SPAWNER = null;
+    public static final EntitySpawnReason PASSIVE = null;
+    public static final EntitySpawnReason PLACEMENT = null;
+    public static final EntitySpawnReason PROJECTILE = null;
+    public static final EntitySpawnReason SPAWN_EGG = null;
+    public static final EntitySpawnReason STRUCTURE = null;
+    public static final EntitySpawnReason TNT_IGNITE = null;
+    public static final EntitySpawnReason WEATHER = null;
+
+    private EntitySpawnReasons() {
+    }
 
 }

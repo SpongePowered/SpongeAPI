@@ -27,6 +27,8 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.cause.reason.DamageReason;
+import org.spongepowered.api.event.cause.reason.EntitySpawnReason;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
@@ -40,7 +42,7 @@ import org.spongepowered.api.world.Location;
  * massive cancellation of {@link EntitySpawnEvent}s due to the
  * instantiation of entities and subsequently killing said entities.</p>
  */
-public interface EntityAboutToConstructEvent extends GameEvent, CauseTracked, Cancellable {
+public interface EntityAboutToConstructEvent extends GameEvent, Cancellable, CauseTracked<EntitySpawnReason> {
 
     /**
      * Gets the {@link EntityType} that is going to be constructed.

@@ -28,12 +28,11 @@ package org.spongepowered.api.event.entity;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Called when a {@link Projectile} is launched.
  */
-public interface ProjectileLaunchEvent extends EntityEvent, CauseTracked {
+public interface ProjectileLaunchEvent extends EntityEvent {
 
     /**
      * Gets the projectile that was launched.

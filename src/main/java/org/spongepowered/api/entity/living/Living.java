@@ -28,6 +28,8 @@ package org.spongepowered.api.entity.living;
 import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.reason.DamageReason;
+import org.spongepowered.api.event.cause.reason.HealthChangeReasons;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
 
@@ -39,11 +41,21 @@ import javax.annotation.Nullable;
 public interface Living extends Entity {
 
     /**
-     * Subtracts from the health by the given amount.
+     * Subtracts from the health by the given amount as if damaged by
+     * {@link HealthChangeReasons#GENERIC}.
      *
      * @param amount The damage amount
      */
     void damage(double amount);
+
+    /**
+     * Subtracts from the health by the given amount as if damaged by the given
+     * source.
+     * 
+     * @param amount The damage amount
+     * @param source The damage source
+     */
+    void damage(double amount, DamageReason source);
 
     /**
      * Returns the health amount.

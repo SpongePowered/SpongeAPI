@@ -22,21 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.event.cause.reason;
+
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Base event for events affecting a single block.
+ * Represents the reason of an {@link Entity}'s health changing.
  */
-public interface BlockEvent extends GameEvent {
+public interface HealthChangeReason extends Reason {
 
     /**
-     * Get the block affected by the event (the target block).
-     *
-     * @return Related block
+     * Gets whether this damage reason's damage will be scaled by difficulty.
+     * 
+     * @return Scales with difficulty
      */
-    BlockLoc getBlock();
+    boolean isScaledByDifficulty();
+
+    /**
+     * Gets whether this damage reason will still affect users in creative mode.
+     * 
+     * @return Affects creative mode users
+     */
+    boolean affectsCreativeMode();
 
 }

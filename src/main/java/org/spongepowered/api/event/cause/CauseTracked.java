@@ -25,21 +25,25 @@
 
 package org.spongepowered.api.event.cause;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.event.cause.reason.Reason;
 
 /**
  * Something that keeps track of the cause.
+ * 
+ * @param <T> The reason type
  */
-public interface CauseTracked {
+public interface CauseTracked<T extends Reason> {
 
     /**
-     * Get the last cause.
+     * Get the cause.
      *
-     * <p>Parent causes, including possibly the root cause, can be
-     * retrieved using {@link Cause#getParent()}.</p>
+     * <p>
+     * Parent causes, can be retrieved using {@link Cause#getParent()} if
+     * available.
+     * </p>
      *
      * @return The last cause
      */
-    Optional<Cause> getCause();
+    Cause<T> getCause();
 
 }

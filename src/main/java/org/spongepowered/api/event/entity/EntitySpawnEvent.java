@@ -25,13 +25,15 @@
 
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.cause.reason.EntitySpawnReason;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 /**
  * Raised when entities are spawned.
  */
-public interface EntitySpawnEvent extends EntityEvent, Cancellable {
+public interface EntitySpawnEvent extends EntityEvent, Cancellable, CauseTracked<EntitySpawnReason> {
 
     /**
      * Returns the location where this entity is spawning.

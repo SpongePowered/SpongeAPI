@@ -22,21 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.event.cause.reason;
 
 /**
- * Base event for events affecting a single block.
+ * An enumeration of standard {@link TeleportReason}s.
  */
-public interface BlockEvent extends GameEvent {
+public final class TeleportReasons {
 
-    /**
-     * Get the block affected by the event (the target block).
-     *
-     * @return Related block
-     */
-    BlockLoc getBlock();
+    public static final TeleportReason COMMAND = null;
+    public static final TeleportReason PLUGIN = null;
+    public static final TeleportReason NETHER_PORTAL = null;
+    public static final TeleportReason END_PORTAL = null;
+    public static final TeleportReason ENDER_PEARL = null;
+    public static final TeleportReason UNKNOWN = null;
+
+    private TeleportReasons() {
+    }
 
 }
