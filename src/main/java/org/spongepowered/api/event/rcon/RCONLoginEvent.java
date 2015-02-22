@@ -34,7 +34,4 @@ public interface RCONLoginEvent extends RCONEvent, Cancellable {
      * @return The password provided by the client
      */
     String getPassword();
-
-    @Override
-    String getRawPayload();
 }

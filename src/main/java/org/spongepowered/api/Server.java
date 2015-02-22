@@ -213,7 +213,7 @@ public interface Server extends ChannelRegistrar {
      *
      * @return True if enabled, false if not
      */
-    boolean getRCONEnabled();
+    boolean isRCONEnabled();
 
     /**
      * Gets the RCON password for the server

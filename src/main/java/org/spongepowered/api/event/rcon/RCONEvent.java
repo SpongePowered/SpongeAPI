@@ -39,7 +39,7 @@ public interface RCONEvent extends GameEvent {
      *
      * @return The ID provided by the client
      */
-    int getID();
+    int getId();
 
     /**
      * Gets the raw payload provided by the client.
