@@ -23,20 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.block.BlockLoc;
 
 /**
- * A {@link DamageCause} which was caused directly by an entity.
+ * A generic reason. Usually attached to a cause which may be chained
+ * recursively.
+ * 
+ * <p>
+ * For example if there is an event for an entity spawning from a mob spawner
+ * the primary reason would be {@link EntitySpawnReasons#MOB_SPAWNER} which
+ * would have a parent cause with a {@link BlockReason} containing a reference
+ * to the {@link BlockLoc} of the mob spawner.
+ * </p>
  */
-public interface EntityDamageCause extends DamageCause {
+public interface Reason {
 
     /**
-     * Gets the source {@link Entity} for this damage cause.
+     * Gets the name of this reason.
      * 
-     * @return The source entity
+     * @return The name
      */
-    Entity getSourceEntity();
+    String getName();
 
 }

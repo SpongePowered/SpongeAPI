@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
 
 /**
- * Represents the cause of an entity spawning into the world.
+ * Represents a type of damage.
  */
-public interface EntitySpawnCause extends Cause {
+public interface DamageType {
 
 }

@@ -23,21 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
+
+import org.spongepowered.api.block.BlockLoc;
 
 /**
- * An enumeration of standard {@link TeleportCause}s.
+ * Represents a reason sourced from a specific {@link BlockLoc}.
  */
-public final class TeleportCauses {
+public interface BlockReason extends Reason {
 
-    public static final TeleportCause COMMAND = null;
-    public static final TeleportCause PLUGIN = null;
-    public static final TeleportCause NETHER_PORTAL = null;
-    public static final TeleportCause END_PORTAL = null;
-    public static final TeleportCause ENDER_PEARL = null;
-    public static final TeleportCause UNKNOWN = null;
-
-    private TeleportCauses() {
-    }
+    /**
+     * Gets the {@link BlockLoc} for this reason.
+     * 
+     * @return The block
+     */
+    BlockLoc getBlock();
 
 }

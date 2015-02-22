@@ -66,10 +66,12 @@ import org.spongepowered.api.event.block.LeafDecayEvent;
 import org.spongepowered.api.event.block.data.BrewingStandBrewEvent;
 import org.spongepowered.api.event.block.data.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.data.FurnaceSmeltItemEvent;
-import org.spongepowered.api.event.cause.DamageCause;
-import org.spongepowered.api.event.cause.EntitySpawnCause;
-import org.spongepowered.api.event.cause.HealthChangeCause;
-import org.spongepowered.api.event.cause.TeleportCause;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.reason.DamageReason;
+import org.spongepowered.api.event.cause.reason.EntitySpawnReason;
+import org.spongepowered.api.event.cause.reason.HealthChangeReason;
+import org.spongepowered.api.event.cause.reason.TeleportReason;
+import org.spongepowered.api.event.entity.EntityAboutToConstructEvent;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
 import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
@@ -438,13 +440,13 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static EntityChangeHealthEvent createEntityChangeHealth(Game game, Entity entity, double newHealth, double oldHealth,
-            HealthChangeCause cause) {
+            Cause<HealthChangeReason> cause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("newHealth", newHealth);
         values.put("oldHealth", oldHealth);
-        values.put("changeCause", cause);
+        values.put("cause", cause);
         return createEvent(EntityChangeHealthEvent.class, values);
     }
 
@@ -505,13 +507,14 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @return A new instance of the event
      */
-    public static EntityDeathEvent createEntityDeath(Game game, Entity entity, Location location, Collection<Item> droppedItems, DamageCause cause) {
+    public static EntityDeathEvent createEntityDeath(Game game, Entity entity, Location location, Collection<Item> droppedItems,
+            Cause<DamageReason> cause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("droppedItems", droppedItems);
         values.put("location", location);
-        values.put("deathCause", cause);
+        values.put("cause", cause);
         return createEvent(EntityDeathEvent.class, values);
     }
 
@@ -671,7 +674,7 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @return A new instance of the event
      */
-    public static EntitySpawnEvent createEntitySpawn(Game game, Entity entity, Location location, EntitySpawnCause cause) {
+    public static EntitySpawnEvent createEntitySpawn(Game game, Entity entity, Location location, Cause<EntitySpawnReason> cause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
@@ -689,7 +692,8 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @return A new instance of the event
      */
-    public static EntityAboutToConstructEvent createEntityAboutToConstructEvent(Game game, EntityType entityType, Location location, EntitySpawnCause cause) {
+    public static EntityAboutToConstructEvent createEntityAboutToConstructEvent(Game game, EntityType entityType, Location location,
+            Cause<EntitySpawnReason> cause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entityType", entityType);
@@ -737,7 +741,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static EntityTeleportEvent createEntityTeleport(Game game, Entity entity, Location oldLocation, Location newLocation,
-            TeleportCause cause) {
+            Cause<TeleportReason> cause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
@@ -1005,7 +1009,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerDeathEvent createPlayerDeath(Game game, Player player, Location location, Message deathMessage,
-            Collection<Item> droppedItems, DamageCause cause) {
+            Collection<Item> droppedItems, Cause<DamageReason> cause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1015,7 +1019,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("droppedItems", droppedItems);
-        values.put("deathCause", cause);
+        values.put("cause", cause);
         return createEvent(PlayerDeathEvent.class, values);
     }
 

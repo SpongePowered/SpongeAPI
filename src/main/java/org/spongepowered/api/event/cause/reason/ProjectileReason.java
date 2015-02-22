@@ -23,18 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
+
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * An enumeration of standard {@link DamageType}s.
+ * Represents a reason sourced from a specific {@link Projectile}.
  */
-public final class DamageTypes {
+public interface ProjectileReason extends Reason {
 
-    public static final DamageType FIRE = null;
-    public static final DamageType MAGIC = null;
-    public static final DamageType EXPLOSIVE = null;
-    public static final DamageType PROJECTILE = null;
-
-    private DamageTypes() {}
+    /**
+     * Gets the {@link Projectile} for this reason.
+     * 
+     * @return The reason
+     */
+    Projectile getProjectile();
 
 }

@@ -25,33 +25,25 @@
 
 package org.spongepowered.api.event.cause;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.reason.Reason;
 
 /**
- * Represents a cause of damage against an {@link Entity}.
+ * Something that keeps track of the cause.
+ * 
+ * @param <T> The reason type
  */
-public interface DamageCause extends HealthChangeCause {
+public interface CauseTracked<T extends Reason> {
 
     /**
-     * Gets whether this damage cause ignores the affected entities armor.
-     * 
-     * @return Ignores armor
+     * Get the cause.
+     *
+     * <p>
+     * Parent causes, can be retrieved using {@link Cause#getParent()} if
+     * available.
+     * </p>
+     *
+     * @return The last cause
      */
-    boolean bypassesArmor();
-
-    /**
-     * Gets whether this damage cause may be blocked.
-     * 
-     * @return May be blocked
-     */
-    boolean isBlockable();
-
-    /**
-     * Gets whether this damage cause is of the given type.
-     * 
-     * @param type The type to compare
-     * @return Is of the type
-     */
-    boolean isOfType(DamageType type);
+    Cause<T> getCause();
 
 }

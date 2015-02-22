@@ -23,15 +23,36 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.cause.reason.TeleportReason;
+package org.spongepowered.api.event.cause.reason;
 
 /**
- * Called when an {@link Entity} teleports.
+ * An enumeration of standard {@link DamageReason}s.
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked<TeleportReason> {
+public final class HealthChangeReasons {
+
+    public static final HealthChangeReason GENERIC = null;
+
+    //Healing causes
+    public static final HealthChangeReason FOOD = null;
+    public static final HealthChangeReason PASSIVE = null;
+    public static final HealthChangeReason LIFE_STEAL = null;
+
+    //Damage causes
+    public static final DamageReason IN_FIRE = null;
+    public static final DamageReason ON_FIRE = null;
+    public static final DamageReason LIGHTNING_BOLT = null;
+    public static final DamageReason LAVA = null;
+    public static final DamageReason IN_WALL = null;
+    public static final DamageReason DROWN = null;
+    public static final DamageReason STARVE = null;
+    public static final DamageReason CACTUS = null;
+    public static final DamageReason FALL = null;
+    public static final DamageReason OUT_OF_WORLD = null;
+    public static final DamageReason MAGIC = null;
+    public static final DamageReason WITHER = null;
+    public static final DamageReason ANVIL = null;
+    public static final DamageReason FALLING_BLOCK = null;
+
+    private HealthChangeReasons() {}
 
 }

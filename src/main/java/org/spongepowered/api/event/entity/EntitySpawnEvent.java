@@ -25,14 +25,15 @@
 
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.event.cause.EntitySpawnCause;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.cause.reason.EntitySpawnReason;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 /**
  * Raised when entities are spawned.
  */
-public interface EntitySpawnEvent extends EntityEvent, Cancellable {
+public interface EntitySpawnEvent extends EntityEvent, Cancellable, CauseTracked<EntitySpawnReason> {
 
     /**
      * Returns the location where this entity is spawning.
@@ -40,12 +41,5 @@ public interface EntitySpawnEvent extends EntityEvent, Cancellable {
      * @return The location where this entity is spawning
      */
     Location getLocation();
-    
-    /**
-     * Gets the cause of this entity spawning.
-     * 
-     * @return The cause
-     */
-    EntitySpawnCause getCause();
 
 }

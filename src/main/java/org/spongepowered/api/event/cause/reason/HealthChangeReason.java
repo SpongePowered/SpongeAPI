@@ -23,28 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
+
+import org.spongepowered.api.entity.Entity;
 
 /**
- * An enumeration of {@link EntitySpawnCause}s.
+ * Represents the reason of an {@link Entity}'s health changing.
  */
-public final class EntitySpawnCauses {
+public interface HealthChangeReason extends Reason {
 
-    public static final EntitySpawnCause BLOCK_SPAWNING = null;
-    public static final EntitySpawnCause BREEDING = null;
-    public static final EntitySpawnCause DISPENSE = null;
-    public static final EntitySpawnCause DROPPED_ITEM = null;
-    public static final EntitySpawnCause EXPERIENCE = null;
-    public static final EntitySpawnCause FALLING_BLOCK = null;
-    public static final EntitySpawnCause MOB_SPAWNER = null;
-    public static final EntitySpawnCause PASSIVE = null;
-    public static final EntitySpawnCause PLACEMENT = null;
-    public static final EntitySpawnCause PROJECTILE = null;
-    public static final EntitySpawnCause SPAWN_EGG = null;
-    public static final EntitySpawnCause STRUCTURE = null;
-    public static final EntitySpawnCause TNT_IGNITE = null;
-    public static final EntitySpawnCause WEATHER = null;
+    /**
+     * Gets whether this damage reason's damage will be scaled by difficulty.
+     * 
+     * @return Scales with difficulty
+     */
+    boolean isScaledByDifficulty();
 
-    private EntitySpawnCauses() {}
+    /**
+     * Gets whether this damage reason will still affect users in creative mode.
+     * 
+     * @return Affects creative mode users
+     */
+    boolean affectsCreativeMode();
 
 }

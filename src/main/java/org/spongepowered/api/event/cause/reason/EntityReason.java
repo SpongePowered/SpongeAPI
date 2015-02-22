@@ -23,36 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
+
+import org.spongepowered.api.entity.Entity;
 
 /**
- * An enumeration of standard {@link DamageCause}s.
+ * Represents a reason sourced from a specific {@link Entity}.
  */
-public final class HealthChangeCauses {
+public interface EntityReason extends Reason {
 
-    public static final HealthChangeCause GENERIC = null;
-
-    //Healing causes
-    public static final HealthChangeCause FOOD = null;
-    public static final HealthChangeCause PASSIVE = null;
-    public static final HealthChangeCause LIFE_STEAL = null;
-
-    //Damage causes
-    public static final DamageCause IN_FIRE = null;
-    public static final DamageCause ON_FIRE = null;
-    public static final DamageCause LIGHTNING_BOLT = null;
-    public static final DamageCause LAVA = null;
-    public static final DamageCause IN_WALL = null;
-    public static final DamageCause DROWN = null;
-    public static final DamageCause STARVE = null;
-    public static final DamageCause CACTUS = null;
-    public static final DamageCause FALL = null;
-    public static final DamageCause OUT_OF_WORLD = null;
-    public static final DamageCause MAGIC = null;
-    public static final DamageCause WITHER = null;
-    public static final DamageCause ANVIL = null;
-    public static final DamageCause FALLING_BLOCK = null;
-
-    private HealthChangeCauses() {}
+    /**
+     * Gets the {@link Entity} for this reason.
+     * 
+     * @return The entity
+     */
+    Entity getEntity();
 
 }

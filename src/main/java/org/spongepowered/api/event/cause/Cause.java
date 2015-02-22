@@ -25,16 +25,60 @@
 
 package org.spongepowered.api.event.cause;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.base.Optional;
+import org.spongepowered.api.event.cause.reason.Reason;
+
+import javax.annotation.Nullable;
+
 /**
- * A generic cause.
+ * A cause represents the reason or initiator of an event.
+ *
+ * <p>
+ * For example, if a block of sand is placed where it drops, the block of sand
+ * would create a falling sand entity, which would cause an EntitySpawnEvent.
+ * The cause of this entity spawn event would have a {@link Reason} of
+ * EntitySpawnReasons#FALLING_BLOCK which would have a parent cause with a
+ * BlockReason attached to it which provides a reference to the BlockLoc that
+ * the block fell from.
+ * </p>
+ * 
+ * @param <T> The reason type
  */
-public interface Cause {
+public class Cause<T extends Reason> {
+
+    private final Optional<Cause<?>> parent;
+    private final T reason;
 
     /**
-     * Gets the name of this cause.
-     * 
-     * @return The name
+     * Create a new cause instance.
+     *
+     * @param parent An optional parent
+     * @param reason The reason
      */
-    String getName();
+    public Cause(@Nullable Cause<?> parent, T reason) {
+        checkNotNull(reason);
+        this.parent = Optional.<Cause<?>> fromNullable(parent);
+        this.reason = reason;
+    }
+
+    /**
+     * Get the parent cause of this cause.
+     *
+     * @return The parent cause
+     */
+    public Optional<Cause<?>> getParent() {
+        return this.parent;
+    }
+
+    /**
+     * Get the reason.
+     *
+     * @return The reason
+     */
+    public T getReason() {
+        return this.reason;
+    }
 
 }

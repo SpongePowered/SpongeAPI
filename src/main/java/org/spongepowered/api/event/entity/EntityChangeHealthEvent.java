@@ -26,13 +26,14 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.HealthChangeCause;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.cause.reason.HealthChangeReason;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when the health of an {@link Entity} changes.
  */
-public interface EntityChangeHealthEvent extends EntityEvent, Cancellable {
+public interface EntityChangeHealthEvent extends EntityEvent, Cancellable, CauseTracked<HealthChangeReason> {
 
     /**
      * Gets the old health of the {@link Entity}.
@@ -54,12 +55,5 @@ public interface EntityChangeHealthEvent extends EntityEvent, Cancellable {
      * @param newHealth The new health
      */
     void setNewHealth(double newHealth);
-
-    /**
-     * Gets the cause of this change in health.
-     * 
-     * @return The cause
-     */
-    HealthChangeCause getChangeCause();
 
 }

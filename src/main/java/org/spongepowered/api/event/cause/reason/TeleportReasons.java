@@ -23,15 +23,21 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.cause.reason.TeleportReason;
+package org.spongepowered.api.event.cause.reason;
 
 /**
- * Called when an {@link Entity} teleports.
+ * An enumeration of standard {@link TeleportReason}s.
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked<TeleportReason> {
+public final class TeleportReasons {
+
+    public static final TeleportReason COMMAND = null;
+    public static final TeleportReason PLUGIN = null;
+    public static final TeleportReason NETHER_PORTAL = null;
+    public static final TeleportReason END_PORTAL = null;
+    public static final TeleportReason ENDER_PEARL = null;
+    public static final TeleportReason UNKNOWN = null;
+
+    private TeleportReasons() {
+    }
 
 }

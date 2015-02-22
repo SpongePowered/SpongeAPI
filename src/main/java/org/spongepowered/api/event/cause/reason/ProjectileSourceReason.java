@@ -23,15 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.cause.reason;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.cause.reason.TeleportReason;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
- * Called when an {@link Entity} teleports.
+ * Represents a reason sourced from a specific {@link ProjectileSource}.
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked<TeleportReason> {
+public interface ProjectileSourceReason extends Reason {
+
+    /**
+     * Gets the {@link ProjectileSource} for this reason.
+     * 
+     * @return The projectile source
+     */
+    ProjectileSource getProjectileSource();
 
 }

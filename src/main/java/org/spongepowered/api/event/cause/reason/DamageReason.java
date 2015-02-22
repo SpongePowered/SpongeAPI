@@ -23,13 +23,35 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
 
-import org.spongepowered.api.event.entity.EntityTeleportEvent;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents the cause of an {@link EntityTeleportEvent}.
+ * Represents the reason for damage against an {@link Entity}.
  */
-public interface TeleportCause extends Cause {
+public interface DamageReason extends HealthChangeReason {
+
+    /**
+     * Gets whether this damage reason ignores the affected entities armor.
+     * 
+     * @return Ignores armor
+     */
+    boolean bypassesArmor();
+
+    /**
+     * Gets whether this damage reason may be blocked.
+     * 
+     * @return May be blocked
+     */
+    boolean isBlockable();
+
+    /**
+     * Gets whether this damage reason is of the given type.
+     * 
+     * @param type The type to compare
+     * @return Is of the type
+     */
+    boolean isOfType(DamageType type);
 
 }
