@@ -24,38 +24,14 @@
  */
 package org.spongepowered.api.event.rcon;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.command.source.RCONSource;
+import org.spongepowered.api.util.event.Cancellable;
 
-public interface RCONEvent extends GameEvent {
-
-    /**
-     * Gets the ID provided by the client for this request
-     *
-     * <p>The provided ID is sent back in the response to the client.
-     *
-     * If authorization failed (password is incorrect, or client didn't authenticate),
-     * the ID will be set to -1 in the response.</p>
-     *
-     * @return The ID provided by the client
-     */
-    int getId();
+public interface RconLoginEvent extends RconEvent, Cancellable {
 
     /**
-     * Gets the raw payload provided by the client.
+     * Gets the password provided by the client.
      *
-     * <p>If the client is authenticating, this will be the supplied password.
-     *
-     * If the client is running a command, this will be the command to run.</p>
-     *
-     * @return The raw payload provided by the client
+     * @return The password provided by the client
      */
-    String getRawPayload();
-
-    /**
-     * Gets the {@link RCONSource} responsible for the event.
-     *
-     * @return The {@link RCONSource} responsible for the event
-     */
-    RCONSource getSource();
+    String getPassword();
 }

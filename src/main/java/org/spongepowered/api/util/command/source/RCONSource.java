@@ -27,9 +27,9 @@ package org.spongepowered.api.util.command.source;
 import java.net.InetSocketAddress;
 
 /**
- * Represents an RCON client
+ * Represents an Rcon client
  */
-public interface RCONSource extends RemoteSource {
+public interface RconSource extends RemoteSource {
 
     /**
      * Gets the {@link InetSocketAddress} used by the client to connect

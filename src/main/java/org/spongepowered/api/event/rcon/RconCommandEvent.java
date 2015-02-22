@@ -25,18 +25,18 @@
 package org.spongepowered.api.event.rcon;
 
 import org.spongepowered.api.event.message.CommandEvent;
-import org.spongepowered.api.util.command.source.RCONSource;
+import org.spongepowered.api.util.command.source.RconSource;
 
-public interface RCONCommandEvent extends CommandEvent, RCONEvent {
+public interface RconCommandEvent extends CommandEvent, RconEvent {
 
     @Override
-    RCONSource getSource();
+    RconSource getSource();
 
     /**
-     * Gets whether {@link RCONSource#getLoggedIn()} will be ignored when
+     * Gets whether {@link RconSource#getLoggedIn()} will be ignored when
      * determining whether to execute the supplied {@link #getRawPayload() command}.
      *
-     * <p>Normally, if an {@link RCONSource} is not {@link RCONSource#getLoggedIn()} logged in},
+     * <p>Normally, if an {@link RconSource} is not {@link RconSource#getLoggedIn()} logged in},
      * the supplied {@link #getRawPayload() command} will not be executed.
      *
      * The opposite scenario, preventing the execution of a command by a logged in
@@ -47,10 +47,10 @@ public interface RCONCommandEvent extends CommandEvent, RCONEvent {
     boolean isIgnoringLoginStatus();
 
     /**
-     * Sets whether {@link RCONSource#getLoggedIn()} will be ignored when
+     * Sets whether {@link RconSource#getLoggedIn()} will be ignored when
      * determining whether to execute the supplied {@link #getRawPayload() command}.
      *
-     * <p>Normally, if an {@link RCONSource} is not {@link RCONSource#getLoggedIn()} logged in},
+     * <p>Normally, if an {@link RconSource} is not {@link RconSource#getLoggedIn()} logged in},
      * the supplied {@link #getRawPayload() command} will not be executed.
      *
      * The opposite scenario, preventing the execution of a command by a logged in
