@@ -119,6 +119,13 @@ configure([compileJava, compileTestJava]) {
     options.encoding = 'utf8'
 }
 
+if (JavaVersion.current().isJava8Compatible()) {
+    tasks.withType(Javadoc) {
+        // disable the crazy super-strict doclint tool in Java 8
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+}
+
 // JAR manifest configuration
 jar.manifest.mainAttributes(
         "Built-By": System.properties['user.name'],
