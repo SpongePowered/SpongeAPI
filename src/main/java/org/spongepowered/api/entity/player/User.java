@@ -89,6 +89,20 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
     Date getLastPlayed();
 
     /**
+     * Checks if this player is banned.
+     *
+     * @return True If banned
+     */
+    boolean isBanned();
+
+    /**
+     * Checks if this player is whitelisted.
+     *
+     * @return True If whitelisted
+     */
+    boolean isWhitelisted();
+
+    /**
      * Checks if this player is online or not.
      *
      * @return True if the corresponding player is online
