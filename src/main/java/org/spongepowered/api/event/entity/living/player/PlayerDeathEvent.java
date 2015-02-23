@@ -83,7 +83,7 @@ public interface PlayerDeathEvent extends HumanDeathEvent, PlayerEvent {
      *
      * @return The new experience towards the next level
      */
-    double getNewExperience();
+    int getNewExperience();
 
     /**
      * Sets the new experience towards the next level after death.
@@ -92,7 +92,7 @@ public interface PlayerDeathEvent extends HumanDeathEvent, PlayerEvent {
      *
      * @param experience The new experiences towards the next level
      */
-    void setNewExperience(double experience);
+    void setNewExperience(int experience);
 
     /**
      * Gets the new level the player will have after death.
