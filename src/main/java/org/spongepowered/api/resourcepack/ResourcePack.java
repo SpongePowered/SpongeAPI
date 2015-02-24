@@ -28,6 +28,9 @@ import com.google.common.base.Optional;
 
 import java.net.URL;
 
+/**
+ * Represents a resource pack that can be sent to the client.
+ */
 public interface ResourcePack {
 
     /**

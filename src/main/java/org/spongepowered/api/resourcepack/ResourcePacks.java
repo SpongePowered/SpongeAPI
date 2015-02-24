@@ -29,6 +29,9 @@ import com.google.common.base.Optional;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
+/**
+ * A class for creating {@link ResourcePack}s.
+ */
 public final class ResourcePacks {
 
     public static final ResourcePackFactory factory = null;
@@ -47,7 +50,8 @@ public final class ResourcePacks {
     }
 
     /**
-     * Creates a {@link ResourcePack} from a URL.
+     * Creates a {@link ResourcePack} from a URL, without checking if there is a
+     * valid pack at the URL.
      * 
      * @param url The URL to look in.
      * @return A ResourcePack with the specified URL.
@@ -57,7 +61,7 @@ public final class ResourcePacks {
     }
 
     /**
-     * Gets a {@link ResourcePack} that's already been created by it's ID.
+     * Gets a {@link ResourcePack} that's already been created by its ID.
      * 
      * @param id The ID of the pack.
      * @return The ResourcePack with the specified ID, or Optional.absent() if

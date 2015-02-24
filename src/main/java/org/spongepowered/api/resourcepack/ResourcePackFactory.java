@@ -29,6 +29,9 @@ import com.google.common.base.Optional;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
+/**
+ * A factory for creating {@link ResourcePack}s.
+ */
 public interface ResourcePackFactory {
 
     /**

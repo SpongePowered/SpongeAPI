@@ -28,6 +28,10 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 
 import com.google.common.base.Optional;
 
+/**
+ * Called when a player notifies the server of the status of a resource pack
+ * change request.
+ */
 public interface PlayerResourcePackStatusEvent extends PlayerEvent {
 
     /**
@@ -44,6 +48,9 @@ public interface PlayerResourcePackStatusEvent extends PlayerEvent {
      */
     ResourcePackStatus getStatus();
 
+    /**
+     * The different possible responses the client can have.
+     */
     public enum ResourcePackStatus {
         /**
          * The client is attempting to download the pack.
