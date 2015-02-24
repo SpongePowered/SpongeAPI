@@ -48,29 +48,29 @@ public interface PlayerResourcePackStatusEvent extends PlayerEvent {
         /**
          * The client is attempting to download the pack.
          */
-        ACCEPTED(Optional.<Boolean> absent()),
+        ACCEPTED(null),
 
         /**
          * The client declined to download the pack.
          */
-        DECLINED(Optional.of(false)),
+        DECLINED(false),
 
         /**
          * The pack was not a .zip file.
          */
-        PACK_FILE_FORMAT_NOT_RECOGNIZED(Optional.of(false)),
+        PACK_FILE_FORMAT_NOT_RECOGNIZED(false),
 
         /**
          * The pack URL was successfully loaded. This does not mean that pack
          * was loaded, as the vanilla client sends this even when encountering a
          * 404 or similar.
          */
-        SUCCESSFULLY_LOADED(Optional.of(true));
+        SUCCESSFULLY_LOADED(true);
 
         private final Optional<Boolean> success;
 
-        ResourcePackStatus(Optional<Boolean> success) {
-            this.success = success;
+        ResourcePackStatus(Boolean success) {
+            this.success = Optional.fromNullable(success);
         }
 
         /**
