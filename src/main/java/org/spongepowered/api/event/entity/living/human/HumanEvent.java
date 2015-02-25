@@ -39,15 +39,9 @@ public interface HumanEvent extends LivingEvent {
      */
     Human getHuman();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Human getLiving();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Human getEntity();
 }

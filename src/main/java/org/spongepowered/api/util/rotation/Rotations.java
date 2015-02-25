@@ -40,6 +40,7 @@ public final class Rotations {
     public static final Rotation BOTTOM_LEFT = null;
     public static final Rotation LEFT = null;
     public static final Rotation TOP_LEFT = null;
+
     private Rotations() {
     }
 

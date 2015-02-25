@@ -56,7 +56,7 @@ public interface Task extends Identifiable {
     Optional<Long> getDelay();
 
     /**
-     * Gets the interval for repeating tasks
+     * Gets the interval for repeating tasks.
      *
      * @return The interval (period) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
      */
@@ -77,14 +77,14 @@ public interface Task extends Identifiable {
     Optional<Runnable> getRunnable();
 
     /**
-     * Gets the truth if the Task is Synchronous
+     * Gets the truth if the Task is Synchronous.
      *
      * @return The truth if the task is synchronous
      */
-    public boolean isSynchronous();
+    boolean isSynchronous();
 
     /**
-     * <p>Set the name of the Task.</p>
+     * Sets the name of the Task.
      *
      * <p>If the name is not set by the user, by default, the name of
      * the task will be the form:<br>
@@ -113,11 +113,6 @@ public interface Task extends Identifiable {
      * @param name  The name of the task requested.
      * @return The current name of the Task after trying to set the name of the task.
      */
-    public String setName(String name);
-
-    public enum TaskSynchroncity {
-        SYNCHRONOUS,
-        ASYNCHRONOUS
-    }
+    String setName(String name);
 
 }

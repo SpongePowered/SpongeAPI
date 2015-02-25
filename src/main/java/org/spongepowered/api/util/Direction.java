@@ -67,6 +67,7 @@ public enum Direction {
     private final Vector3d direction;
     private final int flags;
     private Direction opposite;
+
     private Direction(Vector3d vector3d, int flags) {
         if (vector3d.length() == 0) {
             // Prevent normalization of the zero direction
@@ -76,6 +77,7 @@ public enum Direction {
         }
         this.flags = flags;
     }
+
     static {
         NORTH.opposite = SOUTH;
         EAST.opposite = WEST;
@@ -214,7 +216,7 @@ public enum Direction {
      * @return True if cardinal
      */
     public boolean isCardinal() {
-        return (flags & Flag.CARDINAL) > 0;
+        return (this.flags & Flag.CARDINAL) > 0;
     }
 
     /**
@@ -224,7 +226,7 @@ public enum Direction {
      * @return True if ordinal
      */
     public boolean isOrdinal() {
-        return (flags & Flag.ORDINAL) > 0;
+        return (this.flags & Flag.ORDINAL) > 0;
     }
 
     /**
@@ -234,7 +236,7 @@ public enum Direction {
      * @return True if secondary ordinal
      */
     public boolean isSecondaryOrdinal() {
-        return (flags & Flag.SECONDARY_ORDINAL) > 0;
+        return (this.flags & Flag.SECONDARY_ORDINAL) > 0;
     }
 
     /**
@@ -243,7 +245,7 @@ public enum Direction {
      * @return True if the Y component is non-zero
      */
     public boolean isUpright() {
-        return (flags & Flag.UPRIGHT) > 0;
+        return (this.flags & Flag.UPRIGHT) > 0;
     }
 
     /**
@@ -252,13 +254,13 @@ public enum Direction {
      * @return The Vector3d
      */
     public Vector3d toVector3d() {
-        return direction;
+        return this.direction;
     }
 
     private interface C {
 
-        public static final double C8 = Math.cos(Math.PI / 8);
-        public static final double S8 = Math.sin(Math.PI / 8);
+        double C8 = Math.cos(Math.PI / 8);
+        double S8 = Math.sin(Math.PI / 8);
     }
 
     public static final class Flag {

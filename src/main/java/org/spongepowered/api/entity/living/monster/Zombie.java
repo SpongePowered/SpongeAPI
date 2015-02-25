@@ -46,4 +46,5 @@ public interface Zombie extends Monster, ArmorEquipable, Ageable {
      * @param villagerZombie If the Zombie should be a villager Zombie
      */
     void setVillagerZombie(boolean villagerZombie);
+
 }

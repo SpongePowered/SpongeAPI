@@ -45,26 +45,26 @@ class NonNullUniqueQueue<E> extends AbstractQueue<E> implements Queue<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return queue.iterator();
+        return this.queue.iterator();
     }
 
     @Override
     public int size() {
-        return queue.size();
+        return this.queue.size();
     }
 
     @Override
     public boolean offer(E o) {
-        return o != null && set.add(o) && queue.offer(o);
+        return o != null && this.set.add(o) && this.queue.offer(o);
     }
 
     @Override
     public E poll() {
-        return queue.poll();
+        return this.queue.poll();
     }
 
     @Override
     public E peek() {
-        return queue.peek();
+        return this.queue.peek();
     }
 }

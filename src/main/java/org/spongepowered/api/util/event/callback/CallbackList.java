@@ -52,7 +52,7 @@ public final class CallbackList implements Collection<EventCallback> {
      * Execute all callbacks in the correct order.
      */
     public void runAll() {
-        for (EventCallback callback : callbacks) {
+        for (EventCallback callback : this.callbacks) {
             try {
                 callback.run();
             } catch (Exception e) {
@@ -65,7 +65,7 @@ public final class CallbackList implements Collection<EventCallback> {
      * Cancel all callbacks.
      */
     public void cancelAll() {
-        for (EventCallback callback : callbacks) {
+        for (EventCallback callback : this.callbacks) {
             if (callback instanceof Cancellable) {
                 ((Cancellable) callback).setCancelled(true);
             }
@@ -74,37 +74,37 @@ public final class CallbackList implements Collection<EventCallback> {
 
     @Override
     public int size() {
-        return callbacks.size();
+        return this.callbacks.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return callbacks.isEmpty();
+        return this.callbacks.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        return callbacks.contains(o);
+        return this.callbacks.contains(o);
     }
 
     @Override
     public Iterator<EventCallback> iterator() {
-        return Iterators.unmodifiableIterator(callbacks.iterator());
+        return Iterators.unmodifiableIterator(this.callbacks.iterator());
     }
 
     @Override
     public Object[] toArray() {
-        return callbacks.toArray();
+        return this.callbacks.toArray();
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return callbacks.toArray(a);
+        return this.callbacks.toArray(a);
     }
 
     @Override
     public boolean add(EventCallback callback) {
-        return callbacks.add(callback);
+        return this.callbacks.add(callback);
     }
 
     @Override
@@ -114,12 +114,12 @@ public final class CallbackList implements Collection<EventCallback> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return callbacks.containsAll(c);
+        return this.callbacks.containsAll(c);
     }
 
     @Override
     public boolean addAll(Collection<? extends EventCallback> c) {
-        return callbacks.addAll(c);
+        return this.callbacks.addAll(c);
     }
 
     @Override

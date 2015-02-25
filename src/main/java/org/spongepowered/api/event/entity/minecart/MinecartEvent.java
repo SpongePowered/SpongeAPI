@@ -39,9 +39,6 @@ public interface MinecartEvent extends EntityEvent {
      */
     Minecart getMinecart();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Minecart getEntity();
 }

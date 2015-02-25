@@ -67,7 +67,7 @@ public class MemorySubjectData implements SubjectData {
     @Override
     public Map<Set<Context>, Map<String, Boolean>> getAllPermissions() {
         ImmutableMap.Builder<Set<Context>, Map<String, Boolean>> ret = ImmutableMap.builder();
-        for (Map.Entry<Set<Context>, NodeTree> ent : permissions.entrySet()) {
+        for (Map.Entry<Set<Context>, NodeTree> ent : this.permissions.entrySet()) {
             ret.put(ent.getKey(), ent.getValue().asMap());
         }
         return ret.build();
@@ -75,7 +75,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public Map<String, Boolean> getPermissions(Set<Context> contexts) {
-        NodeTree perms = permissions.get(contexts);
+        NodeTree perms = this.permissions.get(contexts);
         return perms == null ? Collections.<String, Boolean>emptyMap() : perms.asMap();
     }
 
@@ -83,17 +83,17 @@ public class MemorySubjectData implements SubjectData {
     public boolean setPermission(Set<Context> contexts, String permission, Tristate value) {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            NodeTree oldTree = permissions.get(contexts);
+            NodeTree oldTree = this.permissions.get(contexts);
             if (oldTree != null && oldTree.get(permission) == value) {
                 return false;
             }
 
             if (oldTree == null && value != Tristate.UNDEFINED) {
-                if (permissions.putIfAbsent(contexts, NodeTree.of(ImmutableMap.of(permission, value.asBoolean()))) == null) {
+                if (this.permissions.putIfAbsent(contexts, NodeTree.of(ImmutableMap.of(permission, value.asBoolean()))) == null) {
                     break;
                 }
             } else {
-                if (permissions.replace(contexts, oldTree, oldTree.withValue(permission, value))) {
+                if (this.permissions.replace(contexts, oldTree, oldTree.withValue(permission, value))) {
                     break;
                 }
             }
@@ -104,20 +104,20 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public boolean clearPermissions() {
-        boolean wasEmpty = permissions.isEmpty();
-        permissions.clear();
+        boolean wasEmpty = this.permissions.isEmpty();
+        this.permissions.clear();
         return !wasEmpty;
     }
 
     @Override
     public boolean clearPermissions(Set<Context> context) {
-        return permissions.remove(context) != null;
+        return this.permissions.remove(context) != null;
     }
 
     @Override
     public Map<Set<Context>, List<Subject>> getAllParents() {
         ImmutableMap.Builder<Set<Context>, List<Subject>> ret = ImmutableMap.builder();
-        for (Map.Entry<Set<Context>, List<Map.Entry<String, String>>> ent : parents.entrySet()) {
+        for (Map.Entry<Set<Context>, List<Map.Entry<String, String>>> ent : this.parents.entrySet()) {
             ret.put(ent.getKey(), toSubjectList(ent.getValue()));
         }
         return ret.build();
@@ -126,7 +126,7 @@ public class MemorySubjectData implements SubjectData {
     List<Subject> toSubjectList(List<Map.Entry<String, String>> parents) {
         ImmutableList.Builder<Subject> ret = ImmutableList.builder();
         for (Map.Entry<String, String> ent : parents) {
-            Optional<SubjectCollection> collection = service.getSubjects(ent.getKey());
+            Optional<SubjectCollection> collection = this.service.getSubjects(ent.getKey());
             if (!collection.isPresent()) {
                 continue;
             }
@@ -137,7 +137,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public List<Subject> getParents(Set<Context> contexts) {
-        List<Map.Entry<String, String>> ret = parents.get(contexts);
+        List<Map.Entry<String, String>> ret = this.parents.get(contexts);
         return ret == null ? Collections.<Subject>emptyList() : toSubjectList(ret);
     }
 
@@ -146,8 +146,8 @@ public class MemorySubjectData implements SubjectData {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             Map.Entry<String, String> newEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
-                                                                   parent.getIdentifier());
-            List<Map.Entry<String, String>> oldParents = parents.get(contexts);
+                    parent.getIdentifier());
+            List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
             List<Map.Entry<String, String>> newParents = ImmutableList.<Map.Entry<String, String>>builder()
                     .addAll(oldParents == null ? Collections.<Map.Entry<String, String>>emptyList() : oldParents)
                     .add(newEnt)
@@ -156,7 +156,7 @@ public class MemorySubjectData implements SubjectData {
                 return false;
             }
 
-            if (updateCollection(parents, contexts, oldParents, newParents)) {
+            if (updateCollection(this.parents, contexts, oldParents, newParents)) {
                 return true;
             }
         }
@@ -180,8 +180,8 @@ public class MemorySubjectData implements SubjectData {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             Map.Entry<String, String> removeEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
-                                                                      parent.getIdentifier());
-            List<Map.Entry<String, String>> oldParents = parents.get(contexts);
+                    parent.getIdentifier());
+            List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
             List<Map.Entry<String, String>> newParents;
 
             if (oldParents == null || !oldParents.contains(removeEnt)) {
@@ -190,7 +190,7 @@ public class MemorySubjectData implements SubjectData {
             newParents = new ArrayList<Map.Entry<String, String>>(oldParents);
             newParents.remove(removeEnt);
 
-            if (updateCollection(parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
+            if (updateCollection(this.parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
                 return true;
             }
         }
@@ -199,13 +199,13 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public boolean clearParents() {
-        boolean wasEmpty = parents.isEmpty();
-        parents.clear();
+        boolean wasEmpty = this.parents.isEmpty();
+        this.parents.clear();
         return !wasEmpty;
     }
 
     @Override
     public boolean clearParents(Set<Context> contexts) {
-        return parents.remove(contexts) != null;
+        return this.parents.remove(contexts) != null;
     }
 }

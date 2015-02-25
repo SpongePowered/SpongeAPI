@@ -32,7 +32,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface TradeOfferBuilder {
 
     /**
-     * Sets the first selling item of the trade offer to be generated.
+     * <p>Sets the first selling item of the trade offer to be generated.</p>
+     *
      * <p>Trade offers require at least one item to be generated.</p>
      *
      * @param item The first item to buy
@@ -57,8 +58,8 @@ public interface TradeOfferBuilder {
     TradeOfferBuilder sellingItem(ItemStack item);
 
     /**
-     * Sets the existing uses of the trade offer to be generated.
-     * A trade offer will become unusable when the uses surpasses the max uses.
+     * Sets the existing uses of the trade offer to be generated. A trade offer
+     * will become unusable when the uses surpasses the max uses.
      *
      * @param uses The uses
      * @return This builder
@@ -66,8 +67,8 @@ public interface TradeOfferBuilder {
     TradeOfferBuilder uses(int uses);
 
     /**
-     * Sets the maximum uses the generated trade offer will have. A
-     * trade offer will become unusable when the uses surpasses the max uses.
+     * Sets the maximum uses the generated trade offer will have. A trade offer
+     * will become unusable when the uses surpasses the max uses.
      *
      * @param maxUses The maximum uses of the trade offer
      * @return This builder
@@ -83,22 +84,22 @@ public interface TradeOfferBuilder {
     TradeOfferBuilder setCanGrantExperience(boolean experience);
 
     /**
-     * Creates a new TradeOffer instance with the current state of
-     * the builder.
+     * Creates a new TradeOffer instance with the current state of the builder.
      *
      * @return A new trade offer instance
-     * @throws IllegalStateException If the resulting trade offer would be invalid
+     * @throws IllegalStateException If the resulting trade offer would be
+     *      invalid
      */
     TradeOffer build() throws IllegalStateException;
 
     /**
-     * Sets all the settings of this builder with the provided trade offer
-     * as a blueprint.
+     * Sets all the settings of this builder with the provided trade offer as a
+     * blueprint.
      *
      * @param offer The offer to copy
      * @return This builder
      */
-    TradeOfferBuilder fromTradeOffer(TradeOffer offer);
+    TradeOfferBuilder from(TradeOffer offer);
 
     /**
      * Clears all settings of this builder.

@@ -44,6 +44,13 @@ targetCompatibility = '1.6'
 // Project repositories
 repositories {
     mavenCentral()
+	maven {
+        name 'sonatypeSnapshot'
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+
+    // Add Sponge repo for custom checkstyle implementation to fix some wrong warnings
+    maven { url 'http://repo.spongepowered.org/maven' }
 }
 
 configurations {
@@ -57,14 +64,14 @@ dependencies {
     compile 'com.google.code.findbugs:jsr305:1.3.9'
     compile 'com.google.inject:guice:4.0-beta5'
     compile 'com.typesafe:config:1.2.1'
-    compile 'ninja.leaping.configurate:configurate-hocon:0.2'
+    compile 'ninja.leaping.configurate:configurate-hocon:1.0-SNAPSHOT'
     compile 'com.flowpowered:flow-math:1.0.0'
     compile 'org.ow2.asm:asm:5.0.3'
     testCompile 'junit:junit:4.11'
     testCompile 'org.hamcrest:hamcrest-library:1.3'
     testCompile 'org.mockito:mockito-core:1.9.0'
 
-    checkstyle 'com.puppycrawl.tools:checkstyle:6.1.1'
+    checkstyle 'org.spongepowered:checkstyle:6.1.1-sponge1'
     
     // maven
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.7'
@@ -93,6 +100,12 @@ license {
     }
 }
 
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
 checkstyle {
     configFile = file('checkstyle.xml')
     configProperties = [
@@ -100,7 +113,8 @@ checkstyle {
             "organization": project.organization,
             "url": project.url,
             "year": project.inceptionYear,
-            "suppressions": file('checkstyle-suppressions.xml')
+            "basedir": project.projectDir,
+            "severity": 'warning'
     ]
 }
 
@@ -109,6 +123,13 @@ configure([compileJava, compileTestJava]) {
     options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
     options.deprecation = true
     options.encoding = 'utf8'
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    tasks.withType(Javadoc) {
+        // disable the crazy super-strict doclint tool in Java 8
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
 }
 
 // JAR manifest configuration
@@ -158,6 +179,14 @@ uploadArchives {
                     packaging 'jar'
                     description 'Sponge API'
                     url 'http://www.spongepowered.org/'
+
+                    repositories {
+                        repository {
+                            name 'sonatypeSnapshot'
+                            id 'sonatype'
+                            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+                        }
+                    }
 
                     scm {
                         url 'https://github.com/SpongePowered/SpongeAPI'
