@@ -43,6 +43,7 @@ import org.spongepowered.api.block.data.Lockable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
@@ -651,12 +652,13 @@ public final class SpongeEventFactory {
      * @param newLocation The new location of the entity
      * @return A new instance of the event
      */
-    public static EntityMoveEvent createEntityMove(Game game, Entity entity, Location oldLocation, Location newLocation) {
+    public static EntityMoveEvent createEntityMove(Game game, Entity entity, Location oldLocation, Location newLocation, Vector3f rotation) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
+        values.put("rotation", rotation);
         return createEvent(EntityMoveEvent.class, values);
     }
 
@@ -734,10 +736,11 @@ public final class SpongeEventFactory {
      * @param entity The entity involved in this event
      * @return A new instance of the event
      */
-    public static EntityTameEvent createEntityTame(Game game, Entity entity) {
+    public static EntityTameEvent createEntityTame(Game game, Entity entity, Tamer tamer) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
+        values.put("tamer", tamer);
         return createEvent(EntityTameEvent.class, values);
     }
 
@@ -751,13 +754,15 @@ public final class SpongeEventFactory {
      * @param newLocation The new location of the entity
      * @return A new instance of the event
      */
-    public static EntityTeleportEvent createEntityTeleport(Game game, Cause cause, Entity entity, Location oldLocation, Location newLocation) {
+    public static EntityTeleportEvent createEntityTeleport(Game game, Cause cause, Entity entity, Location oldLocation, Location newLocation, Vector3f rotation, boolean maintainsMomentum) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", entity);
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
+        values.put("rotation", rotation);
+        values.put("keepsMomentum", maintainsMomentum);
         return createEvent(EntityTeleportEvent.class, values);
     }
 
@@ -1158,7 +1163,7 @@ public final class SpongeEventFactory {
      * @param newLocation The new location of the entity
      * @return A new instance of the event
      */
-    public static PlayerMoveEvent createPlayerMove(Game game, Player player, Location oldLocation, Location newLocation) {
+    public static PlayerMoveEvent createPlayerMove(Game game, Player player, Location oldLocation, Location newLocation, Vector3f rotation) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1167,6 +1172,7 @@ public final class SpongeEventFactory {
         values.put("player", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("rotation", rotation);
         return createEvent(PlayerMoveEvent.class, values);
     }
 

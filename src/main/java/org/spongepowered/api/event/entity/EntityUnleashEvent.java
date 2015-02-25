@@ -24,35 +24,19 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * An event that is called when an entity becomes unleashed.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
+public interface EntityUnleashEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the leash holder of the leash.
      *
-     * @return The parent attempting to breed
+     * @return The leash holder
      */
-    @Override
-    Ageable getEntity();
-
-    /**
-     * Gets the parent attempting to breed.
-     *
-     * @return The parent attempting to breed
-     */
-    Ageable getParent();
-
-    /**
-     * Gets the other parent attempting to breed.
-     *
-     * @return The other parent attempting to breed
-     */
-    Ageable getOtherParent();
+    Entity getLeashHolder();
 
 }
