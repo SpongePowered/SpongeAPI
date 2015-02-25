@@ -22,12 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile.explosive.fireball;
 
-package org.spongepowered.api.entity.projectile.fireball;
+import org.spongepowered.api.entity.projectile.explosive.ExplosiveProjectile;
 
 /**
- * Represents a Wither Skull.
+ * Represents an abstract fireball, such as {@link SmallFireball}.
  */
-public interface WitherSkull extends Fireball {
+public interface Fireball extends ExplosiveProjectile {
 
 }

@@ -22,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.fireball;
 
-import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+package org.spongepowered.api.entity.projectile.explosive.fireball;
 
 /**
- * Represents an abstract fireball, such as {@link SmallFireball}.
+ * Represents a Ghast fireball.
  */
-public interface Fireball extends DamagingProjectile, Explosive {
+public interface LargeFireball extends Fireball {
 
 }
