@@ -23,11 +23,4 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile.fireball;
-
-/**
- * Represents a Blaze fireball.
- */
-public interface SmallFireball extends Fireball {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.projectile.explosive.fireball;

@@ -22,5 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile.explosive;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.projectile.fireball;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
+
+/**
+ * Represents a {@link DamagingProjectile} which is also an {@link Explosive}.
+ */
+public interface ExplosiveProjectile extends DamagingProjectile, Explosive {
+
+    /**
+     * Gets the explosion power of this explosive projectile.
+     *
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage an explosive projectile will do upon
+     * exploding.</p>
+     *
+     * @return The explosion power
+     */
+    int getExplosionPower();
+
+    /**
+     * Sets the explosion power of this Large Fireball.
+     *
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage an explosive projectile will do upon
+     * exploding.</p>
+     *
+     * @param explosionPower The explosion power
+     */
+    void setExplosionPower(int explosionPower);
+
+}
