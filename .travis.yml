@@ -5,7 +5,7 @@ jdk:
   - openjdk7
   - oraclejdk7
   - oraclejdk8
-install: gradle assemble
+install: true
 script: gradle build
 notifications:
   email: false

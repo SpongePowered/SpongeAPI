@@ -194,20 +194,20 @@ public interface MobSpawner extends TileEntity {
     void setNextEntityToSpawn(WeightedRandomEntity entity);
 
     /**
-     * Defines a number of {@link WeightedRandomEntity}s from which the type of
-     * each batch will be randomly selected based on the weighting value.
-     *
-     * @param entities The possible entities
-     */
-    void setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
-
-    /**
      * Gets the collection of {@link WeightedRandomEntity} from which the type
      * of each batch of spawned entities will be selected from.
      *
      * @return The possible entities
      */
     Collection<WeightedRandomEntity> getPossibleEntitiesToSpawn();
+
+    /**
+     * Defines a number of {@link WeightedRandomEntity}s from which the type of
+     * each batch will be randomly selected based on the weighting value.
+     *
+     * @param entities The possible entities
+     */
+    void setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
 
     /**
      * Defines a number of {@link WeightedRandomEntity}s from which the type of

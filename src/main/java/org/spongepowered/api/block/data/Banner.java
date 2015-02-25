@@ -79,7 +79,7 @@ public interface Banner extends TileEntity {
     /**
      * A representation on a single layer of a {@link Banner}'s pattern.
      */
-    public static interface PatternLayer extends DataSerializable {
+    interface PatternLayer extends DataSerializable {
 
         /**
          * Gets the pattern shape for this layer.

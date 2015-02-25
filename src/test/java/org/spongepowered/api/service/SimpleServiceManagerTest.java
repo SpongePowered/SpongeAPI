@@ -124,7 +124,7 @@ public class SimpleServiceManagerTest {
 
     public interface TestInterface {
 
-        public String bark();
+        String bark();
     }
 
     public class TestImplCow implements TestInterface {

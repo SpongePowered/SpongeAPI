@@ -28,34 +28,38 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Represents a trade offer that a {@link Merchant} may offer a {@link org.spongepowered.api.entity.living.Human}.
+ * <p>Represents a trade offer that a {@link Merchant} may offer a
+ * {@link org.spongepowered.api.entity.living.Human}.</p>
+ *
  * <p>TradeOffers usually have a limited amount of times they can be used.</p>
+ *
  * <p>Also, trade offers are not guaranteed to have two buying items.</p>
  */
 public interface TradeOffer {
 
     /**
      * Gets the first buying item.
-     * <p>The first buying item is an item that the customer is selling to
-     * the merchant in exchange for {@link #getSellingItem()}.</p>
+     * <p>The first buying item is an item that the customer is selling to the
+     * merchant in exchange for {@link #getSellingItem()}.</p>
      *
      * @return The first buying item
      */
     ItemStack getFirstBuyingItem();
 
     /**
-     * Returns whether this trade offer has a second item the merchant is
-     * buying from the customer.
+     * Returns whether this trade offer has a second item the merchant is buying
+     * from the customer.
      *
      * @return True if there is a second buying item
      */
     boolean hasSecondItem();
 
     /**
-     * Gets the second buying item.
-     * <p>The second buying item is an item that the customer is selling to
-     * the merchant, along with the {@link #getFirstBuyingItem()},
-     * in exchange for {@link #getSellingItem()}.</p>
+     * <p>Gets the second buying item.</p>
+     *
+     * <p>The second buying item is an item that the customer is selling to the
+     * merchant, along with the {@link #getFirstBuyingItem()}, in exchange for
+     * {@link #getSellingItem()}.</p>
      *
      * @return The second buying item, if available
      */
@@ -72,36 +76,37 @@ public interface TradeOffer {
     ItemStack getSellingItem();
 
     /**
-     * Gets the current uses of this offer.
+     * <p>Gets the current uses of this offer.</p>
+     *
      * <p>Usually, the uses of an offer a re limited by the amount of
-     * {@link #getMaxUses()}. Once the uses reaches the max uses,
-     * the offer may temporariliy become disabled.</p>
+     * {@link #getMaxUses()}. Once the uses reaches the max uses, the offer may
+     * temporariliy become disabled.</p>
      *
      * @return The current uses of this trade offer
      */
     int getUses();
 
     /**
-     * Gets the current maximum uses of this offer.
-     * <p>Usually, the uses of an offer a re limited by the amount of
-     * maximum uses. Once the uses reaches the max uses,
-     * the offer may temporariliy become disabled.</p>
+     * <p>Gets the current maximum uses of this offer.</p>
+     *
+     * <p>Usually, the uses of an offer a re limited by the amount of maximum
+     * uses. Once the uses reaches the max uses, the offer may temporariliy
+     * become disabled.</p>
      *
      * @return The maximum uses of this trade offer
      */
     int getMaxUses();
 
     /**
-     * Checks if this trade offer has indeed passed the time of which
-     * the uses surpassed the maximum uses.
+     * Checks if this trade offer has indeed passed the time of which the uses
+     * surpassed the maximum uses.
      *
      * @return True if the uses have surpassed the maximum uses
      */
     boolean hasExpired();
 
     /**
-     * Gets whether this trade offer will grant experience upon usage
-     * or not.
+     * Gets whether this trade offer will grant experience upon usage or not.
      *
      * @return True if using this trade offer will grant experience
      */

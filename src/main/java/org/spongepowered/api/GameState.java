@@ -28,14 +28,61 @@ package org.spongepowered.api;
  * Top to bottom order of the lifecycle.
  */
 public enum GameState {
+    /**
+     * During this state, each {@link org.spongepowered.api.plugin.Plugin} instance
+     * has been created.
+     */
     CONSTRUCTION,
+
+    /**
+     * All plugin initialization should be completed. All plugins
+     * initialization should be complete.
+     */
     LOAD_COMPLETE,
+
+    /**
+     * Plugins are able to access a default logger instance and access
+     * configuration files.
+     */
     PRE_INITIALIZATION,
+
+    /**
+     * Plugins should finish any work needed to become functional. Commands
+     * should be registered at this stage.
+     */
     INITIALIZATION,
+
+    /**
+     * Plugins have been initialized and should be ready for action. Loggers,
+     * configurations, and third party plugin API's should be prepared for
+     * interaction.
+     */
     POST_INITIALIZATION,
+
+    /**
+     * The {@link Server} instance exists, but worlds have not yet loaded.
+     */
     SERVER_ABOUT_TO_START,
+
+    /**
+     * The server instance exists and worlds are loaded.
+     */
     SERVER_STARTING,
+
+    /**
+     * The server is fully loaded and ready to accept clients. All worlds are
+     * loaded and all plugins have been loaded.
+     */
     SERVER_STARTED,
+
+    /**
+     * Server is stopping for any reason. This occurs prior to world saving.
+     */
     SERVER_STOPPING,
+
+    /**
+     * The server has stopped saving and no players are connected. Any changes
+     * to the worlds are not saved.
+     */
     SERVER_STOPPED
 }

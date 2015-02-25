@@ -23,4 +23,5 @@
  * THE SOFTWARE.
  */
 
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.item.merchant;
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.merchant;

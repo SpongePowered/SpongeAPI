@@ -58,7 +58,7 @@ public final class Context {
      *         this would be {@code world}
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -69,7 +69,7 @@ public final class Context {
      *         world.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
@@ -82,19 +82,13 @@ public final class Context {
         }
 
         Context context = (Context) o;
-
-        if (!name.equals(context.name)
-            || !type.equals(context.type)) {
-            return false;
-        }
-
-        return true;
+        return this.name.equals(context.name) && this.type.equals(context.type);
     }
 
     @Override
     public int hashCode() {
-        int result = type.hashCode();
-        result = 31 * result + name.hashCode();
+        int result = this.type.hashCode();
+        result = 31 * result + this.name.hashCode();
         return result;
     }
 }

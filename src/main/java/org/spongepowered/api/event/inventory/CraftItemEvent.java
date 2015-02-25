@@ -22,42 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.sql;
+package org.spongepowered.api.event.inventory;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
+import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.util.event.Cancellable;
 
-import java.sql.SQLException;
-
-import javax.annotation.concurrent.ThreadSafe;
-import javax.sql.DataSource;
+import java.util.List;
 
 /**
- * This service provides the basics for an abstraction over SQL connections.
- *
- * <p>Implementations of this service are expected to be thread-safe.</p>
+ * A CraftItemEvent is fired when an item is crafted from a
+ * player inventory or workbench inventory, or any other crafting inventory.
  */
-@ThreadSafe
-public interface SQLService {
+public interface CraftItemEvent extends ViewerEvent, Cancellable {
 
     /**
-     * Returns a data source for the provided JDBC connection string or an alias
+     * Retrieves the CraftingInventory involved with this event.
      *
-     * <p>A jdbc connection url is expected to be of the form:
-     * jdbc:&lt;engine&gt;://[&lt;username&gt;[:&lt;password&gt;]@]&lt;host&gt;/&lt;database&gt;
-     * or an alias (available aliases are known only by the service provider)</p>
-     *
-     * @param jdbcConnection The jdbc url or connection alias
-     * @return A data source providing connections to the given URL.
-     * @throws java.sql.SQLException if a connection to the given database could not be established
+     * @return The crafting inventory
      */
-    public DataSource getDataSource(String jdbcConnection) throws SQLException;
+    CraftingInventory getInventory();
 
     /**
-     * Returns a possible connection URL for a given alias.
+     * Retrieves the recipe that has been crafted as a result of this event.
      *
-     * @param alias The alias to check
-     * @return The connection url as a String if it exists,
-     *          or {@link Optional#absent()}
+     * @return The recipe
      */
-    public Optional<String> getConnectionURLFromAlias(String alias);
+    Recipe getRecipe();
+
+    /**
+     * Gets the ItemStacks that are a result of this crafting event.
+     *
+     * @return The results
+     */
+    List<ItemStack> getResults();
+
+    /**
+     * Gets the types of the results of this crafting event.
+     *
+     * @return The result types
+     */
+    List<ItemType> getResultTypes();
+
 }

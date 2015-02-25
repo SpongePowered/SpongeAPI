@@ -174,4 +174,5 @@ public interface ArmorStand extends Living, ArmorEquipable {
      * @param baseplate Whether this armor stand is to have a base plate
      */
     void setHasBasePlate(boolean baseplate);
+
 }

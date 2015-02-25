@@ -117,7 +117,7 @@ public class NodeTree {
      */
     public Map<String, Boolean> asMap() {
         ImmutableMap.Builder<String, Boolean> ret = ImmutableMap.builder();
-        for (Map.Entry<String, Node> ent : rootNode.children.entrySet()) {
+        for (Map.Entry<String, Node> ent : this.rootNode.children.entrySet()) {
             populateMap(ret, ent.getKey(), ent.getValue());
         }
         return ret.build();
@@ -141,9 +141,9 @@ public class NodeTree {
      */
     public NodeTree withValue(String node, Tristate value) {
         String[] parts = SPLIT_REGEX.split(node.toLowerCase());
-        Node newRoot = new Node(new HashMap<String, Node>(rootNode.children));
+        Node newRoot = new Node(new HashMap<String, Node>(this.rootNode.children));
         Node newPtr = newRoot;
-        Node currentPtr = rootNode;
+        Node currentPtr = this.rootNode;
 
         newPtr.value = currentPtr == null ? Tristate.UNDEFINED : currentPtr.value;
         for (String part : parts) {

@@ -48,6 +48,6 @@ public enum NullPolicy {
      * Assume that all parameters are nullable unless they are annotated with
      * {@link Nonnull}.
      */
-    NULL_BY_DEFAULT;
+    NULL_BY_DEFAULT
 
 }

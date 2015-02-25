@@ -44,8 +44,8 @@ public final class DataQuery {
     /**
      * Constructs a query using the given separator character and path.
      *
-     * <p>As an example, {@code new Query('/', "a/b/c")} and
-     * {@code new Query('.', "a.b.c")} represent the same path but are
+     * <p>As an example, {@code new DataQuery('/', "a/b/c")} and
+     * {@code new DataQuery('.', "a.b.c")} represent the same path but are
      * constructed using different separators.</p>
      *
      * @param separator The separator

@@ -39,9 +39,6 @@ public interface ItemEvent extends EntityEvent {
      */
     Item getItem();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Item getEntity();
 }

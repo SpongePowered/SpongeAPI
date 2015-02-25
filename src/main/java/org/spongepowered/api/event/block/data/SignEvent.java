@@ -27,7 +27,7 @@ package org.spongepowered.api.event.block.data;
 import org.spongepowered.api.block.data.Sign;
 
 /**
- * An event that is associated with a {@link Sign}
+ * An event that is associated with a {@link Sign}.
  */
 public interface SignEvent extends TileEntityEvent {
 
@@ -38,9 +38,6 @@ public interface SignEvent extends TileEntityEvent {
      */
     Sign getSign();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Sign getTileEntity();
 }

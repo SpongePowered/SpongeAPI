@@ -84,7 +84,7 @@ public interface ServiceManager {
      * @param <T> The type of service
      * @return A reference to a current or future provider
      */
-    public <T> ServiceReference<T> potentiallyProvide(Class<T> service);
+    <T> ServiceReference<T> potentiallyProvide(Class<T> service);
 
     /**
      * Return a provider for the given service, raising an unchecked exception
