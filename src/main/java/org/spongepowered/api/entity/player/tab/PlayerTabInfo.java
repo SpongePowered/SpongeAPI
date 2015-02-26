@@ -41,8 +41,8 @@ public interface PlayerTabInfo {
     int getConnectionTime();
 
     /**
-     * <p>Sets the connection time for this player. The client displays
-     * connection bars based on this number.</p> <table summary=""> <thead>
+     * Sets the connection time for this player. The client displays connection
+     * bars based on this number. <table summary=""> <thead>
      * <tr><th>Bars</th><th>Time</th></tr> </thead> <tbody> <tr><td>0</td><td>
      * Less than 0 </td></tr> <tr><td>1</td><td> 1000+ </td></tr>
      * <tr><td>2</td><td> 600 - 999</td></tr> <tr><td>3</td><td> 300 -
@@ -71,7 +71,7 @@ public interface PlayerTabInfo {
     /**
      * Gets this player's display name.
      * 
-     * @return This player's display nam
+     * @return This player's display name
      */
     Message getDisplayName();
 
@@ -109,5 +109,4 @@ public interface PlayerTabInfo {
      * @param profile The new GameProfile for this player
      */
     void setProfile(GameProfile profile);
-
 }
