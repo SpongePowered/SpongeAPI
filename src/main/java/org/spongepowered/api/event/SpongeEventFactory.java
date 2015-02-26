@@ -693,6 +693,7 @@ public final class SpongeEventFactory {
      * @param entity The entity involved in this event
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
+     * @param rotation The rotation the entity is facing
      * @return A new instance of the event
      */
     public static EntityMoveEvent createEntityMove(Game game, Entity entity, Location oldLocation, Location newLocation, Vector3f rotation) {
@@ -777,6 +778,7 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
+     * @param tamer The tamer that has tamed the entity
      * @return A new instance of the event
      */
     public static EntityTameEvent createEntityTame(Game game, Entity entity, Tamer tamer) {
@@ -795,9 +797,12 @@ public final class SpongeEventFactory {
      * @param entity The entity involved in this event
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
+     * @param rotation The rotation the entity is facing
+     * @param maintainsMomentum Whether the entity will maintain momentum
      * @return A new instance of the event
      */
-    public static EntityTeleportEvent createEntityTeleport(Game game, Cause cause, Entity entity, Location oldLocation, Location newLocation, Vector3f rotation, boolean maintainsMomentum) {
+    public static EntityTeleportEvent createEntityTeleport(Game game, Cause cause, Entity entity, Location oldLocation, Location newLocation,
+            Vector3f rotation, boolean maintainsMomentum) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1105,7 +1110,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * /** Creates a new {@link PlayerHarvestBlockEvent}.
+     * Creates a new {@link PlayerHarvestBlockEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -1231,6 +1236,7 @@ public final class SpongeEventFactory {
      * @param player The player involved in this event
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
+     * @param rotation The rotation the entity is facing
      * @return A new instance of the event
      */
     public static PlayerMoveEvent createPlayerMove(Game game, Player player, Location oldLocation, Location newLocation, Vector3f rotation) {
