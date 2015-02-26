@@ -22,15 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.inventory.ItemDropEvent;
+import org.spongepowered.api.util.event.Cancellable;
+
+import java.util.Collection;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * Dispatched when a {@link BlockLoc} is about to drop it's items.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent {
+public interface BlockHarvestEvent extends BlockEvent, ItemDropEvent, Cancellable {
+
+    /**
+     * Sets the items that are to be dropped.
+     *
+     * @param items The collection of item entities to drop
+     */
+    void setDroppedItems(Collection<Item> items);
+
+    /**
+     * Gets the chance the items are being dropped. A chance of 1 means all the
+     * items are dropped.
+     *
+     * @return The chance, between 0 and 1
+     */
+    float getDropChance();
+
+    /**
+     * Sets the chance the items will be dropped.
+     *
+     * <p>Setting the chance to 0 may stop the items from dropping, to guarantee
+     * no items are dropped, use {@link #setCancelled(boolean)}.</p>
+     *
+     * @param chance The chance, must be between 0 and 1
+     */
+    void setDropChance(float chance);
 
 }

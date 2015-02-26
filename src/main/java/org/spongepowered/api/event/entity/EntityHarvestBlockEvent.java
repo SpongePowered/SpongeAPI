@@ -23,35 +23,15 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.item;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.block.BlockHarvestEvent;
 
 /**
- * Represents the Silk Touch enchantment, Enchantments.SILK_TOUCH.
+ * Called when an {@link Entity} harvests a {@link BlockLoc}.
  */
-public interface EnchantmentSilkTouch extends Enchantment {
-
-    /**
-     * Register a block that can be harvested with silk touch.
-     *
-     * @param block The block to register
-     */
-    void registerBlock(BlockType block);
-
-    /**
-     * Unregister a block so it can no longer be harvested with silk touch.
-     *
-     * @param block The block to unregister
-     */
-    void unregisterBlock(BlockType block);
-
-    /**
-     * Gets whether the block can be harvested with silk touch.
-     *
-     * @param block The block to test for
-     * @return Whether it can be harvested
-     */
-    boolean canHarvest(BlockType block);
+public interface EntityHarvestBlockEvent extends EntityEvent, BlockHarvestEvent {
 
 }

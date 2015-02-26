@@ -22,15 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+
+package org.spongepowered.api.event.entity.living.human;
 
 import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.event.ExperienceEvent;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.entity.living.LivingHarvestBlockEvent;
 
 /**
- * Dispatched when a {@link BlockLoc} is in the process of breaking, before
- * the break has been made.
+ * Called when a {@link Human} harvests a {@link BlockLoc}.
  */
-public interface BlockBreakEvent extends BlockChangeEvent, ExperienceEvent {
+public interface HumanHarvestBlockEvent extends HumanEvent, LivingHarvestBlockEvent {
+
+    /**
+     * Gets whether the human was using an item with silk touch to harvest the
+     * block.
+     *
+     * <p>To change this value, the event must be cancelled and a new event
+     * posted with the desired value, See
+     * {@link SpongeEventFactory#createPlayerHarvestBlock}.</p>
+     *
+     * @return True if the event is a silk touch operation
+     */
+    boolean isSilkTouch();
 
 }
