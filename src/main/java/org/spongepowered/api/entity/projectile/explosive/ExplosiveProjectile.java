@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
- * Represents an {@link DamagingProjectile} which is also an {@link Explosive}
+ * Represents a {@link DamagingProjectile} which is also an {@link Explosive}
  */
 public interface ExplosiveProjectile extends DamagingProjectile, Explosive {
 
