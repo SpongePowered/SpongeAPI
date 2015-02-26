@@ -1,4 +1,4 @@
-SpongeAPI [![Build Status](https://travis-ci.org/SpongePowered/SpongeAPI.png?branch=master)](https://travis-ci.org/SpongePowered/SpongeAPI)
+SpongeAPI [![Build Status](https://travis-ci.org/SpongePowered/SpongeAPI.svg?branch=master)](https://travis-ci.org/SpongePowered/SpongeAPI)
 =============
 **Currently not stable and under heavy development!**  
 A Minecraft plugin API (not including an implementation). It is licensed under the [MIT License]. 
@@ -9,7 +9,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Wiki]
 * [Community Chat]: #sponge on irc.esper.net
 * [Development Chat]: #spongedev on irc.esper.net
-* [Plugin Workspace Info]
+* [Preparing for Development]
 * [Javadocs(temporary link)]
 
 ## Prerequisites
@@ -42,5 +42,5 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [MIT License]: http://www.tldrlegal.com/license/mit-license
 [Community Chat]: https://webchat.esper.net/?channels=sponge
 [Development Chat]: https://webchat.esper.net/?channels=spongedev
-[Plugin Workspace Info]: https://docs.spongepowered.org/en/latest/plugins/workspace/
+[Preparing for Development]: https://docs.spongepowered.org/en/latest/workspace/
 [Javadocs(temporary link)]: http://spongepowered.github.io/SpongeAPI/

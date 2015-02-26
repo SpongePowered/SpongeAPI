@@ -50,6 +50,7 @@ import java.util.Collection;
  * @see BlockState Contains a collection of properties
  */
 public interface BlockProperty<T extends Comparable<T>> {
+
     /**
      * Get the name of this property.
      *
@@ -81,19 +82,19 @@ public interface BlockProperty<T extends Comparable<T>> {
     Optional<T> getValueForName(String name);
 
     // Subinterface markers for vanilla property types
-    public interface BooleanProperty extends BlockProperty<Boolean> {
+    interface BooleanProperty extends BlockProperty<Boolean> {
 
     }
 
-    public interface EnumProperty<E extends Enum<E>> extends BlockProperty<E> {
+    interface EnumProperty<E extends Enum<E>> extends BlockProperty<E> {
 
     }
 
-    public interface DirectionProperty extends EnumProperty<Direction> {
+    interface DirectionProperty extends EnumProperty<Direction> {
 
     }
 
-    public interface IntegerProperty extends BlockProperty<Integer> {
+    interface IntegerProperty extends BlockProperty<Integer> {
 
     }
 }

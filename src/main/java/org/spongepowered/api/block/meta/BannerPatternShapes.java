@@ -31,7 +31,7 @@ package org.spongepowered.api.block.meta;
 public final class BannerPatternShapes {
 
     // These values will not be null at runtime
-    
+
     public static final BannerPatternShape BASE = null;
     public static final BannerPatternShape SQUARE_BOTTOM_LEFT = null;
     public static final BannerPatternShape SQUARE_BOTTOM_RIGHT = null;

@@ -25,10 +25,11 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when an {@link Entity} is interacting with something.
  */
-public interface EntityInteractEvent extends EntityEvent {
+public interface EntityInteractEvent extends EntityEvent, Cancellable {
 
 }

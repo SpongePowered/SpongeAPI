@@ -35,4 +35,5 @@ import java.util.Map;
  * @param <E> The type of event
  */
 public interface EventFactory<E> extends Function<Map<String, Object>, E> {
+
 }

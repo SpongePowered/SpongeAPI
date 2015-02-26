@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.event.entity;
 
+import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
@@ -35,15 +36,29 @@ public interface EntityMoveEvent extends EntityEvent, Cancellable {
 
     /**
      * Gets the previous {@link Location} that the entity was in.
-     * 
+     *
      * @return The old location
      */
     Location getOldLocation();
 
     /**
      * Gets the new {@link Location} that the entity is in.
-     * 
+     *
      * @return The new location
      */
     Location getNewLocation();
+
+    /**
+     * Gets the rotation the entity is facing.
+     *
+     * @return The rotation the entity is facing
+     */
+    Vector3f getRotation();
+
+    /**
+     * Sets the rotation the entity is facing.
+     *
+     * @param rotation The rotation the entity is facing
+     */
+    void setRotation(Vector3f rotation);
 }

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.entity.EntityEvent;
 
@@ -40,9 +39,6 @@ public interface ItemEvent extends EntityEvent {
      */
     Item getItem();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Item getEntity();
 }

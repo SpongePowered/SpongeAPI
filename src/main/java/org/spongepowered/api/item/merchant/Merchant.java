@@ -26,12 +26,23 @@ package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.item.inventory.Carrier;
 
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-public interface Merchant {
+/**
+ * Represents a Merchant which can offer trades to customers.
+ */
+public interface Merchant extends Carrier {
+
+    /**
+     * Gets the currently trading customer with this merchant.
+     *
+     * @return The currently trading customer if available
+     */
+    Optional<Human> getCustomer();
 
     /**
      * Sets the currently trading customer with this merchant.
@@ -43,26 +54,12 @@ public interface Merchant {
     void setCustomer(@Nullable Human human);
 
     /**
-     * Gets the currently trading customer with this merchant.
-     *
-     * @return The currently trading customer if available
-     */
-    Optional<Human> getCustomer();
-
-    /**
      * Gets an immutable list of {@link TradeOffer}s that this merchant
      * can send to a {@link org.spongepowered.api.entity.living.Human}.
      *
      * @return An immutable list of trade offers
      */
     List<TradeOffer> getOffers();
-
-    /**
-     * Adds the given offer to the list of offers provided by this merchant.
-     *
-     * @param offer The offer to add
-     */
-    void addOffer(TradeOffer offer);
 
     /**
      * Replaces the entire list of trade offers this merchant can trade
@@ -74,4 +71,10 @@ public interface Merchant {
      */
     void setOffers(List<TradeOffer> offers);
 
+    /**
+     * Adds the given offer to the list of offers provided by this merchant.
+     *
+     * @param offer The offer to add
+     */
+    void addOffer(TradeOffer offer);
 }

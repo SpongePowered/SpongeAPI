@@ -35,13 +35,13 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
-import org.spongepowered.api.entity.living.meta.DyeColor;
-import org.spongepowered.api.entity.living.meta.HorseColor;
-import org.spongepowered.api.entity.living.meta.HorseStyle;
-import org.spongepowered.api.entity.living.meta.HorseVariant;
-import org.spongepowered.api.entity.living.meta.OcelotType;
-import org.spongepowered.api.entity.living.meta.RabbitType;
-import org.spongepowered.api.entity.living.meta.SkeletonType;
+import org.spongepowered.api.entity.living.animal.DyeColor;
+import org.spongepowered.api.entity.living.animal.HorseColor;
+import org.spongepowered.api.entity.living.animal.HorseStyle;
+import org.spongepowered.api.entity.living.animal.HorseVariant;
+import org.spongepowered.api.entity.living.animal.OcelotType;
+import org.spongepowered.api.entity.living.animal.RabbitType;
+import org.spongepowered.api.entity.living.monster.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -49,6 +49,7 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
@@ -59,11 +60,10 @@ import org.spongepowered.api.world.biome.BiomeType;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -71,7 +71,7 @@ import java.util.UUID;
  *
  * <p>Note that the registries may be in flux, especially during game
  * initialization. These will be accurate for the time they are called, however
- * they may change at a later point. Do not assume that the contents of a list
+ * they may change at a later point. Do not assume that the contents of a collection
  * will be all the entries that will exist.</p>
  *
  * <p>Some of the returned instances my become incorrect if they are later
@@ -89,11 +89,11 @@ public interface GameRegistry {
     Optional<BlockType> getBlock(String id);
 
     /**
-     * Gets a list of all available {@link BlockType}s.
+     * Gets a collection of all available {@link BlockType}s.
      *
-     * @return A list containing all block types in registry
+     * @return A collection containing all block types in registry
      */
-    List<BlockType> getBlocks();
+    Collection<BlockType> getBlocks();
 
     /**
      * Gets an {@link ItemType} by its identifier.
@@ -104,11 +104,11 @@ public interface GameRegistry {
     Optional<ItemType> getItem(String id);
 
     /**
-     * Gets a list of all available {@link ItemType}s.
+     * Gets a collection of all available {@link ItemType}s.
      *
-     * @return A list containing all item types in registry
+     * @return A collection containing all item types in registry
      */
-    List<ItemType> getItems();
+    Collection<ItemType> getItems();
 
     /**
      * Gets a {@link BiomeType} by its identifier.
@@ -119,11 +119,11 @@ public interface GameRegistry {
     Optional<BiomeType> getBiome(String id);
 
     /**
-     * Gets a list of all available {@link BiomeType}s.
+     * Gets a collection of all available {@link BiomeType}s.
      *
-     * @return A list containing all biome types
+     * @return A collection containing all biome types
      */
-    List<BiomeType> getBiomes();
+    Collection<BiomeType> getBiomes();
 
     /**
      * Get an item stack builder.
@@ -155,11 +155,11 @@ public interface GameRegistry {
     Optional<ParticleType> getParticleType(String name);
 
     /**
-     * Gets a list of all available {@link ParticleType}s.
+     * Gets a collection of all available {@link ParticleType}s.
      *
-     * @return A list containing all particle types in registry
+     * @return A collection containing all particle types in registry
      */
-    List<ParticleType> getParticleTypes();
+    Collection<ParticleType> getParticleTypes();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
@@ -178,11 +178,11 @@ public interface GameRegistry {
     Optional<SoundType> getSound(String name);
 
     /**
-     * Gets a list of all known {@link SoundType}s.
+     * Gets a collection of all known {@link SoundType}s.
      *
-     * @return A list containing all sounds in the registry
+     * @return A collection containing all sounds in the registry
      */
-    List<SoundType> getSounds();
+    Collection<SoundType> getSounds();
 
     /**
      * Gets an {@link EntityType} by its identifier.
@@ -193,11 +193,11 @@ public interface GameRegistry {
     Optional<EntityType> getEntity(String id);
 
     /**
-     * Gets a list of all available {@link EntityType}s.
+     * Gets a collection of all available {@link EntityType}s.
      *
-     * @return A list containing all entity types in registry
+     * @return A collection containing all entity types in registry
      */
-    List<EntityType> getEntities();
+    Collection<EntityType> getEntities();
 
     /**
      * Gets an {@link Art} by its identifier.
@@ -208,11 +208,11 @@ public interface GameRegistry {
     Optional<Art> getArt(String id);
 
     /**
-     * Gets a list of all available {@link Art} pieces.
+     * Gets a collection of all available {@link Art} pieces.
      *
-     * @return A list of all available art pieces
+     * @return A collection of all available art pieces
      */
-    List<Art> getArts();
+    Collection<Art> getArts();
 
     /**
      * Gets a {@link DyeColor} by its identifier.
@@ -223,11 +223,11 @@ public interface GameRegistry {
     Optional<DyeColor> getDye(String id);
 
     /**
-     * Gets a list of all available {@link DyeColor}s.
+     * Gets a collection of all available {@link DyeColor}s.
      *
-     * @return A list containing all dyes in registry
+     * @return A collection containing all dyes in registry
      */
-    List<DyeColor> getDyes();
+    Collection<DyeColor> getDyes();
 
     /**
      * Gets a {@link HorseColor} by its identifier.
@@ -238,11 +238,11 @@ public interface GameRegistry {
     Optional<HorseColor> getHorseColor(String id);
 
     /**
-     * Gets a list of all available {@link HorseColor}s.
+     * Gets a collection of all available {@link HorseColor}s.
      *
-     * @return A list containing all horse colors in registry
+     * @return A collection containing all horse colors in registry
      */
-    List<HorseColor> getHorseColors();
+    Collection<HorseColor> getHorseColors();
 
     /**
      * Gets a {@link HorseStyle} by its identifier.
@@ -253,11 +253,11 @@ public interface GameRegistry {
     Optional<HorseStyle> getHorseStyle(String id);
 
     /**
-     * Gets a list of all available {@link HorseStyle}s.
+     * Gets a collection of all available {@link HorseStyle}s.
      *
-     * @return A list containing all horse styles in registry
+     * @return A collection containing all horse styles in registry
      */
-    List<HorseStyle> getHorseStyles();
+    Collection<HorseStyle> getHorseStyles();
 
     /**
      * Gets a {@link HorseVariant} by its identifier.
@@ -268,11 +268,11 @@ public interface GameRegistry {
     Optional<HorseVariant> getHorseVariant(String id);
 
     /**
-     * Gets a list of all available {@link HorseVariant}s.
+     * Gets a collection of all available {@link HorseVariant}s.
      *
-     * @return A list containing all horse variants in registry
+     * @return A collection containing all horse variants in registry
      */
-    List<HorseVariant> getHorseVariants();
+    Collection<HorseVariant> getHorseVariants();
 
     /**
      * Gets an {@link OcelotType} by its identifier.
@@ -283,11 +283,11 @@ public interface GameRegistry {
     Optional<OcelotType> getOcelotType(String id);
 
     /**
-     * Gets a list of all available {@link OcelotType}s.
+     * Gets a collection of all available {@link OcelotType}s.
      *
-     * @return A list containing all ocelot types in registry
+     * @return A collection containing all ocelot types in registry
      */
-    List<OcelotType> getOcelotTypes();
+    Collection<OcelotType> getOcelotTypes();
 
     /**
      * Gets a {@link RabbitType} by its identifier.
@@ -298,11 +298,11 @@ public interface GameRegistry {
     Optional<RabbitType> getRabbitType(String id);
 
     /**
-     * Gets a list of all available {@link RabbitType}s.
+     * Gets a collection of all available {@link RabbitType}s.
      *
-     * @return A list containing all rabbit types in registry
+     * @return A collection containing all rabbit types in registry
      */
-    List<RabbitType> getRabbitTypes();
+    Collection<RabbitType> getRabbitTypes();
 
     /**
      * Gets a {@link SkeletonType} by its identifier.
@@ -313,11 +313,11 @@ public interface GameRegistry {
     Optional<SkeletonType> getSkeletonType(String id);
 
     /**
-     * Gets a list of all available {@link SkeletonType}s.
+     * Gets a collection of all available {@link SkeletonType}s.
      *
-     * @return A list containing all skeleton types in registry
+     * @return A collection containing all skeleton types in registry
      */
-    List<SkeletonType> getSkeletonTypes();
+    Collection<SkeletonType> getSkeletonTypes();
 
     /**
      * Gets the villager {@link Career} with the specified id.
@@ -330,17 +330,17 @@ public interface GameRegistry {
     /**
      * Gets all available villager {@link Career}s.
      *
-     * @return A list of all villager careers
+     * @return A collection of all villager careers
      */
-    List<Career> getCareers();
+    Collection<Career> getCareers();
 
     /**
      * Gets all available villager {@link Career}s for the given profession.
      *
-     * @param profession The villager profession to list careers from
-     * @return A list of all villager careers associated with the profession
+     * @param profession The villager profession to collection careers from
+     * @return A collection of all villager careers associated with the profession
      */
-    List<Career> getCareers(Profession profession);
+    Collection<Career> getCareers(Profession profession);
 
     /**
      * Gets the villager {@link Profession} with the specified id.
@@ -353,25 +353,25 @@ public interface GameRegistry {
     /**
      * Gets all available villager {@link Profession}s.
      *
-     * @return A list of all villager professions
+     * @return A collection of all villager professions
      */
-    List<Profession> getProfessions();
+    Collection<Profession> getProfessions();
 
     /**
-     * Gets a list of all available {@link GameMode}s.
+     * Gets a collection of all available {@link GameMode}s.
      *
-     * @return A list containing all game modes in registry
+     * @return A collection containing all game modes in registry
      */
     // TODO: GameMode from string? Should add 'String getId()' to GameMode if so.
-    List<GameMode> getGameModes();
+    Collection<GameMode> getGameModes();
 
     /**
-     * Gets a list of all available {@link PotionEffectType}s.
+     * Gets a collection of all available {@link PotionEffectType}s.
      *
-     * @return A list containing all potion effect types in registry
+     * @return A collection containing all potion effect types in registry
      */
     // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
-    List<PotionEffectType> getPotionEffects();
+    Collection<PotionEffectType> getPotionEffects();
 
     /**
      * Gets the {@link Enchantment} with the specified id.
@@ -384,9 +384,9 @@ public interface GameRegistry {
     /**
      * Gets all available {@link Enchantment}s.
      *
-     * @return A list of all enchantments
+     * @return A collection of all enchantments
      */
-    List<Enchantment> getEnchantments();
+    Collection<Enchantment> getEnchantments();
 
     /**
      * Gets a {@link Collection} of the default GameRules.
@@ -404,11 +404,11 @@ public interface GameRegistry {
     Optional<DimensionType> getDimensionType(String name);
 
     /**
-     * Gets a {@link List} of all possible {@link DimensionType}s.
+     * Gets a {@link Collection} of all possible {@link DimensionType}s.
      *
-     * @return The list of all available {@link DimensionType}s
+     * @return The collection of all available {@link DimensionType}s
      */
-    List<DimensionType> getDimensionTypes();
+    Collection<DimensionType> getDimensionTypes();
 
     /**
      * Gets the {@link Rotation} with the provided degrees.
@@ -419,11 +419,11 @@ public interface GameRegistry {
     Optional<Rotation> getRotationFromDegree(int degrees);
 
     /**
-     * Gets a {@link List} of all possible {@link Rotation}s.
+     * Gets a {@link Collection} of all possible {@link Rotation}s.
      *
-     * @return The list of all available {@link Rotation}s
+     * @return The collection of all available {@link Rotation}s
      */
-    List<Rotation> getRotations();
+    Collection<Rotation> getRotations();
 
     // TODO: Find a better place for these methods
 
@@ -482,7 +482,7 @@ public interface GameRegistry {
      * @throws IOException If the favicon couldn't be loaded
      */
     Favicon loadFavicon(BufferedImage image) throws IOException;
-    
+
     /**
      * Gets the {@link NotePitch} with the provided name. 
      *
@@ -492,11 +492,11 @@ public interface GameRegistry {
     Optional<NotePitch> getNotePitch(String name);
 
     /**
-     * Gets a {@link List} of all possible {@link NotePitch}s.
+     * Gets a {@link Collection} of all possible {@link NotePitch}s.
      *
-     * @return The list of all available {@link NotePitch}s
+     * @return The collection of all available {@link NotePitch}s
      */
-    List<NotePitch> getNotePitches();
+    Collection<NotePitch> getNotePitches();
 
     /**
      * Gets the {@link SkullType} with the provided name. 
@@ -507,11 +507,11 @@ public interface GameRegistry {
     Optional<SkullType> getSkullType(String name);
 
     /**
-     * Gets a {@link List} of all possible {@link SkullType}s.
+     * Gets a {@link Collection} of all possible {@link SkullType}s.
      *
-     * @return The list of all available {@link SkullType}s
+     * @return The collection of all available {@link SkullType}s
      */
-    List<SkullType> getSkullTypes();
+    Collection<SkullType> getSkullTypes();
 
     /**
      * Gets the {@link BannerPatternShape} with the provided name. 
@@ -520,7 +520,7 @@ public interface GameRegistry {
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
      */
     Optional<BannerPatternShape> getBannerPatternShape(String name);
-    
+
     /**
      * Gets the {@link BannerPatternShape} with the provided name. 
      *
@@ -530,10 +530,24 @@ public interface GameRegistry {
     Optional<BannerPatternShape> getBannerPatternShapeById(String id);
 
     /**
-     * Gets a {@link List} of all possible {@link BannerPatternShape}s.
+     * Gets a {@link Collection} of all possible {@link BannerPatternShape}s.
      *
-     * @return The list of all available {@link BannerPatternShape}s
+     * @return The collection of all available {@link BannerPatternShape}s
      */
-    List<BannerPatternShape> getBannerPatternShapes();
+    Collection<BannerPatternShape> getBannerPatternShapes();
+
+    /**
+     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
+     *
+     * @return The item dictionary
+     */
+    GameDictionary getGameDictionary();
+
+    /**
+     * Retrieves the RecipeRegistry for this GameRegistry.
+     *
+     * @return The recipe registry
+     */
+    RecipeRegistry getRecipeRegistry();
 
 }

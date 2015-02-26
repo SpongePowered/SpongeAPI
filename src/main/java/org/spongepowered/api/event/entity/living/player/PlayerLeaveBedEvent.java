@@ -38,6 +38,7 @@ public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEven
      *
      * @return Whether the spawn location for the player was set
      */
+    @Override
     boolean wasSpawnSet();
 
     /**
@@ -49,6 +50,7 @@ public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEven
      *
      * @return The players new spawn location, if available
      */
+    @Override
     Optional<Location> getSpawnLocation();
 
     /**
@@ -60,6 +62,7 @@ public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEven
      *
      * @param location The new spawn location for the player
      */
+    @Override
     void setSpawnLocation(Location location);
 
 }

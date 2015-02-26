@@ -33,6 +33,7 @@ import java.util.Set;
  * frequently, and therefore should be fast.
  */
 public interface ContextCalculator {
+
     /**
      * Add any contexts this calculator determines to be applicable to the
      * provided accumulator.

@@ -42,7 +42,7 @@ public interface Skull extends TileEntity {
      * This rotation is only used if the Skull is placed on top of the block,
      * otherwise its rotation is defined by the BlockState of the Skull block.
      * </p>
-     * 
+     *
      * @return The rotation direction
      */
     Direction getRotation();
@@ -53,7 +53,7 @@ public interface Skull extends TileEntity {
      * This rotation is only used if the Skull is placed on top of the block,
      * otherwise its rotation is defined by the BlockState of the Skull block.
      * </p>
-     * 
+     *
      * @param rotation The new rotation
      */
     void setRotation(Direction rotation);
@@ -61,7 +61,7 @@ public interface Skull extends TileEntity {
     /**
      * If the type of the skull is {@link SkullTypes#PLAYER} then this will
      * return the associated {@link GameProfile}.
-     * 
+     *
      * @return The player
      */
     Optional<GameProfile> getPlayer();
@@ -70,14 +70,14 @@ public interface Skull extends TileEntity {
      * Sets the player associated with this skull. Also ensures that
      * {@link #getType()} is set to {@link SkullTypes#PLAYER} (setting it if
      * necessary).
-     * 
+     *
      * @param player The new player
      */
     void setPlayer(GameProfile player);
 
     /**
      * Gets the type of skull.
-     * 
+     *
      * @return The skull type
      */
     SkullType getType();
@@ -85,7 +85,7 @@ public interface Skull extends TileEntity {
     /**
      * Sets the skull type. If the new type is not {@link SkullTypes#PLAYER}
      * then the player profile will be cleared.
-     * 
+     *
      * @param type The new type
      */
     void setType(SkullType type);

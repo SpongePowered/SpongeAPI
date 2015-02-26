@@ -23,5 +23,4 @@
  * THE SOFTWARE.
  */
 
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.event.entity.living.human;
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.entity.living.human;

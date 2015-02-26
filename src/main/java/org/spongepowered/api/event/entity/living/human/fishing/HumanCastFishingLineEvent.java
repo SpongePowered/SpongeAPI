@@ -29,4 +29,5 @@ package org.spongepowered.api.event.entity.living.human.fishing;
  * a fishing line.
  */
 public interface HumanCastFishingLineEvent extends HumanFishEvent {
+
 }

@@ -44,8 +44,8 @@ public interface ItemType extends Translatable {
     String getId();
 
     /**
-     * Get the default maximum quantity for {@link ItemStack}s
-     * of this item.
+     * Get the default maximum quantity for
+     * {@link ItemStack}s of this item.
      *
      * @return Max stack quantity
      */
@@ -62,7 +62,7 @@ public interface ItemType extends Translatable {
 
     /**
      * Returns the maximum damage an item can take.
-     * 
+     *
      * @return The max damage
      */
     int getMaxDamage();

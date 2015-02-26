@@ -33,7 +33,7 @@ import org.spongepowered.api.util.event.Cancellable;
  * the change has been made.
  */
 public interface BlockChangeEvent extends BlockEvent, Cancellable {
-    
+
     /**
      * Get the block that the current block will be replaced with.
      *

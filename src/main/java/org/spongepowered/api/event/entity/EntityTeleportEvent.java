@@ -33,4 +33,20 @@ import org.spongepowered.api.event.cause.CauseTracked;
  */
 public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked {
 
+    /**
+     * Gets whether the entity teleporting will maintain its momentum
+     * after teleport.
+     *
+     * @return Whether the entity will maintain momentum after teleport
+     */
+    boolean getKeepsMomentum();
+
+    /**
+     * Sets whether the entity teleporting will maintain its momentum
+     * after teleport.
+     *
+     * @param maintainsMomentum Whether the entity will maintain momentum
+     */
+    void setKeepsMomentum(boolean maintainsMomentum);
+
 }

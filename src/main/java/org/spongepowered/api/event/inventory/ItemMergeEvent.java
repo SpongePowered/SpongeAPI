@@ -33,10 +33,10 @@ import org.spongepowered.api.util.event.Cancellable;
 public interface ItemMergeEvent extends ItemEvent, Cancellable {
 
     /**
-      * Gets a copy of the second item to be merged.
-      *
-      * @return A copy of the second item to be merged
-      */
+     * Gets a copy of the second item to be merged.
+     *
+     * @return A copy of the second item to be merged
+     */
     Item getItemToMerge();
 
 }

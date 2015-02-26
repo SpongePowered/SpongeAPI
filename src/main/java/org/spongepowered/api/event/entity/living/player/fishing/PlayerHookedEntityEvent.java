@@ -24,17 +24,12 @@
  */
 package org.spongepowered.api.event.entity.living.player.fishing;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.human.fishing.HumanFishEvent;
 import org.spongepowered.api.event.entity.living.human.fishing.HumanHookedEntityEvent;
-
-import javax.annotation.Nullable;
 
 /**
  * Called when a {@link org.spongepowered.api.entity.player.Player} hooks an
  * {@link org.spongepowered.api.entity.Entity} with a fishing rod.
  */
 public interface PlayerHookedEntityEvent extends HumanHookedEntityEvent, PlayerFishEvent {
+
 }

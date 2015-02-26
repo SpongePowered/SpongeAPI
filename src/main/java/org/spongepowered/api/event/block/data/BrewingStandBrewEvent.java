@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.block.data;
 
 import org.spongepowered.api.block.data.BrewingStand;
+import org.spongepowered.api.event.inventory.BulkItemResultEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.List;
@@ -32,7 +33,7 @@ import java.util.List;
 /**
  * An event when a {@link BrewingStand} freshly brews {@link ItemStack}s into new potions.
  */
-public interface BrewingStandBrewEvent extends BrewingStandEvent {
+public interface BrewingStandBrewEvent extends BrewingStandEvent, BulkItemResultEvent {
 
     /**
      * Gets the orignal {@link ItemStack}s that were being brewed.

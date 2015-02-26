@@ -46,7 +46,7 @@ public interface BiomeVolume {
      * @return The biome
      */
     BiomeType getBiome(Vector3i position);
-    
+
     /**
      * Sets the biome at the given position in the world.
      *
@@ -55,7 +55,7 @@ public interface BiomeVolume {
      * for all the blocks in a certain column will all be the same and changing
      * the biome of one block in a column will change the biome for the
      * entire column.</p>
-     * 
+     *
      * @param position The position
      * @param biome The biome
      */

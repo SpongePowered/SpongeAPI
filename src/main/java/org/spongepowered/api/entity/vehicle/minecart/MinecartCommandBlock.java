@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.source.CommandBlockSource;
 
 /**
  * Represents a minecart with a command block inside it.
  */
-public interface MinecartCommandBlock extends Minecart, CommandSource {
+public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
 
     /**
      * Gets the current command within this command minecart.

@@ -40,13 +40,40 @@ public enum Axis {
     }
 
     /**
+     * Gets the closest horizontal direction from the given vector. If the
+     * vector is the 0-Vector, this method returns {@link #X}. If the vector has
+     * the same length in a horizontal and vertical direction, a horizontal axis
+     * will be returned. If the vector has the same length in x and in z
+     * direction {@link #X} will be returned.
+     *
+     * @param vector The vector to convert to a axis
+     * @return The closest axis.
+     */
+    public static Axis getClosest(final Vector3d vector) {
+        double x = Math.abs(vector.getX());
+        double y = Math.abs(vector.getY());
+        double z = Math.abs(vector.getZ());
+        if (x < y) {
+            if (z < y) {
+                return Y;
+            } else {
+                return Z;
+            }
+        } else if (x < z) {
+            return Z;
+        } else {
+            return X;
+        }
+    }
+
+    /**
      * Returns whether the given vector is along this axis.
      *
      * @param vector The vector to test
      * @return True if it is along this axis
      */
     public boolean isVectorAlongAxis(final Vector3d vector) {
-        return vector.abs().normalize().sub(direction).lengthSquared() == 0;
+        return vector.abs().normalize().sub(this.direction).lengthSquared() == 0;
     }
 
     /**
@@ -57,13 +84,13 @@ public enum Axis {
      */
     public double getComponent(final Vector3d vector3d) {
         switch (this) {
-            case X :
-                return direction.getX();
-            case Y :
-                return direction.getY();
-            case Z :
-                return direction.getZ();
-            default :
+            case X:
+                return this.direction.getX();
+            case Y:
+                return this.direction.getY();
+            case Z:
+                return this.direction.getZ();
+            default:
                 throw new IllegalStateException("Not capable of handling the " + name() + " axis!");
         }
     }
@@ -91,7 +118,7 @@ public enum Axis {
      * @return the Vector3d
      */
     public Vector3d toVector3d() {
-        return direction;
+        return this.direction;
     }
 
     /**
@@ -101,34 +128,7 @@ public enum Axis {
      * @return the Vector3d
      */
     public Vector3d toVector3dWithDirection(final AxisDirection axisDirection) {
-        return direction.mul(axisDirection.getSignum());
-    }
-
-    /**
-     * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector, this method returns {@link #X}. If the vector has
-     * the same length in a horizontal and vertical direction, a horizontal axis
-     * will be returned. If the vector has the same length in x and in z
-     * direction {@link #X} will be returned.
-     *
-     * @param vector The vector to convert to a axis
-     * @return The closest axis.
-     */
-    public static Axis getClosest(final Vector3d vector) {
-        double x = Math.abs(vector.getX());
-        double y = Math.abs(vector.getY());
-        double z = Math.abs(vector.getZ());
-        if (x < y) {
-            if (z < y) {
-                return Y;
-            } else {
-                return Z;
-            }
-        } else if (x < z) {
-            return Z;
-        } else {
-            return X;
-        }
+        return this.direction.mul(axisDirection.getSignum());
     }
 
 }
