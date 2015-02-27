@@ -488,7 +488,6 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
             return ((CommandCallable<CommandResult>) mapping.get().getCallable()).call(source, fParam, Collections.unmodifiableList(passedParents));
 
         } else if (alias.contains(":") && (alias.indexOf(":") < (alias.length() - 1)) && !isExtended) {
-            // TODO: Support vanilla commands in this command-suggestion system.
             Set<CommandMapping> mappings = this.getAll(alias);
             if (!mappings.isEmpty()) {
                 int colonIndex = alias.indexOf(":");
