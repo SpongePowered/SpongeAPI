@@ -154,7 +154,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     /**
      * Sends a resource pack to this player.
      * 
-     * @param pack. The resourcepack to use.
+     * @param pack The resourcepack to use
      */
     void sendResourcePack(ResourcePack pack);
 }
