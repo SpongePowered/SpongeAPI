@@ -694,15 +694,21 @@ public final class SpongeEventFactory {
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
      * @param rotation The rotation the entity is facing
+     * @param oldVelocity The old velocity of the entity
+     * @param newVelocity The new velocity of the entity
      * @return A new instance of the event
      */
-    public static EntityMoveEvent createEntityMove(Game game, Entity entity, Location oldLocation, Location newLocation, Vector3f rotation) {
+    public static EntityMoveEvent createEntityMove(Game game, Entity entity,
+            Location oldLocation, Location newLocation, Vector3f rotation,
+            Vector3d oldVelocity, Vector3d newVelocity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
         values.put("rotation", rotation);
+        values.put("originalVelocity", oldVelocity);
+        values.put("newVelocity", newVelocity);
         return createEvent(EntityMoveEvent.class, values);
     }
 
@@ -1237,9 +1243,13 @@ public final class SpongeEventFactory {
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
      * @param rotation The rotation the entity is facing
+     * @param oldVelocity The current velocity of the player
+     * @param newVelocity The new velocity the player will have
      * @return A new instance of the event
      */
-    public static PlayerMoveEvent createPlayerMove(Game game, Player player, Location oldLocation, Location newLocation, Vector3f rotation) {
+    public static PlayerMoveEvent createPlayerMove(Game game, Player player,
+            Location oldLocation, Location newLocation, Vector3f rotation,
+            Vector3d oldVelocity, Vector3d newVelocity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1249,6 +1259,8 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("rotation", rotation);
+        values.put("originalVelocity", oldVelocity);
+        values.put("newVelocity", newVelocity);
         return createEvent(PlayerMoveEvent.class, values);
     }
 

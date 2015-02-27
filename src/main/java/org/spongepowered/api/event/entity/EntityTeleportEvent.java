@@ -30,8 +30,11 @@ import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Called when an {@link Entity} teleports.
+ *
+ * <p>This is a discrete movement from point A to point b, the entity has
+ * not moved between those two places.</p>
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked {
+public interface EntityTeleportEvent extends EntityDisplacementEvent, CauseTracked {
 
     /**
      * Gets whether the entity teleporting will maintain its momentum
