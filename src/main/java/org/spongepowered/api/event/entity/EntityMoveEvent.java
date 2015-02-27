@@ -25,36 +25,42 @@
 
 package org.spongepowered.api.event.entity;
 
-import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3f;
+
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
+
 /**
- * Called when an {@link org.spongepowered.api.entity.Entity} moves.
- *
- * <p>This is a continuous movement.</p>
+ * Called when an {@link org.spongepowered.api.entity.Entity} is moving.
  */
-public interface EntityMoveEvent extends EntityDisplacementEvent {
+public interface EntityMoveEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the original velocity of the entity.
+     * Gets the previous {@link Location} that the entity was in.
      *
-     * @return The original velocity
+     * @return The old location
      */
-    Vector3d getOriginalVelocity();
+    Location getOldLocation();
 
     /**
-     * Gets the new velocity the entity will have after the event has fired.
+     * Gets the new {@link Location} that the entity is in.
      *
-     * @return The new velocity
+     * @return The new location
      */
-    Vector3d getNewVelocity();
+    Location getNewLocation();
 
     /**
-     * Sets the new velocity the entity will have after the event has fired.
+     * Gets the rotation the entity is facing.
      *
-     * @param velocity The new velocity
+     * @return The rotation the entity is facing
      */
-    void setNewVelocity(Vector3d velocity);
+    Vector3f getRotation();
+
+    /**
+     * Sets the rotation the entity is facing.
+     *
+     * @param rotation The rotation the entity is facing
+     */
+    void setRotation(Vector3f rotation);
 }
