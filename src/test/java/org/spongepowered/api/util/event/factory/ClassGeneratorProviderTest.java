@@ -108,6 +108,14 @@ public class ClassGeneratorProviderTest {
         assertThat(result.getChar(), is((char) 0));
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testCreate_UnsetPrimitivesWithNonNull() throws Exception {
+        ClassGeneratorProvider provider = createProvider();
+        provider.setNullPolicy(NullPolicy.NON_NULL_BY_DEFAULT);
+        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class);
+        factory.apply(Collections.<String, Object>emptyMap());
+    }
+
     @Test
     public void testCreate_BoxedPrimitives() throws Exception {
         ClassGeneratorProvider provider = createProvider();
