@@ -26,6 +26,8 @@ package org.spongepowered.api.map;
 
 import org.spongepowered.api.block.BlockState;
 
+import com.google.common.base.Function;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
@@ -42,6 +44,8 @@ public interface MapManager {
     int[] getAllocatedIds();
 
     void importImage(Map map, BufferedImage image);
+
+    void importImage(Map map, BufferedImage image, Function<Color, MapPixel> pixelizer);
 
     MapPixel getClosestPixel(Color color);
 
