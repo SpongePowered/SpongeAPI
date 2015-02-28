@@ -47,7 +47,7 @@ public interface ItemData extends DataSerializable {
     /**
      * Sets if this item is unbreakable.
      * 
-     * @param If this item is now unbreakable.
+     * @param unbreakable If this item is now unbreakable.
      */
     void setUnbreakable(boolean unbreakable);
 

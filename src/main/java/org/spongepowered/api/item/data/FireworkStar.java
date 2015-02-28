@@ -1,6 +1,7 @@
 /*
- * This file is part of Sponge, licensed uimport org.spongepowered.api.item.meta.FireworkExplosion;
-ered.org <http://www.spongepowered.org>
+ * This file is part of Sponge, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
