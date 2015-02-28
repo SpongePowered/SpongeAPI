@@ -25,18 +25,17 @@
 
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.data.DataHolder;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
  * can be compared using the comparators listed in {@link ItemStackComparators}.
  */
-public interface ItemStack extends Serializable, DataSerializable {
+public interface ItemStack extends Serializable, DataSerializable, DataHolder {
 
     /**
      * Gets the {@link ItemType} item type.
@@ -94,41 +93,6 @@ public interface ItemStack extends Serializable, DataSerializable {
      */
     void setMaxStackQuantity(int quantity);
 
-    /**
-     * Get the enchantments applied to this stack with their levels.
-     *
-     * @return Map of enchantments to current levels
-     */
-    Map<Enchantment, Integer> getEnchantments();
 
-    /**
-     * Test if this stack has enchantments.
-     *
-     * @return Whether this stack is enchanted
-     */
-    boolean isEnchanted();
-
-    /**
-     * Set an enchantment to the given level, adding it if necessary.
-     *
-     * @param enchant Enchantment to set the level of
-     * @param level Level to set the enchantment at
-     */
-    void setEnchantment(Enchantment enchant, int level);
-
-    /**
-     * Remove an enchantment from this stack.
-     *
-     * @param enchant Enchantment to remove
-     */
-    void removeEnchantment(Enchantment enchant);
-
-    /**
-     * Get the level of an enchantment on this stack.
-     *
-     * @param enchant The enchantment to get the level of
-     * @return The level of the enchantment, or -1 if the enchantment is not applied to this stack
-     */
-    int getEnchantment(Enchantment enchant);
     
 }

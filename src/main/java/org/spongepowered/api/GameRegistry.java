@@ -25,7 +25,6 @@
 
 package org.spongepowered.api;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -49,13 +48,22 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.item.meta.BookGeneration;
+import org.spongepowered.api.item.meta.FireworkExplosionBuilder;
+import org.spongepowered.api.item.meta.FireworkShape;
+import org.spongepowered.api.item.meta.HideableInfoType;
+import org.spongepowered.api.item.meta.MapDecorationType;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.map.MapColor;
+import org.spongepowered.api.map.MapShade;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
+
+import com.google.common.base.Optional;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -549,5 +557,54 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
+
+    /**
+     * Get a firework explosion builder.
+     *
+     * @return The firework explosion builder
+     */
+    FireworkExplosionBuilder getFireworkExplosionBuilder();
+
+    /**
+     * Gets a {@link Collection} of all possible {@link BookGeneration}s.
+     *
+     * @return The collection of all available {@link BookGeneration}s
+     */
+    Collection<BookGeneration> getBookGenerations();
+
+    /**
+     * Gets a {@link Collection} of all possible {@link FireworkShape}s.
+     *
+     * @return The collection of all available {@link FireworkShape}s
+     */
+    Collection<FireworkShape> getFireworkShapes();
+
+    /**
+     * Gets a {@link Collection} of all possible {@link HideableInfoType}s.
+     *
+     * @return The collection of all available {@link HideableInfoType}s
+     */
+    Collection<HideableInfoType> getHideableInfoTypes();
+
+    /**
+     * Gets a {@link Collection} of all possible {@link MapDecorationType}s.
+     *
+     * @return The collection of all available {@link MapDecorationType}s
+     */
+    Collection<MapDecorationType> getMapDecorationTypes();
+
+    /**
+     * Gets a {@link Collection} of all possible {@link MapColor}s.
+     *
+     * @return The collection of all available {@link MapColor}s
+     */
+    Collection<MapColor> getMapColors();
+
+    /**
+     * Gets a {@link Collection} of all possible {@link MapShade}s.
+     *
+     * @return The collection of all available {@link MapShade}s
+     */
+    Collection<MapShade> getMapShades();
 
 }
