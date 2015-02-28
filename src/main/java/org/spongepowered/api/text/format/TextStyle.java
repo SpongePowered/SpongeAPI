@@ -25,11 +25,7 @@
 package org.spongepowered.api.text.format;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.text.Text;
-
-import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -39,32 +35,20 @@ import javax.annotation.Nullable;
  *
  * <p>
  * Combined styles can be created using {@link TextStyles#of(TextStyle...)} or
- * using one of the {@link #and(TextStyle...)}, {@link #andNot (TextStyle...)}
+ * using one of the {@link #and(TextStyle...)}, {@link #andNot(TextStyle...)}
  * or {@link #negate()} method.
  * </p>
  *
  * <p>
- * One can consider any given text style as a N-d vector where each dimension
- * corresponds to one of the base text styles(this is why they are called base,
- * for "basis vector"). Each dimension's value can be 1, 0, or -1, standing
- * for applied, unapplied, and negated, represented by the
- * {@link Component} enum.
- * A TextStyle is like a vector with each component
- * corresponding to the value of the corresponding dimension, a Base TextStyle.
+ * Each individual style within a TextStyle, e.g. bold, italic is not just a boolean,
+ * but a nullable Boolean since it can be unapplied. They will hereafter be referred to
+ * as properties.
  * </p>
  *
  * <p>
- * The adding of these vectors results in a
- * TextStyle that is a composition of its basis text styles, and this is
- * represented by the {@link #and(TextStyle...)} operation. Negating
- * a text style is like taking the negative of a vector, or multiplying all of its
- * components by -1, and is represented by the {@link #negate()} operation.
- * </p>
- *
- * <p>
- * Implementation note: the way TextStyles are serialized to the raw JSON
- * format should be a component-wise serialization of the various bases
- * into booleans.
+ * Implementation note: Null styles should not appear in the final chat
+ * component JSON. Properties that are set to true or false should appear, even if they
+ * override inherited properties.
  * </p>
  *
  * @see TextStyles
@@ -72,24 +56,56 @@ import javax.annotation.Nullable;
 public class TextStyle {
 
     /**
-     * This map stores the text style's components.
+     * Whether text where this style is applied is bolded.
      */
-    protected Map<Base, Component> components;
+    @Nullable private final Boolean bold;
 
     /**
-     * Constructs a new TextStyle from the given components.
-     *
-     * @param components The components to build this TextStyle from as a basis
+     * Whether text where this style is applied is italicized.
      */
-    protected TextStyle(Map<Base, Component> components) {
-        this.components = ImmutableMap.copyOf(components);
+    @Nullable private final Boolean italic;
+
+    /**
+     * Whether text where this style is applied is underlined.
+     */
+    @Nullable private final Boolean underline;
+
+    /**
+     * Whether text where this style is applied has a strikethrough.
+     */
+    @Nullable private final Boolean strikethrough;
+
+    /**
+     * Whether text where this style is applied is obfuscated.
+     */
+    @Nullable private final Boolean obfuscated;
+
+    /**
+     * Constructs a new TextStyle.
+     *
+     * @param bold Whether text where this style is applied is bolded
+     * @param italic Whether text where this style is applied is italicized
+     * @param underline Whether text where this style is applied is underlined
+     * @param obfuscated Whether text where this style is applied is obfuscated
+     * @param strikethrough Whether text where this style is applied has a strikethrough
+     */
+    protected TextStyle(@Nullable Boolean bold,
+                        @Nullable Boolean italic,
+                        @Nullable Boolean underline,
+                        @Nullable Boolean strikethrough,
+                        @Nullable Boolean obfuscated) {
+        this.bold = bold;
+        this.italic = italic;
+        this.underline = underline;
+        this.obfuscated = obfuscated;
+        this.strikethrough = strikethrough;
     }
 
     /**
      * Constructs an empty TextStyle.
      */
     TextStyle() {
-        this(ImmutableMap.<Base, Component>of());
+        this(null, null, null, null, null);
     }
 
     /**
@@ -103,12 +119,146 @@ public class TextStyle {
     }
 
     /**
-     * Returns whether this text style has no properties.
+     * Returns whether this text style has no set properties.
      *
      * @return {@code true} if this style is empty
      */
     public boolean isEmpty() {
-        return this.components.isEmpty();
+        return (this.obfuscated == null)
+                && (this.bold == null)
+                && (this.strikethrough == null)
+                && (this.underline == null)
+                && (this.italic == null);
+    }
+
+    /**
+     * Returns a new text style with the bold property changed.
+     *
+     * @param bold Whether text where the new style is applied is bolded
+     * @return The new text style
+     */
+    public TextStyle bold(@Nullable Boolean bold) {
+        return new TextStyle(
+                bold,
+                this.italic,
+                this.underline,
+                this.strikethrough,
+                this.obfuscated
+        );
+    }
+
+    /**
+     * Returns a new text style with the italic property changed.
+     *
+     * @param italic Whether text where the new style is applied is italicized
+     * @return The new text style
+     */
+    public TextStyle italic(@Nullable Boolean italic) {
+        return new TextStyle(
+                this.bold,
+                italic,
+                this.underline,
+                this.strikethrough,
+                this.obfuscated
+        );
+    }
+
+    /**
+     * Returns a new text style with the underline property changed.
+     *
+     * @param underline Whether text where the new style is applied is underline
+     * @return The new text style
+     */
+    public TextStyle underline(@Nullable Boolean underline) {
+        return new TextStyle(
+                this.bold,
+                this.italic,
+                underline,
+                this.strikethrough,
+                this.obfuscated
+        );
+    }
+
+    /**
+     * Returns a new text style with the strikethrough property changed.
+     *
+     * @param strikethrough Whether text where the new style is applied has a strikethrough
+     * @return The new text style
+     */
+    public TextStyle strikethrough(@Nullable Boolean strikethrough) {
+        return new TextStyle(
+                this.bold,
+                this.italic,
+                this.underline,
+                strikethrough,
+                this.obfuscated
+        );
+    }
+
+    /**
+     * Returns a new text style with the obfuscated property changed.
+     *
+     * @param obfuscated Whether text where the new style is applied is obfuscated
+     * @return The new text style
+     */
+    public TextStyle obfuscated(@Nullable Boolean obfuscated) {
+        return new TextStyle(
+                this.bold,
+                this.italic,
+                this.underline,
+                this.strikethrough,
+                obfuscated
+        );
+    }
+
+    /**
+     * Checks for whether text where this style is applied is bolded.
+     *
+     * @return The value for the bold property,
+     *      or {@link Optional#absent()}
+     */
+    public Optional<Boolean> isBold() {
+        return Optional.fromNullable(this.bold);
+    }
+
+    /**
+     * Checks for whether text where this style is applied is italicized.
+     *
+     * @return The value for the italic property,
+     *      or {@link Optional#absent()}
+     */
+    public Optional<Boolean> isItalic() {
+        return Optional.fromNullable(this.italic);
+    }
+
+    /**
+     * Checks for whether text where this style is applied has an underline.
+     *
+     * @return The value for the underline property,
+     *      or {@link Optional#absent()}
+     */
+    public Optional<Boolean> hasUnderline() {
+        return Optional.fromNullable(this.underline);
+    }
+
+    /**
+     * Checks for whether text where this style is applied has a strikethrough.
+     *
+     * @return The value for the strikethrough property,
+     *      or {@link Optional#absent()}
+     */
+    public Optional<Boolean> hasStrikethrough() {
+        return Optional.fromNullable(this.strikethrough);
+    }
+
+    /**
+     * Checks for whether text where this style is obfuscated.
+     *
+     * @return The value for the obfuscated property,
+     *      or {@link Optional#absent()}
+     */
+    public Optional<Boolean> isObfuscated() {
+        return Optional.fromNullable(this.obfuscated);
     }
 
     /**
@@ -116,9 +266,9 @@ public class TextStyle {
      * {@link TextStyle}.
      *
      * <p>
-     * For example, a {@link TextStyle} with {@code [Bold, Italic]} would return
-     * true for <code>is({@link TextStyles#BOLD})</code> and
-     * <code>is({@link TextStyles#ITALIC}).</code>
+     * For example, a {@link TextStyle} with {@code {bold: true, italic: true}} would return
+     * true for <code>contains({@link TextStyles#BOLD})</code> and
+     * <code>contains({@link TextStyles#ITALIC}).</code>
      * </p>
      *
      * <p>
@@ -128,42 +278,20 @@ public class TextStyle {
      * </p>
      *
      * @param styles The text styles to check
-     * @return True if the given text stylse are contained in this text style
+     * @return True if the given text styles are contained in this text style
      */
     public boolean contains(TextStyle... styles) {
         for (TextStyle style : styles) {
-            for (Map.Entry<Base, Component> entry : style.components.entrySet()) {
-                if (entry.getValue() != Component.UNAPPLIED && get(entry.getKey()) != entry.getValue()) {
-                    return false;
-                }
+            if (!propContains(this.bold, style.bold)
+                    || !propContains(this.italic, style.italic)
+                    || !propContains(this.underline, style.underline)
+                    || !propContains(this.strikethrough, style.strikethrough)
+                    || !propContains(this.obfuscated, style.obfuscated)) {
+                return false;
             }
         }
 
         return true;
-    }
-
-    /**
-     * Checks for how the given Base TextStyle is applied in this composite.
-     * Any Base TextStyle that is not defined in the component map is
-     * automatically {@link Component#UNAPPLIED}.
-     *
-     * <p>
-     * As examples, <code>TextStyles.BOLD.applied(TextStyles.BOLD)</code>
-     * results in <code>TextStyleComponent.APPLIED</code>,
-     * <code>TextStyles.ITALICS.applied(TextStyles.BOLD)</code> results in
-     * <code>TextStyleComponent.UNAPPLIED</code>, and
-     * <code>TextStyles.BOLD.negate().applied(TextStyles.BOLD)</code> results
-     * in <code>TextStyleComponent.NEGATE</code>
-     * </p>
-     *
-     * @param style The given Base TextStyle
-     * @return The TextStyleComponent which represents the application of the given
-     *          base text style
-     * @see Component
-     */
-    public Component get(Base style) {
-        @Nullable Component result = this.components.get(style);
-        return result != null ? result : Component.UNAPPLIED;
     }
 
     /**
@@ -173,12 +301,14 @@ public class TextStyle {
      * @return The inverse of this text style
      */
     public TextStyle negate() {
-        // Do a negation of each component
-        ImmutableMap.Builder<Base, Component> newComponents = ImmutableMap.builder();
-        for (Map.Entry<Base, Component> entry : this.components.entrySet()) {
-            newComponents.put(entry.getKey(), entry.getValue().negate());
-        }
-        return new TextStyle(newComponents.build());
+        // Do a negation of each property
+        return new TextStyle(
+                propNegate(this.obfuscated),
+                propNegate(this.bold),
+                propNegate(this.strikethrough),
+                propNegate(this.underline),
+                propNegate(this.italic)
+        );
     }
 
     /**
@@ -188,27 +318,7 @@ public class TextStyle {
      * @return A new text style composed out of the given text styles
      */
     public TextStyle and(TextStyle... styles) {
-        return and(styles, false);
-    }
-
-    private TextStyle and(TextStyle[] styles, boolean negate) {
-        // We can't use a builder here because we have to remove values
-        Map<Base, Component> newComponents = Maps.newHashMap(this.components);
-        for (TextStyle style : styles) {
-            for (Map.Entry<Base, Component> entry : style.components.entrySet()) {
-                Base base = entry.getKey();
-                Component component = get(base).add(entry.getValue());
-                if (negate) {
-                    component = component.negate();
-                }
-                if (component == Component.UNAPPLIED) {
-                    newComponents.remove(base);
-                } else {
-                    newComponents.put(base, component);
-                }
-            }
-        }
-        return new TextStyle(newComponents);
+        return compose(styles, false);
     }
 
     /**
@@ -221,7 +331,81 @@ public class TextStyle {
      * @return A new text style composed out of the given text styles
      */
     public TextStyle andNot(TextStyle... styles) {
-        return and(styles, true);
+        return compose(styles, true);
+    }
+
+    /**
+     * Utility method to compose the current TextStyle with the given styles, with optional
+     * negation.
+     *
+     * @param styles The styles to compose with
+     * @param negate Whether or not to negate the passed-in styles
+     * @return The composed style
+     */
+    private TextStyle compose(TextStyle[] styles, boolean negate) {
+        TextStyle acc = this;
+        if (negate) {
+            for (TextStyle style : styles) {
+                acc = new TextStyle(
+                        propCompose(acc.bold, propNegate(style.bold)),
+                        propCompose(acc.italic, propNegate(style.italic)),
+                        propCompose(acc.underline, propNegate(style.underline)),
+                        propCompose(acc.strikethrough, propNegate(style.strikethrough)),
+                        propCompose(acc.obfuscated, propNegate(style.obfuscated))
+                );
+            }
+        } else {
+            for (TextStyle style : styles) {
+                acc = new TextStyle(
+                        propCompose(acc.bold, style.bold),
+                        propCompose(acc.italic, style.italic),
+                        propCompose(acc.underline, style.underline),
+                        propCompose(acc.strikethrough, style.strikethrough),
+                        propCompose(acc.obfuscated, style.obfuscated)
+                );
+            }
+        }
+        return acc;
+    }
+
+    /**
+     * Utility method to check if the given "super-property" contains the given "sub-property".
+     *
+     * @param superprop The super property
+     * @param subprop The sub property
+     * @return True if the property is contained, otherwise false
+     */
+    private static boolean propContains(@Nullable Boolean superprop, @Nullable Boolean subprop) {
+        return subprop != null && superprop == subprop;
+    }
+
+    /**
+     * Utility method to negate a property if it is not null.
+     *
+     * @param bool The property to negate
+     * @return The negated property, or null
+     */
+    @Nullable private static Boolean propNegate(@Nullable Boolean bool) {
+        return bool == null ? null : !bool;
+    }
+
+    /**
+     * Utility method to perform a compose operation between two properties.
+     *
+     * @param prop1 The first property
+     * @param prop2 The second property
+     * @return The composition of the two properties
+     */
+    @Nullable private static Boolean propCompose(@Nullable Boolean prop1, @Nullable Boolean prop2) {
+        if (prop1 == null) {
+            return prop2;
+        } else if (prop2 == null) {
+            return prop1;
+        } else if (prop1 != prop2) {
+            return null;
+        } else {
+            return prop1;
+        }
     }
 
     /**
@@ -248,9 +432,19 @@ public class TextStyle {
          *
          * @param name The name of the TextStyle
          * @param code The char code behind this TextStyle
+         * @param bold Whether text where this style is applied is bolded
+         * @param italic Whether text where this style is applied is italicized
+         * @param underline Whether text where this style is applied is underlined
+         * @param obfuscated Whether text where this style is applied is obfuscated
+         * @param strikethrough Whether text where this style is applied has a strikethrough
          */
-        public Base(String name, char code) {
-            this.components = ImmutableMap.of(this, Component.APPLIED);
+        public Base(String name, char code,
+                    @Nullable Boolean bold,
+                    @Nullable Boolean italic,
+                    @Nullable Boolean underline,
+                    @Nullable Boolean strikethrough,
+                    @Nullable Boolean obfuscated) {
+            super(bold, italic, underline, strikethrough, obfuscated);
             this.name = name;
             this.code = code;
         }
@@ -270,86 +464,6 @@ public class TextStyle {
         @Deprecated
         public char getCode() {
             return this.code;
-        }
-
-    }
-
-    /**
-     * TextStyleComponent represents the state of a base TextStyle in a composite one.
-     *
-     * <p>Composite TextStyles are implemented as a map from base TextStyles
-     * (what they're composed of) to a TextStyleComponent, which represents if the
-     * base TextStyle in question is being applied.</p>
-     *
-     * <p>Any given TextStyleComponent behaves like a standard integer, meaning
-     * that it can be negated or added. This is the basis for the behavior
-     * of TextStyle itself.</p>
-     */
-    public static enum Component {
-
-        /**
-         * Represents a base TextStyle that is applied.
-         */
-        APPLIED(Optional.of(true)),
-
-        /**
-         * Represents a base TextStyle that is not applied.
-         */
-        UNAPPLIED(Optional.<Boolean>absent()),
-
-        /**
-         * Represents a base TextStyle that is negated.
-         */
-        NEGATED(Optional.of(false));
-
-
-        /**
-         * The value of the component as an optional boolean.
-         */
-        private final Optional<Boolean> boolValue;
-
-        /**
-         * Constructs a component.
-         *
-         * @param boolValue The value of the component as a boolean optional
-         */
-        private Component(Optional<Boolean> boolValue) {
-            this.boolValue = boolValue;
-        }
-
-        /**
-         * Adds this TextStyleComponent to the given one.
-         *
-         * @param that The given component
-         * @return A new TextStyleComponent
-         */
-        public Component add(Component that) {
-            if (this == UNAPPLIED) {
-                return that;
-            }
-            return this == that ? this : UNAPPLIED;
-        }
-
-        /**
-         * Negates this TextStyleComponent.
-         *
-         * @return The negated TextStyleComponent
-         */
-        public Component negate() {
-            if (this == UNAPPLIED) {
-                return this;
-            }
-            return this == APPLIED ? NEGATED : APPLIED;
-        }
-
-        /**
-         * Converts this TextStyleComponent to an optional boolean. If this
-         * component's value is 0 then {@link Optional#absent()} is returned.
-         *
-         * @return This component as a boolean or {@link Optional#absent()}
-         */
-        public Optional<Boolean> toBoolean() {
-            return this.boolValue;
         }
 
     }

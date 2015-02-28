@@ -88,6 +88,7 @@ public final class Texts {
      * {@link Translatable}.
      *
      * @param translatable The translatable for the text
+     * @param args The arguments for the translation
      * @return The created text
      * @see Text.Translatable
      */
@@ -207,6 +208,7 @@ public final class Texts {
      * {@link Translatable}.
      *
      * @param translatable The translatable for the builder
+     * @param args The arguments for the translation
      * @return The created text builder
      * @see Text.Translatable
      * @see TextBuilder.Translatable
@@ -237,6 +239,7 @@ public final class Texts {
      *
      * @param text The text to apply the properties from
      * @param translatable The translatable for the builder
+     * @param args The arguments for the translation
      * @return The created text builder
      * @see Text.Translatable
      * @see TextBuilder.Translatable
