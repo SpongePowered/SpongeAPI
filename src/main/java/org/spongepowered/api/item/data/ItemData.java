@@ -26,6 +26,7 @@ package org.spongepowered.api.item.data;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.meta.HideableInfoType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.text.message.Message;
 
@@ -148,7 +149,7 @@ public interface ItemData extends DataSerializable {
      * @param infoType The type of information
      * @return If the type is hidden
      */
-    boolean isHidden(String infoType);
+    boolean isHidden(HideableInfoType infoType);
 
     /**
      * Sets if certain information is displayed to the client.
@@ -156,6 +157,6 @@ public interface ItemData extends DataSerializable {
      * @param infoType The type of information
      * @param hidden If the type is now hidden
      */
-    void setHidden(String infoType, boolean hidden);
+    void setHidden(HideableInfoType infoType, boolean hidden);
 
 }
