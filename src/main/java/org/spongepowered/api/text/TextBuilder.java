@@ -570,6 +570,7 @@ public abstract class TextBuilder {
          * .
          *
          * @param translatable The translatable for the builder
+         * @param args The arguments for the translation
          */
         public Translatable(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
             translation(translatable, args);
@@ -596,6 +597,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          * @param translatable The translatable for the builder
+         * @param args The arguments for the translation
          */
         public Translatable(Text text, org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
             super(text);
