@@ -33,13 +33,13 @@ import java.util.Map;
 public interface FullQueryEvent extends QueryEvent {
 
     /**
-     * Gets the GameID to respond with.
+     * Gets the GameId to respond with.
      *
      * <p>This is currently hardcoded to <code>MINECRAFT</code>.</p>
      *
-     * @return The GameID to respond with.
+     * @return The GameId to respond with.
      */
-    String getGameID();
+    String getGameId();
 
     /**
      * Gets the version to respond with.
