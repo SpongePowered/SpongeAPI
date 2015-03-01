@@ -23,33 +23,25 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+package org.spongepowered.api.block.tile;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents a NotePitch which may be played by a {@link Note} block.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface NotePitch {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the id of this {@link NotePitch}.
      *
-     * @param position The position
-     * @return The block
+     * @return The id
      */
-    BlockLoc getFullBlock(Vector3i position);
+    byte getId();
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the name of this pitch.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @return The name
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    String getName();
 
 }

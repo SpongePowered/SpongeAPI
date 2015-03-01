@@ -35,9 +35,9 @@ import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.data.BrewingStand;
-import org.spongepowered.api.block.data.Furnace;
-import org.spongepowered.api.block.data.Lockable;
+import org.spongepowered.api.block.tile.lockable.BrewingStand;
+import org.spongepowered.api.block.tile.lockable.Furnace;
+import org.spongepowered.api.block.tile.lockable.Lockable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Item;
@@ -62,9 +62,9 @@ import org.spongepowered.api.event.block.BlockUpdateEvent;
 import org.spongepowered.api.event.block.FloraGrowEvent;
 import org.spongepowered.api.event.block.FluidSpreadEvent;
 import org.spongepowered.api.event.block.LeafDecayEvent;
-import org.spongepowered.api.event.block.data.BrewingStandBrewEvent;
-import org.spongepowered.api.event.block.data.FurnaceConsumeFuelEvent;
-import org.spongepowered.api.event.block.data.FurnaceSmeltItemEvent;
+import org.spongepowered.api.event.block.tile.BrewingStandBrewEvent;
+import org.spongepowered.api.event.block.tile.FurnaceConsumeFuelEvent;
+import org.spongepowered.api.event.block.tile.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
@@ -127,7 +127,7 @@ import org.spongepowered.api.event.world.GameRuleChangeEvent;
 import org.spongepowered.api.event.world.WorldLoadEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.types.TileInventory;
+import org.spongepowered.api.item.inventory.types.TileEntityInventory;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
@@ -1605,10 +1605,10 @@ public final class SpongeEventFactory {
      */
     public static BrewingStandBrewEvent createBrewingStandBrewEvent(Game game, BrewingStand brewingStand, List<ItemStack> sourceItems,
                                                                     ItemStack fuelSource, List<ItemStack> brewedItems, Cause cause,
-                                                                    TileInventory<Lockable> inventory, BlockLoc blockLoc) {
+                                                                    TileEntityInventory<Lockable> inventory, BlockLoc blockLoc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("tileEntity", brewingStand);
+        values.put("tile", brewingStand);
         values.put("brewingStand", brewingStand);
         values.put("sourceItems", sourceItems);
         values.put("fuelSource", fuelSource);
@@ -1633,10 +1633,10 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(Game game, Furnace furnace, ItemStack burnedItem, ItemStack remainingFuel,
-                                                                        Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
+                                                                        Cause cause, TileEntityInventory<Lockable> inventory, BlockLoc loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("tileEntity", furnace);
+        values.put("tile", furnace);
         values.put("burnedItem", burnedItem);
         values.put("remainingFuel", Optional.fromNullable(remainingFuel));
         values.put("result", Optional.fromNullable(remainingFuel));
@@ -1659,10 +1659,10 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(Game game, Furnace furnace, ItemStack cookedItem, ItemStack sourceItem,
-                                                                    Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
+                                                                    Cause cause, TileEntityInventory<Lockable> inventory, BlockLoc loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("tileEntity", furnace);
+        values.put("tile", furnace);
         values.put("cookedItem", cookedItem);
         values.put("sourceItem", sourceItem);
         values.put("result", Optional.fromNullable(cookedItem));

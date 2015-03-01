@@ -23,33 +23,21 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+package org.spongepowered.api.block.tile;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * An enumeration of all possible {@link SkullType}s in vanilla minecraft.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public final class SkullTypes {
 
-    /**
-     * Get a representation of the block at the given position.
-     *
-     * @param position The position
-     * @return The block
-     */
-    BlockLoc getFullBlock(Vector3i position);
+    // These values will not be null at runtime
 
-    /**
-     * Get a representation of the block at the given position.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
-     */
-    BlockLoc getFullBlock(int x, int y, int z);
+    public static SkullType SKELETON = null;
+    public static SkullType WITHER_SKELETON = null;
+    public static SkullType ZOMBIE = null;
+    public static SkullType PLAYER = null;
+    public static SkullType CREEPER = null;
 
+    private SkullTypes() {
+    }
 }

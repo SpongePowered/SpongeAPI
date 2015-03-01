@@ -115,6 +115,13 @@ public interface BlockLoc extends DataHolder {
     BlockState getState();
 
     /**
+     * Checks for whether the block at this position contains tile entity data.
+     *
+     * @return True if the block at this position has tile entity data, false otherwise
+     */
+    boolean hasTileEntity();
+
+    /**
      * Replace the block state at this position with a new state.
      *
      * <p>This will remove any extended block data at the given position.</p>
@@ -141,6 +148,13 @@ public interface BlockLoc extends DataHolder {
      * @param snapshot The snapshot
      */
     void replaceWith(BlockSnapshot snapshot);
+
+    /**
+     * Remove the block at this position by replacing it with {@link BlockTypes#AIR}.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     */
+    void remove();
 
     /**
      * Simulates the interaction with this object as if a player had done so.

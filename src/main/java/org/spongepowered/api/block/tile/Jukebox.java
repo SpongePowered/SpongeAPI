@@ -22,34 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.block.tile;
 
-package org.spongepowered.api.world.extent;
+import com.google.common.base.Optional;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import javax.annotation.Nullable;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents a jukebox, also know as a record player.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Jukebox extends TileEntityData {
 
     /**
-     * Get a representation of the block at the given position.
+     * Retrieves the record contained in this Jukebox, if there is one.
      *
-     * @param position The position
-     * @return The block
+     * @return The record in this Jukebox or {@link Optional#absent()}
      */
-    BlockLoc getFullBlock(Vector3i position);
+    Optional<ItemStack> getRecord();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the record contained within this Jukebox to the given one.
+     * If the given one is null, the record within this Jukebox is removed and the item
+     * destroyed.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @param record The record to set, or null to destroy the record
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setRecord(@Nullable ItemStack record);
+
+    /**
+     * Ejects the record item in this Jukebox into the world.
+     */
+    void ejectRecord();
+
+    /**
+     * Ejects the current record in this Jukebox and inserts the given one.
+     *
+     * @param record The record to insert
+     */
+    void insertRecord(ItemStack record);
 
 }

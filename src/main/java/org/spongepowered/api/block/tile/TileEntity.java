@@ -23,33 +23,40 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.block.tile;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.data.DataHolder;
+import org.spongepowered.api.world.World;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents an abstract Tile Entity.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface TileEntity extends BlockLoc {
 
     /**
-     * Get a representation of the block at the given position.
+     * Checks for whether the tile entity is currently valid or not.
      *
-     * @param position The position
-     * @return The block
+     * <p>Use this method to check if processing should be run on this TE.
+     * If it is valid, then processing can be run on it. If not, then processing
+     * should wait until it becomes valid or is destroyed.</p>
+     *
+     * @return True if the tile entity is valid, false if not
      */
-    BlockLoc getFullBlock(Vector3i position);
+    boolean isValid();
 
     /**
-     * Get a representation of the block at the given position.
+     * Changes the validation of this tile entity.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * <p>If the tile entity is invalid, no processing will be done on the tile entity
+     * until it either becomes valid or is reset on the next tick.</p>
+     *
+     * <p>If the tile entity is valid, then processing can continue and the tile entity
+     * will not be reset on the next tick.</p>
+     *
+     * @param valid True if the tile entity should be validated, or false if it should be invalidated
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setValid(boolean valid);
 
 }

@@ -22,34 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+package org.spongepowered.api.block.tile;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents a Redstone Comparator.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Comparator extends TileEntityData {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the output signal strength.
      *
-     * @param position The position
-     * @return The block
+     * @return The signal strength
      */
-    BlockLoc getFullBlock(Vector3i position);
+    int getOutputSignal();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the output signal strength.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @param signal The new signal strength
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setOutputSignal(int signal);
 
 }

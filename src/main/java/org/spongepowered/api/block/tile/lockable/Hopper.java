@@ -23,33 +23,24 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+package org.spongepowered.api.block.tile.lockable;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents a Hopper.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Hopper extends Lockable {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the remaining time before the next item will be transfered.
      *
-     * @param position The position
-     * @return The block
+     * @return The remaining time, in ticks
      */
-    BlockLoc getFullBlock(Vector3i position);
+    int getTransferCooldown();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the cooldown before the next item will be transfered.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @param time The new time, in ticks
      */
-    BlockLoc getFullBlock(int x, int y, int z);
-
+    void setTransferCooldown(int time);
 }

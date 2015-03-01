@@ -22,34 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.block.tile.lockable;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import com.google.common.base.Optional;
+import org.spongepowered.api.potion.PotionEffectType;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents a Beacon.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Beacon extends Lockable {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the primary effect provided by this beacon.
      *
-     * @param position The position
-     * @return The block
+     * @return The primary effect
      */
-    BlockLoc getFullBlock(Vector3i position);
+    Optional<PotionEffectType> getPrimaryEffect();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the primary effect for this beacon.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @param effect The new primary effect
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setPrimaryEffect(PotionEffectType effect);
+
+    /**
+     * Gets the secondary effect provided by this beacon.
+     *
+     * @return The secondary effect
+     */
+    Optional<PotionEffectType> getSecondaryEffect();
+
+    /**
+     * Sets the secondary effect for this beacon.
+     *
+     * @param effect The new secondary effect
+     */
+    void setSecondaryEffect(PotionEffectType effect);
+
+    /**
+     * Clears all selected potion effects for this beacon.
+     */
+    void clearEffects();
+
+    /**
+     * Gets the number of completed levels of valid beacon structure blocks
+     * beneath this beacon.
+     *
+     * @return The number of levels
+     */
+    int getCompletedLevels();
 
 }

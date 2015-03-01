@@ -23,33 +23,48 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
+package org.spongepowered.api.block.tile;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.text.Text;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents for a Sign.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Sign extends TileEntityData {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets all lines of text on the sign.
      *
-     * @param position The position
-     * @return The block
+     * @return The lines of text
      */
-    BlockLoc getFullBlock(Vector3i position);
+    Text[] getLines();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the lines of text on the sign. Any lines past the maximum number of
+     * lines displayable on the sign will be ignored.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @param lines The new lines
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setLines(Text... lines);
+
+    /**
+     * Gets the line at the given index.
+     *
+     * @param index The index
+     * @return The line of text
+     * @throws IndexOutOfBoundsException If the index is outside of the allowed
+     *             indices
+     */
+    Text getLine(int index) throws IndexOutOfBoundsException;
+
+    /**
+     * Sets the line at the given index.
+     *
+     * @param index The index to set the line at
+     * @param text The new text
+     * @throws IndexOutOfBoundsException If the index is outside
+     *            of the allowed indices
+     */
+    void setLine(int index, Text text) throws IndexOutOfBoundsException;
 
 }

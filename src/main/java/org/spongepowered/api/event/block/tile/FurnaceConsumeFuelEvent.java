@@ -22,34 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.tile;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import com.google.common.base.Optional;
+import org.spongepowered.api.block.tile.lockable.Furnace;
+import org.spongepowered.api.event.inventory.ItemResultEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * An event when a {@link Furnace} consumes an {@link ItemStack} as fuel.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface FurnaceConsumeFuelEvent extends FurnaceEvent, ItemResultEvent {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the burned item.
      *
-     * @param position The position
-     * @return The block
+     * <p>A {@link Furnace} uses {@link ItemStack}s to fuel itself, and after the fuel is
+     * spent, the item is burned.</p>
+     *
+     * @return The burned item
      */
-    BlockLoc getFullBlock(Vector3i position);
+    ItemStack getBurnedItem();
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the remaining fuel {@link ItemStack} within this furnace.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * <p>Fuel burns and may run out.</p>
+     *
+     * @return The fuel item, if available
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    Optional<ItemStack> getRemainingFuel();
 
 }

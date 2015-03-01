@@ -22,34 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.tile;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.block.tile.lockable.Furnace;
+import org.spongepowered.api.event.inventory.ItemResultEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * An event that occurs when a {@link Furnace} smelt an item.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface FurnaceSmeltItemEvent extends FurnaceEvent, ItemResultEvent, Cancellable {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the freshly cooked {@link ItemStack}.
      *
-     * @param position The position
-     * @return The block
+     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
+     * new items.</p>
+     *
+     * @return The cooked item
      */
-    BlockLoc getFullBlock(Vector3i position);
+    ItemStack getCookedItem();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the cooked {@link ItemStack}.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
+     * new items.</p>
+     *
+     * @param item The resulting cooked item
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setCookedItem(ItemStack item);
+
+    /**
+     * Gets the source {@link ItemStack} that was cooked.
+     *
+     * @return The source item
+     */
+    ItemStack getSourceItem();
 
 }

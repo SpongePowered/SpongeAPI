@@ -22,34 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+package org.spongepowered.api.block.tile;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Describes a type of tile entity.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface TileEntityType {
 
     /**
-     * Get a representation of the block at the given position.
+     * Return the internal ID for the tile entity type.
      *
-     * @param position The position
-     * @return The block
+     * @return The id
      */
-    BlockLoc getFullBlock(Vector3i position);
+    String getId();
 
     /**
-     * Get a representation of the block at the given position.
+     * Returns the tile entity class for this type.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @return The tile class for this type
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    Class<? extends TileEntity> getTileEntityType();
 
 }
+

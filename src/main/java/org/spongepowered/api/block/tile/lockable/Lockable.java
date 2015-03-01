@@ -22,34 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.block.tile.lockable;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.block.tile.TileEntityData;
+import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.types.TileEntityInventory;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * A representation of the persisted data for a tile entity with a 'lock'.
+ * <p>
+ * A tile entity having a lock token set implies that it may only be used by a
+ * player who is holding an item with a name equal to the lock token.
+ * </p>
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Lockable extends TileEntityData, Carrier {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the lock token for this tile entity. Will be empty if this tile
+     * entity is not locked.
      *
-     * @param position The position
-     * @return The block
+     * @return The lock token
      */
-    BlockLoc getFullBlock(Vector3i position);
+    String getLockToken();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the lock token for this tile entity.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @param token The new lock token
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setLockToken(String token);
 
+    /* (non-Javadoc)
+     * @see org.spongepowered.api.item.inventory.Carrier#getInventory()
+     */
+    @Override
+    TileEntityInventory<Lockable> getInventory();
 }

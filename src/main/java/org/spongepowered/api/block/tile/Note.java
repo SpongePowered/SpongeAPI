@@ -23,33 +23,25 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+package org.spongepowered.api.block.tile;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents a note block.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Note extends TileEntityData {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the note played by this note block.
      *
-     * @param position The position
-     * @return The block
+     * @return The note
      */
-    BlockLoc getFullBlock(Vector3i position);
+    NotePitch getNote();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets the note to be played by this note block.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @param note The new note
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setNote(NotePitch note);
 
 }

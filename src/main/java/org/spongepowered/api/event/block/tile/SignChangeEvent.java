@@ -22,34 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.tile;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.block.tile.Sign;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * An event when a {@link Sign} is changed.
+ *
+ * <p>Examples may include: A player writing a sign.</p>
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface SignChangeEvent extends SignEvent, Cancellable {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the previous messages in order of line number of the sign.
      *
-     * @param position The position
-     * @return The block
+     * @return The previous messages
      */
-    BlockLoc getFullBlock(Vector3i position);
+    Text[] getPreviousLines();
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the changed messages.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @return The new messages
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    Text[] getNewLines();
+
+    /**
+     * Sets the changed messages.
+     *
+     * @param messages The new messages
+     */
+    void setNewMessages(Text[] messages);
 
 }

@@ -22,34 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.block.tile;
 
-package org.spongepowered.api.world.extent;
+import com.google.common.base.Optional;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import javax.annotation.Nullable;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * Represents a flower pot.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface FlowerPot extends TileEntityData {
 
     /**
-     * Get a representation of the block at the given position.
+     * Retrieves the contents of this flower pot, if available.
      *
-     * @param position The position
-     * @return The block
+     * @return The contents of this flower pot, or {@link Optional#absent()}
      */
-    BlockLoc getFullBlock(Vector3i position);
+    Optional<ItemStack> getContents();
 
     /**
-     * Get a representation of the block at the given position.
+     * Sets or removes the contents of this flower pot.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * <p>Only the item type and data of the item stack are used, other values
+     * like stack size are ignored.</p>
+     *
+     * @param contents The contents to place, or {@code null} to remove contents
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    void setContents(@Nullable ItemStack contents);
 
 }

@@ -22,34 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.tile;
 
-package org.spongepowered.api.world.extent;
+import org.spongepowered.api.block.tile.lockable.BrewingStand;
+import org.spongepowered.api.event.inventory.BulkItemResultEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import java.util.List;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * An event when a {@link BrewingStand} freshly brews {@link ItemStack}s into new potions.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface BrewingStandBrewEvent extends BrewingStandEvent, BulkItemResultEvent {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the orignal {@link ItemStack}s that were being brewed.
      *
-     * @param position The position
-     * @return The block
+     * @return The original item stacks
      */
-    BlockLoc getFullBlock(Vector3i position);
+    List<ItemStack> getSourceItems();
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the fuel source being brewed into the source items.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @return The fuel source being brewed into the source items
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    ItemStack getFuelSource();
 
+    /**
+     * Gets the final brewed items.
+     *
+     * @return The resulting brewed items
+     */
+    List<ItemStack> getBrewedItems();
+
+    /**
+     * Sets the final brewed items.
+     *
+     * <p>Note that the brewed items must not exceed the inventory size of the {@link BrewingStand}.</p>
+     *
+     * @param items The newly brewed items
+     */
+    void setBrewedItems(List<ItemStack> items);
 }

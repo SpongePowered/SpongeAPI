@@ -22,34 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.tile;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.event.GameEvent;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * An event that involves a {@link TileEntity}.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface TileEntityEvent extends GameEvent {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the {@link org.spongepowered.api.block.tile.TileEntity} related to this event.
      *
-     * @param position The position
-     * @return The block
+     * @return The tile entity
      */
-    BlockLoc getFullBlock(Vector3i position);
-
-    /**
-     * Get a representation of the block at the given position.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
-     */
-    BlockLoc getFullBlock(int x, int y, int z);
+    TileEntity getTile();
 
 }

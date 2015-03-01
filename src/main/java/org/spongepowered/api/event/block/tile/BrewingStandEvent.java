@@ -22,34 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.block.tile;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockLoc;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.block.tile.lockable.BrewingStand;
+import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * An event related to a {@link BrewingStand}.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets the {@link BrewingStand} related to this event.
      *
-     * @param position The position
-     * @return The block
+     * @return The brewing stand
      */
-    BlockLoc getFullBlock(Vector3i position);
+    BrewingStand getBrewingStand();
 
-    /**
-     * Get a representation of the block at the given position.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
-     */
-    BlockLoc getFullBlock(int x, int y, int z);
-
+    @Override
+    BrewingStand getTile();
 }
