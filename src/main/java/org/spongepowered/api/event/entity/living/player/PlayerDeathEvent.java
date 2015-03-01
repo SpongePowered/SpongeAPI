@@ -53,7 +53,7 @@ public interface PlayerDeathEvent extends HumanDeathEvent, PlayerEvent {
      *
      * @return Whether the player keeps their inventory on death
      */
-    boolean keepsInventory();
+    boolean getKeepsInventory();
 
     /**
      * Sets if the player keeps their inventory on death.
@@ -67,7 +67,7 @@ public interface PlayerDeathEvent extends HumanDeathEvent, PlayerEvent {
      *
      * @return Whether the player keeps all of their EXP on death
      */
-    boolean keepsLevel();
+    boolean getKeepsLevel();
 
     /**
      * Sets if the player keeps all of their EXP on death.
