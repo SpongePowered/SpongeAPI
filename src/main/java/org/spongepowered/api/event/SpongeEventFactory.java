@@ -68,29 +68,7 @@ import org.spongepowered.api.event.block.data.BrewingStandBrewEvent;
 import org.spongepowered.api.event.block.data.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.data.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
-import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
-import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
-import org.spongepowered.api.event.entity.EntityCollisionEvent;
-import org.spongepowered.api.event.entity.EntityCollisionWithBlockEvent;
-import org.spongepowered.api.event.entity.EntityCollisionWithEntityEvent;
-import org.spongepowered.api.event.entity.EntityConstructingEvent;
-import org.spongepowered.api.event.entity.EntityDeathEvent;
-import org.spongepowered.api.event.entity.EntityDismountEvent;
-import org.spongepowered.api.event.entity.EntityDropItemEvent;
-import org.spongepowered.api.event.entity.EntityHarvestBlockEvent;
-import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
-import org.spongepowered.api.event.entity.EntityInteractEntityEvent;
-import org.spongepowered.api.event.entity.EntityInteractEvent;
-import org.spongepowered.api.event.entity.EntityMountEvent;
-import org.spongepowered.api.event.entity.EntityMoveEvent;
-import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
-import org.spongepowered.api.event.entity.EntityPlaceBlockEvent;
-import org.spongepowered.api.event.entity.EntitySpawnEvent;
-import org.spongepowered.api.event.entity.EntityTameEvent;
-import org.spongepowered.api.event.entity.EntityTeleportEvent;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
-import org.spongepowered.api.event.entity.ProjectileLaunchEvent;
+import org.spongepowered.api.event.entity.*;
 import org.spongepowered.api.event.entity.living.player.PlayerBreakBlockEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerChangeBlockEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerChangeGameModeEvent;
@@ -583,6 +561,27 @@ public final class SpongeEventFactory {
     }
 
     /**
+     * Creates a new {@link EntityDisplaceEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param oldLocation The previous location of the entity
+     * @param newLocation The new location of the entity
+     * @param rotation The rotation the entity is facing
+     * @return A new instance of the event
+     */
+    public static EntityDisplaceEvent createEntityDisplace(Game game, Entity entity,
+            Location oldLocation, Location newLocation, Vector3f rotation) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("oldLocation", oldLocation);
+        values.put("newLocation", newLocation);
+        values.put("rotation", rotation);
+        return createEvent(EntityDisplaceEvent.class, values);
+    }
+
+    /**
      * Creates a new {@link EntityDropItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
@@ -799,11 +798,11 @@ public final class SpongeEventFactory {
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
      * @param rotation The rotation the entity is facing
-     * @param maintainsMomentum Whether the entity will maintain momentum
+     * @param keepsVelocity Whether the entity will maintain velocity
      * @return A new instance of the event
      */
     public static EntityTeleportEvent createEntityTeleport(Game game, Cause cause, Entity entity, Location oldLocation, Location newLocation,
-            Vector3f rotation, boolean maintainsMomentum) {
+            Vector3f rotation, boolean keepsVelocity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -811,7 +810,7 @@ public final class SpongeEventFactory {
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
         values.put("rotation", rotation);
-        values.put("keepsMomentum", maintainsMomentum);
+        values.put("keepsVelocity", keepsVelocity);
         return createEvent(EntityTeleportEvent.class, values);
     }
 
