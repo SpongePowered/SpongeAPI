@@ -49,14 +49,6 @@ import java.util.Locale;
 public interface Player extends Human, User, CommandSource, Viewer {
 
     /**
-     * Gets the player's display name. If none set, returns their current
-     * username.
-     *
-     * @return The player's display name
-     */
-    Message getDisplayName();
-
-    /**
      * Returns whether the {@link Player} can fly via the fly key.
      *
      * @return {@code True} if the {@link Player} is allowed to fly
