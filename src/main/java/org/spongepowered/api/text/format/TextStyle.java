@@ -26,6 +26,7 @@ package org.spongepowered.api.text.format;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.text.OptBool;
 
 import javax.annotation.Nullable;
 
@@ -41,12 +42,13 @@ import javax.annotation.Nullable;
  *
  * <p>
  * Each individual style within a TextStyle, e.g. bold, italic is not just a boolean,
- * but a nullable Boolean since it can be unapplied. They will hereafter be referred to
- * as properties.
+ * but an {@code Optional&lt;Boolean&gt;} since it can be unapplied (or, in Optional terms, "absent").
+ * These styles will hereafter be referred to as properties.
+ * See the {@link OptBool} utility class for working with properties.
  * </p>
  *
  * <p>
- * Implementation note: Null styles should not appear in the final chat
+ * Implementation note: Absent styles should not appear in the final chat
  * component JSON. Properties that are set to true or false should appear, even if they
  * override inherited properties.
  * </p>
@@ -58,27 +60,27 @@ public class TextStyle {
     /**
      * Whether text where this style is applied is bolded.
      */
-    @Nullable private final Boolean bold;
+    private final Optional<Boolean> bold;
 
     /**
      * Whether text where this style is applied is italicized.
      */
-    @Nullable private final Boolean italic;
+    private final Optional<Boolean> italic;
 
     /**
      * Whether text where this style is applied is underlined.
      */
-    @Nullable private final Boolean underline;
+    private final Optional<Boolean> underline;
 
     /**
      * Whether text where this style is applied has a strikethrough.
      */
-    @Nullable private final Boolean strikethrough;
+    private final Optional<Boolean> strikethrough;
 
     /**
      * Whether text where this style is applied is obfuscated.
      */
-    @Nullable private final Boolean obfuscated;
+    private final Optional<Boolean> obfuscated;
 
     /**
      * Constructs a new TextStyle.
@@ -89,11 +91,34 @@ public class TextStyle {
      * @param obfuscated Whether text where this style is applied is obfuscated
      * @param strikethrough Whether text where this style is applied has a strikethrough
      */
-    protected TextStyle(@Nullable Boolean bold,
-                        @Nullable Boolean italic,
-                        @Nullable Boolean underline,
-                        @Nullable Boolean strikethrough,
-                        @Nullable Boolean obfuscated) {
+    TextStyle(@Nullable Boolean bold,
+              @Nullable Boolean italic,
+              @Nullable Boolean underline,
+              @Nullable Boolean strikethrough,
+              @Nullable Boolean obfuscated) {
+        this(
+                OptBool.of(bold),
+                OptBool.of(italic),
+                OptBool.of(underline),
+                OptBool.of(strikethrough),
+                OptBool.of(obfuscated)
+        );
+    }
+
+    /**
+     * Constructs a new TextStyle.
+     *
+     * @param bold Whether text where this style is applied is bolded
+     * @param italic Whether text where this style is applied is italicized
+     * @param underline Whether text where this style is applied is underlined
+     * @param obfuscated Whether text where this style is applied is obfuscated
+     * @param strikethrough Whether text where this style is applied has a strikethrough
+     */
+    protected TextStyle(Optional<Boolean> bold,
+                        Optional<Boolean> italic,
+                        Optional<Boolean> underline,
+                        Optional<Boolean> strikethrough,
+                        Optional<Boolean> obfuscated) {
         this.bold = bold;
         this.italic = italic;
         this.underline = underline;
@@ -105,7 +130,14 @@ public class TextStyle {
      * Constructs an empty TextStyle.
      */
     TextStyle() {
-        this(null, null, null, null, null);
+        this(
+                OptBool.ABSENT,
+                OptBool.ABSENT,
+                OptBool.ABSENT,
+                OptBool.ABSENT,
+                OptBool.ABSENT
+        );
+
     }
 
     /**
@@ -124,11 +156,11 @@ public class TextStyle {
      * @return {@code true} if this style is empty
      */
     public boolean isEmpty() {
-        return (this.obfuscated == null)
-                && (this.bold == null)
-                && (this.strikethrough == null)
-                && (this.underline == null)
-                && (this.italic == null);
+        return !(this.bold.isPresent()
+                || this.italic.isPresent()
+                || this.underline.isPresent()
+                || this.strikethrough.isPresent()
+                || this.obfuscated.isPresent());
     }
 
     /**
@@ -139,7 +171,7 @@ public class TextStyle {
      */
     public TextStyle bold(@Nullable Boolean bold) {
         return new TextStyle(
-                bold,
+                OptBool.of(bold),
                 this.italic,
                 this.underline,
                 this.strikethrough,
@@ -156,7 +188,7 @@ public class TextStyle {
     public TextStyle italic(@Nullable Boolean italic) {
         return new TextStyle(
                 this.bold,
-                italic,
+                OptBool.of(italic),
                 this.underline,
                 this.strikethrough,
                 this.obfuscated
@@ -173,7 +205,7 @@ public class TextStyle {
         return new TextStyle(
                 this.bold,
                 this.italic,
-                underline,
+                OptBool.of(underline),
                 this.strikethrough,
                 this.obfuscated
         );
@@ -190,7 +222,7 @@ public class TextStyle {
                 this.bold,
                 this.italic,
                 this.underline,
-                strikethrough,
+                OptBool.of(strikethrough),
                 this.obfuscated
         );
     }
@@ -207,7 +239,7 @@ public class TextStyle {
                 this.italic,
                 this.underline,
                 this.strikethrough,
-                obfuscated
+                OptBool.of(obfuscated)
         );
     }
 
@@ -218,7 +250,7 @@ public class TextStyle {
      *      or {@link Optional#absent()}
      */
     public Optional<Boolean> isBold() {
-        return Optional.fromNullable(this.bold);
+        return this.bold;
     }
 
     /**
@@ -228,7 +260,7 @@ public class TextStyle {
      *      or {@link Optional#absent()}
      */
     public Optional<Boolean> isItalic() {
-        return Optional.fromNullable(this.italic);
+        return this.italic;
     }
 
     /**
@@ -238,7 +270,7 @@ public class TextStyle {
      *      or {@link Optional#absent()}
      */
     public Optional<Boolean> hasUnderline() {
-        return Optional.fromNullable(this.underline);
+        return this.underline;
     }
 
     /**
@@ -248,7 +280,7 @@ public class TextStyle {
      *      or {@link Optional#absent()}
      */
     public Optional<Boolean> hasStrikethrough() {
-        return Optional.fromNullable(this.strikethrough);
+        return this.strikethrough;
     }
 
     /**
@@ -258,7 +290,7 @@ public class TextStyle {
      *      or {@link Optional#absent()}
      */
     public Optional<Boolean> isObfuscated() {
-        return Optional.fromNullable(this.obfuscated);
+        return this.obfuscated;
     }
 
     /**
@@ -343,29 +375,42 @@ public class TextStyle {
      * @return The composed style
      */
     private TextStyle compose(TextStyle[] styles, boolean negate) {
-        TextStyle acc = this;
+
+        if (styles.length == 0) {
+            return this;
+        }
+
+        Optional<Boolean> boldAcc = this.bold;
+        Optional<Boolean> italicAcc = this.italic;
+        Optional<Boolean> underlineAcc = this.underline;
+        Optional<Boolean> strikethroughAcc = this.strikethrough;
+        Optional<Boolean> obfuscatedAcc = this.obfuscated;
+
         if (negate) {
             for (TextStyle style : styles) {
-                acc = new TextStyle(
-                        propCompose(acc.bold, propNegate(style.bold)),
-                        propCompose(acc.italic, propNegate(style.italic)),
-                        propCompose(acc.underline, propNegate(style.underline)),
-                        propCompose(acc.strikethrough, propNegate(style.strikethrough)),
-                        propCompose(acc.obfuscated, propNegate(style.obfuscated))
-                );
+                boldAcc = propCompose(boldAcc, propNegate(style.bold));
+                italicAcc = propCompose(italicAcc, propNegate(style.italic));
+                underlineAcc = propCompose(underlineAcc, propNegate(style.underline));
+                strikethroughAcc = propCompose(strikethroughAcc, propNegate(style.strikethrough));
+                obfuscatedAcc = propCompose(obfuscatedAcc, propNegate(style.obfuscated));
             }
         } else {
             for (TextStyle style : styles) {
-                acc = new TextStyle(
-                        propCompose(acc.bold, style.bold),
-                        propCompose(acc.italic, style.italic),
-                        propCompose(acc.underline, style.underline),
-                        propCompose(acc.strikethrough, style.strikethrough),
-                        propCompose(acc.obfuscated, style.obfuscated)
-                );
+                boldAcc = propCompose(boldAcc, style.bold);
+                italicAcc = propCompose(italicAcc, style.italic);
+                underlineAcc = propCompose(underlineAcc, style.underline);
+                strikethroughAcc = propCompose(strikethroughAcc, style.strikethrough);
+                obfuscatedAcc = propCompose(obfuscatedAcc, style.obfuscated);
             }
         }
-        return acc;
+
+        return new TextStyle(
+                boldAcc,
+                italicAcc,
+                underlineAcc,
+                strikethroughAcc,
+                obfuscatedAcc
+        );
     }
 
     /**
@@ -375,18 +420,22 @@ public class TextStyle {
      * @param subprop The sub property
      * @return True if the property is contained, otherwise false
      */
-    private static boolean propContains(@Nullable Boolean superprop, @Nullable Boolean subprop) {
-        return subprop != null && superprop == subprop;
+    private static boolean propContains(Optional<Boolean> superprop, Optional<Boolean> subprop) {
+        return !subprop.isPresent() || superprop.equals(subprop);
     }
 
     /**
      * Utility method to negate a property if it is not null.
      *
-     * @param bool The property to negate
-     * @return The negated property, or null
+     * @param prop The property to negate
+     * @return The negated property, or {@link Optional#absent()}
      */
-    @Nullable private static Boolean propNegate(@Nullable Boolean bool) {
-        return bool == null ? null : !bool;
+    private static Optional<Boolean> propNegate(Optional<Boolean> prop) {
+        if (prop.isPresent()) {
+            return OptBool.of(!prop.get());
+        } else {
+            return OptBool.ABSENT;
+        }
     }
 
     /**
@@ -396,13 +445,13 @@ public class TextStyle {
      * @param prop2 The second property
      * @return The composition of the two properties
      */
-    @Nullable private static Boolean propCompose(@Nullable Boolean prop1, @Nullable Boolean prop2) {
-        if (prop1 == null) {
+    private static Optional<Boolean> propCompose(Optional<Boolean> prop1, Optional<Boolean> prop2) {
+        if (!prop1.isPresent()) {
             return prop2;
-        } else if (prop2 == null) {
+        } else if (!prop2.isPresent()) {
             return prop1;
-        } else if (prop1 != prop2) {
-            return null;
+        } else if (!prop1.equals(prop2)) {
+            return OptBool.ABSENT;
         } else {
             return prop1;
         }
@@ -415,55 +464,35 @@ public class TextStyle {
      * Minecraft base types. Base extends FormattingCode because it does have a
      * corresponding formatting code; it is a single, pure text style.
      */
-    public static class Base extends TextStyle implements BaseFormatting {
+    public abstract static class Base extends TextStyle implements BaseFormatting {
 
         /**
-         * The name of this Base TextStyle.
-         */
-        private final String name;
-
-        /**
-         * The char code behind this Base TextStyle.
-         */
-        private final char code;
-
-        /**
-         * Constructs a new Base text style.
+         * Constructs a new Base TextStyle.
          *
-         * @param name The name of the TextStyle
-         * @param code The char code behind this TextStyle
          * @param bold Whether text where this style is applied is bolded
          * @param italic Whether text where this style is applied is italicized
          * @param underline Whether text where this style is applied is underlined
          * @param obfuscated Whether text where this style is applied is obfuscated
          * @param strikethrough Whether text where this style is applied has a strikethrough
          */
-        public Base(String name, char code,
-                    @Nullable Boolean bold,
-                    @Nullable Boolean italic,
-                    @Nullable Boolean underline,
-                    @Nullable Boolean strikethrough,
-                    @Nullable Boolean obfuscated) {
-            super(bold, italic, underline, strikethrough, obfuscated);
-            this.name = name;
-            this.code = code;
+        public Base(@Nullable Boolean bold,
+                  @Nullable Boolean italic,
+                  @Nullable Boolean underline,
+                  @Nullable Boolean strikethrough,
+                  @Nullable Boolean obfuscated) {
+            super(
+                    bold,
+                    italic,
+                    underline,
+                    strikethrough,
+                    obfuscated
+            );
         }
 
         @Override
         public boolean isComposite() {
             // By definition, base TextStyles are not composites
             return false;
-        }
-
-        @Override
-        public String getName() {
-            return this.name;
-        }
-
-        @Override
-        @Deprecated
-        public char getCode() {
-            return this.code;
         }
 
     }
