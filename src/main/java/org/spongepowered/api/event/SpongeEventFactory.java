@@ -554,15 +554,17 @@ public final class SpongeEventFactory {
      * @param entity The entity involved in this event
      * @param location The location of death
      * @param droppedItems The items to drop
+     * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<Item> droppedItems) {
+    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<Item> droppedItems, int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", entity);
         values.put("droppedItems", droppedItems);
         values.put("location", location);
+        values.put("exp", exp);
         return createEvent(EntityDeathEvent.class, values);
     }
 
@@ -1074,10 +1076,14 @@ public final class SpongeEventFactory {
      * @param location The location of death
      * @param deathMessage The message to show to the player because they died
      * @param droppedItems The items to drop
+     * @param exp The experience to give, or take for negative values
+     * @param newExperience The new experience the player will have towards the next level
+     * @param newLevel The new level the player will have after death
+     * @param keepsLevel Whether the player keeps all of their exp on death
      * @return A new instance of the event
      */
     public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Message deathMessage,
-            Collection<Item> droppedItems) {
+            Collection<Item> droppedItems, int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1088,6 +1094,11 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("droppedItems", droppedItems);
+        values.put("exp", exp);
+        values.put("newExperience", newExperience);
+        values.put("newLevel", newLevel);
+        values.put("keepsLevel", keepsLevel);
+        values.put("keepsInventory", keepsInventory);
         return createEvent(PlayerDeathEvent.class, values);
     }
 
