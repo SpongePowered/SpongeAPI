@@ -22,17 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.difficulty;
 
 /**
- * A list of difficulties that Minecraft provides in vanilla.
+ * Represents a possible difficulty setting.
+ *
+ * @see Difficulties
  */
-public final class Difficulty {
-
-    public static final Difficulty PEACEFUL = null;
-    public static final Difficulty EASY = null;
-    public static final Difficulty NORMAL = null;
-    public static final Difficulty HARD = null;
-
-    private Difficulty() {}
+public interface Difficulty {
 }
