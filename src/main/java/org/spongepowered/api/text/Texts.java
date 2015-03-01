@@ -126,16 +126,18 @@ public final class Texts {
      * <code>Texts.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
      * </p>
      *
+     * <p>This will create the correct {@link Text} instance if the input object
+     * is the input for one of the {@link Text} types or convert the object to a
+     * string otherwise.</p>
+     *
      * @param objects The object array
      * @return The built text object
-     * @throws IllegalArgumentException If a passed-in argument is not of type
-     *         {@link TextColor}, {@link TextStyle}, {@link String} or
-     *         {@link Text}
      */
-    public static Text of(Object... objects) throws IllegalArgumentException {
+    public static Text of(Object... objects) {
         TextBuilder builder = builder();
         TextColor color = TextColors.NONE;
         TextStyle style = TextStyles.NONE;
+
         for (Object obj : objects) {
             if (obj instanceof TextColor) {
                 color = (TextColor) obj;
@@ -143,10 +145,22 @@ public final class Texts {
                 style = obj.equals(TextStyles.RESET) ? TextStyles.NONE : style.and((TextStyle) obj);
             } else if (obj instanceof Text) {
                 builder.append((Text) obj);
-            } else if (obj instanceof String) {
-                builder.append(builder((String) obj).color(color).style(style).build());
             } else {
-                throw new IllegalArgumentException("Unexpected type for object " + obj);
+                TextBuilder childBuilder;
+
+                if (obj instanceof String) {
+                    childBuilder = Texts.builder((String) obj);
+                } else if (obj instanceof Translation) {
+                    childBuilder = Texts.builder((Translation) obj, new Object[0]); // TODO: Remove explicit array initializer
+                } else if (obj instanceof Selector) {
+                    childBuilder = Texts.builder((Selector) obj);
+                /*} else if (obj instanceof Object) { // TODO: Statistic API
+                    childBuilder = Texts.builder((Object) obj);*/
+                } else {
+                    childBuilder = Texts.builder(String.valueOf(obj));
+                }
+
+                builder.append(childBuilder.color(color).style(style).build());
             }
         }
 
@@ -338,12 +352,12 @@ public final class Texts {
                 return texts[0];
             default:
                 TextBuilder builder = builder();
-                boolean first = true;
+                boolean appendSeparator = false;
                 for (Text text : texts) {
-                    if (!first) {
+                    if (appendSeparator) {
                         builder.append(separator);
                     } else {
-                        first = false;
+                        appendSeparator = true;
                     }
 
                     builder.append(text);
@@ -367,8 +381,8 @@ public final class Texts {
     /**
      * Parses the specified JSON text and returns the parsed result.
      *
-     * <p>Unlike {@link #parseJson(String)} this will ignore some formatting errors
-     * and parse the JSON data more leniently.</p>
+     * <p>Unlike {@link #parseJson(String)} this will ignore some formatting
+     * errors and parse the JSON data more leniently.</p>
      *
      * @param json The JSON text
      * @return The parsed text
