@@ -35,6 +35,7 @@ import javax.annotation.Nullable;
  * which represents the possible states it can have.</p>
  */
 public final class OptBool {
+
     private OptBool() {}
 
     /**
@@ -56,16 +57,26 @@ public final class OptBool {
     public static final Optional<Boolean> ABSENT = Optional.absent();
 
     /**
+     * Constructs a new {@code Optional&lt;Boolean&gt;} from the given boolean.
+     *
+     * @param bool The boolean
+     * @return The constructed Optional
+     */
+    public static Optional<Boolean> of(boolean bool) {
+        return bool ? TRUE : FALSE;
+    }
+
+    /**
      * Constructs a new {@code Optional&lt;Boolean&gt;} from the given {@link Boolean}.
      *
      * @param bool The boolean
      * @return The constructed Optional, or {@link Optional#absent()}
      */
     public static Optional<Boolean> of(@Nullable Boolean bool) {
-        if (bool == null) {
-            return Optional.absent();
+        if (bool != null) {
+            return of(bool.booleanValue());
         } else {
-            return bool ? TRUE : FALSE;
+            return ABSENT;
         }
     }
 
@@ -77,23 +88,9 @@ public final class OptBool {
      */
     public static Optional<Boolean> of(Optional<Boolean> bool) {
         if (bool.isPresent()) {
-            return of(bool.get());
+            return of(bool.get().booleanValue());
         } else {
             return ABSENT;
-        }
-    }
-
-    /**
-     * Converts the given {@code Optional&lt;Boolean&gt;} back into a nullable {@link Boolean}.
-     *
-     * @param bool The optional boolean
-     * @return The constructed Optional, or {@link Optional#absent()}
-     */
-    @Nullable public static Boolean get(Optional<Boolean> bool) {
-        if (bool.isPresent()) {
-            return bool.get();
-        } else {
-            return null;
         }
     }
 

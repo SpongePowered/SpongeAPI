@@ -42,8 +42,6 @@ public final class ChatTypes {
      * The same position as the {@link #CHAT} position, except messages sent to
      * this position are still seen when chat is turned off on the Minecraft
      * client.
-     *
-     * <p>Use wisely as to not annoy players.</p>
      */
     public static final ChatType SYSTEM = null;
 
