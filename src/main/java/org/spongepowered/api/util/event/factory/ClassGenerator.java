@@ -58,6 +58,7 @@ import static org.objectweb.asm.Opcodes.RETURN;
 import static org.objectweb.asm.Opcodes.V1_6;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import org.objectweb.asm.ClassWriter;
@@ -84,7 +85,7 @@ class ClassGenerator {
 
     private final PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
-    private final List<String> primitivePropertyExceptions = Collections.singletonList("cancelled");
+    private final List<String> primitivePropertyExceptions = ImmutableList.of("cancelled");
 
     /**
      * Insert the necessary methods to unbox a primitive type (if the given type
