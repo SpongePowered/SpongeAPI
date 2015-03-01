@@ -50,6 +50,7 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
 
     private static final Pattern ACCESSOR = Pattern.compile("^get([A-Z].*)");
     private static final Pattern ACCESSOR_BOOL = Pattern.compile("^is([A-Z].*)");
+    private static final Pattern ACCESSOR_KEEPS = Pattern.compile("^(keeps[A-Z].*)");
     private static final Pattern MUTATOR = Pattern.compile("^set([A-Z].*)");
 
     /**
@@ -95,8 +96,12 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
             if (m.matches() && method.getReturnType().equals(boolean.class)) {
                 return getPropertyName(m.group(1));
             }
-        }
 
+            m = ACCESSOR_KEEPS.matcher(method.getName());
+            if (m.matches() && method.getReturnType().equals(boolean.class)) {
+                return getPropertyName(m.group(1));
+            }
+        }
         return null;
     }
 
