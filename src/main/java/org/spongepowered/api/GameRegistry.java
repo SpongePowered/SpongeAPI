@@ -551,7 +551,7 @@ public interface GameRegistry {
      */
     RecipeRegistry getRecipeRegistry();
 
-	/**
+    /**
      * Gets a collection of all available {@link Difficulty Difficulties}.
      *
      * @return A collection containing all Difficulties in registry
