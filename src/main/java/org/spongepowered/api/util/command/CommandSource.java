@@ -44,14 +44,6 @@ public interface CommandSource extends Subject {
     String getName();
 
     /**
-     * Gets the command source's display name. If none set, it returns the
-     * current plain text name.
-     *
-     * @return The command source's display name
-     */
-    Message getDisplayName();
-
-    /**
      * Sends the plain text message(s) to source when possible.
      * <p>Use {@link #sendMessage(Message...)} for a formatted message.</p>
      *
