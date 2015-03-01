@@ -45,6 +45,20 @@ import java.util.UUID;
 public interface World extends Extent, Viewer, WeatherVolume, Contextual, Identifiable {
 
     /**
+     * Gets the {@link Difficulty} setting for this world.
+     * 
+     * @return Difficulty of the world
+     */
+    Difficulty getDifficulty();
+
+    /**
+     * Sets the {@link Difficulty} setting for this world.
+     * 
+     * @param difficulty Difficulty of the world
+     */
+    void setDifficulty(Difficulty difficulty);
+   
+    /**
      * Gets the name of the world.
      *
      * <p>The world name may randomly generated or user-defined. It may or
