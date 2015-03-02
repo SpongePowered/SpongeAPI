@@ -22,34 +22,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.CauseTracked;
+import com.flowpowered.math.vector.Vector3f;
+import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link Entity} teleports.
+ * Called when an {@link org.spongepowered.api.entity.Entity} changes position (also known as
+ * undergoing displacement).
  *
- * <p>This is a discrete jump from the old to new location; the entity has
- * not moved between those two places.</p>
+ * <p>This encapsulates both continuous ({@link org.spongepowered.api.event.entity.EntityMoveEvent})
+ * and discrete ({@link org.spongepowered.api.event.entity.EntityTeleportEvent}) movement.</p>
  */
-public interface EntityTeleportEvent extends EntityDisplaceEvent, CauseTracked {
+public interface EntityDisplaceEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets whether the entity teleporting will maintain its velocity
-     * after teleport.
+     * Gets the previous {@link Location} that the entity was in.
      *
-     * @return Whether the entity will maintain momentum after teleport
+     * @return The old location
      */
-    boolean getKeepsVelocity();
+    Location getOldLocation();
 
     /**
-     * Sets whether the entity teleporting will maintain its velocity
-     * after teleport.
+     * Gets the new {@link Location} that the entity is in.
      *
-     * @param keepsVelocity Whether the entity will maintain velocity
+     * @return The new location
      */
-    void setKeepsVelocity(boolean keepsVelocity);
+    Location getNewLocation();
+
+    /**
+     * Sets the new {@link Location} that the entity is in.
+     *
+     * @param location The new location
+     */
+    void setNewLocation(Location location);
+
+    /**
+     * Gets the rotation the entity is facing.
+     *
+     * @return The rotation the entity is facing
+     */
+    Vector3f getRotation();
+
+    /**
+     * Sets the rotation the entity is facing.
+     *
+     * @param rotation The rotation the entity is facing
+     */
+    void setRotation(Vector3f rotation);
 
 }
