@@ -24,11 +24,17 @@
  */
 package org.spongepowered.api.text.action;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link TextAction} that responds to hovers.
@@ -100,16 +106,128 @@ public abstract class HoverAction<R> extends TextAction<R> {
     /**
      * Shows information about an entity.
      */
-    public static final class ShowEntity extends HoverAction<UUID> {
+    public static final class ShowEntity extends HoverAction<ShowEntity.Ref> {
 
         /**
          * Constructs a new {@link ShowEntity} that will show information about
          * an entity when it is hovered.
          *
-         * @param entityId The ID of the entity to display
+         * @param ref The reference to the entity to display
          */
-        public ShowEntity(UUID entityId) {
-            super(entityId);
+        public ShowEntity(Ref ref) {
+            super(ref);
+        }
+
+        /**
+         * Represents a reference to an entity, used in the underlying JSON of the
+         * show entity action.
+         */
+        public static final class Ref {
+
+            private final UUID uuid;
+            private final String name;
+            private final Optional<EntityType> type;
+
+            /**
+             * Constructs a Ref to an entity.
+             *
+             * @param uuid The UUID of the entity
+             * @param name The name of the entity
+             * @param type The type of the entity
+             */
+            public Ref(UUID uuid, String name, @Nullable EntityType type) {
+                this(uuid, name, Optional.fromNullable(type));
+            }
+
+            /**
+             * Constructs a Ref to an entity.
+             *
+             * @param uuid The UUID of the entity
+             * @param name The name of the entity
+             */
+            public Ref(UUID uuid, String name) {
+                this(uuid, name, Optional.<EntityType>absent());
+            }
+
+            /**
+             * Constructs a Ref, given an {@link Entity}.
+             *
+             * @param entity The entity
+             * @param name The name of the entity
+             */
+            public Ref(Entity entity, String name) {
+                this(entity.getUniqueId(), name, entity.getType());
+            }
+
+            /**
+             * Constructs a Ref directly.
+             *
+             * @param uuid The UUID
+             * @param name The name
+             * @param type The type
+             */
+            protected Ref(UUID uuid, String name, Optional<EntityType> type) {
+                this.uuid = uuid;
+                this.name = name;
+                this.type = type;
+            }
+
+            /**
+             * Retrieves the UUID that this Ref refers to.
+             *
+             * @return The UUID
+             */
+            public UUID getUuid() {
+                return this.uuid;
+            }
+
+            /**
+             * Retrieves the name that this Ref refers to.
+             *
+             * @return The name
+             */
+            public String getName() {
+                return this.name;
+            }
+
+            /**
+             * Retrieves the type that this Ref refers to, if it exists.
+             *
+             * @return The type, or {@link Optional#absent()}
+             */
+            public Optional<EntityType> getType() {
+                return this.type;
+            }
+
+            @Override
+            public String toString() {
+                return MoreObjects.toStringHelper(this)
+                        .add("uuid", this.uuid)
+                        .add("name", this.name)
+                        .add("type", this.type)
+                        .toString();
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                if (super.equals(obj)) {
+                    return true;
+                }
+
+                if (!(obj instanceof Ref)) {
+                    return false;
+                }
+
+                Ref that = (Ref) obj;
+                return  this.uuid.equals(that.uuid)
+                        && this.name.equals(that.name)
+                        && this.type.equals(that.type);
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(this.uuid, this.name, this.type);
+            }
         }
 
     }
