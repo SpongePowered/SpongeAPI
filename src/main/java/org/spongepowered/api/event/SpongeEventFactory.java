@@ -110,6 +110,9 @@ import org.spongepowered.api.event.entity.living.player.fishing.PlayerRetractFis
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
+import org.spongepowered.api.event.stats.AchievementEvent;
+import org.spongepowered.api.event.stats.StatisticChange;
+import org.spongepowered.api.event.stats.StatisticChangeEvent;
 import org.spongepowered.api.event.weather.LightningStrikeEvent;
 import org.spongepowered.api.event.weather.WeatherChangeEvent;
 import org.spongepowered.api.event.world.ChunkForcedEvent;
@@ -125,6 +128,7 @@ import org.spongepowered.api.event.world.WorldLoadEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.TileInventory;
+import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.Direction;
@@ -839,10 +843,11 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @param exp The experience to give, or take for negative values
      * @param droppedItems The items to drop
+     * @param statisticChanges The changed statistics
      * @return A new instance of the event
      */
     public static PlayerBreakBlockEvent createPlayerBreakBlock(Game game, Cause cause, Player player, Direction direction, BlockLoc block,
-            BlockSnapshot replacementBlock, double exp, Collection<Item> droppedItems) {
+            BlockSnapshot replacementBlock, double exp, Collection<Item> droppedItems, Collection<StatisticChange> statisticChanges) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -855,6 +860,7 @@ public final class SpongeEventFactory {
         values.put("blockFaceDirection", direction);
         values.put("exp", exp);
         values.put("droppedItems", droppedItems);
+        values.put("statisticChanges", statisticChanges);
         return createEvent(PlayerBreakBlockEvent.class, values);
     }
 
@@ -1022,10 +1028,11 @@ public final class SpongeEventFactory {
      * @param location The location of death
      * @param deathMessage The message to show to the player because they died
      * @param droppedItems The items to drop
+     * @param statisticChanges The changes statists
      * @return A new instance of the event
      */
     public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Message deathMessage,
-            Collection<Item> droppedItems) {
+            Collection<Item> droppedItems, Collection<StatisticChange> statisticChanges) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1036,6 +1043,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("droppedItems", droppedItems);
+        values.put("statisticChanges", statisticChanges);
         return createEvent(PlayerDeathEvent.class, values);
     }
 
@@ -1156,9 +1164,10 @@ public final class SpongeEventFactory {
      * @param player The player involved in this event
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
+     * @param statisticChanges The changed statistics
      * @return A new instance of the event
      */
-    public static PlayerMoveEvent createPlayerMove(Game game, Player player, Location oldLocation, Location newLocation) {
+    public static PlayerMoveEvent createPlayerMove(Game game, Player player, Location oldLocation, Location newLocation, Collection<StatisticChange> statisticChanges) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1167,6 +1176,7 @@ public final class SpongeEventFactory {
         values.put("player", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("statisticChanges", statisticChanges);
         return createEvent(PlayerMoveEvent.class, values);
     }
 
@@ -1198,10 +1208,11 @@ public final class SpongeEventFactory {
      * @param block The block affected by this event
      * @param replacementBlock The block that will replace the existing block
      * @param direction The direction the block was placed
+     * @param statisticChanges The changed statistics
      * @return A new instance of the event
      */
     public static PlayerPlaceBlockEvent createPlayerPlaceBlock(Game game, Cause cause, Player player, BlockLoc block,
-            BlockSnapshot replacementBlock, Direction direction) {
+            BlockSnapshot replacementBlock, Direction direction, Collection<StatisticChange> statisticChanges) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1212,6 +1223,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("blockFaceDirection", direction);
+        values.put("statisticChanges", statisticChanges);
         return createEvent(PlayerPlaceBlockEvent.class, values);
     }
 
@@ -1249,6 +1261,37 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         return createEvent(PlayerUpdateEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link AchievementEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param player The player involved in this event
+     * @param achievement The achievement the player has earned
+     * @return A new instance of the event
+     */
+    public static AchievementEvent createAchievementEvent(Game game, Player player, Achievement achievement) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", player);
+        values.put("living", player);
+        values.put("human", player);
+        values.put("player", player);
+        values.put("achievement", achievement);
+        return createEvent(AchievementEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link StatisticChangeEvent}.
+     *
+     * @param statisticChanges The changes to the statistics
+     * @return A new instance of the event
+     */
+    public static StatisticChangeEvent createStatisticChangeEvent(Collection<StatisticChange> statisticChanges) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("statisticChanges", statisticChanges);
+        return createEvent(StatisticChangeEvent.class, values);
     }
 
     /**

@@ -23,15 +23,24 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.stats;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
+import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.util.event.Event;
+
+import java.util.Collection;
 
 /**
- * Called when a {@link Player} moves.
+ * Represents an event that is triggered if one or more {@link Statistic}s are
+ * about to change their values.
  */
-public interface PlayerMoveEvent extends PlayerEvent, HumanMoveEvent, StatisticChangeEvent {
+public interface StatisticChangeEvent extends Event {
+
+    /**
+     * Gets a {@link Collection} containing all {@link StatisticChange}s.
+     *
+     * @return A collection containing all changes to statistics
+     */
+    Collection<StatisticChange> getStatisticChanges();
 
 }
