@@ -36,7 +36,6 @@ import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.data.BrewingStand;
 import org.spongepowered.api.block.data.Furnace;
 import org.spongepowered.api.block.data.Lockable;
