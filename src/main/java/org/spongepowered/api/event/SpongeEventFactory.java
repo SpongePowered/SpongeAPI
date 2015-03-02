@@ -366,15 +366,15 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
      * @param block The block affected by this event
-     * @param causeBlockType The block causing the update
+     * @param affectedBlocks The blocks affeceted by the event
      * @return A new instance of the event
      */
-    public static BlockUpdateEvent createBlockUpdate(Game game, Cause cause, BlockLoc block, BlockType causeBlockType) {
+    public static BlockUpdateEvent createBlockUpdate(Game game, Cause cause, BlockLoc block, Collection<BlockLoc> affectedBlocks) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
-        values.put("causeBlockType", causeBlockType);
+        values.put("affectedBlocks", affectedBlocks);
         return createEvent(BlockUpdateEvent.class, values);
     }
 
