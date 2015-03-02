@@ -552,7 +552,7 @@ public interface GameRegistry {
     RecipeRegistry getRecipeRegistry();
 
     /**
-     * Gets a collection of all available {@link Difficulty}s
+     * Gets a collection of all available {@link Difficulty}s.
      *
      * @return A collection containing all Difficulties in registry
      */
@@ -561,6 +561,7 @@ public interface GameRegistry {
     /**
      * Gets a {@link Difficulty} by name.
      *
+     * @param name The name of the difficulty
      * @return The difficulty with that name, or {@link Optional#absent()}
      */
     Optional<Difficulty> getDifficulty(String name);
