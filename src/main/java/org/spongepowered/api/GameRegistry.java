@@ -54,8 +54,6 @@ import org.spongepowered.api.item.meta.FireworkShape;
 import org.spongepowered.api.item.meta.HideableInfoType;
 import org.spongepowered.api.item.meta.MapDecorationType;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
-import org.spongepowered.api.map.MapColor;
-import org.spongepowered.api.map.MapShade;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
@@ -592,19 +590,5 @@ public interface GameRegistry {
      * @return The collection of all available {@link MapDecorationType}s
      */
     Collection<MapDecorationType> getMapDecorationTypes();
-
-    /**
-     * Gets a {@link Collection} of all possible {@link MapColor}s.
-     *
-     * @return The collection of all available {@link MapColor}s
-     */
-    Collection<MapColor> getMapColors();
-
-    /**
-     * Gets a {@link Collection} of all possible {@link MapShade}s.
-     *
-     * @return The collection of all available {@link MapShade}s
-     */
-    Collection<MapShade> getMapShades();
 
 }

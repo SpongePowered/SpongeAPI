@@ -25,7 +25,6 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.map.MapManager;
 import org.spongepowered.api.net.ChannelRegistrar;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.world.World;
@@ -213,12 +212,5 @@ public interface Server extends ChannelRegistrar {
      * @param kickMessage The message to kick players with
      */
     void shutdown(Message kickMessage);
-
-    /**
-     * Gets the server's {@link MapManager}.
-     * 
-     * @return The server's MapManager
-     */
-    MapManager getMapManager();
 
 }

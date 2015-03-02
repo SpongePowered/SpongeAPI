@@ -53,7 +53,8 @@ public interface ItemData extends DataSerializable {
     void setUnbreakable(boolean unbreakable);
 
     /**
-     * Gets a set of the {@link BlockType}s this item can destroy.
+     * Gets a set of the {@link BlockType}s this item can destroy. Returning
+     * Optional.absent() means that all blocks can be destroyed.
      * 
      * @return A set of the BlockTypes this item can destroy
      */
