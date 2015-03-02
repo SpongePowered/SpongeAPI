@@ -26,6 +26,8 @@ package org.spongepowered.api.text.format;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.text.OptBool;
@@ -416,6 +418,39 @@ public class TextStyle {
                 strikethroughAcc,
                 obfuscatedAcc
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof TextStyle)) {
+            return false;
+        }
+
+        TextStyle that = (TextStyle) o;
+        return this.bold.equals(that.bold)
+                && this.italic.equals(that.italic)
+                && this.underline.equals(that.underline)
+                && this.obfuscated.equals(that.obfuscated)
+                && this.strikethrough.equals(that.strikethrough);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.bold, this.italic, this.underline, this.obfuscated, this.strikethrough);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("bold", this.bold)
+                .add("italic", this.italic)
+                .add("underline", this.underline)
+                .add("strikethrough", this.strikethrough)
+                .add("obfuscated", this.obfuscated)
+                .toString();
     }
 
     /**
