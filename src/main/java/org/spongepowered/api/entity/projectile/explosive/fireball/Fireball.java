@@ -22,37 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.entity.projectile.explosive.fireball;
 
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.entity.projectile.explosive.ExplosiveProjectile;
 
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * Represents an abstract fireball, such as {@link SmallFireball}.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Gets the parent attempting to breed.
-     *
-     * @return The parent attempting to breed
-     */
-    @Override
-    Ageable getEntity();
-
-    /**
-     * Gets the parent attempting to breed.
-     *
-     * @return The parent attempting to breed
-     */
-    Ageable getParent();
-
-    /**
-     * Gets the other parent attempting to breed.
-     *
-     * @return The other parent attempting to breed
-     */
-    Ageable getOtherParent();
+public interface Fireball extends ExplosiveProjectile {
 
 }

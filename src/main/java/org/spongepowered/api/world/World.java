@@ -31,6 +31,7 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.service.permission.context.Contextual;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -43,6 +44,20 @@ import java.util.UUID;
  * A loaded Minecraft world.
  */
 public interface World extends Extent, Viewer, WeatherVolume, Contextual, Identifiable {
+
+    /**
+     * Gets the {@link Difficulty} setting for this world.
+     *
+     * @return Difficulty of the world
+     */
+    Difficulty getDifficulty();
+
+    /**
+     * Sets the {@link Difficulty} setting for this world.
+     *
+     * @param difficulty Difficulty of the world
+     */
+    void setDifficulty(Difficulty difficulty);
 
     /**
      * Gets the name of the world.

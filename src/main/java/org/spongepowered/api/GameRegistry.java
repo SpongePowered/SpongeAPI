@@ -60,6 +60,7 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.difficulty.Difficulty;
 
 import com.google.common.base.Optional;
 
@@ -490,7 +491,7 @@ public interface GameRegistry {
     Favicon loadFavicon(BufferedImage image) throws IOException;
 
     /**
-     * Gets the {@link NotePitch} with the provided name. 
+     * Gets the {@link NotePitch} with the provided name.
      *
      * @param name The name of the note pitch
      * @return The {@link NotePitch} with the given name or Optional.absent() if not found
@@ -505,7 +506,7 @@ public interface GameRegistry {
     Collection<NotePitch> getNotePitches();
 
     /**
-     * Gets the {@link SkullType} with the provided name. 
+     * Gets the {@link SkullType} with the provided name.
      *
      * @param name The name of the skull type
      * @return The {@link SkullType} with the given name or Optional.absent() if not found
@@ -520,7 +521,7 @@ public interface GameRegistry {
     Collection<SkullType> getSkullTypes();
 
     /**
-     * Gets the {@link BannerPatternShape} with the provided name. 
+     * Gets the {@link BannerPatternShape} with the provided name.
      *
      * @param name The name of the BannerPatternShape
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
@@ -528,7 +529,7 @@ public interface GameRegistry {
     Optional<BannerPatternShape> getBannerPatternShape(String name);
 
     /**
-     * Gets the {@link BannerPatternShape} with the provided name. 
+     * Gets the {@link BannerPatternShape} with the provided name.
      *
      * @param id The id of the BannerPatternShape
      * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
@@ -555,6 +556,21 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
+
+    /**
+     * Gets a collection of all available {@link Difficulty}s.
+     *
+     * @return A collection containing all Difficulties in registry
+     */
+    Collection<Difficulty> getDifficulties();
+
+    /**
+     * Gets a {@link Difficulty} by name.
+     *
+     * @param name The name of the difficulty
+     * @return The difficulty with that name, or {@link Optional#absent()}
+     */
+    Optional<Difficulty> getDifficulty(String name);
 
     /**
      * Get a firework explosion builder.

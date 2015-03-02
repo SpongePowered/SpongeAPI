@@ -22,37 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.entity.projectile.explosive;
 
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * Represents a {@link DamagingProjectile} which is also an {@link Explosive}.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
+public interface ExplosiveProjectile extends DamagingProjectile, Explosive {
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the explosion power of this explosive projectile.
      *
-     * @return The parent attempting to breed
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage an explosive projectile will do upon
+     * exploding.</p>
+     *
+     * @return The explosion power
      */
-    @Override
-    Ageable getEntity();
+    int getExplosionPower();
 
     /**
-     * Gets the parent attempting to breed.
+     * Sets the explosion power of this Large Fireball.
      *
-     * @return The parent attempting to breed
-     */
-    Ageable getParent();
-
-    /**
-     * Gets the other parent attempting to breed.
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage an explosive projectile will do upon
+     * exploding.</p>
      *
-     * @return The other parent attempting to breed
+     * @param explosionPower The explosion power
      */
-    Ageable getOtherParent();
+    void setExplosionPower(int explosionPower);
 
 }

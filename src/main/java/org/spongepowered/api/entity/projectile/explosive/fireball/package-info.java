@@ -23,35 +23,4 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.item;
-
-import org.spongepowered.api.block.BlockType;
-
-/**
- * Represents the Silk Touch enchantment, Enchantments.SILK_TOUCH.
- */
-public interface EnchantmentSilkTouch extends Enchantment {
-
-    /**
-     * Register a block that can be harvested with silk touch.
-     *
-     * @param block The block to register
-     */
-    void registerBlock(BlockType block);
-
-    /**
-     * Unregister a block so it can no longer be harvested with silk touch.
-     *
-     * @param block The block to unregister
-     */
-    void unregisterBlock(BlockType block);
-
-    /**
-     * Gets whether the block can be harvested with silk touch.
-     *
-     * @param block The block to test for
-     * @return Whether it can be harvested
-     */
-    boolean canHarvest(BlockType block);
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.projectile.explosive.fireball;

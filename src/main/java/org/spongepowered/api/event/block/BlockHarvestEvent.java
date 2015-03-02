@@ -22,37 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.living.Ageable;
+package org.spongepowered.api.event.block;
+
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.inventory.ItemDropEvent;
 import org.spongepowered.api.util.event.Cancellable;
 
+import java.util.Collection;
+
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * Dispatched when a {@link BlockLoc} is about to drop it's items.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
+public interface BlockHarvestEvent extends BlockEvent, ItemDropEvent, Cancellable {
 
     /**
-     * Gets the parent attempting to breed.
+     * Sets the items that are to be dropped.
      *
-     * @return The parent attempting to breed
+     * @param items The collection of item entities to drop
      */
-    @Override
-    Ageable getEntity();
+    void setDroppedItems(Collection<Item> items);
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the chance the items are being dropped. A chance of 1 means all the
+     * items are dropped.
      *
-     * @return The parent attempting to breed
+     * @return The chance, between 0 and 1
      */
-    Ageable getParent();
+    float getDropChance();
 
     /**
-     * Gets the other parent attempting to breed.
+     * Sets the chance the items will be dropped.
      *
-     * @return The other parent attempting to breed
+     * <p>Setting the chance to 0 may stop the items from dropping, to guarantee
+     * no items are dropped, use {@link #setCancelled(boolean)}.</p>
+     *
+     * @param chance The chance, must be between 0 and 1
      */
-    Ageable getOtherParent();
+    void setDropChance(float chance);
 
 }

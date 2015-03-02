@@ -23,4 +23,15 @@
  * THE SOFTWARE.
  */
 
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.projectile.fireball;
+package org.spongepowered.api.event.entity;
+
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.block.BlockHarvestEvent;
+
+/**
+ * Called when an {@link Entity} harvests a {@link BlockLoc}.
+ */
+public interface EntityHarvestBlockEvent extends EntityEvent, BlockHarvestEvent {
+
+}

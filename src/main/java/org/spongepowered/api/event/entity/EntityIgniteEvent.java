@@ -31,4 +31,18 @@ import org.spongepowered.api.util.event.Cancellable;
  */
 public interface EntityIgniteEvent extends EntityEvent, Cancellable {
 
+    /**
+     * Gets the amount of ticks the entity will remain on fire.
+     *
+     * @return The amount of ticks the entity will remain on fire
+     */
+    int getFireTicks();
+
+    /**
+     * Sets the amount of ticks the entity will remain on fire.
+     *
+     * @param fireTicks The amount of ticks the entity will remain on fire
+     */
+    void setFireTicks(int fireTicks);
+
 }

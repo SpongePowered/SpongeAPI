@@ -53,17 +53,17 @@ public interface ExplosionPrimeEvent extends EntityEvent, Cancellable {
      *
      * <p>Blocks that may be ignited include logs, leaves, wool, etc.</p>
      *
-     * @return Whether this explosion is flamable
+     * @return Whether this explosion is flammable
      */
-    boolean isFlamable();
+    boolean isFlammable();
 
     /**
-     * Sets whether this explosion will be flamable or not.
+     * Sets whether this explosion will be flammable or not.
      *
      * <p>Blocks that may be ignited include logs, leaves, wool, etc.</p>
      *
-     * @param flamable Whether this explosion is flamable
+     * @param flammable Whether this explosion is flammable
      */
-    void setFlamable(boolean flamable);
+    void setFlammable(boolean flammable);
 
 }

@@ -22,32 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity;
 
-package org.spongepowered.api.entity.projectile.fireball;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents a Ghast fireball.
+ * An event that is called when an entity becomes unleashed.
  */
-public interface LargeFireball extends Fireball {
+public interface EntityUnleashEvent extends EntityEvent, Cancellable {
 
     /**
-     * gets the explosion power of this Large Fireball.
-     * <p>Explosion power must be equal to or greater than zero. Explosion
-     * power defines the amount of block damage a fireball will do upon
-     * exploding.</p>
+     * Gets the leash holder of the leash.
      *
-     * @return The explosion power
+     * @return The leash holder
      */
-    int getExplosionPower();
-
-    /**
-     * Sets the explosion power of this Large Fireball.
-     * <p>Explosion power must be equal to or greater than zero. Explosion
-     * power defines the amount of block damage a fireball will do upon
-     * exploding.</p>
-     *
-     * @param explosionPower The explosion power
-     */
-    void setExplosionPower(int explosionPower);
+    Entity getLeashHolder();
 
 }

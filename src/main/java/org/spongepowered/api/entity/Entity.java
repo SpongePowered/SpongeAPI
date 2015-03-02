@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.entity;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.data.DataHolder;
@@ -102,6 +103,20 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @param rotation The rotation to set the entity to
      */
     void setRotation(Vector3f rotation);
+
+    /**
+     * Gets the current velocity of this entity.
+     *
+     * @return The current velocity of this entity
+     */
+    Vector3d getVelocity();
+
+    /**
+     * Sets the velocity of this entity.
+     *
+     * @param velocity The velocity to set this entity
+     */
+    void setVelocity(Vector3d velocity);
 
     /**
      * Gets the entity passenger that rides this entity, if available.

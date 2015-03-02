@@ -28,6 +28,7 @@ package org.spongepowered.api.entity.living;
 import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
 
@@ -36,6 +37,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+/**
+ * Represents an entity that is living, and therefor can be damaged.
+ *
+ * <p>Living entities can have {@link PotionEffect}s, breathing air
+ * under water, custom names, and become invisible.</p>
+ */
 public interface Living extends Entity {
 
     /**
@@ -287,4 +294,23 @@ public interface Living extends Entity {
      * @param invisible Whether this entity is invisible or not
      */
     void setInvisible(boolean invisible);
+
+    /**
+     * Gets whether this living entity is invisible to the specific
+     * {@link Player} entity.
+     *
+     * @param player The other player to check
+     * @return Whether this entity is invisible to the given player
+     */
+    boolean isInvisibleTo(Player player);
+
+    /**
+     * Sets whether this living entity is rendered invisible to the
+     * given {@link Player} entity.
+     *
+     * @param player The player to toggle invisibility towards
+     * @param invisible Whether this entity is invisible to the targeted
+     *      player
+     */
+    void setInvisibleTo(Player player, boolean invisible);
 }

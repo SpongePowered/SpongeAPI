@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile.fireball;
+package org.spongepowered.api.entity.projectile.explosive.fireball;
 
 /**
- * Represents a Wither Skull.
+ * Represents a Ghast fireball.
  */
-public interface WitherSkull extends Fireball {
+public interface LargeFireball extends Fireball {
 
 }

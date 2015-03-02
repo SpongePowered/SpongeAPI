@@ -22,14 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.fireball;
-
-import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+package org.spongepowered.api.event.entity;
 
 /**
- * Represents an abstract fireball, such as {@link SmallFireball}.
+ * An event when an entity exits a portal.
+ *
+ * <p>The portal can be any type of portal, may teleport
+ * and it may not teleport.</p>
  */
-public interface Fireball extends DamagingProjectile, Explosive {
+public interface EntityExitPortalEvent extends EntityEvent {
 
 }
