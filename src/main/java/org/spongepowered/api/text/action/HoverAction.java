@@ -28,6 +28,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
+import java.util.UUID;
+
 /**
  * Represents a {@link TextAction} that responds to hovers.
  *
@@ -98,16 +100,16 @@ public abstract class HoverAction<R> extends TextAction<R> {
     /**
      * Shows information about an entity.
      */
-    public static final class ShowEntity extends HoverAction<Entity> {
+    public static final class ShowEntity extends HoverAction<UUID> {
 
         /**
          * Constructs a new {@link ShowEntity} that will show information about
          * an entity when it is hovered.
          *
-         * @param entity The entity to display
+         * @param entityId The ID of the entity to display
          */
-        public ShowEntity(Entity entity) {
-            super(entity);
+        public ShowEntity(UUID entityId) {
+            super(entityId);
         }
 
     }
