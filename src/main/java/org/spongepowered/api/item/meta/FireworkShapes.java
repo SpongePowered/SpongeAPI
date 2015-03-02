@@ -33,4 +33,7 @@ public final class FireworkShapes {
     public static final FireworkShape CREEPER = null;
     public static final FireworkShape BURST = null;
 
+    private FireworkShapes() {
+    }
+
 }

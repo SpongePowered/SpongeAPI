@@ -26,7 +26,7 @@ package org.spongepowered.api.item.data;
 
 import org.spongepowered.api.item.meta.FireworkExplosion;
 
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * Represents a firework rocket in an inventory.
@@ -38,7 +38,7 @@ public interface FireworkRocket extends ItemData {
      * 
      * @return The explosions this firework will cause
      */
-    Set<FireworkExplosion> getExplosions();
+    Collection<FireworkExplosion> getExplosions();
 
     /**
      * Adds an explosion to this firewwork.

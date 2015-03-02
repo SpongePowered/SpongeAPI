@@ -35,4 +35,7 @@ public final class MapDecorationTypes {
     public static final MapDecorationType MARKER_TRIANGLE_RED = null;
     public static final MapDecorationType MARKER_SQUARE_WHITE = null;
 
+    private MapDecorationTypes() {
+    }
+
 }

@@ -32,4 +32,8 @@ public final class BookGenerations {
     public static final BookGeneration COPY_OF_COPY = null;
     public static final BookGeneration TATTERED = null;
     
+    private BookGenerations(){
+
+    }
+    
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.item.data;
 
 import org.spongepowered.api.potion.PotionEffect;
 
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * 
@@ -40,7 +40,7 @@ public interface Potion extends ItemData {
      * 
      * @return The PotionEffects in this potion
      */
-    Set<PotionEffect> getEffects();
+    Collection<PotionEffect> getEffects();
 
     /**
      * Adds a {@link PotionEffect} to this potion.

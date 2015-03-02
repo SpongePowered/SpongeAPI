@@ -32,6 +32,13 @@ public final class HideableInfoTypes {
     public static final HideableInfoType UNBREAKABILITY = null;
     public static final HideableInfoType DESTROYABLES = null;
     public static final HideableInfoType PLACEABLES = null;
+
+    /**
+     * Anything else. Enchantments on a book, Potion effects, etc.
+     */
     public static final HideableInfoType EXTRA_DATA = null;
+
+    private HideableInfoTypes() {
+    }
 
 }

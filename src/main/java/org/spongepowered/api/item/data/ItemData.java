@@ -32,9 +32,9 @@ import org.spongepowered.api.text.message.Message;
 
 import com.google.common.base.Optional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public interface ItemData extends DataSerializable {
 
@@ -58,7 +58,7 @@ public interface ItemData extends DataSerializable {
      * 
      * @return A set of the BlockTypes this item can destroy
      */
-    Optional<Set<BlockType>> getDestroyables();
+    Optional<Collection<BlockType>> getDestroyables();
 
     /**
      * Gets the levels added to the base cost when modifying this item in an

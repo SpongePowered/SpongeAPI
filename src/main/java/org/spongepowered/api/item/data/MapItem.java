@@ -26,7 +26,7 @@ package org.spongepowered.api.item.data;
 
 import org.spongepowered.api.item.meta.MapDecoration;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  *
@@ -47,7 +47,7 @@ public interface MapItem extends ItemData {
      * 
      * @return The list of MapDecorations on this map.
      */
-    List<MapDecoration> getDecorations();
+    Collection<MapDecoration> getDecorations();
 
     /**
      * Adds a {@link MapDecoration} to this map.

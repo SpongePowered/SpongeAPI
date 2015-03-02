@@ -113,4 +113,11 @@ public interface FireworkExplosionBuilder {
      */
     FireworkExplosion build();
 
+    /**
+     * Resets this builder to be used again.
+     * 
+     * @return This builder, for chaining
+     */
+    FireworkExplosionBuilder reset();
+
 }

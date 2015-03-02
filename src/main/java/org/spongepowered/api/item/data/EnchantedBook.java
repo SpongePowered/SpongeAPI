@@ -31,7 +31,7 @@ import com.google.common.base.Optional;
 import java.util.Map;
 
 /**
- * Represents an enchanted book.
+ * Represents an enchanted book. Used to store enchantments for use in an anvil.
  */
 public interface EnchantedBook extends ItemData {
 
@@ -61,7 +61,7 @@ public interface EnchantedBook extends ItemData {
      * Gets the level of a certain enchantment.
      * 
      * @param enchantment The enchantment to get the level of
-     * @return The enchantment's level
+     * @return The enchantment level, if available
      */
     Optional<Integer> getStoredEnchantmentLevel(Enchantment enchantment);
 }
