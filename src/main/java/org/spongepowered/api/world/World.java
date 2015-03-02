@@ -35,7 +35,6 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldStorage;
-import org.spongepowered.api.world.weather.WeatherVolume;
 
 import java.util.Map;
 import java.util.UUID;
@@ -43,7 +42,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, Viewer, WeatherVolume, Contextual, Identifiable {
+public interface World extends Extent, Viewer, Contextual, Identifiable {
 
     /**
      * Gets the {@link Difficulty} setting for this world.

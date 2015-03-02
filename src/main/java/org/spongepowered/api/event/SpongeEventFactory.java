@@ -142,7 +142,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
-import org.spongepowered.api.world.weather.WeatherVolume;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.Collection;
 import java.util.List;
@@ -1338,18 +1338,18 @@ public final class SpongeEventFactory {
      * Creates a new {@link LightningStrikeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param weatherVolume The volume the weather changed in
+     * @param weatherUniverse The volume the weather changed in
      * @param lightningStrike The lightning entity that struck
      * @param struckEntities The entities the lightning had struck
      * @param struckBlocks The blocks the lightning had struck
      * @return A new instance of the event
      */
-    public static LightningStrikeEvent createLightningStrike(Game game, WeatherVolume weatherVolume, Lightning lightningStrike,
+    public static LightningStrikeEvent createLightningStrike(Game game, WeatherUniverse weatherUniverse, Lightning lightningStrike,
             List<Entity> struckEntities, List<BlockLoc> struckBlocks) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("lightningStrike", lightningStrike);
-        values.put("weatherVolume", weatherVolume);
+        values.put("weatherUniverse", weatherUniverse);
         values.put("struckEntities", struckEntities);
         values.put("struckBlocks", struckBlocks);
         return createEvent(LightningStrikeEvent.class, values);
@@ -1359,16 +1359,17 @@ public final class SpongeEventFactory {
      * Creates a new {@link WeatherChangeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param weatherVolume The volume the weather changed in
+     * @param weatherUniverse The volume the weather changed in
      * @param initialWeather The previous weather
      * @param resultingWeather The weather to change to
      * @return A new instance of the event
      */
-    public static WeatherChangeEvent createWeatherChange(Game game, WeatherVolume weatherVolume, Weather initialWeather, Weather resultingWeather) {
+    public static WeatherChangeEvent createWeatherChange(Game game, WeatherUniverse weatherUniverse, Weather initialWeather,
+            Weather resultingWeather) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("initialWeather", initialWeather);
-        values.put("weatherVolume", weatherVolume);
+        values.put("weatherUniverse", weatherUniverse);
         values.put("resultingWeather", resultingWeather);
         return createEvent(WeatherChangeEvent.class, values);
     }

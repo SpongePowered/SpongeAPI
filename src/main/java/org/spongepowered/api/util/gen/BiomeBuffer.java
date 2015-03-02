@@ -22,26 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.gen;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
+import com.flowpowered.math.vector.Vector2i;
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
+ * An buffer for {@link BiomeType} data. This buffer has no direct relation
  * to the world and changes to it are not synchronized to the world.
  */
-public interface BlockBuffer extends VolumeBuffer {
+public interface BiomeBuffer extends AreaBuffer {
 
     /**
-     * Gets the block in the buffer at the given position.
+     * Get an object representing the biome at the given position.
+     *
+     * @param position The position
+     * @return The biome
+     */
+    BiomeType getBiome(Vector2i position);
+
+    /**
+     * Gets the {@link BiomeType} at the given location.
      *
      * @param x The X position
-     * @param y The Y position
      * @param z The Z position
-     * @return The block
+     * @return The biome
      */
-    BlockState getBlock(int x, int y, int z);
+    BiomeType getBiome(int x, int z);
 
 }

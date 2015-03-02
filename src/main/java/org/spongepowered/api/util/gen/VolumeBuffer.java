@@ -22,47 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.gen;
 
-package org.spongepowered.api.world.weather;
+import com.flowpowered.math.vector.Vector3i;
 
 /**
- * A volume containing {@link Weather}.
+ * Represents a buffered volume for some data, which is three dimensional.
  */
-public interface WeatherVolume {
+public interface VolumeBuffer {
 
     /**
-     * Gets the current {@link Weather} in this volume.
+     * Gets the minimal bound of the buffer's location.
      *
-     * @return The current weather.
+     * @return The minimal bound
      */
-    Weather getWeather();
+    Vector3i getMinBound();
 
     /**
-     * Gets the remaining duration of the current {@link Weather}.
+     * Gets the maximal bound of the buffer's location.
      *
-     * @return The remaining weather duration.
+     * @return The maximal bound
      */
-    long getRemainingDuration();
+    Vector3i getMaxBound();
 
     /**
-     * Gets the duration the current {@link Weather} has been running for.
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
+     * {@link #getMinBound()}.
      *
-     * @return The running weather duration.
+     * @return The size
      */
-    long getRunningDuration();
-
-    /**
-     * Sets the {@link Weather} of the volume with a random duration.
-     *
-     * @param weather The new {@link Weather}.
-     */
-    void forecast(Weather weather);
-
-    /**
-     * Sets the {@link Weather} of the volume with the specified duration.
-     *
-     * @param weather The new {@link Weather}.
-     * @param duration The specified duration.
-     */
-    void forecast(Weather weather, long duration);
+    Vector3i getSize();
 }
