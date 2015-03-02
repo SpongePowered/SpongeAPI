@@ -23,42 +23,46 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.biome.BiomeType;
+package org.spongepowered.api.world.weather;
 
 /**
- * A volume containing biomes.
+ * A universe affected by {@link Weather}.
  */
-public interface BiomeVolume {
+public interface WeatherUniverse {
 
     /**
-     * Get an object representing the biome at the given position.
+     * Gets the current {@link Weather} in this volume.
      *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
-     *
-     * @param position The position
-     * @return The biome
+     * @return The current weather.
      */
-    BiomeType getBiome(Vector3i position);
+    Weather getWeather();
 
     /**
-     * Sets the biome at the given position in the world.
+     * Gets the remaining duration of the current {@link Weather}.
      *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
-     *
-     * @param position The position
-     * @param biome The biome
+     * @return The remaining weather duration.
      */
-    void setBiome(Vector3i position, BiomeType biome);
+    long getRemainingDuration();
 
+    /**
+     * Gets the duration the current {@link Weather} has been running for.
+     *
+     * @return The running weather duration.
+     */
+    long getRunningDuration();
+
+    /**
+     * Sets the {@link Weather} of the volume with a random duration.
+     *
+     * @param weather The new {@link Weather}.
+     */
+    void forecast(Weather weather);
+
+    /**
+     * Sets the {@link Weather} of the volume with the specified duration.
+     *
+     * @param weather The new {@link Weather}.
+     * @param duration The specified duration.
+     */
+    void forecast(Weather weather, long duration);
 }

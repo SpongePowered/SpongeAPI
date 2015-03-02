@@ -25,23 +25,11 @@
 package org.spongepowered.api.util.gen;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * A two-dimensional buffer for {@link BiomeType} data. This buffer has no
- * direct relation to the world and changes to it are not synchronized to the
- * world.
+ * Represents a buffered area for some data, which is two dimensional.
  */
-public interface BiomeArea {
-
-    /**
-     * Gets the {@link BiomeType} at the given location.
-     *
-     * @param x The X position
-     * @param z The Z position
-     * @return The biome
-     */
-    BiomeType getBiome(int x, int z);
+public interface AreaBuffer {
 
     /**
      * Gets the minimal bound of the buffer's location.
