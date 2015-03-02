@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text.action;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
@@ -122,7 +121,7 @@ public final class TextActions {
      * @param entity The entity to display
      * @return The created hover action instance
      */
-    public static HoverAction.ShowEntity showEntity(Entity entity) {
+    public static HoverAction.ShowEntity showEntity(HoverAction.ShowEntity.Ref entity) {
         return new HoverAction.ShowEntity(entity);
     }
 
