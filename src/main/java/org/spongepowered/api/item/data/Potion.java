@@ -28,12 +28,32 @@ import org.spongepowered.api.potion.PotionEffect;
 
 import java.util.Set;
 
+/**
+ * 
+ * Represents a potion bottle.
+ *
+ */
 public interface Potion extends ItemData {
 
+    /**
+     * Gets the {@link PotionEffect}s in this potion.
+     * 
+     * @return The PotionEffects in this potion
+     */
     Set<PotionEffect> getEffects();
 
+    /**
+     * Adds a {@link PotionEffect} to this potion.
+     * 
+     * @param effect The PotionEffect to add
+     */
     void addEffect(PotionEffect effect);
 
+    /**
+     * Removes a {@link PotionEffect} to this potion.
+     * 
+     * @param effect The PotionEffect to remove
+     */
     void removeEffect(PotionEffect effect);
 
 }

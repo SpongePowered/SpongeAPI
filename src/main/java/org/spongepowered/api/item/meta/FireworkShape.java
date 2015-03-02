@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.item.meta;
 
-
+/**
+ * 
+ * Represents a possible shape for a {@link FireworkExplosion}.
+ *
+ */
 public interface FireworkShape {
 
+    /**
+     * Gets the name of this shape.
+     * 
+     * @return The name of this shape
+     */
     String getName();
 
 }

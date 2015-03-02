@@ -30,10 +30,25 @@ import com.google.common.base.Optional;
 
 import javax.annotation.Nullable;
 
+/**
+ * 
+ * Represents a skull item.
+ *
+ */
 public interface Skull extends ItemBlockData {
 
+    /**
+     * Gets the profile of this skull.
+     * 
+     * @return The profile of this skull.
+     */
     Optional<GameProfile> getProfile();
 
+    /**
+     * Sets the profile of this skull.
+     * 
+     * @param profile The profile of this skull
+     */
     void setProfile(@Nullable GameProfile profile);
 
 }

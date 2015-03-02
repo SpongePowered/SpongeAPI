@@ -24,13 +24,46 @@
  */
 package org.spongepowered.api.item.meta;
 
-
+/**
+ * 
+ * A generation of a book.
+ *
+ */
 public interface BookGeneration {
 
+    /**
+     * Gets if a book of this generation can be copied.
+     * 
+     * @return If a book of this generation can be copied
+     */
     boolean canBeCopied();
 
+    /**
+     * Gets the generation of this book as an integer.
+     * 
+     * @return The generation of this book as an integer
+     */
     int getGeneration();
 
+    /**
+     * Gets if this generation is a copy or an original.
+     * 
+     * @return If this generation is a copy or an original
+     */
     boolean isCopy();
+
+    /*
+     * Space: the final frontier. These are the voyages of the starship
+     * Enterprise. Its continuing mission: to explore strange new worlds, to
+     * seek out new life and new civilizations, to boldly go where no one has
+     * gone before.
+     */
+
+    /**
+     * Gets the generation a book copied from this one is.
+     * 
+     * @return The next generation.
+     */
+    BookGeneration getNextGeneration();
 
 }

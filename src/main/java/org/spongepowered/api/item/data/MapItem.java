@@ -28,11 +28,31 @@ import org.spongepowered.api.item.meta.MapDecoration;
 
 import java.util.List;
 
+/**
+ *
+ * Represents a map.
+ *
+ */
 public interface MapItem extends ItemData {
 
+    /**
+     * Gets if this map has a non-default scale.
+     * 
+     * @return If this map has a non-default scale
+     */
     boolean isScaled();
 
+    /**
+     * Gets the list of {@link MapDecoration}s on this map. Not read-only.
+     * 
+     * @return The list of MapDecorations on this map.
+     */
     List<MapDecoration> getDecorations();
 
+    /**
+     * Adds a {@link MapDecoration} to this map.
+     * 
+     * @param decoration The MapDecoration to add
+     */
     void addDecoration(MapDecoration decoration);
 }

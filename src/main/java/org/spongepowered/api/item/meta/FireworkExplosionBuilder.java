@@ -27,23 +27,90 @@ package org.spongepowered.api.item.meta;
 import java.awt.Color;
 import java.util.List;
 
-
+/**
+ * 
+ * A builder for {@link FireworkExplosion}s.
+ *
+ */
 public interface FireworkExplosionBuilder {
 
+    /**
+     * Sets if the built {@link FireworkExplosion} should flicker.
+     * 
+     * @param flicker If the built FireworkExplosion should flicker
+     * @return This builder, for chaining
+     */
     FireworkExplosionBuilder flicker(boolean flicker);
 
+    /**
+     * Sets if the built {@link FireworkExplosion} should have a trail.
+     * 
+     * @param trail If the built FireworkExplosion should have a trail
+     * @return This builder, for chaining
+     */
     FireworkExplosionBuilder trail(boolean trail);
 
+    /**
+     * Adds a primary color to the built {@link FireworkExplosion}.
+     * 
+     * @param color The color to add
+     * @return This builder, for chaining
+     */
     FireworkExplosionBuilder color(Color color);
 
+    /**
+     * Adds multiple primary colors to the built {@link FireworkExplosion}.
+     * 
+     * @param colors The colors to add
+     * @return This builder, for chaining
+     */
     FireworkExplosionBuilder colors(List<Color> colors);
 
-    FireworkExplosionBuilder fadeColor(Color color);
+    /**
+     * Adds multiple primary colors to the built {@link FireworkExplosion}.
+     * 
+     * @param colors The colors to add
+     * @return This builder, for chaining
+     */
+    FireworkExplosionBuilder colors(Color... colors);
 
+    /**
+     * Adds a primary color to the built {@link FireworkExplosion}.
+     * 
+     * @param fadeColor The color to add
+     * @return This builder, for chaining
+     */
+    FireworkExplosionBuilder fadeColor(Color fadeColor);
+
+    /**
+     * Adds multiple primary colors to the built {@link FireworkExplosion}.
+     * 
+     * @param fadeColors The colors to add
+     * @return This builder, for chaining
+     */
     FireworkExplosionBuilder fadeColors(List<Color> fadeColors);
 
+    /**
+     * Adds multiple primary colors to the built {@link FireworkExplosion}.
+     * 
+     * @param fadeColors The colors to add
+     * @return This builder, for chaining
+     */
+    FireworkExplosionBuilder fadeColors(Color... fadeColors);
+
+    /**
+     * Sets the shape of the built {@link FireworkExplosion}.
+     * 
+     * @param shape The shape of the built FireworkExplosion
+     * @return This builder, for chaining
+     */
     FireworkExplosionBuilder shape(FireworkShape shape);
 
+    /**
+     * Builds a {@link FireworkExplosion} with the set parameters.
+     * 
+     * @return A FireworkExplosion with the set parameters
+     */
     FireworkExplosion build();
 
 }

@@ -31,10 +31,44 @@ import com.google.common.base.Optional;
 
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
+/**
+ * 
+ * Represents data associated with all items that place a block.
+ *
+ */
 public interface ItemBlockData extends ItemData {
 
+    /**
+     * Gets the blocks this block is placeable on. Optional.absent() represents
+     * all blocks.
+     * 
+     * @return The blocks this block is placeable on
+     */
     Optional<Set<BlockType>> getPlaceableOn();
 
+    /**
+     * Sets the list of blocks this block is placeable on.
+     * 
+     * @param placeableOn The new list of blocks this block is placeable on
+     */
+    void setPlaceableOn(@Nullable Set<BlockType> placeableOn);
+
+    /**
+     * Gets the saved {@link TileEntity} associated with this item, to be added
+     * to a placed block.
+     * 
+     * @return The saved TileEntity associated with this item
+     */
     Optional<TileEntity> getSavedTileEntity();
+
+    /**
+     * Sets the saved {@link TileEntity} associated with this item, to be added
+     * to a placed block.
+     * 
+     * @param savedData The new saved TileEntity associated with this item
+     */
+    void setSavedTileEntity(@Nullable TileEntity savedData);
 
 }

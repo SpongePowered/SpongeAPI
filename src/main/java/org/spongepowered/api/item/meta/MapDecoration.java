@@ -26,19 +26,53 @@ package org.spongepowered.api.item.meta;
 
 import com.flowpowered.math.vector.Vector2i;
 
-
+/**
+ * 
+ * Represents a decoration on a map.
+ *
+ */
 public interface MapDecoration {
 
+    /**
+     * Gets the {@link MapDecorationType} of this decoration.
+     * 
+     * @return The MapDecorationType of this decoration
+     */
     MapDecorationType getType();
     
+    /**
+     * Sets the {@link MapDecorationType} of this decoration.
+     * 
+     * @param type The new MapDecorationType of this decoration
+     */
     void setType(MapDecorationType type);
 
+    /**
+     * Gets the position of this decoration on the map.
+     * 
+     * @return The position of this decoration on the map
+     */
     Vector2i getPosition();
 
+    /**
+     * Sets the position of this decoration on the map.
+     * 
+     * @param position The new position of this decoration on the map
+     */
     void setPosition(Vector2i position);
 
+    /**
+     * Gets the rotation of this decoration on the map.
+     * 
+     * @return The rotation of this decoration on the map
+     */
     int getRotation();
 
-    void setRotation();
+    /**
+     * Sets the rotation of this decoration on the map.
+     * 
+     * @param rotation The new rotation of this decoration on the map
+     */
+    void setRotation(int rotation);
     
 }

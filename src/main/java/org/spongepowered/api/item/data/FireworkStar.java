@@ -26,11 +26,25 @@ package org.spongepowered.api.item.data;
 
 import org.spongepowered.api.item.meta.FireworkExplosion;
 
-
+/**
+ * 
+ * Represents a firework star
+ *
+ */
 public interface FireworkStar extends ItemData {
 
+    /**
+     * Gets the {@link FireworkExplosion} associated with this star.
+     * 
+     * @return The FireworkExplosion associated with this star
+     */
     FireworkExplosion getExplosion();
 
+    /**
+     * Sets the {@link FireworkExplosion} associated with this star.
+     * 
+     * @param explosion The FireworkExplosion associated with this star
+     */
     void setExplosion(FireworkExplosion explosion);
 
 }

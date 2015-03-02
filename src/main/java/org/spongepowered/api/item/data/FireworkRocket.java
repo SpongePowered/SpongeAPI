@@ -28,15 +28,41 @@ import org.spongepowered.api.item.meta.FireworkExplosion;
 
 import java.util.Set;
 
-
+/**
+ * Represents a firework rocket in an inventory.
+ */
 public interface FireworkRocket extends ItemData {
 
+    /**
+     * Gets the explosions this firework will cause. Not read-only.
+     * 
+     * @return The explosions this firework will cause
+     */
     Set<FireworkExplosion> getExplosions();
 
+    /**
+     * Adds an explosion to this firewwork.
+     * 
+     * @param explosion The explosion to add
+     */
     void addExplosion(FireworkExplosion explosion);
 
+    /**
+     * Gets how long this rocket will fly before exploding, in multiples of half
+     * seconds, though the actual value of a created Firework is randomized
+     * more.
+     * 
+     * @return How long this rocket will fly before exploding
+     */
     int getFlightTime();
 
+    /**
+     * Gets how long this rocket will fly before exploding, in multiples of half
+     * seconds, though the actual value of a created Firework is randomized
+     * more.
+     * 
+     * @param time How long this rocket will now fly before exploding
+     */
     void setFlightTime(int time);
 
 }

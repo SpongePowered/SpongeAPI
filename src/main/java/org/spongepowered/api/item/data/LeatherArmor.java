@@ -26,11 +26,25 @@ package org.spongepowered.api.item.data;
 
 import java.awt.Color;
 
-
+/**
+ * 
+ * Represents a piece of leather armor.
+ *
+ */
 public interface LeatherArmor extends ItemData {
 
+    /**
+     * Gets the color this armor is dyed.
+     * 
+     * @return The color this armor is dyed
+     */
     Color getColor();
 
+    /**
+     * Sets the color this armor is dyed.
+     * 
+     * @param color The color this armor is now dyed
+     */
     void setColor(Color color);
 
 }

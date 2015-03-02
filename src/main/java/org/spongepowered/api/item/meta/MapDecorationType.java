@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.item.meta;
 
-
+/**
+ * 
+ * Represents a type of decoration on a map.
+ *
+ */
 public interface MapDecorationType {
 
+    /**
+     * Gets the name of this decoration type.
+     * 
+     * @return The name of this decoration type
+     */
     String getName();
 
 }

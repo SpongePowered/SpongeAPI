@@ -26,15 +26,42 @@ package org.spongepowered.api.item.data;
 
 import org.spongepowered.api.item.Enchantment;
 
+import com.google.common.base.Optional;
+
 import java.util.Map;
 
+/**
+ * Represents an enchanted book.
+ */
 public interface EnchantedBook extends ItemData {
 
+    /**
+     * Gets the enchantments stored in this book.
+     * 
+     * @return The enchantments stored in this book
+     */
     Map<Enchantment, Integer> getStoredEnchantments();
     
+    /**
+     * Sets a stored enchantment to a certain level.
+     * 
+     * @param enchantment The enchantment to set
+     * @param level The enchantment's level
+     */
     void setStoredEnchantment(Enchantment enchantment, int level);
 
+    /**
+     * Removes a stored enchantment from this book.
+     * 
+     * @param enchantment The enchantment to remove
+     */
     void removeStoredEnchantment(Enchantment enchantment);
     
-    int getStoredEnchantmentLevel(Enchantment enchantment);
+    /**
+     * Gets the level of a certain enchantment.
+     * 
+     * @param enchantment The enchantment to get the level of
+     * @return The enchantment's level
+     */
+    Optional<Integer> getStoredEnchantmentLevel(Enchantment enchantment);
 }
