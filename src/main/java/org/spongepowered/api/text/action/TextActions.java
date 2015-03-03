@@ -24,10 +24,15 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
 import java.net.URL;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Utility methods to create instances of {@link TextAction}s.
@@ -123,6 +128,43 @@ public final class TextActions {
      */
     public static HoverAction.ShowEntity showEntity(HoverAction.ShowEntity.Ref entity) {
         return new HoverAction.ShowEntity(entity);
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
+     *
+     * @param uuid The UUID of the entity
+     * @param name The name of the entity
+     * @param type The type of the entity
+     * @return The created hover action instance
+     */
+    public static HoverAction.ShowEntity showEntity(UUID uuid, String name, @Nullable EntityType type) {
+        return showEntity(new HoverAction.ShowEntity.Ref(uuid, name, type));
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
+     *
+     * @param uuid The UUID of the entity
+     * @param name The name of the entity
+     * @return The created hover action instance
+     */
+    public static HoverAction.ShowEntity showEntity(UUID uuid, String name) {
+        return showEntity(new HoverAction.ShowEntity.Ref(uuid, name));
+    }
+
+    /**
+     * Creates a new {@link HoverAction} that will show information about an
+     * entity when it is hovered.
+     *
+     * @param entity The entity
+     * @param name The name of the entity
+     * @return The created hover action instance
+     */
+    public static HoverAction.ShowEntity showEntity(Entity entity, String name) {
+        return showEntity(new HoverAction.ShowEntity.Ref(entity, name));
     }
 
     /**
