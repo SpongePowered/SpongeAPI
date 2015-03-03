@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.stats;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Represents some statistic in Minecraft with a string ID.
  */
-public interface Statistic {
+public interface Statistic extends Translatable {
 
     /**
      * Gets the ID for this Statistic.
