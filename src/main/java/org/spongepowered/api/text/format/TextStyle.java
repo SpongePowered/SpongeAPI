@@ -26,7 +26,6 @@ package org.spongepowered.api.text.format;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.Text;
@@ -444,7 +443,7 @@ public class TextStyle {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return Objects.toStringHelper(this)
                 .add("bold", this.bold)
                 .add("italic", this.italic)
                 .add("underline", this.underline)

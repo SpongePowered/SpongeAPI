@@ -31,11 +31,13 @@ package org.spongepowered.api.text.selector;
 public interface SelectorFactory {
 
     /**
-     * Creates a {@link SelectorBuilder} with no type set and no arguments.
+     * Creates a {@link SelectorBuilder} with the specified type and no
+     * arguments.
      *
-     * @return A new selector builder with no data
+     * @param type The type of the selector
+     * @return A new selector builder with the specified type
      */
-    SelectorBuilder createEmptyBuilder();
+    SelectorBuilder createBuilder(SelectorType type);
 
     /**
      * Parses a {@link Selector} from the given selector string.

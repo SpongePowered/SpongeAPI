@@ -35,12 +35,14 @@ public final class Selectors {
     }
 
     /**
-     * Creates a {@link SelectorBuilder} with no data.
+     * Creates a {@link SelectorBuilder} with the specified type and no
+     * arguments.
      *
-     * @return A new selector builder with no data
+     * @param type The type of the selector
+     * @return A new selector builder with the specified type
      */
-    public static SelectorBuilder builder() {
-        return factory.createEmptyBuilder();
+    public static SelectorBuilder builder(SelectorType type) {
+        return factory.createBuilder(type);
     }
 
     /**

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.text.action;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.Identifiable;
 
 import java.util.UUID;
 
@@ -122,7 +122,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
          * Represents a reference to an entity, used in the underlying JSON of the
          * show entity action.
          */
-        public static final class Ref {
+        public static final class Ref implements Identifiable {
 
             private final UUID uuid;
             private final String name;
@@ -173,16 +173,17 @@ public abstract class HoverAction<R> extends TextAction<R> {
             }
 
             /**
-             * Retrieves the UUID that this Ref refers to.
+             * Retrieves the UUID that this {@link Ref} refers to.
              *
              * @return The UUID
              */
-            public UUID getUuid() {
+            @Override
+            public UUID getUniqueId() {
                 return this.uuid;
             }
 
             /**
-             * Retrieves the name that this Ref refers to.
+             * Retrieves the name that this {@link Ref} refers to.
              *
              * @return The name
              */
@@ -191,21 +192,12 @@ public abstract class HoverAction<R> extends TextAction<R> {
             }
 
             /**
-             * Retrieves the type that this Ref refers to, if it exists.
+             * Retrieves the type that this {@link Ref} refers to, if it exists.
              *
              * @return The type, or {@link Optional#absent()}
              */
             public Optional<EntityType> getType() {
                 return this.type;
-            }
-
-            @Override
-            public String toString() {
-                return MoreObjects.toStringHelper(this)
-                        .add("uuid", this.uuid)
-                        .add("name", this.name)
-                        .add("type", this.type)
-                        .toString();
             }
 
             @Override
@@ -228,6 +220,17 @@ public abstract class HoverAction<R> extends TextAction<R> {
             public int hashCode() {
                 return Objects.hashCode(this.uuid, this.name, this.type);
             }
+
+
+            @Override
+            public String toString() {
+                return Objects.toStringHelper(this)
+                        .add("uuid", this.uuid)
+                        .add("name", this.name)
+                        .add("type", this.type)
+                        .toString();
+            }
+
         }
 
     }

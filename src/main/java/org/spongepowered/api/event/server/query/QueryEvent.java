@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.server.query;
 
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.text.message.Message;
 
 import java.net.InetSocketAddress;
 
