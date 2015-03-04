@@ -39,6 +39,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
 
     /**
      * Gets the exhastion value of this human entity.
+     *
      * <p>When exhaustion level reaches 0, saturation may begin to diminish.
      * </p>
      *
@@ -48,6 +49,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
 
     /**
      * Sets the exhaustion value of this human entity.
+     *
      * <p>When exhaustion level reaches 0, saturation may begin to diminish.
      * </p>
      *
@@ -57,6 +59,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
 
     /**
      * Gets the current saturation level of this human entity.
+     *
      * <p>Saturation acts as a buffer for food level. Food level will not
      * decrease while the saturation level is greater than zero.</p>
      *
@@ -66,6 +69,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
 
     /**
      * Sets the saturation level of this human entity.
+     *
      * <p>Saturation acts as a buffer for food level. Food level will not
      * decrease while the saturation level is greater than zero.</p>
      *
@@ -157,12 +161,18 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
     /**
      * Returns whether this human entity is sneaking.
      *
+     * <p>Sneaking may entail reduced nametag visibility and movement speed in
+     * relation to the subject Human.</p>
+     *	 
      * @return Whether this human entity is sneaking
      */
     boolean isSneaking();
 
     /**
      * Sets whether this human entity is sneaking.
+     *
+     * <p>Sneaking may entail reduced nametag visibility and movement speed in
+     * relation to the subject Human.</p>
      *
      * @param sneaking Whether this human entity should be sneaking.
      */

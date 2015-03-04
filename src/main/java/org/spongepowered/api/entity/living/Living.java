@@ -294,20 +294,4 @@ public interface Living extends Entity {
      * @param invisible Whether this entity is invisible or not
      */
     void setInvisible(boolean invisible);
-
-    /**
-     * Returns whether this living entity is invisible to a given player.
-     *
-     * @param otherPlayer The player to toggle visibility of this entity for
-     * @return Whether this entity is invisible to the given player
-     */
-    boolean isInvisible(Player otherPlayer);
-
-    /**
-     * Sets whether this living entity is invisible to a given player.
-     *
-     * @param otherPlayer The player to toggle visibility of this entity for
-     * @param invisible Whether this entity is invisible to the given player
-     */
-    void setInvisible(Player otherPlayer, boolean invisible);
 }
