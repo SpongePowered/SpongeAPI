@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server;
+package org.spongepowered.api.event.server.query;
 
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.text.message.Message;
