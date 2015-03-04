@@ -44,7 +44,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return The current exhaustion level
      */
-    float getExhaustion();
+    double getExhaustion();
 
     /**
      * Sets the exhaustion value of this human entity.
@@ -53,7 +53,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @param exhaustion The new exhaustion level
      */
-    void setExhaustion(float exhaustion);
+    void setExhaustion(double exhaustion);
 
     /**
      * Gets the current saturation level of this human entity.
@@ -62,7 +62,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return The current saturation level
      */
-    float getSaturation();
+    double getSaturation();
 
     /**
      * Sets the saturation level of this human entity.
@@ -71,17 +71,18 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @param saturation The new saturation level
      */
-    void setSaturation(float saturation);
+    void setSaturation(double saturation);
 
     /**
      * Gets the current food saturation of this human entity.
+     *
      * <p>Food level has health effects, depending on game difficulty and
      * hunger levels. If the food level is high enough, the human entity
      * may heal. If the food level is at 0, the human entity may starve.</p>
      *
      * @return The current food level
      */
-    float getFoodLevel();
+    double getFoodLevel();
 
     /**
      * Sets the current food saturation of this human entity.
@@ -92,7 +93,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @param foodLevel The new food level
      */
-    void setFoodLevel(float foodLevel);
+    void setFoodLevel(double foodLevel);
 
     /**
      * Gets the current experience accumulated since the last level-up.
@@ -101,7 +102,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return The current experience accumulated since the last level-up.
      */
-    double getExperienceSinceLevel();
+    int getExperienceSinceLevel();
 
     /**
      * Sets the experience accumulated since the last level-up.
@@ -110,7 +111,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @param experience The experience accumulated since the last level-up.
      */
-    void setExperienceSinceLevel(double experience);
+    void setExperienceSinceLevel(int experience);
 
     /**
      * Gets the experience required since the last level to level up.
@@ -121,7 +122,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return the experience required since the last level to level up
      */
-    double getExperienceBetweenLevels();
+    int getExperienceBetweenLevels();
 
     /**
      * Gets the current experience level of this human.
