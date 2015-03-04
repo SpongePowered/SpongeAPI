@@ -27,7 +27,6 @@ package org.spongepowered.api.item.inventory;
 import com.google.common.base.Optional;
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 import org.spongepowered.api.text.translation.Translatable;
 
@@ -381,7 +380,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *      pseudo-duck-typing
      * @return the query result 
      */
-    <T extends Inventory> T query(ItemTypes... types);
+    <T extends Inventory> T query(ItemType... types);
 
     /**
      * Query this inventory for inventories containing any stacks which match
