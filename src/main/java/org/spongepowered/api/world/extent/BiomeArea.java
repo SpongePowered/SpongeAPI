@@ -29,9 +29,7 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * A two-dimensional buffer for {@link BiomeType} data. This buffer has no
- * direct relation to the world and changes to it are not synchronized to the
- * world.
+ * An area containing biomes.
  */
 public interface BiomeArea {
 

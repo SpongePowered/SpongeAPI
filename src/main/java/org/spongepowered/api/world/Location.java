@@ -140,7 +140,8 @@ public class Location {
      * @return The block
      */
     public BlockLoc getBlock() {
-        return getExtent().getBlock(getPosition());
+        Vector3d position = getPosition();
+        return getExtent().getFullBlock(position.getFloorX(), position.getFloorY(), position.getFloorZ());
     }
 
 }

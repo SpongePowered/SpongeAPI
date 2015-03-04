@@ -26,22 +26,13 @@ package org.spongepowered.api.util.gen;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.world.extent.BlockVolume;
 
 /**
  * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
  * to the world and changes to it are not synchronized to the world.
  */
-public interface MutableBlockBuffer extends BlockBuffer {
-
-    /**
-     * Sets the block in the buffer at the given position.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param block The new block state
-     */
-    void setBlock(int x, int y, int z, BlockState block);
+public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
 
     /**
      * Fills the entire buffer with the given block.
