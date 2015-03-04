@@ -22,28 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.data;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents an item data that can be compared based on a pseudo enum
+ * representation of this API.
+ *
+ * @param <T> The type of pseudo enum
  */
-public interface Dyeable {
+public interface PseudoEnumItemData<T, C extends PseudoEnumItemData<T, C>> extends ItemData<C> {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the value of this item data.
      *
-     * @return The current dye color
+     * @return The value of this data
      */
-    DyeColor getColor();
+    T get();
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Sets the value of this item data.
      *
-     * @param color The new dye color
+     * @param value The value to set
      */
-    void setColor(DyeColor color);
+    void set(T value);
 
 }

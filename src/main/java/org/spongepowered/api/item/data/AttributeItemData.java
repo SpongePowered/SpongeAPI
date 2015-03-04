@@ -22,28 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import org.spongepowered.api.attribute.AttributeModifier;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents an item data that deals specifically with an item stack granting
+ * {@link AttributeModifier}s. Depending on the item, some attribute modifiers
+ * may not be compatible with the item.
+ *
+ * <p>It should be noted that while item stack is an attribute source, the
+ * attributes should be managed through an {@link AttributeItemData}
+ * object.</p>
  */
-public interface Dyeable {
-
-    /**
-     * Gets the current {@link DyeColor} this is dyed.
-     *
-     * @return The current dye color
-     */
-    DyeColor getColor();
-
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
+public interface AttributeItemData extends ListItemData<AttributeModifier, AttributeItemData> {
 
 }

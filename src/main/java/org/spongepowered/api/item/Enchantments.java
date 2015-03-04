@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.item;
 
-public class Enchantments {
+public final class Enchantments {
 
     public static final Enchantment PROTECTION = null;
     public static final Enchantment FIRE_PROTECTION = null;
@@ -52,4 +52,7 @@ public class Enchantments {
     public static final Enchantment INFINITY = null;
     public static final Enchantment LUCK_OF_THE_SEA = null;
     public static final Enchantment LURE = null;
+
+    private Enchantments() {
+    }
 }

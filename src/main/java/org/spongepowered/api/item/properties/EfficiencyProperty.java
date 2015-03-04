@@ -22,28 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.properties;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents a property on an item that has an efficiency qualifier applied
+ * when mining harvestable blocks. For determining whether a block can be
+ * harvested, use {@link HarvestingProperty}.
  */
-public interface Dyeable {
+public class EfficiencyProperty extends IntProperty {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Creates a new EfficiencyProperty property for the specified value.
      *
-     * @return The current dye color
+     * @param value value to match
      */
-    DyeColor getColor();
+    public EfficiencyProperty(int value) {
+        super(value);
+    }
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Creates a new EfficiencyProperty property for the specified value
+     * and operator.
      *
-     * @param color The new dye color
+     * @param value value to match
+     * @param operator the operator to use when comparing with other properties
      */
-    void setColor(DyeColor color);
+    public EfficiencyProperty(int value, Operator operator) {
+        super(value, operator);
+    }
 
+    /**
+     * Creates a new EfficiencyProperty property for the specified value
+     * and operator.
+     *
+     * @param value value to match
+     * @param operator the operator to use when comparing with other properties
+     */
+    public EfficiencyProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

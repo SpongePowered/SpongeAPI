@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.data;
 
 import org.spongepowered.api.block.meta.BannerPatternShape;
-import org.spongepowered.api.entity.living.animal.DyeColor;
+import org.spongepowered.api.item.DyeColor;
 import org.spongepowered.api.service.persistence.DataSerializable;
 
 import java.util.List;

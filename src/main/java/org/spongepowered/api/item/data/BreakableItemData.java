@@ -22,27 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.item.data;
 
-public final class DyeColors {
+import org.spongepowered.api.block.BlockType;
 
-    public static final DyeColor WHITE = null;
-    public static final DyeColor ORANGE = null;
-    public static final DyeColor MAGENTA = null;
-    public static final DyeColor LIGHT_BLUE = null;
-    public static final DyeColor YELLOW = null;
-    public static final DyeColor LIME = null;
-    public static final DyeColor PINK = null;
-    public static final DyeColor GRAY = null;
-    public static final DyeColor SILVER = null;
-    public static final DyeColor CYAN = null;
-    public static final DyeColor PURPLE = null;
-    public static final DyeColor BLUE = null;
-    public static final DyeColor BROWN = null;
-    public static final DyeColor GREEN = null;
-    public static final DyeColor RED = null;
-    public static final DyeColor BLACK = null;
+/**
+ * Represents an editable collection of {@link BlockType}s that can
+ * be broken with this item. This data usually refers to blocks that can be
+ * broken only when a human is in adventure mode.
+ *
+ * <p>Normally, when players are in survival gamemode, they can edit blocks
+ * without needing to know the item is able to break said block. However, when
+ * the player is in a gamemode like adventure, they loose the ability to edit
+ * blocks unless the item has this type of {@link BreakableItemData} to note
+ * which {@link BlockType}s can be broken with that item.</p>
+ */
+public interface BreakableItemData extends ListItemData<BlockType, BreakableItemData> {
 
-    private DyeColors() {
-    }
 }

@@ -22,28 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import java.awt.Color;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents item data that uses colors. Examples may include leather armor,
+ * dyes, and wool blocks.
  */
-public interface Dyeable {
+public interface ColoredItemData extends ItemData<ColoredItemData> {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the color data for this item stack.
      *
-     * @return The current dye color
+     * @return The color data for this item stack
      */
-    DyeColor getColor();
+    Color getColor();
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Sets the color data for this item stack.
      *
-     * @param color The new dye color
+     * @param color The color data for this item stack
      */
-    void setColor(DyeColor color);
+    void setColor(Color color);
 
 }

@@ -22,28 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.data;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents an item that can be cloned or copied.
+ *
+ * <p>Some items can be cloned or copied with crafting.</p>
+ *
+ * <p>Some items may prevent further cloning after a specified generation.</p>
  */
-public interface Dyeable {
+public interface CloneableData extends ItemData<CloneableData> {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the generation of this cloneable item.
      *
-     * @return The current dye color
+     * <p>The original always starts as generation 0.</p>
+     *
+     * @return The generation of the cloneable item
      */
-    DyeColor getColor();
+    int getGeneration();
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Sets the generation of this cloneable item.
      *
-     * @param color The new dye color
+     * <p>The original always starts as generation 0.</p>
+     *
+     * @param generation The generation of this item
      */
-    void setColor(DyeColor color);
+    void setGeneration(int generation);
+
+    /**
+     * Gets the generational limit to which the item would no longer
+     * be cloneable by normal means.
+     *
+     * @return The generational limit
+     */
+    int getGenerationLimit();
 
 }

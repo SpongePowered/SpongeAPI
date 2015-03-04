@@ -22,28 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item;
 
-import org.spongepowered.api.item.DyeColor;
+public final class DyeColors {
 
-/**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
- */
-public interface Dyeable {
+    public static final DyeColor WHITE = null;
+    public static final DyeColor ORANGE = null;
+    public static final DyeColor MAGENTA = null;
+    public static final DyeColor LIGHT_BLUE = null;
+    public static final DyeColor YELLOW = null;
+    public static final DyeColor LIME = null;
+    public static final DyeColor PINK = null;
+    public static final DyeColor GRAY = null;
+    public static final DyeColor SILVER = null;
+    public static final DyeColor CYAN = null;
+    public static final DyeColor PURPLE = null;
+    public static final DyeColor BLUE = null;
+    public static final DyeColor BROWN = null;
+    public static final DyeColor GREEN = null;
+    public static final DyeColor RED = null;
+    public static final DyeColor BLACK = null;
 
-    /**
-     * Gets the current {@link DyeColor} this is dyed.
-     *
-     * @return The current dye color
-     */
-    DyeColor getColor();
-
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
-
+    private DyeColors() {
+    }
 }

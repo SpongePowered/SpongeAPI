@@ -22,28 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.properties;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents a property that increases the food level of an entity
+ * based on consumption.
  */
-public interface Dyeable {
+public class FoodRestorationProperty extends IntProperty {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Creates a new {@link FoodRestorationProperty}.
      *
-     * @return The current dye color
+     * @param value The value of food level restored upon use
      */
-    DyeColor getColor();
+    public FoodRestorationProperty(int value) {
+        super(value);
+    }
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Creates a new {@link FoodRestorationProperty}.
      *
-     * @param color The new dye color
+     * @param value The value of food level restored upon use
+     * @param operator The operator to use to compare to other properties
      */
-    void setColor(DyeColor color);
+    public FoodRestorationProperty(int value, Operator operator) {
+        super(value, operator);
+    }
 
+    /**
+     * Creates a new {@link FoodRestorationProperty}.
+     *
+     * @param value The value of food level restored upon use
+     * @param operator The operator to use to compare to other properties
+     */
+    public FoodRestorationProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

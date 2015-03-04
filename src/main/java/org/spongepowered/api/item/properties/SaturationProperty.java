@@ -22,28 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.properties;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents an item property that replenishes saturation upon use or
+ * consumption. Examples of items that have these properties: any food item.
  */
-public interface Dyeable {
+public class SaturationProperty extends DoubleProperty {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Creates a new {@link SaturationProperty}.
      *
-     * @return The current dye color
+     * @param value The value of saturation replenished upon use
      */
-    DyeColor getColor();
+    public SaturationProperty(@Nullable Double value) {
+        super(value);
+    }
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Creates a new {@link SaturationProperty}.
      *
-     * @param color The new dye color
+     * @param value The value of saturation replenished upon use
+     * @param op The operator to use to compare to other properties
      */
-    void setColor(DyeColor color);
+    public SaturationProperty(@Nullable Double value, Operator op) {
+        super(value, op);
+    }
 
 }

@@ -22,28 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.properties;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents a limit on the number of uses on an item. Whether the uses are
+ * defined as durability or another item data value, usually, when the uses
+ * exceed this use limit, the item is removed or consumed.
  */
-public interface Dyeable {
+public class UseLimitProperty extends IntProperty {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Creates a new {@link UseLimitProperty}.
      *
-     * @return The current dye color
+     * @param value The maximum use limit
      */
-    DyeColor getColor();
+    public UseLimitProperty(int value) {
+        super(value);
+    }
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Creates a new {@link UseLimitProperty}.
      *
-     * @param color The new dye color
+     * @param value The maximum use limit
+     * @param operator The operator to use to compare to other properties
      */
-    void setColor(DyeColor color);
+    public UseLimitProperty(int value, Operator operator) {
+        super(value, operator);
+    }
 
+    /**
+     * Creates a new {@link UseLimitProperty}.
+     *
+     * @param value The maximum use limit
+     * @param operator The operator to use to compare to other properties
+     */
+    public UseLimitProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

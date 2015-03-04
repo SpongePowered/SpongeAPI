@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.properties;
+package org.spongepowered.api.item.properties;
 
-import org.spongepowered.api.item.inventory.InventoryProperty;
+import com.google.common.base.Objects;
 
 import javax.annotation.Nullable;
 
 /**
- * Base class for InventoryProperty implementations which stubs out all of the
+ * Base class for {@link ItemProperty} implementations which stubs out all of the
  * common boilerplate functionality.
  *
  * @param <K> Key type, use {@link String} if no particular key type is required
  * @param <V> Value type
  */
-public abstract class AbstractInventoryProperty<K, V> implements InventoryProperty<K, V> {
+public abstract class AbstractItemProperty<K, V> implements ItemProperty<K, V> {
 
     /**
      * Operator for comparing to other properties. Operators should always be
@@ -52,13 +52,14 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     /**
      * The value.
      */
+    @Nullable
     protected V value;
 
     /**
      * Initialise internal values to defaults, use this ctor if you plan to
      * override {@link #getKey} and {@link #getValue} yourself.
      */
-    protected AbstractInventoryProperty() {
+    protected AbstractItemProperty() {
         this(null);
     }
 
@@ -67,8 +68,8 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      *
      * @param value The value of the property
      */
-    protected AbstractInventoryProperty(@Nullable V value) {
-        this(null, value);
+    protected AbstractItemProperty(@Nullable V value) {
+        this(value, null);
     }
 
     /**
@@ -78,7 +79,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      * @param value The property value
      * @param op The operator for the property
      */
-    protected AbstractInventoryProperty(@Nullable V value, Operator op) {
+    protected AbstractItemProperty(@Nullable V value, Operator op) {
         this(null, value, op);
     }
 
@@ -88,11 +89,11 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      * @param key The key identifying the property
      * @param value The property value
      */
-    protected AbstractInventoryProperty(@Nullable K key, @Nullable V value) {
+    protected AbstractItemProperty(@Nullable K key, @Nullable V value) {
         this(key, value, null);
     }
 
-    protected AbstractInventoryProperty(@Nullable K key, @Nullable V value, Operator op) {
+    protected AbstractItemProperty(@Nullable K key, @Nullable V value, @Nullable Operator op) {
         this.key = key != null ? key : this.getDefaultKey(value);
         this.value = value;
         this.operator = op != null ? op : this.getDefaultOperator(this.key, value);
@@ -124,59 +125,37 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
         return Operator.defaultOperator();
     }
 
-    /* (non-Javadoc)
-     * @see org.spongepowered.api.item.inventory.InventoryProperty#getKey()
-     */
     @Override
     public K getKey() {
         return this.key;
     }
 
-    /* (non-Javadoc)
-     * @see org.spongepowered.api.item.inventory.InventoryProperty#getValue()
-     */
     @Override
     public V getValue() {
         return this.value;
     }
 
-    /* (non-Javadoc)
-     * @see org.spongepowered.api.item.inventory.InventoryProperty#getOperator()
-     */
     @Override
     public Operator getOperator() {
         return this.operator;
     }
 
-    /* (non-Javadoc)
-     * @see org.spongepowered.api.item.inventory.InventoryProperty#matches(
-     *          org.spongepowered.api.item.inventory.InventoryProperty)
-     */
     @Override
-    public boolean matches(@Nullable InventoryProperty<?, ?> other) {
+    public boolean matches(@Nullable ItemProperty<?, ?> other) {
         return this.getOperator().compare(this, other);
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        if (!(obj instanceof InventoryProperty)) {
+        if (!(obj instanceof ItemProperty)) {
             return false;
         }
 
-        InventoryProperty<?, ?> other = (InventoryProperty<?, ?>) obj;
-        if (!other.getKey().equals(this.getKey())) {
-            return false;
-        }
-
-        return other.getValue().equals(this.getValue());
+        ItemProperty<?, ?> other = (ItemProperty<?, ?>) obj;
+        return Objects.equal(other.getKey(), this.getKey()) && Objects.equal(other.getValue(), this.getValue());
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         return this.hashCodeOf(this.getKey()) ^ this.hashCodeOf(this.getValue()) * 37;
@@ -192,5 +171,5 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     protected int hashCodeOf(Object value) {
         return value != null ? value.hashCode() : 0;
     }
-    
+
 }

@@ -22,28 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import com.google.common.base.Optional;
+import org.spongepowered.api.GameProfile;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents an item that has ownable data by a specific player.
  */
-public interface Dyeable {
+public interface OwnableData extends ItemData<OwnableData> {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the owners profile.
      *
-     * @return The current dye color
+     * @return The owners profile, if available
      */
-    DyeColor getColor();
+    Optional<GameProfile> getProfile();
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Sets the profile that owns this item stack.
      *
-     * @param color The new dye color
+     * @param profile The profile that owns this item stack
      */
-    void setColor(DyeColor color);
+    void setProfile(@Nullable GameProfile profile);
 
 }

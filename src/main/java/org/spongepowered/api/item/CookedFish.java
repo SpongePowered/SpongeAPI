@@ -22,17 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+
+package org.spongepowered.api.item;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
 
-public interface DyeColor extends DataSerializable {
+/**
+ * Represents a type of cooked fish.
+ */
+public interface CookedFish extends DataSerializable {
 
     /**
-     * Gets the name of this color.
+     * Gets the id of this type of cooked fish.
      *
-     * @return The name of this color
+     * @return The id of this cooked fish
      */
-    String getName();
+    String getId();
 
 }

@@ -22,28 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item;
 
-import org.spongepowered.api.item.DyeColor;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
-/**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
- */
-public interface Dyeable {
+import java.awt.Color;
+
+public interface DyeColor extends DataSerializable {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the name of this color.
      *
-     * @return The current dye color
+     * @return The name of this color
      */
-    DyeColor getColor();
+    String getName();
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Gets this dye color as a {@link Color} for easy translation.
      *
-     * @param color The new dye color
+     * @return The color as a {@link Color}
      */
-    void setColor(DyeColor color);
+    Color getColor();
 
 }
