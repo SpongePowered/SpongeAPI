@@ -556,7 +556,8 @@ public final class SpongeEventFactory {
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<Item> droppedItems, int exp) {
+    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<Item> droppedItems,
+            int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1079,6 +1080,7 @@ public final class SpongeEventFactory {
      * @param newExperience The new experience the player will have towards the next level
      * @param newLevel The new level the player will have after death
      * @param keepsLevel Whether the player keeps all of their exp on death
+     * @param keepsInventory Whether the player should keep inventory
      * @return A new instance of the event
      */
     public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Message deathMessage,
