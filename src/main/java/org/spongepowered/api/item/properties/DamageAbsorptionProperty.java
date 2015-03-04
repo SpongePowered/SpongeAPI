@@ -22,28 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.properties;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents the percentage of damage the item will absorb when equipped. The
+ * damage absorbed can be dependent on the type of damage, equipment type, and
+ * item type.
  */
-public interface Dyeable {
+public class DamageAbsorptionProperty extends IntProperty {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
+     * damage absorption per hit.
      *
-     * @return The current dye color
+     * @param value The amount of absorbed damage
      */
-    DyeColor getColor();
+    public DamageAbsorptionProperty(int value) {
+        super(value);
+    }
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
+     * damage absorption per hit.
      *
-     * @param color The new dye color
+     * @param value The amount of absorbed damage
+     * @param operator The operator to compare this property to other properties
      */
-    void setColor(DyeColor color);
+    public DamageAbsorptionProperty(int value, Operator operator) {
+        super(value, operator);
+    }
 
+    /**
+     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
+     * damage absorption per hit.
+     *
+     * @param value The amount of absorbed damage
+     * @param operator The operator to compare this property to other properties
+     */
+    public DamageAbsorptionProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

@@ -22,28 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import org.spongepowered.api.item.Enchantment;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents item data related to an item having active {@link Enchantment}s.
+ *
+ * <p>Some enchantments are not compatible with some item types, so checking
+ * on the enchantment before setting is recommended.</p>
  */
-public interface Dyeable {
-
-    /**
-     * Gets the current {@link DyeColor} this is dyed.
-     *
-     * @return The current dye color
-     */
-    DyeColor getColor();
-
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
+public interface EnchantmentData extends MappedItemData<Enchantment, Integer, EnchantmentData> {
 
 }

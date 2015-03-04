@@ -22,28 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.properties;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents a item property that is used for defining the amount of fuel
+ * ticks an item will grant to a furnace.
+ *
+ * <p>As with all {@link ItemProperty}, this property is immutable when
+ * retrieved from an item.</p>
  */
-public interface Dyeable {
+public class BurningFuelProperty extends IntProperty {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Creates a new {@link BurningFuelProperty} with the given amount of
+     * fuel ticks.
      *
-     * @return The current dye color
+     * @param value The amount of fuel ticks
      */
-    DyeColor getColor();
+    public BurningFuelProperty(int value) {
+        super(value);
+    }
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Creates a new {@link BurningFuelProperty} with the given amount of
+     * fuel ticks.
      *
-     * @param color The new dye color
+     * @param value The amount of fuel ticks
+     * @param op The operator to compare this property to other properties
      */
-    void setColor(DyeColor color);
+    public BurningFuelProperty(int value, Operator op) {
+        super(value, op);
+    }
 
 }

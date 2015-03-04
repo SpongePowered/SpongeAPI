@@ -22,28 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import org.spongepowered.api.item.FireworkEffect;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents data specific to fireworks.
  */
-public interface Dyeable {
+public interface FireworkData extends ListItemData<FireworkEffect, FireworkData> {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the flight modifier for this firework.
      *
-     * @return The current dye color
+     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
+     * the modifier is used to calculate the fuse time of a firework when
+     * launched. This can be approximated by multiplying 10 and the modifier,
+     * and adding a random number between 0 and 13. Again, this is a general
+     * approximation of what vanilla Minecraft performs.</p>
+     *
+     * @return The flight modifier
      */
-    DyeColor getColor();
+    int getFlightModifier();
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Sets the flight modifier for this firework.
      *
-     * @param color The new dye color
+     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
+     * the modifier is used to calculate the fuse time of a firework when
+     * launched. This can be approximated by multiplying 10 and the modifier,
+     * and adding a random number between 0 and 13. Again, this is a general
+     * approximation of what vanilla Minecraft performs.</p>
+     *
+     * @param flightModifier The flight modifier
      */
-    void setColor(DyeColor color);
-
+    void setFlightModifier(int flightModifier);
 }

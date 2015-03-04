@@ -22,28 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import com.google.common.base.Optional;
+import org.spongepowered.api.text.message.Message;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents the display name of an item stack. If a display name is not
+ * provided, the item will default to using the traditional item type
+ * name.
+ *
+ * <p>Exceptions are made with written books as the title and display name
+ * are one and the same.</p>
  */
-public interface Dyeable {
+public interface DisplayNameData extends ItemData<DisplayNameData> {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the display name as a {@link Message}. The display name may be
+     * player set, or it may be undefined.
      *
-     * @return The current dye color
+     * @return The display name, if available
      */
-    DyeColor getColor();
+    Optional<Message> getDisplayName();
 
     /**
-     * Sets the {@link DyeColor} of this being.
+     * Sets the display name as a {@link Message}. If set to null,
+     * the display name is erased.
      *
-     * @param color The new dye color
+     * @param displayName The display name
      */
-    void setColor(DyeColor color);
+    void setDisplayName(@Nullable Message displayName);
 
 }

@@ -22,28 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item.data;
+
+import org.spongepowered.api.item.Fish;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents the type of {@link Fish} the fish item is.
+ *
+ * <p>Since different types of fish have different properties, it is
+ * recommended to further check the specific item properties associated with
+ * the fish type from the item stack after changing this data.</p>
  */
-public interface Dyeable {
-
-    /**
-     * Gets the current {@link DyeColor} this is dyed.
-     *
-     * @return The current dye color
-     */
-    DyeColor getColor();
-
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
+public interface FishItemData extends PseudoEnumItemData<Fish, FishItemData> {
 
 }

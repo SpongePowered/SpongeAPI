@@ -22,28 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
-
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents a possible shape for a firework explosion.
  */
-public interface Dyeable {
+public interface FireworkShape {
 
     /**
-     * Gets the current {@link DyeColor} this is dyed.
+     * Gets the string id of this shape.
      *
-     * @return The current dye color
+     * @return The string id of this shape
      */
-    DyeColor getColor();
-
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
+    String getId();
 
 }

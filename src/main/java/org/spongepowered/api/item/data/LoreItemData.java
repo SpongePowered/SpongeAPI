@@ -22,28 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Lore is a list of {@link Message}s that are displayed on an item
+ * tooltip that can say anything and everything.
  */
-public interface Dyeable {
-
-    /**
-     * Gets the current {@link DyeColor} this is dyed.
-     *
-     * @return The current dye color
-     */
-    DyeColor getColor();
-
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
+public interface LoreItemData extends ListItemData<Message, LoreItemData> {
 
 }

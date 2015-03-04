@@ -22,28 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.DyeColor;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.properties.ItemProperty;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
+ * Represents arbitrary mutable data on an {@link ItemStack}.
+ *
+ * <p>This is part of a larger item system composed of {@link ItemData} and
+ * {@link ItemProperty}. An {@link ItemStack} may have multiple of either
+ * or none at all.</p>
+ *
+ * @param <T> The extending type of {@link ItemData} for comparisons
  */
-public interface Dyeable {
-
-    /**
-     * Gets the current {@link DyeColor} this is dyed.
-     *
-     * @return The current dye color
-     */
-    DyeColor getColor();
-
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
+public interface ItemData<T extends ItemData<T>> extends Comparable<T>, DataSerializable {
 
 }

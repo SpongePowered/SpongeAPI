@@ -22,57 +22,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.item;
 
-package org.spongepowered.api.potion;
-
-import org.spongepowered.api.attribute.AttributeSource;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.service.persistence.DataSerializable;
 
+import java.awt.Color;
+import java.util.List;
+
 /**
- * Represents a possible Potion Effect.
+ * Represents a firework explosion.
  *
- * <p>PotionEffects can be added to {@link Living} entities via
- * {@link Living#addPotionEffect(PotionEffect, boolean)}.</p>
+ * <p>{@link FireworkEffect}s are immutable once created. To change one
+ * or create one, use {@link FireworkEffectBuilder}.</p>
  */
-public interface PotionEffect extends DataSerializable, AttributeSource {
+public interface FireworkEffect extends DataSerializable {
 
     /**
-     * Gets the {@link PotionEffectType} of this potion.
+     * Gets whether this {@link FireworkEffect} will flicker when
+     * detonated.
      *
-     * @return The type.
+     * @return Whether this effect will flicker
      */
-    PotionEffectType getType();
+    boolean flickers();
 
     /**
-     * Gets the duration for which this potion effect
-     * will apply for.
+     * Gets whether this {@link FireworkEffect} will have a trail
+     * when detonated.
      *
-     * @return The duration.
+     * @return Whether this effect will have a trail
      */
-    int getDuration();
+    boolean hasTrail();
 
     /**
-     * Gets the amplifier at which this potion effect
-     * will apply effects.
+     * Gets the ordered list of colors.
      *
-     * @return The amplifier.
+     * <p>In some implementations, the order of colors defines the colors
+     * showing from edge to center of the firework explosion.</p>
+     *
+     * @return The list of colors
      */
-    int getAmplifier();
+    List<Color> getColors();
 
     /**
-     * Gets if the potion effect is an ambient effect.
+     * Gets the ordered list of colors.
      *
-     * @return Gets if ambient.
+     * <p>Normally in vanilla, the order of colors defines the colors
+     * showing from edge to center of the firework explosion.</p>
+     *
+     * @return The list of colors
      */
-    boolean isAmbient();
+    List<Color> getFadeColors();
 
     /**
-     * Gets whether or not this potion effect should
-     * show particles.
+     * Gets the explosion shape.
      *
-     * @return If particles should be shown.
+     * @return The explosion shape
      */
-    boolean getShowParticles();
-
+    FireworkShape getShape();
 }

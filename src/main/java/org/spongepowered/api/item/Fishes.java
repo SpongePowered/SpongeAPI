@@ -22,28 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.item.DyeColor;
+package org.spongepowered.api.item;
 
-/**
- * Represents something that can be dyed, such as a
- * {@link org.spongepowered.api.entity.living.animal.Sheep}.
- */
-public interface Dyeable {
+public final class Fishes {
 
-    /**
-     * Gets the current {@link DyeColor} this is dyed.
-     *
-     * @return The current dye color
-     */
-    DyeColor getColor();
+    public static final Fish RAW_FISH = null;
+    public static final Fish SALMON = null;
+    public static final Fish CLOWNFISH = null;
+    public static final Fish PUFFERFISH = null;
 
-    /**
-     * Sets the {@link DyeColor} of this being.
-     *
-     * @param color The new dye color
-     */
-    void setColor(DyeColor color);
+    private Fishes() {
+    }
 
 }
