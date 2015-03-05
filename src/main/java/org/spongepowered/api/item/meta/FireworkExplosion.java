@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.meta;
 
 import java.awt.Color;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * 
@@ -63,12 +63,11 @@ public interface FireworkExplosion {
     void setHasTrail(boolean trail);
 
     /**
-     * Gets a list of the the primary colors of this firework explosion. Not
-     * read-only.
+     * Gets a list of the the primary colors of this firework explosion.
      * 
      * @return A list of the the primary colors of this firework explosion
      */
-    List<Color> getColors();
+    Collection<Color> getColors();
 
     /**
      * Adds a color to this firework explosion's primary colors.
@@ -78,12 +77,11 @@ public interface FireworkExplosion {
     void addColor(Color color);
 
     /**
-     * Gets a list of the the fade colors of this firework explosion. Not
-     * read-only.
+     * Gets a list of the the fade colors of this firework explosion.
      * 
      * @return A list of the the fade colors of this firework explosion
      */
-    List<Color> getFadeColors();
+    Collection<Color> getFadeColors();
 
     /**
      * Adds a color to this firework explosion's fade colors.
