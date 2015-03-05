@@ -125,7 +125,7 @@ public interface Team {
     boolean allowFriendlyFire();
 
     /**
-     * Sets whether friendly fire is enabled
+     * Sets whether friendly fire is enabled.
      *
      * @param enabled Whether friendly fire is enabled
      */

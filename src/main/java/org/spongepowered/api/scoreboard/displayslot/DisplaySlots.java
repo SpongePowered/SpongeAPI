@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
-import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-
 /**
- * Display slot names which display an objective in a particular place in-game
+ * Display slot names which display an objective in a particular place in-game.
  */
 public final class DisplaySlots {
 

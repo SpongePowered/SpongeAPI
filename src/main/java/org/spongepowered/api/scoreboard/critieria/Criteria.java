@@ -25,7 +25,7 @@
 package org.spongepowered.api.scoreboard.critieria;
 
 /**
- * Criteria names which trigger an objective to be modified by actions in-game
+ * Criteria names which trigger an objective to be modified by actions in-game.
  */
 public final class Criteria {
 

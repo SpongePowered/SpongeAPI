@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Human, User, CommandSource, Viewer {
+public interface  Player extends Human, User, CommandSource, Viewer {
 
     /**
      * Gets the player's display name. If none set, returns their current
@@ -155,7 +155,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      */
     void kick(Text.Literal reason);
 
-    /*
+    /**
      *
      * Gets the {@link Scoreboard} displayed to the player.
      *

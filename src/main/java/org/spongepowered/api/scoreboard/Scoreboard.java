@@ -62,6 +62,15 @@ public interface Scoreboard {
     Optional<Objective> getObjective(String name);
 
     /**
+     * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
+     * scoreboard, if one is present.
+     *
+     * @param slot The {@link DisplaySlot}
+     * @return the {@link Objective} currently displayed, if present
+     */
+    Optional<Objective> getObjective(DisplaySlot slot);
+
+    /**
      * Gets all {@link Objective}s of a Criteria on this scoreboard.
      *
      * @param criteria {@link Criterion} to search by
@@ -75,15 +84,6 @@ public interface Scoreboard {
      * @return A set of all {@link Objective}s on this scoreboard
      */
     Set<Objective> getObjectives();
-
-    /**
-     * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
-     * scoreboard, if one is present.
-     *
-     * @param slot The {@link DisplaySlot}
-     * @return the {@link Objective} currently displayed, if present
-     */
-    Optional<Objective> getObjective(DisplaySlot slot);
 
     /**
      * Gets all scores for an entry on this scoreboard.
