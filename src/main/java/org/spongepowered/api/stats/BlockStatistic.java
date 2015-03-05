@@ -25,17 +25,18 @@
 
 package org.spongepowered.api.stats;
 
+import org.spongepowered.api.block.BlockType;
+
 /**
- * Represents a type of statistic that is used to uniquely identify a group
- * {@link GroupedStatistic}s are belonging to.
+ * Represents a {@link Statistic} for a {@link BlockType}.
  */
-public interface StatisticType {
+public interface BlockStatistic extends Statistic {
 
     /**
-     * Gets the {@link StatisticUnit} this statistic is measured in.
+     * Gets the {@link BlockType} this {@link Statistic} measures.
      *
-     * @return The statistic unit this statistic is measured in
+     * @return The block type this statistic measures
      */
-    StatisticUnit getStatisticUnit();
+    BlockType getBlockType();
 
 }

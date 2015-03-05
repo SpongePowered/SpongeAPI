@@ -26,16 +26,31 @@
 package org.spongepowered.api.stats;
 
 /**
- * Represents a grouped {@link Statistic} with a {@link StatisticType} that
- * defines the grouping criteria.
+ * A utility class for getting all available {@link StatisticFormat}s.
  */
-public interface GroupedStatistic extends Statistic {
+public final class StatisticFormats {
 
     /**
-     * Gets the {@link StatisticType} this {@link Statistic} belongs to.
-     *
-     * @return The statistic type this statistic belongs to
+     * A statistic without a format.
      */
-    StatisticType getType();
+    public static StatisticFormat COUNT = null;
+    /**
+     * A statistic measured in centimeters, meters, or kilometers depending on
+     * the magnitude. The input is taken as centimeters with a scale of 1 block
+     * equaling 1 meter.
+     */
+    public static StatisticFormat DISTANCE = null;
+    /**
+     * A statistic measured in 0.1 steps.
+     */
+    public static StatisticFormat FRACTIONAL = null;
+    /**
+     * A statistic measured in seconds, minutes, hours, or days depending on the
+     * magnitude. The input is taken as ticks with 20 ticks equaling one second.
+     */
+    public static StatisticFormat TIME = null;
+
+    private StatisticFormats() {
+    }
 
 }

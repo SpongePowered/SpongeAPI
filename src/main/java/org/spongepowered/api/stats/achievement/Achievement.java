@@ -25,16 +25,24 @@
 package org.spongepowered.api.stats.achievement;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Represents an in-game achievement which may be earned by or given to players.
  */
 public interface Achievement extends Translatable {
-
+    
+    /**
+     * Gets the internal name for this achievement.
+     * 
+     * @return The internal name
+     */
+    String getInternalName();
+    
     /**
      * Returns the description that describes this achievement.
      *
@@ -52,8 +60,25 @@ public interface Achievement extends Translatable {
     /**
      * Returns the children of this achievement.
      *
-     * @return An immutable list of all children this achievement has
+     * @return An immutable collection of all children this achievement has
      */
-    List<Achievement> getChildren();
+    Collection<Achievement> getChildren();
+    
+    /**
+     * Gets the {@link Statistic} which this achievement is backed by if it is available.
+     * 
+     * @return The source statistic, if available
+     */
+    Optional<Statistic> getSourceStatistic();
+    
+    /**
+     * If this achievement is backed by a statistic (eg. if
+     * {@link #getSourceStatistic()} is not absent) then this will return the
+     * target value which must be reached for this achievement to be awarded to
+     * a player.
+     * 
+     * @return The target value, if available
+     */
+    Optional<Long> getStatisticTargetValue();
 
 }
