@@ -22,37 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.util.event.Cancellable;
+package org.spongepowered.api.world.weather;
 
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * A universe affected by {@link Weather}.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
+public interface WeatherUniverse {
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the current {@link Weather} in this volume.
      *
-     * @return The parent attempting to breed
+     * @return The current weather.
      */
-    @Override
-    Ageable getEntity();
+    Weather getWeather();
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the remaining duration of the current {@link Weather}.
      *
-     * @return The parent attempting to breed
+     * @return The remaining weather duration.
      */
-    Ageable getParent();
+    long getRemainingDuration();
 
     /**
-     * Gets the other parent attempting to breed.
+     * Gets the duration the current {@link Weather} has been running for.
      *
-     * @return The other parent attempting to breed
+     * @return The running weather duration.
      */
-    Ageable getOtherParent();
+    long getRunningDuration();
 
+    /**
+     * Sets the {@link Weather} of the volume with a random duration.
+     *
+     * @param weather The new {@link Weather}.
+     */
+    void forecast(Weather weather);
+
+    /**
+     * Sets the {@link Weather} of the volume with the specified duration.
+     *
+     * @param weather The new {@link Weather}.
+     * @param duration The specified duration.
+     */
+    void forecast(Weather weather, long duration);
 }

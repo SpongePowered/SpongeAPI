@@ -22,37 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.util.gen;
 
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.util.event.Cancellable;
+import com.flowpowered.math.vector.Vector3i;
 
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * Represents a buffered volume for some data, which is three dimensional.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
+public interface VolumeBuffer {
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the minimal bound of the buffer's location.
      *
-     * @return The parent attempting to breed
+     * @return The minimal bound
      */
-    @Override
-    Ageable getEntity();
+    Vector3i getMinBound();
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the maximal bound of the buffer's location.
      *
-     * @return The parent attempting to breed
+     * @return The maximal bound
      */
-    Ageable getParent();
+    Vector3i getMaxBound();
 
     /**
-     * Gets the other parent attempting to breed.
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
+     * {@link #getMinBound()}.
      *
-     * @return The other parent attempting to breed
+     * @return The size
      */
-    Ageable getOtherParent();
-
+    Vector3i getSize();
 }

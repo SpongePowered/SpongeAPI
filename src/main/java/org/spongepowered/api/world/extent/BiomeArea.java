@@ -22,37 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.util.event.Cancellable;
+import com.flowpowered.math.vector.Vector2i;
+
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * A two-dimensional buffer for {@link BiomeType} data. This buffer has no
+ * direct relation to the world and changes to it are not synchronized to the
+ * world.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
+public interface BiomeArea {
 
     /**
-     * Gets the parent attempting to breed.
+     * Get an object representing the biome at the given position.
      *
-     * @return The parent attempting to breed
+     * @param position The position
+     * @return The biome
      */
-    @Override
-    Ageable getEntity();
+    BiomeType getBiome(Vector2i position);
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets the {@link BiomeType} at the given location.
      *
-     * @return The parent attempting to breed
+     * @param x The X position
+     * @param z The Z position
+     * @return The biome
      */
-    Ageable getParent();
+    BiomeType getBiome(int x, int z);
 
     /**
-     * Gets the other parent attempting to breed.
+     * Sets the biome at the given position in the world.
      *
-     * @return The other parent attempting to breed
+     * @param position The position
+     * @param biome The biome
      */
-    Ageable getOtherParent();
+    void setBiome(Vector2i position, BiomeType biome);
 
+    /**
+     * Sets the biome at the given position in the world.
+     *
+     * @param x The X position
+     * @param z The Z position
+     * @param biome The biome
+     */
+    void setBiome(int x, int z, BiomeType biome);
 }

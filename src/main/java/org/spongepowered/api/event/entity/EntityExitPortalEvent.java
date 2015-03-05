@@ -22,36 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.item;
-
-import org.spongepowered.api.block.BlockType;
+package org.spongepowered.api.event.entity;
 
 /**
- * Represents the Silk Touch enchantment, Enchantments.SILK_TOUCH.
+ * An event when an entity exits a portal.
+ *
+ * <p>The portal can be any type of portal, may teleport
+ * and it may not teleport.</p>
  */
-public interface EnchantmentSilkTouch extends Enchantment {
-
-    /**
-     * Register a block that can be harvested with silk touch.
-     *
-     * @param block The block to register
-     */
-    void registerBlock(BlockType block);
-
-    /**
-     * Unregister a block so it can no longer be harvested with silk touch.
-     *
-     * @param block The block to unregister
-     */
-    void unregisterBlock(BlockType block);
-
-    /**
-     * Gets whether the block can be harvested with silk touch.
-     *
-     * @param block The block to test for
-     * @return Whether it can be harvested
-     */
-    boolean canHarvest(BlockType block);
+public interface EntityExitPortalEvent extends EntityEvent {
 
 }

@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.fireball;
 
-import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+package org.spongepowered.api.event.entity;
+
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.block.BlockHarvestEvent;
 
 /**
- * Represents an abstract fireball, such as {@link SmallFireball}.
+ * Called when an {@link Entity} harvests a {@link BlockLoc}.
  */
-public interface Fireball extends DamagingProjectile, Explosive {
+public interface EntityHarvestBlockEvent extends EntityEvent, BlockHarvestEvent {
 
 }

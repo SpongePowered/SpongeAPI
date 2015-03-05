@@ -22,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.entity.projectile.fireball;
+package org.spongepowered.api.event.entity;
 
 /**
- * Represents a Blaze fireball.
+ * An event when an entity enters a portal.
+ *
+ * <p>The portal can be any type of portal, may teleport
+ * and it may not teleport.</p>
  */
-public interface SmallFireball extends Fireball {
+public interface EntityEnterPortalEvent extends EntityEvent {
 
 }

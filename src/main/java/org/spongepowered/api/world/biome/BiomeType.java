@@ -33,6 +33,13 @@ import org.spongepowered.api.world.gen.Populator;
 public interface BiomeType {
 
     /**
+     * Gets the name of this biome type.
+     *
+     * @return The name of this biome type
+     */
+    String getName();
+
+    /**
      * Get the temperature of this biome.
      *
      * @return The temperature

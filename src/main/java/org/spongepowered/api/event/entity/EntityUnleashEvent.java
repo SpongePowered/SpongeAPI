@@ -22,12 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.entity;
 
-package org.spongepowered.api.entity.projectile.fireball;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents a Wither Skull.
+ * An event that is called when an entity becomes unleashed.
  */
-public interface WitherSkull extends Fireball {
+public interface EntityUnleashEvent extends EntityEvent, Cancellable {
+
+    /**
+     * Gets the leash holder of the leash.
+     *
+     * @return The leash holder
+     */
+    Entity getLeashHolder();
 
 }

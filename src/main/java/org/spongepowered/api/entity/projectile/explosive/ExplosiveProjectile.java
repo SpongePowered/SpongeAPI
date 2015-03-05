@@ -22,43 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.projectile.explosive;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
- * A volume containing biomes.
+ * Represents a {@link DamagingProjectile} which is also an {@link Explosive}.
  */
-public interface BiomeVolume {
+public interface ExplosiveProjectile extends DamagingProjectile, Explosive {
 
     /**
-     * Get an object representing the biome at the given position.
+     * Gets the explosion power of this explosive projectile.
      *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage an explosive projectile will do upon
+     * exploding.</p>
      *
-     * @param position The position
-     * @return The biome
+     * @return The explosion power
      */
-    BiomeType getBiome(Vector3i position);
+    int getExplosionPower();
 
     /**
-     * Sets the biome at the given position in the world.
+     * Sets the explosion power of this Large Fireball.
      *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
+     * <p>Explosion power must be equal to or greater than zero. Explosion
+     * power defines the amount of block damage an explosive projectile will do upon
+     * exploding.</p>
      *
-     * @param position The position
-     * @param biome The biome
+     * @param explosionPower The explosion power
      */
-    void setBiome(Vector3i position, BiomeType biome);
+    void setExplosionPower(int explosionPower);
 
 }

@@ -25,9 +25,11 @@
 
 package org.spongepowered.api.world.extent;
 
+import org.spongepowered.api.world.weather.WeatherUniverse;
+
 /**
- * Contains blocks, entities, and possibly other game objects.
+ * Contains blocks, entities, biomes and weather.
  */
-public interface Extent extends BlockVolume, EntityUniverse, BiomeVolume {
+public interface Extent extends EntityUniverse, WeatherUniverse, BlockVolume, BiomeArea {
 
 }

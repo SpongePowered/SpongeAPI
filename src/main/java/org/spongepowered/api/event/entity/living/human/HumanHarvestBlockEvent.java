@@ -22,37 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.util.event.Cancellable;
+package org.spongepowered.api.event.entity.living.human;
+
+import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.entity.living.LivingHarvestBlockEvent;
 
 /**
- * Represents an event when two {@link Ageable} entities come together
- * to attempt to produce offspring.
+ * Called when a {@link Human} harvests a {@link BlockLoc}.
  */
-public interface EntityBreedEvent extends EntityEvent, Cancellable {
+public interface HumanHarvestBlockEvent extends HumanEvent, LivingHarvestBlockEvent {
 
     /**
-     * Gets the parent attempting to breed.
+     * Gets whether the human was using an item with silk touch to harvest the
+     * block.
      *
-     * @return The parent attempting to breed
-     */
-    @Override
-    Ageable getEntity();
-
-    /**
-     * Gets the parent attempting to breed.
+     * <p>To change this value, the event must be cancelled and a new event
+     * posted with the desired value, See
+     * {@link SpongeEventFactory#createPlayerHarvestBlock}.</p>
      *
-     * @return The parent attempting to breed
+     * @return True if the event is a silk touch operation
      */
-    Ageable getParent();
-
-    /**
-     * Gets the other parent attempting to breed.
-     *
-     * @return The other parent attempting to breed
-     */
-    Ageable getOtherParent();
+    boolean isSilkTouch();
 
 }
