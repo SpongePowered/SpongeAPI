@@ -30,15 +30,13 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Allows plugins to setup and run Tasks (Runnable)
+ * targets on specific timing parameters. All AsynchronousScheduler tasks are free running
+ * Tasks that run in their own Threads.
  *
- * <p>The Asynchronous Scheduler Interface</p>
+ * <p>The basic model of the AsynchronousScheduler is that
+ * when the Game starts and the Sponge core mod is loaded then:</p>
  *
- * <p>The Asynchronous Scheduler interface allows plugins to setup and run Tasks (Runnable)
- * targets on specific timing parameters.  All AsynchronousScheduler tasks are free running
- * Tasks that run in their own Threads.</p>
- *
- * <p></p>The basic model of the AsynchronousScheduler is that
- * when the Game starts and the Sponge core mod is loaded then:
  * <ul>
  *     <li>a new Thread is started which owns the job of managing new Tasks that are submitted to the
  *     AsynchronousScheduler interface.</li>
@@ -85,13 +83,13 @@ import java.util.concurrent.TimeUnit;
 public interface AsynchronousScheduler extends SchedulerQuery {
 
     /**
-     * <p>Runs a Task once immediately.</p>
+     * Runs a Task once immediately.
      *
      * <p>
      * The runTask method is used to run a single Task just once.  The Task
      * may persist for the life of the server, however the Task itself will never
      * be restarted.  It has no delay offset.  This Asynchronous Scheduler will not wait before
-     * running the Task.<p>
+     * running the Task.</p>
      *
      * <p>Example code to obtain plugin container argument from User code:</p>
      *
@@ -110,7 +108,7 @@ public interface AsynchronousScheduler extends SchedulerQuery {
     Optional<Task> runTask(Object plugin, Runnable task);
 
     /**
-     * <p>Runs a Task once after a specific delay offset.</p>
+     * Runs a Task once after a specific delay offset.
      *
      * <p>
      * The runTask() method is used to run a single Task just once.  The Task
@@ -151,7 +149,7 @@ public interface AsynchronousScheduler extends SchedulerQuery {
     Optional<Task> runTaskAfter(Object plugin, Runnable task, TimeUnit scale, long delay);
 
     /**
-     * <p>Start a repeating Task with a period in specified time unit  The first occurrence will start immediately.</p>
+     * Starts a repeating Task with a period in specified time unit  The first occurrence will start immediately.
      *
      * <p>
      * The runRepeatingTask() method is used to run a Task that repeats.  The Task
@@ -209,9 +207,8 @@ public interface AsynchronousScheduler extends SchedulerQuery {
     Optional<Task> runRepeatingTask(Object plugin, Runnable task, TimeUnit scale, long interval);
 
     /**
-     * <p>
-     * Start a repeating Task with a period (interval) of time unit scale.
-     * The first occurrence will start after an initial delay in time unit scale.</p>
+     * Starts a repeating Task with a period (interval) of time unit scale.
+     * The first occurrence will start after an initial delay in time unit scale.
      *
      * <p>
      * The runRepeatingTask method is used to run a Task that repeats.  The Task
@@ -235,7 +232,7 @@ public interface AsynchronousScheduler extends SchedulerQuery {
      * <p>Example code to obtain plugin container argument from User code:</p>
      *
      * <p>
-     * <code>D
+     * <code>
      *     Optional&lt;PluginContainer&gt; result;
      *     result = evt.getGame().getPluginManager().getPlugin("YOUR_PLUGIN");
      *     PluginContainer pluginContainer = result.get();

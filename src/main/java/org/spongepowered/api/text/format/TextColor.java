@@ -26,7 +26,7 @@ package org.spongepowered.api.text.format;
 
 import org.spongepowered.api.text.message.Message;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Represents the color of the text of a {@link Message}.

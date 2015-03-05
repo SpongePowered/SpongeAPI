@@ -46,7 +46,7 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
     String getName();
 
     /**
-     * Returns whether this version an older version that doesn't support
+     * Returns whether this version is an older version that doesn't support
      * all of the features in {@link StatusResponse}. These versions are only
      * supported for the {@link StatusPingEvent}, normally they should not be
      * able to join the server.

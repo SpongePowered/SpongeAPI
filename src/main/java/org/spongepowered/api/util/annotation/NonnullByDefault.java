@@ -36,7 +36,6 @@ import javax.annotation.meta.TypeQualifierDefault;
 @TypeQualifierDefault(
         {
                 ElementType.FIELD,
-                ElementType.LOCAL_VARIABLE,
                 ElementType.METHOD,
                 ElementType.PARAMETER
         }

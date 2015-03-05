@@ -108,6 +108,14 @@ public class ClassGeneratorProviderTest {
         assertThat(result.getChar(), is((char) 0));
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testCreate_UnsetPrimitivesWithNonNull() throws Exception {
+        ClassGeneratorProvider provider = createProvider();
+        provider.setNullPolicy(NullPolicy.NON_NULL_BY_DEFAULT);
+        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class);
+        factory.apply(Collections.<String, Object>emptyMap());
+    }
+
     @Test
     public void testCreate_BoxedPrimitives() throws Exception {
         ClassGeneratorProvider provider = createProvider();
@@ -306,7 +314,7 @@ public class ClassGeneratorProviderTest {
         factory.apply(values);
     }
 
-    public static interface PrimitiveContainer {
+    public interface PrimitiveContainer {
 
         byte getByte();
 
@@ -341,7 +349,7 @@ public class ClassGeneratorProviderTest {
         void setChar(char v);
     }
 
-    public static interface BoxedPrimitiveContainer {
+    public interface BoxedPrimitiveContainer {
 
         Byte getByte();
 
@@ -376,7 +384,7 @@ public class ClassGeneratorProviderTest {
         void setChar(Character v);
     }
 
-    public static interface ArrayContainer {
+    public interface ArrayContainer {
 
         byte[] getBytes();
 
@@ -415,66 +423,66 @@ public class ClassGeneratorProviderTest {
         void setObjects(Object[] v);
     }
 
-    public static interface ExcessParametersContainer {
+    public interface ExcessParametersContainer {
 
         String getName();
 
         String setName(String name);
     }
 
-    public static interface Parent1AContainer {
+    public interface Parent1AContainer {
 
         String getName();
 
         void setName(String name);
     }
 
-    public static interface Parent1BContainer {
+    public interface Parent1BContainer {
 
         int getAge();
 
         int getHeatCapacity();
     }
 
-    public static interface Parent2AContainer extends Parent1AContainer {
+    public interface Parent2AContainer extends Parent1AContainer {
 
         int getAge();
 
         int getHeight();
     }
 
-    public static interface Parent2BContainer extends Parent1AContainer {
+    public interface Parent2BContainer extends Parent1AContainer {
 
         void setAge(int age);
     }
 
-    public static interface ChildContainer extends Parent2AContainer, Parent2BContainer, Parent1BContainer {
+    public interface ChildContainer extends Parent2AContainer, Parent2BContainer, Parent1BContainer {
 
         int getTemperature();
     }
 
-    public static interface NonConformingAccessorContainer {
+    public interface NonConformingAccessorContainer {
 
         String getName(int index);
 
         void setName(String name);
     }
 
-    public static interface NonConformingMutatorContainer {
+    public interface NonConformingMutatorContainer {
 
         String getName();
 
         String setName(String name);
     }
 
-    public static interface IncorrectMutatorContainer {
+    public interface IncorrectMutatorContainer {
 
         List<?> getAddress();
 
         void setAddress(ArrayList<?> address);
     }
 
-    public static interface AbstractImplContainer {
+    public interface AbstractImplContainer {
 
         String getName();
 
@@ -490,7 +498,7 @@ public class ClassGeneratorProviderTest {
         private String name = "Bobby";
 
         public String getName() {
-            return name;
+            return this.name;
         }
 
         public void setName(String name) {

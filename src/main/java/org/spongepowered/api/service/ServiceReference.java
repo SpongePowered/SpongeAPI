@@ -29,6 +29,8 @@ import com.google.common.base.Predicate;
 
 /**
  * A reference to a service that may or may not be currently registered, but will be updated if a registration does happen.
+ *
+ * @param <T> The type of the reference
  */
 public interface ServiceReference<T> {
 
@@ -37,7 +39,7 @@ public interface ServiceReference<T> {
      *
      * @return reference to the latest value of the service -- may not be present
      */
-    public Optional<T> ref();
+    Optional<T> ref();
 
     /**
      * Block until the service is available. Bad idea to run this on the main thread.
@@ -45,7 +47,7 @@ public interface ServiceReference<T> {
      * @return The service if available
      * @throws InterruptedException if waiting is interrupted
      */
-    public T await() throws InterruptedException;
+    T await() throws InterruptedException;
 
     /**
      * Queue a command to be executed after a service is registered.
@@ -56,5 +58,5 @@ public interface ServiceReference<T> {
      *
      * @param run The function to execute
      */
-    public void executeWhenPresent(Predicate<T> run);
+    void executeWhenPresent(Predicate<T> run);
 }

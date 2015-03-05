@@ -93,6 +93,7 @@ public final class BiomeTypes {
     public static final BiomeType EXTREME_HILLS_MOUNTAINS = null;
     public static final BiomeType EXTREME_HILLS_PLUS_MOUNTAINS = null;
     public static final BiomeType MEGA_SPRUCE_TAIGA_HILLS = null;
+
     private BiomeTypes() {
     }
 }

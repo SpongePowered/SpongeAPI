@@ -111,7 +111,7 @@ public interface Game {
      *
      * @return The API version
      */
-    String getAPIVersion();
+    String getApiVersion();
 
     /**
      * Gets the implementation version.

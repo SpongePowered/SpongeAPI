@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.event.inventory.InventoryEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.event.Cancellable;
 
@@ -33,10 +34,11 @@ import org.spongepowered.api.util.event.Cancellable;
  * <p>Examples include: A zombie picking up a weapon, a Player switching
  * their current item in hand, etc.</p>
  */
-public interface EntityEquipmentChangeEvent extends EntityEvent, Cancellable {
+public interface EntityEquipmentChangeEvent extends EntityEvent, InventoryEvent, Cancellable {
 
     /**
      * Gets the previously equipped item stack.
+     *
      * <p>The previously equipped item may have been empty.</p>
      *
      * @return The original itemstack, if available
@@ -46,15 +48,18 @@ public interface EntityEquipmentChangeEvent extends EntityEvent, Cancellable {
     /**
      * Gets the {@link ItemStack} that is being equipped in the relative
      * armor slot.
+     *
      * <p>The itemstack may not exist or the slot is being emptied.</p>
      *
      * @return The item stack, if available
      */
     Optional<ItemStack> getNewItemStack();
 
-    // TODO Discuss SpongeAPI#373 and Inventory
-    /*
-    ArmorSlot getArmorSlot();
+    /**
+     * Gets the slot index of the equipment being changed.
+     *
+     * @return The slot index of the equipment item
      */
+    int getSlot();
 
 }

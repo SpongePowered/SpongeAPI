@@ -27,6 +27,10 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.util.event.Cancellable;
 
+/**
+ * Represents an event when two {@link Ageable} entities come together
+ * to attempt to produce offspring.
+ */
 public interface EntityBreedEvent extends EntityEvent, Cancellable {
 
     /**

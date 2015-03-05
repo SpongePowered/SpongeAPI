@@ -75,7 +75,7 @@ public class Cause {
      * @return The parent cause
      */
     public Optional<Cause> getParent() {
-        return parent;
+        return this.parent;
     }
 
     /**
@@ -85,7 +85,7 @@ public class Cause {
      * @return The cause
      */
     public Object getCause() {
-        return cause;
+        return this.cause;
     }
 
     /**
@@ -94,7 +94,7 @@ public class Cause {
      * @return The reason
      */
     public Optional<Reason> getReason() {
-        return reason;
+        return this.reason;
     }
 
 }

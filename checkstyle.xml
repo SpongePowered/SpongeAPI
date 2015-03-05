@@ -6,10 +6,10 @@
 <!--
 
     Checkstyle configuration that checks the Google coding conventions from:
-    
+
     -  Google Java Style
        https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html
-       
+
     Checkstyle is very configurable. Be sure to read the documentation at
     http://checkstyle.sf.net (or in your downloaded distribution).
 
@@ -18,13 +18,11 @@
     To completely disable a check, just comment it out or delete it from the file.
 
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
-    
+
  -->
 
-<module name = "Checker">
+<module name="Checker">
     <property name="charset" value="UTF-8"/>
-
-    <property name="severity" value="warning"/>
 
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
@@ -83,10 +81,12 @@
         <module name="FallThrough"/>
         <module name="UpperEll"/>
         <module name="ModifierOrder"/>
-        <!-- TODO: This is disabled because the Gradle License plugin doesn't create a new line after the license header, do we want to enable this?
         <module name="EmptyLineSeparator">
+            <!-- TODO: This is disabled for package because the Gradle License plugin doesn't create a new line after the license header, do we want to enable this? -->
+            <property name="tokens"
+                      value="IMPORT, CLASS_DEF, ENUM_DEF, INTERFACE_DEF, CTOR_DEF, METHOD_DEF, STATIC_INIT, INSTANCE_INIT, VARIABLE_DEF"/>
             <property name="allowNoEmptyLineBetweenFields" value="true"/>
-        </module>-->
+        </module>
         <module name="SeparatorWrap">
             <property name="tokens" value="DOT"/>
             <property name="option" value="nl"/>
@@ -156,10 +156,10 @@
             <!--<property name="arrayInitIndent" value="2"/>-->
             <property name="arrayInitIndent" value="4"/>
         </module>
-        <!--<module name="AbbreviationAsWordInName">
+        <module name="AbbreviationAsWordInName">
             <property name="ignoreFinal" value="false"/>
             <property name="allowedAbbreviationLength" value="1"/>
-        </module>-->
+        </module>
         <module name="OverloadMethodsDeclarationOrder"/>
         <module name="VariableDeclarationUsageDistance"/>
         <module name="CustomImportOrder">
@@ -171,7 +171,8 @@
         <module name="MethodParamPad"/>
         <module name="OperatorWrap">
             <property name="option" value="NL"/>
-            <property name="tokens" value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR "/>
+            <property name="tokens"
+                      value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR "/>
         </module>
         <module name="AnnotationLocation">
             <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF"/>
@@ -210,11 +211,18 @@
         <module name="SingleLineJavadoc"/>
 
 
+        <module name="RedundantImport"/>
+        <module name="RedundantModifier"/>
+        <module name="RequireThis">
+            <property name="checkMethods" value="false"/>
+        </module>
     </module>
 
     <module name="NewlineAtEndOfFile"/>
-
     <module name="SuppressionFilter">
-        <property name="file" value="${suppressions}"/>
+        <property name="file" value="${basedir}/checkstyle-suppressions.xml"/>
     </module>
+
+    <property name="basedir" value="${basedir}"/>
+    <property name="severity" value="${severity}"/>
 </module>

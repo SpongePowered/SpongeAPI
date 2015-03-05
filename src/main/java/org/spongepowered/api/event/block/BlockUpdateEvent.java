@@ -25,7 +25,9 @@
 
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.BlockLoc;
+
+import java.util.Collection;
 
 /**
  * Called when a block update is about to occur, which is often when a block
@@ -34,13 +36,10 @@ import org.spongepowered.api.block.BlockType;
 public interface BlockUpdateEvent extends BlockEvent {
 
     /**
-     * Get the type of block that is causing the update.
+     * Gets a collection of blocks that are being affected by the update.
      *
-     * <p>It is not possible to get the location of the block that caused
-     * the change.</p>
-     *
-     * @return The type of the causing block
+     * @return A collection of affected blocks
      */
-    BlockType getCauseBlockType();
+    Collection<BlockLoc> getAffectedBlocks();
 
 }
