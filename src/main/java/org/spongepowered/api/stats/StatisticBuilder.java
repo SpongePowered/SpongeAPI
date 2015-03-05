@@ -27,10 +27,11 @@ package org.spongepowered.api.stats;
 
 import org.spongepowered.api.text.translation.Translation;
 
-import java.util.Map;
+import javax.annotation.Nullable;
 
 /**
- * Represents a builder interface to create new instances of {@link Statistic}s.
+ * Represents a builder interface to create new and custom instances of
+ * {@link Statistic}s.
  */
 public interface StatisticBuilder {
 
@@ -51,90 +52,29 @@ public interface StatisticBuilder {
     StatisticBuilder id(String id);
 
     /**
+     * Sets the format of the {@link Statistic}. May be null in which case the
+     * group default format will be used instead.
+     *
+     * @param format The format of the statistic
+     * @return This builder
+     */
+    StatisticBuilder format(@Nullable StatisticFormat format);
+
+    /**
+     * Sets the {@link StatisticGroup} the {@link Statistic} belongs
+     * to.
+     *
+     * @param type The statistic group the grouped statistic belongs to
+     * @return This builder
+     */
+    StatisticBuilder group(StatisticGroup type);
+
+    /**
      * Builds and registers an instance of a {@link Statistic}.
      *
      * @return A new instance of a statistic
      * @throws IllegalStateException If the statistic is not completed
      */
     Statistic buildAndRegister() throws IllegalStateException;
-
-    /**
-     * Represents a builder interface to create new instances of simple
-     * {@link Statistic}s (none grouped).
-     */
-    interface Simple extends StatisticBuilder {
-
-        @Override
-        Simple translation(Translation translation);
-
-        @Override
-        Simple id(String id);
-
-        /**
-         * Sets the unit the {@link Statistic} will be measured in.
-         *
-         * @param unit The unit the statistic will be measured in
-         * @return This builder
-         */
-        Simple unit(StatisticUnit unit);
-
-    }
-
-    /**
-     * Represents a builder interface to create new instances of
-     * {@link GroupedStatistic}s.
-     */
-    interface Grouped extends StatisticBuilder {
-
-        @Override
-        Grouped translation(Translation translation);
-
-        @Override
-        Grouped id(String id);
-
-        /**
-         * Sets the {@link StatisticType} the {@link GroupedStatistic} belongs
-         * to.
-         *
-         * @param type The statistic type the grouped statistic belongs to
-         * @return This builder
-         */
-        Grouped type(StatisticType type);
-
-        /**
-         * Sets the builder to append the sub id to the {@link StatisticType}s
-         * base id.
-         *
-         * @param subId The sub id used to save the current values of the
-         *        statistic
-         * @return This builder
-         */
-        Grouped subId(String subId);
-
-        /**
-         * Attaches required data to the {@link GroupedStatistic}.
-         *
-         * @param key The key for the data to attach
-         * @param value The value to attach
-         * @return This builder
-         * @throws IllegalArgumentException If the value does not meet the
-         *         requirements or another value is already present for that key
-         */
-        Grouped data(String key, Object value) throws IllegalArgumentException;
-
-        /**
-         * Attaches required data to the {@link GroupedStatistic}.
-         *
-         * @param values The values to attach
-         * @return This builder
-         * @throws IllegalArgumentException If the value does not meet the
-         *         requirements or another value is already present for that key
-         */
-        Grouped data(Map<String, ?> values) throws IllegalArgumentException;
-
-        @Override
-        GroupedStatistic buildAndRegister() throws IllegalStateException;
-
-    }
 
 }

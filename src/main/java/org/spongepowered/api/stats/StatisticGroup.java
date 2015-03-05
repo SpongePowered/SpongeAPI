@@ -25,8 +25,20 @@
 
 package org.spongepowered.api.stats;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
- * Represents a type of {@link Statistic}s for teams.
+ * Represents a group of statistics which may be used to logically group
+ * statistics or define expandable sets of statistics for objects such as items.
  */
-public interface TeamStatisticType extends StatisticType {
+public interface StatisticGroup extends Translatable {
+
+    /**
+     * Gets the default {@link StatisticFormat} which all statistics without
+     * defined format overrides should be formatted with.
+     *
+     * @return The format for statistics in this group
+     */
+    StatisticFormat getDefaultStatisticFormat();
+
 }

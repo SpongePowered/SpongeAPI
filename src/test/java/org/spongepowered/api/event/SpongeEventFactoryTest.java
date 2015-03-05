@@ -49,7 +49,6 @@ public class SpongeEventFactoryTest {
 
                     method.invoke(null, params);
                 } catch (Exception e) {
-                    e.printStackTrace();
                     throw new RuntimeException(
                             "Runtime creation of the '" + method.getReturnType().getName() + "' event failed\n\n"
                                     + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
