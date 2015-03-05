@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
-import org.spongepowered.api.util.inventory.Coerce;
+import org.spongepowered.api.util.Coerce;
 
 /**
  * A generic integer property. 
