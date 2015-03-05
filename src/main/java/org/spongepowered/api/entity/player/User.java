@@ -33,7 +33,9 @@ import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.Location;
 
+import javax.annotation.Nullable;
 import java.util.Date;
 
 /**
@@ -106,6 +108,22 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      * @return True if the corresponding player is online
      */
     boolean isOnline();
+
+    /**
+     * Gets the location of this player's bed spawn.
+     *
+     * @return The location of this player's bed spawn, or
+     * {@link Optional#absent} if it is not set
+     */
+    Optional<Location> getBedLocation();
+
+    /**
+     * Sets the location of this player's bed spawn. Passing <code>null</code>
+     * will clear it.
+     *
+     * @param location The new location of this player's bed spawn
+     */
+    void setBedLocation(@Nullable Location location);
 
     /**
      * Gets the related online {@link Player} if the player is
