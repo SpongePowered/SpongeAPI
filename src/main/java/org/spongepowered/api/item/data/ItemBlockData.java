@@ -41,8 +41,8 @@ import javax.annotation.Nullable;
 public interface ItemBlockData extends ItemData {
 
     /**
-     * Gets the blocks this block is placeable on. Optional.absent() represents
-     * all blocks.
+     * Gets the a set of the blocks this block is placeable on.
+     * Optional.absent() represents all blocks.
      * 
      * @return The blocks this block is placeable on
      */

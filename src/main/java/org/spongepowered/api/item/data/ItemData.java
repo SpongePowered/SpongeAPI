@@ -53,8 +53,9 @@ public interface ItemData extends DataSerializable {
     void setUnbreakable(boolean unbreakable);
 
     /**
-     * Gets a set of the {@link BlockType}s this item can destroy. Returning
-     * Optional.absent() means that all blocks can be destroyed.
+     * Gets a set containing all of the {@link BlockType}s this item can
+     * destroy. Returning Optional.absent() means that all blocks can be
+     * destroyed.
      * 
      * @return A set of the BlockTypes this item can destroy
      */
@@ -143,6 +144,22 @@ public interface ItemData extends DataSerializable {
      * @param lore The lore to add
      */
     void addLore(Message lore);
+
+    /**
+     * Adds lore at a certain line, moving others as needed.
+     * 
+     * @param line The line to insert at
+     * @param lore The lore to insert
+     */
+    void insertLore(int line, Message lore);
+
+    /**
+     * Sets lore at a certain line, overwriting previous values.
+     * 
+     * @param line The line to edit
+     * @param lore The lore to set it to
+     */
+    void setLore(int line, Message lore);
 
     /**
      * Gets if certain information is displayed to the client.

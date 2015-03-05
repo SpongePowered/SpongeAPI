@@ -43,7 +43,7 @@ public interface MapItem extends ItemData {
     boolean isScaled();
 
     /**
-     * Gets the list of {@link MapDecoration}s on this map. Not read-only.
+     * Gets the list of {@link MapDecoration}s on this map.
      * 
      * @return The list of MapDecorations on this map.
      */
@@ -55,4 +55,11 @@ public interface MapItem extends ItemData {
      * @param decoration The MapDecoration to add
      */
     void addDecoration(MapDecoration decoration);
+
+    /**
+     * Removes a {@link MapDecoration} from this map.
+     * 
+     * @param decoration The decoration to remove
+     */
+    void removeDecoration(MapDecoration decoration);
 }

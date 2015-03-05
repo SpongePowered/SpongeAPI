@@ -89,8 +89,7 @@ public interface Book extends ItemData {
     void setTitle(Message title);
     
     /**
-     * Gets the pages of this book. Not read-only. Note: If a book is being
-     * read, it must be closed and reopened for pages to update client-side.
+     * Gets a list containing the pages of this book.
      * 
      * @return The pages of this book
      */
@@ -113,4 +112,11 @@ public interface Book extends ItemData {
      */
     void setPage(int page, Message text);
 
+    /**
+     * Removes a certain page. Note: If a book is being read, it must be closed
+     * and reopened for pages to update client-side.
+     * 
+     * @param page The page number
+     */
+    void removePage(int page, Message text);
 }

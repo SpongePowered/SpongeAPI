@@ -48,6 +48,13 @@ public interface FireworkRocket extends ItemData {
     void addExplosion(FireworkExplosion explosion);
 
     /**
+     * Removes an explosion from this firework.
+     * 
+     * @param explosion The explosion to remove
+     */
+    void removeExplosion(FireworkExplosion explosion);
+
+    /**
      * Gets how long this rocket will fly before exploding, in multiples of half
      * seconds, though the actual value of a created Firework is randomized
      * more.
