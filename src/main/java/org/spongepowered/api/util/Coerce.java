@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.inventory;
+package org.spongepowered.api.util;
 
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
@@ -191,7 +191,7 @@ public final class Coerce {
     
     /**
      * Coerce the supplied object to a double-precision floating-point number,
-     * parse it if necessary
+     * parse it if necessary.
      * 
      * @param obj Object to coerce
      * @return Object as a double, <code>0.0</code> if the object is null or
@@ -207,7 +207,110 @@ public final class Coerce {
         }
         
         Double parsed = Doubles.tryParse(Coerce.sanitiseNumber(obj));
-        return parsed != null ? parsed.doubleValue() : 0.0;
+        return parsed != null ? parsed : 0.0;
+    }
+
+    /**
+     * Coerce the supplied object to a single-precision floating-point number,
+     * parse it if necessary.
+     *
+     * @param obj Object to coerce
+     * @return Object as a float, <code>0.0</code> if the object is null or
+     *      cannot be parsed
+     */
+    public static float toFloat(@Nullable Object obj) {
+        if (obj == null) {
+            return 0.0f;
+        }
+        if (obj instanceof Number) {
+            return ((Number) obj).floatValue();
+        }
+
+        Float parsed = Floats.tryParse(Coerce.sanitiseNumber(obj));
+        return parsed != null ? parsed : 0.0f;
+    }
+
+    /**
+     * Coerce the supplied object to a short number,
+     * parse it if necessary.
+     *
+     * @param obj Object to coerce
+     * @return Object as a short, <code>0</code> if the object is null or
+     *      cannot be parsed
+     */
+    public static short toShort(@Nullable Object obj) {
+        if (obj == null) {
+            return 0;
+        }
+        if (obj instanceof Number) {
+            return ((Number) obj).shortValue();
+        }
+
+        Short parsed = Short.parseShort(Coerce.sanitiseNumber(obj));
+        return parsed != null ? parsed : (short) 0;
+    }
+
+    /**
+     * Coerce the supplied object to a byte number,
+     * parse it if necessary.
+     *
+     * @param obj Object to coerce
+     * @return Object as a byte, <code>0</code> if the object is null or
+     *      cannot be parsed
+     */
+    public static byte toByte(@Nullable Object obj) {
+        if (obj == null) {
+            return 0;
+        }
+        if (obj instanceof Number) {
+            return ((Number) obj).byteValue();
+        }
+
+        Byte parsed = Byte.parseByte(Coerce.sanitiseNumber(obj));
+        return parsed != null ? parsed : 0;
+    }
+
+    /**
+     * Coerce the supplied object to a long number,
+     * parse it if necessary.
+     *
+     * @param obj Object to coerce
+     * @return Object as a long, <code>0</code> if the object is null or
+     *      cannot be parsed
+     */
+    public static long toLong(@Nullable Object obj) {
+        if (obj == null) {
+            return 0;
+        }
+        if (obj instanceof Number) {
+            return ((Number) obj).shortValue();
+        }
+
+        Long parsed = Long.parseLong(Coerce.sanitiseNumber(obj));
+        return parsed != null ? parsed : 0;
+    }
+
+    /**
+     * Coerce the supplied object to a character,
+     * parse it if necessary.
+     *
+     * @param obj Object to coerce
+     * @return Object as a character, <code>'\u0000'</code> if the object is null or
+     *      cannot be parsed
+     */
+    public static char toChar(@Nullable Object obj) {
+        if (obj == null) {
+            return 0;
+        }
+        if (obj instanceof Character) {
+            return (Character) obj;
+        }
+        try {
+            return obj.toString().charAt(0);
+        } catch (Exception e) {
+            // do nothing
+        }
+        return '\u0000';
     }
 
     /**

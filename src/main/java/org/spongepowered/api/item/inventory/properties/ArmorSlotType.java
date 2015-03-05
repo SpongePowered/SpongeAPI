@@ -26,7 +26,7 @@ package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypeWorn;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
-import org.spongepowered.api.util.inventory.Coerce;
+import org.spongepowered.api.util.Coerce;
 
 /**
  * Inventory property which allows queries to be constructed for a particular

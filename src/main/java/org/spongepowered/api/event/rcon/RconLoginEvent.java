@@ -22,40 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.gen;
+package org.spongepowered.api.event.rcon;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.world.extent.BlockVolume;
+import org.spongepowered.api.util.event.Cancellable;
 
-/**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
- */
-public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
+public interface RconLoginEvent extends RconEvent, Cancellable {
 
     /**
-     * Fills the entire buffer with the given block.
+     * Gets the password provided by the client.
      *
-     * @param block The block to fill with
+     * @return The password provided by the client
      */
-    void fill(BlockState block);
-
-    /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
-     *
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
-     */
-    void setHorizontalLayer(int y, int height, BlockState block);
-
-    /**
-     * Returns an immutable copy of this block buffer.
-     *
-     * @return An immutable copy
-     */
-    ImmutableBlockBuffer getImmutableClone();
-
+    String getPassword();
 }

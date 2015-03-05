@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server;
+package org.spongepowered.api.event.server.query;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * Called when the server is queried through the Query protocol, with more detailed information requested.
  */
-public interface FullQueryEvent extends QueryEvent {
+public interface FullQueryEvent extends BasicQueryEvent {
 
     /**
      * Gets the GameId to respond with.

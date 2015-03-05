@@ -22,40 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.gen;
-
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.world.extent.BlockVolume;
+package org.spongepowered.api.service.rcon;
 
 /**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * Manages Rcon-related settings.
  */
-public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
+public interface RconService {
 
     /**
-     * Fills the entire buffer with the given block.
+     * Tests whether Rcon is enabled for this service.
      *
-     * @param block The block to fill with
+     * <p>Rcon allows commands to be remotely run on the server, after Rcon
+     * client have authenticated with a password.</p>
+     *
+     * @return Where Rcon is enabled
      */
-    void fill(BlockState block);
+    boolean isRconEnabled();
 
     /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
+     * Gets the Rcon password for this service
      *
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
-     */
-    void setHorizontalLayer(int y, int height, BlockState block);
-
-    /**
-     * Returns an immutable copy of this block buffer.
+     * <p>This password is used by Rcon clients to authenticate.</p>
      *
-     * @return An immutable copy
+     * @return The Rcon password for this service
      */
-    ImmutableBlockBuffer getImmutableClone();
+    String getRconPassword();
 
 }

@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.world.extent;
 
-import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.block.BlockLoc;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockState;
 
 /**
  * A volume containing blocks.
@@ -39,7 +39,7 @@ public interface BlockVolume {
      * @param position The position
      * @return The block
      */
-    BlockLoc getBlock(Vector3d position);
+    BlockState getBlock(Vector3i position);
 
     /**
      * Get a representation of the block at the given position.
@@ -49,6 +49,24 @@ public interface BlockVolume {
      * @param z The Z position
      * @return The block
      */
-    BlockLoc getBlock(int x, int y, int z);
+    BlockState getBlock(int x, int y, int z);
+
+    /**
+     * Sets the block at the given position in the world.
+     *
+     * @param position The position
+     * @param block The block
+     */
+    void setBlock(Vector3i position, BlockState block);
+
+    /**
+     * Sets the block at the given position in the world.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param block The block
+     */
+    void setBlock(int x, int y, int z, BlockState block);
 
 }
