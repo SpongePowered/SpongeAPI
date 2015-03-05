@@ -32,9 +32,9 @@ public interface RconEvent extends GameEvent {
     /**
      * Gets the ID provided by the client for this request
      *
-     * <p>The provided ID is sent back in the response to the client.
+     * <p>The provided ID is sent back in the response to the client.</p>
      *
-     * If authorization failed (password is incorrect, or client didn't authenticate),
+     * <p>If authorization failed (password is incorrect, or client didn't authenticate),
      * the ID will be set to -1 in the response.</p>
      *
      * @return The ID provided by the client

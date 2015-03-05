@@ -37,9 +37,9 @@ public interface RconCommandEvent extends CommandEvent, RconEvent {
      * determining whether to execute the supplied {@link #getRawPayload() command}.
      *
      * <p>Normally, if an {@link RconSource} is not {@link RconSource#getLoggedIn()} logged in},
-     * the supplied {@link #getRawPayload() command} will not be executed.
+     * the supplied {@link #getRawPayload() command} will not be executed.</p>
      *
-     * The opposite scenario, preventing the execution of a command by a logged in
+     * <p>The opposite scenario, preventing the execution of a command by a logged in
      * client, can be achieved with {@link #setCancelled(boolean)}.</p>
      *
      * @return Whether to override the client's logged in status
@@ -51,9 +51,9 @@ public interface RconCommandEvent extends CommandEvent, RconEvent {
      * determining whether to execute the supplied {@link #getRawPayload() command}.
      *
      * <p>Normally, if an {@link RconSource} is not {@link RconSource#getLoggedIn()} logged in},
-     * the supplied {@link #getRawPayload() command} will not be executed.
+     * the supplied {@link #getRawPayload() command} will not be executed.</p>
      *
-     * The opposite scenario, preventing the execution of a command by a logged in
+     * <p>The opposite scenario, preventing the execution of a command by a logged in
      * client, can be achieved with {@link #setCancelled(boolean)}.</p>
      *
      * @param ignoringLoginStatus Whether to ignore the client's logged in status
