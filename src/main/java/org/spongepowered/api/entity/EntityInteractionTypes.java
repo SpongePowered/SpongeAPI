@@ -26,6 +26,7 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.entity.player.gamemode.GameModes;
 
 /**
  * An list {@link EntityInteractionType}s available in Vanilla.
@@ -36,21 +37,22 @@ public final class EntityInteractionTypes {
      * Represents an interaction by "attacking", bound to left
      * click in the client by default.
      */
-    public static final EntityInteractionType LEFT_CLICK = null;
+    public static final EntityInteractionType ATTACK = null;
 
     /**
      * Represents an interaction by middle clicking, bound to the
      * scroll wheel in the client by default.
      *
-     * <p>This is only valid for {@link BlockType}s.</p>
+     * <p>This is only valid for {@link BlockType}s, and has the effect
+     * of giving a player the picked block if in {@link GameModes#CREATIVE}.</p>
      */
-    public static final EntityInteractionType MIDDLE_CLICK = null;
+    public static final EntityInteractionType PICK_BLOCK = null;
 
     /**
      * Represents an interaction by right clicking, bound to right
      * click in the client by default.
      */
-    public static final EntityInteractionType RIGHT_CLICK = null;
+    public static final EntityInteractionType USE = null;
 
     private EntityInteractionTypes() {
 
