@@ -26,50 +26,61 @@
 package org.spongepowered.api.stats;
 
 /**
- * A utility class for getting all available {@link StatisticType}s.
+ * A utility class for getting all available {@link StatisticGroup}s.
  */
-public class StatisticTypes {
+public class StatisticGroups {
+
+    public static final StatisticGroup GENERAL = null;
 
     /**
      * Statistic counting the number of killed entities of a specific type.
      */
-    public static final EntityStatisticType HAS_KILLED_ENTITY = null;
+    public static final StatisticGroup HAS_KILLED_ENTITY = null;
     /**
      * Statistic counting the number of deaths caused by entities of a specific
      * type.
      */
-    public static final EntityStatisticType KILLED_BY_ENTITY = null;
+    public static final StatisticGroup KILLED_BY_ENTITY = null;
 
     /**
      * Statistic counting the number of crafted items of a specific type.
      */
-    public static final ItemStatisticType CRAFT_ITEM = null;
+    public static final StatisticGroup CRAFT_ITEM = null;
     /**
      * Statistic counting the number of used/placed items of a specific type.
      */
-    public static final ItemStatisticType USE_ITEM = null;
+    public static final StatisticGroup USE_ITEM = null;
     /**
      * Statistic counting the number of broken/worn down items of a specific
      * type.
      */
-    public static final ItemStatisticType BREAK_ITEM = null;
+    public static final StatisticGroup BREAK_ITEM = null;
+
     /**
-     * Statistic counting the number of mined/harvested items of a specific
+     * Statistic counting the number of crafted items of a specific type.
+     */
+    public static final StatisticGroup CRAFT_BLOCK = null;
+    /**
+     * Statistic counting the number of used blocks of a specific type.
+     */
+    public static final StatisticGroup USE_BLOCK = null;
+    /**
+     * Statistic counting the number of mined/harvested blocks of a specific
      * type.
      */
-    public static final ItemStatisticType MINE_ITEM = null;
+    public static final StatisticGroup MINE_BLOCK = null;
 
     /**
      * Statistic counting the number of killed members of a specific team.
      */
-    public static final TeamStatisticType HAS_KILLED_TEAM = null;
+    public static final StatisticGroup HAS_KILLED_TEAM = null;
     /**
      * Statistic counting the number of deaths caused by members of a specific
      * team.
      */
-    public static final TeamStatisticType KILLED_BY_TEAM = null;
+    public static final StatisticGroup KILLED_BY_TEAM = null;
 
-    private StatisticTypes() {
+    private StatisticGroups() {
     }
 
 }

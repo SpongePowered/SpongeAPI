@@ -26,28 +26,30 @@
 package org.spongepowered.api.stats;
 
 /**
- * A utility class for getting all available {@link StatisticUnit}s.
+ * A utility class for getting all available {@link StatisticFormat}s.
  */
-public final class StatisticUnits {
+public final class StatisticFormats {
 
     /**
-     * A statistic without unit.
+     * A statistic without a format.
      */
-    public static StatisticUnit COUNT = null;
+    public static StatisticFormat COUNT = null;
     /**
-     * A statistic measured in centimeters.
+     * A statistic measured in centimeters, meters, or kilometers depending on
+     * the magnitude.
      */
-    public static StatisticUnit DISTANCE_CM = null;
+    public static StatisticFormat DISTANCE = null;
     /**
      * A statistic measured in 0.1 steps.
      */
-    public static StatisticUnit FRACTIONAL1 = null;
+    public static StatisticFormat FRACTIONAL = null;
     /**
-     * A statistic measured in minutes.
+     * A statistic measured in seconds, minutes, hours, or days depending on the
+     * magnitude.
      */
-    public static StatisticUnit TIME_MINUTES = null;
+    public static StatisticFormat TIME = null;
 
-    private StatisticUnits() {
+    private StatisticFormats() {
     }
 
 }

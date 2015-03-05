@@ -26,16 +26,23 @@
 package org.spongepowered.api.stats;
 
 /**
- * Represents a grouped {@link Statistic} with a {@link StatisticType} that
- * defines the grouping criteria.
+ * Represents the format for a statistic.
  */
-public interface GroupedStatistic extends Statistic {
+public interface StatisticFormat {
 
     /**
-     * Gets the {@link StatisticType} this {@link Statistic} belongs to.
+     * Gets the name of this format.
      *
-     * @return The statistic type this statistic belongs to
+     * @return The name of this format
      */
-    StatisticType getType();
+    String getName();
+
+    /**
+     * Formats the given value from the statistic to a human readable form.
+     *
+     * @param value The value to format
+     * @return The formated value
+     */
+    String format(long value);
 
 }

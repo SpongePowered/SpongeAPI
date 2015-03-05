@@ -28,18 +28,9 @@ package org.spongepowered.api.stats;
 import org.spongepowered.api.text.format.TextColor;
 
 /**
- * Represents a {@link Statistic} with a {@link TeamStatisticType} for a team's
- * {@link TextColor}.
+ * Represents a {@link Statistic} for a team's {@link TextColor}.
  */
-public interface TeamStatistic extends GroupedStatistic {
-
-    /**
-     * Gets the {@link TeamStatisticType} this {@link Statistic} belongs to.
-     *
-     * @return The team statistic type this statistic belongs to
-     */
-    @Override
-    TeamStatisticType getType();
+public interface TeamStatistic extends Statistic {
 
     /**
      * Gets the team's {@link TextColor} this {@link Statistic} measures.

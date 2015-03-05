@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.stats;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.text.translation.Translatable;
 
 /**
@@ -39,10 +40,19 @@ public interface Statistic extends Translatable {
     String getId();
 
     /**
-     * Gets the {@link StatisticUnit} this statistic is measured in.
+     * Gets the {@link StatisticFormat} of this statistic. If this is not
+     * present that this statistic's format is deferred to its group's default
+     * format.
      *
-     * @return The statistic unit this statistic is measured in
+     * @return The format of this statistic, if available
      */
-    StatisticUnit getStatisticUnit();
+    Optional<StatisticFormat> getStatisticFormat();
+
+    /**
+     * Gets the {@link StatisticGroup} this {@link Statistic} belongs to.
+     *
+     * @return The statistic group this statistic belongs to
+     */
+    StatisticGroup getGroup();
 
 }
