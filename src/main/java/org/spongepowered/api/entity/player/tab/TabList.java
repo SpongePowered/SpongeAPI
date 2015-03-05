@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.entity.player.tab;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.message.Message;
-
-import com.google.common.base.Optional;
 
 import java.util.List;
 import java.util.UUID;
@@ -75,11 +74,10 @@ public interface TabList {
     /**
      * Adds a player to the list.
      * 
+     * @param player The player to add
      * @throws IllegalArgumentException when it attempts to add a player already
      *         on the list. This is to prevent modification of a
      *         {@link PlayerTabInfo} by overwriting it
-     * 
-     * @param player The player to add
      */
     void addPlayer(PlayerTabInfo player) throws IllegalArgumentException;
 

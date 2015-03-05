@@ -22,26 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.gen;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
+import com.flowpowered.math.vector.Vector3i;
 
 /**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * Represents a buffered volume for some data, which is three dimensional.
  */
-public interface BlockBuffer extends VolumeBuffer {
+public interface VolumeBuffer {
 
     /**
-     * Gets the block in the buffer at the given position.
+     * Gets the minimal bound of the buffer's location.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @return The minimal bound
      */
-    BlockState getBlock(int x, int y, int z);
+    Vector3i getMinBound();
 
+    /**
+     * Gets the maximal bound of the buffer's location.
+     *
+     * @return The maximal bound
+     */
+    Vector3i getMaxBound();
+
+    /**
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
+     * {@link #getMinBound()}.
+     *
+     * @return The size
+     */
+    Vector3i getSize();
 }

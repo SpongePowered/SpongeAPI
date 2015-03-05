@@ -26,7 +26,7 @@ package org.spongepowered.api.item.inventory.properties;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.item.inventory.InventoryProperty;
-import org.spongepowered.api.util.inventory.Coerce;
+import org.spongepowered.api.util.Coerce;
 
 /**
  * Property for inventories of a particular size. For example to allow querying

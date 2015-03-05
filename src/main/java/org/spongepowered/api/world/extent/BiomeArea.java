@@ -22,26 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.world.extent;
 
-package org.spongepowered.api.util.gen;
+import com.flowpowered.math.vector.Vector2i;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * An area containing biomes.
  */
-public interface BlockBuffer extends VolumeBuffer {
+public interface BiomeArea {
 
     /**
-     * Gets the block in the buffer at the given position.
+     * Get an object representing the biome at the given position.
+     *
+     * @param position The position
+     * @return The biome
+     */
+    BiomeType getBiome(Vector2i position);
+
+    /**
+     * Gets the {@link BiomeType} at the given location.
      *
      * @param x The X position
-     * @param y The Y position
      * @param z The Z position
-     * @return The block
+     * @return The biome
      */
-    BlockState getBlock(int x, int y, int z);
+    BiomeType getBiome(int x, int z);
 
+    /**
+     * Sets the biome at the given position in the world.
+     *
+     * @param position The position
+     * @param biome The biome
+     */
+    void setBiome(Vector2i position, BiomeType biome);
+
+    /**
+     * Sets the biome at the given position in the world.
+     *
+     * @param x The X position
+     * @param z The Z position
+     * @param biome The biome
+     */
+    void setBiome(int x, int z, BiomeType biome);
 }

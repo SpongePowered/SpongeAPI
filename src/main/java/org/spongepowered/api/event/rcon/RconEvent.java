@@ -22,26 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.rcon;
 
-package org.spongepowered.api.util.gen;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.util.command.source.RconSource;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-
-/**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
- */
-public interface BlockBuffer extends VolumeBuffer {
+public interface RconEvent extends GameEvent {
 
     /**
-     * Gets the block in the buffer at the given position.
+     * Gets the ID provided by the client for this request
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * <p>The provided ID is sent back in the response to the client.</p>
+     *
+     * <p>If authorization failed (password is incorrect, or client didn't authenticate),
+     * the ID will be set to -1 in the response.</p>
+     *
+     * @return The ID provided by the client
      */
-    BlockState getBlock(int x, int y, int z);
+    int getId();
 
+    /**
+     * Gets the raw payload provided by the client.
+     *
+     * <p>If the client is authenticating, this will be the supplied password.
+     *
+     * If the client is running a command, this will be the command to run.</p>
+     *
+     * @return The raw payload provided by the client
+     */
+    String getRawPayload();
+
+    /**
+     * Gets the {@link RconSource} responsible for the event.
+     *
+     * @return The {@link RconSource} responsible for the event
+     */
+    RconSource getSource();
 }

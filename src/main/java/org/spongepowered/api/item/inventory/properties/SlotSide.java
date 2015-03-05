@@ -25,8 +25,8 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.util.Coerce;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.util.inventory.Coerce;
 
 /**
  * Property which represents a "side" for a particular slot, for use in querying

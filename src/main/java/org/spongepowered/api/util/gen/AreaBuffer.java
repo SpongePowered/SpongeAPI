@@ -22,43 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.gen;
 
-package org.spongepowered.api.world.extent;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.biome.BiomeType;
+import com.flowpowered.math.vector.Vector2i;
 
 /**
- * A volume containing biomes.
+ * Represents a buffered area for some data, which is two dimensional.
  */
-public interface BiomeVolume {
+public interface AreaBuffer {
 
     /**
-     * Get an object representing the biome at the given position.
+     * Gets the minimal bound of the buffer's location.
      *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
-     *
-     * @param position The position
-     * @return The biome
+     * @return The minimal bound
      */
-    BiomeType getBiome(Vector3i position);
+    Vector2i getMinBound();
 
     /**
-     * Sets the biome at the given position in the world.
+     * Gets the maximal bound of the buffer's location.
      *
-     * <p>While {@code position} is a 3-dimensional position, biomes in
-     * Minecraft are column-based (over the X and Z plane). Therefore, the biome
-     * for all the blocks in a certain column will all be the same and changing
-     * the biome of one block in a column will change the biome for the
-     * entire column.</p>
-     *
-     * @param position The position
-     * @param biome The biome
+     * @return The maximal bound
      */
-    void setBiome(Vector3i position, BiomeType biome);
+    Vector2i getMaxBound();
+
+    /**
+     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
+     * {@link #getMinBound()}.
+     *
+     * @return The size
+     */
+    Vector2i getSize();
 
 }

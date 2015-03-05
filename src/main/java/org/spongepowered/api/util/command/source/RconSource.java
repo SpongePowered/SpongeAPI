@@ -22,26 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.command.source;
 
-package org.spongepowered.api.util.gen;
-
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
+import java.net.InetSocketAddress;
 
 /**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * Represents an Rcon client
  */
-public interface BlockBuffer extends VolumeBuffer {
+public interface RconSource extends RemoteSource {
 
     /**
-     * Gets the block in the buffer at the given position.
+     * Gets the {@link InetSocketAddress} used by the client to connect
+     * to the server.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @return The {@link InetSocketAddress} used by the client
      */
-    BlockState getBlock(int x, int y, int z);
+    InetSocketAddress getAddress();
 
+    /**
+     * Gets whether this client is logged in, or authenticated.
+     *
+     * @return Whether this client is logged in
+     */
+    boolean getLoggedIn();
+
+    /**
+     * Sets whether this client is logged in, or authenticated.
+     *
+     * @param loggedIn Whether this client is logged in
+     */
+    void setLoggedIn(boolean loggedIn);
 }

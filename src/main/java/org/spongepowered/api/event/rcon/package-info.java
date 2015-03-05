@@ -22,26 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.util.gen;
-
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-
-/**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
- */
-public interface BlockBuffer extends VolumeBuffer {
-
-    /**
-     * Gets the block in the buffer at the given position.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
-     */
-    BlockState getBlock(int x, int y, int z);
-
-}
+package org.spongepowered.api.event.rcon;

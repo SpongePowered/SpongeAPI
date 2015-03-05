@@ -22,47 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.world.weather;
+package org.spongepowered.api.event.server.query;
 
 /**
- * A volume containing {@link Weather}.
+ * Called when the server is queried through the Query protocol, with only basic information requested.
  */
-public interface WeatherVolume {
+public interface BasicQueryEvent extends QueryEvent {
 
-    /**
-     * Gets the current {@link Weather} in this volume.
-     *
-     * @return The current weather.
-     */
-    Weather getWeather();
-
-    /**
-     * Gets the remaining duration of the current {@link Weather}.
-     *
-     * @return The remaining weather duration.
-     */
-    long getRemainingDuration();
-
-    /**
-     * Gets the duration the current {@link Weather} has been running for.
-     *
-     * @return The running weather duration.
-     */
-    long getRunningDuration();
-
-    /**
-     * Sets the {@link Weather} of the volume with a random duration.
-     *
-     * @param weather The new {@link Weather}.
-     */
-    void forecast(Weather weather);
-
-    /**
-     * Sets the {@link Weather} of the volume with the specified duration.
-     *
-     * @param weather The new {@link Weather}.
-     * @param duration The specified duration.
-     */
-    void forecast(Weather weather, long duration);
 }

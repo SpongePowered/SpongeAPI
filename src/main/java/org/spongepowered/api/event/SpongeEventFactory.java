@@ -36,7 +36,6 @@ import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.data.BrewingStand;
 import org.spongepowered.api.block.data.Furnace;
 import org.spongepowered.api.block.data.Lockable;
@@ -143,7 +142,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
-import org.spongepowered.api.world.weather.WeatherVolume;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.Collection;
 import java.util.List;
@@ -554,15 +553,18 @@ public final class SpongeEventFactory {
      * @param entity The entity involved in this event
      * @param location The location of death
      * @param droppedItems The items to drop
+     * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<Item> droppedItems) {
+    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<Item> droppedItems,
+            int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", entity);
         values.put("droppedItems", droppedItems);
         values.put("location", location);
+        values.put("exp", exp);
         return createEvent(EntityDeathEvent.class, values);
     }
 
@@ -1074,10 +1076,15 @@ public final class SpongeEventFactory {
      * @param location The location of death
      * @param deathMessage The message to show to the player because they died
      * @param droppedItems The items to drop
+     * @param exp The experience to give, or take for negative values
+     * @param newExperience The new experience the player will have towards the next level
+     * @param newLevel The new level the player will have after death
+     * @param keepsLevel Whether the player keeps all of their exp on death
+     * @param keepsInventory Whether the player should keep inventory
      * @return A new instance of the event
      */
     public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Message deathMessage,
-            Collection<Item> droppedItems) {
+            Collection<Item> droppedItems, int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1088,6 +1095,11 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("droppedItems", droppedItems);
+        values.put("exp", exp);
+        values.put("newExperience", newExperience);
+        values.put("newLevel", newLevel);
+        values.put("keepsLevel", keepsLevel);
+        values.put("keepsInventory", keepsInventory);
         return createEvent(PlayerDeathEvent.class, values);
     }
 
@@ -1339,18 +1351,18 @@ public final class SpongeEventFactory {
      * Creates a new {@link LightningStrikeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param weatherVolume The volume the weather changed in
+     * @param weatherUniverse The volume the weather changed in
      * @param lightningStrike The lightning entity that struck
      * @param struckEntities The entities the lightning had struck
      * @param struckBlocks The blocks the lightning had struck
      * @return A new instance of the event
      */
-    public static LightningStrikeEvent createLightningStrike(Game game, WeatherVolume weatherVolume, Lightning lightningStrike,
+    public static LightningStrikeEvent createLightningStrike(Game game, WeatherUniverse weatherUniverse, Lightning lightningStrike,
             List<Entity> struckEntities, List<BlockLoc> struckBlocks) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("lightningStrike", lightningStrike);
-        values.put("weatherVolume", weatherVolume);
+        values.put("weatherUniverse", weatherUniverse);
         values.put("struckEntities", struckEntities);
         values.put("struckBlocks", struckBlocks);
         return createEvent(LightningStrikeEvent.class, values);
@@ -1360,16 +1372,17 @@ public final class SpongeEventFactory {
      * Creates a new {@link WeatherChangeEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param weatherVolume The volume the weather changed in
+     * @param weatherUniverse The volume the weather changed in
      * @param initialWeather The previous weather
      * @param resultingWeather The weather to change to
      * @return A new instance of the event
      */
-    public static WeatherChangeEvent createWeatherChange(Game game, WeatherVolume weatherVolume, Weather initialWeather, Weather resultingWeather) {
+    public static WeatherChangeEvent createWeatherChange(Game game, WeatherUniverse weatherUniverse, Weather initialWeather,
+            Weather resultingWeather) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("initialWeather", initialWeather);
-        values.put("weatherVolume", weatherVolume);
+        values.put("weatherUniverse", weatherUniverse);
         values.put("resultingWeather", resultingWeather);
         return createEvent(WeatherChangeEvent.class, values);
     }

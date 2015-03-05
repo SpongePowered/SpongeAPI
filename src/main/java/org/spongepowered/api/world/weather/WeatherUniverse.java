@@ -23,25 +23,46 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.gen;
-
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
+package org.spongepowered.api.world.weather;
 
 /**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * A universe affected by {@link Weather}.
  */
-public interface BlockBuffer extends VolumeBuffer {
+public interface WeatherUniverse {
 
     /**
-     * Gets the block in the buffer at the given position.
+     * Gets the current {@link Weather} in this volume.
      *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * @return The current weather.
      */
-    BlockState getBlock(int x, int y, int z);
+    Weather getWeather();
 
+    /**
+     * Gets the remaining duration of the current {@link Weather}.
+     *
+     * @return The remaining weather duration.
+     */
+    long getRemainingDuration();
+
+    /**
+     * Gets the duration the current {@link Weather} has been running for.
+     *
+     * @return The running weather duration.
+     */
+    long getRunningDuration();
+
+    /**
+     * Sets the {@link Weather} of the volume with a random duration.
+     *
+     * @param weather The new {@link Weather}.
+     */
+    void forecast(Weather weather);
+
+    /**
+     * Sets the {@link Weather} of the volume with the specified duration.
+     *
+     * @param weather The new {@link Weather}.
+     * @param duration The specified duration.
+     */
+    void forecast(Weather weather, long duration);
 }

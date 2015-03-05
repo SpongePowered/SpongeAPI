@@ -25,21 +25,13 @@
 package org.spongepowered.api.util.gen;
 
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.BiomeArea;
 
 /**
  * A mutable buffer for {@link BiomeType} data. This buffer has no direct relation
  * to the world and changes to it are not synchronized to the world.
  */
-public interface MutableBiomeArea extends BiomeArea {
-
-    /**
-     * Sets the biome in the buffer at the given position.
-     *
-     * @param x The X position
-     * @param z The Z position
-     * @param biome The new biome
-     */
-    void setBiome(int x, int z, BiomeType biome);
+public interface MutableBiomeArea extends BiomeBuffer, BiomeArea {
 
     /**
      * Fills the entire buffer with the given biome.

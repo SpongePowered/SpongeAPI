@@ -58,7 +58,9 @@ import static org.objectweb.asm.Opcodes.RETURN;
 import static org.objectweb.asm.Opcodes.V1_6;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
@@ -70,6 +72,8 @@ import org.spongepowered.api.util.reflect.PropertySearchStrategy;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -81,6 +85,7 @@ class ClassGenerator {
 
     private final PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
+    private final List<String> primitivePropertyExceptions = ImmutableList.of("cancelled");
 
     /**
      * Insert the necessary methods to unbox a primitive type (if the given type
@@ -255,7 +260,7 @@ class ClassGenerator {
                     boolean useNullTest = (this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
                             || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull());
 
-                    if (useNullTest && !property.getType().isPrimitive()) {
+                    if (useNullTest && (!property.getType().isPrimitive() || !this.primitivePropertyExceptions.contains(property.getName()))) {
                         Label afterNullTest = new Label();
                         mv.visitVarInsn(ALOAD, 2);
                         mv.visitJumpInsn(IFNONNULL, afterNullTest);

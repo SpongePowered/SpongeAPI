@@ -23,25 +23,38 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.gen;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.entity.player.gamemode.GameModes;
 
 /**
- * An buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * An list {@link EntityInteractionType}s available in Vanilla.
  */
-public interface BlockBuffer extends VolumeBuffer {
+public final class EntityInteractionTypes {
 
     /**
-     * Gets the block in the buffer at the given position.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The block
+     * Represents an interaction by "attacking", bound to left
+     * click in the client by default.
      */
-    BlockState getBlock(int x, int y, int z);
+    public static final EntityInteractionType ATTACK = null;
 
+    /**
+     * Represents an interaction by middle clicking, bound to the
+     * scroll wheel in the client by default.
+     *
+     * <p>This is only valid for {@link BlockType}s, and has the effect
+     * of giving a player the picked block if in {@link GameModes#CREATIVE}.</p>
+     */
+    public static final EntityInteractionType PICK_BLOCK = null;
+
+    /**
+     * Represents an interaction by right clicking, bound to right
+     * click in the client by default.
+     */
+    public static final EntityInteractionType USE = null;
+
+    private EntityInteractionTypes() {
+
+    }
 }
