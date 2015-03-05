@@ -159,6 +159,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      */
 
     void sendResourcePack(ResourcePack pack);
+
     /**
      * Gets this player's {@link TabList}.
      * 
