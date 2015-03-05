@@ -28,12 +28,13 @@ package org.spongepowered.api.event.stats;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.player.PlayerEvent;
 import org.spongepowered.api.stats.achievement.Achievement;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Represents an event that is called when a {@link Player} earns an
  * {@link Achievement}.
  */
-public interface AchievementEvent extends PlayerEvent {
+public interface AchievementEvent extends PlayerEvent, Cancellable {
 
     /**
      * Gets the achievement that is granted to the {@link Player}.

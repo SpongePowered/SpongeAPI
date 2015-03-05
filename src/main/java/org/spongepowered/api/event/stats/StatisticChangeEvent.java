@@ -25,22 +25,42 @@
 
 package org.spongepowered.api.event.stats;
 
+import org.spongepowered.api.event.entity.player.PlayerEvent;
 import org.spongepowered.api.stats.Statistic;
-import org.spongepowered.api.util.event.Event;
-
-import java.util.Collection;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents an event that is triggered if one or more {@link Statistic}s are
- * about to change their values.
+ * Represents an event that is triggered if a {@link Statistic}'s value is being
+ * modified.
  */
-public interface StatisticChangeEvent extends Event {
+public interface StatisticChangeEvent extends PlayerEvent, Cancellable {
 
     /**
-     * Gets a {@link Collection} containing all {@link StatisticChange}s.
+     * Gets the {@link Statistic} which is being modified by this event.
      *
-     * @return A collection containing all changes to statistics
+     * @return The statistic being modified
      */
-    Collection<StatisticChange> getStatisticChanges();
+    Statistic getChangedStatistic();
+    
+    /**
+     * Gets the original value of the statistic.
+     * 
+     * @return The old value
+     */
+    long getOldValue();
+
+    /**
+     * Gets the pending new value of the statistic.
+     * 
+     * @return The new value
+     */
+    long getNewValue();
+
+    /**
+     * Sets the pending new value of the statistic to the given value.
+     * 
+     * @param value The new value
+     */
+    void setNewValue(long value);
 
 }

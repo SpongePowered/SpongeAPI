@@ -26,28 +26,23 @@
 package org.spongepowered.api.stats;
 
 /**
- * A utility class for getting all available {@link StatisticUnit}s.
+ * Represents the format for a statistic.
  */
-public final class StatisticUnits {
+public interface StatisticFormat {
 
     /**
-     * A statistic without unit.
+     * Gets the name of this format.
+     *
+     * @return The name of this format
      */
-    public static StatisticUnit COUNT = null;
-    /**
-     * A statistic measured in centimeters.
-     */
-    public static StatisticUnit DISTANCE_CM = null;
-    /**
-     * A statistic measured in 0.1 steps.
-     */
-    public static StatisticUnit FRACTIONAL1 = null;
-    /**
-     * A statistic measured in minutes.
-     */
-    public static StatisticUnit TIME_MINUTES = null;
+    String getName();
 
-    private StatisticUnits() {
-    }
+    /**
+     * Formats the given value from the statistic to a human readable form.
+     *
+     * @param value The value to format
+     * @return The formated value
+     */
+    String format(long value);
 
 }

@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
@@ -160,22 +161,33 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void kick(Text.Literal reason);
     
     /**
-     * Gets the current value for the given {@link Statistic}.
+     * Gets the current value for the given {@link Statistic}. If the statistic
+     * has not been set yet then {@link Optional#absent()} will be returned.
      *
      * @param statistic The statistic to return
-     * @return The current value for the given statistic, if a value is set yet.
-     *         Optional.absent() otherwise
+     * @return The current value, or Optional.absent() if not set
      */
     Optional<Long> getStatistic(Statistic statistic);
 
     /**
      * Gets all {@link Statistic}s with their current values. Does not return
-     * statistics that does not have a value set yet.
+     * statistics which have not been set yet.
      *
      * @return An immutable map containing all statistics with their current
      *         values
      */
     Map<Statistic, Long> getStatistics();
+
+    /**
+     * Gets all {@link Statistic}s which belong to the given group, along with
+     * their current values. Does not return statistics which have not been set
+     * yet.
+     * 
+     * @param group The group to retrieve
+     * @return An immutable map containing all statistics within the group, and
+     *         their values
+     */
+    Map<Statistic, Long> getStatisticsByGroup(StatisticGroup group);
 
     /**
      * Adds the specified amount to the given statistic.
@@ -194,18 +206,18 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void setStatistic(Statistic statistic, long newValue);
 
     /**
-     * Resets the given statistic. The entry will be removed from the stats so
-     * if you try to get it, it will return Optional.absent() until it is
-     * set again.
+     * Resets the given statistic. This may result in the statistic being
+     * removed from the statistics for this player until it is set to a value
+     * again.
      *
      * @param statistic The statistic to reset
      */
     void resetStatistic(Statistic statistic);
 
     /**
-     * Resets all statistics. The entries will be removed from the stats so if
-     * you try to get any of them, it will return Optional.absent() until they
-     * are set again.
+     * Resets all statistics. This may result in some of the statistics being
+     * removed from the statistics for this player until it is set to a value
+     * again.
      */
     void resetStatistics();
 
@@ -218,7 +230,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     boolean hasAchievement(Achievement achievement);
 
     /**
-     * Gets an {@link Collection} containing all {@link Achievement}s this player
+     * Gets a {@link Collection} containing all {@link Achievement}s this player
      * has earned already.
      *
      * @return An immutable collection containing all earned achievements

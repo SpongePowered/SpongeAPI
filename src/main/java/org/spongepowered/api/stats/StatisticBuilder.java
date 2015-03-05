@@ -25,30 +25,52 @@
 
 package org.spongepowered.api.stats;
 
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 
-import java.util.Map;
+import javax.annotation.Nullable;
 
 /**
- * Represents a builder interface to create new instances of {@link Statistic}s.
+ * Represents a builder to create new and custom instances of {@link Statistic}
+ * s.
  */
 public interface StatisticBuilder {
+
+    /**
+     * Sets the internal name for the {@link Statistic}.
+     *
+     * @param name The name of this achievement
+     * @return This builder, for chaining
+     */
+    StatisticBuilder name(String name);
 
     /**
      * Sets the translation for the {@link Statistic}.
      *
      * @param translation The translation for the statistic
-     * @return This builder
+     * @return This builder, for chaining
      */
     StatisticBuilder translation(Translation translation);
 
     /**
-     * Sets the id used to save the current values of the {@link Statistic}.
+     * Sets the format of the {@link Statistic}. May be null in which case the
+     * group default format will be used instead.
      *
-     * @param id The id used to save the current values of the statistic
-     * @return This builder
+     * @param format The format of the statistic
+     * @return This builder, for chaining
      */
-    StatisticBuilder id(String id);
+    StatisticBuilder format(@Nullable StatisticFormat format);
+
+    /**
+     * Sets the {@link StatisticGroup} the {@link Statistic} belongs to.
+     *
+     * @param group The statistic group the statistic belongs to
+     * @return This builder, for chaining
+     */
+    StatisticBuilder group(StatisticGroup group);
 
     /**
      * Builds and registers an instance of a {@link Statistic}.
@@ -59,81 +81,126 @@ public interface StatisticBuilder {
     Statistic buildAndRegister() throws IllegalStateException;
 
     /**
-     * Represents a builder interface to create new instances of simple
-     * {@link Statistic}s (none grouped).
+     * Represents a builder to create new and custom instances of
+     * {@link EntityStatistic}s.
      */
-    interface Simple extends StatisticBuilder {
-
-        @Override
-        Simple translation(Translation translation);
-
-        @Override
-        Simple id(String id);
+    interface EntityStatisticBuilder extends StatisticBuilder {
 
         /**
-         * Sets the unit the {@link Statistic} will be measured in.
-         *
-         * @param unit The unit the statistic will be measured in
-         * @return This builder
+         * Sets the {@link EntityType} of this {@link EntityStatistic}.
+         * 
+         * @param entity The entity
+         * @return This builder, for chaining
          */
-        Simple unit(StatisticUnit unit);
+        EntityStatisticBuilder entity(EntityType entity);
+
+        @Override
+        EntityStatisticBuilder name(String name);
+
+        @Override
+        EntityStatisticBuilder translation(Translation translation);
+
+        @Override
+        EntityStatisticBuilder format(@Nullable StatisticFormat format);
+
+        @Override
+        EntityStatisticBuilder group(StatisticGroup group);
+
+        @Override
+        EntityStatistic buildAndRegister() throws IllegalStateException;
 
     }
 
     /**
-     * Represents a builder interface to create new instances of
-     * {@link GroupedStatistic}s.
+     * Represents a builder to create new and custom instances of
+     * {@link BlockStatistic}s.
      */
-    interface Grouped extends StatisticBuilder {
+    interface BlockStatisticBuilder extends StatisticBuilder {
+
+        /**
+         * Sets the {@link BlockType} of this {@link BlockStatistic}.
+         * 
+         * @param block The block
+         * @return This builder, for chaining
+         */
+        BlockStatisticBuilder block(BlockType block);
 
         @Override
-        Grouped translation(Translation translation);
+        BlockStatisticBuilder name(String name);
 
         @Override
-        Grouped id(String id);
-
-        /**
-         * Sets the {@link StatisticType} the {@link GroupedStatistic} belongs
-         * to.
-         *
-         * @param type The statistic type the grouped statistic belongs to
-         * @return This builder
-         */
-        Grouped type(StatisticType type);
-
-        /**
-         * Sets the builder to append the sub id to the {@link StatisticType}s
-         * base id.
-         *
-         * @param subId The sub id used to save the current values of the
-         *        statistic
-         * @return This builder
-         */
-        Grouped subId(String subId);
-
-        /**
-         * Attaches required data to the {@link GroupedStatistic}.
-         *
-         * @param key The key for the data to attach
-         * @param value The value to attach
-         * @return This builder
-         * @throws IllegalArgumentException If the value does not meet the
-         *         requirements or another value is already present for that key
-         */
-        Grouped data(String key, Object value) throws IllegalArgumentException;
-
-        /**
-         * Attaches required data to the {@link GroupedStatistic}.
-         *
-         * @param values The values to attach
-         * @return This builder
-         * @throws IllegalArgumentException If the value does not meet the
-         *         requirements or another value is already present for that key
-         */
-        Grouped data(Map<String, ?> values) throws IllegalArgumentException;
+        BlockStatisticBuilder translation(Translation translation);
 
         @Override
-        GroupedStatistic buildAndRegister() throws IllegalStateException;
+        BlockStatisticBuilder format(@Nullable StatisticFormat format);
+
+        @Override
+        BlockStatisticBuilder group(StatisticGroup group);
+
+        @Override
+        BlockStatistic buildAndRegister() throws IllegalStateException;
+
+    }
+
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link ItemStatistic}s.
+     */
+    interface ItemStatisticBuilder extends StatisticBuilder {
+
+        /**
+         * Sets the {@link ItemType} of this {@link ItemStatistic}.
+         * 
+         * @param item The item
+         * @return This builder, for chaining
+         */
+        ItemStatisticBuilder item(ItemType item);
+
+        @Override
+        ItemStatisticBuilder name(String name);
+
+        @Override
+        ItemStatisticBuilder translation(Translation translation);
+
+        @Override
+        ItemStatisticBuilder format(@Nullable StatisticFormat format);
+
+        @Override
+        ItemStatisticBuilder group(StatisticGroup group);
+
+        @Override
+        ItemStatistic buildAndRegister() throws IllegalStateException;
+
+    }
+
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link TeamStatistic}s.
+     */
+    interface TeamStatisticBuilder extends StatisticBuilder {
+
+        /**
+         * Sets the {@link TextColor} of this {@link TeamStatistic}.
+         * 
+         * @param color The color
+         * @return This builder, for chaining
+         */
+        TeamStatisticBuilder teamColor(TextColor color);
+
+        @Override
+        TeamStatisticBuilder name(String name);
+
+        @Override
+        TeamStatisticBuilder translation(Translation translation);
+
+        @Override
+        TeamStatisticBuilder format(@Nullable StatisticFormat format);
+
+        @Override
+        TeamStatisticBuilder group(StatisticGroup group);
+
+        @Override
+        TeamStatistic buildAndRegister() throws IllegalStateException;
 
     }
 

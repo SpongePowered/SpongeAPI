@@ -28,18 +28,9 @@ package org.spongepowered.api.stats;
 import org.spongepowered.api.item.ItemType;
 
 /**
- * Represents a {@link Statistic} with a {@link ItemStatisticType} for an
- * {@link ItemType}.
+ * Represents a {@link Statistic} for an {@link ItemType}.
  */
-public interface ItemStatistic extends GroupedStatistic {
-
-    /**
-     * Gets the {@link ItemStatisticType} this {@link Statistic} belongs to.
-     *
-     * @return The item statistic type this statistic belongs to
-     */
-    @Override
-    ItemStatisticType getType();
+public interface ItemStatistic extends Statistic {
 
     /**
      * Gets the {@link ItemType} this {@link Statistic} measures.

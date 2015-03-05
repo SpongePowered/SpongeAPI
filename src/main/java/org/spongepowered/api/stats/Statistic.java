@@ -24,25 +24,35 @@
  */
 package org.spongepowered.api.stats;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.text.translation.Translatable;
 
 /**
  * Represents some statistic in Minecraft with a string ID.
  */
 public interface Statistic extends Translatable {
+    
+    /**
+     * Gets the internal name for this statistic.
+     * 
+     * @return The internal name
+     */
+    String getInternalName();
 
     /**
-     * Gets the ID for this Statistic.
+     * Gets the {@link StatisticFormat} of this statistic. If this is not
+     * present that this statistic's format is deferred to its group's default
+     * format.
      *
-     * @return The String ID
+     * @return The format of this statistic, if available
      */
-    String getId();
+    Optional<StatisticFormat> getStatisticFormat();
 
     /**
-     * Gets the {@link StatisticUnit} this statistic is measured in.
+     * Gets the {@link StatisticGroup} this {@link Statistic} belongs to.
      *
-     * @return The statistic unit this statistic is measured in
+     * @return The statistic group this statistic belongs to
      */
-    StatisticUnit getStatisticUnit();
+    StatisticGroup getGroup();
 
 }

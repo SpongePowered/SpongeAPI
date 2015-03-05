@@ -26,12 +26,11 @@ package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanPlaceBlockEvent;
-import org.spongepowered.api.event.stats.StatisticChangeEvent;
 import org.spongepowered.api.world.Location;
 
 /**
  * Called when a {@link Player} places a {@link Location}.
  */
-public interface PlayerPlaceBlockEvent extends PlayerChangeBlockEvent, HumanPlaceBlockEvent, StatisticChangeEvent {
+public interface PlayerPlaceBlockEvent extends PlayerChangeBlockEvent, HumanPlaceBlockEvent {
 
 }
