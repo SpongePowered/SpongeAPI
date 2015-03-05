@@ -33,6 +33,7 @@ import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.animal.DyeColor;
@@ -565,5 +566,20 @@ public interface GameRegistry {
      * @return The difficulty with that name, or {@link Optional#absent()}
      */
     Optional<Difficulty> getDifficulty(String name);
+
+    /**
+     * Gets a collection of all available {@link EntityInteractionType}s.
+     *
+     * @return A collection of all available {@link EntityInteractionType}s
+     */
+    Collection<EntityInteractionType> getEntityInteractionTypes();
+
+    /**
+     * Gets an {@link EntityInteractionType} by name.
+     *
+     * @param name The name of the {@link EntityInteractionType}
+     * @return The {@link EntityInteractionType} with that name, or {@link Optional#absent()}
+     */
+    Optional<EntityInteractionType> getEntityInteractionType(String name);
 
 }

@@ -22,18 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.block.BlockType;
+
 /**
- * Represents a method of interacting with a block or entity.
+ * An list {@link EntityInteractionType}s available in Vanilla.
  */
-public interface EntityInteractionType {
+public final class EntityInteractionTypes {
 
     /**
-     * Gets the name of this entity interaction type.
-     *
-     * @return The name of this entity interaction type
+     * Represents an interaction by "attacking", bound to left
+     * click in the client by default.
      */
-    String getName();
+    public static final EntityInteractionType LEFT_CLICK = null;
 
+    /**
+     * Represents an interaction by middle clicking, bound to the
+     * scroll wheel in the client by default.
+     *
+     * <p>This is only valid for {@link BlockType}s.</p>
+     */
+    public static final EntityInteractionType MIDDLE_CLICK = null;
+
+    /**
+     * Represents an interaction by right clicking, bound to right
+     * click in the client by default.
+     */
+    public static final EntityInteractionType RIGHT_CLICK = null;
+
+    private EntityInteractionTypes() {
+
+    }
 }
