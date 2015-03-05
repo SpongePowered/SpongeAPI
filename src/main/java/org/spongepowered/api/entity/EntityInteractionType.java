@@ -22,16 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity;
 
 /**
- * An enum representing the possible ways for a player to interact directly.
+ * Represents a method of interacting with a block or entity.
  */
-public enum EntityInteractionType {
+public interface EntityInteractionType {
 
-    LEFT_CLICK,
-    MIDDLE_CLICK,
-    RIGHT_CLICK
+    /**
+     * Gets the name of this entity interaction type.
+     *
+     * @return The name of this entity interaction type
+     */
+    String getName();
 
 }

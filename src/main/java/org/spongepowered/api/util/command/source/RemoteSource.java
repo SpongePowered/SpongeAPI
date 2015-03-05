@@ -27,7 +27,7 @@ package org.spongepowered.api.util.command.source;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Represents a remote source, such as RCON, web-app, etc.
+ * Represents a remote source, such as Rcon, web-app, etc.
  */
 public interface RemoteSource extends CommandSource {
 

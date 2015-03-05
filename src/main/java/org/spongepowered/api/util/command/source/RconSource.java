@@ -22,40 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.gen;
+package org.spongepowered.api.util.command.source;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.world.extent.BlockVolume;
+import java.net.InetSocketAddress;
 
 /**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * Represents an Rcon client
  */
-public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
+public interface RconSource extends RemoteSource {
 
     /**
-     * Fills the entire buffer with the given block.
+     * Gets the {@link InetSocketAddress} used by the client to connect
+     * to the server.
      *
-     * @param block The block to fill with
+     * @return The {@link InetSocketAddress} used by the client
      */
-    void fill(BlockState block);
+    InetSocketAddress getAddress();
 
     /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
+     * Gets whether this client is logged in, or authenticated.
      *
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
+     * @return Whether this client is logged in
      */
-    void setHorizontalLayer(int y, int height, BlockState block);
+    boolean getLoggedIn();
 
     /**
-     * Returns an immutable copy of this block buffer.
+     * Sets whether this client is logged in, or authenticated.
      *
-     * @return An immutable copy
+     * @param loggedIn Whether this client is logged in
      */
-    ImmutableBlockBuffer getImmutableClone();
-
+    void setLoggedIn(boolean loggedIn);
 }

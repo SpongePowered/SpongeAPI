@@ -22,40 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.gen;
 
-import org.spongepowered.api.block.BlockState;
+package org.spongepowered.api.entity;
+
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.world.extent.BlockVolume;
+import org.spongepowered.api.entity.player.gamemode.GameModes;
 
 /**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * An list {@link EntityInteractionType}s available in Vanilla.
  */
-public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
+public final class EntityInteractionTypes {
 
     /**
-     * Fills the entire buffer with the given block.
-     *
-     * @param block The block to fill with
+     * Represents an interaction by "attacking", bound to left
+     * click in the client by default.
      */
-    void fill(BlockState block);
+    public static final EntityInteractionType ATTACK = null;
 
     /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
+     * Represents an interaction by middle clicking, bound to the
+     * scroll wheel in the client by default.
      *
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
+     * <p>This is only valid for {@link BlockType}s, and has the effect
+     * of giving a player the picked block if in {@link GameModes#CREATIVE}.</p>
      */
-    void setHorizontalLayer(int y, int height, BlockState block);
+    public static final EntityInteractionType PICK_BLOCK = null;
 
     /**
-     * Returns an immutable copy of this block buffer.
-     *
-     * @return An immutable copy
+     * Represents an interaction by right clicking, bound to right
+     * click in the client by default.
      */
-    ImmutableBlockBuffer getImmutableClone();
+    public static final EntityInteractionType USE = null;
 
+    private EntityInteractionTypes() {
+
+    }
 }

@@ -25,7 +25,6 @@
 
 package org.spongepowered.api;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.attribute.Operation;
@@ -36,6 +35,7 @@ import org.spongepowered.api.block.meta.SkullType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
 import org.spongepowered.api.entity.living.animal.DyeColor;
@@ -60,6 +60,8 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
+
+import com.google.common.base.Optional;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -607,5 +609,20 @@ public interface GameRegistry {
      * @return A new AttributeModifierBuilder
      */
     AttributeModifierBuilder getAttributeModifierBuilder();
+
+    /**
+     * Gets a collection of all available {@link EntityInteractionType}s.
+     *
+     * @return A collection of all available {@link EntityInteractionType}s
+     */
+    Collection<EntityInteractionType> getEntityInteractionTypes();
+
+    /**
+     * Gets an {@link EntityInteractionType} by name.
+     *
+     * @param name The name of the {@link EntityInteractionType}
+     * @return The {@link EntityInteractionType} with that name, or {@link Optional#absent()}
+     */
+    Optional<EntityInteractionType> getEntityInteractionType(String name);
 
 }

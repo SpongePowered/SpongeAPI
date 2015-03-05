@@ -22,40 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.gen;
+package org.spongepowered.api.event.rcon;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.world.extent.BlockVolume;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.util.command.source.RconSource;
 
-/**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
- */
-public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
+public interface RconEvent extends GameEvent {
 
     /**
-     * Fills the entire buffer with the given block.
+     * Gets the ID provided by the client for this request
      *
-     * @param block The block to fill with
+     * <p>The provided ID is sent back in the response to the client.</p>
+     *
+     * <p>If authorization failed (password is incorrect, or client didn't authenticate),
+     * the ID will be set to -1 in the response.</p>
+     *
+     * @return The ID provided by the client
      */
-    void fill(BlockState block);
+    int getId();
 
     /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
+     * Gets the raw payload provided by the client.
      *
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
+     * <p>If the client is authenticating, this will be the supplied password.
+     *
+     * If the client is running a command, this will be the command to run.</p>
+     *
+     * @return The raw payload provided by the client
      */
-    void setHorizontalLayer(int y, int height, BlockState block);
+    String getRawPayload();
 
     /**
-     * Returns an immutable copy of this block buffer.
+     * Gets the {@link RconSource} responsible for the event.
      *
-     * @return An immutable copy
+     * @return The {@link RconSource} responsible for the event
      */
-    ImmutableBlockBuffer getImmutableClone();
-
+    RconSource getSource();
 }
