@@ -70,7 +70,7 @@ public class Location {
      * @return The extent
      */
     public Extent getExtent() {
-        return extent;
+        return this.extent;
     }
 
     /**
@@ -93,7 +93,7 @@ public class Location {
      * @return The underlying position
      */
     public Vector3d getPosition() {
-        return position;
+        return this.position;
     }
 
     /**
@@ -140,7 +140,8 @@ public class Location {
      * @return The block
      */
     public BlockLoc getBlock() {
-        return getExtent().getBlock(getPosition());
+        Vector3d position = getPosition();
+        return getExtent().getFullBlock(position.getFloorX(), position.getFloorY(), position.getFloorZ());
     }
 
 }

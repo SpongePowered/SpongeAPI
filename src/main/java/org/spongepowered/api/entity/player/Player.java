@@ -29,6 +29,7 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
+import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.text.chat.ChatType;
@@ -54,7 +55,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     /**
      * Gets the player's display name. If none set, returns their current
      * username.
-     * 
+     *
      * @return The player's display name
      */
     Message getDisplayName();
@@ -156,5 +157,13 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * 
      * @param pack The resourcepack to use
      */
+
     void sendResourcePack(ResourcePack pack);
+    /**
+     * Gets this player's {@link TabList}.
+     * 
+     * @return This player's TabList.
+     */
+    TabList getTabList();
+
 }

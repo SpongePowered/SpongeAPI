@@ -27,7 +27,7 @@ package org.spongepowered.api.service.config;
 
 import com.google.inject.BindingAnnotation;
 import com.google.inject.Inject;
-import org.spongepowered.api.util.config.ConfigFile;
+import ninja.leaping.configurate.loader.ConfigurationLoader;
 
 import java.io.File;
 import java.lang.annotation.ElementType;
@@ -41,14 +41,14 @@ import java.lang.annotation.Target;
  *
  * <p>Use this annotation on a {@link File} if you want the pathname to
  * the default configuration. Or instead, use this annotation on a
- * {@link ConfigFile} to get an instance of that. Remember that
+ * {@link ConfigurationLoader} to get an instance of that. Remember that
  * {@link Inject} is also necessary.</p>
  *
  * @see ConfigService For getting configuration without injection
  */
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.PARAMETER, ElementType.FIELD })
+@Target({ElementType.PARAMETER, ElementType.FIELD})
 public @interface DefaultConfig {
 
     /**

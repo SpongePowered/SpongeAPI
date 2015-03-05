@@ -24,15 +24,16 @@
  */
 package org.spongepowered.api.service.permission;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
 public class NodeTreeTest {
+
     @Test
     public void testAsMap() {
         final Map<String, Boolean> testPermissions = new HashMap<String, Boolean>();

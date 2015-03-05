@@ -36,16 +36,16 @@ public interface TileEntity extends DataSerializable {
 
     /**
      * Gets the world that this Tile is within.
-     * 
+     *
      * @return The world
      */
     World getWorld();
-    
+
     /**
      * Gets the BlockLoc that this tile is in.
-     * 
+     *
      * @return The BlockLoc
      */
     BlockLoc getBlock();
-    
+
 }

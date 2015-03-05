@@ -120,7 +120,7 @@ public class TextStyle {
      * @return True if the given text style is contained in this text style
      */
     public boolean is(TextStyle style) {
-        for (Map.Entry<Base, TextStyleComponent> entry: style.components.entrySet()) {
+        for (Map.Entry<Base, TextStyleComponent> entry : style.components.entrySet()) {
             if (applied(entry.getKey()).compareTo(TextStyleComponent.APPLIED) < 1) {
                 return false;
             }
@@ -148,8 +148,8 @@ public class TextStyle {
      * @see org.spongepowered.api.text.format.TextStyle.TextStyleComponent
      */
     public TextStyleComponent applied(Base style) {
-        if (components.containsKey(style)) {
-            return components.get(style);
+        if (this.components.containsKey(style)) {
+            return this.components.get(style);
         } else {
             return TextStyleComponent.UNAPPLIED;
         }
@@ -165,7 +165,7 @@ public class TextStyle {
         // Do a negation of each component
         ImmutableMap.Builder<Base, TextStyleComponent> newComponents =
                 new ImmutableMap.Builder<Base, TextStyleComponent>();
-        for (Map.Entry<Base, TextStyleComponent> entry: components.entrySet()) {
+        for (Map.Entry<Base, TextStyleComponent> entry : this.components.entrySet()) {
             newComponents.put(entry.getKey(), entry.getValue().negate());
         }
         return new TextStyle(newComponents.build());
@@ -181,9 +181,9 @@ public class TextStyle {
         // We can't use a builder here because we have to remove values
         Map<Base, TextStyleComponent> newComponents =
                 new HashMap<Base, TextStyleComponent>();
-        newComponents.putAll(components);
-        for (TextStyle style: styles) {
-            for (Map.Entry<Base, TextStyleComponent> entry: style.components.entrySet()) {
+        newComponents.putAll(this.components);
+        for (TextStyle style : styles) {
+            for (Map.Entry<Base, TextStyleComponent> entry : style.components.entrySet()) {
                 Base base = entry.getKey();
                 TextStyleComponent component = applied(base).add(entry.getValue());
                 if (component.equals(TextStyleComponent.UNAPPLIED)) {
@@ -213,59 +213,6 @@ public class TextStyle {
             negated[i] = styles[i].negate();
         }
         return and(negated);
-    }
-
-    /**
-     * A Base text style is a text style that is represented in Minecraft.
-     * There  are several Base styles specified in
-     * {@link TextStyles} which are the
-     * Minecraft base types. Base extends FormattingCode because it does have a
-     * corresponding formatting code; it is a single, pure text style.
-     */
-    public static class Base extends TextStyle implements BaseFormatting {
-
-        /**
-         * The name of this Base TextStyle.
-         */
-        private final String name;
-
-        /**
-         * The char code behind this Base TextStyle.
-         */
-        private final char code;
-
-        /**
-         * Constructs a new Base text style.
-         *
-         * @param name The name of the TextStyle
-         * @param code The char code behind this TextStyle
-         */
-        public Base(String name, char code) {
-            ImmutableMap.Builder<Base, TextStyleComponent> builder =
-                    new ImmutableMap.Builder<Base, TextStyleComponent>();
-            builder.put(this, TextStyleComponent.APPLIED);
-            components = builder.build();
-            this.name = name;
-            this.code = code;
-        }
-
-        @Override
-        public boolean isComposite() {
-            // By definition, base TextStyles are not composites
-            return false;
-        }
-
-        @Override
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        @Deprecated
-        public char getCode() {
-            return code;
-        }
-
     }
 
     /**
@@ -331,13 +278,30 @@ public class TextStyle {
         }
 
         /**
+         * Gets a TextStyleComponent from an integer intValue, cutting off anything
+         * not in the domain [-1, 1].
+         *
+         * @param value The intValue of the component as a string
+         * @return The TextStyleComponent as a intValue
+         */
+        public static TextStyleComponent valueOf(int value) {
+            if (value > 1) {
+                return fromInteger.get(1);
+            } else if (value < -1) {
+                return fromInteger.get(-1);
+            } else {
+                return fromInteger.get(value);
+            }
+        }
+
+        /**
          * Adds this TextStyleComponent to the given one.
          *
          * @param that The given component
          * @return A new TextStyleComponent
          */
         public TextStyleComponent add(TextStyleComponent that) {
-            return valueOf(intValue + that.intValue);
+            return valueOf(this.intValue + that.intValue);
         }
 
         /**
@@ -346,7 +310,7 @@ public class TextStyle {
          * @return The negated TextStyleComponent
          */
         public TextStyleComponent negate() {
-            return valueOf(-intValue);
+            return valueOf(-this.intValue);
         }
 
         /**
@@ -365,7 +329,7 @@ public class TextStyle {
          * @return The integer form of this component
          */
         public int toInteger() {
-            return intValue;
+            return this.intValue;
         }
 
         /**
@@ -375,24 +339,60 @@ public class TextStyle {
          * @return This component as a boolean or {@link Optional#absent()}
          */
         public Optional<Boolean> toBoolean() {
-            return boolValue;
+            return this.boolValue;
         }
 
+    }
+
+    /**
+     * A Base text style is a text style that is represented in Minecraft.
+     * There  are several Base styles specified in
+     * {@link TextStyles} which are the
+     * Minecraft base types. Base extends FormattingCode because it does have a
+     * corresponding formatting code; it is a single, pure text style.
+     */
+    public static class Base extends TextStyle implements BaseFormatting {
+
         /**
-         * Gets a TextStyleComponent from an integer intValue, cutting off anything
-         * not in the domain [-1, 1].
-         *
-         * @param value The intValue of the component as a string
-         * @return The TextStyleComponent as a intValue
+         * The name of this Base TextStyle.
          */
-        public static TextStyleComponent valueOf(int value) {
-            if (value > 1) {
-                return fromInteger.get(1);
-            } else if (value < -1) {
-                return fromInteger.get(-1);
-            } else {
-                return fromInteger.get(value);
-            }
+        private final String name;
+
+        /**
+         * The char code behind this Base TextStyle.
+         */
+        private final char code;
+
+        /**
+         * Constructs a new Base text style.
+         *
+         * @param name The name of the TextStyle
+         * @param code The char code behind this TextStyle
+         */
+        public Base(String name, char code) {
+            ImmutableMap.Builder<Base, TextStyleComponent> builder =
+                    new ImmutableMap.Builder<Base, TextStyleComponent>();
+            builder.put(this, TextStyleComponent.APPLIED);
+            this.components = builder.build();
+            this.name = name;
+            this.code = code;
+        }
+
+        @Override
+        public boolean isComposite() {
+            // By definition, base TextStyles are not composites
+            return false;
+        }
+
+        @Override
+        public String getName() {
+            return this.name;
+        }
+
+        @Override
+        @Deprecated
+        public char getCode() {
+            return this.code;
         }
 
     }

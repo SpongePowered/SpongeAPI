@@ -69,6 +69,16 @@ public enum Tristate {
     }
 
     /**
+     * Return the appropriate tristate for a given boolean value.
+     *
+     * @param val The boolean value
+     * @return The appropriate tristate
+     */
+    public static Tristate fromBoolean(boolean val) {
+        return val ? TRUE : FALSE;
+    }
+
+    /**
      * ANDs this tristate with another tristate.
      *
      * @param other The tristate to AND with
@@ -84,23 +94,12 @@ public enum Tristate {
      */
     public abstract Tristate or(Tristate other);
 
-
     /**
      * Returns the boolean representation of this tristate.
      *
      * @return The boolean tristate representation
      */
     public boolean asBoolean() {
-        return val;
-    }
-
-    /**
-     * Return the appropriate tristate for a given boolean value.
-     *
-     * @param val The boolean value
-     * @return The appropriate tristate
-     */
-    public static Tristate fromBoolean(boolean val) {
-        return val ? TRUE : FALSE;
+        return this.val;
     }
 }

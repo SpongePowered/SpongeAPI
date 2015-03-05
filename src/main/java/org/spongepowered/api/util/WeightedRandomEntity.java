@@ -36,21 +36,21 @@ public interface WeightedRandomEntity {
 
     /**
      * Gets the {@link EntityType}.
-     * 
+     *
      * @return The entity type
      */
     EntityType getEntityType();
 
     /**
      * Gets the additional properties to apply to the entity.
-     * 
+     *
      * @return The additional properties
      */
     DataContainer getAdditionalProperties();
 
     /**
      * Gets the weight of this entity.
-     * 
+     *
      * @return The weight
      */
     int getWeight();

@@ -68,7 +68,7 @@ public final class Property {
      * @return The name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -77,7 +77,7 @@ public final class Property {
      * @return The type
      */
     public Class<?> getType() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -86,7 +86,7 @@ public final class Property {
      * @return The accessor
      */
     public Method getAccessor() {
-        return accessor;
+        return this.accessor;
     }
 
     /**
@@ -95,7 +95,7 @@ public final class Property {
      * @return The mutator
      */
     public Optional<Method> getMutator() {
-        return mutator;
+        return this.mutator;
     }
 
     /**

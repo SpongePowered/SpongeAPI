@@ -64,7 +64,6 @@ Thumbs.db
 .idea
 .project
 .settings
-eclipse
 nbproject
 atlassian-ide-plugin.xml
 build.xml

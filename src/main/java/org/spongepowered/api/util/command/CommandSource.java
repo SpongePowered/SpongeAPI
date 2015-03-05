@@ -32,9 +32,16 @@ import org.spongepowered.api.text.message.Message;
  * Something that can execute commands.
  *
  * <p>Examples of potential implementations include players, the server console,
- * RCON clients, web-based clients, command blocks, and so on.</p>
+ * Rcon clients, web-based clients, command blocks, and so on.</p>
  */
 public interface CommandSource extends Subject {
+
+    /**
+     * Gets the name identifying this command source.
+     *
+     * @return The name of this command source
+     */
+    String getName();
 
     /**
      * Sends the plain text message(s) to source when possible.

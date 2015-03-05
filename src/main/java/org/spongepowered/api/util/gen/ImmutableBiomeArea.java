@@ -25,8 +25,8 @@
 package org.spongepowered.api.util.gen;
 
 /**
- * An immutable version of a {@link BiomeArea}.
+ * An immutable version of a {@link org.spongepowered.api.world.extent.BiomeArea}.
  */
-public interface ImmutableBiomeArea extends BiomeArea {
+public interface ImmutableBiomeArea extends BiomeBuffer {
 
 }

@@ -32,28 +32,28 @@ public interface Furnace extends Lockable {
     /**
      * Gets the remaining time until another piece of fuel will be consumed.
      * Will be zero if the furnace is not currently lit.
-     * 
+     *
      * @return The remaining time, in ticks
      */
     int getRemainingBurnTime();
 
     /**
      * Sets the remaining time until a new piece of fuel will be consumed.
-     * 
+     *
      * @param time The new time, in ticks
      */
     void setRemainingBurnTime(int time);
 
     /**
      * Gets the remaining time until the next item is cooked.
-     * 
+     *
      * @return The remaining time, in ticks
      */
     int getRemainingCookTime();
 
     /**
      * Sets the remaining time until a new item is cooked.
-     * 
+     *
      * @param time The new time, in ticks
      */
     void setRemainingCookTime(int time);

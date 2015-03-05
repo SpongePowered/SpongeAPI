@@ -86,5 +86,5 @@ public interface PotionEffectBuilder {
      * @throws IllegalStateException If the potion effect is not completed
      */
     PotionEffect build() throws IllegalStateException;
-    
+
 }

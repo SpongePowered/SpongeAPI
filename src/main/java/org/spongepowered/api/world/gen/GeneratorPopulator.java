@@ -36,12 +36,12 @@ public interface GeneratorPopulator {
 
     /**
      * Performs the changes to the given {@link MutableBlockBuffer}.
-     * 
+     *
      * <p>The given position is the lowest point of the buffer in order to
      * properly mutate the seed to ensure that all chunks are unique, while
      * at the same time the same chunk will always generate the same for a
      * given seed.</p>
-     * 
+     *
      * @param buffer The buffer to apply the changes to
      * @param x The X position
      * @param y The Y position

@@ -31,16 +31,16 @@ public interface BannerPatternShape {
 
     /**
      * Gets the name of this pattern shape.
-     * 
+     *
      * @return The name
      */
     String getName();
-    
+
     /**
      * Gets the id for this pattern shape.
-     * 
+     *
      * @return The id
      */
     String getId();
-    
+
 }

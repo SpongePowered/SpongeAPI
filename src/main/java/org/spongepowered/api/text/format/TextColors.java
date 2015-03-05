@@ -33,9 +33,6 @@ import java.util.List;
  */
 public final class TextColors {
 
-    private TextColors() {
-    }
-
     public static final TextColor.Base BLACK = null;
     public static final TextColor.Base DARK_BLUE = null;
     public static final TextColor.Base DARK_GREEN = null;
@@ -52,12 +49,14 @@ public final class TextColors {
     public static final TextColor.Base LIGHT_PURPLE = null;
     public static final TextColor.Base YELLOW = null;
     public static final TextColor.Base WHITE = null;
-
     /**
      * Resets the current color to the default one on the client. In most cases
      * this should be the same as {@link #WHITE}.
      */
     public static final TextColor.Base RESET = null;
+
+    private TextColors() {
+    }
 
     /**
      * Gets the {@link TextColor} with the specified name.

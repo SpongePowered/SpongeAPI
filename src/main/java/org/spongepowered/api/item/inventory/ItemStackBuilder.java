@@ -86,4 +86,5 @@ public interface ItemStackBuilder {
      * @throws IllegalStateException If the item stack is not completed
      */
     ItemStack build() throws IllegalStateException;
+    
 }

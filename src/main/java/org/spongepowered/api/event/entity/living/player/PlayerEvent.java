@@ -26,8 +26,6 @@
 package org.spongepowered.api.event.entity.living.player;
 
 
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 
@@ -43,21 +41,12 @@ public interface PlayerEvent extends HumanEvent {
      */
     Player getPlayer();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Player getHuman();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Player getLiving();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Player getEntity();
 }

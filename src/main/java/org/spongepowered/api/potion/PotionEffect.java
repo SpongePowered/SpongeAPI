@@ -30,6 +30,9 @@ import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
  * Represents a possible Potion Effect.
+ *
+ * <p>PotionEffects can be added to {@link Living} entities via
+ * {@link Living#addPotionEffect(PotionEffect, boolean)}.</p>
  */
 public interface PotionEffect extends DataSerializable {
 
@@ -39,14 +42,6 @@ public interface PotionEffect extends DataSerializable {
      * @return The type.
      */
     PotionEffectType getType();
-
-    /**
-     * Applies this potion effect to the specified
-     * {@link Living}.
-     *
-     * @param ent The entity to apply the effect to.
-     */
-    void apply(Living ent);
 
     /**
      * Gets the duration for which this potion effect
