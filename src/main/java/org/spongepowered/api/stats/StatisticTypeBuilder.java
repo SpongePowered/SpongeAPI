@@ -39,26 +39,29 @@ public interface StatisticTypeBuilder {
      * Sets the interfaces the {@link StatisticType} should implement.
      *
      * @param types The interfaces the statistic type should implement
+     * @return This builder
      * @throws IllegalArgumentException If a class is unsupported or if a class
      *         is incompatible with another class
      */
-    void type(Class<? extends StatisticType>... types) throws IllegalArgumentException;
+    StatisticTypeBuilder type(Class<? extends StatisticType>... types) throws IllegalArgumentException;
 
     /**
      * Sets the base id for all {@link GroupedStatistic} that will be created
      * for the {@link StatisticType}.
      *
      * @param baseId The base id for the statistic type
+     * @return This builder
      */
-    void baseId(String baseId);
+    StatisticTypeBuilder baseId(String baseId);
 
     /**
      * Sets the unit of the {@link GroupedStatistic} that will be created for
      * the {@link StatisticType} will be measured in.
      *
      * @param unit The unit for the statistic type
+     * @return This builder
      */
-    void unit(StatisticUnit unit);
+    StatisticTypeBuilder unit(StatisticUnit unit);
 
     /**
      * Sets a method mapper for the {@link StatisticType} that will be used to
@@ -68,8 +71,9 @@ public interface StatisticTypeBuilder {
      * mapped to the virtual fieldname (camelcase) the getter would address.
      *
      * @param methodMapper The method mapper to use
+     * @return This builder
      */
-    void methodMapper(Function<Method, String> methodMapper);
+    StatisticTypeBuilder methodMapper(Function<Method, String> methodMapper);
 
     /**
      * Builds the instance of a {@link StatisticType}.

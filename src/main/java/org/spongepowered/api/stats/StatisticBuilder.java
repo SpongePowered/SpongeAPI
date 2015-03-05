@@ -38,15 +38,17 @@ public interface StatisticBuilder {
      * Sets the translation for the {@link Statistic}.
      *
      * @param translation The translation for the statistic
+     * @return This builder
      */
-    void translation(Translation translation);
+    StatisticBuilder translation(Translation translation);
 
     /**
      * Sets the id used to save the current values of the {@link Statistic}.
      *
      * @param id The id used to save the current values of the statistic
+     * @return This builder
      */
-    void id(String id);
+    StatisticBuilder id(String id);
 
     /**
      * Builds and registers an instance of a {@link Statistic}.
@@ -62,12 +64,19 @@ public interface StatisticBuilder {
      */
     interface Simple extends StatisticBuilder {
 
+        @Override
+        Simple translation(Translation translation);
+
+        @Override
+        Simple id(String id);
+
         /**
          * Sets the unit the {@link Statistic} will be measured in.
          *
          * @param unit The unit the statistic will be measured in
+         * @return This builder
          */
-        void unit(StatisticUnit unit);
+        Simple unit(StatisticUnit unit);
 
     }
 
@@ -77,13 +86,20 @@ public interface StatisticBuilder {
      */
     interface Grouped extends StatisticBuilder {
 
+        @Override
+        Grouped translation(Translation translation);
+
+        @Override
+        Grouped id(String id);
+
         /**
          * Sets the {@link StatisticType} the {@link GroupedStatistic} belongs
          * to.
          *
          * @param type The statistic type the grouped statistic belongs to
+         * @return This builder
          */
-        void type(StatisticType type);
+        Grouped type(StatisticType type);
 
         /**
          * Sets the builder to append the sub id to the {@link StatisticType}s
@@ -91,27 +107,30 @@ public interface StatisticBuilder {
          *
          * @param subId The sub id used to save the current values of the
          *        statistic
+         * @return This builder
          */
-        void subId(String subId);
+        Grouped subId(String subId);
 
         /**
          * Attaches required data to the {@link GroupedStatistic}.
          *
          * @param key The key for the data to attach
          * @param value The value to attach
+         * @return This builder
          * @throws IllegalArgumentException If the value does not meet the
          *         requirements or another value is already present for that key
          */
-        void data(String key, Object value) throws IllegalArgumentException;
+        Grouped data(String key, Object value) throws IllegalArgumentException;
 
         /**
          * Attaches required data to the {@link GroupedStatistic}.
          *
          * @param values The values to attach
+         * @return This builder
          * @throws IllegalArgumentException If the value does not meet the
          *         requirements or another value is already present for that key
          */
-        void data(Map<String, ?> values) throws IllegalArgumentException;
+        Grouped data(Map<String, ?> values) throws IllegalArgumentException;
 
         @Override
         GroupedStatistic buildAndRegister() throws IllegalStateException;
