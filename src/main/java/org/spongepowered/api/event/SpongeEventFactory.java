@@ -25,15 +25,6 @@
 
 package org.spongepowered.api.event;
 
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3f;
-import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
-import com.google.common.collect.Maps;
-import javax.annotation.Nullable;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -153,9 +144,20 @@ import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
+import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Optional;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.google.common.collect.Maps;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 /**
  * Generates Sponge event implementations.
@@ -1676,8 +1678,8 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static BrewingStandBrewEvent createBrewingStandBrewEvent(Game game, BrewingStand brewingStand, List<ItemStack> sourceItems,
-            ItemStack fuelSource, List<ItemStack> brewedItems, Cause cause,
-            TileInventory<Lockable> inventory, BlockLoc blockLoc) {
+                                                                    ItemStack fuelSource, List<ItemStack> brewedItems, Cause cause,
+                                                                    TileInventory<Lockable> inventory, BlockLoc blockLoc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tileEntity", brewingStand);
@@ -1705,7 +1707,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(Game game, Furnace furnace, ItemStack burnedItem, ItemStack remainingFuel,
-            Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
+                                                                        Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tileEntity", furnace);
@@ -1731,7 +1733,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(Game game, Furnace furnace, ItemStack cookedItem, ItemStack sourceItem,
-            Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
+                                                                    Cause cause, TileInventory<Lockable> inventory, BlockLoc loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tileEntity", furnace);
