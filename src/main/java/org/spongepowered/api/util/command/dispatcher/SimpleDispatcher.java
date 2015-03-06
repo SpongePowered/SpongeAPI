@@ -358,6 +358,7 @@ public class SimpleDispatcher implements Dispatcher {
                 }
             }
         }
+
         return Collections.unmodifiableList(suggestions);
     }
 
