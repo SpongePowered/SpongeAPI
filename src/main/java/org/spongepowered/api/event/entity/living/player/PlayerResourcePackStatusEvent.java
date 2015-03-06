@@ -51,7 +51,7 @@ public interface PlayerResourcePackStatusEvent extends PlayerEvent {
     /**
      * The different possible responses the client can have.
      */
-    public enum ResourcePackStatus {
+    enum ResourcePackStatus {
         /**
          * The client is attempting to download the pack.
          */
@@ -87,7 +87,7 @@ public interface PlayerResourcePackStatusEvent extends PlayerEvent {
          *         Optional.absent() if it cannot be determined at this time.
          */
         public Optional<Boolean> wasSuccessful() {
-            return success;
+            return this.success;
         }
 
     }

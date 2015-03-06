@@ -38,7 +38,7 @@ public interface ResourcePack {
      * 
      * @return The URL associated with this ResourcePack
      */
-    URL getURL();
+    URL getUrl();
 
     /**
      * Gets the name of this resource pack. This is the filename of the pack

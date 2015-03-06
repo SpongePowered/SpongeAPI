@@ -43,7 +43,7 @@ public interface ResourcePackFactory {
      * @throws FileNotFoundException If a valid resourcepack could not be
      *             downloaded from the URL.
      */
-    ResourcePack fromURL(URL url) throws FileNotFoundException;
+    ResourcePack fromUrl(URL url) throws FileNotFoundException;
 
     /**
      * Creates a {@link ResourcePack} from a URL.
@@ -51,7 +51,7 @@ public interface ResourcePackFactory {
      * @param url The URL to look in.
      * @return A ResourcePack with the specified URL.
      */
-    ResourcePack fromURLUnchecked(URL url);
+    ResourcePack fromUrlUnchecked(URL url);
 
     /**
      * Gets a {@link ResourcePack} that's already been created by it's ID.
@@ -60,6 +60,6 @@ public interface ResourcePackFactory {
      * @return The ResourcePack with the specified ID, or Optional.absent() if
      *         none could be found.
      */
-    public Optional<ResourcePack> getByID(String id);
+    public Optional<ResourcePack> getById(String id);
 
 }
