@@ -33,7 +33,7 @@ import com.flowpowered.math.vector.Vector3i;
 /**
  * Contains blocks, entities, biomes and weather.
  */
-public interface Extent extends EntityUniverse, WeatherUniverse, BlockVolume, BiomeArea, TileTickVolume {
+public interface Extent extends EntityUniverse, WeatherUniverse, BlockVolume, BiomeArea {
 
     /**
      * Get a representation of the block at the given position.
