@@ -25,6 +25,14 @@
 
 package org.spongepowered.api.event;
 
+import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Optional;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -144,15 +152,6 @@ import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3f;
-import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
-import com.google.common.collect.Maps;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -209,7 +208,15 @@ public final class SpongeEventFactory {
         return createEvent(BlockBreakEvent.class, values);
     }
 
-    public static BlockBreakHangingEvent createBlockBreakHanging(Game game, Cause cause, BlockLoc block, Hanging hanging) {
+    /**
+     * Creates a new {@link BlockBreakHangingEvent}.
+     * @param game The game instance for this {@link GameEvent}
+     * @param cause The cause of the event, can be null
+     * @param block The block affected by this event
+     * @param hanging The hanging entity affected by this event
+     * @return A new instance of the event
+     */
+    public static BlockBreakHangingEvent createBlockBreakHanging(Game game, @Nullable Cause cause, BlockLoc block, Hanging hanging) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
