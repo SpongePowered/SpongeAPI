@@ -83,10 +83,10 @@ public interface CommandCallable extends CommandCompleter {
      * Get a longer formatted help message about this command.
      * 
      * <p>It is recommended to use the default text color and style. Sections 
-     * with text actions should be underlined.</p>
+     * with text actions (e.g. hyperlinks) should be underlined.</p>
      * 
      * <p>Multiline messages can be created by separating the lines with 
-     * {@code \n}</p>
+     * {@code \n}.</p>
      * 
      * <p>The help system may display this message when a source requests 
      * detailed information about a command.</p>
