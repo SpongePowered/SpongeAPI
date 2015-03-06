@@ -43,6 +43,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.hanging.Hanging;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
@@ -67,46 +70,10 @@ import org.spongepowered.api.event.block.data.BrewingStandBrewEvent;
 import org.spongepowered.api.event.block.data.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.data.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
-import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
-import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
-import org.spongepowered.api.event.entity.EntityCollisionEvent;
-import org.spongepowered.api.event.entity.EntityCollisionWithBlockEvent;
-import org.spongepowered.api.event.entity.EntityCollisionWithEntityEvent;
-import org.spongepowered.api.event.entity.EntityConstructingEvent;
-import org.spongepowered.api.event.entity.EntityDeathEvent;
-import org.spongepowered.api.event.entity.EntityDismountEvent;
-import org.spongepowered.api.event.entity.EntityDropItemEvent;
-import org.spongepowered.api.event.entity.EntityHarvestBlockEvent;
-import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
-import org.spongepowered.api.event.entity.EntityInteractEntityEvent;
-import org.spongepowered.api.event.entity.EntityInteractEvent;
-import org.spongepowered.api.event.entity.EntityMountEvent;
-import org.spongepowered.api.event.entity.EntityMoveEvent;
-import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
-import org.spongepowered.api.event.entity.EntityPlaceBlockEvent;
-import org.spongepowered.api.event.entity.EntitySpawnEvent;
-import org.spongepowered.api.event.entity.EntityTameEvent;
-import org.spongepowered.api.event.entity.EntityTeleportEvent;
-import org.spongepowered.api.event.entity.EntityUpdateEvent;
-import org.spongepowered.api.event.entity.ProjectileLaunchEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerBreakBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeGameModeEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeWorldEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChatEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerDeathEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerDropItemEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerHarvestBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractEntityEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerMoveEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerPickUpItemEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerPlaceBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerQuitEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerUpdateEvent;
+import org.spongepowered.api.event.entity.*;
+import org.spongepowered.api.event.entity.living.LivingInteractHangingEvent;
+import org.spongepowered.api.event.entity.living.human.HumanInteractHangingEvent;
+import org.spongepowered.api.event.entity.living.player.*;
 import org.spongepowered.api.event.entity.living.player.fishing.PlayerCastFishingLineEvent;
 import org.spongepowered.api.event.entity.living.player.fishing.PlayerHookedEntityEvent;
 import org.spongepowered.api.event.entity.living.player.fishing.PlayerRetractFishingLineEvent;
@@ -656,6 +623,70 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("targetEntity", targetEntity);
         return createEvent(EntityInteractEntityEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link EntityInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @return A new instance of the event
+     */
+    public static EntityInteractHangingEvent createEntityInteractHanging(Game game, Entity entity, Hanging targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("targetEntity", targetEntity);
+        return createEvent(EntityInteractHangingEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link LivingInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @return A new instance of the event
+     */
+    public static LivingInteractHangingEvent createLivingInteractHanging(Game game, Living entity, Hanging targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("targetEntity", targetEntity);
+        return createEvent(LivingInteractHangingEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link HumanInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @return A new instance of the event
+     */
+    public static HumanInteractHangingEvent createHumanInteractHanging(Game game, Human entity, Hanging targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("targetEntity", targetEntity);
+        return createEvent(HumanInteractHangingEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link PlayerInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @return A new instance of the event
+     */
+    public static PlayerInteractHangingEvent createPlayerInteractHanging(Game game, Player entity, Hanging targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("targetEntity", targetEntity);
+        return createEvent(PlayerInteractHangingEvent.class, values);
     }
 
     /**
