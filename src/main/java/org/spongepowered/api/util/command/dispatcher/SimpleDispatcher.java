@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
+import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
@@ -52,6 +53,8 @@ import java.util.Set;
  * A simple implementation of a {@link Dispatcher}.
  */
 public class SimpleDispatcher implements Dispatcher {
+
+    private static final Joiner SPACE_JOINER = Joiner.on(' ');
 
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
 
@@ -327,6 +330,10 @@ public class SimpleDispatcher implements Dispatcher {
 
             synchronized (this) {
                 for (CommandMapping mapping : this.commands.values()) {
+                    // Skip commands the source is not permitted to call
+                    if (!mapping.getCallable().testPermission(source))
+                        continue;
+
                     for (String alias : mapping.getAllAliases()) {
                         if (alias.toLowerCase().startsWith(incompleteCommand)) {
                             suggestions.add(alias);
@@ -337,8 +344,23 @@ public class SimpleDispatcher implements Dispatcher {
         } else { // Complete using subcommand
             Optional<CommandMapping> mapping = get(parts[0]);
 
-            if (mapping.isPresent()) {
-                mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
+            // Check if subcommand exists and source is permitted to call it
+            if (mapping.isPresent() && mapping.get().getCallable().testPermission(source)) {
+                // A list of suggestions delivered by the subcommand
+                List<String> subSuggestions = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
+
+                // parts[0] is the alias how it was entered by the source, e.g. "sENd"
+                // Find the alias how it was registered, e.g. "Send"
+                for (String alias : mapping.get().getAllAliases()) {
+                    if (alias.equalsIgnoreCase(parts[0])) {
+                        for (String suggestion : subSuggestions) {
+                            //Join the alias and the suggestion, then add it to the suggestion list
+                            suggestions.add(SPACE_JOINER.join(alias, suggestion));
+                        }
+
+                        break;
+                    }
+                }
             }
         }
 
