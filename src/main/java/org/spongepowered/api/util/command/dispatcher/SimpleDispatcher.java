@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
+import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
@@ -338,10 +339,25 @@ public class SimpleDispatcher implements Dispatcher {
             Optional<CommandMapping> mapping = get(parts[0]);
 
             if (mapping.isPresent()) {
-                mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
+                // A list of suggestions delivered by the subcommand
+                List<String> subSuggestions = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
+
+                // parts[0] is the alias how it was entered by the source, e.g. "sENd"
+                // Find the alias how it was registered, e.g. "Send"
+                for (String alias : mapping.get().getAllAliases()) {
+                    if (alias.equalsIgnoreCase(parts[0])) {
+                        Joiner joiner = Joiner.on(' ');
+                        
+                        for(String suggestion : subSuggestions) {
+                            //Join the alias and the suggestion, then add it to the suggestion list
+                            suggestions.add(joiner.join(alias, suggestion));
+                        }
+                        
+                        break;
+                    }
+                }
             }
         }
-
         return Collections.unmodifiableList(suggestions);
     }
 
