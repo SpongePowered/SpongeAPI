@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a type of {@link Dimension}.
  */
+@CatalogedBy(DimensionTypes.class)
 public interface DimensionType {
 
     /**

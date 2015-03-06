@@ -25,6 +25,9 @@
 
 package org.spongepowered.api.item;
 
+/**
+ * An enumeration of known {@link Fish} types.
+ */
 public final class Fishes {
 
     public static final Fish COD = null;

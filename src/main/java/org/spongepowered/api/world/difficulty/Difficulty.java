@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.world.difficulty;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a possible difficulty setting.
  *
  * @see Difficulties
  */
+@CatalogedBy(Difficulties.class)
 public interface Difficulty {
 }

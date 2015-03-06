@@ -26,10 +26,12 @@
 package org.spongepowered.api.item;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of cooked fish.
  */
+@CatalogedBy(CookedFishes.class)
 public interface CookedFish extends DataSerializable {
 
     /**

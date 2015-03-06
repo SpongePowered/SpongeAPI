@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.item;
 
+/**
+ * An enumeration of known {@link DyeColor} types.
+ */
 public final class DyeColors {
 
     public static final DyeColor WHITE = null;

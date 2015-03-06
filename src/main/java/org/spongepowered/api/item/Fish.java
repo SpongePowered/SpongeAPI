@@ -26,10 +26,12 @@
 package org.spongepowered.api.item;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of raw fish item.
  */
+@CatalogedBy(Fishes.class)
 public interface Fish extends DataSerializable {
 
     /**

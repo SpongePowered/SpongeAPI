@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a method of interacting with a block or entity.
  */
+@CatalogedBy(EntityInteractionTypes.class)
 public interface EntityInteractionType {
 
     /**

@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Equipment types.
  */
+@CatalogedBy(EquipmentTypes.class)
 public interface EquipmentType {
 
     /**

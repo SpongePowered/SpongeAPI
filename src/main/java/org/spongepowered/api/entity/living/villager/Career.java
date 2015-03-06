@@ -25,11 +25,13 @@
 package org.spongepowered.api.entity.living.villager;
 
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a Villager Career. A career can define a more specified list
  * of trade offers the villager can give to a player.
  */
+@CatalogedBy(Careers.class)
 public interface Career extends Translatable {
 
     /**

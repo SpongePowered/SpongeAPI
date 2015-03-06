@@ -23,17 +23,39 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.item;
+package org.spongepowered.api.util.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import javax.annotation.Nonnull;
 
 /**
- * An enumeration of known {@link CookedFish} types.
+ * Represents a class that is intended to represent a type of enum, without
+ * using {@link Enum}. The class marked as {@link CatalogedBy} must have a
+ * registrar class that can be queried for all types and subtypes of the
+ * catalog.
  */
-public final class CookedFishes {
+@Nonnull
+@Target(ElementType.TYPE)
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+public @interface CatalogedBy {
 
-    public static final CookedFish COD = null;
-    public static final CookedFish SALMON = null;
-
-    private CookedFishes() {
-    }
+    /**
+     * Gets the class that is the catalog for this {@link CatalogedBy} type.
+     * Since the type class annotated with {@link CatalogedBy} knows what
+     * the catalog class is, we can safely rely on the value to get all
+     * known instances of the {@link CatalogedBy}.
+     *
+     * <p>This is similar to knowing at runtime that all available
+     * "EntityType"(s) are cataloged in the "EntityTypes" class.</p>
+     *
+     * @return The registrar class of the catalog
+     */
+    Class<?>[] value();
 
 }

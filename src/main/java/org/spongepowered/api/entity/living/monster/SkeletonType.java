@@ -25,12 +25,14 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
  * can be. Certain skeleton types define the items a skeleton can equip and
  * can define the various status immunities, such as withering.
  */
+@CatalogedBy(SkeletonTypes.class)
 public interface SkeletonType extends DataSerializable {
 
     /**

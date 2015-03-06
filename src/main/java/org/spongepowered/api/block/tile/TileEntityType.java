@@ -25,10 +25,12 @@
 package org.spongepowered.api.block.tile;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a type of tile entity.
  */
+@CatalogedBy(TileEntityTypes.class)
 public interface TileEntityType {
 
     /**

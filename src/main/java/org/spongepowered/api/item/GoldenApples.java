@@ -25,9 +25,14 @@
 
 package org.spongepowered.api.item;
 
+/**
+ * An enumeration of known {@link GoldenApple} types.
+ */
 public final class GoldenApples {
 
     public static final GoldenApple GOLDEN_APPLE = null;
     public static final GoldenApple ENCHANTED_GOLDEN_APPLE = null;
 
+    private GoldenApples() {
+    }
 }

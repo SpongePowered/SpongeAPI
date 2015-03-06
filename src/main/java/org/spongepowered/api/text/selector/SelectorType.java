@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.text.selector;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a selector type.
  *
  * @see Selectors
  */
+@CatalogedBy(SelectorTypes.class)
 public interface SelectorType {
 
     /**
