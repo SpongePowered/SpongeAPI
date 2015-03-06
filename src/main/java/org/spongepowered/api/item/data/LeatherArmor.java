@@ -27,9 +27,7 @@ package org.spongepowered.api.item.data;
 import java.awt.Color;
 
 /**
- * 
  * Represents a piece of leather armor.
- *
  */
 public interface LeatherArmor extends ItemData {
 

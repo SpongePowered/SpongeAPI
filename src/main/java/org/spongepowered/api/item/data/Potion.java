@@ -29,9 +29,7 @@ import org.spongepowered.api.potion.PotionEffect;
 import java.util.Collection;
 
 /**
- * 
  * Represents a potion bottle.
- *
  */
 public interface Potion extends ItemData {
 

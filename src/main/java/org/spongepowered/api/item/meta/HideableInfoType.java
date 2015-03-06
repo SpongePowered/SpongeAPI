@@ -25,9 +25,7 @@
 package org.spongepowered.api.item.meta;
 
 /**
- * 
  * Represents a type of information hidden from the lore on an item.
- *
  */
 public interface HideableInfoType {
 

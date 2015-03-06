@@ -34,9 +34,7 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 /**
- * 
  * Represents data associated with all items that place a block.
- *
  */
 public interface ItemBlockData extends ItemData {
 

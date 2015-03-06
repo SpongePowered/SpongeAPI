@@ -25,9 +25,7 @@
 package org.spongepowered.api.item.meta;
 
 /**
- * 
  * Represents a type of decoration on a map.
- *
  */
 public interface MapDecorationType {
 

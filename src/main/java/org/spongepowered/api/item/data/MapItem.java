@@ -29,9 +29,7 @@ import org.spongepowered.api.item.meta.MapDecoration;
 import java.util.Collection;
 
 /**
- *
  * Represents a map.
- *
  */
 public interface MapItem extends ItemData {
 

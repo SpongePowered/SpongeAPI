@@ -28,9 +28,7 @@ import java.awt.Color;
 import java.util.Collection;
 
 /**
- * 
  * Represents a firework's explosion.
- *
  */
 public interface FireworkExplosion {
 

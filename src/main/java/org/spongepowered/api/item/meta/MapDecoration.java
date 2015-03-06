@@ -27,9 +27,7 @@ package org.spongepowered.api.item.meta;
 import com.flowpowered.math.vector.Vector2i;
 
 /**
- * 
  * Represents a decoration on a map.
- *
  */
 public interface MapDecoration {
 

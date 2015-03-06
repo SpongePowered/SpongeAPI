@@ -25,9 +25,7 @@
 package org.spongepowered.api.item.meta;
 
 /**
- * 
  * A generation of a book.
- *
  */
 public interface BookGeneration {
 

@@ -31,9 +31,7 @@ import com.google.common.base.Optional;
 import javax.annotation.Nullable;
 
 /**
- * 
  * Represents a skull item.
- *
  */
 public interface Skull extends ItemBlockData {
 

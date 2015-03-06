@@ -27,9 +27,7 @@ package org.spongepowered.api.item.data;
 import org.spongepowered.api.item.meta.FireworkExplosion;
 
 /**
- * 
- * Represents a firework star
- *
+ * Represents a firework star.
  */
 public interface FireworkStar extends ItemData {
 
