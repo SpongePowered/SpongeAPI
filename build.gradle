@@ -138,7 +138,8 @@ jar.manifest.mainAttributes(
         "Created-By": System.properties['java.vm.version'] + " (" + System.properties['java.vm.vendor'] + ")",
         "Implementation-Title": name,
         "Implementation-Version": version + "+" + ciSystem + "-b" + buildNumber + ".git-" + commit,
-        "Implementation-Vendor": url)
+        "Implementation-Vendor": url,
+        "Main-Class": "org.spongepowered.api.util.InformativeMain")
 
 task sourceJar(type: Jar) {
 	from sourceSets.main.java
