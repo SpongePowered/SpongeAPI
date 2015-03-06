@@ -342,7 +342,7 @@ public class SimpleDispatcher implements Dispatcher {
             Optional<CommandMapping> mapping = get(parts[0]);
 
             // Check if subcommand exists and source is permitted to call it
-            if (mapping.isPresent() && mapping.getCallable().testPermission(source)) {
+            if (mapping.isPresent() && mapping.get().getCallable().testPermission(source)) {
                 // A list of suggestions delivered by the subcommand
                 List<String> subSuggestions = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
 
