@@ -22,10 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.entity.hanging.Hanging;
-import org.spongepowered.api.event.block.BlockEvent;
 
 /**
  * Called when a hanging entity is broken by a block change.
