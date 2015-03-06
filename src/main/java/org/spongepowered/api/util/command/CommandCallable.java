@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.util.command;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.completion.CommandCompleter;
 
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * A command that can be executed.
@@ -69,22 +71,37 @@ public interface CommandCallable extends CommandCompleter {
     /**
      * Get a short one-line description of this command.
      *
-     * @return A description, if available
+     * <p>The help system may display the description in the command list.</p>
+     *
+     * @return A description or {@code null} if there is none
      */
-    Optional<String> getShortDescription();
+    @Nullable
+    String getShortDescription();
 
     /**
-     * Get a longer help text about this command.
+     * Get a longer formatted help message about this command.
+     * 
+     * <p>It is recommended to use the default text color and style. Sections 
+     * with text actions should be underlined.</p>
+     * 
+     * <p>Multiline messages can be created by separating the lines with 
+     * {@code \n}</p>
+     * 
+     * <p>The help system may display this message when a source requests 
+     * detailed information about a command.</p>
      *
-     * @return A help text, if available
+     * @return A help text or {@code null} if there is none
      */
-    Optional<String> getHelp();
+    @Nullable
+    Message getHelp();
 
     /**
      * Get the usage string of this command.
      *
      * <p>A usage string may look like
      * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
+     * 
+     * <p>The string must not contain the command alias.</p>
      *
      * @return A usage string
      */

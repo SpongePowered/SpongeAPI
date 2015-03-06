@@ -32,6 +32,7 @@ import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -48,12 +49,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
 public class SimpleDispatcher implements Dispatcher {
 
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
+    private final String shortDescription;
+    private final Message help;
+    
+    /**
+     * Creates a new dispatcher without any help messages.
+     */
+    public SimpleDispatcher() {
+        this.shortDescription = null;
+        this.help = null;
+    }
+    
+    /**
+     * Creates a new dispatcher with an optional description and help message.
+     *
+     * @param shortDescription A short one-line description
+     * @param help A formatted help message
+     */
+    public SimpleDispatcher(@Nullable String shortDescription, @Nullable Message help) {
+        this.shortDescription = shortDescription;
+        this.help = help;
+    }
 
     /**
      * Register a given command using the given list of aliases.
@@ -346,13 +370,13 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public Optional<String> getShortDescription() {
-        return Optional.absent();
+    public String getShortDescription() {
+        return shortDescription;
     }
 
     @Override
-    public Optional<String> getHelp() {
-        return Optional.absent();
+    public Message getHelp() {
+        return help;
     }
 
     @Override

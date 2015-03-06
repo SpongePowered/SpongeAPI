@@ -39,6 +39,7 @@ import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.event.EventManager;
+import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -241,12 +242,12 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<String> getShortDescription() {
+    public String getShortDescription() {
         return this.dispatcher.getShortDescription();
     }
 
     @Override
-    public Optional<String> getHelp() {
+    public Message getHelp() {
         return this.dispatcher.getHelp();
     }
 
