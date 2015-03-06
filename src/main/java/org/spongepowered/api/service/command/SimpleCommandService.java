@@ -242,18 +242,18 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public String getShortDescription() {
-        return this.dispatcher.getShortDescription();
+    public String getShortDescription(CommandSource source) {
+        return this.dispatcher.getShortDescription(source);
     }
 
     @Override
-    public Message getHelp() {
-        return this.dispatcher.getHelp();
+    public Message getHelp(CommandSource source) {
+        return this.dispatcher.getHelp(source);
     }
 
     @Override
-    public String getUsage() {
-        return this.dispatcher.getUsage();
+    public String getUsage(CommandSource source) {
+        return this.dispatcher.getUsage(source);
     }
 
     @Override

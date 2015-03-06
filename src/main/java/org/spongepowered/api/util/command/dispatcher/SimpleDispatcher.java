@@ -370,17 +370,17 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public String getShortDescription() {
+    public String getShortDescription(CommandSource source) {
         return shortDescription;
     }
 
     @Override
-    public Message getHelp() {
+    public Message getHelp(CommandSource source) {
         return help;
     }
 
     @Override
-    public String getUsage() {
+    public String getUsage(CommandSource source) {
         return "<sub-command>"; // @TODO: Translate
     }
 

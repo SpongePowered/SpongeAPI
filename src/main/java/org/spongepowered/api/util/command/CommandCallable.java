@@ -73,10 +73,11 @@ public interface CommandCallable extends CommandCompleter {
      *
      * <p>The help system may display the description in the command list.</p>
      *
+     * @param source The source of the help request
      * @return A description or {@code null} if there is none
      */
     @Nullable
-    String getShortDescription();
+    String getShortDescription(CommandSource source);
 
     /**
      * Get a longer formatted help message about this command.
@@ -90,10 +91,11 @@ public interface CommandCallable extends CommandCompleter {
      * <p>The help system may display this message when a source requests 
      * detailed information about a command.</p>
      *
+     * @param source The source of the help request
      * @return A help text or {@code null} if there is none
      */
     @Nullable
-    Message getHelp();
+    Message getHelp(CommandSource source);
 
     /**
      * Get the usage string of this command.
@@ -103,8 +105,9 @@ public interface CommandCallable extends CommandCompleter {
      * 
      * <p>The string must not contain the command alias.</p>
      *
+     * @param source The source of the help request
      * @return A usage string
      */
-    String getUsage();
+    String getUsage(CommandSource source);
 
 }
