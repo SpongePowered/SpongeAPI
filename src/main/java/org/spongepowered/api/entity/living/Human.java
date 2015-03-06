@@ -38,58 +38,95 @@ import org.spongepowered.api.item.inventory.Inventory;
 public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, Carrier {
 
     /**
-     * Gets the hunger value of this human entity.
-     * <p>Hunger is a type of exhaustion such that when the exhaustion
-     * depletes, saturation may begin to diminish.</p>
+     * Gets the exhastion value of this human entity.
      *
-     * @return The current hunger
+     * <p>When exhaustion level reaches 0, saturation may begin to diminish.
+     * </p>
+     *
+     * @return The current exhaustion level
      */
-    float getHunger();
+    double getExhaustion();
 
     /**
-     * Sets the hunger value of this human entity.
-     * <p>Hunger is a type of exhaustion such that when the exhaustion
-     * depletes, saturation may begin to diminish.</p>
+     * Sets the exhaustion value of this human entity.
      *
-     * @param hunger The hunger level
+     * <p>When exhaustion level reaches 0, saturation may begin to diminish.
+     * </p>
+     *
+     * @param exhaustion The new exhaustion level
      */
-    void setHunger(float hunger);
+    void setExhaustion(double exhaustion);
 
     /**
-     * Gets the current food saturation of this human entity.
-     * <p>Saturation has health effects, depending on game difficulty and
-     * hunger levels. If the saturation is high enough, the human entity
-     * may heal. If the saturation is at 0, the human entity may starve.</p>
+     * Gets the current saturation level of this human entity.
+     *
+     * <p>Saturation acts as a buffer for food level. Food level will not
+     * decrease while the saturation level is greater than zero.</p>
      *
      * @return The current saturation level
      */
-    float getSaturation();
+    double getSaturation();
+
+    /**
+     * Sets the saturation level of this human entity.
+     *
+     * <p>Saturation acts as a buffer for food level. Food level will not
+     * decrease while the saturation level is greater than zero.</p>
+     *
+     * @param saturation The new saturation level
+     */
+    void setSaturation(double saturation);
+
+    /**
+     * Gets the current food saturation of this human entity.
+     *
+     * <p>Food level has health effects, depending on game difficulty and
+     * hunger levels. If the food level is high enough, the human entity
+     * may heal. If the food level is at 0, the human entity may starve.</p>
+     *
+     * @return The current food level
+     */
+    double getFoodLevel();
 
     /**
      * Sets the current food saturation of this human entity.
-     * <p>Saturation has health effects, depending on game difficulty and
-     * hunger levels. If the saturation is high enough, the human entity
-     * may heal. If the saturation is at 0, the human entity may starve.</p>
      *
-     * @param saturation The saturation level to set
+     * <p>Food level has health effects, depending on game difficulty and
+     * hunger levels. If the food level is high enough, the human entity
+     * may heal. If the food level is at 0, the human entity may starve.</p>
+     *
+     * @param foodLevel The new food level
      */
-    void setSaturation(float saturation);
+    void setFoodLevel(double foodLevel);
 
     /**
-     * Gets the current experience towards the next level.
+     * Gets the current experience accumulated since the last level-up.
      *
      * <p>This is not the total experience this human has.</p>
      *
-     * @return The current experience towards the next level
+     * @return The current experience accumulated since the last level-up.
      */
-    int getExperience();
+    int getExperienceSinceLevel();
 
     /**
-     * Sets the experience accumulated towards the next level.
+     * Sets the experience accumulated since the last level-up.
      *
-     * @param experience The experience
+     * <p>This is not the total experience this human has.</p>
+     *
+     * @param experience The experience accumulated since the last level-up.
      */
-    void setExperience(int experience);
+    void setExperienceSinceLevel(int experience);
+
+    /**
+     * Gets the experience required since the last level to level up.
+     *
+     * <p>For example, if level 14 reqiures 280 experience points, level 15
+     * requires 315, and the player is at level 14, this method will return 35.
+     * 35.</p>
+     *
+     * @return the experience required since the last level to level up
+     */
+    int getExperienceBetweenLevels();
 
     /**
      * Gets the current experience level of this human.
@@ -112,7 +149,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return The current total accumulated experience
      */
-    int getTotalExperinece();
+    int getTotalExperience();
 
     /**
      * Sets the total accumulated experience starting from zero.
@@ -120,6 +157,43 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      * @param totalExperience The total experience
      */
     void setTotalExperience(int totalExperience);
+
+    /**
+     * Returns whether this human entity is sneaking.
+     *
+     * <p>Sneaking may entail reduced nametag visibility and movement speed in
+     * relation to the subject Human.</p>
+     *
+     * @return Whether this human entity is sneaking
+     */
+    boolean isSneaking();
+
+    /**
+     * Sets whether this human entity is sneaking.
+     *
+     * <p>Sneaking may entail reduced nametag visibility and movement speed in
+     * relation to the subject Human.</p>
+     *
+     * @param sneaking Whether this human entity should be sneaking.
+     */
+    void setSneaking(boolean sneaking);
+
+    /**
+     * Gets whether this human entity is currently flying.
+     *
+     * @return Whether this human entity is currently flying
+     */
+    boolean isFlying();
+
+    /**
+     * Sets whether this human entity is currently flying.
+     *
+     * <p>Note: this will have no effect if flight is disabled for this human.
+     * </p>
+     *
+     * @param flying Whether this human entity should be flying
+     */
+    void setFlying(boolean flying);
 
     /**
      * Returns whether this human entity has an open inventory at the moment

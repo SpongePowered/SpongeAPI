@@ -39,6 +39,7 @@ import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Locale;
+import javax.annotation.Nullable;
 
 /**
  * A Player represents the in-game entity of a human playing on a server. This
@@ -61,18 +62,15 @@ public interface Player extends Human, User, CommandSource, Viewer {
     Message getDisplayName();
 
     /**
-     * Returns whether the {@link Player} can fly via the fly key.
+     * Sets the player's display name.
      *
-     * @return {@code True} if the {@link Player} is allowed to fly
-     */
-    boolean getAllowFlight();
-
-    /**
-     * Sets if the {@link Player} can fly via the fly key.
+     * <p>Passing <code>null</code> will set the
+     * player's display name to their name.</p>
      *
-     * @param allowFlight {@code True} if the player is allowed to fly
+     * @param displayName The new display name of this player, or
+     *                    <code>null</code> to reset it
      */
-    void setAllowFlight(boolean allowFlight);
+    void setDisplayName(@Nullable Message displayName);
 
     /**
      * Gets the locale used by the player.
