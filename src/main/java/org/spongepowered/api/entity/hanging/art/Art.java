@@ -25,10 +25,12 @@
 package org.spongepowered.api.entity.hanging.art;
 
 import org.spongepowered.api.entity.hanging.Painting;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a piece of art to be displayed by {@link Painting}s.
  */
+@CatalogedBy(Arts.class)
 public interface Art {
 
     /**

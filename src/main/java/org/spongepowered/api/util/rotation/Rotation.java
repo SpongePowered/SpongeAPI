@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.util.rotation;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents an angle of rotation.
  */
+@CatalogedBy(Rotations.class)
 public interface Rotation {
 
     /**

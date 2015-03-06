@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a sound that can be heard on clients.
  */
+@CatalogedBy(SoundTypes.class)
 public interface SoundType {
 
     /**

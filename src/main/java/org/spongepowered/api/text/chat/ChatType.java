@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.text.chat;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents the type of chat a message can be sent to.
  *
  * @see ChatTypes
  */
+@CatalogedBy(ChatTypes.class)
 public interface ChatType {
 
 }

@@ -25,10 +25,13 @@
 
 package org.spongepowered.api.attribute;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a function used by an {@link AttributeModifier} to modify the
  * value of an {@link Attribute}.
  */
+@CatalogedBy(Operations.class)
 public interface Operation extends Comparable<Operation> {
 
     /**

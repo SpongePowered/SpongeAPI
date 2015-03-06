@@ -25,6 +25,9 @@
 
 package org.spongepowered.api.item;
 
+/**
+ * An enumeration of known {@link Enchantment} types.
+ */
 public final class Enchantments {
 
     public static final Enchantment PROTECTION = null;

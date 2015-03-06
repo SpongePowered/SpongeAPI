@@ -27,7 +27,12 @@ package org.spongepowered.api.item;
 
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a modifier on an item that has various effects.
+ */
+@CatalogedBy(Enchantments.class)
 public interface Enchantment extends Translatable {
 
     /**

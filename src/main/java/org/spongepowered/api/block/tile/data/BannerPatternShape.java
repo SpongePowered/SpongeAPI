@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.block.tile.data;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * A pattern shape which may be applied to a banner.
  */
+@CatalogedBy(BannerPatternShapes.class)
 public interface BannerPatternShape {
 
     /**

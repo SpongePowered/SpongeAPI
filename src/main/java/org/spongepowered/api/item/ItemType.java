@@ -29,10 +29,12 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.properties.ItemProperty;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of item.
  */
+@CatalogedBy(ItemTypes.class)
 public interface ItemType extends Translatable {
 
     /**

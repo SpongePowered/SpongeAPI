@@ -26,10 +26,12 @@
 package org.spongepowered.api.block.tile.data;
 
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of skull.
  */
+@CatalogedBy(SkullTypes.class)
 public interface SkullType extends Translatable {
 
     /**

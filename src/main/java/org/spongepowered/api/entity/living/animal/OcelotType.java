@@ -25,10 +25,12 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of ocelot an ocelot is.
  */
+@CatalogedBy(OcelotTypes.class)
 public interface OcelotType extends DataSerializable {
 
     /**

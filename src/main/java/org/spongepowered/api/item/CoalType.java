@@ -26,10 +26,12 @@
 package org.spongepowered.api.item;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of coal.
  */
+@CatalogedBy(CoalTypes.class)
 public interface CoalType extends DataSerializable {
 
     /**
