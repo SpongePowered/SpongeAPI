@@ -39,17 +39,16 @@ import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Locale;
+
 import javax.annotation.Nullable;
 
 /**
- * A Player represents the in-game entity of a human playing on a server. This
- * is in contrast to User which represents the storage and data associated with
- * a Player.
+ * A Player represents the in-game entity of a human playing on a server.
+ * This is in contrast to User which represents the storage and data
+ * associated with a Player.
  *
- * <p>
- * Any methods called on Player that are not on User do not store any data that
- * persists across server restarts.
- * </p>
+ * <p>Any methods called on Player that are not on User do not store any data
+ * that persists across server restarts.</p>
  */
 public interface Player extends Human, User, CommandSource, Viewer {
 
@@ -81,11 +80,8 @@ public interface Player extends Human, User, CommandSource, Viewer {
     Locale getLocale();
 
     /**
-     * Sends the plain text message(s) with the specified {@link ChatType} on
-     * the client.
-     * <p>
-     * Use {@link #sendMessage(ChatType, Message...)} for a formatted message.
-     * </p>
+     * Sends the plain text message(s) with the specified {@link ChatType} on the client.
+     * <p>Use {@link #sendMessage(ChatType, Message...)} for a formatted message.</p>
      *
      * @param type The chat type to send the messages to
      * @param message The message(s) to send
@@ -143,26 +139,24 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void setGameMode(GameMode gameMode);
 
     /**
-     * Gets the appropriate {@link PlayerConnection} linking this Player to a
-     * client.
+     * Gets the appropriate {@link PlayerConnection} linking this Player
+     * to a client.
      *
      * @return The connection
      */
     PlayerConnection getConnection();
 
     /**
-     * Sends a resource pack to this player.
-     * 
-     * @param pack The resourcepack to use
+     * Sends a given {@link ResourcePack} to this player.
+     *
+     * @param pack The ResourcePack to send
      */
-
     void sendResourcePack(ResourcePack pack);
-
+    
     /**
      * Gets this player's {@link TabList}.
      * 
      * @return This player's TabList.
      */
     TabList getTabList();
-
 }
