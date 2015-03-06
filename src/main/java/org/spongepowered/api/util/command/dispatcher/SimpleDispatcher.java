@@ -328,6 +328,9 @@ public class SimpleDispatcher implements Dispatcher {
 
             synchronized (this) {
                 for (CommandMapping mapping : this.commands.values()) {
+                    // Skip commands the source is not permitted to call
+                    if(mapping.getCallable().testPermission(source)) continue;
+
                     for (String alias : mapping.getAllAliases()) {
                         if (alias.toLowerCase().startsWith(incompleteCommand)) {
                             suggestions.add(alias);
@@ -338,7 +341,8 @@ public class SimpleDispatcher implements Dispatcher {
         } else { // Complete using subcommand
             Optional<CommandMapping> mapping = get(parts[0]);
 
-            if (mapping.isPresent()) {
+            // Check if subcommand exists and source is permitted to call it
+            if (mapping.isPresent() && mapping.getCallable().testPermission(source)) {
                 // A list of suggestions delivered by the subcommand
                 List<String> subSuggestions = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
 
