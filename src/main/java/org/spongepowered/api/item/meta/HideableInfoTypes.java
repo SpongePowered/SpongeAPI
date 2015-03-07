@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.meta;
 
-
 public final class HideableInfoTypes {
 
     public static final HideableInfoType ENCHANTMENTS = null;

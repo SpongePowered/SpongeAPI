@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.meta;
 
-
 public final class MapDecorationTypes {
 
     public static final MapDecorationType POINTER_WHITE = null;

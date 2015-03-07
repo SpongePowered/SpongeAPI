@@ -28,9 +28,7 @@ import java.awt.Color;
 import java.util.List;
 
 /**
- * 
  * A builder for {@link FireworkExplosion}s.
- *
  */
 public interface FireworkExplosionBuilder {
 

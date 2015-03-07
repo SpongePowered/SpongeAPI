@@ -25,9 +25,7 @@
 package org.spongepowered.api.item.meta;
 
 /**
- * 
  * Represents a possible shape for a {@link FireworkExplosion}.
- *
  */
 public interface FireworkShape {
 
