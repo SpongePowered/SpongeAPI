@@ -28,10 +28,8 @@ package org.spongepowered.api.block;
 import com.flowpowered.math.vector.Vector3i;
 
 /**
- * 
  * Represents a scheduled block update. SBUs with higher priorities are
  * processed first.
- *
  */
 public interface ScheduledBlockUpdate {
 
