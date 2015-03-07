@@ -25,10 +25,9 @@
 
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.world.weather.WeatherUniverse;
-
-import com.flowpowered.math.vector.Vector3i;
 
 /**
  * Contains blocks, entities, biomes and weather.
