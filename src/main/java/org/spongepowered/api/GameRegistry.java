@@ -25,6 +25,7 @@
 
 package org.spongepowered.api;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.attribute.Operation;
@@ -60,8 +61,6 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
-
-import com.google.common.base.Optional;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
