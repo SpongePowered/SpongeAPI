@@ -54,6 +54,8 @@ import java.util.Set;
  */
 public class SimpleDispatcher implements Dispatcher {
 
+    private static final Joiner SPACE_JOINER = Joiner.on(' ');
+
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
 
     /**
@@ -329,7 +331,7 @@ public class SimpleDispatcher implements Dispatcher {
             synchronized (this) {
                 for (CommandMapping mapping : this.commands.values()) {
                     // Skip commands the source is not permitted to call
-                    if(mapping.getCallable().testPermission(source)) continue;
+                    if (!mapping.getCallable().testPermission(source)) continue;
 
                     for (String alias : mapping.getAllAliases()) {
                         if (alias.toLowerCase().startsWith(incompleteCommand)) {
@@ -350,11 +352,9 @@ public class SimpleDispatcher implements Dispatcher {
                 // Find the alias how it was registered, e.g. "Send"
                 for (String alias : mapping.get().getAllAliases()) {
                     if (alias.equalsIgnoreCase(parts[0])) {
-                        Joiner joiner = Joiner.on(' ');
-                        
                         for(String suggestion : subSuggestions) {
                             //Join the alias and the suggestion, then add it to the suggestion list
-                            suggestions.add(joiner.join(alias, suggestion));
+                            suggestions.add(SPACE_JOINER.join(alias, suggestion));
                         }
                         
                         break;
