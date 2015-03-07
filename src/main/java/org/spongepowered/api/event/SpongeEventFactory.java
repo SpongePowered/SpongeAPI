@@ -26,6 +26,14 @@
 package org.spongepowered.api.event;
 
 
+import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Optional;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -137,15 +145,6 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
-
-import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3f;
-import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
-import com.google.common.collect.Maps;
 
 import java.util.Collection;
 import java.util.List;
@@ -863,13 +862,13 @@ public final class SpongeEventFactory {
      * @param result The result of the command
      * @return A new instance of the event
      */
-    public static CommandEvent createCommand(Game game, String arguments, CommandSource source, String command, Optional<CommandResult> result) {
+    public static CommandEvent createCommand(Game game, String arguments, CommandSource source, String command, @Nullable CommandResult result) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("arguments", arguments);
         values.put("source", source);
         values.put("command", command);
-        values.put("result", result);
+        values.put("result", Optional.fromNullable(result));
         return createEvent(CommandEvent.class, values);
     }
 

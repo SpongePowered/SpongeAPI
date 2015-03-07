@@ -25,11 +25,10 @@
 
 package org.spongepowered.api.util.command.dispatcher;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
-
-import com.google.common.base.Optional;
 
 import java.util.Map;
 import java.util.Set;
@@ -52,10 +51,11 @@ public interface Dispatcher<T> extends CommandCallable<T> {
     Set<? extends CommandMapping> getCommands();
 
     /**
-     * Get a list of primary aliases.
+     * Get a map of primary aliases.
      *
      * <p>
-     * The returned collection cannot be modified.
+     * The returned collection cannot be modified. The string is the alias, and
+     * the integer is how many times it's been registered.
      * </p>
      *
      * @return A list of aliases
@@ -78,7 +78,7 @@ public interface Dispatcher<T> extends CommandCallable<T> {
      * Get the {@link CommandMapping}(s) associated with an alias.
      * 
      * @param alias The alias
-     * @return The command mappings, if available
+     * @return The command mappings
      */
     Set<CommandMapping> getAll(String alias);
 

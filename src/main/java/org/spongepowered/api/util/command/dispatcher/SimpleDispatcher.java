@@ -26,17 +26,16 @@ package org.spongepowered.api.util.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.CommandException;
-import org.spongepowered.api.util.command.CommandMapping;
-import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.command.ImmutableCommandMapping;
-
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.util.command.CommandCallable;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.ImmutableCommandMapping;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +52,7 @@ import java.util.Set;
  * A simple implementation of a {@link Dispatcher}.
  */
 public class SimpleDispatcher implements Dispatcher<Boolean> {
+
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
 
     /**
