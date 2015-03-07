@@ -35,7 +35,7 @@ import java.net.URL;
  */
 public final class ResourcePacks {
 
-    public static final ResourcePackFactory factory = null;
+    private static final ResourcePackFactory factory = null;
 
     /**
      * Creates a {@link ResourcePack} from a URL and tries to download and hash
