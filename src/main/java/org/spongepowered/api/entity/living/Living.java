@@ -25,14 +25,13 @@
 
 package org.spongepowered.api.entity.living;
 
+import com.flowpowered.math.vector.Vector3f;
+import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
-
-import com.flowpowered.math.vector.Vector3f;
-import com.google.common.base.Optional;
 
 import java.util.Collection;
 import java.util.List;

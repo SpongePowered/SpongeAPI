@@ -46,6 +46,14 @@ public interface AttributeHolder {
     Optional<Double> getAttributeValue(Attribute attribute);
 
     /**
+     * Gets the base value of a certain {@link Attribute} on this holder.
+     *
+     * @param attribute The attribute to get the base value of
+     * @return The base value of a certain Attribute on this holder
+     */
+    double getBase(Attribute attribute);
+
+    /**
      * Sets the base value of a certain {@link Attribute} on this holder.
      *
      * @param attribute The Attribute to set the base value of
@@ -54,14 +62,6 @@ public interface AttributeHolder {
      *         is below the minimum of the {@link Attribute}
      */
     void setBase(Attribute attribute, double base) throws IllegalArgumentException;
-
-    /**
-     * Gets the base value of a certain {@link Attribute} on this holder.
-     *
-     * @param attribute The attribute to get the base value of
-     * @return The base value of a certain Attribute on this holder
-     */
-    double getBase(Attribute attribute);
 
     /**
      * Gets a collection of all applied modifiers.
