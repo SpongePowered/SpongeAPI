@@ -210,6 +210,7 @@ public final class SpongeEventFactory {
 
     /**
      * Creates a new {@link BlockBreakHangingEvent}.
+     *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
      * @param block The block affected by this event

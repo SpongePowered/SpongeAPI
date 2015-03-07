@@ -33,7 +33,8 @@ public interface EntityInteractHangingEvent extends EntityInteractEntityEvent {
 
     /**
      * Gets the {@link Hanging} which has been interacted with.
-     * @return The {@link Hanging} which has been interacted with.
+     *
+     * @return The {@link Hanging} which has been interacted with
      */
     Hanging getTargetEntity();
 
