@@ -32,7 +32,9 @@ import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+
 import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.message.Messages;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -64,17 +66,17 @@ public class SimpleDispatcher implements Dispatcher {
      * Creates a new dispatcher without any help messages.
      */
     public SimpleDispatcher() {
-        this.shortDescription = null;
-        this.help = null;
+        this.shortDescription = "";
+        this.help = Messages.of(shortDescription);
     }
     
     /**
-     * Creates a new dispatcher with an optional description and help message.
+     * Creates a new dispatcher with a description and a help message.
      *
      * @param shortDescription A short one-line description
      * @param help A formatted help message
      */
-    public SimpleDispatcher(@Nullable String shortDescription, @Nullable Message help) {
+    public SimpleDispatcher(String shortDescription, Message help) {
         this.shortDescription = shortDescription;
         this.help = help;
     }

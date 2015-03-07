@@ -30,8 +30,6 @@ import org.spongepowered.api.util.command.completion.CommandCompleter;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 /**
  * A command that can be executed.
  *
@@ -74,9 +72,8 @@ public interface CommandCallable extends CommandCompleter {
      * <p>The help system may display the description in the command list.</p>
      *
      * @param source The source of the help request
-     * @return A description or {@code null} if there is none
+     * @return A description
      */
-    @Nullable
     String getShortDescription(CommandSource source);
 
     /**
@@ -85,16 +82,15 @@ public interface CommandCallable extends CommandCompleter {
      * <p>It is recommended to use the default text color and style. Sections 
      * with text actions (e.g. hyperlinks) should be underlined.</p>
      * 
-     * <p>Multiline messages can be created by separating the lines with 
+     * <p>Multi-line messages can be created by separating the lines with 
      * {@code \n}.</p>
      * 
      * <p>The help system may display this message when a source requests 
      * detailed information about a command.</p>
      *
      * @param source The source of the help request
-     * @return A help text or {@code null} if there is none
+     * @return A help text
      */
-    @Nullable
     Message getHelp(CommandSource source);
 
     /**
