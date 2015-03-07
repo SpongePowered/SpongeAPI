@@ -39,7 +39,7 @@ public interface ResourcePackFactory {
      * Creates a {@link ResourcePack} from a URL and tries to download and hash
      * it.
      * 
-     * @param url The URL to look in.
+     * @param url The URL to look in
      * @return A ResourcePack with the specified URL
      * @throws FileNotFoundException If a valid resourcepack could not be
      *         downloaded from the URL
