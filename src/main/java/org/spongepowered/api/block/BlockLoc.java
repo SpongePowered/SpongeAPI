@@ -25,13 +25,12 @@
 
 package org.spongepowered.api.block;
 
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
-
-import com.flowpowered.math.vector.Vector3i;
 
 import java.util.Collection;
 
