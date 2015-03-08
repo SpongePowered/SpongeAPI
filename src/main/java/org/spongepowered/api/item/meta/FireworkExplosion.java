@@ -40,25 +40,11 @@ public interface FireworkExplosion {
     boolean doesFlicker();
 
     /**
-     * Sets if this firework explosion will flicker.
-     * 
-     * @param flickers If this firework explosion will now flicker
-     */
-    void setFlickers(boolean flickers);
-
-    /**
      * Gets if this firework explosion has a trail.
      * 
      * @return If this firework explosion has a trail
      */
     boolean hasTrail();
-
-    /**
-     * Sets if this firework explosion has a trail.
-     * 
-     * @param trail If this firework explosion now has a trail
-     */
-    void setHasTrail(boolean trail);
 
     /**
      * Gets a list of the the primary colors of this firework explosion.
@@ -68,13 +54,6 @@ public interface FireworkExplosion {
     Collection<Color> getColors();
 
     /**
-     * Adds a color to this firework explosion's primary colors.
-     * 
-     * @param color The color to add
-     */
-    void addColor(Color color);
-
-    /**
      * Gets a list of the the fade colors of this firework explosion.
      * 
      * @return A list of the the fade colors of this firework explosion
@@ -82,24 +61,10 @@ public interface FireworkExplosion {
     Collection<Color> getFadeColors();
 
     /**
-     * Adds a color to this firework explosion's fade colors.
-     * 
-     * @param color The color to add
-     */
-    void addFadeColor(Color color);
-
-    /**
      * Gets the {@link FireworkShape} of this firework explosion.
      * 
      * @return The FireworkShape of this firework explosion
      */
     FireworkShape getShape();
-
-    /**
-     * Sets the {@link FireworkShape} of this firework explosion.
-     * 
-     * @param shape The new FireworkShape of this firework explosion
-     */
-    void setShape(FireworkShape shape);
 
 }
