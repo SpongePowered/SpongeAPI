@@ -25,9 +25,8 @@
 
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.util.command.completion.CommandCompleter;
-
 import com.google.common.base.Optional;
+import org.spongepowered.api.util.command.completion.CommandCompleter;
 
 import java.util.List;
 

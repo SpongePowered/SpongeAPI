@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.event;
 
-
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3f;
 import com.flowpowered.math.vector.Vector3i;

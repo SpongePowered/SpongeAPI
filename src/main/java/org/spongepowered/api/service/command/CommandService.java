@@ -25,13 +25,12 @@
 
 package org.spongepowered.api.service.command;
 
+import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
-
-import com.google.common.base.Function;
-import com.google.common.base.Optional;
 
 import java.util.List;
 import java.util.Set;

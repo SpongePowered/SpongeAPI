@@ -77,7 +77,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
      */
     public Optional<CommandMapping> register(CommandCallable<Boolean> callable, String... alias) {
         checkNotNull(alias);
-        return register(callable, Arrays.asList(alias));
+        return this.register(callable, Arrays.asList(alias));
     }
 
     /**
@@ -101,7 +101,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
      *         registered
      */
     public Optional<CommandMapping> register(CommandCallable<Boolean> callable, List<String> aliases) {
-        return register(callable, aliases, Functions.<List<String>>identity());
+        return this.register(callable, aliases, Functions.<List<String>>identity());
     }
 
     /**
@@ -135,16 +135,20 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
         checkNotNull(aliases);
         checkNotNull(callable);
         checkNotNull(callback);
+
         List<String> free = new ArrayList<String>();
+
         // Filter out commands that are already registered
         for (String alias : aliases) {
             if (!this.commands.containsKey(alias.toLowerCase())) {
                 free.add(alias);
             }
         }
+
         // Invoke the callback with the commands that /can/ be registered
-        // noinspection ConstantConditions
+        //noinspection ConstantConditions
         free = new ArrayList<String>(callback.apply(free));
+
         if (!free.isEmpty()) {
             // The callback should /not/ have added any new commands
             for (String alias : free) {

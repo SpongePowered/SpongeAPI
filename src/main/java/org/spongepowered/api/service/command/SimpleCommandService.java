@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.service.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -68,6 +69,7 @@ import javax.inject.Inject;
 public class SimpleCommandService implements CommandService<Boolean> {
 
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
+
     private final PluginManager pluginManager;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
@@ -111,12 +113,15 @@ public class SimpleCommandService implements CommandService<Boolean> {
     public Optional<CommandMapping> register(Object plugin, CommandCallable<Boolean> callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(plugin);
+
         Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException("The provided plugin object does not have an associated plugin container "
                     + "(in other words, is 'plugin' actually your plugin object?");
         }
+
         PluginContainer container = containerOptional.get();
+
         synchronized (this.lock) {
             // <namespace>:<alias> for all commands
             List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
@@ -124,7 +129,9 @@ public class SimpleCommandService implements CommandService<Boolean> {
                 aliasesWithPrefix.add(alias);
                 aliasesWithPrefix.add(container.getId() + ":" + alias);
             }
+
             Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliasesWithPrefix, callback);
+
             if (mapping.isPresent()) {
                 this.owners.put(container, mapping.get());
             }
@@ -136,9 +143,11 @@ public class SimpleCommandService implements CommandService<Boolean> {
     public Optional<CommandMapping> remove(String alias) {
         synchronized (this.lock) {
             Optional<CommandMapping> removed = this.dispatcher.remove(alias);
+
             if (removed.isPresent()) {
                 forgetMapping(removed.get());
             }
+
             return removed;
         }
     }
