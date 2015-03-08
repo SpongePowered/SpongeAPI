@@ -37,7 +37,7 @@ public interface EntityState {
      *
      * @return The type of entity
      */
-    EntityType getType();
+    EntityType<?> getType();
 
     /**
      * Get a snapshot of this entity at the current point in time.

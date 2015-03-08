@@ -39,7 +39,7 @@ public interface WeightedRandomEntity {
      *
      * @return The entity type
      */
-    EntityType getEntityType();
+    EntityType<?> getEntityType();
 
     /**
      * Gets the additional properties to apply to the entity.
