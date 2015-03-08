@@ -138,7 +138,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
         List<String> free = new ArrayList<String>();
         // Filter out commands that are already registered
         for (String alias : aliases) {
-            if (!commands.containsKey(alias.toLowerCase())) {
+            if (!this.commands.containsKey(alias.toLowerCase())) {
                 free.add(alias);
             }
         }
@@ -148,7 +148,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
         if (!free.isEmpty()) {
             // The callback should /not/ have added any new commands
             for (String alias : free) {
-                if (commands.containsKey(alias.toLowerCase())) {
+                if (this.commands.containsKey(alias.toLowerCase())) {
                     throw new IllegalArgumentException("A command by the name of '" + alias + "' already exists");
                 }
             }
@@ -156,7 +156,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
             List<String> secondary = free.subList(1, free.size());
             CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
             for (String alias : free) {
-                commands.put(alias.toLowerCase(), mapping);
+                this.commands.put(alias.toLowerCase(), mapping);
             }
             return Optional.of(mapping);
         } else {
@@ -171,7 +171,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> remove(String alias) {
-        return Optional.of(commands.remove(alias.toLowerCase()));
+        return Optional.of(this.commands.remove(alias.toLowerCase()));
     }
 
     /**
@@ -184,7 +184,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
         checkNotNull(c);
         boolean found = false;
         for (Object alias : c) {
-            commands.remove(alias.toString().toLowerCase());
+            this.commands.remove(alias.toString().toLowerCase());
             found = true;
         }
         return found;
@@ -199,7 +199,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
     public synchronized Optional<CommandMapping> removeMapping(CommandMapping mapping) {
         checkNotNull(mapping);
         CommandMapping found = null;
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             CommandMapping current = it.next();
             if (current.equals(mapping)) {
@@ -219,7 +219,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
     public synchronized boolean removeMappings(Collection<?> c) {
         checkNotNull(c);
         boolean found = false;
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             if (c.contains(it.next())) {
                 it.remove();
@@ -231,13 +231,13 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
 
     @Override
     public synchronized Set<CommandMapping> getCommands() {
-        return ImmutableSet.copyOf(commands.values());
+        return ImmutableSet.copyOf(this.commands.values());
     }
 
     @Override
     public synchronized Map<String, Integer> getPrimaryAliases() {
         Map<String, Integer> aliases = new HashMap<String, Integer>();
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             aliases.put(mapping.getPrimaryAlias(), 1);
         }
         return Collections.unmodifiableMap(aliases);
@@ -246,7 +246,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
     @Override
     public synchronized Map<String, Integer> getAliases() {
         Map<String, Integer> aliases = new HashMap<String, Integer>();
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             for (String alias : mapping.getAllAliases()) {
                 aliases.put(alias, 1);
             }
@@ -256,13 +256,13 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
 
     @Override
     public synchronized boolean containsAlias(String alias) {
-        return commands.containsKey(alias.toLowerCase());
+        return this.commands.containsKey(alias.toLowerCase());
     }
 
     @Override
     public boolean containsMapping(CommandMapping mapping) {
         checkNotNull(mapping);
-        for (CommandMapping test : commands.values()) {
+        for (CommandMapping test : this.commands.values()) {
             if (mapping.equals(test)) {
                 return true;
             }
@@ -276,7 +276,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
      * @return The number of aliases
      */
     public synchronized int size() {
-        return commands.size();
+        return this.commands.size();
     }
 
     @Override
@@ -296,7 +296,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
 
     @Override
     public synchronized boolean testPermission(CommandSource source) {
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             if (!mapping.getCallable().testPermission(source)) {
                 return false;
             }
@@ -311,7 +311,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
         if (parts.length == 1) { // Auto completing commands
             String incompleteCommand = parts[0].toLowerCase();
             synchronized (this) {
-                for (CommandMapping mapping : commands.values()) {
+                for (CommandMapping mapping : this.commands.values()) {
                     for (String alias : mapping.getAllAliases()) {
                         if (alias.toLowerCase().startsWith(incompleteCommand)) {
                             suggestions.add(alias);
@@ -346,7 +346,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
     @Override
     public Set<CommandMapping> getAll(String alias) {
         Set<CommandMapping> cmd = new HashSet<CommandMapping>();
-        Optional<CommandMapping> m = Optional.fromNullable(commands.get(alias.toLowerCase()));
+        Optional<CommandMapping> m = Optional.fromNullable(this.commands.get(alias.toLowerCase()));
         if (m.isPresent()) {
             cmd.add(m.get());
         }
@@ -355,12 +355,12 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
 
     @Override
     public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
-        return Optional.fromNullable(commands.get(alias.toLowerCase()));
+        return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
     }
 
     @Override
     public boolean testSource(CommandSource source) {
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             if (!mapping.getCallable().testSource(source)) {
                 return false;
             }

@@ -26,6 +26,11 @@ package org.spongepowered.api.service.command.sponge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Optional;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.text.format.TextColors;
@@ -37,12 +42,6 @@ import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
-
-import com.google.common.base.Optional;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -91,26 +90,27 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Register a command with this Dispatcher.
-     * 
+     *
      * @param command The {@link CommandCallable} representing this command.
      * @param primaryAlias The primary alias for the command.
      * @param aliases All aliases for the command.
      * @param plugin The ID of the plugin registering the command.
      * @return If present, a {@link CommandMapping} representing the command.
      */
-    public Optional<CommandMapping> register(CommandCallable<CommandResult> command, String primaryAlias, List<String> aliases, String plugin) throws IllegalArgumentException {
+    public Optional<CommandMapping> register(CommandCallable<CommandResult> command, String primaryAlias, List<String> aliases, String plugin)
+            throws IllegalArgumentException {
 
         checkNotNull(command);
         checkNotNull(primaryAlias);
         checkNotNull(aliases);
         checkNotNull(plugin);
 
-        if (!pluginManager.isLoaded(plugin)) {
+        if (!this.pluginManager.isLoaded(plugin)) {
             throw new IllegalArgumentException("There is no plugin by the name of " + plugin + "!");
         }
 
         CommandMapping commandMapping = new SpongeCommandMapping(command, primaryAlias, plugin, aliases);
-        commands.put(plugin, commandMapping);
+        this.commands.put(plugin, commandMapping);
 
         return Optional.of(commandMapping);
     }
@@ -159,10 +159,10 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      */
     public synchronized Optional<CommandMapping> remove(String alias, boolean primaryOnly, Optional<String> plugin) {
         checkNotNull(alias);
-        Iterator<String> it = commands.keys().iterator();
+        Iterator<String> it = this.commands.keys().iterator();
         while (it.hasNext()) {
             String k = it.next();
-            Iterator<CommandMapping> mappings = commands.get(k).iterator();
+            Iterator<CommandMapping> mappings = this.commands.get(k).iterator();
 
             while (mappings.hasNext()) {
                 CommandMapping v = mappings.next();
@@ -252,7 +252,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
         CommandMapping found = null;
 
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             CommandMapping current = it.next();
             if (current.equals(mapping)) {
@@ -275,7 +275,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
         boolean found = false;
 
-        Iterator<CommandMapping> it = commands.values().iterator();
+        Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             if (c.contains(it.next())) {
                 it.remove();
@@ -288,24 +288,24 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Gets a list of all registered {@link CommandMapping}s.
-     * 
+     *
      * @return A list of all registered {@link CommandMapping}s.
      */
     @Override
     public synchronized Set<CommandMapping> getCommands() {
-        return ImmutableSet.copyOf(commands.values());
+        return ImmutableSet.copyOf(this.commands.values());
     }
 
     /**
      * Gets a list of all registered primary aliases.
-     * 
+     *
      * @return A list of all registered primary aliases.
      */
     @Override
     public synchronized Map<String, Integer> getPrimaryAliases() {
         Map<String, Integer> aliases = new HashMap<String, Integer>();
 
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             if (aliases.containsKey(mapping.getPrimaryAlias())) {
                 aliases.put(mapping.getPrimaryAlias(), aliases.get(mapping.getPrimaryAlias()) + 1);
 
@@ -319,14 +319,14 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Gets a list of all registered aliases.
-     * 
+     *
      * @return A list of all registered aliases.
      */
     @Override
     public synchronized Map<String, Integer> getAliases() {
         Map<String, Integer> aliases = new HashMap<String, Integer>();
 
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             for (String alias : mapping.getAllAliases()) {
                 if (aliases.containsKey(alias)) {
                     aliases.put(alias, aliases.get(alias) + 1);
@@ -341,7 +341,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Returns all {@link CommandMapping}s that fit the search parameters.
-     * 
+     *
      * @param alias The alias of the command.
      * @param plugin The plugin to search for commands in.
      * @return The command mappings that fit the search parameters. If none were
@@ -353,7 +353,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Returns all {@link CommandMapping}s that fit the search parameters.
-     * 
+     *
      * @param alias The alias of the command.
      * @param primaryOnly If the search should ignore non-primary aliases.
      * @return The command mappings that fit the search parameters. If none were
@@ -370,7 +370,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Returns all {@link CommandMapping}s that fit the search parameters.
-     * 
+     *
      * @param alias The alias of the command.
      * @param primaryOnly If the search should ignore non-primary aliases.
      * @param plugin The plugin to search for commands in.
@@ -379,8 +379,8 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      */
     public synchronized Set<CommandMapping> getAll(String alias, boolean primaryOnly, Optional<String> plugin) {
         Set<CommandMapping> mappings = new HashSet<CommandMapping>();
-        for (String k : commands.keys()) {
-            for (CommandMapping v : commands.get(k)) {
+        for (String k : this.commands.keys()) {
+            for (CommandMapping v : this.commands.get(k)) {
                 boolean found = true;
                 if (primaryOnly) {
                     found = v.getPrimaryAlias().equalsIgnoreCase(alias);
@@ -403,7 +403,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
     /**
      * Returns true if there are any registered commands that fit the search
      * parameters.
-     * 
+     *
      * @param alias The command's alias.
      * @param plugin The plugin to search in.
      * @return If there are any registered commands that fit the search
@@ -416,7 +416,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
     /**
      * Returns true if there are any registered commands that fit the search
      * parameters.
-     * 
+     *
      * @param alias The command's alias.
      * @param primaryOnly If the search should ignore non-primary aliases.
      * @return If there are any registered commands that fit the search
@@ -434,7 +434,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
     /**
      * Returns true if there are any registered commands that fit the search
      * parameters.
-     * 
+     *
      * @param alias The command's alias.
      * @param primaryOnly If the search should ignore non-primary aliases.
      * @param plugin The plugin to search in.
@@ -448,7 +448,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
     @Override
     public boolean containsMapping(CommandMapping mapping) {
         checkNotNull(mapping);
-        for (CommandMapping test : commands.values()) {
+        for (CommandMapping test : this.commands.values()) {
             if (mapping.equals(test)) {
                 return true;
             }
@@ -463,12 +463,12 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
      * @return The number of commands.
      */
     public synchronized int size() {
-        return commands.size();
+        return this.commands.size();
     }
 
     /**
      * Calls a given command.
-     * 
+     *
      * @return If the command was successful.
      */
     @SuppressWarnings("unchecked")
@@ -487,13 +487,13 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
             return ((CommandCallable<CommandResult>) mapping.get().getCallable()).call(source, fParam, Collections.unmodifiableList(passedParents));
 
-        } else if (alias.contains(":") && (alias.indexOf(":") < (alias.length() - 1)) && !isExtended) {
+        } else if (alias.contains(":") && (alias.indexOf(":") < (alias.length() - 1)) && !this.isExtended) {
             Set<CommandMapping> mappings = this.getAll(alias);
             if (!mappings.isEmpty()) {
                 int colonIndex = alias.indexOf(":");
                 String plugin = alias.substring(0, colonIndex - 1);
                 String cmdName = alias.substring(colonIndex + 1);
-                String pluginName = pluginManager.getPlugin(plugin).get().getId();
+                String pluginName = this.pluginManager.getPlugin(plugin).get().getId();
                 List<Message> messages = new ArrayList<Message>();
                 MessageBuilder finalBuilder = Messages.builder();
                 String text = pluginName + " does not contain a command called " + cmdName + ". Did you mean: ";
@@ -513,21 +513,21 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
                 }
                 source.sendMessage(Messages.builder(text).color(TextColors.RED).build());
                 source.sendMessage(finalBuilder.append(messages).build());
-                return game.getRegistry().getCommandResultBuilder().processed(false).build();
+                return this.game.getRegistry().getCommandResultBuilder().processed(false).build();
             }
         }
         source.sendMessage(Messages.builder("Error: Command not found.").color(TextColors.RED).build());
-        return game.getRegistry().getCommandResultBuilder().processed(false).build();
+        return this.game.getRegistry().getCommandResultBuilder().processed(false).build();
     }
 
     /**
      * Tests if the given source can use all the registered commands
-     * 
+     *
      * @return If the given source can use all the registered commands.
      */
     @Override
     public synchronized boolean testPermission(CommandSource source) {
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             if (!mapping.getCallable().testPermission(source)) {
                 return false;
             }
@@ -538,7 +538,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     @Override
     public synchronized boolean testSource(CommandSource source) {
-        for (CommandMapping mapping : commands.values()) {
+        for (CommandMapping mapping : this.commands.values()) {
             if (!mapping.getCallable().testSource(source)) {
                 return false;
             }
@@ -549,7 +549,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Returns suggestions for the command.
-     * 
+     *
      * @return Suggestions for the command.
      */
     @Override
@@ -561,7 +561,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
             String incompleteCommand = parts[0].toLowerCase();
 
             synchronized (this) {
-                for (CommandMapping mapping : commands.values()) {
+                for (CommandMapping mapping : this.commands.values()) {
                     for (String alias : mapping.getAllAliases()) {
                         if (alias.toLowerCase().startsWith(incompleteCommand)) {
                             suggestions.add(alias);
@@ -588,7 +588,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
     /**
      * Resolves the alias of a command to a {@link CommandMapping} with a
      * certain {@link CommandSource}.
-     * 
+     *
      * @param alias The alias of the command.
      * @param source The {@link CommandSource} the command is being sent from.
      * @param ignoreOverride If commandsource-configuration should be disabled.
@@ -599,7 +599,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
         Optional<String> plugin = Optional.absent();
         boolean override = false;
         alias = alias.toLowerCase();
-        if (!isExtended) {
+        if (!this.isExtended) {
             if (alias.contains(":") && alias.indexOf(":") < (alias.length() - 1)) {
                 int colonIndex = alias.indexOf(":");
                 plugin = Optional.of(alias.substring(0, colonIndex - 1));
@@ -607,7 +607,7 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
             }
         }
 
-        if (!plugin.isPresent() && this.aliasContexts.containsKey(alias) && !isExtended && !ignoreOverride) {
+        if (!plugin.isPresent() && this.aliasContexts.containsKey(alias) && !this.isExtended && !ignoreOverride) {
             AliasContext context = this.aliasContexts.get(alias);
             if (context.appliesTo(source)) {
                 String contextPlugin = context.getPluginId(source);
@@ -655,21 +655,21 @@ public class SpongeDispatcher implements Dispatcher<CommandResult> {
 
     /**
      * Set a certain alias to go to certain plugins by {@link CommandSource}s.
-     * 
+     *
      * @param alias The alias.
      * @param context The {@link AliasContext} to get the plugins from.
      */
     public void addAliasContext(String alias, AliasContext context) {
-        aliasContexts.put(alias.toLowerCase(), context);
+        this.aliasContexts.put(alias.toLowerCase(), context);
     }
 
     /**
      * Remove a certain alias from the contexts list.
-     * 
+     *
      * @param alias The alias to remove.
      */
     public void removeAliasContext(String alias) {
-        aliasContexts.remove(alias.toLowerCase());
+        this.aliasContexts.remove(alias.toLowerCase());
     }
 
 }

@@ -33,12 +33,12 @@ public class SpongeCommandMapping extends ImmutableCommandMapping {
 
     private String registrar;
 
-    public SpongeCommandMapping(CommandCallable callable, String primary, String registrar, Collection<String> aliases) {
+    public SpongeCommandMapping(CommandCallable<?> callable, String primary, String registrar, Collection<String> aliases) {
         super(callable, primary, aliases);
         this.registrar = registrar;
     }
 
-    public SpongeCommandMapping(CommandCallable callable, String primary, String registrar, String... aliases) {
+    public SpongeCommandMapping(CommandCallable<?> callable, String primary, String registrar, String... aliases) {
         super(callable, primary, aliases);
         this.registrar = registrar;
     }

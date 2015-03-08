@@ -26,6 +26,13 @@ package org.spongepowered.api.service.command.sponge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Function;
+import com.google.common.base.Optional;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Multimap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -37,15 +44,6 @@ import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Function;
-import com.google.common.base.Optional;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Multimap;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -75,7 +73,7 @@ public class SpongeCommandService implements CommandService<CommandResult> {
     @Subscribe(order = Order.LAST)
     public void onCommandEvent(final CommandEvent event) {
         try {
-            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String> emptyList()).wasProcessed()) {
+            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList()).wasProcessed()) {
                 event.setCancelled(true);
             }
         } catch (CommandException e) {
@@ -98,7 +96,7 @@ public class SpongeCommandService implements CommandService<CommandResult> {
     public Optional<CommandMapping> register(Object plugin, CommandCallable<CommandResult> callable, List<String> aliases) {
         checkNotNull(plugin);
 
-        Optional<PluginContainer> containerOptional = pluginManager.fromInstance(plugin);
+        Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException("The provided plugin object does not have an associated plugin container "
                     + "(in other words, is 'plugin' actually your plugin object?");
@@ -110,11 +108,11 @@ public class SpongeCommandService implements CommandService<CommandResult> {
         }
         PluginContainer container = containerOptional.get();
 
-        synchronized (lock) {
-            Optional<CommandMapping> mapping = dispatcher.register(callable, aliases.get(0), aliases, container.getId());
+        synchronized (this.lock) {
+            Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliases.get(0), aliases, container.getId());
 
             if (mapping.isPresent()) {
-                owners.put(container, mapping.get());
+                this.owners.put(container, mapping.get());
             }
 
             return mapping;
@@ -123,8 +121,8 @@ public class SpongeCommandService implements CommandService<CommandResult> {
 
     @Override
     public Optional<CommandMapping> remove(String alias) {
-        synchronized (lock) {
-            Optional<CommandMapping> removed = dispatcher.remove(alias);
+        synchronized (this.lock) {
+            Optional<CommandMapping> removed = this.dispatcher.remove(alias);
 
             if (removed.isPresent()) {
                 forgetMapping(removed.get());
@@ -136,8 +134,8 @@ public class SpongeCommandService implements CommandService<CommandResult> {
 
     @Override
     public Optional<CommandMapping> removeMapping(CommandMapping mapping) {
-        synchronized (lock) {
-            Optional<CommandMapping> removed = dispatcher.removeMapping(mapping);
+        synchronized (this.lock) {
+            Optional<CommandMapping> removed = this.dispatcher.removeMapping(mapping);
 
             if (removed.isPresent()) {
                 forgetMapping(removed.get());
@@ -148,7 +146,7 @@ public class SpongeCommandService implements CommandService<CommandResult> {
     }
 
     private void forgetMapping(CommandMapping mapping) {
-        Iterator<CommandMapping> it = owners.values().iterator();
+        Iterator<CommandMapping> it = this.owners.values().iterator();
         while (it.hasNext()) {
             if (it.next().equals(mapping)) {
                 it.remove();
@@ -159,99 +157,99 @@ public class SpongeCommandService implements CommandService<CommandResult> {
 
     @Override
     public Set<PluginContainer> getPluginContainers() {
-        synchronized (lock) {
-            return ImmutableSet.copyOf(owners.keySet());
+        synchronized (this.lock) {
+            return ImmutableSet.copyOf(this.owners.keySet());
         }
     }
 
     @Override
     public Set<CommandMapping> getCommands() {
-        return dispatcher.getCommands();
+        return this.dispatcher.getCommands();
     }
 
     @Override
     public Set<CommandMapping> getOwnedBy(PluginContainer container) {
-        synchronized (lock) {
-            return ImmutableSet.copyOf(owners.get(container));
+        synchronized (this.lock) {
+            return ImmutableSet.copyOf(this.owners.get(container));
         }
     }
 
     @Override
     public Map<String, Integer> getPrimaryAliases() {
-        return dispatcher.getPrimaryAliases();
+        return this.dispatcher.getPrimaryAliases();
     }
 
     @Override
     public Map<String, Integer> getAliases() {
-        return dispatcher.getAliases();
+        return this.dispatcher.getAliases();
     }
 
     @Override
     public Set<CommandMapping> getAll(String alias) {
-        return dispatcher.getAll(alias);
+        return this.dispatcher.getAll(alias);
     }
 
     @Override
     public boolean containsAlias(String alias) {
-        return dispatcher.containsAlias(alias);
+        return this.dispatcher.containsAlias(alias);
     }
 
     @Override
     public boolean containsMapping(CommandMapping mapping) {
-        return dispatcher.containsMapping(mapping);
+        return this.dispatcher.containsMapping(mapping);
     }
 
     @Override
     public CommandResult call(CommandSource source, String arguments, List<String> parents) throws CommandException {
-        return dispatcher.call(source, arguments, parents);
+        return this.dispatcher.call(source, arguments, parents);
     }
 
     @Override
     public boolean testPermission(CommandSource source) {
-        return dispatcher.testPermission(source);
+        return this.dispatcher.testPermission(source);
     }
 
     @Override
     public boolean testSource(CommandSource source) {
-        return dispatcher.testSource(source);
+        return this.dispatcher.testSource(source);
     }
 
     @Override
     public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        return dispatcher.getSuggestions(source, arguments);
+        return this.dispatcher.getSuggestions(source, arguments);
     }
 
     @Override
     public Optional<String> getShortDescription() {
-        return dispatcher.getShortDescription();
+        return this.dispatcher.getShortDescription();
     }
 
     @Override
     public Optional<String> getHelp() {
-        return dispatcher.getHelp();
+        return this.dispatcher.getHelp();
     }
 
     @Override
     public String getUsage() {
-        return dispatcher.getUsage();
+        return this.dispatcher.getUsage();
     }
 
     @Override
     public int size() {
-        return dispatcher.size();
+        return this.dispatcher.size();
     }
 
     @Override
     public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
-        return dispatcher.resolveMapping(alias, source);
+        return this.dispatcher.resolveMapping(alias, source);
     }
 
     public void addAliasContext(String alias, AliasContext context) {
-        dispatcher.addAliasContext(alias, context);
+        this.dispatcher.addAliasContext(alias, context);
     }
 
     public void removeAliasContext(String alias) {
-        dispatcher.removeAliasContext(alias);
+        this.dispatcher.removeAliasContext(alias);
     }
 
 }
