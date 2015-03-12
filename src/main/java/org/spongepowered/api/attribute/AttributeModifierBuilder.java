@@ -63,4 +63,11 @@ public interface AttributeModifierBuilder {
      */
     AttributeModifier build();
 
+    /**
+     * Resets this builder, to be used again.
+     * 
+     * @return This builder, for chaining
+     */
+    AttributeModifierBuilder reset();
+
 }
