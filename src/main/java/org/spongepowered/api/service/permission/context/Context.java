@@ -26,13 +26,14 @@ package org.spongepowered.api.service.permission.context;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Map;
+
 /**
  * The context that a permission check occurs in. Instances of a context are
  * designed to function as cache keys, meaning they should be fairly lightweight
  * and not hold references to large objects
  */
-public final class Context {
-
+public final class Context implements Map.Entry<String, String> {
     public static final String WORLD_KEY = "world";
 
     private final String type;
@@ -70,6 +71,21 @@ public final class Context {
      */
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public String getKey() {
+        return this.type;
+    }
+
+    @Override
+    public String getValue() {
+        return this.name;
+    }
+
+    @Override
+    public String setValue(String value) {
+        throw new UnsupportedOperationException("Contexts are immutable");
     }
 
     @Override
