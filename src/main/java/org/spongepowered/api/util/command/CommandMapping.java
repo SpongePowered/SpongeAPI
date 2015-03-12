@@ -38,14 +38,14 @@ import java.util.Set;
 public interface CommandMapping {
 
     /**
-     * Get the primary alias.
+     * Gets the primary alias.
      *
      * @return The primary alias
      */
     String getPrimaryAlias();
 
     /**
-     * Get an immutable list of all aliases.
+     * Gets an immutable list of all aliases.
      *
      * <p>
      * The returned list must contain at least one entry, of which one must be
@@ -62,7 +62,7 @@ public interface CommandMapping {
     Set<String> getAllAliases();
 
     /**
-     * Get the callable
+     * Gets the callable
      *
      * @return The callable
      */

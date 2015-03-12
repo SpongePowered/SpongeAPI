@@ -37,6 +37,8 @@ import java.util.List;
  * Implementations are not required to implement a sane
  * {@link java.lang.Object#equals(Object)} but may choose to do so.
  * </p>
+ * 
+ * @param <T> The kind of result this command returns
  */
 public interface CommandCallable<T> extends CommandCompleter {
 

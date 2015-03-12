@@ -93,6 +93,7 @@ public class SpongeCommandService implements CommandService<CommandResult> {
         return register(plugin, callable, aliases);
     }
 
+    @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable<CommandResult> callable, List<String> aliases) {
         checkNotNull(plugin);
 

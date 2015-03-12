@@ -110,6 +110,11 @@ public class SimpleCommandService implements CommandService<Boolean> {
     }
 
     @Override
+    public Optional<CommandMapping> register(Object plugin, CommandCallable<Boolean> callable, List<String> aliases) {
+        return register(plugin, callable, aliases, Functions.<List<String>>identity());
+    }
+
+    @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable<Boolean> callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(plugin);

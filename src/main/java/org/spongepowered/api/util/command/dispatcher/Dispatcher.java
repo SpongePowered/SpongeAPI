@@ -35,6 +35,8 @@ import java.util.Set;
 
 /**
  * Executes a command based on user input.
+ * 
+ * @param <T> The return type of the commands this Dispatcher can dispatch
  */
 public interface Dispatcher<T> extends CommandCallable<T> {
 

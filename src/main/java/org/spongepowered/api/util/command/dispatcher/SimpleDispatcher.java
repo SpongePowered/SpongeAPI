@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.util.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -156,12 +157,15 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
                     throw new IllegalArgumentException("A command by the name of '" + alias + "' already exists");
                 }
             }
+
             String primary = free.get(0);
             List<String> secondary = free.subList(1, free.size());
             CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
+
             for (String alias : free) {
                 this.commands.put(alias.toLowerCase(), mapping);
             }
+
             return Optional.of(mapping);
         } else {
             return Optional.absent();
@@ -186,11 +190,14 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
      */
     public synchronized boolean removeAll(Collection<?> c) {
         checkNotNull(c);
+
         boolean found = false;
+
         for (Object alias : c) {
             this.commands.remove(alias.toString().toLowerCase());
             found = true;
         }
+
         return found;
     }
 
@@ -202,7 +209,9 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
      */
     public synchronized Optional<CommandMapping> removeMapping(CommandMapping mapping) {
         checkNotNull(mapping);
+
         CommandMapping found = null;
+
         Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             CommandMapping current = it.next();
@@ -230,6 +239,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
                 found = true;
             }
         }
+
         return found;
     }
 
@@ -266,11 +276,13 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
     @Override
     public boolean containsMapping(CommandMapping mapping) {
         checkNotNull(mapping);
+
         for (CommandMapping test : this.commands.values()) {
             if (mapping.equals(test)) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -291,7 +303,9 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
             List<String> passedParents = new ArrayList<String>(parents.size() + 1);
             passedParents.addAll(parents);
             passedParents.add(parts[0]);
+
             mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
+
             return true;
         } else {
             return false;
@@ -305,6 +319,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -312,8 +327,10 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
     public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
         String[] parts = arguments.split(" +", 2);
         List<String> suggestions = new ArrayList<String>();
+
         if (parts.length == 1) { // Auto completing commands
             String incompleteCommand = parts[0].toLowerCase();
+
             synchronized (this) {
                 for (CommandMapping mapping : this.commands.values()) {
                     for (String alias : mapping.getAllAliases()) {
@@ -329,6 +346,7 @@ public class SimpleDispatcher implements Dispatcher<Boolean> {
                 mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
             }
         }
+
         return Collections.unmodifiableList(suggestions);
     }
 

@@ -38,6 +38,8 @@ import java.util.Set;
 /**
  * A command dispatcher watches for commands (such as those said in chat) and
  * dispatches them to the correct command handler.
+ * 
+ * @param <T> The type of result a command must return to this service
  */
 public interface CommandService<T> extends Dispatcher<T> {
 
@@ -61,7 +63,32 @@ public interface CommandService<T> extends Dispatcher<T> {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
      *         instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable<T> callable, String... aliases);
+    Optional<CommandMapping> register(Object plugin, CommandCallable<T> callable, String... aliases) throws IllegalArgumentException;
+
+    /**
+     * Register a given command using a given list of aliases.
+     *
+     * <p>
+     * If there is a conflict with one of the aliases (i.e. that alias* is
+     * already assigned to another command), then the alias will be skipped. It
+     * is possible for there to be no alias to be available out of the provided
+     * list of aliases, which would mean that the command would not be assigned
+     * to any aliases.
+     * </p>
+     *
+     * <p>
+     * The first alias that could be registered becomes the "primary alias."
+     * </p>
+     *
+     * @param plugin A plugin instance
+     * @param callable The command
+     * @param aliases A list of aliases
+     * @return The registered command mapping, unless it could not be
+     *         registered.
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
+     *         instance
+     */
+    Optional<CommandMapping> register(Object plugin, CommandCallable<T> callable, List<String> aliases) throws IllegalArgumentException;
 
     /**
      * Register a given command using a given list of aliases.
@@ -94,7 +121,7 @@ public interface CommandService<T> extends Dispatcher<T> {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
      *         instance
      */
-    public Optional<CommandMapping> register(Object plugin, CommandCallable<T> callable, List<String> aliases,
+    Optional<CommandMapping> register(Object plugin, CommandCallable<T> callable, List<String> aliases,
             Function<List<String>, List<String>> callback);
 
     /**

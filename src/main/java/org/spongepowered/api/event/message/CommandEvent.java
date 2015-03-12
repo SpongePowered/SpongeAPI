@@ -25,13 +25,12 @@
 
 package org.spongepowered.api.event.message;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.service.command.sponge.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.util.event.Order;
-
-import com.google.common.base.Optional;
 
 /**
  * Fired when a command has been used and needs to be processed.
@@ -72,6 +71,5 @@ public interface CommandEvent extends GameEvent, Cancellable {
      * @return The result of the command, if present
      */
     Optional<CommandResult> getResult();
-
 
 }
