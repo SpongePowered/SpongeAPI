@@ -47,7 +47,7 @@ public interface EntityAboutToConstructEvent extends GameEvent, CauseTracked, Ca
      *
      * @return The entity type
      */
-    EntityType getEntityType();
+    EntityType<?> getEntityType();
 
     /**
      * Gets the {@link Location} of the entity that is going to be constructed.

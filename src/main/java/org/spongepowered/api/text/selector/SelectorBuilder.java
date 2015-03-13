@@ -127,7 +127,7 @@ public interface SelectorBuilder {
      * @param type The entity type
      * @return This selector builder
      */
-    SelectorBuilder type(EntityType type);
+    SelectorBuilder type(EntityType<?> type);
 
     /**
      * Sets the type argument. Equivalent to calling
@@ -140,7 +140,7 @@ public interface SelectorBuilder {
      *        the type
      * @return This selector builder
      */
-    SelectorBuilder type(EntityType type, boolean invert);
+    SelectorBuilder type(EntityType<?> type, boolean invert);
 
     /**
      * Builds an immutable instance of the current state of this selector

@@ -195,14 +195,14 @@ public interface GameRegistry {
      * @param id The id to look up
      * @return The entity type or Optional.absent() if not found
      */
-    Optional<EntityType> getEntity(String id);
+    Optional<EntityType<?>> getEntity(String id);
 
     /**
      * Gets a collection of all available {@link EntityType}s.
      *
      * @return A collection containing all entity types in registry
      */
-    Collection<EntityType> getEntities();
+    Collection<EntityType<?>> getEntities();
 
     /**
      * Gets an {@link Art} by its identifier.

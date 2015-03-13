@@ -184,7 +184,7 @@ public interface MobSpawner extends TileEntity {
      * @param type The entity type
      * @param additionalProperties Additional properties to apply to the entity, may be null
      */
-    void setNextEntityToSpawn(EntityType type, @Nullable DataContainer additionalProperties);
+    void setNextEntityToSpawn(EntityType<?> type, @Nullable DataContainer additionalProperties);
 
     /**
      * Sets the next {@link WeightedRandomEntity} to be spawned.

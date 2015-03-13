@@ -28,7 +28,7 @@ package org.spongepowered.api.entity;
 /**
  * Describes a type of entity.
  */
-public interface EntityType {
+public interface EntityType<E extends Entity> {
 
     /**
      * Return the internal ID for the entity type.
@@ -42,6 +42,6 @@ public interface EntityType {
      *
      * @return The entity class for this type
      */
-    Class<? extends Entity> getEntityClass();
+    Class<E> getEntityClass();
 
 }
