@@ -43,6 +43,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.hanging.Hanging;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
@@ -50,6 +53,7 @@ import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.entity.weather.Lightning;
 import org.spongepowered.api.event.block.BlockBreakEvent;
+import org.spongepowered.api.event.block.BlockBreakHangingEvent;
 import org.spongepowered.api.event.block.BlockBurnEvent;
 import org.spongepowered.api.event.block.BlockChangeEvent;
 import org.spongepowered.api.event.block.BlockDispenseEvent;
@@ -82,6 +86,7 @@ import org.spongepowered.api.event.entity.EntityHarvestBlockEvent;
 import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
 import org.spongepowered.api.event.entity.EntityInteractEntityEvent;
 import org.spongepowered.api.event.entity.EntityInteractEvent;
+import org.spongepowered.api.event.entity.EntityInteractHangingEvent;
 import org.spongepowered.api.event.entity.EntityMountEvent;
 import org.spongepowered.api.event.entity.EntityMoveEvent;
 import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
@@ -91,6 +96,8 @@ import org.spongepowered.api.event.entity.EntityTameEvent;
 import org.spongepowered.api.event.entity.EntityTeleportEvent;
 import org.spongepowered.api.event.entity.EntityUpdateEvent;
 import org.spongepowered.api.event.entity.ProjectileLaunchEvent;
+import org.spongepowered.api.event.entity.living.LivingInteractHangingEvent;
+import org.spongepowered.api.event.entity.living.human.HumanInteractHangingEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerBreakBlockEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerChangeBlockEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerChangeGameModeEvent;
@@ -102,6 +109,7 @@ import org.spongepowered.api.event.entity.living.player.PlayerHarvestBlockEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerInteractBlockEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerInteractEntityEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerInteractEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerInteractHangingEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerMoveEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerPickUpItemEvent;
@@ -199,6 +207,24 @@ public final class SpongeEventFactory {
         values.put("replacementBlock", replacementBlock);
         values.put("exp", exp);
         return createEvent(BlockBreakEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link BlockBreakHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param cause The cause of the event, can be null
+     * @param block The block affected by this event
+     * @param hanging The hanging entity affected by this event
+     * @return A new instance of the event
+     */
+    public static BlockBreakHangingEvent createBlockBreakHanging(Game game, @Nullable Cause cause, BlockLoc block, Hanging hanging) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
+        values.put("block", block);
+        values.put("hanging", hanging);
+        return createEvent(BlockBreakHangingEvent.class, values);
     }
 
     /**
@@ -678,6 +704,83 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("targetEntity", targetEntity);
         return createEvent(EntityInteractEntityEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link EntityInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @return A new instance of the event
+     */
+    public static EntityInteractHangingEvent createEntityInteractHanging(Game game, Entity entity, Hanging targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("targetEntity", targetEntity);
+        return createEvent(EntityInteractHangingEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link LivingInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @return A new instance of the event
+     */
+    public static LivingInteractHangingEvent createLivingInteractHanging(Game game, Living entity, Hanging targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("living", entity);
+        values.put("targetEntity", targetEntity);
+        return createEvent(LivingInteractHangingEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link HumanInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @return A new instance of the event
+     */
+    public static HumanInteractHangingEvent createHumanInteractHanging(Game game, Human entity, Hanging targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("living", entity);
+        values.put("human", entity);
+        values.put("targetEntity", targetEntity);
+        return createEvent(HumanInteractHangingEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link PlayerInteractHangingEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param targetEntity The hanging entity being interacted with
+     * @param interactionType The type of interaction which this event
+     *                        represents
+     * @param clickedPosition The position at which this event is taking place
+     * @return A new instance of the event
+     */
+    public static PlayerInteractHangingEvent createPlayerInteractHanging(Game game, Player entity, Hanging targetEntity,
+            EntityInteractionType interactionType,
+            Vector3f clickedPosition) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("living", entity);
+        values.put("human", entity);
+        values.put("player", entity);
+        values.put("targetEntity", targetEntity);
+        values.put("interactionType", interactionType);
+        values.put("clickedPosition", Optional.fromNullable(clickedPosition));
+        return createEvent(PlayerInteractHangingEvent.class, values);
     }
 
     /**
