@@ -23,20 +23,18 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
-
-import org.spongepowered.api.attribute.AttributeSource;
+package org.spongepowered.api.attribute;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * An enumeration of all {@link Operation}s present in vanilla Minecraft.
  */
-public interface PotionEffectType extends AttributeSource {
+public final class Operations {
 
-    /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
-     *
-     * @return If applied instantly.
-     */
-    boolean isInstant();
+    public static final Operation ADD_AMOUNT = null;
+    public static final Operation MULTIPLY_BASE = null;
+    public static final Operation MULTIPLY = null;
+
+    private Operations() {
+    }
+
 }

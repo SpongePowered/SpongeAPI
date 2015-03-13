@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living;
 
 import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
+import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.potion.PotionEffect;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
  * <p>Living entities can have {@link PotionEffect}s, breathing air
  * under water, custom names, and become invisible.</p>
  */
-public interface Living extends Entity {
+public interface Living extends Entity, AttributeHolder {
 
     /**
      * Subtracts from the health by the given amount.

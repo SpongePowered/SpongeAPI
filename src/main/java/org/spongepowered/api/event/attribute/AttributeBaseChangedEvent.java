@@ -23,20 +23,29 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
+package org.spongepowered.api.event.attribute;
 
-import org.spongepowered.api.attribute.AttributeSource;
+import org.spongepowered.api.attribute.Attribute;
+import org.spongepowered.api.attribute.AttributeHolder;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * An event fired when the base value of an {@link Attribute} is changed on an
+ * {@link AttributeHolder}.
  */
-public interface PotionEffectType extends AttributeSource {
+public interface AttributeBaseChangedEvent extends AttributeEvent {
 
     /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
+     * Gets the old value of the changed {@link Attribute}.
      *
-     * @return If applied instantly.
+     * @return The old value of the changed Attribute
      */
-    boolean isInstant();
+    double getOldValue();
+
+    /**
+     * Gets the new value of the changed {@link Attribute}.
+     *
+     * @return The new value of the changed Attribute
+     */
+    double getNewValue();
+
 }

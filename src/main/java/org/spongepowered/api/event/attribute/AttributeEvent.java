@@ -23,20 +23,31 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
+package org.spongepowered.api.event.attribute;
 
-import org.spongepowered.api.attribute.AttributeSource;
+import org.spongepowered.api.attribute.Attribute;
+import org.spongepowered.api.attribute.AttributeHolder;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * An event fired when an {@link Attribute} is changed in any way.
  */
-public interface PotionEffectType extends AttributeSource {
+public interface AttributeEvent extends Cancellable, GameEvent {
 
     /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
+     * Gets the {@link AttributeHolder} whose attributes are being changed.
      *
-     * @return If applied instantly.
+     * @return The AttributeHolder whose attributes are being changed
      */
-    boolean isInstant();
+    AttributeHolder getHolder();
+
+    /**
+     * Gets the {@link org.spongepowered.api.attribute.Attribute} that is being
+     * changed.
+     *
+     * @return The Attribute that is being changed
+     */
+    Attribute getAttribute();
+
 }

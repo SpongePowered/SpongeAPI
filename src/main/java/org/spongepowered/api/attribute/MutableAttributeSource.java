@@ -23,20 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
-
-import org.spongepowered.api.attribute.AttributeSource;
+package org.spongepowered.api.attribute;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * Represents a mutable {@link AttributeSource}.
+ *
+ * <p>
+ * <b>Note:</b> Extra care should be taken, when modifying global game
+ * {@link AttributeSource}s like potion effect types.
+ * </p>
  */
-public interface PotionEffectType extends AttributeSource {
+public interface MutableAttributeSource extends AttributeSource {
 
     /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
+     * Adds a {@link AttributeModifier} to this MutableAttributeSource.
      *
-     * @return If applied instantly.
+     * @param modifier The AttributeModifier to add to this
+     *            MutableAttributeSource
      */
-    boolean isInstant();
+    void addAttributeModifier(AttributeModifier modifier);
+
+    /**
+     * Removes a {@link AttributeModifier} from this MutableAttributeSource.
+     *
+     * @param modifier The AttributeModifier to remove from this
+     *            MutableAttributeSource
+     */
+    void removeAttributeModifier(AttributeModifier modifier);
+
 }

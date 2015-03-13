@@ -23,20 +23,59 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
+package org.spongepowered.api.attribute;
 
-import org.spongepowered.api.attribute.AttributeSource;
+import com.google.common.base.Predicate;
+import org.spongepowered.api.text.message.Message;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * Represents an type of attribute that can be applied to a
+ * {@link AttributeHolder}.
  */
-public interface PotionEffectType extends AttributeSource {
+public interface Attribute {
 
     /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
+     * Gets the ID of this attribute as a string.
      *
-     * @return If applied instantly.
+     * @return The ID of this attribute as a string
      */
-    boolean isInstant();
+    String getId();
+
+    /**
+     * Gets the minimum value for this attribute.
+     *
+     * @return The minimum value for this attribute
+     */
+    double getMinimum();
+
+    /**
+     * Gets the maximum value for this attribute.
+     *
+     * @return The maximum value for this attribute
+     */
+    double getMaximum();
+
+    /**
+     * Gets the default value for this attribute.
+     *
+     * @return The default value for this attribute
+     */
+    double getDefaultValue();
+
+    /**
+     * Gets a predicate to decide if a given {@link AttributeHolder} can have
+     * this attribute applied to it.
+     *
+     * @return A predicate to decide if a given AttributeHolder can have this
+     *         attribute applied to it
+     */
+    Predicate<AttributeHolder> getTargets();
+
+    /**
+     * Gets the name of this attribute.
+     *
+     * @return The name of this attribute
+     */
+    Message getName();
+
 }

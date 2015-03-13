@@ -23,20 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
+package org.spongepowered.api.attribute;
 
-import org.spongepowered.api.attribute.AttributeSource;
+import com.google.common.base.Predicate;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * An enumeration of all attribute targets present in vanilla Minecraft.
  */
-public interface PotionEffectType extends AttributeSource {
+public final class AttributeTargets {
 
-    /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
-     *
-     * @return If applied instantly.
-     */
-    boolean isInstant();
+    public static final Predicate<AttributeHolder> GENERIC = null;
+    public static final Predicate<AttributeHolder> HORSE = null;
+    public static final Predicate<AttributeHolder> ZOMBIE = null;
+
+    private AttributeTargets() {
+    }
+
 }

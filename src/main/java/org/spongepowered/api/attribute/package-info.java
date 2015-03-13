@@ -23,20 +23,5 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
-
-import org.spongepowered.api.attribute.AttributeSource;
-
-/**
- * Represents a possible type of {@link PotionEffect}.
- */
-public interface PotionEffectType extends AttributeSource {
-
-    /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
-     *
-     * @return If applied instantly.
-     */
-    boolean isInstant();
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.attribute;

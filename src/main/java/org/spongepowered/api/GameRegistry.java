@@ -26,6 +26,9 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.attribute.Attribute;
+import org.spongepowered.api.attribute.AttributeModifierBuilder;
+import org.spongepowered.api.attribute.Operation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -566,6 +569,45 @@ public interface GameRegistry {
      * @return The difficulty with that name, or {@link Optional#absent()}
      */
     Optional<Difficulty> getDifficulty(String name);
+
+    /**
+     * Gets an {@link Attribute} by name.
+     * 
+     * @param name The name of the Attribute
+     * @return The {@link Attribute} with the given name or
+     *         {@link Optional#absent()} if not found
+     */
+    Optional<Attribute> getAttribute(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Attribute}s.
+     * 
+     * @return The collection of all available {@link Attribute}s
+     */
+    Collection<Attribute> getAttributes();
+
+    /**
+     * Gets an {@link Operation} by name.
+     * 
+     * @param name The name of the Operation
+     * @return The {@link Operation} with the given name or
+     *         {@link Optional#absent()} if not found
+     */
+    Optional<Operation> getOperation(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Operation}s.
+     * 
+     * @return The collection of all available {@link Operation}s
+     */
+    Collection<Operation> getOperations();
+
+    /**
+     * Gets a new {@link AttributeModifierBuilder}.
+     * 
+     * @return A new AttributeModifierBuilder
+     */
+    AttributeModifierBuilder getAttributeModifierBuilder();
 
     /**
      * Gets a collection of all available {@link EntityInteractionType}s.

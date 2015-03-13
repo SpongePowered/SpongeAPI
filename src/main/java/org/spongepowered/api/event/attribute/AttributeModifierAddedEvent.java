@@ -23,20 +23,32 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
+package org.spongepowered.api.event.attribute;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.attribute.AttributeHolder;
+import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.attribute.AttributeSource;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * An event fired when an {@link AttributeModifier} is added to an
+ * {@link AttributeHolder}.
  */
-public interface PotionEffectType extends AttributeSource {
+public interface AttributeModifierAddedEvent extends AttributeEvent {
 
     /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
+     * Gets the {@link AttributeModifier} that was added in this event.
      *
-     * @return If applied instantly.
+     * @return The AttributeModifier that was added in this event
      */
-    boolean isInstant();
+    AttributeModifier getModifier();
+
+    /**
+     * Gets the {@link AttributeSource} that caused this event, if there was
+     * one.
+     *
+     * @return The AttributeSource that caused this event, if there was one
+     */
+    Optional<AttributeSource> getSource();
+
 }

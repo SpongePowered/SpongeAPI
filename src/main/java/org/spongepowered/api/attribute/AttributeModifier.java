@@ -23,20 +23,33 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.potion;
-
-import org.spongepowered.api.attribute.AttributeSource;
+package org.spongepowered.api.attribute;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * A modifier that changes the value of an {@link Attribute} on an
+ * {@link AttributeHolder}.
  */
-public interface PotionEffectType extends AttributeSource {
+public interface AttributeModifier {
 
     /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
+     * Gets the operation used to modify a holder.
      *
-     * @return If applied instantly.
+     * @return The operation used to modify a holder
      */
-    boolean isInstant();
+    Operation getOperation();
+
+    /**
+     * Gets the value used in modification.
+     *
+     * @return The value used in modification
+     */
+    double getValue();
+
+    /**
+     * Gets the attribute to modify.
+     *
+     * @return The attribute to modify
+     */
+    Attribute getAttribute();
+
 }
