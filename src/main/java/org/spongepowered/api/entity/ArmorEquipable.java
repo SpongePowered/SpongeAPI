@@ -34,8 +34,7 @@ import javax.annotation.Nullable;
 
 /**
  * <p>Represents an entity that can be equipped with armor and a held item. Each
- * method here is a shorthand for the appropriate {@link #getEquipped} or 
- * {@link #equip} method call.</p>
+ * method here is a shorthand for the appropriate {@link #getEquipped} method call.
  * 
  * <p>Classes implementing this interface should provide <b>all</b> of the
  * supplied equipment slot types. Classes which do not support all slot types in
