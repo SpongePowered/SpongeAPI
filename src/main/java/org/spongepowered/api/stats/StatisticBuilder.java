@@ -27,8 +27,6 @@ package org.spongepowered.api.stats;
 
 import org.spongepowered.api.text.translation.Translation;
 
-import javax.annotation.Nullable;
-
 /**
  * Represents a builder interface to create new and custom instances of
  * {@link Statistic}s.
@@ -52,22 +50,13 @@ public interface StatisticBuilder {
     StatisticBuilder id(String id);
 
     /**
-     * Sets the format of the {@link Statistic}. May be null in which case the
-     * group default format will be used instead.
-     *
-     * @param format The format of the statistic
-     * @return This builder
-     */
-    StatisticBuilder format(@Nullable StatisticFormat format);
-
-    /**
      * Sets the {@link StatisticGroup} the {@link Statistic} belongs
      * to.
      *
-     * @param type The statistic group the grouped statistic belongs to
+     * @param group The statistic group the grouped statistic belongs to
      * @return This builder
      */
-    StatisticBuilder group(StatisticGroup type);
+    StatisticBuilder group(StatisticGroup group);
 
     /**
      * Builds and registers an instance of a {@link Statistic}.

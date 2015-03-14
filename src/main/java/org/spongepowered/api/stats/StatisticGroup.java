@@ -34,11 +34,11 @@ import org.spongepowered.api.text.translation.Translatable;
 public interface StatisticGroup extends Translatable {
 
     /**
-     * Gets the default {@link StatisticFormat} which all statistics without
-     * defined format overrides should be formatted with.
+     * Gets the {@link StatisticFormat} all {@link Statistic}s belonging to this
+     * group should be formatted with.
      *
      * @return The format for statistics in this group
      */
-    StatisticFormat getDefaultStatisticFormat();
+    StatisticFormat getStatisticFormat();
 
 }

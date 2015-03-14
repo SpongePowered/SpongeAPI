@@ -30,7 +30,25 @@ package org.spongepowered.api.stats;
  */
 public class StatisticGroups {
 
-    public static final StatisticGroup GENERAL = null;
+    /**
+     * General statistics counting the a number in 1.0 steps, that does not fit
+     * anywhere else.
+     */
+    public static final StatisticGroup GENERAL_COUNT = null;
+    /**
+     * General statistics counting the a number in 0.1 steps, that does not fit
+     * anywhere else.
+     */
+    public static final StatisticGroup GENERAL_FRACTIONAL = null;
+    /**
+     * Statistics measuring the time (minutes) spend/passed since a specific
+     * event such as last death.
+     */
+    public static final StatisticGroup TIME_PASSED = null;
+    /**
+     * Statistics measuring the distance (centimeters) moved in a specific way.
+     */
+    public static final StatisticGroup DISTANCE_MOVED = null;
 
     /**
      * Statistic counting the number of killed entities of a specific type.

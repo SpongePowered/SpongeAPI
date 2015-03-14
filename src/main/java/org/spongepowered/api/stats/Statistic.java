@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.stats;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.text.translation.Translatable;
 
 /**
@@ -38,15 +37,6 @@ public interface Statistic extends Translatable {
      * @return The String ID
      */
     String getId();
-
-    /**
-     * Gets the {@link StatisticFormat} of this statistic. If this is not
-     * present that this statistic's format is deferred to its group's default
-     * format.
-     *
-     * @return The format of this statistic, if available
-     */
-    Optional<StatisticFormat> getStatisticFormat();
 
     /**
      * Gets the {@link StatisticGroup} this {@link Statistic} belongs to.
