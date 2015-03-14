@@ -32,6 +32,9 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.text.message.Message;
 
+import java.util.Map;
+import java.util.Set;
+
 import javax.annotation.Nullable;
 
 /**
@@ -70,21 +73,7 @@ public interface Objective {
      *
      * @return This objective's criterion
      */
-    Criterion getCriteria();
-
-    /**
-     * Gets the scoreboard to which this objective is attached, if present.
-     *
-     * @return Owning scoreboard, if present
-     */
-    Optional<Scoreboard> getScoreboard();
-
-    /**
-     * Sets the scoreboard to which this objective is attached.
-     *
-     * @param scoreboard The scoreboard
-     */
-    void setScoreboard(Scoreboard scoreboard);
+    Criterion getCriterion();
 
     /**
      * Gets the {@link ObjectiveDisplayMode} used to display this objective.
@@ -119,16 +108,28 @@ public interface Objective {
     void setDisplaySlot(@Nullable DisplaySlot slot);
 
     /**
-     * Gets an entry's {@link Score} for this Objective.
+     * Gets the set of {@link Score}s for this objective.
      *
-     * @param entry The entry whose score to get
-     * @return The {@link Score} for the specified entry
+     * @return The set of {@link Score}s for this objective
      */
-    Score getScore(Message entry);
+    Set<Score> getScores();
 
     /**
-     * Unregisters this objective from the Scoreboard.
+     * Adds the specified {@link Score} to this objective.
+     *
+     * @param score The {@link Score} to add
+     * @throws IllegalArgumentException If a {@link Score} with the same name exists, or the specified {@link Score} has already been added
      */
-    void unregister();
+    void addScore(Score score) throws IllegalArgumentException;
+
+    /**
+     * Gets an entry's {@link Score} for this Objective.
+     *
+     * <p>If the {@link Score} does not exist, it will be created.<x/p>
+     *
+     * @param name The name of the {@link Score} to get
+     * @return The {@link Score} for the specified {@link Message}
+     */
+    Score getScore(Message name);
 
 }

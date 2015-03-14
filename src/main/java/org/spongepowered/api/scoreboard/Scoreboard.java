@@ -29,7 +29,6 @@ import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
-import org.spongepowered.api.text.message.Message;
 
 import java.util.Set;
 
@@ -41,17 +40,6 @@ import java.util.Set;
  * @see <a href="http://minecraft.gamepedia.com/Scoreboard">Scoreboards on the Minecraft Wiki</a>
  */
 public interface Scoreboard {
-
-    /**
-     * Registers an {@link Objective} on this scoreboard.
-     *
-     * @param name Name of the {@link Objective}
-     * @param criteria {@link Criterion} for the {@link Objective}
-     * @return The registered {@link Objective}
-     * @throws IllegalArgumentException if an objective by that name already
-     *     exists
-     */
-    Objective registerNewObjective(String name, Criterion criteria) throws IllegalArgumentException;
 
     /**
      * Gets an {@link Objective} on this scoreboard by name, if it exists.
@@ -91,22 +79,22 @@ public interface Scoreboard {
      * @param entry The entry whose scores are being retrieved
      * @return A set of all scores for the entry
      */
-    Set<Score> getScores(Message entry);
+    Set<Score> getScores(String entry);
 
     /**
      * Removes all scores for an entry on this scoreboard.
      *
      * @param entry The entry to drop all current scores for
      */
-    void removeScores(Message entry);
+    void removeScores(String entry);
 
     /**
-     * Gets a {@link User}'s {@link Team} on this scoreboard.
+     * Gets a {@link User}'s {@link Team}s on this scoreboard.
      *
      * @param user The {@link User} to search for
-     * @return The {@link User}'s {@link Team}, if the user has a {@link Team}
+     * @return The {@link User}'s {@link Team}s, if the user has any {@link Team}s
      */
-    Optional<Team> getPlayerTeam(User user);
+    Set<Team> getPlayerTeams(User user);
 
     /**
      * Gets a {@link Team} by name on this scoreboard.
@@ -117,20 +105,26 @@ public interface Scoreboard {
     Optional<Team> getTeam(String teamName);
 
     /**
+     * Removes the specified {@link Team} to this scoreboard.
+     *
+     * @param team The {@link Team} to remove
+     */
+    void removeTeam(Team team);
+
+    /**
+     * Adds the specified {@link Team} to this scoreboard.
+     *
+     * @param team The {@link Team} to add
+     * @throws IllegalArgumentException if a team with the same {@link Team#getName() name} already exists, or the specified {@link Team} has been added
+     */
+    void addTeam(Team team) throws IllegalArgumentException;
+
+    /**
      * Gets all the {@link Team}s on this scoreboard.
      *
      * @return The set of {@link Team}s
      */
     Set<Team> getTeams();
-
-    /**
-     * Registers a new {@link Team} on this scoreboard.
-     *
-     * @param name The name of the {@link Team}
-     * @return The registered {@link Team}
-     * @throws IllegalArgumentException if a {@link Team} by that name already exists
-     */
-    Team registerNewTeam(String name) throws IllegalArgumentException;
 
     /**
      * Gets all entries tracked by this scoreboard.

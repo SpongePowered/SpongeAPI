@@ -64,9 +64,11 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.scoreboard.TeamBuilder;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
+import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.chat.ChatType;
@@ -184,6 +186,20 @@ public interface GameRegistry {
      * @return The potion effect builder
      */
     PotionEffectBuilder getPotionEffectBuilder();
+
+    /**
+     * Get an objective builder.
+     *
+     * @return The objective builder
+     */
+    ObjectiveBuilder getObjectiveBuilder();
+
+    /**
+     * Get a team builder.
+     *
+     * @return The team builder
+     */
+    TeamBuilder getTeamBuilder();
 
     /**
      * Gets a {@link ParticleType} by name.

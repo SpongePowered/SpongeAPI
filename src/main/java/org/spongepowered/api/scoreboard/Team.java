@@ -25,7 +25,6 @@
 package org.spongepowered.api.scoreboard;
 
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.message.Message;
@@ -34,8 +33,7 @@ import java.util.Set;
 
 /**
  * A team on a scoreboard that has a common display theme and other
- * properties. This team is only relevant for the display of the associated
- * {@link #getScoreboard() scoreboard}.
+ * properties.
  */
 public interface Team {
 
@@ -185,14 +183,6 @@ public interface Team {
     Set<User> getUsers();
 
     /**
-     * Gets the {@link Scoreboard} to which this team is attached, if this team
-     * is registered.
-     *
-     * @return The owning {@link Scoreboard}, if this team is registered
-     */
-    Optional<Scoreboard> getScoreboard();
-
-    /**
      * Adds the specified {@link User} to this team for the {@link Scoreboard}.
      *
      * <p>This will remove the {@link User} from any other team on the {@link Scoreboard}.</p>
@@ -208,18 +198,5 @@ public interface Team {
      * @return Whether the {@link User} was on this team
      */
     boolean removeUser(User user);
-
-    /**
-     * Unregisters this team from the {@link Scoreboard}.
-     */
-    void unregister();
-
-    /**
-     * Checks to see if the specified {@link User} is a member of this team.
-     *
-     * @param user The {@link User} to check for
-     * @return Whether the {@link User} is a member of this team
-     */
-    boolean hasUser(User user);
 
 }

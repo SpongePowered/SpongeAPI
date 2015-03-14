@@ -29,7 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.scoreboard.ScoreboardManager;
+import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.context.Contextual;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -212,10 +212,10 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
     WorldStorage getWorldStorage();
 
     /**
-     * Gets the associated {@link ScoreboardManager} for this world.
+     * Gets the @link Scoreboard} for this world.
      *
-     * @return The associated {@link ScoreboardManager}
+     * @return The associated {@link Scoreboard}
      */
-    ScoreboardManager getScoreboardManager();
+    Scoreboard getScoreboard();
 
 }

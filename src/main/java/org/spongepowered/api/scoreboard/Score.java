@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.scoreboard;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.message.Message;
 
@@ -35,18 +34,11 @@ import org.spongepowered.api.text.message.Message;
 public interface Score {
 
     /**
-     * Gets the name of the entry being tracked by this score.
+     * Gets the name of this score
      *
-     * @return The name of this score's entry
+     * @return The name of this score
      */
-    Message getEntry();
-
-    /**
-     * Gets the {@link Objective} this score belongs to, if it hasn't been removed.
-     *
-     * @return The {@link Objective} that owns this score, if available
-     */
-    Optional<Objective> getObjective();
+    Message getName();
 
     /**
      * Gets the current score value.
@@ -61,10 +53,5 @@ public interface Score {
      * @param score The new score value
      */
     void setScore(int score);
-
-    /**
-     * Removes this score from its {@link Objective}.
-     */
-    void remove();
 
 }
