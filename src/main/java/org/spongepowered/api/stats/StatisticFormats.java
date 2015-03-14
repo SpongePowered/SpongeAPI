@@ -36,7 +36,7 @@ public final class StatisticFormats {
     public static StatisticFormat COUNT = null;
     /**
      * A statistic measured in centimeters, meters, or kilometers depending on
-     * the magnitude.
+     * the magnitude. The statistic/input is measured in centimeters.
      */
     public static StatisticFormat DISTANCE = null;
     /**
@@ -44,8 +44,8 @@ public final class StatisticFormats {
      */
     public static StatisticFormat FRACTIONAL = null;
     /**
-     * A statistic measured in seconds, minutes, hours, or days depending on the
-     * magnitude.
+     * A statistic measured in minutes, hours, or days depending on the
+     * magnitude. The statistic/input is measured in minutes.
      */
     public static StatisticFormat TIME = null;
 
