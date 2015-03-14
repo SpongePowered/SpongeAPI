@@ -26,7 +26,9 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.event.inventory.InventoryEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.slots.EquipmentSlot;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
@@ -37,29 +39,21 @@ import org.spongepowered.api.util.event.Cancellable;
 public interface EntityEquipmentChangeEvent extends EntityEvent, InventoryEvent, Cancellable {
 
     /**
-     * Gets the previously equipped item stack.
+     * Gets the previously equipped {@link Inventory}.
      *
-     * <p>The previously equipped item may have been empty.</p>
+     * <p>In Vanilla, the returned {@link Inventory} is queryable for {@link EquipmentSlot}</p>
      *
-     * @return The original itemstack, if available
+     * @return The original {@link Inventory}
      */
-    Optional<ItemStack> getOriginalItem();
+    Inventory getOriginalInventory();
 
     /**
-     * Gets the {@link ItemStack} that is being equipped in the relative
-     * armor slot.
+     * Gets the {@link Inventory} that is being equipped.
      *
-     * <p>The itemstack may not exist or the slot is being emptied.</p>
+     * <p>In Vanilla, the returned {@link Inventory} is queryable for {@link EquipmentSlot}</p>
      *
-     * @return The item stack, if available
+     * @return The {@link Inventory} being equipped
      */
-    Optional<ItemStack> getNewItemStack();
-
-    /**
-     * Gets the slot index of the equipment being changed.
-     *
-     * @return The slot index of the equipment item
-     */
-    int getSlot();
+    Inventory getNewItemStack();
 
 }

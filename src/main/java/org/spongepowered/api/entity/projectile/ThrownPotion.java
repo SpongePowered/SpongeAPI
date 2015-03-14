@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.potion.PotionEffect;
 
 import java.util.List;
@@ -35,22 +36,15 @@ import java.util.List;
 public interface ThrownPotion extends Projectile {
 
     /**
-     * Gets the copy of the current potion in the form of an
-     * {@link ItemStack}.
-     * <p>Changes made to this ItemStack will not reflect on to
-     * this potion.</p>
+     * Gets the {@link Inventory} containing the {@ItemStack} in this
+     * thrown potion.
+     *
+     * <p>In Vanilla, the returned {@link Inventory} can be queried for {@link Slot}.</p>
      *
      * @return A copy of the ItemStack for this potion
      */
-    ItemStack getItem();
+    Inventory getItem();
 
-    /**
-     * Sets the given ItemStack for this thrown potion.
-     * <p>The given ItemStack mush be a potion.</p>
-     *
-     * @param item The new ItemStack
-     */
-    void setItem(ItemStack item);
 
     /**
      * Gets the list of {@link PotionEffect}s that are in

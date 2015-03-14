@@ -26,8 +26,10 @@ package org.spongepowered.api.entity;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.item.inventory.slots.EquipmentSlot;
 import org.spongepowered.api.util.Identifiable;
 
 import javax.annotation.Nullable;
@@ -39,7 +41,7 @@ public interface Equipable extends Identifiable, Carrier {
     
     /**
      * Get whether this entity can equip equipment of the specified type (eg.
-     * whether calling {@link #equip} will fail because the entity doesn't
+     * whether calling {@link EquipmentSlot#isValidItem(EquipmentType)} will fail because the entity doesn't
      * have this type of slot. 
      * 
      * @param type The type of equipment slot to query
@@ -48,37 +50,13 @@ public interface Equipable extends Identifiable, Carrier {
     boolean canEquip(EquipmentType type);
     
     /**
-     * Get whether this entity can equip the supplied equipment in its slot of
-     * the specified type (eg. whether calling {@link #equip} with the specified
-     * slot type and item will succeed)
-     * 
-     * @param type The type of equipment slot to query
-     * @param equipment The equipment to check for
-     * @return true if can equip the supplied equipment
-     */
-    boolean canEquip(EquipmentType type, @Nullable ItemStack equipment);
-    
-    /**
-     * Gets the item currently equipped by this entity in the specified slot.
+     * Gets the inventory currently equipped by this entity in the specified slot.
+     *
+     * <p>In Vanilla, the returned {@link Inventory} can be queried for {@link EquipmentSlot}.</p>
      *
      * @param type The type of equipment slot to query
-     * @return The item in the equipped slot, if available
+     * @return The inventory in the equipped slot, if available
      */
-    Optional<ItemStack> getEquipped(EquipmentType type);
-
-    /**
-     * Sets the item currently equipped by the entity in the specified slot, if
-     * the entity has such a slot.
-     * 
-     * <p>Supplying null will unequip any currently equipped item.</p>
-     *
-     * @param type The type of equipment slot to set
-     * @param equipment The equipment to set or null to remove any equipped item
-     * @return true if the item was successfully equipped, false if the item
-     *      could not be equipped because the entity doesn't support the
-     *      specified equipment type or because the item was incompatible with
-     *      the specified slot. 
-     */
-    boolean equip(EquipmentType type, @Nullable ItemStack equipment);
+    Inventory getEquipped(EquipmentType type);
 
 }
