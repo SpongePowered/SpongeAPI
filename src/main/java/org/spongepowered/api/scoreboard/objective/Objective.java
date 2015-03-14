@@ -26,13 +26,11 @@ package org.spongepowered.api.scoreboard.objective;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.Score;
-import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
-import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -57,7 +55,7 @@ public interface Objective {
      *
      * @return The objective's display name
      */
-    Message getDisplayName();
+    Text getDisplayName();
 
     /**
      * Sets the name displayed to players.
@@ -66,7 +64,7 @@ public interface Objective {
      * @throws IllegalArgumentException if displayName is longer than 32
      *     characters
      */
-    void setDisplayName(Message displayName) throws IllegalArgumentException;
+    void setDisplayName(Text displayName) throws IllegalArgumentException;
 
     /**
      * Gets the criterion for this objective.
@@ -128,8 +126,8 @@ public interface Objective {
      * <p>If the {@link Score} does not exist, it will be created.<x/p>
      *
      * @param name The name of the {@link Score} to get
-     * @return The {@link Score} for the specified {@link Message}
+     * @return The {@link Score} for the specified {@link Text}
      */
-    Score getScore(Message name);
+    Score getScore(Text name);
 
 }

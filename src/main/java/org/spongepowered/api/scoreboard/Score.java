@@ -25,7 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 import org.spongepowered.api.scoreboard.objective.Objective;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
  * A score entry for an {@link Objective}. Changing this will not affect any other
@@ -38,7 +38,7 @@ public interface Score {
      *
      * @return The name of this score
      */
-    Message getName();
+    Text getName();
 
     /**
      * Gets the current score value.

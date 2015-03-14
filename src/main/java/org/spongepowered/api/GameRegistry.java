@@ -756,7 +756,6 @@ public interface GameRegistry {
     FireworkEffectBuilder getFireworkEffectBuilder();
 
     /**
-<<<<<<< HEAD
      * Gets the {@link TextColor} with the provided name.
      *
      * @param name The name of the text color

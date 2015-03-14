@@ -27,7 +27,7 @@ package org.spongepowered.api.scoreboard;
 
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 import java.util.Set;
 
@@ -49,7 +49,7 @@ public interface Team {
      *
      * @return The display name for this team
      */
-    Message getDisplayName();
+    Text getDisplayName();
 
     /**
      * Gets the color of this team.
@@ -77,18 +77,18 @@ public interface Team {
     /**
      * Sets the name displayed to users for this team.
      *
-     * @param displayName The {@link Message} to use
+     * @param displayName The {@link Text} to use
      * @throws IllegalArgumentException If displayName is longer than 32
      *     characters
      */
-    void setDisplayName(Message displayName) throws IllegalArgumentException;
+    void setDisplayName(Text displayName) throws IllegalArgumentException;
 
     /**
      * Gets the prefix prepended to the display name of users on this team.
      *
      * @return The prefix for this team
      */
-    Message getPrefix();
+    Text getPrefix();
 
     /**
      * Sets the prefix prepended to the display name of users on this team.
@@ -97,14 +97,14 @@ public interface Team {
      * @throws IllegalArgumentException If prefix is longer than 16
      *     characters
      */
-    void setPrefix(Message prefix) throws IllegalArgumentException;
+    void setPrefix(Text prefix) throws IllegalArgumentException;
 
     /**
      * Gets the suffix appended to the display name of users on this team.
      *
      * @return The team's current suffix
      */
-    Message getSuffix();
+    Text getSuffix();
 
     /**
      * Sets the suffix appended to the display name of users on this team.
@@ -113,7 +113,7 @@ public interface Team {
      * @throws IllegalArgumentException If suffix is longer than 16
      *     characters
      */
-    void setSuffix(Message suffix) throws IllegalArgumentException;
+    void setSuffix(Text suffix) throws IllegalArgumentException;
 
     /**
      * Gets whether friendly fire is enabled.
@@ -160,20 +160,20 @@ public interface Team {
     void setNameTagVisibility(Visibility visibility);
 
     /**
-     * Gets the {@link Visibility} which controls who death messages
+     * Gets the {@link Visibility} which controls who death Texts
      * for players on this team are visible to.
      *
-     * @return The {@link Visibility} for this team's death messages
+     * @return The {@link Visibility} for this team's death Texts
      */
-    Visibility getDeathMessageVisibility();
+    Visibility getDeathTextVisibility();
 
     /**
-     * Sets the {@link Visibility} which controls who death messages
+     * Sets the {@link Visibility} which controls who death Texts
      * of players on this team are visible to.
      *
-     * @param visibility The {@link Visibility} for this team's death messages
+     * @param visibility The {@link Visibility} for this team's death Texts
      */
-    void setDeathMessageVisibility(Visibility visibility);
+    void setDeathTextVisibility(Visibility visibility);
 
     /**
      * Gets the {@link User}s on the team.
