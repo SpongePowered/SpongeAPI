@@ -22,36 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
 /**
- * Represents a type of {@link Dimension}.
+ * An enumeration of default {@link GeneratorType}s.
  */
-@CatalogedBy(DimensionTypes.class)
-public interface DimensionType {
+public final class GeneratorTypes {
 
-    /**
-     * Returns the name of this {@link DimensionType}.
-     *
-     * @return The name
-     */
-    String getName();
+    public static final GeneratorType DEFAULT = null;
+    public static final GeneratorType FLAT = null;
+    public static final GeneratorType LARGE_BIOMES = null;
+    public static final GeneratorType AMPLIFIED = null;
+    public static final GeneratorType SUPER_FLAT = null;
+    public static final GeneratorType DEBUG = null;
 
-    /**
-     * Returns whether spawn chunks of this {@link DimensionType} remain loaded
-     * when no players are present.
-     *
-     * @return True if spawn chunks of this {@link DimensionType} remain loaded
-     *         without players, false if not
-     */
-    boolean doesKeepSpawnLoaded();
+    private GeneratorTypes() {
+    }
 
-    /**
-     * Returns the dimension class for this type.
-     *
-     * @return The dimension class for this type
-     */
-    Class<? extends Dimension> getDimensionClass();
 }

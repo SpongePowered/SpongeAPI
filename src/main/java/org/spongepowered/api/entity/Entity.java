@@ -32,8 +32,10 @@ import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.EnumSet;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -108,6 +110,46 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      */
     boolean setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
+    /**
+     * Sets the location of this entity to a new position in a world which does
+     * not have to be loaded (but must at least be enabled).
+     * 
+     * <p>If the target world is loaded then this is equivalent to
+     * {@link #setLocation(Location)}.</p>
+     * 
+     * <p>If the target world is unloaded but is enabled according to its
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
+     * 
+     * <p>If the target world is unloaded and not enabled then the transfer will
+     * fail.</p>
+     *
+     * @param worldName The name of the world to transfer to
+     * @param position The position in the target world
+     * @return True if the teleport was successful
+     */
+    boolean transferToWorld(String worldName, Vector3d position);
+
+    /**
+     * Sets the location of this entity to a new position in a world which does
+     * not have to be loaded (but must at least be enabled).
+     * 
+     * <p>If the target world is loaded then this is equivalent to
+     * {@link #setLocation(Location)}.</p>
+     * 
+     * <p>If the target world is unloaded but is enabled according to its
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
+     * 
+     * <p>If the target world is unloaded and not enabled then the transfer will
+     * fail.</p>
+     *
+     * @param uuid The UUID of the target world to transfer to
+     * @param position The position in the target world
+     * @return True if the teleport was successful
+     */
+    boolean transferToWorld(UUID uuid, Vector3d position);
+    
     /**
      * Gets the rotation as a Vector3f.
      *

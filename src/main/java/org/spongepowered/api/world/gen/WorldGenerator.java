@@ -47,14 +47,6 @@ public interface WorldGenerator {
     void generateChunk(World world, MutableBlockBuffer buffer, Vector3i position);
 
     /**
-     * Gets whether map features are enabled and if this generator will be
-     * creating structures (such as villages and strongholds etc.)
-     *
-     * @return Map features enabled
-     */
-    boolean areMapFeaturesEnabled();
-
-    /**
      * Gets an ordered collection of {@link Populator}s which are applied
      * globally.
      *
@@ -63,13 +55,13 @@ public interface WorldGenerator {
     Iterable<Populator> getGlobalPopulators();
 
     /**
-     * Inserts a new populator to this Biome's ordered collection of
+     * Inserts a new populator to this generator's ordered collection of
      * populators. The new populator is inserted at the given index. If the
      * index is larger than the current amount of populators then the new
      * populator in inserted at the end of the collection.
      *
      * @param populator The new populator
-     * @param index THe index to insert the populator at
+     * @param index The index to insert the populator at
      */
     void insertPopulator(Populator populator, int index);
 

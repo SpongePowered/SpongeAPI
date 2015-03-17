@@ -22,36 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
 
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.event.world;
+
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.storage.WorldProperties;
+
 
 /**
- * Represents a type of {@link Dimension}.
+ * An event for when a world has been created. Often paired with a
+ * {@link WorldLoadEvent}, but that is not guaranteed.
  */
-@CatalogedBy(DimensionTypes.class)
-public interface DimensionType {
+public interface WorldCreateEvent extends GameEvent {
 
     /**
-     * Returns the name of this {@link DimensionType}.
-     *
-     * @return The name
+     * Gets the properties of the newly created world.
+     * 
+     * @return The properties
      */
-    String getName();
-
+    WorldProperties getWorldProperties();
+    
     /**
-     * Returns whether spawn chunks of this {@link DimensionType} remain loaded
-     * when no players are present.
-     *
-     * @return True if spawn chunks of this {@link DimensionType} remain loaded
-     *         without players, false if not
+     * Gets the {@link WorldCreationSettings} used to create the world.
+     * 
+     * @return The creation settings
      */
-    boolean doesKeepSpawnLoaded();
-
-    /**
-     * Returns the dimension class for this type.
-     *
-     * @return The dimension class for this type
-     */
-    Class<? extends Dimension> getDimensionClass();
+    WorldCreationSettings getWorldCreationSettings();
+    
 }

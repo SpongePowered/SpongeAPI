@@ -84,5 +84,13 @@ public interface WorldStorage {
      * @return The data container representing the chunk data, if available
      */
     ListenableFuture<Optional<DataContainer>> getChunkData(Vector3i chunkCoords);
+    
+    /**
+     * Gets the {@link WorldProperties} of this storage. In the vanilla storage
+     * medium this represents the data available in the level.dat file.
+     * 
+     * @return The world properties
+     */
+    WorldProperties getWorldProperties();
 
 }

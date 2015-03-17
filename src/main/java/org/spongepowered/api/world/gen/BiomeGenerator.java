@@ -45,6 +45,6 @@ public interface BiomeGenerator {
      * @param width The width of the area (X-axis size)
      * @param length The length of the area (Z-axis size)
      */
-    void getBiomesForArea(World world, MutableBiomeArea buffer, int x, int z, int width, int length);
+    void generateBiomes(World world, MutableBiomeArea buffer, int x, int z, int width, int length);
 
 }
