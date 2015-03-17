@@ -28,7 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Represents an in-game achievement which may be earned by or given to players.
@@ -52,8 +52,8 @@ public interface Achievement extends Translatable {
     /**
      * Returns the children of this achievement.
      *
-     * @return An immutable list of all children this achievement has
+     * @return An immutable collection of all children this achievement has
      */
-    List<Achievement> getChildren();
+    Collection<Achievement> getChildren();
 
 }

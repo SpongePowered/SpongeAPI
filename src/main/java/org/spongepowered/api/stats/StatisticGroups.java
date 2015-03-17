@@ -30,8 +30,16 @@ package org.spongepowered.api.stats;
  */
 public class StatisticGroups {
 
+    /**
+     * Statistics belonging to the group of 'general' statistics.
+     */
     public static final StatisticGroup GENERAL = null;
-
+    /**
+     * Statistics which are purely used internally and are not intended to be
+     * displayed, such as statistics used to back certain achievements.
+     */
+    public static final StatisticGroup HIDDEN = null;
+    
     /**
      * Statistic counting the number of killed entities of a specific type.
      */

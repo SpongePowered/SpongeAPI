@@ -64,10 +64,10 @@ public interface StatisticBuilder {
      * Sets the {@link StatisticGroup} the {@link Statistic} belongs
      * to.
      *
-     * @param type The statistic group the grouped statistic belongs to
+     * @param group The statistic group the grouped statistic belongs to
      * @return This builder
      */
-    StatisticBuilder group(StatisticGroup type);
+    StatisticBuilder group(StatisticGroup group);
 
     /**
      * Builds and registers an instance of a {@link Statistic}.

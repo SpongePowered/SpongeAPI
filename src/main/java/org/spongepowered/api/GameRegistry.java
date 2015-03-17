@@ -25,6 +25,8 @@
 
 package org.spongepowered.api;
 
+import org.spongepowered.api.stats.achievement.Achievement;
+
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeBuilder;
@@ -504,6 +506,21 @@ public interface GameRegistry {
      * @return An immutable collection containing all available formats
      */
     Collection<StatisticFormat> getStatisticFormats();
+    
+    /**
+     * Gets a specific {@link Achievement} by name.
+     * 
+     * @param name The name
+     * @return The achievement
+     */
+    Optional<Achievement> getAchievement(String name);
+    
+    /**
+     * Gets a collection of all available {@link Achievement}s.
+     * 
+     * @return An immutable collection containing all available achievements
+     */
+    Collection<Achievement> getAchievements();
 
     /**
      * Gets the {@link DimensionType} with the provided name.
