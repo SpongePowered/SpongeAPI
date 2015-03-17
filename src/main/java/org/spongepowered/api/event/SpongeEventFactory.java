@@ -127,6 +127,7 @@ import org.spongepowered.api.event.world.ChunkPrePopulateEvent;
 import org.spongepowered.api.event.world.ChunkUnforcedEvent;
 import org.spongepowered.api.event.world.ChunkUnloadEvent;
 import org.spongepowered.api.event.world.GameRuleChangeEvent;
+import org.spongepowered.api.event.world.WorldCreateEvent;
 import org.spongepowered.api.event.world.WorldLoadEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -145,7 +146,9 @@ import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.ChunkManager.LoadingTicket;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
@@ -1614,6 +1617,22 @@ public final class SpongeEventFactory {
         values.put("name", name);
         values.put("oldValue", oldValue);
         return createEvent(GameRuleChangeEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link WorldCreateEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param properties The properties of the new world
+     * @param settings The creation settings
+     * @return A new instance of the event
+     */
+    public static WorldCreateEvent createWorldCreate(Game game, WorldProperties properties, WorldCreationSettings settings) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("worldProperties", properties);
+        values.put("worldCreationSettings", settings);
+        return createEvent(WorldCreateEvent.class, values);
     }
 
     /**

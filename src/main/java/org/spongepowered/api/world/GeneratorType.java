@@ -22,36 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.world.gen.WorldGenerator;
 
 /**
- * Represents a type of {@link Dimension}.
+ * Represents a world type. This is in general a {@link WorldGenerator} and the
+ * settings for the generator.
  */
-@CatalogedBy(DimensionTypes.class)
-public interface DimensionType {
+public interface GeneratorType {
 
     /**
-     * Returns the name of this {@link DimensionType}.
-     *
+     * Gets the name of this world type.
+     * 
      * @return The name
      */
     String getName();
 
     /**
-     * Returns whether spawn chunks of this {@link DimensionType} remain loaded
-     * when no players are present.
-     *
-     * @return True if spawn chunks of this {@link DimensionType} remain loaded
-     *         without players, false if not
+     * Creates a new {@link WorldGenerator} for this world type.
+     * 
+     * @return The new generator
      */
-    boolean doesKeepSpawnLoaded();
+    WorldGenerator createGenerator();
 
     /**
-     * Returns the dimension class for this type.
-     *
-     * @return The dimension class for this type
+     * Gets a copy of the settings for the world generator.
+     * 
+     * @return The settings
      */
-    Class<? extends Dimension> getDimensionClass();
+    DataContainer getGeneratorSettings();
+
 }

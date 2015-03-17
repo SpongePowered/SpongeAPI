@@ -181,14 +181,16 @@ public interface WorldBorder {
     void setDamageThreshold(double distance);
 
     /**
-     * Get the damage done to a player per second when outside the buffer.
+     * Get the damage done to a player per block per tick when outside the
+     * buffer.
      *
      * @return The damage amount
      */
     int getDamageAmount();
 
     /**
-     * Set the damage done to a player per second when outside the buffer.
+     * Set the damage done to a player per block per tick when outside the
+     * buffer.
      *
      * @param damage The damage amount
      */
