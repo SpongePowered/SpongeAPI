@@ -27,7 +27,7 @@ package org.spongepowered.api.stats;
 
 /**
  * A utility class for getting all available {@link Statistic}s that are not
- * grouped.
+ * dependent on something like an item type.
  */
 public final class Statistics {
 
@@ -49,7 +49,6 @@ public final class Statistics {
     public static final Statistic DEATHS = null;
     public static final Statistic DISPENSER_INSPECTED = null;
     public static final Statistic DIVE_DISTANCE = null;
-    public static final Statistic DROP = null;
     public static final Statistic DROPPER_INSPECTED = null;
     public static final Statistic ENDERCHEST_OPENED = null;
     public static final Statistic FALL_DISTANCE = null;
@@ -59,7 +58,8 @@ public final class Statistics {
     public static final Statistic FLY_DISTANCE = null;
     public static final Statistic HOPPER_INSPECTED = null;
     public static final Statistic HORSE_DISTANCE = null;
-    public static final Statistic ITEM_ENCHANTED = null;
+    public static final Statistic ITEMS_ENCHANTED = null;
+    public static final Statistic ITEMS_DROPPED = null;
     public static final Statistic NOTEBLOCK_PLAYED = null;
     public static final Statistic NOTEBLOCK_TUNED = null;
     public static final Statistic JUMP = null;
@@ -69,11 +69,11 @@ public final class Statistics {
     public static final Statistic MOB_KILLS = null;
     public static final Statistic PIG_DISTANCE = null;
     public static final Statistic PLAYER_KILLS = null;
-    public static final Statistic PLAY_ONE_MINUTE = null;
     public static final Statistic RECORD_PLAYED = null;
     public static final Statistic SPRINT_DISTANCE = null;
     public static final Statistic SWIM_DISTANCE = null;
     public static final Statistic TALKED_TO_VILLAGER = null;
+    public static final Statistic TIME_PLAYED = null;
     public static final Statistic TIME_SINCE_DEATH = null;
     public static final Statistic TRADED_WITH_VILLAGER = null;
     public static final Statistic TRAPPED_CHEST_TRIGGERED = null;

@@ -30,7 +30,14 @@ package org.spongepowered.api.stats;
  */
 public class StatisticGroups {
 
+    /**
+     * Group for statistics that do not match in any group.
+     */
     public static final StatisticGroup GENERAL = null;
+    /**
+     * Statistic counting the distances moved in a specific way.
+     */
+    public static final StatisticGroup DISTANCE_MOVED = null;
 
     /**
      * Statistic counting the number of killed entities of a specific type.
@@ -79,6 +86,13 @@ public class StatisticGroups {
      * team.
      */
     public static final StatisticGroup KILLED_BY_TEAM = null;
+
+    /**
+     * Statistic for internal and plugin statistics, that are not meant to be
+     * displayed. Plugins should avoid displaying statistics in this group to
+     * the user.
+     */
+    public static final StatisticGroup HIDDEN = null;
 
     private StatisticGroups() {
     }

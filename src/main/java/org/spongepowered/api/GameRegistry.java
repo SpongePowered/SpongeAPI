@@ -64,6 +64,7 @@ import org.spongepowered.api.stats.StatisticBuilder;
 import org.spongepowered.api.stats.StatisticFormat;
 import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.TeamStatistic;
+import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -503,6 +504,13 @@ public interface GameRegistry {
      * @return An immutable collection containing all available formats
      */
     Collection<StatisticFormat> getStatisticFormats();
+
+    /**
+     * Gets a collection of all available {@link Achievement}s.
+     *
+     * @return An immutable collection containing all available achievements
+     */
+    Collection<Achievement> getAchievements();
 
     /**
      * Gets the {@link DimensionType} with the provided name.

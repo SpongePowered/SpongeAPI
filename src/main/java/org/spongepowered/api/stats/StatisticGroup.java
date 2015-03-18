@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.stats;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.text.translation.Translatable;
 
 /**
@@ -34,11 +35,11 @@ import org.spongepowered.api.text.translation.Translatable;
 public interface StatisticGroup extends Translatable {
 
     /**
-     * Gets the default {@link StatisticFormat} which all statistics without
-     * defined format overrides should be formatted with.
+     * Gets the {@link StatisticFormat} that if available can be used to format
+     * all {@link Statistic}s belonging to this group.
      *
-     * @return The format for statistics in this group
+     * @return The format for statistics in this group, if available
      */
-    StatisticFormat getDefaultStatisticFormat();
+    Optional<StatisticFormat> getStatisticFormat();
 
 }
