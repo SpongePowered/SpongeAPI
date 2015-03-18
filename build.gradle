@@ -120,6 +120,10 @@ configure([compileJava, compileTestJava]) {
     options.encoding = 'utf8'
 }
 
+javadoc {
+   options.jFlags('-Xms256m', '-Xmx512m')
+}
+
 if (JavaVersion.current().isJava8Compatible()) {
     tasks.withType(Javadoc) {
         // disable the crazy super-strict doclint tool in Java 8

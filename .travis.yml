@@ -5,6 +5,7 @@ jdk:
   - openjdk7
   - oraclejdk7
   - oraclejdk8
+env: GRADLE_OPTS="-Xms1g -Xmx3g"
 install: true
 script: gradle build
 notifications:
