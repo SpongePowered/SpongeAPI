@@ -76,12 +76,12 @@ public final class Context implements Map.Entry<String, String> {
 
     @Override
     public String getKey() {
-        return wrapped.getKey();
+        return this.wrapped.getKey();
     }
 
     @Override
     public String getValue() {
-        return wrapped.getValue();
+        return this.wrapped.getValue();
     }
 
     @Override
@@ -94,17 +94,17 @@ public final class Context implements Map.Entry<String, String> {
         if (this == o) {
             return true;
         }
-        return o instanceof Map.Entry<?, ?> && wrapped.equals(o);
+        return o instanceof Map.Entry<?, ?> && this.wrapped.equals(o);
 
     }
 
     @Override
     public int hashCode() {
-        return wrapped.hashCode();
+        return this.wrapped.hashCode();
     }
 
     @Override
     public String toString() {
-        return wrapped.toString();
+        return this.wrapped.toString();
     }
 }
