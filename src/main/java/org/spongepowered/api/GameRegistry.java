@@ -508,12 +508,12 @@ public interface GameRegistry {
     Collection<StatisticFormat> getStatisticFormats();
     
     /**
-     * Gets a specific {@link Achievement} by name.
+     * Gets a specific {@link Achievement} by id.
      * 
-     * @param name The name
+     * @param id The name
      * @return The achievement
      */
-    Optional<Achievement> getAchievement(String name);
+    Optional<Achievement> getAchievement(String id);
     
     /**
      * Gets a collection of all available {@link Achievement}s.

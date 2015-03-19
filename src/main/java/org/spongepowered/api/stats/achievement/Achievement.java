@@ -36,6 +36,14 @@ import java.util.Collection;
 public interface Achievement extends Translatable {
 
     /**
+     * Gets an internal identifier for this achievement. For proper name of the
+     * achievement see {@link Achievement#getTranslation()}.
+     * 
+     * @return The id
+     */
+    String getId();
+    
+    /**
      * Returns the description that describes this achievement.
      *
      * @return The description of this achievement
