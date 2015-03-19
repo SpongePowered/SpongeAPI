@@ -26,6 +26,8 @@ package org.spongepowered.api.service.permission.context;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.collect.Maps;
+
 import java.util.Map;
 
 /**
@@ -35,9 +37,9 @@ import java.util.Map;
  */
 public final class Context implements Map.Entry<String, String> {
     public static final String WORLD_KEY = "world";
+    public static final String DIMENSION_KEY = "dimension";
 
-    private final String type;
-    private final String name;
+    private final Map.Entry<String, String> wrapped;
 
     /**
      * Create a new context instance
@@ -48,8 +50,7 @@ public final class Context implements Map.Entry<String, String> {
     public Context(String type, String name) {
         checkNotNull(type, "type");
         checkNotNull(name, "name");
-        this.type = type;
-        this.name = name;
+        this.wrapped = Maps.immutableEntry(type, name);
     }
 
     /**
@@ -59,7 +60,7 @@ public final class Context implements Map.Entry<String, String> {
      *         this would be {@code world}
      */
     public String getType() {
-        return this.type;
+        return getKey();
     }
 
     /**
@@ -70,17 +71,17 @@ public final class Context implements Map.Entry<String, String> {
      *         world.
      */
     public String getName() {
-        return this.name;
+        return getValue();
     }
 
     @Override
     public String getKey() {
-        return this.type;
+        return wrapped.getKey();
     }
 
     @Override
     public String getValue() {
-        return this.name;
+        return wrapped.getValue();
     }
 
     @Override
@@ -93,18 +94,17 @@ public final class Context implements Map.Entry<String, String> {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        return o instanceof Map.Entry<?, ?> && wrapped.equals(o);
 
-        Context context = (Context) o;
-        return this.name.equals(context.name) && this.type.equals(context.type);
     }
 
     @Override
     public int hashCode() {
-        int result = this.type.hashCode();
-        result = 31 * result + this.name.hashCode();
-        return result;
+        return wrapped.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return wrapped.toString();
     }
 }
