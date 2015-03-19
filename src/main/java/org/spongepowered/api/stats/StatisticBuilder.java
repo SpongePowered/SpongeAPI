@@ -27,6 +27,8 @@ package org.spongepowered.api.stats;
 
 import org.spongepowered.api.text.translation.Translation;
 
+import java.util.Map;
+
 import javax.annotation.Nullable;
 
 /**
@@ -39,7 +41,7 @@ public interface StatisticBuilder {
      * Sets the translation for the {@link Statistic}.
      *
      * @param translation The translation for the statistic
-     * @return This builder
+     * @return This builder, for chaining
      */
     StatisticBuilder translation(Translation translation);
 
@@ -47,7 +49,7 @@ public interface StatisticBuilder {
      * Sets the id used to save the current values of the {@link Statistic}.
      *
      * @param id The id used to save the current values of the statistic
-     * @return This builder
+     * @return This builder, for chaining
      */
     StatisticBuilder id(String id);
 
@@ -56,18 +58,39 @@ public interface StatisticBuilder {
      * group default format will be used instead.
      *
      * @param format The format of the statistic
-     * @return This builder
+     * @return This builder, for chaining
      */
     StatisticBuilder format(@Nullable StatisticFormat format);
 
     /**
-     * Sets the {@link StatisticGroup} the {@link Statistic} belongs
-     * to.
+     * Sets the {@link StatisticGroup} the {@link Statistic} belongs to.
      *
      * @param group The statistic group the grouped statistic belongs to
-     * @return This builder
+     * @return This builder, for chaining
      */
     StatisticBuilder group(StatisticGroup group);
+
+    /**
+     * Sets the statistic classes the resulting {@link Statistic} should extend.
+     *
+     * @param classes The statistic classes the resulting sStatistic should
+     *        extend
+     * @return This builder, for chaining
+     * @throws IllegalArgumentException If one or more classes are not supported
+     */
+    StatisticBuilder classes(Class<? extends Statistic> classes) throws IllegalArgumentException;
+
+    /**
+     * Sets the data that may be required to implement the {@link Statistic}
+     * classes that are set in {@link #classes(Class)}.
+     *
+     * @param data The data that may be required to implement the statistic
+     *        classes
+     * @return This builder, for chaining
+     * @throws IllegalArgumentException If one or more values do not match the
+     *         expected values
+     */
+    StatisticBuilder data(Map<String, ?> data) throws IllegalArgumentException;
 
     /**
      * Builds and registers an instance of a {@link Statistic}.

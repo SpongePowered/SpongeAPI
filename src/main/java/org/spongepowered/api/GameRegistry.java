@@ -25,8 +25,6 @@
 
 package org.spongepowered.api;
 
-import org.spongepowered.api.stats.achievement.Achievement;
-
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeBuilder;
@@ -67,6 +65,8 @@ import org.spongepowered.api.stats.StatisticBuilder;
 import org.spongepowered.api.stats.StatisticFormat;
 import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.TeamStatistic;
+import org.spongepowered.api.stats.achievement.Achievement;
+import org.spongepowered.api.stats.achievement.AchievementBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -488,7 +488,7 @@ public interface GameRegistry {
      * Creates a new {@link StatisticBuilder} which may be used to create custom
      * {@link Statistic}s.
      *
-     * @return The newly created simple statistic builder
+     * @return The newly created statistic builder
      */
     StatisticBuilder newStatisticBuilder();
 
@@ -506,21 +506,29 @@ public interface GameRegistry {
      * @return An immutable collection containing all available formats
      */
     Collection<StatisticFormat> getStatisticFormats();
-    
+
     /**
-     * Gets a specific {@link Achievement} by id.
-     * 
-     * @param id The name
-     * @return The achievement
+     * Gets the {@link Achievement} with the specified id.
+     *
+     * @param id The id of the achievement to return
+     * @return The achievement or Optional.absent() if not found
      */
     Optional<Achievement> getAchievement(String id);
-    
+
     /**
      * Gets a collection of all available {@link Achievement}s.
-     * 
+     *
      * @return An immutable collection containing all available achievements
      */
     Collection<Achievement> getAchievements();
+
+    /**
+     * Creates a new {@link AchievementBuilder} which may be used to create
+     * custom {@link Achievement}s.
+     *
+     * @return The newly created achievement builder
+     */
+    AchievementBuilder newAchievementBuilder();
 
     /**
      * Gets the {@link DimensionType} with the provided name.
