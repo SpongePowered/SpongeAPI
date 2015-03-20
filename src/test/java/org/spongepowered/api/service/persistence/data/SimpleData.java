@@ -31,19 +31,18 @@ import org.spongepowered.api.service.persistence.DataSerializable;
 import java.util.Arrays;
 import java.util.List;
 
-class SimpleDataSerializable implements DataSerializable {
+class SimpleData implements DataSerializable {
 
     private final int testInt;
     private final double testDouble;
     private final String testString;
     private final String[] testList;
 
-    SimpleDataSerializable(int testInt, double testDouble, String testString,
-                                  List<String> testList) {
+    SimpleData(int testInt, double testDouble, String testString, List<String> testList) {
         this.testInt = testInt;
         this.testDouble = testDouble;
         this.testString = testString;
-        this.testList = testList.toArray(new String[] {});
+        this.testList = testList.toArray(new String[testList.size()]);
     }
 
     public int getTestInt() {
@@ -85,7 +84,7 @@ class SimpleDataSerializable implements DataSerializable {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final SimpleDataSerializable other = (SimpleDataSerializable) obj;
+        final SimpleData other = (SimpleData) obj;
         return Objects.equal(this.testInt, other.testInt)
                 && Objects.equal(this.testDouble, other.testDouble)
                 && Objects.equal(this.testString, other.testString)

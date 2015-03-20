@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -44,6 +45,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * Default implementation of a {@link DataView} being used in memory.
@@ -111,8 +114,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Map<DataQuery, Object> getValues(boolean deep) {
-        ImmutableMap.Builder<DataQuery, Object> builder = ImmutableMap
-                .builder();
+        ImmutableMap.Builder<DataQuery, Object> builder = ImmutableMap.builder();
         for (DataQuery query : getKeys(deep)) {
             Object value = get(query).get();
             if (value instanceof DataView) {
@@ -134,7 +136,7 @@ public class MemoryDataView implements DataView {
             return this.map.containsKey(key);
         } else {
             DataQuery subQuery = queryParts.get(0);
-            Optional<DataView> subViewOptional = this.getView(subQuery);
+            Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
             if (!subViewOptional.isPresent()) {
                 return false;
             }
@@ -166,7 +168,7 @@ public class MemoryDataView implements DataView {
             }
         }
         DataQuery subQuery = queryParts.get(0);
-        Optional<DataView> subViewOptional = this.getView(subQuery);
+        Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
         DataView subView;
         if (!subViewOptional.isPresent()) {
             return Optional.absent();
@@ -190,13 +192,17 @@ public class MemoryDataView implements DataView {
         if (value instanceof DataView) {
             checkArgument(!(value).equals(this));
             copyDataView(path, (DataView) value);
+        } else if (value instanceof DataSerializable) {
+            DataContainer valueContainer = ((DataSerializable) value).toContainer();
+            checkArgument(!(valueContainer).equals(this));
+            copyDataView(path, valueContainer);
         }
 
         List<String> parts = path.getParts();
         if (parts.size() > 1) {
             String subKey = parts.get(0);
             DataQuery subQuery = new DataQuery(subKey);
-            Optional<DataView> subViewOptional = this.getView(subQuery);
+            Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
             DataView subView;
             if (!subViewOptional.isPresent()) {
                 this.createView(subQuery);
@@ -210,12 +216,37 @@ public class MemoryDataView implements DataView {
             }
             subView.set(new DataQuery(subParts), value);
         } else {
-            if (value instanceof Object[]) {
-                List<?> list = ImmutableList.copyOf((Object[]) value);
-                this.map.put(parts.get(0), list);
+            if (value instanceof Collection) {
+                setCollection(parts.get(0), (Collection) value);
+            } else if (value instanceof Object[]) {
+                setCollection(parts.get(0), Lists.newArrayList((Object[]) value));
+            } else {
+                this.map.put(parts.get(0), value);
             }
-            this.map.put(parts.get(0), value);
         }
+    }
+
+    private void setCollection(String key, Collection<?> value) {
+        ImmutableList.Builder<Object> builder = ImmutableList.builder();
+        for (Object object : (List) value) {
+            if (object instanceof DataSerializable) {
+                builder.add(((DataSerializable) object).toContainer());
+            } else if (object instanceof DataView) {
+                MemoryDataView view = new MemoryDataContainer();
+                DataView internalView = (DataView) object;
+                for (Map.Entry<DataQuery, Object> entry : internalView.getValues(true).entrySet()) {
+                    view.set(entry.getKey(), entry.getValue());
+                }
+                builder.add(view);
+            } else if (object instanceof Map) {
+                builder.add(ImmutableMap.copyOf((Map<?, ?>) object));
+            } else if (object instanceof Collection) {
+                builder.add(ImmutableList.copyOf((Collection<?>) object));
+            } else {
+                builder.add(object);
+            }
+        }
+        this.map.put(key, builder.build());
     }
 
     private void copyDataView(DataQuery path, DataView value) {
@@ -232,7 +263,7 @@ public class MemoryDataView implements DataView {
         if (parts.size() > 1) {
             String subKey = parts.get(0);
             DataQuery subQuery = new DataQuery(subKey);
-            Optional<DataView> subViewOptional = this.getView(subQuery);
+            Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
             DataView subView;
             if (!subViewOptional.isPresent()) {
                 return;
@@ -305,6 +336,16 @@ public class MemoryDataView implements DataView {
         return Optional.absent();
     }
 
+    private Optional<DataView> getUnsafeView(DataQuery path) {
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            if (val.get() instanceof DataView) {
+                return Optional.of((DataView) val.get());
+            }
+        }
+        return Optional.absent();
+    }
+
     @Override
     public Optional<Boolean> getBoolean(DataQuery path) {
         Optional<Object> val = get(path);
@@ -355,10 +396,10 @@ public class MemoryDataView implements DataView {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             if (val.get() instanceof List<?>) {
-                return Optional.<List<?>>of(ImmutableList.copyOf((List<?>) val.get()));
+                return Optional.<List<?>>of(Lists.newArrayList((List<?>) val.get()));
             }
             if (val.get() instanceof Object[]) {
-                return Optional.<List<?>>of(ImmutableList.copyOf((Object[]) val.get()));
+                return Optional.<List<?>>of(Lists.newArrayList((Object[]) val.get()));
             }
         }
         return Optional.absent();
@@ -372,15 +413,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<String> builder = ImmutableList.builder();
+        List<String> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<String> optional = Coerce.asString(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<String>) builder.build());
+        return Optional.of(newList);
     }
 
     private Optional<List<?>> getUnsafeList(DataQuery path) {
@@ -390,12 +431,9 @@ public class MemoryDataView implements DataView {
                 return Optional.<List<?>>of((List<?>) val.get());
             } else if (val.get() instanceof Object[]) {
                 return Optional.<List<?>>of(Arrays.asList(((Object[]) val.get())));
-            } else {
-                return Optional.absent();
             }
-        } else {
-            return Optional.absent();
         }
+        return Optional.absent();
     }
 
     @Override
@@ -406,15 +444,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Character> builder = ImmutableList.builder();
+        List<Character> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Character> optional = Coerce.asChar(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Character>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -425,15 +463,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Boolean> builder = ImmutableList.builder();
+        List<Boolean> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Boolean> optional = Coerce.asBoolean(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Boolean>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -444,15 +482,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Byte> builder = ImmutableList.builder();
+        List<Byte> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Byte> optional = Coerce.asByte(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Byte>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -463,15 +501,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Short> builder = ImmutableList.builder();
+        List<Short> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Short> optional = Coerce.asShort(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Short>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -482,15 +520,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Integer> builder = ImmutableList.builder();
+        List<Integer> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Integer> optional = Coerce.asInteger(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Integer>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -501,15 +539,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Long> builder = ImmutableList.builder();
+        List<Long> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Long> optional = Coerce.asLong(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Long>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -520,15 +558,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Float> builder = ImmutableList.builder();
+        List<Float> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Float> optional = Coerce.asFloat(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Float>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -539,15 +577,15 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Double> builder = ImmutableList.builder();
+        List<Double> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             Optional<Double> optional = Coerce.asDouble(object);
             if (optional.isPresent()) {
-                builder.add(optional.get());
+                newList.add(optional.get());
             }
         }
-        return Optional.of((List<Double>) builder.build());
+        return Optional.of(newList);
     }
 
     @Override
@@ -558,15 +596,34 @@ public class MemoryDataView implements DataView {
             return Optional.absent();
         }
 
-        ImmutableList.Builder<Map<?, ?>> builder = ImmutableList.builder();
+        List<Map<?, ?>> newList = Lists.newArrayList();
 
         for (Object object : list.get()) {
             if (object instanceof Map) {
-                builder.add((Map<?, ?>) object);
+                newList.add((Map<?, ?>) object);
             }
         }
 
-        return Optional.of((List<Map<?, ?>>) builder.build());
+        return Optional.of(newList);
+    }
+
+    @Override
+    public Optional<List<DataView>> getViewList(DataQuery path) {
+        Optional<List<?>> list = getUnsafeList(path);
+
+        if (!list.isPresent()) {
+            return Optional.absent();
+        }
+
+        List<DataView> newList = Lists.newArrayList();
+
+        for (Object object : list.get()) {
+            if (object instanceof DataView) {
+                newList.add((DataView) object);
+            }
+        }
+
+        return Optional.of(newList);
     }
 
     @Override
@@ -574,7 +631,7 @@ public class MemoryDataView implements DataView {
         checkNotNull(path);
         checkNotNull(clazz);
         checkNotNull(service);
-        Optional<DataView> optional = getView(path);
+        Optional<DataView> optional = getUnsafeView(path);
 
         if (!optional.isPresent()) {
             return Optional.absent();
@@ -586,5 +643,51 @@ public class MemoryDataView implements DataView {
         } else {
             return builderOptional.get().build(optional.get());
         }
+    }
+
+    @Override
+    public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationService service) {
+        checkNotNull(path);
+        checkNotNull(clazz);
+        checkNotNull(service);
+        Optional<List<DataView>> optional = getViewList(path);
+
+        if (!optional.isPresent()) {
+            return Optional.absent();
+        }
+
+        Optional<DataSerializableBuilder<T>> builderOptional = service.getBuilder(clazz);
+        if (!builderOptional.isPresent()) {
+            return Optional.absent();
+        } else {
+            List<T> newList = Lists.newArrayList();
+            for (DataView view : optional.get()) {
+                Optional<T> element = builderOptional.get().build(view);
+                if (element.isPresent()) {
+                    newList.add(element.get());
+                }
+            }
+            return Optional.of(newList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.map, this.path);
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final MemoryDataView other = (MemoryDataView) obj;
+
+
+        return Objects.equal(this.map.entrySet(), other.map.entrySet())
+               && Objects.equal(this.path, other.path);
     }
 }
