@@ -22,30 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.block.tile.carrier;
+
+import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents a Dispenser.
  */
-public interface TileEntityEvent extends GameEvent {
-
-    /**
-     * Gets the {@link TileEntity} related to this event.
-     *
-     * @return The tile entity
-     */
-    TileEntity getTile();
-
-    /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
-     *
-     * @return The snapshot of the current tile entity data
-     */
-    TileEntityData<?, ?> getCurrentData();
+public interface Dispenser extends TileEntityCarrier, BlockProjectileSource {
 
 }

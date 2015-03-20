@@ -25,46 +25,28 @@
 
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.block.tile.data.SignData;
 
 /**
- * Represents for a Sign.
+ * Represents a sign.
  */
-public interface Sign extends TileEntityData {
+public interface Sign extends TileEntity {
 
     /**
-     * Gets all lines of text on the sign.
+     * Gets the data that this {@link Sign} is currently using.
      *
-     * @return The lines of text
+     * @return The current sign data
      */
-    Text[] getLines();
+    SignData getSignData();
 
     /**
-     * Sets the lines of text on the sign. Any lines past the maximum number of
-     * lines displayable on the sign will be ignored.
+     * Sets the requested {@link SignData} onto this {@link Sign}.
      *
-     * @param lines The new lines
-     */
-    void setLines(Text... lines);
-
-    /**
-     * Gets the line at the given index.
+     * <p>Validation is performed on the {@link SignData} to ensure the
+     * desired data is properly set.</p>
      *
-     * @param index The index
-     * @return The line of text
-     * @throws IndexOutOfBoundsException If the index is outside of the allowed
-     *             indices
+     * @param data The sign data to set
+     * @return The transaction result
      */
-    Text getLine(int index) throws IndexOutOfBoundsException;
-
-    /**
-     * Sets the line at the given index.
-     *
-     * @param index The index to set the line at
-     * @param text The new text
-     * @throws IndexOutOfBoundsException If the index is outside
-     *            of the allowed indices
-     */
-    void setLine(int index, Text text) throws IndexOutOfBoundsException;
-
+    TileDataTransactionResult setSignData(SignData data);
 }

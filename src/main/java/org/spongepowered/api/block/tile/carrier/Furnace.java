@@ -22,30 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.block.tile.carrier;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.block.tile.TileDataTransactionResult;
+import org.spongepowered.api.block.tile.data.FurnaceData;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents a Furnace.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface Furnace extends TileEntityCarrier {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Gets the current {@link FurnaceData} of this furnace.
      *
-     * @return The tile entity
+     * <p>Note that as time goes on, the {@link FurnaceData} may not remain in
+     * sync with the {@link Furnace} tile entity. It is advisable that a
+     * {@link FurnaceData} is manipulated in the same tick that it is
+     * retrieved.</p>
+     *
+     * @return The currently associated {@link FurnaceData}
      */
-    TileEntity getTile();
+    FurnaceData getFurnaceData();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
-     *
-     * @return The snapshot of the current tile entity data
+     * Sets the given {@link FurnaceData} onto this {@link Furnace}.
+
+     * <p>Validation is performed on the {@link FurnaceData} to ensure the
+     * desired data is properly set.</p>
+
+     * @param data The furnace data to set
+     * @return The transaction result
      */
-    TileEntityData<?, ?> getCurrentData();
+    TileDataTransactionResult setFurnaceData(FurnaceData data);
 
 }

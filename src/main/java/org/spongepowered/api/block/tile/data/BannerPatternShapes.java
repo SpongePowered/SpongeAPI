@@ -23,14 +23,12 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile;
+package org.spongepowered.api.block.tile.data;
 
 /**
  * An enumeration of all possible {@link BannerPatternShape}s in vanilla minecraft.
  */
 public final class BannerPatternShapes {
-
-    // These values will not be null at runtime
 
     public static final BannerPatternShape BASE = null;
     public static final BannerPatternShape SQUARE_BOTTOM_LEFT = null;

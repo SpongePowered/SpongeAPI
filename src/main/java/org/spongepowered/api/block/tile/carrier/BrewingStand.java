@@ -22,30 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.block.tile.carrier;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.block.tile.TileDataTransactionResult;
+import org.spongepowered.api.block.tile.data.BrewingData;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents a Brewing Stand.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface BrewingStand extends TileEntityCarrier {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     /**
+     * Gets the current {@link BrewingData} of this {@link BrewingStand}.
      *
-     * @return The tile entity
+     * <p>Note that as time goes on, the {@link BrewingData} may not remain in
+     * sync with the {@link BrewingStand} tile entity. It is advisable that a
+     * {@link BrewingData} is manipulated in the same tick that it is
+     * retrieved.</p>
+     *
+     * @return The currently associated {@link BrewingData}
      */
-    TileEntity getTile();
+    BrewingData getBrewingData();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
-     *
-     * @return The snapshot of the current tile entity data
-     */
-    TileEntityData<?, ?> getCurrentData();
+     * Sets the given {@link BrewingData} onto this {@link BrewingStand}.
 
+     * <p>Validation is performed on the {@link BrewingData} to ensure the
+     * desired data is properly set.</p>
+
+     * @param data The brewing data to set
+     * @return The transaction result
+     */
+    TileDataTransactionResult setBrewingData(BrewingData data);
 }

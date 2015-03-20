@@ -22,30 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.carrier.Furnace;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents the usable data of a {@link Furnace}.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface FurnaceData extends TileEntityData<Furnace, FurnaceData> {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Gets the remaining time until another piece of fuel will be consumed.
+     * Will be zero if the furnace is not currently lit.
      *
-     * @return The tile entity
+     * @return The remaining time, in ticks
      */
-    TileEntity getTile();
+    int getRemainingBurnTime();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
+     * Sets the remaining time until a new piece of fuel will be consumed.
      *
-     * @return The snapshot of the current tile entity data
+     * @param time The new time, in ticks
      */
-    TileEntityData<?, ?> getCurrentData();
+    void setRemainingBurnTime(int time);
+
+    /**
+     * Gets the remaining time until the next item is cooked.
+     *
+     * @return The remaining time, in ticks
+     */
+    int getRemainingCookTime();
+
+    /**
+     * Sets the remaining time until a new item is cooked.
+     *
+     * @param time The new time, in ticks
+     */
+    void setRemainingCookTime(int time);
 
 }

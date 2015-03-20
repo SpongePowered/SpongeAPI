@@ -23,21 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.Note;
 
 /**
- * An enumeration of all possible {@link SkullType}s in vanilla minecraft.
+ * Represents data for a {@link Note} that defines what music can be played.
  */
-public final class SkullTypes {
+public interface NoteData extends TileEntityData<Note, NoteData> {
 
-    // These values will not be null at runtime
+    /**
+     * Gets the note played by this note block.
+     *
+     * @return The note
+     */
+    NotePitch getNote();
 
-    public static SkullType SKELETON = null;
-    public static SkullType WITHER_SKELETON = null;
-    public static SkullType ZOMBIE = null;
-    public static SkullType PLAYER = null;
-    public static SkullType CREEPER = null;
+    /**
+     * Sets the note to be played by this note block.
+     *
+     * @param note The new note
+     */
+    void setNote(NotePitch note);
 
-    private SkullTypes() {
-    }
 }

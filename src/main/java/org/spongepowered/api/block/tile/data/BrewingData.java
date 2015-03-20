@@ -22,30 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.carrier.BrewingStand;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents data associated with a {@link BrewingStand}.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface BrewingData extends TileEntityData<BrewingStand, BrewingData> {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Gets the remaining time until the brewing is complete. Will be zero if
+     * the brewing stand is not currently brewing anything.
      *
-     * @return The tile entity
+     * @return The remaining time, in ticks
      */
-    TileEntity getTile();
+    int getRemainingBrewTime();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
+     * Sets the remaining time until the brewing is complete. This will only
+     * have effect if the current items within the brewing stand are valid.
      *
-     * @return The snapshot of the current tile entity data
+     * @param time The new remaining time, in ticks
      */
-    TileEntityData<?, ?> getCurrentData();
+    void setRemainingBrewTime(int time);
 
 }

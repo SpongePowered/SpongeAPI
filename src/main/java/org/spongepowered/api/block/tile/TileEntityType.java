@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.block.tile;
 
+import org.spongepowered.api.block.BlockType;
+
 /**
  * Describes a type of tile entity.
  */
@@ -35,6 +37,14 @@ public interface TileEntityType {
      * @return The id
      */
     String getId();
+
+    /**
+     * Gets the type of {@link BlockType} that this {@link TileEntityType}
+     * can be created from.
+     *
+     * @return The type of block this tile entity type can be created with
+     */
+    BlockType getParentBlockType();
 
     /**
      * Returns the tile entity class for this type.

@@ -22,30 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+
+package org.spongepowered.api.block.tile.data;
 
 import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents a display nameable data for a {@link TileEntity} that may display
+ * in chat, above the entity, or in a gui window.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface NameableData extends TileEntityData<TileEntity, NameableData> {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Gets the current custom name for the {@link TileEntity}.
      *
-     * @return The tile entity
+     * @return The current custom name
      */
-    TileEntity getTile();
+    String getCustomName();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
+     * Sets the custom name for the {@link TileEntity}.
      *
-     * @return The snapshot of the current tile entity data
+     * @param name The name of the tile entity
      */
-    TileEntityData<?, ?> getCurrentData();
+    void setCustomName(String name);
 
 }

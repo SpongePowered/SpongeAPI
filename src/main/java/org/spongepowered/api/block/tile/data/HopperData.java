@@ -23,11 +23,26 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile.lockable;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.carrier.Hopper;
 
 /**
- * Represents a Dropper.
+ * Represents the data of a {@link Hopper} that can be changed and applied.
  */
-public interface Dropper extends Lockable {
+public interface HopperData {
 
+    /**
+     * Gets the remaining time before the next item will be transfered.
+     *
+     * @return The remaining time, in ticks
+     */
+    int getTransferCooldown();
+
+    /**
+     * Sets the cooldown before the next item will be transfered.
+     *
+     * @param time The new time, in ticks
+     */
+    void setTransferCooldown(int time);
 }

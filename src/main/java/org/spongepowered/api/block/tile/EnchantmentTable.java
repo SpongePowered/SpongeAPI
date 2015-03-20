@@ -28,6 +28,6 @@ package org.spongepowered.api.block.tile;
 /**
  * Represents an Enchantment Table.
  */
-public interface EnchantmentTable extends TileEntityData {
+public interface EnchantmentTable extends TileEntity {
 
 }

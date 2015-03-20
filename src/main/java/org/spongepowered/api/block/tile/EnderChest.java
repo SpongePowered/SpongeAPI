@@ -28,6 +28,6 @@ package org.spongepowered.api.block.tile;
 /**
  * Represents an Ender Chest.
  */
-public interface EnderChest extends TileEntityData {
+public interface EnderChest extends TileEntity {
 
 }

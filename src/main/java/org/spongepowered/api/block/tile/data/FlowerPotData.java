@@ -22,30 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.block.tile.data;
+
+import com.google.common.base.Optional;
+import org.spongepowered.api.block.tile.FlowerPot;
+import org.spongepowered.api.item.inventory.ItemStack;
+
+import javax.annotation.Nullable;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents data that a {@link FlowerPot} would use to display an item.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface FlowerPotData extends TileEntityData<FlowerPot, FlowerPotData> {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Retrieves the contents of this flower pot, if available.
      *
-     * @return The tile entity
+     * @return The contents of this flower pot, or {@link Optional#absent()}
      */
-    TileEntity getTile();
+    Optional<ItemStack> getContents();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
+     * Sets or removes the contents of this flower pot.
      *
-     * @return The snapshot of the current tile entity data
+     * <p>Only the item type and data of the item stack are used, other values
+     * like stack size are ignored.</p>
+     *
+     * @param contents The contents to place, or {@code null} to remove contents
      */
-    TileEntityData<?, ?> getCurrentData();
+    void setContents(@Nullable ItemStack contents);
 
 }

@@ -22,30 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.block.tile.data;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.service.persistence.DataSerializable;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents data held by a {@link TileEntity}.
+ *
+ * <p>Traditionally, a {@link TileEntity} will perform various actions based on
+ * it's data represented by {@link TileEntityData}. Required data for a {@link
+ * TileEntity} will always exist, but </p>
  */
-public interface TileEntityEvent extends GameEvent {
+public interface TileEntityData<E extends TileEntity, T extends TileEntityData<E, T>> extends Comparable<T>, DataSerializable {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Retrieves the tile entity that is backing this tile entity data, if a
+     * tile entity is backing this data.
      *
-     * @return The tile entity
+     * @return The backing tile entity, or {@link Optional#absent()}
      */
-    TileEntity getTile();
-
-    /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
-     *
-     * @return The snapshot of the current tile entity data
-     */
-    TileEntityData<?, ?> getCurrentData();
+    Optional<E> getTileEntity();
 
 }

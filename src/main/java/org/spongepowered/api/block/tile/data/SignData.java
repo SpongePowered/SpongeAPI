@@ -22,55 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tile.lockable;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.potion.PotionEffectType;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.Sign;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents a Beacon.
+ * Represents the data for a {@link Sign}.
  */
-public interface Beacon extends Lockable {
+public interface SignData extends TileEntityData<Sign, SignData> {
 
     /**
-     * Gets the primary effect provided by this beacon.
+     * Gets all lines of text on the sign.
      *
-     * @return The primary effect
+     * @return The lines of text
      */
-    Optional<PotionEffectType> getPrimaryEffect();
+    Text[] getLines();
 
     /**
-     * Sets the primary effect for this beacon.
+     * Sets the lines of text on the sign. Any lines past the maximum number of
+     * lines displayable on the sign will be ignored.
      *
-     * @param effect The new primary effect
+     * @param lines The new lines
      */
-    void setPrimaryEffect(PotionEffectType effect);
+    void setLines(Text... lines);
 
     /**
-     * Gets the secondary effect provided by this beacon.
+     * Gets the line at the given index.
      *
-     * @return The secondary effect
+     * @param index The index
+     * @return The line of text
+     * @throws IndexOutOfBoundsException If the index is outside of the allowed
+     *             indices
      */
-    Optional<PotionEffectType> getSecondaryEffect();
+    Text getLine(int index) throws IndexOutOfBoundsException;
 
     /**
-     * Sets the secondary effect for this beacon.
+     * Sets the line at the given index.
      *
-     * @param effect The new secondary effect
+     * @param index The index to set the line at
+     * @param text The new text
+     * @throws IndexOutOfBoundsException If the index is outside
+     *            of the allowed indices
      */
-    void setSecondaryEffect(PotionEffectType effect);
-
-    /**
-     * Clears all selected potion effects for this beacon.
-     */
-    void clearEffects();
-
-    /**
-     * Gets the number of completed levels of valid beacon structure blocks
-     * beneath this beacon.
-     *
-     * @return The number of levels
-     */
-    int getCompletedLevels();
+    void setLine(int index, Text text) throws IndexOutOfBoundsException;
 
 }

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile;
+package org.spongepowered.api.block.tile.data;
 
 /**
  * An enumeration of all possible {@link NotePitch}es in vanilla minecraft.

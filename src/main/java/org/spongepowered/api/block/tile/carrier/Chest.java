@@ -22,39 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tile.lockable;
 
-import org.spongepowered.api.block.tile.TileEntityData;
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.types.TileEntityInventory;
+package org.spongepowered.api.block.tile.carrier;
 
 /**
- * A representation of the persisted data for a tile entity with a 'lock'.
- * <p>
- * A tile entity having a lock token set implies that it may only be used by a
- * player who is holding an item with a name equal to the lock token.
- * </p>
+ * Represents a Chest.
  */
-public interface Lockable extends TileEntityData, Carrier {
+public interface Chest extends TileEntityCarrier {
 
-    /**
-     * Gets the lock token for this tile entity. Will be empty if this tile
-     * entity is not locked.
-     *
-     * @return The lock token
-     */
-    String getLockToken();
-
-    /**
-     * Sets the lock token for this tile entity.
-     *
-     * @param token The new lock token
-     */
-    void setLockToken(String token);
-
-    /* (non-Javadoc)
-     * @see org.spongepowered.api.item.inventory.Carrier#getInventory()
-     */
-    @Override
-    TileEntityInventory<Lockable> getInventory();
 }

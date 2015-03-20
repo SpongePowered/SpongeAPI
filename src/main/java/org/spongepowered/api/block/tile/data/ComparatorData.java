@@ -22,30 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.Comparator;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents the output signal for a {@link Comparator}.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface ComparatorData extends TileEntityData<Comparator, ComparatorData> {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Gets the output signal strength.
      *
-     * @return The tile entity
+     * @return The signal strength
      */
-    TileEntity getTile();
+    int getOutputSignal();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
+     * Sets the output signal strength.
      *
-     * @return The snapshot of the current tile entity data
+     * @param signal The new signal strength
      */
-    TileEntityData<?, ?> getCurrentData();
+    void setOutputSignal(int signal);
 
 }

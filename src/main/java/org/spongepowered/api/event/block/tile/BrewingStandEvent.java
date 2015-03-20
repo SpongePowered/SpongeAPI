@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.lockable.BrewingStand;
+import org.spongepowered.api.block.tile.carrier.BrewingStand;
+import org.spongepowered.api.block.tile.data.BrewingData;
+import org.spongepowered.api.block.tile.data.TileEntityData;
 import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**
@@ -33,12 +35,13 @@ import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent {
 
     /**
-     * Gets the {@link BrewingStand} related to this event.
+     * Gets the {@link BrewingStand} data that will be represented
+     * after this event.
      *
      * @return The brewing stand
      */
     BrewingStand getBrewingStand();
 
     @Override
-    BrewingStand getTile();
+    BrewingData getCurrentData();
 }

@@ -22,40 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tile.lockable;
+
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.TileEntity;
 
 /**
- * Represents a Furnace.
+ * Represents a lock token for a {@link TileEntity} that can be locked.
  */
-public interface Furnace extends Lockable {
+public interface LockableData extends TileEntityData<TileEntity, LockableData> {
 
     /**
-     * Gets the remaining time until another piece of fuel will be consumed.
-     * Will be zero if the furnace is not currently lit.
+     * Gets the lock token for this tile entity. Will be empty if this tile
+     * entity is not locked.
      *
-     * @return The remaining time, in ticks
+     * @return The lock token
      */
-    int getRemainingBurnTime();
+    String getLockToken();
 
     /**
-     * Sets the remaining time until a new piece of fuel will be consumed.
+     * Sets the lock token for this tile entity.
      *
-     * @param time The new time, in ticks
+     * @param token The new lock token
      */
-    void setRemainingBurnTime(int time);
-
-    /**
-     * Gets the remaining time until the next item is cooked.
-     *
-     * @return The remaining time, in ticks
-     */
-    int getRemainingCookTime();
-
-    /**
-     * Sets the remaining time until a new item is cooked.
-     *
-     * @param time The new time, in ticks
-     */
-    void setRemainingCookTime(int time);
+    void setLockToken(String token);
 
 }

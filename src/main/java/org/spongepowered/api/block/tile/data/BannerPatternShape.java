@@ -22,30 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
-
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.block.tile.data;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * A pattern shape which may be applied to a banner.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface BannerPatternShape {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Gets the name of this pattern shape.
      *
-     * @return The tile entity
+     * @return The name
      */
-    TileEntity getTile();
+    String getName();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
+     * Gets the id for this pattern shape.
      *
-     * @return The snapshot of the current tile entity data
+     * @return The id
      */
-    TileEntityData<?, ?> getCurrentData();
+    String getId();
 
 }

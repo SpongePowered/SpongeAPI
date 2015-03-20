@@ -24,14 +24,24 @@
  */
 package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.lockable.Furnace;
+import org.spongepowered.api.block.tile.carrier.Furnace;
+import org.spongepowered.api.block.tile.data.FurnaceData;
 import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**
- * An event that involves a {@link Furnace}.
+ * Represents an event that affects a tile entity with a {@link Furnace}
+ * data.
  */
 public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
 
+    /**
+     * Gets the {@link Furnace} data that will be represented after the
+     * event.
+     *
+     * @return The resulting furnace data
+     */
+    Furnace getFurnace();
+
     @Override
-    Furnace getTile();
+    FurnaceData getCurrentData();
 }

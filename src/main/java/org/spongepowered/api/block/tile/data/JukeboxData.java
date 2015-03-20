@@ -23,24 +23,33 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile.lockable;
+package org.spongepowered.api.block.tile.data;
+
+import com.google.common.base.Optional;
+import org.spongepowered.api.block.tile.Jukebox;
+import org.spongepowered.api.item.inventory.ItemStack;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents a Hopper.
+ * Represents the data of a {@link Jukebox}.
  */
-public interface Hopper extends Lockable {
+public interface JukeboxData extends TileEntityData<Jukebox, JukeboxData> {
 
     /**
-     * Gets the remaining time before the next item will be transfered.
+     * Retrieves the record contained in this Jukebox, if there is one.
      *
-     * @return The remaining time, in ticks
+     * @return The record in this Jukebox or {@link Optional#absent()}
      */
-    int getTransferCooldown();
+    Optional<ItemStack> getRecord();
 
     /**
-     * Sets the cooldown before the next item will be transfered.
+     * Sets the record contained within this Jukebox to the given one.
+     * If the given one is null, the record within this Jukebox is removed and the item
+     * destroyed.
      *
-     * @param time The new time, in ticks
+     * @param record The record to set, or null to destroy the record
      */
-    void setTransferCooldown(int time);
+    void setRecord(@Nullable ItemStack record);
+
 }

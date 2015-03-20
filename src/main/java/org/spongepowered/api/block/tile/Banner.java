@@ -24,76 +24,28 @@
  */
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.item.DyeColor;
-import org.spongepowered.api.service.persistence.DataSerializable;
-
-import java.util.List;
+import org.spongepowered.api.block.tile.data.BannerData;
 
 /**
- * Represents a Banner.
+ * Represents a Banner {@link TileEntity}.
  */
-public interface Banner extends TileEntityData {
+public interface Banner extends TileEntity {
 
     /**
-     * Gets the base color of this banner.
+     * Gets the data that this {@link Banner} is displaying.
      *
-     * @return The base color
+     * @return The current banner data
      */
-    DyeColor getBaseColor();
+    BannerData getBannerData();
 
     /**
-     * Sets the base color of this banner.
+     * Sets the requested {@link BannerData} onto this {@link Banner}.
      *
-     * @param color The new color
-     */
-    void setBaseColor(DyeColor color);
-
-    /**
-     * Gets an ordered list of this Banner's pattern layers.
+     * <p>Validation is performed on the {@link BannerData} to ensure the
+     * desired data is properly set.</p>
      *
-     * @return The pattern layers
+     * @param data The banner data to set
+     * @return The transaction result
      */
-    List<PatternLayer> getPatternList();
-
-    /**
-     * Clears this banners Pattern layers leaving only the base color.
-     */
-    void clearPattern();
-
-    /**
-     * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
-     *
-     * @param pattern The new pattern layer
-     */
-    void addPatternLayer(PatternLayer pattern);
-
-    /**
-     * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
-     *
-     * @param patternShape The pattern shape
-     * @param color The layer color
-     */
-    void addPatternLayer(BannerPatternShape patternShape, DyeColor color);
-
-    /**
-     * A representation on a single layer of a {@link Banner}'s pattern.
-     */
-    interface PatternLayer extends DataSerializable {
-
-        /**
-         * Gets the pattern shape for this layer.
-         *
-         * @return The shape
-         */
-        BannerPatternShape getId();
-
-        /**
-         * Gets the color for this layer.
-         *
-         * @return The color
-         */
-        DyeColor getColor();
-
-    }
-
+    TileDataTransactionResult setBannerData(BannerData data);
 }

@@ -24,31 +24,29 @@
  */
 package org.spongepowered.api.block.tile;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.item.inventory.ItemStack;
-
-import javax.annotation.Nullable;
+import org.spongepowered.api.block.tile.data.FlowerPotData;
 
 /**
  * Represents a flower pot.
  */
-public interface FlowerPot extends TileEntityData {
+public interface FlowerPot extends TileEntity {
 
     /**
-     * Retrieves the contents of this flower pot, if available.
+     * Gets the data that this {@link FlowerPot} is currently using.
      *
-     * @return The contents of this flower pot, or {@link Optional#absent()}
+     * @return The current flower pot data
      */
-    Optional<ItemStack> getContents();
+    FlowerPotData getFlowerPotData();
 
     /**
-     * Sets or removes the contents of this flower pot.
+     * Sets the requested {@link FlowerPotData} onto this {@link FlowerPot}.
      *
-     * <p>Only the item type and data of the item stack are used, other values
-     * like stack size are ignored.</p>
+     * <p>Validation is performed on the {@link FlowerPotData} to ensure the
+     * desired data is properly set.</p>
      *
-     * @param contents The contents to place, or {@code null} to remove contents
+     * @param data The flower pot data to set
+     * @return The transaction result
      */
-    void setContents(@Nullable ItemStack contents);
+    TileDataTransactionResult setFlowerPotData(FlowerPotData data);
 
 }

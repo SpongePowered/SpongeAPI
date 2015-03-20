@@ -24,93 +24,34 @@
  */
 package org.spongepowered.api.block.tile;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.block.tile.data.CommandData;
 import org.spongepowered.api.util.command.source.CommandBlockSource;
 
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends TileEntityData, CommandBlockSource {
-
-    /**
-     * Gets the currently stored command.
-     *
-     * @return The command
-     */
-    String getStoredCommand();
-
-    /**
-     * Sets the currently stored command.
-     *
-     * @param command The new command
-     */
-    void setStoredCommand(String command);
-
-    /**
-     * Gets the success count of the last executed command.
-     * <p>
-     * The success count is the number of times the most recently used command
-     * of this command block succeeded.
-     * </p>
-     * <p>
-     * Most commands can only succeed once per execution, but certain commands
-     * (such as those which accept players as arguments) can succeed multiple
-     * times, and this value will be set accordingly.
-     * </p>
-     * <p>
-     * This success count can also be polled via a redstone comparator.
-     * </p>
-     *
-     * @return The last success count
-     */
-    int getSuccessCount();
-
-    /**
-     * Sets the last success count for this command block.
-     *
-     * @param count The new success count
-     * @see #getSuccessCount()
-     */
-    void setSuccessCount(int count);
-
-    /**
-     * Gets whether this command block will keep track of the output from the
-     * last command it executed.
-     *
-     * @return Whether the command output is tracked
-     */
-    boolean doesTrackOutput();
-
-    /**
-     * Sets whether this command block should track the output from future
-     * commands that it executes.
-     *
-     * @param track Whether the command outputs should be tracked
-     */
-    void shouldTrackOutput(boolean track);
-
-    /**
-     * Gets the last command output.
-     * <p>
-     * This will only be available if {@link #doesTrackOutput()} is set to true,
-     * otherwise {@link Optional#absent()} will be returned.
-     * </p>
-     *
-     * @return The last command output, if available
-     */
-    Optional<Text> getLastOutput();
-
-    /**
-     * Sets the last output message.
-     *
-     * @param message The new message
-     */
-    void setLastOutput(Text message);
+public interface CommandBlock extends TileEntity, CommandBlockSource {
 
     /**
      * Executes the currently stored command.
      */
     void execute();
 
+    /**
+     * Gets the data that this {@link CommandBlock} is currently using.
+     *
+     * @return The current command data
+     */
+    CommandData getCommandData();
+
+    /**
+     * Sets the requested {@link CommandData} onto this {@link CommandBlock}.
+     *
+     * <p>Validation is performed on the {@link CommandData} to ensure the
+     * desired data is properly set.</p>
+     *
+     * @param data The command data to set
+     * @return The transaction result
+     */
+    TileDataTransactionResult setCommandData(CommandData data);
 }

@@ -25,7 +25,12 @@
 package org.spongepowered.api.block.tile;
 
 /**
- * Represents a piston.
+ * Represents a piston moving in the world.
+ *
+ * <p>As far as a {@link TileEntity} is concerned, the piston tile entity
+ * is a technical state of moving. The piston tile entity is very short lived.
+ * </p>
  */
-public interface Piston extends TileEntityData {
+public interface Piston extends TileEntity {
+
 }

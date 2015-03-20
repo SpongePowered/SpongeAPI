@@ -41,6 +41,7 @@ public class TileEntityTypes {
     public static final TileEntityType DROPPER = null;
     public static final TileEntityType ENCHANTMENT_TABLE = null;
     public static final TileEntityType ENDER_CHEST = null;
+    public static final TileEntityType END_PORTAL = null;
     public static final TileEntityType FLOWER_POT = null;
     public static final TileEntityType FURNACE = null;
     public static final TileEntityType HOPPER = null;

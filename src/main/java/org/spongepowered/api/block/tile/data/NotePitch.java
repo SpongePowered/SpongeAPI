@@ -22,30 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.block.tile.Note;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents a NotePitch which may be played by a {@link Note} block.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface NotePitch {
 
     /**
-     * Gets the {@link TileEntity} related to this event.
+     * Gets the id of this {@link NotePitch}.
      *
-     * @return The tile entity
+     * @return The id
      */
-    TileEntity getTile();
+    byte getId();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
-     * {@link TileEntity} associated with this event.
+     * Gets the name of this pitch.
      *
-     * @return The snapshot of the current tile entity data
+     * @return The name
      */
-    TileEntityData<?, ?> getCurrentData();
+    String getName();
 
 }

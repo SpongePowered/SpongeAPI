@@ -26,7 +26,7 @@ package org.spongepowered.api.item.inventory.types;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.TileEntityData;
+import org.spongepowered.api.block.tile.data.TileEntityData;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
 
@@ -50,7 +50,7 @@ import org.spongepowered.api.item.inventory.Carrier;
  *
  * @param <T> Tile entity type, the specified TE must be a {@link Carrier}
  */
-public interface TileEntityInventory<T extends TileEntityData & Carrier>
+public interface TileEntityInventory<T extends TileEntity & Carrier>
         extends PersistentInventory, Interactable<Human>, CarriedInventory<T> {
 
     /**

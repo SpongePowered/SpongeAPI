@@ -23,25 +23,45 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile;
+package org.spongepowered.api.block.tile.carrier;
+
+import org.spongepowered.api.block.tile.TileDataTransactionResult;
+import org.spongepowered.api.block.tile.data.HopperData;
 
 /**
- * Represents a NotePitch which may be played by a {@link Note} block.
+ * Represents a Hopper.
  */
-public interface NotePitch {
+public interface Hopper extends TileEntityCarrier {
 
     /**
-     * Gets the id of this {@link NotePitch}.
+     * Requests this {@link Hopper} to transfer an item to the next carrier.
      *
-     * @return The id
+     * <p>Since {@link Hopper}s normally send items to other {@link
+     * TileEntityCarrier}s adjacent to themselves, if there is no available
+     * carrier to send an item to, this will perform nothing.</p>
      */
-    byte getId();
+    void transferItem();
 
     /**
-     * Gets the name of this pitch.
+     * Gets the current {@link HopperData} of this hopper.
      *
-     * @return The name
+     * <p>Note that as time goes on, the {@link HopperData} may not remain in
+     * sync with the {@link Hopper} tile entity. It is advisable that a
+     * {@link HopperData} is manipulated in the same tick that it is
+     * retrieved.</p>
+     *
+     * @return The currently associated {@link HopperData}
      */
-    String getName();
+    HopperData getHopperData();
 
+    /**
+     * Sets the given {@link HopperData} onto this {@link Hopper}.
+
+     * <p>Validation is performed on the {@link HopperData} to ensure the
+     * desired data is properly set.</p>
+
+     * @param data The hopper data to set
+     * @return The transaction result
+     */
+    TileDataTransactionResult setHopperData(HopperData data);
 }

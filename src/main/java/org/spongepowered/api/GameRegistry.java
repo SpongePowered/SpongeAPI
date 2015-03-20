@@ -32,9 +32,10 @@ import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.attribute.Operation;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tile.BannerPatternShape;
-import org.spongepowered.api.block.tile.NotePitch;
-import org.spongepowered.api.block.tile.SkullType;
+import org.spongepowered.api.block.tile.TileEntityType;
+import org.spongepowered.api.block.tile.data.BannerPatternShape;
+import org.spongepowered.api.block.tile.data.NotePitch;
+import org.spongepowered.api.block.tile.data.SkullType;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
@@ -128,6 +129,21 @@ public interface GameRegistry {
      * @return A collection containing all item types in registry
      */
     Collection<ItemType> getItems();
+
+    /**
+     * Gets a {@link TileEntityType} by its identifier.
+     *
+     * @param id The id to look up
+     * @return The tile entity type or Optional.absent() if not found
+     */
+    Optional<TileEntityType> getTileEntityType(String id);
+
+    /**
+     * Gets a collection of all available {@link TileEntityType}s.
+     *
+     * @return A collection containing all tile entity types in registry
+     */
+    Collection<TileEntityType> getTileEntityTypes();
 
     /**
      * Gets a {@link BiomeType} by its identifier.

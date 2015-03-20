@@ -24,31 +24,19 @@
  */
 package org.spongepowered.api.block.tile;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.block.tile.data.JukeboxData;
 import org.spongepowered.api.item.inventory.ItemStack;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a jukebox, also know as a record player.
  */
-public interface Jukebox extends TileEntityData {
+public interface Jukebox extends TileEntity {
 
     /**
-     * Retrieves the record contained in this Jukebox, if there is one.
-     *
-     * @return The record in this Jukebox or {@link Optional#absent()}
+     * Attempts to play the currently stored record according to the
+     * {@link JukeboxData} of this {@link Jukebox}.
      */
-    Optional<ItemStack> getRecord();
-
-    /**
-     * Sets the record contained within this Jukebox to the given one.
-     * If the given one is null, the record within this Jukebox is removed and the item
-     * destroyed.
-     *
-     * @param record The record to set, or null to destroy the record
-     */
-    void setRecord(@Nullable ItemStack record);
+    void playRecord();
 
     /**
      * Ejects the record item in this Jukebox into the world.
@@ -61,5 +49,23 @@ public interface Jukebox extends TileEntityData {
      * @param record The record to insert
      */
     void insertRecord(ItemStack record);
+
+    /**
+     * Gets the associated {@link JukeboxData} for this {@link Jukebox}.
+     *
+     * @return The current associated juke box data
+     */
+    JukeboxData getJukeboxData();
+
+    /**
+     * Sets the given {@link JukeboxData} to this {@link Jukebox}.
+     *
+     * <p>While {@link JukeboxData} is meant for {@link Jukebox}es, the data
+     * is validated.</p>
+     *
+     * @param data The jukebox data to set
+     * @return The transaction result
+     */
+    TileDataTransactionResult setJukeboxData(JukeboxData data);
 
 }

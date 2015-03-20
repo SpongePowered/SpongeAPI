@@ -22,25 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tile;
+package org.spongepowered.api.block.tile.carrier;
+
+import org.spongepowered.api.block.tile.TileDataTransactionResult;
+import org.spongepowered.api.block.tile.data.BeaconData;
 
 /**
- * A pattern shape which may be applied to a banner.
+ * Represents a Beacon.
+ *
+ * <p>Beacons apply prescribed effects according to the {@link BeaconData}.
+ * Depending on the completed levels of the beacon, the effects may be applied
+ * at a further range or shorter range.</p>
  */
-public interface BannerPatternShape {
+public interface Beacon extends TileEntityCarrier {
 
     /**
-     * Gets the name of this pattern shape.
+     * Gets the number of completed levels of valid beacon structure blocks
+     * beneath this beacon.
      *
-     * @return The name
+     * @return The number of levels
      */
-    String getName();
+    int getCompletedLevels();
 
     /**
-     * Gets the id for this pattern shape.
+     * Gets the currently associated {@link BeaconData}.
      *
-     * @return The id
+     * @return The currently associated beacon data
      */
-    String getId();
+    BeaconData getBeaconData();
+
+    /**
+     * Sets the requested {@link BeaconData} onto this {@link Beacon}.
+     *
+     * <p>Validation is performed on the {@link BeaconData} to ensure the
+     * desired data is properly set.</p>
+     *
+     * @param data The beacon data to set
+     * @return The transaction result
+     */
+    TileDataTransactionResult setBeaconData(BeaconData data);
 
 }

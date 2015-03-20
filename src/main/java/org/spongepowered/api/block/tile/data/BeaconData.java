@@ -23,27 +23,48 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile;
+package org.spongepowered.api.block.tile.data;
 
-import org.spongepowered.api.text.translation.Translatable;
+import com.google.common.base.Optional;
+import org.spongepowered.api.block.tile.carrier.Beacon;
+import org.spongepowered.api.potion.PotionEffectType;
 
 /**
- * Represents a type of skull.
+ * Represents data used by {@link Beacon}s.
  */
-public interface SkullType extends Translatable {
+public interface BeaconData extends TileEntityData<Beacon, BeaconData> {
 
     /**
-     * Gets the id of this skull.
+     * Gets the primary effect provided by this beacon.
      *
-     * @return The id
+     * @return The primary effect
      */
-    byte getId();
+    Optional<PotionEffectType> getPrimaryEffect();
 
     /**
-     * Gets the name of this pitch.
+     * Sets the primary effect for this beacon.
      *
-     * @return The name
+     * @param effect The new primary effect
      */
-    String getName();
+    void setPrimaryEffect(PotionEffectType effect);
+
+    /**
+     * Gets the secondary effect provided by this beacon.
+     *
+     * @return The secondary effect
+     */
+    Optional<PotionEffectType> getSecondaryEffect();
+
+    /**
+     * Sets the secondary effect for this beacon.
+     *
+     * @param effect The new secondary effect
+     */
+    void setSecondaryEffect(PotionEffectType effect);
+
+    /**
+     * Clears all selected potion effects for this beacon.
+     */
+    void clearEffects();
 
 }

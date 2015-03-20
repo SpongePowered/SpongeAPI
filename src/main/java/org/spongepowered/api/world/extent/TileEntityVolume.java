@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.extent;
 
-import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockLoc;
@@ -33,7 +33,7 @@ import org.spongepowered.api.block.tile.TileEntity;
 import java.util.Collection;
 
 /**
- * A block volume that also contains {@link org.spongepowered.api.block.tile.TileEntity} instances.
+ * A block volume that also contains {@link TileEntity} instances.
  */
 public interface TileEntityVolume extends BlockVolume {
 
@@ -52,7 +52,7 @@ public interface TileEntityVolume extends BlockVolume {
     /**
      * Return a collection of tile entities contained within this volume,
      * possibly only returning tile entities only in loaded areas. The returned
-     * tile entities are filtered by the given {@link com.google.common.base.Predicate} before being
+     * tile entities are filtered by the given {@link Predicate} before being
      * returned.
      *
      * <p>For world implementations, only some parts of the world is usually
@@ -70,7 +70,7 @@ public interface TileEntityVolume extends BlockVolume {
      * @param position The position
      * @return The tile entity, or {@link Optional#absent()}
      */
-    Optional<TileEntity> getTileEntity(Vector3d position);
+    Optional<TileEntity> getTileEntity(Vector3i position);
 
     /**
      * Get the tile entity at the given position, if it exists.

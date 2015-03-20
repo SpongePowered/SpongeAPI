@@ -23,11 +23,27 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.block.tile.lockable;
+package org.spongepowered.api.block.tile.data;
+
+import org.spongepowered.api.text.translation.Translatable;
 
 /**
- * Represents a Chest.
+ * Represents a type of skull.
  */
-public interface Chest extends Lockable {
+public interface SkullType extends Translatable {
+
+    /**
+     * Gets the id of this skull.
+     *
+     * @return The id
+     */
+    byte getId();
+
+    /**
+     * Gets the name of this pitch.
+     *
+     * @return The name
+     */
+    String getName();
 
 }

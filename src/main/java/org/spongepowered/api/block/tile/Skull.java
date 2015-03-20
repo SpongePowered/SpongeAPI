@@ -25,67 +25,28 @@
 
 package org.spongepowered.api.block.tile;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.GameProfile;
-import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.block.tile.data.SkullData;
 
 /**
  * Represents a skull.
  */
-public interface Skull extends TileEntityData {
+public interface Skull extends TileEntity {
 
     /**
-     * Gets the rotation of the skull.
-     * <p>
-     * This rotation is only used if the Skull is placed on top of the block,
-     * otherwise its rotation is defined by the BlockState of the Skull block.
-     * </p>
+     * Gets the data that this {@link Skull} is currently using.
      *
-     * @return The rotation direction
+     * @return The current skull data
      */
-    Direction getRotation();
+    SkullData getSkullData();
 
     /**
-     * Sets the rotation of the skull.
-     * <p>
-     * This rotation is only used if the Skull is placed on top of the block,
-     * otherwise its rotation is defined by the BlockState of the Skull block.
-     * </p>
+     * Sets the requested {@link SkullData} onto this {@link Skull}.
      *
-     * @param rotation The new rotation
-     */
-    void setRotation(Direction rotation);
-
-    /**
-     * If the type of the skull is {@link SkullTypes#PLAYER} then this will
-     * return the associated {@link GameProfile}.
+     * <p>Validation is performed on the {@link SkullData} to ensure the
+     * desired data is properly set.</p>
      *
-     * @return The player
+     * @param data The skull data to set
+     * @return The transaction result
      */
-    Optional<GameProfile> getPlayer();
-
-    /**
-     * Sets the player associated with this skull. Also ensures that
-     * {@link #getType()} is set to {@link SkullTypes#PLAYER} (setting it if
-     * necessary).
-     *
-     * @param player The new player
-     */
-    void setPlayer(GameProfile player);
-
-    /**
-     * Gets the type of skull.
-     *
-     * @return The skull type
-     */
-    SkullType getType();
-
-    /**
-     * Sets the skull type. If the new type is not {@link SkullTypes#PLAYER}
-     * then the player profile will be cleared.
-     *
-     * @param type The new type
-     */
-    void setType(SkullType type);
-
+    TileDataTransactionResult setSkullData(SkullData data);
 }

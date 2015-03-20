@@ -25,23 +25,37 @@
 
 package org.spongepowered.api.block.tile;
 
+import org.spongepowered.api.block.tile.data.NoteData;
+import org.spongepowered.api.block.tile.data.NotePitch;
+
 /**
  * Represents a note block.
+ *
+ * <p>A {@link Note} will always have a valid {@link NoteData} to play.</p>
  */
-public interface Note extends TileEntityData {
+public interface Note extends TileEntity {
 
     /**
-     * Gets the note played by this note block.
-     *
-     * @return The note
+     * Attempts to play the currently stored {@link NotePitch} from this
+     * {@link Note} tile entity.
      */
-    NotePitch getNote();
+    void playNote();
 
     /**
-     * Sets the note to be played by this note block.
+     * Gets the data that this {@link Note} is currently using.
      *
-     * @param note The new note
+     * @return The current note data
      */
-    void setNote(NotePitch note);
+    NoteData getNoteData();
 
+    /**
+     * Sets the requested {@link NoteData} onto this {@link Note}.
+     *
+     * <p>Validation is performed on the {@link NoteData} to ensure the
+     * desired data is properly set.</p>
+     *
+     * @param data The note data to set
+     * @return The transaction result
+     */
+    TileDataTransactionResult setNoteData(NoteData data);
 }

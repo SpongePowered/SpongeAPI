@@ -22,27 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tile.lockable;
+
+package org.spongepowered.api.block.tile.carrier;
 
 /**
- * Represents a Brewing Stand.
+ * Represents a Dropper.
  */
-public interface BrewingStand extends Lockable {
-
-    /**
-     * Gets the remaining time until the brewing is complete. Will be zero if
-     * the brewing stand is not currently brewing anything.
-     *
-     * @return The remaining time, in ticks
-     */
-    int getRemainingBrewTime();
-
-    /**
-     * Sets the remaining time until the brewing is complete. This will only
-     * have effect if the current items within the brewing stand are valid.
-     *
-     * @param time The new remaining time, in ticks
-     */
-    void setRemainingBrewTime(int time);
+public interface Dropper extends TileEntityCarrier {
 
 }
