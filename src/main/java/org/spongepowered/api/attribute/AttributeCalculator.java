@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.attribute;
 
-import java.util.Dictionary;
+import java.util.Map;
 
 
 public interface AttributeCalculator {
@@ -48,6 +48,6 @@ public interface AttributeCalculator {
      * 
      * @return The modified value of the attribute
      */
-    double calculateValue(double base, Dictionary<Operation, Double> operations);
+    double calculateValue(double base, Map<Operation, Double> operations);
 
 }
