@@ -37,7 +37,8 @@ import java.util.List;
 public interface AttributeHolder {
 
     /**
-     * Calculates the value of a certain {@link Attribute} on this holder.
+     * Gets the value of a certain {@link Attribute} on this holder, as
+     * calculated by an {@link AttributeCalculator}.
      *
      * @param attribute The Attribute to find the value of
      * @return The value of a certain Attribute on this holder, or

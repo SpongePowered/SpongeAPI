@@ -25,40 +25,29 @@
 
 package org.spongepowered.api.attribute;
 
-/**
- * Represents a function used by an {@link AttributeModifier} to modify the
- * value of an {@link Attribute}.
- */
-public interface Operation extends Comparable<Operation> {
+import java.util.Dictionary;
+
+
+public interface AttributeCalculator {
 
     /**
-     * Gets the name of this operation.
-     *
-     * @return The name of this operation
-     */
-    String getName();
-
-    /**
-     * Gets the amount the {@link Attribute} should be incremented when this
-     * modifier is applied to it.
+     * <p>
+     * Calculates the value of an attribute given a base value and a set of
+     * {@link Operation}s and modification values. The order of operation
+     * evaluation will be decided according to a list sorted by each operations
+     * {@link Operation#compareTo(Operation)} method. Their
+     * {@link Operation#changeValueImmediately()} will determine whether after
+     * being evaluated, an operation's incrementation will be added to the value
+     * immediately, or be summed with all other incrementations from the same
+     * type of operation, then added.
+     * </p>
      * 
-     * @param base The base value of the Attribute
-     * @param modifier The modifier to modify the Attribute with
-     * @param currentValue The current value of the Attribute
-     * @return The amount the Attribute should be incremented when this modifier
-     *         is applied to it
-     */
-    double getIncrementation(double base, double modifier, double currentValue);
-
-    /**
-     * Gets if, when applied, this operation should change the value of the
-     * attribute immediately, or if it's incrementations should be summed up,
-     * then added.
+     * @param base The base value of the attribute
+     * @param modifiers A map containing pairs of operations and modifiers, for
+     *        use in {@link Operation#getIncrementation(double, double, double)}
      * 
-     * @return {@code true} if, when applied, this operation should change the
-     *         value of the attribute immediately, or {@code false} if it's
-     *         incrementations should be summed up, then added
+     * @return The modified value of the attribute
      */
-    boolean changeValueImmediately();
+    double calculateValue(double base, Dictionary<Operation, Double> operations);
 
 }
