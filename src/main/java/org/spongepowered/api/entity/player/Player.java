@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
+import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
@@ -38,6 +39,7 @@ import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Locale;
+
 import javax.annotation.Nullable;
 
 /**
@@ -144,6 +146,13 @@ public interface Player extends Human, User, CommandSource, Viewer {
      */
     PlayerConnection getConnection();
 
+    /**
+     * Sends a given {@link ResourcePack} to this player.
+     *
+     * @param pack The ResourcePack to send
+     */
+    void sendResourcePack(ResourcePack pack);
+    
     /**
      * Gets this player's {@link TabList}.
      * 
