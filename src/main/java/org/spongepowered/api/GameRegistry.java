@@ -632,9 +632,9 @@ public interface GameRegistry {
     AttributeModifierBuilder getAttributeModifierBuilder();
 
     /**
-     * Gets a new {@link AttributeCalculator}.
+     * Gets the {@link AttributeCalculator}.
      * 
-     * @return A new {@link AttributeCalculator}
+     * @return The {@link AttributeCalculator}
      */
     AttributeCalculator getAttributeCalculator();
 
