@@ -40,7 +40,7 @@ public interface AliasContext {
      * @return If this alias context should be used when running from the
      *         specified command source.
      */
-    public boolean appliesTo(CommandSource source);
+    boolean appliesTo(CommandSource source);
 
     /**
      * Gets the ID of the plugin to use when running from the specified command
@@ -50,6 +50,6 @@ public interface AliasContext {
      * @return The ID of the plugin to use when running from the specified
      *         command source.
      */
-    public String getPluginId(CommandSource source);
+    String getPluginId(CommandSource source);
 
 }
