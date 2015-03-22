@@ -379,22 +379,57 @@ public interface DataView {
     Optional<List<Map<?, ?>>> getMapList(DataQuery path);
 
     /**
+     * Gets the {@link List} of {@link DataView} by path, if available.
+     *
+     * <p>If a {@link List} of {@link DataView} does not exist, or the data
+     * residing at the path is not an instance of a {@link List} of
+     * {@link DataView}, an absent is returned.</p>
+     *
+     * @param path The path of the value to get
+     * @return The list of data views, if available
+     */
+    Optional<List<DataView>> getViewList(DataQuery path);
+
+    /**
      * Gets the {@link DataSerializable} object by path, if available.
      *
      * <p>If a {@link DataSerializable} exists, but is not the proper class
      * type, or there is no data at the path given, an absent is returned.</p>
      *
-     * <p>It is important that the {@link SerializationService} provided is the same one that
-     * has registered many of the {@link DataSerializableBuilder}s to ensure the {@link
-     * DataSerializable} requested can be returned.</p>
+     * <p>It is important that the {@link SerializationService} provided is
+     * the same one that has registered many of the
+     * {@link DataSerializableBuilder}s to ensure the {@link DataSerializable}
+     * requested can be returned.</p>
      *
      * @param path The path of the value to get
      * @param clazz The class of the {@link DataSerializable}
-     * @param service The serialization service to use for retrieving data serializable builders
+     * @param service The serialization service to use for retrieving data
+     *     serializable builders
      * @param <T> The type of {@link DataSerializable} object
      * @return The deserialized object, if available
      */
-    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path,
-            Class<T> clazz, SerializationService service);
+    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, SerializationService service);
+
+    /**
+     * Gets the {@link List} of {@link DataSerializable} by path, if available.
+     *
+     *
+     * <p>If a {@link List} exists, but the contents of the list are not
+     * considered {@link DataSerializable} or are not of the proper type of
+     * {@link DataSerializable}, an absent is returned.</p>
+     *
+     * <p>It is important that the {@link SerializationService} provided is
+     * the same one that has registered many of the
+     * {@link DataSerializableBuilder}s to ensure the {@link DataSerializable}
+     * requested can be returned.</p>
+     *
+     * @param path The path of the list value to get
+     * @param clazz The class of the {@link DataSerializable}
+     * @param service The serialization service to use for retrieving data
+     *     serializable builders
+     * @param <T> The type of {@link DataSerializable} object
+     * @return The deserialized objects in a list, if available
+     */
+    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationService service);
 
 }

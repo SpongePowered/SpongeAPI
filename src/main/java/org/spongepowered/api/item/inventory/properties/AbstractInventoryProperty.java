@@ -153,7 +153,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      *          org.spongepowered.api.item.inventory.InventoryProperty)
      */
     @Override
-    public boolean matches(InventoryProperty<?, ?> other) {
+    public boolean matches(@Nullable InventoryProperty<?, ?> other) {
         return this.getOperator().compare(this, other);
     }
 

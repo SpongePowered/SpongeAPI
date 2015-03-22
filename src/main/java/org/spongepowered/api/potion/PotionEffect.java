@@ -53,28 +53,12 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
     int getDuration();
 
     /**
-     * Sets the duration for which this potion effect
-     * will apply for.
-     *
-     * @param duration The new duration.
-     */
-    void setDuration(int duration);
-
-    /**
      * Gets the amplifier at which this potion effect
      * will apply effects.
      *
      * @return The amplifier.
      */
     int getAmplifier();
-
-    /**
-     * Sets the amplifier at which this potion effect
-     * will apply effects.
-     *
-     * @param amplifier The new amplifier.
-     */
-    void setAmplifier(int amplifier);
 
     /**
      * Gets if the potion effect is an ambient effect.
@@ -84,13 +68,6 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
     boolean isAmbient();
 
     /**
-     * Sets if the potion effect is an ambient effect.
-     *
-     * @param ambient New ambient value.
-     */
-    void setAmbient(boolean ambient);
-
-    /**
      * Gets whether or not this potion effect should
      * show particles.
      *
@@ -98,11 +75,4 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
      */
     boolean getShowParticles();
 
-    /**
-     * Sets whether or not this potion effect should
-     * show particles.
-     *
-     * @param showParticles If particles should be shown.
-     */
-    void setShowParticles(boolean showParticles);
 }

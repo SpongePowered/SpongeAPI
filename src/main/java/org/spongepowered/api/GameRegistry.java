@@ -27,6 +27,7 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
+import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.attribute.Operation;
@@ -40,7 +41,6 @@ import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
-import org.spongepowered.api.entity.living.animal.DyeColor;
 import org.spongepowered.api.entity.living.animal.HorseColor;
 import org.spongepowered.api.entity.living.animal.HorseStyle;
 import org.spongepowered.api.entity.living.animal.HorseVariant;
@@ -50,7 +50,13 @@ import org.spongepowered.api.entity.living.monster.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.item.CoalType;
+import org.spongepowered.api.item.CookedFish;
+import org.spongepowered.api.item.DyeColor;
 import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.FireworkEffectBuilder;
+import org.spongepowered.api.item.Fish;
+import org.spongepowered.api.item.GoldenApple;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
@@ -631,5 +637,79 @@ public interface GameRegistry {
      * @return A new {@link AttributeCalculator}
      */
     AttributeCalculator getAttributeCalculator();
+
+    /**
+     * Gets a new {@link AttributeBuilder}.
+     *
+     * @return A new AttributeBuilder
+     */
+    AttributeBuilder getAttributeBuilder();
+
+    /**
+     * Gets a {@link CoalType} by name.
+     *
+     * @param name The name of the coal type
+     * @return The coal type or Optional.absent() if not found
+     */
+    Optional<CoalType> getCoalType(String name);
+
+    /**
+     * Gets a collection of all available {@link CoalType}s.
+     *
+     * @return A collection of all coal types
+     */
+    Collection<CoalType> getCoalTypes();
+
+    /**
+     * Gets a {@link Fish} by name.
+     *
+     * @param name The name of the fish type
+     * @return The fish type or Optional.absent() if not found
+     */
+    Optional<Fish> getFishType(String name);
+
+    /**
+     * Gets a collection of all available {@link Fish} types.
+     *
+     * @return A collection of all fish types
+     */
+    Collection<Fish> getFishTypes();
+
+    /**
+     * Gets a {@link CookedFish} by name.
+     *
+     * @param name The name of the cooked fish type
+     * @return The cooked fish type or Optional.absent() if not found
+     */
+    Optional<CookedFish> getCookedFishType(String name);
+
+    /**
+     * Gets a collection of all available {@link CookedFish}s.
+     *
+     * @return A collection of all cooked fish types
+     */
+    Collection<CookedFish> getCookedFishTypes();
+
+    /**
+     * Gets a {@link GoldenApple} by name.
+     *
+     * @param name The name of the golden apple type
+     * @return The golden apple type or Optional.absent() if not found
+     */
+    Optional<GoldenApple> getGoldenAppleType(String name);
+
+    /**
+     * Gets a collection of all available {@link GoldenApple}s.
+     *
+     * @return A collection of all golden apple types
+     */
+    Collection<GoldenApple> getGoldenAppleTypes();
+
+    /**
+     * Gets a new {@link FireworkEffectBuilder}.
+     *
+     * @return A new firework effect builder
+     */
+    FireworkEffectBuilder getFireworkEffectBuilder();
 
 }

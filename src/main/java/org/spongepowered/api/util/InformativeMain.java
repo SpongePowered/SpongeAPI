@@ -25,11 +25,22 @@
 
 package org.spongepowered.api.util;
 
+import java.awt.GraphicsEnvironment;
+
+import javax.swing.JOptionPane;
+
 /**
  * A class containing a main method which throws an Exception to cleanly
  * indicate to the user than running the jar file was a bad idea.
  */
 public class InformativeMain {
+
+    private static final String ERROR = "\n\nOh dear... You have just attempted to run the SpongeAPI jar file.\n\nPlease Note: This is the binary for"
+                                        + " the API **ONLY** and running it has absolutely no\npurpose nor effect. If you wish to use Sponge you will"
+                                        + " need to locate the correct\nimplementation for the platform you wish to run Sponge on.\n\nFor information"
+                                        + " on the correct process for running sponge please see the documentation:\n\n\t\tSponge Documentation: http"
+                                        + "s://docs.spongepowered.org/\n\nFor more general information on the Sponge project please see the FAQ:\n\n"
+                                        + "\t\tSponge FAQ: https://docs.spongepowered.org/en/faq.html\n";
 
     /**
      * The main method which throws a {@link PEBKACException} with some basic
@@ -39,19 +50,11 @@ public class InformativeMain {
      * @throws PEBKACException always
      */
     public static void main(String[] args) throws PEBKACException {
-        throw new PEBKACException("\n\nOh dear... You have just attempted to run the SpongeAPI jar file.\n"
-                                + "\n"
-                                + "Please Note: This is the binary for the API **ONLY** and running it has absolutely no\n"
-                                + "purpose nor effect. If you wish to use Sponge you will need to locate the correct\n"
-                                + "implementation for the platform you wish to run Sponge on.\n"
-                                + "\n"
-                                + "For information on the correct process for running sponge please see the documentation:\n"
-                                + "\n"
-                                + "\t\tSponge Documentation: https://docs.spongepowered.org/\n"
-                                + "\n"
-                                + "For more general information on the Sponge project please see the FAQ:\n"
-                                + "\n"
-                                + "\t\tSponge FAQ: https://docs.spongepowered.org/en/faq.html\n");
+        if (!GraphicsEnvironment.isHeadless()) {
+            JOptionPane.showMessageDialog(null, ERROR, "PEBKACException!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            throw new PEBKACException(ERROR);
+        }
     }
 
 }

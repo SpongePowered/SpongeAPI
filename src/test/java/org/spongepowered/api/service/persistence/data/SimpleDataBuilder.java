@@ -30,10 +30,10 @@ import org.spongepowered.api.service.persistence.InvalidDataException;
 
 import java.util.List;
 
-class SimpleDataBuilder implements DataSerializableBuilder<SimpleDataSerializable> {
+class SimpleDataBuilder implements DataSerializableBuilder<SimpleData> {
 
     @Override
-    public Optional<SimpleDataSerializable> build(final DataView container) {
+    public Optional<SimpleData> build(final DataView container) {
 
         Optional<Integer> testInt = container.getInt(new DataQuery("myInt"));
         if (!testInt.isPresent()) {
@@ -52,7 +52,7 @@ class SimpleDataBuilder implements DataSerializableBuilder<SimpleDataSerializabl
             throw new InvalidDataException("Missing important data: {myStringList}");
         }
 
-        return Optional.of(new SimpleDataSerializable(testInt.get(),
+        return Optional.of(new SimpleData(testInt.get(),
                                                       testDouble.get(),
                                                       testString.get(),
                                                       testList.get()));

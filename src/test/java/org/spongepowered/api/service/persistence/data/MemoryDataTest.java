@@ -37,7 +37,6 @@ import org.mockito.Mockito;
 import org.spongepowered.api.service.persistence.DataSerializableBuilder;
 import org.spongepowered.api.service.persistence.SerializationService;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -162,6 +161,24 @@ public class MemoryDataTest {
     }
 
     @Test
+    public void testLists() {
+        DataContainer container = new MemoryDataContainer();
+        DataQuery query = new DataQuery("foo");
+        List<DataView> list = Lists.newArrayList();
+        for (int i = 0; i < 1000; i++) {
+            DataContainer internal = new MemoryDataContainer();
+            internal.set(new DataQuery("foo", "bar"), "foo.bar" + i);
+            int[] ints = new int[] {0, 1, 2, 3, i};
+            internal.set(new DataQuery("ints"), ints);
+            list.add(internal);
+        }
+        container.set(query, list);
+        assertTrue(container.contains(query));
+        List<DataView> queriedList = container.getViewList(query).get();
+        assertTrue(queriedList.equals(list));
+    }
+
+    @Test
     public void testEmptyQuery() {
         DataContainer container = new MemoryDataContainer();
         DataQuery query = new DataQuery("");
@@ -191,20 +208,42 @@ public class MemoryDataTest {
 
     @Test
     public void testGetSerializable() {
+        // Need to mock the service Sadly, this takes the most amount of time
         SerializationService service = Mockito.mock(SerializationService.class);
-        DataSerializableBuilder<SimpleDataSerializable> builder = new SimpleDataBuilder();
-        Mockito.stub(service.getBuilder(SimpleDataSerializable.class)).toReturn(Optional.of(builder));
+        DataSerializableBuilder<SimpleData> builder = new SimpleDataBuilder();
+        Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 
         List<String> myList = ImmutableList.of("foo", "bar", "baz");
 
-        SimpleDataSerializable temp = new SimpleDataSerializable(1, 2.0, "foo", myList);
+        SimpleData temp = new SimpleData(1, 2.0, "foo", ImmutableList.of("foo", "bar", "baz"));
         DataContainer container = temp.toContainer();
 
-        Optional<SimpleDataSerializable> fromContainer = container.getSerializable(new DataQuery(),
-                                                                         SimpleDataSerializable
-                                                                                 .class, service);
+        Optional<SimpleData> fromContainer = container.getSerializable(new DataQuery(), SimpleData.class, service);
         assertTrue(fromContainer.isPresent());
         assertTrue(Objects.equal(fromContainer.get(), temp));
+        assertTrue(container.contains(new DataQuery("myStringList")));
+        assertTrue(container.getStringList(new DataQuery("myStringList")).get().equals(myList));
+
+    }
+
+    @Test
+    public void testGetSerializableList() {
+        SerializationService service = Mockito.mock(SerializationService.class);
+        DataSerializableBuilder<SimpleData> builder = new SimpleDataBuilder();
+        Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
+
+        List<SimpleData> list = Lists.newArrayList();
+        for (int i = 0; i < 1000; i++) {
+            String number = Integer.toString(i);
+            list.add(new SimpleData(i, 0.1 * i, "i", Lists.asList(number, new String[] {" foo", "bar"})));
+        }
+        DataContainer container = new MemoryDataContainer();
+        container.set(new DataQuery("foo", "bar"), list);
+        assertTrue(container.contains(new DataQuery("foo", "bar")));
+        Optional<List<SimpleData>> fromContainer = container.getSerializableList(new DataQuery("foo", "bar"), SimpleData.class, service);
+        assertTrue(fromContainer.isPresent());
+        List<SimpleData> memoryList = fromContainer.get();
+        assertTrue(Objects.equal(memoryList, list));
 
     }
 

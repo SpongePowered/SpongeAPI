@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.attribute;
 
-import java.util.Map;
+import java.util.Collection;
 
 
 public interface AttributeCalculator {
@@ -43,11 +43,11 @@ public interface AttributeCalculator {
      * </p>
      * 
      * @param base The base value of the attribute
-     * @param modifiers A map containing pairs of operations and modifiers, for
-     *        use in {@link Operation#getIncrementation(double, double, double)}
+     * @param modifiers A collection of {@link AttributeModifier}s to be applied
+     *        to the base value
      * 
      * @return The modified value of the attribute
      */
-    double calculateValue(double base, Map<Operation, Double> operations);
+    double calculateValue(double base, Collection<AttributeModifier> modifiers);
 
 }
