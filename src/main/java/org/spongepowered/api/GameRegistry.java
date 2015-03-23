@@ -28,6 +28,7 @@ package org.spongepowered.api;
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeBuilder;
+import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.attribute.Operation;
 import org.spongepowered.api.block.BlockType;
@@ -636,6 +637,13 @@ public interface GameRegistry {
      * @return A new AttributeModifierBuilder
      */
     AttributeModifierBuilder getAttributeModifierBuilder();
+
+    /**
+     * Gets the {@link AttributeCalculator}.
+     *
+     * @return The {@link AttributeCalculator}
+     */
+    AttributeCalculator getAttributeCalculator();
 
     /**
      * Gets a new {@link AttributeBuilder}.
