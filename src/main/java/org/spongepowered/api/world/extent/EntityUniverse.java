@@ -71,6 +71,13 @@ public interface EntityUniverse {
     /**
      * Create an entity instance at the given position.
      *
+     * <p>Creating an entity does not spawn the entity into the world. An
+     * entity created means the entity can be spawned at the given location.
+     * If {@link Optional#absent()} was returned, the entity is not able to
+     * spawn at the given location. Furthermore, this allows for the {@link
+     * Entity} to be customized further prior to traditional "ticking" and
+     * processing by core systems.</p>
+     *
      * @param type The type
      * @param position The position
      * @return An entity, if one was created
@@ -79,6 +86,13 @@ public interface EntityUniverse {
 
     /**
      * Create an entity instance at the given position.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An
+     * entity created means the entity can be spawned at the given location.
+     * If {@link Optional#absent()} was returned, the entity is not able to
+     * spawn at the given location. Furthermore, this allows for the {@link
+     * Entity} to be customized further prior to traditional "ticking" and
+     * processing by core systems.</p>
      *
      * @param snapshot The snapshot
      * @param position The position
@@ -89,6 +103,13 @@ public interface EntityUniverse {
     /**
      * Create an entity instance at the given position.
      *
+     * <p>Creating an entity does not spawn the entity into the world. An
+     * entity created means the entity can be spawned at the given location.
+     * If {@link Optional#absent()} was returned, the entity is not able to
+     * spawn at the given location. Furthermore, this allows for the {@link
+     * Entity} to be customized further prior to traditional "ticking" and
+     * processing by core systems.</p>
+     *
      * @param type The type
      * @param position The position
      * @return An entity, if one was created
@@ -97,6 +118,13 @@ public interface EntityUniverse {
 
     /**
      * Create an entity instance at the given position.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An
+     * entity created means the entity can be spawned at the given location.
+     * If {@link Optional#absent()} was returned, the entity is not able to
+     * spawn at the given location. Furthermore, this allows for the {@link
+     * Entity} to be customized further prior to traditional "ticking" and
+     * processing by core systems.</p>
      *
      * @param snapshot The snapshot
      * @param position The position
@@ -107,13 +135,29 @@ public interface EntityUniverse {
     /**
      * Create an entity instance at the given position.
      *
+     * <p>Creating an entity does not spawn the entity into the world. An
+     * entity created means the entity can be spawned at the given location.
+     * If {@link Optional#absent()} was returned, the entity is not able to
+     * spawn at the given location. Furthermore, this allows for the {@link
+     * Entity} to be customized further prior to traditional "ticking" and
+     * processing by core systems.</p>
+     *
      * @param entityContainer The data container of the entity
      * @return An entity, if one was created
      */
     Optional<Entity> createEntity(DataContainer entityContainer);
 
     /**
-     * Spawns an entity using the already set properties (extent, position, rotation).
+     * Spawns an entity using the already set properties (extent, position,
+     * rotation).
+     *
+     * <p>The requirements involve that all necessary setup of states and data
+     * is already preformed on the entity retrieved from the various {@link
+     * #createEntity(EntityType,Vector3d)} methods. Calling this will make the
+     * now-spawned entity able to be processed by various systems.</p>
+     *
+     * <p>If the entity was unable to spawn, the entity is not removed, but it
+     * should be taken note that there can be many reasons for a failure.</p>
      *
      * @param entity The entity to spawn
      * @return True if successful, false if not

@@ -27,7 +27,7 @@ package org.spongepowered.api.item;
 
 public final class Fishes {
 
-    public static final Fish RAW_FISH = null;
+    public static final Fish COD = null;
     public static final Fish SALMON = null;
     public static final Fish CLOWNFISH = null;
     public static final Fish PUFFERFISH = null;

@@ -215,7 +215,7 @@ public class MemoryDataTest {
 
         List<String> myList = ImmutableList.of("foo", "bar", "baz");
 
-        SimpleData temp = new SimpleData(1, 2.0, "foo", ImmutableList.of("foo", "bar", "baz"));
+        SimpleData temp = new SimpleData(1, 2.0, "foo", myList);
         DataContainer container = temp.toContainer();
 
         Optional<SimpleData> fromContainer = container.getSerializable(new DataQuery(), SimpleData.class, service);

@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.util;
 
+/**
+ * Represents the directional axis is either
+ * positive, zero, or negative.
+ */
 public enum AxisDirection {
 
     PLUS(1),

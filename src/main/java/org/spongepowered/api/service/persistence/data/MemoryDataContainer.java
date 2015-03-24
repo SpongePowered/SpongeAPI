@@ -26,6 +26,11 @@ package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Optional;
 
+/**
+ * The default implementation of {@link DataContainer} that can be instantiated
+ * for any use. This is the primary implementation of any {@link DataView} that
+ * is used throughout both SpongeAPI and Sponge implementation.
+ */
 public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 
     @Override

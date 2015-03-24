@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile.source;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
@@ -39,7 +39,7 @@ public final class UnknownProjectileSource implements ProjectileSource {
     }
 
     @Override
-    public <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3f velocity) {
+    public <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3d velocity) {
         return null;
     }
 }

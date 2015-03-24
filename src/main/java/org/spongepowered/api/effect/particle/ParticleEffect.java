@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.awt.Color;
@@ -46,14 +46,14 @@ public interface ParticleEffect {
      *
      * @return The motion vector
      */
-    Vector3f getMotion();
+    Vector3d getMotion();
 
     /**
      * Gets the offset vector of the particle effect.
      *
      * @return The offset vector
      */
-    Vector3f getOffset();
+    Vector3d getOffset();
 
     /**
      * Gets the amount of particles that will be spawned.

@@ -27,6 +27,9 @@ package org.spongepowered.api.event.rcon;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.util.command.source.RconSource;
 
+/**
+ * An event that is associated with an {@link RconSource}.
+ */
 public interface RconEvent extends GameEvent {
 
     /**

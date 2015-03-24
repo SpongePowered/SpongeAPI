@@ -25,6 +25,9 @@
 
 package org.spongepowered.api.util.event;
 
+/**
+ * Represents an event that can be cancelled.
+ */
 public interface Cancellable {
 
     /**

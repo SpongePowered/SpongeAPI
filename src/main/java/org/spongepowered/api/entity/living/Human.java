@@ -121,7 +121,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      * Gets the experience required since the last level to level up.
      *
      * <p>For example, if level 14 reqiures 280 experience points, level 15
-     * requires 315, and the player is at level 14, this method will return 35.
+     * requires 315, and the player is at level 14, this method will return
      * 35.</p>
      *
      * @return the experience required since the last level to level up

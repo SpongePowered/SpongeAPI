@@ -28,6 +28,10 @@ package org.spongepowered.api.event;
 import org.spongepowered.api.util.event.Event;
 import org.spongepowered.api.util.event.callback.CallbackList;
 
+/**
+ * An abstract event that can be extended for any and all custom events as
+ * necessary.
+ */
 public abstract class AbstractEvent implements Event {
 
     private final CallbackList callbacks = new CallbackList();

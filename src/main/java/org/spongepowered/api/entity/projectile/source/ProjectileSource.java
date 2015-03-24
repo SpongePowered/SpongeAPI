@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile.source;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
@@ -49,5 +49,5 @@ public interface ProjectileSource {
      * @param <T> The Type of Projectile
      * @return The projectile instance that was launched
      */
-    <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3f velocity);
+    <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3d velocity);
 }

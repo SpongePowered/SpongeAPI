@@ -29,7 +29,11 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.world.ChunkManager;
 
-// NOTE: This does not extend ChunkEvent as Chunk may not be currently loaded.
+/**
+ * Represents a {@link org.spongepowered.api.world.ChunkManager.LoadingTicket}
+ * forcing a chunk to load into the world. Note that the loading ticket may
+ * have not finished so the chunk may not have finished loading yet.
+ */
 public interface ChunkForcedEvent extends GameEvent {
 
     /**

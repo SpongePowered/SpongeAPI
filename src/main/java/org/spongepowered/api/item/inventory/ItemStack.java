@@ -153,7 +153,7 @@ public interface ItemStack extends DataHolder, DataSerializable, AttributeSource
      * @param container The raw data to validate
      * @return True if the data is valid
      */
-    boolean vaildateData(DataContainer container);
+    boolean validateData(DataContainer container);
 
     /**
      * Attempts to set all data of this {@link ItemStack} according to the

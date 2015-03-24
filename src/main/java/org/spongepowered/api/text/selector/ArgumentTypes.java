@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -120,7 +120,7 @@ public final class ArgumentTypes {
      * {@code rx}/{@code ry} (for minimum) and {@code rxm}/{@code rym} selector
      * keys.</p>
      */
-    public static final ArgumentType.Limit<ArgumentType.Vector3<Vector3f, Float>> ROTATION = null;
+    public static final ArgumentType.Limit<ArgumentType.Vector3<Vector3d, Float>> ROTATION = null;
 
     /**
      * The argument type filtering targets based on the {@link EntityType}.

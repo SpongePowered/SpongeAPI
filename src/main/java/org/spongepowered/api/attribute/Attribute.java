@@ -28,8 +28,8 @@ package org.spongepowered.api.attribute;
 import com.google.common.base.Predicate;
 
 /**
- * Represents an type of attribute that can be applied to a
- * {@link AttributeHolder}.
+ * Represents a type of attribute that can be applied to an {@link
+ * AttributeHolder}.
  */
 public interface Attribute {
 

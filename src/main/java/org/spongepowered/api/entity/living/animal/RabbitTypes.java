@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+/**
+ * An enumeration of known vanilla {@link RabbitType}s.
+ */
 public final class RabbitTypes {
 
     public static final RabbitType BROWN = null;

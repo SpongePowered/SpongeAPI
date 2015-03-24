@@ -122,6 +122,12 @@ configure([compileJava, compileTestJava]) {
 
 javadoc {
    options.jFlags('-Xms256m', '-Xmx512m')
+   options.links("http://docs.guava-libraries.googlecode.com/git-history/v17.0/javadoc/",
+                 "http://google.github.io/guice/api-docs/latest/javadoc/",
+                 "http://flowpowered.com/math/",
+                 "http://asm.ow2.org/asm50/javadoc/user/",
+                 "http://www.slf4j.org/apidocs/",
+                 "http://docs.oracle.com/javase/6/docs/api/")
 }
 
 if (JavaVersion.current().isJava8Compatible()) {

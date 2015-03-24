@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.effect.sound;
 
+/**
+ * An enumeration of vanilla {@link SoundType}s.
+ */
 public final class SoundTypes {
 
     public static final SoundType AMBIENCE_CAVE = null;

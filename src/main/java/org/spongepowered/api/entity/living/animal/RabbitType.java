@@ -26,6 +26,9 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
 
+/**
+ * Represents a type of {@link Rabbit}.
+ */
 public interface RabbitType extends DataSerializable {
 
     /**

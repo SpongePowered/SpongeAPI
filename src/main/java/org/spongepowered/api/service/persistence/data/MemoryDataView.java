@@ -190,38 +190,38 @@ public class MemoryDataView implements DataView {
         checkState(this.container != null);
 
         if (value instanceof DataView) {
-            checkArgument(!(value).equals(this));
+            checkArgument(value != this);
             copyDataView(path, (DataView) value);
         } else if (value instanceof DataSerializable) {
             DataContainer valueContainer = ((DataSerializable) value).toContainer();
             checkArgument(!(valueContainer).equals(this));
             copyDataView(path, valueContainer);
-        }
-
-        List<String> parts = path.getParts();
-        if (parts.size() > 1) {
-            String subKey = parts.get(0);
-            DataQuery subQuery = new DataQuery(subKey);
-            Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
-            DataView subView;
-            if (!subViewOptional.isPresent()) {
-                this.createView(subQuery);
-                subView = (DataView) this.map.get(subKey);
-            } else {
-                subView = subViewOptional.get();
-            }
-            List<String> subParts = Lists.newArrayListWithCapacity(parts.size() - 1);
-            for (int i = 1; i < parts.size(); i++) {
-                subParts.add(parts.get(i));
-            }
-            subView.set(new DataQuery(subParts), value);
         } else {
-            if (value instanceof Collection) {
-                setCollection(parts.get(0), (Collection) value);
-            } else if (value instanceof Object[]) {
-                setCollection(parts.get(0), Lists.newArrayList((Object[]) value));
+            List<String> parts = path.getParts();
+            if (parts.size() > 1) {
+                String subKey = parts.get(0);
+                DataQuery subQuery = new DataQuery(subKey);
+                Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
+                DataView subView;
+                if (!subViewOptional.isPresent()) {
+                    this.createView(subQuery);
+                    subView = (DataView) this.map.get(subKey);
+                } else {
+                    subView = subViewOptional.get();
+                }
+                List<String> subParts = Lists.newArrayListWithCapacity(parts.size() - 1);
+                for (int i = 1; i < parts.size(); i++) {
+                    subParts.add(parts.get(i));
+                }
+                subView.set(new DataQuery(subParts), value);
             } else {
-                this.map.put(parts.get(0), value);
+                if (value instanceof Collection) {
+                    setCollection(parts.get(0), (Collection) value);
+                } else if (value instanceof Object[]) {
+                    setCollection(parts.get(0), Lists.newArrayList((Object[]) value));
+                } else {
+                    this.map.put(parts.get(0), value);
+                }
             }
         }
     }
@@ -252,7 +252,7 @@ public class MemoryDataView implements DataView {
     private void copyDataView(DataQuery path, DataView value) {
         Collection<DataQuery> valueKeys = value.getKeys(true);
         for (DataQuery oldKey : valueKeys) {
-            set(path.then(oldKey), value.get(oldKey));
+            set(path.then(oldKey), value.get(oldKey).get());
         }
     }
 

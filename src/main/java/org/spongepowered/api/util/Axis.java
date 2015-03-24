@@ -27,6 +27,9 @@ package org.spongepowered.api.util;
 
 import com.flowpowered.math.vector.Vector3d;
 
+/**
+ * Represents a three dimensional cartesian axis.
+ */
 public enum Axis {
 
     X(new Vector3d(1, 0, 0)),

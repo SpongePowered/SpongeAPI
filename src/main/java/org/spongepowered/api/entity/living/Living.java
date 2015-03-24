@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.entity.living;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.entity.Entity;
@@ -178,7 +178,7 @@ public interface Living extends Entity, AttributeHolder {
      *
      * @return The camera location
      */
-    Vector3f getEyeLocation();
+    Vector3d getEyeLocation();
 
     /**
      * Gets the remaining ticks of air.

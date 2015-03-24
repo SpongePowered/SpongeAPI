@@ -35,7 +35,7 @@ public interface AttributeCalculator {
      * Calculates the value of an attribute given a base value and a set of
      * {@link Operation}s and modification values. The order of operation
      * evaluation will be decided according to a list sorted by each operations
-     * {@link Operation#compareTo(Operation)} method. Their
+     * {@link Operation#compareTo} method. Their
      * {@link Operation#changeValueImmediately()} will determine whether after
      * being evaluated, an operation's incrementation will be added to the value
      * immediately, or be summed with all other incrementations from the same

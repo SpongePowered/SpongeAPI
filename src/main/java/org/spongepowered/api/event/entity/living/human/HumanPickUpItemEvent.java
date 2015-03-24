@@ -27,6 +27,9 @@ package org.spongepowered.api.event.entity.living.human;
 
 import org.spongepowered.api.event.entity.living.LivingPickUpItemEvent;
 
+/**
+ * An event where a human is picking up an item.
+ */
 public interface HumanPickUpItemEvent extends HumanEvent, LivingPickUpItemEvent {
 
 }

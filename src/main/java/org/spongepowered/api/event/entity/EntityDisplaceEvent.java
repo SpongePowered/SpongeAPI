@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
@@ -63,13 +63,13 @@ public interface EntityDisplaceEvent extends EntityEvent, Cancellable {
      *
      * @return The rotation the entity is facing
      */
-    Vector3f getRotation();
+    Vector3d getRotation();
 
     /**
      * Sets the rotation the entity is facing.
      *
      * @param rotation The rotation the entity is facing
      */
-    void setRotation(Vector3f rotation);
+    void setRotation(Vector3d rotation);
 
 }
