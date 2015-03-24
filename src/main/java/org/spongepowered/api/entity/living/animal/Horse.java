@@ -28,7 +28,9 @@ package org.spongepowered.api.entity.living.animal;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Tameable;
 import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.Slot;
 
 import javax.annotation.Nullable;
 
@@ -87,18 +89,12 @@ public interface Horse extends Animal, Tameable, Carrier {
 
     /**
      * Gets the current saddle this horse is equipped with.
+     *
      * <p>A saddled horse is player rideable. Not all horses can be saddled.</p>
+     * <p>In Vanilla, the returned {@link Inventory} can be queried for {@link Slot}.</p>
      *
      * @return The saddle, if available
      */
-    Optional<ItemStack> getSaddle();
-
-    /**
-     * Sets the horse to be equipped with the given saddle.
-     * <p>A saddled horse is player rideable. Not all horses can be saddled.</p>
-     *
-     * @param itemStack The saddle item
-     */
-    void setSaddle(@Nullable ItemStack itemStack);
+    Inventory getSaddle();
 
 }

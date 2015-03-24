@@ -25,7 +25,9 @@
 package org.spongepowered.api.entity.hanging;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.rotation.Rotation;
 
 import javax.annotation.Nullable;
@@ -36,18 +38,13 @@ import javax.annotation.Nullable;
 public interface ItemFrame extends Hanging {
 
     /**
-     * Gets the currently displayed Item.
+     * Gets the {@link Inventory} containing the {@link ItemStack} to display.
      *
-     * @return The currently displayed item, if available
-     */
-    Optional<ItemStack> getItem();
-
-    /**
-     * Sets the item to be displayed.
+     * <p>In Vanilla, the returned {@link Inventory} can be queried for {@link Slot}.</p>
      *
-     * @param item The item to be displayed
+     * @return The inventory for this item frame.
      */
-    void setItem(@Nullable ItemStack item);
+    Inventory getItem();
 
     /**
      * Gets the current {@link Rotation} of the {@link ItemStack}

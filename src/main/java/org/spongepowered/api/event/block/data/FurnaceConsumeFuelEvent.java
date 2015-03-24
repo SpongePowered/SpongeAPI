@@ -27,7 +27,9 @@ package org.spongepowered.api.event.block.data;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.data.Furnace;
 import org.spongepowered.api.event.inventory.ItemResultEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.slots.FuelSlot;
 
 /**
  * An event when a {@link Furnace} consumes an {@link ItemStack} as fuel.
@@ -35,19 +37,23 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface FurnaceConsumeFuelEvent extends FurnaceEvent, ItemResultEvent {
 
     /**
-     * Gets the burned item.
+     * Gets the {@link Inventory} containing the burned {@link ItemStack};
      *
      * <p>A {@link Furnace} uses {@link ItemStack}s to fuel itself, and after the fuel is
      * spent, the item is burned.</p>
      *
+     * <p>In Vanilla, the returned {@link Inventory} can be queried for {@link FuelSlot}.</p>
+     *
      * @return The burned item
      */
-    ItemStack getBurnedItem();
+    Inventory getBurnedItem();
 
     /**
-     * Gets the remaining fuel {@link ItemStack} within this furnace.
+     * Gets the {@link Inventory} containing the remaining fuel {@link ItemStack} within this furnace.
      *
      * <p>Fuel burns and may run out.</p>
+     *
+     * <p>In Vanilla, the returned {@link Inventory} can be queried for {@link FuelSlot}.</p>
      *
      * @return The fuel item, if available
      */
