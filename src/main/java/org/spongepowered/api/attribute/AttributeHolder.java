@@ -50,17 +50,21 @@ public interface AttributeHolder {
      * Gets the base value of a certain {@link Attribute} on this holder.
      *
      * @param attribute The attribute to get the base value of
-     * @return The base value of a certain Attribute on this holder
+     * @return The base value of a certain Attribute on this holder, or
+     *         Optional.absent() if the attribute is not applicable
      */
-    double getBase(Attribute attribute);
+    Optional<Double> getBase(Attribute attribute);
 
     /**
      * Sets the base value of a certain {@link Attribute} on this holder.
      *
+     * <p>If the attribute does not already exist, it will be created.</p>
+     *
      * @param attribute The Attribute to set the base value of
      * @param base The new base value
      * @throws IllegalArgumentException If the base value exceeds the maximum or
-     *         is below the minimum of the {@link Attribute}
+     *         is below the minimum of the {@link Attribute}, or if the attribute
+     *         is not applicable
      */
     void setBase(Attribute attribute, double base) throws IllegalArgumentException;
 
