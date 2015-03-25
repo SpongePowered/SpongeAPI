@@ -45,11 +45,4 @@ public interface AttributeModifier {
      */
     double getValue();
 
-    /**
-     * Gets the attribute to modify.
-     *
-     * @return The attribute to modify
-     */
-    Attribute getAttribute();
-
 }

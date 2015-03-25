@@ -31,14 +31,6 @@ package org.spongepowered.api.attribute;
 public interface AttributeModifierBuilder {
 
     /**
-     * Sets the {@link Attribute} of the {@link AttributeModifier} to be built.
-     *
-     * @param attribute The Attribute to use
-     * @return This builder, for chaining
-     */
-    AttributeModifierBuilder attribute(Attribute attribute);
-
-    /**
      * Sets the value of the {@link AttributeModifier} to be built.
      *
      * @param value The value to use
