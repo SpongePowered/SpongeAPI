@@ -114,6 +114,7 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLin
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
+import org.spongepowered.api.event.state.StateEvent;
 import org.spongepowered.api.event.stats.AchievementEvent;
 import org.spongepowered.api.event.stats.StatisticChangeEvent;
 import org.spongepowered.api.event.weather.LightningStrikeEvent;
@@ -186,6 +187,20 @@ public final class SpongeEventFactory {
     @SuppressWarnings("unchecked")
     private static <T> T createEvent(Class<T> type, Map<String, Object> values) {
         return (T) factories.getUnchecked(type).apply(values);
+    }
+
+    /**
+     * Creates a new {@link StateEvent} of the given type.
+     *
+     * @param type The type of the state event
+     * @param game The game instance for this {@link GameEvent}
+     * @param <T> The type of the state event
+     * @return A new instance of the event
+     */
+    public static <T extends StateEvent> T createState(Class<T> type, Game game) {
+        Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
+        values.put("game", game);
+        return createEvent(type, values);
     }
 
     /**
