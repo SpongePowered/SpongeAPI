@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -51,70 +52,86 @@ import java.util.Set;
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
-public class SimpleDispatcher implements Dispatcher {
+public class SimpleDispatcher implements Dispatcher<Boolean> {
 
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
 
     /**
      * Register a given command using the given list of aliases.
      *
-     * <p>If there is a conflict with one of the aliases (i.e. that alias
-     * is already assigned to another command), then the alias will be skipped.
-     * It is possible for there to be no alias to be available out of
-     * the provided list of aliases, which would mean that the command would not
-     * be assigned to any aliases.</p>
+     * <p>
+     * If there is a conflict with one of the aliases (i.e. that alias is
+     * already assigned to another command), then the alias will be skipped. It
+     * is possible for there to be no alias to be available out of the provided
+     * list of aliases, which would mean that the command would not be assigned
+     * to any aliases.
+     * </p>
      *
-     * <p>The first non-conflicted alias becomes the "primary alias."</p>
+     * <p>
+     * The first non-conflicted alias becomes the "primary alias."
+     * </p>
      *
      * @param callable The command
      * @param alias An array of aliases
-     * @return The registered command mapping, unless no aliases could be registered
+     * @return The registered command mapping, unless no aliases could be
+     *         registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
+    public Optional<CommandMapping> register(CommandCallable<Boolean> callable, String... alias) {
         checkNotNull(alias);
-        return register(callable, Arrays.asList(alias));
+        return this.register(callable, Arrays.asList(alias));
     }
 
     /**
      * Register a given command using the given list of aliases.
      *
-     * <p>If there is a conflict with one of the aliases (i.e. that alias
-     * is already assigned to another command), then the alias will be skipped.
-     * It is possible for there to be no alias to be available out of
-     * the provided list of aliases, which would mean that the command would not
-     * be assigned to any aliases.</p>
+     * <p>
+     * If there is a conflict with one of the aliases (i.e. that alias is
+     * already assigned to another command), then the alias will be skipped. It
+     * is possible for there to be no alias to be available out of the provided
+     * list of aliases, which would mean that the command would not be assigned
+     * to any aliases.
+     * </p>
      *
-     * <p>The first non-conflicted alias becomes the "primary alias."</p>
+     * <p>
+     * The first non-conflicted alias becomes the "primary alias."
+     * </p>
      *
      * @param callable The command
      * @param aliases A list of aliases
-     * @return The registered command mapping, unless no aliases could be registered
+     * @return The registered command mapping, unless no aliases could be
+     *         registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, List<String> aliases) {
-        return register(callable, aliases, Functions.<List<String>>identity());
+    public Optional<CommandMapping> register(CommandCallable<Boolean> callable, List<String> aliases) {
+        return this.register(callable, aliases, Functions.<List<String>>identity());
     }
 
     /**
      * Register a given command using a given list of aliases.
      *
-     * <p>The provided callback function will be called with a list of aliases
-     * that are not taken (from the list of aliases that were requested) and
-     * it should return a list of aliases to actually register. Aliases may be
+     * <p>
+     * The provided callback function will be called with a list of aliases that
+     * are not taken (from the list of aliases that were requested) and it
+     * should return a list of aliases to actually register. Aliases may be
      * removed, and if no aliases remain, then the command will not be
      * registered. It may be possible that no aliases are available, and thus
      * the callback would receive an empty list. New aliases should not be added
      * to the list in the callback as this may cause
-     * {@link IllegalArgumentException} to be thrown.</p>
+     * {@link IllegalArgumentException} to be thrown.
+     * </p>
      *
-     * <p>The first non-conflicted alias becomes the "primary alias."</p>
+     * <p>
+     * The first non-conflicted alias becomes the "primary alias."
+     * </p>
      *
      * @param callable The command
      * @param aliases A list of aliases
      * @param callback The callback
-     * @return The registered command mapping, unless no aliases could be registered
-     * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
+     * @return The registered command mapping, unless no aliases could be
+     *         registered
+     * @throws IllegalArgumentException Thrown if new conflicting aliases are
+     *         added in the callback
      */
-    public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
+    public synchronized Optional<CommandMapping> register(CommandCallable<Boolean> callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(aliases);
         checkNotNull(callable);
@@ -203,7 +220,6 @@ public class SimpleDispatcher implements Dispatcher {
                 found = current;
             }
         }
-
         return Optional.fromNullable(found);
     }
 
@@ -215,9 +231,7 @@ public class SimpleDispatcher implements Dispatcher {
      */
     public synchronized boolean removeMappings(Collection<?> c) {
         checkNotNull(c);
-
         boolean found = false;
-
         Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
             if (c.contains(it.next())) {
@@ -235,30 +249,23 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public synchronized Set<String> getPrimaryAliases() {
-        Set<String> aliases = new HashSet<String>();
-
+    public synchronized Map<String, Integer> getPrimaryAliases() {
+        Map<String, Integer> aliases = new HashMap<String, Integer>();
         for (CommandMapping mapping : this.commands.values()) {
-            aliases.add(mapping.getPrimaryAlias());
+            aliases.put(mapping.getPrimaryAlias(), 1);
         }
-
-        return Collections.unmodifiableSet(aliases);
+        return Collections.unmodifiableMap(aliases);
     }
 
     @Override
-    public synchronized Set<String> getAliases() {
-        Set<String> aliases = new HashSet<String>();
-
+    public synchronized Map<String, Integer> getAliases() {
+        Map<String, Integer> aliases = new HashMap<String, Integer>();
         for (CommandMapping mapping : this.commands.values()) {
-            aliases.addAll(mapping.getAllAliases());
+            for (String alias : mapping.getAllAliases()) {
+                aliases.put(alias, 1);
+            }
         }
-
-        return Collections.unmodifiableSet(aliases);
-    }
-
-    @Override
-    public synchronized Optional<CommandMapping> get(String alias) {
-        return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
+        return Collections.unmodifiableMap(aliases);
     }
 
     @Override
@@ -289,10 +296,9 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+    public Boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         String[] parts = arguments.split(" +", 2);
-        Optional<CommandMapping> mapping = get(parts[0]);
-
+        Optional<CommandMapping> mapping = resolveMapping(parts[0], source);
         if (mapping.isPresent()) {
             List<String> passedParents = new ArrayList<String>(parents.size() + 1);
             passedParents.addAll(parents);
@@ -335,8 +341,7 @@ public class SimpleDispatcher implements Dispatcher {
                 }
             }
         } else { // Complete using subcommand
-            Optional<CommandMapping> mapping = get(parts[0]);
-
+            Optional<CommandMapping> mapping = resolveMapping(parts[0], source);
             if (mapping.isPresent()) {
                 mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
             }
@@ -360,4 +365,28 @@ public class SimpleDispatcher implements Dispatcher {
         return "<sub-command>"; // @TODO: Translate
     }
 
+    @Override
+    public Set<CommandMapping> getAll(String alias) {
+        Set<CommandMapping> cmd = new HashSet<CommandMapping>();
+        Optional<CommandMapping> m = Optional.fromNullable(this.commands.get(alias.toLowerCase()));
+        if (m.isPresent()) {
+            cmd.add(m.get());
+        }
+        return cmd;
+    }
+
+    @Override
+    public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
+        return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
+    }
+
+    @Override
+    public boolean testSource(CommandSource source) {
+        for (CommandMapping mapping : this.commands.values()) {
+            if (!mapping.getCallable().testSource(source)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

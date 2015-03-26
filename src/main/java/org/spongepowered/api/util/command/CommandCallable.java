@@ -33,38 +33,60 @@ import java.util.List;
 /**
  * A command that can be executed.
  *
- * <p>Implementations are not required to implement a sane
- * {@link java.lang.Object#equals(Object)} but may choose to do so.</p>
+ * <p>
+ * Implementations are not required to implement a sane
+ * {@link java.lang.Object#equals(Object)} but may choose to do so.
+ * </p>
+ * 
+ * @param <T> The kind of result this command returns
  */
-public interface CommandCallable extends CommandCompleter {
+public interface CommandCallable<T> extends CommandCompleter {
 
     /**
      * Execute the command based on input arguments.
      *
-     * <p>The implementing class must perform the necessary permission
-     * checks.</p>
+     * <p> The implementing class must perform the necessary permission checks.
+     * </p>
      *
      * @param source The caller of the command
      * @param arguments The raw arguments for this command
-     * @param parents A stack of parent commands, where the first entry is
-     *                the root command
-     * @return Whether a command was processed
+     * @param parents A stack of parent commands, where the first entry is the
+     *        root command
+     * @return Some object indicating the status of the command.
      * @throws CommandException Thrown on a command error
      */
-    boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
+    T call(CommandSource source, String arguments, List<String> parents) throws CommandException;
 
     /**
      * Test whether this command can probably be executed by the given source.
      *
-     * <p>If implementations are unsure if the command can be executed by
-     * the source, {@code true} should be returned. Return values of this method
-     * may be used to determine whether this command is listed in command
-     * listings.</p>
+     * <p>
+     * If implementations are unsure if the command can be executed by the
+     * source, {@code true} should be returned. Return values of this method may
+     * be used to determine whether this command is listed in command listings.
+     * </p>
      *
-     * @param source The caller of the command
+     * @param source
+     *            The caller of the command
      * @return Whether permission is (probably) granted
      */
     boolean testPermission(CommandSource source);
+
+    /**
+     * Test whether this command can probably be executed by the given type of
+     * source.
+     * 
+     * <p> If implementations are unsure if the command can be executed by the
+     * source, {@code true} should be returned. Return values of this method may
+     * be used to determine whether this command is listed in command listings.
+     * This should ignore permissions of the source, only returning
+     * {@code false} if the command does not make sense being sent from that
+     * kind of source. </p>
+     * 
+     * @param source The caller of the command.
+     * @return Whether the command can be (probably) executed.
+     */
+    boolean testSource(CommandSource source);
 
     /**
      * Get a short one-line description of this command.
@@ -83,8 +105,10 @@ public interface CommandCallable extends CommandCompleter {
     /**
      * Get the usage string of this command.
      *
-     * <p>A usage string may look like
-     * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
+     * <p>
+     * A usage string may look like
+     * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.
+     * </p>
      *
      * @return A usage string
      */

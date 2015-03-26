@@ -63,6 +63,7 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.service.command.sponge.CommandResultBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
@@ -568,6 +569,13 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
+
+    /**
+     * Gets a new {@link CommandResultBuilder}.
+     * 
+     * @return A new {@link CommandResultBuilder}
+     */
+    CommandResultBuilder getCommandResultBuilder();
 
     /**
      * Gets a collection of all available {@link Difficulty}s.

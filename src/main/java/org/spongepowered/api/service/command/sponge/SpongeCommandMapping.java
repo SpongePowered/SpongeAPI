@@ -22,48 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.service.command.sponge;
 
-package org.spongepowered.api.plugin;
+import org.spongepowered.api.util.command.CommandCallable;
+import org.spongepowered.api.util.command.ImmutableCommandMapping;
 
-/**
- * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
- * information from the annotation for easier use.
- */
-public interface PluginContainer {
+import java.util.Collection;
 
-    /**
-     * Gets the id of the {@link Plugin} within this container.
-     *
-     * @return The id
-     */
-    String getId();
+public class SpongeCommandMapping extends ImmutableCommandMapping {
 
-    /**
-     * Gets the name of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getName();
+    private String registrar;
 
-    /**
-     * Gets the version of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getVersion();
+    public SpongeCommandMapping(CommandCallable<?> callable, String primary, String registrar, Collection<String> aliases) {
+        super(callable, primary, aliases);
+        this.registrar = registrar;
+    }
 
-    /**
-     * Returns the created instance of {@link Plugin}.
-     *
-     * @return The instance
-     */
-    Object getInstance();
+    public SpongeCommandMapping(CommandCallable<?> callable, String primary, String registrar, String... aliases) {
+        super(callable, primary, aliases);
+        this.registrar = registrar;
+    }
 
-    /**
-     * Gets if this PluginContainer wraps a dummy plugin.
-     * 
-     * @return if this PluginContainer wraps wraps a dummy plugin.
-     */
-    boolean isDummy();
-
+    public String getRegistrar() {
+        return registrar;
+    }
 }

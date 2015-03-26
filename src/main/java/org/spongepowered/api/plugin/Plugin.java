@@ -82,5 +82,11 @@ public @interface Plugin {
      */
     String dependencies() default "";
 
-
+    /**
+     * Checks if this plugin is not purely a Sponge plugin. (Forge Mods, Vanilla
+     * Command Wrapper...)
+     * 
+     * @return If this plugin is not purely a Sponge plugin.
+     */
+    boolean dummy() default false;
 }

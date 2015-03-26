@@ -22,54 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.service.command.sponge;
 
-package org.spongepowered.api.event.message;
-
-import com.google.common.base.Optional;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.service.command.sponge.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.event.Cancellable;
-import org.spongepowered.api.util.event.Order;
 
 /**
- * Fired when a command has been used and needs to be processed.
+ * Represents an alias that has been set to resolve to certain plugins under
+ * certain circumstances.
  */
-public interface CommandEvent extends GameEvent, Cancellable {
+public interface AliasContext {
 
     /**
-     * Get the source of the command.
-     *
-     * @return The source of the command
-     */
-    CommandSource getSource();
-
-    /**
-     * Get the command as a string, without any sort of command prefix.
-     *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the command would be {@code example}.</p>
-     *
-     * @return The commands
-     */
-    String getCommand();
-
-    /**
-     * Get the arguments as a string.
-     *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the arguments would be {@code bob 3 -f}.</p>
-     *
-     * @return The arguments
-     */
-    String getArguments();
-
-    /**
-     * The result of the command. This is only available when the event is being
-     * handled with {@link Order#LATE}.
+     * Gets if this alias context should be used when running from the specified
+     * command source.
      * 
-     * @return The result of the command, if present
+     * @param source The command source to check.
+     * @return If this alias context should be used when running from the
+     *         specified command source.
      */
-    Optional<CommandResult> getResult();
+    boolean appliesTo(CommandSource source);
+
+    /**
+     * Gets the ID of the plugin to use when running from the specified command
+     * source.
+     * 
+     * @param source The command source to check.
+     * @return The ID of the plugin to use when running from the specified
+     *         command source.
+     */
+    String getPluginId(CommandSource source);
 
 }
