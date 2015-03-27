@@ -32,9 +32,8 @@ import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
-
-import org.spongepowered.api.text.message.Message;
-import org.spongepowered.api.text.message.Messages;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -58,14 +57,14 @@ public class SimpleDispatcher implements Dispatcher {
 
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
     private final String shortDescription;
-    private final Message help;
+    private final Text help;
     
     /**
      * Creates a new dispatcher without any help messages.
      */
     public SimpleDispatcher() {
         this.shortDescription = "";
-        this.help = Messages.of(shortDescription);
+        this.help = Texts.of();
     }
     
     /**
@@ -74,7 +73,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @param shortDescription A short one-line description
      * @param help A formatted help message
      */
-    public SimpleDispatcher(String shortDescription, Message help) {
+    public SimpleDispatcher(String shortDescription, Text help) {
         this.shortDescription = shortDescription;
         this.help = help;
     }
@@ -375,7 +374,7 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public Message getHelp(CommandSource source) {
+    public Text getHelp(CommandSource source) {
         return help;
     }
 

@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.completion.CommandCompleter;
 
 import java.util.List;
@@ -91,7 +91,7 @@ public interface CommandCallable extends CommandCompleter {
      * @param source The source of the help request
      * @return A help text
      */
-    Message getHelp(CommandSource source);
+    Text getHelp(CommandSource source);
 
     /**
      * Get the usage string of this command.
