@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.text.translation.Translatable;
 
 /**
  * Represents the variant of a {@link org.spongepowered.api.entity.living.animal.Horse}.
@@ -32,7 +33,7 @@ import org.spongepowered.api.service.persistence.DataSerializable;
  * Some behaviors limit whether a horse can be chested, wear horse armor, or
  * can be saddled.</p>
  */
-public interface HorseVariant extends DataSerializable {
+public interface HorseVariant extends DataSerializable, Translatable {
 
     /**
      * Gets the name of this variant.

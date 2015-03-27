@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+/**
+ * An enumeration of known vanilla {@link OcelotType}s.
+ */
 public final class OcelotTypes {
 
     public static final OcelotType WILD_OCELOT = null;

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.ArmorEquipable;
 
 /**
@@ -37,84 +37,84 @@ public interface ArmorStand extends Living, ArmorEquipable {
      *
      * @return The direction the headpiece is aiming at
      */
-    Vector3f getHeadDirection();
+    Vector3d getHeadDirection();
 
     /**
      * Sets the direction of the head.
      *
      * @param direction The direction of the head
      */
-    void setHeadDirection(Vector3f direction);
+    void setHeadDirection(Vector3d direction);
 
     /**
      * Gets the direction the body is aiming at.
      *
      * @return The direction the body is aiming at
      */
-    Vector3f getBodyRotation();
+    Vector3d getBodyRotation();
 
     /**
      * Sets the direction of the body.
      *
      * @param direction The direction of the body
      */
-    void setBodyDirection(Vector3f direction);
+    void setBodyDirection(Vector3d direction);
 
     /**
      * Gets the direction the left arm is aiming at.
      *
      * @return The direction the left arm is aiming at
      */
-    Vector3f getLeftArmDirection();
+    Vector3d getLeftArmDirection();
 
     /**
      * Sets the direction of the left arm.
      *
      * @param direction The direction of the left arm
      */
-    void setLeftArmDirection(Vector3f direction);
+    void setLeftArmDirection(Vector3d direction);
 
     /**
      * Gets the direction the right arm is aiming at.
      *
      * @return The direction the right arm is aiming at
      */
-    Vector3f getRightArmDirection();
+    Vector3d getRightArmDirection();
 
     /**
      * Sets the direction of the right arm.
      *
      * @param direction The direction of the right arm
      */
-    void setRightArmDirection(Vector3f direction);
+    void setRightArmDirection(Vector3d direction);
 
     /**
      * Gets the direction the left leg is aiming at.
      *
      * @return The direction the left leg is aiming at
      */
-    Vector3f getLeftLegDirection();
+    Vector3d getLeftLegDirection();
 
     /**
      * Sets the direction of the left leg.
      *
      * @param direction The direction of the left leg
      */
-    void setLeftLegDirection(Vector3f direction);
+    void setLeftLegDirection(Vector3d direction);
 
     /**
      * Gets the direction the right leg is aiming at.
      *
      * @return The direction the right leg is aiming at
      */
-    Vector3f getRightLegDirection();
+    Vector3d getRightLegDirection();
 
     /**
      * Sets the direction of the right leg.
      *
      * @param direction The direction of the right leg
      */
-    void setRightLegDirection(Vector3f direction);
+    void setRightLegDirection(Vector3d direction);
 
     /**
      * Returns whether this armor stand is a small armor stand or not.

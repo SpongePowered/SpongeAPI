@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+/**
+ * An enumeration of known vanilla {@link HorseVariant}s.
+ */
 public final class HorseVariants {
 
     public static final HorseVariant HORSE = null;

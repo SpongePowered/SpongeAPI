@@ -24,8 +24,31 @@
  */
 package org.spongepowered.api.service.persistence;
 
+import org.spongepowered.api.service.persistence.data.DataView;
+
+/**
+ * An exception that occurs when a {@link DataSerializableBuilder} or
+ * {@link DataSource} is unable to handle an operation, which can include:
+ * {@link DataSerializableBuilder#build(DataView)}, {@link DataSource#deserialize()},
+ * etc.
+ */
 public class InvalidDataException extends UnsupportedOperationException {
 
     private static final long serialVersionUID = -754482190837922531L;
 
+    /**
+     * Creates a new {@link InvalidDataException} with no message.
+     */
+    public InvalidDataException() {
+        super();
+    }
+
+    /**
+     * Creates a new {@link InvalidDataException} with a message.
+     *
+     * @param message The message to display with the exception
+     */
+    public InvalidDataException(String message) {
+        super(message);
+    }
 }

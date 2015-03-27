@@ -24,50 +24,37 @@
  */
 package org.spongepowered.api.text.format;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
- * TextStyles is a list of the text styles provided by Vanilla Minecraft.
+ * Represents a list of the text styles provided by Vanilla Minecraft.
  */
 public final class TextStyles {
+
+    private TextStyles() {
+    }
+
+    /**
+     * Represents an empty {@link TextStyle}.
+     */
+    public static final TextStyle NONE = new TextStyle();
 
     public static final TextStyle.Base OBFUSCATED = null;
     public static final TextStyle.Base BOLD = null;
     public static final TextStyle.Base STRIKETHROUGH = null;
     public static final TextStyle.Base UNDERLINE = null;
     public static final TextStyle.Base ITALIC = null;
-    // NONE and ZERO represent the same thing, the "zero" text style.
-    public static final TextStyle NONE = new TextStyle();
-    public static final TextStyle ZERO = NONE;
+
     /**
-     * Resets all currently applied text styles to their default values.
+     * Represents a {@link TextStyle} with all bases set to {@code false}.
      */
     public static final TextStyle.Base RESET = null;
-    static final TextFormatFactory factory = null;
-
-    private TextStyles() {
-    }
 
     /**
-     * Gets the {@link TextStyle} with the specified name.
+     * Returns an empty {@link TextStyle}.
      *
-     * @param name The identifier of the text style, for example "UNDERLINE"
-     * @return The {@link TextStyle} with the specified name, or
-     *         {@link Optional#absent()} if not found
+     * @return An empty text style
      */
-    public static Optional<TextStyle> valueOf(String name) {
-        return factory.getStyleFromName(name);
-    }
-
-    /**
-     * Returns a list of all available {@link TextStyle}s on this server.
-     *
-     * @return An immutable list of all text styles
-     */
-    public static List<TextStyle> getValues() {
-        return factory.getStyles();
+    public static TextStyle of() {
+        return NONE;
     }
 
     /**
@@ -75,11 +62,11 @@ public final class TextStyles {
      * result in the same as calling {@link TextStyle#and(TextStyle...)} on all
      * of the text styles.
      *
-     * @param styles The styles to combine.
+     * @param styles The styles to combine
      * @return A composite text style from the specified styles
      */
     public static TextStyle of(TextStyle... styles) {
-        return factory.createStyle(styles);
+        return NONE.and(styles);
     }
 
 }

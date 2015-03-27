@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.player.tab;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 import java.util.List;
 import java.util.UUID;
@@ -41,28 +41,28 @@ public interface TabList {
      * 
      * @return The current header
      */
-    Message getHeader();
+    Text getHeader();
 
     /**
      * Sets this list's header.
      * 
      * @param header The new header
      */
-    void setHeader(Message header);
+    void setHeader(Text header);
 
     /**
      * Gets this list's footer.
      * 
      * @return The current footer
      */
-    Message getFooter();
+    Text getFooter();
 
     /**
      * Sets this list's footer.
      * 
      * @param footer The new footer
      */
-    void setFooter(Message footer);
+    void setFooter(Text footer);
 
     /**
      * Gets the players on the list. The list should be immutable.

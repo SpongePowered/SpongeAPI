@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.service.permission.context.Contextual;
+
 /**
  * Represents the dimension of a {@link World}.
  */
-public interface Dimension {
+public interface Dimension extends Contextual {
 
     /**
      * Returns the dimension id of the current {@link Dimension}.

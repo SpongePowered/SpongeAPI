@@ -26,7 +26,6 @@
 package org.spongepowered.api.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3f;
 import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Identifiable;
@@ -80,29 +79,58 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     boolean setLocation(Location location);
 
     /**
+     * Moves the entity to the specified location, and sets the rotation.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @return True if the teleport was successful
+     */
+    boolean setLocationAndRotation(Location location, Vector3d rotation);
+
+    /**
      * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
      * listed inside the EnumSet are considered relative.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
      *
      * @param location The location to set
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if the teleport was successful
      */
-    boolean setLocationAndRotation(Location location, Vector3f rotation, EnumSet<RelativePositions> relativePositions);
+    boolean setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Gets the rotation as a Vector3f.
      *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
      * @return The rotation as a Vector3f
      */
-    Vector3f getRotation();
+    Vector3d getRotation();
 
     /**
      * Sets the rotation of this entity.
      *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
      * @param rotation The rotation to set the entity to
      */
-    void setRotation(Vector3f rotation);
+    void setRotation(Vector3d rotation);
 
     /**
      * Gets the current velocity of this entity.

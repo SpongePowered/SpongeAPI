@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+/**
+ * An enumeration of known vanilla {@link SkeletonType}s.
+ */
 public final class SkeletonTypes {
 
     public static final SkeletonType NORMAL = null;

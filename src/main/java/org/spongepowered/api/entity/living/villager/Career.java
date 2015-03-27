@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Represents a Villager Career. A career can define a more specified list
  * of trade offers the villager can give to a player.
  */
-public interface Career {
+public interface Career extends Translatable {
 
     /**
      * Gets the parent profession of this career. The profession is permanent

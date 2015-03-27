@@ -25,7 +25,7 @@
 package org.spongepowered.api.service.persistence;
 
 import com.google.common.base.Optional;
-import com.typesafe.config.Config;
+import ninja.leaping.configurate.ConfigurationNode;
 
 /**
  * A standard factory to create {@link DataSource}s to serialize and deserialize
@@ -43,6 +43,6 @@ public interface DataSourceFactory {
      * @param config The configuration to configure the DataSource
      * @return The newly created data source, if available
      */
-    Optional<DataSource> createSource(Config config);
+    Optional<DataSource> createSource(ConfigurationNode config);
 
 }

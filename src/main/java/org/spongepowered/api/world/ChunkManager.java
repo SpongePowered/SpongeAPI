@@ -37,6 +37,10 @@ import org.spongepowered.api.entity.Entity;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * A manager of chunks. Chunks can be managed via tickets that may represent
+ * forced-chunk-loading, player-chunk-loading, entity-chunk-loading, etc.
+ */
 public interface ChunkManager {
 
     /**

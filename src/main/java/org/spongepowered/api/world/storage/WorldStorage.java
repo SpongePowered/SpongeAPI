@@ -30,6 +30,13 @@ import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.world.Chunk;
 
+/**
+ * Represents the storage manager of a particular {@link org.spongepowered.api.world.World}.
+ *
+ * <p>It should be noted that this can have direct access to the underlying
+ * storage system of the world and interface with deleting and modifying
+ * chunks.</p>
+ */
 public interface WorldStorage {
 
     /**

@@ -30,6 +30,11 @@ import org.slf4j.Logger;
 
 import java.util.Collection;
 
+/**
+ * The manager that manages plugins. This manager can retrieve {@link
+ * PluginContainer}s from {@link Plugin} instances, getting {@link Logger}s,
+ * etc.
+ */
 public interface PluginManager {
 
     /**

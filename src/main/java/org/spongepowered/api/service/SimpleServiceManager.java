@@ -43,6 +43,9 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
+/**
+ * The default implementation of {@link ServiceManager}.
+ */
 public class SimpleServiceManager implements ServiceManager {
 
     private final ConcurrentMap<Class<?>, Provider> providers =

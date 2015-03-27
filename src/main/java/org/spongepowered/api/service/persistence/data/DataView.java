@@ -26,6 +26,8 @@ package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.DataSerializableBuilder;
+import org.spongepowered.api.service.persistence.SerializationService;
 
 import java.util.List;
 import java.util.Map;
@@ -40,7 +42,9 @@ public interface DataView {
 
     /**
      * Gets the parent container of this DataView.
+     *
      * <p>Every DataView will always have a {@link DataContainer}.</p>
+     *
      * <p>For any {@link DataContainer}, this will return itself.</p>
      *
      * @return The parent container
@@ -50,8 +54,10 @@ public interface DataView {
     /**
      * Gets the current path of this {@link DataView} from its root
      * {@link DataContainer}.
+     *
      * <p>For any {@link DataContainer} itself, this will return an
      * empty string as it is the root of the path.</p>
+     *
      * <p>The full path will always include this {@link DataView}s name
      * at the end of the path.</p>
      *
@@ -61,6 +67,7 @@ public interface DataView {
 
     /**
      * Gets the name of this individual {@link DataView} in the path.
+     *
      * <p>This will always be the final substring of the full path
      * from {@link #getCurrentPath()}.</p>
      *
@@ -71,6 +78,7 @@ public interface DataView {
     /**
      * Gets the parent {@link DataView} of this view. The parent directly
      * contains this view according to the {@link #getCurrentPath()}.
+     *
      * <p>For any {@link DataContainer}, this will return an absent parent.</p>
      *
      * @return The parent data view containing this view
@@ -78,10 +86,12 @@ public interface DataView {
     Optional<DataView> getParent();
 
     /**
-     * Gets a set containing all keys in this {@link DataView}.
+     * Gets a collection containing all keys in this {@link DataView}.
+     *
      * <p>If deep is set to true, then this will contain all the keys
      * within any child {@link DataView}s (and their children, etc).
      * These will be in a valid path notation for you to use.</p>
+     *
      * <p>If deep is set to false, then this will contain only the keys
      * of any direct children, and not their own children.</p>
      *
@@ -92,9 +102,11 @@ public interface DataView {
 
     /**
      * Gets a Map containing all keys and their values for this {@link DataView}.
+     *
      * <p>If deep is set to true, then this will contain all the keys and
      * values within any child {@link DataView}s (and their children,
      * etc). These keys will be in a valid path notation for you to use.</p>
+     *
      * <p>If deep is set to false, then this will contain only the keys and
      * values of any direct children, and not their own children.</p>
      *
@@ -152,6 +164,7 @@ public interface DataView {
     /**
      * Creates a new {@link DataView} with the given data at the desired
      * path.
+     *
      * <p>If any data existed at the given path, that data will be overwritten
      * with the newly constructed {@link DataView}.</p>
      *
@@ -163,6 +176,7 @@ public interface DataView {
 
     /**
      * Gets the {@link DataView} by path, if available.
+     *
      * <p>If a {@link DataView} does not exist, or the data residing at
      * the path is not an instance of a {@link DataView}, an absent is
      * returned.</p>
@@ -174,6 +188,7 @@ public interface DataView {
 
     /**
      * Gets the {@link Boolean} by path, if available.
+     *
      * <p>If a {@link Boolean} does not exist, or the data residing at
      * the path is not an instance of a {@link Boolean}, an absent is
      * returned.</p>
@@ -185,6 +200,7 @@ public interface DataView {
 
     /**
      * Gets the {@link Integer} by path, if available.
+     *
      * <p>If a {@link Integer} does not exist, or the data residing at
      * the path is not an instance of a {@link Integer}, an absent is
      * returned.</p>
@@ -196,6 +212,7 @@ public interface DataView {
 
     /**
      * Gets the {@link Long} by path, if available.
+     *
      * <p>If a {@link Long} does not exist, or the data residing at
      * the path is not an instance of a {@link Long}, an absent is
      * returned.</p>
@@ -207,6 +224,7 @@ public interface DataView {
 
     /**
      * Gets the {@link Double} by path, if available.
+     *
      * <p>If a {@link Double} does not exist, or the data residing at
      * the path is not an instance of a {@link Double}, an absent is
      * returned.</p>
@@ -218,6 +236,7 @@ public interface DataView {
 
     /**
      * Gets the {@link String} by path, if available.
+     *
      * <p>If a {@link String} does not exist, or the data residing at
      * the path is not an instance of a {@link String}, an absent is
      * returned.</p>
@@ -229,6 +248,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of something by path, if available.
+     *
      * <p>If a {@link List} of something does not exist, or the data
      * residing at the path is not an instance of a {@link List} of something,
      * an absent is returned.</p>
@@ -240,6 +260,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link String} by path, if available.
+     *
      * <p>If a {@link List} of {@link String} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link String}, an absent is returned.</p>
@@ -251,6 +272,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Character} by path, if available.
+     *
      * <p>If a {@link List} of {@link Character} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Character}, an absent is returned.</p>
@@ -262,6 +284,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Boolean} by path, if available.
+     *
      * <p>If a {@link List} of {@link Boolean} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Boolean}, an absent is returned.</p>
@@ -273,6 +296,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Byte} by path, if available.
+     *
      * <p>If a {@link List} of {@link Byte} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Byte}, an absent is returned.</p>
@@ -284,6 +308,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Short} by path, if available.
+     *
      * <p>If a {@link List} of {@link Short} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Short}, an absent is returned.</p>
@@ -295,6 +320,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Integer} by path, if available.
+     *
      * <p>If a {@link List} of {@link Integer} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Integer}, an absent is returned.</p>
@@ -306,6 +332,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Long} by path, if available.
+     *
      * <p>If a {@link List} of {@link Long} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Long}, an absent is returned.</p>
@@ -317,6 +344,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Float} by path, if available.
+     *
      * <p>If a {@link List} of {@link Float} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Float}, an absent is returned.</p>
@@ -328,6 +356,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Double} by path, if available.
+     *
      * <p>If a {@link List} of {@link Double} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Double}, an absent is returned.</p>
@@ -339,6 +368,7 @@ public interface DataView {
 
     /**
      * Gets the {@link List} of {@link Map} by path, if available.
+     *
      * <p>If a {@link List} of {@link Map} does not exist, or the data
      * residing at the path is not an instance of a {@link List} of
      * {@link Map}, an absent is returned.</p>
@@ -349,15 +379,57 @@ public interface DataView {
     Optional<List<Map<?, ?>>> getMapList(DataQuery path);
 
     /**
+     * Gets the {@link List} of {@link DataView} by path, if available.
+     *
+     * <p>If a {@link List} of {@link DataView} does not exist, or the data
+     * residing at the path is not an instance of a {@link List} of
+     * {@link DataView}, an absent is returned.</p>
+     *
+     * @param path The path of the value to get
+     * @return The list of data views, if available
+     */
+    Optional<List<DataView>> getViewList(DataQuery path);
+
+    /**
      * Gets the {@link DataSerializable} object by path, if available.
+     *
      * <p>If a {@link DataSerializable} exists, but is not the proper class
      * type, or there is no data at the path given, an absent is returned.</p>
      *
+     * <p>It is important that the {@link SerializationService} provided is
+     * the same one that has registered many of the
+     * {@link DataSerializableBuilder}s to ensure the {@link DataSerializable}
+     * requested can be returned.</p>
+     *
      * @param path The path of the value to get
      * @param clazz The class of the {@link DataSerializable}
+     * @param service The serialization service to use for retrieving data
+     *     serializable builders
      * @param <T> The type of {@link DataSerializable} object
      * @return The deserialized object, if available
      */
-    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz);
+    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, SerializationService service);
+
+    /**
+     * Gets the {@link List} of {@link DataSerializable} by path, if available.
+     *
+     *
+     * <p>If a {@link List} exists, but the contents of the list are not
+     * considered {@link DataSerializable} or are not of the proper type of
+     * {@link DataSerializable}, an absent is returned.</p>
+     *
+     * <p>It is important that the {@link SerializationService} provided is
+     * the same one that has registered many of the
+     * {@link DataSerializableBuilder}s to ensure the {@link DataSerializable}
+     * requested can be returned.</p>
+     *
+     * @param path The path of the list value to get
+     * @param clazz The class of the {@link DataSerializable}
+     * @param service The serialization service to use for retrieving data
+     *     serializable builders
+     * @param <T> The type of {@link DataSerializable} object
+     * @return The deserialized objects in a list, if available
+     */
+    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationService service);
 
 }

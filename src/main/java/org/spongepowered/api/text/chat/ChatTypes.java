@@ -24,59 +24,31 @@
  */
 package org.spongepowered.api.text.chat;
 
-import com.google.common.base.Optional;
-
-import java.util.List;
-
 /**
  * ChatTypes is a list of the default chat types that are available in Vanilla
  * Minecraft.
  */
 public final class ChatTypes {
 
+    private ChatTypes() {
+    }
+
     /**
      * The standard chat position in prompt at the bottom-left.
      */
     public static final ChatType CHAT = null;
+
     /**
      * The same position as the {@link #CHAT} position, except messages sent to
      * this position are still seen when chat is turned off on the Minecraft
      * client.
-     *
-     * <p>
-     * Use wisely as to not annoy players.
-     * </p>
      */
     public static final ChatType SYSTEM = null;
+
     /**
      * The position right above the inventory, experience, health, item name,
      * etc. bars.
      */
     public static final ChatType ACTION_BAR = null;
-    private static final ChatTypeFactory factory = null;
-
-    private ChatTypes() {
-
-    }
-
-    /**
-     * Gets the {@link ChatType} with the specified name.
-     *
-     * @param name The identifier of the chat type, for example "ACTION_BAR"
-     * @return The {@link ChatType} with the specified name, or
-     *         {@link Optional#absent()} if not found
-     */
-    public static Optional<ChatType> valueOf(String name) {
-        return factory.getTypeFromName(name);
-    }
-
-    /**
-     * Returns a list of all available {@link ChatType}s on this server.
-     *
-     * @return An immutable list of all chat types
-     */
-    public static List<ChatType> getValues() {
-        return factory.getTypes();
-    }
 
 }

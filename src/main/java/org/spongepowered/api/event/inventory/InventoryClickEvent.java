@@ -24,5 +24,10 @@
  */
 package org.spongepowered.api.event.inventory;
 
+/**
+ * Represents an event when a viewer has clicked inside an inventory.
+ *
+ * <p>Note that this event is incomplete.</p>
+ */
 public interface InventoryClickEvent extends ViewerEvent {
 }

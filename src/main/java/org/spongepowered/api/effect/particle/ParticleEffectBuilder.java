@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import com.flowpowered.math.vector.Vector3f;
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 
@@ -38,22 +38,22 @@ public interface ParticleEffectBuilder {
     /**
      * Sets the motion vector of the particle effect.
      *
-     * <p>The default motion vector is {@link Vector3f#ZERO}.</p>
+     * <p>The default motion vector is {@link Vector3d#ZERO}.</p>
      *
      * @param motion The motion vector
      * @return This builder
      */
-    ParticleEffectBuilder motion(Vector3f motion);
+    ParticleEffectBuilder motion(Vector3d motion);
 
     /**
      * Sets the offset vector of the particle effect.
      *
-     * <p>The default offset vector is {@link Vector3f#ZERO}.</p>
+     * <p>The default offset vector is {@link Vector3d#ZERO}.</p>
      *
      * @param offset The offset vector
      * @return This builder
      */
-    ParticleEffectBuilder offset(Vector3f offset);
+    ParticleEffectBuilder offset(Vector3d offset);
 
     /**
      * Sets the amount of particles of the particle effect.
@@ -90,10 +90,10 @@ public interface ParticleEffectBuilder {
         Colorable color(Color color);
 
         @Override
-        Colorable motion(Vector3f motion);
+        Colorable motion(Vector3d motion);
 
         @Override
-        Colorable offset(Vector3f offset);
+        Colorable offset(Vector3d offset);
 
         @Override
         Colorable count(int count);
@@ -120,10 +120,10 @@ public interface ParticleEffectBuilder {
         Resizable size(float size);
 
         @Override
-        Resizable motion(Vector3f motion);
+        Resizable motion(Vector3d motion);
 
         @Override
-        Resizable offset(Vector3f offset);
+        Resizable offset(Vector3d offset);
 
         @Override
         Resizable count(int count);
@@ -151,10 +151,10 @@ public interface ParticleEffectBuilder {
         Note note(float note);
 
         @Override
-        Note motion(Vector3f motion);
+        Note motion(Vector3d motion);
 
         @Override
-        Note offset(Vector3f offset);
+        Note offset(Vector3d offset);
 
         @Override
         Note count(int count);
@@ -189,10 +189,10 @@ public interface ParticleEffectBuilder {
         Material itemType(ItemType item);
 
         @Override
-        Material motion(Vector3f motion);
+        Material motion(Vector3d motion);
 
         @Override
-        Material offset(Vector3f offset);
+        Material offset(Vector3d offset);
 
         @Override
         Material count(int count);

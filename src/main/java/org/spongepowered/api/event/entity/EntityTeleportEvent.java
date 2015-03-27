@@ -31,25 +31,25 @@ import org.spongepowered.api.event.cause.CauseTracked;
 /**
  * Called when an {@link Entity} teleports.
  *
- * <p>This is a discrete movement from point A to point b, the entity has
+ * <p>This is a discrete jump from the old to new location; the entity has
  * not moved between those two places.</p>
  */
-public interface EntityTeleportEvent extends EntityMoveEvent, CauseTracked {
+public interface EntityTeleportEvent extends EntityDisplaceEvent, CauseTracked {
 
     /**
-     * Gets whether the entity teleporting will maintain its momentum
+     * Gets whether the entity teleporting will maintain its velocity
      * after teleport.
      *
      * @return Whether the entity will maintain momentum after teleport
      */
-    boolean getKeepsMomentum();
+    boolean getKeepsVelocity();
 
     /**
-     * Sets whether the entity teleporting will maintain its momentum
+     * Sets whether the entity teleporting will maintain its velocity
      * after teleport.
      *
-     * @param maintainsMomentum Whether the entity will maintain momentum
+     * @param keepsVelocity Whether the entity will maintain velocity
      */
-    void setKeepsMomentum(boolean maintainsMomentum);
+    void setKeepsVelocity(boolean keepsVelocity);
 
 }

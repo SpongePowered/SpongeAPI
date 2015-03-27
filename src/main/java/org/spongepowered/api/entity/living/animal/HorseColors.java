@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+/**
+ * An enumeration of known vanilla {@link HorseColor}s.
+ */
 public final class HorseColors {
 
     public static final HorseColor WHITE = null;

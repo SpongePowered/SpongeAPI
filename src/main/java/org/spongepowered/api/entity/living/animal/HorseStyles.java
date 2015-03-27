@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+/**
+ * An enumeration of known vanilla {@link HorseStyle}s.
+ */
 public final class HorseStyles {
 
     public static final HorseStyle NONE = null;

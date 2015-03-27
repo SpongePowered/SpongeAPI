@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.entity.player.gamemode;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Represents a game mode that a {@link org.spongepowered.api.entity.player.Player} may have.
  */
-public interface GameMode {
+public interface GameMode extends Translatable {
 
 }

@@ -24,32 +24,67 @@
  */
 package org.spongepowered.api.text.action;
 
-import org.spongepowered.api.text.message.Message;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.base.Objects;
+import org.spongepowered.api.text.Text;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents an action happening as a response to an event on a {@link Message}
- * .
+ * Represents an action happening as a response to an event on a {@link Text}.
  *
- * @param <R> the type of the result of the action
+ * @param <R> The type of the result
  *
  * @see ClickAction
  * @see HoverAction
  * @see ShiftClickAction
  */
-public interface TextAction<R> {
+public abstract class TextAction<R> {
+
+    protected final R result;
 
     /**
-     * Returns the ID of this text action.
+     * Constructs a new {@link TextAction} with the given result.
      *
-     * @return The action ID
+     * @param result The result of the text action
      */
-    String getId();
+    protected TextAction(R result) {
+        this.result = checkNotNull(result, "result");
+    }
 
     /**
-     * Returns the result of this text action.
+     * Returns the result of this {@link TextAction}.
      *
      * @return The result
      */
-    R getResult();
+    public final R getResult() {
+        return this.result;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TextAction<?> that = (TextAction<?>) o;
+        return this.result.equals(that.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.result.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .addValue(this.result)
+                .toString();
+    }
 
 }

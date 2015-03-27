@@ -31,6 +31,9 @@ import com.flowpowered.math.vector.VectorNi;
 import com.flowpowered.math.vector.Vectord;
 import com.flowpowered.math.vector.Vectorf;
 import com.flowpowered.math.vector.Vectorl;
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Bytes;
 import com.google.common.primitives.Chars;
@@ -42,7 +45,6 @@ import com.google.common.primitives.Shorts;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -85,6 +87,22 @@ public final class Coerce {
         
         return obj.toString();
     }
+
+    /**
+     * Gets the given object as a {@link String}.
+     *
+     * @param obj The object to translate
+     * @return The string value, if available
+     */
+    public static Optional<String> asString(@Nullable Object obj) {
+        if (obj instanceof String) {
+            return Optional.of((String) obj);
+        } else if (obj == null) {
+            return Optional.absent();
+        } else {
+            return Optional.of(obj.toString());
+        }
+    }
     
     /**
      * Coerce the supplied object to a list. Accepts lists and all types of 1D
@@ -114,6 +132,33 @@ public final class Coerce {
         
         return Coerce.parseStringToList(obj.toString());
     }
+
+    /**
+     * Gets the given object as a {@link List}.
+     *
+     * @param obj The object to translate
+     * @return The list, if available
+     */
+    public static Optional<List<?>> asList(@Nullable Object obj) {
+        if (obj == null) {
+            return Optional.absent();
+        }
+
+        if (obj instanceof List) {
+            return Optional.<List<?>>of((List<?>) obj);
+        }
+
+        Class<? extends Object> clazz = obj.getClass();
+        if (clazz.isArray()) {
+            if (clazz.getComponentType().isPrimitive()) {
+                return Optional.<List<?>>of(Coerce.primitiveArrayToList(obj));
+            }
+
+            return Optional.<List<?>>of(Arrays.asList((Object[])obj));
+        }
+
+        return Optional.<List<?>>of(Coerce.parseStringToList(obj.toString()));
+    }
     
     /**
      * Coerce the specified object to a list containing only objects of type
@@ -127,7 +172,8 @@ public final class Coerce {
      */
     @SuppressWarnings("unchecked")
     public static <T> List<T> toListOf(@Nullable Object obj, Class<T> ofClass) {
-        List<T> filteredList = new ArrayList<T>();
+        Preconditions.checkNotNull(ofClass);
+        List<T> filteredList = Lists.newArrayList();
 
         for (Object o : Coerce.toList(obj)) {
             if (ofClass.isAssignableFrom(o.getClass())) {
@@ -162,6 +208,19 @@ public final class Coerce {
         
         return (obj instanceof Boolean) ? ((Boolean)obj).booleanValue() : obj.toString().trim().matches("^(1|true|yes)$");
     }
+
+    /**
+     * Gets the given object as a {@link Boolean}.
+     *
+     * @param obj The object to translate
+     * @return The boolean, if available
+     */
+    public static Optional<Boolean> asBoolean(@Nullable Object obj) {
+        if (obj instanceof Boolean) {
+            return Optional.of((Boolean) obj);
+        }
+        return Optional.absent();
+    }
     
     /**
      * Coerce the supplied object to an integer, parse it if necessary.
@@ -188,6 +247,42 @@ public final class Coerce {
         Double dParsed = Doubles.tryParse(strObj);
         return dParsed != null ? dParsed.intValue() : 0;
     }
+
+    /**
+     * Gets the given object as a {@link Integer}.
+     *
+     * <p>Note that this does not translate numbers spelled out as strings.</p>
+     *
+     * @param obj The object to translate
+     * @return The integer value, if available
+     */
+    public static Optional<Integer> asInteger(@Nullable Object obj) {
+        if (obj == null) {
+            // fail fast
+            return Optional.absent();
+        }
+        if (obj instanceof Number) {
+            return Optional.of(((Number) obj).intValue());
+        }
+
+        try {
+            return Optional.fromNullable(Integer.valueOf(obj.toString()));
+        } catch (NumberFormatException e) {
+            // do nothing
+        } catch (NullPointerException e) {
+            // do nothing
+        }
+
+        String strObj = Coerce.sanitiseNumber(obj);
+        Integer iParsed = Ints.tryParse(strObj);
+        if (iParsed == null) {
+            Double dParsed = Doubles.tryParse(strObj);
+            // try parsing as double now
+            return dParsed == null ? Optional.<Integer>absent() : Optional.of(dParsed.intValue());
+        } else {
+            return Optional.of(iParsed);
+        }
+    }
     
     /**
      * Coerce the supplied object to a double-precision floating-point number,
@@ -211,6 +306,37 @@ public final class Coerce {
     }
 
     /**
+     * Gets the given object as a {@link Double}.
+     *
+     * <p>Note that this does not translate numbers spelled out as strings.</p>
+     *
+     * @param obj The object to translate
+     * @return The double value, if available
+     */
+    public static Optional<Double> asDouble(@Nullable Object obj) {
+        if (obj == null) {
+            // fail fast
+            return Optional.absent();
+        }
+        if (obj instanceof Number) {
+            return Optional.of(((Number) obj).doubleValue());
+        }
+
+        try {
+            return Optional.fromNullable(Double.valueOf(obj.toString()));
+        } catch (NumberFormatException e) {
+            // do nothing
+        } catch (NullPointerException e) {
+            // do nothing
+        }
+
+        String strObj = Coerce.sanitiseNumber(obj);
+        Double dParsed = Doubles.tryParse(strObj);
+        // try parsing as double now
+        return dParsed == null ? Optional.<Double>absent() : Optional.of(dParsed);
+    }
+
+    /**
      * Coerce the supplied object to a single-precision floating-point number,
      * parse it if necessary.
      *
@@ -228,6 +354,36 @@ public final class Coerce {
 
         Float parsed = Floats.tryParse(Coerce.sanitiseNumber(obj));
         return parsed != null ? parsed : 0.0f;
+    }
+
+    /**
+     * Gets the given object as a {@link Float}.
+     *
+     * <p>Note that this does not translate numbers spelled out as strings.</p>
+     *
+     * @param obj The object to translate
+     * @return The float value, if available
+     */
+    public static Optional<Float> asFloat(@Nullable Object obj) {
+        if (obj == null) {
+            // fail fast
+            return Optional.absent();
+        }
+        if (obj instanceof Number) {
+            return Optional.of(((Number) obj).floatValue());
+        }
+
+        try {
+            return Optional.fromNullable(Float.valueOf(obj.toString()));
+        } catch (NumberFormatException e) {
+            // do nothing
+        } catch (NullPointerException e) {
+            // do nothing
+        }
+
+        String strObj = Coerce.sanitiseNumber(obj);
+        Double dParsed = Doubles.tryParse(strObj);
+        return dParsed == null ? Optional.<Float>absent() : Optional.of(dParsed.floatValue());
     }
 
     /**
@@ -251,6 +407,33 @@ public final class Coerce {
     }
 
     /**
+     * Gets the given object as a {@link Short}.
+     *
+     * <p>Note that this does not translate numbers spelled out as strings.</p>
+     *
+     * @param obj The object to translate
+     * @return The short value, if available
+     */
+    public static Optional<Short> asShort(@Nullable Object obj) {
+        if (obj == null) {
+            // fail fast
+            return Optional.absent();
+        }
+        if (obj instanceof Number) {
+            return Optional.of(((Number) obj).shortValue());
+        }
+
+        try {
+            return Optional.fromNullable(Short.parseShort(Coerce.sanitiseNumber(obj)));
+        } catch (NumberFormatException e) {
+            // do nothing
+        } catch (NullPointerException e) {
+            // do nothing
+        }
+        return Optional.absent();
+    }
+
+    /**
      * Coerce the supplied object to a byte number,
      * parse it if necessary.
      *
@@ -271,6 +454,33 @@ public final class Coerce {
     }
 
     /**
+     * Gets the given object as a {@link Byte}.
+     *
+     * <p>Note that this does not translate numbers spelled out as strings.</p>
+     *
+     * @param obj The object to translate
+     * @return The byte value, if available
+     */
+    public static Optional<Byte> asByte(@Nullable Object obj) {
+        if (obj == null) {
+            // fail fast
+            return Optional.absent();
+        }
+        if (obj instanceof Number) {
+            return Optional.of(((Number) obj).byteValue());
+        }
+
+        try {
+            return Optional.fromNullable(Byte.parseByte(Coerce.sanitiseNumber(obj)));
+        } catch (NumberFormatException e) {
+            // do nothing
+        } catch (NullPointerException e) {
+            // do nothing
+        }
+        return Optional.absent();
+    }
+
+    /**
      * Coerce the supplied object to a long number,
      * parse it if necessary.
      *
@@ -288,6 +498,33 @@ public final class Coerce {
 
         Long parsed = Long.parseLong(Coerce.sanitiseNumber(obj));
         return parsed != null ? parsed : 0;
+    }
+
+    /**
+     * Gets the given object as a {@link Long}.
+     *
+     * <p>Note that this does not translate numbers spelled out as strings.</p>
+     *
+     * @param obj The object to translate
+     * @return The long value, if available
+     */
+    public static Optional<Long> asLong(@Nullable Object obj) {
+        if (obj == null) {
+            // fail fast
+            return Optional.absent();
+        }
+        if (obj instanceof Number) {
+            return Optional.of(((Number) obj).longValue());
+        }
+
+        try {
+            return Optional.fromNullable(Long.parseLong(Coerce.sanitiseNumber(obj)));
+        } catch (NumberFormatException e) {
+            // do nothing
+        } catch (NullPointerException e) {
+            // do nothing
+        }
+        return Optional.absent();
     }
 
     /**
@@ -314,6 +551,27 @@ public final class Coerce {
     }
 
     /**
+     * Gets the given object as a {@link Character}.
+     *
+     * @param obj The object to translate
+     * @return The character, if available
+     */
+    public static Optional<Character> asChar(@Nullable Object obj) {
+        if (obj == null) {
+            return Optional.absent();
+        }
+        if (obj instanceof Character) {
+            return Optional.of((Character) obj);
+        }
+        try {
+            return Optional.of(obj.toString().charAt(0));
+        } catch (Exception e) {
+            // do nothing
+        }
+        return Optional.absent();
+    }
+
+    /**
      * Coerce the specified object to an enum of the supplied type, returns the
      * first enum constant in the enum if parsing fails.
      * 
@@ -337,6 +595,8 @@ public final class Coerce {
      * @return Coerced enum value
      */
     public static <E extends Enum<E>> E toEnum(@Nullable Object obj, Class<E> enumClass, E defaultValue) {
+        Preconditions.checkNotNull(enumClass);
+        Preconditions.checkNotNull(defaultValue);
         if (obj == null) {
             return defaultValue;
         }
@@ -378,6 +638,9 @@ public final class Coerce {
      * @return Coerced value or default if coercion fails
      */
     public static <T> T toPseudoEnum(@Nullable Object obj, Class<T> pseudoEnumClass, Class<?> dictionaryClass, T defaultValue) {
+        Preconditions.checkNotNull(pseudoEnumClass);
+        Preconditions.checkNotNull(dictionaryClass);
+        Preconditions.checkNotNull(defaultValue);
         if (obj == null) {
             return defaultValue;
         }
@@ -515,7 +778,7 @@ public final class Coerce {
             return Collections.<Object>emptyList();
         }
         
-        List<String> list = new ArrayList<String>();
+        List<String> list = Lists.newArrayList();
         for (String part : candidate.group(2).split(",")) {
             if (part != null) {
                 list.add(part);

@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.data.ItemData;
 
 /**
  * Represents a builder interface to create an {@link ItemStack}.
@@ -35,24 +36,16 @@ public interface ItemStackBuilder {
      * Sets the {@link ItemType} of the item stack.
      *
      * @param itemType The type of item
-     * @return This builder
+     * @return This builder, for chaining
      */
     ItemStackBuilder itemType(ItemType itemType);
-
-    /**
-     * Sets the durability damage of the item.
-     *
-     * @param damage The durability of the item
-     * @return This builder
-     */
-    ItemStackBuilder damage(int damage);
 
     /**
      * Sets the quantity of the item stack.
      *
      * @param quantity The quantity of the item stack
-     * @return This builder
-     * @throws IllegalArgumentException if the quantity is outside the allowed bounds
+     * @return This builder, for chaining
+     * @throws IllegalArgumentException If the quantity is outside the allowed bounds
      */
     ItemStackBuilder quantity(int quantity) throws IllegalArgumentException;
 
@@ -60,28 +53,39 @@ public interface ItemStackBuilder {
      * Sets the maximum quantity of the specific item stack.
      *
      * @param quantity The maximum quantity of the item stack
-     * @return This builder
+     * @return This builder, for chaining
      */
     ItemStackBuilder maxQuantity(int quantity);
+
+    /**
+     * Sets the {@link ItemData} to add to the item stack.
+     *
+     * @param itemData The item data to set
+     * @param <T> The type of item data
+     * @return This builder, for chaining
+     * @throws IllegalArgumentException If the item data is incompatible with the item
+     */
+    <T extends ItemData<T>> ItemStackBuilder itemData(T itemData) throws IllegalArgumentException;
 
     /**
      * Creates a new builder with the given ItemStack as a blueprint with
      * all the defaults.
      *
      * @param itemStack The item stack to copy
-     * @return This builder
+     * @return This builder, for chaining
      */
     ItemStackBuilder fromItemStack(ItemStack itemStack);
 
     /**
      * Resets all information regarding the item stack to be created.
      *
-     * @return This builder
+     * @return This builder, for chaining
      */
     ItemStackBuilder reset();
 
     /**
      * Builds an instance of an ItemStack.
+     *
      * @return A new instance of an ItemStack
      * @throws IllegalStateException If the item stack is not completed
      */

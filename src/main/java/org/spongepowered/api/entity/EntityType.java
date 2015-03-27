@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 /**
  * Describes a type of entity.
  */
-public interface EntityType {
+public interface EntityType extends Translatable {
 
     /**
      * Return the internal ID for the entity type.

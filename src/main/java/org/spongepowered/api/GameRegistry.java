@@ -26,6 +26,11 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.attribute.Attribute;
+import org.spongepowered.api.attribute.AttributeBuilder;
+import org.spongepowered.api.attribute.AttributeCalculator;
+import org.spongepowered.api.attribute.AttributeModifierBuilder;
+import org.spongepowered.api.attribute.Operation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.meta.BannerPatternShape;
 import org.spongepowered.api.block.meta.NotePitch;
@@ -36,7 +41,6 @@ import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.hanging.art.Art;
-import org.spongepowered.api.entity.living.animal.DyeColor;
 import org.spongepowered.api.entity.living.animal.HorseColor;
 import org.spongepowered.api.entity.living.animal.HorseStyle;
 import org.spongepowered.api.entity.living.animal.HorseVariant;
@@ -46,7 +50,13 @@ import org.spongepowered.api.entity.living.monster.SkeletonType;
 import org.spongepowered.api.entity.living.villager.Career;
 import org.spongepowered.api.entity.living.villager.Profession;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.item.CoalType;
+import org.spongepowered.api.item.CookedFish;
+import org.spongepowered.api.item.DyeColor;
 import org.spongepowered.api.item.Enchantment;
+import org.spongepowered.api.item.FireworkEffectBuilder;
+import org.spongepowered.api.item.Fish;
+import org.spongepowered.api.item.GoldenApple;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
@@ -54,6 +64,12 @@ import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.status.Favicon;
+import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.selector.ArgumentType;
+import org.spongepowered.api.text.selector.SelectorType;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.biome.BiomeType;
@@ -66,6 +82,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -581,5 +598,231 @@ public interface GameRegistry {
      * @return The {@link EntityInteractionType} with that name, or {@link Optional#absent()}
      */
     Optional<EntityInteractionType> getEntityInteractionType(String name);
+
+    /**
+     * Gets an {@link Attribute} by name.
+     * 
+     * @param name The name of the Attribute
+     * @return The {@link Attribute} with the given name or
+     *         {@link Optional#absent()} if not found
+     */
+    Optional<Attribute> getAttribute(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Attribute}s.
+     * 
+     * @return The collection of all available {@link Attribute}s
+     */
+    Collection<Attribute> getAttributes();
+
+    /**
+     * Gets an {@link Operation} by name.
+     * 
+     * @param name The name of the Operation
+     * @return The {@link Operation} with the given name or
+     *         {@link Optional#absent()} if not found
+     */
+    Optional<Operation> getOperation(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Operation}s.
+     * 
+     * @return The collection of all available {@link Operation}s
+     */
+    Collection<Operation> getOperations();
+
+    /**
+     * Gets a new {@link AttributeModifierBuilder}.
+     * 
+     * @return A new AttributeModifierBuilder
+     */
+    AttributeModifierBuilder getAttributeModifierBuilder();
+
+    /**
+     * Gets the {@link AttributeCalculator}.
+     *
+     * @return The {@link AttributeCalculator}
+     */
+    AttributeCalculator getAttributeCalculator();
+
+    /**
+     * Gets a new {@link AttributeBuilder}.
+     *
+     * @return A new AttributeBuilder
+     */
+    AttributeBuilder getAttributeBuilder();
+
+    /**
+     * Gets a {@link CoalType} by name.
+     *
+     * @param name The name of the coal type
+     * @return The coal type or Optional.absent() if not found
+     */
+    Optional<CoalType> getCoalType(String name);
+
+    /**
+     * Gets a collection of all available {@link CoalType}s.
+     *
+     * @return A collection of all coal types
+     */
+    Collection<CoalType> getCoalTypes();
+
+    /**
+     * Gets a {@link Fish} by name.
+     *
+     * @param name The name of the fish type
+     * @return The fish type or Optional.absent() if not found
+     */
+    Optional<Fish> getFishType(String name);
+
+    /**
+     * Gets a collection of all available {@link Fish} types.
+     *
+     * @return A collection of all fish types
+     */
+    Collection<Fish> getFishTypes();
+
+    /**
+     * Gets a {@link CookedFish} by name.
+     *
+     * @param name The name of the cooked fish type
+     * @return The cooked fish type or Optional.absent() if not found
+     */
+    Optional<CookedFish> getCookedFishType(String name);
+
+    /**
+     * Gets a collection of all available {@link CookedFish}s.
+     *
+     * @return A collection of all cooked fish types
+     */
+    Collection<CookedFish> getCookedFishTypes();
+
+    /**
+     * Gets a {@link GoldenApple} by name.
+     *
+     * @param name The name of the golden apple type
+     * @return The golden apple type or Optional.absent() if not found
+     */
+    Optional<GoldenApple> getGoldenAppleType(String name);
+
+    /**
+     * Gets a collection of all available {@link GoldenApple}s.
+     *
+     * @return A collection of all golden apple types
+     */
+    Collection<GoldenApple> getGoldenAppleTypes();
+
+    /**
+     * Gets a new {@link FireworkEffectBuilder}.
+     *
+     * @return A new firework effect builder
+     */
+    FireworkEffectBuilder getFireworkEffectBuilder();
+
+    /**
+     * Gets the {@link TextColor} with the provided name.
+     *
+     * @param name The name of the text color
+     * @return The {@link TextColor} with the given name or Optional.absent() if not found
+     */
+    Optional<TextColor> getTextColor(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link TextColor}s.
+     *
+     * @return The collection of all available {@link TextColor}s
+     */
+    Collection<TextColor> getTextColors();
+
+    /**
+     * Gets the {@link TextStyle} with the provided name.
+     *
+     * @param name The name of the text style
+     * @return The {@link TextStyle} with the given name or Optional.absent() if not found
+     */
+    Optional<TextStyle> getTextStyle(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link TextStyle}s.
+     *
+     * @return The collection of all available {@link TextStyle}s
+     */
+    Collection<TextStyle> getTextStyles();
+
+    /**
+     * Gets the {@link ChatType} with the provided name.
+     *
+     * @param name The name of the chat type
+     * @return The {@link ChatType} with the given name or Optional.absent() if not found
+     */
+    Optional<ChatType> getChatType(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link TextStyle}s.
+     *
+     * @return The collection of all available {@link TextStyle}s
+     */
+    Collection<ChatType> getChatTypes();
+
+    /**
+     * Gets the {@link SelectorType} with the provided name.
+     *
+     * @param name The name of the selector type
+     * @return The {@link SelectorType} with the given name or Optional.absent() if not found
+     */
+    Optional<SelectorType> getSelectorType(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link SelectorType}s.
+     *
+     * @return The list of all available {@link SelectorType}s
+     */
+    Collection<SelectorType> getSelectorTypes();
+
+    /**
+     * Gets the {@link ArgumentType} with the provided name.
+     *
+     * @param name The name of the argument type
+     * @return The {@link ArgumentType} with the given name or Optional.absent() if not found
+     */
+    Optional<ArgumentType<?>> getArgumentType(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link ArgumentType}s.
+     *
+     * @return The list of all available {@link ArgumentType}s
+     */
+    Collection<ArgumentType<?>> getArgumentTypes();
+
+    /**
+     * Gets the {@link Locale} with the provided name.
+     *
+     * @param name The name of the locale
+     * @return The {@link Locale} with the given name or Optional.absent() if not found
+     */
+    Optional<Locale> getLocale(String name);
+
+    /**
+     * Gets the {@link Locale} with the provided ID.
+     *
+     * @param id The ID of the locale
+     * @return The {@link Locale} with the given ID or Optional.absent() if not found
+     */
+    Optional<Locale> getLocaleById(String id);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link Locale}s.
+     *
+     * @return The collection of all available {@link Locale}s
+     */
+    Collection<Locale> getLocales();
+
+    /**
+     * Gets the {@link Translation} with the provided ID.
+     *
+     * @param id The ID of the translation
+     * @return The {@link Translation} with the given ID or Optional.absent() if not found
+     */
+    Optional<Translation> getTranslationById(String id);
 
 }

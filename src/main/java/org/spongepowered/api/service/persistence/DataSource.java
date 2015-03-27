@@ -48,7 +48,17 @@ public interface DataSource {
      * @return The newly deserialized object, if available
      * @throws InvalidDataException If the data is incompatible with this source
      */
-    <T extends DataSerializable> Optional<DataContainer> deserialize(Class<T> clazz) throws InvalidDataException;
+    <T extends DataSerializable> Optional<T> deserialize(Class<T> clazz)
+            throws InvalidDataException;
+
+    /**
+     * Deserializes all data existing in this source into a single {@link
+     * DataContainer}. This can be used for passing around data containers
+     * without knowing the contents.
+     *
+     * @return A data container containing all data from this source
+     */
+    Optional<DataContainer> deserialize();
 
     /**
      * Serializes the given {@link DataSerializable} to this source.

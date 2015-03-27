@@ -27,6 +27,9 @@ package org.spongepowered.api.event.block.data;
 import org.spongepowered.api.block.data.Furnace;
 import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
+/**
+ * An event that involves a {@link Furnace}.
+ */
 public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
 
     @Override

@@ -29,18 +29,20 @@ package org.spongepowered.api.text.selector;
  */
 public final class Selectors {
 
-    private static final SelectorFactory factory = null;
+    static final SelectorFactory factory = null;
 
     private Selectors() {
     }
 
     /**
-     * Creates a {@link SelectorBuilder} with no data.
+     * Creates a {@link SelectorBuilder} with the specified type and no
+     * arguments.
      *
-     * @return A new selector builder with no data
+     * @param type The type of the selector
+     * @return A new selector builder with the specified type
      */
-    public static SelectorBuilder builder() {
-        return factory.createEmptyBuilder();
+    public static SelectorBuilder builder(SelectorType type) {
+        return factory.createBuilder(type);
     }
 
     /**
@@ -49,7 +51,7 @@ public final class Selectors {
      * @param selector The raw selector string
      * @return A new selector containing the given selector data
      */
-    public static Selector parseRaw(String selector) {
+    public static Selector parse(String selector) {
         return factory.parseRawSelector(selector);
     }
 

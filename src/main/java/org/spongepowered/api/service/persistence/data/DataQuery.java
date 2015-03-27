@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.persistence.data;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 
 import java.util.List;
@@ -71,6 +72,41 @@ public final class DataQuery {
      */
     public DataQuery(List<String> parts) {
         this.parts = ImmutableList.copyOf(parts);
+    }
+
+    /**
+     * Constructs a query using the given separator character and path.
+     *
+     * <p>As an example, {@code new DataQuery('/', "a/b/c")} and
+     * {@code new DataQuery('.', "a.b.c")} represent the same path but are
+     * constructed using different separators.</p>
+     *
+     * @param separator The separator
+     * @param path The path
+     * @return The newly constructed {@link DataQuery}
+     */
+    public static DataQuery of(char separator, String path) {
+        return new DataQuery(separator, path);
+    }
+
+    /**
+     * Constructs a query using the given parts.
+     *
+     * @param parts The parts
+     * @return The newly constructed {@link DataQuery}
+     */
+    public static DataQuery of(String... parts) {
+        return new DataQuery(parts);
+    }
+
+    /**
+     * Constructs a query using the given parts.
+     *
+     * @param parts The parts
+     * @return The newly constructed {@link DataQuery}
+     */
+    public static DataQuery of(List<String> parts) {
+        return new DataQuery(parts);
     }
 
     /**
@@ -135,4 +171,20 @@ public final class DataQuery {
         return asString(String.valueOf(separator));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.parts);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final DataQuery other = (DataQuery) obj;
+        return Objects.equal(this.parts, other.parts);
+    }
 }

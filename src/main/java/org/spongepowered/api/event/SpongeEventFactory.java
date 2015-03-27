@@ -26,7 +26,6 @@
 package org.spongepowered.api.event;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3f;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.cache.CacheBuilder;
@@ -76,6 +75,7 @@ import org.spongepowered.api.event.entity.EntityCollisionWithEntityEvent;
 import org.spongepowered.api.event.entity.EntityConstructingEvent;
 import org.spongepowered.api.event.entity.EntityDeathEvent;
 import org.spongepowered.api.event.entity.EntityDismountEvent;
+import org.spongepowered.api.event.entity.EntityDisplaceEvent;
 import org.spongepowered.api.event.entity.EntityDropItemEvent;
 import org.spongepowered.api.event.entity.EntityHarvestBlockEvent;
 import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
@@ -90,26 +90,26 @@ import org.spongepowered.api.event.entity.EntityTameEvent;
 import org.spongepowered.api.event.entity.EntityTeleportEvent;
 import org.spongepowered.api.event.entity.EntityUpdateEvent;
 import org.spongepowered.api.event.entity.ProjectileLaunchEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerBreakBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeGameModeEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChangeWorldEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChatEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerDeathEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerDropItemEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerHarvestBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractEntityEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerInteractEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerMoveEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerPickUpItemEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerPlaceBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerQuitEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerUpdateEvent;
-import org.spongepowered.api.event.entity.living.player.fishing.PlayerCastFishingLineEvent;
-import org.spongepowered.api.event.entity.living.player.fishing.PlayerHookedEntityEvent;
-import org.spongepowered.api.event.entity.living.player.fishing.PlayerRetractFishingLineEvent;
+import org.spongepowered.api.event.entity.player.PlayerBreakBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerChangeBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerChangeGameModeEvent;
+import org.spongepowered.api.event.entity.player.PlayerChangeWorldEvent;
+import org.spongepowered.api.event.entity.player.PlayerChatEvent;
+import org.spongepowered.api.event.entity.player.PlayerDeathEvent;
+import org.spongepowered.api.event.entity.player.PlayerDropItemEvent;
+import org.spongepowered.api.event.entity.player.PlayerHarvestBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerInteractBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerInteractEntityEvent;
+import org.spongepowered.api.event.entity.player.PlayerInteractEvent;
+import org.spongepowered.api.event.entity.player.PlayerJoinEvent;
+import org.spongepowered.api.event.entity.player.PlayerMoveEvent;
+import org.spongepowered.api.event.entity.player.PlayerPickUpItemEvent;
+import org.spongepowered.api.event.entity.player.PlayerPlaceBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerQuitEvent;
+import org.spongepowered.api.event.entity.player.PlayerUpdateEvent;
+import org.spongepowered.api.event.entity.player.fishing.PlayerCastFishingLineEvent;
+import org.spongepowered.api.event.entity.player.fishing.PlayerHookedEntityEvent;
+import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLineEvent;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
@@ -129,7 +129,7 @@ import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.TileInventory;
 import org.spongepowered.api.status.StatusClient;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
@@ -585,6 +585,27 @@ public final class SpongeEventFactory {
     }
 
     /**
+     * Creates a new {@link EntityDisplaceEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param oldLocation The previous location of the entity
+     * @param newLocation The new location of the entity
+     * @param rotation The rotation the entity is facing
+     * @return A new instance of the event
+     */
+    public static EntityDisplaceEvent createEntityDisplace(Game game, Entity entity,
+            Location oldLocation, Location newLocation, Vector3d rotation) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("oldLocation", oldLocation);
+        values.put("newLocation", newLocation);
+        values.put("rotation", rotation);
+        return createEvent(EntityDisplaceEvent.class, values);
+    }
+
+    /**
      * Creates a new {@link EntityDropItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
@@ -699,7 +720,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static EntityMoveEvent createEntityMove(Game game, Entity entity,
-            Location oldLocation, Location newLocation, Vector3f rotation) {
+            Location oldLocation, Location newLocation, Vector3d rotation) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
@@ -801,11 +822,11 @@ public final class SpongeEventFactory {
      * @param oldLocation The previous location of the entity
      * @param newLocation The new location of the entity
      * @param rotation The rotation the entity is facing
-     * @param maintainsMomentum Whether the entity will maintain momentum
+     * @param keepsVelocity Whether the entity will maintain velocity
      * @return A new instance of the event
      */
     public static EntityTeleportEvent createEntityTeleport(Game game, Cause cause, Entity entity, Location oldLocation, Location newLocation,
-            Vector3f rotation, boolean maintainsMomentum) {
+            Vector3d rotation, boolean keepsVelocity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -813,7 +834,7 @@ public final class SpongeEventFactory {
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
         values.put("rotation", rotation);
-        values.put("keepsMomentum", maintainsMomentum);
+        values.put("keepsVelocity", keepsVelocity);
         return createEvent(EntityTeleportEvent.class, values);
     }
 
@@ -876,7 +897,7 @@ public final class SpongeEventFactory {
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static MessageEvent createMessage(Game game, CommandSource source, Message message) {
+    public static MessageEvent createMessage(Game game, CommandSource source, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);
@@ -1055,7 +1076,7 @@ public final class SpongeEventFactory {
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Message message) {
+    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1083,7 +1104,7 @@ public final class SpongeEventFactory {
      * @param keepsInventory Whether the player should keep inventory
      * @return A new instance of the event
      */
-    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Message deathMessage,
+    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text deathMessage,
             Collection<Item> droppedItems, int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1163,7 +1184,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerInteractBlockEvent createPlayerInteractBlock(Game game, Cause cause, Player player, BlockLoc block,
-            EntityInteractionType interactionType, @Nullable Vector3f location) {
+            EntityInteractionType interactionType, @Nullable Vector3d location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1188,7 +1209,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerInteractEntityEvent createPlayerInteractEntity(Game game, Player player, Entity targetEntity,
-            EntityInteractionType interactionType, @Nullable Vector3f location) {
+            EntityInteractionType interactionType, @Nullable Vector3d location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1211,7 +1232,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerInteractEvent createPlayerInteract(Game game, Player player, EntityInteractionType interactionType,
-            @Nullable Vector3f location) {
+            @Nullable Vector3d location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1231,7 +1252,7 @@ public final class SpongeEventFactory {
      * @param joinMessage The message displayed when the player joins
      * @return A new instance of the event
      */
-    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Message joinMessage) {
+    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Text joinMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1253,7 +1274,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerMoveEvent createPlayerMove(Game game, Player player,
-            Location oldLocation, Location newLocation, Vector3f rotation) {
+            Location oldLocation, Location newLocation, Vector3d rotation) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1319,7 +1340,7 @@ public final class SpongeEventFactory {
      * @param quitMessage The message to display to the player because they quit
      * @return A new instance of the event
      */
-    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Message quitMessage) {
+    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text quitMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);

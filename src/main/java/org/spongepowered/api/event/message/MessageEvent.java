@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.message;
 
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.Cancellable;
 
@@ -47,13 +47,13 @@ public interface MessageEvent extends GameEvent, Cancellable {
      *
      * @return The message said
      */
-    Message getMessage();
+    Text getMessage();
 
     /**
      * Set the message said.
      *
      * @param message The message said
      */
-    void setMessage(Message message);
+    void setMessage(Text message);
 
 }

@@ -31,8 +31,8 @@ import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.text.message.Message;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
@@ -56,7 +56,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      *
      * @return The player's display name
      */
-    Message getDisplayName();
+    Text getDisplayName();
 
     /**
      * Sets the player's display name.
@@ -67,7 +67,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param displayName The new display name of this player, or
      *                    <code>null</code> to reset it
      */
-    void setDisplayName(@Nullable Message displayName);
+    void setDisplayName(@Nullable Text displayName);
 
     /**
      * Gets the locale used by the player.
@@ -78,13 +78,12 @@ public interface Player extends Human, User, CommandSource, Viewer {
     Locale getLocale();
 
     /**
-     * Sends the plain text message(s) with the specified {@link ChatType} on the client.
-     * <p>Use {@link #sendMessage(ChatType, Message...)} for a formatted message.</p>
+     * Sends the message(s) with the specified {@link ChatType} on the client.
      *
      * @param type The chat type to send the messages to
-     * @param message The message(s) to send
+     * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, String... message);
+    void sendMessage(ChatType type, Text... messages);
 
     /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
@@ -92,15 +91,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Message... messages);
-
-    /**
-     * Sends the message(s) with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param messages The message(s) to send
-     */
-    void sendMessage(ChatType type, Iterable<Message> messages);
+    void sendMessage(ChatType type, Iterable<Text> messages);
 
     /**
      * Sends a {@link Title} to this player.

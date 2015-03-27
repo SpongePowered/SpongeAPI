@@ -27,6 +27,9 @@ package org.spongepowered.api.event.rcon;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.util.command.source.RconSource;
 
+/**
+ * An event when an {@link RconSource} executes a command.
+ */
 public interface RconCommandEvent extends CommandEvent, RconEvent {
 
     @Override

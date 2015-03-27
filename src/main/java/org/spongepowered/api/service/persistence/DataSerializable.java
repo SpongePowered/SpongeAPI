@@ -41,11 +41,4 @@ public interface DataSerializable {
      */
     DataContainer toContainer();
 
-    /**
-     * Serializes this object into the given {@link DataSource}.
-     *
-     * @param source The source to serialize to
-     */
-    void serialize(DataSource source);
-
 }
