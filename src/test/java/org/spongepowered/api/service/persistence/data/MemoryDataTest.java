@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.persistence.data;
 
 import static org.junit.Assert.assertTrue;
+import static org.spongepowered.api.service.persistence.data.DataQuery.of;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
@@ -51,7 +52,7 @@ public class MemoryDataTest {
     @Test
     public void testCreateView() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery tempQuery = new DataQuery("foo", "bar", "baz");
+        DataQuery tempQuery = of("foo", "bar", "baz");
         container.createView(tempQuery);
         assertTrue(container.getView(tempQuery).isPresent());
     }
@@ -59,7 +60,7 @@ public class MemoryDataTest {
     @Test
     public void testSetData() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery testQuery = new DataQuery('.', "foo.bar");
+        DataQuery testQuery = of('.', "foo.bar");
         container.set(testQuery, 1);
         Optional<Integer> optional = container.getInt(testQuery);
         assertTrue(optional.isPresent());
@@ -68,7 +69,7 @@ public class MemoryDataTest {
     @Test
     public void testIncorrectType() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery testQuery = new DataQuery("foo", "bar");
+        DataQuery testQuery = of("foo", "bar");
         container.set(testQuery, "foo");
         Optional<Integer> optional = container.getInt(testQuery);
         assertTrue(!optional.isPresent());
@@ -77,7 +78,7 @@ public class MemoryDataTest {
     @Test
     public void testNumbers() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery testQuery = new DataQuery("foo", "bar");
+        DataQuery testQuery = of("foo", "bar");
         container.set(testQuery, 1.0D);
         Optional<Integer> integerOptional = container.getInt(testQuery);
         assertTrue(integerOptional.isPresent());
@@ -93,7 +94,7 @@ public class MemoryDataTest {
     @Test
     public void testBoolean() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery testQuery = new DataQuery("foo", "bar");
+        DataQuery testQuery = of("foo", "bar");
         container.set(testQuery, false);
         Optional<Boolean> booleanOptional = container.getBoolean(testQuery);
         assertTrue(booleanOptional.isPresent());
@@ -103,7 +104,7 @@ public class MemoryDataTest {
     @Test
     public void testString() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery testQuery = new DataQuery("foo", "bar");
+        DataQuery testQuery = of("foo", "bar");
         container.set(testQuery, "foo");
         Optional<String> stringOptional = container.getString(testQuery);
         assertTrue(stringOptional.isPresent());
@@ -113,7 +114,7 @@ public class MemoryDataTest {
     @Test
     public void testAbsents() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery testQuery = new DataQuery("foo", "bar", "baz");
+        DataQuery testQuery = of("foo", "bar", "baz");
         assertTrue(!container.get(testQuery).isPresent());
         assertTrue(!container.getBoolean(testQuery).isPresent());
         assertTrue(!container.getBooleanList(testQuery).isPresent());
@@ -137,7 +138,7 @@ public class MemoryDataTest {
     @Test
     public void testNumberedLists() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery testQuery = new DataQuery("foo", "bar", "baz");
+        DataQuery testQuery = of("foo", "bar", "baz");
         List<Integer> intList = ImmutableList.of(1, 2, 3, 4);
         container.set(testQuery, intList);
         assertTrue(container.getIntegerList(testQuery).isPresent());
@@ -163,13 +164,13 @@ public class MemoryDataTest {
     @Test
     public void testLists() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery query = new DataQuery("foo");
+        DataQuery query = of("foo");
         List<DataView> list = Lists.newArrayList();
         for (int i = 0; i < 1000; i++) {
             DataContainer internal = new MemoryDataContainer();
-            internal.set(new DataQuery("foo", "bar"), "foo.bar" + i);
+            internal.set(of("foo", "bar"), "foo.bar" + i);
             int[] ints = new int[] {0, 1, 2, 3, i};
-            internal.set(new DataQuery("ints"), ints);
+            internal.set(of("ints"), ints);
             list.add(internal);
         }
         container.set(query, list);
@@ -181,7 +182,7 @@ public class MemoryDataTest {
     @Test
     public void testEmptyQuery() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery query = new DataQuery("");
+        DataQuery query = of("");
         container.set(query, "foo");
         assertTrue(container.get(query).isPresent());
         assertTrue(container.get(query).get().equals("foo"));
@@ -190,11 +191,11 @@ public class MemoryDataTest {
     @Test
     public void testContainsEmpty() {
         DataContainer container = new MemoryDataContainer();
-        DataQuery query = new DataQuery("");
+        DataQuery query = of("");
         assertTrue(!container.contains(query));
         container.set(query, "foo");
         assertTrue(container.contains(query));
-        query = new DataQuery('.', "foo.bar");
+        query = of('.', "foo.bar");
         assertTrue(!container.contains(query));
         container.set(query, "baz");
         assertTrue(container.contains(query));
@@ -218,11 +219,11 @@ public class MemoryDataTest {
         SimpleData temp = new SimpleData(1, 2.0, "foo", myList);
         DataContainer container = temp.toContainer();
 
-        Optional<SimpleData> fromContainer = container.getSerializable(new DataQuery(), SimpleData.class, service);
+        Optional<SimpleData> fromContainer = container.getSerializable(of(), SimpleData.class, service);
         assertTrue(fromContainer.isPresent());
         assertTrue(Objects.equal(fromContainer.get(), temp));
-        assertTrue(container.contains(new DataQuery("myStringList")));
-        assertTrue(container.getStringList(new DataQuery("myStringList")).get().equals(myList));
+        assertTrue(container.contains(of("myStringList")));
+        assertTrue(container.getStringList(of("myStringList")).get().equals(myList));
 
     }
 
@@ -238,9 +239,9 @@ public class MemoryDataTest {
             list.add(new SimpleData(i, 0.1 * i, "i", Lists.asList(number, new String[] {" foo", "bar"})));
         }
         DataContainer container = new MemoryDataContainer();
-        container.set(new DataQuery("foo", "bar"), list);
-        assertTrue(container.contains(new DataQuery("foo", "bar")));
-        Optional<List<SimpleData>> fromContainer = container.getSerializableList(new DataQuery("foo", "bar"), SimpleData.class, service);
+        container.set(of("foo", "bar"), list);
+        assertTrue(container.contains(of("foo", "bar")));
+        Optional<List<SimpleData>> fromContainer = container.getSerializableList(of("foo", "bar"), SimpleData.class, service);
         assertTrue(fromContainer.isPresent());
         List<SimpleData> memoryList = fromContainer.get();
         assertTrue(Objects.equal(memoryList, list));
@@ -251,19 +252,19 @@ public class MemoryDataTest {
     public void testGetKeys() {
         Set<DataQuery> queries = Sets.newHashSet();
 
-        queries.add(new DataQuery("foo"));
-        queries.add(new DataQuery("foo", "bar"));
-        queries.add(new DataQuery("foo", "bar", "baz"));
-        queries.add(new DataQuery("bar"));
+        queries.add(of("foo"));
+        queries.add(of("foo", "bar"));
+        queries.add(of("foo", "bar", "baz"));
+        queries.add(of("bar"));
         DataView view = new MemoryDataContainer();
-        view.set(new DataQuery("foo"), "foo");
-        view.set(new DataQuery("foo", "bar"), "foobar");
-        view.set(new DataQuery("foo", "bar", "baz"), "foobarbaz");
-        view.set(new DataQuery("bar"), 1);
+        view.set(of("foo"), "foo");
+        view.set(of("foo", "bar"), "foobar");
+        view.set(of("foo", "bar", "baz"), "foobarbaz");
+        view.set(of("bar"), 1);
 
         Set<DataQuery> testQueries = Sets.newHashSet();
-        testQueries.add(new DataQuery("foo"));
-        testQueries.add(new DataQuery("bar"));
+        testQueries.add(of("foo"));
+        testQueries.add(of("bar"));
         Set<DataQuery> shallowKeys = view.getKeys(false);
         assertTrue(shallowKeys.equals(testQueries));
         Set<DataQuery> deepKeys = view.getKeys(true);
@@ -274,29 +275,29 @@ public class MemoryDataTest {
     public void testGetMaps() {
         List<DataQuery> queries = Lists.newArrayList();
 
-        queries.add(new DataQuery("foo"));
-        queries.add(new DataQuery("foo", "bar"));
-        queries.add(new DataQuery("foo", "bar", "baz"));
-        queries.add(new DataQuery("bar"));
+        queries.add(of("foo"));
+        queries.add(of("foo", "bar"));
+        queries.add(of("foo", "bar", "baz"));
+        queries.add(of("bar"));
         DataView view = new MemoryDataContainer();
-        view.set(new DataQuery("foo"), "foo");
-        view.set(new DataQuery("foo", "bar"), "foobar");
-        view.set(new DataQuery("foo", "bar", "baz"), "foobarbaz");
-        view.set(new DataQuery("bar"), 1);
+        view.set(of("foo"), "foo");
+        view.set(of("foo", "bar"), "foobar");
+        view.set(of("foo", "bar", "baz"), "foobarbaz");
+        view.set(of("bar"), 1);
 
         Map<DataQuery, Object> shallowMap = Maps.newHashMap();
-        shallowMap.put(new DataQuery("foo"), "foo");
-        shallowMap.put(new DataQuery("bar"), 1);
+        shallowMap.put(of("foo"), "foo");
+        shallowMap.put(of("bar"), 1);
 
         Map<DataQuery, Object> deepMap = Maps.newHashMap();
-        deepMap.put(new DataQuery("foo"), "foo");
-        deepMap.put(new DataQuery("foo", "bar"), "foobar");
-        deepMap.put(new DataQuery("foo", "bar", "baz"), "foobarbaz");
-        deepMap.put(new DataQuery("bar"), 1);
+        deepMap.put(of("foo"), "foo");
+        deepMap.put(of("foo", "bar"), "foobar");
+        deepMap.put(of("foo", "bar", "baz"), "foobarbaz");
+        deepMap.put(of("bar"), 1);
 
         List<DataQuery> testQueries = Lists.newArrayList();
-        testQueries.add(new DataQuery("foo"));
-        testQueries.add(new DataQuery("bar"));
+        testQueries.add(of("foo"));
+        testQueries.add(of("bar"));
         Map<DataQuery, Object> shallowValues = view.getValues(false);
         assertTrue(shallowValues.keySet().equals(shallowMap.keySet()));
         Map<DataQuery, Object> deepValues = view.getValues(true);
