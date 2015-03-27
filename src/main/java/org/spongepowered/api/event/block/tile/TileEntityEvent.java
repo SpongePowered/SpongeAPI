@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.tile;
 
 import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.event.GameEvent;
 
 /**
@@ -41,11 +41,11 @@ public interface TileEntityEvent extends GameEvent {
     TileEntity getTile();
 
     /**
-     * Gets the current {@link TileEntityData} associated with the
+     * Gets the current {@link DataManipulator} associated with the
      * {@link TileEntity} associated with this event.
      *
      * @return The snapshot of the current tile entity data
      */
-    TileEntityData<?, ?> getCurrentData();
+    DataManipulator<?> getCurrentData();
 
 }

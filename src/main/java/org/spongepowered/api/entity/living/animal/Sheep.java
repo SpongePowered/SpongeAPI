@@ -25,29 +25,9 @@
 
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Dyeable;
-
 /**
  * Represents a Sheep.
  */
-public interface Sheep extends Animal, Dyeable {
-
-    /**
-     * Returns whether this sheep is sheared or not.
-     * <p>A sheared sheep may not return a wool block from shearing.
-     * It may also attempt to consume a grass block to grow back its fur.</p>
-     *
-     * @return True if this sheep has been sheared
-     */
-    boolean isSheared();
-
-    /**
-     * Sets whether this sheep is sheared or not.
-     * <p>A sheared sheep may not return a wool block from shearing.
-     * It may also attempt to consume a grass block to grow back its fur.</p>
-     *
-     * @param sheared Whether this sheep is sheared or not
-     */
-    void setSheared(boolean sheared);
+public interface Sheep extends Animal {
 
 }

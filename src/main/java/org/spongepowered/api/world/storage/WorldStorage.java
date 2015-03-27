@@ -27,7 +27,7 @@ package org.spongepowered.api.world.storage;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.Chunk;
 
 /**

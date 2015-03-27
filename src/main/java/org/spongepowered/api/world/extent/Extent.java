@@ -30,7 +30,14 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.DataPriority;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -591,4 +598,357 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      */
     void removeScheduledUpdate(int x, int y, int z, ScheduledBlockUpdate update);
 
+    /**
+     * Gets an instance of the given data class for given block at the location.
+     *
+     * <p>If there is no pre-existing data that can be represented by the given
+     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
+     * </p>
+     *
+     * @param position The position of the block
+     * @param dataClass The data class
+     * @param <T> The type of data
+     * @return An instance of the class, if not available
+     */
+    <T extends DataManipulator<T>> Optional<T> getData(Vector3i position, Class<T> dataClass);
+
+    /**
+     * Gets an instance of the given data class for given block at the location.
+     *
+     * <p>If there is no pre-existing data that can be represented by the given
+     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
+     * </p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param dataClass The data class
+     * @param <T> The type of data
+     * @return An instance of the class, if not available
+     */
+    <T extends DataManipulator<T>> Optional<T> getData(int x, int y, int z, Class<T> dataClass);
+
+    /**
+     * Gets or creates a new {@link DataManipulator} that can be accepted by
+     * the block at the location. In the event that there is no data that can
+     * be represented by the given {@link DataManipulator}, a new {@link
+     * DataManipulator} object is created with default values.
+     *
+     * <p>In the event the {@link DataManipulator} can not represent any data
+     * pertaining to the block at the location, {@link Optional#absent()} is
+     * returned.</p>
+     *
+     * @param position The position of the block
+     * @param manipulatorClass The data class
+     * @param <T> The type of data
+     * @return An instance of the class, if not available
+     */
+    <T extends DataManipulator<T>> Optional<T> getOrCreate(Vector3i position, Class<T> manipulatorClass);
+
+    /**
+     * Gets or creates a new {@link DataManipulator} that can be accepted by
+     * the block at the location. In the event that there is no data that can
+     * be represented by the given {@link DataManipulator}, a new {@link
+     * DataManipulator} object is created with default values.
+     *
+     * <p>In the event the {@link DataManipulator} can not represent any data
+     * pertaining to the block at the location, {@link Optional#absent()} is
+     * returned.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param manipulatorClass The data class
+     * @param <T> The type of data
+     * @return An instance of the class, if not available
+     */
+    <T extends DataManipulator<T>> Optional<T> getOrCreate(int x, int y, int z, Class<T> manipulatorClass);
+
+    /**
+     * Attempts to remove the given {@link DataManipulator} represented by
+     * the block at the given location if possible.
+     *
+     * <p>Certain {@link DataManipulator}s can not be removed due to certain
+     * dependencies relying on the particular data to function.</p>
+     *
+     * @param position The position of the block
+     * @param manipulatorClass The data class
+     * @param <T> The type of data
+     * @return If the manipulator was removed
+     */
+    <T extends DataManipulator<T>> boolean remove(Vector3i position, Class<T> manipulatorClass);
+
+    /**
+     * Attempts to remove the given {@link DataManipulator} represented by
+     * the block at the given location if possible.
+     *
+     * <p>Certain {@link DataManipulator}s can not be removed due to certain
+     * dependencies relying on the particular data to function.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param manipulatorClass The data class
+     * @param <T> The type of data
+     * @return If the manipulator was removed
+     */
+    <T extends DataManipulator<T>> boolean remove(int x, int y, int z, Class<T> manipulatorClass);
+
+    /**
+     * Checks if the given {@link DataManipulator} class is able to represent
+     * data within the block at the given position.
+     *
+     * @param position The position of the block
+     * @param manipulatorClass The data class
+     * @param <T> The type of data
+     * @return True if the block at the given position can accept the
+     *     {@link DataManipulator} object
+     */
+    <T extends DataManipulator<T>> boolean isCompatible(Vector3i position, Class<T> manipulatorClass);
+
+    /**
+     * Checks if the given {@link DataManipulator} class is able to represent
+     * data within the block at the given position.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param manipulatorClass The data class
+     * @param <T> The type of data
+     * @return True if the block at the given position can accept the
+     *     {@link DataManipulator} object
+     */
+    <T extends DataManipulator<T>> boolean isCompatible(int x, int y, int z, Class<T> manipulatorClass);
+
+    /**
+     * Offers the given {@link DataManipulator} to the block at the given
+     * position.
+     *
+     * <p>In the event that the {@link DataManipulator} contains data that
+     * would otherwise overlap existing data on the block at the given
+     * position, a default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
+     *
+     * <p>If any data is rejected or existing data is replaced, the {@link
+     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     *
+     * @param position The position of the block
+     * @param manipulatorData The manipulator data to offer
+     * @param <T> The type of manipulator data
+     * @return The transaction result
+     */
+    <T extends DataManipulator<T>> DataTransactionResult offer(Vector3i position, T manipulatorData);
+
+    /**
+     * Offers the given {@link DataManipulator} to the block at the given
+     * position.
+     *
+     * <p>In the event that the {@link DataManipulator} contains data that
+     * would otherwise overlap existing data on the block at the given
+     * position, a default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
+     *
+     * <p>If any data is rejected or existing data is replaced, the {@link
+     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param manipulatorData The manipulator data to offer
+     * @param <T> The type of manipulator data
+     * @return The transaction result
+     */
+    <T extends DataManipulator<T>> DataTransactionResult offer(int x, int y, int z, T manipulatorData);
+
+    /**
+     * Offers the given {@link DataManipulator} to the block at the given
+     * position.
+     *
+     * <p>If any data is rejected or existing data is replaced, the {@link
+     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     *
+     * @param position The position of the block
+     * @param manipulatorData The manipulator data to offer
+     * @param priority The data priority to use
+     * @param <T> The type of manipulator data
+     * @return The transaction result
+     */
+    <T extends DataManipulator<T>> DataTransactionResult offer(Vector3i position, T manipulatorData, DataPriority priority);
+
+    /**
+     * Offers the given {@link DataManipulator} to the block at the given
+     * position.
+     *
+     * <p>If any data is rejected or existing data is replaced, the {@link
+     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param manipulatorData The manipulator data to offer
+     * @param priority The data priority to use
+     * @param <T> The type of manipulator data
+     * @return The transaction result
+     */
+    <T extends DataManipulator<T>> DataTransactionResult offer(int x, int y, int z, T manipulatorData, DataPriority priority);
+
+    /**
+     * Gets an copied collection of all known {@link DataManipulator}s
+     * belonging to the block at the given position. An individual
+     * {@link DataManipulator} can be used for creating new data to replace
+     * on the block at the given position.
+     *
+     * @param position The position of the block
+     * @return A collection of copied data manipulators belonging to the block
+     *     at the given position
+     */
+    Collection<? extends DataManipulator<?>> getManipulators(Vector3i position);
+
+    /**
+     * Gets an copied collection of all known {@link DataManipulator}s
+     * belonging to the block at the given position. An individual
+     * {@link DataManipulator} can be used for creating new data to replace
+     * on the block at the given position.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return A collection of copied data manipulators belonging to the block
+     *     at the given position
+     */
+    Collection<? extends DataManipulator<?>> getManipulators(int x, int y, int z);
+
+    /**
+     * Attempts to retrieve a specific {@link Property} type of this the block
+     * at the given position. If the property is not applicable,
+     * {@link Optional#absent()} is returned.
+     *
+     * <p>{@link Property}s can define various immutable information about a
+     * the block at the given position that is dependent on the instance of the
+     * holder. As {@link Property}s cannot be changed, the the block at the
+     * given  position can not change the information about it's own properties
+     * either.</p>
+     *
+     * @param position The position of the block
+     * @param propertyClass The property class
+     * @param <T> The type of property
+     * @return The property, if available
+     */
+    <T extends Property<?, ?>> Optional<T> getProperty(Vector3i position, Class<T> propertyClass);
+
+    /**
+     * Attempts to retrieve a specific {@link Property} type of the block at
+     * the given position. If the property is not applicable,
+     * {@link Optional#absent()} is returned.
+     *
+     * <p>{@link Property}s can define various immutable information about a
+     * the block at the given position that is dependent on the instance of the
+     * holder. As {@link Property}s cannot be changed, the the block at the
+     * given  position can not change the information about it's own properties
+     * either.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param propertyClass The property class
+     * @param <T> The type of property
+     * @return The property, if available
+     */
+    <T extends Property<?, ?>> Optional<T> getProperty(int x, int y, int z, Class<T> propertyClass);
+
+    /**
+     * Gets an immutable collection of all known {@link Property}s pertaining to
+     * the block at the given position.
+     *
+     * <p>{@link Property}s can not be changed such that the property is attached
+     * to the instance of the residing {@link DataHolder}.</p>
+     *
+     * @param position The position of the block
+     * @return An immutable collection of all known {@link Property}s
+     */
+    Collection<? extends Property<?, ?>> getProperties(Vector3i position);
+
+    /**
+     * Gets an immutable collection of all known {@link Property}s pertaining to
+     * the block at the given position.
+     *
+     * <p>{@link Property}s can not be changed such that the property is attached
+     * to the instance of the residing {@link DataHolder}.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return An immutable collection of all known {@link Property}s
+     */
+    Collection<? extends Property<?, ?>> getProperties(int x, int y, int z);
+
+    /**
+     * Validates the container with known data required to set the raw data to
+     * the block at the given position. If the container is incomplete or
+     * contains invalid data, <code>false</code> is returned.
+     *
+     * <p>This validation should be checked prior to calling
+     * {@link #setRawData(Vector3i, DataContainer)} to avoid exceptions.</p>
+     *
+     * @param position The position of the block
+     * @param container The raw data to validate
+     * @return True if the data is valid
+     */
+    boolean validateRawData(Vector3i position, DataContainer container);
+
+    /**
+     * Validates the container with known data required to set the raw data to
+     * the block at the given position. If the container is incomplete or
+     * contains invalid data, <code>false</code> is returned.
+     *
+     * <p>This validation should be checked prior to calling
+     * {@link #setRawData(Vector3i, DataContainer)} to avoid exceptions.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param container The raw data to validate
+     * @return True if the data is valid
+     */
+    boolean validateRawData(int x, int y, int z, DataContainer container);
+
+    /**
+     * Attempts to set all data of the block at the given position according to
+     * the {@link DataContainer}'s held information. Using this to modify known
+     * {@link DataManipulator}s is unsupported and if the data is invalid, an
+     * {@link InvalidDataException} is thrown.
+     *
+     * <p>This setter is used to provide setting custom data that is not
+     * represented by the Data API, including forge mods and other
+     * unknown data. Attempts at validating known {@link DataManipulator}s
+     * contained in the data container are made with the assumption that all
+     * necessary data exists.</p>
+     *
+     * @param position The position of the block
+     * @param container A container containing all raw data to set on the block
+     *     at the given position
+     * @throws InvalidDataException If the container is missing or has invalid
+     *     data that this holder will refuse
+     */
+    void setRawData(Vector3i position, DataContainer container) throws InvalidDataException;
+
+    /**
+     * Attempts to set all data of the block at the given position according to
+     * the {@link DataContainer}'s held information. Using this to modify known
+     * {@link DataManipulator}s is unsupported and if the data is invalid, an
+     * {@link InvalidDataException} is thrown.
+     *
+     * <p>This setter is used to provide setting custom data that is not
+     * represented by the Data API, including forge mods and other
+     * unknown data. Attempts at validating known {@link DataManipulator}s
+     * contained in the data container are made with the assumption that all
+     * necessary data exists.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param container A container containing all raw data to set on the block
+     *     at the given position
+     * @throws InvalidDataException If the container is missing or has invalid
+     *     data that this holder will refuse
+     */
+    void setRawData(int x, int y, int z, DataContainer container) throws InvalidDataException;
 }

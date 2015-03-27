@@ -25,7 +25,8 @@
 package org.spongepowered.api.service.persistence;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
 
 /**
  * Represents a source that data may be serialized to and from. The source

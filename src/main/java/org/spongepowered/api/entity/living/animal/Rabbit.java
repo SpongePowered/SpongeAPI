@@ -29,22 +29,5 @@ package org.spongepowered.api.entity.living.animal;
  */
 public interface Rabbit extends Animal {
 
-    /**
-     * Gets the current rabbit type for this rabbit.
-     * <p>Rabbit types can change the health of a rabbit, as well as
-     * causing the rabbit to start attacking other entities.</p>
-     *
-     * @return The type of rabbit
-     */
-    RabbitType getRabbitType();
-
-    /**
-     * Sets the new rabbit type for this rabbit.
-     * <p>Rabbit types can change the health of a rabbit, as well as
-     * causing the rabbit to start attacking other entities.</p>
-     *
-     * @param type The type of rabbit
-     */
-    void setRabbitType(RabbitType type);
 
 }

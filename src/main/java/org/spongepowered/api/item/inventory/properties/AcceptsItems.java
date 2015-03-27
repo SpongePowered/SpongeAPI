@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 import org.spongepowered.api.util.Coerce;
@@ -77,7 +78,7 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
+    public int compareTo(Property<?, ?> other) {
         // This breaks the contract of Comparable, but we don't have a meaningful
         // way of providing a natural ordering
         return this.equals(other) ? 0 : this.hashCode() - this.hashCodeOf(other);

@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.attribute;
 
 import org.spongepowered.api.attribute.Attribute;
-import org.spongepowered.api.attribute.AttributeHolder;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.util.event.Cancellable;
 
@@ -36,17 +36,17 @@ import org.spongepowered.api.util.event.Cancellable;
 public interface AttributeEvent extends Cancellable, GameEvent {
 
     /**
-     * Gets the {@link AttributeHolder} whose attributes are being changed.
+     * Gets the {@link DataHolder} whose attributes are being changed.
      *
-     * @return The AttributeHolder whose attributes are being changed
+     * @return The {@link DataHolder} whose attributes are being changed
      */
-    AttributeHolder getHolder();
+    DataHolder getHolder();
 
     /**
      * Gets the {@link org.spongepowered.api.attribute.Attribute} that is being
      * changed.
      *
-     * @return The Attribute that is being changed
+     * @return The {@link Attribute} that is being changed
      */
     Attribute getAttribute();
 

@@ -26,8 +26,8 @@
 package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.GameRegistry;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.service.persistence.data.DataContainer;
 
 /**
  * If a plugin wishes to modify a world generator, the plugin must register a

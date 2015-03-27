@@ -25,11 +25,11 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Coerce;
 
 /**
- * Property for inventories of a particular size. For example to allow querying
+ * property for inventories of a particular size. For example to allow querying
  * for InventoryRows of length 9 or GridInventories of size 3x3
  */
 public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
@@ -109,7 +109,7 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
+    public int compareTo(Property<?, ?> other) {
         if (other == null) {
             return 1;
         }

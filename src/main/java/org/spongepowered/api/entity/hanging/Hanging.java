@@ -25,26 +25,10 @@
 package org.spongepowered.api.entity.hanging;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.Direction;
 
 /**
  * Represents a hanging entity, such as a {@link org.spongepowered.api.entity.hanging.Painting}.
  */
 public interface Hanging extends Entity {
-
-    /**
-     * Gets the facing direction of this hanging entity.
-     *
-     * @return The facing direction
-     */
-    Direction getHangingDirection();
-
-    /**
-     * Sets the facing direction of this entity.
-     *
-     * @param direction The direction to face
-     * @param forced Whether physics is ignored
-     */
-    void setHangingDirection(Direction direction, boolean forced);
 
 }

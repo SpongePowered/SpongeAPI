@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.block.tile.data.CommandData;
 import org.spongepowered.api.util.command.source.CommandBlockSource;
 
 /**
@@ -37,21 +36,4 @@ public interface CommandBlock extends TileEntity, CommandBlockSource {
      */
     void execute();
 
-    /**
-     * Gets the data that this {@link CommandBlock} is currently using.
-     *
-     * @return The current command data
-     */
-    CommandData getCommandData();
-
-    /**
-     * Sets the requested {@link CommandData} onto this {@link CommandBlock}.
-     *
-     * <p>Validation is performed on the {@link CommandData} to ensure the
-     * desired data is properly set.</p>
-     *
-     * @param data The command data to set
-     * @return The transaction result
-     */
-    TileDataTransactionResult setCommandData(CommandData data);
 }

@@ -25,12 +25,9 @@
 
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Dyeable;
-import org.spongepowered.api.entity.living.Sittable;
-
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends Animal, Sittable, Dyeable {
+public interface Wolf extends Animal {
 
 }

@@ -26,20 +26,16 @@
 package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.service.persistence.data.DataHolder;
-
-import java.util.Collection;
+import com.google.common.collect.ImmutableCollection;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
 
 /**
  * Represents a block using {@link BlockType} and a list of
- * {@link BlockProperty} instances.
+ * {@link DataManipulator} instances.
  *
- * <p>This interface represents the Mojang interpretation of
- * "block state."</p>
- *
- * <p>States do not refer to extra data, such as chest contents. That is
- * considered extra data and can be accessed via {@link DataHolder}.</p>
+ * <p>States are considered immutable {@link DataHolder}s as the
+ * contained {@link DataManipulator}s can not be changed.</p>
  */
 public interface BlockState {
 
@@ -58,14 +54,14 @@ public interface BlockState {
      *
      * @return Map of all current properties
      */
-    ImmutableMap<BlockProperty<?>, ? extends Comparable<?>> getProperties();
+    ImmutableCollection<DataManipulator<?>> getManipulators();
 
     /**
      * Gets all property names defined on this BlockState.
      *
      * @return Collection of property names
      */
-    Collection<String> getPropertyNames();
+    ImmutableCollection<String> getManipulatorIds();
 
     /**
      * Get a property from its name.
@@ -73,7 +69,7 @@ public interface BlockState {
      * @param name The name of the property
      * @return The property with the given name or Optional.absent() if not found
      */
-    Optional<BlockProperty<?>> getPropertyByName(String name);
+    Optional<DataManipulator<?>> getManipulatorByName(String name);
 
     /**
      * Get the current value of a given property.
@@ -81,7 +77,7 @@ public interface BlockState {
      * @param name Property to get value of
      * @return Current value of the property or Optional.absent() if not found
      */
-    Optional<? extends Comparable<?>> getPropertyValue(String name);
+    Optional<? extends Comparable<?>> getManipulatorValue(String name);
 
     /**
      * Get an altered BlockState with the given property set to the given value.
@@ -89,10 +85,9 @@ public interface BlockState {
      * <p>This does not alter the current BlockState instance</p>
      *
      * @param property Property to change value of
-     * @param value New value of property
      * @return A BlockState with the property's value modified
      */
-    BlockState withProperty(BlockProperty<?> property, Comparable<?> value);
+    BlockState withData(DataManipulator<?> property);
 
     /**
      * Get an altered BlockState with the given property set to the next valid
@@ -104,26 +99,6 @@ public interface BlockState {
      * @param property Property to change value of
      * @return A BlockState with the property's value modified
      */
-    BlockState cycleProperty(BlockProperty<?> property);
-
-    /**
-     * Get the data value of the block at the given position.
-     *
-     * <p>The data value is a number between 0 and 15 (inclusive) that
-     * represents a value for differentiation with certain blocks. For example,
-     * the base dirt block has a data value that changes the variant of dirt.
-     * The base data value is generally 0.</p>
-     *
-     * <p>However, be aware that data values are being deprecated in
-     * Minecraft because they are a waste of bytes and add extra complexity to
-     * block differentiation. Most blocks don't use a data value, so that's
-     * a waste of four bits of data per block. In the future, there will
-     * only be <em>one</em> number to represent each 'state' of a block.</p>
-     *
-     * @return The data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    byte getDataValue();
+    BlockState cycleProperty(DataManipulator<?> property);
 
 }

@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.types;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.block.tile.data.TileEntityData;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
 

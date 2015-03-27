@@ -26,6 +26,7 @@ package org.spongepowered.api.service.persistence;
 
 import com.google.common.base.Optional;
 import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.data.DataSerializable;
 
 /**
  * A standard factory to create {@link DataSource}s to serialize and deserialize

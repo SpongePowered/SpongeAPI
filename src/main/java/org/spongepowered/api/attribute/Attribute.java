@@ -27,11 +27,12 @@ package org.spongepowered.api.attribute;
 
 import com.google.common.base.Predicate;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of attribute that can be applied to an
- * {@link AttributeHolder}.
+ * {@link DataHolder}.
  */
 @CatalogedBy(Attributes.class)
 public interface Attribute extends CatalogType {
@@ -58,11 +59,11 @@ public interface Attribute extends CatalogType {
     double getDefaultValue();
 
     /**
-     * Gets a predicate to decide if a given {@link AttributeHolder} can have
+     * Gets a predicate to decide if a given {@link DataHolder} can have
      * this attribute applied to it.
      *
      * @return A predicate to decide if this attribute can be applied
      */
-    Predicate<AttributeHolder> getTargets();
+    Predicate<DataHolder> getTargets();
 
 }

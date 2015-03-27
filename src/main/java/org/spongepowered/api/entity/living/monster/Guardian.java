@@ -31,22 +31,4 @@ import org.spongepowered.api.entity.living.Aquatic;
  */
 public interface Guardian extends Aquatic, Monster {
 
-    /**
-     * Checks if this guardian is an elder or not.
-     * <p>Elder guardians may have higher health, attack damage,
-     * and other drop items.</p>
-     *
-     * @return True if this is an elder guardian
-     */
-    boolean isElder();
-
-    /**
-     * Sets whether this guardian is an elder.
-     * <p>Elder guardians may have higher health, attack damage, and
-     * other item drops.</p>
-     *
-     * @param elder Whether this guardian is an elder or not
-     */
-    void setElder(boolean elder);
-
 }

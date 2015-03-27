@@ -29,10 +29,9 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.service.persistence.data.DataContainer;
 
 import java.util.Collection;
 
@@ -94,22 +93,6 @@ public interface EntityUniverse {
      * be customized further prior to traditional "ticking" and processing by
      * core systems.</p>
      *
-     * @param snapshot The snapshot
-     * @param position The position
-     * @return An entity, if one was created
-     */
-    Optional<Entity> createEntity(EntitySnapshot snapshot, Vector3i position);
-
-    /**
-     * Create an entity instance at the given position.
-     *
-     * <p>Creating an entity does not spawn the entity into the world. An entity
-     * created means the entity can be spawned at the given location. If
-     * {@link Optional#absent()} was returned, the entity is not able to spawn
-     * at the given location. Furthermore, this allows for the {@link Entity} to
-     * be customized further prior to traditional "ticking" and processing by
-     * core systems.</p>
-     *
      * @param type The type
      * @param position The position
      * @return An entity, if one was created
@@ -126,11 +109,10 @@ public interface EntityUniverse {
      * be customized further prior to traditional "ticking" and processing by
      * core systems.</p>
      *
-     * @param snapshot The snapshot
-     * @param position The position
+     * @param entityContainer The data container of the entity
      * @return An entity, if one was created
      */
-    Optional<Entity> createEntity(EntitySnapshot snapshot, Vector3d position);
+    Optional<Entity> createEntity(DataContainer entityContainer);
 
     /**
      * Create an entity instance at the given position.
@@ -143,9 +125,10 @@ public interface EntityUniverse {
      * core systems.</p>
      *
      * @param entityContainer The data container of the entity
+     * @param position The position of the entity to spawn at
      * @return An entity, if one was created
      */
-    Optional<Entity> createEntity(DataContainer entityContainer);
+    Optional<Entity> createEntity(DataContainer entityContainer, Vector3d position);
 
     /**
      * Spawns an entity using the already set properties (extent, position,

@@ -25,25 +25,9 @@
 
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Sittable;
-
 /**
  * Represents an Ocelot.
  */
-public interface Ocelot extends Animal, Sittable {
-
-    /**
-     * Gets the current {@link OcelotType} of this ocelot.
-     *
-     * @return The current ocelot type
-     */
-    OcelotType getOcelotType();
-
-    /**
-     * Sets this ocelot to become the given {@link OcelotType}.
-     *
-     * @param ocelotType The new ocelot type
-     */
-    void setOcelotType(final OcelotType ocelotType);
+public interface Ocelot extends Animal {
 
 }

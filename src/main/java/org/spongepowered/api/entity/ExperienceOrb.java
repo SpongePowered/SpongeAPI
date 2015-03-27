@@ -29,18 +29,6 @@ package org.spongepowered.api.entity;
  */
 public interface ExperienceOrb extends Entity {
 
-    /**
-     * Gets how much experience will be added to the player on pickup.
-     *
-     * @return Amount of experience
-     */
-    int getExperience();
 
-    /**
-     * Sets how much experience will be added to the player on pickup.
-     *
-     * @param experience The new amount of experience
-     */
-    void setExperience(int experience);
 
 }

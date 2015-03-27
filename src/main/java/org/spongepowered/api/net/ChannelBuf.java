@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.net;
 
-import org.spongepowered.api.service.persistence.data.DataView;
+import org.spongepowered.api.data.DataView;
 
 import java.nio.ByteOrder;
 import java.util.UUID;

@@ -26,16 +26,17 @@
 package org.spongepowered.api.service.persistence;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
 
 /**
- * A service that manages {@link DataSerializableBuilder}s and sometimes the
+ * A service that manages {@link DataBuilder}s and sometimes the
  * deserialization of various {@link DataSerializable}s.
  */
 public interface SerializationService {
 
     /**
-     * Registers a {@link DataSerializableBuilder} that will dynamically build
+     * Registers a {@link DataBuilder} that will dynamically build
      * the given {@link DataSerializable} from a {@link DataContainer}.
      *
      * <p>Builders may not always exist for a given {@link DataSerializable},
@@ -48,10 +49,10 @@ public interface SerializationService {
      * @param <T> The type of data serializable
      */
     <T extends DataSerializable> void registerBuilder(Class<T> clazz,
-            DataSerializableBuilder<T> builder);
+            DataBuilder<T> builder);
 
     /**
-     * Attempts to retrieve the {@link DataSerializableBuilder} for the desired
+     * Attempts to retrieve the {@link DataBuilder} for the desired 
      * {@link DataSerializable} class.
      *
      * <p>Builders may not always exist for a given {@link DataSerializable},
@@ -62,6 +63,6 @@ public interface SerializationService {
      * @param <T> The type of data serializable
      * @return The builder, if available
      */
-    <T extends DataSerializable>  Optional<DataSerializableBuilder<T>> getBuilder(Class<T> clazz);
+    <T extends DataSerializable>  Optional<DataBuilder<T>> getBuilder(Class<T> clazz);
 
 }

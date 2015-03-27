@@ -27,8 +27,8 @@ package org.spongepowered.api.item;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.properties.ItemProperty;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -57,7 +57,7 @@ public interface ItemType extends CatalogType, Translatable {
     int getMaxStackQuantity();
 
     /**
-     * Gets the default {@link ItemProperty} of this {@link ItemType}.
+     * Gets the default {@link Property} of this {@link ItemType}.
      *
      * <p>While item stacks do have properties, generally, there is an
      * intrinsic default property for many item types. However, it should be
@@ -70,6 +70,6 @@ public interface ItemType extends CatalogType, Translatable {
      * @param <T> The type of item property
      * @return The item property, if available
      */
-    <T extends ItemProperty<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
+    <T extends Property<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
 
 }

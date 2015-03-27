@@ -26,6 +26,7 @@
 package org.spongepowered.api.attribute;
 
 import com.google.common.base.Predicate;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -71,7 +72,7 @@ public interface AttributeBuilder {
      * @param targets A predicate to validate targets
      * @return This builder, for chaining
      */
-    AttributeBuilder targets(Predicate<AttributeHolder> targets);
+    AttributeBuilder targets(Predicate<DataHolder> targets);
     
     /**
      * Sets the name of the {@link Attribute} to be built.

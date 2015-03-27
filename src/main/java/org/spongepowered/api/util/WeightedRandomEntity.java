@@ -25,8 +25,10 @@
 
 package org.spongepowered.api.util;
 
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+
+import java.util.Collection;
 
 /**
  * Represents an entity type with a numerical weight used for random selection
@@ -46,7 +48,7 @@ public interface WeightedRandomEntity {
      *
      * @return The additional properties
      */
-    DataContainer getAdditionalProperties();
+    Collection<DataManipulator<?>> getAdditionalProperties();
 
     /**
      * Gets the weight of this entity.

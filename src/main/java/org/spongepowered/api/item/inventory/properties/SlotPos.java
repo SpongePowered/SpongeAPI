@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Coerce;
 
 /**
@@ -110,7 +110,7 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
+    public int compareTo(Property<?, ?> other) {
         if (other == null) {
             return 1;
         }
