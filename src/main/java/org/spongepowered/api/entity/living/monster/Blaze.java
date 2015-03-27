@@ -33,17 +33,4 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
  */
 public interface Blaze extends Monster, ProjectileSource, Aerial {
 
-    /**
-     * Gets whether or not this blaze is currently on fire.
-     *
-     * @return Whether or not the blaze is on fire
-     */
-    boolean isOnFire();
-
-    /**
-     * Sets whether or not this blaze is currently on fire.
-     *
-     * @param onFire Whether the blaze should be on fire or not
-     */
-    void setOnFire(boolean onFire);
 }

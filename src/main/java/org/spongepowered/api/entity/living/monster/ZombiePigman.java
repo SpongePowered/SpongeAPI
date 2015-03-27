@@ -30,22 +30,4 @@ package org.spongepowered.api.entity.living.monster;
  */
 public interface ZombiePigman extends Zombie {
 
-    /**
-     * Gets the current anger level.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
-     *
-     * @return The current anger level for this zombie pigman
-     */
-    int getAngerLevel();
-
-    /**
-     * Sets the anger level for this zombie pigman.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
-     *
-     * @param angerLevel The new anger level
-     */
-    void setAngerLevel(int angerLevel);
-
 }

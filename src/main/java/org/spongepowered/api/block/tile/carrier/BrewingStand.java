@@ -24,35 +24,17 @@
  */
 package org.spongepowered.api.block.tile.carrier;
 
-import org.spongepowered.api.block.tile.TileDataTransactionResult;
-import org.spongepowered.api.block.tile.data.BrewingData;
-
 /**
  * Represents a Brewing Stand.
  */
 public interface BrewingStand extends TileEntityCarrier {
 
     /**
-     /**
-     * Gets the current {@link BrewingData} of this {@link BrewingStand}.
+     * Attempts to brew the current potions if possible.
      *
-     * <p>Note that as time goes on, the {@link BrewingData} may not remain in
-     * sync with the {@link BrewingStand} tile entity. It is advisable that a
-     * {@link BrewingData} is manipulated in the same tick that it is
-     * retrieved.</p>
+     * <p>This will work if there is a compatible recipe.</p>
      *
-     * @return The currently associated {@link BrewingData}
+     * @return If the brew was successful
      */
-    BrewingData getBrewingData();
-
-    /**
-     * Sets the given {@link BrewingData} onto this {@link BrewingStand}.
-
-     * <p>Validation is performed on the {@link BrewingData} to ensure the
-     * desired data is properly set.</p>
-
-     * @param data The brewing data to set
-     * @return The transaction result
-     */
-    TileDataTransactionResult setBrewingData(BrewingData data);
+    boolean brew();
 }

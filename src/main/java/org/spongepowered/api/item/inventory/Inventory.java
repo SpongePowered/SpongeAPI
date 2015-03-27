@@ -404,8 +404,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * each child inventory which has the supplied property. Logical
      * <code>OR</code> is applied between operands. This method is effectively
      * the same as calling {@link #query} with an
-     * {@link org.spongepowered.api.util.Property.Operator} of
-     * {@link org.spongepowered.api.util.Property.Operator#EQUAL}.
+     * {@link org.spongepowered.api.data.Property.Operator} of
+     * {@link org.spongepowered.api.data.Property.Operator#EQUAL}.
      * 
      * @param props inventory properties to query for
      * @param <T> expected inventory type, specified as generic to allow easy

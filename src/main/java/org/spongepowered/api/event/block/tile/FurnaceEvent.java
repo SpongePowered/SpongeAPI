@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.tile;
 
 import org.spongepowered.api.block.tile.carrier.Furnace;
-import org.spongepowered.api.block.tile.data.FurnaceData;
+import org.spongepowered.api.data.manipulators.FurnaceData;
 import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**

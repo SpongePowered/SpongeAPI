@@ -26,14 +26,13 @@
 package org.spongepowered.api.event.attribute;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.attribute.AttributeModifier;
-import org.spongepowered.api.attribute.AttributeSource;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event fired when an {@link AttributeModifier} is removed from an
- * {@link AttributeHolder}.
+ * {@link org.spongepowered.api.data.DataHolder}.
  */
 public interface AttributeModifierRemovedEvent extends AttributeEvent, Cancellable {
 
@@ -45,11 +44,11 @@ public interface AttributeModifierRemovedEvent extends AttributeEvent, Cancellab
     AttributeModifier getModifier();
 
     /**
-     * Gets the {@link AttributeSource} that caused this event, if there was
+     * Gets the {@link DataHolder} that caused this event, if there was
      * one.
      *
-     * @return The AttributeSource that caused this event, if there was one
+     * @return The {@link DataHolder} that caused this event, if there was one
      */
-    Optional<AttributeSource> getSource();
+    Optional<DataHolder> getSource();
 
 }

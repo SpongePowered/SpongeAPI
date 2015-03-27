@@ -32,17 +32,4 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
  */
 public interface Witch extends Monster, ProjectileSource {
 
-    /**
-     * Gets if this Witch is currently aggressive.
-     *
-     * @return If the Witch is aggressive
-     */
-    boolean isAggressive();
-
-    /**
-     * Sets if this Witch should be aggressive.
-     *
-     * @param aggressive If the Witch should be aggressive
-     */
-    void setAggressive(boolean aggressive);
 }

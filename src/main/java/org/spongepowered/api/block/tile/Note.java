@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.block.tile.data.NoteData;
-import org.spongepowered.api.block.tile.data.NotePitch;
+import org.spongepowered.api.data.manipulators.NoteData;
+import org.spongepowered.api.data.types.NotePitch;
 
 /**
  * Represents a note block.
@@ -41,21 +41,4 @@ public interface Note extends TileEntity {
      */
     void playNote();
 
-    /**
-     * Gets the data that this {@link Note} is currently using.
-     *
-     * @return The current note data
-     */
-    NoteData getNoteData();
-
-    /**
-     * Sets the requested {@link NoteData} onto this {@link Note}.
-     *
-     * <p>Validation is performed on the {@link NoteData} to ensure the
-     * desired data is properly set.</p>
-     *
-     * @param data The note data to set
-     * @return The transaction result
-     */
-    TileDataTransactionResult setNoteData(NoteData data);
 }

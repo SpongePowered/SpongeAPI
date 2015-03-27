@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.service.persistence.data.DataView;
+import org.spongepowered.api.data.DataView;
 
 /**
- * An exception that occurs when a {@link DataSerializableBuilder} or
+ * An exception that occurs when a {@link DataBuilder} or
  * {@link DataSource} is unable to handle an operation, which can include:
- * {@link DataSerializableBuilder#build(DataView)}, {@link DataSource#deserialize()},
+ * {@link DataBuilder#build(DataView)}, {@link DataSource#deserialize()},
  * etc.
  */
 public class InvalidDataException extends UnsupportedOperationException {

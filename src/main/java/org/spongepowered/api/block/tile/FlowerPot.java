@@ -24,29 +24,9 @@
  */
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.block.tile.data.FlowerPotData;
-
 /**
  * Represents a flower pot.
  */
 public interface FlowerPot extends TileEntity {
-
-    /**
-     * Gets the data that this {@link FlowerPot} is currently using.
-     *
-     * @return The current flower pot data
-     */
-    FlowerPotData getFlowerPotData();
-
-    /**
-     * Sets the requested {@link FlowerPotData} onto this {@link FlowerPot}.
-     *
-     * <p>Validation is performed on the {@link FlowerPotData} to ensure the
-     * desired data is properly set.</p>
-     *
-     * @param data The flower pot data to set
-     * @return The transaction result
-     */
-    TileDataTransactionResult setFlowerPotData(FlowerPotData data);
 
 }

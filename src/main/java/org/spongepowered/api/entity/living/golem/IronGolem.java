@@ -30,17 +30,4 @@ package org.spongepowered.api.entity.living.golem;
  */
 public interface IronGolem extends Golem {
 
-    /**
-     * Gets if this {@link IronGolem} was created by a player.
-     *
-     * @return If the {@link IronGolem} was created by a player
-     */
-    boolean isPlayerCreated();
-
-    /**
-     * Sets if this {@link IronGolem} was created by a player.
-     *
-     * @param playerCreated If the {@link IronGolem} should be created by a player
-     */
-    void setPlayerCreated(boolean playerCreated);
 }

@@ -24,28 +24,9 @@
  */
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.block.tile.data.BannerData;
-
 /**
  * Represents a Banner {@link TileEntity}.
  */
 public interface Banner extends TileEntity {
 
-    /**
-     * Gets the data that this {@link Banner} is displaying.
-     *
-     * @return The current banner data
-     */
-    BannerData getBannerData();
-
-    /**
-     * Sets the requested {@link BannerData} onto this {@link Banner}.
-     *
-     * <p>Validation is performed on the {@link BannerData} to ensure the
-     * desired data is properly set.</p>
-     *
-     * @param data The banner data to set
-     * @return The transaction result
-     */
-    TileDataTransactionResult setBannerData(BannerData data);
 }

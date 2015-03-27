@@ -33,18 +33,4 @@ import org.spongepowered.api.entity.living.Ageable;
  */
 public interface Zombie extends Monster, ArmorEquipable, Ageable {
 
-    /**
-     * Gets if this Zombie is a villager Zombie.
-     *
-     * @return If the Zombie is a villager Zombie
-     */
-    boolean isVillagerZombie();
-
-    /**
-     * Sets if this Zombie should be a villager Zombie.
-     *
-     * @param villagerZombie If the Zombie should be a villager Zombie
-     */
-    void setVillagerZombie(boolean villagerZombie);
-
 }

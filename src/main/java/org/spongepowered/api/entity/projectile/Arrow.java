@@ -30,38 +30,4 @@ package org.spongepowered.api.entity.projectile;
  */
 public interface Arrow extends DamagingProjectile {
 
-    /**
-     * Returns whether this arrow is a critical arrow or not.
-     * <p>Usually, critical arrows deal more damage.</p>
-     *
-     * @return True if this arrow is critical
-     */
-    boolean isCritical();
-
-    /**
-     * Sets whether this arrow is a critical arrow or not.
-     * <p>Usually, critical arrows deal more damage.</p>
-     *
-     * @param critical Whether this arrow is a critical or not
-     */
-    void setCritical(boolean critical);
-
-    /**
-     * Gets the current knockback strength of this arrow.
-     * <p>Knockback is usually from zero to positive. Negative knockback values
-     * may not be supported.</p>
-     *
-     * @return The knockback strength
-     */
-    int getKnockbackStrength();
-
-    /**
-     * Sets the knockback strength of this arrow.
-     * <p>Knockback is usually from zero to positive. Negative knockback values
-     * may not be supported.</p>
-     *
-     * @param knockbackStrength The knockback strength
-     */
-    void setKnockbackStrength(int knockbackStrength);
-
 }

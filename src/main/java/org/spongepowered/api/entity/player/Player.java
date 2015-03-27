@@ -38,8 +38,6 @@ import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -85,52 +83,6 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @see Locales
      */
     Locale getLocale();
-
-    /**
-     * Sends the plain text message(s) with the specified {@link ChatType} on
-     * the client.
-     * <p>
-     * Use {@link #sendMessage(ChatType, Text...)} for a formatted message.
-     * </p>
-     *
-     * @param type The chat type to send the messages to
-     * @param message The message(s) to send
-     */
-    void sendMessage(ChatType type, String... message);
-
-    /**
-     * Sends the message(s) with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param messages The message(s) to send
-     */
-    void sendMessage(ChatType type, Text... messages);
-
-    /**
-     * Sends the message(s) with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param messages The message(s) to send
-     */
-    void sendMessage(ChatType type, Iterable<Text> messages);
-
-    /**
-     * Sends a {@link Title} to this player.
-     *
-     * @param title The {@link Title} to send to the player
-     */
-    void sendTitle(Title title);
-
-    /**
-     * Removes the currently displayed {@link Title} from the player and resets
-     * all settings back to default values.
-     */
-    void resetTitle();
-
-    /**
-     * Removes the currently displayed {@link Title} from the player's screen.
-     */
-    void clearTitle();
 
     /**
      * Gets the player's game mode.

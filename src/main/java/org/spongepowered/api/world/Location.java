@@ -35,8 +35,15 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
+import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.DataPriority;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.service.persistence.data.DataHolder;
+import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -287,6 +294,15 @@ public class Location implements DataHolder {
     }
 
     /**
+     * Gets the associated {@link TileEntity} on this block.
+     *
+     * @return The associated tile entity, if available
+     */
+    Optional<TileEntity> getTileEntity() {
+        return getExtent().getTileEntity(getBlockPosition());
+    }
+
+    /**
      * Replace the block state at this position with a new state.
      *
      * <p>This will remove any extended block data at the given position.</p>
@@ -328,6 +344,11 @@ public class Location implements DataHolder {
     @SuppressWarnings("ConstantConditions")
     void remove() {
         getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR);
+    }
+
+    @Override
+    public <T extends DataManipulator<T>> boolean remove(Class<T> manipulatorClass) {
+        return getExtent().remove(getBlockPosition(), manipulatorClass);
     }
 
     /**
@@ -508,11 +529,6 @@ public class Location implements DataHolder {
         return getExtent().getBlockSnapshot(getBlockPosition());
     }
 
-    @Override
-    public <T> Optional<T> getData(Class<T> dataClass) {
-        return getExtent().getBlockData(getBlockPosition(), dataClass);
-    }
-
     /**
      * Gets a list of {@link ScheduledBlockUpdate}s on this block.
      *
@@ -540,6 +556,56 @@ public class Location implements DataHolder {
      */
     void removeScheduledUpdate(ScheduledBlockUpdate update) {
         getExtent().removeScheduledUpdate(getBlockPosition(), update);
+    }
+
+    @Override
+    public <T extends DataManipulator<T>> Optional<T> getData(Class<T> dataClass) {
+        return getExtent().getData(getBlockPosition(), dataClass);
+    }
+
+    @Override
+    public <T extends DataManipulator<T>> Optional<T> getOrCreate(Class<T> manipulatorClass) {
+        return getExtent().getOrCreate(getBlockPosition(), manipulatorClass);
+    }
+
+    @Override
+    public <T extends DataManipulator<T>> boolean isCompatible(Class<T> manipulatorClass) {
+        return getExtent().isCompatible(getBlockPosition(), manipulatorClass);
+    }
+
+    @Override
+    public <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData) {
+        return getExtent().offer(getBlockPosition(), manipulatorData);
+    }
+
+    @Override
+    public <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData, DataPriority priority) {
+        return getExtent().offer(getBlockPosition(), manipulatorData, priority);
+    }
+
+    @Override
+    public Collection<? extends DataManipulator<?>> getManipulators() {
+        return getExtent().getManipulators(getBlockPosition());
+    }
+
+    @Override
+    public <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
+        return getExtent().getProperty(getBlockPosition(), propertyClass);
+    }
+
+    @Override
+    public Collection<? extends Property<?, ?>> getProperties() {
+        return getExtent().getProperties(getBlockPosition());
+    }
+
+    @Override
+    public boolean validateRawData(DataContainer container) {
+        return getExtent().validateRawData(getBlockPosition(), container);
+    }
+
+    @Override
+    public void setRawData(DataContainer container) throws InvalidDataException {
+        getExtent().setRawData(getBlockPosition(), container);
     }
 
 }

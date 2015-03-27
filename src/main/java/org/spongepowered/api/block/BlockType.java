@@ -27,8 +27,8 @@ package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemBlock;
-import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -61,16 +61,6 @@ public interface BlockType extends CatalogType, Translatable {
     BlockState getDefaultState();
 
     /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
-
-    /**
      * Gets if this BlockType is set to receive random block ticks.
      *
      * <p>Random block ticks are most commonly used for growth of plants.</p>
@@ -101,6 +91,13 @@ public interface BlockType extends CatalogType, Translatable {
      * @return Is solid block
      */
     boolean isSolidCube();
+
+    /**
+     * Gets if a block type is a gas, like air.
+     *
+     * @return Is gas
+     */
+    boolean isGaseous();
 
     /**
      * Gets if this block is affected by gravity (if it will fall when

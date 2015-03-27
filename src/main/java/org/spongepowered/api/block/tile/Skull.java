@@ -25,28 +25,9 @@
 
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.block.tile.data.SkullData;
-
 /**
  * Represents a skull.
  */
 public interface Skull extends TileEntity {
 
-    /**
-     * Gets the data that this {@link Skull} is currently using.
-     *
-     * @return The current skull data
-     */
-    SkullData getSkullData();
-
-    /**
-     * Sets the requested {@link SkullData} onto this {@link Skull}.
-     *
-     * <p>Validation is performed on the {@link SkullData} to ensure the
-     * desired data is properly set.</p>
-     *
-     * @param data The skull data to set
-     * @return The transaction result
-     */
-    TileDataTransactionResult setSkullData(SkullData data);
 }

@@ -37,25 +37,8 @@ import java.util.List;
 public interface Wither extends Monster, ProjectileSource, Boss, Aerial {
 
     /**
-     * Gets the amount of ticks that the Wither should stay
-     * invulnerable for.
-     *
-     * @return The invulnerable time in ticks
-     */
-    int getInvulnerableTicks();
-
-    /**
-     * Sets the amount of ticks that the Wither should stay
-     * invulnerable for.
-     *
-     * <b>Note: This causes an explosion when the time runs out.</b>
-     *
-     * @param invulnerableTicks The invulnerable time in ticks
-     */
-    void setInvulnerableTicks(int invulnerableTicks);
-
-    /**
      * Gets the entities currently being targeted by this wither.
+     *
      * <p>This list should contain a maximum of 3 entities.</p>
      *
      * @return The Wither's targets

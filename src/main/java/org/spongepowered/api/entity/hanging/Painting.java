@@ -24,25 +24,10 @@
  */
 package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.entity.hanging.art.Art;
-
 /**
  * Represents a Painting.
  */
 public interface Painting extends Hanging {
 
-    /**
-     * Gets the currently displayed {@link Art} piece.
-     *
-     * @return The currently displayed Art piece
-     */
-    Art getArt();
-
-    /**
-     * Sets this painting to display the designated Art piece.
-     *
-     * @param art The art piece to display
-     */
-    void setArt(Art art);
 
 }

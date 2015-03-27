@@ -33,22 +33,4 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
  */
 public interface Skeleton extends Monster, ArmorEquipable, ProjectileSource {
 
-    /**
-     * Gets the current skeleton type for this skeleton.
-     * <p>A Skeleton type may change the rendering to a client and also
-     * introduce a change in the items this skeleton can pick up and equip.</p>
-     *
-     * @return The current skeleton type
-     */
-    SkeletonType getSkeletonType();
-
-    /**
-     * Sets the new skeleton type for this skeleton.
-     * <p>A Skeleton type may change the rendering to a client and also
-     * introduce a change in the items this skeleton can pick up and equip.</p>
-     *
-     * @param skeletonType The new skeleton type
-     */
-    void setSkeletonType(SkeletonType skeletonType);
-
 }

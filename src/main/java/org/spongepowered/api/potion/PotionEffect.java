@@ -25,17 +25,17 @@
 
 package org.spongepowered.api.potion;
 
-import org.spongepowered.api.attribute.AttributeSource;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataSerializable;
 
 /**
  * Represents a possible Potion Effect.
  *
- * <p>PotionEffects can be added to {@link Living} entities via
- * {@link Living#addPotionEffect(PotionEffect, boolean)}.</p>
+ * <p>PotionEffects can be added to entities via
+ * {@link org.spongepowered.api.data.manipulators.PotionEffectData#addPotionEffect(PotionEffect,
+ * boolean)}.</p>
  */
-public interface PotionEffect extends DataSerializable, AttributeSource {
+public interface PotionEffect extends DataSerializable, DataHolder {
 
     /**
      * Gets the {@link PotionEffectType} of this potion.

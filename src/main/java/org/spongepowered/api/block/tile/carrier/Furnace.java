@@ -24,35 +24,18 @@
  */
 package org.spongepowered.api.block.tile.carrier;
 
-import org.spongepowered.api.block.tile.TileDataTransactionResult;
-import org.spongepowered.api.block.tile.data.FurnaceData;
-
 /**
  * Represents a Furnace.
  */
 public interface Furnace extends TileEntityCarrier {
 
     /**
-     * Gets the current {@link FurnaceData} of this furnace.
+     * Attempts to smelt the current items if possible.
      *
-     * <p>Note that as time goes on, the {@link FurnaceData} may not remain in
-     * sync with the {@link Furnace} tile entity. It is advisable that a
-     * {@link FurnaceData} is manipulated in the same tick that it is
-     * retrieved.</p>
+     * <p>This will work if there is a compatible recipe.</p>
      *
-     * @return The currently associated {@link FurnaceData}
+     * @return If the smelt was successful
      */
-    FurnaceData getFurnaceData();
-
-    /**
-     * Sets the given {@link FurnaceData} onto this {@link Furnace}.
-
-     * <p>Validation is performed on the {@link FurnaceData} to ensure the
-     * desired data is properly set.</p>
-
-     * @param data The furnace data to set
-     * @return The transaction result
-     */
-    TileDataTransactionResult setFurnaceData(FurnaceData data);
+    boolean smelt();
 
 }

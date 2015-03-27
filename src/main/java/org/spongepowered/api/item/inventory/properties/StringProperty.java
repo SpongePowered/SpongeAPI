@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
-import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Coerce;
 
 /**
@@ -33,7 +33,7 @@ import org.spongepowered.api.util.Coerce;
 public class StringProperty extends AbstractInventoryProperty<String, String> {
 
     /**
-     * Create a new String property for matching the specified value.
+     * Create a new {@link StringProperty} for matching the specified value.
      * 
      * @param value the value to match
      */
@@ -42,8 +42,8 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a new String property for matching the specified value with the
-     * specified operator.
+     * Create a new {@link StringProperty} for matching the specified value
+     * with the specified operator.
      * 
      * @param value the value to match
      * @param operator the operator to use when comparing with other properties
@@ -53,8 +53,8 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a new String property for matching the specified value with the
-     * specified operator.
+     * Create a new {@link StringProperty} for matching the specified value
+     * with the specified operator.
      * 
      * @param value the value to match
      * @param operator the operator to use when comparing with other properties
@@ -67,7 +67,7 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
+    public int compareTo(Property<?, ?> other) {
         if (other == null) {
             return 1;
         }
@@ -76,8 +76,8 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a StringProperty property which matches StringProperty properties
-     * with equal value.
+     * Create a {@link StringProperty} which matches {@link StringProperty}
+     * properties with equal value.
      * 
      * @param value the value to match
      * @return new property
@@ -87,8 +87,8 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a StringProperty property which matches StringProperty properties
-     * with unequal value.
+     * Create a {@link StringProperty} which matches {@link StringProperty}
+     * properties with unequal value.
      * 
      * @param value the value to match
      * @return new property
@@ -98,8 +98,8 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a StringProperty property which matches StringProperty properties
-     * with value greater than this value.
+     * Create a {@link StringProperty} which matches {@link StringProperty}
+     * properties with value greater than this value.
      * 
      * @param value the value to match
      * @return new property
@@ -109,8 +109,9 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a StringProperty property which matches StringProperty properties
-     * with value greater than or equal to this value.
+     * Create a {@link StringProperty} which matches {@link StringProperty}
+     * properties with value greater than or equal to this
+     * value.
      * 
      * @param value the value to match
      * @return new property
@@ -120,8 +121,8 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a StringProperty property which matches StringProperty properties
-     * with value less than this value.
+     * Create a {@link StringProperty} which matches {@link StringProperty}
+     * properties with value less than this value.
      * 
      * @param value the value to match
      * @return new property
@@ -131,8 +132,8 @@ public class StringProperty extends AbstractInventoryProperty<String, String> {
     }
 
     /**
-     * Create a StringProperty property which matches StringProperty properties
-     * with value less than or equal to this value.
+     * Create a {@link StringProperty} which matches {@link StringProperty}
+     * properties with value less than or equal to this value.
      * 
      * @param value the value to match
      * @return new property

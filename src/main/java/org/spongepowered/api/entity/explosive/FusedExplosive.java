@@ -30,24 +30,4 @@ package org.spongepowered.api.entity.explosive;
  */
 public interface FusedExplosive extends Explosive {
 
-    /**
-     * Gets the current fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
-     *
-     * @return The current fuse duration in ticks
-     */
-    int getFuseDuration();
-
-    /**
-     * Sets the remainig fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
-     *
-     * @param fuseTicks The ticks for the fuse
-     */
-    void setFuseDuration(int fuseTicks);
-
 }

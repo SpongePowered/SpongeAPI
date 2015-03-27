@@ -26,15 +26,16 @@
 package org.spongepowered.api.attribute;
 
 import com.google.common.base.Predicate;
+import org.spongepowered.api.data.DataHolder;
 
 /**
  * An enumeration of all attribute targets present in vanilla Minecraft.
  */
 public final class AttributeTargets {
 
-    public static final Predicate<AttributeHolder> GENERIC = null;
-    public static final Predicate<AttributeHolder> HORSE = null;
-    public static final Predicate<AttributeHolder> ZOMBIE = null;
+    public static final Predicate<DataHolder> GENERIC = null;
+    public static final Predicate<DataHolder> HORSE = null;
+    public static final Predicate<DataHolder> ZOMBIE = null;
 
     private AttributeTargets() {
     }

@@ -26,12 +26,11 @@
 package org.spongepowered.api.event.attribute;
 
 import org.spongepowered.api.attribute.Attribute;
-import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event fired when the base value of an {@link Attribute} is changed on an
- * {@link AttributeHolder}.
+ * {@link org.spongepowered.api.data.DataHolder}.
  */
 public interface AttributeBaseChangedEvent extends AttributeEvent, Cancellable {
 
