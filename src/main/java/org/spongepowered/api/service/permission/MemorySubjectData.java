@@ -126,11 +126,8 @@ public class MemorySubjectData implements SubjectData {
     List<Subject> toSubjectList(List<Map.Entry<String, String>> parents) {
         ImmutableList.Builder<Subject> ret = ImmutableList.builder();
         for (Map.Entry<String, String> ent : parents) {
-            Optional<SubjectCollection> collection = this.service.getSubjects(ent.getKey());
-            if (!collection.isPresent()) {
-                continue;
-            }
-            ret.add(collection.get().get(ent.getValue()));
+            SubjectCollection collection = this.service.getSubjects(ent.getKey());
+            ret.add(collection.get(ent.getValue()));
         }
         return ret.build();
     }
