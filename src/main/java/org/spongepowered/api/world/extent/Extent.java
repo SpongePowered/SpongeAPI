@@ -27,11 +27,11 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.Collection;
@@ -47,7 +47,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position
      * @return The block
      */
-    BlockLoc getFullBlock(Vector3i position);
+    Location getFullBlock(Vector3i position);
 
     /**
      * Get a representation of the block at the given position.
@@ -57,7 +57,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return The block
      */
-    BlockLoc getFullBlock(int x, int y, int z);
+    Location getFullBlock(int x, int y, int z);
 
     /**
      * Get the base type of block.
@@ -138,6 +138,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     /**
      * Simulate the digging of the block as if a player had done so.
      *
+     * @param position The position of the block
      * @return Whether the block was destroyed
      */
     boolean digBlock(Vector3i position);

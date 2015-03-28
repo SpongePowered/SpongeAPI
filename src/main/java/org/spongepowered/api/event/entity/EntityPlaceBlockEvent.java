@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.block.BlockPlaceEvent;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link Entity} places a {@link BlockLoc}.
+ * Called when an {@link Entity} places a {@link Location}.
  */
 public interface EntityPlaceBlockEvent extends EntityChangeBlockEvent, BlockPlaceEvent {
 

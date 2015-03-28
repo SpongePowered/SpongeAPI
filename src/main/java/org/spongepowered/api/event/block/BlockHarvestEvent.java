@@ -25,15 +25,15 @@
 
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.inventory.ItemDropEvent;
 import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 
 /**
- * Dispatched when a {@link BlockLoc} is about to drop it's items.
+ * Dispatched when a {@link Location} is about to drop it's items.
  */
 public interface BlockHarvestEvent extends BlockEvent, ItemDropEvent, Cancellable {
 

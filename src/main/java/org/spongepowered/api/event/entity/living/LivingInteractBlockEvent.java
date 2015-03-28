@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Living} interacts with a {@link BlockLoc}.
+ * Called when a {@link Living} interacts with a {@link Location}.
  */
 public interface LivingInteractBlockEvent extends LivingInteractEvent, EntityInteractBlockEvent {
 

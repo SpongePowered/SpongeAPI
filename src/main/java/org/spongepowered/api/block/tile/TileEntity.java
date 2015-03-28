@@ -26,19 +26,19 @@
 package org.spongepowered.api.block.tile;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.tile.data.TileEntityData;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.world.Location;
 
 /**
  * Represents an abstract Tile Entity. It is a functional block that is
  * continuously updated while residing in a world. It can perform specific
  * functions based on the data that it contains.
  *
- * <p>A {@link TileEntity} is contained within a {@link BlockLoc} and will
- * continue to exists so long as the {@link BlockLoc} is of the correct
+ * <p>A {@link TileEntity} is contained within a {@link Location} and will
+ * continue to exists so long as the {@link Location} is of the correct
  * block type.</p>
  *
  * <p>Since a {@link TileEntity} is performing various actions, all methods
@@ -83,16 +83,16 @@ public interface TileEntity extends DataSerializable {
     TileEntityType getType();
 
     /**
-     * Gets the parent {@link BlockLoc} that this {@link TileEntity} resides
+     * Gets the parent {@link Location} that this {@link TileEntity} resides
      * in.
      *
-     * <p>If the {@link BlockLoc}'s block type is changed, this
+     * <p>If the {@link Location}'s block type is changed, this
      * {@link TileEntity} may be removed as it has no parent
-     * {@link BlockLoc}.</p>
+     * {@link Location}.</p>
      *
-     * @return The parent {@link BlockLoc}
+     * @return The parent {@link Location}
      */
-    BlockLoc getBlock();
+    Location getBlock();
 
     /**
      * Gets the desired {@link TileEntityData} that may or may not exist on

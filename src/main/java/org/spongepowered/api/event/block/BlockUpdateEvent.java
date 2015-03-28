@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 
@@ -40,6 +40,6 @@ public interface BlockUpdateEvent extends BlockEvent {
      *
      * @return A collection of affected blocks
      */
-    Collection<BlockLoc> getAffectedBlocks();
+    Collection<Location> getAffectedBlocks();
 
 }

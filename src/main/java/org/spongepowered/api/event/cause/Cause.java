@@ -28,9 +28,9 @@ package org.spongepowered.api.event.cause;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.reason.Reason;
+import org.spongepowered.api.world.Location;
 
 import javax.annotation.Nullable;
 
@@ -79,7 +79,7 @@ public class Cause {
     }
 
     /**
-     * Get the causing object (it may be an {@link Entity}, {@link BlockLoc},
+     * Get the causing object (it may be an {@link Entity}, {@link Location},
      * etc.).
      *
      * @return The cause
