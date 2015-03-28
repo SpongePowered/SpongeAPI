@@ -1,8 +1,8 @@
 // Gradle repositories and dependencies
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
