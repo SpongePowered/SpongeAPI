@@ -38,6 +38,8 @@ public interface BlockVolume {
      *
      * @param position The position
      * @return The block
+     * @throws IndexOutOfBoundsException If the coordinates are outside of the
+     *     bounds of the world
      */
     BlockState getBlock(Vector3i position);
 
@@ -48,6 +50,8 @@ public interface BlockVolume {
      * @param y The Y position
      * @param z The Z position
      * @return The block
+     * @throws IndexOutOfBoundsException If the coordinates are outside of the
+     *     bounds of the world
      */
     BlockState getBlock(int x, int y, int z);
 
@@ -56,6 +60,8 @@ public interface BlockVolume {
      *
      * @param position The position
      * @param block The block
+     * @throws IndexOutOfBoundsException If the coordinates are outside of the
+     *     bounds of the world
      */
     void setBlock(Vector3i position, BlockState block);
 
@@ -66,6 +72,8 @@ public interface BlockVolume {
      * @param y The Y position
      * @param z The Z position
      * @param block The block
+     * @throws IndexOutOfBoundsException If the coordinates are outside of the
+     *     bounds of the world
      */
     void setBlock(int x, int y, int z, BlockState block);
 
