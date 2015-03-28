@@ -74,6 +74,8 @@ public class SimpleDispatcher implements Dispatcher {
      * @param help A formatted help message
      */
     public SimpleDispatcher(String shortDescription, Text help) {
+        checkNotNull(shortDescription);
+        checkNotNull(help);
         this.shortDescription = shortDescription;
         this.help = help;
     }
