@@ -25,8 +25,6 @@
 
 package org.spongepowered.api.util.command;
 
-import javax.annotation.Nullable;
-
 /**
  * Thrown when invocation of a command fails, wrapping the exception that
  * is thrown.
@@ -36,12 +34,28 @@ public class InvocationCommandException extends CommandException {
     private static final long serialVersionUID = 7859473889077167378L;
 
     /**
-     * Construct a new exception with the given message and the given cause.
+     * Constructs a new {@link InvocationCommandException}.
+     */
+    public InvocationCommandException() {
+        super();
+    }
+
+    /**
+     * Constructs a new {@link InvocationCommandException} with a message.
+     *
+     * @param message The detail message
+     */
+    public InvocationCommandException(String message) {
+        super(message);
+    }
+
+    /**
+     * Constructs a new exception with the given message and the given cause.
      *
      * @param message The detail message
      * @param cause The cause
      */
-    public InvocationCommandException(@Nullable String message, @Nullable Throwable cause) {
+    public InvocationCommandException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -51,8 +65,7 @@ public class InvocationCommandException extends CommandException {
      *
      * @param cause The cause
      */
-    public InvocationCommandException(@Nullable Throwable cause) {
+    public InvocationCommandException(Throwable cause) {
         super(cause);
     }
-
 }

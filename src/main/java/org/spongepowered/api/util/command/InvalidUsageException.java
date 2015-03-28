@@ -27,8 +27,6 @@ package org.spongepowered.api.util.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import javax.annotation.Nullable;
-
 /**
  * Thrown when a command is not used properly.
  *
@@ -47,39 +45,68 @@ public class InvalidUsageException extends CommandException {
     private final boolean fullHelpSuggested;
 
     /**
-     * Create a new instance with no error message and with no suggestion
-     * that full and complete help for the command should be shown. This will
-     * result in a generic error message.
+     * Constructs a new {@link InvalidUsageException} with no error message and
+     * with no suggestion that full and complete help for the command should be
+     * shown. This will result in a generic error message.
      *
      * @param command The command
      */
     public InvalidUsageException(CommandCallable command) {
-        this(null, command);
+        super();
+        this.command = checkNotNull(command);
+        this.fullHelpSuggested = false;
     }
 
     /**
-     * Create a new instance with a message and with no suggestion
-     * that full and complete help for the command should be shown.
+     * Constructs a new {@link InvalidUsageException} with a message and with no
+     * suggestion that full and complete help for the command should be shown.
      *
      * @param message The message
      * @param command The command
      */
-    public InvalidUsageException(@Nullable String message, CommandCallable command) {
-        this(message, command, false);
+    public InvalidUsageException(String message, CommandCallable command) {
+        super(message);
+        this.command = checkNotNull(command);
+        this.fullHelpSuggested = false;
     }
 
     /**
-     * Create a new instance with a message.
+     * Constructs a new {@link InvalidUsageException} with a message.
      *
      * @param message The message
      * @param command The command
      * @param fullHelpSuggested True if the full help for the command should be shown
      */
-    public InvalidUsageException(@Nullable String message, CommandCallable command, boolean fullHelpSuggested) {
+    public InvalidUsageException(String message, CommandCallable command, boolean fullHelpSuggested) {
         super(message);
-        checkNotNull(command);
-        this.command = command;
+        this.command = checkNotNull(command);
         this.fullHelpSuggested = fullHelpSuggested;
+    }
+
+    /**
+     * Constructs a new {@link InvalidUsageException} with a message and throwable
+     * cause.
+     *
+     * @param message The message
+     * @param cause The cuase
+     * @param command The command
+     */
+    public InvalidUsageException(String message, Throwable cause, CommandCallable command) {
+        super(message, cause);
+        this.command = checkNotNull(command);
+        this.fullHelpSuggested = false;
+    }
+
+    /**
+     * Constructs a new {@link InvalidUsageException} with a cause.
+     *
+     * @param cause The cause
+     * @param command The command
+     */
+    public InvalidUsageException(Throwable cause, CommandCallable command) {
+        super(cause);
+        this.command = checkNotNull(command);
+        this.fullHelpSuggested = false;
     }
 
     /**

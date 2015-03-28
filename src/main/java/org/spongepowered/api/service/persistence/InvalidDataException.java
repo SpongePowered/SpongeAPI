@@ -37,18 +37,39 @@ public class InvalidDataException extends UnsupportedOperationException {
     private static final long serialVersionUID = -754482190837922531L;
 
     /**
-     * Creates a new {@link InvalidDataException} with no message.
+     * Constructs a new {@link InvalidDataException}.
      */
     public InvalidDataException() {
         super();
     }
 
     /**
-     * Creates a new {@link InvalidDataException} with a message.
+     * Constructs a new {@link InvalidDataException} with a message.
      *
      * @param message The message to display with the exception
      */
     public InvalidDataException(String message) {
         super(message);
+    }
+
+    /**
+     * Constructs a new {@link InvalidDataException} with the specified message and
+     * cause.
+     *
+     * @param message The exception message
+     * @param cause The cause of this exception
+     */
+    public InvalidDataException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructs a new {@link InvalidDataException} with the specified cause and a
+     * null message.
+     *
+     * @param cause The cause of this exception
+     */
+    public InvalidDataException(Throwable cause) {
+        super(cause);
     }
 }

@@ -34,15 +34,14 @@ public class ProviderExistsException extends Exception {
     private static final long serialVersionUID = -1485684535160048461L;
 
     /**
-     * Constructs a new provider exists exception with a null message and a null
-     * cause.
+     * Constructs a new {@link ProviderExistsException}.
      */
     public ProviderExistsException() {
+        super();
     }
 
     /**
-     * Constructs a new provider exists exception with the specified message and
-     * with a null cause.
+     * Constructs a new {@link ProviderExistsException} with the specified message.
      *
      * @param message The exception message
      */
@@ -51,7 +50,7 @@ public class ProviderExistsException extends Exception {
     }
 
     /**
-     * Constructs a new provider exists exception with the specified message and
+     * Constructs a new {@link ProviderExistsException} with the specified message and
      * cause.
      *
      * @param message The exception message
@@ -62,7 +61,7 @@ public class ProviderExistsException extends Exception {
     }
 
     /**
-     * Constructs a new provider exists exception with the specified cause and a
+     * Constructs a new {@link ProviderExistsException} with the specified cause and a
      * null message.
      *
      * @param cause The cause of this exception

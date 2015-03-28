@@ -33,15 +33,14 @@ public class PEBKACException extends UnsupportedOperationException {
     private static final long serialVersionUID = 6434648270429319820L;
 
     /**
-     * Creates a new {@link PEBKACException} with a null message and cause.
+     * Constructs a new {@link PEBKACException}.
      */
     public PEBKACException() {
         super();
     }
 
     /**
-     * Creates a new {@link PEBKACException} with the given message and null
-     * cause.
+     * Constructs a new {@link PEBKACException} with the given message.
      * 
      * @param msg The exception message
      */
@@ -50,7 +49,8 @@ public class PEBKACException extends UnsupportedOperationException {
     }
 
     /**
-     * Creates a new {@link PEBKACException} with the given message and cause.
+     * Constructs a new {@link PEBKACException} with the given message and
+     * cause.
      * 
      * @param msg The exception message
      * @param cause The cause of the exception
@@ -60,8 +60,7 @@ public class PEBKACException extends UnsupportedOperationException {
     }
 
     /**
-     * Creates a new {@link PEBKACException} with the given cause and a null
-     * message.
+     * Constructs a new {@link PEBKACException} with the given cause.
      * 
      * @param cause The cause of the exception
      */

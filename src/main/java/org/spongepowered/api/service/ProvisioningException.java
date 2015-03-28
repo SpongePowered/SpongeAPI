@@ -38,19 +38,18 @@ public class ProvisioningException extends RuntimeException {
     private final Class<?> service;
 
     /**
-     * Constructs a new provisioning exception for the specified service with a
-     * null message and a null cause.
+     * Constructs a new {@link ProvisioningException} for the specified service.
      *
      * @param service The service requested
      */
     public ProvisioningException(Class<?> service) {
-        checkNotNull(service);
-        this.service = service;
+        super();
+        this.service = checkNotNull(service);
     }
 
     /**
-     * Constructs a new provisioning exception for the specified service with
-     * the specified message and a null cause.
+     * Constructs a new {@link ProvisioningException} for the specified service with
+     * the specified message.
      *
      * @param message The exception message
      * @param service The service requested
@@ -62,7 +61,7 @@ public class ProvisioningException extends RuntimeException {
     }
 
     /**
-     * Constructs a new provisioning exception for the specified service with
+     * Constructs a new {@link ProvisioningException} for the specified service with
      * the specified service and cause.
      *
      * @param message The exception message
@@ -76,7 +75,7 @@ public class ProvisioningException extends RuntimeException {
     }
 
     /**
-     * Constructs a new provisioning exception for the specified service with
+     * Constructs a new {@link ProvisioningException} for the specified service with
      * the specified cause and a null message.
      *
      * @param cause The cause of this exception
