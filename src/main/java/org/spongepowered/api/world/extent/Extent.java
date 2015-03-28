@@ -71,6 +71,19 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     BlockType getBlockType(Vector3i position);
 
     /**
+     * Get the base type of block.
+     *
+     * <p>The type does not include block data such as the contents of
+     * inventories.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The type of block
+     */
+    BlockType getBlockType(int x, int y, int z);
+
+    /**
      * Replace the block at this position by a new type.
      *
      * <p>This will remove any extended block data at the given position.</p>
@@ -79,6 +92,18 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param type The new type
      */
     void setBlockType(Vector3i position, BlockType type);
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param type The new type
+     */
+    void setBlockType(int x, int y, int z, BlockType type);
 
     /**
      * Get a snapshot of this block at the current point in time.
@@ -93,6 +118,20 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     BlockSnapshot getBlockSnapshot(Vector3i position);
 
     /**
+     * Get a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link Extent} that it was
+     * taken from so changes to the original block do not affect the
+     * snapshot.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return A snapshot
+     */
+    BlockSnapshot getBlockSnapshot(int x, int y, int z);
+
+    /**
      * Replace the block at this position with a copy of the given snapshot.
      *
      * <p>Changing the snapshot afterwards will not affect the block that
@@ -102,6 +141,19 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param snapshot The snapshot
      */
     void setBlockSnapshot(Vector3i position, BlockSnapshot snapshot);
+
+    /**
+     * Replace the block at this position with a copy of the given snapshot.
+     *
+     * <p>Changing the snapshot afterwards will not affect the block that
+     * has been placed at this location.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param snapshot The snapshot
+     */
+    void setBlockSnapshot(int x, int y, int z, BlockSnapshot snapshot);
 
     /**
      * Get an instance of the given data class for this block.
@@ -120,11 +172,38 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     <T> Optional<T> getBlockData(Vector3i position, Class<T> dataClass);
 
     /**
+     * Get an instance of the given data class for this block.
+     *
+     * <p>For example, if this block represents a sign,
+     * {@code getBlockData(Sign.class)} would yield an instance of
+     * {@code Sign} to change the contents of the sign. However, if
+     * this block does not represent a sign, then an instance will not
+     * be returned.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param dataClass The data class
+     * @param <T> The type of data
+     * @return An instance of the class
+     */
+    <T> Optional<T> getBlockData(int x, int y, int z, Class<T> dataClass);
+
+    /**
      * Simulates the interaction with this object as if a player had done so.
      *
      * @param position The position of the block
      */
     void interactBlock(Vector3i position);
+
+    /**
+     * Simulates the interaction with this object as if a player had done so.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     */
+    void interactBlock(int x, int y, int z);
 
     /**
      * Simulates the interaction with this object using the given item as if
@@ -136,12 +215,33 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     void interactBlockWith(Vector3i position, ItemStack itemStack);
 
     /**
+     * Simulates the interaction with this object using the given item as if
+     * the player had done so.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param itemStack The item
+     */
+    void interactBlockWith(int x, int y, int z, ItemStack itemStack);
+
+    /**
      * Simulate the digging of the block as if a player had done so.
      *
      * @param position The position of the block
      * @return Whether the block was destroyed
      */
     boolean digBlock(Vector3i position);
+
+    /**
+     * Simulate the digging of the block as if a player had done so.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return Whether the block was destroyed
+     */
+    boolean digBlock(int x, int y, int z);
 
     /**
      * Simulate the digging of the block with the given tool as if a player
@@ -154,12 +254,34 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     boolean digBlockWith(Vector3i position, ItemStack itemStack);
 
     /**
+     * Simulate the digging of the block with the given tool as if a player
+     * had done so.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param itemStack The tool
+     * @return Whether the block was destroyed
+     */
+    boolean digBlockWith(int x, int y, int z, ItemStack itemStack);
+
+    /**
      * Gets the time it takes to dig this block with a fist in ticks.
      *
      * @param position The position of the block
      * @return The time in ticks
      */
     int getBlockDigTime(Vector3i position);
+
+    /**
+     * Gets the time it takes to dig this block with a fist in ticks.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The time in ticks
+     */
+    int getBlockDigTime(int x, int y, int z);
 
     /**
      * Gets the time it takes to dig this block the specified item in ticks.
@@ -171,6 +293,17 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     int getBlockDigTimeWith(Vector3i position, ItemStack itemStack);
 
     /**
+     * Gets the time it takes to dig this block the specified item in ticks.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param itemStack The item to pretend-dig with
+     * @return The time in ticks
+     */
+    int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack);
+
+    /**
      * Get the light level for this object.
      *
      * <p>Higher levels indicate a higher luminance.</p>
@@ -179,6 +312,18 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @return A light level, nominally between 0 and 15, inclusive
      */
     byte getLuminance(Vector3i position);
+
+    /**
+     * Get the light level for this object.
+     *
+     * <p>Higher levels indicate a higher luminance.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminance(int x, int y, int z);
 
     /**
      * Get the light level for this object that is caused by an overhead sky.
@@ -192,6 +337,19 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     byte getLuminanceFromSky(Vector3i position);
 
     /**
+     * Get the light level for this object that is caused by an overhead sky.
+     *
+     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
+     * the return value may be 0.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminanceFromSky(int x, int y, int z);
+
+    /**
      * Get the light level for this object that is caused by everything
      * other than the sky.
      *
@@ -203,6 +361,19 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     byte getLuminanceFromGround(Vector3i position);
 
     /**
+     * Get the light level for this object that is caused by everything
+     * other than the sky.
+     *
+     * <p>Higher levels indicate a higher luminance.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return A light level, nominally between 0 and 15, inclusive
+     */
+    byte getLuminanceFromGround(int x, int y, int z);
+
+    /**
      * Test whether the object is powered.
      *
      * @param position The position of the block
@@ -211,12 +382,32 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     boolean isBlockPowered(Vector3i position);
 
     /**
+     * Test whether the object is powered.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return Whether powered
+     */
+    boolean isBlockPowered(int x, int y, int z);
+
+    /**
      * Test whether the object is indirectly powered.
      *
      * @param position The position of the block
      * @return Whether powered
      */
     boolean isBlockIndirectlyPowered(Vector3i position);
+
+    /**
+     * Test whether the object is indirectly powered.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return Whether powered
+     */
+    boolean isBlockIndirectlyPowered(int x, int y, int z);
 
     /**
      * Test whether the face in the given direction is powered.
@@ -228,6 +419,17 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     boolean isBlockFacePowered(Vector3i position, Direction direction);
 
     /**
+     * Test whether the face in the given direction is powered.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param direction The direction
+     * @return Whether powered
+     */
+    boolean isBlockFacePowered(int x, int y, int z, Direction direction);
+
+    /**
      * Test whether the face in the given direction is indirectly powered.
      *
      * @param position The position of the block
@@ -235,6 +437,17 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @return Whether powered
      */
     boolean isBlockFaceIndirectlyPowered(Vector3i position, Direction direction);
+
+    /**
+     * Test whether the face in the given direction is indirectly powered.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param direction The direction
+     * @return Whether powered
+     */
+    boolean isBlockFaceIndirectlyPowered(int x, int y, int z, Direction direction);
 
     /**
      * Get all the faces of this block that are directly powered.
@@ -245,12 +458,32 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     Collection<Direction> getPoweredBlockFaces(Vector3i position);
 
     /**
+     * Get all the faces of this block that are directly powered.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return Faces powered
+     */
+    Collection<Direction> getPoweredBlockFaces(int x, int y, int z);
+
+    /**
      * Get all faces of this block that are indirectly powered.
      *
      * @param position The position of the block
      * @return Faces indirectly powered
      */
     Collection<Direction> getIndirectlyPoweredBlockFaces(Vector3i position);
+
+    /**
+     * Get all faces of this block that are indirectly powered.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return Faces indirectly powered
+     */
+    Collection<Direction> getIndirectlyPoweredBlockFaces(int x, int y, int z);
 
     /**
      * Test whether the the block will block the movement of entities.
@@ -261,6 +494,16 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     boolean isBlockPassable(Vector3i position);
 
     /**
+     * Test whether the the block will block the movement of entities.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return Blocks movement
+     */
+    boolean isBlockPassable(int x, int y, int z);
+
+    /**
      * Test whether the given face of the block can catch fire.
      *
      * @param position The position of the block
@@ -268,5 +511,16 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @return Is flammable
      */
     boolean isBlockFlammable(Vector3i position, Direction faceDirection);
+
+    /**
+     * Test whether the given face of the block can catch fire.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param faceDirection The face of the block to check
+     * @return Is flammable
+     */
+    boolean isBlockFlammable(int x, int y, int z, Direction faceDirection);
 
 }
