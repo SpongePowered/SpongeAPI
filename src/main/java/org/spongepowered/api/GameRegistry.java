@@ -25,8 +25,6 @@
 
 package org.spongepowered.api;
 
-import org.spongepowered.api.service.persistence.data.DataContainer;
-import org.spongepowered.api.world.gen.WorldGenerator;
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeBuilder;
@@ -64,9 +62,17 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.scoreboard.ScoreboardBuilder;
+import org.spongepowered.api.scoreboard.TeamBuilder;
+import org.spongepowered.api.scoreboard.Visibility;
+import org.spongepowered.api.scoreboard.critieria.Criterion;
+import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
+import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
+import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.stats.BlockStatistic;
 import org.spongepowered.api.stats.EntityStatistic;
 import org.spongepowered.api.stats.ItemStatistic;
@@ -77,13 +83,6 @@ import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.TeamStatistic;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.stats.achievement.AchievementBuilder;
-import org.spongepowered.api.scoreboard.ScoreboardBuilder;
-import org.spongepowered.api.scoreboard.TeamBuilder;
-import org.spongepowered.api.scoreboard.Visibility;
-import org.spongepowered.api.scoreboard.critieria.Criterion;
-import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
-import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
@@ -93,12 +92,13 @@ import org.spongepowered.api.text.selector.SelectorType;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
-import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.awt.image.BufferedImage;
@@ -110,7 +110,6 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.UUID;
-import java.util.concurrent.Callable;
 
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
@@ -1173,30 +1172,33 @@ public interface GameRegistry {
     Collection<GeneratorType> getGeneratorTypes();
 
     /**
-     * Creates and registers a new {@link GeneratorType} with the given name and
-     * {@link WorldGenerator}. An empty {@link DataContainer} will be created
-     * for the settings within {@link GeneratorType#getGeneratorSettings()}.
-     * 
-     * @param name The name of the generator type
-     * @param generator A callable which returns a new world generator
-     * @return The new GeneratorType
+     * Gets the {@link WorldGeneratorModifier} with the provided ID.
+     *
+     * @param id The ID of the world generator
+     *
+     * @return The {@link WorldGeneratorModifier} with the given ID or
+     *         Optional.absent() if not found
      */
-    GeneratorType registerGeneratorType(String name, Callable<WorldGenerator> generator);
-    
+    Optional<WorldGeneratorModifier> getWorldGeneratorModifier(String id);
+
     /**
-     * Creates and registers a new {@link GeneratorType} with the given name and
-     * {@link WorldGenerator}.
-     * 
-     * <p>The {@link DataContainer} with settings for the world generator is
-     * optional and an empty DataContainer will be created if it is not
-     * provided.</p>
-     * 
-     * @param name The name of the generator type
-     * @param generator A callable which returns a new world generator
-     * @param settings Any settings that the generator uses, or null if no
-     *            settings are used
-     * @return The new GeneratorType
+     * Gets a {@link Collection} of all known {@link WorldGeneratorModifier}s.
+     *
+     * @return The collection of all known {@link WorldGeneratorModifier}s
      */
-    GeneratorType registerGeneratorType(String name, Callable<WorldGenerator> generator, DataContainer settings);
+    Collection<WorldGeneratorModifier> getWorldGeneratorModifiers();
+
+    /**
+     * Registers a {@link WorldGeneratorModifier}, so that the server is able to
+     * use it for modifying the world generator of a new world.
+     *
+     * @param plugin The plugin registering the world generator. Will be used to
+     *        prefix the given id.
+     * @param genId An id for the generator. The plugin name may be used for this,
+     *        but it may be anything that doens't contain a space or a colon.
+     *        The full name of the generator modifier will become "pluginId:genId".
+     * @param modifier The modifier to register
+     */
+    void registerWorldGeneratorModifier(PluginContainer plugin, String genId, WorldGeneratorModifier modifier);
 
 }

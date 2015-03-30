@@ -30,6 +30,7 @@ import org.spongepowered.api.world.extent.BiomeArea;
 /**
  * A mutable buffer for {@link BiomeType} data. This buffer has no direct relation
  * to the world and changes to it are not synchronized to the world.
+ *
  */
 public interface MutableBiomeArea extends BiomeBuffer, BiomeArea {
 

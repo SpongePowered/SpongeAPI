@@ -26,7 +26,6 @@
 package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.util.gen.MutableBiomeArea;
-import org.spongepowered.api.world.World;
 
 /**
  * Manages the biome generation for an extent.
@@ -34,17 +33,16 @@ import org.spongepowered.api.world.World;
 public interface BiomeGenerator {
 
     /**
-     * Generates the biomes for the given area using only biomes from the given
-     * array of available biomes. The resultant biomes are placed into the
+     * Generates the biomes for the whole buffer using only biomes from the
+     * given array of available biomes. The resultant biomes are placed into the
      * given buffer.
      *
-     * @param world The world these biomes are being generated for
-     * @param buffer The buffer to generate the biomes into
-     * @param x The X position of the lowest point
-     * @param z The Z position of the lowest point
-     * @param width The width of the area (X-axis size)
-     * @param length The length of the area (Z-axis size)
+     * <p>The biome generator can be called multiple times for the same
+     * position. The biome generator should, for any position/world seed
+     * combination, always return the same biome.</p>
+     *
+     * @param buffer The buffer to generate the biomes into.
      */
-    void generateBiomes(World world, MutableBiomeArea buffer, int x, int z, int width, int length);
+    void generateBiomes(MutableBiomeArea buffer);
 
 }

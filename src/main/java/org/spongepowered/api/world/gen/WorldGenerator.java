@@ -24,46 +24,56 @@
  */
 package org.spongepowered.api.world.gen;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.util.gen.BlockBuffer;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.biome.BiomeType;
+
+import java.util.List;
 
 /**
- * Represents a generator for chunks into a world.
+ * Represents the world generator of a world. This interface contains all
+ * settings for the world generator, like which populators are in use, but also
+ * the world seed.
  */
 public interface WorldGenerator {
 
     /**
-     * Generates the chunk at the given position in the world. The position
-     * specified is the chunk position (ie. the world position divided by the
-     * chunk size). The newly generated chunk should be placed into the given
-     * {@link BlockBuffer}.
+     * Gets the main {@link GeneratorPopulator}. This generator populator is
+     * responsible for generating the base terrain of the chunk.
      *
-     * @param world The world
-     * @param buffer The buffer to generate the region into
-     * @param position The chunk position
+     * @return The {@link GeneratorPopulator}.
+     * @see #setBaseGeneratorPopulator(GeneratorPopulator)
      */
-    void generateChunk(World world, MutableBlockBuffer buffer, Vector3i position);
+    GeneratorPopulator getBaseGeneratorPopulator();
 
     /**
-     * Gets an ordered collection of {@link Populator}s which are applied
-     * globally.
+     * Sets the {@link GeneratorPopulator}. This generator populator is
+     * responsible for generating the base terrain of the chunk.
      *
+     * @param generator The generator.
+     */
+    void setBaseGeneratorPopulator(GeneratorPopulator generator);
+
+    /**
+     * Gets a mutable list of {@link GeneratorPopulator}s. These populators work
+     * strictly on a single chunk. They will be executed directly after the
+     * {@link #getBaseGeneratorPopulator() main generator populator} is called.
+     * These generator populators are typically used to generate large terrain
+     * features, like caves and ravines.
+     *
+     * <p>This list does not include {@link #getBaseGeneratorPopulator() the
+     * base generator}.</p>
+     *
+     * @return The generator populators
+     */
+    List<GeneratorPopulator> getGeneratorPopulators();
+
+    /**
+     * Gets a mutable list of {@link Populator}s which are applied globally (in
+     * the whole world).
+     *
+     * @see BiomeType#getPopulators()
      * @return The populators
      */
-    Iterable<Populator> getGlobalPopulators();
-
-    /**
-     * Inserts a new populator to this generator's ordered collection of
-     * populators. The new populator is inserted at the given index. If the
-     * index is larger than the current amount of populators then the new
-     * populator in inserted at the end of the collection.
-     *
-     * @param populator The new populator
-     * @param index The index to insert the populator at
-     */
-    void insertPopulator(Populator populator, int index);
+    List<Populator> getPopulators();
 
     /**
      * Gets the {@link BiomeGenerator} for this world generator.
@@ -75,8 +85,8 @@ public interface WorldGenerator {
     /**
      * Sets the {@link BiomeGenerator} for this world generator.
      *
-     * @param biomeManager The new biome generator
+     * @param biomeGenerator The new biome generator
      */
-    void setBiomeGenerator(BiomeGenerator biomeManager);
+    void setBiomeGenerator(BiomeGenerator biomeGenerator);
 
 }
