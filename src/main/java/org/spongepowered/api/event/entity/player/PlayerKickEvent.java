@@ -22,60 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.bans;
+package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.User;
-
-import java.util.Collection;
+import com.google.common.base.Optional;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents something that can provide information for bans.
+ * Called when a player is kicked.
  */
-public interface BanProvider {
+public interface PlayerKickEvent extends PlayerEvent, Cancellable {
 
     /**
-     * Gets all bans registered in this provider.
+     * Gets the reason for the kick, if available.
      *
-     * @return The bans
+     * @return The kick reason as a String, or {@link Optional#absent()}
      */
-    Collection<Ban> getBans();
-
-    /**
-     * Gets all bans registered in this provider to the given user.
-     *
-     * @param user The user
-     * @return The bans
-     */
-    Collection<Ban> getBansFor(User user);
-
-    /**
-     * Removes all bans in this system for a certain user.
-     *
-     * @param user The user
-     */
-    void pardon(User user);
-
-    /**
-     * Removes the ban from this system.
-     *
-     * @param ban The ban
-     */
-    void remove(Ban ban);
-
-    /**
-     * Checks if the specified ban is contained in this provider.
-     *
-     * @param ban The ban
-     * @return True if the ban exists in this provider, false otherwise
-     */
-    boolean hasBan(Ban ban);
-
-    /**
-     * Checks if a user has any bans.
-     *
-     * @param user The user
-     * @return True if the user has any bans, false otherwise
-     */
-    boolean isBanned(User user);
+    Optional<Text.Literal> getReason();
 
 }

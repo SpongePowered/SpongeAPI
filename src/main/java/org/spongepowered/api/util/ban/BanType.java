@@ -22,12 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.user;
-
-import org.spongepowered.api.util.event.Cancellable;
+package org.spongepowered.api.util.ban;
 
 /**
- * Occurs when a user is banned.
+ * Represents the possible types of bans.
  */
-public interface UserBanEvent extends UserEvent, BanEvent, Cancellable {
+public enum BanType {
+
+    /**
+     * A ban made on an IP.
+     */
+    IP_BAN,
+
+    /**
+     * A ban made on a user.
+     */
+    USER_BAN
+
 }

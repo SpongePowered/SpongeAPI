@@ -22,21 +22,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.util.ban;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.text.Text;
 
 /**
- * Called when a player is kicked.
+ * Utility class for working with and creating {@link Ban}s.
  */
-public interface PlayerKickEvent extends PlayerEvent {
+public final class Bans {
+
+    private static final BanFactory factory = null;
+
+    private Bans() {
+    }
 
     /**
-     * Gets the reason for the kick.
+     * Creates a new BanBuilder.
      *
-     * @return The kick reason as a String
+     * @return A new ban builder
      */
-    Optional<Message.Text> getReason();
+    public static BanBuilder builder() {
+        return factory.builder();
+    }
+
+    /**
+     * Creates an indefinite ban on a user.
+     *
+     * @param user The user
+     * @return The created ban
+     */
+    public static Ban of(User user) {
+        return factory.of(user);
+    }
+
+    /**
+     * Creates an indefinite ban with a reason on a user.
+     *
+     * @param user The user
+     * @param reason The reason
+     * @return The created ban
+     */
+    public static Ban of(User user, Text.Literal reason) {
+        return factory.of(user, reason);
+    }
 
 }

@@ -143,13 +143,6 @@ public interface Player extends Human, User, CommandSource, Viewer {
     TabList getTabList();
 
     /**
-     * Returns if the player is banned or not (from the vanilla banning system)
-     *
-     * @return Banned state of player.
-     */
-    boolean isBanned();
-
-    /**
      * Kicks the player.
      */
     void kick();

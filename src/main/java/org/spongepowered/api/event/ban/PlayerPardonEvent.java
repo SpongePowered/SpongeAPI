@@ -22,28 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.user;
+package org.spongepowered.api.event.ban;
 
-import org.spongepowered.api.util.bans.Ban;
-import org.spongepowered.api.util.bans.BanProvider;
+import org.spongepowered.api.event.entity.player.PlayerEvent;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents an event that involves a ban.
+ * Called when a player is pardoned.
  */
-public interface BanEvent {
-
-    /**
-     * Gets the ban involved in this event.
-     *
-     * @return The ban
-     */
-    Ban getBan();
-
-    /**
-     * Gets the provider that provided the ban.
-     *
-     * @return The ban provider
-     */
-    BanProvider getBanProvider();
+public interface PlayerPardonEvent extends UserPardonEvent, PlayerEvent, Cancellable {
 
 }

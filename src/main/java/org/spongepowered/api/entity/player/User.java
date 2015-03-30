@@ -33,7 +33,7 @@ import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.util.bans.Ban;
+import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
@@ -128,20 +128,6 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
     void setBedLocation(@Nullable Location location);
 
     /**
-     * Check whether this user has an operator status.
-     *
-     * @return Whether this user is an operator
-     */
-    boolean isOperator();
-
-    /**
-     * Sets whether this user has an operator status.
-     *
-     * @param op The new operator status of this user
-     */
-    void setOperator(boolean op);
-
-    /**
      * Gets the related online {@link Player} if the player is
      * in fact online.
      *
@@ -157,16 +143,16 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
     void ban(Ban ban);
 
     /**
-     * Removes all bans registered for this User.
+     * Removes all bans registered for this user.
      */
     void pardon();
 
     /**
-     * Gets the bans registered for this User.
+     * Gets the bans registered for this user.
      *
      * @return Bans on this user
      */
-    Collection<Ban> getBans();
+    Collection<Ban.User> getBans();
 
     /**
      * Checks if the user is banned or not.

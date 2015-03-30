@@ -22,12 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.user;
 
-import org.spongepowered.api.util.event.Cancellable;
-
-/**
- * Occurs when a user is pardoned.
- */
-public interface UserPardonEvent extends UserEvent, BanEvent, Cancellable {
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.util.ban;

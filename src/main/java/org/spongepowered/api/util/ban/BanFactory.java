@@ -22,65 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.bans;
+package org.spongepowered.api.util.ban;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.User;
-import org.spongepowered.api.text.message.Message;
-import org.spongepowered.api.util.command.CommandSource;
-
-import java.util.Date;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents a ban made on a player.
+ * Interface representing the contract of bans.
  */
-public interface Ban {
+public interface BanFactory {
 
     /**
-     * Gets the user this ban applies to.
+     * Obtains an instance of a {@link BanBuilder}.
      *
-     * @return The user
+     * @return A new BanBuilder
      */
-    User getUser();
+    BanBuilder builder();
 
     /**
-     * Get the reason for the ban.
+     * Creates an indefinite ban on a user.
      *
-     * @return The reason specified for the ban.
+     * @param user The user
+     * @return The created ban
      */
-    Message.Text getReason();
+    Ban of(User user);
 
     /**
-     * Gets the start date of the ban.
+     * Creates an indefinite ban with a reason on a user.
      *
-     * @return Creation date of the ban
+     * @param user The user
+     * @param reason The reason
+     * @return The created ban
      */
-    Date getStartDate();
-
-    /**
-     * Gets the source that banned the user, if available.
-     *
-     * @return The banning source or {@link Optional#absent()}
-     */
-    Optional<CommandSource> getSource();
-
-    /**
-     * Gets the expiration date of this ban, if available.
-     *
-     * @return Expiration time of the ban or {@link Optional#absent()}
-     */
-    Optional<Date> getExpirationDate();
-
-    /**
-     * Gets whether this ban is indefinitely long, e.g. has no expiration date.
-     *
-     * @return True if this ban has no expiration date, otherwise false
-     */
-    boolean isIndefinite();
-
-    /**
-     * Pardons this ban, or removes the ban from the User.
-     */
-    void pardon();
+    Ban of(User user, Text.Literal reason);
 
 }
