@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.bans;
+package org.spongepowered.api.service.ban;
 
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.util.ban.Ban;
@@ -54,7 +54,7 @@ public interface BanService {
      *
      * @return All registered IP bans
      */
-    Collection<Ban.Ip> getIPBans();
+    Collection<Ban.Ip> getIpBans();
 
     /**
      * Gets all bans registered to the given user.
@@ -65,12 +65,12 @@ public interface BanService {
     Collection<Ban.User> getBansFor(User user);
 
     /**
-     * Gets all IP bans registered. to the given address.
+     * Gets all IP bans registered to the given address.
      *
      * @param address The address.
      * @return All registered IP bans
      */
-    Collection<Ban.Ip> getIPBansFor(InetAddress address);
+    Collection<Ban.Ip> getBansFor(InetAddress address);
 
     /**
      * Checks if a user has any bans.
@@ -94,6 +94,13 @@ public interface BanService {
      * @param user The user
      */
     void pardon(User user);
+
+    /**
+     * Pardons an IP address, or removes all the bans against that IP.
+     *
+     * @param address The IP address
+     */
+    void pardon(InetAddress address);
 
     /**
      * Adds a ban.
