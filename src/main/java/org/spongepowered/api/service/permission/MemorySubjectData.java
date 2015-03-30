@@ -73,6 +73,18 @@ public class MemorySubjectData implements SubjectData {
         return ret.build();
     }
 
+    /**
+     * Get the calculated node tree representation of the permissions for this subject data instance.
+     * If no data is present for the given context, returns null.
+     *
+     * @param contexts The contexts to get a node tree for
+     * @return The node tree
+     */
+    public NodeTree getNodeTree(Set<Context> contexts) {
+        NodeTree perms = this.permissions.get(contexts);
+        return perms == null ? NodeTree.of(Collections.<String, Boolean>emptyMap()) : perms;
+    }
+
     @Override
     public Map<String, Boolean> getPermissions(Set<Context> contexts) {
         NodeTree perms = this.permissions.get(contexts);
@@ -93,7 +105,7 @@ public class MemorySubjectData implements SubjectData {
                     break;
                 }
             } else {
-                if (this.permissions.replace(contexts, oldTree, oldTree.withValue(permission, value))) {
+                if (oldTree == null || this.permissions.replace(contexts, oldTree, oldTree.withValue(permission, value))) {
                     break;
                 }
             }
