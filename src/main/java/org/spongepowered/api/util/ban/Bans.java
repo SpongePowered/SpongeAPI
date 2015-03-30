@@ -22,22 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.bans;
+package org.spongepowered.api.util.ban;
 
 import org.spongepowered.api.entity.player.User;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 /**
- * Interface representing the contract of bans.
+ * Utility class for working with and creating {@link Ban}s.
  */
-public interface BanFactory {
+public final class Bans {
+
+    private static final BanFactory factory = null;
+
+    private Bans() {
+    }
 
     /**
-     * Obtains an instance of a {@link BanBuilder}.
+     * Creates a new BanBuilder.
      *
-     * @return A new BanBuilder
+     * @return A new ban builder
      */
-    BanBuilder builder();
+    public static BanBuilder builder() {
+        return factory.builder();
+    }
 
     /**
      * Creates an indefinite ban on a user.
@@ -45,7 +52,9 @@ public interface BanFactory {
      * @param user The user
      * @return The created ban
      */
-    Ban of(User user);
+    public static Ban of(User user) {
+        return factory.of(user);
+    }
 
     /**
      * Creates an indefinite ban with a reason on a user.
@@ -54,6 +63,8 @@ public interface BanFactory {
      * @param reason The reason
      * @return The created ban
      */
-    Ban of(User user, Message.Text reason);
+    public static Ban of(User user, Text.Literal reason) {
+        return factory.of(user, reason);
+    }
 
 }

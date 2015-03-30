@@ -22,20 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.user;
+package org.spongepowered.api.event.entity.user;
 
-import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.util.ban.Ban;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Represents an event that involves a User.
+ * Occurs when a user is banned.
  */
-public interface UserEvent {
+public interface UserBanEvent extends UserEvent, Cancellable {
 
     /**
-     * Gets the user involved in this event.
+     * Gets the ban involved in this event.
      *
-     * @return The user
+     * @return The ban
      */
-    User getUser();
+    Ban.User getBan();
 
 }

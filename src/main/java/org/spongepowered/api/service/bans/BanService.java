@@ -25,48 +25,96 @@
 package org.spongepowered.api.service.bans;
 
 import org.spongepowered.api.entity.player.User;
-import org.spongepowered.api.util.bans.Ban;
-import org.spongepowered.api.util.bans.BanProvider;
+import org.spongepowered.api.util.ban.Ban;
 
+import java.net.InetAddress;
 import java.util.Collection;
 
 /**
- * Represents something that holds bans from multiple {@link BanProvider}s.
- *
- * <p>The methods inherited from {@link BanProvider} are proxies to the providers stored
- * in this {@link BanService}. Bans are additive, meaning that providers cannot 'revoke'
- * bans that other providers have without calling other methods.</p>
- *
- * <p>There is at least one ban provider at all times, the vanilla ban provider.</p>
+ * Represents the service with which to ban users.
  */
-public interface BanService extends BanProvider {
+public interface BanService {
 
     /**
-     * Gets all {@link BanProvider}s that this service uses.
+     * Gets all bans registered.
      *
-     * @return The {@link BanProvider}s
+     * @return All registered bans
      */
-    Collection<BanProvider> getProviders();
+    Collection<Ban> getBans();
 
     /**
-     * Adds a BanProvider to track in this service.
+     * Gets all user bans registered.
      *
-     * @param provider The {@link BanProvider}
+     * @return All registered User bans
      */
-    void addProvider(BanProvider provider);
+    Collection<Ban.User> getUserBans();
 
     /**
-     * Removes a BanProvider from tracking in this service.
+     * Gets all IP bans registered.
      *
-     * @param provider The {@link BanProvider}
-     * @throws IllegalArgumentException if the vanilla ban provider
-     *         is attempted to be removed
+     * @return All registered IP bans
      */
-    void removeProvider(BanProvider provider) throws IllegalArgumentException;
+    Collection<Ban.Ip> getIPBans();
 
     /**
-     * Bans the user using the vanilla banning system, with default settings.
+     * Gets all bans registered to the given user.
+     *
+     * @param user The user
+     * @return The bans
      */
-    void ban(User user, Ban ban);
+    Collection<Ban.User> getBansFor(User user);
+
+    /**
+     * Gets all IP bans registered. to the given address.
+     *
+     * @param address The address.
+     * @return All registered IP bans
+     */
+    Collection<Ban.Ip> getIPBansFor(InetAddress address);
+
+    /**
+     * Checks if a user has any bans.
+     *
+     * @param user The user
+     * @return True if the user has any bans, false otherwise
+     */
+    boolean isBanned(User user);
+
+    /**
+     * Checks if an IP has any bans.
+     *
+     * @param address The address
+     * @return True if the address has any bans, false otherwise
+     */
+    boolean isBanned(InetAddress address);
+
+    /**
+     * Pardons a user, or removes all their bans.
+     *
+     * @param user The user
+     */
+    void pardon(User user);
+
+    /**
+     * Adds a ban.
+     *
+     * @param ban The ban to put on the user
+     */
+    void ban(Ban ban);
+
+    /**
+     * Pardons a ban.
+     *
+     * @param ban The ban
+     */
+    void pardon(Ban ban);
+
+    /**
+     * Checks if the specified ban has been set.
+     *
+     * @param ban The ban
+     * @return True if the ban exists in this provider, false otherwise
+     */
+    boolean hasBan(Ban ban);
 
 }

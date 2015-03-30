@@ -22,21 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.entity.user;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.util.ban.Ban;
+import org.spongepowered.api.util.event.Cancellable;
 
 /**
- * Called when a player is kicked.
+ * Occurs when a user is pardoned.
  */
-public interface PlayerKickEvent extends PlayerEvent {
+public interface UserPardonEvent extends UserEvent, Cancellable {
 
     /**
-     * Gets the reason for the kick.
+     * Gets the ban involved in this event.
      *
-     * @return The kick reason as a String
+     * @return The ban
      */
-    Optional<Message.Text> getReason();
+    Ban.User getBan();
 
 }

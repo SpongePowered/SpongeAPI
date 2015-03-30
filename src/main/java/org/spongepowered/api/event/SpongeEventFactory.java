@@ -1175,6 +1175,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("entity", player);
+        values.put("user", player);
         values.put("player", player);
         values.put("human", player);
         values.put("living", player);
