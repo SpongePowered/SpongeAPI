@@ -41,7 +41,7 @@ public interface Ban {
      *
      * @return The ban type
      */
-    BanType getBanType();
+    BanType getType();
 
     /**
      * Get the reason for the ban.
@@ -81,7 +81,7 @@ public interface Ban {
     /**
      * Represents a ban made on a user.
      */
-    interface User {
+    interface User extends Ban {
 
         /**
          * Gets the user this ban applies to.
@@ -95,7 +95,7 @@ public interface Ban {
     /**
      * Represents a ban made on an IP.
      */
-    interface Ip {
+    interface Ip extends Ban {
 
         /**
          * Gets the address this ban applies to.

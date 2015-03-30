@@ -64,7 +64,7 @@ public interface BanBuilder {
      * @param type The type to be set
      * @return This builder
      */
-    BanBuilder banType(BanType type);
+    BanBuilder type(BanType type);
 
     /**
      * Sets the reason for the ban.
@@ -78,17 +78,17 @@ public interface BanBuilder {
      * Sets the date that the ban starts.
      *
      * @param date The start date
-     * @return This builde
-     */
-    BanBuilder banDate(Date date);
-
-    /**
-     * Sets the expiration date of the ban.
-     *
-     * @param date The expiration date
      * @return This builder
      */
-    BanBuilder expirationDate(Date date);
+    BanBuilder startDate(Date date);
+
+    /**
+     * Sets the expiration date of the ban, or removes it.
+     *
+     * @param date The expiration date, or null in order to remove it
+     * @return This builder
+     */
+    BanBuilder expirationDate(@Nullable Date date);
 
     /**
      * Sets the source of the ban, or removes it if {@code null} is passed in.

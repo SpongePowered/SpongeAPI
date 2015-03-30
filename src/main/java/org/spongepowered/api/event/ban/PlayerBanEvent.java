@@ -22,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
+package org.spongepowered.api.event.ban;
 
-import org.spongepowered.api.event.entity.user.UserBanEvent;
+import org.spongepowered.api.event.entity.player.PlayerEvent;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**

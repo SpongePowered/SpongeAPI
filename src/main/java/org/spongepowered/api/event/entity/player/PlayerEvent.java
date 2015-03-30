@@ -28,7 +28,6 @@ package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.user.UserEvent;
 
 /**
  * Describes events which contain a {@link Player}.
