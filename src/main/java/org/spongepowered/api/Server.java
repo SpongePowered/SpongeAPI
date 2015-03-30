@@ -28,6 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.net.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.WorldGenerator;
 
@@ -211,5 +212,12 @@ public interface Server extends ChannelRegistrar {
      * @param kickMessage The message to kick players with
      */
     void shutdown(Text kickMessage);
+
+    /**
+     * Gets the command source used for commands coming from this server's console.
+     *
+     * @return This server's console command source
+     */
+    ConsoleSource getConsole();
 
 }
