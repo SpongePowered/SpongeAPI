@@ -28,7 +28,10 @@ package org.spongepowered.api.world.gen;
 import org.spongepowered.api.world.World;
 
 /**
- * Represents a structure which can be placed into the world by a populator.
+ * Represents a relatively small object (must fit in a single chunk) that can be
+ * spawned by a populator.
+ *
+ * @see PopulatorObjects
  */
 public interface PopulatorObject {
 

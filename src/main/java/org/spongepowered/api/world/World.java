@@ -150,15 +150,12 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
     Dimension getDimension();
 
     /**
-     * Gets the random seed for this world.
-     *
-     * @return The seed
-     */
-    long getWorldSeed();
-
-    /**
      * Gets the {@link WorldGenerator} for this world.
      *
+     * <p>Any changes made to the world generator won't affect the world until
+     * {@link #setWorldGenerator(WorldGenerator)}, and even then only newly
+     * changed chunks will be affected.</p>
+     * 
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();

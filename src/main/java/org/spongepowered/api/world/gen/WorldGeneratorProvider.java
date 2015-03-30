@@ -23,60 +23,34 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.gen.Populator;
-
-import java.util.List;
+import org.spongepowered.api.plugin.Plugin;
 
 /**
- * Represents a biome.
+ * If a plugin wishes to provide a world generator, the plugin class (the class
+ * annotated with {@link Plugin}) must implement this interface.
+ *
  */
-@CatalogedBy(BiomeTypes.class)
-public interface BiomeType {
+public interface WorldGeneratorProvider {
 
     /**
-     * Gets the name of this biome type.
+     * Modifies the given world generator. This method is called by the
+     * implementation when the server is set to use this plugin for world
+     * generation.
      *
-     * @return The name of this biome type
-     */
-    String getName();
-
-    /**
-     * Get the temperature of this biome.
+     * <p>To replace the base chunk generator, replace the generator populator
+     * using {@link WorldGenerator#setGeneratorPopulator(GeneratorPopulator)}.
+     * To replace the biome generator, use
+     * {@link WorldGenerator#setBiomeGenerator(BiomeGenerator)}. To change
+     * terrain population, modify the populator list returned by
+     * {@link WorldGenerator#getPopulators()}.</p>
      *
-     * @return The temperature
+     * @param worldName The name of the world.
+     * @param settings A string with settings, can be used by the plugin to
+     *        modify the world generator.
+     * @param worldGenerator The world generator, should be modified.
      */
-    double getTemperature();
-
-    /**
-     * Get the humidity of this biome.
-     *
-     * @return The humidity
-     */
-    double getHumidity();
-
-    /**
-     * Get the minimum terrain height of this biome.
-     *
-     * @return The min height
-     */
-    float getMinHeight();
-
-    /**
-     * Get the maximum terrain height of this biome.
-     *
-     * @return The max height
-     */
-    float getMaxHeight();
-
-    /**
-     * Returns a mutable list of {@link Populator}s specific to this
-     * biome. Changing this list will affect population of all new chunks.
-     *
-     * @return The populators
-     */
-    List<Populator> getPopulators();
+    void modifyWorldGenerator(String worldName, String settings, WorldGenerator worldGenerator);
 
 }

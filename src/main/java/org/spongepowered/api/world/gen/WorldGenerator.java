@@ -24,10 +24,7 @@
  */
 package org.spongepowered.api.world.gen;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.util.gen.BlockBuffer;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
-import org.spongepowered.api.world.World;
+import java.util.List;
 
 /**
  * Represents a generator for chunks into a world.
@@ -35,35 +32,33 @@ import org.spongepowered.api.world.World;
 public interface WorldGenerator {
 
     /**
-     * Generates the chunk at the given position in the world. The position
-     * specified is the chunk position (ie. the world position divided by the
-     * chunk size). The newly generated chunk should be placed into the given
-     * {@link BlockBuffer}.
-     *
-     * @param world The world
-     * @param buffer The buffer to generate the region into
-     * @param position The chunk position
+     * Gets the {@link GeneratorPopulator} of this world generator.
+     * @return The {@link GeneratorPopulator}.
+     * @see #setGeneratorPopulator(GeneratorPopulator)
      */
-    void generateChunk(World world, MutableBlockBuffer buffer, Vector3i position);
+    GeneratorPopulator getGeneratorPopulator();
 
     /**
-     * Gets an ordered collection of {@link Populator}s which are applied
-     * globally.
+     * Sets the {@link GeneratorPopulator} of this world generator.
+     * @param generator The generator.
+     */
+    void setGeneratorPopulator(GeneratorPopulator generator);
+
+    /**
+     * Gets whether map features are enabled and if this generator will be
+     * creating structures (such as villages and strongholds etc.)
+     *
+     * @return Map features enabled
+     */
+    boolean areMapFeaturesEnabled();
+
+    /**
+     * Gets an ordered, mutable list of {@link Populator}s which are applied
+     * globally (in the whole world).
      *
      * @return The populators
      */
-    Iterable<Populator> getGlobalPopulators();
-
-    /**
-     * Inserts a new populator to this generator's ordered collection of
-     * populators. The new populator is inserted at the given index. If the
-     * index is larger than the current amount of populators then the new
-     * populator in inserted at the end of the collection.
-     *
-     * @param populator The new populator
-     * @param index The index to insert the populator at
-     */
-    void insertPopulator(Populator populator, int index);
+    List<Populator> getPopulators();
 
     /**
      * Gets the {@link BiomeGenerator} for this world generator.
@@ -75,8 +70,23 @@ public interface WorldGenerator {
     /**
      * Sets the {@link BiomeGenerator} for this world generator.
      *
-     * @param biomeManager The new biome generator
+     * @param biomeGenerator The new biome generator
      */
-    void setBiomeGenerator(BiomeGenerator biomeManager);
+    void setBiomeGenerator(BiomeGenerator biomeGenerator);
+
+    /**
+     * Gets the random seed for this world. The world seed is used for terrain
+     * generation.
+     *
+     * @return The seed
+     */
+    long getSeed();
+
+    /**
+     * Sets the random seed for this world.
+     *
+     * @param seed The seed
+     */
+    void setSeed(long seed);
 
 }
