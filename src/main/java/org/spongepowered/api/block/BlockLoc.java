@@ -298,4 +298,28 @@ public interface BlockLoc extends DataHolder {
      * @return A snapshot
      */
     BlockSnapshot getSnapshot();
+
+    /**
+     * Gets a list of {@link ScheduledBlockUpdate}s on this block.
+     * 
+     * @return A list of ScheduledBlockUpdates on this block
+     */
+    Collection<ScheduledBlockUpdate> getScheduledUpdates();
+
+    /**
+     * Adds a new {@link ScheduledBlockUpdate} to this block.
+     * 
+     * @param priority The priority of the scheduled update
+     * @param ticks The ticks until the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    ScheduledBlockUpdate addScheduledUpdate(int priority, int ticks);
+
+    /**
+     * Removes a {@link ScheduledBlockUpdate} from this block.
+     * 
+     * @param update The ScheduledBlockUpdate to remove
+     */
+    void removeScheduledUpdate(ScheduledBlockUpdate update);
+
 }
