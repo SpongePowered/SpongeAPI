@@ -62,4 +62,10 @@ public interface BulkBlockEvent extends GameEvent, CauseTracked {
      */
     void filter(Predicate<Location> predicate);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
