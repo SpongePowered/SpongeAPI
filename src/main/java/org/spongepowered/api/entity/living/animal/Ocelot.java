@@ -46,4 +46,10 @@ public interface Ocelot extends Animal, Sittable {
      */
     void setOcelotType(final OcelotType ocelotType);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
