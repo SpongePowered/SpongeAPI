@@ -314,4 +314,11 @@ public interface Living extends Entity, AttributeHolder {
      *      player
      */
     void setInvisibleTo(Player player, boolean invisible);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
