@@ -40,4 +40,11 @@ public interface HumanFishEvent extends HumanEvent, Cancellable {
      * @return The {@link FishHook used} in this event
      */
     FishHook getFishHook();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
