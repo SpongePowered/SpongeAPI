@@ -33,4 +33,10 @@ import org.spongepowered.api.event.entity.EntityMoveEvent;
  */
 public interface LivingMoveEvent extends LivingEvent, EntityMoveEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
