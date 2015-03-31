@@ -105,4 +105,11 @@ public interface Item extends Entity {
      * @param thrower The user who threw this item
      */
     void setThrower(@Nullable User thrower);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
