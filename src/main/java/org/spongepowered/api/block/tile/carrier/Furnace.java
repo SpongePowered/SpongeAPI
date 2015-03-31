@@ -55,4 +55,10 @@ public interface Furnace extends TileEntityCarrier {
      */
     TileDataTransactionResult setFurnaceData(FurnaceData data);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
