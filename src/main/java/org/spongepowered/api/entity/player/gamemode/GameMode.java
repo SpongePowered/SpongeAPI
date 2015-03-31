@@ -33,4 +33,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(GameModes.class)
 public interface GameMode extends Translatable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
