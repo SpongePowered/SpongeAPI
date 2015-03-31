@@ -172,6 +172,11 @@ public final class DataQuery {
     }
 
     @Override
+    public String toString() {
+        return asString('.');
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hashCode(this.parts);
     }

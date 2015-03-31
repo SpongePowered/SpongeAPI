@@ -187,6 +187,17 @@ public interface DataView {
     Optional<DataView> getView(DataQuery path);
 
     /**
+     * Gets the underlying {@link Map} by path, if available.
+     *
+     * <p>If a {@link Map} does not exist, or data residing at the path is not
+     * an instance of a {@link Map}, an absent is returned.</p>
+     *
+     * @param path The path of the value to get
+     * @return The map, if available
+     */
+    Optional<? extends Map<?, ?>> getMap(DataQuery path);
+
+    /**
      * Gets the {@link Boolean} by path, if available.
      *
      * <p>If a {@link Boolean} does not exist, or the data residing at

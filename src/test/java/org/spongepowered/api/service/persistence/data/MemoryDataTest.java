@@ -166,7 +166,7 @@ public class MemoryDataTest {
         DataContainer container = new MemoryDataContainer();
         DataQuery query = of("foo");
         List<DataView> list = Lists.newArrayList();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1; i++) {
             DataContainer internal = new MemoryDataContainer();
             internal.set(of("foo", "bar"), "foo.bar" + i);
             int[] ints = new int[] {0, 1, 2, 3, i};
@@ -273,35 +273,60 @@ public class MemoryDataTest {
 
     @Test
     public void testGetMaps() {
-        List<DataQuery> queries = Lists.newArrayList();
-
-        queries.add(of("foo"));
-        queries.add(of("foo", "bar"));
-        queries.add(of("foo", "bar", "baz"));
-        queries.add(of("bar"));
         DataView view = new MemoryDataContainer();
-        view.set(of("foo"), "foo");
-        view.set(of("foo", "bar"), "foobar");
+        view.set(of("foo", "bar", "foo"), "foo");
+        view.set(of("foo", "bar", "bar"), "foobar");
         view.set(of("foo", "bar", "baz"), "foobarbaz");
         view.set(of("bar"), 1);
 
-        Map<DataQuery, Object> shallowMap = Maps.newHashMap();
-        shallowMap.put(of("foo"), "foo");
+        Map<DataQuery, Object> shallowMap = Maps.newLinkedHashMap();
         shallowMap.put(of("bar"), 1);
+        final Map<DataQuery, Object> internalView = Maps.newLinkedHashMap();
+        internalView.put(of("foo"), "foo");
+        internalView.put(of("bar"), "foobar");
+        internalView.put(of("baz"), "foobarbaz");
+        Map<DataQuery, Object> intermediateMap = Maps.newLinkedHashMap();
+        intermediateMap.put(of("bar"), internalView);
+        shallowMap.put(of("foo"), intermediateMap);
 
-        Map<DataQuery, Object> deepMap = Maps.newHashMap();
-        deepMap.put(of("foo"), "foo");
-        deepMap.put(of("foo", "bar"), "foobar");
-        deepMap.put(of("foo", "bar", "baz"), "foobarbaz");
-        deepMap.put(of("bar"), 1);
-
-        List<DataQuery> testQueries = Lists.newArrayList();
-        testQueries.add(of("foo"));
-        testQueries.add(of("bar"));
         Map<DataQuery, Object> shallowValues = view.getValues(false);
-        assertTrue(shallowValues.keySet().equals(shallowMap.keySet()));
+        assertTrue(shallowValues.entrySet().equals(shallowMap.entrySet()));
+
+        // Since we also support getting deep values, this has the uncommon side effect
+        // of actually having every possible DataQuery created for every possible value
+        // from the top level root node.
+        final Map<DataQuery, Object> deepMap = Maps.newLinkedHashMap();
+        deepMap.put(of("bar"), 1);
+        deepMap.put(of("foo", "bar", "foo"), "foo");
+        deepMap.put(of("foo", "bar", "bar"), "foobar");
+        deepMap.put(of("foo", "bar", "baz"), "foobarbaz");
+        deepMap.put(of("foo"), intermediateMap);
+        intermediateMap.put(of("bar", "foo"), "foo");
+        intermediateMap.put(of("bar", "bar"), "foobar");
+        intermediateMap.put(of("bar", "baz"), "foobarbaz");
+        deepMap.put(of("foo", "bar"), internalView);
+
         Map<DataQuery, Object> deepValues = view.getValues(true);
         assertTrue(deepValues.keySet().equals(deepMap.keySet()));
+        assertTrue(deepValues.entrySet().equals(deepMap.entrySet()));
+    }
+
+    @Test
+    public void testMaps() {
+        Map<String, Object> myMap = Maps.newHashMap();
+        myMap.put("foo", "bar");
+        myMap.put("myNumber", 1);
+        List<String> stringList = Lists.newArrayList();
+        for (int i = 0; i < 100; i++) {
+            stringList.add("Foo" + i);
+        }
+        myMap.put("myList", stringList);
+        DataView view = new MemoryDataContainer();
+        view.set(of("Foo"), myMap);
+
+        Map<?, ?> retrievedMap = (Map<?, ?>) view.getMap(of("Foo")).get();
+        assertTrue(myMap.keySet().equals(retrievedMap.keySet()));
+        assertTrue(myMap.entrySet().equals(retrievedMap.entrySet()));
     }
 
 }
