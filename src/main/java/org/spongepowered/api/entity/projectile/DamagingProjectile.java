@@ -74,4 +74,10 @@ public interface DamagingProjectile extends Projectile {
      */
     void setDamageForEntity(EntityType entityType, double damage);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
