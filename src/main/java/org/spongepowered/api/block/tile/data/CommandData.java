@@ -109,4 +109,10 @@ public interface CommandData extends TileEntityData<CommandBlock, CommandData> {
      */
     void setLastOutput(Text message);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
