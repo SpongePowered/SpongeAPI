@@ -49,4 +49,10 @@ public interface MutableAttributeSource extends AttributeSource {
      */
     void removeAttributeModifier(AttributeModifier modifier);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
