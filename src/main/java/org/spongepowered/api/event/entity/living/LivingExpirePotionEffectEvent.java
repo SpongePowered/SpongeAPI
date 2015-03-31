@@ -32,4 +32,10 @@ import org.spongepowered.api.potion.PotionEffect;
  */
 public interface LivingExpirePotionEffectEvent extends LivingPotionEffectEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
