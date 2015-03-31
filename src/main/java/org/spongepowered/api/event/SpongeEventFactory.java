@@ -1416,7 +1416,7 @@ public final class SpongeEventFactory {
 
     /**
      * Creates a new {@link AchievementEvent}.
-     * 
+     *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param achievement The achievement being added to the player
@@ -1436,14 +1436,16 @@ public final class SpongeEventFactory {
 
     /**
      * Creates a new {@link StatisticChangeEvent}.
-     * 
+     *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param changedStatistic Any statistics changed by this event
+     * @param oldValue The old value of the statistic
      * @param newValue The new value of the statistic
      * @return A new instance of the event
      */
-    public static StatisticChangeEvent createStatisticChangeEvent(Game game, Player player, Statistic changedStatistic, long newValue, long oldValue) {
+    public static StatisticChangeEvent createStatisticChangeEvent(Game game, Player player, Statistic changedStatistic,
+                                                                  long newValue, long oldValue) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);

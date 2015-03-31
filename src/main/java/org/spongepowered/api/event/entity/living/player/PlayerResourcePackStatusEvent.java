@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.event.entity.living.player;
 
-import org.spongepowered.api.resourcepack.ResourcePack;
-
 import com.google.common.base.Optional;
+import org.spongepowered.api.event.entity.player.PlayerEvent;
+import org.spongepowered.api.resourcepack.ResourcePack;
 
 /**
  * Called when a player notifies the server of the status of a resource pack

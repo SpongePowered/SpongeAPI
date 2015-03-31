@@ -140,7 +140,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     GameMode getGameMode();
 
     /**
-     * Sets the players's game mode.
+     * Sets the player's game mode.
      *
      * @param gameMode The game mode to set
      * @see GameModes
@@ -165,7 +165,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     /**
      * Gets this player's {@link TabList}.
      *
-     * @return This player's TabList.
+     * @return This player's TabList
      */
     TabList getTabList();
 

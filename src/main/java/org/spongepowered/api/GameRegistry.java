@@ -64,6 +64,7 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.stats.BlockStatistic;
 import org.spongepowered.api.stats.EntityStatistic;
 import org.spongepowered.api.stats.ItemStatistic;
@@ -555,10 +556,10 @@ public interface GameRegistry {
      * @return The newly created team statistic builder
      */
     StatisticBuilder.TeamStatisticBuilder getTeamStatisticBuilder();
-    
+
     /**
      * Registers a custom statistic.
-     * 
+     *
      * @param stat The custom statistic
      */
     void registerStatistic(Statistic stat);
@@ -577,18 +578,18 @@ public interface GameRegistry {
      * @return An immutable collection containing all available formats
      */
     Collection<StatisticFormat> getStatisticFormats();
-    
+
     /**
      * Gets the {@link Achievement} with the specified internal name.
-     * 
+     *
      * @param name The name of the achievement
      * @return The achievement or Optional.absent() if not found
      */
     Optional<Achievement> getAchievement(String name);
-    
+
     /**
      * Gets a collection of all available {@link Achievement}s.
-     * 
+     *
      * @return An immutable collection containing all available achievements
      */
     Collection<Achievement> getAchievements();
@@ -596,7 +597,7 @@ public interface GameRegistry {
     /**
      * Creates a new {@link AchievementBuilder} which may be used to create
      * custom {@link Achievement}s.
-     * 
+     *
      * @return The newly created achievement builder
      */
     AchievementBuilder getAchievementBuilder();
@@ -788,7 +789,7 @@ public interface GameRegistry {
 
     /**
      * Gets an {@link Attribute} by name.
-     * 
+     *
      * @param name The name of the Attribute
      * @return The {@link Attribute} with the given name or
      *         {@link Optional#absent()} if not found
@@ -797,14 +798,14 @@ public interface GameRegistry {
 
     /**
      * Gets a {@link Collection} of all possible {@link Attribute}s.
-     * 
+     *
      * @return The collection of all available {@link Attribute}s
      */
     Collection<Attribute> getAttributes();
 
     /**
      * Gets an {@link Operation} by name.
-     * 
+     *
      * @param name The name of the Operation
      * @return The {@link Operation} with the given name or
      *         {@link Optional#absent()} if not found
@@ -813,14 +814,14 @@ public interface GameRegistry {
 
     /**
      * Gets a {@link Collection} of all possible {@link Operation}s.
-     * 
+     *
      * @return The collection of all available {@link Operation}s
      */
     Collection<Operation> getOperations();
 
     /**
      * Gets a new {@link AttributeModifierBuilder}.
-     * 
+     *
      * @return A new AttributeModifierBuilder
      */
     AttributeModifierBuilder getAttributeModifierBuilder();
@@ -1011,5 +1012,14 @@ public interface GameRegistry {
      * @return The {@link Translation} with the given ID or Optional.absent() if not found
      */
     Optional<Translation> getTranslationById(String id);
+
+    /**
+     * Gets a {@link ResourcePack} that's already been created by its ID.
+     *
+     * @param id The ID of the pack
+     * @return The ResourcePack with the specified ID, or Optional.absent() if
+     *         none could be found
+     */
+    Optional<ResourcePack> getById(String id);
 
 }

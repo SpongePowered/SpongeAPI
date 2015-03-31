@@ -24,10 +24,7 @@
  */
 package org.spongepowered.api.resourcepack;
 
-import com.google.common.base.Optional;
-
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -46,13 +43,13 @@ public final class ResourcePacks {
      * @throws FileNotFoundException If a valid resourcepack could not be
      *         downloaded from the URL
      */
-    public static ResourcePack fromUrl(URL url) throws IOException {
+    public static ResourcePack fromUrl(URL url) throws FileNotFoundException {
         return factory.fromUrl(url);
     }
 
     /**
      * Creates a {@link ResourcePack} from a URL, without checking ("unchecked")
-     * if there is a valid pack at the URL
+     * if there is a valid pack at the URL.
      *
      * @param url The URL to look in
      * @return A ResourcePack with the specified URL
@@ -60,16 +57,4 @@ public final class ResourcePacks {
     public static ResourcePack fromUrlUnchecked(URL url) {
         return factory.fromUrlUnchecked(url);
     }
-
-    /**
-     * Gets a {@link ResourcePack} that's already been created by its ID.
-     *
-     * @param id The ID of the pack
-     * @return The ResourcePack with the specified ID, or
-     *         {@link Optional#absent()} if none could be found
-     */
-    public static Optional<ResourcePack> getById(String id) {
-        return factory.getById(id);
-    }
-
 }
