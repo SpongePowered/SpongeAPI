@@ -47,4 +47,10 @@ public interface NameableData extends TileEntityData<TileEntity, NameableData> {
      */
     void setCustomName(String name);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
