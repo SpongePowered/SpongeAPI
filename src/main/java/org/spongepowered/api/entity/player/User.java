@@ -161,4 +161,10 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      */
     boolean isBanned();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
