@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.util.command;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.completion.CommandCompleter;
 
 import java.util.List;
@@ -69,25 +69,41 @@ public interface CommandCallable extends CommandCompleter {
     /**
      * Get a short one-line description of this command.
      *
-     * @return A description, if available
+     * <p>The help system may display the description in the command list.</p>
+     *
+     * @param source The source of the help request
+     * @return A description
      */
-    Optional<String> getShortDescription();
+    String getShortDescription(CommandSource source);
 
     /**
-     * Get a longer help text about this command.
+     * Get a longer formatted help message about this command.
+     * 
+     * <p>It is recommended to use the default text color and style. Sections 
+     * with text actions (e.g. hyperlinks) should be underlined.</p>
+     * 
+     * <p>Multi-line messages can be created by separating the lines with 
+     * {@code \n}.</p>
+     * 
+     * <p>The help system may display this message when a source requests 
+     * detailed information about a command.</p>
      *
-     * @return A help text, if available
+     * @param source The source of the help request
+     * @return A help text
      */
-    Optional<String> getHelp();
+    Text getHelp(CommandSource source);
 
     /**
      * Get the usage string of this command.
      *
      * <p>A usage string may look like
      * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
+     * 
+     * <p>The string must not contain the command alias.</p>
      *
+     * @param source The source of the help request
      * @return A usage string
      */
-    String getUsage();
+    String getUsage(CommandSource source);
 
 }

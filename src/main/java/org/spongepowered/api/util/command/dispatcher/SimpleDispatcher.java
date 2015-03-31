@@ -29,10 +29,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
-import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -54,9 +55,30 @@ import java.util.Set;
  */
 public class SimpleDispatcher implements Dispatcher {
 
-    private static final Joiner SPACE_JOINER = Joiner.on(' ');
-
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
+    private final String shortDescription;
+    private final Text help;
+    
+    /**
+     * Creates a new dispatcher without any help messages.
+     */
+    public SimpleDispatcher() {
+        this.shortDescription = "";
+        this.help = Texts.of();
+    }
+    
+    /**
+     * Creates a new dispatcher with a description and a help message.
+     *
+     * @param shortDescription A short one-line description
+     * @param help A formatted help message
+     */
+    public SimpleDispatcher(String shortDescription, Text help) {
+        checkNotNull(shortDescription);
+        checkNotNull(help);
+        this.shortDescription = shortDescription;
+        this.help = help;
+    }
 
     /**
      * Register a given command using the given list of aliases.
@@ -330,10 +352,6 @@ public class SimpleDispatcher implements Dispatcher {
 
             synchronized (this) {
                 for (CommandMapping mapping : this.commands.values()) {
-                    // Skip commands the source is not permitted to call
-                    if (!mapping.getCallable().testPermission(source))
-                        continue;
-
                     for (String alias : mapping.getAllAliases()) {
                         if (alias.toLowerCase().startsWith(incompleteCommand)) {
                             suggestions.add(alias);
@@ -344,23 +362,8 @@ public class SimpleDispatcher implements Dispatcher {
         } else { // Complete using subcommand
             Optional<CommandMapping> mapping = get(parts[0]);
 
-            // Check if subcommand exists and source is permitted to call it
-            if (mapping.isPresent() && mapping.get().getCallable().testPermission(source)) {
-                // A list of suggestions delivered by the subcommand
-                List<String> subSuggestions = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
-
-                // parts[0] is the alias how it was entered by the source, e.g. "sENd"
-                // Find the alias how it was registered, e.g. "Send"
-                for (String alias : mapping.get().getAllAliases()) {
-                    if (alias.equalsIgnoreCase(parts[0])) {
-                        for (String suggestion : subSuggestions) {
-                            //Join the alias and the suggestion, then add it to the suggestion list
-                            suggestions.add(SPACE_JOINER.join(alias, suggestion));
-                        }
-
-                        break;
-                    }
-                }
+            if (mapping.isPresent()) {
+                mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
             }
         }
 
@@ -368,17 +371,17 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public Optional<String> getShortDescription() {
-        return Optional.absent();
+    public String getShortDescription(CommandSource source) {
+        return shortDescription;
     }
 
     @Override
-    public Optional<String> getHelp() {
-        return Optional.absent();
+    public Text getHelp(CommandSource source) {
+        return help;
     }
 
     @Override
-    public String getUsage() {
+    public String getUsage(CommandSource source) {
         return "<sub-command>"; // @TODO: Translate
     }
 
