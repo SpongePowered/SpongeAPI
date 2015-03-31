@@ -30,4 +30,10 @@ package org.spongepowered.api.event.entity.living.human.fishing;
  */
 public interface HumanCastFishingLineEvent extends HumanFishEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
