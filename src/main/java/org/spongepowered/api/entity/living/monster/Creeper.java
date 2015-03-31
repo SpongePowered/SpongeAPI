@@ -65,4 +65,11 @@ public interface Creeper extends Monster, IgnitableExplosive {
      * @param radius The explosion radius of this creeper
      */
     void setExplosionRadius(int radius);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
