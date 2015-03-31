@@ -141,4 +141,10 @@ public interface ArmorEquipable extends Equipable {
      */
     void setItemInHand(@Nullable ItemStack itemInHand);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
