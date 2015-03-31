@@ -40,4 +40,10 @@ public interface IpBanEvent extends GameEvent, Cancellable {
      */
     Ban.Ip getBan();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
