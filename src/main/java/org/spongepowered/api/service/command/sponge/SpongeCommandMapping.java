@@ -22,50 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.service.command.sponge;
 
-package org.spongepowered.api.util.command;
+import org.spongepowered.api.util.command.CommandCallable;
+import org.spongepowered.api.util.command.ImmutableCommandMapping;
 
-import java.util.Set;
+import java.util.Collection;
 
-/**
- * Provides information about a mapping between a command and its aliases.
- *
- * <p>
- * Implementations are not required to implement a sane
- * {@link java.lang.Object#equals(Object)} but may choose to do so.
- * </p>
- */
-public interface CommandMapping {
+public class SpongeCommandMapping extends ImmutableCommandMapping {
 
-    /**
-     * Gets the primary alias.
-     *
-     * @return The primary alias
-     */
-    String getPrimaryAlias();
+    private String registrar;
 
-    /**
-     * Gets an immutable list of all aliases.
-     *
-     * <p>
-     * The returned list must contain at least one entry, of which one must be
-     * the one returned by {@link #getPrimaryAlias()}.
-     * </p>
-     *
-     * <p>
-     * There may be several versions of the same alias with different casing,
-     * although generally implementations should ignore the casing of aliases.
-     * </p>
-     *
-     * @return A set of aliases
-     */
-    Set<String> getAllAliases();
+    public SpongeCommandMapping(CommandCallable<?> callable, String primary, String registrar, Collection<String> aliases) {
+        super(callable, primary, aliases);
+        this.registrar = registrar;
+    }
 
-    /**
-     * Gets the callable
-     *
-     * @return The callable
-     */
-    CommandCallable<?> getCallable();
+    public SpongeCommandMapping(CommandCallable<?> callable, String primary, String registrar, String... aliases) {
+        super(callable, primary, aliases);
+        this.registrar = registrar;
+    }
 
+    public String getRegistrar() {
+        return registrar;
+    }
 }
