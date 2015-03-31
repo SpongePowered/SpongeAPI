@@ -92,5 +92,12 @@ public interface Agent extends Living {
      */
     void setCanPickupItems(boolean canPickupItems);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
     // TODO for 1.1 add methods like getTarget, setTarget, etc.
 }
