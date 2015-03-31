@@ -46,4 +46,10 @@ public interface HumanSleepEvent extends HumanEvent, Cancellable {
      */
     Location getBed();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
