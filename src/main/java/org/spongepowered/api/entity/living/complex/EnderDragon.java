@@ -55,4 +55,11 @@ public interface EnderDragon extends ComplexLiving, Boss, Aerial {
      * @param crystal The crystal to heal this dragon
      */
     void setHealingCrystal(@Nullable EnderCrystal crystal);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
