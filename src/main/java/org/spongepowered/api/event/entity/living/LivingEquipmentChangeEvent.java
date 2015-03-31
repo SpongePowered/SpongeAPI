@@ -33,6 +33,13 @@ import org.spongepowered.api.event.entity.EntityEquipmentChangeEvent;
  */
 public interface LivingEquipmentChangeEvent extends LivingEvent, EntityEquipmentChangeEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
     /*
     TODO getEquipmentInventory()
      */
