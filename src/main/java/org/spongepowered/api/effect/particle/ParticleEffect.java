@@ -63,6 +63,13 @@ public interface ParticleEffect {
     int getCount();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a colored particle effect.
      */
     interface Colorable extends ParticleEffect {
