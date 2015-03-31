@@ -74,6 +74,13 @@ public interface ParticleEffectBuilder {
     ParticleEffect build();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a particle builder to create a {@link ParticleEffect.Colorable}.
      */
     interface Colorable extends ParticleEffectBuilder {
