@@ -45,4 +45,11 @@ public interface Witch extends Monster, ProjectileSource {
      * @param aggressive If the Witch should be aggressive
      */
     void setAggressive(boolean aggressive);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
