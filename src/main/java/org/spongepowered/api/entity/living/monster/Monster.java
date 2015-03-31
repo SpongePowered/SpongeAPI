@@ -32,4 +32,10 @@ import org.spongepowered.api.entity.living.Agent;
  */
 public interface Monster extends Agent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
