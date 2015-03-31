@@ -48,4 +48,10 @@ public interface ZombiePigman extends Zombie {
      */
     void setAngerLevel(int angerLevel);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
