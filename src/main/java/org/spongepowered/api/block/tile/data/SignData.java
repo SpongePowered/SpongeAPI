@@ -68,4 +68,10 @@ public interface SignData extends TileEntityData<Sign, SignData> {
      */
     void setLine(int index, Text text) throws IndexOutOfBoundsException;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
