@@ -43,4 +43,10 @@ public interface Sittable extends Tameable {
      */
     void setSitting(boolean sitting);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
