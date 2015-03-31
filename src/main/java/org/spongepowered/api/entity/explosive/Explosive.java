@@ -36,4 +36,10 @@ public interface Explosive extends Entity {
      */
     void detonate();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
