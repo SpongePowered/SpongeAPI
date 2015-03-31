@@ -49,4 +49,11 @@ public interface Skull extends TileEntity {
      * @return The transaction result
      */
     TileDataTransactionResult setSkullData(SkullData data);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
