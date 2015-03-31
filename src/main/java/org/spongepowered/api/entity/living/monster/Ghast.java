@@ -33,4 +33,10 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
  */
 public interface Ghast extends Aerial, Monster, ProjectileSource {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
