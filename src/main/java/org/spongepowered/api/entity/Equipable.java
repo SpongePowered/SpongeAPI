@@ -81,4 +81,10 @@ public interface Equipable extends Identifiable, Carrier {
      */
     boolean equip(EquipmentType type, @Nullable ItemStack equipment);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
