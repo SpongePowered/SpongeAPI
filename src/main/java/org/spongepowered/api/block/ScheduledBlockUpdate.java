@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.block;
 
-import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.world.Location;
 
 /**
  * Represents a scheduled block update. SBUs with higher priorities are
@@ -34,11 +34,11 @@ import com.flowpowered.math.vector.Vector3i;
 public interface ScheduledBlockUpdate {
 
     /**
-     * Gets the block type used to update the block.
+     * Gets the location of this scheduled block update.
      *
-     * @return The block type used to update the block
+     * @return The location of this scheduled block update
      */
-    BlockType getBlockType();
+    Location getLocation();
 
     /**
      * Gets the amount of ticks until this SBU should cause the block to update.
@@ -69,12 +69,5 @@ public interface ScheduledBlockUpdate {
      * @param priority The new priority of this scheduled block update
      */
     void setPriority(int priority);
-
-    /**
-     * Gets the position of this scheduled block update.
-     *
-     * @return the position of this scheduled block update
-     */
-    Vector3i getPosition();
 
 }

@@ -34,6 +34,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Direction;
@@ -474,6 +475,35 @@ public class Location implements DataHolder {
     @Override
     public <T> Optional<T> getData(Class<T> dataClass) {
         return getExtent().getBlockData(getBlockPosition(), dataClass);
+    }
+
+    /**
+     * Gets a list of {@link ScheduledBlockUpdate}s on this block.
+     *
+     * @return A list of ScheduledBlockUpdates on this block
+     */
+    Collection<ScheduledBlockUpdate> getScheduledUpdates() {
+        return getExtent().getScheduledUpdates(getBlockPosition());
+    }
+
+    /**
+     * Adds a new {@link ScheduledBlockUpdate} to this block.
+     *
+     * @param priority The priority of the scheduled update
+     * @param ticks The ticks until the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    ScheduledBlockUpdate addScheduledUpdate(int priority, int ticks) {
+        return getExtent().addScheduledUpdate(getBlockPosition(), priority, ticks);
+    }
+
+    /**
+     * Removes a {@link ScheduledBlockUpdate} from this block.
+     *
+     * @param update The ScheduledBlockUpdate to remove
+     */
+    void removeScheduledUpdate(ScheduledBlockUpdate update) {
+        getExtent().removeScheduledUpdate(getBlockPosition(), update);
     }
 
 }

@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
@@ -522,5 +523,64 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @return Is flammable
      */
     boolean isBlockFlammable(int x, int y, int z, Direction faceDirection);
+
+    /**
+     * Gets a list of {@link ScheduledBlockUpdate}s on this block.
+     *
+     * @param position The position of the block
+     * @return A list of ScheduledBlockUpdates on this block
+     */
+    Collection<ScheduledBlockUpdate> getScheduledUpdates(Vector3i position);
+
+    /**
+     * Gets a list of {@link ScheduledBlockUpdate}s on this block.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return A list of ScheduledBlockUpdates on this block
+     */
+    Collection<ScheduledBlockUpdate> getScheduledUpdates(int x, int y, int z);
+
+    /**
+     * Adds a new {@link ScheduledBlockUpdate} to this block.
+     *
+     * @param position The position of the block
+     * @param priority The priority of the scheduled update
+     * @param ticks The ticks until the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    ScheduledBlockUpdate addScheduledUpdate(Vector3i position, int priority, int ticks);
+
+    /**
+     * Adds a new {@link ScheduledBlockUpdate} to this block.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param priority The priority of the scheduled update
+     * @param ticks The ticks until the scheduled update should be processed
+     * @return The newly created scheduled update
+     */
+    ScheduledBlockUpdate addScheduledUpdate(int x, int y, int z, int priority, int ticks);
+
+    /**
+     * Removes a {@link ScheduledBlockUpdate} from this block.
+     *
+     * @param position The position of the block
+     * @param update The ScheduledBlockUpdate to remove
+     */
+    void removeScheduledUpdate(Vector3i position, ScheduledBlockUpdate update);
+
+
+    /**
+     * Removes a {@link ScheduledBlockUpdate} from this block.
+
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param update The ScheduledBlockUpdate to remove
+     */
+    void removeScheduledUpdate(int x, int y, int z, ScheduledBlockUpdate update);
 
 }
