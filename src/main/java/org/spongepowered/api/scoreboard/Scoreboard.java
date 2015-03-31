@@ -74,6 +74,22 @@ public interface Scoreboard {
     Set<Objective> getObjectives();
 
     /**
+     * Adds the specified {@link Objective} to this scoreboard.
+     *
+     * @param team The {@link Objective} add
+     * @throws IllegalArgumentException if an {@link Objective} with the same {@link Objective#getName() name} already exists,
+     * or if the specified {@link Objective} has already been added.
+     */
+    void addObjective(Objective team) throws IllegalArgumentException;
+
+    /**
+     * Removes the specified {@link Objective} from this scoreboard.
+     *
+     * @param objective The {@link Objective} to remove
+     */
+    void removeObjective(Objective objective);
+
+    /**
      * Gets all scores for an entry on this scoreboard.
      *
      * @param entry The entry whose scores are being retrieved

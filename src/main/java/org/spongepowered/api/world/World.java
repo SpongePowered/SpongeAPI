@@ -218,4 +218,11 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
      */
     Scoreboard getScoreboard();
 
+    /**
+     * Sets the {@link Scoreboard} for this world.
+     *
+     * @param scoreboard The scoreboard to set
+     */
+    void setScoreboard(Scoreboard scoreboard);
+
 }
