@@ -64,4 +64,11 @@ public interface BrewingStandBrewEvent extends BrewingStandEvent, BulkItemResult
      * @param items The newly brewed items
      */
     void setBrewedItems(List<ItemStack> items);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
