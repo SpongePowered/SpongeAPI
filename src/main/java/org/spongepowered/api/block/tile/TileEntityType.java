@@ -55,5 +55,11 @@ public interface TileEntityType {
      */
     Class<? extends TileEntity> getTileEntityType();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
 
