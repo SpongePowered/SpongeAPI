@@ -46,4 +46,10 @@ public interface NoteData extends TileEntityData<Note, NoteData> {
      */
     void setNote(NotePitch note);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
