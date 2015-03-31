@@ -110,4 +110,11 @@ public interface PlayerTabInfo {
      * @param profile The new GameProfile for this player
      */
     void setProfile(GameProfile profile);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
