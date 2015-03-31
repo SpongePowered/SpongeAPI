@@ -46,4 +46,11 @@ public interface MinecartFurnace extends Minecart {
      * @param fuel The fuel time in ticks
      */
     void setFuel(int fuel);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
