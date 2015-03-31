@@ -52,4 +52,11 @@ public interface HumanLevelChangeEvent extends HumanEvent {
      * @param newLevel The level to change to
      */
     void setNewLevel(int newLevel);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
