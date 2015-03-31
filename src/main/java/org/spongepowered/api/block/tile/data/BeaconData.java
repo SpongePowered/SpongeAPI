@@ -67,4 +67,10 @@ public interface BeaconData extends TileEntityData<Beacon, BeaconData> {
      */
     void clearEffects();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
