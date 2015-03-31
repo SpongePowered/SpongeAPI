@@ -132,4 +132,10 @@ public interface BlockType extends Translatable {
      */
     Optional<ItemBlock> getHeldItem();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
