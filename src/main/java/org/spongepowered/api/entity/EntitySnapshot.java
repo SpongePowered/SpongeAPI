@@ -34,4 +34,10 @@ import org.spongepowered.api.service.persistence.DataSerializable;
  */
 public interface EntitySnapshot extends EntityState, DataSerializable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
