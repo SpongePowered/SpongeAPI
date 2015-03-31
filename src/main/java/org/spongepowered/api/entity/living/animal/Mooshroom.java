@@ -30,4 +30,10 @@ package org.spongepowered.api.entity.living.animal;
  */
 public interface Mooshroom extends Cow {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
