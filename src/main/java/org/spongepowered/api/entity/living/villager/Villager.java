@@ -77,4 +77,10 @@ public interface Villager extends Ageable, Merchant {
      */
     void setCareer(Career career);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
