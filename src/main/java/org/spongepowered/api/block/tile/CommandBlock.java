@@ -54,4 +54,11 @@ public interface CommandBlock extends TileEntity, CommandBlockSource {
      * @return The transaction result
      */
     TileDataTransactionResult setCommandData(CommandData data);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
