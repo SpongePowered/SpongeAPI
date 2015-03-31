@@ -64,6 +64,7 @@ import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.scoreboard.ScoreboardBuilder;
 import org.spongepowered.api.scoreboard.TeamBuilder;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
@@ -200,6 +201,13 @@ public interface GameRegistry {
      * @return The team builder
      */
     TeamBuilder getTeamBuilder();
+
+    /**
+     * Gets a scoreboard builder.
+     *
+     * @return The scoreboard builder
+     */
+    ScoreboardBuilder getScoreboardBuilder();
 
     /**
      * Gets a {@link ParticleType} by name.
