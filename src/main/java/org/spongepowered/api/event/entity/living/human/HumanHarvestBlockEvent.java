@@ -47,4 +47,10 @@ public interface HumanHarvestBlockEvent extends HumanEvent, LivingHarvestBlockEv
      */
     boolean isSilkTouch();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
