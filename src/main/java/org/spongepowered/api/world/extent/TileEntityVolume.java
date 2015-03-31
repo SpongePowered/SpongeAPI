@@ -27,8 +27,8 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 
@@ -88,6 +88,6 @@ public interface TileEntityVolume extends BlockVolume {
      * @param blockLoc The block position
      * @return The tile entity, or {@link Optional#absent()}
      */
-    Optional<TileEntity> getTileEntity(BlockLoc blockLoc);
+    Optional<TileEntity> getTileEntity(Location blockLoc);
 
 }

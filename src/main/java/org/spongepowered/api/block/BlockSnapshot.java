@@ -25,13 +25,15 @@
 
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.world.Location;
+
 /**
  * A mutable complete representation of a block type and its associated data.
  *
  * <p>A block snapshot contains block type, block properties (state), as
  * well as extra block data.</p>
  *
- * @see BlockLoc
+ * @see Location
  */
 public interface BlockSnapshot {
 

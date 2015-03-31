@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanHarvestBlockEvent;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Player} harvests a {@link BlockLoc}.
+ * Called when a {@link Player} harvests a {@link Location}.
  */
 public interface PlayerHarvestBlockEvent extends PlayerEvent, HumanHarvestBlockEvent {
 

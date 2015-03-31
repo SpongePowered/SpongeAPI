@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
@@ -45,6 +44,6 @@ public interface HumanSleepEvent extends HumanEvent, Cancellable {
      *
      * @return The block of the bed
      */
-    BlockLoc getBed();
+    Location getBed();
 
 }

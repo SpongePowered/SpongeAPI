@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.block.BlockHarvestEvent;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link Entity} harvests a {@link BlockLoc}.
+ * Called when an {@link Entity} harvests a {@link Location}.
  */
 public interface EntityHarvestBlockEvent extends EntityEvent, BlockHarvestEvent {
 

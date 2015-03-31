@@ -33,7 +33,6 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.tile.carrier.BrewingStand;
 import org.spongepowered.api.block.tile.carrier.Furnace;
@@ -192,7 +191,7 @@ public final class SpongeEventFactory {
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static BlockBreakEvent createBlockBreak(Game game, Cause cause, BlockLoc block, BlockSnapshot replacementBlock, int exp) {
+    public static BlockBreakEvent createBlockBreak(Game game, Cause cause, Location block, BlockSnapshot replacementBlock, int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -211,7 +210,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static BlockBurnEvent createBlockBurn(Game game, Cause cause, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static BlockBurnEvent createBlockBurn(Game game, Cause cause, Location block, BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -229,7 +228,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static BlockChangeEvent createBlockChange(Game game, Cause cause, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static BlockChangeEvent createBlockChange(Game game, Cause cause, Location block, BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -248,7 +247,7 @@ public final class SpongeEventFactory {
      * @param dispensedItem The item to dispense from the block
      * @return A new instance of the event
      */
-    public static BlockDispenseEvent createBlockDispense(Game game, Cause cause, BlockLoc block, Vector3d velocity, ItemStack dispensedItem) {
+    public static BlockDispenseEvent createBlockDispense(Game game, Cause cause, Location block, Vector3d velocity, ItemStack dispensedItem) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -269,7 +268,7 @@ public final class SpongeEventFactory {
      *        {@link BlockHarvestEvent#setDropChance(float)}
      * @return A new instance of the event
      */
-    public static BlockHarvestEvent createBlockHarvest(Game game, Cause cause, BlockLoc block, Collection<Item> droppedItems, float dropChance) {
+    public static BlockHarvestEvent createBlockHarvest(Game game, Cause cause, Location block, Collection<Item> droppedItems, float dropChance) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -287,7 +286,7 @@ public final class SpongeEventFactory {
      * @param block The block affected by this event
      * @return A new instance of the event
      */
-    public static BlockIgniteEvent createBlockIgnite(Game game, Cause cause, BlockLoc block) {
+    public static BlockIgniteEvent createBlockIgnite(Game game, Cause cause, Location block) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -303,7 +302,7 @@ public final class SpongeEventFactory {
      * @param block The block affected by this event
      * @return A new instance of the event
      */
-    public static BlockInteractEvent createBlockInteract(Game game, Cause cause, BlockLoc block) {
+    public static BlockInteractEvent createBlockInteract(Game game, Cause cause, Location block) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -319,7 +318,7 @@ public final class SpongeEventFactory {
      * @param blocks The blocks affected by this event
      * @return A new instance of the event
      */
-    public static BlockMoveEvent createBlockMove(Game game, Cause cause, List<BlockLoc> blocks) {
+    public static BlockMoveEvent createBlockMove(Game game, Cause cause, List<Location> blocks) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -336,7 +335,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static BlockPlaceEvent createBlockPlace(Game game, Cause cause, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static BlockPlaceEvent createBlockPlace(Game game, Cause cause, Location block, BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -353,7 +352,7 @@ public final class SpongeEventFactory {
      * @param block The block affected by this event
      * @return A new instance of the event
      */
-    public static BlockRandomTickEvent createBlockRandomTick(Game game, Cause cause, BlockLoc block) {
+    public static BlockRandomTickEvent createBlockRandomTick(Game game, Cause cause, Location block) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -370,7 +369,7 @@ public final class SpongeEventFactory {
      * @param affectedBlocks The blocks affeceted by the event
      * @return A new instance of the event
      */
-    public static BlockUpdateEvent createBlockUpdate(Game game, Cause cause, BlockLoc block, Collection<BlockLoc> affectedBlocks) {
+    public static BlockUpdateEvent createBlockUpdate(Game game, Cause cause, Location block, Collection<Location> affectedBlocks) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -388,7 +387,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static FloraGrowEvent createFloraGrow(Game game, Cause cause, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static FloraGrowEvent createFloraGrow(Game game, Cause cause, Location block, BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -405,7 +404,7 @@ public final class SpongeEventFactory {
      * @param blocks The blocks affected by this event
      * @return A new instance of the event
      */
-    public static FluidSpreadEvent createFluidSpread(Game game, Cause cause, List<BlockLoc> blocks) {
+    public static FluidSpreadEvent createFluidSpread(Game game, Cause cause, List<Location> blocks) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -422,7 +421,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static LeafDecayEvent createLeafDecay(Game game, Cause cause, BlockLoc block, BlockSnapshot replacementBlock) {
+    public static LeafDecayEvent createLeafDecay(Game game, Cause cause, Location block, BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -442,7 +441,7 @@ public final class SpongeEventFactory {
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static EntityBreakBlockEvent createEntityBreakBlock(Game game, Cause cause, Entity entity, BlockLoc block, BlockSnapshot replacementBlock,
+    public static EntityBreakBlockEvent createEntityBreakBlock(Game game, Cause cause, Entity entity, Location block, BlockSnapshot replacementBlock,
             int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -464,7 +463,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static EntityChangeBlockEvent createEntityChangeBlock(Game game, Cause cause, Entity entity, BlockLoc block,
+    public static EntityChangeBlockEvent createEntityChangeBlock(Game game, Cause cause, Entity entity, Location block,
             BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -520,7 +519,7 @@ public final class SpongeEventFactory {
      * @param block The block affected by this event
      * @return A new instance of the event
      */
-    public static EntityCollisionWithBlockEvent createEntityCollisionWithBlock(Game game, Cause cause, Entity entity, BlockLoc block) {
+    public static EntityCollisionWithBlockEvent createEntityCollisionWithBlock(Game game, Cause cause, Entity entity, Location block) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -635,7 +634,7 @@ public final class SpongeEventFactory {
      *        {@link BlockHarvestEvent#setDropChance(float)}
      * @return A new instance of the event
      */
-    public static EntityHarvestBlockEvent createEntityHarvestBlock(Game game, Cause cause, Entity entity, BlockLoc block,
+    public static EntityHarvestBlockEvent createEntityHarvestBlock(Game game, Cause cause, Entity entity, Location block,
             Collection<Item> droppedItems, float dropChance) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -656,7 +655,7 @@ public final class SpongeEventFactory {
      * @param block The block affected by this event
      * @return A new instance of the event
      */
-    public static EntityInteractBlockEvent createEntityInteractBlock(Game game, Cause cause, Entity entity, BlockLoc block) {
+    public static EntityInteractBlockEvent createEntityInteractBlock(Game game, Cause cause, Entity entity, Location block) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -758,7 +757,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static EntityPlaceBlockEvent createEntityPlaceBlock(Game game, Cause cause, Entity entity, BlockLoc block,
+    public static EntityPlaceBlockEvent createEntityPlaceBlock(Game game, Cause cause, Entity entity, Location block,
             BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -919,7 +918,7 @@ public final class SpongeEventFactory {
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static PlayerBreakBlockEvent createPlayerBreakBlock(Game game, Cause cause, Player player, Direction direction, BlockLoc block,
+    public static PlayerBreakBlockEvent createPlayerBreakBlock(Game game, Cause cause, Player player, Direction direction, Location block,
             BlockSnapshot replacementBlock, int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1016,7 +1015,7 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static PlayerChangeBlockEvent createPlayerChangeBlock(Game game, Cause cause, Player player, Direction direction, BlockLoc block,
+    public static PlayerChangeBlockEvent createPlayerChangeBlock(Game game, Cause cause, Player player, Direction direction, Location block,
             BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1168,7 +1167,7 @@ public final class SpongeEventFactory {
      * @param silkTouch Whether the player is harvesting with silk touch
      * @return A new instance of the event
      */
-    public static PlayerHarvestBlockEvent createPlayerHarvestBlock(Game game, Cause cause, Player player, BlockLoc block,
+    public static PlayerHarvestBlockEvent createPlayerHarvestBlock(Game game, Cause cause, Player player, Location block,
             Collection<Item> droppedItems, float dropChance, boolean silkTouch) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1196,7 +1195,7 @@ public final class SpongeEventFactory {
      * @param location The location of the interaction
      * @return A new instance of the event
      */
-    public static PlayerInteractBlockEvent createPlayerInteractBlock(Game game, Cause cause, Player player, BlockLoc block,
+    public static PlayerInteractBlockEvent createPlayerInteractBlock(Game game, Cause cause, Player player, Location block,
             EntityInteractionType interactionType, @Nullable Vector3d location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1336,7 +1335,7 @@ public final class SpongeEventFactory {
      * @param direction The direction the block was placed
      * @return A new instance of the event
      */
-    public static PlayerPlaceBlockEvent createPlayerPlaceBlock(Game game, Cause cause, Player player, BlockLoc block,
+    public static PlayerPlaceBlockEvent createPlayerPlaceBlock(Game game, Cause cause, Player player, Location block,
             BlockSnapshot replacementBlock, Direction direction) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1401,7 +1400,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static LightningStrikeEvent createLightningStrike(Game game, WeatherUniverse weatherUniverse, Lightning lightningStrike,
-            List<Entity> struckEntities, List<BlockLoc> struckBlocks) {
+            List<Entity> struckEntities, List<Location> struckBlocks) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("lightningStrike", lightningStrike);
@@ -1629,7 +1628,7 @@ public final class SpongeEventFactory {
     public static BrewingStandBrewEvent createBrewingStandBrewEvent(Game game, BrewingStand brewingStand, BrewingData data,
                                                                     List<ItemStack> sourceItems, ItemStack fuelSource, List<ItemStack> brewedItems,
                                                                     Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
-                                                                    BlockLoc blockLoc) {
+                                                                    Location blockLoc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", brewingStand);
@@ -1660,7 +1659,7 @@ public final class SpongeEventFactory {
      */
     public static FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(Game game, Furnace furnace, FurnaceData data, ItemStack burnedItem,
                                                                         ItemStack remainingFuel, Cause cause,
-                                                                        TileEntityInventory<TileEntityCarrier> inventory, BlockLoc loc) {
+                                                                        TileEntityInventory<TileEntityCarrier> inventory, Location loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", furnace);
@@ -1690,7 +1689,7 @@ public final class SpongeEventFactory {
      */
     public static FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(Game game, Furnace furnace, FurnaceData data, ItemStack cookedItem,
                                                                     ItemStack sourceItem, Cause cause,
-                                                                    TileEntityInventory<TileEntityCarrier> inventory, BlockLoc loc) {
+                                                                    TileEntityInventory<TileEntityCarrier> inventory, Location loc) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", furnace);
