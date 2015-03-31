@@ -42,4 +42,13 @@ public final class UnknownProjectileSource implements ProjectileSource {
     public <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3d velocity) {
         return null;
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
