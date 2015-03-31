@@ -47,4 +47,10 @@ public interface Rabbit extends Animal {
      */
     void setRabbitType(RabbitType type);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
