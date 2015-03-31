@@ -43,4 +43,10 @@ public interface ExperienceOrb extends Entity {
      */
     void setExperience(int experience);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
