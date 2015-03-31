@@ -29,4 +29,10 @@ package org.spongepowered.api.entity.living;
  */
 public interface Aerial extends Agent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
