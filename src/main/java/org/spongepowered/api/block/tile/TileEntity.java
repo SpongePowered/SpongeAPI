@@ -154,4 +154,11 @@ public interface TileEntity extends DataSerializable {
      *     data that this stack will refuse
      */
     void setRawData(DataContainer container) throws InvalidDataException;
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
