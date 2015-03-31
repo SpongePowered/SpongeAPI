@@ -62,4 +62,10 @@ public interface BlockHarvestEvent extends BlockEvent, ItemDropEvent, Cancellabl
      */
     void setDropChance(float chance);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
