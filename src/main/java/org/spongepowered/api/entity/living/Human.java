@@ -225,4 +225,10 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      */
     void closeInventory();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
