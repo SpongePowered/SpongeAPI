@@ -40,4 +40,11 @@ public interface Profession extends Translatable {
      * @return The name of this profession
      */
     String getName();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
