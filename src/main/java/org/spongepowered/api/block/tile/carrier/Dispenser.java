@@ -32,4 +32,10 @@ import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
  */
 public interface Dispenser extends TileEntityCarrier, BlockProjectileSource {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
