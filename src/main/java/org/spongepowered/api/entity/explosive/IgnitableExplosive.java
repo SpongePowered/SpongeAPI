@@ -41,4 +41,10 @@ public interface IgnitableExplosive extends FusedExplosive {
      */
     void ignite(int fuseTicks);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
