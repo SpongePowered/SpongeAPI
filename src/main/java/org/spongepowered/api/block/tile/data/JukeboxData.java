@@ -52,4 +52,10 @@ public interface JukeboxData extends TileEntityData<Jukebox, JukeboxData> {
      */
     void setRecord(@Nullable ItemStack record);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
