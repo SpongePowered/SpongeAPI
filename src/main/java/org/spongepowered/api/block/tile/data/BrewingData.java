@@ -48,4 +48,10 @@ public interface BrewingData extends TileEntityData<BrewingStand, BrewingData> {
      */
     void setRemainingBrewTime(int time);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
