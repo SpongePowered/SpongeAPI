@@ -30,4 +30,10 @@ package org.spongepowered.api.entity.living.golem;
  */
 public interface SnowGolem extends Golem {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
