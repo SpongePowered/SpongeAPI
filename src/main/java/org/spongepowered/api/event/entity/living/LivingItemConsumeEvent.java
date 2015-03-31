@@ -32,5 +32,10 @@ import org.spongepowered.api.event.entity.EntityItemConsumeEvent;
  */
 public interface LivingItemConsumeEvent extends EntityItemConsumeEvent, LivingEvent {
 
-
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
