@@ -29,4 +29,10 @@ package org.spongepowered.api.entity.hanging;
  */
 public interface LeashHitch extends Hanging {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
