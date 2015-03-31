@@ -50,6 +50,13 @@ public interface ParticleType {
     boolean hasMotion();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a particle that can be colored.
      */
     interface Colorable extends ParticleType {
