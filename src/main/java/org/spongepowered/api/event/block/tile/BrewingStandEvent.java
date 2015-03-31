@@ -44,4 +44,11 @@ public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent 
 
     @Override
     BrewingData getCurrentData();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
