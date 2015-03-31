@@ -50,4 +50,10 @@ public interface FusedExplosive extends Explosive {
      */
     void setFuseDuration(int fuseTicks);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
