@@ -53,4 +53,11 @@ public interface Art {
      * @return The name of this piece of art
      */
     String getName();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
