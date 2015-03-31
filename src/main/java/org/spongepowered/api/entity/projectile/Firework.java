@@ -31,4 +31,10 @@ import org.spongepowered.api.entity.explosive.FusedExplosive;
  */
 public interface Firework extends Projectile, FusedExplosive {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
