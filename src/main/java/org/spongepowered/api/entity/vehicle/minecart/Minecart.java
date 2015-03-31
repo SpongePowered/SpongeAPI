@@ -111,4 +111,11 @@ public interface Minecart extends Entity {
      * @param derailedVelocityMod The new derailed velocity modifier
      */
     void setDerailedVelocityMod(Vector3d derailedVelocityMod);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
