@@ -36,4 +36,11 @@ public interface Spider extends Monster {
      * @return Whether or not the spider is climbing a wall
      */
     boolean isClimbing();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
