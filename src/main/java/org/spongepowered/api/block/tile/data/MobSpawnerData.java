@@ -245,5 +245,10 @@ public interface MobSpawnerData extends TileEntityData<MobSpawner, MobSpawnerDat
      */
     void setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
 
-
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
