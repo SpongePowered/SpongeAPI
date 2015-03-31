@@ -61,4 +61,11 @@ public interface Wither extends Monster, ProjectileSource, Boss, Aerial {
      * @return The Wither's targets
      */
     List<Living> getTargets();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
