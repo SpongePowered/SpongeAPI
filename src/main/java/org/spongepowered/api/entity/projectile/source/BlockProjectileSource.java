@@ -39,4 +39,10 @@ public interface BlockProjectileSource extends ProjectileSource {
      */
     Location getBlock();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
