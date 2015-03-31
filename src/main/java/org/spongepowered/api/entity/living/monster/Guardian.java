@@ -49,4 +49,10 @@ public interface Guardian extends Aquatic, Monster {
      */
     void setElder(boolean elder);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
