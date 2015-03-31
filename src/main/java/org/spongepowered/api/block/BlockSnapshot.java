@@ -44,4 +44,10 @@ public interface BlockSnapshot {
      */
     BlockState getState();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
