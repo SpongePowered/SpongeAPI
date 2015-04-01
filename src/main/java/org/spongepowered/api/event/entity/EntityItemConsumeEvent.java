@@ -47,4 +47,10 @@ public interface EntityItemConsumeEvent extends EntityEvent, Cancellable {
      */
     void setItem(ItemStack item);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
