@@ -32,4 +32,10 @@ import org.spongepowered.api.entity.EntityType;
  */
 public interface SpawnableData extends PseudoEnumItemData<EntityType, SpawnableData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
