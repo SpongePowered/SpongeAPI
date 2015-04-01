@@ -31,4 +31,10 @@ import org.spongepowered.api.util.command.CommandSource;
  */
 public interface ConsoleSource extends CommandSource {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
