@@ -100,4 +100,10 @@ public interface ServiceManager {
      */
     <T> T provideUnchecked(Class<T> service) throws ProvisioningException;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
