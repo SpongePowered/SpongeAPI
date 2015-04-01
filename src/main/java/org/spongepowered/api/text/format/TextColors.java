@@ -50,6 +50,15 @@ public final class TextColors {
             return this.color;
         }
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        public boolean isFlowerPot() {
+            return true;
+        }
+
     };
 
     public static final TextColor.Base BLACK = null;
