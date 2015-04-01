@@ -74,4 +74,13 @@ public class EquipmentProperty extends AbstractItemProperty<String, EquipmentTyp
         }
         return this.getClass().getName().compareTo(o.getClass().getName());
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
