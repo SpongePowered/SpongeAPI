@@ -41,4 +41,10 @@ public interface ShapelessRecipe extends Recipe {
      */
     Collection<ItemStack> getIngredients();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
