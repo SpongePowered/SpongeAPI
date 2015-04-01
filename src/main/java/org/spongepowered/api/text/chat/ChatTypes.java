@@ -51,4 +51,12 @@ public final class ChatTypes {
      */
     public static final ChatType ACTION_BAR = null;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return true;
+    }
 }
