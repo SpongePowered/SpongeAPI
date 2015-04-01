@@ -31,4 +31,10 @@ import org.spongepowered.api.item.inventory.slots.OutputSlot;
  */
 public interface CraftingOutput extends OutputSlot {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
