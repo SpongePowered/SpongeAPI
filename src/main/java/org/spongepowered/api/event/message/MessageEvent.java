@@ -56,4 +56,10 @@ public interface MessageEvent extends GameEvent, Cancellable {
      */
     void setMessage(Text message);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
