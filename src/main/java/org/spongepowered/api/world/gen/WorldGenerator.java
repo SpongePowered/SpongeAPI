@@ -24,38 +24,53 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.world.biome.BiomeType;
+
 import java.util.List;
 
 /**
- * Represents a generator for chunks into a world.
+ * Represents the world generator of a world. This interface contains all
+ * settings for the world generator, like which populators are in use, but also
+ * the world seed.
  */
 public interface WorldGenerator {
 
     /**
-     * Gets the {@link GeneratorPopulator} of this world generator.
+     * Gets the main {@link GeneratorPopulator}. This generator populator is
+     * responsible for generating the base terrain of the chunk.
+     *
      * @return The {@link GeneratorPopulator}.
-     * @see #setGeneratorPopulator(GeneratorPopulator)
+     * @see #setBaseGeneratorPopulator(GeneratorPopulator)
      */
-    GeneratorPopulator getGeneratorPopulator();
+    GeneratorPopulator getBaseGeneratorPopulator();
 
     /**
-     * Sets the {@link GeneratorPopulator} of this world generator.
+     * Sets the {@link GeneratorPopulator}. This generator populator is
+     * responsible for generating the base terrain of the chunk.
+     *
      * @param generator The generator.
      */
-    void setGeneratorPopulator(GeneratorPopulator generator);
+    void setBaseGeneratorPopulator(GeneratorPopulator generator);
 
     /**
-     * Gets whether map features are enabled and if this generator will be
-     * creating structures (such as villages and strongholds etc.)
+     * Gets a mutable list of {@link GeneratorPopulator}s. These populators work
+     * strictly on a single chunk. They will be executed directly after the
+     * {@link #getBaseGeneratorPopulator() main generator populator} is called.
+     * These generator populators are typically used to generate large terrain
+     * features, like caves and ravines.
      *
-     * @return Map features enabled
+     * <p>This list does not include {@link #getBaseGeneratorPopulator() the
+     * base generator}.</p>
+     *
+     * @return The generator populators
      */
-    boolean areMapFeaturesEnabled();
+    List<GeneratorPopulator> getGeneratorPopulators();
 
     /**
-     * Gets an ordered, mutable list of {@link Populator}s which are applied
-     * globally (in the whole world).
+     * Gets a mutable list of {@link Populator}s which are applied globally (in
+     * the whole world).
      *
+     * @see BiomeType#getPopulators()
      * @return The populators
      */
     List<Populator> getPopulators();
@@ -73,6 +88,14 @@ public interface WorldGenerator {
      * @param biomeGenerator The new biome generator
      */
     void setBiomeGenerator(BiomeGenerator biomeGenerator);
+
+    /**
+     * Gets whether map features are enabled and if this generator will be
+     * creating structures (such as villages and strongholds etc.)
+     *
+     * @return Map features enabled
+     */
+    boolean areMapFeaturesEnabled();
 
     /**
      * Gets the random seed for this world. The world seed is used for terrain

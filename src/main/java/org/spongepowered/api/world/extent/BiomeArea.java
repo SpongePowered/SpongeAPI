@@ -30,8 +30,29 @@ import org.spongepowered.api.world.biome.BiomeType;
 
 /**
  * An area containing biomes.
+ *
+ * <p>Some methods accept a pair of two ints, representing the x and z location
+ * of a biome. Some other methods accept or return a {@link Vector2i}. The
+ * y position of this vector is equal to the z position of a biome in the
+ * world.</p>
  */
 public interface BiomeArea {
+
+    /**
+     * Gets the biome location with the lowest x and y that is still a valid
+     * position for {@link #getBiome(Vector2i)}.
+     *
+     * @return The lowest biome location
+     */
+    Vector2i getBiomeMin();
+
+    /**
+     * Gets the biome location with the higest x and y that is still a valid
+     * position for {@link #getBiome(Vector2i)}.
+     *
+     * @return The highest biome location.
+     */
+    Vector2i getBiomeMax();
 
     /**
      * Get an object representing the biome at the given position.

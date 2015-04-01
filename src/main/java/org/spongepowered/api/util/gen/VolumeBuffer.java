@@ -32,22 +32,22 @@ import com.flowpowered.math.vector.Vector3i;
 public interface VolumeBuffer {
 
     /**
-     * Gets the minimal bound of the buffer's location.
+     * Gets the minimal bound (inclusive) of the buffer's location.
      *
      * @return The minimal bound
      */
     Vector3i getMinBound();
 
     /**
-     * Gets the maximal bound of the buffer's location.
+     * Gets the maximal bound (inclusive) of the buffer's location.
      *
      * @return The maximal bound
      */
     Vector3i getMaxBound();
 
     /**
-     * Gets the size of the buffer. Defined as {@link #getMaxBound()} -
-     * {@link #getMinBound()}.
+     * Gets the size of the buffer. Defined as <code>{@link #getMaxBound()} -
+     * {@link #getMinBound()} + (1, 1, 1)</code>.
      *
      * @return The size
      */

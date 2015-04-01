@@ -28,8 +28,8 @@ package org.spongepowered.api.world.gen;
 import org.spongepowered.api.world.World;
 
 /**
- * Represents a relatively small object (must fit in a single chunk) that can be
- * spawned by a populator.
+ * Represents an object placed in the world during terrain population. Populator
+ * objects typically fit in a single chunk.
  *
  * @see PopulatorObjects
  */

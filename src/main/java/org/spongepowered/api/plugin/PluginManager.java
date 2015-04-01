@@ -27,8 +27,6 @@ package org.spongepowered.api.plugin;
 
 import com.google.common.base.Optional;
 import org.slf4j.Logger;
-import org.spongepowered.api.world.gen.WorldGenerator;
-import org.spongepowered.api.world.gen.WorldGeneratorProvider;
 
 import java.util.Collection;
 
@@ -78,18 +76,5 @@ public interface PluginManager {
      * @return {@code true} if loaded {@code false} if not loaded.
      */
     boolean isLoaded(String id);
-
-    /**
-     * Lets the given plugin modify the world generator. Does nothing if the
-     * plugin does not implement the {@link WorldGeneratorProvider} interface.
-     *
-     * @param plugin The plugin to get the world generator from.
-     * @param worldName Name of the world.
-     * @param settings A string with (usually user-supplied) settings for the
-     *        world generator plugin, it's up to the world generator plugin to
-     *        do anything with this.
-     * @param worldGenerator The world generator to modify.
-     */
-    void modifyWorldGenerator(PluginContainer plugin, String worldName, String settings, WorldGenerator worldGenerator);
 
 }

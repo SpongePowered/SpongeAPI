@@ -25,32 +25,38 @@
 
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.plugin.PluginContainer;
+
+import org.spongepowered.api.GameRegistry;
+import org.spongepowered.api.service.persistence.data.DataContainer;
 
 /**
- * If a plugin wishes to provide a world generator, the plugin class (the class
- * annotated with {@link Plugin}) must implement this interface.
+ * If a plugin wishes to modify a world generator, the plugin must register a
+ * custom implementation of this interface.
  *
+ * @see GameRegistry#registerWorldGeneratorModifier(PluginContainer, String,
+ *      WorldGeneratorModifier)
  */
-public interface WorldGeneratorProvider {
+public interface WorldGeneratorModifier {
 
     /**
      * Modifies the given world generator. This method is called by the
      * implementation when the server is set to use this plugin for world
      * generation.
      *
-     * <p>To replace the base chunk generator, replace the generator populator
-     * using {@link WorldGenerator#setGeneratorPopulator(GeneratorPopulator)}.
-     * To replace the biome generator, use
+     * <p>To replace the base chunk generator, replace the main generator
+     * populator using
+     * {@link WorldGenerator#setBaseGeneratorPopulator(GeneratorPopulator)}. To
+     * replace the biome generator, use
      * {@link WorldGenerator#setBiomeGenerator(BiomeGenerator)}. To change
      * terrain population, modify the populator list returned by
      * {@link WorldGenerator#getPopulators()}.</p>
      *
      * @param worldName The name of the world.
-     * @param settings A string with settings, can be used by the plugin to
-     *        modify the world generator.
+     * @param settings A data container with settings, can be used by the plugin
+     *        to modify the world generator.
      * @param worldGenerator The world generator, should be modified.
      */
-    void modifyWorldGenerator(String worldName, String settings, WorldGenerator worldGenerator);
+    void modifyWorldGenerator(String worldName, DataContainer settings, WorldGenerator worldGenerator);
 
 }

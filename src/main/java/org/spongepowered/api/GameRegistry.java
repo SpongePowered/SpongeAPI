@@ -64,6 +64,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -100,6 +101,7 @@ import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -1182,7 +1184,7 @@ public interface GameRegistry {
      * @return The new GeneratorType
      */
     GeneratorType registerGeneratorType(String name, Callable<WorldGenerator> generator);
-    
+
     /**
      * Creates and registers a new {@link GeneratorType} with the given name and
      * {@link WorldGenerator}.
@@ -1198,5 +1200,33 @@ public interface GameRegistry {
      * @return The new GeneratorType
      */
     GeneratorType registerGeneratorType(String name, Callable<WorldGenerator> generator, DataContainer settings);
+
+    /**
+     * Gets the {@link WorldGeneratorModifier} with the provided ID.
+     *
+     * @param id The ID of the world generator
+     *
+     * @return The {@link WorldGeneratorModifier} with the given ID or
+     *         Optional.absent() if not found
+     */
+    Optional<WorldGeneratorModifier> getWorldGeneratorModifier(String id);
+
+    /**
+     * Gets a {@link Collection} of all known {@link WorldGeneratorModifier}s.
+     *
+     * @return The collection of all known {@link WorldGeneratorModifier}s
+     */
+    Collection<WorldGeneratorModifier> getWorldGeneratorModifiers();
+
+    /**
+     * Registers a {@link WorldGeneratorModifier}, so that the server is able to
+     * use it for modifying the world generator of a new world.
+     *
+     * @param plugin The plugin registering the world generator. Will be used to
+     *        prefix the given id.
+     * @param id The (unprefixed) id of the world generator modifier
+     * @param modifier The modifier to register
+     */
+    void registerWorldGeneratorModifier(PluginContainer plugin, String id, WorldGeneratorModifier modifier);
 
 }

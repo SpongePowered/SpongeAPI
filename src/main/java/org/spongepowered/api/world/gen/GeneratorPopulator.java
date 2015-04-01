@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.gen.ImmutableBiomeArea;
+import org.spongepowered.api.util.gen.BiomeBuffer;
 import org.spongepowered.api.util.gen.MutableBlockBuffer;
 
 /**
@@ -45,6 +45,6 @@ public interface GeneratorPopulator {
      *        any size.
      * @param biomes The biomes for generation
      */
-    void populate(MutableBlockBuffer buffer, ImmutableBiomeArea biomes);
+    void populate(MutableBlockBuffer buffer, BiomeBuffer biomes);
 
 }

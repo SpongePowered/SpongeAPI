@@ -43,6 +43,6 @@ public interface BiomeGenerator {
      *
      * @param buffer The buffer to generate the biomes into.
      */
-    void getBiomesForArea(MutableBiomeArea buffer);
+    void generateBiomes(MutableBiomeArea buffer);
 
 }
