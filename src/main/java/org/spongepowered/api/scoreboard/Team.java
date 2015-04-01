@@ -199,4 +199,10 @@ public interface Team {
      */
     boolean removeUser(User user);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
