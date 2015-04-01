@@ -46,4 +46,12 @@ public class DefaultGameRules {
     public static final String SEND_COMMAND_FEEDBACK = "sendCommandFeedback";
     public static final String SHOW_DEATH_MESSAGES = "showDeathMessages";
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }
