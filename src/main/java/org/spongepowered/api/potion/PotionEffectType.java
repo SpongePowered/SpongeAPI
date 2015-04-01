@@ -41,4 +41,11 @@ public interface PotionEffectType extends Translatable {
      * @return If applied instantly.
      */
     boolean isInstant();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
