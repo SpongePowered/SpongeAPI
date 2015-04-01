@@ -67,4 +67,13 @@ class NonNullUniqueQueue<E> extends AbstractQueue<E> implements Queue<E> {
     public E peek() {
         return this.queue.peek();
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
