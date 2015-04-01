@@ -38,4 +38,10 @@ public interface PlayerConnectionUnregisterChannelEvent extends PlayerConnection
      */
     String getChannelUnregistered();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
