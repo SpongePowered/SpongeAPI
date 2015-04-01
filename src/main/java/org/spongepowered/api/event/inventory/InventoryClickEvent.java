@@ -30,4 +30,11 @@ package org.spongepowered.api.event.inventory;
  * <p>Note that this event is incomplete.</p>
  */
 public interface InventoryClickEvent extends ViewerEvent {
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
