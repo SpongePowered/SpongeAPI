@@ -36,4 +36,10 @@ public interface CustomInventoryFactory {
      */
     CustomInventoryBuilder builder();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
