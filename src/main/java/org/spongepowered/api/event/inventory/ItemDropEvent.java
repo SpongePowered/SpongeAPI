@@ -40,4 +40,11 @@ public interface ItemDropEvent extends GameEvent {
      * @return The dropped item entities
      */
     Collection<Item> getDroppedItems();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
