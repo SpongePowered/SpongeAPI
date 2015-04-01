@@ -137,4 +137,12 @@ public final class CallbackList implements Collection<EventCallback> {
         throw new UnsupportedOperationException("Cannot remove entries from the callback list");
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
