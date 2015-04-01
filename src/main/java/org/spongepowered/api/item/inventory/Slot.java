@@ -38,4 +38,10 @@ public interface Slot extends Inventory {
      */
     int getStackSize();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
