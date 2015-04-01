@@ -154,7 +154,7 @@ public final class Coerce {
                 return Optional.<List<?>>of(Coerce.primitiveArrayToList(obj));
             }
 
-            return Optional.<List<?>>of(Arrays.asList((Object[])obj));
+            return Optional.<List<?>>of(Arrays.asList((Object[]) obj));
         }
 
         return Optional.<List<?>>of(Coerce.parseStringToList(obj.toString()));
@@ -787,4 +787,12 @@ public final class Coerce {
         return list;
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }
