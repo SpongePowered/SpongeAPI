@@ -29,4 +29,10 @@ package org.spongepowered.api.event.server.query;
  */
 public interface BasicQueryEvent extends QueryEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
