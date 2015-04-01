@@ -59,4 +59,10 @@ public interface CloneableData extends ItemData<CloneableData> {
      */
     int getGenerationLimit();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

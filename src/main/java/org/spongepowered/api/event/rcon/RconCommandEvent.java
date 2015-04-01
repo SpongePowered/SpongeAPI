@@ -62,4 +62,11 @@ public interface RconCommandEvent extends CommandEvent, RconEvent {
      * @param ignoringLoginStatus Whether to ignore the client's logged in status
      */
     void setIgnoringLoginStatus(boolean ignoringLoginStatus);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

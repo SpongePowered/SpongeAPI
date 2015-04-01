@@ -172,4 +172,11 @@ public interface QueryEvent extends GameEvent {
      * @return The maximum size of the data to respond with
      */
     int getMaxSize();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

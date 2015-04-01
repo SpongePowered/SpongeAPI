@@ -54,4 +54,10 @@ public interface ExplosiveProjectile extends DamagingProjectile, Explosive {
      */
     void setExplosionPower(int explosionPower);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

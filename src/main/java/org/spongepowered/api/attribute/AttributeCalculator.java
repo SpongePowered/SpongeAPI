@@ -50,4 +50,10 @@ public interface AttributeCalculator {
      */
     double calculateValue(double base, Collection<AttributeModifier> modifiers);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

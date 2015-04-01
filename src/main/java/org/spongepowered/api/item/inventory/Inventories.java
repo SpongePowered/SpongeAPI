@@ -47,5 +47,13 @@ public class Inventories {
     public static CustomInventoryBuilder customInventoryBuilder() {
         return Inventories.factory.builder();
     }
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }

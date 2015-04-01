@@ -55,4 +55,11 @@ public interface BrewingStand extends TileEntityCarrier {
      * @return The transaction result
      */
     TileDataTransactionResult setBrewingData(BrewingData data);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

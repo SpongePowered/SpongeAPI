@@ -33,4 +33,10 @@ import org.spongepowered.api.world.Location;
  */
 public interface PlayerChangeBlockEvent extends HumanChangeBlockEvent, PlayerEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

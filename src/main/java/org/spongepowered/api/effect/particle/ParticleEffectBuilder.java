@@ -74,6 +74,13 @@ public interface ParticleEffectBuilder {
     ParticleEffect build();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a particle builder to create a {@link ParticleEffect.Colorable}.
      */
     interface Colorable extends ParticleEffectBuilder {
@@ -100,6 +107,13 @@ public interface ParticleEffectBuilder {
 
         @Override
         ParticleEffect.Colorable build();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
@@ -130,6 +144,13 @@ public interface ParticleEffectBuilder {
 
         @Override
         ParticleEffect.Resizable build();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
@@ -162,6 +183,12 @@ public interface ParticleEffectBuilder {
         @Override
         ParticleEffect.Note build();
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
     }
 
     /**
@@ -200,6 +227,12 @@ public interface ParticleEffectBuilder {
         @Override
         ParticleEffect.Material build();
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
     }
 
 }

@@ -46,4 +46,10 @@ public interface PseudoEnumItemData<T, C extends PseudoEnumItemData<T, C>> exten
      */
     void set(T value);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

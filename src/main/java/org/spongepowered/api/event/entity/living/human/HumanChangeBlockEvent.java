@@ -43,4 +43,11 @@ public interface HumanChangeBlockEvent extends HumanEvent, LivingChangeBlockEven
      * @return The direction of the block face
      */
     Direction getBlockFaceDirection();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -55,4 +55,10 @@ public interface DisplayNameData extends ItemData<DisplayNameData> {
      */
     void setDisplayName(@Nullable Text displayName);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

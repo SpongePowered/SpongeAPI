@@ -33,4 +33,10 @@ import org.spongepowered.api.item.inventory.Carrier;
  */
 public interface InventoryItemData extends ItemData<InventoryItemData>, Carrier {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

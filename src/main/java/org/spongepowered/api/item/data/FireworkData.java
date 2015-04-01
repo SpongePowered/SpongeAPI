@@ -56,4 +56,11 @@ public interface FireworkData extends ListItemData<FireworkEffect, FireworkData>
      * @param flightModifier The flight modifier
      */
     void setFlightModifier(int flightModifier);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

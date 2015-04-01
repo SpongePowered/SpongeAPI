@@ -58,4 +58,10 @@ public interface StatusClient {
      */
     Optional<InetSocketAddress> getVirtualHost();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

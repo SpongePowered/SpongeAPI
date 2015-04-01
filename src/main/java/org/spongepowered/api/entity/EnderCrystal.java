@@ -29,4 +29,10 @@ package org.spongepowered.api.entity;
  */
 public interface EnderCrystal extends Entity {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

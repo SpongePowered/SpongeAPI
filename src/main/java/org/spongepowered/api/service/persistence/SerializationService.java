@@ -63,4 +63,10 @@ public interface SerializationService {
      */
     <T extends DataSerializable>  Optional<DataSerializableBuilder<T>> getBuilder(Class<T> clazz);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

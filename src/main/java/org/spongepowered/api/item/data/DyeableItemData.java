@@ -33,4 +33,10 @@ import org.spongepowered.api.item.DyeColor;
  */
 public interface DyeableItemData extends PseudoEnumItemData<DyeColor, DyeableItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

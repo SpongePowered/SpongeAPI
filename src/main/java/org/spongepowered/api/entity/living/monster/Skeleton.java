@@ -51,4 +51,10 @@ public interface Skeleton extends Monster, ArmorEquipable, ProjectileSource {
      */
     void setSkeletonType(SkeletonType skeletonType);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

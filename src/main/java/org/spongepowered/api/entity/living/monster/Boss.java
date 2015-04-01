@@ -30,4 +30,10 @@ package org.spongepowered.api.entity.living.monster;
  */
 public interface Boss extends Monster {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

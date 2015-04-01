@@ -296,4 +296,11 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param scoreboard The scoreboard to display
      */
     void setScoreboard(Scoreboard scoreboard);
+    
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

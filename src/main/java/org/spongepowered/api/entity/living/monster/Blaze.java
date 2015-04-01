@@ -46,4 +46,11 @@ public interface Blaze extends Monster, ProjectileSource, Aerial {
      * @param onFire Whether the blaze should be on fire or not
      */
     void setOnFire(boolean onFire);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

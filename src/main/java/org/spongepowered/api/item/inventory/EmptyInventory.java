@@ -30,4 +30,10 @@ package org.spongepowered.api.item.inventory;
  */
 public interface EmptyInventory extends Inventory {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

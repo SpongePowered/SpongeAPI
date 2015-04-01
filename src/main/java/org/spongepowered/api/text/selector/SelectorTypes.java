@@ -50,4 +50,12 @@ public final class SelectorTypes {
      */
     public static final SelectorType RANDOM_PLAYER = null;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }

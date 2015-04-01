@@ -34,4 +34,10 @@ import org.spongepowered.api.util.Property;
  */
 public interface InventoryProperty<K, V> extends Property<K, V, InventoryProperty<?, ?>> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

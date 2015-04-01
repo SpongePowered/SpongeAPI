@@ -144,5 +144,11 @@ public interface GridInventory extends Inventory2D {
      *      {@link Optional#absent()} if the specified column is out of bounds
      */
     Optional<InventoryColumn> getColumn(int x);
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

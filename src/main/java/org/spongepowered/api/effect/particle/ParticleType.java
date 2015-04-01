@@ -50,6 +50,13 @@ public interface ParticleType {
     boolean hasMotion();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a particle that can be colored.
      */
     interface Colorable extends ParticleType {
@@ -60,6 +67,13 @@ public interface ParticleType {
          * @return The default color
          */
         Color getDefaultColor();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
@@ -74,6 +88,13 @@ public interface ParticleType {
          * @return The default size
          */
         float getDefaultSize();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
@@ -92,6 +113,13 @@ public interface ParticleType {
          */
         float getDefaultNote();
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
 
     /**
@@ -106,6 +134,13 @@ public interface ParticleType {
          * @return The item type
          */
         ItemStack getDefaultItem();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 

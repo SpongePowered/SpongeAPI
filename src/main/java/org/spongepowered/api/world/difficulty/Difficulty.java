@@ -33,4 +33,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  */
 @CatalogedBy(Difficulties.class)
 public interface Difficulty {
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

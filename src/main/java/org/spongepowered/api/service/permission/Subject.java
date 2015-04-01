@@ -181,4 +181,11 @@ public interface Subject {
      * @return An immutable set of active contexts
      */
     Set<Context> getActiveContexts();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

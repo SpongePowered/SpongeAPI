@@ -110,4 +110,11 @@ public interface Enchantment extends Translatable {
      * @return Whether these enchantments are compatible
      */
     boolean isCompatibleWith(Enchantment ench);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

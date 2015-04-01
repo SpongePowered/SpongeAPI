@@ -101,4 +101,10 @@ public interface Horse extends Animal, Tameable, Carrier {
      */
     void setSaddle(@Nullable ItemStack itemStack);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

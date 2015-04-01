@@ -57,4 +57,10 @@ public interface CustomInventoryBuilder {
 
     // TODO add persistence methods
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -89,4 +89,10 @@ public interface Viewer {
      */
     void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

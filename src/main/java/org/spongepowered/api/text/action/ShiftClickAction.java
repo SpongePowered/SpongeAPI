@@ -55,5 +55,23 @@ public abstract class ShiftClickAction<R> extends TextAction<R> {
             super(text);
         }
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        public boolean isFlowerPot() {
+            return true;
+        }
+
+    }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return true;
     }
 }

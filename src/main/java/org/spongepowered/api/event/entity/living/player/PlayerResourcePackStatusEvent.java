@@ -49,6 +49,13 @@ public interface PlayerResourcePackStatusEvent extends PlayerEvent {
     ResourcePackStatus getStatus();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * The different possible responses the client can have.
      */
     enum ResourcePackStatus {
@@ -88,6 +95,15 @@ public interface PlayerResourcePackStatusEvent extends PlayerEvent {
          */
         public Optional<Boolean> wasSuccessful() {
             return this.success;
+        }
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        public boolean isFlowerPot() {
+            return true;
         }
 
     }

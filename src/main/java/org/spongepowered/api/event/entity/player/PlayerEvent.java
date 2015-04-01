@@ -56,4 +56,10 @@ public interface PlayerEvent extends HumanEvent, UserEvent {
     @Override
     Player getUser();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

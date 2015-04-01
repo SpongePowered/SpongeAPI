@@ -217,4 +217,13 @@ public class MemorySubjectData implements SubjectData {
     public boolean clearParents(Set<Context> contexts) {
         return this.parents.remove(contexts) != null;
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

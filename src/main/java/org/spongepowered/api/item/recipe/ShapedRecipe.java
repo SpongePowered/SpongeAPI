@@ -64,4 +64,10 @@ public interface ShapedRecipe extends Recipe {
      */
     Optional<ItemStack> getIngredient(Vector2i pos);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

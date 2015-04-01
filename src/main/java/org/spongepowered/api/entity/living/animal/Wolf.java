@@ -33,4 +33,10 @@ import org.spongepowered.api.entity.living.Sittable;
  */
 public interface Wolf extends Animal, Sittable, Dyeable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

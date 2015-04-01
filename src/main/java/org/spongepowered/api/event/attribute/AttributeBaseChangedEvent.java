@@ -49,4 +49,10 @@ public interface AttributeBaseChangedEvent extends AttributeEvent, Cancellable {
      */
     double getNewValue();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

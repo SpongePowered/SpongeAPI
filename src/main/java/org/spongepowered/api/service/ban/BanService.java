@@ -124,4 +124,10 @@ public interface BanService {
      */
     boolean hasBan(Ban ban);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

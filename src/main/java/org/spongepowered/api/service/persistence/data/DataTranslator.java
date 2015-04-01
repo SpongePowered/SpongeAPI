@@ -62,4 +62,10 @@ public interface DataTranslator<T> {
      */
     DataView translateFrom(T node);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

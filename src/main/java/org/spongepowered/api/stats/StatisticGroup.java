@@ -48,4 +48,10 @@ public interface StatisticGroup extends Translatable {
      */
     StatisticFormat getDefaultStatisticFormat();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

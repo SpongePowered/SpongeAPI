@@ -49,4 +49,11 @@ public interface HumanHookedEntityEvent extends HumanFishEvent, HumanEvent {
      * @param entity The hooked {@link Entity} to set
      */
     void setCaughtEntity(@Nullable Entity entity);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

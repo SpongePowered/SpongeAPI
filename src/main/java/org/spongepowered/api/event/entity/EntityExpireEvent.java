@@ -33,4 +33,10 @@ import org.spongepowered.api.event.cause.CauseTracked;
  */
 public interface EntityExpireEvent extends EntityEvent, CauseTracked {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

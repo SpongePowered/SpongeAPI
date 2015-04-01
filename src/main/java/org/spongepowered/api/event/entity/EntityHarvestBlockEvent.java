@@ -34,4 +34,10 @@ import org.spongepowered.api.world.Location;
  */
 public interface EntityHarvestBlockEvent extends EntityEvent, BlockHarvestEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

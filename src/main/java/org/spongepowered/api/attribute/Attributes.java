@@ -43,4 +43,12 @@ public final class Attributes {
     private Attributes() {
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }

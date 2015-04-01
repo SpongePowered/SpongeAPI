@@ -52,4 +52,10 @@ public interface Projectile extends Entity {
      */
     void setShooter(ProjectileSource shooter);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

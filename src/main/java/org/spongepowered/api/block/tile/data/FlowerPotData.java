@@ -53,4 +53,10 @@ public interface FlowerPotData extends TileEntityData<FlowerPot, FlowerPotData> 
      */
     void setContents(@Nullable ItemStack contents);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

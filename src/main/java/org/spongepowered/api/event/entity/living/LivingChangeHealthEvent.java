@@ -33,4 +33,10 @@ import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
  */
 public interface LivingChangeHealthEvent extends LivingEvent, EntityChangeHealthEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

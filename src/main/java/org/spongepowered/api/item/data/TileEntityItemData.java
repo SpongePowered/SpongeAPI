@@ -29,4 +29,10 @@ import org.spongepowered.api.block.tile.data.TileEntityData;
 
 public interface TileEntityItemData extends ListItemData<TileEntityData<?, ?>, TileEntityItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

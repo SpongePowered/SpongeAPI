@@ -35,4 +35,10 @@ import org.spongepowered.api.util.event.Cancellable;
  */
 public interface LivingRemovePotionEffectEvent extends LivingPotionEffectEvent, Cancellable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

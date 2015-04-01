@@ -44,4 +44,11 @@ public interface WeatherEffect extends Entity {
      * @param effect Whether this weather effect is an effect
      */
     void setEffect(boolean effect);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

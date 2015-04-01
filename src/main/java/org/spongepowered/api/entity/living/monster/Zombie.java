@@ -47,4 +47,10 @@ public interface Zombie extends Monster, ArmorEquipable, Ageable {
      */
     void setVillagerZombie(boolean villagerZombie);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

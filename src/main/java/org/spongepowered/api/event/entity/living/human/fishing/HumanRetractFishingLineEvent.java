@@ -64,4 +64,11 @@ public interface HumanRetractFishingLineEvent extends HumanFishEvent, Experience
      * @param entity The hooked {@link Entity} to set
      */
     void setCaughtEntity(@Nullable Entity entity);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

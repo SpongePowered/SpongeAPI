@@ -77,4 +77,10 @@ public interface BlockVolume {
      */
     void setBlock(int x, int y, int z, BlockState block);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

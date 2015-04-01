@@ -124,4 +124,12 @@ public class SlotIndex extends IntProperty {
         return new SlotIndex(value, Operator.LEQUAL);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

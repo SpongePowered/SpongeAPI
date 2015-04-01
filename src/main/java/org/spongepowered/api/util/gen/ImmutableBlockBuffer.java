@@ -30,4 +30,10 @@ package org.spongepowered.api.util.gen;
  */
 public interface ImmutableBlockBuffer extends BlockBuffer {
 
+ /**
+  * Checks if this is a flowerpot.
+  *
+  * @return Whether this is a flowerpot
+  */
+ boolean isFlowerPot();
 }

@@ -49,4 +49,11 @@ public interface Sign extends TileEntity {
      * @return The transaction result
      */
     TileDataTransactionResult setSignData(SignData data);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

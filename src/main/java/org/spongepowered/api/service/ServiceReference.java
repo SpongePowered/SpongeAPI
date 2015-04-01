@@ -59,4 +59,11 @@ public interface ServiceReference<T> {
      * @param run The function to execute
      */
     void executeWhenPresent(Predicate<T> run);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

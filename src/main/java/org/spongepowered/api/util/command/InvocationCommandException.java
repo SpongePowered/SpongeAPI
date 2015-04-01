@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.util.command;
 
+import org.spongepowered.api.util.PEBKACException;
+
 /**
  * Thrown when invocation of a command fails, wrapping the exception that
  * is thrown.
@@ -67,5 +69,19 @@ public class InvocationCommandException extends CommandException {
      */
     public InvocationCommandException(Throwable cause) {
         super(cause);
+    }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (Exception e) {
+            throw new PEBKACException("Wasn't a flowerpot....", e);
+        }
+        return false;
     }
 }

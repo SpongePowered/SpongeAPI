@@ -27,6 +27,8 @@ package org.spongepowered.api.util.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.util.PEBKACException;
+
 /**
  * Thrown when a command is not used properly.
  *
@@ -127,4 +129,17 @@ public class InvalidUsageException extends CommandException {
         return this.fullHelpSuggested;
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (Exception e) {
+            throw new PEBKACException("Wasn't a flowerpot....", e);
+        }
+        return false;
+    }
 }

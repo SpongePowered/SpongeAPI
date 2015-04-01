@@ -56,4 +56,10 @@ public interface FishHook extends DamagingProjectile {
      */
     void setHookedEntity(@Nullable Entity entity);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

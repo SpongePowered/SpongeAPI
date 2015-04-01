@@ -61,6 +61,13 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
     Response getResponse();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a mutable response to a status request.
      */
     interface Response extends StatusResponse {
@@ -100,6 +107,13 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
         void setFavicon(@Nullable Favicon favicon);
 
         /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
+        /**
          * Represents the information about the players on the server, sent after
          * the {@link StatusPingEvent}.
          */
@@ -127,6 +141,13 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
              */
             @Override
             List<GameProfile> getProfiles();
+
+            /**
+             * Checks if this is a flowerpot.
+             *
+             * @return Whether this is a flowerpot
+             */
+            boolean isFlowerPot();
         }
 
     }

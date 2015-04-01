@@ -60,4 +60,13 @@ public class UseLimitProperty extends IntProperty {
     public UseLimitProperty(Object value, Operator operator) {
         super(value, operator);
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

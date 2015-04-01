@@ -102,4 +102,11 @@ public interface Boat extends Entity {
      * @param unoccupiedDeceleration The new unoccupied deceleration rate
      */
     void setUnoccupiedDeceleration(double unoccupiedDeceleration);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

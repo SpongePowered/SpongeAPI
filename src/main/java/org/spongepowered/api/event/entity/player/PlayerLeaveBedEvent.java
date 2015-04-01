@@ -65,4 +65,10 @@ public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEven
     @Override
     void setSpawnLocation(Location location);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -84,17 +84,52 @@ public interface BlockProperty<T extends Comparable<T>> {
     // Subinterface markers for vanilla property types
     interface BooleanProperty extends BlockProperty<Boolean> {
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
 
     interface EnumProperty<E extends Enum<E>> extends BlockProperty<E> {
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
     interface DirectionProperty extends EnumProperty<Direction> {
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
 
     interface IntegerProperty extends BlockProperty<Integer> {
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

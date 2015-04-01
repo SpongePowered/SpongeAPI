@@ -31,4 +31,10 @@ import org.spongepowered.api.entity.explosive.IgnitableExplosive;
  */
 public interface MinecartTNT extends Minecart, IgnitableExplosive {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

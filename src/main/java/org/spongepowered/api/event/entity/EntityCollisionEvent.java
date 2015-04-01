@@ -33,4 +33,10 @@ import org.spongepowered.api.util.event.Cancellable;
  */
 public interface EntityCollisionEvent extends EntityEvent, Cancellable, CauseTracked {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

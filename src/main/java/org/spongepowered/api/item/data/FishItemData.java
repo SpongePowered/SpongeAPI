@@ -36,4 +36,10 @@ import org.spongepowered.api.item.Fish;
  */
 public interface FishItemData extends PseudoEnumItemData<Fish, FishItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

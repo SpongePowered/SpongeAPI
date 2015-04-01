@@ -52,4 +52,10 @@ public interface PlayerRespawnEvent extends PlayerEvent {
      */
     void setSpawnLocation(Location respawnLocation);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

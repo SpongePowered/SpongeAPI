@@ -90,4 +90,11 @@ public interface SubjectCollection {
      *         permission is set to
      */
     Map<Subject, Boolean> getAllWithPermission(Set<Context> contexts, String permission);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

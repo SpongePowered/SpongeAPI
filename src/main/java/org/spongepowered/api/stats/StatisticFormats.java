@@ -53,4 +53,13 @@ public final class StatisticFormats {
     private StatisticFormats() {
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
+
 }

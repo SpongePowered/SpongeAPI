@@ -77,4 +77,13 @@ public class ApplicableEffect extends AbstractItemProperty<String, Set<PotionEff
         }
         return this.getClass().getName().compareTo(o.getClass().getName());
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

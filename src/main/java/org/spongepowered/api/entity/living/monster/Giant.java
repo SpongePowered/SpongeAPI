@@ -32,4 +32,10 @@ import org.spongepowered.api.entity.ArmorEquipable;
  */
 public interface Giant extends Monster, ArmorEquipable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

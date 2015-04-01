@@ -52,4 +52,10 @@ public interface RecipeRegistry {
      */
     Set<Recipe> getRecipes();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

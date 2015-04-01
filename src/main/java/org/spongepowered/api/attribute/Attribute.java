@@ -71,4 +71,10 @@ public interface Attribute {
      */
     Predicate<AttributeHolder> getTargets();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

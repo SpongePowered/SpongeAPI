@@ -94,4 +94,11 @@ public interface Dimension extends Contextual {
      * @return The type of dimension
      */
     DimensionType getType();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

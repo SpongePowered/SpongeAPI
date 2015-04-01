@@ -46,4 +46,11 @@ public interface PlayerQuitEvent extends PlayerEvent {
      * @param quitMessage The new player quit message.
      */
     void setQuitMessage(Text quitMessage);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

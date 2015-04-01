@@ -33,4 +33,10 @@ import org.spongepowered.api.item.CoalType;
  */
 public interface CoalItemData extends PseudoEnumItemData<CoalType, CoalItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

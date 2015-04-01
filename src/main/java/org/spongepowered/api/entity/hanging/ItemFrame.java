@@ -66,4 +66,11 @@ public interface ItemFrame extends Hanging {
      * @param itemRotation The rotation
      */
     void setRotation(Rotation itemRotation);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

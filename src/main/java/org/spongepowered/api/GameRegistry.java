@@ -1120,4 +1120,11 @@ public interface GameRegistry {
      * @return The Collection of all available {@link ObjectiveDisplayMode}s
      */
     Collection<ObjectiveDisplayMode> getObjectiveDisplayModes();
+    
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

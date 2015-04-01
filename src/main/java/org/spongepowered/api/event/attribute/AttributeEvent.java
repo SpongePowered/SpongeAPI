@@ -50,4 +50,10 @@ public interface AttributeEvent extends Cancellable, GameEvent {
      */
     Attribute getAttribute();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

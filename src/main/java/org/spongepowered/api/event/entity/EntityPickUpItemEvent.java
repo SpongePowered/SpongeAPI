@@ -42,4 +42,11 @@ public interface EntityPickUpItemEvent extends EntityEvent, Cancellable {
      * @return The items as entities
      */
     Collection<Item> getItems();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -48,4 +48,10 @@ public interface Cancellable {
      */
     void setCancelled(boolean cancel);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -64,4 +64,11 @@ public interface Hopper extends TileEntityCarrier {
      * @return The transaction result
      */
     TileDataTransactionResult setHopperData(HopperData data);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

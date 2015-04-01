@@ -56,4 +56,11 @@ public interface LightningStrikeEvent extends WeatherEvent {
      * @return A list of struck blocks.
      */
     List<Location> getStruckBlocks();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

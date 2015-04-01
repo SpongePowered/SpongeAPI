@@ -48,4 +48,10 @@ public interface OwnableData extends ItemData<OwnableData> {
      */
     void setProfile(@Nullable GameProfile profile);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

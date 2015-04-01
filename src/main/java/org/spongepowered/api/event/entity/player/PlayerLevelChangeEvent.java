@@ -31,4 +31,10 @@ import org.spongepowered.api.event.entity.living.human.HumanLevelChangeEvent;
  */
 public interface PlayerLevelChangeEvent extends HumanLevelChangeEvent, PlayerEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

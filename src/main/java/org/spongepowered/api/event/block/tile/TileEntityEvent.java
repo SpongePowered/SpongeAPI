@@ -48,4 +48,10 @@ public interface TileEntityEvent extends GameEvent {
      */
     TileEntityData<?, ?> getCurrentData();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -66,4 +66,10 @@ public interface ExplosionPrimeEvent extends EntityEvent, Cancellable {
      */
     void setFlammable(boolean flammable);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

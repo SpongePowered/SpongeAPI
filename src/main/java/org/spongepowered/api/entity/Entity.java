@@ -269,4 +269,11 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @param persistent Whether the entity will be persistent
      */
     void setPersistent(boolean persistent);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

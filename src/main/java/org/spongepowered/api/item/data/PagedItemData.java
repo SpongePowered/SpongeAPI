@@ -31,4 +31,10 @@ import org.spongepowered.api.text.Text;
  */
 public interface PagedItemData extends ListItemData<Text, PagedItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

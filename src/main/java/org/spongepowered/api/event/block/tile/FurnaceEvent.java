@@ -44,4 +44,11 @@ public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
 
     @Override
     FurnaceData getCurrentData();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

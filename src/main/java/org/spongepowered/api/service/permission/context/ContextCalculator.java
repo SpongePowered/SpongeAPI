@@ -54,4 +54,11 @@ public interface ContextCalculator {
      *         applicable to the given subject
      */
     boolean matches(Context context, Subject subject);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

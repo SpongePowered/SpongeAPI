@@ -42,4 +42,10 @@ public interface BlockUpdateEvent extends BlockEvent {
      */
     Collection<Location> getAffectedBlocks();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

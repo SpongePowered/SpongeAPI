@@ -32,4 +32,10 @@ import org.spongepowered.api.entity.living.Ageable;
  */
 public interface Animal extends Ageable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

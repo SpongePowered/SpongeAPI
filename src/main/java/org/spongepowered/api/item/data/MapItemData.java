@@ -31,4 +31,10 @@ public interface MapItemData extends ItemData<MapItemData> {
 
     // TODO for modwizcode to handle.
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

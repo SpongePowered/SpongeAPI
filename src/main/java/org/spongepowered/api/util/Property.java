@@ -223,4 +223,10 @@ public interface Property<K, V, C extends Property<?, ?, C>> extends Comparable<
      */
     boolean matches(@Nullable C other);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

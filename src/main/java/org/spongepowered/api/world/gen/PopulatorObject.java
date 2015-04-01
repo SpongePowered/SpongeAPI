@@ -54,4 +54,10 @@ public interface PopulatorObject {
      */
     void placeObject(World world, int x, int y, int z);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

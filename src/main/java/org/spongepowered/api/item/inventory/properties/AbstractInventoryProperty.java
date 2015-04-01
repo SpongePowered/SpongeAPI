@@ -192,5 +192,13 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     protected int hashCodeOf(Object value) {
         return value != null ? value.hashCode() : 0;
     }
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

@@ -108,4 +108,10 @@ public interface FallingBlock extends Entity {
      */
     void setCanDropAsItem(boolean droppable);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

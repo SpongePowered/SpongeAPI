@@ -61,4 +61,13 @@ public class EfficiencyProperty extends IntProperty {
     public EfficiencyProperty(Object value, Operator operator) {
         super(value, operator);
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

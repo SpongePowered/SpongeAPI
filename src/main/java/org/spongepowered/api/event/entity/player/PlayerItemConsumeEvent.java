@@ -32,4 +32,10 @@ import org.spongepowered.api.event.entity.living.human.HumanItemConsumeEvent;
  */
 public interface PlayerItemConsumeEvent extends PlayerEvent, HumanItemConsumeEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

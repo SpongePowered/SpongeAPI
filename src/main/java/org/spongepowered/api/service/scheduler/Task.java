@@ -115,4 +115,10 @@ public interface Task extends Identifiable {
      */
     String setName(String name);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

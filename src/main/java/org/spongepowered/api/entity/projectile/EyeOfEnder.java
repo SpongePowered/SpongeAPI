@@ -61,4 +61,10 @@ public interface EyeOfEnder extends Projectile {
      */
     void setShatterOnDrop(boolean shatterOnDrop);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -90,4 +90,10 @@ public interface TileEntityVolume extends BlockVolume {
      */
     Optional<TileEntity> getTileEntity(Location blockLoc);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -66,4 +66,11 @@ public interface Enderman extends Monster {
      * @param screaming If the enderman should be screaming
      */
     void setScreaming(boolean screaming);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -63,6 +63,13 @@ public interface ParticleEffect {
     int getCount();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a colored particle effect.
      */
     interface Colorable extends ParticleEffect {
@@ -73,6 +80,13 @@ public interface ParticleEffect {
          * @return The color
          */
         Color getColor();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
@@ -87,6 +101,13 @@ public interface ParticleEffect {
          * @return The size
          */
         float getSize();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
@@ -104,6 +125,13 @@ public interface ParticleEffect {
          */
         float getNote();
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
 
     /**
@@ -117,6 +145,13 @@ public interface ParticleEffect {
          * @return The item stack
          */
         ItemStack getItem();
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 

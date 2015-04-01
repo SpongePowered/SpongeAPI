@@ -45,4 +45,11 @@ public interface HopperData {
      * @param time The new time, in ticks
      */
     void setTransferCooldown(int time);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

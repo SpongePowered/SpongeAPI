@@ -49,4 +49,13 @@ public final class ObjectiveDisplayModes {
     private ObjectiveDisplayModes() {
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return true;
+    }
+
 }

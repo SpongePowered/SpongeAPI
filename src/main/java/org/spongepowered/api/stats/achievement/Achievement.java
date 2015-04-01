@@ -81,4 +81,10 @@ public interface Achievement extends Translatable {
      */
     Optional<Long> getStatisticTargetValue();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

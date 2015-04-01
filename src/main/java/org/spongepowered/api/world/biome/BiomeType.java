@@ -88,4 +88,10 @@ public interface BiomeType {
      */
     void insertPopulator(Populator populator, int index);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

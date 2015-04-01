@@ -93,5 +93,11 @@ public interface OrderedInventory extends Inventory {
      *      no matching slot  
      */
     Optional<Slot> getSlot(SlotIndex index);
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

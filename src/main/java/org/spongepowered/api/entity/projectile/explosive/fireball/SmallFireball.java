@@ -30,4 +30,10 @@ package org.spongepowered.api.entity.projectile.explosive.fireball;
  */
 public interface SmallFireball extends Fireball {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

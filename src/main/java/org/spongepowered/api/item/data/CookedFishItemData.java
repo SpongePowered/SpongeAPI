@@ -36,4 +36,10 @@ import org.spongepowered.api.item.CookedFish;
  */
 public interface CookedFishItemData extends PseudoEnumItemData<CookedFish, CookedFishItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

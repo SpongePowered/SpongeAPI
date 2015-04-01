@@ -39,4 +39,10 @@ public interface ViewerEvent extends ContainerEvent {
      */
     Human getViewer();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

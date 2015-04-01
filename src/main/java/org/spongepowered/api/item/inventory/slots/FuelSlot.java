@@ -29,4 +29,10 @@ package org.spongepowered.api.item.inventory.slots;
  */
 public interface FuelSlot extends InputSlot {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -34,4 +34,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(ChatTypes.class)
 public interface ChatType {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
 }

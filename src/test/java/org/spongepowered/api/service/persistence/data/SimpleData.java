@@ -90,4 +90,13 @@ class SimpleData implements DataSerializable {
                 && Objects.equal(this.testString, other.testString)
                 && Arrays.equals(this.testList, other.testList);
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

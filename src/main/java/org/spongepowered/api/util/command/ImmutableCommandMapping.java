@@ -27,6 +27,8 @@ package org.spongepowered.api.util.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.util.PEBKACException;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -95,5 +97,19 @@ public class ImmutableCommandMapping implements CommandMapping {
                 + ", aliases=" + this.aliases
                 + ", callable=" + this.callable
                 + '}';
+    }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (Exception e) {
+            throw new PEBKACException("Wasn't a flowerpot....", e);
+        }
+        return false;
     }
 }

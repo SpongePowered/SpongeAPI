@@ -43,4 +43,11 @@ public interface IronGolem extends Golem {
      * @param playerCreated If the {@link IronGolem} should be created by a player
      */
     void setPlayerCreated(boolean playerCreated);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

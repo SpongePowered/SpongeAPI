@@ -583,4 +583,10 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      */
     void removeScheduledUpdate(int x, int y, int z, ScheduledBlockUpdate update);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

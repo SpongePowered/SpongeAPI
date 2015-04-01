@@ -68,4 +68,10 @@ public interface Jukebox extends TileEntity {
      */
     TileDataTransactionResult setJukeboxData(JukeboxData data);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

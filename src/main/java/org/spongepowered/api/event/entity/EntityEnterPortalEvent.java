@@ -32,4 +32,10 @@ package org.spongepowered.api.event.entity;
  */
 public interface EntityEnterPortalEvent extends EntityEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

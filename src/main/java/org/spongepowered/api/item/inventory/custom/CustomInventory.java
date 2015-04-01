@@ -33,4 +33,10 @@ import org.spongepowered.api.util.Identifiable;
  */
 public interface CustomInventory extends OrderedInventory, Identifiable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

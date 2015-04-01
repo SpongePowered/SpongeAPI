@@ -91,4 +91,10 @@ public interface Dispatcher extends CommandCallable {
      */
     boolean containsMapping(CommandMapping mapping);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

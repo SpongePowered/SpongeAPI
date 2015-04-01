@@ -61,4 +61,10 @@ public interface FurnaceSmeltItemEvent extends FurnaceEvent, ItemResultEvent, Ca
      */
     ItemStack getSourceItem();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

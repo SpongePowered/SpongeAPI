@@ -29,4 +29,10 @@ package org.spongepowered.api.item.inventory.equipment;
  */
 public interface EquipmentTypeWorn extends EquipmentType {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -163,4 +163,11 @@ public interface EntityUniverse {
      * @return True if successful, false if not
      */
     boolean spawnEntity(Entity entity);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

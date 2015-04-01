@@ -178,4 +178,12 @@ public final class TextActions {
         return new ShiftClickAction.InsertText(text);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return true;
+    }
 }

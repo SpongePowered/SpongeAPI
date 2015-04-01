@@ -33,4 +33,10 @@ import org.spongepowered.api.event.entity.living.LivingInteractEntityEvent;
  */
 public interface HumanInteractEntityEvent extends HumanInteractEvent, LivingInteractEntityEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -37,4 +37,10 @@ import org.spongepowered.api.attribute.AttributeModifier;
  */
 public interface AttributeItemData extends ListItemData<AttributeModifier, AttributeItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -56,4 +56,10 @@ public interface EntityAboutToConstructEvent extends GameEvent, CauseTracked, Ca
      */
     Location getLocation();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

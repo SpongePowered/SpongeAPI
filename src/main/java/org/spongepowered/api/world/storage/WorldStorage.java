@@ -85,4 +85,10 @@ public interface WorldStorage {
      */
     ListenableFuture<Optional<DataContainer>> getChunkData(Vector3i chunkCoords);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

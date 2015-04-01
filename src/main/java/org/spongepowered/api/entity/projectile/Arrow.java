@@ -64,4 +64,10 @@ public interface Arrow extends DamagingProjectile {
      */
     void setKnockbackStrength(int knockbackStrength);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

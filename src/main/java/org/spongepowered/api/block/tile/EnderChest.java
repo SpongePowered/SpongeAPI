@@ -30,4 +30,10 @@ package org.spongepowered.api.block.tile;
  */
 public interface EnderChest extends TileEntity {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

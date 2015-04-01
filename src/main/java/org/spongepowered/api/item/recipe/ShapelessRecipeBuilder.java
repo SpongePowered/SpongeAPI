@@ -54,4 +54,11 @@ public interface ShapelessRecipeBuilder {
      * @return A new ShapelessRecipe
      */
     ShapelessRecipe build();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

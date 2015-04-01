@@ -52,4 +52,12 @@ public class TileEntityTypes {
     public static final TileEntityType SIGN = null;
     public static final TileEntityType SKULL = null;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }

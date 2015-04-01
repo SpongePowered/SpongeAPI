@@ -87,4 +87,10 @@ public interface WorldGenerator {
      */
     void setBiomeGenerator(BiomeGenerator biomeManager);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

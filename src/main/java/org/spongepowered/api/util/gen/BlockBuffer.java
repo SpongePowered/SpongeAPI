@@ -44,4 +44,10 @@ public interface BlockBuffer extends VolumeBuffer {
      */
     BlockState getBlock(int x, int y, int z);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

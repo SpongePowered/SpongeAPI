@@ -94,4 +94,11 @@ public interface FullQueryEvent extends BasicQueryEvent {
      * @return The list of player names to respond with
      */
     List<String> getPlayers();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

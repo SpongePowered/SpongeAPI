@@ -95,4 +95,10 @@ public interface Inventory2D extends OrderedInventory {
      */
     Optional<Slot> getSlot(SlotPos pos);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

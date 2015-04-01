@@ -45,4 +45,10 @@ public interface Hotbar extends InventoryRow {
      */
     void setSelectedSlotIndex(int index);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -99,4 +99,12 @@ public class SlotSide extends AbstractInventoryProperty<String, Direction> {
         return new SlotSide(value, Operator.NOTEQUAL);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

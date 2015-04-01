@@ -104,4 +104,10 @@ public interface ShapedRecipeBuilder {
      */
     ShapedRecipe build();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

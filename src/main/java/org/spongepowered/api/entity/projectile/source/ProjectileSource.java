@@ -50,4 +50,11 @@ public interface ProjectileSource {
      * @return The projectile instance that was launched
      */
     <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3d velocity);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

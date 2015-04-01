@@ -37,6 +37,14 @@ public enum BanType {
     /**
      * A ban made on a user.
      */
-    USER_BAN
+    USER_BAN;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }

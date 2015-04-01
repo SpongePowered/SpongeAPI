@@ -85,4 +85,11 @@ public interface Chunk extends Extent {
      * @return Whether or not the chunk unloaded
      */
     boolean unloadChunk();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

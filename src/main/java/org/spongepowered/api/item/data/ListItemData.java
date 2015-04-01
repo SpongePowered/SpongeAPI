@@ -121,4 +121,11 @@ public interface ListItemData<E, T extends ListItemData<E, T>> extends ItemData<
      * @param index The index to remove the element at
      */
     void remove(int index);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

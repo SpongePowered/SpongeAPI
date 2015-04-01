@@ -59,4 +59,10 @@ public interface FactoryProvider {
      */
     <T> EventFactory<T> create(Class<T> type, Class<?> parentType);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

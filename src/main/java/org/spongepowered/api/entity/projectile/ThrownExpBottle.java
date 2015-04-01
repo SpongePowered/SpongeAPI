@@ -29,4 +29,10 @@ package org.spongepowered.api.entity.projectile;
  */
 public interface ThrownExpBottle extends Projectile {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

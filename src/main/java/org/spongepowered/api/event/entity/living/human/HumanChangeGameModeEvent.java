@@ -54,4 +54,11 @@ public interface HumanChangeGameModeEvent extends HumanEvent, Cancellable {
      * @param newGameMode The new {@link GameMode} value.
      */
     void setNewGameMode(GameMode newGameMode);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

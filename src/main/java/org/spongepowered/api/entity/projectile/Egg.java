@@ -30,4 +30,10 @@ package org.spongepowered.api.entity.projectile;
  */
 public interface Egg extends DamagingProjectile {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

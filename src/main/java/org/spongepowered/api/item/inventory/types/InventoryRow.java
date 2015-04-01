@@ -29,4 +29,10 @@ package org.spongepowered.api.item.inventory.types;
  */
 public interface InventoryRow extends Inventory2D {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

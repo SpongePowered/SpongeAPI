@@ -59,4 +59,11 @@ public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
      * @param name The custom name
      */
     void setCommandName(String name);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

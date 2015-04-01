@@ -40,4 +40,10 @@ public interface EntityTargetEntityEvent extends EntityEvent, Cancellable {
      */
     Optional<Entity> getTargetedEntity();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

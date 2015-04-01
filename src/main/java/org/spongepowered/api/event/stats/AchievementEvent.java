@@ -43,4 +43,10 @@ public interface AchievementEvent extends PlayerEvent, Cancellable {
      */
     Achievement getAchievement();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

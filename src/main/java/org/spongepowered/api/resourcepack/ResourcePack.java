@@ -67,4 +67,10 @@ public interface ResourcePack {
      */
     Optional<String> getHash();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

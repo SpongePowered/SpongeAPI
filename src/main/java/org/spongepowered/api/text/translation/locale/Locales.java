@@ -110,4 +110,12 @@ public final class Locales {
     public static final Locale SIMPLIFIED_CHINESE = null;
     public static final Locale TRADITIONAL_CHINESE = null;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }

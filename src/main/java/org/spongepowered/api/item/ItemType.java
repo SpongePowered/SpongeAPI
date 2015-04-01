@@ -71,4 +71,10 @@ public interface ItemType extends Translatable {
      */
     <T extends ItemProperty<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

@@ -36,4 +36,10 @@ import org.spongepowered.api.block.BlockType;
  */
 public interface PlaceableItemData extends ListItemData<BlockType, PlaceableItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

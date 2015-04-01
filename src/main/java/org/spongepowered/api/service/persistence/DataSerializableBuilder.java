@@ -51,4 +51,10 @@ public interface DataSerializableBuilder<T extends DataSerializable> {
      */
     Optional<T> build(DataView container) throws InvalidDataException;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

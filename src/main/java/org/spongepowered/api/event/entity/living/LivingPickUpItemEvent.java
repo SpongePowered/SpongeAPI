@@ -32,4 +32,10 @@ import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
  */
 public interface LivingPickUpItemEvent extends LivingEvent, EntityPickUpItemEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

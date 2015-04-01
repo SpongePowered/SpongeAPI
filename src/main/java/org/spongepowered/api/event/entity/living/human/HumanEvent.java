@@ -44,4 +44,11 @@ public interface HumanEvent extends LivingEvent {
 
     @Override
     Human getEntity();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

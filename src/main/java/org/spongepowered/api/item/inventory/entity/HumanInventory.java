@@ -44,5 +44,11 @@ public interface HumanInventory extends CarriedInventory<Human> {
      * @return the hotbar
      */
     Hotbar getHotbar();
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

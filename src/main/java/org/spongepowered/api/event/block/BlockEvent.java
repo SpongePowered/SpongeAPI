@@ -40,4 +40,10 @@ public interface BlockEvent extends GameEvent, CauseTracked {
      */
     Location getBlock();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

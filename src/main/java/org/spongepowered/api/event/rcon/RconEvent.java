@@ -61,4 +61,11 @@ public interface RconEvent extends GameEvent {
      * @return The {@link RconSource} responsible for the event
      */
     RconSource getSource();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

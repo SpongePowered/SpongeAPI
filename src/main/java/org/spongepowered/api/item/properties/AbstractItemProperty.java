@@ -172,4 +172,12 @@ public abstract class AbstractItemProperty<K, V> implements ItemProperty<K, V> {
         return value != null ? value.hashCode() : 0;
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

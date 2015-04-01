@@ -30,5 +30,10 @@ package org.spongepowered.api.entity.vehicle.minecart;
  */
 public interface MinecartContainer extends Minecart {
 
-
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

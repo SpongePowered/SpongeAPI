@@ -47,4 +47,10 @@ public interface LockableData extends TileEntityData<TileEntity, LockableData> {
      */
     void setLockToken(String token);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

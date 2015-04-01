@@ -39,4 +39,10 @@ package org.spongepowered.api.event.block;
  */
 public interface FloraGrowEvent extends BlockChangeEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

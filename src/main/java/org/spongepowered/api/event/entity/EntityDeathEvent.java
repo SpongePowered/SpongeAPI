@@ -44,4 +44,10 @@ public interface EntityDeathEvent extends EntityEvent, ExperienceEvent, CauseTra
      */
     Location getLocation();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

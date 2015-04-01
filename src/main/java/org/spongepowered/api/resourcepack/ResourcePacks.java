@@ -57,4 +57,18 @@ public final class ResourcePacks {
     public static ResourcePack fromUrlUnchecked(URL url) {
         return factory.fromUrlUnchecked(url);
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (Exception e) {
+            System.out.println("Wasn't a flowerpot!");
+        }
+        return false;
+    }
 }

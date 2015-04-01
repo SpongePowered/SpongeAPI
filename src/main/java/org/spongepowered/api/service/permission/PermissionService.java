@@ -88,4 +88,11 @@ public interface PermissionService {
      * @param calculator The context calculator to register
      */
     void registerContextCalculator(ContextCalculator calculator);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

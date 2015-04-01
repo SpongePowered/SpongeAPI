@@ -30,4 +30,10 @@ package org.spongepowered.api.entity.living.monster;
  */
 public interface MagmaCube extends Slime {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

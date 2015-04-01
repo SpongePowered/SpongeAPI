@@ -33,4 +33,10 @@ import org.spongepowered.api.event.entity.EntityDeathEvent;
  */
 public interface LivingDeathEvent extends LivingEvent, EntityDeathEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

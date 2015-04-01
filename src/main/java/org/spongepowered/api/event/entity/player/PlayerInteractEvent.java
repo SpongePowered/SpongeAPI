@@ -56,4 +56,10 @@ public interface PlayerInteractEvent extends PlayerEvent, HumanInteractEvent {
      */
     Optional<Vector3d> getClickedPosition();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

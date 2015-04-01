@@ -46,4 +46,10 @@ public interface Pig extends Animal {
      */
     void setSaddled(boolean saddled);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

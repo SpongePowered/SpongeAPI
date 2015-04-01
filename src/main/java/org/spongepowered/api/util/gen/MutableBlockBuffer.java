@@ -58,4 +58,10 @@ public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
      */
     ImmutableBlockBuffer getImmutableClone();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

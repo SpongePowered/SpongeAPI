@@ -104,4 +104,11 @@ public interface Scheduler {
      * @return A collection of scheduled tasks
      */
     Collection<Task> getScheduledTasks(Object plugin);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

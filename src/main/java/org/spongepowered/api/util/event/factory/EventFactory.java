@@ -36,4 +36,10 @@ import java.util.Map;
  */
 public interface EventFactory<E> extends Function<Map<String, Object>, E> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

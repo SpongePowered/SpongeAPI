@@ -40,4 +40,10 @@ public interface ChunkEvent extends GameEvent {
      */
     Chunk getChunk();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

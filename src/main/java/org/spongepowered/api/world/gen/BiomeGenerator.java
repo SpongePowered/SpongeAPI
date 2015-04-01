@@ -47,4 +47,10 @@ public interface BiomeGenerator {
      */
     void getBiomesForArea(World world, MutableBiomeArea buffer, int x, int z, int width, int length);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

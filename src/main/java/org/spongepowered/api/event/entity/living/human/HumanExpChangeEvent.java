@@ -39,4 +39,10 @@ public interface HumanExpChangeEvent extends HumanEvent, ExperienceEvent, Cancel
      */
     int getCurrent();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

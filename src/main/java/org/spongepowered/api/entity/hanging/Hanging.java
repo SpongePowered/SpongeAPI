@@ -47,4 +47,10 @@ public interface Hanging extends Entity {
      */
     void setHangingDirection(Direction direction, boolean forced);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

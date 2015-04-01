@@ -173,4 +173,10 @@ public interface ItemStack extends DataHolder, DataSerializable, AttributeSource
      */
     void setRawData(DataContainer container) throws InvalidDataException;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

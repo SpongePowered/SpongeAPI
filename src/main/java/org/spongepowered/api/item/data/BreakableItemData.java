@@ -39,4 +39,10 @@ import org.spongepowered.api.block.BlockType;
  */
 public interface BreakableItemData extends ListItemData<BlockType, BreakableItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

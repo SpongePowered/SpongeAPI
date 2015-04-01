@@ -40,4 +40,10 @@ public interface Rotation {
     //TODO we should have an Angle class in the future
     int getAngle();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

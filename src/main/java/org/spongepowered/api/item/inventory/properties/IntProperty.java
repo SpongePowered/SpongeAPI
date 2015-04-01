@@ -139,4 +139,12 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
         return new IntProperty(value, Operator.LEQUAL);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }

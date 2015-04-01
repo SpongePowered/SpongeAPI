@@ -56,4 +56,10 @@ public interface BanFactory {
      */
     Ban of(User user, Text.Literal reason);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

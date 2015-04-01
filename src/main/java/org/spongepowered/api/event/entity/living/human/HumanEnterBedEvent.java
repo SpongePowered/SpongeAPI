@@ -29,4 +29,10 @@ package org.spongepowered.api.event.entity.living.human;
  */
 public interface HumanEnterBedEvent extends HumanSleepEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

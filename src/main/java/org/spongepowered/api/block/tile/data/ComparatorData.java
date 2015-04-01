@@ -46,4 +46,10 @@ public interface ComparatorData extends TileEntityData<Comparator, ComparatorDat
      */
     void setOutputSignal(int signal);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

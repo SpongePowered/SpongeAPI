@@ -29,4 +29,10 @@ package org.spongepowered.api.util.gen;
  */
 public interface ImmutableBiomeArea extends BiomeBuffer {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }

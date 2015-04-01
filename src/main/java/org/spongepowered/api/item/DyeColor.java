@@ -49,4 +49,10 @@ public interface DyeColor extends DataSerializable {
      */
     Color getColor();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
