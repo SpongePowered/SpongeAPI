@@ -34,4 +34,10 @@ import org.spongepowered.api.event.entity.living.human.HumanChangeGameModeEvent;
  */
 public interface PlayerChangeGameModeEvent extends HumanChangeGameModeEvent, PlayerEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
