@@ -56,4 +56,13 @@ public final class PotionEffectTypes {
 
     private PotionEffectTypes() {
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }
