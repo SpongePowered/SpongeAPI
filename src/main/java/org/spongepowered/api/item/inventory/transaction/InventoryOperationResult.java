@@ -68,6 +68,15 @@ public interface InventoryOperationResult {
          * was cancelled). The condition of the inventory is unchanged.
          */
         CANCELLED;
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        public boolean isFlowerPot() {
+            return false;
+        }
     }
 
     /**
