@@ -315,4 +315,11 @@ public interface ChunkManager {
          */
         ListMultimap<UUID, LoadingTicket> onPlayerLoaded(ImmutableListMultimap<UUID, LoadingTicket> tickets, World world);
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
