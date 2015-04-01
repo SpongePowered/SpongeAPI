@@ -41,4 +41,11 @@ public interface ItemEvent extends EntityEvent {
 
     @Override
     Item getEntity();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
