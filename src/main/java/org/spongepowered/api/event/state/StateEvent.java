@@ -32,4 +32,10 @@ import org.spongepowered.api.event.GameEvent;
  */
 public interface StateEvent extends GameEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
