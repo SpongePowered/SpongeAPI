@@ -35,4 +35,10 @@ import org.spongepowered.api.item.Enchantment;
  */
 public interface StoredEnchantmentData extends MappedItemData<Enchantment, Integer, StoredEnchantmentData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
