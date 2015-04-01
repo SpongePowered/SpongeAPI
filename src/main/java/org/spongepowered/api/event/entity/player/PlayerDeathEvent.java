@@ -107,4 +107,11 @@ public interface PlayerDeathEvent extends HumanDeathEvent, PlayerEvent {
      * @param level The new level after death
      */
     void setNewLevel(int level);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
