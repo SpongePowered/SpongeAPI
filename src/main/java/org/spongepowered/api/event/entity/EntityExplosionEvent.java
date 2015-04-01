@@ -61,4 +61,10 @@ public interface EntityExplosionEvent extends EntityEvent, BulkBlockEvent {
      */
     void setYield(double yield);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
