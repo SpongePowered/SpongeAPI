@@ -31,4 +31,10 @@ import org.spongepowered.api.entity.Entity;
  */
 public interface EntityConstructingEvent extends EntityEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
