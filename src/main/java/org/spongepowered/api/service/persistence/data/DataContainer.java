@@ -30,4 +30,10 @@ package org.spongepowered.api.service.persistence.data;
  */
 public interface DataContainer extends DataView {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
