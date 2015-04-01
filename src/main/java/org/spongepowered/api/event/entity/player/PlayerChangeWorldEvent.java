@@ -47,4 +47,11 @@ public interface PlayerChangeWorldEvent extends PlayerEvent, Cancellable {
      * @return The to world.
      */
     World getToWorld();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
