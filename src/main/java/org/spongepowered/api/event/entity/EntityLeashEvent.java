@@ -39,4 +39,10 @@ public interface EntityLeashEvent extends EntityEvent, Cancellable {
      */
     Entity getLeashHolder();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
