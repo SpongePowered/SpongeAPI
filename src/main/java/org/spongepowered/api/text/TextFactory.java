@@ -111,4 +111,10 @@ public interface TextFactory {
      */
     String toLegacy(Text text, char code);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
