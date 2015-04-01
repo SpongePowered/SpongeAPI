@@ -67,4 +67,10 @@ public interface BlockItemData extends ItemData<BlockItemData> {
      */
     void setState(BlockState state);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
