@@ -53,4 +53,10 @@ public interface DataHolder {
      */
     <T> Optional<T> getData(Class<T> dataClass);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
