@@ -39,4 +39,10 @@ public interface BlockStatistic extends Statistic {
      */
     BlockType getBlockType();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
