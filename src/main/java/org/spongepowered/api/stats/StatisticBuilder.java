@@ -109,6 +109,13 @@ public interface StatisticBuilder {
         @Override
         EntityStatistic buildAndRegister() throws IllegalStateException;
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
 
     /**
@@ -139,6 +146,13 @@ public interface StatisticBuilder {
 
         @Override
         BlockStatistic buildAndRegister() throws IllegalStateException;
+
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
 
     }
 
@@ -171,6 +185,13 @@ public interface StatisticBuilder {
         @Override
         ItemStatistic buildAndRegister() throws IllegalStateException;
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
 
     /**
@@ -202,6 +223,19 @@ public interface StatisticBuilder {
         @Override
         TeamStatistic buildAndRegister() throws IllegalStateException;
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        boolean isFlowerPot();
+
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
