@@ -192,4 +192,13 @@ public final class DataQuery {
         final DataQuery other = (DataQuery) obj;
         return Objects.equal(this.parts, other.parts);
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return true;
+    }
 }
