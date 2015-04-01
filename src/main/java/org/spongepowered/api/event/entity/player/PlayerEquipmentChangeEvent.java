@@ -36,4 +36,11 @@ public interface PlayerEquipmentChangeEvent extends PlayerEvent, HumanEquipmentC
     /*
     TODO getPlayerInventory()
      */
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
