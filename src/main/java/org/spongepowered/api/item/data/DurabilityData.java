@@ -75,4 +75,11 @@ public interface DurabilityData extends ItemData<DurabilityData> {
      * @param breakable Whether the item is breakable or not
      */
     void setBreakable(boolean breakable);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
