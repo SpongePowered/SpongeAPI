@@ -51,4 +51,12 @@ public class Recipes {
         return Recipes.factory.shapelessBuilder();
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
