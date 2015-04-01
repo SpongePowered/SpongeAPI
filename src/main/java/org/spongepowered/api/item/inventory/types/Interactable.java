@@ -42,5 +42,11 @@ public interface Interactable<T extends Entity> extends Inventory {
      * @return true if the Entity is able to interact with this Inventory
      */
     boolean canInteractWith(T entity);
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
