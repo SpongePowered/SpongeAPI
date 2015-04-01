@@ -83,4 +83,11 @@ public interface PlayerConnection {
      * @param data The data
      */
     void sendCustomPayload(Object plugin, String channel, byte[] data);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
