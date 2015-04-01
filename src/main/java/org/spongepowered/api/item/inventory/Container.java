@@ -64,4 +64,10 @@ public interface Container extends Interactable<Human> {
      */
     void close(Human viewer);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
