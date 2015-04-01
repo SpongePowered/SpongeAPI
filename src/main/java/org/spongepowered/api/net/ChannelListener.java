@@ -44,4 +44,10 @@ public interface ChannelListener {
      */
     void handlePayload(PlayerConnection client, String channel, ChannelBuf data);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
