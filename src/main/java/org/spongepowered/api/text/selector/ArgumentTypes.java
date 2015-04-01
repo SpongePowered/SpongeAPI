@@ -164,4 +164,12 @@ public final class ArgumentTypes {
         return Selectors.factory.createArgumentType(key, type);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }
