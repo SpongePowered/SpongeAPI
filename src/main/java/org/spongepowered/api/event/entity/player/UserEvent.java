@@ -39,4 +39,10 @@ public interface UserEvent extends GameEvent {
      */
     User getUser();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
