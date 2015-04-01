@@ -35,4 +35,12 @@ public final class Difficulties {
     public static final Difficulty NORMAL = null;
     public static final Difficulty HARD = null;
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
 }
