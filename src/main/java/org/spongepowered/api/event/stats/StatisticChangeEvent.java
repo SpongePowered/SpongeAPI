@@ -63,4 +63,10 @@ public interface StatisticChangeEvent extends PlayerEvent, Cancellable {
      */
     void setNewValue(long value);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
