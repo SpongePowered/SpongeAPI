@@ -160,4 +160,10 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
      */
     Optional<Slot> getSlot(EquipmentType equipmentType);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
