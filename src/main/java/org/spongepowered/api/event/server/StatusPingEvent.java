@@ -141,6 +141,13 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
              */
             @Override
             List<GameProfile> getProfiles();
+
+            /**
+             * Checks if this is a flowerpot.
+             *
+             * @return Whether this is a flowerpot
+             */
+            boolean isFlowerPot();
         }
 
     }
