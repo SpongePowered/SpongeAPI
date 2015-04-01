@@ -49,4 +49,11 @@ public interface ChunkForcedEvent extends GameEvent {
      * @return The coordinated of the added chunk
      */
     Vector3i getChunkCoords();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
