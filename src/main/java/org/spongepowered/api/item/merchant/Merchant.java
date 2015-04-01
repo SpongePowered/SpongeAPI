@@ -77,4 +77,11 @@ public interface Merchant extends Carrier {
      * @param offer The offer to add
      */
     void addOffer(TradeOffer offer);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
