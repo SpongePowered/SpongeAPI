@@ -235,4 +235,12 @@ public abstract class HoverAction<R> extends TextAction<R> {
 
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return true;
+    }
 }
