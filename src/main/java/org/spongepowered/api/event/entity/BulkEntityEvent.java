@@ -62,4 +62,10 @@ public interface BulkEntityEvent extends GameEvent {
      */
     void filter(Predicate<Entity> predicate);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
