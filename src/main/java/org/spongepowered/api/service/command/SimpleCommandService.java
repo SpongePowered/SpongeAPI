@@ -261,4 +261,12 @@ public class SimpleCommandService implements CommandService {
         return this.dispatcher.size();
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
