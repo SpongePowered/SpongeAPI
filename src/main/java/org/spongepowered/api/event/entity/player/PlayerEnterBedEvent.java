@@ -31,4 +31,10 @@ import org.spongepowered.api.event.entity.living.human.HumanEnterBedEvent;
  */
 public interface PlayerEnterBedEvent extends HumanEnterBedEvent, PlayerSleepEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
