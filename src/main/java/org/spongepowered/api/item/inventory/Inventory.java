@@ -454,5 +454,11 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return the query result 
      */
     <T extends Inventory> T query(Object... args);
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
