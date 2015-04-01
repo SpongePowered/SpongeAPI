@@ -1104,7 +1104,7 @@ public interface GameRegistry {
      *
      * @return The Collection of all available {@link Criterion Criteria}
      */
-    Collection<Visibility> getCriteria();
+    Collection<Criterion> getCriteria();
 
     /**
      * Gets the {@link ObjectiveDisplayMode} with the provided name.
