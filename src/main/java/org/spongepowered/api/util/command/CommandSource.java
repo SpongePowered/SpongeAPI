@@ -59,4 +59,10 @@ public interface CommandSource extends Subject {
      */
     void sendMessage(Iterable<Text> messages);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
