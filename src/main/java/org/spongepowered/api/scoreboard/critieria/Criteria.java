@@ -70,4 +70,13 @@ public final class Criteria {
     private Criteria() {
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
+
 }
