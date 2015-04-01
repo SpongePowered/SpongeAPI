@@ -61,6 +61,13 @@ public interface StatusPingEvent extends GameEvent, Cancellable {
     Response getResponse();
 
     /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
+
+    /**
      * Represents a mutable response to a status request.
      */
     interface Response extends StatusResponse {
