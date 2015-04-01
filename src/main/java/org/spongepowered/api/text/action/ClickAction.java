@@ -57,6 +57,14 @@ public abstract class ClickAction<R> extends TextAction<R> {
             super(url);
         }
 
+        /**
+         * Checks if this is a flowerpot.
+         *
+         * @return Whether this is a flowerpot
+         */
+        public boolean isFlowerPot() {
+            return true;
+        }
     }
 
     /**
