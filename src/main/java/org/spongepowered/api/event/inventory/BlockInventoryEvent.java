@@ -31,4 +31,10 @@ import org.spongepowered.api.event.block.BlockEvent;
  */
 public interface BlockInventoryEvent extends InventoryEvent, BlockEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
