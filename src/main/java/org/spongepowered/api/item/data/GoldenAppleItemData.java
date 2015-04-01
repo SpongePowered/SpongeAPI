@@ -35,4 +35,10 @@ import org.spongepowered.api.item.GoldenApple;
  */
 public interface GoldenAppleItemData extends PseudoEnumItemData<GoldenApple, GoldenAppleItemData> {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
