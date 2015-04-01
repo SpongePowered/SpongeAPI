@@ -41,4 +41,10 @@ public interface DataSerializable {
      */
     DataContainer toContainer();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
