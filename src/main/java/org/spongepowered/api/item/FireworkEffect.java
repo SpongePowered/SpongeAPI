@@ -79,4 +79,11 @@ public interface FireworkEffect extends DataSerializable {
      * @return The explosion shape
      */
     FireworkShape getShape();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
