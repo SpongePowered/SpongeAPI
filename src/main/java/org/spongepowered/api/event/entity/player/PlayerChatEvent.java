@@ -33,4 +33,10 @@ import org.spongepowered.api.event.message.MessageEvent;
  */
 public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
