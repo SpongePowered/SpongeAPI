@@ -51,4 +51,10 @@ public interface GeneratorPopulator {
      */
     void populate(MutableBlockBuffer buffer, int x, int y, int z, ImmutableBiomeArea biomes, long seed);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
