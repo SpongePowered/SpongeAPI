@@ -196,4 +196,12 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
         return new SlotPos(value, Operator.LEQUAL);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
