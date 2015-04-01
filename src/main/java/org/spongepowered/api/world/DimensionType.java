@@ -52,4 +52,11 @@ public interface DimensionType {
      * @return The dimension class for this type
      */
     Class<? extends Dimension> getDimensionClass();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
