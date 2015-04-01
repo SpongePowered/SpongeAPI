@@ -41,4 +41,10 @@ public interface EquipmentSlot extends FilteringSlot {
      */
     boolean isValidItem(EquipmentType type);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
