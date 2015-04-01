@@ -66,4 +66,10 @@ public interface CraftItemEvent extends ViewerEvent, Cancellable {
      */
     List<ItemType> getResultTypes();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
