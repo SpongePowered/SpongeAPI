@@ -60,4 +60,11 @@ public interface SqlService {
      *          or {@link Optional#absent()}
      */
     Optional<String> getConnectionUrlFromAlias(String alias);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
