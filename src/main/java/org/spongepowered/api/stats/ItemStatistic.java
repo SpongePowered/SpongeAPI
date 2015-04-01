@@ -39,4 +39,10 @@ public interface ItemStatistic extends Statistic {
      */
     ItemType getItemType();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
