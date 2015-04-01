@@ -443,4 +443,10 @@ public interface DataView {
      */
     <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationService service);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
