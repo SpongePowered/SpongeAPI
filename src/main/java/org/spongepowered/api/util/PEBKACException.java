@@ -68,4 +68,12 @@ public class PEBKACException extends UnsupportedOperationException {
         super(cause);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
