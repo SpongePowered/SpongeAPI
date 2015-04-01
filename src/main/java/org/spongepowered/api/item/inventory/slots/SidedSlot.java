@@ -66,5 +66,11 @@ public interface SidedSlot extends Slot {
      *      specified direction
      */
     boolean canGet(ItemStack stack, Direction from);
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
