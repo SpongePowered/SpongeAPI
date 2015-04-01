@@ -46,4 +46,11 @@ public interface PlayerJoinEvent extends PlayerEvent {
      * @param joinMessage The new player join message.
      */
     void setJoinMessage(Text joinMessage);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
