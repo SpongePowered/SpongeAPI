@@ -42,4 +42,13 @@ public class MemoryDataContainer extends MemoryDataView implements DataContainer
     public final DataContainer getContainer() {
         return this;
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
