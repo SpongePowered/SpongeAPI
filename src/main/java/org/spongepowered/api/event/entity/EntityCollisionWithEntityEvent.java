@@ -38,4 +38,11 @@ public interface EntityCollisionWithEntityEvent extends EntityCollisionEvent {
      * @return The entity collided against.
      */
     Entity getCollided();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
