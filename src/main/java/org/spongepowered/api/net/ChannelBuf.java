@@ -581,4 +581,10 @@ public interface ChannelBuf {
      */
     DataView getDataView(int index);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
