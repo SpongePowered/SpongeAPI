@@ -83,4 +83,10 @@ public interface EntityPotionEffectChangeEvent extends EntityEvent, CauseTracked
      */
     Collection<PotionEffect> getCurrentEffects();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
