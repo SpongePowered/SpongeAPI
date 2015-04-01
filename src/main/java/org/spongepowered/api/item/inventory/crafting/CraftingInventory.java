@@ -54,4 +54,10 @@ public interface CraftingInventory extends GridInventory {
      */
     Optional<Recipe> getRecipe();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
