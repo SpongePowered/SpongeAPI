@@ -39,4 +39,10 @@ import org.spongepowered.api.service.persistence.DataSerializable;
  */
 public interface ItemData<T extends ItemData<T>> extends Comparable<T>, DataSerializable {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
