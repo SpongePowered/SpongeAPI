@@ -54,4 +54,11 @@ public interface EntityChangeHealthEvent extends EntityEvent, CauseTracked, Canc
      * @param newHealth The new health
      */
     void setNewHealth(double newHealth);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
