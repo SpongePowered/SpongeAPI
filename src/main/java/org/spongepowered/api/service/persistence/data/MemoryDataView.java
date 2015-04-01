@@ -723,4 +723,13 @@ public class MemoryDataView implements DataView {
         return Objects.equal(this.map.entrySet(), other.map.entrySet())
                && Objects.equal(this.path, other.path);
     }
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
