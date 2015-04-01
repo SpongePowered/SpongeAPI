@@ -33,4 +33,10 @@ import org.spongepowered.api.world.World;
  */
 public interface WorldUnloadEvent extends WorldEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
