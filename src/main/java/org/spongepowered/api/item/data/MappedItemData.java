@@ -140,4 +140,10 @@ public interface MappedItemData<K, V, T extends MappedItemData<K, V, T>> extends
      */
     void remove(K key);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
