@@ -39,4 +39,10 @@ public interface TeamStatistic extends Statistic {
      */
     TextColor getTeamColor();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
