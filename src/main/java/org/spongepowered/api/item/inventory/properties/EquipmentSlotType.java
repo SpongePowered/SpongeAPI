@@ -106,4 +106,12 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
         return new EquipmentSlotType(value, Operator.NOTEQUAL);
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return false;
+    }
 }
