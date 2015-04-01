@@ -45,4 +45,10 @@ public interface EntityIgniteEvent extends EntityEvent, Cancellable {
      */
     void setFireTicks(int fireTicks);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
