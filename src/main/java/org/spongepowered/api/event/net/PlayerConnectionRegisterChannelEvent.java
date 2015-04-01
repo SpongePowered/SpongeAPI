@@ -39,4 +39,10 @@ public interface PlayerConnectionRegisterChannelEvent extends PlayerConnectionEv
      */
     String getChannelRegistered();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
