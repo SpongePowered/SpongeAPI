@@ -121,5 +121,13 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
     public static AcceptsItems of(Object... value) {
         return new AcceptsItems(value, Operator.EQUAL);
     }
-    
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public boolean isFlowerPot() {
+        return true;
+    }
 }
