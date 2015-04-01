@@ -45,4 +45,11 @@ public interface ChunkUnforcedEvent extends GameEvent {
      * @return The coordinated of the removed chunk
      */
     Vector3i getChunkCoords();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
