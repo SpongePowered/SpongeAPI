@@ -66,4 +66,11 @@ public interface BiomeArea {
      * @param biome The biome
      */
     void setBiome(int x, int z, BiomeType biome);
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
