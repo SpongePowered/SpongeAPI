@@ -180,6 +180,15 @@ public final class SpongeEventFactory {
     private SpongeEventFactory() {
     }
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    public static boolean isFlowerPot() {
+        return false;
+    }
+
     @SuppressWarnings("unchecked")
     private static <T> T createEvent(Class<T> type, Map<String, Object> values) {
         return (T) factories.getUnchecked(type).apply(values);
@@ -202,6 +211,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("replacementBlock", replacementBlock);
         values.put("exp", exp);
+        values.put("flowerPot", false);
         return createEvent(BlockBreakEvent.class, values);
     }
 
@@ -220,6 +230,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("replacementBlock", replacementBlock);
+        values.put("flowerPot", false);
         return createEvent(BlockBurnEvent.class, values);
     }
 
@@ -238,6 +249,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("replacementBlock", replacementBlock);
+        values.put("flowerPot", false);
         return createEvent(BlockChangeEvent.class, values);
     }
 
@@ -258,6 +270,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("velocity", velocity);
         values.put("dispensedItem", dispensedItem);
+        values.put("flowerPot", false);
         return createEvent(BlockDispenseEvent.class, values);
     }
 
@@ -279,6 +292,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("droppedItems", droppedItems);
         values.put("dropChance", dropChance);
+        values.put("flowerPot", false);
         return createEvent(BlockHarvestEvent.class, values);
     }
 
@@ -295,6 +309,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
+        values.put("flowerPot", false);
         return createEvent(BlockIgniteEvent.class, values);
     }
 
@@ -311,6 +326,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
+        values.put("flowerPot", false);
         return createEvent(BlockInteractEvent.class, values);
     }
 
@@ -327,6 +343,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("blocks", blocks);
+        values.put("flowerPot", false);
         return createEvent(BlockMoveEvent.class, values);
     }
 
@@ -345,6 +362,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("replacementBlock", replacementBlock);
+        values.put("flowerPot", false);
         return createEvent(BlockPlaceEvent.class, values);
     }
 
@@ -361,6 +379,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
+        values.put("flowerPot", false);
         return createEvent(BlockRandomTickEvent.class, values);
     }
 
@@ -379,6 +398,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("affectedBlocks", affectedBlocks);
+        values.put("flowerPot", false);
         return createEvent(BlockUpdateEvent.class, values);
     }
 
@@ -397,6 +417,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("replacementBlock", replacementBlock);
+        values.put("flowerPot", false);
         return createEvent(FloraGrowEvent.class, values);
     }
 
@@ -413,6 +434,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("blocks", blocks);
+        values.put("flowerPot", false);
         return createEvent(FluidSpreadEvent.class, values);
     }
 
@@ -431,6 +453,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("replacementBlock", replacementBlock);
+        values.put("flowerPot", false);
         return createEvent(LeafDecayEvent.class, values);
     }
 
@@ -454,6 +477,7 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("replacementBlock", replacementBlock);
         values.put("exp", exp);
+        values.put("flowerPot", false);
         return createEvent(EntityBreakBlockEvent.class, values);
     }
 
@@ -475,6 +499,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("entity", entity);
         values.put("replacementBlock", replacementBlock);
+        values.put("flowerPot", false);
         return createEvent(EntityChangeBlockEvent.class, values);
     }
 
@@ -495,6 +520,7 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("newHealth", newHealth);
         values.put("oldHealth", oldHealth);
+        values.put("flowerPot", false);
         return createEvent(EntityChangeHealthEvent.class, values);
     }
 
@@ -511,6 +537,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", entity);
+        values.put("flowerPot", false);
         return createEvent(EntityCollisionEvent.class, values);
     }
 
@@ -529,6 +556,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("entity", entity);
+        values.put("flowerPot", false);
         return createEvent(EntityCollisionWithBlockEvent.class, values);
     }
 
@@ -547,6 +575,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", entity);
         values.put("collided", collided);
+        values.put("flowerPot", false);
         return createEvent(EntityCollisionWithEntityEvent.class, values);
     }
 
@@ -570,6 +599,7 @@ public final class SpongeEventFactory {
         values.put("droppedItems", droppedItems);
         values.put("location", location);
         values.put("exp", exp);
+        values.put("flowerPot", false);
         return createEvent(EntityDeathEvent.class, values);
     }
 
@@ -586,6 +616,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         values.put("dismounted", dismounted);
+        values.put("flowerPot", false);
         return createEvent(EntityDismountEvent.class, values);
     }
 
@@ -607,6 +638,7 @@ public final class SpongeEventFactory {
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
         values.put("rotation", rotation);
+        values.put("flowerPot", false);
         return createEvent(EntityDisplaceEvent.class, values);
     }
 
@@ -623,6 +655,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         values.put("droppedItems", droppedItems);
+        values.put("flowerPot", false);
         return createEvent(EntityDropItemEvent.class, values);
     }
 
@@ -647,6 +680,7 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("droppedItems", droppedItems);
         values.put("dropChance", dropChance);
+        values.put("flowerPot", false);
         return createEvent(EntityHarvestBlockEvent.class, values);
     }
 
@@ -665,6 +699,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("entity", entity);
+        values.put("flowerPot", false);
         return createEvent(EntityInteractBlockEvent.class, values);
     }
 
@@ -681,6 +716,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         values.put("targetEntity", targetEntity);
+        values.put("flowerPot", false);
         return createEvent(EntityInteractEntityEvent.class, values);
     }
 
@@ -695,6 +731,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
+        values.put("flowerPot", false);
         return createEvent(EntityInteractEvent.class, values);
     }
 
@@ -711,6 +748,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         values.put("vehicle", vehicle);
+        values.put("flowerPot", false);
         return createEvent(EntityMountEvent.class, values);
     }
 
@@ -732,6 +770,7 @@ public final class SpongeEventFactory {
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
         values.put("rotation", rotation);
+        values.put("flowerPot", false);
         return createEvent(EntityMoveEvent.class, values);
     }
 
@@ -748,6 +787,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         values.put("items", items);
+        values.put("flowerPot", false);
         return createEvent(EntityPickUpItemEvent.class, values);
     }
 
@@ -769,6 +809,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("entity", entity);
         values.put("replacementBlock", replacementBlock);
+        values.put("flowerPot", false);
         return createEvent(EntityPlaceBlockEvent.class, values);
     }
 
@@ -785,6 +826,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         values.put("location", location);
+        values.put("flowerPot", false);
         return createEvent(EntitySpawnEvent.class, values);
     }
 
@@ -799,6 +841,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
+        values.put("flowerPot", false);
         return createEvent(EntityConstructingEvent.class, values);
     }
 
@@ -815,6 +858,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         values.put("tamer", tamer);
+        values.put("flowerPot", false);
         return createEvent(EntityTameEvent.class, values);
     }
 
@@ -840,6 +884,7 @@ public final class SpongeEventFactory {
         values.put("newLocation", newLocation);
         values.put("rotation", rotation);
         values.put("keepsVelocity", keepsVelocity);
+        values.put("flowerPot", false);
         return createEvent(EntityTeleportEvent.class, values);
     }
 
@@ -854,6 +899,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
+        values.put("flowerPot", false);
         return createEvent(EntityUpdateEvent.class, values);
     }
 
@@ -873,6 +919,7 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("launchedProjectile", entity);
         values.put("source", Optional.fromNullable(source));
+        values.put("flowerPot", false);
         return createEvent(ProjectileLaunchEvent.class, values);
     }
 
@@ -891,6 +938,7 @@ public final class SpongeEventFactory {
         values.put("arguments", arguments);
         values.put("source", source);
         values.put("command", command);
+        values.put("flowerPot", false);
         return createEvent(CommandEvent.class, values);
     }
 
@@ -907,6 +955,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("source", source);
         values.put("message", message);
+        values.put("flowerPot", false);
         return createEvent(MessageEvent.class, values);
     }
 
@@ -936,6 +985,7 @@ public final class SpongeEventFactory {
         values.put("living", player);
         values.put("blockFaceDirection", direction);
         values.put("exp", exp);
+        values.put("flowerPot", false);
         return createEvent(PlayerBreakBlockEvent.class, values);
     }
 
@@ -956,6 +1006,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("fishHook", fishHook);
+        values.put("flowerPot", false);
         return createEvent(PlayerCastFishingLineEvent.class, values);
     }
 
@@ -978,6 +1029,7 @@ public final class SpongeEventFactory {
         values.put("living", player);
         values.put("fishHook", fishHook);
         values.put("caughtEntity", Optional.fromNullable(caughtEntity));
+        values.put("flowerPot", false);
         return createEvent(PlayerHookedEntityEvent.class, values);
     }
 
@@ -1005,6 +1057,7 @@ public final class SpongeEventFactory {
         values.put("caughtEntity", Optional.fromNullable(caughtEntity));
         values.put("caughtItem", Optional.fromNullable(caughtItem));
         values.put("exp", exp);
+        values.put("flowerPot", false);
         return createEvent(PlayerRetractFishingLineEvent.class, values);
     }
 
@@ -1032,6 +1085,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("blockFaceDirection", direction);
+        values.put("flowerPot", false);
         return createEvent(PlayerChangeBlockEvent.class, values);
     }
 
@@ -1054,6 +1108,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerChangeGameModeEvent.class, values);
     }
 
@@ -1076,6 +1131,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerChangeWorldEvent.class, values);
     }
 
@@ -1098,6 +1154,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerChatEvent.class, values);
     }
 
@@ -1136,6 +1193,7 @@ public final class SpongeEventFactory {
         values.put("newLevel", newLevel);
         values.put("keepsLevel", keepsLevel);
         values.put("keepsInventory", keepsInventory);
+        values.put("flowerPot", false);
         return createEvent(PlayerDeathEvent.class, values);
     }
 
@@ -1156,6 +1214,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerDropItemEvent.class, values);
     }
 
@@ -1186,6 +1245,7 @@ public final class SpongeEventFactory {
         values.put("droppedItems", droppedItems);
         values.put("dropChance", dropChance);
         values.put("silkTouch", silkTouch);
+        values.put("flowerPot", false);
         return createEvent(PlayerHarvestBlockEvent.class, values);
     }
 
@@ -1213,6 +1273,7 @@ public final class SpongeEventFactory {
         values.put("player", player);
         values.put("user", player);
         values.put("clickedPosition", Optional.fromNullable(location));
+        values.put("flowerPot", false);
         return createEvent(PlayerInteractBlockEvent.class, values);
     }
 
@@ -1238,6 +1299,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("clickedPosition", Optional.fromNullable(location));
+        values.put("flowerPot", false);
         return createEvent(PlayerInteractEntityEvent.class, values);
     }
 
@@ -1261,6 +1323,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("clickedPosition", Optional.fromNullable(location));
+        values.put("flowerPot", false);
         return createEvent(PlayerInteractEvent.class, values);
     }
 
@@ -1281,6 +1344,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerJoinEvent.class, values);
     }
 
@@ -1305,6 +1369,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("rotation", rotation);
+        values.put("flowerPot", false);
         return createEvent(PlayerMoveEvent.class, values);
     }
 
@@ -1325,6 +1390,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerPickUpItemEvent.class, values);
     }
 
@@ -1352,6 +1418,7 @@ public final class SpongeEventFactory {
         values.put("human", player);
         values.put("living", player);
         values.put("blockFaceDirection", direction);
+        values.put("flowerPot", false);
         return createEvent(PlayerPlaceBlockEvent.class, values);
     }
 
@@ -1372,6 +1439,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerQuitEvent.class, values);
     }
 
@@ -1390,6 +1458,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("flowerPot", false);
         return createEvent(PlayerUpdateEvent.class, values);
     }
 
@@ -1411,6 +1480,7 @@ public final class SpongeEventFactory {
         values.put("weatherUniverse", weatherUniverse);
         values.put("struckEntities", struckEntities);
         values.put("struckBlocks", struckBlocks);
+        values.put("flowerPot", false);
         return createEvent(LightningStrikeEvent.class, values);
     }
 
@@ -1431,6 +1501,7 @@ public final class SpongeEventFactory {
         values.put("player", player);
         values.put("user", player);
         values.put("achievement", achievement);
+        values.put("flowerPot", false);
         return createEvent(AchievementEvent.class, values);
     }
 
@@ -1456,6 +1527,7 @@ public final class SpongeEventFactory {
         values.put("changedStatistic", changedStatistic);
         values.put("newValue", newValue);
         values.put("oldValue", oldValue);
+        values.put("flowerPot", false);
         return createEvent(StatisticChangeEvent.class, values);
     }
 
@@ -1475,6 +1547,7 @@ public final class SpongeEventFactory {
         values.put("initialWeather", initialWeather);
         values.put("weatherUniverse", weatherUniverse);
         values.put("resultingWeather", resultingWeather);
+        values.put("flowerPot", false);
         return createEvent(WeatherChangeEvent.class, values);
     }
 
@@ -1491,6 +1564,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("ticket", ticket);
         values.put("chunkCoords", chunkCoords);
+        values.put("flowerPot", false);
         return createEvent(ChunkForcedEvent.class, values);
     }
 
@@ -1505,6 +1579,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
+        values.put("flowerPot", false);
         return createEvent(ChunkLoadEvent.class, values);
     }
 
@@ -1519,6 +1594,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
+        values.put("flowerPot", false);
         return createEvent(ChunkPostGenerateEvent.class, values);
     }
 
@@ -1533,6 +1609,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
+        values.put("flowerPot", false);
         return createEvent(ChunkPostPopulateEvent.class, values);
     }
 
@@ -1547,6 +1624,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
+        values.put("flowerPot", false);
         return createEvent(ChunkPreGenerateEvent.class, values);
     }
 
@@ -1563,6 +1641,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("chunk", chunk);
         values.put("pendingPopulators", pendingPopulators);
+        values.put("flowerPot", false);
         return createEvent(ChunkPrePopulateEvent.class, values);
     }
 
@@ -1579,6 +1658,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("ticket", ticket);
         values.put("chunkCoords", chunkCoords);
+        values.put("flowerPot", false);
         return createEvent(ChunkUnforcedEvent.class, values);
     }
 
@@ -1593,6 +1673,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
+        values.put("flowerPot", false);
         return createEvent(ChunkUnloadEvent.class, values);
     }
 
@@ -1613,6 +1694,7 @@ public final class SpongeEventFactory {
         values.put("newValue", newValue);
         values.put("name", name);
         values.put("oldValue", oldValue);
+        values.put("flowerPot", false);
         return createEvent(GameRuleChangeEvent.class, values);
     }
 
@@ -1627,6 +1709,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("world", world);
+        values.put("flowerPot", false);
         return createEvent(WorldLoadEvent.class, values);
     }
 
@@ -1641,6 +1724,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("world", world);
+        values.put("flowerPot", false);
         return createEvent(WorldUnloadEvent.class, values);
     }
 
@@ -1657,6 +1741,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("client", client);
         values.put("response", response);
+        values.put("flowerPot", false);
         return createEvent(StatusPingEvent.class, values);
     }
 
@@ -1690,6 +1775,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", blockLoc);
         values.put("currentData", data);
+        values.put("flowerPot", false);
         return createEvent(BrewingStandBrewEvent.class, values);
     }
 
@@ -1720,6 +1806,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", loc);
         values.put("currentData", data);
+        values.put("flowerPot", false);
         return createEvent(FurnaceConsumeFuelEvent.class, values);
     }
 
@@ -1750,6 +1837,7 @@ public final class SpongeEventFactory {
         values.put("inventory", inventory);
         values.put("block", loc);
         values.put("currentData", data);
+        values.put("flowerPot", false);
         return createEvent(FurnaceSmeltItemEvent.class, values);
     }
 
