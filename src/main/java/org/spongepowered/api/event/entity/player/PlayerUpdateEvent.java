@@ -33,4 +33,10 @@ import org.spongepowered.api.event.entity.living.human.HumanUpdateEvent;
  */
 public interface PlayerUpdateEvent extends PlayerEvent, HumanUpdateEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
