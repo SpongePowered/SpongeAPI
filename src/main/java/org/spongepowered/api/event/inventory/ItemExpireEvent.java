@@ -31,4 +31,10 @@ import org.spongepowered.api.event.entity.EntityExpireEvent;
  */
 public interface ItemExpireEvent extends ItemEvent, EntityExpireEvent {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
