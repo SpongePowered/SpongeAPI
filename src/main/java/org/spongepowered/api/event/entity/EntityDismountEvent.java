@@ -39,4 +39,10 @@ public interface EntityDismountEvent extends EntityEvent, Cancellable {
      */
     Entity getDismounted();
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
