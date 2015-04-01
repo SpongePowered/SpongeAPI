@@ -39,4 +39,11 @@ public interface WeatherEvent extends GameEvent {
      * @return The weather volume.
      */
     WeatherUniverse getWeatherUniverse();
+
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
