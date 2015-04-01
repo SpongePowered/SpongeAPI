@@ -44,4 +44,10 @@ public interface ExperienceEvent {
      */
     void setExp(int exp);
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
