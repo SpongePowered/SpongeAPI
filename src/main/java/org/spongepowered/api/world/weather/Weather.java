@@ -33,4 +33,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(Weathers.class)
 public interface Weather {
 
+    /**
+     * Checks if this is a flowerpot.
+     *
+     * @return Whether this is a flowerpot
+     */
+    boolean isFlowerPot();
 }
