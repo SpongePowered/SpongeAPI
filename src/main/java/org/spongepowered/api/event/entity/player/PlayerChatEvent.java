@@ -43,6 +43,7 @@ public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
     /*
      * Sets the list of players who receive the message.
      *
+     * @param receivers The list of {@link Player}s
      */
     void setReceivers(List<Player> receivers);
 }
