@@ -34,16 +34,9 @@ import org.spongepowered.api.event.message.MessageEvent;
 public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
     
     /*
-     * Returns list of players that recieve the message.
+     * Returns the set of players that recieve the message.
      *
-     * @return The list of {@link Player}s
+     * @return The {@link Player}s
      */
-    List<Player> getReceivers();
-    
-    /*
-     * Sets the list of players who receive the message.
-     *
-     * @param receivers The list of {@link Player}s
-     */
-    void setReceivers(List<Player> receivers);
+    Set<Player> getReceivers();
 }
