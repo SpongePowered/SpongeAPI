@@ -70,10 +70,8 @@ public class Location implements DataHolder {
      * @param position The position
      */
     public Location(Extent extent, Vector3d position) {
-        checkNotNull(extent);
-        checkNotNull(position);
-        this.extent = extent;
-        this.position = position;
+        this.extent = checkNotNull(extent);
+        this.position = checkNotNull(position);
         this.blockPosition = position.floor().toInt();
     }
 

@@ -53,7 +53,7 @@ public class InvalidUsageException extends CommandException {
      */
     public InvalidUsageException(CommandCallable command) {
         super();
-        this.command = checkNotNull(command);
+        this.command = checkNotNull(command, "command");
         this.fullHelpSuggested = false;
     }
 
@@ -66,7 +66,7 @@ public class InvalidUsageException extends CommandException {
      */
     public InvalidUsageException(String message, CommandCallable command) {
         super(message);
-        this.command = checkNotNull(command);
+        this.command = checkNotNull(command, "command");
         this.fullHelpSuggested = false;
     }
 
@@ -79,7 +79,7 @@ public class InvalidUsageException extends CommandException {
      */
     public InvalidUsageException(String message, CommandCallable command, boolean fullHelpSuggested) {
         super(message);
-        this.command = checkNotNull(command);
+        this.command = checkNotNull(command, "command");
         this.fullHelpSuggested = fullHelpSuggested;
     }
 
@@ -93,7 +93,7 @@ public class InvalidUsageException extends CommandException {
      */
     public InvalidUsageException(String message, Throwable cause, CommandCallable command) {
         super(message, cause);
-        this.command = checkNotNull(command);
+        this.command = checkNotNull(command, "command");
         this.fullHelpSuggested = false;
     }
 
@@ -105,7 +105,7 @@ public class InvalidUsageException extends CommandException {
      */
     public InvalidUsageException(Throwable cause, CommandCallable command) {
         super(cause);
-        this.command = checkNotNull(command);
+        this.command = checkNotNull(command, "command");
         this.fullHelpSuggested = false;
     }
 

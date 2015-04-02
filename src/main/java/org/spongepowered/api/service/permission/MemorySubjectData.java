@@ -60,8 +60,7 @@ public class MemorySubjectData implements SubjectData {
      * @param service The service to request subjects from
      */
     public MemorySubjectData(PermissionService service) {
-        checkNotNull(service);
-        this.service = service;
+        this.service = checkNotNull(service, "service");
     }
 
     @Override

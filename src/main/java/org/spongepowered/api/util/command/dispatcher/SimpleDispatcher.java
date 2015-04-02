@@ -75,10 +75,8 @@ public class SimpleDispatcher implements Dispatcher {
      * @param help A formatted help message
      */
     public SimpleDispatcher(String shortDescription, Text help) {
-        checkNotNull(shortDescription);
-        checkNotNull(help);
-        this.shortDescription = shortDescription;
-        this.help = help;
+        this.shortDescription = checkNotNull(shortDescription, "shortDescription");
+        this.help = checkNotNull(help, "help");
     }
 
     /**
@@ -97,7 +95,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be registered
      */
     public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
-        checkNotNull(alias);
+        checkNotNull(alias, "alias");
         return register(callable, Arrays.asList(alias));
     }
 
@@ -142,9 +140,9 @@ public class SimpleDispatcher implements Dispatcher {
      */
     public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(aliases);
-        checkNotNull(callable);
-        checkNotNull(callback);
+        checkNotNull(aliases, "aliases");
+        checkNotNull(callable, "callable");
+        checkNotNull(callback, "callback");
 
         List<String> free = new ArrayList<String>();
 
@@ -198,7 +196,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return Whether any were found
      */
     public synchronized boolean removeAll(Collection<?> c) {
-        checkNotNull(c);
+        checkNotNull(c, "c");
 
         boolean found = false;
 
@@ -217,7 +215,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> removeMapping(CommandMapping mapping) {
-        checkNotNull(mapping);
+        checkNotNull(mapping, "mapping");
 
         CommandMapping found = null;
 
@@ -240,7 +238,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return Whether the at least one command was removed
      */
     public synchronized boolean removeMappings(Collection<?> c) {
-        checkNotNull(c);
+        checkNotNull(c, "c");
 
         boolean found = false;
 
@@ -294,7 +292,7 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public boolean containsMapping(CommandMapping mapping) {
-        checkNotNull(mapping);
+        checkNotNull(mapping, "mapping");
 
         for (CommandMapping test : this.commands.values()) {
             if (mapping.equals(test)) {
