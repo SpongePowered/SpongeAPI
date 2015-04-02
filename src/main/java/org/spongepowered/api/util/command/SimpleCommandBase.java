@@ -29,7 +29,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 
 /**
  * An abstract base class that can be extended to easily create simple commands.
@@ -44,15 +47,32 @@ public abstract class SimpleCommandBase implements CommandCallable {
     /**
      * Creates a new command.
      *
-     * @param permission The permission needed to execute the command
+     * @param permission The permission needed to execute the command,
+     *        or {@code null} to permit all users
      * @param shortDescription A command description
      * @param help A formatted help message
      * @param usage A description of the command arguments
      */
-    public SimpleCommandBase(String permission, String shortDescription, Text help, String usage) {
-        this.permission = checkNotNull(permission, "permission");
+    public SimpleCommandBase(@Nullable String permission, String shortDescription, Text help, String usage) {
+        this.permission = permission;
         this.shortDescription = checkNotNull(shortDescription, "shortDescription");
         this.help = checkNotNull(help, "help");
+        this.usage = checkNotNull(usage, "usage");
+    }
+    
+    /**
+     * Creates a new command. Generates the help message from the command
+     * description.
+     *
+     * @param permission The permission needed to execute the command,
+     *        or {@code null} to permit all users
+     * @param shortDescription A command description
+     * @param usage A description of the command arguments
+     */
+    public SimpleCommandBase(@Nullable String permission, String shortDescription, String usage) {
+        this.permission = permission;
+        this.shortDescription = checkNotNull(shortDescription, "shortDescription");
+        this.help = Texts.of(shortDescription);
         this.usage = checkNotNull(usage, "usage");
     }
 
