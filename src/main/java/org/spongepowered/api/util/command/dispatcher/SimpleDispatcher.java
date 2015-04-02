@@ -340,13 +340,14 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized boolean testPermission(CommandSource source) {
+     // Return true if source is permitted to execute at least one subcommand
         for (CommandMapping mapping : this.commands.values()) {
-            if (!mapping.getCallable().testPermission(source)) {
-                return false;
+            if (mapping.getCallable().testPermission(source)) {
+                return true; 
             }
         }
 
-        return true;
+        return false;
     }
 
     @Override
