@@ -55,7 +55,7 @@ public final class Property {
     public Property(String name, Class<?> type, Method accessor, @Nullable Method mutator) {
         this.name = checkNotNull(name, "name");
         this.type = checkNotNull(type, "type");
-        this.accessor =checkNotNull(accessor, "accessor");
+        this.accessor = checkNotNull(accessor, "accessor");
         this.mutator = Optional.fromNullable(mutator);
     }
 
