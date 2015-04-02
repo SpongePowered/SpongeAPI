@@ -45,9 +45,17 @@ public interface BlockVolume {
      * Gets the block location with the highest x, y and z that is still a valid
      * position for {@link #getBlock(Vector3i)}.
      *
-     * @return The highest block location.
+     * @return The highest block location
      */
     Vector3i getBlockMax();
+
+    /**
+     * Gets the size of the whole volume. Defined as <code>{@link #getBlockMax()} -
+     * {@link #getBlockMin()} + (1, 1, 1)</code>.
+     *
+     * @return The size
+     */
+    Vector3i getBlockSize();
 
     /**
      * Get a representation of the block at the given position.

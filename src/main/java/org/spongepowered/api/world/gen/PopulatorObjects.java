@@ -68,14 +68,14 @@ public class PopulatorObjects {
             int populationStartZ = chunkPos.getZ() * 16 + 8;
             World world = chunk.getWorld();
 
-            for (int i = 0; i < attemptsPerChunk; i++) {
-                if (chancePerAttempt >= random.nextDouble()) {
+            for (int i = 0; i < this.attemptsPerChunk; i++) {
+                if (this.chancePerAttempt >= random.nextDouble()) {
                     int spawnX = populationStartX + random.nextInt(16);
-                    int spawnY = random.nextInt(maxY - minY + 1) + minY;
+                    int spawnY = random.nextInt(this.maxY - this.minY + 1) + this.minY;
                     int spawnZ = populationStartZ + random.nextInt(16);
 
-                    if (object.canPlaceAt(world, spawnX, spawnY, spawnZ)) {
-                        object.placeObject(world, spawnX, spawnY, spawnZ);
+                    if (this.object.canPlaceAt(world, spawnX, spawnY, spawnZ)) {
+                        this.object.placeObject(world, spawnX, spawnY, spawnZ);
                     }
                 }
             }

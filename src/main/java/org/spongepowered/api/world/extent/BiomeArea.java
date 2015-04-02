@@ -47,12 +47,20 @@ public interface BiomeArea {
     Vector2i getBiomeMin();
 
     /**
-     * Gets the biome location with the higest x and y that is still a valid
+     * Gets the biome location with the highest x and y that is still a valid
      * position for {@link #getBiome(Vector2i)}.
      *
      * @return The highest biome location.
      */
     Vector2i getBiomeMax();
+
+    /**
+     * Gets the size of the area. Defined as <code>{@link #getBiomeMax()} -
+     * {@link #getBiomeMin()} + (1, 1)</code>.
+     *
+     * @return The size
+     */
+    Vector2i getBiomeSize();
 
     /**
      * Get an object representing the biome at the given position.
