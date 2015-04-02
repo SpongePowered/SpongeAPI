@@ -48,10 +48,10 @@ public interface Game {
     Platform getPlatform();
 
     /**
-     * Gets the running {@link Server}, if any.
+     * Gets the {@link Server}.
      * @return The server
      */
-    Optional<Server> getServer();
+    Server getServer();
 
     /**
      * Gets the {@link PluginManager}.
