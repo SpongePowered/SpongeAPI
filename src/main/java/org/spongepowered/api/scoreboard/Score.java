@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
+
+import java.util.Set;
 
 /**
  * A score entry for an {@link Objective}. Changing this will not affect any other
@@ -53,5 +56,14 @@ public interface Score {
      * @param score The new score value
      */
     void setScore(int score);
+
+    /**
+     * Returns a {@link Set} of parent {@link Objective}s this {@link Score} is
+     * registered to.
+     *
+     * @return A {@link Set} of parent {@link Objective} this {@link Score} is
+     *         registered to
+     */
+    Set<Objective> getObjectives();
 
 }

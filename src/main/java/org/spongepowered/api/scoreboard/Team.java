@@ -25,6 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
@@ -198,5 +199,14 @@ public interface Team {
      * @return Whether the {@link User} was on this team
      */
     boolean removeUser(User user);
+
+    /**
+     * Returns a {@link Set} of parent {@link Scoreboard}s this {@link Team} is
+     * registered to.
+     *
+     * @return A {@link Set} of parent {@link Scoreboard}s this {@link Team} is
+     *         registered to
+     */
+    Set<Scoreboard> getScoreboards();
 
 }
