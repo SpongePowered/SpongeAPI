@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.block.tile;
 
 import org.spongepowered.api.block.tile.Sign;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.Cancellable;
 
@@ -33,7 +34,7 @@ import org.spongepowered.api.util.event.Cancellable;
  *
  * <p>Examples may include: A player writing a sign.</p>
  */
-public interface SignChangeEvent extends SignEvent, Cancellable {
+public interface SignChangeEvent extends SignEvent, CauseTracked, Cancellable {
 
     /**
      * Gets the previous messages in order of line number of the sign.
