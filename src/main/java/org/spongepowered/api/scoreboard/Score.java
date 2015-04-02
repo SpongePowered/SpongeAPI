@@ -56,10 +56,10 @@ public interface Score {
     void setScore(int score);
 
     /**
-     * Returns the parent {@link Objective} this Score is registered to, if
-     * applicable.
+     * Returns the parent {@link Objective} this {@link Score} is registered to,
+     * if applicable.
      *
-     * @return The parent {@link Objective} this Score is registered to
+     * @return The parent {@link Objective} this {@link Score} is registered to
      */
     Optional<Objective> getObjective();
 

@@ -232,6 +232,9 @@ public interface GameRegistry {
     /**
      * Gets the main {@link Scoreboard} controlled by the server.
      *
+     * <p>The main scoreboard is the one attached to the
+     * <code>/scoreboard</code> command.</p>
+     *
      * @return The main {@link Scoreboard} controlled by the server
      */
     Scoreboard getMainScoreboard();

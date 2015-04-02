@@ -132,10 +132,11 @@ public interface Objective {
     Score getScore(Text name);
 
     /**
-     * Returns the parent {@link Scoreboard} this Objective is registered to, if
-     * applicable.
+     * Returns the parent {@link Scoreboard} this {@link Objective} is
+     * registered to, if applicable.
      *
-     * @return The parent {@link Scoreboard} this Objective is registered to
+     * @return The parent {@link Scoreboard} this {@link Objective} is
+     *         registered to
      */
     Optional<Scoreboard> getScoreboard();
 

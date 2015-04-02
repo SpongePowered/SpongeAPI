@@ -201,10 +201,10 @@ public interface Team {
     boolean removeUser(User user);
 
     /**
-     * Returns the parent {@link Scoreboard} this Team is registered to, if
-     * applicable.
+     * Returns the parent {@link Scoreboard} this {@link Team} is registered to,
+     * if applicable.
      *
-     * @return The parent {@link Scoreboard} this Team is registered to
+     * @return The parent {@link Scoreboard} this {@link Team} is registered to
      */
     Optional<Scoreboard> getScoreboard();
 
