@@ -28,6 +28,8 @@ package org.spongepowered.api.event.entity.player;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.message.MessageEvent;
 
+import java.util.Set;
+
 /**
  * Called when a {@link Player} sends a chat message.
  */
@@ -35,8 +37,9 @@ public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
     
     /*
      * Returns the set of players that recieve the message.
+     * This Set is mutable.
      *
      * @return The {@link Player}s
      */
-    Set<Player> getReceivers();
+    Set<Player> getRecipients();
 }
