@@ -25,6 +25,7 @@
 
 package org.spongepowered.api;
 
+import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import com.google.common.base.Optional;
@@ -227,6 +228,13 @@ public interface GameRegistry {
      * @return The scoreboard builder
      */
     ScoreboardBuilder getScoreboardBuilder();
+
+    /**
+     * Gets the main {@link Scoreboard} controlled by the server.
+     *
+     * @return The main {@link Scoreboard} controlled by the server
+     */
+    Scoreboard getMainScoreboard();
 
     /**
      * Gets a {@link ParticleType} by name.

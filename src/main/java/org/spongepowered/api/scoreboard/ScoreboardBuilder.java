@@ -66,6 +66,6 @@ public interface ScoreboardBuilder {
      * @return A new instance of a {@link Scoreboard}
      * @throws IllegalStateException if the {@link Scoreboard} is not complete
      */
-    Objective build() throws IllegalStateException;
+    Scoreboard build() throws IllegalStateException;
 
 }

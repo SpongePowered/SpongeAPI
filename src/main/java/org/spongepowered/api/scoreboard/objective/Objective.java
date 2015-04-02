@@ -26,6 +26,7 @@ package org.spongepowered.api.scoreboard.objective;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.Score;
+import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
@@ -129,5 +130,13 @@ public interface Objective {
      * @return The {@link Score} for the specified {@link Text}
      */
     Score getScore(Text name);
+
+    /**
+     * Returns the parent {@link Scoreboard} this Objective is registered to, if
+     * applicable.
+     *
+     * @return The parent {@link Scoreboard} this Objective is registered to
+     */
+    Optional<Scoreboard> getScoreboard();
 
 }

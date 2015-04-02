@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
 
@@ -53,5 +54,13 @@ public interface Score {
      * @param score The new score value
      */
     void setScore(int score);
+
+    /**
+     * Returns the parent {@link Objective} this Score is registered to, if
+     * applicable.
+     *
+     * @return The parent {@link Objective} this Score is registered to
+     */
+    Optional<Objective> getObjective();
 
 }
