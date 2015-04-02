@@ -50,15 +50,10 @@ public abstract class SimpleCommandBase implements CommandCallable {
      * @param usage A description of the command arguments
      */
     public SimpleCommandBase(String permission, String shortDescription, Text help, String usage) {
-        checkNotNull(permission);
-        checkNotNull(shortDescription);
-        checkNotNull(help);
-        checkNotNull(usage);
-
-        this.permission = permission;
-        this.shortDescription = shortDescription;
-        this.help = help;
-        this.usage = usage;
+        this.permission = checkNotNull(permission, "permission");
+        this.shortDescription = checkNotNull(shortDescription, "shortDescription");
+        this.help = checkNotNull(help, "help");
+        this.usage = checkNotNull(usage, "usage");
     }
 
     @Override
