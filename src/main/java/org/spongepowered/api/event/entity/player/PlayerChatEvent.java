@@ -32,5 +32,18 @@ import org.spongepowered.api.event.message.MessageEvent;
  * Called when a {@link Player} sends a chat message.
  */
 public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
-
+    
+    /*
+     * Returns list of players that recieve the message.
+     *
+     * @return The list of {@link Player}s
+     */
+    List<Player> getReceivers();
+    
+    /*
+     * Sets the list of players who receive the message.
+     *
+     * @param receivers The list of {@link Player}s
+     */
+    void setReceivers(List<Player> receivers);
 }
