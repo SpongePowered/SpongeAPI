@@ -83,8 +83,7 @@ public class SimpleCommandService implements CommandService {
      */
     @Inject
     public SimpleCommandService(PluginManager pluginManager) {
-        checkNotNull(pluginManager, "pluginManager");
-        this.pluginManager = pluginManager;
+        this.pluginManager = checkNotNull(pluginManager, "pluginManager");
     }
 
     /**
@@ -117,7 +116,7 @@ public class SimpleCommandService implements CommandService {
     @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(plugin);
+        checkNotNull(plugin, "plugin");
 
         Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {

@@ -204,8 +204,7 @@ class ClassGenerator {
      * @param nullPolicy The null policy
      */
     public void setNullPolicy(NullPolicy nullPolicy) {
-        checkNotNull(nullPolicy, "nullPolicy");
-        this.nullPolicy = nullPolicy;
+        this.nullPolicy = checkNotNull(nullPolicy, "nullPolicy");
     }
 
     /**

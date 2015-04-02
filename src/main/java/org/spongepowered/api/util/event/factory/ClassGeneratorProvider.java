@@ -43,8 +43,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
      * @param targetPackage The target package to place generated event classes in
      */
     public ClassGeneratorProvider(String targetPackage) {
-        checkNotNull(targetPackage, "targetPackage");
-        this.targetPackage = targetPackage;
+        this.targetPackage = checkNotNull(targetPackage, "targetPackage");
     }
 
     @Override

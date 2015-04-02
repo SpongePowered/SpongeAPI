@@ -44,7 +44,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(Class<?> service) {
         super();
-        this.service = checkNotNull(service);
+        this.service = checkNotNull(service, "service");
     }
 
     /**
@@ -56,8 +56,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(String message, Class<?> service) {
         super(message);
-        checkNotNull(service);
-        this.service = service;
+        this.service = checkNotNull(service, "service");
     }
 
     /**
@@ -70,8 +69,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(String message, Throwable cause, Class<?> service) {
         super(message, cause);
-        checkNotNull(service);
-        this.service = service;
+        this.service = checkNotNull(service, "service");
     }
 
     /**
@@ -83,8 +81,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(Throwable cause, Class<?> service) {
         super(cause);
-        checkNotNull(service);
-        this.service = service;
+        this.service = checkNotNull(service, "service");
     }
 
     /**

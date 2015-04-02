@@ -53,12 +53,9 @@ public final class Property {
      * @param mutator The mutator
      */
     public Property(String name, Class<?> type, Method accessor, @Nullable Method mutator) {
-        checkNotNull(name, "name");
-        checkNotNull(type, "type");
-        checkNotNull(accessor, "accessor");
-        this.name = name;
-        this.type = type;
-        this.accessor = accessor;
+        this.name = checkNotNull(name, "name");
+        this.type = checkNotNull(type, "type");
+        this.accessor = checkNotNull(accessor, "accessor");
         this.mutator = Optional.fromNullable(mutator);
     }
 

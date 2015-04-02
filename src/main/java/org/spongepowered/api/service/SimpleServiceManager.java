@@ -62,8 +62,7 @@ public class SimpleServiceManager implements ServiceManager {
      */
     @Inject
     public SimpleServiceManager(PluginManager pluginManager) {
-        checkNotNull(pluginManager, "pluginManager");
-        this.pluginManager = pluginManager;
+        this.pluginManager = checkNotNull(pluginManager, "pluginManager");
     }
 
     @Override
