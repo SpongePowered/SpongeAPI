@@ -39,6 +39,7 @@ import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
+import org.spongepowered.api.util.command.InvocationCommandException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +59,7 @@ public class SimpleDispatcher implements Dispatcher {
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
     private final String shortDescription;
     private final Text help;
-    
+
     /**
      * Creates a new dispatcher without any help messages.
      */
@@ -66,7 +67,7 @@ public class SimpleDispatcher implements Dispatcher {
         this.shortDescription = "";
         this.help = Texts.of();
     }
-    
+
     /**
      * Creates a new dispatcher with a description and a help message.
      *
@@ -323,7 +324,13 @@ public class SimpleDispatcher implements Dispatcher {
             passedParents.addAll(parents);
             passedParents.add(parts[0]);
 
-            mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
+            try {
+                mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
+            } catch (CommandException c) {
+                throw c;
+            } catch (Throwable t) {
+                throw new InvocationCommandException(t);
+            }
 
             return true;
         } else {
@@ -363,7 +370,7 @@ public class SimpleDispatcher implements Dispatcher {
             Optional<CommandMapping> mapping = get(parts[0]);
 
             if (mapping.isPresent()) {
-                mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
+                suggestions.addAll(mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : ""));
             }
         }
 
