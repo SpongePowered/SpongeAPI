@@ -26,10 +26,12 @@
 package org.spongepowered.api.world;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 /**
  * A builder for {@link World}s and {@link WorldCreationSettings}.
@@ -98,6 +100,16 @@ public interface WorldBuilder {
     WorldBuilder generator(GeneratorType type);
 
     /**
+     * Sets the generator modifiers to use for the world.
+     *
+     * @param modifier The modifiers
+     * @return The builder, for chaining
+     * @throws IllegalArgumentException If one of the modifiers is not
+     * registered in {@link GameRegistry}.
+     */
+    WorldBuilder generatorModifiers(WorldGeneratorModifier... modifier);
+
+    /**
      * Sets the dimension type of the world.
      * 
      * @param type The type
@@ -125,10 +137,10 @@ public interface WorldBuilder {
     WorldBuilder hardcore(boolean enabled);
 
     /**
-     * Sets any extra settings required by the {@link GeneratorType}. If not
-     * specified these will default to the settings within
-     * {@link GeneratorType#getGeneratorSettings()}.
-     * 
+     * Sets any extra settings required by the {@link GeneratorType} or by the
+     * {@link WorldGeneratorModifier}s. If not specified these will default to
+     * the settings within {@link GeneratorType#getGeneratorSettings()}.
+     *
      * @param settings The generator settings
      * @return The builder, for chaining
      */

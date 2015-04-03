@@ -75,7 +75,7 @@ public class PopulatorObjects {
                     int spawnZ = populationStartZ + random.nextInt(16);
 
                     if (this.object.canPlaceAt(world, spawnX, spawnY, spawnZ)) {
-                        this.object.placeObject(world, spawnX, spawnY, spawnZ);
+                        this.object.placeObject(world, random, spawnX, spawnY, spawnZ);
                     }
                 }
             }

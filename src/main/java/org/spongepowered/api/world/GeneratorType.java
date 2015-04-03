@@ -42,17 +42,18 @@ public interface GeneratorType {
     String getName();
 
     /**
-     * Creates a new {@link WorldGenerator} for this world type.
-     * 
-     * @return The new generator
-     */
-    WorldGenerator createGenerator();
-
-    /**
-     * Gets a copy of the settings for the world generator.
-     * 
+     * Gets a copy of the default settings for the world generator.
+     *
      * @return The settings
      */
     DataContainer getGeneratorSettings();
+    
+    /**
+     * Creates a new {@link WorldGenerator} for this world type.
+     *
+     * @param world The world to create the world generator for.
+     * @return The new generator
+     */
+    WorldGenerator createGenerator(World world);
 
 }

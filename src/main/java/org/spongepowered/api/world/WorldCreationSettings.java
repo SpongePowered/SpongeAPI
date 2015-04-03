@@ -28,6 +28,9 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.world.gen.WorldGeneratorModifier;
+
+import java.util.Collection;
 
 /**
  * A representation of the settings which define a world for creation.
@@ -88,6 +91,13 @@ public interface WorldCreationSettings {
     GeneratorType getGeneratorType();
 
     /**
+     * Gets an immutable collection of the world generator modifiers applied
+     * to this world.
+     * @return The modifiers
+     */
+    Collection<WorldGeneratorModifier> getGeneratorModifiers();
+
+    /**
      * Gets whether map features are enabled to be generated into the world.
      * 
      * @return Are map features enabled
@@ -125,7 +135,7 @@ public interface WorldCreationSettings {
     /**
      * Gets a {@link DataContainer} of any extra settings required by the
      * generator.
-     * 
+     *
      * @return The generator settings
      */
     DataContainer getGeneratorSettings();

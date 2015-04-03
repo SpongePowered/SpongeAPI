@@ -89,27 +89,4 @@ public interface WorldGenerator {
      */
     void setBiomeGenerator(BiomeGenerator biomeGenerator);
 
-    /**
-     * Gets whether map features are enabled and if this generator will be
-     * creating structures (such as villages and strongholds etc.)
-     *
-     * @return Map features enabled
-     */
-    boolean areMapFeaturesEnabled();
-
-    /**
-     * Gets the random seed for this world. The world seed is used for terrain
-     * generation.
-     *
-     * @return The seed
-     */
-    long getSeed();
-
-    /**
-     * Sets the random seed for this world.
-     *
-     * @param seed The seed
-     */
-    void setSeed(long seed);
-
 }

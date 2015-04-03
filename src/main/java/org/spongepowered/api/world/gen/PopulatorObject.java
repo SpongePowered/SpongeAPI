@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.world.gen;
 
+import java.util.Random;
+
 import org.spongepowered.api.world.World;
 
 /**
@@ -51,10 +53,12 @@ public interface PopulatorObject {
      * Places the object into the world at the given location.
      *
      * @param world The world
+     * @param random Random number generator based on the world seed and
+     *        position.
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      */
-    void placeObject(World world, int x, int y, int z);
+    void placeObject(World world, Random random, int x, int y, int z);
 
 }
