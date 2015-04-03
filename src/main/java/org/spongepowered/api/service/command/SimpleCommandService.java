@@ -204,8 +204,8 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> get(String alias) {
-        return this.dispatcher.get(alias);
+    public Set<CommandMapping> getAll(String alias) {
+        return this.dispatcher.getAll(alias);
     }
 
     @Override
@@ -251,6 +251,11 @@ public class SimpleCommandService implements CommandService {
     @Override
     public int size() {
         return this.dispatcher.size();
+    }
+
+    @Override
+    public Optional<? extends CommandMapping> resolveMapping(String alias, CommandSource source) {
+        return this.dispatcher.resolveMapping(alias, source);
     }
 
 }
