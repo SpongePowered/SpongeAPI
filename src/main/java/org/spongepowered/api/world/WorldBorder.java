@@ -185,7 +185,7 @@ public interface WorldBorder {
      *
      * @return The damage amount
      */
-    int getDamageAmount();
+    double getDamageAmount();
 
     /**
      * Set the damage done to a player per block per tick when outside the
@@ -193,5 +193,5 @@ public interface WorldBorder {
      *
      * @param damage The damage amount
      */
-    void setDamageAmount(int damage);
+    void setDamageAmount(double damage);
 }
