@@ -131,6 +131,7 @@ import org.spongepowered.api.event.world.GameRuleChangeEvent;
 import org.spongepowered.api.event.world.WorldCreateEvent;
 import org.spongepowered.api.event.world.WorldLoadEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.TileEntityInventory;
 import org.spongepowered.api.stats.Statistic;
@@ -761,11 +762,12 @@ public final class SpongeEventFactory {
      * @param items The items that will be picked up
      * @return A new instance of the event
      */
-    public static EntityPickUpItemEvent createEntityPickUpItem(Game game, Entity entity, Collection<Entity> items) {
+    public static EntityPickUpItemEvent createEntityPickUpItem(Game game, Entity entity, Collection<Entity> items, Inventory inventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("items", items);
+        values.put("inventory", inventory);
         return createEvent(EntityPickUpItemEvent.class, values);
     }
 
@@ -1334,7 +1336,7 @@ public final class SpongeEventFactory {
      * @param items The items that will be picked up
      * @return A new instance of the event
      */
-    public static PlayerPickUpItemEvent createPlayerPickUpItem(Game game, Player player, Collection<Entity> items) {
+    public static PlayerPickUpItemEvent createPlayerPickUpItem(Game game, Player player, Collection<Entity> items, Inventory inventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1343,6 +1345,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("inventory", inventory);
         return createEvent(PlayerPickUpItemEvent.class, values);
     }
 
