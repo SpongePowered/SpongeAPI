@@ -33,7 +33,4 @@ import org.spongepowered.api.event.entity.EntityEquipmentChangeEvent;
  */
 public interface LivingEquipmentChangeEvent extends LivingEvent, EntityEquipmentChangeEvent {
 
-    /*
-    TODO getEquipmentInventory()
-     */
 }
