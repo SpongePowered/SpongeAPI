@@ -48,7 +48,6 @@ import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.event.Order;
 import org.spongepowered.api.util.event.Subscribe;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -129,14 +128,8 @@ public class SimpleCommandService implements CommandService {
         PluginContainer container = containerOptional.get();
 
         synchronized (this.lock) {
-            // <namespace>:<alias> for all commands
-            List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
-            for (String alias : aliases) {
-                aliasesWithPrefix.add(alias);
-                aliasesWithPrefix.add(container.getId() + ":" + alias);
-            }
 
-            Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliasesWithPrefix, callback);
+            Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliases, callback);
 
             if (mapping.isPresent()) {
                 this.owners.put(container, mapping.get());
@@ -146,7 +139,6 @@ public class SimpleCommandService implements CommandService {
         }
     }
 
-    @Override
     public Optional<CommandMapping> remove(String alias) {
         synchronized (this.lock) {
             Optional<CommandMapping> removed = this.dispatcher.remove(alias);

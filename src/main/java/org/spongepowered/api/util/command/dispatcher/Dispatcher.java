@@ -28,6 +28,7 @@ package org.spongepowered.api.util.command.dispatcher;
 import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Set;
 
@@ -66,13 +67,24 @@ public interface Dispatcher extends CommandCallable {
     Set<String> getAliases();
 
     /**
-     * Get the {@link CommandCallable} associated with an alias. Returns
-     * null if no command is named by the given alias.
+     * Get all {@link CommandCallable}s associated with an alias. Returns an
+     * empty list if no command is named by the given alias.
      *
      * @param alias The alias
      * @return The command mapping, if available
      */
-    Optional<? extends CommandMapping> get(String alias);
+    Set<? extends CommandMapping> getAll(String alias);
+
+    /**
+     * Resolves an alias sent by a certain {@link CommandSource} to a
+     * {@link CommandMapping}.
+     * 
+     * @param alias The alias to resolve
+     * @param source The source of the alias
+     * @return A CommandMapping corresponding to the specified alias and source,
+     *         or if none exists, {@link Optional#absent()}
+     */
+    Optional<? extends CommandMapping> resolveMapping(String alias, CommandSource source);
 
     /**
      * Returns whether the dispatcher contains a registered command for the

@@ -283,8 +283,18 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public synchronized Optional<CommandMapping> get(String alias) {
+    public synchronized Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
         return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
+    }
+    
+    @Override
+    public synchronized Set<CommandMapping> getAll(String alias) {
+        Set<CommandMapping> set = new HashSet<CommandMapping>();
+        Optional<CommandMapping> mapping = Optional.fromNullable(this.commands.get(alias.toLowerCase()));
+        if (mapping.isPresent()) {
+            set.add(mapping.get());
+        }
+        return set;
     }
 
     @Override
@@ -317,7 +327,7 @@ public class SimpleDispatcher implements Dispatcher {
     @Override
     public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         String[] parts = arguments.split(" +", 2);
-        Optional<CommandMapping> mapping = get(parts[0]);
+        Optional<CommandMapping> mapping = resolveMapping(parts[0], source);
 
         if (mapping.isPresent()) {
             List<String> passedParents = new ArrayList<String>(parents.size() + 1);
@@ -367,7 +377,7 @@ public class SimpleDispatcher implements Dispatcher {
                 }
             }
         } else { // Complete using subcommand
-            Optional<CommandMapping> mapping = get(parts[0]);
+            Optional<CommandMapping> mapping = resolveMapping(parts[0], source);
 
             if (mapping.isPresent()) {
                 suggestions.addAll(mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : ""));
