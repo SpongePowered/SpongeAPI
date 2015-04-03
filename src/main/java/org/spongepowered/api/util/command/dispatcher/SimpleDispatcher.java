@@ -370,7 +370,10 @@ public class SimpleDispatcher implements Dispatcher {
             Optional<CommandMapping> mapping = get(parts[0]);
 
             if (mapping.isPresent()) {
-                suggestions.addAll(mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : ""));
+                List<String> ret = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
+                if (ret == null) {
+                    suggestions.addAll(ret);
+                }
             }
         }
 
@@ -379,12 +382,12 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public String getShortDescription(CommandSource source) {
-        return shortDescription;
+        return this.shortDescription;
     }
 
     @Override
     public Text getHelp(CommandSource source) {
-        return help;
+        return this.help;
     }
 
     @Override
