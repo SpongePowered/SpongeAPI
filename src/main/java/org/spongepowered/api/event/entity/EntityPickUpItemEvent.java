@@ -27,6 +27,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.inventory.InventoryEvent;
 import org.spongepowered.api.util.event.Cancellable;
 
 import java.util.Collection;
@@ -34,7 +35,7 @@ import java.util.Collection;
 /**
  * Called when a entity picks up an item(s).
  */
-public interface EntityPickUpItemEvent extends EntityEvent, Cancellable {
+public interface EntityPickUpItemEvent extends EntityEvent, InventoryEvent, Cancellable {
 
     /**
      * Gets the items as an {@link Entity} that the entity is picking up.

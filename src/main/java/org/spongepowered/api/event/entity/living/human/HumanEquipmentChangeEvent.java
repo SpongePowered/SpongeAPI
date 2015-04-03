@@ -33,7 +33,4 @@ import org.spongepowered.api.event.entity.living.LivingEquipmentChangeEvent;
  */
 public interface HumanEquipmentChangeEvent extends HumanEvent, LivingEquipmentChangeEvent {
 
-    /*
-    TODO getHumanInventory()
-     */
 }

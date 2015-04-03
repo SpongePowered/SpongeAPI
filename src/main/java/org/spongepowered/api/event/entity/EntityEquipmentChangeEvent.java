@@ -26,7 +26,9 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.event.inventory.InventoryEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.event.Cancellable;
 
 /**
@@ -55,11 +57,6 @@ public interface EntityEquipmentChangeEvent extends EntityEvent, InventoryEvent,
      */
     Optional<ItemStack> getNewItemStack();
 
-    /**
-     * Gets the slot index of the equipment being changed.
-     *
-     * @return The slot index of the equipment item
-     */
-    int getSlot();
-
+    @Override
+    Slot getInventory();
 }
