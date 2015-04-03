@@ -1,0 +1,61 @@
+apply plugin: 'maven'
+
+ext {
+    buildNumber = System.getenv().BUILD_NUMBER != null ? System.getenv().BUILD_NUMBER : '0'
+    ciSystem = System.getenv().ciSystem != null ? System.getenv().ciSystem : 'unknown'
+    commit = System.getenv().commit != null ? System.getenv().commit : 'unknown'
+}
+
+configurations {
+    deployerJars // Deployment dependency
+}
+
+dependencies {
+    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            configuration = configurations.deployerJars
+
+            if (project.hasProperty('chRepo')) {
+                repository(url: project.chRepo) {
+                    authentication(userName: project.chUsername, password: project.chPassword)
+                }
+            }
+
+            pom {
+                groupId = project.group
+                artifactId = project.archivesBaseName
+                version = project.version
+
+                project {
+                    name project.archivesBaseName
+                    description project.description
+                    packaging 'jar'
+                    url project.url
+
+                    scm {
+                        url "https://github.com/$project.organization/$project.name"
+                        connection "scm:git:https://github.com/$project.organization/${project.name}.git"
+                        developerConnection "scm:git:git@github.com:$project.organization/${project.name}.git"
+                    }
+
+                    issueManagement {
+                        system 'youtrack'
+                        url 'https://issues.spongepowered.org'
+                    }
+
+                    licenses {
+                        license {
+                            name 'MIT License'
+                            url 'http://opensource.org/licenses/MIT'
+                            distribution 'repo'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
