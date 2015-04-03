@@ -231,5 +231,5 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
      * Gets the {@link Location} of the spawn point.
      * @return The location
      */
-    Location getSpawnPosition();
+    Location getSpawnLocation();
 }
