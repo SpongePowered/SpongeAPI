@@ -191,7 +191,7 @@ public class SpongeDispatcher implements Dispatcher {
                     outer: for (CommandRegistrar registrar : this.getRegistrars()) {
                         for (String p : registrar.getPrefixes()) {
                             if (prefix.equalsIgnoreCase(p)) {
-                                rName = registrar.getRegistrarName();
+                                rName = registrar.getFriendlyName();
                                 break outer;
                             }
                         }
@@ -211,14 +211,7 @@ public class SpongeDispatcher implements Dispatcher {
                         TextBuilder builder2;
                         int index = 0;
                         for (CommandRegistrar r : potentialRegistrars) {
-                            String pfix;
-                            if (r.getPrefixes().iterator().hasNext()) {
-                                pfix = r.getPrefixes().iterator().next();
-                            }
-                            else {
-                                pfix = r.getRegistrarName();
-                            }
-                            builder2 = Texts.builder("/" + pfix + ":" + realAlias);
+                            builder2 = Texts.builder("/" + r.getRegistrarName() + ":" + realAlias);
                             builder2.color(TextColors.GOLD);
                             Text cmd = builder2.build();
                             builder2 =

@@ -33,12 +33,14 @@ import java.util.Set;
 /**
  * An object that can register commands with a {@link CommandService}. When
  * implementing {@link PluginContainer}, getRegistrarName should be the same as
- * getId.
+ * getId, and getFriendlyName the same as getName.
  */
 public interface CommandRegistrar {
 
     Set<String> getPrefixes();
 
     String getRegistrarName();
+
+    String getFriendlyName();
 
 }
