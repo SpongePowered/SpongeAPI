@@ -53,9 +53,13 @@ public class SpongeCommandService implements CommandService {
 
     private static final Logger log = LoggerFactory.getLogger(SpongeCommandService.class);
 
-    public SpongeCommandService(PluginManager manager, boolean enableNotFoundMessages) {
-        this.dispatcher = new SpongeDispatcher(enableNotFoundMessages);
+    public SpongeCommandService(PluginManager manager, boolean enableNotFoundMessages, String shortDescription, Text help, String usage) {
+        this.dispatcher = new SpongeDispatcher(enableNotFoundMessages, shortDescription, help, usage);
         this.manager = manager;
+    }
+
+    public SpongeCommandService(PluginManager manager, boolean enableNotFoundMessages) {
+        this(manager, enableNotFoundMessages, "", Texts.of(), "");
     }
 
     /**
@@ -122,17 +126,17 @@ public class SpongeCommandService implements CommandService {
 
     @Override
     public String getShortDescription(CommandSource source) {
-        return "";
+        return this.dispatcher.getShortDescription(source);
     }
 
     @Override
     public Text getHelp(CommandSource source) {
-        return Texts.of();
+        return this.dispatcher.getHelp(source);
     }
 
     @Override
     public String getUsage(CommandSource source) {
-        return "";
+        return this.dispatcher.getUsage(source);
     }
 
     @Override

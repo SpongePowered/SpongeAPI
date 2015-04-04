@@ -290,9 +290,9 @@ public class SimpleDispatcher implements Dispatcher {
     @Override
     public synchronized Set<CommandMapping> getAll(String alias) {
         Set<CommandMapping> set = new HashSet<CommandMapping>();
-        Optional<CommandMapping> mapping = Optional.fromNullable(this.commands.get(alias.toLowerCase()));
-        if (mapping.isPresent()) {
-            set.add(mapping.get());
+        CommandMapping mapping = this.commands.get(alias.toLowerCase());
+        if (mapping != null) {
+            set.add(mapping);
         }
         return set;
     }

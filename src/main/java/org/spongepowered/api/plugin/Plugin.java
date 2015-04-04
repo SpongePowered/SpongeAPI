@@ -84,10 +84,10 @@ public @interface Plugin {
 
     /**
      * Gets the prefixes that can be prepended to a command to indicate this
-     * plugin's version of said command. This must have at least one item.
+     * plugin's version of said command.
      * 
-     * @return The prefix prepended to a command to indicate this plugin's
-     *         version of said command.
+     * @return The prefixes that can be prepended to a command to indicate this
+     *         plugin's version of said command.
      */
     String[] commandPrefixes() default {};
 

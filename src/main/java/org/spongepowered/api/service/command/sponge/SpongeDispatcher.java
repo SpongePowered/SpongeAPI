@@ -56,8 +56,19 @@ public class SpongeDispatcher implements Dispatcher {
     private Map<String, AliasContext> contexts = new HashMap<String, AliasContext>();
     private boolean enableNotFoundMessages;
 
-    public SpongeDispatcher(boolean enableNotFoundMessages) {
+    private String shortDescription;
+    private String usage;
+    private Text help;
+
+    public SpongeDispatcher(boolean enableNotFoundMessages, String shortDescription, Text help, String usage) {
         this.enableNotFoundMessages = enableNotFoundMessages;
+        this.shortDescription = shortDescription;
+        this.help = help;
+        this.usage = usage;
+    }
+
+    public SpongeDispatcher(boolean enableNotFoundMessages) {
+        this(enableNotFoundMessages, "", Texts.of(), "");
     }
 
     /**
@@ -250,17 +261,17 @@ public class SpongeDispatcher implements Dispatcher {
 
     @Override
     public String getShortDescription(CommandSource source) {
-        return "";
+        return shortDescription;
     }
 
     @Override
     public Text getHelp(CommandSource source) {
-        return Texts.of();
+        return help;
     }
 
     @Override
     public String getUsage(CommandSource source) {
-        return "";
+        return usage;
     }
 
     @Override

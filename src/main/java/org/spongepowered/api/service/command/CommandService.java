@@ -60,7 +60,7 @@ public interface CommandService extends Dispatcher {
      *        annotated by {@link Plugin}, or anything implementing
      *        {@link CommandRegistrar}.
      * @param callable The command
-     * @param alias An array of aliases
+     * @param alias A list of aliases
      * @return The registered command mapping, unless no aliases could be
      *         registered
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
@@ -87,7 +87,7 @@ public interface CommandService extends Dispatcher {
      *        annotated by {@link Plugin}, or anything implementing
      *        {@link CommandRegistrar}.
      * @param callable The command
-     * @param alias An array of aliases
+     * @param alias A list of aliases
      * @return The registered command mapping, unless no aliases could be
      *         registered
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
@@ -150,7 +150,7 @@ public interface CommandService extends Dispatcher {
      * Get a set of commands owned by the given {@link CommandRegistrar}.
      *
      * @param registrar The registrar
-     * @return A set of mappings
+     * @return a set of mappings
      */
     Set<CommandMapping> getOwnedBy(CommandRegistrar registrar);
 
