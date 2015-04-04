@@ -46,10 +46,19 @@ public final class TextColors {
         private final Color color = new Color(0, 0, 0, 0);
 
         @Override
+        public String getName() {
+            return "NONE";
+        }
+
+        @Override
         public Color getColor() {
             return this.color;
         }
 
+        @Override
+        public String getId() {
+            return "NONE";
+        }
     };
 
     public static final TextColor.Base BLACK = null;

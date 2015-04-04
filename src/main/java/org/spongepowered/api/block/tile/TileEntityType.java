@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.tile;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -31,14 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Describes a type of tile entity.
  */
 @CatalogedBy(TileEntityTypes.class)
-public interface TileEntityType {
-
-    /**
-     * Return the internal ID for the tile entity type.
-     *
-     * @return The id
-     */
-    String getId();
+public interface TileEntityType extends CatalogType {
 
     /**
      * Gets the type of {@link BlockType} that this {@link TileEntityType}

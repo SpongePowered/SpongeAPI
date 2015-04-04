@@ -24,20 +24,14 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of {@link Dimension}.
  */
 @CatalogedBy(DimensionTypes.class)
-public interface DimensionType {
-
-    /**
-     * Returns the name of this {@link DimensionType}.
-     *
-     * @return The name
-     */
-    String getName();
+public interface DimensionType extends CatalogType {
 
     /**
      * Returns whether spawn chunks of this {@link DimensionType} remain loaded

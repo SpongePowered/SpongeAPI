@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -35,13 +36,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * can be saddled.</p>
  */
 @CatalogedBy(HorseVariants.class)
-public interface HorseVariant extends DataSerializable, Translatable {
-
-    /**
-     * Gets the name of this variant.
-     *
-     * @return The name of this variant
-     */
-    String getName();
+public interface HorseVariant extends CatalogType, Translatable {
 
 }

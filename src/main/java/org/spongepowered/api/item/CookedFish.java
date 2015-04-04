@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,13 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of cooked fish.
  */
 @CatalogedBy(CookedFishes.class)
-public interface CookedFish extends DataSerializable {
-
-    /**
-     * Gets the id of this type of cooked fish.
-     *
-     * @return The id of this cooked fish
-     */
-    String getId();
+public interface CookedFish extends CatalogType {
 
 }

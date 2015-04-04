@@ -70,7 +70,7 @@ public class EquipmentProperty extends AbstractItemProperty<String, EquipmentTyp
     public int compareTo(ItemProperty<?, ?> o) {
         if (o instanceof EquipmentProperty) {
             EquipmentProperty property = (EquipmentProperty) o;
-            return this.getValue().getId().compareTo(property.getValue().getId());
+            return this.getValue().getName().compareTo(property.getValue().getName());
         }
         return this.getClass().getName().compareTo(o.getClass().getName());
     }

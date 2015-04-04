@@ -24,16 +24,13 @@
  */
 package org.spongepowered.api.scoreboard.objective.displaymode;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents the mode in which to display scores for an {@link org.spongepowered.api.scoreboard.objective.Objective}
  */
-public interface ObjectiveDisplayMode {
-
-    /**
-     * Gets the name of this objective display mode.
-     *
-     * @return The name of this objective display mode
-     */
-    String getName();
+@CatalogedBy(ObjectiveDisplayModes.class)
+public interface ObjectiveDisplayMode extends CatalogType {
 
 }

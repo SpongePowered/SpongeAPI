@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,13 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * born horse.</p>
  */
 @CatalogedBy(HorseColors.class)
-public interface HorseColor extends DataSerializable {
-
-    /**
-     * Gets the name of this color.
-     *
-     * @return The name of this color
-     */
-    String getName();
+public interface HorseColor extends CatalogType {
 
 }

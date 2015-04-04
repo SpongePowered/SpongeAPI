@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,13 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the type of coal.
  */
 @CatalogedBy(CoalTypes.class)
-public interface CoalType extends DataSerializable {
-
-    /**
-     * Gets the generic id of this coal type.
-     *
-     * @return The generic id for this coal type
-     */
-    String getId();
+public interface CoalType extends CatalogType {
 
 }

@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.awt.Color;
 
@@ -33,7 +35,8 @@ import java.awt.Color;
  *
  * @see TextColors
  */
-public interface TextColor {
+@CatalogedBy(TextColors.class)
+public interface TextColor extends CatalogType {
 
     /**
      * Returns the corresponding {@link Color} for this {@link TextColor}.

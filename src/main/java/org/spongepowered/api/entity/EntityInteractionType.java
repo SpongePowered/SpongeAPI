@@ -24,19 +24,13 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a method of interacting with a block or entity.
  */
 @CatalogedBy(EntityInteractionTypes.class)
-public interface EntityInteractionType {
-
-    /**
-     * Gets the name of this entity interaction type.
-     *
-     * @return The name of this entity interaction type
-     */
-    String getName();
+public interface EntityInteractionType extends CatalogType {
 
 }

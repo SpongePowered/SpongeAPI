@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,14 +34,7 @@ import java.awt.Color;
  * Represents a color of dye that can be used by various items and blocks.
  */
 @CatalogedBy(DyeColors.class)
-public interface DyeColor extends DataSerializable {
-
-    /**
-     * Gets the name of this color.
-     *
-     * @return The name of this color
-     */
-    String getName();
+public interface DyeColor extends CatalogType {
 
     /**
      * Gets this dye color as a {@link Color} for easy translation.

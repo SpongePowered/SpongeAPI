@@ -25,12 +25,13 @@
 
 package org.spongepowered.api.world.weather;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of weather.
  */
 @CatalogedBy(Weathers.class)
-public interface Weather {
+public interface Weather extends CatalogType {
 
 }

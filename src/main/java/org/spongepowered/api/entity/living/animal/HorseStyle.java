@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,13 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * horse. The style can be inherited to new born child horses.</p>
  */
 @CatalogedBy(HorseStyles.class)
-public interface HorseStyle extends DataSerializable {
-
-    /**
-     * Gets the name of this style.
-     *
-     * @return The name of this style
-     */
-    String getName();
+public interface HorseStyle extends CatalogType {
 
 }

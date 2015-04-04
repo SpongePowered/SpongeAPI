@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,14 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Describes a type of entity.
  */
 @CatalogedBy(EntityTypes.class)
-public interface EntityType extends Translatable {
-
-    /**
-     * Return the internal ID for the entity type.
-     *
-     * @return The id
-     */
-    String getId();
+public interface EntityType extends CatalogType, Translatable {
 
     /**
      * Returns the entity class for this type.

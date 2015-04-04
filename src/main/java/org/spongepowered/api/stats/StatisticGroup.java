@@ -25,20 +25,16 @@
 
 package org.spongepowered.api.stats;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a group of statistics which may be used to logically group
  * statistics or define expandable sets of statistics for objects such as items.
  */
-public interface StatisticGroup extends Translatable {
-    
-    /**
-     * Gets the internal name for this statistic group.
-     * 
-     * @return The internal name
-     */
-    String getInternalName();
+@CatalogedBy(StatisticGroups.class)
+public interface StatisticGroup extends CatalogType, Translatable {
 
     /**
      * Gets the default {@link StatisticFormat} which all statistics without
