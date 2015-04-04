@@ -25,12 +25,20 @@
 
 package org.spongepowered.api.service.command.sponge;
 
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.service.command.CommandService;
+
 import java.util.Set;
 
+/**
+ * An object that can register commands with a {@link CommandService}. When
+ * implementing {@link PluginContainer}, getRegistrarName should be the same as
+ * getId.
+ */
 public interface CommandRegistrar {
 
     Set<String> getPrefixes();
 
-    String getName();
+    String getRegistrarName();
 
 }

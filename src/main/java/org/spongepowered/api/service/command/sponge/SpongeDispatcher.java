@@ -191,7 +191,7 @@ public class SpongeDispatcher implements Dispatcher {
                     outer: for (CommandRegistrar registrar : this.getRegistrars()) {
                         for (String p : registrar.getPrefixes()) {
                             if (prefix.equalsIgnoreCase(p)) {
-                                rName = registrar.getName();
+                                rName = registrar.getRegistrarName();
                                 break outer;
                             }
                         }
@@ -216,7 +216,7 @@ public class SpongeDispatcher implements Dispatcher {
                                 pfix = r.getPrefixes().iterator().next();
                             }
                             else {
-                                pfix = r.getName();
+                                pfix = r.getRegistrarName();
                             }
                             builder2 = Texts.builder("/" + pfix + ":" + realAlias);
                             builder2.color(TextColors.GOLD);
@@ -363,15 +363,10 @@ public class SpongeDispatcher implements Dispatcher {
             realAlias = alias.substring(alias.indexOf(":") + 1);
             String prefix = alias.substring(0, alias.indexOf(":") - 1);
             for (CommandRegistrar r : this.getRegistrars()) {
-                for (String p : r.getPrefixes()) {
+                Set<String> prefixes = new HashSet<String>(r.getPrefixes());
+                prefixes.add(r.getRegistrarName());
+                for (String p : prefixes) {
                     if (p.equalsIgnoreCase(prefix)) {
-                        registrar = Optional.of(r);
-                    }
-                }
-            }
-            if (!registrar.isPresent()) {
-                for (CommandRegistrar r : this.getRegistrars()) {
-                    if (r.getName().equalsIgnoreCase(prefix)) {
                         registrar = Optional.of(r);
                     }
                 }
