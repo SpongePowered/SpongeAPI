@@ -46,19 +46,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class SpongeCommandService implements CommandService {
+public class ContextualCommandService implements CommandService {
 
-    private final SpongeDispatcher dispatcher;
+    private final ContextualDispatcher dispatcher;
     private final PluginManager manager;
 
-    private static final Logger log = LoggerFactory.getLogger(SpongeCommandService.class);
+    private static final Logger log = LoggerFactory.getLogger(ContextualCommandService.class);
 
-    public SpongeCommandService(PluginManager manager, boolean enableNotFoundMessages, String shortDescription, Text help, String usage) {
-        this.dispatcher = new SpongeDispatcher(enableNotFoundMessages, shortDescription, help, usage);
+    public ContextualCommandService(PluginManager manager, boolean enableNotFoundMessages, String shortDescription, Text help, String usage) {
+        this.dispatcher = new ContextualDispatcher(enableNotFoundMessages, shortDescription, help, usage);
         this.manager = manager;
     }
 
-    public SpongeCommandService(PluginManager manager, boolean enableNotFoundMessages) {
+    public ContextualCommandService(PluginManager manager, boolean enableNotFoundMessages) {
         this(manager, enableNotFoundMessages, "", Texts.of(), "");
     }
 

@@ -50,7 +50,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class SpongeDispatcher implements Dispatcher {
+public class ContextualDispatcher implements Dispatcher {
 
     private Map<CommandMapping, CommandRegistrar> commands = new HashMap<CommandMapping, CommandRegistrar>();
     private Map<String, AliasContext> contexts = new HashMap<String, AliasContext>();
@@ -60,14 +60,14 @@ public class SpongeDispatcher implements Dispatcher {
     private String usage;
     private Text help;
 
-    public SpongeDispatcher(boolean enableNotFoundMessages, String shortDescription, Text help, String usage) {
+    public ContextualDispatcher(boolean enableNotFoundMessages, String shortDescription, Text help, String usage) {
         this.enableNotFoundMessages = enableNotFoundMessages;
         this.shortDescription = shortDescription;
         this.help = help;
         this.usage = usage;
     }
 
-    public SpongeDispatcher(boolean enableNotFoundMessages) {
+    public ContextualDispatcher(boolean enableNotFoundMessages) {
         this(enableNotFoundMessages, "", Texts.of(), "");
     }
 
