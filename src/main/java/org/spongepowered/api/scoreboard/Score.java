@@ -28,6 +28,8 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
 
+import java.util.Set;
+
 /**
  * A score entry for an {@link Objective}. Changing this will not affect any other
  * objective or scoreboard.
@@ -56,11 +58,12 @@ public interface Score {
     void setScore(int score);
 
     /**
-     * Returns the parent {@link Objective} this {@link Score} is registered to,
-     * if applicable.
+     * Returns a {@link Set} of parent {@link Objective}s this {@link Score} is
+     * registered to.
      *
-     * @return The parent {@link Objective} this {@link Score} is registered to
+     * @return A {@link Set} of parent {@link Objective} this {@link Score} is
+     *         registered to
      */
-    Optional<Objective> getObjective();
+    Set<Objective> getObjectives();
 
 }
