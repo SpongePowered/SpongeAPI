@@ -82,5 +82,14 @@ public @interface Plugin {
      */
     String dependencies() default "";
 
+    /**
+     * Gets the prefix prepended to a command to indicate this plugin's version
+     * of said command.
+     * 
+     * @return The prefix prepended to a command to indicate this plugin's
+     *         version of said command.
+     */
+    String[] commandPrefix() default {""};
+
 
 }

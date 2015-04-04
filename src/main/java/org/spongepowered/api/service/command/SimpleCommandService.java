@@ -38,6 +38,7 @@ import org.slf4j.LoggerFactory;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.service.command.sponge.CommandRegistrar;
 import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandCallable;
@@ -71,7 +72,7 @@ public class SimpleCommandService implements CommandService {
 
     private final PluginManager pluginManager;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();
-    private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
+    private final Multimap<CommandRegistrar, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
     /**
@@ -104,35 +105,39 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
-        return register(plugin, callable, Arrays.asList(alias));
+    public Optional<CommandMapping> register(Object registrar, CommandCallable callable, String... alias) {
+        return register(registrar, callable, Arrays.asList(alias));
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
-        return register(plugin, callable, aliases, Functions.<List<String>>identity());
+    public Optional<CommandMapping> register(Object registrar, CommandCallable callable, List<String> aliases) {
+        return register(registrar, callable, aliases, Functions.<List<String>>identity());
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
+    public Optional<CommandMapping> register(Object registrar, CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(plugin);
+        checkNotNull(registrar);
 
-        Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
-        if (!containerOptional.isPresent()) {
-            throw new IllegalArgumentException(
-                    "The provided plugin object does not have an associated plugin container "
-                            + "(in other words, is 'plugin' actually your plugin object?");
+        CommandRegistrar realRegistrar = null;
+        if (registrar instanceof CommandRegistrar) {
+            realRegistrar = (CommandRegistrar) registrar;
         }
-
-        PluginContainer container = containerOptional.get();
-
+        else {
+            Optional<PluginContainer> plugin = pluginManager.fromInstance(registrar);
+            if (plugin.isPresent()) {
+                realRegistrar = plugin.get();
+            }
+        }
+        if (realRegistrar == null) {
+            throw new IllegalArgumentException("The provided registrar object is neither a CommandRegistrar or an instance of a plugin!");
+        }
         synchronized (this.lock) {
 
             Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliases, callback);
 
             if (mapping.isPresent()) {
-                this.owners.put(container, mapping.get());
+                this.owners.put(realRegistrar, mapping.get());
             }
 
             return mapping;
@@ -175,7 +180,7 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<PluginContainer> getPluginContainers() {
+    public Set<CommandRegistrar> getCommandRegistrars() {
         synchronized (this.lock) {
             return ImmutableSet.copyOf(this.owners.keySet());
         }
@@ -187,9 +192,9 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<CommandMapping> getOwnedBy(PluginContainer container) {
+    public Set<CommandMapping> getOwnedBy(CommandRegistrar registrar) {
         synchronized (this.lock) {
-            return ImmutableSet.copyOf(this.owners.get(container));
+            return ImmutableSet.copyOf(this.owners.get(registrar));
         }
     }
 

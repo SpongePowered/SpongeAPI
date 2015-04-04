@@ -25,11 +25,13 @@
 
 package org.spongepowered.api.plugin;
 
+import org.spongepowered.api.service.command.sponge.CommandRegistrar;
+
 /**
  * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
  * information from the annotation for easier use.
  */
-public interface PluginContainer {
+public interface PluginContainer extends CommandRegistrar {
 
     /**
      * Gets the id of the {@link Plugin} within this container.
