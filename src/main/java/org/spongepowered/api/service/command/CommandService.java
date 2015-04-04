@@ -142,7 +142,7 @@ public interface CommandService extends Dispatcher {
      * Get a set of {@link CommandRegistrar}s that have registered command(s)
      * with this CommandService.
      *
-     * @return a set of CommandRegistrars
+     * @return A set of CommandRegistrars
      */
     Set<CommandRegistrar> getCommandRegistrars();
 
@@ -150,7 +150,7 @@ public interface CommandService extends Dispatcher {
      * Get a set of commands owned by the given {@link CommandRegistrar}.
      *
      * @param registrar The registrar
-     * @return a set of mappings
+     * @return A set of mappings
      */
     Set<CommandMapping> getOwnedBy(CommandRegistrar registrar);
 
