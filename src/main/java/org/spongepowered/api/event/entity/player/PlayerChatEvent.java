@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.event.message.MessageEvent;
 
 import java.util.Set;
@@ -36,10 +36,12 @@ import java.util.Set;
 public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
     
     /*
-     * Returns the set of players that recieve the message.
+     * Returns the set of entities (and non-entities)
+     * that recieve the message.
+     *
      * This Set is mutable.
      *
-     * @return The {@link Player}s
+     * @return The {@link CommandSource}s
      */
-    Set<Player> getRecipients();
+    Set<CommandSource> getRecipients();
 }
