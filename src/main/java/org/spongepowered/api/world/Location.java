@@ -76,7 +76,7 @@ public class Location implements DataHolder {
         this.position = position;
         this.blockPosition = position.floor().toInt();
     }
-    
+
     /**
      * Create a new instance.
      *

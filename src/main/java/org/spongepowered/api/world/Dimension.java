@@ -99,11 +99,11 @@ public interface Dimension extends Contextual {
      * Gets the highest naturally generated y-coordinate of {@link World}s in this dimension. Usually 128 (no sky) or 256 (sky).
      * @return The generated height
      */
-    public int getHeight();
+    int getHeight();
 
     /**
      * Gets the maximum y-coordinate a non-air cuboid can exist at of {@link World}s in this dimension. Usually 256.
      * @return The build height
      */
-    public int getBuildHeight();
+    int getBuildHeight();
 }
