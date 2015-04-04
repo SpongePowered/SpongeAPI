@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.chat;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @see ChatTypes
  */
 @CatalogedBy(ChatTypes.class)
-public interface ChatType {
+public interface ChatType extends CatalogType {
 
 }

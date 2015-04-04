@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -33,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a modifier on an item that has various effects.
  */
 @CatalogedBy(Enchantments.class)
-public interface Enchantment extends Translatable {
+public interface Enchantment extends CatalogType, Translatable {
 
     /**
      * Gets the id of this enchantment.
@@ -43,7 +44,7 @@ public interface Enchantment extends Translatable {
      *
      * @return The id
      */
-    String getId();
+    String getName();
 
     /**
      * Get the weight of the enchantment.

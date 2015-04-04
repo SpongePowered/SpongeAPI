@@ -25,17 +25,14 @@
 
 package org.spongepowered.api.stats;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents the format for a statistic.
  */
-public interface StatisticFormat {
-
-    /**
-     * Gets the name of this format.
-     *
-     * @return The name of this format
-     */
-    String getName();
+@CatalogedBy(StatisticFormats.class)
+public interface StatisticFormat extends CatalogType {
 
     /**
      * Formats the given value from the statistic to a human readable form.

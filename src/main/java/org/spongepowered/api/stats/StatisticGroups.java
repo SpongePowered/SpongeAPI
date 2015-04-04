@@ -28,7 +28,7 @@ package org.spongepowered.api.stats;
 /**
  * A utility class for getting all available {@link StatisticGroup}s.
  */
-public class StatisticGroups {
+public final class StatisticGroups {
 
     /**
      * Statistics belonging to the group of 'general' statistics.

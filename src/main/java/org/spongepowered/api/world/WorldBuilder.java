@@ -32,11 +32,32 @@ import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
  * A builder for {@link World}s and {@link WorldCreationSettings}.
  */
 public interface WorldBuilder {
+
+    /**
+     * Fills this {@link WorldBuilder} for creating {@link World}s or
+     * {@link WorldCreationSettings}s, the builder is then seeded with the
+     * values from the given WorldCreationSettings object.
+     *
+     * @param settings The seed settings
+     * @return A new seeded builder
+     */
+    WorldBuilder fill(WorldCreationSettings settings);
+
+    /**
+     * Fills this {@link WorldBuilder} for creating {@link World}s or
+     * {@link WorldCreationSettings}s, the builder is then seeded with the
+     * values from the given WorldProperties object.
+     *
+     * @param properties The seed properties
+     * @return A new seeded builder
+     */
+    WorldBuilder fill(WorldProperties properties);
 
     /**
      * Sets the name of the world.

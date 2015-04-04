@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -31,13 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of {@link Rabbit}.
  */
 @CatalogedBy(RabbitTypes.class)
-public interface RabbitType extends DataSerializable {
-
-    /**
-     * Gets the name of this rabbit type.
-     *
-     * @return The name of this rabbit type
-     */
-    String getName();
+public interface RabbitType extends CatalogType {
 
 }

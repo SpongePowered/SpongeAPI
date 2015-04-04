@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.attribute;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,14 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * value of an {@link Attribute}.
  */
 @CatalogedBy(Operations.class)
-public interface Operation extends Comparable<Operation> {
-
-    /**
-     * Gets the name of this operation.
-     *
-     * @return The name of this operation
-     */
-    String getName();
+public interface Operation extends CatalogType, Comparable<Operation> {
 
     /**
      * Gets the amount the {@link Attribute} should be incremented when this

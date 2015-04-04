@@ -22,17 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.selector;
-
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api;
 
 /**
- * Represents a selector type.
- *
- * @see Selectors
+ * Represents a type of a catalog that can be used to identify types
+ * without using an {@link Enum}.
  */
-@CatalogedBy(SelectorTypes.class)
-public interface SelectorType extends CatalogType {
+public interface CatalogType {
+
+    /**
+     * Gets the unique identifier of this {@link CatalogType}. The identifier
+     * can be formatted however needed.
+     *
+     * @return The unique identifier of this catalog type
+     */
+    String getId();
+
+    /**
+     * Gets the unique human-readable name of this individual {@link
+     * CatalogType}.
+     *
+     * @return The uniquely identifiable name of this catalog type
+     */
+    String getName();
 
 }

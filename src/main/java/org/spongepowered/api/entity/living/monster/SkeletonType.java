@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,13 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * can define the various status immunities, such as withering.
  */
 @CatalogedBy(SkeletonTypes.class)
-public interface SkeletonType extends DataSerializable {
-
-    /**
-     * Gets the name of this skeleton type.
-     *
-     * @return The name of this skeleton type
-     */
-    String getName();
+public interface SkeletonType extends CatalogType {
 
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.villager;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * of trade offers the villager can give to a player.
  */
 @CatalogedBy(Careers.class)
-public interface Career extends Translatable {
+public interface Career extends CatalogType, Translatable {
 
     /**
      * Gets the parent profession of this career. The profession is permanent
@@ -41,12 +42,5 @@ public interface Career extends Translatable {
      * @return The profession this career belongs to
      */
     Profession getProfession();
-
-    /**
-     * Gets name of this career.
-     *
-     * @return The name of this career
-     */
-    String getName();
 
 }

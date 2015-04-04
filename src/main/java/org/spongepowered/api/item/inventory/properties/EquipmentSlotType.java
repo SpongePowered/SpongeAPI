@@ -81,7 +81,7 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
         EquipmentType
                 otherValue =
                 Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
-        return this.getValue().getId().compareTo(otherValue.getId());
+        return this.getValue().getName().compareTo(otherValue.getName());
     }
 
     /**

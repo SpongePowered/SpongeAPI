@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.effect.particle;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,14 +34,7 @@ import java.awt.Color;
  * Represents a particle that can be sent on a Minecraft client.
  */
 @CatalogedBy(ParticleTypes.class)
-public interface ParticleType {
-
-    /**
-     * Gets the particle name.
-     *
-     * @return The particle's name
-     */
-    String getName();
+public interface ParticleType extends CatalogType {
 
     /**
      * Gets whether the particle able is to have a motion vector.

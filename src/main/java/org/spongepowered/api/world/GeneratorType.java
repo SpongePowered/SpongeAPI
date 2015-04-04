@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.world.gen.WorldGenerator;
 
@@ -32,14 +33,7 @@ import org.spongepowered.api.world.gen.WorldGenerator;
  * Represents a world type. This is in general a {@link WorldGenerator} and the
  * settings for the generator.
  */
-public interface GeneratorType {
-
-    /**
-     * Gets the name of this world type.
-     * 
-     * @return The name
-     */
-    String getName();
+public interface GeneratorType extends CatalogType {
 
     /**
      * Gets a copy of the default settings for the world generator.

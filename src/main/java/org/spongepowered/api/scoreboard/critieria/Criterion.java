@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.scoreboard.critieria;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a set of behaviours for an objective, which may cause it to be automatically updated.
  */
-public interface Criterion {
+@CatalogedBy(Criteria.class)
+public interface Criterion extends CatalogType {
 
     /**
      * Gets the name of this criterion.

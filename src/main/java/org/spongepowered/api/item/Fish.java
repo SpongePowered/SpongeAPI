@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,13 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of raw fish item.
  */
 @CatalogedBy(Fishes.class)
-public interface Fish extends DataSerializable {
-
-    /**
-     * Gets the id of this type of fish.
-     *
-     * @return The id of this type of fish
-     */
-    String getId();
+public interface Fish extends CatalogType {
 
 }

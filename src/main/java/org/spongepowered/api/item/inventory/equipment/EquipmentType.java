@@ -24,18 +24,13 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Equipment types.
  */
 @CatalogedBy(EquipmentTypes.class)
-public interface EquipmentType {
+public interface EquipmentType extends CatalogType {
 
-    /**
-     * Identifier for this equipment type.
-     * 
-     * @return the identifier
-     */
-    String getId();
 }

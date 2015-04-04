@@ -26,6 +26,7 @@
 package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.ItemBlock;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.text.translation.Translatable;
@@ -39,7 +40,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * via {@link DataHolder}.</p>
  */
 @CatalogedBy(BlockTypes.class)
-public interface BlockType extends Translatable {
+public interface BlockType extends CatalogType, Translatable {
 
     /**
      * Return the internal ID for the block.
@@ -50,7 +51,7 @@ public interface BlockType extends Translatable {
      *
      * @return The id
      */
-    String getId();
+    String getName();
 
     /**
      * Return the default state for this block.

@@ -26,6 +26,7 @@
 package org.spongepowered.api.attribute;
 
 import com.google.common.base.Predicate;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,14 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link AttributeHolder}.
  */
 @CatalogedBy(Attributes.class)
-public interface Attribute {
-
-    /**
-     * Gets the name of this attribute as a string.
-     *
-     * @return The name of this attribute as a string
-     */
-    String getName();
+public interface Attribute extends CatalogType {
 
     /**
      * Gets the minimum value for this attribute.

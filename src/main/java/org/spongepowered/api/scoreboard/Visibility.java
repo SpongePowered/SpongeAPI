@@ -24,18 +24,15 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a group or groups players to display something to.
  *
  * <p>Usages include nametags and death messages.</p>
  */
-public interface Visibility {
-
-    /**
-     * Gets the name of this visibility.
-     *
-     * @return The name of this visibility
-     */
-    String getName();
+@CatalogedBy(Visibilities.class)
+public interface Visibility extends CatalogType {
 
 }

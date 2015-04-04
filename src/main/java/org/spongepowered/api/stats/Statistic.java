@@ -25,19 +25,15 @@
 package org.spongepowered.api.stats;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents some statistic in Minecraft with a string ID.
  */
-public interface Statistic extends Translatable {
-    
-    /**
-     * Gets the internal name for this statistic.
-     * 
-     * @return The internal name
-     */
-    String getInternalName();
+@CatalogedBy(Statistics.class)
+public interface Statistic extends CatalogType, Translatable {
 
     /**
      * Gets the {@link StatisticFormat} of this statistic. If this is not

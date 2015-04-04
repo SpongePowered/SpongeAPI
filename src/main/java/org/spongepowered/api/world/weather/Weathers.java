@@ -28,7 +28,7 @@ package org.spongepowered.api.world.weather;
 /**
  * All possible {@link Weather}s in vanilla minecraft.
  */
-public class Weathers {
+public final class Weathers {
 
     public static final Weather CLEAR = null;
     public static final Weather RAIN = null;

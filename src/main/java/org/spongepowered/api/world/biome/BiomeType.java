@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.world.biome;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -34,14 +35,7 @@ import java.util.List;
  * Represents a biome.
  */
 @CatalogedBy(BiomeTypes.class)
-public interface BiomeType {
-
-    /**
-     * Gets the name of this biome type.
-     *
-     * @return The name of this biome type
-     */
-    String getName();
+public interface BiomeType extends CatalogType {
 
     /**
      * Get the temperature of this biome.

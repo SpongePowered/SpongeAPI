@@ -24,26 +24,13 @@
  */
 package org.spongepowered.api.block.tile.data;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A pattern shape which may be applied to a banner.
  */
 @CatalogedBy(BannerPatternShapes.class)
-public interface BannerPatternShape {
-
-    /**
-     * Gets the name of this pattern shape.
-     *
-     * @return The name
-     */
-    String getName();
-
-    /**
-     * Gets the id for this pattern shape.
-     *
-     * @return The id
-     */
-    String getId();
+public interface BannerPatternShape extends CatalogType {
 
 }

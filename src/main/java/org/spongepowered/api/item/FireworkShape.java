@@ -24,19 +24,13 @@
  */
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a possible shape for a firework explosion.
  */
 @CatalogedBy(FireworkShapes.class)
-public interface FireworkShape {
-
-    /**
-     * Gets the string id of this shape.
-     *
-     * @return The string id of this shape
-     */
-    String getId();
+public interface FireworkShape extends CatalogType {
 
 }
