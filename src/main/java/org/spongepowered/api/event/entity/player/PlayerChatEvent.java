@@ -36,10 +36,8 @@ import java.util.Set;
 public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
     
     /*
-     * Returns the set of entities (and non-entities)
-     * that recieve the message.
-     *
-     * This Set is mutable.
+     * Returns the set of {@link CommandSource}s
+     * that recieve the message. This Set is mutable.
      *
      * @return The {@link CommandSource}s
      */
