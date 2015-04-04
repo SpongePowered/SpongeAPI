@@ -55,6 +55,15 @@ public @interface Plugin {
     String name();
 
     /**
+     * Gets the prefixes that can be prepended to a command to indicate this
+     * plugin's version of said command. This must have at least one item.
+     * 
+     * @return The prefix prepended to a command to indicate this plugin's
+     *         version of said command.
+     */
+    String[] commandPrefixes();
+
+    /**
      * The version of the plugin.
      *
      * @return The plugin version
@@ -82,14 +91,7 @@ public @interface Plugin {
      */
     String dependencies() default "";
 
-    /**
-     * Gets the prefix prepended to a command to indicate this plugin's version
-     * of said command.
-     * 
-     * @return The prefix prepended to a command to indicate this plugin's
-     *         version of said command.
-     */
-    String[] commandPrefix() default {""};
+
 
 
 }

@@ -164,4 +164,12 @@ public class SpongeCommandService implements CommandService {
         return this.dispatcher.size();
     }
 
+    public void setAliasContext(String alias, AliasContext context) {
+        this.dispatcher.setAliasContext(alias, context);
+    }
+
+    public Optional<AliasContext> getAliasContext(String alias) {
+        return this.dispatcher.getAliasContext(alias);
+    }
+
 }

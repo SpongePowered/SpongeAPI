@@ -186,7 +186,14 @@ public class SpongeDispatcher implements Dispatcher {
                         TextBuilder builder2;
                         int index = 0;
                         for (CommandRegistrar r : potentialRegistrars) {
-                            builder2 = Texts.builder("/" + r.getPrefixes().iterator().next() + ":" + realAlias);
+                            String pfix;
+                            if (r.getPrefixes().iterator().hasNext()) {
+                                pfix = r.getPrefixes().iterator().next();
+                            }
+                            else {
+                                pfix = r.getName();
+                            }
+                            builder2 = Texts.builder("/" + pfix + ":" + realAlias);
                             builder2.color(TextColors.GOLD);
                             Text cmd = builder2.build();
                             builder2 =
@@ -337,6 +344,13 @@ public class SpongeDispatcher implements Dispatcher {
                     }
                 }
             }
+            if (!registrar.isPresent()) {
+                for (CommandRegistrar r : this.getRegistrars()) {
+                    if (r.getName().equalsIgnoreCase(prefix)) {
+                        registrar = Optional.of(r);
+                    }
+                }
+            }
         }
         else {
             Optional<AliasContext> context = Optional.fromNullable(this.contexts.get(alias));
@@ -389,6 +403,14 @@ public class SpongeDispatcher implements Dispatcher {
             }
         }
         return false;
+    }
+
+    public void setAliasContext(String alias, AliasContext context) {
+        this.contexts.put(alias, context);
+    }
+
+    public Optional<AliasContext> getAliasContext(String alias) {
+        return Optional.fromNullable(this.contexts.get(alias));
     }
 
 }
