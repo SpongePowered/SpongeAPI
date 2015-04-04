@@ -76,6 +76,20 @@ public class Location implements DataHolder {
         this.position = position;
         this.blockPosition = position.floor().toInt();
     }
+    
+    /**
+     * Create a new instance.
+     *
+     * @param extent The extent
+     * @param position The position
+     */
+    public Location(Extent extent, Vector3i position) {
+        checkNotNull(extent);
+        checkNotNull(position);
+        this.extent = extent;
+        this.position = position.toDouble();
+        this.blockPosition = position;
+    }
 
     /**
      * Get the underlying extent.
