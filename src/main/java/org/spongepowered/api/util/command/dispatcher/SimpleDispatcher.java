@@ -371,7 +371,7 @@ public class SimpleDispatcher implements Dispatcher {
 
             if (mapping.isPresent()) {
                 List<String> ret = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
-                if (ret == null) {
+                if (ret != null) {
                     suggestions.addAll(ret);
                 }
             }
