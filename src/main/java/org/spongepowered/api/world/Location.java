@@ -70,11 +70,22 @@ public class Location implements DataHolder {
      * @param position The position
      */
     public Location(Extent extent, Vector3d position) {
-        checkNotNull(extent);
-        checkNotNull(position);
-        this.extent = extent;
+        checkNotNull(position, "position");
+        this.extent = checkNotNull(extent, "extent");
         this.position = position;
         this.blockPosition = position.floor().toInt();
+    }
+
+    /**
+     * Create a new instance.
+     *
+     * @param extent The extent
+     * @param x The X-axis position
+     * @param y The Y-axis position
+     * @param z The Z-axis position
+     */
+    public Location(Extent extent, double x, double y, double z) {
+        this(extent, new Vector3d(x, y, z));
     }
 
     /**
@@ -84,11 +95,22 @@ public class Location implements DataHolder {
      * @param position The position
      */
     public Location(Extent extent, Vector3i position) {
-        checkNotNull(extent);
-        checkNotNull(position);
-        this.extent = extent;
+        checkNotNull(position, "position");
+        this.extent = checkNotNull(extent, "extent");
         this.position = position.toDouble();
         this.blockPosition = position;
+    }
+
+    /**
+     * Create a new instance.
+     *
+     * @param extent The extent
+     * @param x The X-axis position
+     * @param y The Y-axis position
+     * @param z The Z-axis position
+     */
+    public Location(Extent extent, int x, int y, int z) {
+        this(extent, new Vector3i(x, y, z));
     }
 
     /**
@@ -179,7 +201,7 @@ public class Location implements DataHolder {
      * @return A new instance
      */
     public Location setExtent(Extent extent) {
-        checkNotNull(extent);
+        checkNotNull(extent, "extent");
         if (extent == getExtent()) {
             return this;
         }
@@ -193,7 +215,7 @@ public class Location implements DataHolder {
      * @return A new instance
      */
     public Location setPosition(Vector3d position) {
-        checkNotNull(position);
+        checkNotNull(position, "position");
         if (position == getPosition()) {
             return this;
         }

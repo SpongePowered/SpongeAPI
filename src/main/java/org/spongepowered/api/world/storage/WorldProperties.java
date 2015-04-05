@@ -392,9 +392,10 @@ public interface WorldProperties extends DataSerializable {
 
     /**
      * Sets the given world generator modifiers to be used.
+     * 
      * @param modifiers The modifiers to set.
      * @throws IllegalArgumentException If any of the modifiers has not been
-     * registered in the {@link GameRegistry}.
+     *             registered in the {@link GameRegistry}.
      */
     void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
 

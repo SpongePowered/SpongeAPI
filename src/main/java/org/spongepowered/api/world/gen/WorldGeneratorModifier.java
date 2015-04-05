@@ -25,9 +25,8 @@
 
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.plugin.PluginContainer;
-
 import org.spongepowered.api.GameRegistry;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 
 /**
@@ -54,7 +53,7 @@ public interface WorldGeneratorModifier {
      *
      * @param worldName The name of the world.
      * @param settings A data container with settings, can be used by the plugin
-     *        to modify the world generator.
+     *            to modify the world generator.
      * @param worldGenerator The world generator, should be modified.
      */
     void modifyWorldGenerator(String worldName, DataContainer settings, WorldGenerator worldGenerator);

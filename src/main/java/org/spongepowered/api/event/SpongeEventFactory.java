@@ -760,6 +760,7 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
      * @param items The items that will be picked up
+     * @param inventory The inventory involved with the event
      * @return A new instance of the event
      */
     public static EntityPickUpItemEvent createEntityPickUpItem(Game game, Entity entity, Collection<Entity> items, Inventory inventory) {
@@ -1334,6 +1335,7 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param items The items that will be picked up
+     * @param inventory The inventory involved with the event
      * @return A new instance of the event
      */
     public static PlayerPickUpItemEvent createPlayerPickUpItem(Game game, Player player, Collection<Entity> items, Inventory inventory) {

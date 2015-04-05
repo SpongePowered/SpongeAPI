@@ -25,6 +25,9 @@
 
 package org.spongepowered.api.world.gen;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Preconditions;
 import org.spongepowered.api.world.Chunk;
@@ -49,10 +52,10 @@ public class PopulatorObjects {
         private final PopulatorObject object;
 
         private RandomHeightPopulator(int attemptsPerChunk, double chancePerAttempt, int maxY, int minY, PopulatorObject object) {
-            Preconditions.checkArgument(attemptsPerChunk > 0, "attemptPerChunk must be larger than 0");
-            Preconditions.checkArgument(chancePerAttempt >= 0 && chancePerAttempt <= 1, "changePerAttempt must be between 0 and 1, inclusive");
-            Preconditions.checkArgument(maxY >= minY, "maxY must be larger than or equal to minY");
-            Preconditions.checkNotNull(object, "object");
+            checkArgument(attemptsPerChunk > 0, "attemptPerChunk must be larger than 0");
+            checkArgument(chancePerAttempt >= 0 && chancePerAttempt <= 1, "changePerAttempt must be between 0 and 1, inclusive");
+            checkArgument(maxY >= minY, "maxY must be larger than or equal to minY");
+            checkNotNull(object, "object");
 
             this.attemptsPerChunk = attemptsPerChunk;
             this.chancePerAttempt = chancePerAttempt;

@@ -36,9 +36,10 @@ import org.spongepowered.api.item.inventory.types.TileEntityInventory;
 import javax.annotation.Nullable;
 
 /**
- * Represents a {@link TileEntity} that is a carrier of {@link
- * TileEntityInventory}. Adding to the inventory, a {@link TileEntityCarrier}
- * may also have {@link NameableData} and {@link LockableData}.
+ * Represents a {@link TileEntity} that is a carrier of
+ * {@link TileEntityInventory}. Adding to the inventory, a
+ * {@link TileEntityCarrier} may also have {@link NameableData} and
+ * {@link LockableData}.
  *
  * <p>Additional information regarding the {@link TileEntityCarrier} is
  * dependent on the {@link TileEntity} itself.</p>

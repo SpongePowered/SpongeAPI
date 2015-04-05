@@ -32,8 +32,8 @@ import org.spongepowered.api.service.persistence.DataSerializable;
  * Represents data held by a {@link TileEntity}.
  *
  * <p>Traditionally, a {@link TileEntity} will perform various actions based on
- * it's data represented by {@link TileEntityData}. Required data for a {@link
- * TileEntity} will always exist, but </p>
+ * it's data represented by {@link TileEntityData}. Required data for a
+ * {@link TileEntity} will always exist, but </p>
  */
 public interface TileEntityData<E extends TileEntity, T extends TileEntityData<E, T>> extends Comparable<T>, DataSerializable {
 

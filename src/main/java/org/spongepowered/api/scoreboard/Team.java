@@ -26,8 +26,8 @@ package org.spongepowered.api.scoreboard;
 
 
 import org.spongepowered.api.entity.player.User;
-import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColor;
 
 import java.util.Set;
 

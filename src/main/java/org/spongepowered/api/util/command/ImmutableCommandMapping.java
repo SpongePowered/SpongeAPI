@@ -52,7 +52,7 @@ public class ImmutableCommandMapping implements CommandMapping {
      * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
     public ImmutableCommandMapping(CommandCallable callable, String primary, String... alias) {
-        this(callable, primary, Arrays.asList(checkNotNull(alias)));
+        this(callable, primary, Arrays.asList(checkNotNull(alias, "alias")));
     }
 
     /**
@@ -64,13 +64,12 @@ public class ImmutableCommandMapping implements CommandMapping {
      * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
     public ImmutableCommandMapping(CommandCallable callable, String primary, Collection<String> aliases) {
-        checkNotNull(callable);
-        checkNotNull(primary);
-        checkNotNull(aliases);
+        checkNotNull(primary, "primary");
+        checkNotNull(aliases, "aliases");
         this.primary = primary;
         this.aliases = new HashSet<String>(aliases);
         this.aliases.add(primary);
-        this.callable = callable;
+        this.callable = checkNotNull(callable, "callable");
     }
 
     @Override

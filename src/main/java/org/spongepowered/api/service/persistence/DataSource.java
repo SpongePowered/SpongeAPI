@@ -52,9 +52,9 @@ public interface DataSource {
             throws InvalidDataException;
 
     /**
-     * Deserializes all data existing in this source into a single {@link
-     * DataContainer}. This can be used for passing around data containers
-     * without knowing the contents.
+     * Deserializes all data existing in this source into a single
+     * {@link DataContainer}. This can be used for passing around data
+     * containers without knowing the contents.
      *
      * @return A data container containing all data from this source
      */

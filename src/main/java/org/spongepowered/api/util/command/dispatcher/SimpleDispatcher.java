@@ -75,8 +75,8 @@ public class SimpleDispatcher implements Dispatcher {
      * @param help A formatted help message
      */
     public SimpleDispatcher(String shortDescription, Text help) {
-        checkNotNull(shortDescription);
-        checkNotNull(help);
+        checkNotNull(shortDescription, "shortDescription");
+        checkNotNull(help, "help");
         this.shortDescription = shortDescription;
         this.help = help;
     }
@@ -97,7 +97,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be registered
      */
     public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
-        checkNotNull(alias);
+        checkNotNull(alias, "alias");
         return register(callable, Arrays.asList(alias));
     }
 
@@ -142,9 +142,9 @@ public class SimpleDispatcher implements Dispatcher {
      */
     public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(aliases);
-        checkNotNull(callable);
-        checkNotNull(callback);
+        checkNotNull(aliases, "aliases");
+        checkNotNull(callable, "aliases");
+        checkNotNull(callback, "aliases");
 
         List<String> free = new ArrayList<String>();
 
@@ -194,15 +194,15 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings identified by the given aliases.
      *
-     * @param c A collection of aliases
+     * @param aliases A collection of aliases
      * @return Whether any were found
      */
-    public synchronized boolean removeAll(Collection<?> c) {
-        checkNotNull(c);
+    public synchronized boolean removeAll(Collection<?> aliases) {
+        checkNotNull(aliases, "aliases");
 
         boolean found = false;
 
-        for (Object alias : c) {
+        for (Object alias : aliases) {
             this.commands.remove(alias.toString().toLowerCase());
             found = true;
         }
@@ -217,7 +217,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> removeMapping(CommandMapping mapping) {
-        checkNotNull(mapping);
+        checkNotNull(mapping, "mapping");
 
         CommandMapping found = null;
 
@@ -236,17 +236,17 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings contained with the given collection.
      *
-     * @param c The collection
+     * @param mappings The collection
      * @return Whether the at least one command was removed
      */
-    public synchronized boolean removeMappings(Collection<?> c) {
-        checkNotNull(c);
+    public synchronized boolean removeMappings(Collection<?> mappings) {
+        checkNotNull(mappings, "mappings");
 
         boolean found = false;
 
         Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
-            if (c.contains(it.next())) {
+            if (mappings.contains(it.next())) {
                 it.remove();
                 found = true;
             }
@@ -294,7 +294,7 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public boolean containsMapping(CommandMapping mapping) {
-        checkNotNull(mapping);
+        checkNotNull(mapping, "mapping");
 
         for (CommandMapping test : this.commands.values()) {
             if (mapping.equals(test)) {

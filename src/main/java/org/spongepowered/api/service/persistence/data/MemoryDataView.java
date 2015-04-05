@@ -129,7 +129,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public boolean contains(DataQuery path) {
-        checkNotNull(path);
+        checkNotNull(path, "path");
         List<DataQuery> queryParts = path.getQueryParts();
 
         if (queryParts.size() == 1) {
@@ -151,7 +151,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Optional<Object> get(DataQuery path) {
-        checkNotNull(path);
+        checkNotNull(path, "path");
         List<DataQuery> queryParts = path.getQueryParts();
 
         int sz = queryParts.size();
@@ -186,16 +186,16 @@ public class MemoryDataView implements DataView {
 
     @Override
     public void set(DataQuery path, Object value) {
-        checkNotNull(path);
-        checkNotNull(value);
+        checkNotNull(path, "path");
+        checkNotNull(value, "value");
         checkState(this.container != null);
 
         if (value instanceof DataView) {
-            checkArgument(value != this);
+            checkArgument(value != this, "Cannot set a DataView to itself.");
             copyDataView(path, (DataView) value);
         } else if (value instanceof DataSerializable) {
             DataContainer valueContainer = ((DataSerializable) value).toContainer();
-            checkArgument(!(valueContainer).equals(this));
+            checkArgument(!(valueContainer).equals(this), "Cannot insert self-referencing DataSerializable");
             copyDataView(path, valueContainer);
         } else {
             List<String> parts = path.getParts();
@@ -268,7 +268,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public void remove(DataQuery path) {
-        checkNotNull(path);
+        checkNotNull(path, "path");
         List<String> parts = path.getParts();
         if (parts.size() > 1) {
             String subKey = parts.get(0);
@@ -292,7 +292,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public DataView createView(DataQuery path) {
-        checkNotNull(path);
+        checkNotNull(path, "path");
         List<DataQuery> queryParts = path.getQueryParts();
 
         int sz = queryParts.size();
@@ -322,7 +322,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public DataView createView(DataQuery path, Map<?, ?> map) {
-        checkNotNull(path);
+        checkNotNull(path, "path");
         DataView section = createView(path);
 
         for (Map.Entry<?, ?> entry : map.entrySet()) {
@@ -662,9 +662,9 @@ public class MemoryDataView implements DataView {
 
     @Override
     public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, SerializationService service) {
-        checkNotNull(path);
-        checkNotNull(clazz);
-        checkNotNull(service);
+        checkNotNull(path, "path");
+        checkNotNull(clazz, "clazz");
+        checkNotNull(service, "service");
         Optional<DataView> optional = getUnsafeView(path);
 
         if (!optional.isPresent()) {
@@ -681,9 +681,9 @@ public class MemoryDataView implements DataView {
 
     @Override
     public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationService service) {
-        checkNotNull(path);
-        checkNotNull(clazz);
-        checkNotNull(service);
+        checkNotNull(path, "path");
+        checkNotNull(clazz, "clazz");
+        checkNotNull(service, "service");
         Optional<List<DataView>> optional = getViewList(path);
 
         if (!optional.isPresent()) {

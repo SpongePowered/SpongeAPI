@@ -50,9 +50,6 @@ public interface PlayerEvent extends HumanEvent, UserEvent {
     @Override
     Player getEntity();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     Player getUser();
 

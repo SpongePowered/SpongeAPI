@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
 import com.flowpowered.math.vector.Vector4i;
@@ -52,7 +54,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
-
 
 /**
  * Utility class for coercing unknown values to specific target types.
@@ -172,7 +173,7 @@ public final class Coerce {
      */
     @SuppressWarnings("unchecked")
     public static <T> List<T> toListOf(@Nullable Object obj, Class<T> ofClass) {
-        Preconditions.checkNotNull(ofClass);
+        checkNotNull(ofClass, "ofClass");
         List<T> filteredList = Lists.newArrayList();
 
         for (Object o : Coerce.toList(obj)) {
@@ -595,8 +596,8 @@ public final class Coerce {
      * @return Coerced enum value
      */
     public static <E extends Enum<E>> E toEnum(@Nullable Object obj, Class<E> enumClass, E defaultValue) {
-        Preconditions.checkNotNull(enumClass);
-        Preconditions.checkNotNull(defaultValue);
+        checkNotNull(enumClass, "enumClass");
+        checkNotNull(defaultValue, "defaultValue");
         if (obj == null) {
             return defaultValue;
         }
@@ -638,9 +639,9 @@ public final class Coerce {
      * @return Coerced value or default if coercion fails
      */
     public static <T> T toPseudoEnum(@Nullable Object obj, Class<T> pseudoEnumClass, Class<?> dictionaryClass, T defaultValue) {
-        Preconditions.checkNotNull(pseudoEnumClass);
-        Preconditions.checkNotNull(dictionaryClass);
-        Preconditions.checkNotNull(defaultValue);
+        checkNotNull(pseudoEnumClass, "pseudoEnumClass");
+        checkNotNull(dictionaryClass, "dictionaryClass");
+        checkNotNull(defaultValue, "defaultValue");
         if (obj == null) {
             return defaultValue;
         }

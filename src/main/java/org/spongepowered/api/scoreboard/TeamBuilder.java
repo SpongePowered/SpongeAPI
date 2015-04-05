@@ -51,8 +51,8 @@ public interface TeamBuilder {
      * criteria.</p>
      *
      * @param color The color to set
-     * @throws IllegalArgumentException If color is {@link org.spongepowered.api.text.format.TextColors#RESET}
      * @return This builder
+     * @throws IllegalArgumentException If color is {@link org.spongepowered.api.text.format.TextColors#RESET}
      */
     TeamBuilder color(TextColor color) throws IllegalArgumentException;
 
@@ -64,6 +64,7 @@ public interface TeamBuilder {
      *
      * @param displayName The {@link Text} to set
      * @return This builder
+     * @throws IllegalArgumentException If the name is invalid
      */
     TeamBuilder displayName(Text displayName) throws IllegalArgumentException;
 

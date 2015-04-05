@@ -56,7 +56,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(String message, Class<?> service) {
         super(message);
-        checkNotNull(service);
+        checkNotNull(service, "service");
         this.service = service;
     }
 
@@ -70,7 +70,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(String message, Throwable cause, Class<?> service) {
         super(message, cause);
-        checkNotNull(service);
+        checkNotNull(service, "service");
         this.service = service;
     }
 
@@ -83,7 +83,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(Throwable cause, Class<?> service) {
         super(cause);
-        checkNotNull(service);
+        checkNotNull(service, "service");
         this.service = service;
     }
 

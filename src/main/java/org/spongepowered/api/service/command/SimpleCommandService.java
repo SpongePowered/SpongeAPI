@@ -117,7 +117,7 @@ public class SimpleCommandService implements CommandService {
     @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(plugin);
+        checkNotNull(plugin, "plugin");
 
         Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
         if (!containerOptional.isPresent()) {

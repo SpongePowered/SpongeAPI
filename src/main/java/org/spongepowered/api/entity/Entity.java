@@ -132,8 +132,10 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
     boolean setLocationAndRotationSafely(Location location, Vector3d rotation);
 
     /**
-     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity. {@link
-     * RelativePositions} listed inside the EnumSet are considered relative.
+     * Sets the location using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
+     * entity. {@link RelativePositions} listed inside the EnumSet are
+     * considered relative.
      *
      * <p>The format of the rotation is represented by:</p>
      *
@@ -143,7 +145,8 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @param location The location to set
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     * @return True if location was set successfully, false if location couldn't
+     *         be set as no safe location was found
      */
     boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 

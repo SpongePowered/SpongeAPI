@@ -123,7 +123,7 @@ public interface Objective {
     /**
      * Gets an entry's {@link Score} for this Objective.
      *
-     * <p>If the {@link Score} does not exist, it will be created.<x/p>
+     * <p>If the {@link Score} does not exist, it will be created.</p>
      *
      * @param name The name of the {@link Score} to get
      * @return The {@link Score} for the specified {@link Text}

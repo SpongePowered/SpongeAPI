@@ -25,9 +25,9 @@
 
 package org.spongepowered.api.world.gen;
 
-import java.util.Random;
-
 import org.spongepowered.api.world.World;
+
+import java.util.Random;
 
 /**
  * Represents an object placed in the world during terrain population. Populator

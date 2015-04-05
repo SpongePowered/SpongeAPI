@@ -105,7 +105,7 @@ public interface WorldBuilder {
      * @param modifier The modifiers
      * @return The builder, for chaining
      * @throws IllegalArgumentException If one of the modifiers is not
-     * registered in {@link GameRegistry}.
+     *             registered in {@link GameRegistry}.
      */
     WorldBuilder generatorModifiers(WorldGeneratorModifier... modifier);
 

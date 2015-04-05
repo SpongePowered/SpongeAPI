@@ -34,8 +34,8 @@ import ninja.leaping.configurate.SimpleConfigurationNode;
 import java.util.Map;
 
 /**
- * A translator for translating {@link DataView}s into {@link
- * ConfigurationNode}s.
+ * A translator for translating {@link DataView}s into {@link ConfigurationNode}
+ * s.
  */
 public final class ConfigurateTranslator implements DataTranslator<ConfigurationNode> {
 
@@ -54,8 +54,8 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
     }
 
     private static void populateNode(ConfigurationNode node, DataView container) {
-        checkNotNull(node);
-        checkNotNull(container);
+        checkNotNull(node, "node");
+        checkNotNull(container, "container");
         Map<DataQuery, Object> values = container.getValues(false);
         for (Map.Entry<DataQuery, Object> entry : values.entrySet()) {
             node.getNode(entry.getKey().getParts()).setValue(entry.getValue());
@@ -63,7 +63,7 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
     }
 
     private static DataView translateFromNode(ConfigurationNode node) {
-        checkNotNull(node);
+        checkNotNull(node, "node");
         DataContainer dataContainer = new MemoryDataContainer();
         if (node.getValue() != null) {
             if (node.getKey() == null) {
