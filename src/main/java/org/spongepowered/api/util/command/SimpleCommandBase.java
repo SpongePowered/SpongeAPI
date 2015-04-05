@@ -78,7 +78,7 @@ public abstract class SimpleCommandBase implements CommandCallable {
 
     @Override
     public boolean testPermission(CommandSource source) {
-        return source.hasPermission(this.permission);
+        return this.permission == null ? true : source.hasPermission(this.permission);
     }
 
     @Override
