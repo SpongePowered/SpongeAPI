@@ -32,6 +32,8 @@ import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
 import org.spongepowered.api.service.scheduler.SynchronousScheduler;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.TeleportHelper;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -126,5 +128,11 @@ public interface Game {
      * @return The Minecraft version
      */
     MinecraftVersion getMinecraftVersion();
+
+    /**
+     * Gets the {@link TeleportHelper}, used to find safe {@link Location}s.
+     * @return The teleport helper
+     */
+    TeleportHelper getTeleportHelper();
 
 }

@@ -45,7 +45,7 @@ public interface TeleportHelper {
      * Safe entails that the returned location will not be somewhere that would harm an {@link Entity}.
      * This method will use the default height and width for a search area.
      *
-     * Its possible the same location will be returned that was passed in. This means it was safe.
+     * It's possible the same location will be returned that was passed in. This means it was safe.
      *
      * @param location The location to search nearby.
      * @return A safe location near the original location or the original location if it is deemed safe. If no safe
@@ -56,9 +56,9 @@ public interface TeleportHelper {
     /**
      * Gets the next safe {@link Location} around the given location with a given tolerance and search radius.
      *
-     * Safe entails that the returned location will not be somewhere that would harm a player.
+     * Safe entails that the returned location will not be somewhere that would harm an {@link Entity}.
      *
-     * Its possible the same location will be returned that was passed in. This means it was safe.
+     * It's possible the same location will be returned that was passed in. This means it was safe.
      *
      * @param location The location to search nearby.
      * @param height The radius of blocks on the y-axis to search.
