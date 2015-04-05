@@ -29,6 +29,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.world.WorldCreationSettings;
 
 /**
  * If a plugin wishes to modify a world generator, the plugin must register a
@@ -50,13 +51,16 @@ public interface WorldGeneratorModifier extends CatalogType {
      * replace the biome generator, use
      * {@link WorldGenerator#setBiomeGenerator(BiomeGenerator)}. To change
      * terrain population, modify the populator list returned by
-     * {@link WorldGenerator#getPopulators()}.</p>
+     * {@link WorldGenerator#getPopulators()} or
+     * {@link WorldGenerator#getGeneratorPopulators()}.</p>
      *
-     * @param worldName The name of the world.
-     * @param settings A data container with settings, can be used by the plugin
-     *            to modify the world generator.
+     * @param world The creation settings of the world.
+     * @param settings A data container with settings (usually) user-provided
+     *            settings, can be used by the plugin to modify the world
+     *            generator.
      * @param worldGenerator The world generator, should be modified.
+     * @see WorldGenerator Additional information on the generation process
      */
-    void modifyWorldGenerator(String worldName, DataContainer settings, WorldGenerator worldGenerator);
+    void modifyWorldGenerator(WorldCreationSettings world, DataContainer settings, WorldGenerator worldGenerator);
 
 }

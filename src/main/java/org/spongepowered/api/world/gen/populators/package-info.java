@@ -23,21 +23,4 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
-
-/**
- * An enumeration of default {@link GeneratorType}s.
- */
-public final class GeneratorTypes {
-
-    public static final GeneratorType DEBUG = null;
-    public static final GeneratorType DEFAULT = null;
-    public static final GeneratorType FLAT = null;
-    public static final GeneratorType NETHER = null;
-    public static final GeneratorType OVERWORLD = null;
-    public static final GeneratorType END = null;
-
-    private GeneratorTypes() {
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.world.gen.populators;

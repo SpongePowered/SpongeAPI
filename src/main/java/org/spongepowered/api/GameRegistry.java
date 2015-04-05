@@ -62,6 +62,9 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.gen.GeneratorPopulator;
+import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.PopulatorFactory;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
@@ -452,5 +455,13 @@ public interface GameRegistry {
      * @param modifier The modifier to register
      */
     void registerWorldGeneratorModifier(PluginContainer plugin, String genId, WorldGeneratorModifier modifier);
+    
+    /**
+     * Gets the {@link PopulatorFactory} for creating {@link Populator}s and
+     * {@link GeneratorPopulator}s.
+     * 
+     * @return The populator factory
+     */
+    PopulatorFactory getPopulatorFactory();
 
 }

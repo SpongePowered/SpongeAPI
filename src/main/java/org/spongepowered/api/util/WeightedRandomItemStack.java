@@ -23,21 +23,45 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.util;
+
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * An enumeration of default {@link GeneratorType}s.
+ * Represents an item stack with a range of possible quantities and a numerical weight used for random selection
+ * from a collection of weighted types.
  */
-public final class GeneratorTypes {
+public interface WeightedRandomItemStack {
 
-    public static final GeneratorType DEBUG = null;
-    public static final GeneratorType DEFAULT = null;
-    public static final GeneratorType FLAT = null;
-    public static final GeneratorType NETHER = null;
-    public static final GeneratorType OVERWORLD = null;
-    public static final GeneratorType END = null;
+    /**
+     * Gets the {@link ItemStack}. The quantity of the item will be ignored and
+     * instead set to a value randomly selected from between
+     * {@link #getMinimumQuantity()} (inclusive) and
+     * {@link #getMaximumQuantity()} (exclusive).
+     *
+     * @return The item stack
+     */
+    ItemStack getItemStack();
 
-    private GeneratorTypes() {
-    }
+    /**
+     * Gets the minimum quantity of the item to spawn.
+     * 
+     * @return The minimum quantity
+     */
+    int getMinimumQuantity();
+
+    /**
+     * Gets the maximum quantity of the item to spawn.
+     * 
+     * @return The maximum quantity
+     */
+    int getMaximumQuantity();
+
+    /**
+     * Gets the weight of this item.
+     *
+     * @return The weight
+     */
+    int getWeight();
 
 }

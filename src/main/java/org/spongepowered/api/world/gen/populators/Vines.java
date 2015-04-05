@@ -23,21 +23,37 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.gen.populators;
+
+import org.spongepowered.api.world.gen.Populator;
 
 /**
- * An enumeration of default {@link GeneratorType}s.
+ * Represents a populator which places large amounts of vines on surfaces within
+ * the chunk.
  */
-public final class GeneratorTypes {
+public interface Vines extends Populator {
 
-    public static final GeneratorType DEBUG = null;
-    public static final GeneratorType DEFAULT = null;
-    public static final GeneratorType FLAT = null;
-    public static final GeneratorType NETHER = null;
-    public static final GeneratorType OVERWORLD = null;
-    public static final GeneratorType END = null;
+    /**
+     * A builder for constructing {@link Vines} populators.
+     */
+    public static interface Builder {
 
-    private GeneratorTypes() {
+        /**
+         * Resets this builder to the default values.
+         * 
+         * @return This builder, for chaining
+         */
+        Builder reset();
+
+        /**
+         * Builds a new instance of a {@link Vines} populator with the settings
+         * set within the builder.
+         * 
+         * @return A new instance of the populator
+         * @throws IllegalStateException If there are any settings left unset
+         *             which do not have default values
+         */
+        Vines build() throws IllegalStateException;
+
     }
-
 }
