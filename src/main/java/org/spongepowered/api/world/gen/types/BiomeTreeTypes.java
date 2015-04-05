@@ -23,21 +23,23 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.gen.types;
 
 /**
- * An enumeration of default {@link GeneratorType}s.
+ * A enumeration of known {@link BiomeTreeType}s.
  */
-public final class GeneratorTypes {
+public final class BiomeTreeTypes {
 
-    public static final GeneratorType DEBUG = null;
-    public static final GeneratorType DEFAULT = null;
-    public static final GeneratorType FLAT = null;
-    public static final GeneratorType NETHER = null;
-    public static final GeneratorType OVERWORLD = null;
-    public static final GeneratorType END = null;
+    public static final BiomeTreeType OAK = null;
+    public static final BiomeTreeType BIRCH = null;
+    public static final BiomeTreeType TALL_TAIGA = null;
+    public static final BiomeTreeType POINTY_TAIGA = null;
+    public static final BiomeTreeType JUNGLE = null;
+    public static final BiomeTreeType SAVANNA = null;
+    public static final BiomeTreeType CANOPY = null;
+    public static final BiomeTreeType SWAMP = null;
 
-    private GeneratorTypes() {
+    private BiomeTreeTypes() {
     }
 
 }

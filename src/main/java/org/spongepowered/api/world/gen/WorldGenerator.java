@@ -32,6 +32,34 @@ import java.util.List;
  * Represents the world generator of a world. This interface contains all
  * settings for the world generator, like which populators are in use, but also
  * the world seed.
+ * 
+ * <p>The generation process for chunks is divided into two phases, generation
+ * and population. The generation phase is in charge of creating the base
+ * terrain shape and generating large terrain features. All operations during
+ * the generation phase act upon a BlockBuffer rather than a live chunk
+ * object.</p>
+ * 
+ * <p>Conversely the population phase operates against a live chunk object and
+ * has the guarantee that all immediately surrounding chunks have at least
+ * passed the generation phase. The population phase is typically used for the
+ * placement of small features and objects placed may cross chunk
+ * boundaries.</p>
+ * 
+ * <ol><strong>The generation phase:</strong> <li>Create a BlockBuffer
+ * representing the chunk's area</li> <li>Call the
+ * {@link #getBaseGeneratorPopulator() base GeneratorPopulator} from the
+ * WorldGenerator to create the base terrain shape.</li> <li>Call each of the
+ * {@link BiomeType#getGeneratorPopulators() GeneratorPopulators} registered to
+ * the BiomeType.</li> <li>Call each of the {@link #getGeneratorPopulators()
+ * GeneratorPopulators} registered to the WorldGenerator.</li> <li>Build the
+ * final Chunk object from the contents of the BlockBuffer.</li> </ol>
+ * 
+ * <ol><strong>The population phase:</strong> <li>Validate surrounding
+ * chunks.</li> <li>Using the biome at an arbitrary point within the chunk ({16,
+ * 0, 16} in the vanilla game), pass the chunk to each of the
+ * {@link BiomeType#getPopulators() Populators} registered to the chosen
+ * biome.</li> <li>Pass the chunk to each of the {@link #getPopulators()
+ * Populators} registered to the WorldGenerator.</li> </ol>
  */
 public interface WorldGenerator {
 
@@ -55,9 +83,10 @@ public interface WorldGenerator {
     /**
      * Gets a mutable list of {@link GeneratorPopulator}s. These populators work
      * strictly on a single chunk. They will be executed directly after the
-     * {@link #getBaseGeneratorPopulator() main generator populator} is called.
-     * These generator populators are typically used to generate large terrain
-     * features, like caves and ravines.
+     * {@link BiomeType#getGroundCover() biome ground cover layers} and the
+     * {@link BiomeType#getGeneratorPopulators() biome generator populators}
+     * have been called. These generator populators are typically used to
+     * generate large terrain features, like caves and ravines.
      *
      * <p>This list does not include {@link #getBaseGeneratorPopulator() the
      * base generator}.</p>

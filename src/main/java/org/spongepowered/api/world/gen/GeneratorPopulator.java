@@ -27,6 +27,7 @@ package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.util.gen.BiomeBuffer;
 import org.spongepowered.api.util.gen.MutableBlockBuffer;
+import org.spongepowered.api.world.World;
 
 /**
  * A populator which acts directly on the {@link MutableBlockBuffer} during the
@@ -38,13 +39,14 @@ import org.spongepowered.api.util.gen.MutableBlockBuffer;
 public interface GeneratorPopulator {
 
     /**
-     * Fill the {@link MutableBlockBuffer} with blocks, forming the base
-     * terrain.
+     * Operates on a {@link MutableBlockBuffer} either forming the base terrain
+     * or performing modifications during the generation phase.
      *
+     * @param world The world
      * @param buffer The buffer to apply the changes to. The buffer can be of
-     *        any size.
+     *            any size.
      * @param biomes The biomes for generation
      */
-    void populate(MutableBlockBuffer buffer, BiomeBuffer biomes);
+    void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes);
 
 }

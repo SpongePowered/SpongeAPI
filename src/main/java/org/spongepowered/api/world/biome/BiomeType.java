@@ -27,6 +27,7 @@ package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.List;
@@ -66,8 +67,28 @@ public interface BiomeType extends CatalogType {
     float getMaxHeight();
 
     /**
-     * Returns a mutable list of {@link Populator}s specific to this
-     * biome. Changing this list will affect population of all new chunks.
+     * Gets a mutable ordered list of {@link GroundCoverLayer}s. These layers
+     * will be applied to the base terrain during the generation phase starting
+     * at the topmost stone block in each column.
+     * 
+     * @return The ground cover layers
+     */
+    List<GroundCoverLayer> getGroundCover();
+
+    /**
+     * Gets a mutable list of {@link GeneratorPopulator}s. These populators work
+     * strictly on a single chunk. They will be executed directly after the
+     * {@link #getGroundCover() ground cover layers} are applied. These
+     * generator populators are typically used to generate large terrain
+     * features, like caves and ravines.
+     *
+     * @return The generator populators
+     */
+    List<GeneratorPopulator> getGeneratorPopulators();
+
+    /**
+     * Returns a mutable list of {@link Populator}s specific to this biome.
+     * Changing this list will affect population of all new chunks.
      *
      * @return The populators
      */

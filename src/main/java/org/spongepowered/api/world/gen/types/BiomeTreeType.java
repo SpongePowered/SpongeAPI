@@ -23,21 +23,16 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.gen.types;
+
+import org.spongepowered.api.CatalogType;
+
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An enumeration of default {@link GeneratorType}s.
+ * Represents the various types of trees which may be spawned into the world.
  */
-public final class GeneratorTypes {
-
-    public static final GeneratorType DEBUG = null;
-    public static final GeneratorType DEFAULT = null;
-    public static final GeneratorType FLAT = null;
-    public static final GeneratorType NETHER = null;
-    public static final GeneratorType OVERWORLD = null;
-    public static final GeneratorType END = null;
-
-    private GeneratorTypes() {
-    }
+@CatalogedBy(BiomeTreeTypes.class)
+public interface BiomeTreeType extends CatalogType {
 
 }

@@ -70,7 +70,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
     short getMinimumSpawnDelay();
 
     /**
-     * Gets the minimum delay between batches of monsters.
+     * Sets the minimum delay between batches of monsters.
      * <p>
      * Each time the timer is reset the new delay is chosen randomly from
      * between the minimum (inclusive) and maximum (exclusive) delays.
@@ -92,7 +92,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
     short getMaximumSpawnDelay();
 
     /**
-     * Gets the maximum delay between batches of monsters.
+     * Sets the maximum delay between batches of monsters.
      * <p>
      * Each time the timer is reset the new delay is chosen randomly from
      * between the minimum (inclusive) and maximum (exclusive) delays.
