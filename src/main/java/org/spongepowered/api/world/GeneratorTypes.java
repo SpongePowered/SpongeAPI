@@ -30,12 +30,11 @@ package org.spongepowered.api.world;
  */
 public final class GeneratorTypes {
 
+    public static final GeneratorType DEBUG = null;
     public static final GeneratorType DEFAULT = null;
     public static final GeneratorType FLAT = null;
-    public static final GeneratorType LARGE_BIOMES = null;
-    public static final GeneratorType AMPLIFIED = null;
-    public static final GeneratorType SUPER_FLAT = null;
-    public static final GeneratorType DEBUG = null;
+    public static final GeneratorType NETHER = null;
+    public static final GeneratorType THE_END = null;
 
     private GeneratorTypes() {
     }
