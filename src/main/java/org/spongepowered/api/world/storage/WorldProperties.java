@@ -127,11 +127,18 @@ public interface WorldProperties extends DataSerializable {
     void setSpawnPosition(Vector3i position);
 
     /**
-     * Gets the type of the generator for this world.
+     * Gets the {@link GeneratorType} of this world.
      * 
      * @return The type
      */
     GeneratorType getGeneratorType();
+
+    /**
+     * Sets the {@link GeneratorType} of this world.
+     *
+     * @param type The generator type
+     */
+    void setGeneratorType(GeneratorType type);
 
     /**
      * Gets the seed of this world.
