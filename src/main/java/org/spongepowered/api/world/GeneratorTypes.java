@@ -34,6 +34,7 @@ public final class GeneratorTypes {
     public static final GeneratorType DEFAULT = null;
     public static final GeneratorType FLAT = null;
     public static final GeneratorType NETHER = null;
+    public static final GeneratorType OVERWORLD = null;
     public static final GeneratorType THE_END = null;
 
     private GeneratorTypes() {
