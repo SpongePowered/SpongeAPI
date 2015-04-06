@@ -257,6 +257,26 @@ public class Location implements DataHolder {
     }
 
     /**
+     * Returns an optional chunk for this location. Since locations are
+     * backed by an {@link Extent} which are not necessarily related by
+     * chunks, there is no guarantee that one will be returned. If the
+     * extent is a chunk, it is returned. If the extent is a world,
+     * {@link World#getChunk(Vector3i)} is used for this block location.
+     * In any other cases, nothing is returned.
+     *
+     * @return The chunk that contains this location, is any exist
+     */
+    public Optional<Chunk> getChunk() {
+        final Extent extent = getExtent();
+        if (extent instanceof Chunk) {
+            return Optional.of((Chunk) extent);
+        } else if (extent instanceof World) {
+            return ((World) extent).getChunk(getBlockPosition().div(16));
+        }
+        return Optional.absent();
+    }
+
+    /**
      * Get the base type of block.
      *
      * <p>The type does not include block data such as the contents of
