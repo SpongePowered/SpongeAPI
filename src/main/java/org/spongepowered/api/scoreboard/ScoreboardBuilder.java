@@ -58,7 +58,7 @@ public interface ScoreboardBuilder {
      *
      * @return This builder
      */
-    Scoreboard reset();
+    ScoreboardBuilder reset();
 
     /**
      * Builds an instance of a {@link Scoreboard}.
