@@ -34,7 +34,7 @@ import org.spongepowered.api.text.Text;
 public interface Score {
 
     /**
-     * Gets the name of this score
+     * Gets the name of this score.
      *
      * @return The name of this score
      */

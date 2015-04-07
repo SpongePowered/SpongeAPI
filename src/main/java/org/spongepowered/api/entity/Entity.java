@@ -31,6 +31,7 @@ import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -76,9 +77,8 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * and also moves this entity's passengers.
      *
      * @param location The location to set
-     * @return True if the teleport was successful
      */
-    boolean setLocation(Location location);
+    void setLocation(Location location);
 
     /**
      * Moves the entity to the specified location, and sets the rotation.
@@ -90,9 +90,8 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      *
      * @param location The location to set
      * @param rotation The rotation to set
-     * @return True if the teleport was successful
      */
-    boolean setLocationAndRotation(Location location, Vector3d rotation);
+    void setLocationAndRotation(Location location, Vector3d rotation);
 
     /**
      * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
@@ -106,9 +105,50 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @param location The location to set
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
-     * @return True if the teleport was successful
      */
-    boolean setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    void setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
+     * teleport and also moves this entity's passengers.
+     *
+     * @param location The location to set
+     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     */
+    boolean setLocationSafely(Location location);
+
+    /**
+     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     */
+    boolean setLocationAndRotationSafely(Location location, Vector3d rotation);
+
+    /**
+     * Sets the location using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
+     * entity. {@link RelativePositions} listed inside the EnumSet are
+     * considered relative.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @param relativePositions The coordinates to set relatively
+     * @return True if location was set successfully, false if location couldn't
+     *         be set as no safe location was found
+     */
+    boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Sets the location of this entity to a new position in a world which does

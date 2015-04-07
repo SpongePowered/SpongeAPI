@@ -27,7 +27,10 @@ package org.spongepowered.api.attribute;
 
 import java.util.Collection;
 
-
+/**
+ * A utility for determining the value of an attribute given information about
+ * the base value and applicable modifiers.
+ */
 public interface AttributeCalculator {
 
     /**

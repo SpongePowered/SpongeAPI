@@ -26,12 +26,42 @@ package org.spongepowered.api.util.gen;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.BiomeArea;
 
 /**
- * An buffer for {@link BiomeType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * An buffer for {@link BiomeType} data. This buffer has no direct relation to
+ * the world and changes to it are not synchronized to the world.
+ *
+ * <p>Unlike {@link BiomeArea}, buffers are guaranteed to be loaded in memory as
+ * a whole. Calling methods like {@link #getBiome(Vector2i)} will never result
+ * in new terrain being generated. As a result of this, biome buffers are much
+ * more restricted in size than a {@link BiomeArea}.</p>
  */
-public interface BiomeBuffer extends AreaBuffer {
+public interface BiomeBuffer {
+
+    /**
+     * Gets the biome location with the lowest x and y that is still a valid
+     * position for {@link #getBiome(Vector2i)}.
+     *
+     * @return The lowest biome location
+     */
+    Vector2i getBiomeMin();
+
+    /**
+     * Gets the biome location with the highest x and y that is still a valid
+     * position for {@link #getBiome(Vector2i)}.
+     *
+     * @return The highest biome location.
+     */
+    Vector2i getBiomeMax();
+
+    /**
+     * Gets the size of the area. Defined as <code>{@link #getBiomeMax()} -
+     * {@link #getBiomeMin()} + (1, 1)</code>.
+     *
+     * @return The size
+     */
+    Vector2i getBiomeSize();
 
     /**
      * Get an object representing the biome at the given position.

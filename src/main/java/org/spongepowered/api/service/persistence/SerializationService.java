@@ -51,11 +51,12 @@ public interface SerializationService {
             DataSerializableBuilder<T> builder);
 
     /**
-     * Attempts to retrieve the {@link DataSerializableBuilder} for the desired {@link
-     * DataSerializable} class.
+     * Attempts to retrieve the {@link DataSerializableBuilder} for the desired
+     * {@link DataSerializable} class.
      *
-     * <p>Builders may not always exist for a given {@link DataSerializable}, nor is it
-     * guaranteed that a provided builder will function with all {@link DataContainer}s.</p>
+     * <p>Builders may not always exist for a given {@link DataSerializable},
+     * nor is it guaranteed that a provided builder will function with all
+     * {@link DataContainer}s.</p>
      *
      * @param clazz The class of the data serializable
      * @param <T> The type of data serializable

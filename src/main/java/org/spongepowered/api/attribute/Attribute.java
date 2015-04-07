@@ -29,8 +29,8 @@ import com.google.common.base.Predicate;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a type of attribute that can be applied to an {@link
- * AttributeHolder}.
+ * Represents a type of attribute that can be applied to an
+ * {@link AttributeHolder}.
  */
 @CatalogedBy(Attributes.class)
 public interface Attribute {

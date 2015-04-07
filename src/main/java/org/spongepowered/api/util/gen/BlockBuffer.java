@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.util.gen;
 
+import com.flowpowered.math.vector.Vector3i;
+
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 
@@ -32,7 +34,39 @@ import org.spongepowered.api.block.BlockType;
  * An buffer for {@link BlockType} data. This buffer has no direct relation
  * to the world and changes to it are not synchronized to the world.
  */
-public interface BlockBuffer extends VolumeBuffer {
+public interface BlockBuffer {
+
+    /**
+     * Gets the block location with the lowest x, y and z that is still a valid
+     * position for {@link #getBlock(Vector3i)}.
+     *
+     * @return The lowest block location
+     */
+    Vector3i getBlockMin();
+
+    /**
+     * Gets the block location with the highest x, y and z that is still a valid
+     * position for {@link #getBlock(Vector3i)}.
+     *
+     * @return The highest block location
+     */
+    Vector3i getBlockMax();
+
+    /**
+     * Gets the size of the whole volume. Defined as <code>{@link #getBlockMax()} -
+     * {@link #getBlockMin()} + (1, 1, 1)</code>.
+     *
+     * @return The size
+     */
+    Vector3i getBlockSize();
+
+    /**
+     * Gets the block in the buffer at the given position.
+     *
+     * @param position The position.
+     * @return The block
+     */
+    BlockState getBlock(Vector3i position);
 
     /**
      * Gets the block in the buffer at the given position.

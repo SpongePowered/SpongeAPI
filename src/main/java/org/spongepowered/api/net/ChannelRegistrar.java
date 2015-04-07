@@ -38,7 +38,8 @@ public interface ChannelRegistrar {
      * @param plugin The plugin registering the channel
      * @param listener The listener that will listen for
      * @param channel The channel to register
-     * @throws ChannelRegistrationException If the channel is already registered
+     * @throws ChannelRegistrationException The channel name is too long
+     * @throws ChannelRegistrationException The channel name is reserved
      */
     void registerChannel(Object plugin, ChannelListener listener, String channel) throws ChannelRegistrationException;
 

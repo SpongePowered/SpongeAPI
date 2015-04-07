@@ -27,7 +27,7 @@ package org.spongepowered.api.block.tile;
 /**
  * An enumeration of all {@link TileEntityType}s in vanilla Minecraft.
  */
-public class TileEntityTypes {
+public final class TileEntityTypes {
     private TileEntityTypes() {}
 
     public static final TileEntityType BANNER = null;

@@ -24,8 +24,12 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.entity.living.Tameable;
 import org.spongepowered.api.util.Identifiable;
 
+/**
+ * Represents an entity which may tame other {@link Tameable} entities.
+ */
 public interface Tamer extends Identifiable {
 
     /**

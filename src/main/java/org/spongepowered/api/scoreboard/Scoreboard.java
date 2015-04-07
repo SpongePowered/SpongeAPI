@@ -77,8 +77,9 @@ public interface Scoreboard {
      * Adds the specified {@link Objective} to this scoreboard.
      *
      * @param team The {@link Objective} add
-     * @throws IllegalArgumentException if an {@link Objective} with the same {@link Objective#getName() name} already exists,
-     * or if the specified {@link Objective} has already been added.
+     * @throws IllegalArgumentException if an {@link Objective} with the same
+     *             {@link Objective#getName() name} already exists, or if the
+     *             specified {@link Objective} has already been added.
      */
     void addObjective(Objective team) throws IllegalArgumentException;
 
@@ -108,7 +109,8 @@ public interface Scoreboard {
      * Gets a {@link User}'s {@link Team}s on this scoreboard.
      *
      * @param user The {@link User} to search for
-     * @return The {@link User}'s {@link Team}s, if the user has any {@link Team}s
+     * @return The {@link User}'s {@link Team}s, if the user has any
+     *         {@link Team}s
      */
     Set<Team> getPlayerTeams(User user);
 
@@ -131,7 +133,9 @@ public interface Scoreboard {
      * Adds the specified {@link Team} to this scoreboard.
      *
      * @param team The {@link Team} to add
-     * @throws IllegalArgumentException if a team with the same {@link Team#getName() name} already exists, or the specified {@link Team} has been added
+     * @throws IllegalArgumentException if a team with the same
+     *             {@link Team#getName() name} already exists, or the specified
+     *             {@link Team} has been added
      */
     void addTeam(Team team) throws IllegalArgumentException;
 

@@ -63,7 +63,7 @@ public class Cause {
      * @param reason An optional reason
      */
     public Cause(@Nullable Cause parent, Object cause, @Nullable Reason reason) {
-        checkNotNull(cause);
+        checkNotNull(cause, "cause");
         this.parent = Optional.fromNullable(parent);
         this.cause = cause;
         this.reason = Optional.fromNullable(reason);

@@ -49,12 +49,12 @@ public interface DamagingProjectile extends Projectile {
     void setDamage(double damage);
 
     /**
-     * Gets the damage this projectile will deal to the specified {@link
-     * EntityType} if hit.
+     * Gets the damage this projectile will deal to the specified
+     * {@link EntityType} if hit.
      *
-     * <p>Note that in events, the damage defined for the provided {@link
-     * EntityType} will take priority over the "default" damage as defined
-     * from {@link #getDamage()}.</p>
+     * <p>Note that in events, the damage defined for the provided
+     * {@link EntityType} will take priority over the "default" damage as
+     * defined from {@link #getDamage()}.</p>
      *
      * @param entityType The {@link EntityType} to set the damage amount for
      * @return The damage to deal to the specified {@link EntityType}
@@ -62,12 +62,12 @@ public interface DamagingProjectile extends Projectile {
     double getDamageForEntity(EntityType entityType);
 
     /**
-     * Sets the damage this projectile will deal to the specified {@link
-     * EntityType} if hit.
+     * Sets the damage this projectile will deal to the specified
+     * {@link EntityType} if hit.
      *
-     * <p>Note that in events, the damage defined for the provided {@link
-     * EntityType} will take priority over the "default" damage as defined
-     * from {@link #getDamage()}.</p>
+     * <p>Note that in events, the damage defined for the provided
+     * {@link EntityType} will take priority over the "default" damage as
+     * defined from {@link #getDamage()}.</p>
      *
      * @param entityType The {@link EntityType} to set the damage amount for
      * @param damage The damage to deal to the specified {@link EntityType}

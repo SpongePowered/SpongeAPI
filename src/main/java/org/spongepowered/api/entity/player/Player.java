@@ -33,11 +33,11 @@ import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.text.translation.locale.Locales;
@@ -283,7 +283,6 @@ public interface Player extends Human, User, CommandSource, Viewer {
     void revokeAchievements();
     
     /**
-     *
      * Gets the {@link Scoreboard} displayed to the player.
      *
      * @return The scoreboard displayed to the player

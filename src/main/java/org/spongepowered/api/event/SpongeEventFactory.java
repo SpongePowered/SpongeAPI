@@ -114,6 +114,7 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLin
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
+import org.spongepowered.api.event.state.StateEvent;
 import org.spongepowered.api.event.stats.AchievementEvent;
 import org.spongepowered.api.event.stats.StatisticChangeEvent;
 import org.spongepowered.api.event.weather.LightningStrikeEvent;
@@ -130,6 +131,7 @@ import org.spongepowered.api.event.world.GameRuleChangeEvent;
 import org.spongepowered.api.event.world.WorldCreateEvent;
 import org.spongepowered.api.event.world.WorldLoadEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.TileEntityInventory;
 import org.spongepowered.api.stats.Statistic;
@@ -186,6 +188,20 @@ public final class SpongeEventFactory {
     @SuppressWarnings("unchecked")
     private static <T> T createEvent(Class<T> type, Map<String, Object> values) {
         return (T) factories.getUnchecked(type).apply(values);
+    }
+
+    /**
+     * Creates a new {@link StateEvent} of the given type.
+     *
+     * @param type The type of the state event
+     * @param game The game instance for this {@link GameEvent}
+     * @param <T> The type of the state event
+     * @return A new instance of the event
+     */
+    public static <T extends StateEvent> T createState(Class<T> type, Game game) {
+        Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
+        values.put("game", game);
+        return createEvent(type, values);
     }
 
     /**
@@ -744,13 +760,15 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity involved in this event
      * @param items The items that will be picked up
+     * @param inventory The inventory involved with the event
      * @return A new instance of the event
      */
-    public static EntityPickUpItemEvent createEntityPickUpItem(Game game, Entity entity, Collection<Entity> items) {
+    public static EntityPickUpItemEvent createEntityPickUpItem(Game game, Entity entity, Collection<Entity> items, Inventory inventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("items", items);
+        values.put("inventory", inventory);
         return createEvent(EntityPickUpItemEvent.class, values);
     }
 
@@ -1317,9 +1335,10 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param items The items that will be picked up
+     * @param inventory The inventory involved with the event
      * @return A new instance of the event
      */
-    public static PlayerPickUpItemEvent createPlayerPickUpItem(Game game, Player player, Collection<Entity> items) {
+    public static PlayerPickUpItemEvent createPlayerPickUpItem(Game game, Player player, Collection<Entity> items, Inventory inventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1328,6 +1347,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
+        values.put("inventory", inventory);
         return createEvent(PlayerPickUpItemEvent.class, values);
     }
 

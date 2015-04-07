@@ -27,8 +27,13 @@ package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.world.World;
 
+import java.util.Random;
+
 /**
- * Represents a structure which can be placed into the world by a populator.
+ * Represents an object placed in the world during terrain population. Populator
+ * objects typically fit in a single chunk.
+ *
+ * @see PopulatorObjects
  */
 public interface PopulatorObject {
 
@@ -48,10 +53,12 @@ public interface PopulatorObject {
      * Places the object into the world at the given location.
      *
      * @param world The world
+     * @param random Random number generator based on the world seed and
+     *        position.
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      */
-    void placeObject(World world, int x, int y, int z);
+    void placeObject(World world, Random random, int x, int y, int z);
 
 }

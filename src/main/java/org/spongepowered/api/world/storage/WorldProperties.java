@@ -27,6 +27,7 @@ package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
+import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.service.persistence.DataSerializable;
@@ -37,7 +38,9 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 
@@ -124,11 +127,18 @@ public interface WorldProperties extends DataSerializable {
     void setSpawnPosition(Vector3i position);
 
     /**
-     * Gets the type of the generator for this world.
+     * Gets the {@link GeneratorType} of this world.
      * 
      * @return The type
      */
     GeneratorType getGeneratorType();
+
+    /**
+     * Sets the {@link GeneratorType} of this world.
+     *
+     * @param type The generator type
+     */
+    void setGeneratorType(GeneratorType type);
 
     /**
      * Gets the seed of this world.
@@ -379,5 +389,29 @@ public interface WorldProperties extends DataSerializable {
      * @param data The new data
      */
     void setPropertySection(DataQuery path, DataView data);
+
+    /**
+     * Gets an immutable collection of the world generator modifiers currently
+     * in use.
+     * @return The world generator modifiers in use.
+     */
+    Collection<WorldGeneratorModifier> getGeneratorModifiers();
+
+    /**
+     * Sets the given world generator modifiers to be used.
+     * 
+     * @param modifiers The modifiers to set.
+     * @throws IllegalArgumentException If any of the modifiers has not been
+     *             registered in the {@link GameRegistry}.
+     */
+    void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
+
+    /**
+     * Gets the generator settings. These can be used by the generator type and/or
+     * by the generator modifiers.
+     *
+     * @return The generator settings.
+     */
+    DataContainer getGeneratorSettings();
 
 }

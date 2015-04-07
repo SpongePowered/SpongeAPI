@@ -150,15 +150,12 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
     Dimension getDimension();
 
     /**
-     * Gets the random seed for this world.
-     *
-     * @return The seed
-     */
-    long getWorldSeed();
-
-    /**
      * Gets the {@link WorldGenerator} for this world.
      *
+     * <p>Any changes made to the world generator won't affect the world until
+     * {@link #setWorldGenerator(WorldGenerator)}, and even then only newly
+     * changed chunks will be affected.</p>
+     * 
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();
@@ -227,4 +224,21 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
      */
     WorldProperties getProperties();
 
+    /**
+     * Gets the {@link Location} of the spawn point.
+     * @return The location
+     */
+    Location getSpawnLocation();
+
+    /**
+     * Gets the highest naturally generated y-coordinate. Usually 128 (no sky) or 256 (sky).
+     * @return The generated height
+     */
+    int getHeight();
+
+    /**
+     * Gets the maximum y-coordinate a non-air cuboid can exist at in this world. Usually 256.
+     * @return The build height
+     */
+    int getBuildHeight();
 }

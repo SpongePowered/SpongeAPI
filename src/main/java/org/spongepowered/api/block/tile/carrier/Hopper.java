@@ -36,9 +36,9 @@ public interface Hopper extends TileEntityCarrier {
     /**
      * Requests this {@link Hopper} to transfer an item to the next carrier.
      *
-     * <p>Since {@link Hopper}s normally send items to other {@link
-     * TileEntityCarrier}s adjacent to themselves, if there is no available
-     * carrier to send an item to, this will perform nothing.</p>
+     * <p>Since {@link Hopper}s normally send items to other
+     * {@link TileEntityCarrier}s adjacent to themselves, if there is no
+     * available carrier to send an item to, this will perform nothing.</p>
      */
     void transferItem();
 

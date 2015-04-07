@@ -117,7 +117,8 @@ public class SimpleCommandService implements CommandService {
     @Override
     public Optional<CommandMapping> register(Object registrar, CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(registrar);
+
+        checkNotNull(registrar, "commandRegistrar");
 
         CommandRegistrar realRegistrar = null;
         if (registrar instanceof CommandRegistrar) {

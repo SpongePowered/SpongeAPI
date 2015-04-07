@@ -28,6 +28,8 @@ package org.spongepowered.api.world.biome;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.gen.Populator;
 
+import java.util.List;
+
 /**
  * Represents a biome.
  */
@@ -70,22 +72,11 @@ public interface BiomeType {
     float getMaxHeight();
 
     /**
-     * Returns an ordered Collection of {@link Populator}s specific to this
-     * biome.
+     * Returns a mutable list of {@link Populator}s specific to this
+     * biome. Changing this list will affect population of all new chunks.
      *
      * @return The populators
      */
-    Iterable<Populator> getPopulators();
-
-    /**
-     * Inserts a new populator to this Biome's ordered collection of
-     * populators. The new populator is inserted at the given index. If the
-     * index is larger than the current amount of populators then the new
-     * populator in inserted at the end of the collection.
-     *
-     * @param populator The new populator
-     * @param index THe index to insert the populator at
-     */
-    void insertPopulator(Populator populator, int index);
+    List<Populator> getPopulators();
 
 }

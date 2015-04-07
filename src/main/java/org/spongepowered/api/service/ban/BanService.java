@@ -103,18 +103,18 @@ public interface BanService {
     void pardon(InetAddress address);
 
     /**
-     * Adds a ban.
-     *
-     * @param ban The ban to put on the user
-     */
-    void ban(Ban ban);
-
-    /**
      * Pardons a ban.
      *
      * @param ban The ban
      */
     void pardon(Ban ban);
+
+    /**
+     * Adds a ban.
+     *
+     * @param ban The ban to put on the user
+     */
+    void ban(Ban ban);
 
     /**
      * Checks if the specified ban has been set.
