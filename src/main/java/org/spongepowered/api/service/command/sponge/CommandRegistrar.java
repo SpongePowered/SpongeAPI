@@ -39,8 +39,8 @@ public interface CommandRegistrar {
 
     Set<String> getPrefixes();
 
-    String getRegistrarName();
+    String getId();
 
-    String getFriendlyName();
+    String getName();
 
 }

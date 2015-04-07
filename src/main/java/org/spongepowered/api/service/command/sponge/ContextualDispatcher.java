@@ -202,7 +202,7 @@ public class ContextualDispatcher implements Dispatcher {
                     outer: for (CommandRegistrar registrar : this.getRegistrars()) {
                         for (String p : registrar.getPrefixes()) {
                             if (prefix.equalsIgnoreCase(p)) {
-                                rName = registrar.getFriendlyName();
+                                rName = registrar.getName();
                                 break outer;
                             }
                         }
@@ -222,7 +222,7 @@ public class ContextualDispatcher implements Dispatcher {
                         TextBuilder builder2;
                         int index = 0;
                         for (CommandRegistrar r : potentialRegistrars) {
-                            builder2 = Texts.builder("/" + r.getRegistrarName() + ":" + realAlias);
+                            builder2 = Texts.builder("/" + r.getId() + ":" + realAlias);
                             builder2.color(TextColors.GOLD);
                             Text cmd = builder2.build();
                             builder2 =
@@ -368,7 +368,7 @@ public class ContextualDispatcher implements Dispatcher {
             String prefix = alias.substring(0, alias.indexOf(":") - 1);
             for (CommandRegistrar r : this.getRegistrars()) {
                 Set<String> prefixes = new HashSet<String>(r.getPrefixes());
-                prefixes.add(r.getRegistrarName());
+                prefixes.add(r.getId());
                 for (String p : prefixes) {
                     if (p.equalsIgnoreCase(prefix)) {
                         registrar = Optional.of(r);
