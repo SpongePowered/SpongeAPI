@@ -157,6 +157,7 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -1109,12 +1110,13 @@ public final class SpongeEventFactory {
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Text message) {
+    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Text message, Set<CommandSource> recipients) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
         values.put("source", source);
         values.put("message", message);
+        values.put("recipients", recipients);
         values.put("player", player);
         values.put("user", player);
         values.put("human", player);

@@ -26,9 +26,11 @@
 package org.spongepowered.api.event.message;
 
 import org.spongepowered.api.event.GameEvent;
+
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
  * Fired when a chat message is said.
@@ -55,5 +57,12 @@ public interface MessageEvent extends GameEvent, Cancellable {
      * @param message The message said
      */
     void setMessage(Text message);
-
+    
+    /*
+     * Returns the set of {@link CommandSource}s
+     * that recieve the message. This Set is mutable.
+     *
+     * @return The {@link CommandSource}s
+     */
+    Set<CommandSource> getRecipients();
 }

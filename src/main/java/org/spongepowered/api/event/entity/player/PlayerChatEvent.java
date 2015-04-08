@@ -25,12 +25,15 @@
 
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.entity.player.Player;
+
+import java.util.Set;
 
 /**
  * Called when a {@link Player} sends a chat message.
  */
 public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
-
+	
 }
