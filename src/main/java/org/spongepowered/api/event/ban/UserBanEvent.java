@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.event.ban;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.player.UserEvent;
 import org.spongepowered.api.util.ban.Ban;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Occurs when a user is banned.

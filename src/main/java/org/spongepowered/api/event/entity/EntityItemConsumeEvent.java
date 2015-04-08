@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when an entity consumes an itemstack for any reason.

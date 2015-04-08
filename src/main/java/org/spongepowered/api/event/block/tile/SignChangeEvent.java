@@ -25,9 +25,9 @@
 package org.spongepowered.api.event.block.tile;
 
 import org.spongepowered.api.block.tile.Sign;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event when a {@link Sign} is changed.

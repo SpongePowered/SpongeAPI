@@ -25,9 +25,9 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 /**

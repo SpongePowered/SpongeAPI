@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Called when an {@link Item} is merged with another {@link Item}.

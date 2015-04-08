@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.attribute;
 
 import org.spongepowered.api.attribute.Attribute;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * An event fired when the base value of an {@link Attribute} is changed on an

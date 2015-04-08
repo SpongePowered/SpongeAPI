@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.inventory;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.util.event.Cancellable;
 
 import java.util.List;
 

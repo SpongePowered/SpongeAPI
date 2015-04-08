@@ -25,9 +25,9 @@
 
 package org.spongepowered.api.event.stats;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.player.PlayerEvent;
 import org.spongepowered.api.stats.Statistic;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Represents an event that is triggered if a {@link Statistic}'s value is being

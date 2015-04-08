@@ -25,8 +25,8 @@
 package org.spongepowered.api.event.entity.living;
 
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.potion.PotionEffect;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event that occurs when a {@link Living} gains a {@link PotionEffect}.

@@ -26,10 +26,10 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.ExperienceEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.inventory.ItemDropEvent;
-import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 /**

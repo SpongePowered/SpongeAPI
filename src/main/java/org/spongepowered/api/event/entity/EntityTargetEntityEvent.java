@@ -25,8 +25,9 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Called when an {@link Entity} targets another entity.

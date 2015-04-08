@@ -26,9 +26,10 @@
 package org.spongepowered.api.event.attribute;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * An event fired when an {@link AttributeModifier} is added to an

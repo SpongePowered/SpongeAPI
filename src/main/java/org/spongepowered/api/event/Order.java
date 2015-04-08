@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.event;
+package org.spongepowered.api.event;
 
 /**
  * Order that {@link Subscribe}d methods may be registered at.

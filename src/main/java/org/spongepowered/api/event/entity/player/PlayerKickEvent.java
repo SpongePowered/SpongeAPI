@@ -25,8 +25,9 @@
 package org.spongepowered.api.event.entity.player;
 
 import com.google.common.base.Optional;
+
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when a player is kicked.

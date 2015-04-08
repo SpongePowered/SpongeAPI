@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.event;
+package org.spongepowered.api.event;
 
 import org.spongepowered.api.util.event.callback.CallbackList;
 

@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Called when a GameRule is changed.

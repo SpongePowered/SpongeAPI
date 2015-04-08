@@ -26,8 +26,8 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.inventory.ItemDropEvent;
-import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;

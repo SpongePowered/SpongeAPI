@@ -25,10 +25,10 @@
 
 package org.spongepowered.api.event.message;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Fired when a chat message is said.

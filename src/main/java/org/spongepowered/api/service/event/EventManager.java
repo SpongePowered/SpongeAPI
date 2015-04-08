@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.service.event;
 
-import org.spongepowered.api.util.event.Event;
+import org.spongepowered.api.event.Event;
 
 /**
  * Manages the registration of event handlers and the dispatching of events.

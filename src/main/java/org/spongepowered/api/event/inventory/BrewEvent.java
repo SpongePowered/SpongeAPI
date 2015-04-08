@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Fired when an item is brewed.

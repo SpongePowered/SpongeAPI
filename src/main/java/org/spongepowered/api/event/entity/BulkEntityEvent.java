@@ -26,9 +26,10 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Predicate;
+
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.event.Cancellable;
 
 import java.util.List;
 

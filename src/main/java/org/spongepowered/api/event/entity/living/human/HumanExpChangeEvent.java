@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when a human gains or looses experience.

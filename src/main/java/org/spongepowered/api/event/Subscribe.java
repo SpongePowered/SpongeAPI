@@ -23,29 +23,34 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.util.event;
+package org.spongepowered.api.event;
 
-/**
- * Represents an event that can be cancelled.
- */
-public interface Cancellable {
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import org.spongepowered.api.service.event.EventManager;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+@Retention(value = RUNTIME)
+@Target(value = METHOD)
+public @interface Subscribe {
 
     /**
-     * Gets if the {@link Event} has been cancelled.
+     * The order this handler should be called in relation to other handlers in
+     * the {@link EventManager}.
      *
-     * @return Is this event cancelled
+     * @return The order the handler should be called in
      */
-    boolean isCancelled();
+    Order order() default Order.DEFAULT;
 
     /**
-     * Sets the cancelled state of the {@link Event}.
+     * Whether this handler should execute even if the event has been cancelled
+     * by another handler.
      *
-     * <p>This will also cancel any callbacks on the event if {@code cancel}
-     * is {@code true}. However, no callbacks will be un-cancelled if
-     * {@code cancel} is {@code false}.</p>
-     *
-     * @param cancel The new cancelled state
+     * @return If the handler should ignore cancelled events
      */
-    void setCancelled(boolean cancel);
+    boolean ignoreCancelled() default true;
 
 }

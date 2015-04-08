@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.net;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.net.PlayerConnection;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event that occurs when a {@link PlayerConnection} registers a channel with the server.

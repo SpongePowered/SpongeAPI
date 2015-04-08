@@ -26,9 +26,10 @@
 package org.spongepowered.api.util.event.callback;
 
 import com.google.common.collect.Iterators;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 import java.util.ArrayList;
 import java.util.Collection;

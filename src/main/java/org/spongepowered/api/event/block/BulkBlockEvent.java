@@ -26,9 +26,10 @@
 package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
+
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.util.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 import java.util.List;

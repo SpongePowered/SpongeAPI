@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Dispatched when a block is in the process of changing, before

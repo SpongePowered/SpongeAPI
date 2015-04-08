@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * An event that occurs when an entity becomes ignited.

@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.ban;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.player.PlayerEvent;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * Called when a player is pardoned.

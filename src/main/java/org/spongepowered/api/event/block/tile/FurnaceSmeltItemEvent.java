@@ -25,9 +25,9 @@
 package org.spongepowered.api.event.block.tile;
 
 import org.spongepowered.api.block.tile.carrier.Furnace;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.inventory.ItemResultEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event that occurs when a {@link Furnace} smelt an item.
