@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
-
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 

@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
