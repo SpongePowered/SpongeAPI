@@ -29,6 +29,9 @@ package org.spongepowered.api.util.command;
  */
 public class CommandResults {
 
+    private static final CommandResult PROCESSED = new CommandResultBuilder().processed(true).build();
+    private static final CommandResult NOT_PROCESSED = new CommandResultBuilder().processed(false).build();
+
     private CommandResults() {
     }
 
@@ -49,7 +52,7 @@ public class CommandResults {
      */
     public static CommandResult processed() 
     {
-        return new CommandResultBuilder().processed(true).build();
+        return PROCESSED;
     }
 
     /**
@@ -59,7 +62,7 @@ public class CommandResults {
      */
     public static CommandResult notProcessed() 
     {
-        return new CommandResultBuilder().processed(false).build();
+        return NOT_PROCESSED;
     }
 
 }
