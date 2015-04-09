@@ -64,7 +64,7 @@ import java.util.Collection;
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
-public class Location implements DataHolder {
+public final class Location implements DataHolder {
 
     private final Extent extent;
     private final Vector3d position;
@@ -298,7 +298,7 @@ public class Location implements DataHolder {
      *
      * @return The associated tile entity, if available
      */
-    Optional<TileEntity> getTileEntity() {
+    public Optional<TileEntity> getTileEntity() {
         return getExtent().getTileEntity(getBlockPosition());
     }
 
@@ -342,7 +342,7 @@ public class Location implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      */
     @SuppressWarnings("ConstantConditions")
-    void remove() {
+    public void remove() {
         getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR);
     }
 
@@ -534,7 +534,7 @@ public class Location implements DataHolder {
      *
      * @return A list of ScheduledBlockUpdates on this block
      */
-    Collection<ScheduledBlockUpdate> getScheduledUpdates() {
+    public Collection<ScheduledBlockUpdate> getScheduledUpdates() {
         return getExtent().getScheduledUpdates(getBlockPosition());
     }
 
@@ -545,7 +545,7 @@ public class Location implements DataHolder {
      * @param ticks The ticks until the scheduled update should be processed
      * @return The newly created scheduled update
      */
-    ScheduledBlockUpdate addScheduledUpdate(int priority, int ticks) {
+    public ScheduledBlockUpdate addScheduledUpdate(int priority, int ticks) {
         return getExtent().addScheduledUpdate(getBlockPosition(), priority, ticks);
     }
 
