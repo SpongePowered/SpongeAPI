@@ -81,11 +81,14 @@ import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.selector.SelectorType;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.weather.Weather;
 
 /**
@@ -154,9 +157,11 @@ public final class CatalogTypes {
     public static final Class<TextColor> TEXT_COLOR = TextColor.class;
     public static final Class<TileEntityType> TILE_ENTITY_TYPE = TileEntityType.class;
     public static final Class<TreeType> TREE_TYPE = TreeType.class;
+    public static final Class<Translation> TRANSLATION = Translation.class;
     public static final Class<Visibility> VISIBILITY = Visibility.class;
     public static final Class<WallType> WALL_TYPE = WallType.class;
     public static final Class<Weather> WEATHER = Weather.class;
+    public static final Class<WorldGeneratorModifier> WORLD_GENERATOR_MODIFIER = WorldGeneratorModifier.class;
 
     private CatalogTypes() {
     }

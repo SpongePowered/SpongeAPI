@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -36,7 +37,7 @@ import org.spongepowered.api.plugin.PluginContainer;
  * @see GameRegistry#registerWorldGeneratorModifier(PluginContainer, String,
  *      WorldGeneratorModifier)
  */
-public interface WorldGeneratorModifier {
+public interface WorldGeneratorModifier extends CatalogType {
 
     /**
      * Modifies the given world generator. This method is called by the
