@@ -46,6 +46,7 @@ import org.spongepowered.api.util.command.CommandContext;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandExecutor;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
@@ -318,14 +319,14 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     }
 
     @Override
-    public boolean process(CommandSource source, String arguments) {
+    public Optional<CommandResult> process(CommandSource source, String arguments) {
         final String[] argSplit = arguments.split(" ", 2);
         CommandMapping cmd = this.commands.get(argSplit[0].toLowerCase());
         if (cmd == null) {
-            return false;
+            return Optional.absent();
         }
         try {
-            cmd.getSpec().process(source, argSplit[1]);
+            return Optional.of(cmd.getSpec().process(source, argSplit[1]));
         } catch (CommandException ex) {
             if (ex.getText() != null) {
                 source.sendMessage(error(ex.getText()));
@@ -335,7 +336,7 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
             source.sendMessage(error(_("Error occurred while executing command: %s", String.valueOf(t.getMessage()))));
             t.printStackTrace();
         }
-        return true;
+        return Optional.of(CommandResult.empty());
     }
 
     @Override
@@ -439,16 +440,15 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
 
 
     @Override
-    public void execute(CommandSource src, CommandContext args) throws CommandException {
+    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         CommandSpec spec = args.<CommandSpec>getOne(getUntranslatedKey()).get();
         if (spec == null) {
             if (this.fallbackExecutor != null) {
-                this.fallbackExecutor.execute(src, args);
-                return;
+                return this.fallbackExecutor.execute(src, args);
             } else {
                 throw new CommandException(_("Invalid subcommand state -- no more than one spec may be provided for child arg %s", getKey()));
             }
         }
-        spec.getExecutor().execute(src, args);
+        return spec.getExecutor().execute(src, args);
     }
 }

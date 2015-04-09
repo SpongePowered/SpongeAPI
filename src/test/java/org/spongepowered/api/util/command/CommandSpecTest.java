@@ -41,8 +41,8 @@ public class CommandSpecTest {
         CommandSpec.builder()
                 .setExecutor(new CommandExecutor() {
                     @Override
-                    public void execute(CommandSource src, CommandContext args) throws CommandException {
-                        // Run
+                    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
+                        return CommandResult.empty();
                     }
                 })
                 .build()

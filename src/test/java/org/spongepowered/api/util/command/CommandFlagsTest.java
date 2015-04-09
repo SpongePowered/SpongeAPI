@@ -46,10 +46,11 @@ public class CommandFlagsTest {
                         .flag("a").valueFlag(integer(_("quot")), "q").buildWith(string(_("key"))))
                 .setExecutor(new CommandExecutor() {
                     @Override
-                    public void execute(CommandSource src, CommandContext args) throws CommandException {
+                    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
                         assertEquals(true, args.getOne("a").get());
                         assertEquals(42, args.getOne("quot").get());
                         assertEquals("something", args.getOne("key").get());
+                        return CommandResult.builder().successCount(3).build();
                     }
                 })
                 .build();

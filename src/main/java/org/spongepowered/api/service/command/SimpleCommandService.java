@@ -40,6 +40,7 @@ import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
@@ -199,12 +200,12 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean process(CommandSource source, String commandLine) {
+    public Optional<CommandResult> process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit[0], source, argSplit[1]);
+        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit[0], source, argSplit[1], null);
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
-            return true;
+            return event.getResult();
         }
         return this.dispatcher.process(source, commandLine);
     }

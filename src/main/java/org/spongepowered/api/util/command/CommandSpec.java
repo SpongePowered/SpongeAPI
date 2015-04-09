@@ -242,15 +242,16 @@ public final class CommandSpec {
      *
      * @param source The source executing this command
      * @param commandLine The raw input arguments
+     * @return the result of executing this command
      * @throws CommandException if an error occurs
      */
-    public void process(CommandSource source, String commandLine) throws CommandException {
+    public CommandResult process(CommandSource source, String commandLine) throws CommandException {
         Preconditions.checkNotNull(source, "source");
         Preconditions.checkNotNull(commandLine, "commandLine");
         checkPermission(source);
         CommandContext args = parse(commandLine);
-        getExecutor().execute(source, args);
-
+        CommandResult res = getExecutor().execute(source, args);
+        return res == null ? CommandResult.empty() : res; // just in case
     }
 
     /**

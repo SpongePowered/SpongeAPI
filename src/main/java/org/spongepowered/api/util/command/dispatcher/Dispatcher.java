@@ -27,6 +27,7 @@ package org.spongepowered.api.util.command.dispatcher;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.CommandSpec;
 
@@ -100,7 +101,7 @@ public interface Dispatcher {
      * @param commandLine the command line, not including a preceding /
      * @return whether any command was found
      */
-    boolean process(CommandSource source, String commandLine);
+    Optional<CommandResult> process(CommandSource source, String commandLine);
 
     /**
      * Return the appropriate tab completions for this command, or an empty list if none are present.
