@@ -105,7 +105,7 @@ public class CommandResultBuilder {
      * @param queryResult The query result of the command
      * @return This builder, for chaining
      */
-    public  CommandResultBuilder queryResult(@Nullable Integer queryResult) {
+    public CommandResultBuilder queryResult(@Nullable Integer queryResult) {
         this.queryResult = queryResult;
         return this;
     }
