@@ -27,6 +27,7 @@ package org.spongepowered.api.text;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyle;
@@ -114,8 +115,7 @@ public final class Texts {
      * @return The created text
      * @see Text.Score
      */
-    // TODO: Replace with Statistic API
-    public static Text.Score of(Object score) {
+    public static Text.Score of(Score score) {
         return new Text.Score(score);
     }
 
@@ -151,11 +151,11 @@ public final class Texts {
                 if (obj instanceof String) {
                     childBuilder = Texts.builder((String) obj);
                 } else if (obj instanceof Translation) {
-                    childBuilder = Texts.builder((Translation) obj, new Object[0]); // TODO: Remove explicit array initializer
+                    childBuilder = Texts.builder((Translation) obj);
                 } else if (obj instanceof Selector) {
                     childBuilder = Texts.builder((Selector) obj);
-                /*} else if (obj instanceof Object) { // TODO: Statistic API
-                    childBuilder = Texts.builder((Object) obj);*/
+                } else if (obj instanceof Score) {
+                    childBuilder = Texts.builder((Score) obj);
                 } else {
                     childBuilder = Texts.builder(String.valueOf(obj));
                 }
@@ -289,8 +289,6 @@ public final class Texts {
         return new TextBuilder.Selector(text, selector);
     }
 
-    // TODO: Replace with Statistic API
-
     /**
      * Creates a new unformatted {@link TextBuilder.Score} with the given score.
      *
@@ -299,7 +297,7 @@ public final class Texts {
      * @see Text.Score
      * @see TextBuilder.Score
      */
-    public static TextBuilder.Score builder(Object score) {
+    public static TextBuilder.Score builder(Score score) {
         return new TextBuilder.Score(score);
     }
 
@@ -313,7 +311,7 @@ public final class Texts {
      * @see Text.Score
      * @see TextBuilder.Score
      */
-    public static TextBuilder.Score builder(Text text, Object score) {
+    public static TextBuilder.Score builder(Text text, Score score) {
         return new TextBuilder.Score(text, score);
     }
 

@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Identifiable;
 
@@ -88,8 +89,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
     /**
      * Shows information about an achievement.
      */
-    // TODO: Replace with achievement
-    public static final class ShowAchievement extends HoverAction<Object> {
+    public static final class ShowAchievement extends HoverAction<Achievement> {
 
         /**
          * Constructs a new {@link ShowAchievement} instance that will show
@@ -97,7 +97,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
          *
          * @param achievement The achievement to display
          */
-        public ShowAchievement(Object achievement) {
+        public ShowAchievement(Achievement achievement) {
             super(achievement);
         }
 
