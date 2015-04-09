@@ -115,7 +115,8 @@ public class CommandResult {
     }
 
     /**
-     * Gets the query result of the command.
+     * Gets the query result of the command, e.g. the time of the day,
+     * an amount of money or a player's amount of XP.
      *
      * @return The query result of the command, if one exists
      */

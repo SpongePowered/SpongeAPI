@@ -99,7 +99,8 @@ public class CommandResultBuilder {
     }
 
     /**
-     * Sets the query result of the command.
+     * Sets the query result of the command, e.g. the time of the day,
+     * an amount of money or a player's amount of XP.
      *
      * @param queryResult The query result of the command
      * @return This builder, for chaining
