@@ -58,7 +58,7 @@ public interface MessageEvent extends GameEvent, Cancellable {
      */
     void setMessage(Text message);
     
-    /*
+    /**
      * Returns the set of {@link CommandSource}s
      * that recieve the message. This Set is mutable.
      *
