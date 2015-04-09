@@ -37,31 +37,30 @@ public class CommandResults {
 
     /**
      * Returns a {@link CommandResultBuilder}.
-     * 
+     *
      * @return A new command result builder
      */
-    public static CommandResultBuilder builder() 
-    {
+    public static CommandResultBuilder builder() {
         return new CommandResultBuilder();
     }
 
     /**
-     * Returns a new {@link CommandResult} indicating that a command was processed.
-     * 
-     * @return The command result 
+     * Returns a new {@link CommandResult} indicating that a command was
+     * processed.
+     *
+     * @return The command result
      */
-    public static CommandResult processed() 
-    {
+    public static CommandResult processed() {
         return PROCESSED;
     }
 
     /**
-     * Returns a new {@link CommandResult} indicating that a command was not processed.
-     * 
+     * Returns a new {@link CommandResult} indicating that a command was not
+     * processed.
+     *
      * @return The command result
      */
-    public static CommandResult notProcessed() 
-    {
+    public static CommandResult notProcessed() {
         return NOT_PROCESSED;
     }
 
