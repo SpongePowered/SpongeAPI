@@ -141,7 +141,7 @@ public class CommandResultBuilder {
      *
      * @return A CommandResult with the specified settings
      */
-    CommandResult build() {
+    public CommandResult build() {
         return new CommandResult(this.processed, this.successCount, this.affectedBlocks, this.affectedEntities, this.affectedItems, this.queryResult,
                 this.resultInfo);
     }

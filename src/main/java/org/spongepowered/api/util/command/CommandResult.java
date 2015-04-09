@@ -55,7 +55,7 @@ public class CommandResult {
      * @param queryResult The query result
      * @param resultInfo A map storing additional information
      */
-    protected CommandResult(boolean processed, @Nullable Integer successCount, @Nullable Integer affectedBlocks, @Nullable Integer affectedEntities,
+    CommandResult(boolean processed, @Nullable Integer successCount, @Nullable Integer affectedBlocks, @Nullable Integer affectedEntities,
             @Nullable Integer affectedItems, @Nullable Integer queryResult, @Nullable Map<String, Object> resultInfo) {
         this.processed = processed;
         this.successCount = Optional.fromNullable(successCount);
