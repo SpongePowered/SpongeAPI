@@ -42,6 +42,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.InvocationCommandException;
@@ -200,12 +201,12 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean process(CommandSource source, String commandLine) {
+    public Optional<CommandResult> process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit[0], source, argSplit.length > 1 ? argSplit[1] : "");
+        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit[0], source, argSplit.length > 1 ? argSplit[1] : "", null);
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
-            return true;
+            return event.getResult();
         }
 
         try {
@@ -228,7 +229,7 @@ public class SimpleCommandService implements CommandService {
             source.sendMessage(error(t("Error occurred while executing command: %s", String.valueOf(thr.getMessage()))));
             thr.printStackTrace();
         }
-        return true;
+        return Optional.of(CommandResult.empty());
     }
 
     @Override

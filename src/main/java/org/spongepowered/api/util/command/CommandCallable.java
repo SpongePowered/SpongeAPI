@@ -49,7 +49,7 @@ public interface CommandCallable {
      * @return The result of a command being processed
      * @throws CommandException Thrown on a command error
      */
-    boolean process(CommandSource source, String arguments) throws CommandException;
+    Optional<CommandResult> process(CommandSource source, String arguments) throws CommandException;
 
     /**
      * Get a list of suggestions based on input.

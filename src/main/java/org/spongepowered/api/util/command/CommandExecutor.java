@@ -33,7 +33,8 @@ public interface CommandExecutor {
      *
      * @param src The commander who is executing this command
      * @param args The parsed command arguments for this command
+     * @return the result of executing this command
      * @throws CommandException If a user-facing error occurs while executing this command
      */
-    void execute(CommandSource src, CommandContext args) throws CommandException;
+    CommandResult execute(CommandSource src, CommandContext args) throws CommandException;
 }

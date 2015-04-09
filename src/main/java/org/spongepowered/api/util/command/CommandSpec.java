@@ -263,13 +263,12 @@ public final class CommandSpec implements CommandCallable {
 
 
     @Override
-    public boolean process(CommandSource source, String arguments) throws CommandException {
+    public Optional<CommandResult> process(CommandSource source, String arguments) throws CommandException {
         checkPermission(source);
         final CommandArgs args = new CommandArgs(arguments, getInputTokenizer().tokenize(arguments, false));
         final CommandContext context = new CommandContext();
         this.populateContext(args, context);
-        getExecutor().execute(source, context);
-        return true;
+        return Optional.of(getExecutor().execute(source, context));
     }
 
     @Override

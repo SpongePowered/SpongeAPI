@@ -48,8 +48,9 @@ public class ChildCommandsTest {
                 .setChildren(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
                         .setExecutor(new CommandExecutor() {
                             @Override
-                            public void execute(CommandSource src, CommandContext args) throws CommandException {
+                            public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
                                 childExecuted.set(true);
+                                return CommandResult.builder().successCount(1).build();
                             }
                         })
                         .build()))

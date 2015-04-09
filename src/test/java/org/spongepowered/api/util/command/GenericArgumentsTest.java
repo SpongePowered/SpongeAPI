@@ -48,7 +48,8 @@ import org.spongepowered.api.util.command.args.CommandElement;
 public class GenericArgumentsTest {
     static final CommandExecutor NULL_EXECUTOR = new CommandExecutor() {
         @Override
-        public void execute(CommandSource src, CommandContext args) throws CommandException {
+        public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
+            return CommandResult.empty();
         }
     };
 

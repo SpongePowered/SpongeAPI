@@ -50,6 +50,7 @@ import org.spongepowered.api.util.command.CommandContext;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandExecutor;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
@@ -322,11 +323,11 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     }
 
     @Override
-    public boolean process(CommandSource source, String commandLine) throws CommandException {
+    public Optional<CommandResult> process(CommandSource source, String commandLine) throws CommandException {
         final String[] argSplit = commandLine.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0]);
         if (!cmdOptional.isPresent()) {
-            return false;
+            return Optional.absent();
         }
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         final CommandCallable spec = cmdOptional.get().getCallable();
@@ -466,17 +467,16 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
 
 
     @Override
-    public void execute(CommandSource src, CommandContext args) throws CommandException {
+    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").get();
         CommandMapping mapping = args.<CommandMapping>getOne(getUntranslatedKey()).get();
         if (mapping == null) {
             if (this.fallbackExecutor != null) {
-                this.fallbackExecutor.execute(src, args);
-                return;
+                return this.fallbackExecutor.execute(src, args);
             } else {
                 throw new CommandException(t("Invalid subcommand state -- no more than one mapping may be provided for child arg %s", getKey()));
             }
         }
-        mapping.getCallable().process(src, arguments);
+        return mapping.getCallable().process(src, arguments).or(CommandResult.empty());
     }
 }
