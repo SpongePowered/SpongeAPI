@@ -30,6 +30,8 @@ import static org.mockito.Mockito.mock;
 import org.junit.Test;
 import org.spongepowered.api.event.state.StateEvent;
 import org.spongepowered.api.util.event.factory.EventFactory;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -101,6 +103,8 @@ public class SpongeEventFactoryTest {
             return "Cupcakes";
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
+        } else if (Location.class.isAssignableFrom(paramType)) {
+            return new Location(mock(Extent.class), 0, 0, 0);
         } else {
             return mock(paramType);
         }
