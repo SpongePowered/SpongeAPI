@@ -48,10 +48,10 @@ public interface CommandCallable extends CommandCompleter {
      * @param arguments The raw arguments for this command
      * @param parents A stack of parent commands, where the first entry is
      *                the root command
-     * @return Whether a command was processed
+     * @return The result of the command
      * @throws CommandException Thrown on a command error
      */
-    boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
+    CommandResult call(CommandSource source, String arguments, List<String> parents) throws CommandException;
 
     /**
      * Test whether this command can probably be executed by the given source.

@@ -37,6 +37,8 @@ import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandResults;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
 import org.spongepowered.api.util.command.InvocationCommandException;
@@ -315,7 +317,7 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+    public CommandResult call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         String[] parts = arguments.split(" +", 2);
         Optional<CommandMapping> mapping = get(parts[0]);
 
@@ -332,9 +334,9 @@ public class SimpleDispatcher implements Dispatcher {
                 throw new InvocationCommandException(t);
             }
 
-            return true;
+            return CommandResults.processed();
         } else {
-            return false;
+            return CommandResults.notProcessed();
         }
     }
 

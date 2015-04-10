@@ -45,6 +45,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
@@ -95,7 +96,11 @@ public class SimpleCommandService implements CommandService {
     @Subscribe(order = Order.LAST)
     public void onCommandEvent(final CommandEvent event) {
         try {
-            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList())) {
+            CommandResult result = call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList());
+
+            event.setResult(result);
+
+            if (result.wasProcessed()) {
                 event.setCancelled(true);
             }
         } catch (CommandException e) {
@@ -227,7 +232,7 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
+    public CommandResult call(CommandSource source, String arguments, List<String> parents) throws CommandException {
         return this.dispatcher.call(source, arguments, parents);
     }
 
