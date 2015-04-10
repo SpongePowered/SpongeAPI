@@ -22,22 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.completion;
+package org.spongepowered.api.util.command.dispatcher;
 
-import org.spongepowered.api.util.command.CommandException;
+import com.google.common.base.Optional;
+import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 
-import java.util.Collections;
 import java.util.List;
 
-/**
- * Always returns an empty list of suggestions.
- */
-public class NullCompleter implements CommandCompleter {
+public interface Disambiguator {
 
-    @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        return Collections.emptyList();
-    }
+    /**
+     * Disambiguate an alias in cases where there are multiple command mappings registered for a given alias.
+     *
+     * @param source The CommandSource executing the command
+     * @param aliasUsed The alias input by the user
+     * @param availableOptions The commands registered to this alias
+     * @return The specific command to use
+     */
+    Optional<CommandMapping> disambiguate(CommandSource source, String aliasUsed, List<CommandMapping> availableOptions);
 
 }

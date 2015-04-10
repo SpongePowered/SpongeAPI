@@ -25,6 +25,7 @@
 package org.spongepowered.api.util.command.dispatcher;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Multimap;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 
@@ -57,7 +58,7 @@ public interface Dispatcher extends CommandCallable {
     /**
      * Get a list of all the command aliases, which includes the primary alias.
      *
-     * <p>A command may have more than one alias assigned to it. The returned 
+     * <p>A command may have more than one alias assigned to it. The returned
      * collection cannot be modified.</p>
      *
      * @return A list of aliases
@@ -65,13 +66,28 @@ public interface Dispatcher extends CommandCallable {
     Set<String> getAliases();
 
     /**
-     * Get the {@link CommandCallable} associated with an alias. Returns
+     * Get the {@link CommandMapping} associated with an alias. Returns
      * null if no command is named by the given alias.
      *
      * @param alias The alias
      * @return The command mapping, if available
      */
     Optional<? extends CommandMapping> get(String alias);
+
+    /**
+     * Gets all the {@link CommandMapping}s associated with an alias.
+     *
+     * @param alias The alias
+     * @return The command mappings associated with the alias
+     */
+    Set<? extends CommandMapping> getAll(String alias);
+
+    /**
+     * Get all commands currently registered with this dispatcher. The returned value is immutable.
+     *
+     * @return a multimap from alias to mapping of every registered command
+     */
+    Multimap<String, CommandMapping> getAll();
 
     /**
      * Returns whether the dispatcher contains a registered command for the
@@ -89,5 +105,4 @@ public interface Dispatcher extends CommandCallable {
      * @return True if a mapping exists
      */
     boolean containsMapping(CommandMapping mapping);
-
 }

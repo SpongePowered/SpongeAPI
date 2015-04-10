@@ -22,22 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.completion;
+package org.spongepowered.api.util.command.args.parsing;
 
-import static org.hamcrest.Matchers.empty;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
+import org.spongepowered.api.util.command.args.ArgumentParseException;
 
-import org.junit.Test;
-import org.spongepowered.api.util.command.CommandSource;
+import java.util.ArrayList;
+import java.util.List;
 
-public class NullCompleterTest {
+class SpaceSplitInputTokenizer implements InputTokenizer {
+    public static final SpaceSplitInputTokenizer INSTANCE = new SpaceSplitInputTokenizer();
 
-    @Test
-    public void testGetSuggestions() throws Exception {
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), ""), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "example"), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "parent child"), empty());
+    private SpaceSplitInputTokenizer() {}
+
+    @Override
+    public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
+        List<SingleArg> ret = new ArrayList<SingleArg>();
+        int lastIndex = 0;
+        int spaceIndex;
+        while ((spaceIndex = arguments.indexOf(" ")) != -1) {
+            ret.add(new SingleArg((arguments = arguments.substring(0, spaceIndex)), lastIndex, lastIndex + spaceIndex));
+            lastIndex += spaceIndex + 1;
+        }
+        return ret;
     }
-
 }

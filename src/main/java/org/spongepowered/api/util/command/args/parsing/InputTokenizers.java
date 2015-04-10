@@ -22,36 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.args.parsing;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
-
-/**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
- */
-public class CommandException extends TextMessageException {
-
-    private static final long serialVersionUID = 4626722485860074825L;
+public final class InputTokenizers {
+    private InputTokenizers() {}
 
     /**
-     * Constructs a new {@link CommandException} with the given message.
+     * Use an input string tokenizer that supports quoted arguments and character escapes.
+     * Forcing lenient to true makes the following apply:
      *
-     * @param message The detail message
+     * <ul>
+     *     <li>Unclosed quotations are treated as a single string from the opening quotation to the end of the arguments rather than throwing
+     *     an exception </li>
+     * </ul>
+     *
+     * @param forceLenient Whether the tokenizer is forced into lenient mode
+     * @return the appropriate tokenizer
      */
-    public CommandException(Text message) {
-        super(message);
+    public static InputTokenizer quotedStrings(boolean forceLenient) {
+        return new QuotedStringTokenizer(true, forceLenient);
     }
 
     /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
+     * Returns an input tokenizer that takes input strings and splits them by space.
      *
-     * @param message The detail message
-     * @param cause The cause
+     * @return The appropriate tokenizer
      */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    public static InputTokenizer spaceSplitString() {
+        return SpaceSplitInputTokenizer.INSTANCE;
     }
+
+    /**
+     * Returns an input tokenizer that returns the input string as a single argument.
+     *
+     * @return The appropriate tokenizer
+     */
+    public static InputTokenizer rawInput() {
+        return RawStringInputTokenizer.INSTANCE;
+    }
+
 }

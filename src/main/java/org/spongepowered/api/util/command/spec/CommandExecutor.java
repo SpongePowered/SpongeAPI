@@ -22,4 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.util.command.completion;
+package org.spongepowered.api.util.command.spec;
+
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.args.CommandContext;
+
+/**
+ * Interface containing the method directing how a certain command will be executed.
+ */
+public interface CommandExecutor {
+    /**
+     * Callback for the execution of a command.
+     *
+     * @param src The commander who is executing this command
+     * @param args The parsed command arguments for this command
+     * @return the result of executing this command
+     * @throws CommandException If a user-facing error occurs while executing this command
+     */
+    CommandResult execute(CommandSource src, CommandContext args) throws CommandException;
+}

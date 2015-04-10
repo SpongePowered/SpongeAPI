@@ -22,36 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.source;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * Location sources are {@link CommandSource}s that have a current location.
  */
-public class CommandException extends TextMessageException {
-
-    private static final long serialVersionUID = 4626722485860074825L;
+public interface LocatedSource extends CommandSource {
 
     /**
-     * Constructs a new {@link CommandException} with the given message.
+     * Gets the location of the source.
      *
-     * @param message The detail message
+     * @return The location
      */
-    public CommandException(Text message) {
-        super(message);
-    }
+    Location getLocation();
 
     /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
+     * Gets the world that this source resides in.
      *
-     * @param message The detail message
-     * @param cause The cause
+     * @return The World
      */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
-    }
+    World getWorld();
+
 }

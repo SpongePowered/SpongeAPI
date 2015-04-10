@@ -22,36 +22,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
-
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+package org.spongepowered.api.util.command.args.parsing;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * This represents a single argument with its start and end indexes in the associated raw input string.
  */
-public class CommandException extends TextMessageException {
-
-    private static final long serialVersionUID = 4626722485860074825L;
+public final class SingleArg {
+    private final String value;
+    private final int startIdx;
+    private final int endIdx;
 
     /**
-     * Constructs a new {@link CommandException} with the given message.
+     * Create a new argument.
      *
-     * @param message The detail message
+     * @param value The argument string
+     * @param startIdx The starting index of {@code value} in an input string
+     * @param endIdx The ending index of {@code value} in an input string
      */
-    public CommandException(Text message) {
-        super(message);
+    public SingleArg(String value, int startIdx, int endIdx) {
+        this.value = value;
+        this.startIdx = startIdx;
+        this.endIdx = endIdx;
     }
 
     /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
+     * Get the string used.
      *
-     * @param message The detail message
-     * @param cause The cause
+     * @return The string used
      */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    public String getValue() {
+        return this.value;
+    }
+
+    /**
+     * Get the starting index.
+     *
+     * @return The starting index
+     */
+    public int getStartIdx() {
+        return this.startIdx;
+    }
+
+    /**
+     * Get the ending index.
+     *
+     * @return The ending index
+     */
+    public int getEndIdx() {
+        return this.endIdx;
     }
 }

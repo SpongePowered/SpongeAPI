@@ -24,34 +24,39 @@
  */
 package org.spongepowered.api.util.command;
 
+import static org.spongepowered.api.util.command.TranslationPlaceholder.t;
+
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * This exception is thrown when a subject does not have permission to execute a command.
  */
-public class CommandException extends TextMessageException {
-
-    private static final long serialVersionUID = 4626722485860074825L;
+public class CommandPermissionException extends CommandException {
+    private static final long serialVersionUID = -6057386975881181213L;
 
     /**
-     * Constructs a new {@link CommandException} with the given message.
-     *
-     * @param message The detail message
+     * Create an exception with the default message.
      */
-    public CommandException(Text message) {
+    public CommandPermissionException() {
+        this(t("You do not have permission to use this command!"));
+    }
+
+    /**
+     * Create a permissions exception with a custom message.
+     *
+     * @param message The message
+     */
+    public CommandPermissionException(Text message) {
         super(message);
     }
 
     /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
+     * Create a permissions exception with a custom message and cause.
      *
-     * @param message The detail message
-     * @param cause The cause
+     * @param message the message
+     * @param cause the cause
      */
-    public CommandException(Text message, Throwable cause) {
+    public CommandPermissionException(Text message, Throwable cause) {
         super(message, cause);
     }
 }

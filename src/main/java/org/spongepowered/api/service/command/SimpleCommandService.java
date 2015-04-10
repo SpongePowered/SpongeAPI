@@ -25,6 +25,8 @@
 package org.spongepowered.api.service.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.service.command.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
@@ -32,23 +34,24 @@ import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.spongepowered.api.event.Order;
-import org.spongepowered.api.event.Subscribe;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandPermissionException;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.InvocationCommandException;
+import org.spongepowered.api.util.command.dispatcher.Disambiguator;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -58,49 +61,35 @@ import javax.inject.Inject;
 
 /**
  * A simple implementation of {@link CommandService}.
- *
- * <p>
- * Note: An instance of this class should be registered with the sponge
- * {@link EventManager} in order to receive {@link CommandEvent}s in the
- * {@link #onCommandEvent(CommandEvent)} method.
- * </p>
+ * This service calls the appropriate events for a command.
  */
 public class SimpleCommandService implements CommandService {
-
-    private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
-
-    private final PluginManager pluginManager;
-    private final SimpleDispatcher dispatcher = new SimpleDispatcher();
+    private final Game game;
+    private final SimpleDispatcher dispatcher;
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
     /**
      * Construct a simple {@link CommandService}.
      *
-     * @param pluginManager The plugin manager to get the
-     *            {@link PluginContainer} for a given plugin
+     * @param game The game to use for this CommandService
      */
     @Inject
-    public SimpleCommandService(PluginManager pluginManager) {
-        checkNotNull(pluginManager, "pluginManager");
-        this.pluginManager = pluginManager;
+    public SimpleCommandService(Game game) {
+        this(game, SimpleDispatcher.FIRST_DISAMBIGUATOR);
     }
 
     /**
-     * Receive {@link CommandEvent}s.
+     * Construct a simple {@link CommandService}.
      *
-     * @param event The event received
+     * @param disambiguator The function to resolve a single command when multiple options are available
+     * @param game The game to use for this CommandService
      */
-    @Subscribe(order = Order.LAST)
-    public void onCommandEvent(final CommandEvent event) {
-        try {
-            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList())) {
-                event.setCancelled(true);
-            }
-        } catch (CommandException e) {
-            event.setCancelled(true);
-            log.warn("Failed to execute a command", e);
-        }
+    @Inject
+    public SimpleCommandService(Game game, Disambiguator disambiguator) {
+        checkNotNull(game, "game");
+        this.game = game;
+        this.dispatcher = new SimpleDispatcher(disambiguator);
     }
 
     @Override
@@ -118,7 +107,7 @@ public class SimpleCommandService implements CommandService {
             Function<List<String>, List<String>> callback) {
         checkNotNull(plugin, "plugin");
 
-        Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
+        Optional<PluginContainer> containerOptional = this.game.getPluginManager().fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
@@ -131,6 +120,12 @@ public class SimpleCommandService implements CommandService {
             // <namespace>:<alias> for all commands
             List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
             for (String alias : aliases) {
+                final Collection<CommandMapping> ownedCommands = this.owners.get(container);
+                for (CommandMapping mapping : this.dispatcher.getAll(alias)) {
+                    if (ownedCommands.contains(mapping)) {
+                        throw new IllegalArgumentException("A plugin may not register multiple commands for the same alias ('" + alias + "')!");
+                    }
+                }
                 aliasesWithPrefix.add(alias);
                 aliasesWithPrefix.add(container.getId() + ":" + alias);
             }
@@ -142,19 +137,6 @@ public class SimpleCommandService implements CommandService {
             }
 
             return mapping;
-        }
-    }
-
-    @Override
-    public Optional<CommandMapping> remove(String alias) {
-        synchronized (this.lock) {
-            Optional<CommandMapping> removed = this.dispatcher.remove(alias);
-
-            if (removed.isPresent()) {
-                forgetMapping(removed.get());
-            }
-
-            return removed;
         }
     }
 
@@ -216,6 +198,16 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
+    public Set<? extends CommandMapping> getAll(String alias) {
+        return this.dispatcher.getAll(alias);
+    }
+
+    @Override
+    public Multimap<String, CommandMapping> getAll() {
+        return this.dispatcher.getAll();
+    }
+
+    @Override
     public boolean containsAlias(String alias) {
         return this.dispatcher.containsAlias(alias);
     }
@@ -226,8 +218,52 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
-        return this.dispatcher.call(source, arguments, parents);
+    public Optional<CommandResult> process(CommandSource source, String commandLine) {
+        final String[] argSplit = commandLine.split(" ", 2);
+        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit[0], source, argSplit.length > 1 ? argSplit[1] : "", null);
+        this.game.getEventManager().post(event);
+        if (event.isCancelled()) {
+            return event.getResult();
+        }
+
+        try {
+            try {
+                return this.dispatcher.process(source, commandLine);
+            } catch (InvocationCommandException ex) {
+                if (ex.getCause() != null) {
+                    throw ex.getCause();
+                }
+            } catch (CommandPermissionException ex) {
+                Text text = ex.getText();
+                if (text != null) {
+                    source.sendMessage(error(text));
+                }
+            } catch (CommandException ex) {
+                Text text = ex.getText();
+                if (text != null) {
+                    source.sendMessage(error(text));
+                }
+
+                final Optional<CommandMapping> mapping = this.dispatcher.get(argSplit[0], source);
+                if (mapping.isPresent()) {
+                    source.sendMessage(error(t("Usage: /%s %s", argSplit[0], mapping.get().getCallable().getUsage(source))));
+                }
+            }
+        } catch (Throwable thr) {
+            source.sendMessage(error(t("Error occurred while executing command: %s", String.valueOf(thr.getMessage()))));
+            thr.printStackTrace();
+        }
+        return Optional.of(CommandResult.empty());
+    }
+
+    @Override
+    public List<String> getSuggestions(CommandSource src, String arguments) {
+        try {
+            return this.dispatcher.getSuggestions(src, arguments);
+        } catch (CommandException e) {
+            src.sendMessage(error(t("Error getting suggestions: %s", e.getText())));
+            return Collections.emptyList();
+        }
     }
 
     @Override
@@ -236,22 +272,17 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        return this.dispatcher.getSuggestions(source, arguments);
-    }
-
-    @Override
-    public String getShortDescription(CommandSource source) {
+    public Optional<Text> getShortDescription(CommandSource source) {
         return this.dispatcher.getShortDescription(source);
     }
 
     @Override
-    public Text getHelp(CommandSource source) {
+    public Optional<Text> getHelp(CommandSource source) {
         return this.dispatcher.getHelp(source);
     }
 
     @Override
-    public String getUsage(CommandSource source) {
+    public Text getUsage(CommandSource source) {
         return this.dispatcher.getUsage(source);
     }
 
@@ -259,5 +290,4 @@ public class SimpleCommandService implements CommandService {
     public int size() {
         return this.dispatcher.size();
     }
-
 }

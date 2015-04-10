@@ -22,36 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.args.parsing;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import org.spongepowered.api.util.command.args.ArgumentParseException;
 
-/**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
- */
-public class CommandException extends TextMessageException {
+import java.util.Collections;
+import java.util.List;
 
-    private static final long serialVersionUID = 4626722485860074825L;
+class RawStringInputTokenizer implements InputTokenizer {
+    static final RawStringInputTokenizer INSTANCE = new RawStringInputTokenizer();
 
-    /**
-     * Constructs a new {@link CommandException} with the given message.
-     *
-     * @param message The detail message
-     */
-    public CommandException(Text message) {
-        super(message);
-    }
+    private RawStringInputTokenizer() {}
 
-    /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    @Override
+    public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
+        return Collections.singletonList(new SingleArg(arguments, 0, arguments.length()));
     }
 }

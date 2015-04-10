@@ -32,7 +32,7 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.locale.Locales;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.source.LocatedSource;
 
 import java.util.Locale;
 
@@ -44,7 +44,7 @@ import java.util.Locale;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Human, User, CommandSource, Viewer {
+public interface Player extends Human, User, LocatedSource, Viewer {
 
     /**
      * Gets the locale used by the player.
@@ -87,7 +87,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param reason The reason for the kick
      */
     void kick(Text.Literal reason);
-    
+
     /**
      * Gets the {@link Scoreboard} displayed to the player.
      *
