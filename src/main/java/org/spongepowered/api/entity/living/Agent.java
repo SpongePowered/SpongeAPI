@@ -30,6 +30,4 @@ package org.spongepowered.api.entity.living;
  */
 public interface Agent extends Living {
 
-
-    // TODO for 1.1 add methods like getTarget, setTarget, etc.
 }

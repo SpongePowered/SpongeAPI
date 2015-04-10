@@ -36,12 +36,6 @@ public final class PlantTypes {
     public static final PlantType WHITE_TULIP = null;
     public static final PlantType PINK_TULIP = null;
     public static final PlantType OXEYE_DAISY = null;
-    public static final PlantType SUNFLOWER = null;
-    public static final PlantType SYRINGA = null;
-    public static final PlantType GRASS = null;
-    public static final PlantType FERN = null;
-    public static final PlantType ROSE = null;
-    public static final PlantType PAEONIA = null;
 
     private PlantTypes() {
     }

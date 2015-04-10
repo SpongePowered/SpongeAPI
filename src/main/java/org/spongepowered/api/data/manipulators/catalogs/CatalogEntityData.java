@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulators.catalogs;
 
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.attribute.Attribute;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.AchievementData;
 import org.spongepowered.api.data.manipulators.AgeableData;
@@ -36,12 +37,14 @@ import org.spongepowered.api.data.manipulators.AngerableData;
 import org.spongepowered.api.data.manipulators.ArtData;
 import org.spongepowered.api.data.manipulators.AttributeData;
 import org.spongepowered.api.data.manipulators.BanData;
+import org.spongepowered.api.data.manipulators.BodyPartRotationalData;
 import org.spongepowered.api.data.manipulators.BreathingData;
 import org.spongepowered.api.data.manipulators.BreedableData;
 import org.spongepowered.api.data.manipulators.CareerData;
 import org.spongepowered.api.data.manipulators.ChargedData;
 import org.spongepowered.api.data.manipulators.CriticalHitData;
 import org.spongepowered.api.data.manipulators.DamageableData;
+import org.spongepowered.api.data.manipulators.DamagingData;
 import org.spongepowered.api.data.manipulators.DisplayNameData;
 import org.spongepowered.api.data.manipulators.DyeableData;
 import org.spongepowered.api.data.manipulators.ElderData;
@@ -56,6 +59,7 @@ import org.spongepowered.api.data.manipulators.FoodData;
 import org.spongepowered.api.data.manipulators.FuseData;
 import org.spongepowered.api.data.manipulators.GameModeData;
 import org.spongepowered.api.data.manipulators.GriefingData;
+import org.spongepowered.api.data.manipulators.HealingSourceData;
 import org.spongepowered.api.data.manipulators.HealthData;
 import org.spongepowered.api.data.manipulators.HorseData;
 import org.spongepowered.api.data.manipulators.IgniteableData;
@@ -82,10 +86,12 @@ import org.spongepowered.api.data.manipulators.ShearedData;
 import org.spongepowered.api.data.manipulators.SittingData;
 import org.spongepowered.api.data.manipulators.SizeData;
 import org.spongepowered.api.data.manipulators.SkeletonData;
+import org.spongepowered.api.data.manipulators.SleepingData;
 import org.spongepowered.api.data.manipulators.SlimeData;
 import org.spongepowered.api.data.manipulators.SneakingData;
 import org.spongepowered.api.data.manipulators.StatisticData;
 import org.spongepowered.api.data.manipulators.TameableData;
+import org.spongepowered.api.data.manipulators.TargetLivingData;
 import org.spongepowered.api.data.manipulators.TargetedLocationData;
 import org.spongepowered.api.data.manipulators.VehicleData;
 import org.spongepowered.api.data.manipulators.VelocityData;
@@ -100,6 +106,7 @@ import org.spongepowered.api.data.types.HorseVariant;
 import org.spongepowered.api.data.types.OcelotType;
 import org.spongepowered.api.data.types.RabbitType;
 import org.spongepowered.api.data.types.SkeletonType;
+import org.spongepowered.api.entity.EnderCrystal;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
@@ -110,6 +117,8 @@ import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Aquatic;
+import org.spongepowered.api.entity.living.ArmorStand;
+import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Villager;
@@ -120,6 +129,7 @@ import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.animal.Wolf;
+import org.spongepowered.api.entity.living.complex.EnderDragon;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.monster.Blaze;
 import org.spongepowered.api.entity.living.monster.Creeper;
@@ -136,6 +146,7 @@ import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.Arrow;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.Firework;
+import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.merchant.TradeOffer;
@@ -192,6 +203,11 @@ public final class CatalogEntityData {
      */
     public static final Class<BanData> BAN_DATA = BanData.class;
     /**
+     * Represents the mapped rotational data for all known body parts. Usually
+     * applicable to {@link Human}s and {@link ArmorStand}s.
+     */
+    public static final Class<BodyPartRotationalData> BODY_PART_ROTATIONAL_DATA = BodyPartRotationalData.class;
+    /**
      * Entities that have {@link BreathingData} when under water. Usually
      * applies to {@link Living} entities but not {@link Aquatic} entities.
      */
@@ -222,6 +238,12 @@ public final class CatalogEntityData {
      * source. Usually applies to {@link Living} entities.
      */
     public static final Class<DamageableData> DAMAGEABLE_DATA = DamageableData.class;
+    /**
+     * Signifies that an owner is going to deal a certain amount of damage
+     * on the next "attack". Usually applicable to {@link Arrow}s and other
+     * {@link Projectile}s.
+     */
+    public static final Class<DamagingData> DAMAGING_DATA = DamagingData.class;
     /**
      * Represents the custom name of an entity. Usually applies to
      * {@link Player}s and {@link Living} entities.
@@ -293,6 +315,12 @@ public final class CatalogEntityData {
      * to {@link Enderman} and {@link Human}s.
      */
     public static final Class<GriefingData> GRIEFING_DATA = GriefingData.class;
+    /**
+     * Signifies that an {@link Entity} is "healing" the owning
+     * {@link DataHolder}. Usually applicable to {@link EnderDragon}s being healed
+     * by {@link EnderCrystal}s.
+     */
+    public static final Class<HealingSourceData> HEALING_SOURCE_DATA = HealingSourceData.class;
     /**
      * Signifies that an entity can have health and dies upon the depletion
      * of health. Usually applies to all {@link Living} entities.
@@ -426,6 +454,11 @@ public final class CatalogEntityData {
      */
     public static final Class<SkeletonData> SKELETON_DATA = SkeletonData.class;
     /**
+     * Signifies that the owner is currently "sleeping". This will usually
+     * apply to {@link Human}s and {@link Bat}s.
+     */
+    public static final Class<SleepingData> SLEEPING_DATA = SleepingData.class;
+    /**
      * Represents the size of a {@link Slime}. Usually applicable to all
      * {@link Slime}s and {@link MagmaCube}s.
      */
@@ -446,6 +479,11 @@ public final class CatalogEntityData {
      * to {@link Horse}s, {@link Ocelot}s, and {@link Wolf} entities.
      */
     public static final Class<TameableData> TAMEABLE_DATA = TameableData.class;
+    /**
+     * Represents the current targets of an owner that is "targeting" some
+     * {@link Living} entities. Usually applicable to almost all {@link Agent}s.
+     */
+    public static final Class<TargetLivingData> TARGET_LIVING_DATA = TargetLivingData.class;
     /**
      * Signifies that an entity is currently being ridden by another
      * {@link Entity}.

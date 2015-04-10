@@ -30,19 +30,4 @@ package org.spongepowered.api.entity.living;
  */
 public interface Bat extends Ambient, Aerial {
 
-    /**
-     * Returns true whether this bat is awake and flying or hanging.
-     *
-     * @return True if this bat is flying
-     */
-    boolean isAwake();
-
-    /**
-     * Sets this bat to be awake or not. An awakened bat will fly around,
-     * whereas a sleeping bat hangs upside down.
-     *
-     * @param awake Whether this bat is awake or not
-     */
-    void setAwake(boolean awake);
-
 }

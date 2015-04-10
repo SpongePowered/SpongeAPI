@@ -23,11 +23,21 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.types;
 
 /**
- * Represents a Snowball.
+ * An enumeration of vanilla known {@link BodyPart}s.
  */
-public interface Snowball extends Projectile {
+public final class BodyParts {
+
+    public static final BodyPart HEAD = null;
+    public static final BodyPart CHEST = null;
+    public static final BodyPart LEFT_ARM = null;
+    public static final BodyPart RIGHT_ARM = null;
+    public static final BodyPart LEFT_LEG = null;
+    public static final BodyPart RIGHT_LEG = null;
+
+    private BodyParts() {
+    }
 
 }

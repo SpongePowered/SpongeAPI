@@ -23,11 +23,18 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.types;
 
-/**
- * Represents a Snowball.
- */
-public interface Snowball extends Projectile {
+public class DoubleSizePlantTypes {
+
+    public static final DoubleSizePlantType SUNFLOWER = null;
+    public static final DoubleSizePlantType SYRINGA = null;
+    public static final DoubleSizePlantType GRASS = null;
+    public static final DoubleSizePlantType FERN = null;
+    public static final DoubleSizePlantType ROSE = null;
+    public static final DoubleSizePlantType PAEONIA = null;
+
+    private DoubleSizePlantTypes() {
+    }
 
 }

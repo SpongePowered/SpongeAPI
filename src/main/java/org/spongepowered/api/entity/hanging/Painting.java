@@ -29,5 +29,4 @@ package org.spongepowered.api.entity.hanging;
  */
 public interface Painting extends Hanging {
 
-
 }

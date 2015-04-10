@@ -29,5 +29,4 @@ package org.spongepowered.api.entity.living.animal;
  */
 public interface Rabbit extends Animal {
 
-
 }

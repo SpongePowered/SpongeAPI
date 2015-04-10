@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
 /**
  * Represents a fish hook.
  */
-public interface FishHook extends DamagingProjectile {
+public interface FishHook extends Projectile {
 
     /**
      * Gets the hooked entity for this fish hook.

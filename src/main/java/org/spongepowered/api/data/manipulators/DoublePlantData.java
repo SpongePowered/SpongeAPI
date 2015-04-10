@@ -23,11 +23,13 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.manipulators;
+
+import org.spongepowered.api.data.types.DoubleSizePlantType;
 
 /**
- * Represents a Snowball.
+ * Represents the type of a double plant.
  */
-public interface Snowball extends Projectile {
+public interface DoublePlantData extends SingleValueData<DoubleSizePlantType, DoublePlantData> {
 
 }

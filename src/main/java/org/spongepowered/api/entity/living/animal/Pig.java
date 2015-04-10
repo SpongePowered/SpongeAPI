@@ -30,20 +30,4 @@ package org.spongepowered.api.entity.living.animal;
  */
 public interface Pig extends Animal {
 
-    /**
-     * Returns whether this pig is saddled or not.
-     * <p>A saddled pig becomes player rideable with vanilla mechanics.</p>
-     *
-     * @return Whether this pig is saddled
-     */
-    boolean isSaddled();
-
-    /**
-     * Sets this pig to be saddled or not.
-     * <p>A saddled pig becomes player rideable with vanilla mechanics.</p>
-     *
-     * @param saddled Whether this pig is to be saddled or not
-     */
-    void setSaddled(boolean saddled);
-
 }

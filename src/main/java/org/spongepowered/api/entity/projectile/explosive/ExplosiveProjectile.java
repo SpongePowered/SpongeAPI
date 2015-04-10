@@ -25,11 +25,11 @@
 package org.spongepowered.api.entity.projectile.explosive;
 
 import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents a {@link DamagingProjectile} which is also an {@link Explosive}.
+ * Represents a {@link Projectile} which is also an {@link Explosive}.
  */
-public interface ExplosiveProjectile extends DamagingProjectile, Explosive {
+public interface ExplosiveProjectile extends Projectile, Explosive {
 
 }

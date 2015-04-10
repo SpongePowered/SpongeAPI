@@ -158,7 +158,7 @@ public final class CatalogItemData {
      */
     public static final Class<PagedData> PAGED_DATA = PagedData.class;
     /**
-     * Signifies that an item can be placed
+     * Signifies that an item can be placed.
      */
     public static final Class<PlaceableData> PLACEABLE_DATA = PlaceableData.class;
     /**

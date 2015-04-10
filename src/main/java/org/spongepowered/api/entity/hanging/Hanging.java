@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.hanging;
 import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a hanging entity, such as a {@link org.spongepowered.api.entity.hanging.Painting}.
+ * Represents a hanging entity, such as a {@link Painting}.
  */
 public interface Hanging extends Entity {
 

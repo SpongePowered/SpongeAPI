@@ -23,11 +23,18 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.manipulators;
+
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.entity.EnderCrystal;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.complex.EnderDragon;
 
 /**
- * Represents a Snowball.
+ * Signifies that an {@link Entity} is "healing" the owning
+ * {@link DataHolder}. Usually applicable to {@link EnderDragon}s being healed
+ * by {@link EnderCrystal}s.
  */
-public interface Snowball extends Projectile {
+public interface HealingSourceData extends SingleValueData<Entity, HealingSourceData> {
 
 }

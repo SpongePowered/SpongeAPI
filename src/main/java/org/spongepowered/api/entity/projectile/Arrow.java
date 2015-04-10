@@ -28,6 +28,6 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents an Arrow.
  */
-public interface Arrow extends DamagingProjectile {
+public interface Arrow extends Projectile {
 
 }

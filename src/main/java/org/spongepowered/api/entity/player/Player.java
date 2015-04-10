@@ -25,27 +25,17 @@
 
 package org.spongepowered.api.entity.player;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.player.gamemode.GameMode;
-import org.spongepowered.api.entity.player.gamemode.GameModes;
 import org.spongepowered.api.entity.player.tab.TabList;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.stats.Statistic;
-import org.spongepowered.api.stats.StatisticGroup;
-import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.util.command.CommandSource;
 
-import java.util.Collection;
 import java.util.Locale;
-import java.util.Map;
-
-import javax.annotation.Nullable;
 
 /**
  * A Player represents the in-game entity of a human playing on a server.
@@ -58,47 +48,12 @@ import javax.annotation.Nullable;
 public interface Player extends Human, User, CommandSource, Viewer {
 
     /**
-     * Gets the player's display name. If none set, returns their current
-     * username.
-     *
-     * @return The player's display name
-     */
-    Text getDisplayName();
-
-    /**
-     * Sets the player's display name.
-     *
-     * <p>Passing <code>null</code> will set the
-     * player's display name to their name.</p>
-     *
-     * @param displayName The new display name of this player, or
-     *                    <code>null</code> to reset it
-     */
-    void setDisplayName(@Nullable Text displayName);
-
-    /**
      * Gets the locale used by the player.
      *
      * @return The player's locale
      * @see Locales
      */
     Locale getLocale();
-
-    /**
-     * Gets the player's game mode.
-     *
-     * @return The player's game mode
-     * @see GameModes
-     */
-    GameMode getGameMode();
-
-    /**
-     * Sets the player's game mode.
-     *
-     * @param gameMode The game mode to set
-     * @see GameModes
-     */
-    void setGameMode(GameMode gameMode);
 
     /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
@@ -133,106 +88,6 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @param reason The reason for the kick
      */
     void kick(Text.Literal reason);
-
-    /**
-     * Gets the current value for the given {@link Statistic}. If the statistic
-     * has not been set yet then {@link Optional#absent()} will be returned.
-     *
-     * @param statistic The statistic to return
-     * @return The current value, or Optional.absent() if not set
-     */
-    Optional<Long> getStatistic(Statistic statistic);
-
-    /**
-     * Gets all {@link Statistic}s with their current values. Does not return
-     * statistics which have not been set yet.
-     *
-     * @return An immutable map containing all statistics with their current
-     *         values
-     */
-    Map<Statistic, Long> getStatistics();
-
-    /**
-     * Gets all {@link Statistic}s which belong to the given group, along with
-     * their current values. Does not return statistics which have not been set
-     * yet.
-     *
-     * @param group The group to retrieve
-     * @return An immutable map containing all statistics within the group, and
-     *         their values
-     */
-    Map<Statistic, Long> getStatisticsByGroup(StatisticGroup group);
-
-    /**
-     * Adds the specified amount to the given statistic.
-     *
-     * @param statistic The statistic to update
-     * @param amount The amount to add to the statistic
-     */
-    void addToStatistic(Statistic statistic, long amount);
-
-    /**
-     * Sets the given statistic to the given value.
-     *
-     * @param statistic The statistic to update
-     * @param newValue The new value for the statistic
-     */
-    void setStatistic(Statistic statistic, long newValue);
-
-    /**
-     * Resets the given statistic. This may result in the statistic being
-     * removed from the statistics for this player until it is set to a value
-     * again.
-     *
-     * @param statistic The statistic to reset
-     */
-    void resetStatistic(Statistic statistic);
-
-    /**
-     * Resets all statistics. This may result in some of the statistics being
-     * removed from the statistics for this player until it is set to a value
-     * again.
-     */
-    void resetStatistics();
-
-    /**
-     * Checks whether this player has earned the given {@link Achievement}.
-     *
-     * @param achievement The achievement to check
-     * @return True if the player has completely earned the achievement
-     */
-    boolean hasAchievement(Achievement achievement);
-
-    /**
-     * Gets a {@link Collection} containing all {@link Achievement}s this player
-     * has earned already.
-     *
-     * @return An immutable collection containing all earned achievements
-     */
-    Collection<Achievement> getAchievements();
-
-    /**
-     * Grants the given {@link Achievement} to this player. An
-     * {@link Achievement} can be granted multiple times.
-     *
-     * @param achievement The achievement to grant
-     */
-    void grantAchievement(Achievement achievement);
-
-    /**
-     * Revokes the given {@link Achievement} from this player. This may also
-     * revoke dependent {@link Achievement}s or reset {@link Statistic}s that
-     * are used to count for the {@link Achievement}.
-     *
-     * @param achievement The achievement to revoke
-     */
-    void revokeAchievement(Achievement achievement);
-
-    /**
-     * Revokes all {@link Achievement}s from this player. This may also resets
-     * {@link Statistic} that are used to count for the {@link Achievement}s.
-     */
-    void revokeAchievements();
     
     /**
      * Gets the {@link Scoreboard} displayed to the player.

@@ -23,11 +23,15 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.manipulators;
+
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.types.BigMushroomType;
 
 /**
- * Represents a Snowball.
+ * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
+ * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
  */
-public interface Snowball extends Projectile {
+public interface BigMushroomData extends SingleValueData<BigMushroomType, BigMushroomData> {
 
 }

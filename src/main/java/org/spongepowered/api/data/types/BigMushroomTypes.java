@@ -23,11 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.types;
 
 /**
- * Represents a Snowball.
+ * An enumeration of known vanilla {@link BigMushroomType}s.
  */
-public interface Snowball extends Projectile {
+public final class BigMushroomTypes {
+
+    public static final BigMushroomType NORTH_WEST = null;
+    public static final BigMushroomType NORTH = null;
+    public static final BigMushroomType NORTH_EAST = null;
+    public static final BigMushroomType WEST = null;
+    public static final BigMushroomType CENTER = null;
+    public static final BigMushroomType EAST = null;
+    public static final BigMushroomType SOUTH_WEST = null;
+    public static final BigMushroomType SOUTH = null;
+    public static final BigMushroomType SOUTH_EAST = null;
+    public static final BigMushroomType STEM = null;
+    public static final BigMushroomType ALL_INSIDE = null;
+    public static final BigMushroomType ALL_OUTSIDE = null;
+    public static final BigMushroomType ALL_STEM = null;
+
+    private BigMushroomTypes() {
+    }
 
 }

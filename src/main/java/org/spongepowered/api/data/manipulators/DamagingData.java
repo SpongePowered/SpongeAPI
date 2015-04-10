@@ -23,18 +23,23 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.manipulators;
 
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.projectile.Arrow;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Signifies that an owner is going to deal a certain amount of damage
+ * on the next "attack". Usually applicable to {@link Arrow}s and other
+ * {@link Projectile}s.
  */
-public interface DamagingProjectile extends Projectile {
+public interface DamagingData extends DataManipulator<DamagingData> {
 
     /**
-     * Gets the damage this projectile will deal to a {@link org.spongepowered.api.entity.living.Living}
+     * Gets the damage this projectile will deal to a {@link Living}
      * if hit.
      *
      * @return The damage to deal
@@ -73,5 +78,6 @@ public interface DamagingProjectile extends Projectile {
      * @param damage The damage to deal to the specified {@link EntityType}
      */
     void setDamageForEntity(EntityType entityType, double damage);
+
 
 }

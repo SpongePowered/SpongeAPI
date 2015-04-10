@@ -23,11 +23,16 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.manipulators;
+
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.Bat;
+import org.spongepowered.api.entity.living.Human;
 
 /**
- * Represents a Snowball.
+ * Signifies that the owner is currently "sleeping". This will usually
+ * apply to {@link Human}s and {@link Bat}s.
  */
-public interface Snowball extends Projectile {
+public interface SleepingData extends DataManipulator<SleepingData> {
 
 }

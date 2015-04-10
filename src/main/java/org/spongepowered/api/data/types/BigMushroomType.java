@@ -23,11 +23,12 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.types;
 
-/**
- * Represents a Snowball.
- */
-public interface Snowball extends Projectile {
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+@CatalogedBy(BigMushroomTypes.class)
+public interface BigMushroomType extends CatalogType {
 
 }

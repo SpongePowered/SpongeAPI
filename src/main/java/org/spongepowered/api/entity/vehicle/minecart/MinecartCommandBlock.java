@@ -31,32 +31,4 @@ import org.spongepowered.api.util.command.source.CommandBlockSource;
  */
 public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
 
-    /**
-     * Gets the current command within this command minecart.
-     *
-     * @return The current command stored
-     */
-    String getCommand();
-
-    /**
-     * Sets the stored command within this command minecart.
-     *
-     * @param command The command
-     */
-    void setCommand(String command);
-
-    /**
-     * Gets the current custom name of this command minecart.
-     *
-     * @return The current command name
-     */
-    String getCommandName();
-
-    /**
-     * Sets the custom command name of this command minecart.
-     * <p>Setting the name to null may default to "@".</p>
-     *
-     * @param name The custom name
-     */
-    void setCommandName(String name);
 }

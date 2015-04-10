@@ -23,11 +23,15 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.manipulators;
+
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Living;
 
 /**
- * Represents a Snowball.
+ * Represents the current targets of an owner that is "targeting" some
+ * {@link Living} entities. Usually applicable to almost all {@link Agent}s.
  */
-public interface Snowball extends Projectile {
+public interface TargetLivingData extends ListData<Living, TargetLivingData> {
 
 }

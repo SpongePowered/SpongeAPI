@@ -29,11 +29,13 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.AttachedData;
 import org.spongepowered.api.data.manipulators.AxisData;
+import org.spongepowered.api.data.manipulators.BigMushroomData;
 import org.spongepowered.api.data.manipulators.ConnectedDirectionData;
 import org.spongepowered.api.data.manipulators.DecayableData;
 import org.spongepowered.api.data.manipulators.DirectionalData;
 import org.spongepowered.api.data.manipulators.DirtData;
 import org.spongepowered.api.data.manipulators.DisgusedBlockData;
+import org.spongepowered.api.data.manipulators.DoublePlantData;
 import org.spongepowered.api.data.manipulators.DyeableData;
 import org.spongepowered.api.data.manipulators.FluidLevelData;
 import org.spongepowered.api.data.manipulators.GrowthData;
@@ -88,6 +90,11 @@ public final class CatalogBlockData {
      */
     public static final Class<AxisData> AXIS_DATA = AxisData.class;
     /**
+     * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
+     * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
+     */
+    public static final Class<BigMushroomData> BIG_MUSHROOM_DATA = BigMushroomData.class;
+    /**
      * Signifies that a block is "connected" to a particular {@link Direction}.
      * Usually applies to {@link BlockTypes#GLASS_PANE},
      * {@link BlockTypes#STAINED_GLASS_PANE}, and several others.
@@ -114,6 +121,10 @@ public final class CatalogBlockData {
      * to {@link BlockTypes#MONSTER_EGG}.
      */
     public static final Class<DisgusedBlockData> DISGUSED_BLOCK_DATA = DisgusedBlockData.class;
+    /**
+     * Represents the type of a double plant.
+     */
+    public static final Class<DoublePlantData> DOUBLE_PLANT_DATA = DoublePlantData.class;
     /**
      * Signifies that a block is "dyed" a certain {@link DyeColor}.
      * Usually applies to {@link BlockTypes#WOOL},

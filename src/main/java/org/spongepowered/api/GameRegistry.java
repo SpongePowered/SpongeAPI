@@ -26,27 +26,42 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
+import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.types.Career;
 import org.spongepowered.api.data.types.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStackBuilder;
+import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.scoreboard.ScoreboardBuilder;
+import org.spongepowered.api.scoreboard.TeamBuilder;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
+import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
 import org.spongepowered.api.stats.BlockStatistic;
 import org.spongepowered.api.stats.EntityStatistic;
 import org.spongepowered.api.stats.ItemStatistic;
 import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.StatisticBuilder;
 import org.spongepowered.api.stats.StatisticGroup;
 import org.spongepowered.api.stats.TeamStatistic;
+import org.spongepowered.api.stats.achievement.Achievement;
+import org.spongepowered.api.stats.achievement.AchievementBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldBuilder;
+import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
@@ -111,6 +126,136 @@ public interface GameRegistry {
      * @return The builder, if available
      */
     <T> Optional<T> getBuilderOf(Class<T> builderClass);
+
+    /**
+     * Get an item stack builder.
+     *
+     * @return The item stack builder
+     */
+    ItemStackBuilder getItemBuilder();
+
+    /**
+     * Get a trade offer builder.
+     *
+     * @return The trade offer builder
+     */
+    TradeOfferBuilder getTradeOfferBuilder();
+
+    /**
+     * Gets a new {@link FireworkEffectBuilder}.
+     *
+     * @return A new firework effect builder
+     */
+    FireworkEffectBuilder getFireworkEffectBuilder();
+
+    /**
+     * Get a potion effect builder.
+     *
+     * @return The potion effect builder
+     */
+    PotionEffectBuilder getPotionEffectBuilder();
+
+    /**
+     * Get an objective builder.
+     *
+     * @return The objective builder
+     */
+    ObjectiveBuilder getObjectiveBuilder();
+
+    /**
+     * Get a team builder.
+     *
+     * @return The team builder
+     */
+    TeamBuilder getTeamBuilder();
+
+    /**
+     * Gets a scoreboard builder.
+     *
+     * @return The scoreboard builder
+     */
+    ScoreboardBuilder getScoreboardBuilder();
+
+    /**
+     * Creates a new {@link StatisticBuilder} which may be used to create custom
+     * {@link Statistic}s.
+     *
+     * @return The newly created simple statistic builder
+     */
+    StatisticBuilder getStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.EntityStatisticBuilder}
+     * which may be used to create custom {@link EntityStatistic}s.
+     *
+     * @return The newly created entity statistic builder
+     */
+    StatisticBuilder.EntityStatisticBuilder getEntityStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.BlockStatisticBuilder}
+     * which may be used to create custom {@link BlockStatistic}s.
+     *
+     * @return The newly created block statistic builder
+     */
+    StatisticBuilder.BlockStatisticBuilder getBlockStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.ItemStatisticBuilder}
+     * which may be used to create custom {@link ItemStatistic}s.
+     *
+     * @return The newly created item statistic builder
+     */
+    StatisticBuilder.ItemStatisticBuilder getItemStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.TeamStatisticBuilder}
+     * which may be used to create custom {@link TeamStatistic}s.
+     *
+     * @return The newly created team statistic builder
+     */
+    StatisticBuilder.TeamStatisticBuilder getTeamStatisticBuilder();
+
+    /**
+     * Creates a new {@link AchievementBuilder} which may be used to create
+     * custom {@link Achievement}s.
+     *
+     * @return The newly created achievement builder
+     */
+    AchievementBuilder getAchievementBuilder();
+
+    /**
+     * Gets a new {@link AttributeModifierBuilder}.
+     *
+     * @return A new AttributeModifierBuilder
+     */
+    AttributeModifierBuilder getAttributeModifierBuilder();
+
+    /**
+     * Gets the {@link AttributeCalculator}.
+     *
+     * @return The {@link AttributeCalculator}
+     */
+    AttributeCalculator getAttributeCalculator();
+
+    /**
+     * Gets a new {@link AttributeBuilder}.
+     *
+     * @return A new AttributeBuilder
+     */
+    AttributeBuilder getAttributeBuilder();
+
+    /**
+     * Gets a new {@link WorldBuilder} for creating {@link World}s or
+     * {@link WorldCreationSettings}s.
+     *
+     * @return A new builder
+     */
+    WorldBuilder getWorldBuilder();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
@@ -276,13 +421,6 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
-
-    /**
-     * Gets the {@link AttributeCalculator}.
-     *
-     * @return The {@link AttributeCalculator}
-     */
-    AttributeCalculator getAttributeCalculator();
 
     /**
      * Gets a {@link ResourcePack} that's already been created by its ID.
