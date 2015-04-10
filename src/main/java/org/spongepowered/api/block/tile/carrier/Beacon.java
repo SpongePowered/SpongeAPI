@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.block.tile.carrier;
 
-import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.manipulators.BeaconData;
+import org.spongepowered.api.data.manipulators.tileentities.BeaconData;
 
 /**
  * Represents a Beacon.

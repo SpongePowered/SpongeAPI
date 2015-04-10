@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.data.manipulators.NoteData;
+import org.spongepowered.api.data.manipulators.tileentities.NoteData;
 import org.spongepowered.api.data.types.NotePitch;
 
 /**

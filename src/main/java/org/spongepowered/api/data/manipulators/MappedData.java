@@ -27,6 +27,8 @@ package org.spongepowered.api.data.manipulators;
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.manipulators.items.EnchantmentData;
+import org.spongepowered.api.data.manipulators.items.StoredEnchantmentData;
 
 import java.util.Map;
 import java.util.Set;

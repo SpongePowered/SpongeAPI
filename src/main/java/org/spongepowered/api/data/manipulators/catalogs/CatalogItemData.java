@@ -30,28 +30,28 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.tile.EnchantmentTable;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.AttributeData;
-import org.spongepowered.api.data.manipulators.BlockItemData;
-import org.spongepowered.api.data.manipulators.BreakableData;
-import org.spongepowered.api.data.manipulators.CloneableData;
-import org.spongepowered.api.data.manipulators.CoalItemData;
-import org.spongepowered.api.data.manipulators.ColoredItemData;
-import org.spongepowered.api.data.manipulators.CookedFishItemData;
+import org.spongepowered.api.data.manipulators.ColoredData;
 import org.spongepowered.api.data.manipulators.DisplayNameData;
-import org.spongepowered.api.data.manipulators.DurabilityData;
 import org.spongepowered.api.data.manipulators.DyeableData;
-import org.spongepowered.api.data.manipulators.EnchantmentData;
 import org.spongepowered.api.data.manipulators.FireworkData;
-import org.spongepowered.api.data.manipulators.FishData;
-import org.spongepowered.api.data.manipulators.GoldenAppleItemData;
-import org.spongepowered.api.data.manipulators.InventoryItemData;
-import org.spongepowered.api.data.manipulators.LoreData;
-import org.spongepowered.api.data.manipulators.MapItemData;
-import org.spongepowered.api.data.manipulators.PagedData;
-import org.spongepowered.api.data.manipulators.PlaceableData;
 import org.spongepowered.api.data.manipulators.PotionEffectData;
-import org.spongepowered.api.data.manipulators.SpawnableData;
-import org.spongepowered.api.data.manipulators.StoredEnchantmentData;
 import org.spongepowered.api.data.manipulators.TargetedLocationData;
+import org.spongepowered.api.data.manipulators.items.BlockItemData;
+import org.spongepowered.api.data.manipulators.items.BreakableData;
+import org.spongepowered.api.data.manipulators.items.CloneableData;
+import org.spongepowered.api.data.manipulators.items.CoalItemData;
+import org.spongepowered.api.data.manipulators.items.CookedFishItemData;
+import org.spongepowered.api.data.manipulators.items.DurabilityData;
+import org.spongepowered.api.data.manipulators.items.EnchantmentData;
+import org.spongepowered.api.data.manipulators.items.FishData;
+import org.spongepowered.api.data.manipulators.items.GoldenAppleItemData;
+import org.spongepowered.api.data.manipulators.items.InventoryItemData;
+import org.spongepowered.api.data.manipulators.items.LoreData;
+import org.spongepowered.api.data.manipulators.items.MapItemData;
+import org.spongepowered.api.data.manipulators.items.PagedData;
+import org.spongepowered.api.data.manipulators.items.PlaceableData;
+import org.spongepowered.api.data.manipulators.items.SpawnableData;
+import org.spongepowered.api.data.manipulators.items.StoredEnchantmentData;
 import org.spongepowered.api.data.types.CoalType;
 import org.spongepowered.api.data.types.CookedFish;
 import org.spongepowered.api.data.types.DyeColor;
@@ -102,7 +102,7 @@ public final class CatalogItemData {
      * Usually applicable to {@link ItemTypes#LEATHER_BOOTS} and other leather
      * armors.
      */
-    public static final Class<ColoredItemData> COLORED_ITEM_DATA = ColoredItemData.class;
+    public static final Class<ColoredData> COLORED_ITEM_DATA = ColoredData.class;
     /**
      * Represents the {@link CookedFish} type of a
      * {@link ItemTypes#COOKED_FISH}.

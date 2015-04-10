@@ -200,6 +200,30 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     boolean transferToWorld(UUID uuid, Vector3d position);
 
     /**
+     * Gets the rotation as a Vector3f.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @return The rotation as a Vector3f
+     */
+    Vector3d getRotation();
+
+    /**
+     * Sets the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(Vector3d rotation);
+
+    /**
      * Returns whether this entity is on the ground (not in the air) or not.
      *
      * @return Whether this entity is on the ground or not

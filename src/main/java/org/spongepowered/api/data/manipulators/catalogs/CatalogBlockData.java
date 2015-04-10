@@ -27,49 +27,50 @@ package org.spongepowered.api.data.manipulators.catalogs;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.manipulators.AttachedData;
-import org.spongepowered.api.data.manipulators.AxisData;
-import org.spongepowered.api.data.manipulators.BigMushroomData;
-import org.spongepowered.api.data.manipulators.BrickData;
-import org.spongepowered.api.data.manipulators.ConnectedDirectionData;
-import org.spongepowered.api.data.manipulators.DecayableData;
-import org.spongepowered.api.data.manipulators.DirectionalData;
-import org.spongepowered.api.data.manipulators.DirtData;
-import org.spongepowered.api.data.manipulators.DisgusedBlockData;
-import org.spongepowered.api.data.manipulators.DoublePlantData;
 import org.spongepowered.api.data.manipulators.DyeableData;
-import org.spongepowered.api.data.manipulators.ExtendedData;
-import org.spongepowered.api.data.manipulators.FilledData;
-import org.spongepowered.api.data.manipulators.FluidLevelData;
-import org.spongepowered.api.data.manipulators.GrowthData;
-import org.spongepowered.api.data.manipulators.HingeData;
-import org.spongepowered.api.data.manipulators.InWallData;
-import org.spongepowered.api.data.manipulators.InstrumentData;
-import org.spongepowered.api.data.manipulators.LayeredData;
-import org.spongepowered.api.data.manipulators.MoistureData;
-import org.spongepowered.api.data.manipulators.NoDropData;
-import org.spongepowered.api.data.manipulators.OccupiedData;
-import org.spongepowered.api.data.manipulators.OpenData;
-import org.spongepowered.api.data.manipulators.PistonData;
-import org.spongepowered.api.data.manipulators.PortionData;
-import org.spongepowered.api.data.manipulators.PoweredData;
-import org.spongepowered.api.data.manipulators.PrismarineData;
-import org.spongepowered.api.data.manipulators.QuartzData;
-import org.spongepowered.api.data.manipulators.RailDirectionData;
-import org.spongepowered.api.data.manipulators.RedstonePoweredData;
-import org.spongepowered.api.data.manipulators.RotationalData;
-import org.spongepowered.api.data.manipulators.SandData;
-import org.spongepowered.api.data.manipulators.SandstoneData;
-import org.spongepowered.api.data.manipulators.SeamlessData;
-import org.spongepowered.api.data.manipulators.ShrubData;
-import org.spongepowered.api.data.manipulators.SlabData;
-import org.spongepowered.api.data.manipulators.SnowedData;
-import org.spongepowered.api.data.manipulators.StairShapeData;
-import org.spongepowered.api.data.manipulators.StoneData;
-import org.spongepowered.api.data.manipulators.SuspendedData;
-import org.spongepowered.api.data.manipulators.TreeData;
-import org.spongepowered.api.data.manipulators.WallData;
 import org.spongepowered.api.data.manipulators.WetData;
+import org.spongepowered.api.data.manipulators.blocks.AttachedData;
+import org.spongepowered.api.data.manipulators.blocks.AxisData;
+import org.spongepowered.api.data.manipulators.blocks.BigMushroomData;
+import org.spongepowered.api.data.manipulators.blocks.BrickData;
+import org.spongepowered.api.data.manipulators.blocks.ConnectedDirectionData;
+import org.spongepowered.api.data.manipulators.blocks.DecayableData;
+import org.spongepowered.api.data.manipulators.blocks.DirectionalData;
+import org.spongepowered.api.data.manipulators.blocks.DirtData;
+import org.spongepowered.api.data.manipulators.blocks.DisarmedData;
+import org.spongepowered.api.data.manipulators.blocks.DisgusedBlockData;
+import org.spongepowered.api.data.manipulators.blocks.DoublePlantData;
+import org.spongepowered.api.data.manipulators.blocks.ExtendedData;
+import org.spongepowered.api.data.manipulators.blocks.FilledData;
+import org.spongepowered.api.data.manipulators.blocks.FluidLevelData;
+import org.spongepowered.api.data.manipulators.blocks.GrowthData;
+import org.spongepowered.api.data.manipulators.blocks.HingeData;
+import org.spongepowered.api.data.manipulators.blocks.InWallData;
+import org.spongepowered.api.data.manipulators.blocks.InstrumentData;
+import org.spongepowered.api.data.manipulators.blocks.LayeredData;
+import org.spongepowered.api.data.manipulators.blocks.MoistureData;
+import org.spongepowered.api.data.manipulators.blocks.NoDropData;
+import org.spongepowered.api.data.manipulators.blocks.OccupiedData;
+import org.spongepowered.api.data.manipulators.blocks.OpenData;
+import org.spongepowered.api.data.manipulators.blocks.PistonData;
+import org.spongepowered.api.data.manipulators.blocks.PortionData;
+import org.spongepowered.api.data.manipulators.blocks.PoweredData;
+import org.spongepowered.api.data.manipulators.blocks.PrismarineData;
+import org.spongepowered.api.data.manipulators.blocks.QuartzData;
+import org.spongepowered.api.data.manipulators.blocks.RailDirectionData;
+import org.spongepowered.api.data.manipulators.blocks.RedstonePoweredData;
+import org.spongepowered.api.data.manipulators.blocks.RotationalData;
+import org.spongepowered.api.data.manipulators.blocks.SandData;
+import org.spongepowered.api.data.manipulators.blocks.SandstoneData;
+import org.spongepowered.api.data.manipulators.blocks.SeamlessData;
+import org.spongepowered.api.data.manipulators.blocks.ShrubData;
+import org.spongepowered.api.data.manipulators.blocks.SlabData;
+import org.spongepowered.api.data.manipulators.blocks.SnowedData;
+import org.spongepowered.api.data.manipulators.blocks.StairShapeData;
+import org.spongepowered.api.data.manipulators.blocks.StoneData;
+import org.spongepowered.api.data.manipulators.blocks.SuspendedData;
+import org.spongepowered.api.data.manipulators.blocks.TreeData;
+import org.spongepowered.api.data.manipulators.blocks.WallData;
 import org.spongepowered.api.data.types.BrickType;
 import org.spongepowered.api.data.types.DisgusedBlockType;
 import org.spongepowered.api.data.types.DyeColor;
@@ -89,7 +90,6 @@ import org.spongepowered.api.data.types.WallType;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.rotation.Rotation;
-
 
 /**
  * An enumeration of block related {@link DataManipulator}s.
@@ -137,6 +137,11 @@ public final class CatalogBlockData {
      * Signifies that a {@link BlockTypes#DIRT} of it's sub types.
      */
     public static final Class<DirtData> DIRT_DATA = DirtData.class;
+    /**
+     * Signifies that a block is "disarmed". Usually applies to
+     * {@link BlockTypes#TRIPWIRE_HOOK}s.
+     */
+    public static final Class<DisarmedData> DISARMED_DATA = DisarmedData.class;
     /**
      * Represents the {@link DisgusedBlockType} of a block. Usually applies
      * to {@link BlockTypes#MONSTER_EGG}.

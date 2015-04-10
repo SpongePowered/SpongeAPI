@@ -26,6 +26,9 @@ package org.spongepowered.api.data.manipulators;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.manipulators.items.LoreData;
+import org.spongepowered.api.data.manipulators.items.PagedData;
+import org.spongepowered.api.data.manipulators.items.PlaceableData;
 
 import java.util.Collection;
 import java.util.List;
