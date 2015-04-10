@@ -26,15 +26,17 @@
 package org.spongepowered.api.util.command.dispatcher;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.CommandSpec;
 
+import java.util.List;
 import java.util.Set;
 
 /**
  * Executes a command based on user input.
  */
-public interface Dispatcher extends CommandCallable {
+public interface Dispatcher {
 
     /**
      * Get a list of commands. Each command, regardless of how many aliases
@@ -58,7 +60,7 @@ public interface Dispatcher extends CommandCallable {
     /**
      * Get a list of all the command aliases, which includes the primary alias.
      *
-     * <p>A command may have more than one alias assigned to it. The returned 
+     * <p>A command may have more than one alias assigned to it. The returned
      * collection cannot be modified.</p>
      *
      * @return A list of aliases
@@ -66,7 +68,7 @@ public interface Dispatcher extends CommandCallable {
     Set<String> getAliases();
 
     /**
-     * Get the {@link CommandCallable} associated with an alias. Returns
+     * Get the {@link CommandSpec} associated with an alias. Returns
      * null if no command is named by the given alias.
      *
      * @param alias The alias
@@ -90,5 +92,23 @@ public interface Dispatcher extends CommandCallable {
      * @return True if a mapping exists
      */
     boolean containsMapping(CommandMapping mapping);
+
+    /**
+     * Process a command input, containing a full command string attached to a source.
+     *
+     * @param source The source to process the command for
+     * @param commandLine the command line, not including a preceding /
+     * @return whether any command was found
+     */
+    boolean process(CommandSource source, String commandLine);
+
+    /**
+     * Return the appropriate tab completions for this command, or an empty list if none are present.
+     *
+     * @param src The source executing this command
+     * @param arguments The arguments currently input
+     * @return possible completions for the entire last word
+     */
+    List<String> complete(CommandSource src, final String arguments);
 
 }

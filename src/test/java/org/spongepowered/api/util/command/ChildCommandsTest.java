@@ -22,37 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import static org.junit.Assert.assertTrue;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * Tests for child commands.
  */
-public class CommandException extends TextMessageException {
+public class ChildCommandsTest {
+    @Test
+    @Ignore("Cannot run these tests unless Text factories are available in testing")
+    public void testSimpleChildCommand() throws CommandException {
+        final AtomicBoolean childExecuted = new AtomicBoolean();
+        CommandSpec.builder()
+                .setChildren(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                        .setExecutor(new CommandExecutor() {
+                            @Override
+                            public void execute(CommandSource src, CommandContext args) throws CommandException {
+                                childExecuted.set(true);
+                            }
+                        })
+                        .build()))
+                        .build()
+                        .process(Mockito.mock(CommandSource.class), "child");
 
-    private static final long serialVersionUID = 4626722485860074825L;
-
-    /**
-     * Constructs a new {@link CommandException} with the given message.
-     *
-     * @param message The detail message
-     */
-    public CommandException(Text message) {
-        super(message);
-    }
-
-    /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+        assertTrue(childExecuted.get());
     }
 }

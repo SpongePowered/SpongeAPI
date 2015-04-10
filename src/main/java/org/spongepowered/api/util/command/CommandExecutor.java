@@ -22,37 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
-
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * Interface containing the method directing how a certain command will be executed.
  */
-public class CommandException extends TextMessageException {
-
-    private static final long serialVersionUID = 4626722485860074825L;
-
+public interface CommandExecutor {
     /**
-     * Constructs a new {@link CommandException} with the given message.
+     * Callback for the execution of a command.
      *
-     * @param message The detail message
+     * @param src The commander who is executing this command
+     * @param args The parsed command arguments for this command
+     * @throws CommandException If a user-facing error occurs while executing this command
      */
-    public CommandException(Text message) {
-        super(message);
-    }
-
-    /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
-    }
+    void execute(CommandSource src, CommandContext args) throws CommandException;
 }

@@ -22,37 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * Test for basic commandspec creation.
  */
-public class CommandException extends TextMessageException {
+public class CommandSpecTest {
+    @Rule
+    public ExpectedException expected = ExpectedException.none();
 
-    private static final long serialVersionUID = 4626722485860074825L;
-
-    /**
-     * Constructs a new {@link CommandException} with the given message.
-     *
-     * @param message The detail message
-     */
-    public CommandException(Text message) {
-        super(message);
+    @Test
+    public void testNoArgsFunctional() throws CommandException {
+        CommandSpec.builder()
+                .setExecutor(new CommandExecutor() {
+                    @Override
+                    public void execute(CommandSource src, CommandContext args) throws CommandException {
+                        // Run
+                    }
+                })
+                .build()
+                .process(Mockito.mock(CommandSource.class), "");
     }
 
-    /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    @Test
+    public void testExecutorRequired() {
+        this.expected.expect(NullPointerException.class);
+        this.expected.expectMessage("An executor is required");
+        CommandSpec.builder()
+                .build();
+
     }
 }

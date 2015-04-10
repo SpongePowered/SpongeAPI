@@ -28,8 +28,8 @@ package org.spongepowered.api.service.command;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
 
 import java.util.List;
@@ -53,12 +53,12 @@ public interface CommandService extends Dispatcher {
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
      * @param plugin A plugin instance
-     * @param callable The command
+     * @param spec The command
      * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be registered
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
+    Optional<CommandMapping> register(Object plugin, CommandSpec spec, String... alias);
 
     /**
      * Register a given command using the given list of aliases.
@@ -72,12 +72,12 @@ public interface CommandService extends Dispatcher {
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
      * @param plugin A plugin instance
-     * @param callable The command
+     * @param spec The command
      * @param aliases A list of aliases
      * @return The registered command mapping, unless no aliases could be registered
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
+    Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases);
 
     /**
      * Register a given command using a given list of aliases.
@@ -94,14 +94,14 @@ public interface CommandService extends Dispatcher {
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
      * @param plugin A plugin instance
-     * @param callable The command
+     * @param spec The command
      * @param aliases A list of aliases
      * @param callback The callback
      * @return The registered command mapping, unless no aliases could be registered
      * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
+    Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases, Function<List<String>, List<String>> callback);
 
     /**
      * Remove a mapping identified by the given alias.

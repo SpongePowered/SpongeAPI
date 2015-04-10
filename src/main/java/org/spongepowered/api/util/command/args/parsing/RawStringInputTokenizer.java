@@ -22,33 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.command.args.parsing;
 
-package org.spongepowered.api.util.command.completion;
+import org.spongepowered.api.util.command.args.ArgumentParseException;
 
-import org.spongepowered.api.util.command.CommandException;
-import org.spongepowered.api.util.command.CommandSource;
-
+import java.util.Collections;
 import java.util.List;
 
-/**
- * Completes typed-in commands by providing a list of suggestions to replace
- * the last typed in word with.
- *
- * <p>Words are separated from each other by space characters.</p>
- */
-public interface CommandCompleter {
+class RawStringInputTokenizer implements InputTokenizer {
+    static final RawStringInputTokenizer INSTANCE = new RawStringInputTokenizer();
 
-    /**
-     * Get a list of suggestions based on input.
-     *
-     * <p>If a suggestion is chosen by the user, it will replace the last
-     * word.</p>
-     *
-     * @param source The command source
-     * @param arguments The arguments entered up to this point
-     * @return A list of suggestions
-     * @throws CommandException Thrown if there was a parsing error
-     */
-    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
+    private RawStringInputTokenizer() {}
 
+    @Override
+    public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
+        return Collections.singletonList(new SingleArg(arguments, 0, arguments.length()));
+    }
 }

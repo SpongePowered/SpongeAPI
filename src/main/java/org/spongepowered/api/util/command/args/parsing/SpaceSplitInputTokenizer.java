@@ -22,37 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.command.args.parsing;
 
-package org.spongepowered.api.util.command;
+import org.spongepowered.api.util.command.args.ArgumentParseException;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
- */
-public class CommandException extends TextMessageException {
+class SpaceSplitInputTokenizer implements InputTokenizer {
+    public static final SpaceSplitInputTokenizer INSTANCE = new SpaceSplitInputTokenizer();
 
-    private static final long serialVersionUID = 4626722485860074825L;
+    private SpaceSplitInputTokenizer() {}
 
-    /**
-     * Constructs a new {@link CommandException} with the given message.
-     *
-     * @param message The detail message
-     */
-    public CommandException(Text message) {
-        super(message);
-    }
-
-    /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    @Override
+    public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
+        List<SingleArg> ret = new ArrayList<SingleArg>();
+        int lastIndex = 0;
+        int spaceIndex;
+        while ((spaceIndex = arguments.indexOf(" ")) != -1) {
+            ret.add(new SingleArg((arguments = arguments.substring(0, spaceIndex)), lastIndex, lastIndex + spaceIndex));
+            lastIndex += spaceIndex + 1;
+        }
+        return ret;
     }
 }

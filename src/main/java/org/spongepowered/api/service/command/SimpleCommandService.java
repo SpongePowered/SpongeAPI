@@ -35,22 +35,17 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.spongepowered.api.event.Order;
-import org.spongepowered.api.event.Subscribe;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -59,18 +54,13 @@ import javax.inject.Inject;
 
 /**
  * A simple implementation of {@link CommandService}.
- *
- * <p>
- * Note: An instance of this class should be registered with the sponge
- * {@link EventManager} in order to receive {@link CommandEvent}s in the
- * {@link #onCommandEvent(CommandEvent)} method.
- * </p>
+ * This service calls the appropriate events for a command.
  */
 public class SimpleCommandService implements CommandService {
 
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
 
-    private final PluginManager pluginManager;
+    private final Game game;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
@@ -78,48 +68,30 @@ public class SimpleCommandService implements CommandService {
     /**
      * Construct a simple {@link CommandService}.
      *
-     * @param pluginManager The plugin manager to get the
-     *            {@link PluginContainer} for a given plugin
+     * @param game The game to use for this CommandService
      */
     @Inject
-    public SimpleCommandService(PluginManager pluginManager) {
-        checkNotNull(pluginManager, "pluginManager");
-        this.pluginManager = pluginManager;
-    }
-
-    /**
-     * Receive {@link CommandEvent}s.
-     *
-     * @param event The event received
-     */
-    @Subscribe(order = Order.LAST)
-    public void onCommandEvent(final CommandEvent event) {
-        try {
-            if (call(event.getSource(), event.getCommand() + " " + event.getArguments(), Collections.<String>emptyList())) {
-                event.setCancelled(true);
-            }
-        } catch (CommandException e) {
-            event.setCancelled(true);
-            log.warn("Failed to execute a command", e);
-        }
+    public SimpleCommandService(Game game) {
+        checkNotNull(game, "game");
+        this.game = game;
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
-        return register(plugin, callable, Arrays.asList(alias));
+    public Optional<CommandMapping> register(Object plugin, CommandSpec spec, String... alias) {
+        return register(plugin, spec, Arrays.asList(alias));
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
-        return register(plugin, callable, aliases, Functions.<List<String>>identity());
+    public Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases) {
+        return register(plugin, spec, aliases, Functions.<List<String>>identity());
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
+    public Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(plugin, "plugin");
 
-        Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
+        Optional<PluginContainer> containerOptional = this.game.getPluginManager().fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
@@ -136,7 +108,7 @@ public class SimpleCommandService implements CommandService {
                 aliasesWithPrefix.add(container.getId() + ":" + alias);
             }
 
-            Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliasesWithPrefix, callback);
+            Optional<CommandMapping> mapping = this.dispatcher.register(spec, aliasesWithPrefix, callback);
 
             if (mapping.isPresent()) {
                 this.owners.put(container, mapping.get());
@@ -227,38 +199,23 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
-        return this.dispatcher.call(source, arguments, parents);
+    public boolean process(CommandSource source, String commandLine) {
+        final String[] argSplit = commandLine.split(" ", 2);
+        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit[0], source, argSplit[1]);
+        this.game.getEventManager().post(event);
+        if (event.isCancelled()) {
+            return true;
+        }
+        return this.dispatcher.process(source, commandLine);
     }
 
     @Override
-    public boolean testPermission(CommandSource source) {
-        return this.dispatcher.testPermission(source);
-    }
-
-    @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        return this.dispatcher.getSuggestions(source, arguments);
-    }
-
-    @Override
-    public String getShortDescription(CommandSource source) {
-        return this.dispatcher.getShortDescription(source);
-    }
-
-    @Override
-    public Text getHelp(CommandSource source) {
-        return this.dispatcher.getHelp(source);
-    }
-
-    @Override
-    public String getUsage(CommandSource source) {
-        return this.dispatcher.getUsage(source);
+    public List<String> complete(CommandSource src, String commandLine) {
+        return this.dispatcher.complete(src, commandLine);
     }
 
     @Override
     public int size() {
         return this.dispatcher.size();
     }
-
 }

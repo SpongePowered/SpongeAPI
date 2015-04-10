@@ -22,23 +22,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.command.dispatcher;
 
-package org.spongepowered.api.util.command.completion;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.translation.Translation;
 
-import static org.hamcrest.Matchers.empty;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
+/**
+ * This class contains methods intended for use as placeholders until true localization is implemented for SpongeAPI strings.
+ */
+class TranslationPlaceholder {
+    private TranslationPlaceholder() {}
 
-import org.junit.Test;
-import org.spongepowered.api.util.command.CommandSource;
-
-public class NullCompleterTest {
-
-    @Test
-    public void testGetSuggestions() throws Exception {
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), ""), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "example"), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "parent child"), empty());
+    public static Text _(String untranslated, Object... args) {
+        return Texts.of(new FixedTranslation(untranslated), args);
     }
+
+    private static class FixedTranslation implements Translation {
+        private final String untranslated;
+
+        private FixedTranslation(String untranslated) {
+            this.untranslated = untranslated;
+        }
+
+        @Override
+        public String getId() {
+            return this.untranslated;
+        }
+
+        @Override
+        public String getName() {
+            return this.untranslated;
+        }
+
+        @Override
+        public String get() {
+            return this.untranslated;
+        }
+
+        @Override
+        public String get(Object... args) {
+            return String.format(this.untranslated, args);
+        }
+    }
+
 
 }

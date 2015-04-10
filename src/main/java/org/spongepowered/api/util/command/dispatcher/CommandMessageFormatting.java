@@ -22,5 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.command.dispatcher;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.util.command.completion;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
+
+class CommandMessageFormatting {
+    public static Text error(Text error) {
+        return error.builder().color(TextColors.RED).build();
+    }
+
+    public static Text debug(Text debug) {
+        return debug.builder().color(TextColors.GRAY).build();
+    }
+
+}

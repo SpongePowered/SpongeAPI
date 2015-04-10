@@ -26,20 +26,32 @@
 package org.spongepowered.api.util.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.debug;
+import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.error;
+import static org.spongepowered.api.util.command.dispatcher.TranslationPlaceholder._;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
-import org.spongepowered.api.util.command.CommandCallable;
+import org.spongepowered.api.util.StartsWithPredicate;
+import org.spongepowered.api.util.command.CommandContext;
 import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandExecutor;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
-import org.spongepowered.api.util.command.InvocationCommandException;
+import org.spongepowered.api.util.command.args.ArgumentParseException;
+import org.spongepowered.api.util.command.args.CommandArgs;
+import org.spongepowered.api.util.command.args.CommandElement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,35 +62,35 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.annotation.Nullable;
 
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
-public class SimpleDispatcher implements Dispatcher {
+public final class SimpleDispatcher extends CommandElement implements Dispatcher, CommandExecutor {
+    private static final AtomicInteger COUNTER = new AtomicInteger();
 
+    @Nullable
+    private final CommandExecutor fallbackExecutor;
     private final Map<String, CommandMapping> commands = Maps.newHashMap();
-    private final String shortDescription;
-    private final Text help;
 
     /**
-     * Creates a new dispatcher without any help messages.
+     * Creates a basic new dispatcher.
      */
     public SimpleDispatcher() {
-        this.shortDescription = "";
-        this.help = Texts.of();
+        this(null);
     }
 
     /**
-     * Creates a new dispatcher with a description and a help message.
+     * Creates a new dispatcher with a fallback executor.
      *
-     * @param shortDescription A short one-line description
-     * @param help A formatted help message
+     * @param fallbackExecutor Executor to use when this dispatcher is being used for subcommands
      */
-    public SimpleDispatcher(String shortDescription, Text help) {
-        checkNotNull(shortDescription, "shortDescription");
-        checkNotNull(help, "help");
-        this.shortDescription = shortDescription;
-        this.help = help;
+    public SimpleDispatcher(@Nullable CommandExecutor fallbackExecutor) {
+        super(Texts.of("child" + COUNTER.getAndIncrement()));
+        this.fallbackExecutor = fallbackExecutor;
     }
 
     /**
@@ -96,7 +108,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
+    public Optional<CommandMapping> register(CommandSpec callable, String... alias) {
         checkNotNull(alias, "alias");
         return register(callable, Arrays.asList(alias));
     }
@@ -116,7 +128,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @param aliases A list of aliases
      * @return The registered command mapping, unless no aliases could be registered
      */
-    public Optional<CommandMapping> register(CommandCallable callable, List<String> aliases) {
+    public Optional<CommandMapping> register(CommandSpec callable, List<String> aliases) {
         return register(callable, aliases, Functions.<List<String>>identity());
     }
 
@@ -140,7 +152,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be registered
      * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
      */
-    public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
+    public synchronized Optional<CommandMapping> register(CommandSpec callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(aliases, "aliases");
         checkNotNull(callable, "aliases");
@@ -305,6 +317,81 @@ public class SimpleDispatcher implements Dispatcher {
         return false;
     }
 
+    @Override
+    public boolean process(CommandSource source, String arguments) {
+        final String[] argSplit = arguments.split(" ", 2);
+        CommandMapping cmd = this.commands.get(argSplit[0].toLowerCase());
+        if (cmd == null) {
+            return false;
+        }
+        try {
+            cmd.getSpec().process(source, argSplit[1]);
+        } catch (CommandException ex) {
+            if (ex.getText() != null) {
+                source.sendMessage(error(ex.getText()));
+            }
+            source.sendMessage(error(_("Usage: /%s %s", argSplit[0], getUsage(source))));
+        } catch (Throwable t) {
+            source.sendMessage(error(_("Error occurred while executing command: %s", String.valueOf(t.getMessage()))));
+            t.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public List<String> complete(CommandSource src, final String arguments) {
+        final String[] argSplit = arguments.split(" ", 2);
+        CommandMapping cmd = this.commands.get(argSplit[0].toLowerCase());
+        if (cmd == null || argSplit.length == 1) {
+            return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(argSplit[0])));
+        }
+
+        try {
+            cmd.getSpec().checkPermission(src);
+        } catch (CommandException ex) {
+            return Collections.emptyList();
+        }
+        try {
+            return cmd.getSpec().complete(src, argSplit[1]);
+        } catch (ArgumentParseException e) {
+            src.sendMessage(debug(e.getText()));
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public List<String> complete(final CommandSource src, CommandArgs args, CommandContext context) {
+        final Optional<String> commandComponent = args.nextIfPresent();
+        if (commandComponent.isPresent()) {
+            if (args.hasNext()) {
+                CommandMapping child = this.commands.get(commandComponent.get());
+                if (child == null) {
+                    return ImmutableList.of();
+                }
+                return child.getSpec().complete(src, args, context);
+            } else {
+                return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(commandComponent.get())));
+            }
+        } else {
+            return ImmutableList.copyOf(filterCommands(src));
+        }
+    }
+
+    private Iterable<String> filterCommands(final CommandSource src) {
+        return Iterables.filter(this.commands.keySet(), new Predicate<String>() {
+            @Override
+            public boolean apply(String input) {
+                CommandSpec child = SimpleDispatcher.this.commands.get(input).getSpec();
+                try {
+                    child.checkPermission(src);
+                    return true;
+                } catch (CommandException ex) {
+                    return false;
+                }
+            }
+        });
+    }
+
     /**
      * Get the number of registered aliases.
      *
@@ -315,84 +402,53 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
-        String[] parts = arguments.split(" +", 2);
-        Optional<CommandMapping> mapping = get(parts[0]);
-
-        if (mapping.isPresent()) {
-            List<String> passedParents = new ArrayList<String>(parents.size() + 1);
-            passedParents.addAll(parents);
-            passedParents.add(parts[0]);
-
-            try {
-                mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
-            } catch (CommandException c) {
-                throw c;
-            } catch (Throwable t) {
-                throw new InvocationCommandException(t);
-            }
-
-            return true;
-        } else {
-            return false;
-        }
+    public void parse(CommandArgs args, CommandContext context) throws ArgumentParseException {
+        super.parse(args, context);
+        CommandSpec spec = context.<CommandSpec>getOne(getUntranslatedKey()).get();
+        spec.process(args, context);
     }
 
     @Override
-    public synchronized boolean testPermission(CommandSource source) {
-        for (CommandMapping mapping : this.commands.values()) {
-            if (!mapping.getCallable().testPermission(source)) {
-                return false;
-            }
+    protected Object parseValue(CommandArgs args) throws ArgumentParseException {
+        final String key = args.next();
+        if (!this.commands.containsKey(key.toLowerCase())) {
+            throw args.createError(_("Input command %s was not a valid subcommand!", key));
         }
 
-        return true;
+        return this.commands.get(key.toLowerCase());
     }
 
     @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        String[] parts = arguments.split(" +", 2);
-        List<String> suggestions = new ArrayList<String>();
-
-        if (parts.length == 1) { // Auto completing commands
-            String incompleteCommand = parts[0].toLowerCase();
-
-            synchronized (this) {
-                for (CommandMapping mapping : this.commands.values()) {
-                    for (String alias : mapping.getAllAliases()) {
-                        if (alias.toLowerCase().startsWith(incompleteCommand)) {
-                            suggestions.add(alias);
-                        }
-                    }
-                }
+    public Text getUsage(CommandSource context) {
+        final TextBuilder build = Texts.builder();
+        Iterable<String> filteredCommands = Iterables.filter(filterCommands(context), new Predicate<String>() {
+            @Override
+            public boolean apply(String input) {
+                return SimpleDispatcher.this.commands.get(input).getPrimaryAlias().equals(input); // Restrict to primary aliases in usage
             }
-        } else { // Complete using subcommand
-            Optional<CommandMapping> mapping = get(parts[0]);
+        });
 
-            if (mapping.isPresent()) {
-                List<String> ret = mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
-                if (ret != null) {
-                    suggestions.addAll(ret);
-                }
+        for (Iterator<String> it = filteredCommands.iterator(); it.hasNext();) {
+            build.append(Texts.of(it.next()));
+            if (it.hasNext()) {
+                build.append(Texts.of("|"));
             }
         }
-
-        return Collections.unmodifiableList(suggestions);
+        return build.build();
     }
+
 
     @Override
-    public String getShortDescription(CommandSource source) {
-        return this.shortDescription;
+    public void execute(CommandSource src, CommandContext args) throws CommandException {
+        CommandSpec spec = args.<CommandSpec>getOne(getUntranslatedKey()).get();
+        if (spec == null) {
+            if (this.fallbackExecutor != null) {
+                this.fallbackExecutor.execute(src, args);
+                return;
+            } else {
+                throw new CommandException(_("Invalid subcommand state -- no more than one spec may be provided for child arg %s", getKey()));
+            }
+        }
+        spec.getExecutor().execute(src, args);
     }
-
-    @Override
-    public Text getHelp(CommandSource source) {
-        return this.help;
-    }
-
-    @Override
-    public String getUsage(CommandSource source) {
-        return "<sub-command>"; // @TODO: Translate
-    }
-
 }

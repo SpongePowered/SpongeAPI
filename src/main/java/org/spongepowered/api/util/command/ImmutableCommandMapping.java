@@ -37,39 +37,39 @@ import java.util.Set;
  * An immutable command mapping instance that returns the same objects that
  * this instance is constructed with.
  */
-public class ImmutableCommandMapping implements CommandMapping {
+public final class ImmutableCommandMapping implements CommandMapping {
 
     private final String primary;
     private final Set<String> aliases;
-    private final CommandCallable callable;
+    private final CommandSpec spec;
 
     /**
      * Create a new instance.
      *
-     * @param callable The command callable
+     * @param spec The command callable
      * @param primary The primary alias
      * @param alias A list of all aliases
      * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
-    public ImmutableCommandMapping(CommandCallable callable, String primary, String... alias) {
-        this(callable, primary, Arrays.asList(checkNotNull(alias, "alias")));
+    public ImmutableCommandMapping(CommandSpec spec, String primary, String... alias) {
+        this(spec, primary, Arrays.asList(checkNotNull(alias, "alias")));
     }
 
     /**
      * Create a new instance.
      *
-     * @param callable The command callable
+     * @param spec The command callable
      * @param primary The primary alias
      * @param aliases A collection of all aliases
      * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
-    public ImmutableCommandMapping(CommandCallable callable, String primary, Collection<String> aliases) {
+    public ImmutableCommandMapping(CommandSpec spec, String primary, Collection<String> aliases) {
         checkNotNull(primary, "primary");
         checkNotNull(aliases, "aliases");
         this.primary = primary;
         this.aliases = new HashSet<String>(aliases);
         this.aliases.add(primary);
-        this.callable = checkNotNull(callable, "callable");
+        this.spec = checkNotNull(spec, "spec");
     }
 
     @Override
@@ -83,8 +83,8 @@ public class ImmutableCommandMapping implements CommandMapping {
     }
 
     @Override
-    public CommandCallable getCallable() {
-        return this.callable;
+    public CommandSpec getSpec() {
+        return this.spec;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class ImmutableCommandMapping implements CommandMapping {
         return "ImmutableCommandMapping{"
                 + "primary='" + this.primary + '\''
                 + ", aliases=" + this.aliases
-                + ", callable=" + this.callable
+                + ", spec=" + this.spec
                 + '}';
     }
 }
