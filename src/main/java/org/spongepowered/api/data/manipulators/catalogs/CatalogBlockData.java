@@ -30,6 +30,7 @@ import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.AttachedData;
 import org.spongepowered.api.data.manipulators.AxisData;
 import org.spongepowered.api.data.manipulators.BigMushroomData;
+import org.spongepowered.api.data.manipulators.BrickData;
 import org.spongepowered.api.data.manipulators.ConnectedDirectionData;
 import org.spongepowered.api.data.manipulators.DecayableData;
 import org.spongepowered.api.data.manipulators.DirectionalData;
@@ -37,11 +38,19 @@ import org.spongepowered.api.data.manipulators.DirtData;
 import org.spongepowered.api.data.manipulators.DisgusedBlockData;
 import org.spongepowered.api.data.manipulators.DoublePlantData;
 import org.spongepowered.api.data.manipulators.DyeableData;
+import org.spongepowered.api.data.manipulators.ExtendedData;
+import org.spongepowered.api.data.manipulators.FilledData;
 import org.spongepowered.api.data.manipulators.FluidLevelData;
 import org.spongepowered.api.data.manipulators.GrowthData;
 import org.spongepowered.api.data.manipulators.HingeData;
+import org.spongepowered.api.data.manipulators.InWallData;
+import org.spongepowered.api.data.manipulators.InstrumentData;
+import org.spongepowered.api.data.manipulators.LayeredData;
+import org.spongepowered.api.data.manipulators.MoistureData;
+import org.spongepowered.api.data.manipulators.NoDropData;
 import org.spongepowered.api.data.manipulators.OccupiedData;
 import org.spongepowered.api.data.manipulators.OpenData;
+import org.spongepowered.api.data.manipulators.PistonData;
 import org.spongepowered.api.data.manipulators.PortionData;
 import org.spongepowered.api.data.manipulators.PoweredData;
 import org.spongepowered.api.data.manipulators.PrismarineData;
@@ -49,8 +58,10 @@ import org.spongepowered.api.data.manipulators.QuartzData;
 import org.spongepowered.api.data.manipulators.RailDirectionData;
 import org.spongepowered.api.data.manipulators.RedstonePoweredData;
 import org.spongepowered.api.data.manipulators.RotationalData;
+import org.spongepowered.api.data.manipulators.SandData;
 import org.spongepowered.api.data.manipulators.SandstoneData;
 import org.spongepowered.api.data.manipulators.SeamlessData;
+import org.spongepowered.api.data.manipulators.ShrubData;
 import org.spongepowered.api.data.manipulators.SlabData;
 import org.spongepowered.api.data.manipulators.SnowedData;
 import org.spongepowered.api.data.manipulators.StairShapeData;
@@ -59,12 +70,17 @@ import org.spongepowered.api.data.manipulators.SuspendedData;
 import org.spongepowered.api.data.manipulators.TreeData;
 import org.spongepowered.api.data.manipulators.WallData;
 import org.spongepowered.api.data.manipulators.WetData;
+import org.spongepowered.api.data.types.BrickType;
 import org.spongepowered.api.data.types.DisgusedBlockType;
 import org.spongepowered.api.data.types.DyeColor;
+import org.spongepowered.api.data.types.InstrumentType;
+import org.spongepowered.api.data.types.PistonType;
 import org.spongepowered.api.data.types.PrismarineType;
 import org.spongepowered.api.data.types.QuartzType;
 import org.spongepowered.api.data.types.RailDirection;
+import org.spongepowered.api.data.types.SandType;
 import org.spongepowered.api.data.types.SandstoneType;
+import org.spongepowered.api.data.types.ShrubType;
 import org.spongepowered.api.data.types.SlabType;
 import org.spongepowered.api.data.types.StairShape;
 import org.spongepowered.api.data.types.StoneType;
@@ -94,6 +110,11 @@ public final class CatalogBlockData {
      * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
      */
     public static final Class<BigMushroomData> BIG_MUSHROOM_DATA = BigMushroomData.class;
+    /**
+     * Represents the type of {@link BrickType} for a
+     * {@link BlockTypes#STONEBRICK}.
+     */
+    public static final Class<BrickData> BRICK_DATA = BrickData.class;
     /**
      * Signifies that a block is "connected" to a particular {@link Direction}.
      * Usually applies to {@link BlockTypes#GLASS_PANE},
@@ -133,6 +154,16 @@ public final class CatalogBlockData {
      */
     public static final Class<DyeableData> DYEABLE_DATA = DyeableData.class;
     /**
+     * Signifies whether the block is "extended". Usually applicable to
+     * {@link BlockTypes#PISTON}.
+     */
+    public static final Class<ExtendedData> EXTENDED_DATA = ExtendedData.class;
+    /**
+     * Signifies that the owner is "filled". Usually applicable to
+     * {@link BlockTypes#END_PORTAL_FRAME}.
+     */
+    public static final Class<FilledData> FILLED_DATA = FilledData.class;
+    /**
      * Represents the "fluid level" for a liquid block. Usually applicable
      * to {@link BlockTypes#WATER} and {@link BlockTypes#LAVA}
      */
@@ -148,6 +179,31 @@ public final class CatalogBlockData {
      */
     public static final Class<HingeData> HINGE_DATA = HingeData.class;
     /**
+     * Represents the {@link InstrumentType}. Usually applicable to
+     * {@link BlockTypes#NOTEBLOCK}.
+     */
+    public static final Class<InstrumentData> INSTRUMENT_DATA = InstrumentData.class;
+    /**
+     * Signifies that the owner is "connected" to a wall. Usually applicable to
+     * {@link BlockTypes#FENCE_GATE}.
+     */
+    public static final Class<InWallData> IN_WALL_DATA = InWallData.class;
+    /**
+     * Represents the "layer" of an owner. Usually applicable to
+     * {@link BlockTypes#CAKE}, {@link BlockTypes#SNOW_LAYER}, etc.
+     */
+    public static final Class<LayeredData> LAYERED_DATA = LayeredData.class;
+    /**
+     * Represents the "moisture" level of a block. Usually applicable to
+     * {@link BlockTypes#FARMLAND}.
+     */
+    public static final Class<MoistureData> MOISTURE_DATA = MoistureData.class;
+    /**
+     * Signifies that the owner will not drop anything. Usually applicable
+     * to {@link BlockTypes#SKULL}.
+     */
+    public static final Class<NoDropData> NO_DROP_DATA = NoDropData.class;
+    /**
      * Signifies that a block is considered "occupied". Usually applicable to
      * {@link BlockTypes#BED}.
      */
@@ -156,6 +212,10 @@ public final class CatalogBlockData {
      * Signifies that a block is "open". Usually applies to all doors.
      */
     public static final Class<OpenData> OPEN_DATA = OpenData.class;
+    /**
+     * Represents the {@link PistonType} of a {@link BlockTypes#PISTON_HEAD}.
+     */
+    public static final Class<PistonData> PISTON_DATA = PistonData.class;
     /**
      * Represents the "portion" of a block such as the top or bottom half of a
      * door. Usually applies to all doors.
@@ -190,6 +250,10 @@ public final class CatalogBlockData {
      */
     public static final Class<RotationalData> ROTATIONAL_DATA = RotationalData.class;
     /**
+     * Represents the {@link SandType} of {@link BlockTypes#SAND}.
+     */
+    public static final Class<SandData> SAND_DATA = SandData.class;
+    /**
      * Represents the {@link SandstoneType} of a sandstone based block. Usually
      * applicable to {@link BlockTypes#SANDSTONE} and
      * {@link BlockTypes#RED_SANDSTONE}.
@@ -202,6 +266,10 @@ public final class CatalogBlockData {
      * and {@link BlockTypes#DOUBLE_WOODEN_SLAB}.
      */
     public static final Class<SeamlessData> SEAMLESS_DATA = SeamlessData.class;
+    /**
+     * Represents the {@link ShrubType} of a {@link BlockTypes#TALLGRASS}.
+     */
+    public static final Class<ShrubData> SHRUB_DATA = ShrubData.class;
     /**
      * Represents the {@link SlabType} of slabs.
      */
