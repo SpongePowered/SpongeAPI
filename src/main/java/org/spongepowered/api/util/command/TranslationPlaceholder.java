@@ -25,33 +25,41 @@
 package org.spongepowered.api.util.command;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * This class contains methods intended for use as placeholders until true localization is implemented for SpongeAPI strings.
  */
-public class CommandException extends TextMessageException {
+class TranslationPlaceholder {
+    private TranslationPlaceholder() {}
 
-    private static final long serialVersionUID = 4626722485860074825L;
-
-    /**
-     * Constructs a new {@link CommandException} with the given message.
-     *
-     * @param message The detail message
-     */
-    public CommandException(Text message) {
-        super(message);
+    public static Text t(String untranslated, Object... args) {
+        return Texts.of(new FixedTranslation(untranslated), args);
     }
 
-    /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    private static class FixedTranslation implements Translation {
+        private final String untranslated;
+
+        private FixedTranslation(String untranslated) {
+            this.untranslated = untranslated;
+        }
+
+        @Override
+        public String getId() {
+            return this.untranslated;
+        }
+
+        @Override
+        public String get() {
+            return this.untranslated;
+        }
+
+        @Override
+        public String get(Object... args) {
+            return String.format(this.untranslated, args);
+        }
     }
+
+
 }

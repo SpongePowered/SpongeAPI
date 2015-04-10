@@ -22,22 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.completion;
+package org.spongepowered.api.util.command;
 
-import static org.hamcrest.Matchers.empty;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-
-import org.junit.Test;
-import org.spongepowered.api.util.command.CommandSource;
-
-public class NullCompleterTest {
-
-    @Test
-    public void testGetSuggestions() throws Exception {
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), ""), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "example"), empty());
-        assertThat(new NullCompleter().getSuggestions(mock(CommandSource.class), "parent child"), empty());
-    }
-
+/**
+ * Interface containing the method directing how a certain command will be executed.
+ */
+public interface CommandExecutor {
+    /**
+     * Callback for the execution of a command.
+     *
+     * @param src The commander who is executing this command
+     * @param args The parsed command arguments for this command
+     * @throws CommandException If a user-facing error occurs while executing this command
+     */
+    void execute(CommandSource src, CommandContext args) throws CommandException;
 }

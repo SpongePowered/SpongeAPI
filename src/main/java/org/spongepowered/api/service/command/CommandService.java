@@ -29,6 +29,9 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
 
 import java.util.List;
@@ -139,5 +142,31 @@ public interface CommandService extends Dispatcher {
      * @return The number of aliases
      */
     int size();
+
+    /**
+     * Execute the command based on input arguments.
+     *
+     * <p>The implementing class must perform the necessary permission
+     * checks.</p>
+     *
+     * @param source The caller of the command
+     * @param arguments The raw arguments for this command
+     * @return The result of a command being processed
+     */
+    @Override
+    boolean process(CommandSource source, String arguments);
+
+    /**
+     * Get a list of suggestions based on input.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * @param source The command source
+     * @param arguments The arguments entered up to this point
+     * @return A list of suggestions
+     */
+    @Override
+    List<String> getSuggestions(CommandSource source, String arguments);
 
 }

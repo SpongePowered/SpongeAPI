@@ -27,7 +27,9 @@ package org.spongepowered.api.util.command.dispatcher;
 import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandSource;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -57,7 +59,7 @@ public interface Dispatcher extends CommandCallable {
     /**
      * Get a list of all the command aliases, which includes the primary alias.
      *
-     * <p>A command may have more than one alias assigned to it. The returned 
+     * <p>A command may have more than one alias assigned to it. The returned
      * collection cannot be modified.</p>
      *
      * @return A list of aliases
@@ -65,7 +67,7 @@ public interface Dispatcher extends CommandCallable {
     Set<String> getAliases();
 
     /**
-     * Get the {@link CommandCallable} associated with an alias. Returns
+     * Get the {@link CommandMapping} associated with an alias. Returns
      * null if no command is named by the given alias.
      *
      * @param alias The alias
@@ -89,5 +91,4 @@ public interface Dispatcher extends CommandCallable {
      * @return True if a mapping exists
      */
     boolean containsMapping(CommandMapping mapping);
-
 }

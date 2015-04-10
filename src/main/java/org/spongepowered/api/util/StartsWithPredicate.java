@@ -22,36 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import com.google.common.base.Predicate;
+
+import javax.annotation.Nullable;
 
 /**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
+ * Predicate that determines if the input string starts with the provided test string, case-insensitively.
  */
-public class CommandException extends TextMessageException {
-
-    private static final long serialVersionUID = 4626722485860074825L;
+public class StartsWithPredicate implements Predicate<String> {
+    private final String test;
 
     /**
-     * Constructs a new {@link CommandException} with the given message.
+     * Create an new predicate.
      *
-     * @param message The detail message
+     * @param test The string to test input against
      */
-    public CommandException(Text message) {
-        super(message);
+    public StartsWithPredicate(String test) {
+        this.test = test;
     }
 
-    /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
-     *
-     * @param message The detail message
-     * @param cause The cause
-     */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    @Override
+    public boolean apply(@Nullable String input) {
+        return input != null && input.toLowerCase().startsWith(this.test.toLowerCase());
     }
 }

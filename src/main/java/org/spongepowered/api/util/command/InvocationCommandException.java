@@ -24,29 +24,14 @@
  */
 package org.spongepowered.api.util.command;
 
+import org.spongepowered.api.text.Text;
+
 /**
  * Thrown when invocation of a command fails, wrapping the exception that
  * is thrown.
  */
 public class InvocationCommandException extends CommandException {
-
-    private static final long serialVersionUID = 7859473889077167378L;
-
-    /**
-     * Constructs a new {@link InvocationCommandException}.
-     */
-    public InvocationCommandException() {
-        super();
-    }
-
-    /**
-     * Constructs a new {@link InvocationCommandException} with a message.
-     *
-     * @param message The detail message
-     */
-    public InvocationCommandException(String message) {
-        super(message);
-    }
+    private static final long serialVersionUID = 2123904283741023948L;
 
     /**
      * Constructs a new exception with the given message and the given cause.
@@ -54,17 +39,8 @@ public class InvocationCommandException extends CommandException {
      * @param message The detail message
      * @param cause The cause
      */
-    public InvocationCommandException(String message, Throwable cause) {
+    public InvocationCommandException(Text message, Throwable cause) {
         super(message, cause);
     }
 
-    /**
-     * Constructs a new exception with the specified cause and a detail
-     * message of.
-     *
-     * @param cause The cause
-     */
-    public InvocationCommandException(Throwable cause) {
-        super(cause);
-    }
 }

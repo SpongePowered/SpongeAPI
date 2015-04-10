@@ -22,36 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.dispatcher;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.TextMessageException;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.format.TextColors;
 
-/**
- * Thrown when an executed command raises an error or when execution of
- * the command failed.
- */
-public class CommandException extends TextMessageException {
-
-    private static final long serialVersionUID = 4626722485860074825L;
+public class CommandMessageFormatting {
+    public static final Text PIPE_TEXT = Texts.of("|");
+    public static final Text SPACE_TEXT = Texts.of(" ");
+    public static final Text PLUS_TEXT = Texts.of("*");
+    public static final Text NEWLINE_TEXT = Texts.of('\n');
 
     /**
-     * Constructs a new {@link CommandException} with the given message.
+     * Format text to be output as an error directly to a sender. Not necessary when creating an exception to be thrown
      *
-     * @param message The detail message
+     * @param error The error message
+     * @return The formatted error message.
      */
-    public CommandException(Text message) {
-        super(message);
+    public static Text error(Text error) {
+        return error.builder().color(TextColors.RED).build();
     }
 
     /**
-     * Constructs a new {@link CommandException} with the given message and
-     * the given cause.
+     * Format text to be output as a debug message directly to a sender.
      *
-     * @param message The detail message
-     * @param cause The cause
+     * @param debug The debug message
+     * @return The formatted debug message.
      */
-    public CommandException(Text message, Throwable cause) {
-        super(message, cause);
+    public static Text debug(Text debug) {
+        return debug.builder().color(TextColors.GRAY).build();
     }
+
 }

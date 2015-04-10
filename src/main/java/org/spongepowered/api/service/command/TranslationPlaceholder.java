@@ -22,32 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.completion;
+package org.spongepowered.api.service.command;
 
-import org.spongepowered.api.util.command.CommandException;
-import org.spongepowered.api.util.command.CommandSource;
-
-import java.util.List;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Completes typed-in commands by providing a list of suggestions to replace
- * the last typed in word with.
- *
- * <p>Words are separated from each other by space characters.</p>
+ * This class contains methods intended for use as placeholders until true localization is implemented for SpongeAPI strings.
  */
-public interface CommandCompleter {
+class TranslationPlaceholder {
+    private TranslationPlaceholder() {}
 
-    /**
-     * Get a list of suggestions based on input.
-     *
-     * <p>If a suggestion is chosen by the user, it will replace the last
-     * word.</p>
-     *
-     * @param source The command source
-     * @param arguments The arguments entered up to this point
-     * @return A list of suggestions
-     * @throws CommandException Thrown if there was a parsing error
-     */
-    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
+    public static Text t(String untranslated, Object... args) {
+        return Texts.of(new FixedTranslation(untranslated), args);
+    }
+
+    private static class FixedTranslation implements Translation {
+        private final String untranslated;
+
+        private FixedTranslation(String untranslated) {
+            this.untranslated = untranslated;
+        }
+
+        @Override
+        public String getId() {
+            return this.untranslated;
+        }
+
+        @Override
+        public String get() {
+            return this.untranslated;
+        }
+
+        @Override
+        public String get(Object... args) {
+            return String.format(this.untranslated, args);
+        }
+    }
+
 
 }

@@ -22,22 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.completion;
+package org.spongepowered.api.util.command.args.parsing;
 
-import org.spongepowered.api.util.command.CommandException;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.args.ArgumentParseException;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Always returns an empty list of suggestions.
- */
-public class NullCompleter implements CommandCompleter {
+class SpaceSplitInputTokenizer implements InputTokenizer {
+    public static final SpaceSplitInputTokenizer INSTANCE = new SpaceSplitInputTokenizer();
+
+    private SpaceSplitInputTokenizer() {}
 
     @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        return Collections.emptyList();
+    public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
+        List<SingleArg> ret = new ArrayList<SingleArg>();
+        int lastIndex = 0;
+        int spaceIndex;
+        while ((spaceIndex = arguments.indexOf(" ")) != -1) {
+            ret.add(new SingleArg((arguments = arguments.substring(0, spaceIndex)), lastIndex, lastIndex + spaceIndex));
+            lastIndex += spaceIndex + 1;
+        }
+        return ret;
     }
-
 }
