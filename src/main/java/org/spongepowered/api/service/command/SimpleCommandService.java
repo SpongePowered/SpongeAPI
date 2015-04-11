@@ -40,6 +40,7 @@ import org.spongepowered.api.event.Subscribe;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.service.command.sponge.CommandRegistrar;
 import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandCallable;
@@ -48,7 +49,6 @@ import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -72,7 +72,7 @@ public class SimpleCommandService implements CommandService {
 
     private final PluginManager pluginManager;
     private final SimpleDispatcher dispatcher = new SimpleDispatcher();
-    private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
+    private final Multimap<CommandRegistrar, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
     /**
@@ -105,48 +105,46 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias) {
-        return register(plugin, callable, Arrays.asList(alias));
+    public Optional<CommandMapping> register(Object registrar, CommandCallable callable, String... alias) {
+        return register(registrar, callable, Arrays.asList(alias));
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
-        return register(plugin, callable, aliases, Functions.<List<String>>identity());
+    public Optional<CommandMapping> register(Object registrar, CommandCallable callable, List<String> aliases) {
+        return register(registrar, callable, aliases, Functions.<List<String>>identity());
     }
 
     @Override
-    public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases,
+    public Optional<CommandMapping> register(Object registrar, CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(plugin, "plugin");
 
-        Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
-        if (!containerOptional.isPresent()) {
-            throw new IllegalArgumentException(
-                    "The provided plugin object does not have an associated plugin container "
-                            + "(in other words, is 'plugin' actually your plugin object?");
+        checkNotNull(registrar, "commandRegistrar");
+
+        CommandRegistrar realRegistrar = null;
+        if (registrar instanceof CommandRegistrar) {
+            realRegistrar = (CommandRegistrar) registrar;
         }
-
-        PluginContainer container = containerOptional.get();
-
-        synchronized (this.lock) {
-            // <namespace>:<alias> for all commands
-            List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
-            for (String alias : aliases) {
-                aliasesWithPrefix.add(alias);
-                aliasesWithPrefix.add(container.getId() + ":" + alias);
+        else {
+            Optional<PluginContainer> plugin = pluginManager.fromInstance(registrar);
+            if (plugin.isPresent()) {
+                realRegistrar = plugin.get();
             }
+        }
+        if (realRegistrar == null) {
+            throw new IllegalArgumentException("The provided registrar object is neither a CommandRegistrar or an instance of a plugin!");
+        }
+        synchronized (this.lock) {
 
-            Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliasesWithPrefix, callback);
+            Optional<CommandMapping> mapping = this.dispatcher.register(callable, aliases, callback);
 
             if (mapping.isPresent()) {
-                this.owners.put(container, mapping.get());
+                this.owners.put(realRegistrar, mapping.get());
             }
 
             return mapping;
         }
     }
 
-    @Override
     public Optional<CommandMapping> remove(String alias) {
         synchronized (this.lock) {
             Optional<CommandMapping> removed = this.dispatcher.remove(alias);
@@ -183,7 +181,7 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<PluginContainer> getPluginContainers() {
+    public Set<CommandRegistrar> getCommandRegistrars() {
         synchronized (this.lock) {
             return ImmutableSet.copyOf(this.owners.keySet());
         }
@@ -195,9 +193,9 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<CommandMapping> getOwnedBy(PluginContainer container) {
+    public Set<CommandMapping> getOwnedBy(CommandRegistrar registrar) {
         synchronized (this.lock) {
-            return ImmutableSet.copyOf(this.owners.get(container));
+            return ImmutableSet.copyOf(this.owners.get(registrar));
         }
     }
 
@@ -212,8 +210,8 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> get(String alias) {
-        return this.dispatcher.get(alias);
+    public Set<CommandMapping> getAll(String alias) {
+        return this.dispatcher.getAll(alias);
     }
 
     @Override
@@ -259,6 +257,11 @@ public class SimpleCommandService implements CommandService {
     @Override
     public int size() {
         return this.dispatcher.size();
+    }
+
+    @Override
+    public Optional<? extends CommandMapping> resolveMapping(String alias, CommandSource source) {
+        return this.dispatcher.resolveMapping(alias, source);
     }
 
 }

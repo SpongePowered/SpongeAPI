@@ -23,42 +23,24 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.service.command.sponge;
 
-import org.spongepowered.api.service.command.sponge.CommandRegistrar;
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.service.command.CommandService;
+
+import java.util.Set;
 
 /**
- * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
- * information from the annotation for easier use.
+ * An object that can register commands with a {@link CommandService}. When
+ * implementing {@link PluginContainer}, getRegistrarName should be the same as
+ * getId, and getFriendlyName the same as getName.
  */
-public interface PluginContainer extends CommandRegistrar {
+public interface CommandRegistrar {
 
-    /**
-     * Gets the id of the {@link Plugin} within this container.
-     *
-     * @return The id
-     */
+    Set<String> getPrefixes();
+
     String getId();
 
-    /**
-     * Gets the name of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
     String getName();
-
-    /**
-     * Gets the version of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getVersion();
-
-    /**
-     * Returns the created instance of {@link Plugin}.
-     *
-     * @return The instance
-     */
-    Object getInstance();
 
 }

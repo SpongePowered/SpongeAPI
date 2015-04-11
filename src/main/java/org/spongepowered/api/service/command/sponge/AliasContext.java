@@ -23,42 +23,15 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.service.command.sponge;
 
-import org.spongepowered.api.service.command.sponge.CommandRegistrar;
+import com.google.common.base.Optional;
+import org.spongepowered.api.util.command.CommandSource;
 
-/**
- * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
- * information from the annotation for easier use.
- */
-public interface PluginContainer extends CommandRegistrar {
+import java.util.Set;
 
-    /**
-     * Gets the id of the {@link Plugin} within this container.
-     *
-     * @return The id
-     */
-    String getId();
+public interface AliasContext {
 
-    /**
-     * Gets the name of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getName();
-
-    /**
-     * Gets the version of the {@link Plugin} within this container.
-     *
-     * @return The name
-     */
-    String getVersion();
-
-    /**
-     * Returns the created instance of {@link Plugin}.
-     *
-     * @return The instance
-     */
-    Object getInstance();
+    Optional<CommandRegistrar> getRegistrar(String alias, CommandSource source, Set<CommandRegistrar> registrars);
 
 }
