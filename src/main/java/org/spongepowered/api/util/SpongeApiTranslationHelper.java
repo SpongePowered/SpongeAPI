@@ -22,44 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.command;
+package org.spongepowered.api.util;
 
+import com.google.common.base.Function;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
-import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.text.translation.ResourceBundleTranslation;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.annotation.Nullable;
 
 /**
- * This class contains methods intended for use as placeholders until true localization is implemented for SpongeAPI strings.
+ * This class provides translations for strings within SpongeAPI. Plugins should consult an implementaion of Translation for help.
+ *
+ * THIS IS AN API-INTERNAL CLASS -- DO NOT USE OUTSIDE OF API OR YOU WILL LIVE A SAD AND LONELY LIFE
  */
-class TranslationPlaceholder {
-    private TranslationPlaceholder() {}
+public class SpongeApiTranslationHelper {
 
-    public static Text t(String untranslated, Object... args) {
-        return Texts.of(new FixedTranslation(untranslated), args);
+    private static final Function<Locale, ResourceBundle> LOOKUP_FUNC = new Function<Locale, ResourceBundle>() {
+        @Nullable
+        @Override
+        public ResourceBundle apply(Locale input) {
+            return ResourceBundle.getBundle("org.spongepowered.api.Translations", input);
+        }
+    };
+
+    private SpongeApiTranslationHelper() {
+    } // Prevent instance creation
+
+    /**
+     * Get the translated text for a given string.
+     *
+     * @param key The translation key
+     * @param args Translation parameters
+     * @return The translatable text
+     */
+    public static Text t(String key, Object... args) {
+        return Texts.of(new ResourceBundleTranslation(key, LOOKUP_FUNC), args);
     }
-
-    private static class FixedTranslation implements Translation {
-        private final String untranslated;
-
-        private FixedTranslation(String untranslated) {
-            this.untranslated = untranslated;
-        }
-
-        @Override
-        public String getId() {
-            return this.untranslated;
-        }
-
-        @Override
-        public String get() {
-            return this.untranslated;
-        }
-
-        @Override
-        public String get(Object... args) {
-            return String.format(this.untranslated, args);
-        }
-    }
-
 
 }

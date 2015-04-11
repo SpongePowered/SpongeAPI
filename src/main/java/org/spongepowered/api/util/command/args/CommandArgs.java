@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command.args;
 
-import static org.spongepowered.api.text.Texts.of;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
@@ -74,7 +74,7 @@ public final class CommandArgs {
      */
     public String peek() throws ArgumentParseException {
         if (!hasNext()) {
-            throw createError(of("Not enough arguments"));
+            throw createError(t("Not enough arguments"));
         }
         return this.args.get(this.index + 1).getValue();
     }
@@ -87,7 +87,7 @@ public final class CommandArgs {
      */
     public String next() throws ArgumentParseException {
         if (!hasNext()) {
-            throw createError(of("Not enough arguments!"));
+            throw createError(t("Not enough arguments!"));
         }
         return this.args.get(++this.index).getValue();
     }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.util.command.args;
 
 import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
-import static org.spongepowered.api.util.command.args.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;

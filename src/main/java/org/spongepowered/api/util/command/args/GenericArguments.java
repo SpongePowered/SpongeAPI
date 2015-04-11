@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command.args;
 
-import static org.spongepowered.api.util.command.args.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
