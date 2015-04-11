@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.plugin;
 
+import java.util.Set;
+
 /**
  * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
  * information from the annotation for easier use.
@@ -58,5 +60,12 @@ public interface PluginContainer {
      * @return The instance
      */
     Object getInstance();
+
+    /**
+     * Gets the command prefixes associated with this plugin.
+     * 
+     * @return The command prefixes associated with this plugin
+     */
+    Set<String> getCommandPrefixes();
 
 }

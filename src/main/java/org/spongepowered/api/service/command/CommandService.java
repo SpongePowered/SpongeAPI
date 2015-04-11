@@ -104,14 +104,6 @@ public interface CommandService extends Dispatcher {
     Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases, Function<List<String>, List<String>> callback);
 
     /**
-     * Remove a mapping identified by the given alias.
-     *
-     * @param alias The alias
-     * @return The previous mapping associated with the alias, if one was found
-     */
-    Optional<CommandMapping> remove(String alias);
-
-    /**
      * Remove a command identified by the given mapping.
      *
      * @param mapping The mapping

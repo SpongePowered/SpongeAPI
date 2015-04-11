@@ -27,7 +27,7 @@ package org.spongepowered.api.util.command.dispatcher;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 
-class CommandMessageFormatting {
+public class CommandMessageFormatting {
     public static Text error(Text error) {
         return error.builder().color(TextColors.RED).build();
     }

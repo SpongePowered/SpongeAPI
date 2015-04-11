@@ -82,5 +82,13 @@ public @interface Plugin {
      */
     String dependencies() default "";
 
+    /**
+     * Gets a list of command prefixes that can be used to call commands from
+     * this plugin.
+     * 
+     * @return A list of command prefixes that can be used to call commands from
+     *         this plugin
+     */
+    String[] commandPrefixes() default {};
 
 }
