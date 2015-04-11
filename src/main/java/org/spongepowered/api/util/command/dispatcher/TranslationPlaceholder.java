@@ -31,7 +31,7 @@ import org.spongepowered.api.text.translation.Translation;
 /**
  * This class contains methods intended for use as placeholders until true localization is implemented for SpongeAPI strings.
  */
-public class TranslationPlaceholder {
+class TranslationPlaceholder {
     private TranslationPlaceholder() {}
 
     public static Text _(String untranslated, Object... args) {

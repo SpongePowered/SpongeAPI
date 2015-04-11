@@ -28,7 +28,6 @@ package org.spongepowered.api.service.command;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Function;
-import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
@@ -83,12 +82,6 @@ public class SimpleCommandService implements CommandService {
 
     @Override
     public Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases) {
-        return register(plugin, spec, aliases, Functions.<List<String>>identity());
-    }
-
-    @Override
-    public Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases,
-            Function<List<String>, List<String>> callback) {
         checkNotNull(plugin, "plugin");
 
         Optional<PluginContainer> containerOptional = this.game.getPluginManager().fromInstance(plugin);
@@ -118,6 +111,12 @@ public class SimpleCommandService implements CommandService {
             return Optional.of(mapping);
 
         }
+    }
+
+    @Override
+    public Optional<CommandMapping> register(Object plugin, CommandSpec spec, List<String> aliases,
+            Function<List<String>, List<String>> callback) {
+        return this.register(plugin, spec, aliases);
     }
 
     @Override

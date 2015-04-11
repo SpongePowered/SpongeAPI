@@ -1,9 +1,9 @@
 package org.spongepowered.api.service.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.debug;
-import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.error;
-import static org.spongepowered.api.util.command.dispatcher.TranslationPlaceholder._;
+import static org.spongepowered.api.service.command.CommandMessageFormatting.debug;
+import static org.spongepowered.api.service.command.CommandMessageFormatting.error;
+import static org.spongepowered.api.service.command.TranslationPlaceholder._;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
