@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text;
 
+import java.util.Locale;
+
 /**
  * Represents the required implementation for the static methods in
  * {@link Texts}.
@@ -58,12 +60,30 @@ public interface TextFactory {
     String toPlain(Text text);
 
     /**
+     * Returns a plain text representation of the {@link Text} without any
+     * formatting in the provided Locale.
+     *
+     * @param text The text to convert
+     * @param locale The language to get the plain string in
+     * @return The text converted to plain text
+     */
+    String toPlain(Text text, Locale locale);
+
+    /**
      * Returns a JSON representation of the {@link Text} as used in commands.
      *
      * @param text The text to convert
      * @return The text converted to JSON
      */
     String toJson(Text text);
+
+    /**
+     * Returns a JSON representation of the {@link Text} as used in commands in the specified language.
+     *
+     * @param text The text to convert
+     * @return The text converted to JSON
+     */
+    String toJson(Text text, Locale locale);
 
     /**
      * Returns the default legacy formatting character.
@@ -110,5 +130,15 @@ public interface TextFactory {
      * @return The text converted to the old color codes
      */
     String toLegacy(Text text, char code);
+
+    /**
+     * Returns a representation of the {@link Text} using the legacy color
+     * codes in the given Locale.
+     *
+     * @param text The text to convert
+     * @param code The legacy char to use for the message
+     * @return The text converted to the old color codes
+     */
+    String toLegacy(Text text, char code, Locale locale);
 
 }

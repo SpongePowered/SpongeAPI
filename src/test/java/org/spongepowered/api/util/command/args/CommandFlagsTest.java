@@ -28,7 +28,7 @@ import static org.junit.Assert.assertEquals;
 import static org.spongepowered.api.util.command.args.GenericArguments.flags;
 import static org.spongepowered.api.util.command.args.GenericArguments.integer;
 import static org.spongepowered.api.util.command.args.GenericArguments.string;
-import static org.spongepowered.api.util.command.args.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import org.junit.Ignore;
 import org.junit.Test;

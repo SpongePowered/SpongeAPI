@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command;
 
-import static org.spongepowered.api.util.command.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import org.spongepowered.api.text.Text;
 

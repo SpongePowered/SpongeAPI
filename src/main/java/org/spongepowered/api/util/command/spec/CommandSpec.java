@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command.spec;
 
-import static org.spongepowered.api.util.command.spec.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;

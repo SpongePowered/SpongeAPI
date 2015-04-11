@@ -25,7 +25,7 @@
 package org.spongepowered.api.service.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.service.command.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
 import com.google.common.base.Function;
