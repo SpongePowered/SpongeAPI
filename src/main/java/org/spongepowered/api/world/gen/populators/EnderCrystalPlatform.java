@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.gen.populators;
 
 import org.spongepowered.api.entity.EnderCrystal;
-
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -117,7 +116,7 @@ public interface EnderCrystalPlatform extends Populator {
     /**
      * A builder for constructing {@link EnderCrystalPlatform} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the chance of a pillar spawning in a chunk. The default value is

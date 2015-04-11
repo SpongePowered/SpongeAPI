@@ -50,7 +50,7 @@ public interface Melons extends Populator {
     /**
      * A builder for constructing {@link Melons} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of melons to attempt to spawn per chunk. The default

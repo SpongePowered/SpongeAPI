@@ -27,7 +27,6 @@ package org.spongepowered.api.event;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
-import org.spongepowered.api.event.state.StateEvent;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;

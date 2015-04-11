@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.gen.populators;
 
-import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.world.gen.Populator;
 
 /**
  * Represents a populator which will attempt to spawn lakes within the chunk
@@ -68,7 +68,7 @@ public interface Lake extends Populator {
     /**
      * A builder for constructing {@link Lake} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the {@link BlockState} of the liquid to fill the lake with.

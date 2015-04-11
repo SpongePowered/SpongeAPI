@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.scoreboard;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
 

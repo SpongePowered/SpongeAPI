@@ -110,7 +110,7 @@ public interface Ore extends Populator {
     /**
      * A builder for constructing {@link Ore} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the block to place as ore.

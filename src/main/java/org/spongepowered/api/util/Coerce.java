@@ -34,7 +34,6 @@ import com.flowpowered.math.vector.Vectord;
 import com.flowpowered.math.vector.Vectorf;
 import com.flowpowered.math.vector.Vectorl;
 import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Bytes;
@@ -122,7 +121,7 @@ public final class Coerce {
             return (List<?>)obj;
         }
         
-        Class<? extends Object> clazz = obj.getClass();
+        Class<?> clazz = obj.getClass();
         if (clazz.isArray()) {
             if (clazz.getComponentType().isPrimitive()) {
                 return Coerce.primitiveArrayToList(obj);
@@ -149,7 +148,7 @@ public final class Coerce {
             return Optional.<List<?>>of((List<?>) obj);
         }
 
-        Class<? extends Object> clazz = obj.getClass();
+        Class<?> clazz = obj.getClass();
         if (clazz.isArray()) {
             if (clazz.getComponentType().isPrimitive()) {
                 return Optional.<List<?>>of(Coerce.primitiveArrayToList(obj));
@@ -207,7 +206,7 @@ public final class Coerce {
             return false;
         }
         
-        return (obj instanceof Boolean) ? ((Boolean)obj).booleanValue() : obj.toString().trim().matches("^(1|true|yes)$");
+        return (obj instanceof Boolean) ? (Boolean) obj : obj.toString().trim().matches("^(1|true|yes)$");
     }
 
     /**
@@ -242,7 +241,7 @@ public final class Coerce {
         String strObj = Coerce.sanitiseNumber(obj);
         Integer iParsed = Ints.tryParse(strObj);
         if (iParsed != null) {
-            return iParsed.intValue();
+            return iParsed;
         }
 
         Double dParsed = Doubles.tryParse(strObj);

@@ -59,7 +59,6 @@ import static org.objectweb.asm.Opcodes.V1_6;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
@@ -71,7 +70,6 @@ import org.spongepowered.api.util.reflect.PropertySearchStrategy;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;

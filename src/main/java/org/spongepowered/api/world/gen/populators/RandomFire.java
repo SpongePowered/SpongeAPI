@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.gen.populators;
 
-import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.world.gen.Populator;
 
 /**
  * Represents a populator which creates fires on the surfaces of targeted
@@ -68,7 +68,7 @@ public interface RandomFire extends Populator {
     /**
      * A builder for constructing {@link RandomFire} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of fires to attempt to spawn per chunk, must be

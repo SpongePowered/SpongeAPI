@@ -25,7 +25,6 @@
 package org.spongepowered.api.scoreboard;
 
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;

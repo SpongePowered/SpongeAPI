@@ -27,7 +27,7 @@ package org.spongepowered.api.world.gen.populators;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
- * Represents a populator which places in water lilies 
+ * Represents a populator which places in water lilies.
  */
 public interface WaterLily extends Populator {
 
@@ -50,7 +50,7 @@ public interface WaterLily extends Populator {
     /**
      * A builder for constructing {@link WaterLily} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of water lilies to attempt to spawn per chunk, must

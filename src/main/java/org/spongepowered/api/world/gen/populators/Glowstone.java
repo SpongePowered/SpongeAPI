@@ -66,7 +66,7 @@ public interface Glowstone extends Populator {
     /**
      * A builder for constructing {@link Glowstone} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of clusters to attempt to spawn per chunk, must be

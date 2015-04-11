@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.gen.populators;
 
-import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.world.gen.Populator;
 
 /**
  * Represents a populator which places down a disc of material onto the bottom
@@ -80,7 +80,7 @@ public interface SeaFloor extends Populator {
     /**
      * A builder for constructing {@link SeaFloor} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the {@link BlockState} to place down.

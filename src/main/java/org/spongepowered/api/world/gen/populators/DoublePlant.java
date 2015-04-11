@@ -90,7 +90,7 @@ public interface DoublePlant extends Populator {
     /**
      * A builder for constructing {@link DoublePlant} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets which plant types may be spawned in by this populator.

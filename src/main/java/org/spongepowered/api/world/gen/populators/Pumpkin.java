@@ -67,7 +67,7 @@ public interface Pumpkin extends Populator {
     /**
      * A builder for constructing {@link Pumpkin} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of pumpkins to attempt to spawn per patch, must be

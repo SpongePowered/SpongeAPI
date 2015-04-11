@@ -114,7 +114,7 @@ public interface IceSpike extends Populator {
     /**
      * A builder for constructing {@link IceSpike} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the base height of the spike.

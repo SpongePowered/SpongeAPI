@@ -35,7 +35,7 @@ public interface Vines extends Populator {
     /**
      * A builder for constructing {@link Vines} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Resets this builder to the default values.

@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.gen.populators;
 
-import org.spongepowered.api.world.gen.types.BiomeTreeType;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.types.BiomeTreeType;
 
 /**
  * Represents a populator which spawns the huge tree variants of the standard
@@ -67,7 +67,7 @@ public interface HugeTree extends Populator {
     /**
      * A builder for constructing {@link HugeTree} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of trees to attempt to spawn per chunk, must be

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.service.permission.context.ContextCalculator;
 
 import java.util.Map;

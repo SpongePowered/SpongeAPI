@@ -51,7 +51,7 @@ public interface Reeds extends Populator {
     /**
      * A builder for constructing {@link Reeds} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of reeds to attempt to spawn per chunk, must be

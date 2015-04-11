@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.biome;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.block.BlockState;
 

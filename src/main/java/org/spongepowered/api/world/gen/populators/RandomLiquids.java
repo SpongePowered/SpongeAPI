@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.gen.populators;
 
-import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.world.gen.Populator;
 
 /**
  * Represents a populator which places random liquid sources in walls of caves
@@ -66,7 +66,7 @@ public interface RandomLiquids extends Populator {
     /**
      * A builder for constructing {@link RandomLiquids} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the {@link BlockState} of the liquid to fill the lake with.

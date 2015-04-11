@@ -53,7 +53,7 @@ public interface DesertWell extends Populator {
     /**
      * A builder for constructing {@link DesertWell} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the chance of a desert well spawning. The final chance is

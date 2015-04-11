@@ -25,10 +25,7 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-
-import java.util.List;
 
 /**
  * Represents the Wither.

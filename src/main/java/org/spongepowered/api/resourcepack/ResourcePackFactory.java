@@ -24,10 +24,7 @@
  */
 package org.spongepowered.api.resourcepack;
 
-import com.google.common.base.Optional;
-
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
 
 /**

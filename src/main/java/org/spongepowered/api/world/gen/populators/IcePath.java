@@ -64,7 +64,7 @@ public interface IcePath extends Populator {
     /**
      * A builder for constructing {@link IcePath} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the radius of the path to spawn, cannot be negative.

@@ -66,7 +66,7 @@ public interface Shrub extends Populator {
     /**
      * A builder for constructing {@link Shrub} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of shrubs to attempt to spawn per chunk, must be

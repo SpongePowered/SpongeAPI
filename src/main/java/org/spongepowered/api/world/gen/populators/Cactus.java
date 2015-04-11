@@ -50,7 +50,7 @@ public interface Cactus extends Populator {
     /**
      * A builder for constructing {@link Cactus} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of cacti to spawn per chunk, cannot be negative.

@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world.gen.populators;
 
-import org.spongepowered.api.world.gen.types.BiomeTreeType;
-import org.spongepowered.api.world.gen.Populator;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.types.BiomeTreeType;
 
 /**
  * A populator which will place several trees into a chunk in order to create a
@@ -121,7 +121,7 @@ public interface Forest extends Populator {
     /**
      * A builder for constructing {@link Forest} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of trees to attempt to spawn per chunk, must be

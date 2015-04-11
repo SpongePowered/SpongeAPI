@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.gen.types;
 
 import org.spongepowered.api.CatalogType;
-
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**

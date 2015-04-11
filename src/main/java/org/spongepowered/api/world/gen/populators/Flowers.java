@@ -48,7 +48,7 @@ public interface Flowers extends Populator {
      * 
      * @param count The new amount to spawn
      */
-    void setFlowersPerChunk();
+    void setFlowersPerChunk(int count);
 
     /**
      * Gets whether this populator will ignore the set plant type and default to
@@ -86,7 +86,7 @@ public interface Flowers extends Populator {
     /**
      * A builder for constructing {@link Flowers} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the number of flowers to attempt to spawn per chunk, must be

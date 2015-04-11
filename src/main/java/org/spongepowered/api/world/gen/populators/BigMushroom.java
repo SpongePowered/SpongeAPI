@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.world.gen.populators;
 
-import org.spongepowered.api.world.biome.BiomeTypes;
-
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.types.BigMushroomType;
+import org.spongepowered.api.world.biome.BiomeTypes;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -102,7 +101,7 @@ public interface BigMushroom extends Populator {
     /**
      * A builder for constructing {@link BigMushroom} populators.
      */
-    public static interface Builder {
+    interface Builder {
 
         /**
          * Sets the type of mushroom to place. Setting the mushroom type will
@@ -134,8 +133,7 @@ public interface BigMushroom extends Populator {
          * that it places.
          * 
          * <p>This defaults to true.</p>
-         * 
-         * @param state The new state
+         *
          * @return This builder, for chaining
          */
         Builder randomizeType();
