@@ -38,6 +38,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
@@ -296,7 +297,7 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     }
 
     @Override
-    public synchronized Optional<CommandMapping> get(String alias) {
+    public synchronized Optional<CommandMapping> getFirst(String alias) {
         return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
     }
 
@@ -438,7 +439,6 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         return build.build();
     }
 
-
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         CommandSpec spec = args.<CommandSpec>getOne(getUntranslatedKey()).get();
@@ -450,5 +450,20 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
             }
         }
         return spec.getExecutor().execute(src, args);
+    }
+
+    @Override
+    public synchronized Set<CommandMapping> getAll(String alias) {
+        Set<CommandMapping> mappings = Sets.newHashSet();
+        Optional<CommandMapping> mapping = this.getFirst(alias);
+        if (mapping.isPresent()) {
+            mappings.add(mapping.get());
+        }
+        return mappings;
+    }
+
+    @Override
+    public synchronized Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
+        return this.getFirst(alias);
     }
 }

@@ -32,6 +32,7 @@ import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,9 +44,7 @@ import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.CommandSpec;
-import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -62,7 +61,7 @@ public class SimpleCommandService implements CommandService {
     private static final Logger log = LoggerFactory.getLogger(SimpleCommandService.class);
 
     private final Game game;
-    private final SimpleDispatcher dispatcher = new SimpleDispatcher();
+    private final ContextualDispatcher dispatcher = new ContextualDispatcher();
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
@@ -99,36 +98,25 @@ public class SimpleCommandService implements CommandService {
                             + "(in other words, is 'plugin' actually your plugin object?");
         }
 
+        List<String> realAliases = Lists.newArrayList();
+
+        for (String alias : aliases) {
+            if (alias.contains(":")) {
+                throw new IllegalArgumentException("Command alias must not contain a colon.");
+            }
+            realAliases.add(alias.toLowerCase());
+        }
+
         PluginContainer container = containerOptional.get();
 
         synchronized (this.lock) {
-            // <namespace>:<alias> for all commands
-            List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
-            for (String alias : aliases) {
-                aliasesWithPrefix.add(alias);
-                aliasesWithPrefix.add(container.getId() + ":" + alias);
-            }
 
-            Optional<CommandMapping> mapping = this.dispatcher.register(spec, aliasesWithPrefix, callback);
+            CommandMapping mapping = this.dispatcher.register(spec, container, realAliases);
 
-            if (mapping.isPresent()) {
-                this.owners.put(container, mapping.get());
-            }
+            this.owners.put(container, mapping);
 
-            return mapping;
-        }
-    }
+            return Optional.of(mapping);
 
-    @Override
-    public Optional<CommandMapping> remove(String alias) {
-        synchronized (this.lock) {
-            Optional<CommandMapping> removed = this.dispatcher.remove(alias);
-
-            if (removed.isPresent()) {
-                forgetMapping(removed.get());
-            }
-
-            return removed;
         }
     }
 
@@ -185,8 +173,8 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Optional<CommandMapping> get(String alias) {
-        return this.dispatcher.get(alias);
+    public Optional<CommandMapping> getFirst(String alias) {
+        return this.dispatcher.getFirst(alias);
     }
 
     @Override
@@ -218,5 +206,19 @@ public class SimpleCommandService implements CommandService {
     @Override
     public int size() {
         return this.dispatcher.size();
+    }
+
+    @Override
+    public Set<? extends CommandMapping> getAll(String alias) {
+        return this.dispatcher.getAll(alias);
+    }
+
+    @Override
+    public Optional<CommandMapping> resolveMapping(String alias, CommandSource source) {
+        return this.dispatcher.resolveMapping(alias, source);
+    }
+
+    public void setContext(String alias, AliasContext context) {
+        this.dispatcher.setContext(alias, context);
     }
 }

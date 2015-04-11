@@ -29,7 +29,6 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.command.CommandSpec;
 
 import java.util.List;
 import java.util.Set;
@@ -69,13 +68,21 @@ public interface Dispatcher {
     Set<String> getAliases();
 
     /**
-     * Get the {@link CommandSpec} associated with an alias. Returns
-     * null if no command is named by the given alias.
+     * Get the first {@link CommandMapping} associated with an alias. Returns
+     * {@link Optional#absent()} if no command is named by the given alias.
      *
      * @param alias The alias
      * @return The command mapping, if available
      */
-    Optional<? extends CommandMapping> get(String alias);
+    Optional<? extends CommandMapping> getFirst(String alias);
+
+    /**
+     * Gets all the {@link CommandMapping}s associated with an alias.
+     *
+     * @param alias The alias
+     * @return The command mappings associated with the alias
+     */
+    Set<? extends CommandMapping> getAll(String alias);
 
     /**
      * Returns whether the dispatcher contains a registered command for the
@@ -111,5 +118,15 @@ public interface Dispatcher {
      * @return possible completions for the entire last word
      */
     List<String> complete(CommandSource src, final String arguments);
+
+    /**
+     * Resolves an alias to an {@link CommandMapping} when sent by a certain
+     * {@link CommandSource}.
+     * 
+     * @param alias The alias of the command
+     * @param source The source of the command
+     * @return The mapping that the alias refers to when sent by the source
+     */
+    Optional<CommandMapping> resolveMapping(String alias, CommandSource source);
 
 }
