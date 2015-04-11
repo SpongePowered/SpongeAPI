@@ -31,7 +31,6 @@ import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
 
 import java.util.List;
@@ -104,14 +103,6 @@ public interface CommandService extends Dispatcher {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
      */
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
-
-    /**
-     * Remove a mapping identified by the given alias.
-     *
-     * @param alias The alias
-     * @return The previous mapping associated with the alias, if one was found
-     */
-    Optional<CommandMapping> remove(String alias);
 
     /**
      * Remove a command identified by the given mapping.

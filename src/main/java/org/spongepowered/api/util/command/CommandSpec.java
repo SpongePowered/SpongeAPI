@@ -125,7 +125,7 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder setChildren(Map<List<String>, CommandSpec> children) {
             Preconditions.checkNotNull(children, "children");
-            SimpleDispatcher childDispatcher = new SimpleDispatcher(this.executor);
+            SimpleDispatcher childDispatcher = new SimpleDispatcher(SimpleDispatcher.FIRST_DISAMBIGUATOR, this.executor);
             for (Map.Entry<List<String>, CommandSpec> spec : children.entrySet()) {
                 childDispatcher.register(spec.getValue(), spec.getKey());
             }

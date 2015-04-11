@@ -27,10 +27,7 @@ package org.spongepowered.api.util.command.dispatcher;
 import com.google.common.base.Optional;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
-import org.spongepowered.api.util.command.CommandResult;
-import org.spongepowered.api.util.command.CommandSource;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -75,6 +72,14 @@ public interface Dispatcher extends CommandCallable {
      * @return The command mapping, if available
      */
     Optional<? extends CommandMapping> get(String alias);
+
+    /**
+     * Gets all the {@link CommandMapping}s associated with an alias.
+     *
+     * @param alias The alias
+     * @return The command mappings associated with the alias
+     */
+    Set<? extends CommandMapping> getAll(String alias);
 
     /**
      * Returns whether the dispatcher contains a registered command for the

@@ -44,12 +44,13 @@ import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.InvocationCommandException;
+import org.spongepowered.api.util.command.dispatcher.Disambiguator;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -63,7 +64,7 @@ import javax.inject.Inject;
  */
 public class SimpleCommandService implements CommandService {
     private final Game game;
-    private final SimpleDispatcher dispatcher = new SimpleDispatcher();
+    private final SimpleDispatcher dispatcher;
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
 
@@ -74,8 +75,20 @@ public class SimpleCommandService implements CommandService {
      */
     @Inject
     public SimpleCommandService(Game game) {
+        this(game, SimpleDispatcher.FIRST_DISAMBIGUATOR);
+    }
+
+    /**
+     * Construct a simple {@link CommandService}.
+     *
+     * @param disambiguator The function to resolve a single command when multiple options are available
+     * @param game The game to use for this CommandService
+     */
+    @Inject
+    public SimpleCommandService(Game game, Disambiguator disambiguator) {
         checkNotNull(game, "game");
         this.game = game;
+        this.dispatcher = new SimpleDispatcher(disambiguator);
     }
 
     @Override
@@ -106,6 +119,12 @@ public class SimpleCommandService implements CommandService {
             // <namespace>:<alias> for all commands
             List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
             for (String alias : aliases) {
+                final Collection<CommandMapping> ownedCommands = this.owners.get(container);
+                for (CommandMapping mapping : this.dispatcher.getAll(alias)) {
+                    if (ownedCommands.contains(mapping)) {
+                        throw new IllegalArgumentException("A plugin may not register multiple commands for the same alias ('" + alias + "')!");
+                    }
+                }
                 aliasesWithPrefix.add(alias);
                 aliasesWithPrefix.add(container.getId() + ":" + alias);
             }
@@ -117,19 +136,6 @@ public class SimpleCommandService implements CommandService {
             }
 
             return mapping;
-        }
-    }
-
-    @Override
-    public Optional<CommandMapping> remove(String alias) {
-        synchronized (this.lock) {
-            Optional<CommandMapping> removed = this.dispatcher.remove(alias);
-
-            if (removed.isPresent()) {
-                forgetMapping(removed.get());
-            }
-
-            return removed;
         }
     }
 
@@ -191,6 +197,11 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
+    public Set<? extends CommandMapping> getAll(String alias) {
+        return this.dispatcher.getAll(alias);
+    }
+
+    @Override
     public boolean containsAlias(String alias) {
         return this.dispatcher.containsAlias(alias);
     }
@@ -220,7 +231,7 @@ public class SimpleCommandService implements CommandService {
                 if (ex.getText() != null) {
                     source.sendMessage(error(ex.getText()));
                 }
-                final Optional<CommandMapping> mapping = get(argSplit[0]);
+                final Optional<CommandMapping> mapping = this.dispatcher.get(argSplit[0], source);
                 if (mapping.isPresent()) {
                     source.sendMessage(error(t("Usage: /%s %s", argSplit[0], mapping.get().getCallable().getUsage(source))));
                 }

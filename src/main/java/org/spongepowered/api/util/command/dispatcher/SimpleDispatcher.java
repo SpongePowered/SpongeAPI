@@ -34,10 +34,12 @@ import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Multimaps;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
@@ -52,20 +54,17 @@ import org.spongepowered.api.util.command.CommandExecutor;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.command.CommandSpec;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
 import org.spongepowered.api.util.command.args.ArgumentParseException;
 import org.spongepowered.api.util.command.args.CommandArgs;
 import org.spongepowered.api.util.command.args.CommandElement;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -77,24 +76,51 @@ import javax.annotation.Nullable;
 public final class SimpleDispatcher extends CommandElement implements Dispatcher, CommandExecutor {
     private static final AtomicInteger COUNTER = new AtomicInteger();
 
+    /**
+     * This is a disambiguator function that returns the first matching command.
+     */
+    public static final Disambiguator FIRST_DISAMBIGUATOR = new Disambiguator() {
+        @Override
+        public Optional<CommandMapping> disambiguate(CommandSource source, final String aliasUsed, List<CommandMapping> availableOptions) {
+            for (CommandMapping mapping : availableOptions) {
+                if (mapping.getPrimaryAlias().toLowerCase().equals(aliasUsed.toLowerCase())) {
+                    return Optional.of(mapping);
+                }
+            }
+            return Optional.of(availableOptions.get(0));
+        }
+    };
+
     @Nullable
     private final CommandExecutor fallbackExecutor;
-    private final Map<String, CommandMapping> commands = Maps.newHashMap();
+    private final Disambiguator disambiguatorFunc;
+    private final ListMultimap<String, CommandMapping> commands = ArrayListMultimap.create();
 
     /**
      * Creates a basic new dispatcher.
      */
     public SimpleDispatcher() {
-        this(null);
+        this(FIRST_DISAMBIGUATOR, null);
+    }
+
+    /**
+     * Creates a basic new dispatcher.
+     *
+     * @param disambiguatorFunc Function that returns the preferred command if multiple exist for a given alias
+     */
+    public SimpleDispatcher(Disambiguator disambiguatorFunc) {
+        this(disambiguatorFunc, null);
     }
 
     /**
      * Creates a new dispatcher with a fallback executor.
      *
+     * @param disambiguatorFunc Function that returns the preferred command if multiple exist for a given alias
      * @param fallbackExecutor Executor to use when this dispatcher is being used for subcommands
      */
-    public SimpleDispatcher(@Nullable CommandExecutor fallbackExecutor) {
+    public SimpleDispatcher(Disambiguator disambiguatorFunc, @Nullable CommandExecutor fallbackExecutor) {
         super(Texts.of("child" + COUNTER.getAndIncrement()));
+        this.disambiguatorFunc = disambiguatorFunc;
         this.fallbackExecutor = fallbackExecutor;
     }
 
@@ -155,7 +181,6 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
      * @param aliases A list of aliases
      * @param callback The callback
      * @return The registered command mapping, unless no aliases could be registered
-     * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
      */
     public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
@@ -163,32 +188,15 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         checkNotNull(callable, "aliases");
         checkNotNull(callback, "aliases");
 
-        List<String> free = new ArrayList<String>();
-
-        // Filter out commands that are already registered
-        for (String alias : aliases) {
-            if (!this.commands.containsKey(alias.toLowerCase())) {
-                free.add(alias);
-            }
-        }
-
         // Invoke the callback with the commands that /can/ be registered
         //noinspection ConstantConditions
-        free = new ArrayList<String>(callback.apply(free));
-
-        if (!free.isEmpty()) {
-            // The callback should /not/ have added any new commands
-            for (String alias : free) {
-                if (this.commands.containsKey(alias.toLowerCase())) {
-                    throw new IllegalArgumentException("A command by the name of '" + alias + "' already exists");
-                }
-            }
-
-            String primary = free.get(0);
-            List<String> secondary = free.subList(1, free.size());
+        aliases = ImmutableList.copyOf(callback.apply(aliases));
+        if (!aliases.isEmpty()) {
+            String primary = aliases.get(0);
+            List<String> secondary = aliases.subList(1, aliases.size());
             CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
 
-            for (String alias : free) {
+            for (String alias : aliases) {
                 this.commands.put(alias.toLowerCase(), mapping);
             }
 
@@ -204,8 +212,8 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
      * @param alias The alias
      * @return The previous mapping associated with the alias, if one was found
      */
-    public synchronized Optional<CommandMapping> remove(String alias) {
-        return Optional.of(this.commands.remove(alias.toLowerCase()));
+    public synchronized Collection<CommandMapping> remove(String alias) {
+        return this.commands.removeAll(alias.toLowerCase());
     }
 
     /**
@@ -220,8 +228,9 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         boolean found = false;
 
         for (Object alias : aliases) {
-            this.commands.remove(alias.toString().toLowerCase());
-            found = true;
+            if (!this.commands.removeAll(alias.toString().toLowerCase()).isEmpty()) {
+                found = true;
+            }
         }
 
         return found;
@@ -300,8 +309,19 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     }
 
     @Override
-    public synchronized Optional<CommandMapping> get(String alias) {
-        return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
+    public Optional<CommandMapping> get(String alias) {
+        return get(alias, null);
+    }
+
+    public synchronized Optional<CommandMapping> get(String alias, @Nullable CommandSource source) {
+        List<CommandMapping> results = this.commands.get(alias.toLowerCase());
+        if (results.size() == 1) {
+            return Optional.of(results.get(0));
+        } else if (results.size() == 0 || source == null) {
+            return Optional.absent();
+        } else {
+            return this.disambiguatorFunc.disambiguate(source, alias, results);
+        }
     }
 
     @Override
@@ -325,7 +345,7 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     @Override
     public Optional<CommandResult> process(CommandSource source, String commandLine) throws CommandException {
         final String[] argSplit = commandLine.split(" ", 2);
-        Optional<CommandMapping> cmdOptional = get(argSplit[0]);
+        Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
         if (!cmdOptional.isPresent()) {
             return Optional.absent();
         }
@@ -337,7 +357,7 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     @Override
     public List<String> getSuggestions(CommandSource src, final String arguments) throws CommandException {
         final String[] argSplit = arguments.split(" ", 2);
-        Optional<CommandMapping> cmdOptional = get(argSplit[0]);
+        Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
         if (!cmdOptional.isPresent() || argSplit.length == 1) {
             return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(argSplit[0])));
         }
@@ -366,7 +386,11 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         }
         TextBuilder build = Texts.builder("Available commands:\n");
         for (Iterator<String> it = filterCommands(source).iterator(); it.hasNext();) {
-            final CommandMapping mapping = this.commands.get(it.next());
+            final Optional<CommandMapping> mappingOpt = get(it.next(), source);
+            if (!mappingOpt.isPresent()) {
+                continue;
+            }
+            CommandMapping mapping = mappingOpt.get();
             final Optional<Text> description = mapping.getCallable().getShortDescription(source);
             build.append(Texts.builder(mapping.getPrimaryAlias())
                     .color(TextColors.GREEN)
@@ -385,7 +409,7 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         final Optional<String> commandComponent = args.nextIfPresent();
         if (commandComponent.isPresent()) {
             if (args.hasNext()) {
-                Optional<CommandMapping> child = get(commandComponent.get());
+                Optional<CommandMapping> child = get(commandComponent.get(), src);
                 if (!child.isPresent()) {
                     return ImmutableList.of();
                 }
@@ -409,12 +433,12 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     }
 
     private Iterable<String> filterCommands(final CommandSource src) {
-        return Iterables.filter(this.commands.keySet(), new Predicate<String>() {
+        return Multimaps.filterValues(this.commands, new Predicate<CommandMapping>() {
             @Override
-            public boolean apply(String input) {
-                return SimpleDispatcher.this.commands.get(input).getCallable().testPermission(src);
+            public boolean apply(@Nullable CommandMapping input) {
+                return input.getCallable().testPermission(src);
             }
-        });
+        }).keys();
     }
 
     /**
@@ -438,21 +462,24 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     @Override
     protected Object parseValue(CommandArgs args) throws ArgumentParseException {
         final String key = args.next();
-        final Optional<CommandMapping> mapping = get(key);
-        if (!mapping.isPresent()) {
+        if (!containsAlias(key)) {
             throw args.createError(t("Input command %s was not a valid subcommand!", key));
         }
 
-        return mapping.get();
+        return key;
     }
 
     @Override
-    public Text getUsage(CommandSource context) {
+    public Text getUsage(final CommandSource source) {
         final TextBuilder build = Texts.builder();
-        Iterable<String> filteredCommands = Iterables.filter(filterCommands(context), new Predicate<String>() {
+        Iterable<String> filteredCommands = Iterables.filter(filterCommands(source), new Predicate<String>() {
             @Override
             public boolean apply(String input) {
-                return SimpleDispatcher.this.commands.get(input).getPrimaryAlias().equals(input); // Restrict to primary aliases in usage
+                final Optional<CommandMapping> ret = get(input, source);
+                if (!ret.isPresent()) {
+                    return false;
+                }
+                return ret.get().getPrimaryAlias().equals(input); // Restrict to primary aliases in usage
             }
         });
 
@@ -465,11 +492,11 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         return build.build();
     }
 
-
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").get();
-        CommandMapping mapping = args.<CommandMapping>getOne(getUntranslatedKey()).get();
+        String alias = args.<String>getOne(getUntranslatedKey()).get();
+        CommandMapping mapping = get(alias, src).orNull();
         if (mapping == null) {
             if (this.fallbackExecutor != null) {
                 return this.fallbackExecutor.execute(src, args);
@@ -478,5 +505,10 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
             }
         }
         return mapping.getCallable().process(src, arguments).or(CommandResult.empty());
+    }
+
+    @Override
+    public synchronized Set<CommandMapping> getAll(String alias) {
+        return ImmutableSet.copyOf(this.commands.get(alias));
     }
 }
