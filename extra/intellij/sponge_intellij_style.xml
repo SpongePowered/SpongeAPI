@@ -122,6 +122,8 @@
         <option name="PARAMETER_ANNOTATION_WRAP" value="1"/>
         <option name="VARIABLE_ANNOTATION_WRAP" value="1"/>
         <option name="ENUM_CONSTANTS_WRAP" value="1"/>
+        <option name="METHOD_ANNOTATION_WRAP" value="1" />
+        <option name="FIELD_ANNOTATION_WRAP" value="1" />
     </codeStyleSettings>
     <codeStyleSettings language="JSON">
         <option name="WRAP_LONG_LINES" value="true"/>
