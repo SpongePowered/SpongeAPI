@@ -25,6 +25,7 @@
 package org.spongepowered.api.world;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.data.DataQuery.of;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
@@ -40,6 +41,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataPriority;
 import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
@@ -607,4 +609,17 @@ public final class Location implements DataHolder {
         getExtent().setRawData(getBlockPosition(), container);
     }
 
+    @Override
+    public DataContainer toContainer() {
+        DataContainer container = new MemoryDataContainer();
+        if (getExtent() instanceof World) {
+            container.set(of("WorldName"), ((World) getExtent()).getName());
+        }
+        container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId());
+        container.set(of("x"), this.getX());
+        container.set(of("y"), this.getY());
+        container.set(of("z"), this.getZ());
+        container.set(of("Manipulators"), getManipulators());
+        return container;
+    }
 }
