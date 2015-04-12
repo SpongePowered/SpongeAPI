@@ -24,9 +24,27 @@
  */
 package org.spongepowered.api.util.command.source;
 
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
+
 /**
- * Represents a CommandBlock source, either a placed block or a MinecartCommandBlock.
+ * Location sources are {@link CommandSource}s that have a current location.
  */
-public interface CommandBlockSource extends LocatedSource {
+public interface LocatedSource extends CommandSource {
+
+    /**
+     * Gets the location of the source.
+     *
+     * @return The location
+     */
+    Location getLocation();
+
+    /**
+     * Gets the world that this source resides in.
+     *
+     * @return The World
+     */
+    World getWorld();
 
 }
