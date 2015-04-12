@@ -36,10 +36,10 @@ import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.StartsWithPredicate;
-import org.spongepowered.api.util.command.CommandContext;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.args.ArgumentParseException;
 import org.spongepowered.api.util.command.args.CommandArgs;
+import org.spongepowered.api.util.command.args.CommandContext;
 import org.spongepowered.api.util.command.args.CommandElement;
 
 import java.util.List;
@@ -74,7 +74,7 @@ public class GameArguments {
         }
 
         @Override
-        protected Object parseValue(CommandArgs args) throws ArgumentParseException {
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             // TODO: Make player name resolution better -- support selectors, etc
             final String playerName = args.next();
             Optional<Player> ret;
@@ -128,7 +128,7 @@ public class GameArguments {
         }
 
         @Override
-        protected Object parseValue(CommandArgs args) throws ArgumentParseException {
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             return null;
         }
 
@@ -155,7 +155,7 @@ public class GameArguments {
         }
 
         @Override
-        protected Object parseValue(CommandArgs args) throws ArgumentParseException {
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             return null;
         }
 
@@ -185,7 +185,7 @@ public class GameArguments {
         }
 
         @Override
-        protected Object parseValue(CommandArgs args) throws ArgumentParseException {
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             return null;
         }
 
@@ -219,7 +219,7 @@ public class GameArguments {
         }
 
         @Override
-        protected T parseValue(CommandArgs args) throws ArgumentParseException {
+        protected T parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Optional<T> potentialRet = this.game.getRegistry().getType(this.catalogType, args.next());
             if (!potentialRet.isPresent()) {
                 throw args.createError(t(""));

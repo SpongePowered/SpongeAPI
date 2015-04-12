@@ -26,18 +26,20 @@ package org.spongepowered.api.util.command.args;
 
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
-import org.spongepowered.api.util.command.CommandContext;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a command argument element.
  */
 public abstract class CommandElement {
+    @Nullable
     private final Text key;
 
-    protected CommandElement(Text key) {
+    protected CommandElement(@Nullable Text key) {
         this.key = key;
     }
 
@@ -46,6 +48,7 @@ public abstract class CommandElement {
      *
      * @return the user-facing representation of the key
      */
+    @Nullable
     public Text getKey() {
         return this.key;
     }
@@ -55,33 +58,41 @@ public abstract class CommandElement {
      *
      * @return the raw key
      */
+    @Nullable
     public String getUntranslatedKey() {
-        return Texts.toPlain(this.key);
+        return this.key == null ? null : Texts.toPlain(this.key);
     }
 
     /**
      * Attempt to extract a value for this element from the given arguments and put it in the given context. This method normally delegates to
-     * {@link #parseValue(CommandArgs)} for getting the values
+     * {@link #parseValue(CommandSource, CommandArgs)} for getting the values. This method is expected to have no side-effects for the source, meaning
+     * that executing it will not change the state of the {@link CommandSource} in any way
      *
+     * @param source The source to parse for
      * @param args The args to extract from
      * @param context The context to supply to
      * @throws ArgumentParseException if unable to extract a value
      */
-    public void parse(CommandArgs args, CommandContext context)  throws ArgumentParseException {
-        Object val = parseValue(args);
-        if (this.key != null && val != null) {
-            context.putArg(Texts.toPlain(getKey()), val);
+    public void parse(CommandSource source, CommandArgs args, CommandContext context)  throws ArgumentParseException {
+        Object val = parseValue(source, args);
+        Text key = getKey();
+        if (key != null && val != null) {
+            context.putArg(Texts.toPlain(key), val);
         }
     }
 
     /**
-     * Attempt to extract a value for this element from the given arguments.
+     * Attempt to extract a value for this element from the given arguments. This method is expected to have no side-effects for the source, meaning
+     * that executing it will not change the state of the {@link CommandSource} in any way
      *
+     *
+     * @param source The source to parse for
      * @param args the arguments
      * @return The extracted value
      * @throws ArgumentParseException if unable to extract a value
      */
-    protected abstract Object parseValue(CommandArgs args) throws ArgumentParseException;
+    @Nullable
+    protected abstract Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException;
 
     /**
      * Fetch completions for command arguments.
@@ -100,6 +111,6 @@ public abstract class CommandElement {
      * @return The formatted usage
      */
     public Text getUsage(CommandSource src) {
-        return getKey();
+        return getKey() == null ? Texts.of() : getKey();
     }
 }

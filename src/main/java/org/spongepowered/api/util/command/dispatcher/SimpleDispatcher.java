@@ -25,10 +25,8 @@
 package org.spongepowered.api.util.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.NEWLINE_TEXT;
-import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.SPACE_TEXT;
-import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.error;
-import static org.spongepowered.api.util.command.dispatcher.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.command.CommandMessageFormatting.NEWLINE_TEXT;
+import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_TEXT;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
@@ -36,9 +34,11 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
@@ -48,16 +48,12 @@ import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandCallable;
-import org.spongepowered.api.util.command.CommandContext;
 import org.spongepowered.api.util.command.CommandException;
-import org.spongepowered.api.util.command.CommandExecutor;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
-import org.spongepowered.api.util.command.args.ArgumentParseException;
-import org.spongepowered.api.util.command.args.CommandArgs;
-import org.spongepowered.api.util.command.args.CommandElement;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -66,15 +62,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.Nullable;
 
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
-public final class SimpleDispatcher extends CommandElement implements Dispatcher, CommandExecutor {
-    private static final AtomicInteger COUNTER = new AtomicInteger();
+public final class SimpleDispatcher implements Dispatcher {
 
     /**
      * This is a disambiguator function that returns the first matching command.
@@ -91,8 +85,6 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         }
     };
 
-    @Nullable
-    private final CommandExecutor fallbackExecutor;
     private final Disambiguator disambiguatorFunc;
     private final ListMultimap<String, CommandMapping> commands = ArrayListMultimap.create();
 
@@ -100,28 +92,16 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
      * Creates a basic new dispatcher.
      */
     public SimpleDispatcher() {
-        this(FIRST_DISAMBIGUATOR, null);
+        this(FIRST_DISAMBIGUATOR);
     }
 
     /**
-     * Creates a basic new dispatcher.
+     * Creates a new dispatcher with a specific disambiguator.
      *
      * @param disambiguatorFunc Function that returns the preferred command if multiple exist for a given alias
      */
     public SimpleDispatcher(Disambiguator disambiguatorFunc) {
-        this(disambiguatorFunc, null);
-    }
-
-    /**
-     * Creates a new dispatcher with a fallback executor.
-     *
-     * @param disambiguatorFunc Function that returns the preferred command if multiple exist for a given alias
-     * @param fallbackExecutor Executor to use when this dispatcher is being used for subcommands
-     */
-    public SimpleDispatcher(Disambiguator disambiguatorFunc, @Nullable CommandExecutor fallbackExecutor) {
-        super(Texts.of("child" + COUNTER.getAndIncrement()));
         this.disambiguatorFunc = disambiguatorFunc;
-        this.fallbackExecutor = fallbackExecutor;
     }
 
     /**
@@ -313,6 +293,13 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         return get(alias, null);
     }
 
+    /**
+     * Get a given command in the context of a certain command source.
+     *
+     * @param alias The alias to look up
+     * @param source The source this alias is being looked up for
+     * @return the command if exactly one matches
+     */
     public synchronized Optional<CommandMapping> get(String alias, @Nullable CommandSource source) {
         List<CommandMapping> results = this.commands.get(alias.toLowerCase());
         if (results.size() == 1) {
@@ -404,39 +391,11 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
         return Optional.of(build.build());
     }
 
-    @Override
-    public List<String> complete(final CommandSource src, CommandArgs args, CommandContext context) {
-        final Optional<String> commandComponent = args.nextIfPresent();
-        if (commandComponent.isPresent()) {
-            if (args.hasNext()) {
-                Optional<CommandMapping> child = get(commandComponent.get(), src);
-                if (!child.isPresent()) {
-                    return ImmutableList.of();
-                }
-                args.nextIfPresent();
-                final String arguments = args.getRaw().substring(args.getRawPosition());
-                while (args.hasNext()) {
-                    args.nextIfPresent();
-                }
-                try {
-                    return child.get().getCallable().getSuggestions(src, arguments);
-                } catch (CommandException e) {
-                    src.sendMessage(error(e.getText()));
-                    return ImmutableList.of();
-                }
-            } else {
-                return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(commandComponent.get())));
-            }
-        } else {
-            return ImmutableList.copyOf(filterCommands(src));
-        }
-    }
-
     private Iterable<String> filterCommands(final CommandSource src) {
         return Multimaps.filterValues(this.commands, new Predicate<CommandMapping>() {
             @Override
             public boolean apply(@Nullable CommandMapping input) {
-                return input.getCallable().testPermission(src);
+                return input != null && input.getCallable().testPermission(src);
             }
         }).keys();
     }
@@ -451,35 +410,16 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     }
 
     @Override
-    public void parse(CommandArgs args, CommandContext context) throws ArgumentParseException {
-        super.parse(args, context);
-        context.putArg(getUntranslatedKey() + "_args", args.getRaw().substring(args.getRawPosition()));
-        while (args.hasNext()) {
-            args.next();
-        }
-    }
-
-    @Override
-    protected Object parseValue(CommandArgs args) throws ArgumentParseException {
-        final String key = args.next();
-        if (!containsAlias(key)) {
-            throw args.createError(t("Input command %s was not a valid subcommand!", key));
-        }
-
-        return key;
-    }
-
-    @Override
     public Text getUsage(final CommandSource source) {
         final TextBuilder build = Texts.builder();
         Iterable<String> filteredCommands = Iterables.filter(filterCommands(source), new Predicate<String>() {
             @Override
-            public boolean apply(String input) {
-                final Optional<CommandMapping> ret = get(input, source);
-                if (!ret.isPresent()) {
+            public boolean apply(@Nullable String input) {
+                if (input == null) {
                     return false;
                 }
-                return ret.get().getPrimaryAlias().equals(input); // Restrict to primary aliases in usage
+                final Optional<CommandMapping> ret = get(input, source);
+                return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
             }
         });
 
@@ -493,22 +433,12 @@ public final class SimpleDispatcher extends CommandElement implements Dispatcher
     }
 
     @Override
-    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").get();
-        String alias = args.<String>getOne(getUntranslatedKey()).get();
-        CommandMapping mapping = get(alias, src).orNull();
-        if (mapping == null) {
-            if (this.fallbackExecutor != null) {
-                return this.fallbackExecutor.execute(src, args);
-            } else {
-                throw new CommandException(t("Invalid subcommand state -- no more than one mapping may be provided for child arg %s", getKey()));
-            }
-        }
-        return mapping.getCallable().process(src, arguments).or(CommandResult.empty());
+    public synchronized Set<CommandMapping> getAll(String alias) {
+        return ImmutableSet.copyOf(this.commands.get(alias));
     }
 
     @Override
-    public synchronized Set<CommandMapping> getAll(String alias) {
-        return ImmutableSet.copyOf(this.commands.get(alias));
+    public Multimap<String, CommandMapping> getAll() {
+        return ImmutableMultimap.copyOf(this.commands);
     }
 }

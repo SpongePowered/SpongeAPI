@@ -28,7 +28,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
+import org.spongepowered.api.util.command.args.CommandContext;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
+import org.spongepowered.api.util.command.spec.CommandExecutor;
+import org.spongepowered.api.util.command.spec.CommandSpec;
 
 /**
  * Test for basic commandspec creation.

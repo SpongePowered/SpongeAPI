@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.args;
 
-import static org.spongepowered.api.util.command.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.command.args.TranslationPlaceholder.t;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Collection;
 import java.util.Collections;

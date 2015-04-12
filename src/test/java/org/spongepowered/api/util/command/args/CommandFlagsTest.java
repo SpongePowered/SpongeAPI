@@ -22,16 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.args;
 
 import static org.junit.Assert.assertEquals;
-import static org.spongepowered.api.util.command.TranslationPlaceholder.t;
 import static org.spongepowered.api.util.command.args.GenericArguments.*;
+import static org.spongepowered.api.util.command.args.TranslationPlaceholder.t;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.spongepowered.api.util.command.args.CommandArgs;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.spec.CommandExecutor;
+import org.spongepowered.api.util.command.spec.CommandSpec;
 
 
 /**
@@ -64,7 +68,7 @@ public class CommandFlagsTest {
     private static void process(CommandSpec spec, String arguments) throws CommandException {
         final CommandArgs args = new CommandArgs(arguments, spec.getInputTokenizer().tokenize(arguments, false));
         final CommandContext context = new CommandContext();
-        spec.populateContext(args, context);
+        spec.populateContext(TEST_SOURCE, args, context);
         spec.getExecutor().execute(TEST_SOURCE, context);
     }
 }

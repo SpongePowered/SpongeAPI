@@ -24,17 +24,34 @@
  */
 package org.spongepowered.api.util.command;
 
-/**
- * Interface containing the method directing how a certain command will be executed.
- */
-public interface CommandExecutor {
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.format.TextColors;
+
+public class CommandMessageFormatting {
+    public static final Text PIPE_TEXT = Texts.of("|");
+    public static final Text SPACE_TEXT = Texts.of(" ");
+    public static final Text PLUS_TEXT = Texts.of("*");
+    public static final Text NEWLINE_TEXT = Texts.of('\n');
+
     /**
-     * Callback for the execution of a command.
+     * Format text to be output as an error directly to a sender. Not necessary when creating an exception to be thrown
      *
-     * @param src The commander who is executing this command
-     * @param args The parsed command arguments for this command
-     * @return the result of executing this command
-     * @throws CommandException If a user-facing error occurs while executing this command
+     * @param error The error message
+     * @return The formatted error message.
      */
-    CommandResult execute(CommandSource src, CommandContext args) throws CommandException;
+    public static Text error(Text error) {
+        return error.builder().color(TextColors.RED).build();
+    }
+
+    /**
+     * Format text to be output as a debug message directly to a sender.
+     *
+     * @param debug The debug message
+     * @return The formatted debug message.
+     */
+    public static Text debug(Text debug) {
+        return debug.builder().color(TextColors.GRAY).build();
+    }
+
 }

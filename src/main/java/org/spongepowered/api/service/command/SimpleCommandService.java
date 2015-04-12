@@ -26,7 +26,7 @@ package org.spongepowered.api.service.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.service.command.TranslationPlaceholder.t;
-import static org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting.error;
+import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
@@ -42,6 +42,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandPermissionException;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.InvocationCommandException;
@@ -202,6 +203,11 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
+    public Multimap<String, CommandMapping> getAll() {
+        return this.dispatcher.getAll();
+    }
+
+    @Override
     public boolean containsAlias(String alias) {
         return this.dispatcher.containsAlias(alias);
     }
@@ -227,10 +233,17 @@ public class SimpleCommandService implements CommandService {
                 if (ex.getCause() != null) {
                     throw ex.getCause();
                 }
-            } catch (CommandException ex) {
-                if (ex.getText() != null) {
-                    source.sendMessage(error(ex.getText()));
+            } catch (CommandPermissionException ex) {
+                Text text = ex.getText();
+                if (text != null) {
+                    source.sendMessage(error(text));
                 }
+            } catch (CommandException ex) {
+                Text text = ex.getText();
+                if (text != null) {
+                    source.sendMessage(error(text));
+                }
+
                 final Optional<CommandMapping> mapping = this.dispatcher.get(argSplit[0], source);
                 if (mapping.isPresent()) {
                     source.sendMessage(error(t("Usage: /%s %s", argSplit[0], mapping.get().getCallable().getUsage(source))));

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.args;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -34,11 +34,14 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
-import org.spongepowered.api.util.command.args.ArgumentParseException;
-import org.spongepowered.api.util.command.args.CommandArgs;
-import org.spongepowered.api.util.command.args.CommandElement;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.spec.CommandExecutor;
+import org.spongepowered.api.util.command.spec.CommandSpec;
 
 
 /**
@@ -46,6 +49,7 @@ import org.spongepowered.api.util.command.args.CommandElement;
  */
 @Ignore("Cannot run these tests unless Text factories are available in testing")
 public class GenericArgumentsTest {
+    private static final CommandSource MOCK_SOURCE = Mockito.mock(CommandSource.class);
     static final CommandExecutor NULL_EXECUTOR = new CommandExecutor() {
         @Override
         public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
@@ -67,7 +71,7 @@ public class GenericArgumentsTest {
                 .build();
         final CommandArgs args = new CommandArgs(input, spec.getInputTokenizer().tokenize(input, false));
         final CommandContext context = new CommandContext();
-        spec.populateContext(args, context);
+        spec.populateContext(MOCK_SOURCE, args, context);
         return context;
     }
 

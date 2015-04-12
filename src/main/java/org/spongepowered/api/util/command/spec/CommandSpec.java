@@ -22,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.util.command.spec;
 
-import static org.spongepowered.api.util.command.TranslationPlaceholder.t;
+import static org.spongepowered.api.util.command.spec.TranslationPlaceholder.t;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
@@ -33,14 +33,20 @@ import org.spongepowered.api.service.command.GameArguments;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.util.command.CommandCallable;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandMessageFormatting;
+import org.spongepowered.api.util.command.CommandPermissionException;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.args.ArgumentParseException;
+import org.spongepowered.api.util.command.args.ChildCommandElementExecutor;
 import org.spongepowered.api.util.command.args.CommandArgs;
+import org.spongepowered.api.util.command.args.CommandContext;
 import org.spongepowered.api.util.command.args.CommandElement;
 import org.spongepowered.api.util.command.args.GenericArguments;
 import org.spongepowered.api.util.command.args.parsing.InputTokenizer;
 import org.spongepowered.api.util.command.args.parsing.InputTokenizers;
-import org.spongepowered.api.util.command.dispatcher.CommandMessageFormatting;
-import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
 import java.util.List;
 import java.util.Map;
@@ -123,10 +129,10 @@ public final class CommandSpec implements CommandCallable {
          * @param children The children to use
          * @return this
          */
-        public Builder setChildren(Map<List<String>, CommandSpec> children) {
+        public Builder setChildren(Map<List<String>, ? extends CommandCallable> children) {
             Preconditions.checkNotNull(children, "children");
-            SimpleDispatcher childDispatcher = new SimpleDispatcher(SimpleDispatcher.FIRST_DISAMBIGUATOR, this.executor);
-            for (Map.Entry<List<String>, CommandSpec> spec : children.entrySet()) {
+            ChildCommandElementExecutor childDispatcher = new ChildCommandElementExecutor(this.executor);
+            for (Map.Entry<List<String>, ? extends CommandCallable> spec : children.entrySet()) {
                 childDispatcher.register(spec.getValue(), spec.getKey());
             }
             setArguments(childDispatcher);
@@ -173,13 +179,13 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
-         * Set the argument parser to be used to convert input from a string into a list of argument tokens.
+         * Set the input tokenizer to be used to convert input from a string into a list of argument tokens.
          *
          * @see InputTokenizers for common input parser implementations
          * @param parser The parser to use
          * @return this
          */
-        public Builder setArgumentParser(InputTokenizer parser) {
+        public Builder setInputTokenizer(InputTokenizer parser) {
             Preconditions.checkNotNull(parser, "parser");
             this.argumentParser = parser;
             return this;
@@ -215,12 +221,14 @@ public final class CommandSpec implements CommandCallable {
     /**
      * Process this command with existing arguments and context objects.
      *
+     *
+     * @param source The source to populate the context with
      * @param args The arguments to process with
      * @param context The context to put data in
      * @throws ArgumentParseException if an invalid argument is provided
      */
-    public void populateContext(CommandArgs args, CommandContext context) throws ArgumentParseException {
-        this.args.parse(args, context);
+    public void populateContext(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+        this.args.parse(source, args, context);
         if (args.hasNext()) {
             args.next();
             throw args.createError(t("Too many arguments!"));
@@ -267,7 +275,7 @@ public final class CommandSpec implements CommandCallable {
         checkPermission(source);
         final CommandArgs args = new CommandArgs(arguments, getInputTokenizer().tokenize(arguments, false));
         final CommandContext context = new CommandContext();
-        this.populateContext(args, context);
+        this.populateContext(source, args, context);
         return Optional.of(getExecutor().execute(source, context));
     }
 

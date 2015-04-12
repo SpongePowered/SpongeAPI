@@ -31,7 +31,10 @@ import com.google.common.collect.ImmutableMap;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.spongepowered.api.util.command.args.CommandContext;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
+import org.spongepowered.api.util.command.spec.CommandExecutor;
+import org.spongepowered.api.util.command.spec.CommandSpec;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
