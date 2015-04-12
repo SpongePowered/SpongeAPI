@@ -29,6 +29,7 @@ import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.DataManipulatorRegistry;
 import org.spongepowered.api.data.types.Career;
 import org.spongepowered.api.data.types.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
@@ -424,6 +425,13 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
+
+    /**
+     * Retrieves the {@link DataManipulatorRegistry} for this {@link GameRegistry}.
+     *
+     * @return The manipulator registry
+     */
+    DataManipulatorRegistry getManipulatorRegistry();
 
     /**
      * Gets a {@link ResourcePack} that's already been created by its ID.

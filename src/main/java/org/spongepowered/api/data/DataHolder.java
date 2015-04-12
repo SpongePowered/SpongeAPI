@@ -32,13 +32,13 @@ import java.util.Collection;
 /**
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
- *å
+ *
  * <p>For example, a chest block, which is of the chest type, also has
  * inventory. This inventory is considered extra data, which can
  * be accessed via {@link #getData(Class)}, provided that an implementation
  * exposes that extra data.</p>
  */
-public interface DataHolder {
+public interface DataHolder extends DataSerializable {
 
     /**
      * Gets an instance of the given data class for this {@link DataHolder}.
