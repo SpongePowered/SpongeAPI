@@ -57,6 +57,7 @@ import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.stats.achievement.AchievementBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
@@ -463,4 +464,11 @@ public interface GameRegistry {
      */
     PopulatorFactory getPopulatorFactory();
 
+    /**
+     * Gets the {@link Translation} with the provided ID.
+     *
+     * @param id The ID of the translation
+     * @return The {@link Translation} with the given ID or Optional.absent() if not found
+     */
+    Optional<Translation> getTranslationById(String id);
 }

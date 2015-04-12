@@ -38,7 +38,7 @@ import org.spongepowered.api.text.translation.locale.Locales;
  * <p>While the client has multiple locales available, most implementations
  * support only {@link Locales#ENGLISH}.</p>
  */
-public interface Translation extends CatalogType {
+public interface Translation {
 
     /**
      * Returns identifier for this {@link Translation}.

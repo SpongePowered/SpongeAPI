@@ -171,7 +171,6 @@ public final class CatalogTypes {
     public static final Class<TextColor> TEXT_COLOR = TextColor.class;
     public static final Class<TileEntityType> TILE_ENTITY_TYPE = TileEntityType.class;
     public static final Class<TreeType> TREE_TYPE = TreeType.class;
-    public static final Class<Translation> TRANSLATION = Translation.class;
     public static final Class<Visibility> VISIBILITY = Visibility.class;
     public static final Class<WallType> WALL_TYPE = WallType.class;
     public static final Class<Weather> WEATHER = Weather.class;
