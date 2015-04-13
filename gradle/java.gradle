@@ -60,8 +60,8 @@ javadoc {
             'http://www.slf4j.org/apidocs/',
             'http://docs.guava-libraries.googlecode.com/git-history/v17.0/javadoc/',
             'http://google.github.io/guice/api-docs/latest/javadoc/',
-            /*'http://zachsthings.com/configurate/configurate-core/apidocs/',
-            'http://zachsthings.com/configurate/configurate-hocon/apidocs/',*/
+            'http://zml2008.github.io/configurate/configurate-core/apidocs/',
+            'http://zml2008.github.io/configurate/configurate-hocon/apidocs/',
             'http://flowpowered.com/math/',
             'http://asm.ow2.org/asm50/javadoc/user/',
             'http://docs.oracle.com/javase/6/docs/api/'
