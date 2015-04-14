@@ -24,18 +24,25 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.world.WorldCreationSettings;
 
 /**
- * If a plugin wishes to modify a world generator, the plugin must register a
- * custom implementation of this interface.
+ * Custom world generation is done using this interface. Any plugin that wishes
+ * to modify the world generator should implement this interface. When the
+ * server admin/player has chosen to use this modifier for a world, the method
+ * {@link #modifyWorldGenerator(WorldCreationSettings, DataContainer, WorldGenerator)}
+ * will be called.
  *
- * @see GameRegistry#registerWorldGeneratorModifier(PluginContainer, String,
- *      WorldGeneratorModifier)
+ * <p>The modifier can change every aspect of terrain generation using the
+ * {@link WorldGenerator} provided as a parameter to {@code modifyWorldGenerator}.
+ * This is no requirement, you can for example replace only the biome generator.
+ * Multiple world generator modifiers can be applied on a single world.</p>
+ *
+ * <p>Implementations of this interface must be registered using 
+ * {@link GameRegistry#registerWorldGeneratorModifier(WorldGeneratorModifier)}.</p>
  */
 public interface WorldGeneratorModifier extends CatalogType {
 
@@ -54,12 +61,22 @@ public interface WorldGeneratorModifier extends CatalogType {
      * {@link WorldGenerator#getGeneratorPopulators()}.</p>
      *
      * @param world The creation settings of the world.
-     * @param settings A data container with settings (usually) user-provided
-     *            settings, can be used by the plugin to modify the world
-     *            generator.
+     * @param settings A data container with (usually) user-provided settings,
+     *        can be used by the plugin to modify the world generator.
      * @param worldGenerator The world generator, should be modified.
      * @see WorldGenerator Additional information on the generation process
      */
     void modifyWorldGenerator(WorldCreationSettings world, DataContainer settings, WorldGenerator worldGenerator);
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>This name must be something unique and may not contain spaces. The
+     * same name must be returned every time the method is invoked.</p>
+     *
+     * @return {@inheritDoc}
+     */
+    @Override
+    String getId();
 
 }
