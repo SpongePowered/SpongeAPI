@@ -39,7 +39,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.ScoreboardBuilder;
@@ -447,15 +446,10 @@ public interface GameRegistry {
      * Registers a {@link WorldGeneratorModifier}, so that the server is able to
      * use it for modifying the world generator of a new world.
      *
-     * @param plugin The plugin registering the world generator. Will be used to
-     *        prefix the given id.
-     * @param genId An id for the generator. The plugin name may be used for this,
-     *        but it may be anything that doens't contain a space or a colon.
-     *        The full name of the generator modifier will become "pluginId:genId".
      * @param modifier The modifier to register
      */
-    void registerWorldGeneratorModifier(PluginContainer plugin, String genId, WorldGeneratorModifier modifier);
-    
+    void registerWorldGeneratorModifier(WorldGeneratorModifier modifier);
+
     /**
      * Gets the {@link PopulatorFactory} for creating {@link Populator}s and
      * {@link GeneratorPopulator}s.
