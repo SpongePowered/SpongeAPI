@@ -32,13 +32,6 @@ import org.spongepowered.api.service.permission.context.Contextual;
 public interface Dimension extends Contextual {
 
     /**
-     * Returns the dimension id of the current {@link Dimension}.
-     *
-     * @return The dimension id
-     */
-    int getDimensionId();
-
-    /**
      * Returns the name of this {@link Dimension}.
      *
      * @return The name
