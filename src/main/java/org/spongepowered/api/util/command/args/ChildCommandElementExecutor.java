@@ -42,6 +42,7 @@ import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
+import org.spongepowered.api.util.command.spec.CommandSpec;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -68,12 +69,23 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     /**
      * Register a child command for a given set of aliases.
      *
-     * @param value The command to register
-     * @param key The key to register it as
+     * @param callable The command to register
+     * @param aliases The aliases to register it as
      * @return The child command's mapping, if present
      */
-    public Optional<CommandMapping> register(CommandCallable value, List<String> key) {
-        return this.dispatcher.register(value, key);
+    public Optional<CommandMapping> register(CommandCallable callable, List<String> aliases) {
+        return this.dispatcher.register(callable, aliases);
+    }
+
+    /**
+     * Register a child command for a given set of aliases.
+     *
+     * @param callable The command to register
+     * @param aliases The aliases to register it as
+     * @return The child command's mapping, if present
+     */
+    public Optional<CommandMapping> register(CommandCallable callable, String... aliases) {
+        return this.dispatcher.register(callable, aliases);
     }
 
     @Override
@@ -85,19 +97,23 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                 if (!child.isPresent()) {
                     return ImmutableList.of();
                 }
-                args.nextIfPresent();
-                final String arguments = args.getRaw().substring(args.getRawPosition());
-                while (args.hasNext()) {
+                if (child.get().getCallable() instanceof CommandSpec) {
+                    return ((CommandSpec) child.get().getCallable()).complete(src, args, context);
+                } else {
                     args.nextIfPresent();
-                }
-                try {
-                    return child.get().getCallable().getSuggestions(src, arguments);
-                } catch (CommandException e) {
-                    Text eText = e.getText();
-                    if (eText != null) {
-                        src.sendMessage(error(eText));
+                    final String arguments = args.getRaw().substring(args.getRawPosition());
+                    while (args.hasNext()) {
+                        args.nextIfPresent();
                     }
-                    return ImmutableList.of();
+                    try {
+                        return child.get().getCallable().getSuggestions(src, arguments);
+                    } catch (CommandException e) {
+                        Text eText = e.getText();
+                        if (eText != null) {
+                            src.sendMessage(error(eText));
+                        }
+                        return ImmutableList.of();
+                    }
                 }
             } else {
                 return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(commandComponent.get())));
@@ -119,27 +135,36 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         super.parse(source, args, context);
-        context.putArg(getUntranslatedKey() + "_args", args.getRaw().substring(args.getRawPosition()));
-        while (args.hasNext()) {
-            args.next();
+        final CommandMapping mapping = context.<CommandMapping>getOne(getUntranslatedKey()).get();
+        if ((mapping.getCallable() instanceof CommandSpec)) {
+            CommandSpec spec = ((CommandSpec) mapping.getCallable());
+            spec.populateContext(source, args, context);
+        } else {
+            if (args.hasNext()) {
+                args.next();
+            }
+
+            context.putArg(getUntranslatedKey() + "_args", args.getRaw().substring(args.getRawPosition()));
+            while (args.hasNext()) {
+                args.next();
+            }
         }
     }
 
     @Override
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
         final String key = args.next();
-        if (!this.dispatcher.containsAlias(key)) {
+        final Optional<CommandMapping> mapping = this.dispatcher.get(key, source);
+        if (!mapping.isPresent()) {
             throw args.createError(t("Input command %s was not a valid subcommand!", key));
         }
 
-        return key;
+        return mapping.get();
     }
 
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").get();
-        String alias = args.<String>getOne(getUntranslatedKey()).get();
-        CommandMapping mapping = this.dispatcher.get(alias, src).orNull();
+        CommandMapping mapping = args.<CommandMapping>getOne(getUntranslatedKey()).orNull();
         if (mapping == null) {
             if (this.fallbackExecutor != null) {
                 return this.fallbackExecutor.execute(src, args);
@@ -147,7 +172,18 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                 throw new CommandException(t("Invalid subcommand state -- no more than one mapping may be provided for child arg %s", getKey()));
             }
         }
-        return mapping.getCallable().process(src, arguments).or(CommandResult.empty());
+        if (mapping.getCallable() instanceof CommandSpec) {
+            CommandSpec spec = ((CommandSpec) mapping.getCallable());
+            spec.checkPermission(src);
+            return spec.getExecutor().execute(src, args);
+        } else {
+            final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").or("");
+            return mapping.getCallable().process(src, arguments).or(CommandResult.empty());
+        }
     }
 
+    @Override
+    public Text getUsage(CommandSource src) {
+        return this.dispatcher.getUsage(src);
+    }
 }

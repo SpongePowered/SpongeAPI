@@ -26,6 +26,7 @@ package org.spongepowered.api.util.command.spec;
 
 import static org.spongepowered.api.util.command.spec.TranslationPlaceholder.t;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
@@ -59,7 +60,7 @@ import javax.annotation.Nullable;
 public final class CommandSpec implements CommandCallable {
     private final CommandElement args;
     private final CommandExecutor executor;
-    @Nullable private final Text description;
+    private final Optional<Text> description;
     @Nullable private final Text extendedDescription;
     @Nullable private final String permission;
     private final InputTokenizer argumentParser;
@@ -69,7 +70,7 @@ public final class CommandSpec implements CommandCallable {
         this.args = args;
         this.executor = executor;
         this.permission = permission;
-        this.description = description;
+        this.description = Optional.fromNullable(description);
         this.extendedDescription = extendedDescription;
         this.argumentParser = parser;
     }
@@ -297,7 +298,7 @@ public final class CommandSpec implements CommandCallable {
      */
     @Override
     public Optional<Text> getShortDescription(CommandSource source) {
-        return Optional.fromNullable(this.description);
+        return this.description;
     }
 
     /**
@@ -338,55 +339,33 @@ public final class CommandSpec implements CommandCallable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof CommandSpec)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         CommandSpec that = (CommandSpec) o;
-
-        if (!this.args.equals(that.args)) {
-            return false;
-        }
-        if (!this.argumentParser.equals(that.argumentParser)) {
-            return false;
-        }
-        if (this.description != null ? !this.description.equals(that.description) : that.description != null) {
-            return false;
-        }
-        if (!this.executor.equals(that.executor)) {
-            return false;
-        }
-        if (this.extendedDescription != null ? !this.extendedDescription.equals(that.extendedDescription) : that.extendedDescription != null) {
-            return false;
-        }
-        if (this.permission != null ? !this.permission.equals(that.permission) : that.permission != null) {
-            return false;
-        }
-
-        return true;
+        return Objects.equal(this.args, that.args)
+                && Objects.equal(this.executor, that.executor)
+                && Objects.equal(this.description, that.description)
+                && Objects.equal(this.extendedDescription, that.extendedDescription)
+                && Objects.equal(this.permission, that.permission)
+                && Objects.equal(this.argumentParser, that.argumentParser);
     }
 
     @Override
     public int hashCode() {
-        int result = this.args.hashCode();
-        result = 31 * result + this.executor.hashCode();
-        result = 31 * result + (this.description != null ? this.description.hashCode() : 0);
-        result = 31 * result + (this.extendedDescription != null ? this.extendedDescription.hashCode() : 0);
-        result = 31 * result + (this.permission != null ? this.permission.hashCode() : 0);
-        result = 31 * result + this.argumentParser.hashCode();
-        return result;
+        return Objects.hashCode(this.args, this.executor, this.description, this.extendedDescription, this.permission, this.argumentParser);
     }
 
     @Override
     public String toString() {
-        return "CommandSpec{"
-                + "args=" + this.args
-                + ", executor=" + this.executor
-                + ", description=" + this.description
-                + ", extendedDescription=" + this.extendedDescription
-                + ", permission='" + this.permission + '\''
-                + ", argumentParser=" + this.argumentParser
-                + '}';
+        return Objects.toStringHelper(this)
+                .add("args", this.args)
+                .add("executor", this.executor)
+                .add("description", this.description)
+                .add("extendedDescription", this.extendedDescription)
+                .add("permission", this.permission)
+                .add("argumentParser", this.argumentParser)
+                .toString();
     }
 }
 

@@ -33,6 +33,9 @@ public class CommandMessageFormatting {
     public static final Text SPACE_TEXT = Texts.of(" ");
     public static final Text PLUS_TEXT = Texts.of("*");
     public static final Text NEWLINE_TEXT = Texts.of('\n');
+    public static final Text LT_TEXT = Texts.of("<");
+    public static final Text GT_TEXT = Texts.of(">");
+    public static final Text ELIPSES_TEXT = Texts.of("…");
 
     /**
      * Format text to be output as an error directly to a sender. Not necessary when creating an exception to be thrown

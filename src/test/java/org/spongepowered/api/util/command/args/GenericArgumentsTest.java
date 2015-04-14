@@ -26,7 +26,19 @@ package org.spongepowered.api.util.command.args;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.spongepowered.api.util.command.args.GenericArguments.*;
+import static org.spongepowered.api.util.command.args.GenericArguments.allOf;
+import static org.spongepowered.api.util.command.args.GenericArguments.bool;
+import static org.spongepowered.api.util.command.args.GenericArguments.choices;
+import static org.spongepowered.api.util.command.args.GenericArguments.enumValue;
+import static org.spongepowered.api.util.command.args.GenericArguments.firstParsing;
+import static org.spongepowered.api.util.command.args.GenericArguments.integer;
+import static org.spongepowered.api.util.command.args.GenericArguments.none;
+import static org.spongepowered.api.util.command.args.GenericArguments.optional;
+import static org.spongepowered.api.util.command.args.GenericArguments.optionalWeak;
+import static org.spongepowered.api.util.command.args.GenericArguments.remainingJoinedStrings;
+import static org.spongepowered.api.util.command.args.GenericArguments.repeated;
+import static org.spongepowered.api.util.command.args.GenericArguments.seq;
+import static org.spongepowered.api.util.command.args.GenericArguments.string;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -49,6 +61,7 @@ import org.spongepowered.api.util.command.spec.CommandSpec;
  */
 @Ignore("Cannot run these tests unless Text factories are available in testing")
 public class GenericArgumentsTest {
+
     private static final CommandSource MOCK_SOURCE = Mockito.mock(CommandSource.class);
     static final CommandExecutor NULL_EXECUTOR = new CommandExecutor() {
         @Override

@@ -86,7 +86,7 @@ public class ArgumentParseException extends CommandException {
         String source = this.source;
         int position = this.position;
         if (source.length() > 80) {
-            if (position >= 37)  {
+            if (position >= 37) {
                 int startPos = position - 37;
                 int endPos = Math.min(source.length(), position + 37);
                 if (endPos < source.length()) {

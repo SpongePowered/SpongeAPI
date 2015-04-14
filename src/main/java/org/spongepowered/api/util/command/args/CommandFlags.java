@@ -256,7 +256,7 @@ class CommandFlags extends CommandElement {
     }
 
     @Nullable
-    private  List<String> tabCompleteShortFlags(String shortFlags, CommandSource src, CommandArgs args, CommandContext context) {
+    private List<String> tabCompleteShortFlags(String shortFlags, CommandSource src, CommandArgs args, CommandContext context) {
         for (int i = 0; i < shortFlags.length(); ++i) {
             final String flagChar = shortFlags.substring(i, i + 1);
             CommandElement element = this.shortFlags.get(flagChar);

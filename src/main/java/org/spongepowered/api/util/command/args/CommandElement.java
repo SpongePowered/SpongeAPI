@@ -73,7 +73,7 @@ public abstract class CommandElement {
      * @param context The context to supply to
      * @throws ArgumentParseException if unable to extract a value
      */
-    public void parse(CommandSource source, CommandArgs args, CommandContext context)  throws ArgumentParseException {
+    public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object val = parseValue(source, args);
         Text key = getKey();
         if (key != null && val != null) {
@@ -111,6 +111,6 @@ public abstract class CommandElement {
      * @return The formatted usage
      */
     public Text getUsage(CommandSource src) {
-        return getKey() == null ? Texts.of() : getKey();
+        return getKey() == null ? Texts.of() : Texts.of("<", getKey(), ">");
     }
 }

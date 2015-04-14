@@ -25,22 +25,27 @@
 package org.spongepowered.api.service.command;
 
 
+import static org.spongepowered.api.service.command.TranslationPlaceholder.t;
+
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.args.ArgumentParseException;
 import org.spongepowered.api.util.command.args.CommandArgs;
 import org.spongepowered.api.util.command.args.CommandContext;
 import org.spongepowered.api.util.command.args.CommandElement;
+import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.List;
 import java.util.UUID;
@@ -50,32 +55,48 @@ import javax.annotation.Nullable;
 public class GameArguments {
     private GameArguments() {}
 
-    private static Text t(String input) {
-        return Texts.of(input);
+    /**
+     * Expect an argument to represent an online player,
+     * or if nothing matches and the source is a {@link Player}, give the player.
+     * Gives value of type {@link Player}
+     *
+     * @param key The key to store under
+     * @param game The game to find players in
+     * @return the argument
+     */
+    public static CommandElement playerOrSource(Text key, Game game) {
+        return new PlayerCommandElement(key, game, true);
     }
 
     /**
      * Expect an argument to represent an online player.
+     * Gives value of type {@link Player}
      *
      * @param key The key to store under
      * @param game The game to find players in
      * @return the argument
      */
     public static CommandElement player(Text key, Game game) {
-        return new PlayerCommandElement(key, game);
+        return new PlayerCommandElement(key, game, false);
     }
 
     private static class PlayerCommandElement extends CommandElement {
         private final Game game;
+        private final boolean returnSource;
 
-        protected PlayerCommandElement(Text key, Game game) {
+        protected PlayerCommandElement(Text key, Game game, boolean returnSource) {
             super(key);
             this.game = game;
+            this.returnSource = returnSource;
         }
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             // TODO: Make player name resolution better -- support selectors, etc
+            if (!args.hasNext() && this.returnSource) {
+                return tryReturnSource(source, args);
+            }
+
             final String playerName = args.next();
             Optional<Player> ret;
             try {
@@ -85,9 +106,21 @@ public class GameArguments {
                 ret = this.game.getServer().getPlayer(playerName);
             }
             if (!ret.isPresent()) {
-                throw args.createError(t("No matching players found!"));
+                if (this.returnSource) {
+                    return tryReturnSource(source, args);
+                } else {
+                    throw args.createError(t("No matching players found!"));
+                }
             } else {
                 return ret.get();
+            }
+        }
+
+        private Player tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof Player) {
+                return ((Player) source);
+            } else {
+                throw args.createError(t("No players matched and source was not a player!"));
             }
         }
 
@@ -109,33 +142,66 @@ public class GameArguments {
     }
 
     /**
-     * Expect an argument to represent a world.
+     * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
+     * as well
+     * Gives values of type {@link WorldProperties}
      *
      * @param key The key to store under
      * @param game The game to find worlds from
      * @return the argument
      */
     public static CommandElement world(Text key, Game game) {
-        return new WorldCommandElement(key, game);
+        return new WorldPropertiesCommandElement(key, game);
     }
 
-    private static class WorldCommandElement extends CommandElement {
+    private static class WorldPropertiesCommandElement extends CommandElement {
         private final Game game;
 
-        protected WorldCommandElement(Text key, Game game) {
+        protected WorldPropertiesCommandElement(Text key, Game game) {
             super(key);
             this.game = game;
         }
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            return null;
+            final String worldName = args.next();
+            Optional<WorldProperties> ret = this.game.getServer().getWorldProperties(worldName);
+            if (!ret.isPresent()) {
+                throw args.createError(t("Unable to find world for name %s", worldName));
+            } else if (!ret.get().isEnabled()) {
+                throw args.createError(t("World %s is not enabled!", worldName));
+            }
+            return ret.get();
         }
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return null;
+            final Optional<String> worldNameComponent = args.nextIfPresent();
+            Iterable<String> worldsList = Iterables.transform(this.game.getServer().getAllWorldProperties(), new Function<WorldProperties, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable WorldProperties input) {
+                    return input == null || !input.isEnabled() ? null : input.getWorldName();
+                }
+            });
+            worldsList = Iterables.filter(worldsList, Predicates.notNull());
+            if (worldNameComponent.isPresent()) {
+                worldsList = Iterables.filter(worldsList, new StartsWithPredicate(worldNameComponent.get()));
+            }
+            return ImmutableList.copyOf(worldsList);
         }
+    }
+
+    /**
+     * Expect an argument to represent a dimension.
+     * Gives values of tye {@link DimensionType}
+     *
+     * @param key The key to store under
+     * @param game The game to find dimensions from
+     * @return the argument
+     */
+    public static CommandElement dimension(Text key, Game game) {
+        return catalogedElement(key, game, DimensionType.class);
     }
 
     /**
@@ -156,17 +222,17 @@ public class GameArguments {
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            return null;
+            return null; // TODO implement
         }
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return null;
+            return ImmutableList.of(); // tODO implement
         }
     }
 
     /**
-     * Expect an argument to represent a location.
+     * Expect an argument to represent a {@link Location}.
      *
      * @param key The key to store under
      * @param game The game to find worlds from
@@ -186,17 +252,17 @@ public class GameArguments {
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            return null;
+            return null; // TODO Implement
         }
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return null;
+            return ImmutableList.of(); // TODO Implement
         }
     }
 
     /**
-     * Expect an argument that is a member of the specified catalog type.
+     * Expect an argument that is a member of the specified catalog type T.
      *
      * @param key The key to store the resolved value under
      * @param game The game to get the registry from
