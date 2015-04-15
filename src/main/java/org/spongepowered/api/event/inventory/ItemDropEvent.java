@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.Collection;
 
@@ -37,7 +37,8 @@ public interface ItemDropEvent extends GameEvent {
     /**
      * Gets the items that are being dropped.
      *
-     * @return The dropped item entities
+     * @return The dropped item stacks
      */
-    Collection<Item> getDroppedItems();
+    Collection<ItemStack> getDroppedItems();
+
 }

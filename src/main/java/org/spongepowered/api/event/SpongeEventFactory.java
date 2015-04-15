@@ -40,7 +40,6 @@ import org.spongepowered.api.data.manipulators.tileentities.BrewingData;
 import org.spongepowered.api.data.manipulators.tileentities.FurnaceData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
-import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
@@ -290,7 +289,7 @@ public final class SpongeEventFactory {
      *        {@link BlockHarvestEvent#setDropChance(float)}
      * @return A new instance of the event
      */
-    public static BlockHarvestEvent createBlockHarvest(Game game, Cause cause, Location block, Collection<Item> droppedItems, float dropChance) {
+    public static BlockHarvestEvent createBlockHarvest(Game game, Cause cause, Location block, Collection<ItemStack> droppedItems, float dropChance) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -579,7 +578,7 @@ public final class SpongeEventFactory {
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<Item> droppedItems,
+    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<ItemStack> droppedItems,
             int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -636,7 +635,7 @@ public final class SpongeEventFactory {
      * @param droppedItems The items to drop
      * @return A new instance of the event
      */
-    public static EntityDropItemEvent createEntityDropItem(Game game, Entity entity, Collection<Item> droppedItems) {
+    public static EntityDropItemEvent createEntityDropItem(Game game, Entity entity, Collection<ItemStack> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
@@ -657,7 +656,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static EntityHarvestBlockEvent createEntityHarvestBlock(Game game, Cause cause, Entity entity, Location block,
-            Collection<Item> droppedItems, float dropChance) {
+            Collection<ItemStack> droppedItems, float dropChance) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1138,7 +1137,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text deathMessage,
-            Collection<Item> droppedItems, int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
+            Collection<ItemStack> droppedItems, int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
 
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1167,7 +1166,7 @@ public final class SpongeEventFactory {
      * @param droppedItems The items to drop
      * @return A new instance of the event
      */
-    public static PlayerDropItemEvent createPlayerDropItem(Game game, Player player, Collection<Item> droppedItems) {
+    public static PlayerDropItemEvent createPlayerDropItem(Game game, Player player, Collection<ItemStack> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1193,7 +1192,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerHarvestBlockEvent createPlayerHarvestBlock(Game game, Cause cause, Player player, Location block,
-            Collection<Item> droppedItems, float dropChance, boolean silkTouch) {
+            Collection<ItemStack> droppedItems, float dropChance, boolean silkTouch) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
