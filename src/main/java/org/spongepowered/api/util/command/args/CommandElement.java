@@ -75,9 +75,15 @@ public abstract class CommandElement {
      */
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object val = parseValue(source, args);
-        Text key = getKey();
+        String key = getUntranslatedKey();
         if (key != null && val != null) {
-            context.putArg(Texts.toPlain(key), val);
+            if (val instanceof Iterable<?>) {
+                for (Object ent : ((Iterable<?>) val)) {
+                    context.putArg(key, ent);
+                }
+            } else {
+                context.putArg(key, val);
+            }
         }
     }
 

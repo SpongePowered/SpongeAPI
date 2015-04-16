@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 /**
  * Predicate that determines if the input string starts with the provided test string, case-insensitively.
  */
-public class StartsWithPredicate implements Predicate<String> {
+public final class StartsWithPredicate implements Predicate<String> {
     private final String test;
 
     /**

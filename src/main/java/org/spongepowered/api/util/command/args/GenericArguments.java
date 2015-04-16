@@ -26,20 +26,31 @@ package org.spongepowered.api.util.command.args;
 
 import static org.spongepowered.api.util.command.args.TranslationPlaceholder.t;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.source.LocatedSource;
+import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -66,6 +77,90 @@ public final class GenericArguments {
 
     static CommandElement markTrue(String flag) {
         return new MarkTrueCommandElement(flag);
+    }
+
+    /**
+     * Expect an argument to represent an online player,
+     * or if nothing matches and the source is a {@link Player}, give the player.
+     * Gives value of type {@link Player}
+     *
+     * @param key The key to store under
+     * @param game The game to find players in
+     * @return the argument
+     */
+    public static CommandElement playerOrSource(Text key, Game game) {
+        return new PlayerCommandElement(key, game, true);
+    }
+
+    /**
+     * Expect an argument to represent an online player.
+     * Gives value of type {@link Player}
+     *
+     * @param key The key to store under
+     * @param game The game to find players in
+     * @return the argument
+     */
+    public static CommandElement player(Text key, Game game) {
+        return new PlayerCommandElement(key, game, false);
+    }
+
+    /**
+     * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
+     * as well
+     * Gives values of type {@link WorldProperties}
+     *
+     * @param key The key to store under
+     * @param game The game to find worlds from
+     * @return the argument
+     */
+    public static CommandElement world(Text key, Game game) {
+        return new WorldPropertiesCommandElement(key, game);
+    }
+
+    /**
+     * Expect an argument to represent a dimension.
+     * Gives values of tye {@link DimensionType}
+     *
+     * @param key The key to store under
+     * @param game The game to find dimensions from
+     * @return the argument
+     */
+    public static CommandElement dimension(Text key, Game game) {
+        return catalogedElement(key, game, DimensionType.class);
+    }
+
+    /**
+     * Expect an argument to represent a {@link Vector3d}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement vector3d(Text key) {
+        return new Vector3dCommandElement(key);
+    }
+
+    /**
+     * Expect an argument to represent a {@link Location}.
+     *
+     * @param key The key to store under
+     * @param game The game to find worlds from
+     * @return the argument
+     */
+    public static CommandElement location(Text key, Game game) {
+        return new LocationCommandElement(key, game);
+    }
+
+    /**
+     * Expect an argument that is a member of the specified catalog type T.
+     *
+     * @param key The key to store the resolved value under
+     * @param game The game to get the registry from
+     * @param catalogType The type expected
+     * @param <T> The type to return
+     * @return the argument
+     */
+    public static <T extends CatalogType> CommandElement catalogedElement(Text key, Game game, Class<T> catalogType) {
+        return new CatalogedTypeCommandElement<T>(key, game, catalogType);
     }
 
     static class MarkTrueCommandElement extends CommandElement {
@@ -646,7 +741,7 @@ public final class GenericArguments {
         return new EnumValueElement<T>(key, type);
     }
 
-    private static class EnumValueElement<T extends Enum<T>> extends CommandElement {
+    private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
         private final Class<T> type;
 
         private EnumValueElement(Text key, Class<T> type) {
@@ -655,30 +750,19 @@ public final class GenericArguments {
         }
 
         @Override
-        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            final String value = args.next().toUpperCase();
-            try {
-                return Enum.valueOf(this.type, value);
-            } catch (IllegalArgumentException ex) {
-                throw args.createError(t("Enum value %s not valid", value));
-            }
-        }
-
-        @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Iterable<String> validValues = Iterables.transform(Arrays.asList(this.type.getEnumConstants()), new Function<T, String>() {
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Iterables.transform(Arrays.asList(this.type.getEnumConstants()), new Function<T, String>() {
                 @Nullable
                 @Override
                 public String apply(@Nullable T input) {
                     return input == null ? null : input.name();
                 }
             });
+        }
 
-            final Optional<String> nextArg = args.nextIfPresent();
-            if (nextArg.isPresent()) {
-                validValues = Iterables.filter(validValues, new StartsWithPredicate(nextArg.get()));
-            }
-            return ImmutableList.copyOf(validValues);
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            return Enum.valueOf(this.type, choice.toUpperCase());
         }
     }
 
@@ -795,6 +879,270 @@ public final class GenericArguments {
         @Override
         public Text getUsage(CommandSource src) {
             return Texts.of(Joiner.on(' ').join(this.expectedArgs));
+        }
+    }
+
+    private static class PlayerCommandElement extends PatternMatchingCommandElement {
+        private final Game game;
+        private final boolean returnSource;
+
+        protected PlayerCommandElement(Text key, Game game, boolean returnSource) {
+            super(key);
+            this.game = game;
+            this.returnSource = returnSource;
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            // TODO: Make player name resolution better -- support selectors, etc
+            if (!args.hasNext() && this.returnSource) {
+                return tryReturnSource(source, args);
+            }
+
+            try {
+                return super.parseValue(source, args);
+            } catch (ArgumentParseException ex) {
+                if (this.returnSource) {
+                    return tryReturnSource(source, args);
+                } else {
+                    throw ex;
+                }
+            }
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Iterables.transform(this.game.getServer().getOnlinePlayers(), new Function<Player, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable Player input) {
+                    return input == null ? null : input.getName();
+                }
+            });
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            Optional<Player> ret = this.game.getServer().getPlayer(choice);
+            if (!ret.isPresent()) {
+                throw new IllegalArgumentException("Input value " + choice + " was not a player");
+            }
+            return ret.get();
+        }
+
+        private Player tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof Player) {
+                return ((Player) source);
+            } else {
+                throw args.createError(t("No players matched and source was not a player!"));
+            }
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return src instanceof Player && this.returnSource ? Texts.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+    }
+
+    private static class WorldPropertiesCommandElement extends PatternMatchingCommandElement {
+        private final Game game;
+
+        protected WorldPropertiesCommandElement(@Nullable Text key, Game game) {
+            super(key);
+            this.game = game;
+        }
+
+        @Nullable
+        @Override
+        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return super.parseValue(source, args);
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Iterables.transform(this.game.getServer().getAllWorldProperties(), new Function<WorldProperties, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable WorldProperties input) {
+                    return input == null || !input.isEnabled() ? null : input.getWorldName();
+                }
+            });
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            Optional<WorldProperties> ret = this.game.getServer().getWorldProperties(choice);
+            if (!ret.isPresent()) {
+                throw new IllegalArgumentException("Provided argument " + choice + " did not match a WorldProperties");
+            }
+            return ret.get();
+        }
+    }
+
+    /**
+     * Syntax:
+     * x,y,z
+     * x y z.
+     * each element can be relative to a location? so parseRelativeDouble() -- relative is ~(num)
+     *
+     */
+    private static class Vector3dCommandElement extends CommandElement {
+
+        protected Vector3dCommandElement(@Nullable Text key) {
+            super(key);
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String xStr;
+            String yStr;
+            String zStr;
+            xStr = args.next();
+            if (xStr.contains(",")) {
+                String[] split = xStr.split(",");
+                if (split.length != 3) {
+                    throw args.createError(t("Comma-separated location must have 3 elements, not %s", split.length));
+                }
+                xStr = split[0];
+                yStr = split[1];
+                zStr = split[2];
+            } else {
+                yStr = args.next();
+                zStr = args.next();
+            }
+            final double x = parseRelativeDouble(args, xStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getX() : null);
+            final double y = parseRelativeDouble(args, yStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getY() : null);
+            final double z = parseRelativeDouble(args, zStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getZ() : null);
+
+            return new Vector3d(x, y, z);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            Optional<String> arg = args.nextIfPresent();
+            // Traverse through the possible arguments. We can't really complete arbitrary integers
+            if (arg.isPresent()) {
+                if (arg.get().contains(",") || !args.hasNext()) {
+                    return ImmutableList.of(arg.get());
+                } else {
+                    arg = args.nextIfPresent();
+                    if (args.hasNext()) {
+                        return ImmutableList.of(args.nextIfPresent().get());
+                    } else {
+                        return ImmutableList.of(arg.get());
+                    }
+                }
+            } else {
+                return ImmutableList.of();
+            }
+        }
+
+        private double parseRelativeDouble(CommandArgs args, String arg, @Nullable Double relativeTo) throws ArgumentParseException {
+            boolean relative = arg.startsWith("~");
+            if (relative) {
+                if (relativeTo == null) {
+                    throw args.createError(t("Relative position specified but source does not have a postion"));
+                }
+                arg = arg.substring(1);
+            }
+            try {
+                double ret = Double.parseDouble(arg);
+                return relative ? ret + relativeTo : ret;
+            } catch (NumberFormatException e) {
+                throw args.createError(t("Expected input %s to be a double, but was not", arg));
+            }
+        }
+    }
+
+    private static class LocationCommandElement extends CommandElement {
+        private final Game game;
+        private final WorldPropertiesCommandElement worldParser;
+        private final Vector3dCommandElement vectorParser;
+
+        protected LocationCommandElement(Text key, Game game) {
+            super(key);
+            this.game = game;
+            this.worldParser = new WorldPropertiesCommandElement(null, game);
+            this.vectorParser = new Vector3dCommandElement(null);
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object state = args.getState();
+            Object world;
+            Object vec = null;
+            try {
+                world = Preconditions.checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
+            } catch (ArgumentParseException ex) {
+                args.setState(state);
+                if (!(source instanceof LocatedSource)) {
+                    throw args.createError(t("Source must have a location in order to have a fallback world"));
+                }
+                world = ((LocatedSource) source).getWorld();
+                try {
+                    vec = Preconditions.checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
+                } catch (ArgumentParseException ex2) {
+                    args.setState(state);
+                    throw ex;
+                }
+            }
+            if (vec == null) {
+                vec = Preconditions.checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
+            }
+
+            if (world instanceof Collection<?>) {
+                // multiple values
+                if (((Collection) world).size() != 1) {
+                    throw args.createError(t("A location must be specified in only one world!"));
+                }
+                world = ((Collection) world).iterator().next();
+            }
+            WorldProperties targetWorldProps = ((WorldProperties) world);
+            Optional<World> targetWorld = this.game.getServer().getWorld(targetWorldProps.getUniqueId());
+            Vector3d vector = (Vector3d) vec;
+            return new Location(targetWorld.get(), vector);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            Object state = args.getState();
+            List<String> ret;
+            if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+                args.setState(state);
+                ret = this.vectorParser.complete(src, args, context);
+            }
+            return ret;
+        }
+    }
+
+    private static class CatalogedTypeCommandElement<T extends CatalogType> extends PatternMatchingCommandElement {
+        private final Game game;
+        private final Class<T> catalogType;
+
+        protected CatalogedTypeCommandElement(Text key, Game game, Class<T> catalogType) {
+            super(key);
+            this.game = game;
+            this.catalogType = catalogType;
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Iterables.transform(this.game.getRegistry().getAllOf(this.catalogType), new Function<T, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable T input) {
+                    return input == null ? null : input.getId(); // TODO: ids or names?
+                }
+            });
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            final Optional<T> ret = this.game.getRegistry().getType(this.catalogType, choice);
+            if (!ret.isPresent()) {
+                throw new IllegalArgumentException("Invalid input " + choice + " was found");
+            }
+            return ret.get();
         }
     }
 }

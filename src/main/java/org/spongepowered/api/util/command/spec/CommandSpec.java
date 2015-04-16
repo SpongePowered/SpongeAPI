@@ -30,7 +30,6 @@ import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.service.command.GameArguments;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
@@ -169,7 +168,6 @@ public final class CommandSpec implements CommandCallable {
          * Generally, for a multi-argument command the {@link GenericArguments#seq(CommandElement...)} method is used to parse a sequence of args
          *
          * @see GenericArguments
-         * @see GameArguments
          * @param args The arguments object to use
          * @return this
          */
