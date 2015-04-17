@@ -1145,4 +1145,47 @@ public final class GenericArguments {
             return ret.get();
         }
     }
+
+    /**
+     * Restricts the given command element to only insert one value into the context at the provided key.
+     *
+     * @param element The element to restrict
+     * @return the restricted element
+     */
+    public static CommandElement onlyOne(CommandElement element) {
+        return new OnlyOneCommandElement(element);
+    }
+
+    private static class OnlyOneCommandElement extends CommandElement {
+        private final CommandElement element;
+
+        protected OnlyOneCommandElement(CommandElement element) {
+            super(element.getKey());
+            this.element = element;
+        }
+
+        @Override
+        public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+            this.element.parse(source, args, context);
+            if (context.getAll(this.element.getUntranslatedKey()).size() > 1) {
+                throw args.createError(t("Argument %s may have only one value!",  this.element.getKey()));
+            }
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return this.element.getUsage(src);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return this.element.parseValue(source, args);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return this.element.complete(src, args, context);
+        }
+    }
 }
