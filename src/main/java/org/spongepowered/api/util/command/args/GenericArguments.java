@@ -899,10 +899,12 @@ public final class GenericArguments {
                 return tryReturnSource(source, args);
             }
 
+            Object state = args.getState();
             try {
                 return super.parseValue(source, args);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
+                    args.setState(state);
                     return tryReturnSource(source, args);
                 } else {
                     throw ex;

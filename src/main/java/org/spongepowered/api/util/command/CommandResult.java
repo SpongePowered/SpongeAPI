@@ -33,6 +33,7 @@ import javax.annotation.Nullable;
  */
 public class CommandResult {
     private static final CommandResult EMPTY = builder().build();
+    private static final CommandResult SUCCESS = builder().successCount(1).build();
     private final Optional<Integer> successCount;
     private final Optional<Integer> affectedBlocks;
     private final Optional<Integer> affectedEntities;
@@ -58,6 +59,14 @@ public class CommandResult {
         return EMPTY;
     }
 
+    /**
+     * Returns a result indicating the command was processed with a single success.
+     *
+     * @return The result
+     */
+    public static CommandResult success() {
+        return SUCCESS;
+    }
 
     /**
      * Constructs a new command result.
