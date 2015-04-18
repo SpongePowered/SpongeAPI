@@ -25,7 +25,11 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.Human;
 
+/**
+ * Represents the food information for {@link Human}s.
+ */
 public interface FoodData extends DataManipulator<FoodData> {
 
     /**

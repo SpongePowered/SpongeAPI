@@ -24,9 +24,20 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.data.manipulators.entities.DamagingData;
+import org.spongepowered.api.entity.Entity;
+
 /**
  * Represents an Arrow.
  */
 public interface Arrow extends Projectile {
+
+    /**
+     * Gets a copy of the current {@link DamagingData} that this arrow will
+     * deal on an {@link Entity} when hit.
+     *
+     * @return A copy of the damaging data
+     */
+    DamagingData getDamagingData();
 
 }

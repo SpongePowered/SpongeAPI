@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.data.types;
 
+/**
+ * An enumeration of known vanilla {@link DirtType}s.
+ */
 public final class DirtTypes {
 
     public static final DirtType DIRT = null;

@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.QuartzType;
 
+/**
+ * Represents the {@link QuartzType} of a {@link BlockTypes#QUARTZ_BLOCK}.
+ */
 public interface QuartzData extends SingleValueData<QuartzType, QuartzData> {
 
 }

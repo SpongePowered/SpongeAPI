@@ -25,7 +25,12 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
 
+/**
+ * Signifies that an {@link Entity} will "persist" across restarts of the
+ * game. Usually applicable to all {@link Entity}s.
+ */
 public interface PersistingData extends DataManipulator<PersistingData> {
 
 }

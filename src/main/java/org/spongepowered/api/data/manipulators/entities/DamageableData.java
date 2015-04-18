@@ -26,8 +26,14 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 
+/**
+ * Represents the various information for a damageable {@link Entity} such that
+ * it is aware of the previous attacker, the last amount of damage it took, etc.
+ * Usually applicable to {@link Living} entities.
+ */
 public interface DamageableData extends DataManipulator<DamageableData> {
 
     /**

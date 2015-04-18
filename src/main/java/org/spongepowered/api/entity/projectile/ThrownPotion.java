@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.data.manipulators.RepresentedItemData;
+
 /**
  * Represents a thrown potion.
  */
 public interface ThrownPotion extends Projectile {
+
+    /**
+     * Gets a copy of the {@link RepresentedItemData} used by this potion.
+     *
+     * @return A copy of the represented item data
+     */
+    RepresentedItemData getPotionItemData();
 
 }

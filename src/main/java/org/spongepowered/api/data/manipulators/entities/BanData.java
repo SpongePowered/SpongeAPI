@@ -25,10 +25,15 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.ListData;
+import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.util.ban.Ban;
 
 import java.util.Collection;
 
+/**
+ * Represents a list of known {@link Ban}s usually applicable to
+ * {@link User}s.
+ */
 public interface BanData extends ListData<Ban.User, BanData> {
 
     /**

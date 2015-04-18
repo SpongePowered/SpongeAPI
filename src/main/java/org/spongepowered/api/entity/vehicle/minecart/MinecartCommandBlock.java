@@ -24,11 +24,20 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.data.manipulators.CommandData;
 import org.spongepowered.api.util.command.source.CommandBlockSource;
 
 /**
  * Represents a minecart with a command block inside it.
  */
 public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
+
+    /**
+     * Gets a copy of the {@link CommandData} represented by this
+     * {@link MinecartCommandBlock}.
+     *
+     * @return A copy of the command data
+     */
+    CommandData getCommandData();
 
 }

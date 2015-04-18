@@ -28,7 +28,12 @@ import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.types.HorseColor;
 import org.spongepowered.api.data.types.HorseStyle;
 import org.spongepowered.api.data.types.HorseVariant;
+import org.spongepowered.api.entity.living.animal.Horse;
 
+/**
+ * Represents {@link Horse} information specific to {@link HorseStyle},
+ * {@link HorseColor}, and {@link HorseVariant}.
+ */
 public interface HorseData extends DataManipulator<HorseData> {
 
     /**

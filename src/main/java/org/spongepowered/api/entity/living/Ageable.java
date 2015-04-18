@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.data.manipulators.entities.AgeableData;
+import org.spongepowered.api.entity.Entity;
+
 /**
  * Represents a living entity that can change in size as it ages
  * and can spawn children.
@@ -35,4 +38,13 @@ public interface Ageable extends Agent {
      * a baby.
      */
     void setScaleForAge();
+
+    /**
+     * Gets the {@link AgeableData} that represents age determining whether an
+     * {@link Entity} is a child or an adult.
+     *
+     * @return The ageable data
+     */
+    AgeableData getAgeData();
+
 }

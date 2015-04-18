@@ -25,7 +25,12 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.IntData;
+import org.spongepowered.api.entity.Entity;
 
+/**
+ * Signifies that an {@link Entity} is on fire for a remaining duration of
+ * "ticks".
+ */
 public interface IgniteableData extends IntData<IgniteableData> {
 
     /**

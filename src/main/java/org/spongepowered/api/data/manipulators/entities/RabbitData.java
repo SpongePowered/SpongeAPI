@@ -26,7 +26,11 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.RabbitType;
+import org.spongepowered.api.entity.living.animal.Rabbit;
 
+/**
+ * Represents the {@link RabbitType} of a {@link Rabbit}.
+ */
 public interface RabbitData extends SingleValueData<RabbitType, RabbitData> {
 
 }

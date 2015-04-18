@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.data.types;
 
+/**
+ * An enumeration of known {@link StairShape}s.
+ */
 public final class StairShapes {
 
     public static final StairShape STRAIGHT = null;

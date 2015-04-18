@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.tile;
 
-import org.spongepowered.api.data.manipulators.entities.RepresentedItemData;
+import org.spongepowered.api.data.manipulators.RepresentedItemData;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**

@@ -25,6 +25,8 @@
 package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.manipulators.entities.TradeOfferData;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
 
@@ -35,7 +37,7 @@ import javax.annotation.Nullable;
 /**
  * Represents a Merchant which can offer trades to customers.
  */
-public interface Merchant extends Carrier {
+public interface Merchant extends DataHolder, Carrier {
 
     /**
      * Gets the currently trading customer with this merchant.
@@ -54,27 +56,11 @@ public interface Merchant extends Carrier {
     void setCustomer(@Nullable Human human);
 
     /**
-     * Gets an immutable list of {@link TradeOffer}s that this merchant
-     * can send to a {@link org.spongepowered.api.entity.living.Human}.
+     * Gets a copy of the used {@link TradeOfferData} containing all available
+     * {@link TradeOffer}s this {@link Merchant} may use.
      *
-     * @return An immutable list of trade offers
+     * @return A copy of the trade offer data
      */
-    List<TradeOffer> getOffers();
+    TradeOfferData getTradeOfferData();
 
-    /**
-     * Replaces the entire list of trade offers this merchant can trade
-     * with a {@link org.spongepowered.api.entity.living.Human}.
-     * <p>When a merchant is in the middle of a trade, the offers may change
-     * dynamically according to the offers completed by the customer.</p>
-     *
-     * @param offers The offers to set
-     */
-    void setOffers(List<TradeOffer> offers);
-
-    /**
-     * Adds the given offer to the list of offers provided by this merchant.
-     *
-     * @param offer The offer to add
-     */
-    void addOffer(TradeOffer offer);
 }

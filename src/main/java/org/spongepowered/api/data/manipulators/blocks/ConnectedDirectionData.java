@@ -24,9 +24,15 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.ListData;
 import org.spongepowered.api.util.Direction;
 
+/**
+ * Represents the "connected" {@link Direction}s that a block may have.
+ * Examples may include {@link BlockTypes#GLASS_PANE},
+ * {@link BlockTypes#IRON_BARS}, etc.
+ */
 public interface ConnectedDirectionData extends ListData<Direction, ConnectedDirectionData> {
 
 }

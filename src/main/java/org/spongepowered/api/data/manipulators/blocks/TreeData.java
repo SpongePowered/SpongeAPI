@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.TreeType;
 
+/**
+ * Represents the {@link TreeType} of various tree based wood blocks. Usually
+ * applicable to {@link BlockTypes#LOG}, {@link BlockTypes#PLANKS}, etc.
+ */
 public interface TreeData extends SingleValueData<TreeType, TreeData> {
 
 }

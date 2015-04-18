@@ -25,7 +25,11 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.Villager;
 
+/**
+ * Signifies that a {@link Villager} is "playing".
+ */
 public interface PlayingData extends DataManipulator<PlayingData> {
 
 }

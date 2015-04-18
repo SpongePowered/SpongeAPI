@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulators.catalogs;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.DyeableData;
+import org.spongepowered.api.data.manipulators.RotationalData;
 import org.spongepowered.api.data.manipulators.WetData;
 import org.spongepowered.api.data.manipulators.blocks.AttachedData;
 import org.spongepowered.api.data.manipulators.blocks.AxisData;
@@ -37,7 +38,7 @@ import org.spongepowered.api.data.manipulators.blocks.DecayableData;
 import org.spongepowered.api.data.manipulators.blocks.DirectionalData;
 import org.spongepowered.api.data.manipulators.blocks.DirtData;
 import org.spongepowered.api.data.manipulators.blocks.DisarmedData;
-import org.spongepowered.api.data.manipulators.blocks.DisgusedBlockData;
+import org.spongepowered.api.data.manipulators.blocks.DisguisedBlockData;
 import org.spongepowered.api.data.manipulators.blocks.DoublePlantData;
 import org.spongepowered.api.data.manipulators.blocks.ExtendedData;
 import org.spongepowered.api.data.manipulators.blocks.FilledData;
@@ -58,7 +59,6 @@ import org.spongepowered.api.data.manipulators.blocks.PrismarineData;
 import org.spongepowered.api.data.manipulators.blocks.QuartzData;
 import org.spongepowered.api.data.manipulators.blocks.RailDirectionData;
 import org.spongepowered.api.data.manipulators.blocks.RedstonePoweredData;
-import org.spongepowered.api.data.manipulators.blocks.RotationalData;
 import org.spongepowered.api.data.manipulators.blocks.SandData;
 import org.spongepowered.api.data.manipulators.blocks.SandstoneData;
 import org.spongepowered.api.data.manipulators.blocks.SeamlessData;
@@ -71,7 +71,7 @@ import org.spongepowered.api.data.manipulators.blocks.SuspendedData;
 import org.spongepowered.api.data.manipulators.blocks.TreeData;
 import org.spongepowered.api.data.manipulators.blocks.WallData;
 import org.spongepowered.api.data.types.BrickType;
-import org.spongepowered.api.data.types.DisgusedBlockType;
+import org.spongepowered.api.data.types.DisguisedBlockType;
 import org.spongepowered.api.data.types.DyeColor;
 import org.spongepowered.api.data.types.InstrumentType;
 import org.spongepowered.api.data.types.PistonType;
@@ -142,10 +142,10 @@ public final class CatalogBlockData {
      */
     public static final Class<DisarmedData> DISARMED_DATA = DisarmedData.class;
     /**
-     * Represents the {@link DisgusedBlockType} of a block. Usually applies
+     * Represents the {@link DisguisedBlockType} of a block. Usually applies
      * to {@link BlockTypes#MONSTER_EGG}.
      */
-    public static final Class<DisgusedBlockData> DISGUSED_BLOCK_DATA = DisgusedBlockData.class;
+    public static final Class<DisguisedBlockData> DISGUISED_BLOCK_DATA = DisguisedBlockData.class;
     /**
      * Represents the type of a double plant.
      */

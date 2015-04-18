@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.player;
 
+import org.spongepowered.api.data.manipulators.DisplayNameData;
+import org.spongepowered.api.data.manipulators.entities.GameModeData;
+import org.spongepowered.api.data.manipulators.entities.JoinData;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;
@@ -33,6 +36,7 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.source.LocatedSource;
 
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -99,4 +103,32 @@ public interface Player extends Human, User, LocatedSource, Viewer {
      * @param scoreboard The scoreboard to display
      */
     void setScoreboard(Scoreboard scoreboard);
+
+    /**
+     * Gets a copy of the current {@link JoinData}.
+     *
+     * <p>Since a {@link Player} is already online, it means that the player
+     * has joined the server at least once, meaning there is a guaranteed
+     * initial join {@link Date}. Users may not have ever joined a server
+     * before.</p>
+     *
+     * @return A copy of the join data
+     */
+    JoinData getJoinData();
+
+    /**
+     * Gets a copy of the current {@link DisplayNameData} for this
+     * {@link Player}.
+     *
+     * @return A copy of the current display name data
+     */
+    DisplayNameData getDisplayNameData();
+
+    /**
+     * Gets a copy of the current {@link GameModeData} for this {@link Player}.
+     *
+     * @return A copy of the current game mode data
+     */
+    GameModeData getGameModeData();
+
 }

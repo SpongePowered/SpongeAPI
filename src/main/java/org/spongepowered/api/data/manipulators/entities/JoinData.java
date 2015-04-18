@@ -25,9 +25,15 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.player.User;
 
 import java.util.Date;
 
+/**
+ * Represents the original join {@link Date} that a {@link User} or
+ * {@link Player} originally joined a server with.
+ */
 public interface JoinData extends DataManipulator<JoinData> {
 
     /**

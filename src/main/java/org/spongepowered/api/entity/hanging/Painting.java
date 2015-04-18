@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.entity.hanging;
 
+import org.spongepowered.api.data.manipulators.entities.ArtData;
+
 /**
  * Represents a Painting.
  */
 public interface Painting extends Hanging {
+
+    /**
+     * Gets a copy of the {@link ArtData} represented by this {@link Painting}.
+     *
+     * @return A copy of the art data
+     */
+    ArtData getArtData();
 
 }

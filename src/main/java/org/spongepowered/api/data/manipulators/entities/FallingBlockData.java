@@ -26,7 +26,11 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.FallingBlock;
 
+/**
+ * Represents the information for a {@link FallingBlock}.
+ */
 public interface FallingBlockData extends DataManipulator<FallingBlockData> {
 
     /**

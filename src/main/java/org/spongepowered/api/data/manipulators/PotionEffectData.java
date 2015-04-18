@@ -24,12 +24,21 @@
  */
 package org.spongepowered.api.data.manipulators;
 
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
 
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Represents a {@link List} of {@link PotionEffect}s that can be applicable to
+ * various {@link DataHolder}s such as {@link Entity}s, {@link ItemStack}s as
+ * {@link ItemTypes#POTION}, etc.
+ */
 public interface PotionEffectData extends ListData<PotionEffect, PotionEffectData> {
 
     /**

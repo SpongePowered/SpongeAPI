@@ -27,6 +27,9 @@ package org.spongepowered.api.data.types;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a stair shape.
+ */
 @CatalogedBy(StairShapes.class)
 public interface StairShape extends CatalogType {
 

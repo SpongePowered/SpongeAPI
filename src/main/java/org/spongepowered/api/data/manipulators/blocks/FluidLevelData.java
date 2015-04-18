@@ -24,8 +24,14 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.IntData;
 
+/**
+ * Represents the liquid filled level state of a block. Usually applicable to
+ * {@link BlockTypes#WATER}, {@link BlockTypes#LAVA}, and
+ * {@link BlockTypes#CAULDRON}.
+ */
 public interface FluidLevelData extends IntData<FluidLevelData> {
 
 }

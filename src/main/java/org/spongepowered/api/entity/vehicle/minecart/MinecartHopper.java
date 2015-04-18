@@ -24,9 +24,21 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.data.manipulators.tileentities.CooldownData;
+import org.spongepowered.api.item.inventory.ItemStack;
+
 /**
- * Represents a minecart with a Hopper in it.
+ * Represents a {@link Minecart} with a Hopper in it.
  */
 public interface MinecartHopper extends MinecartContainer {
+
+    /**
+     * Gets a copy of the {@link CooldownData}. The cooldown data represents
+     * the delay before this {@link MinecartHopper} will attempt to transfer
+     * an {@link ItemStack}.
+     *
+     * @return A copy of the cooldown data
+     */
+    CooldownData getCooldownData();
 
 }

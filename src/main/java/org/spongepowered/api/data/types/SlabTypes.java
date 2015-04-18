@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.data.types;
 
+/**
+ * An enumeration of known {@link SlabType}s.
+ */
 public final class SlabTypes {
 
     public static final SlabType STONE = null;

@@ -25,7 +25,13 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.monster.Guardian;
 
+/**
+ * Signifies that an entity is considered an "elder". Usually applicable to
+ * {@link Guardian}s. Depending on the entity implementation, "elders" will
+ * generally have a different size, texture, and health information.
+ */
 public interface ElderData extends DataManipulator<ElderData> {
 
 }

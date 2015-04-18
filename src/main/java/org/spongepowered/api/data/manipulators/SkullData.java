@@ -22,18 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.types;
+package org.spongepowered.api.data.manipulators;
 
-public final class DisgusedBlockTypes {
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.block.tile.Skull;
+import org.spongepowered.api.data.types.SkullType;
 
-    public static final DisgusedBlockType STONE = null;
-    public static final DisgusedBlockType COBBLESTONE = null;
-    public static final DisgusedBlockType STONEBRICK = null;
-    public static final DisgusedBlockType MOSSY_STONEBRICK = null;
-    public static final DisgusedBlockType CRACKED_STONEBRICK = null;
-    public static final DisgusedBlockType CHISELED_STONEBRICK = null;
-
-    private DisgusedBlockTypes() {
-    }
+/**
+ * Represents data associated with a {@link Skull} and {@link BlockTypes#SKULL}.
+ */
+public interface SkullData extends SingleValueData<SkullType, SkullData> {
 
 }

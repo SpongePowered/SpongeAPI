@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.block.tile;
 
+import org.spongepowered.api.data.manipulators.tileentities.SignData;
+
 /**
  * Represents a sign.
  */
 public interface Sign extends TileEntity {
+
+    /**
+     * Gets a copy of the currently used {@link SignData}.
+     *
+     * @return A copy of the currently used sign data
+     */
+    SignData getSignData();
 
 }

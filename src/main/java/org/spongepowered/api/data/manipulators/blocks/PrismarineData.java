@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.PrismarineType;
 
+/**
+ * Represents the {@link PrismarineType} of a {@link BlockTypes#PRISMARINE}.
+ */
 public interface PrismarineData extends SingleValueData<PrismarineType, PrismarineData> {
 
 }

@@ -24,9 +24,15 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.util.Direction;
 
+/**
+ * Represents the {@link Direction} data a block is facing. Depending on the
+ * {@link DataHolder}, some {@link Direction}s may not be accepted.
+ *
+ */
 public interface DirectionalData extends SingleValueData<Direction, DirectionalData> {
 
 }

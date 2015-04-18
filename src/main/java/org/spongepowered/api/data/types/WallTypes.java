@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.data.types;
 
+/**
+ * An enumeration of known vanilla {@link WallType}s.
+ */
 public final class WallTypes {
 
     public static final WallType NORMAL = null;

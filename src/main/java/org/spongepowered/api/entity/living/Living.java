@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.data.manipulators.entities.DamageableData;
+import org.spongepowered.api.data.manipulators.entities.HealthData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.potion.PotionEffect;
 
@@ -34,5 +36,21 @@ import org.spongepowered.api.potion.PotionEffect;
  * under water, custom names, and become invisible.</p>
  */
 public interface Living extends Entity {
+
+    /**
+     * Gets a copy of the current {@link HealthData}.
+     *
+     * @return A copy of the current health data
+     */
+    HealthData getHealthData();
+
+    /**
+     * Gets a copy of the current {@link DamageableData}.
+     *
+     * @return A copy of the current damageable data
+     */
+    DamageableData getMortalData();
+
+
 
 }

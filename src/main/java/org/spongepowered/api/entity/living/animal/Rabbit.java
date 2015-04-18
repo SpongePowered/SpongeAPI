@@ -24,9 +24,19 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.manipulators.entities.RabbitData;
+
 /**
  * Represents a rabbit.
  */
 public interface Rabbit extends Animal {
+
+    /**
+     * Gets a copy of the {@link RabbitData} representing the specific data for
+     * this {@link Rabbit}.
+     *
+     * @return A copy of the rabbit data
+     */
+    RabbitData getRabbitData();
 
 }

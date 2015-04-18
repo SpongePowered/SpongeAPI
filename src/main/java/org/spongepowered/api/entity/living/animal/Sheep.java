@@ -24,9 +24,19 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.manipulators.DyeableData;
+
 /**
  * Represents a Sheep.
  */
 public interface Sheep extends Animal {
+
+    /**
+     * Gets a copy of the {@link DyeableData} representing the color of this
+     * {@link Sheep} entity.
+     *
+     * @return A copy of the dye data
+     */
+    DyeableData getDyeData();
 
 }

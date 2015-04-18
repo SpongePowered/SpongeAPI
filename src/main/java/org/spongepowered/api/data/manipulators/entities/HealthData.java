@@ -25,7 +25,11 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.Living;
 
+/**
+ * Represents the health information for a {@link Living} entity.
+ */
 public interface HealthData extends DataManipulator<HealthData> {
 
     /**

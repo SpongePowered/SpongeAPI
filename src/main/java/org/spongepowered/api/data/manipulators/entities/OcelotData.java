@@ -26,7 +26,11 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.OcelotType;
+import org.spongepowered.api.entity.living.animal.Ocelot;
 
+/**
+ * Represents the {@link OcelotType} for an {@link Ocelot}.
+ */
 public interface OcelotData extends SingleValueData<OcelotType, OcelotData> {
 
 }

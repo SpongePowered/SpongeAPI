@@ -24,8 +24,18 @@
  */
 package org.spongepowered.api.data.manipulators;
 
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.types.DyeColor;
+import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.animal.Wolf;
+import org.spongepowered.api.item.ItemTypes;
 
+/**
+ * Signifies that a {@link DataHolder} can be "dyed" a specific
+ * {@link DyeColor}. Usually applicable to {@link BlockTypes#WOOL},
+ * {@link Sheep}, {@link Wolf} collars, and {@link ItemTypes#DYE}, etc.
+ */
 public interface DyeableData extends SingleValueData<DyeColor, DyeableData> {
 
 }

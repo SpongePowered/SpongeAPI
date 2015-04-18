@@ -25,8 +25,12 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.SingleValueData;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 
+/**
+ * Represents the {@link GameMode} of a {@link Player}.
+ */
 public interface GameModeData extends SingleValueData<GameMode, GameModeData> {
 
     /**

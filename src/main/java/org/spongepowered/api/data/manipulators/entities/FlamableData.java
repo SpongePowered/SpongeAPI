@@ -25,7 +25,13 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.monster.Blaze;
 
+/**
+ * Signifies that an {@link Entity} is on fire, but does not have a
+ * set expiration for being aflame. Usually applicable to {@link Blaze}s.
+ */
 public interface FlamableData extends DataManipulator<FlamableData> {
 
 }

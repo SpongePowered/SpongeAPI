@@ -24,9 +24,19 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.data.manipulators.TargetedLocationData;
+
 /**
  * Represents an Eye of Ender.
  */
 public interface EyeOfEnder extends Projectile {
+
+    /**
+     * Gets a copy of the {@link TargetedLocationData} this {@link EyeOfEnder}
+     * is "flying" towards.
+     *
+     * @return A copy of the targeted location data
+     */
+    TargetedLocationData getTargetLocationData();
 
 }

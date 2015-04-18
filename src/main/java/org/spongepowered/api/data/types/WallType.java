@@ -27,6 +27,9 @@ package org.spongepowered.api.data.types;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a type of wall.
+ */
 @CatalogedBy(WallTypes.class)
 public interface WallType extends CatalogType {
 

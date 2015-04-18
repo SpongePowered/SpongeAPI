@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.DirtType;
 
+/**
+ * Represents the {@link DirtType} of a {@link BlockTypes#DIRT}.
+ */
 public interface DirtData extends SingleValueData<DirtType, DirtData> {
 
 }

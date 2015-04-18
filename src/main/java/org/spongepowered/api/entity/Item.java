@@ -24,9 +24,19 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.data.manipulators.RepresentedItemData;
+
 /**
  * Represents an Item entity.
  */
 public interface Item extends Entity {
+
+    /**
+     * Gets a copy of the current {@link RepresentedItemData} this item is
+     * representing.
+     *
+     * @return A copy of the represented item data
+     */
+    RepresentedItemData getItemData();
 
 }

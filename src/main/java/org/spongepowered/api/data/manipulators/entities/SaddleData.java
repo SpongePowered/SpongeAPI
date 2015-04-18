@@ -25,8 +25,15 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.SingleValueData;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.item.inventory.ItemStack;
 
+/**
+ * Signifies that a {@link Entity} is currently "saddled". Usually applicable
+ * to {@link Pig}s and {@link Horse}s.
+ */
 public interface SaddleData extends SingleValueData<ItemStack, SaddleData> {
 
     /**

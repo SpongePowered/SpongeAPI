@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.SlabType;
 
+/**
+ * Represents the {@link SlabType} of a slab block. Usually applicable to
+ * {@link BlockTypes#WOODEN_SLAB} etc.
+ */
 public interface SlabData extends SingleValueData<SlabType, SlabData> {
 
 }

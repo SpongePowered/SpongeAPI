@@ -25,7 +25,14 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.Wolf;
 
+/**
+ * Signifies that an {@link Entity} is currently "sitting". Usually applicable
+ * to {@link Wolf} and {@link Horse}s.
+ */
 public interface SittingData extends DataManipulator<SittingData> {
 
 }

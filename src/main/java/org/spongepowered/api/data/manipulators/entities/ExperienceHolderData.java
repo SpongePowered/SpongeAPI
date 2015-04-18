@@ -25,7 +25,12 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.Human;
 
+/**
+ * Represents the "gained" experience information. Usually experience can be
+ * used to enchant weapons and items. Usually applicable to {@link Human}s.
+ */
 public interface ExperienceHolderData extends DataManipulator<ExperienceHolderData> {
 
     /**

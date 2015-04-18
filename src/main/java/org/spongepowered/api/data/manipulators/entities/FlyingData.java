@@ -25,7 +25,14 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.monster.Blaze;
 
+/**
+ * Signifies that an {@link Entity} is "flying". Usually applicable to
+ * {@link Blaze}s, {@link Human}s, etc.
+ */
 public interface FlyingData extends DataManipulator<FlyingData> {
 
 }

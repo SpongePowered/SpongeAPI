@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.data.types;
 
-public class DoubleSizePlantTypes {
+/**
+ * An enumeration of known vanilla {@link DoubleSizePlantType}s.
+ */
+public final class DoubleSizePlantTypes {
 
     public static final DoubleSizePlantType SUNFLOWER = null;
     public static final DoubleSizePlantType SYRINGA = null;

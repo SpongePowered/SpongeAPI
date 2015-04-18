@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.block.tile;
 
+import org.spongepowered.api.data.manipulators.MobSpawnerData;
+
 /**
  * Represents a Monster Spawner.
  */
@@ -38,5 +40,12 @@ public interface MobSpawner extends TileEntity {
      * @param force Whether to ignore spawning restrictions
      */
     void spawnEntityBatchImmediately(boolean force);
+
+    /**
+     * Gets a copy of the currently used {@link MobSpawnerData} for this mob spawner.
+     *
+     * @return A copy of the mob spawner data
+     */
+    MobSpawnerData getSpawnerData();
 
 }

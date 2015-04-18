@@ -24,8 +24,13 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
 
+/**
+ * Signifies that a block can "decay" under various circumstances.
+ * Usually applicable to {@link BlockTypes#LEAVES}.
+ */
 public interface DecayableData extends DataManipulator<DecayableData> {
 
 }

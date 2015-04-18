@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.manipulators.entities.ExpirableData;
+
 /**
  * Represents an endermite.
  */
 public interface Endermite extends Monster {
+
+    /**
+     * Gets a copy of the {@link ExpirableData} for this endermite.
+     *
+     * @return A copy of the expirable data
+     */
+    ExpirableData getExpirableData();
 
 }

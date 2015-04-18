@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.SingleValueData;
-import org.spongepowered.api.data.types.DisgusedBlockType;
+import org.spongepowered.api.data.types.DisguisedBlockType;
 
-public interface DisgusedBlockData extends SingleValueData<DisgusedBlockType, DisgusedBlockData> {
+/**
+ * Represents the {@link DisguisedBlockType} of a
+ * {@link BlockTypes#MONSTER_EGG}.
+ */
+public interface DisguisedBlockData extends SingleValueData<DisguisedBlockType, DisguisedBlockData> {
 
 }

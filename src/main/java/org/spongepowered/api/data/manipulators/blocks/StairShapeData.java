@@ -27,6 +27,9 @@ package org.spongepowered.api.data.manipulators.blocks;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.StairShape;
 
+/**
+ * Represents the {@link StairShape} of a stair block.
+ */
 public interface StairShapeData extends SingleValueData<StairShape, StairShapeData> {
 
 }

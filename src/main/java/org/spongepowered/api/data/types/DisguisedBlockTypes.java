@@ -22,11 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulators.blocks;
+package org.spongepowered.api.data.types;
 
-import org.spongepowered.api.data.manipulators.SingleValueData;
-import org.spongepowered.api.util.rotation.Rotation;
+/**
+ * An enumeration of known vanilla {@link DisguisedBlockType}s.
+ */
+public final class DisguisedBlockTypes {
 
-public interface RotationalData extends SingleValueData<Rotation, RotationalData> {
+    public static final DisguisedBlockType STONE = null;
+    public static final DisguisedBlockType COBBLESTONE = null;
+    public static final DisguisedBlockType STONEBRICK = null;
+    public static final DisguisedBlockType MOSSY_STONEBRICK = null;
+    public static final DisguisedBlockType CRACKED_STONEBRICK = null;
+    public static final DisguisedBlockType CHISELED_STONEBRICK = null;
+
+    private DisguisedBlockTypes() {
+    }
 
 }

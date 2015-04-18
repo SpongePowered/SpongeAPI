@@ -29,6 +29,4 @@ package org.spongepowered.api.entity;
  */
 public interface ExperienceOrb extends Entity {
 
-
-
 }

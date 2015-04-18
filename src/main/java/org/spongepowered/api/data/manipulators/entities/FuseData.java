@@ -25,14 +25,19 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.IntData;
+import org.spongepowered.api.entity.explosive.FusedExplosive;
 
+/**
+ * Represents the "fuse" for a {@link FusedExplosive}.
+ */
 public interface FuseData extends IntData<FuseData> {
 
     /**
      * Gets the current fuse duration in ticks on this explosive.
+     *
      * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
+     * may explode. If the fuse duration is set to negative, the explosive may
+     * become idle.</p>
      *
      * @return The current fuse duration in ticks
      */
@@ -40,9 +45,10 @@ public interface FuseData extends IntData<FuseData> {
 
     /**
      * Sets the remainig fuse duration in ticks on this explosive.
+     *
      * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
+     * may explode. If the fuse duration is set to negative, the explosive may
+     * become idle.</p>
      *
      * @param fuseTicks The ticks for the fuse
      */

@@ -25,7 +25,11 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.IntData;
+import org.spongepowered.api.entity.explosive.Explosive;
 
+/**
+ * Represents the "explosion radius" of an {@link Explosive} entity.
+ */
 public interface ExplosiveRadiusData extends IntData<ExplosiveRadiusData> {
 
     /**

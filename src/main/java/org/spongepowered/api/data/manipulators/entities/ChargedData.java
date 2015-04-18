@@ -25,7 +25,12 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.monster.Creeper;
 
+/**
+ * Signifies that an entity is "charged". Usually applicable to
+ * {@link Creeper}s.
+ */
 public interface ChargedData extends DataManipulator<ChargedData> {
 
 }

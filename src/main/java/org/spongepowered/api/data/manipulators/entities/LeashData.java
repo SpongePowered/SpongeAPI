@@ -26,7 +26,13 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Living;
 
+/**
+ * Signifies that an {@link Entity} is currently "leashed" to
+ * the {@link Entity} leash holder. Usually applicable to {@link Living}
+ * entities.
+ */
 public interface LeashData extends SingleValueData<Entity, LeashData> {
 
     /**

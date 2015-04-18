@@ -27,6 +27,9 @@ package org.spongepowered.api.data.manipulators.entities;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.entity.Entity;
 
+/**
+ * Signifies that an {@link Entity} is a "passenger" of another {@link Entity}.
+ */
 public interface PassengerData extends SingleValueData<Entity, PassengerData> {
 
     /**

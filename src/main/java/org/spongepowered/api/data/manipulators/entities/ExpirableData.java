@@ -25,7 +25,15 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.IntData;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.living.monster.Endermite;
+import org.spongepowered.api.world.weather.Weather;
 
+/**
+ * Signifies that an entity will expire after the value has
+ * decayed to the minimum. Usually applicable to {@link Weather},
+ * {@link Endermite}s and {@link Item}s.
+ */
 public interface ExpirableData extends IntData<ExpirableData> {
 
 }

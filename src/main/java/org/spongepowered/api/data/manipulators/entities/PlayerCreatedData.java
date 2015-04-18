@@ -25,7 +25,14 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.golem.IronGolem;
+import org.spongepowered.api.entity.player.Player;
 
+/**
+ * Signifies that an {@link Entity} was originally created by a {@link Player}.
+ * Usually applicable to {@link IronGolem}s.
+ */
 public interface PlayerCreatedData extends DataManipulator<PlayerCreatedData> {
 
 }

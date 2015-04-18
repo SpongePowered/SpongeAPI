@@ -22,14 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulators.entities;
+package org.spongepowered.api.data.manipulators;
 
-import org.spongepowered.api.data.manipulators.SingleValueData;
-import org.spongepowered.api.data.types.SkullType;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.hanging.ItemFrame;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Represents data associated with a {@link org.spongepowered.api.block.tile.Skull}.
+ * Represents an {@link ItemStack} being "represented" graphically by an
+ * {@link Entity}. Usually applicable to {@link Item}s, {@link ItemFrame}s,
+ * etc.
  */
-public interface SkullData extends SingleValueData<SkullType, SkullData> {
+public interface RepresentedItemData extends SingleValueData<ItemStack, RepresentedItemData> {
 
 }

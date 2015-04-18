@@ -27,6 +27,9 @@ package org.spongepowered.api.data.manipulators.blocks;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.WallType;
 
+/**
+ * Represents the {@link WallType} of a wall block.
+ */
 public interface WallData extends SingleValueData<WallType, WallData> {
 
 }

@@ -25,7 +25,12 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.monster.Enderman;
 
+/**
+ * Signifies that an entity is currently "screaming". Usually applicable to
+ * {@link Enderman}.
+ */
 public interface ScreamingData extends DataManipulator<ScreamingData> {
 
     /**

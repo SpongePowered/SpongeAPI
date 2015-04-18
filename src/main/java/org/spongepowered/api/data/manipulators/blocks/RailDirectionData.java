@@ -27,6 +27,9 @@ package org.spongepowered.api.data.manipulators.blocks;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.RailDirection;
 
+/**
+ * Represents the {@link RailDirection} data for various rail blocks.
+ */
 public interface RailDirectionData extends SingleValueData<RailDirection, RailDirectionData> {
 
 }

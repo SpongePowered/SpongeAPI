@@ -24,9 +24,15 @@
  */
 package org.spongepowered.api.data.manipulators.blocks;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.SandstoneType;
 
+/**
+ * Represents the {@link SandstoneType} for various sandstone blocks.
+ * Usually applicable to {@link BlockTypes#SANDSTONE} and
+ * {@link BlockTypes#RED_SANDSTONE}.
+ */
 public interface SandstoneData extends SingleValueData<SandstoneType, SandstoneData> {
 
 }

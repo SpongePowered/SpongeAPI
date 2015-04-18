@@ -25,7 +25,12 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.living.animal.Animal;
 
+/**
+ * Signifies that an entity is ready to breed. Usually applicable to
+ * {@link Animal}s.
+ */
 public interface BreedableData extends DataManipulator<BreedableData> {
 
 }

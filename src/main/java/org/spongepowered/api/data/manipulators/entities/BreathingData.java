@@ -26,6 +26,10 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
 
+/**
+ * Represents the remaining air information for various entities while they
+ * are underwater.
+ */
 public interface BreathingData extends DataManipulator<BreathingData> {
 
     /**

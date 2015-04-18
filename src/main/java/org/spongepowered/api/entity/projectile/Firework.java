@@ -24,11 +24,19 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.data.manipulators.FireworkData;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 
 /**
  * Represents a firework.
  */
 public interface Firework extends Projectile, FusedExplosive {
+
+    /**
+     * Gets a copy of the {@link FireworkData} for this firework.
+     *
+     * @return A copy of the firework data
+     */
+    FireworkData getFireworkData();
 
 }

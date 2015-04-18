@@ -25,7 +25,13 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.IntData;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.Arrow;
 
+/**
+ * Signifies that an {@link Entity} will "knock back" on the next attack.
+ * Usually applicable to {@link Arrow}s.
+ */
 public interface KnockbackData extends IntData<KnockbackData> {
 
     /**

@@ -34,6 +34,7 @@ import org.spongepowered.api.data.manipulators.DyeableData;
 import org.spongepowered.api.data.manipulators.FireworkData;
 import org.spongepowered.api.data.manipulators.OwnableData;
 import org.spongepowered.api.data.manipulators.PotionEffectData;
+import org.spongepowered.api.data.manipulators.RepresentedItemData;
 import org.spongepowered.api.data.manipulators.TargetedLocationData;
 import org.spongepowered.api.data.manipulators.WetData;
 import org.spongepowered.api.data.manipulators.entities.AchievementData;
@@ -70,7 +71,6 @@ import org.spongepowered.api.data.manipulators.entities.InvisibilityData;
 import org.spongepowered.api.data.manipulators.entities.JoinData;
 import org.spongepowered.api.data.manipulators.entities.KnockbackData;
 import org.spongepowered.api.data.manipulators.entities.LeashData;
-import org.spongepowered.api.data.manipulators.entities.NameData;
 import org.spongepowered.api.data.manipulators.entities.OcelotData;
 import org.spongepowered.api.data.manipulators.entities.OrbData;
 import org.spongepowered.api.data.manipulators.entities.PassengerData;
@@ -78,7 +78,6 @@ import org.spongepowered.api.data.manipulators.entities.PersistingData;
 import org.spongepowered.api.data.manipulators.entities.PlayerCreatedData;
 import org.spongepowered.api.data.manipulators.entities.PlayingData;
 import org.spongepowered.api.data.manipulators.entities.RabbitData;
-import org.spongepowered.api.data.manipulators.entities.RepresentedItemData;
 import org.spongepowered.api.data.manipulators.entities.RespawnLocationData;
 import org.spongepowered.api.data.manipulators.entities.SaddleData;
 import org.spongepowered.api.data.manipulators.entities.ScreamingData;
@@ -360,11 +359,6 @@ public final class CatalogEntityData {
      * towards. Usually applicable for {@link EyeOfEnder}s.
      */
     public static final Class<TargetedLocationData> LOCATION_DATA = TargetedLocationData.class;
-    /**
-     * Represents the actual name of an entity. Usually applicable to
-     * {@link Player}s
-     */
-    public static final Class<NameData> NAME_DATA = NameData.class;
     /**
      * Represents the {@link OcelotType} of an {@link Ocelot}.
      */

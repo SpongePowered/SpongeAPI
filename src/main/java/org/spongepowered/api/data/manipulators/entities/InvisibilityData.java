@@ -25,8 +25,13 @@
 package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 
+/**
+ * Signifies that an {@link Entity} is rendered "invisible" to viewing
+ * {@link Player}s.
+ */
 public interface InvisibilityData extends DataManipulator<InvisibilityData> {
 
     /**

@@ -25,8 +25,12 @@
 package org.spongepowered.api.data.types;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents the {@link DirtType} of a {@link BlockTypes#DIRT}.
+ */
 @CatalogedBy(DirtTypes.class)
 public interface DirtType extends CatalogType {
 

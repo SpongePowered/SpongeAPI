@@ -24,42 +24,39 @@
  */
 package org.spongepowered.api.data.manipulators.entities;
 
-import org.spongepowered.api.data.manipulators.SingleValueData;
+import org.spongepowered.api.data.manipulators.ListData;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.item.merchant.Merchant;
+import org.spongepowered.api.item.merchant.TradeOffer;
 
-public interface NameData extends SingleValueData<String, NameData> {
+import java.util.List;
 
-    /**
-     * Gets the custom display name of the holder.
-     *
-     * <p>Custom names may appear overhead or when in the line of sight
-     * of a player.</p>
-     *
-     * @return The custom name
-     */
-    String getCustomName();
+/**
+ * Represents a list of {@link TradeOffer}s that a {@link Merchant} may use.
+ */
+public interface TradeOfferData extends ListData<TradeOffer, TradeOfferData> {
 
     /**
-     * Sets the custom display name of the holder.
+     * Gets an immutable list of {@link TradeOffer}s that can be offered to a
+     * {@link Human}.
      *
-     * <p>Custom names may appear overhead or when in the line of sight
-     * of a player.</p>
-     *
-     * @param name The custom name
+     * @return An immutable list of trade offers
      */
-    void setCustomName(String name);
+    List<TradeOffer> getOffers();
 
     /**
-     * Returns whether the custom name is visible to players.
+     * Replaces the entire list of trade offers this merchant can trade
+     * with a {@link Human}.
      *
-     * @return Whether the custom name is visible or not
+     * @param offers The offers to set
      */
-    boolean isCustomNameVisible();
+    void setOffers(List<TradeOffer> offers);
 
     /**
-     * Sets whether the custom name is visible to players.
+     * Adds the given offer to the list of offers.
      *
-     * @param visible Whether the custom name is visible
+     * @param offer The offer to add
      */
-    void setCustomNameVisible(boolean visible);
+    void addOffer(TradeOffer offer);
 
 }

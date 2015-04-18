@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.data.manipulators.entities;
 
-
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.projectile.Arrow;
 
+/**
+ * Signifies that an entity's next attack is considered a "critical" hit.
+ * Usually applicable to {@link Arrow}s.
+ */
 public interface CriticalHitData extends DataManipulator<CriticalHitData> {
 
 }

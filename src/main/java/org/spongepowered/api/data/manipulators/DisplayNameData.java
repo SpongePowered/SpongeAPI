@@ -54,4 +54,18 @@ public interface DisplayNameData extends SingleValueData<Text, DisplayNameData> 
      */
     void setDisplayName(Text displayName);
 
+    /**
+     * Returns whether the custom name is visible to players.
+     *
+     * @return Whether the custom name is visible or not
+     */
+    boolean isCustomNameVisible();
+
+    /**
+     * Sets whether the custom name is visible to players.
+     *
+     * @param visible Whether the custom name is visible
+     */
+    void setCustomNameVisible(boolean visible);
+
 }

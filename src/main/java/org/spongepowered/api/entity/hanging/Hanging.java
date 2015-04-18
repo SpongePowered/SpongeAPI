@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.hanging;
 
+import org.spongepowered.api.data.manipulators.blocks.DirectionalData;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -31,4 +32,11 @@ import org.spongepowered.api.entity.Entity;
  */
 public interface Hanging extends Entity {
 
+    /**
+     * Gets a copy of the {@link DirectionalData} being used for this
+     * {@link Hanging} entity.
+     *
+     * @return A copy of the directional data
+     */
+    DirectionalData getDirectionalData();
 }

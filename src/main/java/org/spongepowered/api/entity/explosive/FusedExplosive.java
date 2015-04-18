@@ -24,10 +24,20 @@
  */
 package org.spongepowered.api.entity.explosive;
 
+import org.spongepowered.api.data.manipulators.entities.FuseData;
+
 /**
  * Represents an explosive that detonates after its fuse has expired.
  * <p>A FusedExplosive may already be ignited once spawned.</p>
  */
 public interface FusedExplosive extends Explosive {
+
+    /**
+     * Gets a copy of the {@link FuseData} representing the fuse
+     * for this {@link FusedExplosive} entity.
+     *
+     * @return A copy of the fuse data
+     */
+    FuseData getFuseData();
 
 }

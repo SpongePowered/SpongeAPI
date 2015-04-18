@@ -26,7 +26,15 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.world.Location;
 
+/**
+ * Represents the "eye" location of an {@link Entity}. The location may
+ * change based on the {@link Location} of the holder. Usually applicable to
+ * all {@link Living} entities.
+ */
 public interface EyeLocationData extends DataManipulator<EyeLocationData> {
 
     /**

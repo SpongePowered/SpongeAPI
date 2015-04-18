@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.data.manipulators;
 
+/**
+ * Represents an abstract {@link SingleValueData} that has an int value.
+ *
+ * @param <T> The type of implementing data
+ */
 public interface IntData<T extends IntData<T>> extends SingleValueData<Integer, T> {
 
     /**

@@ -22,12 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.types;
+package org.spongepowered.api.data.manipulators;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.entity.EntityTypes;
+import org.spongepowered.api.util.rotation.Rotation;
 
-@CatalogedBy(DisgusedBlockTypes.class)
-public interface DisgusedBlockType extends CatalogType {
+/**
+ * Represents the {@link Rotation} of a block. Usually applicable to
+ * {@link EntityTypes#ITEM_FRAME}s.
+ */
+public interface RotationalData extends SingleValueData<Rotation, RotationalData> {
 
 }

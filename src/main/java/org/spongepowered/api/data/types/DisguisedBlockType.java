@@ -22,18 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulators.entities;
+package org.spongepowered.api.data.types;
 
-import org.spongepowered.api.block.tile.FlowerPot;
-import org.spongepowered.api.block.tile.Jukebox;
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.data.manipulators.SingleValueData;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a {@link TileEntity} that acts on an {@link ItemStack}.
- * Usually applicable to {@link Jukebox}es and {@link FlowerPot}s.
+ * Represents a type of "disguised" block that mimics the look of another
+ * block.
  */
-public interface RepresentedItemData extends SingleValueData<ItemStack, RepresentedItemData> {
+@CatalogedBy(DisguisedBlockTypes.class)
+public interface DisguisedBlockType extends CatalogType {
 
 }

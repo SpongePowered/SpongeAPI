@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.data.types;
 
+/**
+ * An enumeration of known {@link Hinge}s.
+ */
 public final class Hinges {
 
     public static final Hinge LEFT = null;

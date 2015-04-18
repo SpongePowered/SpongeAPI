@@ -26,7 +26,11 @@ package org.spongepowered.api.data.manipulators.entities;
 
 import org.spongepowered.api.data.manipulators.SingleValueData;
 import org.spongepowered.api.data.types.Career;
+import org.spongepowered.api.entity.living.Villager;
 
+/**
+ * Represents the {@link Career} for a {@link Villager}.
+ */
 public interface CareerData extends SingleValueData<Career, CareerData> {
 
     /**

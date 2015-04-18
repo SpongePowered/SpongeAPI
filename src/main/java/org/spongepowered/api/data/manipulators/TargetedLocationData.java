@@ -24,8 +24,14 @@
  */
 package org.spongepowered.api.data.manipulators;
 
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.world.Location;
 
+/**
+ * Signifies that the {@link DataHolder} is "targeting" a {@link Location}.
+ * Usually applicable to {@link EyeOfEnder} and other entities and items.
+ */
 public interface TargetedLocationData extends SingleValueData<Location, TargetedLocationData> {
 
 }
