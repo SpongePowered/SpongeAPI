@@ -89,24 +89,6 @@ public interface Objective {
     void setDisplayMode(ObjectiveDisplayMode displayMode);
 
     /**
-     * Gets the display slot this objective is displayed at.
-     *
-     * @return The display slot for this objective, if set
-     */
-    Optional<DisplaySlot> getDisplaySlot();
-
-    /**
-     * Sets this objective to display on the specified slot for the
-     * scoreboard, removing it from any other display slot.
-     *
-     * <p>If another objective is set to the same display slot, that objective will
-     * have it's display slot set to <code>null</code>.</p>
-     *
-     * @param slot The display slot to change, or null to not display
-     */
-    void setDisplaySlot(@Nullable DisplaySlot slot);
-
-    /**
      * Gets the set of {@link Score}s for this objective.
      *
      * @return The set of {@link Score}s for this objective

@@ -32,6 +32,8 @@ import org.spongepowered.api.scoreboard.objective.Objective;
 
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.
  * The server has a default scoreboard, but each {@link org.spongepowered.api.entity.player.Player}
@@ -59,6 +61,20 @@ public interface Scoreboard {
     Optional<Objective> getObjective(DisplaySlot slot);
 
     /**
+     * Sets the specified {@link Objective} in the specified {@link DisplaySlot}, removing
+     * it from any other {@link DisplaySlot}.
+     *
+     * <p>If another objective is set to the same display slot, that objective will
+     * have it's display slot set to <code>null</code>.</p>
+     *
+     * @param objective The {@link Objective} to set
+     * @param displaySlot The {@link DisplaySlot} to the specified {@link Objective} in
+     * @throws IllegalStateException if the specified {@link Objective} does not exist
+     *                               on this scoreboard
+     */
+    void addObjective(Objective objective, @Nullable DisplaySlot displaySlot) throws IllegalStateException;
+
+    /**
      * Gets all {@link Objective}s of a Criteria on this scoreboard.
      *
      * @param criteria {@link Criterion} to search by
@@ -76,12 +92,12 @@ public interface Scoreboard {
     /**
      * Adds the specified {@link Objective} to this scoreboard.
      *
-     * @param team The {@link Objective} add
+     * @param objective The {@link Objective} add
      * @throws IllegalArgumentException if an {@link Objective} with the same
      *             {@link Objective#getName() name} already exists, or if the
      *             specified {@link Objective} has already been added.
      */
-    void addObjective(Objective team) throws IllegalArgumentException;
+    void addObjective(Objective objective) throws IllegalArgumentException;
 
     /**
      * Removes the specified {@link Objective} from this scoreboard.
