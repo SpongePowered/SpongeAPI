@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.WorldCreationSettings;
 

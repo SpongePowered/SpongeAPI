@@ -33,6 +33,7 @@ import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.net.InetSocketAddress;
@@ -211,6 +212,13 @@ public interface Server extends ChannelRegistrar {
      * @return True if the save was successful
      */
     boolean saveWorldProperties(WorldProperties properties);
+
+    /**
+     * Returns information about the chunk layout used by this server implementation.
+     *
+     * @return The chunk layout used by the implementation
+     */
+    ChunkLayout getChunkLayout();
 
     /**
      * Gets the time, in ticks, since this server began running for the current session.

@@ -68,8 +68,8 @@ public enum Direction {
     private final int flags;
     private Direction opposite;
 
-    private Direction(Vector3d vector3d, int flags) {
-        if (vector3d.length() == 0) {
+    Direction(Vector3d vector3d, int flags) {
+        if (vector3d.lengthSquared() == 0) {
             // Prevent normalization of the zero direction
             this.direction = vector3d;
         } else {
