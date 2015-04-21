@@ -34,7 +34,7 @@ import org.spongepowered.api.world.Location;
 /**
  * Called when an {@link Entity} is killed or removed due to unload.
  */
-public interface EntityDeathEvent extends EntityEvent, ExperienceEvent, CauseTracked, Cancellable, ItemDropEvent {
+public interface EntityDeathEvent extends EntityEvent, ExperienceEvent, CauseTracked {
 
     /**
      * Gets the location of the player's death.

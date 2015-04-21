@@ -25,11 +25,12 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.inventory.ItemDropEvent;
 
 /**
  * Called when a player drops an item stack.
  */
-public interface EntityDropItemEvent extends EntityEvent, Cancellable, ItemDropEvent {
+public interface EntityDropItemEvent extends EntityEvent, CauseTracked, Cancellable, ItemDropEvent {
 
 }
