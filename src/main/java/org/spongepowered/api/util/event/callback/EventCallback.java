@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util.event.callback;
 
+import org.spongepowered.api.event.Order;
+
 /**
  * A callback is called upon completing the dispatch of an event. Callbacks
  * are executed in the order opposite of that in which they were registered
@@ -37,5 +39,12 @@ public interface EventCallback extends Runnable {
      * @return Whether it's for the base game
      */
     boolean isBaseGame();
+
+    /**
+     * Gets the order of this {@link EventCallback}.
+     *
+     * @return The order
+     */
+    Order getOrder();
 
 }

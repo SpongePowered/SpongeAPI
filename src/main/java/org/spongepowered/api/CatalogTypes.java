@@ -98,8 +98,8 @@ import org.spongepowered.api.world.weather.Weather;
 
 /**
  * Enumeration of all known {@link CatalogType}s for autocompletion when using the
- * {@link GameRegistry#getType(Class, String)} and {@link
- * GameRegistry#getAllOf(Class)}.
+ * {@link GameRegistry#getType(Class, String)} and
+ * {@link GameRegistry#getAllOf(Class)}.
  */
 public final class CatalogTypes {
 

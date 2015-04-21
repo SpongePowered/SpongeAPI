@@ -630,8 +630,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     /**
      * Gets or creates a new {@link DataManipulator} that can be accepted by
      * the block at the location. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new {@link
-     * DataManipulator} object is created with default values.
+     * be represented by the given {@link DataManipulator}, a new
+     * {@link  DataManipulator} object is created with default values.
      *
      * <p>In the event the {@link DataManipulator} can not represent any data
      * pertaining to the block at the location, {@link Optional#absent()} is
@@ -647,8 +647,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     /**
      * Gets or creates a new {@link DataManipulator} that can be accepted by
      * the block at the location. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new {@link
-     * DataManipulator} object is created with default values.
+     * be represented by the given {@link DataManipulator}, a new
+     * {@link  DataManipulator} object is created with default values.
      *
      * <p>In the event the {@link DataManipulator} can not represent any data
      * pertaining to the block at the location, {@link Optional#absent()} is
@@ -727,8 +727,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * would otherwise overlap existing data on the block at the given
      * position, a default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
      *
-     * <p>If any data is rejected or existing data is replaced, the {@link
-     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     * <p>If any data is rejected or existing data is replaced, the
+     * {@link DataTransactionResult} will retain the rejected and replaced
+     * data.</p>
      *
      * @param position The position of the block
      * @param manipulatorData The manipulator data to offer
@@ -745,8 +746,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * would otherwise overlap existing data on the block at the given
      * position, a default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
      *
-     * <p>If any data is rejected or existing data is replaced, the {@link
-     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     * <p>If any data is rejected or existing data is replaced, the
+     * {@link DataTransactionResult} will retain the rejected and replaced
+     * data.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -761,8 +763,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * Offers the given {@link DataManipulator} to the block at the given
      * position.
      *
-     * <p>If any data is rejected or existing data is replaced, the {@link
-     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     * <p>If any data is rejected or existing data is replaced, the
+     * {@link DataTransactionResult} will retain the rejected and replaced
+     * data.</p>
      *
      * @param position The position of the block
      * @param manipulatorData The manipulator data to offer
@@ -776,8 +779,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * Offers the given {@link DataManipulator} to the block at the given
      * position.
      *
-     * <p>If any data is rejected or existing data is replaced, the {@link
-     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     * <p>If any data is rejected or existing data is replaced, the
+     * {@link DataTransactionResult} will retain the rejected and replaced
+     * data.</p>
      *
      * @param x The X position
      * @param y The Y position

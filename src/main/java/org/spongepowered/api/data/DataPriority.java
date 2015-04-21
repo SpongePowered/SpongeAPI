@@ -25,15 +25,15 @@
 package org.spongepowered.api.data;
 
 /**
- * A data priority enum. When merging existing data from a {@link
- * DataHolder} and a {@link DataManipulator}, the priority defines which
- * data to retain, and or, merge.
+ * A data priority enum. When merging existing data from a {@link DataHolder}
+ * and a {@link DataManipulator}, the priority defines which data to retain,
+ * and or, merge.
  */
 public enum DataPriority {
     /**
      * The data residing in the {@link DataHolder} should be retained,
-     * ignoring all overlapping data from thie owning {@link
-     * DataManipulator}.
+     * ignoring all overlapping data from the owning
+     * {@link DataManipulator}.
      */
     DATA_HOLDER,
     /**
@@ -43,16 +43,16 @@ public enum DataPriority {
     DATA_MANIPULATOR,
     /**
      * All overlapping data from the {@link DataManipulator} will be
-     * added before the overlapping data existing from the {@link
-     * DataHolder}. Examples may include prefixing display names,
+     * added before the overlapping data existing from the
+     * {@link DataHolder}. Examples may include prefixing display names,
      * adding enchantments at the beginning of an enchantment list, etc.
      */
     PRE_MERGE,
     /**
      * All overlapping data from the {@link DataManipulator} will be
-     * added after the overlapping data existing from the {@link
-     * DataHolder}. Examples may include suffixing display names,
-     * adding enchantments at the end of an enchantment list, etc.
+     * added after the overlapping data existing from the {@link DataHolder}.
+     * Examples may include suffixing display names, adding enchantments at
+     * the end of an enchantment list, etc.
      */
     POST_MERGE,
     ;

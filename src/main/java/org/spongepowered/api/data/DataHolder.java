@@ -56,8 +56,8 @@ public interface DataHolder extends DataSerializable {
     /**
      * Gets or creates a new {@link DataManipulator} that can be accepted by
      * this {@link DataHolder}. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new {@link
-     * DataManipulator} object is created with default values.
+     * be represented by the given {@link DataManipulator}, a new
+     * {@link DataManipulator} object is created with default values.
      *
      * <p>In the event the {@link DataManipulator} can not represent any data
      * pertaining to this {@link DataHolder}, {@link Optional#absent()} is
@@ -88,8 +88,8 @@ public interface DataHolder extends DataSerializable {
      *
      * @param manipulatorClass The data class
      * @param <T> The type of data
-     * @return True if this {@link DataHolder} can accept the {@link
-     *    DataManipulator} object
+     * @return True if this {@link DataHolder} can accept the
+     *     {@link DataManipulator} object
      */
     <T extends DataManipulator<T>> boolean isCompatible(Class<T> manipulatorClass);
 
@@ -100,8 +100,9 @@ public interface DataHolder extends DataSerializable {
      * would otherwise overlap existing data on this {@link DataHolder}, a
      * default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
      *
-     * <p>If any data is rejected or existing data is replaced, the {@link
-     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     * <p>If any data is rejected or existing data is replaced, the
+     * {@link DataTransactionResult} will retain the rejected and replaced
+     * data.</p>
      *
      * @param manipulatorData The manipulator data to offer
      * @param <T> The type of manipulator data
@@ -112,8 +113,9 @@ public interface DataHolder extends DataSerializable {
     /**
      * Offers the given {@link DataManipulator} to this {@link DataHolder}.
      *
-     * <p>If any data is rejected or existing data is replaced, the {@link
-     * DataTransactionResult} will retain the rejected and replaced data.</p>
+     * <p>If any data is rejected or existing data is replaced, the
+     * {@link DataTransactionResult} will retain the rejected and replaced
+     * data.</p>
      *
      * @param manipulatorData The manipulator data to offer
      * @param <T> The type of manipulator data
@@ -124,9 +126,9 @@ public interface DataHolder extends DataSerializable {
 
     /**
      * Gets an copied collection of all known {@link DataManipulator}s
-     * belonging to this {@link DataHolder}. An individual {@link
-     * DataManipulator} can be used for creating new data to replace on this
-     * {@link DataHolder}.
+     * belonging to this {@link DataHolder}. An individual
+     * {@link DataManipulator} can be used for creating new data to replace on
+     * this {@link DataHolder}.
      *
      * @return A collection of copied data manipulators belonging to this
      *     data holder
@@ -134,9 +136,9 @@ public interface DataHolder extends DataSerializable {
     Collection<? extends DataManipulator<?>> getManipulators();
 
     /**
-     * Attempts to retrieve a specific {@link Property} type of this {@link
-     * DataHolder}. If the property is not applicable, {@link Optional#absent()}
-     * is returned.
+     * Attempts to retrieve a specific {@link Property} type of this
+     * {@link DataHolder}. If the property is not applicable,
+     * {@link Optional#absent()} is returned.
      *
      * <p>{@link Property}s can define various immutable information about a
      * {@link DataHolder} that is dependent on the instance of the holder.

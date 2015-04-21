@@ -165,8 +165,8 @@ public final class SimpleDispatcher implements Dispatcher {
     public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
         checkNotNull(aliases, "aliases");
-        checkNotNull(callable, "aliases");
-        checkNotNull(callback, "aliases");
+        checkNotNull(callable, "callable");
+        checkNotNull(callback, "callback");
 
         // Invoke the callback with the commands that /can/ be registered
         //noinspection ConstantConditions

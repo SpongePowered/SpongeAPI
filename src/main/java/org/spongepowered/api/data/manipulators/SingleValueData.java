@@ -28,8 +28,8 @@ import org.spongepowered.api.data.DataManipulator;
 
 /**
  * Represents a {@link DataManipulator} that handles a single value with
- * default provided methods to {@link #getValue()} and {@link
- * #setValue(Object)}.
+ * default provided methods to {@link #getValue()} and
+ * {@link #setValue(Object)}.
  *
  * @param <V> The value of the data
  * @param <T> The implementing manipulator for comparison

@@ -50,6 +50,7 @@ public interface BlockType extends CatalogType, Translatable {
      *
      * @return The id
      */
+    @Override
     String getName();
 
     /**

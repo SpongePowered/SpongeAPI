@@ -106,8 +106,8 @@ public interface GameRegistry {
     <T extends CatalogType> Optional<T> getType(Class<T> typeClass, String id);
 
     /**
-     * Gets a collection of all available found specific types of {@link
-     * CatalogType} requested.
+     * Gets a collection of all available found specific types of
+     * {@link CatalogType} requested.
      *
      * <p>The presented {@link CatalogType}s may not exist in default catalogs
      * due to various reasons including but not restricted to: mods, plugins,

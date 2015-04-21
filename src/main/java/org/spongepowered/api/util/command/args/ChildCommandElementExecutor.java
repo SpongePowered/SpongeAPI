@@ -57,9 +57,12 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     private final SimpleDispatcher dispatcher = new SimpleDispatcher(SimpleDispatcher.FIRST_DISAMBIGUATOR);
 
     /**
-     * Create a new combined argument element and executor to handle the parsing and execution of child commands.
-     * @param fallbackExecutor The executor to execute if the child command has been marked optional (Generally when this is wrapped in a {@link
-     * GenericArguments#optional(CommandElement)}
+     * Create a new combined argument element and executor to handle the
+     * parsing and execution of child commands.
+     *
+     * @param fallbackExecutor The executor to execute if the child command
+     *     has been marked optional (Generally when this is wrapped in a
+     *     {@link GenericArguments#optional(CommandElement)}
      */
     public ChildCommandElementExecutor(@Nullable CommandExecutor fallbackExecutor) {
         super(Texts.of("child" + COUNTER.getAndIncrement()));

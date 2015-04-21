@@ -39,8 +39,8 @@ public interface CatalogType {
     String getId();
 
     /**
-     * Gets the unique human-readable name of this individual {@link
-     * CatalogType}.
+     * Gets the unique human-readable name of this individual
+     * {@link CatalogType}.
      *
      * @return The uniquely identifiable name of this catalog type
      */

@@ -62,15 +62,15 @@ public interface DataTransactionResult {
 
         /**
          * The {@link DataManipulator} operation failed because an
-         * <em>unexpected</em> condition occurred. The state of the {@link
-         * DataManipulator} is undefined.
+         * <em>unexpected</em> condition occurred. The state of the
+         * {@link DataManipulator} is undefined.
          */
         ERROR,
 
         /**
-         * An operation was cancelled by a third party (eååg. an {@link
-         * DataManipulator} event was cancelled). The condition of the {@link
-         * DataManipulator} is unchanged.
+         * An operation was cancelled by a third party (eg. a
+         * {@link DataManipulator} event was cancelled). The condition of the
+         * {@link DataManipulator} is unchanged.
          */
         CANCELLED,
         ;

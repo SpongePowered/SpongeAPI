@@ -43,6 +43,7 @@ public interface Enchantment extends CatalogType, Translatable {
      *
      * @return The id
      */
+    @Override
     String getName();
 
     /**

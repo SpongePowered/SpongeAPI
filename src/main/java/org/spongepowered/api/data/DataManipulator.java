@@ -42,40 +42,41 @@ public interface DataManipulator<T extends DataManipulator<T>> extends Comparabl
     /**
      * Attempts to read data from the given {@link DataHolder} and constructs
      * a new copy of this {@link DataManipulator} as an instance of
-     * <code>T</code>. Any data that overlaps between this and the given {@link
-     * DataHolder} will be resolved by a default {@link DataPriority#PRE_MERGE}
-     * such that the current data from this {@link DataManipulator} will be
-     * applied before the existing data from the {@link DataHolder}.
+     * <code>T</code>. Any data that overlaps between this and the given
+     * {@link DataHolder} will be resolved by a default
+     * {@link DataPriority#PRE_MERGE} such that the current data from this
+     * {@link DataManipulator} will be applied before the existing data from
+     * the {@link DataHolder}.
      *
      * <p>Any data that overlaps existing data from the {@link DataHolder} will
      * take priority and be overwriten from the pre-existing data from the
-     * {@link DataHolder}. It is recommended that a call from {@link
-     * DataHolder#isCompatible(Class)} is checked prior to using this method on
-     * any {@link DataHolder}.</p>
+     * {@link DataHolder}. It is recommended that a call from
+     * {@link DataHolder#isCompatible(Class)} is checked prior to using this
+     * method on any {@link DataHolder}.</p>
      *
      * @param dataHolder The {@link DataHolder} to extract data
-     * @return A new instance of this {@link DataManipulator} with relevant data
-     *     filled from the given {@link DataHolder}
+     * @return A new instance of this {@link DataManipulator} with relevant
+     *     data filled from the given {@link DataHolder}
      */
     Optional<T> fill(DataHolder dataHolder);
 
     /**
      * Attempts to read data from the given {@link DataHolder} and constructs
      * a new copy of this {@link DataManipulator} as an instance of
-     * <code>T</code>. Any data overlap that exists in both the {@link
-     * DataHolder} and this {@link DataManipulator} will be resolved using the
-     * given {@link DataPriority}.
+     * <code>T</code>. Any data that overlaps between this and the given
+     * {@link DataHolder} will be resolved using the given
+     * {@link DataPriority}.
      *
      * <p>Any data that overlaps existing data from the {@link DataHolder} will
      * take priority and be overwriten from the pre-existing data from the
-     * {@link DataHolder}. It is recommended that a call from {@link
-     * DataHolder#isCompatible(Class)} is checked prior to using this method on
-     * any {@link DataHolder}.</p>
+     * {@link DataHolder}. It is recommended that a call from
+     * {@link DataHolder#isCompatible(Class)} is checked prior to using this
+     * method on any {@link DataHolder}.</p>
      *
      * @param dataHolder The {@link DataHolder} to extract data
      * @param overlap The overlap resolver to decide which data to retain
-     * @return A new instance of this {@link DataManipulator} with relevant data
-     *     filled from the given {@link DataHolder}
+     * @return A new instance of this {@link DataManipulator} with relevant
+     *     data filled from the given {@link DataHolder}
      */
     Optional<T> fill(DataHolder dataHolder, DataPriority overlap);
 

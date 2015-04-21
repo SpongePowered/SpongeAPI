@@ -26,13 +26,13 @@ package org.spongepowered.api.potion;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulators.PotionEffectData;
 
 /**
  * Represents a possible Potion Effect.
  *
  * <p>PotionEffects can be added to entities via
- * {@link org.spongepowered.api.data.manipulators.PotionEffectData#addPotionEffect(PotionEffect,
- * boolean)}.</p>
+ * {@link PotionEffectData#addPotionEffect(PotionEffect, boolean)}.</p>
  */
 public interface PotionEffect extends DataSerializable, DataHolder {
 

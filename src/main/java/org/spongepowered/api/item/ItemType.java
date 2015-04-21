@@ -45,6 +45,7 @@ public interface ItemType extends CatalogType, Translatable {
      *
      * @return The id
      */
+    @Override
     String getName();
 
     /**

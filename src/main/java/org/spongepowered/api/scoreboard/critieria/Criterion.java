@@ -38,6 +38,7 @@ public interface Criterion extends CatalogType {
      *
      * @return The name of this criterion
      */
+    @Override
     String getName();
 
 }

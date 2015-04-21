@@ -33,6 +33,7 @@ import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.EnumSet;
 import java.util.UUID;
@@ -149,8 +150,8 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param location The location to set
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
-     * @return True if location was set successfully, false if location couldn't
-     *         be set as no safe location was found
+     * @return True if location was set successfully, false if location
+     *     couldn't be set as no safe location was found
      */
     boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
@@ -159,16 +160,14 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * not have to be loaded (but must at least be enabled).
      *
      * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link
-     * TargetedLocationData}.</p>
+     * setting the location via {@link TargetedLocationData}.</p>
      *
      * <p>If the target world is unloaded but is enabled according to its
-     * {@link org.spongepowered.api.world.storage.WorldProperties#isEnabled()}
-     * then this will first load the world before transferring the entity to
-     * that world.</p>
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
      *
-     * <p>If the target world is unloaded and not enabled then the transfer will
-     * fail.</p>
+     * <p>If the target world is unloaded and not enabled then the transfer
+     * will fail.</p>
      *
      * @param worldName The name of the world to transfer to
      * @param position The position in the target world
@@ -181,16 +180,14 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * not have to be loaded (but must at least be enabled).
      *
      * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link
-     * TargetedLocationData}.</p>
+     * setting the location via {@link TargetedLocationData}.</p>
      *
      * <p>If the target world is unloaded but is enabled according to its
-     * {@link org.spongepowered.api.world.storage.WorldProperties#isEnabled()}
-     * then this will first load the world before transferring the entity to
-     * that world.</p>
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
      *
-     * <p>If the target world is unloaded and not enabled then the transfer will
-     * fail.</p>
+     * <p>If the target world is unloaded and not enabled then the transfer
+     * will fail.</p>
      *
      * @param uuid The UUID of the target world to transfer to
      * @param position The position in the target world

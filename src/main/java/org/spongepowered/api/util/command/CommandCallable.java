@@ -31,8 +31,8 @@ import org.spongepowered.api.util.command.spec.CommandSpec;
 import java.util.List;
 
 /**
- * A low-level interface for commands that can be executed. For almost all use cases, higher-level tools should be used instead, like {@link
- * CommandSpec}
+ * A low-level interface for commands that can be executed. For almost all use
+ * cases, higher-level tools should be used instead, like {@link CommandSpec}.
  *
  * <p>Implementations are not required to implement a sane
  * {@link java.lang.Object#equals(Object)} but really should.</p>
