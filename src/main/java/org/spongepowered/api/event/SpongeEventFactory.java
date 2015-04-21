@@ -575,17 +575,14 @@ public final class SpongeEventFactory {
      * @param cause The cause of the event, can be null
      * @param entity The entity involved in this event
      * @param location The location of death
-     * @param droppedItems The items to drop
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, Collection<ItemStack> droppedItems,
-            int exp) {
+    public static EntityDeathEvent createEntityDeath(Game game, Cause cause, Entity entity, Location location, int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", entity);
-        values.put("droppedItems", droppedItems);
         values.put("location", location);
         values.put("exp", exp);
         return createEvent(EntityDeathEvent.class, values);
@@ -632,13 +629,15 @@ public final class SpongeEventFactory {
      * Creates a new {@link EntityDropItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
+     * @param cause The cause of this event
      * @param entity The entity involved in this event
      * @param droppedItems The items to drop
      * @return A new instance of the event
      */
-    public static EntityDropItemEvent createEntityDropItem(Game game, Entity entity, Collection<ItemStack> droppedItems) {
+    public static EntityDropItemEvent createEntityDropItem(Game game, Cause cause, Entity entity, Collection<ItemStack> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
         values.put("entity", entity);
         values.put("droppedItems", droppedItems);
         return createEvent(EntityDropItemEvent.class, values);
@@ -1131,7 +1130,6 @@ public final class SpongeEventFactory {
      * @param player The player involved in this event
      * @param location The location of death
      * @param deathMessage The message to show to the player because they died
-     * @param droppedItems The items to drop
      * @param exp The experience to give, or take for negative values
      * @param newExperience The new experience the player will have towards the next level
      * @param newLevel The new level the player will have after death
@@ -1140,7 +1138,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text deathMessage,
-            Collection<ItemStack> droppedItems, int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
+            int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
 
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -1152,7 +1150,6 @@ public final class SpongeEventFactory {
         values.put("location", location);
         values.put("human", player);
         values.put("living", player);
-        values.put("droppedItems", droppedItems);
         values.put("exp", exp);
         values.put("newExperience", newExperience);
         values.put("newLevel", newLevel);
@@ -1166,12 +1163,14 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
+     * @param cause The cause of the event
      * @param droppedItems The items to drop
      * @return A new instance of the event
      */
-    public static PlayerDropItemEvent createPlayerDropItem(Game game, Player player, Collection<ItemStack> droppedItems) {
+    public static PlayerDropItemEvent createPlayerDropItem(Game game, Player player, Cause cause, Collection<ItemStack> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
         values.put("entity", player);
         values.put("droppedItems", droppedItems);
         values.put("player", player);

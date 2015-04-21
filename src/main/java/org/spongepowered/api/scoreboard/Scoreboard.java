@@ -75,6 +75,16 @@ public interface Scoreboard {
     void addObjective(Objective objective, @Nullable DisplaySlot displaySlot) throws IllegalStateException;
 
     /**
+     * Adds the specified {@link Objective} to this scoreboard.
+     *
+     * @param objective The {@link Objective} add
+     * @throws IllegalArgumentException if an {@link Objective} with the same
+     *             {@link Objective#getName() name} already exists, or if the
+     *             specified {@link Objective} has already been added.
+     */
+    void addObjective(Objective objective) throws IllegalArgumentException;
+
+    /**
      * Gets all {@link Objective}s of a Criteria on this scoreboard.
      *
      * @param criteria {@link Criterion} to search by
@@ -88,16 +98,6 @@ public interface Scoreboard {
      * @return A set of all {@link Objective}s on this scoreboard
      */
     Set<Objective> getObjectives();
-
-    /**
-     * Adds the specified {@link Objective} to this scoreboard.
-     *
-     * @param objective The {@link Objective} add
-     * @throws IllegalArgumentException if an {@link Objective} with the same
-     *             {@link Objective#getName() name} already exists, or if the
-     *             specified {@link Objective} has already been added.
-     */
-    void addObjective(Objective objective) throws IllegalArgumentException;
 
     /**
      * Removes the specified {@link Objective} from this scoreboard.

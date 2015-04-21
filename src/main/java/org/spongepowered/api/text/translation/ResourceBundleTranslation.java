@@ -33,10 +33,10 @@ import java.util.ResourceBundle;
 
 /**
  * A translation class designed to be used for ResourceBundles. For convenience, most users will want to wrap this in a class that keeps track of
- * resource bundles. A simple implementaion would look like:
+ * resource bundles. A simple implementation would look like:
  * <pre>
  *     public class TranslationHelper {
- *         private static final Function<Locale, ResourceBundle> LOOKUP_FUNC = new Function<Locale, ResourceBundle>() {
+ *         private static final Function&lt;Locale, ResourceBundle&gt; LOOKUP_FUNC = new Function&lt;Locale, ResourceBundle&gt;() {
  *             &at;Nullable
  *             &at;Override
  *             public ResourceBundle apply(Locale input) {

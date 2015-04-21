@@ -81,6 +81,7 @@ public interface TextFactory {
      * Returns a JSON representation of the {@link Text} as used in commands in the specified language.
      *
      * @param text The text to convert
+     * @param locale The language to get the json in
      * @return The text converted to JSON
      */
     String toJson(Text text, Locale locale);
@@ -137,6 +138,7 @@ public interface TextFactory {
      *
      * @param text The text to convert
      * @param code The legacy char to use for the message
+     * @param locale The language to translate into
      * @return The text converted to the old color codes
      */
     String toLegacy(Text text, char code, Locale locale);
