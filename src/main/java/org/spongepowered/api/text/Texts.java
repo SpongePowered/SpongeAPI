@@ -36,6 +36,8 @@ import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
+import java.util.Locale;
+
 /**
  * Utility class to work with and create {@link Text}.
  */
@@ -412,6 +414,26 @@ public final class Texts {
     }
 
     /**
+     * Returns a plain text representation of the {@link Text} without any
+     * formatting.
+     *
+     * @param text The text to convert
+     * @return The text converted to plain text
+     */
+    public static String toPlain(Text text, Locale locale) {
+        return factory.toPlain(text, locale);
+    }
+
+    /**
+     * Returns a JSON representation of the {@link Text} as used in commands.
+     *
+     * @param text The text to convert
+     * @return The text converted to JSON
+     */
+    public static String toJson(Text text, Locale locale) {
+        return factory.toJson(text, locale);
+    }
+    /**
      * Returns the default legacy formatting character.
      *
      * @return The legacy formatting character
@@ -430,6 +452,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static Text.Literal fromLegacy(String text) {
         return fromLegacy(text, getLegacyChar());
     }
@@ -455,6 +478,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static String stripCodes(String text) {
         return stripCodes(text, getLegacyChar());
     }
@@ -482,6 +506,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static String replaceCodes(String text, char from) {
         return replaceCodes(text, from, getLegacyChar());
     }
@@ -510,6 +535,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static String toLegacy(Text text) {
         return toLegacy(text, getLegacyChar());
     }
@@ -526,6 +552,21 @@ public final class Texts {
     @Deprecated
     public static String toLegacy(Text text, char code) {
         return factory.toLegacy(text, code);
+    }
+
+    /**
+     * Returns a representation of the {@link Text} using the legacy color
+     * codes.
+     *
+     * @param text The text to convert
+     * @param code The legacy char to use for the message
+     * @param locale The language to return this representation in
+     * @return The text converted to the old color codes
+     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     */
+    @Deprecated
+    public static String toLegacy(Text text, char code, Locale locale) {
+        return factory.toLegacy(text, code, locale);
     }
 
 }
