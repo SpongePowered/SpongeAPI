@@ -25,19 +25,15 @@
 package org.spongepowered.api.scoreboard.displayslot;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents an area to display an objective.
  */
-public interface DisplaySlot {
-
-    /**
-     * Gets the name of this display slot.
-     *
-     * @return This display slot's name
-     */
-    String getName();
+@CatalogedBy(DisplaySlots.class)
+public interface DisplaySlot extends CatalogType {
 
     /**
      * Gets the {@link org.spongepowered.api.scoreboard.Team} color that this objective will display for, if set.
