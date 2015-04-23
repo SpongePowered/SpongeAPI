@@ -29,6 +29,7 @@ import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
+import org.spongepowered.api.text.Text;
 
 import java.util.Set;
 
@@ -107,19 +108,21 @@ public interface Scoreboard {
     void removeObjective(Objective objective);
 
     /**
-     * Gets all scores for an entry on this scoreboard.
+     * Gets all scores with the specified name on this scoreboard,
+     * across all objectives.
      *
-     * @param entry The entry whose scores are being retrieved
-     * @return A set of all scores for the entry
+     * @param name The name whose scores are being retrieved
+     * @return A set of all scores for the name
      */
-    Set<Score> getScores(String entry);
+    Set<Score> getScores(Text name);
 
     /**
-     * Removes all scores for an entry on this scoreboard.
+     * Removes all scores with the specified name on this scoreboard,
+     * across all objectives.
      *
-     * @param entry The entry to drop all current scores for
+     * @param name The name to remove all scores for
      */
-    void removeScores(String entry);
+    void removeScores(Text name);
 
     /**
      * Gets a {@link User}'s {@link Team}s on this scoreboard.
@@ -161,13 +164,6 @@ public interface Scoreboard {
      * @return The set of {@link Team}s
      */
     Set<Team> getTeams();
-
-    /**
-     * Gets all entries tracked by this scoreboard.
-     *
-     * @return All tracked entries
-     */
-    Set<String> getEntries();
 
     /**
      * Clears any {@link Objective} in the specified slot.
