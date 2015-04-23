@@ -30,8 +30,7 @@ import org.spongepowered.api.text.Text;
 import java.util.Set;
 
 /**
- * A score entry for an {@link Objective}. Changing this will not affect any other
- * objective or scoreboard.
+ * A score entry for one or more {@link Objective}s.
  */
 public interface Score {
 
