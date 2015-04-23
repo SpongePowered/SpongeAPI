@@ -114,6 +114,13 @@ public interface Objective {
     Score getScore(Text name);
 
     /**
+     * Removes the specified {@link Score} to this objective.
+     *
+     * @param score The {@link Score} to remove
+     */
+    void removeScore(Score score);
+
+    /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this
      * {@link Objective} is registered to.
      *
