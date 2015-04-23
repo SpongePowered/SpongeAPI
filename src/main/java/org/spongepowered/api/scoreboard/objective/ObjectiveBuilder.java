@@ -70,14 +70,6 @@ public interface ObjectiveBuilder {
     ObjectiveBuilder objectiveDisplayMode(ObjectiveDisplayMode objectiveDisplayMode);
 
     /**
-     * Sets the {@link DisplaySlot} of the {@link Objective}.
-     *
-     * @param displaySlot The {@link DisplaySlot} to set
-     * @return This builder
-     */
-    ObjectiveBuilder displaySlot(DisplaySlot displaySlot);
-
-    /**
      * Sets the map of entries and {@link Score}s of the {@link Objective}.
      *
      * <p>By default, this is the empty map.</p>
