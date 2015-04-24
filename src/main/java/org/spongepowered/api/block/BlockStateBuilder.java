@@ -25,26 +25,29 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.ImmutableDataBuilder;
 
 /**
- * Represents a block using {@link BlockType} and a list of
- * {@link DataManipulator} instances.
+ * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
+ * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to
+ * create a {@link BlockState} are copied on creation.
  *
- * <p>States are instances of {@link ImmutableDataHolder}s and therefor once
- * created, cannot be changed. All retrievals of {@link DataManipulator}s are
- * copies.</p>
+ * <p>Note that upon creation, the {@link BlockType} must be set for validation
+ * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
  */
-public interface BlockState extends ImmutableDataHolder<BlockState> {
+public interface BlockStateBuilder extends ImmutableDataBuilder<BlockState, BlockStateBuilder> {
 
     /**
-     * Get the base type of block.
+     * Sets the {@link BlockType} for the {@link BlockState} to build.
      *
-     * <p>The type does not include block data such as the contents of
-     * inventories.</p>
+     * <p>The {@link BlockType} is used for some pre-validation on addition of
+     * {@link DataManipulator}s through {@link #add(DataManipulator)}. It is
+     * important to understand that not all manipulators are compatible with
+     * all {@link BlockType}s.</p>
      *
-     * @return The type of block
+     * @param blockType The block type
+     * @return This builder, for chaining
      */
-    BlockType getType();
+    BlockStateBuilder blockType(BlockType blockType);
 
 }

@@ -47,8 +47,7 @@ public interface SerializationService {
      * @param builder The builder that can build the data serializable
      * @param <T> The type of data serializable
      */
-    <T extends DataSerializable> void registerBuilder(Class<T> clazz,
-            DataBuilder<T> builder);
+    <T extends DataSerializable> void registerBuilder(Class<T> clazz, DataBuilder<T> builder);
 
     /**
      * Attempts to retrieve the {@link DataBuilder} for the desired 

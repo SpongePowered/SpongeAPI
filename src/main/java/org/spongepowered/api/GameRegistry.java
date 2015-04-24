@@ -30,6 +30,7 @@ import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulatorRegistry;
+import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.types.Career;
 import org.spongepowered.api.data.types.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
@@ -431,6 +432,13 @@ public interface GameRegistry {
      * @return The manipulator registry
      */
     DataManipulatorRegistry getManipulatorRegistry();
+
+    /**
+     * Retrieves the {@link ImmutableDataRegistry} for this {@link GameRegistry}.
+     *
+     * @return The immutable data registry
+     */
+    ImmutableDataRegistry getImmutableDataRegistry();
 
     /**
      * Gets a {@link ResourcePack} that's already been created by its ID.

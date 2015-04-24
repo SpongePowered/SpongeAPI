@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.block;
 
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
 
 /**
  * A mutable complete representation of a block type and its associated data.
@@ -34,7 +37,7 @@ import org.spongepowered.api.world.Location;
  *
  * @see Location
  */
-public interface BlockSnapshot {
+public interface BlockSnapshot extends DataSerializable {
 
     /**
      * Get the block state for this snapshot.
@@ -42,5 +45,29 @@ public interface BlockSnapshot {
      * @return The stored block state
      */
     BlockState getState();
+
+    /**
+     * Sets the {@link BlockState} for this {@link BlockSnapshot}.
+     *
+     * @param blockState The block state to set
+     */
+    void setBlockState(BlockState blockState);
+
+    /**
+     * Gets the {@link Vector3i} of this {@link BlockSnapshot}. The vector and
+     * this snapshot may be out of sync with regards to actual data at the
+     * vector, however, the {@link BlockState} remains immutable.
+     *
+     * @return The vector location of this snapshot
+     */
+    Vector3i getLocation();
+
+    /**
+     * Sets the {@link Vector3i} location of this {@link BlockSnapshot} that
+     * can be applied to {@link Extent}s.
+     *
+     * @param location The vector location to set
+     */
+    void setLocation(Vector3i location);
 
 }
