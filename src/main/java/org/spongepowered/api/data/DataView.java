@@ -137,8 +137,9 @@ public interface DataView {
      *
      * @param path The path of the object to set
      * @param value The value of the data
+     * @return This view, for chaining
      */
-    void set(DataQuery path, Object value);
+    DataView set(DataQuery path, Object value);
 
     /**
      * Removes the data associated to the given path relative to this
@@ -147,8 +148,9 @@ public interface DataView {
      * the associated parent to remove this views name.</p>
      *
      * @param path The path of data to remove
+     * @return This view, for chaining
      */
-    void remove(DataQuery path);
+    DataView remove(DataQuery path);
 
     /**
      * Creates a new {@link DataView} at the desired path.

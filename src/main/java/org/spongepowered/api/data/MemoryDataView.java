@@ -184,7 +184,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public void set(DataQuery path, Object value) {
+    public DataView set(DataQuery path, Object value) {
         checkNotNull(path, "path");
         checkNotNull(value, "value");
         checkState(this.container != null);
@@ -226,6 +226,7 @@ public class MemoryDataView implements DataView {
                 }
             }
         }
+        return this;
     }
 
     private void setCollection(String key, Collection<?> value) {
@@ -266,7 +267,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public void remove(DataQuery path) {
+    public DataView remove(DataQuery path) {
         checkNotNull(path, "path");
         List<String> parts = path.getParts();
         if (parts.size() > 1) {
@@ -275,7 +276,7 @@ public class MemoryDataView implements DataView {
             Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
             DataView subView;
             if (!subViewOptional.isPresent()) {
-                return;
+                return this;
             } else {
                 subView = subViewOptional.get();
             }
@@ -287,6 +288,7 @@ public class MemoryDataView implements DataView {
         } else {
             this.map.remove(parts.get(0));
         }
+        return this;
     }
 
     @Override
