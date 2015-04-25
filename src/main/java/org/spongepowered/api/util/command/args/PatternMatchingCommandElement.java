@@ -53,14 +53,20 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
         final String unformattedPattern = args.next();
         Pattern pattern = getFormattedPattern(unformattedPattern);
-        Iterable<Object> ret = Iterables.transform(Iterables.filter(getChoices(source), Predicates.contains(pattern)),
-                new Function<String, Object>() {
+        Iterable<String> filteredChoices = Iterables.filter(getChoices(source), Predicates.contains(pattern));
+        for (String el : filteredChoices) { // Match a single value
+            if (el.equalsIgnoreCase(unformattedPattern)) {
+                return getValue(el);
+            }
+        }
+        Iterable<Object> ret = Iterables.transform(filteredChoices, new Function<String, Object>() {
                     @Nullable
                     @Override
                     public Object apply(@Nullable String input) {
                         return input == null ? null : getValue(input);
                     }
                 });
+
         if (!ret.iterator().hasNext()) {
             throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey()));
         }

@@ -345,8 +345,10 @@ public final class SimpleDispatcher implements Dispatcher {
     public List<String> getSuggestions(CommandSource src, final String arguments) throws CommandException {
         final String[] argSplit = arguments.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
-        if (!cmdOptional.isPresent() || argSplit.length == 1) {
+        if (argSplit.length == 1) {
             return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(argSplit[0])));
+        } else if (!cmdOptional.isPresent()) {
+            return ImmutableList.of();
         }
         return cmdOptional.get().getCallable().getSuggestions(src, argSplit[1]);
     }
