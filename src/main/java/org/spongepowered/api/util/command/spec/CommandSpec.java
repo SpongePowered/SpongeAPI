@@ -178,6 +178,20 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
+         * Set the argument specification for this command. This method accepts a sequence of arguments. This is equivalent to calling {@code
+         * setArguments(seq(args))}
+         *
+         * @see GenericArguments
+         * @param args The arguments object to use
+         * @return this
+         */
+        public Builder setArguments(CommandElement... args) {
+            Preconditions.checkNotNull(args, "args");
+            this.args = GenericArguments.seq(args);
+            return this;
+        }
+
+        /**
          * Set the input tokenizer to be used to convert input from a string into a list of argument tokens.
          *
          * @see InputTokenizers for common input parser implementations
