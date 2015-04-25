@@ -44,7 +44,7 @@ public class InformativeMain {
     /**
      * The main method which throws a {@link PEBKACException} with some basic
      * information on how sponge works.
-     * 
+     *
      * @param args The program args
      * @throws PEBKACException always
      */

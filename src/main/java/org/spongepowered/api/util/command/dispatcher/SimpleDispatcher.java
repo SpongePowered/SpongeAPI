@@ -25,6 +25,7 @@
 package org.spongepowered.api.util.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.NEWLINE_TEXT;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_TEXT;
 
@@ -373,7 +374,7 @@ public final class SimpleDispatcher implements Dispatcher {
         if (this.commands.isEmpty()) {
             return Optional.absent();
         }
-        TextBuilder build = Texts.builder("Available commands:\n");
+        TextBuilder build = t("Available commands:\n").builder();
         for (Iterator<String> it = filterCommands(source).iterator(); it.hasNext();) {
             final Optional<CommandMapping> mappingOpt = get(it.next(), source);
             if (!mappingOpt.isPresent()) {
