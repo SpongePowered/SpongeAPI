@@ -133,7 +133,7 @@ public interface DataHolder extends DataSerializable {
      * @return A collection of copied data manipulators belonging to this
      *     data holder
      */
-    Collection<? extends DataManipulator<?>> getManipulators();
+    Collection<DataManipulator<?>> getManipulators();
 
     /**
      * Attempts to retrieve a specific {@link Property} type of this
@@ -160,7 +160,7 @@ public interface DataHolder extends DataSerializable {
      *
      * @return An immutable collection of all known {@link Property}s
      */
-    Collection<? extends Property<?, ?>> getProperties();
+    Collection<Property<?, ?>> getProperties();
 
     /**
      * Validates the container with known data required to set the raw data to

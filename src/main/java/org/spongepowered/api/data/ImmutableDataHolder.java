@@ -66,6 +66,7 @@ public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends D
      * <p>This does not alter the current {@link ImmutableDataHolder}.</p>
      *
      * @param manipulator The new manipulator containing data
+     * @param <M> The type of data manipulator
      * @return A new immutable data holder with the given manipulator
      */
     <M extends DataManipulator<M>> Optional<T> withData(M manipulator);

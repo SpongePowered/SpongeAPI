@@ -118,7 +118,7 @@ public interface GameRegistry {
      * @param <T> The type of {@link CatalogType}
      * @return A collection of all known types of the requested catalog type
      */
-    <T extends CatalogType> Collection<? extends T> getAllOf(Class<T> typeClass);
+    <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
 
     /**
      * Gets a builder of the desired class type, examples may include:

@@ -585,7 +585,7 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public Collection<? extends DataManipulator<?>> getManipulators() {
+    public Collection<DataManipulator<?>> getManipulators() {
         return getExtent().getManipulators(getBlockPosition());
     }
 
@@ -595,7 +595,7 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public Collection<? extends Property<?, ?>> getProperties() {
+    public Collection<Property<?, ?>> getProperties() {
         return getExtent().getProperties(getBlockPosition());
     }
 

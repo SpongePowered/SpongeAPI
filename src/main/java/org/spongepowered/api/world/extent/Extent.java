@@ -803,7 +803,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @return A collection of copied data manipulators belonging to the block
      *     at the given position
      */
-    Collection<? extends DataManipulator<?>> getManipulators(Vector3i position);
+    Collection<DataManipulator<?>> getManipulators(Vector3i position);
 
     /**
      * Gets an copied collection of all known {@link DataManipulator}s
@@ -817,7 +817,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @return A collection of copied data manipulators belonging to the block
      *     at the given position
      */
-    Collection<? extends DataManipulator<?>> getManipulators(int x, int y, int z);
+    Collection<DataManipulator<?>> getManipulators(int x, int y, int z);
 
     /**
      * Attempts to retrieve a specific {@link Property} type of this the block
@@ -867,7 +867,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position of the block
      * @return An immutable collection of all known {@link Property}s
      */
-    Collection<? extends Property<?, ?>> getProperties(Vector3i position);
+    Collection<Property<?, ?>> getProperties(Vector3i position);
 
     /**
      * Gets an immutable collection of all known {@link Property}s pertaining to
@@ -881,7 +881,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return An immutable collection of all known {@link Property}s
      */
-    Collection<? extends Property<?, ?>> getProperties(int x, int y, int z);
+    Collection<Property<?, ?>> getProperties(int x, int y, int z);
 
     /**
      * Validates the container with known data required to set the raw data to
