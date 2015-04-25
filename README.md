@@ -7,8 +7,8 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Source]
 * [Issues]
 * [Wiki]
-* [Community Chat]: #sponge on irc.esper.net
-* [Development Chat]: #spongedev on irc.esper.net
+* [Community Chat]: [#sponge] on irc.esper.net
+* [Development Chat]: [#spongedev] on irc.esper.net
 * [Preparing for Development]
 * [Javadocs(temporary link)]
 
@@ -44,3 +44,5 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [Development Chat]: https://webchat.esper.net/?channels=spongedev
 [Preparing for Development]: https://docs.spongepowered.org/en/preparing/
 [Javadocs(temporary link)]: http://spongepowered.github.io/SpongeAPI/
+[#sponge]: irc://irc.esper.net:6667/sponge
+[#spongedev]: irc://irc.esper.net:6667/spongedev
