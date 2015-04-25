@@ -38,6 +38,10 @@ import java.util.Map;
 public final class Context implements Map.Entry<String, String> {
     public static final String WORLD_KEY = "world";
     public static final String DIMENSION_KEY = "dimension";
+    public static final String REMOTE_IP_KEY = "remoteip";
+    public static final String LOCAL_HOST_KEY = "localhost";
+    public static final String LOCAL_IP_KEY = "localip";
+    public static final String LOCAL_PORT_KEY = "localport"; // This portkey is an old boot
 
     private final Map.Entry<String, String> wrapped;
 
