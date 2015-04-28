@@ -24,11 +24,16 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.props.Props;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Marker interface for properties of a certain type.
  *
  * @param <E> The type of value that this property has
  * @param <V> The type of {@link DataObject}s this property is restricted to
  */
-public interface Prop<E, V> {
+@CatalogedBy(Props.class)
+public interface Prop<E, V> extends CatalogType {
 }
