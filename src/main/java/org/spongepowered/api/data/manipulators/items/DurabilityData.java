@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulators.items;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.manipulators.IntData;
 import org.spongepowered.api.data.properties.UseLimitProperty;
 
 /**
@@ -36,7 +37,7 @@ import org.spongepowered.api.data.properties.UseLimitProperty;
  * durability limit from the
  * {@link UseLimitProperty}.</p>
  */
-public interface DurabilityData extends DataManipulator<DurabilityData> {
+public interface DurabilityData extends IntData<DurabilityData> {
 
     /**
      * Gets the durability of the item.
