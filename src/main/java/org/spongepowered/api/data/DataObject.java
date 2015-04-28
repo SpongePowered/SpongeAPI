@@ -45,20 +45,18 @@ public interface DataObject<D> {
     /**
      * Sets some value.
      *
-     * @param prop
+     * @param prop The property
      * @param value The value to set
      * @param <E> The type of value
      * @param <V> The subtype of data that this DataObject supports
-     * @return The value
+     * @return This object
      */
     <E, V extends D> DataObject<D> set(Prop<E, V> prop, E value);
 
     /**
      * Gets a data object with further restrictions on data.
      *
-     * <p>
-     *     As an example, use this to get a data "manipulator" from a more generic data object.
-     * </p>
+     * <p>As an example, use this to get a data "manipulator" from a more generic data object.</p>
      *
      * @param clazz The class of data to restrict to
      * @param <V> The type of data to restrict to
