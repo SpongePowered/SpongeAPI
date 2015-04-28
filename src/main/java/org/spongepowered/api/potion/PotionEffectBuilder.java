@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.potion;
 
+import org.spongepowered.api.data.ImmutableDataBuilder;
+
 /**
  * Represents a builder interface to create a {@link PotionEffect}.
  */
-public interface PotionEffectBuilder {
+public interface PotionEffectBuilder extends ImmutableDataBuilder<PotionEffect, PotionEffectBuilder> {
 
     /**
      * Sets the {@link PotionEffectType} of the potion.

@@ -40,8 +40,9 @@ public interface BanData extends ListData<Ban.User, BanData> {
      * Adds the given ban to the owner on top of any other bans.
      *
      * @param ban The ban to put on the user
+     * @return This instance, for chaining
      */
-    void ban(Ban.User ban);
+    BanData ban(Ban.User ban);
 
     /**
      * Gets the bans registered for this user.

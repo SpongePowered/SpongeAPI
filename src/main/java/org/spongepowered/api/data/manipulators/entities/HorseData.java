@@ -47,8 +47,9 @@ public interface HorseData extends DataManipulator<HorseData> {
      * Sets this horse to the specified style.
      *
      * @param style The new style to set
+     * @return This instance, for chaining
      */
-    void setStyle(HorseStyle style);
+    HorseData setStyle(HorseStyle style);
 
     /**
      * Gets the current {@link HorseColor} of this horse.
@@ -61,8 +62,9 @@ public interface HorseData extends DataManipulator<HorseData> {
      * Sets this horse to the specified {@link HorseColor}.
      *
      * @param color The new color to set
+     * @return This instance, for chaining
      */
-    void setColor(HorseColor color);
+    HorseData setColor(HorseColor color);
 
     /**
      * Gets the current {@link HorseVariant} of this horse.
@@ -81,7 +83,8 @@ public interface HorseData extends DataManipulator<HorseData> {
      * armor. Health may be affected.</p>
      *
      * @param variant The variant to set
+     * @return This instance, for chaining
      */
-    void setVariant(HorseVariant variant);
+    HorseData setVariant(HorseVariant variant);
 
 }

@@ -48,8 +48,9 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * <p>This is not the total experience this human has.</p>
      *
      * @param experience The experience accumulated since the last level-up.
+     * @return This instance, for chaining
      */
-    void setExperienceSinceLevel(int experience);
+    ExperienceHolderData setExperienceSinceLevel(int experience);
 
     /**
      * Gets the experience required since the last level to level up.
@@ -73,8 +74,9 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * Sets the level of experience.
      *
      * @param level The level of experience
+     * @return This instance, for chaining
      */
-    void setLevel(int level);
+    ExperienceHolderData setLevel(int level);
 
     /**
      * Gets the total accumulated experience this human has, including
@@ -89,7 +91,8 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * Sets the total accumulated experience starting from zero.
      *
      * @param totalExperience The total experience
+     * @return This instance, for chaining
      */
-    void setTotalExperience(int totalExperience);
+    ExperienceHolderData setTotalExperience(int totalExperience);
 
 }

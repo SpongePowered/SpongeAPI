@@ -44,8 +44,9 @@ public interface CommandData extends DataManipulator<CommandData> {
      * Sets the currently stored command.
      *
      * @param command The new command
+     * @return This instance, for chaining
      */
-    void setStoredCommand(String command);
+    CommandData setStoredCommand(String command);
 
     /**
      * Gets the success count of the last executed command.
@@ -71,8 +72,9 @@ public interface CommandData extends DataManipulator<CommandData> {
      *
      * @param count The new success count
      * @see #getSuccessCount()
+     * @return This instance, for chaining
      */
-    void setSuccessCount(int count);
+    CommandData setSuccessCount(int count);
 
     /**
      * Gets whether this command block will keep track of the output from the
@@ -87,8 +89,9 @@ public interface CommandData extends DataManipulator<CommandData> {
      * commands that it executes.
      *
      * @param track Whether the command outputs should be tracked
+     * @return This instance, for chaining
      */
-    void shouldTrackOutput(boolean track);
+    CommandData shouldTrackOutput(boolean track);
 
     /**
      * Gets the last command output.
@@ -105,7 +108,8 @@ public interface CommandData extends DataManipulator<CommandData> {
      * Sets the last output message.
      *
      * @param message The new message
+     * @return This instance, for chaining
      */
-    void setLastOutput(Text message);
+    CommandData setLastOutput(Text message);
 
 }

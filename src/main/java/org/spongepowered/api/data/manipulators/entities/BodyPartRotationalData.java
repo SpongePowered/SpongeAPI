@@ -47,8 +47,9 @@ public interface BodyPartRotationalData extends MappedData<BodyPart, Vector3d, B
      * Sets the direction of the head.
      *
      * @param direction The direction of the head
+     * @return This instance, for chaining
      */
-    void setHeadDirection(Vector3d direction);
+    BodyPartRotationalData setHeadDirection(Vector3d direction);
 
     /**
      * Gets the direction the body is aiming at.
@@ -61,8 +62,9 @@ public interface BodyPartRotationalData extends MappedData<BodyPart, Vector3d, B
      * Sets the direction of the body.
      *
      * @param direction The direction of the body
+     * @return This instance, for chaining
      */
-    void setBodyDirection(Vector3d direction);
+    BodyPartRotationalData setBodyDirection(Vector3d direction);
 
     /**
      * Gets the direction the left arm is aiming at.
@@ -75,8 +77,9 @@ public interface BodyPartRotationalData extends MappedData<BodyPart, Vector3d, B
      * Sets the direction of the left arm.
      *
      * @param direction The direction of the left arm
+     * @return This instance, for chaining
      */
-    void setLeftArmDirection(Vector3d direction);
+    BodyPartRotationalData setLeftArmDirection(Vector3d direction);
 
     /**
      * Gets the direction the right arm is aiming at.
@@ -89,8 +92,9 @@ public interface BodyPartRotationalData extends MappedData<BodyPart, Vector3d, B
      * Sets the direction of the right arm.
      *
      * @param direction The direction of the right arm
+     * @return This instance, for chaining
      */
-    void setRightArmDirection(Vector3d direction);
+    BodyPartRotationalData setRightArmDirection(Vector3d direction);
 
     /**
      * Gets the direction the left leg is aiming at.
@@ -103,8 +107,9 @@ public interface BodyPartRotationalData extends MappedData<BodyPart, Vector3d, B
      * Sets the direction of the left leg.
      *
      * @param direction The direction of the left leg
+     * @return This instance, for chaining
      */
-    void setLeftLegDirection(Vector3d direction);
+    BodyPartRotationalData setLeftLegDirection(Vector3d direction);
 
     /**
      * Gets the direction the right leg is aiming at.
@@ -117,7 +122,8 @@ public interface BodyPartRotationalData extends MappedData<BodyPart, Vector3d, B
      * Sets the direction of the right leg.
      *
      * @param direction The direction of the right leg
+     * @return This instance, for chaining
      */
-    void setRightLegDirection(Vector3d direction);
+    BodyPartRotationalData setRightLegDirection(Vector3d direction);
 
 }

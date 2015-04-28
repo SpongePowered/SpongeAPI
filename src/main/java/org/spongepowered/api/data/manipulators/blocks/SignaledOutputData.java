@@ -46,7 +46,8 @@ public interface SignaledOutputData extends IntData<SignaledOutputData> {
      * Sets the output signal strength.
      *
      * @param signal The new signal strength
+     * @return This instance, for chaining
      */
-    void setOutputSignal(int signal);
+    SignaledOutputData setOutputSignal(int signal);
 
 }

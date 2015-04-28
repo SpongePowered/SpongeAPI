@@ -118,13 +118,14 @@ public interface MappedData<K, V, T extends MappedData<K, V, T>> extends DataMan
     /**
      * Unsafely sets the key at the desired value.
      *
-     * <p>This does NOT perform any checks on the item or whether
+     * <p>This does NOT perform any checks key or value for validity or whether
      * the value is within the standard bounds of key.</p>
      *
      * @param key The key to add
      * @param value The value of the key to add
+     * @return This instance, for chaining
      */
-    void setUnsafe(K key, V value);
+    T setUnsafe(K key, V value);
 
     /**
      * Sets the mapped data to attach to the item stack.
@@ -132,15 +133,17 @@ public interface MappedData<K, V, T extends MappedData<K, V, T>> extends DataMan
      * <p>This does NOT perform any checks on the item or whether
      * the value is within the standard bounds of key.</p>
      *
-     * @param mapped The mapped data attached to the item stack
+     * @param mapped The mapped data to set
+     * @return This instance, for chaining
      */
-    void setUnsafe(Map<K, V> mapped);
+    T setUnsafe(Map<K, V> mapped);
 
     /**
      * Removes the desired key and it's value, if available.
      *
      * @param key The key to remove
+     * @return This instance, for chaining
      */
-    void remove(K key);
+    T remove(K key);
 
 }

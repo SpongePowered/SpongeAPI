@@ -45,7 +45,8 @@ public interface OwnableData extends SingleValueData<GameProfile, OwnableData> {
      * Sets the profile that owns this item stack.
      *
      * @param profile The profile that owns this item stack
+     * @return This instance, for chaining
      */
-    void setProfile(GameProfile profile);
+    OwnableData setProfile(GameProfile profile);
 
 }

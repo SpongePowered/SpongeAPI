@@ -46,7 +46,8 @@ public interface GameModeData extends SingleValueData<GameMode, GameModeData> {
      *
      * @param gameMode The game mode to set
      * @see org.spongepowered.api.entity.player.gamemode.GameModes
+     * @return This instance, for chaining
      */
-    void setGameMode(GameMode gameMode);
+    GameModeData setGameMode(GameMode gameMode);
 
 }

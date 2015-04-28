@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulators.tileentities;
 import org.spongepowered.api.block.tile.Banner;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulators.ListData;
 import org.spongepowered.api.data.types.BannerPatternShape;
 import org.spongepowered.api.data.types.DyeColor;
 
@@ -36,7 +37,7 @@ import java.util.List;
  * Represents the information for a {@link Banner} such as the
  * base color and {@link BannerData.PatternLayer}s.
  */
-public interface BannerData extends DataManipulator<BannerData> {
+public interface BannerData extends ListData<BannerData.PatternLayer, BannerData> {
 
     /**
      * Gets the base color of this banner.
@@ -49,8 +50,9 @@ public interface BannerData extends DataManipulator<BannerData> {
      * Sets the base color of this banner.
      *
      * @param color The new color
+     * @return This instance, for chaining
      */
-    void setBaseColor(DyeColor color);
+    BannerData setBaseColor(DyeColor color);
 
     /**
      * Gets an ordered list of this Banner's pattern layers.
@@ -61,23 +63,27 @@ public interface BannerData extends DataManipulator<BannerData> {
 
     /**
      * Clears this banners Pattern layers leaving only the base color.
+     *
+     * @return This instance, for chaining
      */
-    void clearPatterns();
+    BannerData clearPatterns();
 
     /**
      * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
      *
      * @param pattern The new pattern layer
+     * @return This instance, for chaining
      */
-    void addPatternLayer(PatternLayer pattern);
+    BannerData addPatternLayer(PatternLayer pattern);
 
     /**
      * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
      *
      * @param patternShape The pattern shape
      * @param color The layer color
+     * @return This instance, for chaining
      */
-    void addPatternLayer(BannerPatternShape patternShape, DyeColor color);
+    BannerData addPatternLayer(BannerPatternShape patternShape, DyeColor color);
 
     /**
      * A representation on a single layer of a {@link BannerData}'s pattern.

@@ -43,7 +43,8 @@ public interface ColoredData extends SingleValueData<Color, ColoredData> {
      * Sets the color data for this item stack.
      *
      * @param color The color data for this item stack
+     * @return This instance, for chaining
      */
-    void setColor(Color color);
+    ColoredData setColor(Color color);
 
 }

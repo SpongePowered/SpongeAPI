@@ -45,7 +45,8 @@ public interface VelocityData extends SingleValueData<Vector3d, VelocityData> {
      * Sets the velocity of this entity.
      *
      * @param velocity The velocity to set this entity
+     * @return This instance, for chaining
      */
-    void setVelocity(Vector3d velocity);
+    VelocityData setVelocity(Vector3d velocity);
 
 }

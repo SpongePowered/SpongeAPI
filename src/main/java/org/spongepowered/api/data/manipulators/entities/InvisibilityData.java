@@ -50,7 +50,8 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData> {
      * @param player The player to toggle invisibility towards
      * @param invisible Whether this entity is invisible to the targeted
      *      player
+     * @return This instance, for chaining
      */
-    void setInvisibleTo(Player player, boolean invisible);
+    InvisibilityData setInvisibleTo(Player player, boolean invisible);
 
 }

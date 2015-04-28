@@ -56,8 +56,9 @@ public interface DurabilityData extends DataManipulator<DurabilityData> {
      * breaks.</p>
      *
      * @param durability The durability
+     * @return This instance, for chaining
      */
-    void setDurability(int durability);
+    DurabilityData setDurability(int durability);
 
     /**
      * Sets whether this durable item is breakable or not.
@@ -76,6 +77,7 @@ public interface DurabilityData extends DataManipulator<DurabilityData> {
      * does not reduce in durability.</p>
      *
      * @param breakable Whether the item is breakable or not
+     * @return This instance, for chaining
      */
-    void setBreakable(boolean breakable);
+    DurabilityData setBreakable(boolean breakable);
 }

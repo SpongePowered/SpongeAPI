@@ -36,8 +36,9 @@ public interface HealthData extends DataManipulator<HealthData> {
      * Subtracts from the health by the given amount.
      *
      * @param amount The damage amount
+     * @return This instance, for chaining
      */
-    void damage(double amount);
+    HealthData damage(double amount);
 
     /**
      * Returns the health amount.
@@ -64,8 +65,9 @@ public interface HealthData extends DataManipulator<HealthData> {
      * convention may be broken.</p>
      *
      * @param health The health to set to
+     * @return This instance, for chaining
      */
-    void setHealth(double health);
+    HealthData setHealth(double health);
 
     /**
      * Gets the current maximum health.
@@ -84,7 +86,8 @@ public interface HealthData extends DataManipulator<HealthData> {
      * than the total maximum health of this entity.</p>
      *
      * @param maxHealth The maximum health for this entity
+     * @return This instance, for chaining
      */
-    void setMaxHealth(double maxHealth);
+    HealthData setMaxHealth(double maxHealth);
 
 }

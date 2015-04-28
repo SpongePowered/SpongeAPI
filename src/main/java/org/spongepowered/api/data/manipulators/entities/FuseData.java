@@ -51,6 +51,7 @@ public interface FuseData extends IntData<FuseData> {
      * become idle.</p>
      *
      * @param fuseTicks The ticks for the fuse
+     * @return This instance, for chaining
      */
-    void setFuseDuration(int fuseTicks);
+    FuseData setFuseDuration(int fuseTicks);
 }

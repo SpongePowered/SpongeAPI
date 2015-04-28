@@ -44,7 +44,8 @@ public interface LockableData extends SingleValueData<String, LockableData> {
      * Sets the lock token for this tile entity.
      *
      * @param token The new lock token
+     * @return This instance, for chaining
      */
-    void setLockToken(String token);
+    LockableData setLockToken(String token);
 
 }

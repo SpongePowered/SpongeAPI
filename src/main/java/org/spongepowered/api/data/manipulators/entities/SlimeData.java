@@ -48,6 +48,7 @@ public interface SlimeData extends IntData<SlimeData> {
      * this slimes maximum health. Sizes should not be negative.</p>
      *
      * @param size The size of the slime
+     * @return This instance, for chaining
      */
-    void setSize(int size);
+    SlimeData setSize(int size);
 }

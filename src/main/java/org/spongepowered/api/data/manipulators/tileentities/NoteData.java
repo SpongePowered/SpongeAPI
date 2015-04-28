@@ -44,7 +44,8 @@ public interface NoteData extends SingleValueData<NotePitch, NoteData> {
      * Sets the note to be played by this note block.
      *
      * @param note The new note
+     * @return This instance, for chaining
      */
-    void setNote(NotePitch note);
+    NoteData setNote(NotePitch note);
 
 }

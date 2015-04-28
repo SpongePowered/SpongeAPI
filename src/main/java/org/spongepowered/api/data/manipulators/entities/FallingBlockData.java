@@ -44,8 +44,9 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      * Sets the fall damage per block.
      *
      * @param damage The fall damage per block
+     * @return This instance, for chaining
      */
-    void setFallDamagePerBlock(double damage);
+    FallingBlockData setFallDamagePerBlock(double damage);
 
     /**
      * Gets the maximum damage this block can deal to another entity
@@ -60,8 +61,9 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      * for falling on the entity.
      *
      * @param damage The maximum damage this block can deal
+     * @return This instance, for chaining
      */
-    void setMaxFallDamage(double damage);
+    FallingBlockData setMaxFallDamage(double damage);
 
     /**
      * Gets the {@link BlockState} this falling block is representing.
@@ -74,8 +76,9 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      * Sets the block state for this falling block.
      *
      * @param blockState The block state of this falling block
+     * @return This instance, for chaining
      */
-    void setBlockState(BlockState blockState);
+    FallingBlockData setBlockState(BlockState blockState);
 
     /**
      * Gets whether this falling block will try to place itself where
@@ -90,8 +93,9 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      *
      * @param placeable Whether this falling block will attempt to place
      *                  itself when it lands
+     * @return This instance, for chaining
      */
-    void setCanPlaceAsBlock(boolean placeable);
+    FallingBlockData setCanPlaceAsBlock(boolean placeable);
 
     /**
      * Gets whether this falling block can drop as an item if it lands in a
@@ -106,6 +110,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      * way that it can not be placed.
      *
      * @param droppable Whether this falling block will drop as an item
+     * @return This instance, for chaining
      */
-    void setCanDropAsItem(boolean droppable);
+    FallingBlockData setCanDropAsItem(boolean droppable);
 }

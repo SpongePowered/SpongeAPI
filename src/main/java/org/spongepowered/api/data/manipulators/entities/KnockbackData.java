@@ -49,7 +49,8 @@ public interface KnockbackData extends IntData<KnockbackData> {
      * may not be supported.</p>
      *
      * @param knockbackStrength The knockback strength
+     * @return This instance, for chaining
      */
-    void setKnockbackStrength(int knockbackStrength);
+    KnockbackData setKnockbackStrength(int knockbackStrength);
 
 }

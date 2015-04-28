@@ -54,6 +54,7 @@ public interface FireworkData extends ListData<FireworkEffect, FireworkData> {
      * approximation of what vanilla Minecraft performs.</p>
      *
      * @param flightModifier The flight modifier
+     * @return This instance, for chaining
      */
-    void setFlightModifier(int flightModifier);
+    FireworkData setFlightModifier(int flightModifier);
 }

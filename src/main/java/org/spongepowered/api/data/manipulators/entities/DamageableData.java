@@ -49,8 +49,9 @@ public interface DamageableData extends DataManipulator<DamageableData> {
      * <p>The last attacker may expire over time or when the attacker died.</p>
      *
      * @param lastAttacker The last attacker
+     * @return This instance, for chaining
      */
-    void setLastAttacker(Living lastAttacker);
+    DamageableData setLastAttacker(Living lastAttacker);
 
     /**
      * Gets the last amount of damage dealt to this entity.
@@ -63,8 +64,9 @@ public interface DamageableData extends DataManipulator<DamageableData> {
      * Sets the last damage amount that was dealt to this living entity.
      *
      * @param damage The amount of damage last dealt
+     * @return This instance, for chaining
      */
-    void setLastDamage(double damage);
+    DamageableData setLastDamage(double damage);
 
     /**
      * Gets the amount of ticks this entity is immune from damage.
@@ -77,8 +79,9 @@ public interface DamageableData extends DataManipulator<DamageableData> {
      * Sets the amount of ticks this entity is immune from damage.
      *
      * @param ticks The ticks of invulnerability
+     * @return This instance, for chaining
      */
-    void setInvulnerabilityTicks(int ticks);
+    DamageableData setInvulnerabilityTicks(int ticks);
 
     /**
      * Gets the maximum ticks of invulnerability for this entity.
@@ -91,6 +94,7 @@ public interface DamageableData extends DataManipulator<DamageableData> {
      * Sets the maximum ticks of invulnerability for this entity.
      *
      * @param ticks The maximum ticks of invulnerability
+     * @return This instance, for chaining
      */
-    void setMaxInvulnerabilityTicks(int ticks);
+    DamageableData setMaxInvulnerabilityTicks(int ticks);
 }

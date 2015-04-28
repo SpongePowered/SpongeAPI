@@ -83,8 +83,9 @@ public interface ListData<E, T extends ListData<E, T>> extends DataManipulator<T
      * elements.</p>
      *
      * @param elements The elements
+     * @return This instance, for chaining
      */
-    void set(E... elements);
+    T set(E... elements);
 
     /**
      * Resets this {@link ListData} to only the given elements.
@@ -93,8 +94,9 @@ public interface ListData<E, T extends ListData<E, T>> extends DataManipulator<T
      * elements.</p>
      *
      * @param elements The elements
+     * @return This instance, for chaining
      */
-    void set(Iterable<E> elements);
+    T set(Iterable<E> elements);
 
     /**
      * Sets the given element at the desired index.
@@ -104,15 +106,17 @@ public interface ListData<E, T extends ListData<E, T>> extends DataManipulator<T
      *
      * @param index The index of the element
      * @param element The element to set
+     * @return This instance, for chaining
      */
-    void set(int index, E element);
+    T set(int index, E element);
 
     /**
      * Adds the given element at the end of this {@link ListData}.
      *
      * @param element The element to add
+     * @return This instance, for chaining
      */
-    void add(E element);
+    T add(E element);
 
     /**
      * Adds the given element at the end of this {@link ListData}.
@@ -124,13 +128,15 @@ public interface ListData<E, T extends ListData<E, T>> extends DataManipulator<T
      *
      * @param index The index to insert
      * @param element The element to add
+     * @return This instance, for chaining
      */
-    void add(int index, E element);
+    T add(int index, E element);
 
     /**
      * Removes the element at the desired index.
      *
      * @param index The index to remove the element at
+     * @return This instance, for chaining
      */
-    void remove(int index);
+    T remove(int index);
 }

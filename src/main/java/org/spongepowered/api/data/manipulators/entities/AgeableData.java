@@ -48,20 +48,25 @@ public interface AgeableData extends IntData<AgeableData> {
      * </p>
      *
      * @param age The age of this entity
+     * @return This instance, for chaining
      */
-    void setAge(int age);
+    AgeableData setAge(int age);
 
     /**
      * Sets the age of this entity to the minimum required to be considered a
      * baby. Babies tend to be unable to breed.
+     *
+     * @return This instance, for chaining
      */
-    void setBaby();
+    AgeableData setBaby();
 
     /**
      * Sets the age of this entity to the minimum required to be considered a
      * full grown adult and able to breed.
+     *
+     * @return This instance, for chaining
      */
-    void setAdult();
+    AgeableData setAdult();
 
     /**
      * Returns true if this entity is considered an adult.

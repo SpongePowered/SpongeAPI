@@ -51,6 +51,7 @@ public interface SaddleData extends SingleValueData<ItemStack, SaddleData> {
      * <p>A saddled horse is player rideable. Not all horses can be saddled.</p>
      *
      * @param itemStack The saddle item
+     * @return This instance, for chaining
      */
-    void setSaddle(ItemStack itemStack);
+    SaddleData setSaddle(ItemStack itemStack);
 }
