@@ -25,7 +25,9 @@
 package org.spongepowered.api.block.tile;
 
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataObject;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.marker.TileEntityData;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -42,7 +44,7 @@ import org.spongepowered.api.world.Location;
  * customizable data associated with a {@link TileEntity} is represented by
  * {@link org.spongepowered.api.data.DataManipulator}.</p>
  */
-public interface TileEntity extends DataHolder, DataSerializable {
+public interface TileEntity extends DataHolder, DataObject<TileEntityData> {
 
     /**
      * Checks for whether the tile entity is currently valid or not.
