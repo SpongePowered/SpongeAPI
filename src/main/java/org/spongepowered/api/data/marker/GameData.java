@@ -24,5 +24,5 @@
  */
 package org.spongepowered.api.data.marker;
 
-public interface GameData extends EntityData {
+public interface GameData {
 }
