@@ -44,7 +44,8 @@ public interface RespawnLocationData extends SingleValueData<Location, RespawnLo
      * will clear it.
      *
      * @param location The new location of the owned bed spawn
+     * @return This instance, for chaining
      */
-    void setRespawnLocation(Location location);
+    RespawnLocationData setRespawnLocation(Location location);
 
 }

@@ -45,8 +45,9 @@ public interface BeaconData extends DataManipulator<BeaconData> {
      * Sets the primary effect for this beacon.
      *
      * @param effect The new primary effect
+     * @return This instance, for chaining
      */
-    void setPrimaryEffect(PotionEffectType effect);
+    BeaconData setPrimaryEffect(PotionEffectType effect);
 
     /**
      * Gets the secondary effect provided by this beacon.
@@ -59,12 +60,15 @@ public interface BeaconData extends DataManipulator<BeaconData> {
      * Sets the secondary effect for this beacon.
      *
      * @param effect The new secondary effect
+     * @return This instance, for chaining
      */
-    void setSecondaryEffect(PotionEffectType effect);
+    BeaconData setSecondaryEffect(PotionEffectType effect);
 
     /**
      * Clears all selected potion effects for this beacon.
+     *
+     * @return This instance, for chaining
      */
-    void clearEffects();
+    BeaconData clearEffects();
 
 }

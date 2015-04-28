@@ -66,7 +66,8 @@ public interface BlockItemData extends SingleValueData<BlockState, BlockItemData
      * item type referenced on the item stack.</p>
      *
      * @param state The new block state of the block
+     * @return This instance, for chaining
      */
-    void setState(BlockState state);
+    BlockItemData setState(BlockState state);
 
 }

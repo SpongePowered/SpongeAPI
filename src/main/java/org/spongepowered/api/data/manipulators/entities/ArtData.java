@@ -43,7 +43,8 @@ public interface ArtData extends SingleValueData<Art, ArtData> {
      * Sets this painting to display the designated Art piece.
      *
      * @param art The art piece to display
+     * @return This instance, for chaining
      */
-    void setArt(Art art);
+    ArtData setArt(Art art);
 
 }

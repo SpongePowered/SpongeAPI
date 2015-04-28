@@ -47,7 +47,8 @@ public interface AngerableData extends IntData<AngerableData> {
      * entities.</p>
      *
      * @param angerLevel The new anger level
+     * @return This instance, for chaining
      */
-    void setAngerLevel(int angerLevel);
+    AngerableData setAngerLevel(int angerLevel);
 
 }

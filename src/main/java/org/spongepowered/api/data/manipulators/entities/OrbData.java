@@ -39,7 +39,8 @@ public interface OrbData extends IntData<OrbData> {
      * Sets how much experience will be added to the player on pickup.
      *
      * @param experience The new amount of experience
+     * @return This instance, for chaining
      */
-    void setExperience(int experience);
+    OrbData setExperience(int experience);
 
 }

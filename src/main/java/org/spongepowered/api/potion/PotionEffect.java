@@ -26,6 +26,7 @@ package org.spongepowered.api.potion;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.manipulators.PotionEffectData;
 
 /**
@@ -34,7 +35,7 @@ import org.spongepowered.api.data.manipulators.PotionEffectData;
  * <p>PotionEffects can be added to entities via
  * {@link PotionEffectData#addPotionEffect(PotionEffect, boolean)}.</p>
  */
-public interface PotionEffect extends DataSerializable, DataHolder {
+public interface PotionEffect extends DataSerializable, ImmutableDataHolder<PotionEffect> {
 
     /**
      * Gets the {@link PotionEffectType} of this potion.

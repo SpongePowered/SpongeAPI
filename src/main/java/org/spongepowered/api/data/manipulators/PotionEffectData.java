@@ -49,8 +49,9 @@ public interface PotionEffectData extends ListData<PotionEffect, PotionEffectDat
      *
      * @param potionEffect The {@link PotionEffect} to add.
      * @param force Whether or not to forcibly add it.
+     * @return This instance, for chaining
      */
-    void addPotionEffect(PotionEffect potionEffect, boolean force);
+    PotionEffectData addPotionEffect(PotionEffect potionEffect, boolean force);
 
     /**
      * Adds a list of {@link PotionEffect}s to this entity.
@@ -62,15 +63,17 @@ public interface PotionEffectData extends ListData<PotionEffect, PotionEffectDat
      *
      * @param potionEffects The {@link PotionEffect}s to add.
      * @param force Whether or not to forcibly add it.
+     * @return This instance, for chaining
      */
-    void addPotionEffects(Collection<PotionEffect> potionEffects, boolean force);
+    PotionEffectData addPotionEffects(Collection<PotionEffect> potionEffects, boolean force);
 
     /**
      * Remove {@link PotionEffect}s of the specified type from this entity.
      *
      * @param potionEffectType The {@link PotionEffectType}.
+     * @return This instance, for chaining
      */
-    void removePotionEffect(PotionEffectType potionEffectType);
+    PotionEffectData removePotionEffect(PotionEffectType potionEffectType);
 
     /**
      * Gets if this entity has a {@link PotionEffect} of this type.

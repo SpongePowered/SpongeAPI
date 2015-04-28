@@ -54,8 +54,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * tick.
      *
      * @param delay The new delay, in ticks
+     * @return This instance, for chaining
      */
-    void setRemainingDelay(short delay);
+    MobSpawnerData setRemainingDelay(short delay);
 
     /**
      * Gets the minimum delay between batches of monsters.
@@ -76,8 +77,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * </p>
      *
      * @param delay The new minimum delay, in ticks
+     * @return This instance, for chaining
      */
-    void setMinimumSpawnDelay(short delay);
+    MobSpawnerData setMinimumSpawnDelay(short delay);
 
     /**
      * Gets the maximum delay between batches of monsters.
@@ -98,8 +100,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * </p>
      *
      * @param delay The new maximum delay, in ticks
+     * @return This instance, for chaining
      */
-    void setMaximumSpawnDelay(short delay);
+    MobSpawnerData setMaximumSpawnDelay(short delay);
 
     /**
      * Gets the number of monsters that will attempt to spawn with each batch.
@@ -120,8 +123,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * </p>
      *
      * @param count The new count
+     * @return This instance, for chaining
      */
-    void setSpawnCount(short count);
+    MobSpawnerData setSpawnCount(short count);
 
     /**
      * Gets the maximum amount of entities that may be within the spawn range.
@@ -138,8 +142,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * reached.
      *
      * @param count The new maximum amount of nearby entities
+     * @return This instance, for chaining
      */
-    void setMaximumNearbyEntities(short count);
+    MobSpawnerData setMaximumNearbyEntities(short count);
 
     /**
      * Gets the minimum range to the nearest player before this monster spawner
@@ -154,8 +159,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * will activate.
      *
      * @param range The new required range
+     * @return This instance, for chaining
      */
-    void setRequiredPlayerRange(short range);
+    MobSpawnerData setRequiredPlayerRange(short range);
 
     /**
      * Gets the range within which the monsters from each batch will be spawned.
@@ -178,23 +184,26 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * </p>
      *
      * @param range The new range
+     * @return This instance, for chaining
      */
-    void setSpawnRange(short range);
+    MobSpawnerData setSpawnRange(short range);
 
     /**
      * Sets the next entity type and properties to be spawned.
      *
      * @param type The entity type
      * @param additionalProperties Additional properties to apply to the entity, may be null
+     * @return This instance, for chaining
      */
-    void setNextEntityToSpawn(EntityType type, @Nullable DataContainer additionalProperties);
+    MobSpawnerData setNextEntityToSpawn(EntityType type, @Nullable DataContainer additionalProperties);
 
     /**
      * Sets the next {@link WeightedRandomEntity} to be spawned.
      *
      * @param entity The random entity entry
+     * @return This instance, for chaining
      */
-    void setNextEntityToSpawn(WeightedRandomEntity entity);
+    MobSpawnerData setNextEntityToSpawn(WeightedRandomEntity entity);
 
     /**
      * Gets the collection of {@link WeightedRandomEntity} from which the type
@@ -225,24 +234,27 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * entities to spawn by the mob spawner.
      *
      * @param weightedEntity The weighted entity to remove
+     * @return This instance, for chaining
      */
-    void removeWeightedEntity(WeightedRandomEntity weightedEntity);
+    MobSpawnerData removeWeightedEntity(WeightedRandomEntity weightedEntity);
 
     /**
      * Defines a number of {@link WeightedRandomEntity}s from which the type of
      * each batch will be randomly selected based on the weighting value.
      *
      * @param entities The possible entities
+     * @return This instance, for chaining
      */
-    void setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
+    MobSpawnerData setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
 
     /**
      * Defines a number of {@link WeightedRandomEntity}s from which the type of
      * each batch will be randomly selected based on the weighting value.
      *
      * @param entities The possible entities
+     * @return This instance, for chaining
      */
-    void setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
+    MobSpawnerData setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
 
 
 }

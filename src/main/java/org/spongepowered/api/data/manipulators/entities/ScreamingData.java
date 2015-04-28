@@ -50,7 +50,8 @@ public interface ScreamingData extends DataManipulator<ScreamingData> {
      * targeted due to staring too long.</p>
      *
      * @param screaming If the enderman should be screaming
+     * @return This instance, for chaining
      */
-    void setScreaming(boolean screaming);
+    ScreamingData setScreaming(boolean screaming);
 
 }

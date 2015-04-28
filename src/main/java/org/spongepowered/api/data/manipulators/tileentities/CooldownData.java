@@ -43,6 +43,7 @@ public interface CooldownData extends IntData<CooldownData> {
      * Sets the cooldown before the next item will be transfered.
      *
      * @param time The new time, in ticks
+     * @return This instance, for chaining
      */
-    void setCooldown(int time);
+    CooldownData setCooldown(int time);
 }

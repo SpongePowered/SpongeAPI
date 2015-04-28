@@ -64,7 +64,7 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
      *
      * @return This builder, for chaining
      */
-    H reset();
+    E reset();
 
     /**
      * Attempts to build a new {@link ImmutableDataHolder}.

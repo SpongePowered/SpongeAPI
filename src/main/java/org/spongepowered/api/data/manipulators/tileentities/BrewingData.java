@@ -45,7 +45,8 @@ public interface BrewingData extends IntData<BrewingData> {
      * have effect if the current items within the brewing stand are valid.
      *
      * @param time The new remaining time, in ticks
+     * @return This instance, for chaining
      */
-    void setRemainingBrewTime(int time);
+    BrewingData setRemainingBrewTime(int time);
 
 }

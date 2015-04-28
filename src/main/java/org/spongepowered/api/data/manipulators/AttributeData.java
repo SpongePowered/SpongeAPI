@@ -60,6 +60,7 @@ public interface AttributeData extends ListData<AttributeModifier, AttributeData
      *
      * @param attribute The attribute
      * @param base The base value
+     * @return This instance, for chaining
      */
-    void setBase(Attribute attribute, double base);
+    AttributeData setBase(Attribute attribute, double base);
 }

@@ -51,8 +51,9 @@ public interface DisplayNameData extends SingleValueData<Text, DisplayNameData> 
      * the display name is erased.
      *
      * @param displayName The display name
+     * @return This instance, for chaining
      */
-    void setDisplayName(Text displayName);
+    DisplayNameData setDisplayName(Text displayName);
 
     /**
      * Returns whether the custom name is visible to players.
@@ -65,7 +66,8 @@ public interface DisplayNameData extends SingleValueData<Text, DisplayNameData> 
      * Sets whether the custom name is visible to players.
      *
      * @param visible Whether the custom name is visible
+     * @return This instance, for chaining
      */
-    void setCustomNameVisible(boolean visible);
+    DisplayNameData setCustomNameVisible(boolean visible);
 
 }

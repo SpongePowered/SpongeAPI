@@ -45,9 +45,10 @@ public interface SignData extends DataManipulator<SignData> {
      * lines displayable on the sign will be ignored.
      *
      * @param lines The new lines
+     * @return This instance, for chaining
      * @throws IllegalArgumentException If the array is too large
      */
-    void setLines(Text... lines);
+    SignData setLines(Text... lines);
 
     /**
      * Gets the line at the given index.
@@ -64,9 +65,10 @@ public interface SignData extends DataManipulator<SignData> {
      *
      * @param index The index to set the line at
      * @param text The new text
+     * @return This instance, for chaining
      * @throws IndexOutOfBoundsException If the index is outside
      *            of the allowed indices
      */
-    void setLine(int index, Text text) throws IndexOutOfBoundsException;
+    SignData setLine(int index, Text text) throws IndexOutOfBoundsException;
 
 }

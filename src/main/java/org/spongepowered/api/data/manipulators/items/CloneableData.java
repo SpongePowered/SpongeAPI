@@ -50,8 +50,9 @@ public interface CloneableData extends IntData<CloneableData> {
      * <p>The original always starts as generation 0.</p>
      *
      * @param generation The generation of this item
+     * @return This instance, for chaining
      */
-    void setGeneration(int generation);
+    CloneableData setGeneration(int generation);
 
     /**
      * Gets the generational limit to which the item would no longer

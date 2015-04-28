@@ -46,7 +46,8 @@ public interface LeashData extends SingleValueData<Entity, LeashData> {
      * Sets the holder of this leashed entity.
      *
      * @param entity The entity to hold the leash
+     * @return This instance, for chaining
      */
-    void setLeashHolder(Entity entity);
+    LeashData setLeashHolder(Entity entity);
 
 }

@@ -49,8 +49,9 @@ public interface DamagingData extends DataManipulator<DamagingData> {
      * Sets the damage this projectile will deal to a LivingEntity if hit.
      *
      * @param damage The damage to deal
+     * @return This instance, for chaining
      */
-    void setDamage(double damage);
+    DamagingData setDamage(double damage);
 
     /**
      * Gets the damage this projectile will deal to the specified
@@ -75,8 +76,9 @@ public interface DamagingData extends DataManipulator<DamagingData> {
      *
      * @param entityType The {@link EntityType} to set the damage amount for
      * @param damage The damage to deal to the specified {@link EntityType}
+     * @return This instance, for chaining
      */
-    void setDamageForEntity(EntityType entityType, double damage);
+    DamagingData setDamageForEntity(EntityType entityType, double damage);
 
 
 }

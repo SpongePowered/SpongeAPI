@@ -49,14 +49,16 @@ public interface TradeOfferData extends ListData<TradeOffer, TradeOfferData> {
      * with a {@link Human}.
      *
      * @param offers The offers to set
+     * @return This instance, for chaining
      */
-    void setOffers(List<TradeOffer> offers);
+    TradeOfferData setOffers(List<TradeOffer> offers);
 
     /**
      * Adds the given offer to the list of offers.
      *
      * @param offer The offer to add
+     * @return This instance, for chaining
      */
-    void addOffer(TradeOffer offer);
+    TradeOfferData addOffer(TradeOffer offer);
 
 }

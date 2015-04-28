@@ -49,7 +49,8 @@ public interface TameableData extends SingleValueData<Tamer, TameableData> {
      * tameable by other tamers.</p>
      *
      * @param tamer The Tamer who should own this
+     * @return This instance, for chaining
      */
-    void setOwner(Tamer tamer);
+    TameableData setOwner(Tamer tamer);
 
 }

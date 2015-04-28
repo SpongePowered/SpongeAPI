@@ -43,8 +43,9 @@ public interface BreathingData extends DataManipulator<BreathingData> {
      * Sets the remaining ticks of air.
      *
      * @param air The remaining ticks of air
+     * @return This instance, for chaining
      */
-    void setRemainingAir(int air);
+    BreathingData setRemainingAir(int air);
 
     /**
      * Gets the maximum ticks of air this entity can have.
@@ -57,7 +58,8 @@ public interface BreathingData extends DataManipulator<BreathingData> {
      * Sets the maximum ticks of air this entity can have.
      *
      * @param air The maximum ticks of air
+     * @return This instance, for chaining
      */
-    void setMaxAir(int air);
+    BreathingData setMaxAir(int air);
 
 }

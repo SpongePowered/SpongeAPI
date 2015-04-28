@@ -44,8 +44,9 @@ public interface FurnaceData extends DataManipulator<FurnaceData> {
      * Sets the remaining time until a new piece of fuel will be consumed.
      *
      * @param time The new time, in ticks
+     * @return This instance, for chaining
      */
-    void setRemainingBurnTime(int time);
+    FurnaceData setRemainingBurnTime(int time);
 
     /**
      * Gets the remaining time until the next item is cooked.
@@ -58,7 +59,8 @@ public interface FurnaceData extends DataManipulator<FurnaceData> {
      * Sets the remaining time until a new item is cooked.
      *
      * @param time The new time, in ticks
+     * @return This instance, for chaining
      */
-    void setRemainingCookTime(int time);
+    FurnaceData setRemainingCookTime(int time);
 
 }

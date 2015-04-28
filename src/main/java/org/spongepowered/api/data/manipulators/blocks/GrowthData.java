@@ -52,8 +52,9 @@ public interface GrowthData extends IntData<GrowthData> {
      * harvesting.</p>
      *
      * @param stage The stage to set
+     * @return This instance, for chaining
      */
-    void setGrowthStage(int stage);
+    GrowthData setGrowthStage(int stage);
 
     /**
      * Gets the maximum growth stage for the relative owner of this data.

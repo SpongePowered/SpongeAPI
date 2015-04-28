@@ -49,8 +49,9 @@ public interface FoodData extends DataManipulator<FoodData> {
      * </p>
      *
      * @param exhaustion The new exhaustion level
+     * @return This instance, for chaining
      */
-    void setExhaustion(double exhaustion);
+    FoodData setExhaustion(double exhaustion);
 
     /**
      * Gets the current saturation level of this human entity.
@@ -69,8 +70,9 @@ public interface FoodData extends DataManipulator<FoodData> {
      * decrease while the saturation level is greater than zero.</p>
      *
      * @param saturation The new saturation level
+     * @return This instance, for chaining
      */
-    void setSaturation(double saturation);
+    FoodData setSaturation(double saturation);
 
     /**
      * Gets the current food saturation of this human entity.
@@ -91,7 +93,8 @@ public interface FoodData extends DataManipulator<FoodData> {
      * may heal. If the food level is at 0, the human entity may starve.</p>
      *
      * @param foodLevel The new food level
+     * @return This instance, for chaining
      */
-    void setFoodLevel(double foodLevel);
+    FoodData setFoodLevel(double foodLevel);
 
 }

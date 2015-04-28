@@ -47,6 +47,7 @@ public interface ExplosiveRadiusData extends IntData<ExplosiveRadiusData> {
      * <p>The explosion radius may be affected by other data manipulators.</p>
      *
      * @param radius The explosion radius of the entity
+     * @return This instance, for chaining
      */
-    void setExplosionRadius(int radius);
+    ExplosiveRadiusData setExplosionRadius(int radius);
 }

@@ -44,7 +44,8 @@ public interface CareerData extends SingleValueData<Career, CareerData> {
      * Sets the career.
      *
      * @param career The career to set
+     * @return This instance, for chaining
      */
-    void setCareer(Career career);
+    CareerData setCareer(Career career);
 
 }

@@ -47,7 +47,8 @@ public interface SingleValueData<V, T extends SingleValueData<V, T>> extends Dat
      * Sets the value of this {@link SingleValueData}.
      *
      * @param value The value to set
+     * @return This instance, for chaining
      */
-    void setValue(V value);
+    T setValue(V value);
 
 }
