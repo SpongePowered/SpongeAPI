@@ -24,8 +24,12 @@
  */
 package org.spongepowered.api.data;
 
+import java.util.Comparator;
+
 // TODO Does a numeric property (int, double) imply boundedness for all possible cases?
 public interface BoundedProp<E, V> extends Prop<E, V> {
+
+    Comparator<E> getComparator();
 
     E getMinimum();
 
