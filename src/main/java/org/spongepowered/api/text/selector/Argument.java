@@ -72,7 +72,7 @@ public interface Argument<T> {
         boolean isInverted();
 
         /**
-         * Inverts this {@link Invertible} argument and returns the new
+         * Inverts this {@link Argument.Invertible} argument and returns the new
          * {@link Argument}. The new argument will select all targets this
          * argument didn't select.
          *

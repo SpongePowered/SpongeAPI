@@ -26,11 +26,18 @@ package org.spongepowered.api.text.selector;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.scoreboard.Score;
+import org.spongepowered.api.scoreboard.Team;
+import org.spongepowered.api.world.World;
+
+import java.util.Collection;
 
 /**
- * Represents the list of default {@link ArgumentType}s available in Vanilla
+ * Represents the default {@link ArgumentType}s available in Vanilla
  * Minecraft.
  */
 public final class ArgumentTypes {
@@ -44,7 +51,7 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code x}, {@code y} and
      * {@code z} selector keys.</p>
      */
-    public static final ArgumentType.Vector3<Vector3i, Integer> POSITION = null;
+    public static final ArgumentHolder.Vector3<Vector3i, Integer> POSITION = null;
 
     /**
      * The argument types representing the radius of the selector.
@@ -52,7 +59,7 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code r} (for minimum) and
      * {@code rm} (for maximum) selector keys.</p>
      */
-    public static final ArgumentType.Limit<ArgumentType<Integer>> RADIUS = null;
+    public static final ArgumentHolder.Limit<ArgumentType<Integer>> RADIUS = null;
 
     /**
      * The argument type filtering based on the {@link GameMode} of a player.
@@ -81,18 +88,20 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code l} (for maximum) and
      * {@code lm} (for minimum) selector keys.</p>
      */
-    public static final ArgumentType.Limit<ArgumentType<Integer>> LEVEL = null;
+    public static final ArgumentHolder.Limit<ArgumentType<Integer>> LEVEL = null;
 
-    // TODO: Scoreboard API
     /**
-     * The argument type filtering based on the {@link String} of the target.
+     * The argument type filtering based on the {@link Team} of the target.
      * Inverting this argument type will search for all targets not in the
      * specified team instead.
+     * 
+     * <p>This returns a function that should be passed the world to abject the
+     * team from.</p>
      *
      * <p>In Vanilla, this is represented by the {@code team} selector key with
      * the {@code !} prefix for inverted values.</p>
      */
-    public static final ArgumentType.Invertible<String> TEAM = null;
+    public static final ArgumentType.Invertible<Function<World, Team>> TEAM = null;
 
     /**
      * The argument type filtering based on the name of the target. Inverting
@@ -110,17 +119,17 @@ public final class ArgumentTypes {
      * <p>In Vanilla, this is represented by the {@code dx}, {@code dy} and
      * {@code dz} selector keys.</p>
      */
-    public static final ArgumentType.Vector3<Vector3i, Integer> DIMENSION = null;
+    public static final ArgumentHolder.Vector3<Vector3i, Integer> DIMENSION = null;
 
     /**
      * The argument type filtering targets within a specific rotation range.
      *
-     * <p>In Vanilla, the {@link Float}s will be floored to {@link Integer}s and
+     * <p>In Vanilla, the {@link Double}s will be floored to {@link Integer}s and
      * the third float is completely ignored. It is represented by the
      * {@code rx}/{@code ry} (for minimum) and {@code rxm}/{@code rym} selector
      * keys.</p>
      */
-    public static final ArgumentType.Limit<ArgumentType.Vector3<Vector3d, Float>> ROTATION = null;
+    public static final ArgumentHolder.Limit<ArgumentHolder.Vector3<Vector3d, Double>> ROTATION = null;
 
     /**
      * The argument type filtering targets based on the {@link EntityType}.
@@ -129,8 +138,6 @@ public final class ArgumentTypes {
      */
     public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE = null;
 
-    // TODO: Scoreboard API
-
     /**
      * Creates a minimum and maximum {@link ArgumentType} filtering depending on
      * the score of the specified objective.
@@ -138,8 +145,27 @@ public final class ArgumentTypes {
      * @param name The objective name to use
      * @return The created argument type
      */
-    public static ArgumentType.Limit<ArgumentType<Integer>> score(String name) {
+    public static ArgumentHolder.Limit<ArgumentType<Function<World, Score>>> score(String name) {
         return Selectors.factory.createScoreArgumentType(name);
+    }
+
+    /**
+     * Gets the {@link ArgumentType} with the provided name.
+     *
+     * @param name The name of the argument type
+     * @return The {@link ArgumentType} with the given name or Optional.absent() if not found
+     */
+    public static Optional<ArgumentType<?>> valueOf(String name) {
+        return Selectors.factory.getArgumentType(name);
+    }
+
+    /**
+     * Gets a {@link Collection} of all possible {@link ArgumentType}s.
+     *
+     * @return The list of all available {@link ArgumentType}s
+     */
+    public static Collection<ArgumentType<?>> values() {
+        return Selectors.factory.getArgumentTypes();
     }
 
     /**

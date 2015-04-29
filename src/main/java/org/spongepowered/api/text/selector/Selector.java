@@ -26,6 +26,7 @@ package org.spongepowered.api.text.selector;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -78,6 +79,14 @@ public interface Selector {
      * @return The arguments for this {@link Selector}
      */
     List<Argument<?>> getArguments();
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around the origin.
+     *
+     * @param origin The source that should be considered the origin of this selector
+     * @return The matched entities
+     */
+    List<Entity> resolve(CommandSource origin);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in

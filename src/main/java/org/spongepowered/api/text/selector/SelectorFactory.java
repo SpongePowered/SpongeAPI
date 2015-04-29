@@ -24,6 +24,15 @@
  */
 package org.spongepowered.api.text.selector;
 
+import com.google.common.base.Function;
+import com.google.common.base.Optional;
+import org.spongepowered.api.scoreboard.Score;
+import org.spongepowered.api.text.selector.ArgumentHolder.Limit;
+import org.spongepowered.api.world.World;
+
+import java.util.Collection;
+import java.util.Set;
+
 /**
  * Represents the required implementation for the static methods in
  * {@link Selectors}, {@link Arguments} and {@link ArgumentTypes}.
@@ -54,7 +63,22 @@ public interface SelectorFactory {
      * @param name The objective name to use
      * @return The created argument type
      */
-    ArgumentType.Limit<ArgumentType<Integer>> createScoreArgumentType(String name);
+    Limit<ArgumentType<Function<World, Score>>> createScoreArgumentType(String name);
+
+    /**
+     * Gets the {@link ArgumentType} with the provided name.
+     *
+     * @param name The name of the argument type
+     * @return The {@link ArgumentType} with the given name or Optional.absent() if not found
+     */
+    Optional<ArgumentType<?>> getArgumentType(String name);
+
+    /**
+     * Gets a {@link Collection} of all possible {@link ArgumentType}s.
+     *
+     * @return The list of all available {@link ArgumentType}s
+     */
+    Collection<ArgumentType<?>> getArgumentTypes();
 
     /**
      * Creates a custom {@link ArgumentType} with the specified key.
@@ -96,6 +120,17 @@ public interface SelectorFactory {
      * @return The created invertible argument
      */
     <T> Argument.Invertible<T> createArgument(ArgumentType.Invertible<T> type, T value, boolean inverted);
+
+    /**
+     * Creates a new set of {@link Argument}s using the specified type and value.
+     *
+     * @param type The type of the arguments
+     * @param value The value of the arguments
+     * @param <T> The type of the arguments' joined value
+     * @param <V> The type of the arguments' sub-values
+     * @return The created argument
+     */
+    <T, V> Set<Argument<T>> createArguments(ArgumentHolder<? extends ArgumentType<T>> type, V value);
 
     /**
      * Parses an {@link Argument} from the given argument string.
