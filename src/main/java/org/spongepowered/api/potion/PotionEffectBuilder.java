@@ -79,6 +79,7 @@ public interface PotionEffectBuilder extends ImmutableDataBuilder<PotionEffect, 
      *
      * @return This builder, for chaining
      */
+    @Override
     PotionEffectBuilder reset();
 
     /**
@@ -87,6 +88,7 @@ public interface PotionEffectBuilder extends ImmutableDataBuilder<PotionEffect, 
      * @return A new instance of a PotionEffect
      * @throws IllegalStateException If the potion effect is not completed
      */
+    @Override
     PotionEffect build() throws IllegalStateException;
 
 }
