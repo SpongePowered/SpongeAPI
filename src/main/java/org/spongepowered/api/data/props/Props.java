@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.props;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.BoundedProp;
 import org.spongepowered.api.data.Prop;
 import org.spongepowered.api.data.marker.BlockTypeData;
 import org.spongepowered.api.data.marker.GameData;
@@ -157,14 +158,13 @@ public class Props {
      * Represents the "fluid level" for a liquid block. Usually applicable
      * to {@link BlockTypes#WATER} and {@link BlockTypes#LAVA}
      */
-    public static final Prop<Integer, GameData> FLUID_LEVEL = null;
+    public static final BoundedProp<Integer, GameData> FLUID_LEVEL = null;
 
-    // TODO has bounds
     /**
      * Represents the "growth" of a block. Usually applicable to
      * {@link BlockTypes#WHEAT}, {@link BlockTypes#PUMPKIN_STEM}, etc.
      */
-    public static final Prop<Integer, GameData> GROWTH_STAGE = null;
+    public static final BoundedProp<Integer, GameData> GROWTH_STAGE = null;
 
     // naming
     /**
@@ -189,13 +189,13 @@ public class Props {
      * Represents the "layer" of an owner. Usually applicable to
      * {@link BlockTypes#CAKE}, {@link BlockTypes#SNOW_LAYER}, etc.
      */
-    public static final Prop<Integer, GameData> LAYER = null;
+    public static final BoundedProp<Integer, GameData> LAYER = null;
 
     /**
      * Represents the "moisture" level of a block. Usually applicable to
      * {@link BlockTypes#FARMLAND}.
      */
-    public static final Prop<Integer, GameData> MOISTURE = null;
+    public static final BoundedProp<Integer, GameData> MOISTURE = null;
 
     // WILL_NOT_DROP? Depends on default
     /**
@@ -255,7 +255,7 @@ public class Props {
      * Signifies that a block has some value of redstone power applied to it.
      * Usually applicable for all blocks.
      */
-    public static final Prop<Integer, GameData> REDSTONE_POWERED = null;
+    public static final BoundedProp<Integer, GameData> REDSTONE_POWERED = null;
 
     /**
      * Signifies that a block is rotated with a {@link Rotation}.
@@ -285,7 +285,7 @@ public class Props {
     /**
      * Represents the signal strength of some redstone blocks, like {@link BlockTypes#DAYLIGHT_DETECTOR}.
      */
-    public static final Prop<Integer, GameData> SIGNAL_OUTPUT = null;
+    public static final BoundedProp<Integer, GameData> SIGNAL_OUTPUT = null;
 
     /**
      * Represents the {@link SlabType} of slabs.
