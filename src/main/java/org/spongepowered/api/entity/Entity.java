@@ -27,9 +27,8 @@ package org.spongepowered.api.entity;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataObject;
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulators.TargetedLocationData;
-import org.spongepowered.api.data.marker.EntityData;
+import org.spongepowered.api.data.marker.GameData;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
@@ -56,7 +55,7 @@ import java.util.UUID;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, DataHolder, DataObject<EntityData> {
+public interface Entity extends Identifiable, DataHolder, DataObject<GameData> {
 
     /**
      * Get the type of entity.
