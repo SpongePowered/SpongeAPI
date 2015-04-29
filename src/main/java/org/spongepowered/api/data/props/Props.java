@@ -60,11 +60,6 @@ public class Props {
 
     // Block props
 
-    /*
-     TODO a lot of these are "types" of blocks that are incompatible.
-     Perhaps what is needed is a generic way to access these
-      */
-
     // TODO missing Dyeable?
     // TODO missing Rotation
     // TODO missing Wet
