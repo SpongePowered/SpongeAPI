@@ -24,5 +24,5 @@
  */
 package org.spongepowered.api.data.marker;
 
-public interface TileEntityData extends GameData {
+public interface BlockTypeData extends GameData {
 }
