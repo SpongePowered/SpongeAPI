@@ -24,32 +24,18 @@
  */
 package org.spongepowered.api.event;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import org.spongepowered.api.service.event.EventManager;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-@Retention(RUNTIME)
-@Target(METHOD)
-public @interface Subscribe {
+/**
+ * Represents a handler accepting events of a specified type.
+ *
+ * @param <T> The type of the event
+ */
+public interface EventHandler<T extends Event> {
 
     /**
-     * The order this handler should be called in relation to other handlers in
-     * the {@link EventManager}.
+     * Called when a event registered to this handler is called.
      *
-     * @return The order the handler should be called in
+     * @param event The called event
      */
-    Order order() default Order.DEFAULT;
-
-    /**
-     * Whether this handler should ignore cancelled events. If enabled the
-     * handler will not be called for any cancelled events.
-     *
-     * @return If the handler should ignore cancelled events
-     */
-    boolean ignoreCancelled() default true;
+    void handle(T event);
 
 }
