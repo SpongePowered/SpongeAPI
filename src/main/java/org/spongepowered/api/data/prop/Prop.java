@@ -22,15 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulators.entities;
+package org.spongepowered.api.data.prop;
 
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.entity.living.animal.Animal;
+import org.spongepowered.api.data.DataObject;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Signifies that an entity is ready to breed. Usually applicable to
- * {@link Animal}s.
+ * Marker interface for properties of a certain type.
+ *
+ * @param <E> The type of value that this property has
+ * @param <V> The type of {@link DataObject}s this property is restricted to
  */
-public interface BreedableData extends DataManipulator<BreedableData> {
-
+@CatalogedBy(Props.class)
+public interface Prop<E, V> extends GetterProp<E, V> {
 }

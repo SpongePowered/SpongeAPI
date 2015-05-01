@@ -22,39 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.props;
+package org.spongepowered.api.data.prop;
 
+import com.flowpowered.math.vector.Vector3d;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.BoundedProp;
-import org.spongepowered.api.data.Prop;
-import org.spongepowered.api.data.marker.BlockTypeData;
-import org.spongepowered.api.data.marker.GameData;
-import org.spongepowered.api.data.types.BigMushroomType;
-import org.spongepowered.api.data.types.BrickType;
-import org.spongepowered.api.data.types.Comparison;
-import org.spongepowered.api.data.types.DirtType;
-import org.spongepowered.api.data.types.DisguisedBlockType;
-import org.spongepowered.api.data.types.DoubleSizePlantType;
-import org.spongepowered.api.data.types.Hinge;
-import org.spongepowered.api.data.types.InstrumentType;
-import org.spongepowered.api.data.types.PistonType;
-import org.spongepowered.api.data.types.PortionType;
-import org.spongepowered.api.data.types.PrismarineType;
-import org.spongepowered.api.data.types.QuartzType;
-import org.spongepowered.api.data.types.RailDirection;
-import org.spongepowered.api.data.types.SandType;
-import org.spongepowered.api.data.types.SandstoneType;
-import org.spongepowered.api.data.types.ShrubType;
-import org.spongepowered.api.data.types.SlabType;
-import org.spongepowered.api.data.types.StairShape;
-import org.spongepowered.api.data.types.StoneType;
-import org.spongepowered.api.data.types.TreeType;
-import org.spongepowered.api.data.types.WallType;
+import org.spongepowered.api.data.marker.*;
+import org.spongepowered.api.data.types.*;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.util.rotation.Rotation;
 
 import java.util.List;
+import java.util.Set;
 
 public class Props {
     private Props() {}
@@ -328,5 +312,66 @@ public class Props {
      * {@link BlockTypes#COBBLESTONE_WALL}.
      */
     public static final Prop<WallType, BlockTypeData> WALL_TYPE = null;
+
+    public static final Prop<Set<Achievement>, GameData> ACHIEVEMENTS = null;
+
+    public static final BoundedProp<Integer, AgeData> AGE = null;
+
+    // TODO there are other ways to do this, but this is simplest
+    public static final Prop<Boolean, AgeData> IS_ADULT = null;
+    public static final Prop<Bool, AgeData> IS_BABY = null;
+
+    public static final Prop<Boolean, GameData> AGGRESSIVE = null;
+
+    public static final BoundedProp<Integer, GameData> ANGER_LEVEL = null;
+
+    public static final Prop<Art, GameData> ART = null;
+
+    public static final Prop<Set<Ban.User>, GameData> BANS = null;
+
+    public static final Prop<Vector3d, PartRotationData> HEAD_ROTATION = null;
+
+    public static final Prop<Vector3d, PartRotationData> BODY_ROTATION = null;
+
+    public static final Prop<Vector3d, PartRotationData> LEFT_ARM_ROTATION = null;
+
+    public static final Prop<Vector3d, PartRotationData> RIGHT_ARM_ROTATION = null;
+
+    public static final Prop<Vector3d, PartRotationData> LEFT_LEG_ROTATION = null;
+
+    public static final Prop<Vector3d, PartRotationData> RIGHT_LEG_ROTATION = null;
+
+    public static final Prop<Integer, BreathingData> REMAINING_AIR = null;
+
+    public static final Prop<Integer, BreathingData> MAX_AIR = null;
+
+    // TODO name, READY_TO_BREED ?
+    public static final Prop<Boolean, GameData> CAN_BREED = null;
+
+    public static final Prop<Career, GameData> CAREER = null;
+
+    public static final Prop<Boolean, GameData> IS_CHARGED = null;
+
+    // TODO called CriticalHitData
+    public static final Prop<Boolean, GameData> WILL_PERFORM_CRITICAL_HIT = null;
+
+    public static final Prop<Living, DamageableData> LAST_ATTACKER = null;
+
+    public static final Prop<Double, DamageableData> LAST_DAMAGE = null;
+
+    public static final Prop<Integer, DamageableData> INVLUNLERABILITY_TICKS = null;
+
+    public static final Prop<Integer, DamageableData> MAX_INVLUNLERABILITY_TICKS = null;
+
+    public static final Prop<Double, DamagingData> DAMAGE = null;
+
+    // TODO could do capitals, but is bad style
+    public static Prop<Double, DamagingData> damageForEntity(EntityType type) {
+        return null;
+    }
+
+    // TODO also IS_ELDER?
+    public static final Prop<Boolean, GameData> IS_ELDER_GUARDIAN = null;
+
 
 }

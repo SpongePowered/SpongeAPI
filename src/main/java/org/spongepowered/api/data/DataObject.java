@@ -24,6 +24,12 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.data.marker.GameData;
+import org.spongepowered.api.data.prop.GetterProp;
+import org.spongepowered.api.data.prop.Prop;
+import org.spongepowered.api.data.prop.Props;
+import org.spongepowered.api.data.prop.SetterProp;
+
 /**
  * Represents some container of arbitrary data values.
  *
@@ -40,7 +46,7 @@ public interface DataObject<D> {
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E, V extends D> E getUnsafe(Prop<E, V> prop) throws UnsupportedOperationException;
+    <E, V extends D> E getUnsafe(GetterProp<E, V> prop) throws UnsupportedOperationException;
 
     /**
      * Sets some value.
@@ -51,7 +57,7 @@ public interface DataObject<D> {
      * @param <V> The subtype of data that this DataObject supports
      * @return This object
      */
-    <E, V extends D> DataObject<D> set(Prop<E, V> prop, E value);
+    <E, V extends D> DataObject<D> set(SetterProp<E, V> prop, E value);
 
     /**
      * Gets a data object with further restrictions on data.

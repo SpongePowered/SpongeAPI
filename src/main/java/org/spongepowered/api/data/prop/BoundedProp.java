@@ -22,44 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulators.entities;
+package org.spongepowered.api.data.prop;
 
-import org.spongepowered.api.data.DataManipulator;
+import java.util.Comparator;
 
-/**
- * Represents the remaining air information for various entities while they
- * are underwater.
- */
-public interface BreathingData extends DataManipulator<BreathingData> {
+// TODO Does a numeric property (int, double) imply boundedness for all possible cases?
+public interface BoundedProp<E, V> extends Prop<E, V> {
 
-    /**
-     * Gets the remaining ticks of air.
-     *
-     * @return The ticks of air
-     */
-    int getRemainingAir();
+    Comparator<E> getComparator();
 
-    /**
-     * Sets the remaining ticks of air.
-     *
-     * @param air The remaining ticks of air
-     * @return This instance, for chaining
-     */
-    BreathingData setRemainingAir(int air);
+    E getMinimum();
 
-    /**
-     * Gets the maximum ticks of air this entity can have.
-     *
-     * @return The maximum ticks of air
-     */
-    int getMaxAir();
-
-    /**
-     * Sets the maximum ticks of air this entity can have.
-     *
-     * @param air The maximum ticks of air
-     * @return This instance, for chaining
-     */
-    BreathingData setMaxAir(int air);
+    E getMaximum();
 
 }
