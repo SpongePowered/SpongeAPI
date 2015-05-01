@@ -26,10 +26,11 @@ package org.spongepowered.api.util.command.spec;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
@@ -48,10 +49,10 @@ import org.spongepowered.api.util.command.args.GenericArguments;
 import org.spongepowered.api.util.command.args.parsing.InputTokenizer;
 import org.spongepowered.api.util.command.args.parsing.InputTokenizers;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nullable;
+import com.google.common.base.Objects;
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Specification for how command arguments should be parsed.
@@ -95,6 +96,7 @@ public final class CommandSpec implements CommandCallable {
         @Nullable
         private String permission;
         private CommandExecutor executor;
+        private Map<List<String>, ? extends CommandCallable> childCommandMap;
         private InputTokenizer argumentParser = InputTokenizers.quotedStrings(false);
 
         private Builder() {}
@@ -131,12 +133,7 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder setChildren(Map<List<String>, ? extends CommandCallable> children) {
             Preconditions.checkNotNull(children, "children");
-            ChildCommandElementExecutor childDispatcher = new ChildCommandElementExecutor(this.executor);
-            for (Map.Entry<List<String>, ? extends CommandCallable> spec : children.entrySet()) {
-                childDispatcher.register(spec.getValue(), spec.getKey());
-            }
-            setArguments(childDispatcher);
-            setExecutor(childDispatcher);
+            this.childCommandMap = children;
             return this;
         }
 
@@ -210,8 +207,18 @@ public final class CommandSpec implements CommandCallable {
          * @return the new spec
          */
         public CommandSpec build() {
-            Preconditions.checkNotNull(this.executor, "An executor is required");
-
+            if(childCommandMap == null) {
+                Preconditions.checkNotNull(this.executor, "An executor is required");
+            } else {
+                ChildCommandElementExecutor childDispatcher = new ChildCommandElementExecutor(this.executor);
+                for (Map.Entry<List<String>, ? extends CommandCallable> spec : childCommandMap.entrySet()) {
+                    childDispatcher.register(spec.getValue(), spec.getKey());
+                }
+                
+                setArguments(childDispatcher);
+                setExecutor(childDispatcher);
+            }
+            
             return new CommandSpec(this.args, this.executor, this.description, this.extendedDescription, this.permission,
                     this.argumentParser);
         }
