@@ -60,6 +60,17 @@ public interface DataObject<D> {
     <E, V extends D> DataObject<D> set(SetterProp<E, V> prop, E value);
 
     /**
+     * Sets some value, if it can be set.
+     *
+     * @param prop The property
+     * @param value The value to set
+     * @param <E> The type of value
+     * @param <V> The subtype of data that this DataObject supports
+     * @return This object
+     */
+    <E, V extends D> DataObject<D> setIfPresent(SetterProp<E, V> prop, E value);
+
+    /**
      * Gets a data object with further restrictions on data.
      *
      * <p>As an example, use this to get a data "manipulator" from a more generic data object.</p>
