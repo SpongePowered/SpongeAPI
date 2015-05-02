@@ -30,4 +30,9 @@ package org.spongepowered.api.data;
  */
 public interface DataContainer extends DataView {
 
+    @Override
+    DataContainer set(DataQuery path, Object value);
+
+    @Override
+    DataContainer remove(DataQuery path);
 }

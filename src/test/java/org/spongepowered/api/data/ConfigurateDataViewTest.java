@@ -54,11 +54,11 @@ public class ConfigurateDataViewTest {
         node.getNode("foo", "nested", "Data").setValue(dataList);
 
         DataContainer manual = new MemoryDataContainer();
-        manual.set(DataQuery.of("foo", "int"), 1);
-        manual.set(DataQuery.of("foo", "double"), 10.0D);
-        manual.set(DataQuery.of("foo", "long"), Long.MAX_VALUE);
-        manual.set(DataQuery.of("foo", "stringList"), stringList);
-        manual.set(DataQuery.of("foo", "nested", "Data"), dataList);
+        manual.set(DataQuery.of("foo", "int"), 1)
+                .set(DataQuery.of("foo", "double"), 10.0D)
+                .set(DataQuery.of("foo", "long"), Long.MAX_VALUE)
+                .set(DataQuery.of("foo", "stringList"), stringList)
+                .set(DataQuery.of("foo", "nested", "Data"), dataList);
 
         DataView container = ConfigurateTranslator.instance().translateFrom(node);
         assertTrue(manual.equals(container));

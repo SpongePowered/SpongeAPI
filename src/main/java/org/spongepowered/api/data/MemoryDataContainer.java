@@ -42,4 +42,14 @@ public class MemoryDataContainer extends MemoryDataView implements DataContainer
     public final DataContainer getContainer() {
         return this;
     }
+
+    @Override
+    public DataContainer set(DataQuery path, Object value) {
+        return (DataContainer) super.set(path, value);
+    }
+
+    @Override
+    public DataContainer remove(DataQuery path) {
+        return (DataContainer) super.remove(path);
+    }
 }
