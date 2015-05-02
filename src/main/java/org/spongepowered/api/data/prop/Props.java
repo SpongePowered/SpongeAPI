@@ -50,7 +50,6 @@ public class Props {
     // TODO missing Wet
     // TODO missing base manipulators in data.manipulators.*
 
-    //naming: IS_ATTACHED or ATTACHED
     /**
      * Signifies that a block is "attached" or "hanging" on another block.
      * Usually applicable for {@link BlockTypes#TRIPWIRE}.
@@ -372,6 +371,12 @@ public class Props {
 
     // TODO also IS_ELDER?
     public static final Prop<Boolean, GameData> IS_ELDER_GUARDIAN = null;
+
+    public static final Prop<Integer, ExperienceHolderData> TOTAL_EXPERIENCE = null;
+
+    public static final Prop<Integer, ExperienceHolderData> EXPERIENCE_LEVEL = null;
+
+    public static final Prop<Integer, ExperienceHolderData> EXPERIENCE_SINCE_LEVEL = null;
 
 
 }
