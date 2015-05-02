@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.marker.GameData;
 import org.spongepowered.api.data.prop.GetterProp;
 import org.spongepowered.api.data.prop.Prop;
@@ -47,6 +48,29 @@ public interface DataObject<D> {
      * @throws UnsupportedOperationException If the value is not present
      */
     <E, V extends D> E getUnsafe(GetterProp<E, V> prop) throws UnsupportedOperationException;
+
+    /**
+     * Gets some value.
+     *
+     * @param prop The property
+     * @param <E> The type of value
+     * @param <V> The subtype of data that this DataObject supports
+     * @return The value
+     * @throws UnsupportedOperationException If the value is not present
+     */
+    <E, V extends D> Optional<E> get(GetterProp<E, V> prop) throws UnsupportedOperationException;
+
+    /**
+     * Gets some value, or the default.
+     *
+     * @param prop The property
+     * @param defaultValue The value if the prop does not exist
+     * @param <E> The type of value
+     * @param <V> The subtype of data that this DataObject supports
+     * @return The value
+     * @throws UnsupportedOperationException If the value is not present
+     */
+    <E, V extends D> E getOrElse(GetterProp<E, V> prop, E defaultValue) throws UnsupportedOperationException;
 
     /**
      * Sets some value.
