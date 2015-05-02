@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -35,7 +36,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  *
  * <p>Also, trade offers are not guaranteed to have two buying items.</p>
  */
-public interface TradeOffer {
+public interface TradeOffer extends DataSerializable {
 
     /**
      * Gets the first buying item.
