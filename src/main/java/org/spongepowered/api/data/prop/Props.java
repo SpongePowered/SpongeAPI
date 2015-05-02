@@ -25,10 +25,41 @@
 package org.spongepowered.api.data.prop;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.marker.*;
-import org.spongepowered.api.data.types.*;
+import org.spongepowered.api.data.marker.AchievementData;
+import org.spongepowered.api.data.marker.AgeData;
+import org.spongepowered.api.data.marker.ArtData;
+import org.spongepowered.api.data.marker.BanData;
+import org.spongepowered.api.data.marker.BlockTypeData;
+import org.spongepowered.api.data.marker.BreathingData;
+import org.spongepowered.api.data.marker.DamageableData;
+import org.spongepowered.api.data.marker.DamagingData;
+import org.spongepowered.api.data.marker.ExperienceHolderData;
+import org.spongepowered.api.data.marker.GameData;
+import org.spongepowered.api.data.marker.PartRotationData;
+import org.spongepowered.api.data.types.Art;
+import org.spongepowered.api.data.types.BigMushroomType;
+import org.spongepowered.api.data.types.BrickType;
+import org.spongepowered.api.data.types.Career;
+import org.spongepowered.api.data.types.Comparison;
+import org.spongepowered.api.data.types.DirtType;
+import org.spongepowered.api.data.types.DisguisedBlockType;
+import org.spongepowered.api.data.types.DoubleSizePlantType;
+import org.spongepowered.api.data.types.Hinge;
+import org.spongepowered.api.data.types.InstrumentType;
+import org.spongepowered.api.data.types.PistonType;
+import org.spongepowered.api.data.types.PortionType;
+import org.spongepowered.api.data.types.PrismarineType;
+import org.spongepowered.api.data.types.QuartzType;
+import org.spongepowered.api.data.types.RailDirection;
+import org.spongepowered.api.data.types.SandType;
+import org.spongepowered.api.data.types.SandstoneType;
+import org.spongepowered.api.data.types.ShrubType;
+import org.spongepowered.api.data.types.SlabType;
+import org.spongepowered.api.data.types.StairShape;
+import org.spongepowered.api.data.types.StoneType;
+import org.spongepowered.api.data.types.TreeType;
+import org.spongepowered.api.data.types.WallType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.stats.achievement.Achievement;
@@ -312,21 +343,21 @@ public class Props {
      */
     public static final Prop<WallType, BlockTypeData> WALL_TYPE = null;
 
-    public static final Prop<Set<Achievement>, GameData> ACHIEVEMENTS = null;
+    public static final Prop<Set<Achievement>, AchievementData> ACHIEVEMENTS = null;
 
     public static final BoundedProp<Integer, AgeData> AGE = null;
 
     // TODO there are other ways to do this, but this is simplest
     public static final Prop<Boolean, AgeData> IS_ADULT = null;
-    public static final Prop<Bool, AgeData> IS_BABY = null;
+    public static final Prop<Boolean, AgeData> IS_BABY = null;
 
     public static final Prop<Boolean, GameData> AGGRESSIVE = null;
 
     public static final BoundedProp<Integer, GameData> ANGER_LEVEL = null;
 
-    public static final Prop<Art, GameData> ART = null;
+    public static final Prop<Art, ArtData> ART = null;
 
-    public static final Prop<Set<Ban.User>, GameData> BANS = null;
+    public static final Prop<Set<Ban.User>, BanData> BANS = null;
 
     public static final Prop<Vector3d, PartRotationData> HEAD_ROTATION = null;
 

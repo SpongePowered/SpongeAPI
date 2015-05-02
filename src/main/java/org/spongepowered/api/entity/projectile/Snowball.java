@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.manipulators.entities.DamagingData;
+import org.spongepowered.api.data.DataObject;
+import org.spongepowered.api.data.marker.DamagingData;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -33,11 +34,11 @@ import org.spongepowered.api.entity.Entity;
 public interface Snowball extends Projectile {
 
     /**
-     * Gets a copy of the current {@link DamagingData} that this snowball will
+     * Gets a copy of the current {@link DataObject<DamagingData>} that this snowball will
      * deal on an {@link Entity} when hit.
      *
      * @return A copy of the damaging data
      */
-    DamagingData getDamagingData();
+    DataObject<DamagingData> getDamagingData();
 
 }

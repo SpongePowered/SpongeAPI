@@ -27,10 +27,11 @@ package org.spongepowered.api.entity.player;
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataObject;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulators.entities.AchievementData;
-import org.spongepowered.api.data.manipulators.entities.BanData;
 import org.spongepowered.api.data.manipulators.entities.StatisticData;
+import org.spongepowered.api.data.marker.AchievementData;
+import org.spongepowered.api.data.marker.BanData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.Carrier;
@@ -78,7 +79,7 @@ public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, D
      *
      * @return A copy of the achievement data
      */
-    AchievementData getAchievementData();
+    DataObject<AchievementData> getAchievementData();
 
     /**
      * Gets a copy of the {@link StatisticData} for this user.
@@ -88,10 +89,10 @@ public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, D
     StatisticData getStatisticData();
 
     /**
-     * Gets a copy of the current {@link BanData} for this user.
+     * Gets a copy of the current {@link DataObject<BanData>} for this user.
      *
      * @return A copy of the ban data
      */
-    BanData getBanData();
+    DataObject<BanData> getBanData();
 
 }

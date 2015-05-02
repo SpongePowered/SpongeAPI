@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulators.entities.BodyPartRotationalData;
+import org.spongepowered.api.data.DataObject;
+import org.spongepowered.api.data.marker.PartRotationData;
 import org.spongepowered.api.entity.ArmorEquipable;
 
 /**
@@ -33,12 +34,12 @@ import org.spongepowered.api.entity.ArmorEquipable;
 public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
-     * Gets a copy of the current {@link BodyPartRotationalData} used by this
+     * Gets a copy of the current {@link DataObject<PartRotationData>} used by this
      * {@link ArmorStand}.
      *
      * @return A copy of the current body rotational data
      */
-    BodyPartRotationalData getBodyPartRotationalData();
+    DataObject<PartRotationData> getBodyPartRotationalData();
 
     /**
      * Returns whether this armor stand is a small armor stand or not.

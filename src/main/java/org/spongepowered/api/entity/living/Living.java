@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulators.entities.DamageableData;
+import org.spongepowered.api.data.DataObject;
 import org.spongepowered.api.data.manipulators.entities.HealthData;
+import org.spongepowered.api.data.marker.DamageableData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.potion.PotionEffect;
 
@@ -49,8 +50,6 @@ public interface Living extends Entity {
      *
      * @return A copy of the current damageable data
      */
-    DamageableData getMortalData();
-
-
+    DataObject<DamageableData> getMortalData();
 
 }
