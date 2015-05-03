@@ -22,46 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human.fishing;
+package org.spongepowered.api.event.entity.living.human;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.ExperienceEvent;
-import org.spongepowered.api.item.inventory.ItemStack;
-
-import javax.annotation.Nullable;
+import org.spongepowered.api.entity.projectile.FishHook;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
 
 /**
- * Called when a {@link org.spongepowered.api.entity.living.Human} retracts
- * a fishing line.
+ * Called when a {@link org.spongepowered.api.entity.living.Human} performs
+ * a fishing-related action.
  */
-public interface HumanRetractFishingLineEvent extends HumanFishEvent, ExperienceEvent {
+public interface HumanFishEvent extends HumanEvent, Cancellable {
 
     /**
-     * Gets the {@link ItemStack} that will be given, if available.
+     * Gets the {@link FishHook} used in this event.
      *
-     * @return The {@link ItemStack} that will be given
+     * @return The {@link FishHook used} in this event
      */
-    Optional<ItemStack> getCaughtItem();
-
-    /**
-     * Sets the {@link ItemStack} that will be given, if available.
-     *
-     * @param item The {@link ItemStack} to set
-     */
-    void setCaughtItem(@Nullable ItemStack item);
-
-    /**
-     * Gets the {@link Entity} hooked, if available.
-     *
-     * @return The hooked {@link Entity}
-     */
-    Optional<Entity> getCaughtEntity();
-
-    /**
-     * Sets the {@link Entity} hooked, if available.
-     *
-     * @param entity The hooked {@link Entity} to set
-     */
-    void setCaughtEntity(@Nullable Entity entity);
+    FishHook getFishHook();
 }

@@ -25,12 +25,13 @@
 package org.spongepowered.api.event.block;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * Called when a block is about to dispense an item.
  */
-public interface BlockDispenseEvent extends BlockEvent {
+public interface BlockDispenseEvent extends BlockEvent, CauseTracked {
 
     /**
      * Get the item that is being dispensed.

@@ -1,7 +1,7 @@
 /*
  * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,40 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
+package org.spongepowered.api.event.entity;
+
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityDamageEvent;
 
-/**
- * An event that is processed after any {@link EntityDamageEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
- */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public interface EntityHealEvent extends EntityEvent, CauseTracked, Cancellable {
 
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
+    double getOriginalHealAmount();
 
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
+    double getBaseHealAmount();
 
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    void setBaseHealAmount(double healAmount);
+
+    double getFinalHealAmount();
+
+    void setHealAmount(double healAmount);
+
+
 
 }

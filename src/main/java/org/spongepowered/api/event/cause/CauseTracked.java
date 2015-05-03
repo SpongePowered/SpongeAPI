@@ -24,21 +24,16 @@
  */
 package org.spongepowered.api.event.cause;
 
-import com.google.common.base.Optional;
-
 /**
  * Something that keeps track of the cause.
  */
 public interface CauseTracked {
 
     /**
-     * Get the last cause.
-     *
-     * <p>Parent causes, including possibly the root cause, can be
-     * retrieved using {@link Cause#getParent()}.</p>
+     * Get the cause for the event.
      *
      * @return The last cause
      */
-    Optional<Cause> getCause();
+    Cause getCause();
 
 }

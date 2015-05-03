@@ -22,14 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.reason;
+package org.spongepowered.api.event.cause.entity.spawn;
 
-import org.spongepowered.api.event.cause.Cause;
+public final class SpawnTypes {
 
-/**
- * A reason explains a {@link Cause}. For example, a cause might be a fire
- * block, and the reason would be fire spread.
- */
-public interface Reason {
+    private SpawnTypes() {}
+
+    public static final SpawnType BLOCK_SPAWNING = null;
+    public static final SpawnType BREEDING = null;
+    public static final SpawnType DISPENSE = null;
+    public static final SpawnType DROPPED_ITEM = null;
+    public static final SpawnType EXPERIENCE = null;
+    public static final SpawnType FALLING_BLOCK = null;
+    public static final SpawnType MOB_SPAWNER = null;
+    public static final SpawnType PASSIVE = null;
+    public static final SpawnType PLACEMENT = null;
+    public static final SpawnType PROJECTILE = null;
+    public static final SpawnType SPAWN_EGG = null;
+    public static final SpawnType STRUCTURE = null;
+    public static final SpawnType TNT_IGNITE = null;
+    public static final SpawnType WEATHER = null;
 
 }

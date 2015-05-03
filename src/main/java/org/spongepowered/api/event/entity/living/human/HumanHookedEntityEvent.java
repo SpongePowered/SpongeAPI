@@ -22,40 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityDamageEvent;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
+
+import javax.annotation.Nullable;
 
 /**
- * An event that is processed after any {@link EntityDamageEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * Called when a {@link org.spongepowered.api.entity.living.Human} hooks an
+ * {@link Entity} with a fishing rod.
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public interface HumanHookedEntityEvent extends HumanFishEvent, HumanEvent {
 
     /**
-     * Gets the old health data of the {@link Living}.
+     * Gets the {@link Entity} hooked, if available.
      *
-     * @return The old health data.
+     * @return The hooked {@link Entity}
      */
-    HealthData getOldData();
+    Optional<Entity> getCaughtEntity();
 
     /**
-     * Gets the new health data of the {@link Living}.
+     * Sets the {@link Entity} hooked, if available.
      *
-     * @return The new health data.
+     * @param entity The hooked {@link Entity} to set
      */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
-
+    void setCaughtEntity(@Nullable Entity entity);
 }

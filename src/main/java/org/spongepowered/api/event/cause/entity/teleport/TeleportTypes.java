@@ -22,40 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.cause.entity.teleport;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityDamageEvent;
+public final class TeleportTypes {
 
-/**
- * An event that is processed after any {@link EntityDamageEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
- */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+    public static final TeleportType COMMAND = null;
+    public static final TeleportType PLUGIN = null;
+    public static final TeleportType NETHER_PORTAL = null;
+    public static final TeleportType END_PORTAL = null;
+    public static final TeleportType ENDER_PEARL = null;
+    public static final TeleportType ENTITY_TELEPORT = null;
+    public static final TeleportType UNKNOWN = null;
 
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
-
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    private TeleportTypes() {}
 
 }

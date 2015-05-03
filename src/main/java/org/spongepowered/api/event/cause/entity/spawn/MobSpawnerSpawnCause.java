@@ -22,4 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human.fishing;
+package org.spongepowered.api.event.cause.entity.spawn;
+
+import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
+
+public interface MobSpawnerSpawnCause extends SpawnCause {
+
+    ImmutableMobSpawnerData getMobSpawnerData();
+
+}

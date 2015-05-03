@@ -22,40 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityDamageEvent;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.ExperienceEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
+
+import javax.annotation.Nullable;
 
 /**
- * An event that is processed after any {@link EntityDamageEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * Called when a {@link org.spongepowered.api.entity.living.Human} retracts
+ * a fishing line.
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public interface HumanRetractFishingLineEvent extends HumanFishEvent, ExperienceEvent {
 
     /**
-     * Gets the old health data of the {@link Living}.
+     * Gets the {@link ItemStack} that will be given, if available.
      *
-     * @return The old health data.
+     * @return The {@link ItemStack} that will be given
      */
-    HealthData getOldData();
+    Optional<ItemStack> getCaughtItem();
 
     /**
-     * Gets the new health data of the {@link Living}.
+     * Sets the {@link ItemStack} that will be given, if available.
      *
-     * @return The new health data.
+     * @param item The {@link ItemStack} to set
      */
-    HealthData getNewData();
+    void setCaughtItem(@Nullable ItemStack item);
 
     /**
-     * Sets the new health data of the {@link Living}.
+     * Gets the {@link Entity} hooked, if available.
      *
-     * @param newData The new health data
+     * @return The hooked {@link Entity}
      */
-    void setNewData(HealthData newData);
+    Optional<Entity> getCaughtEntity();
 
+    /**
+     * Sets the {@link Entity} hooked, if available.
+     *
+     * @param entity The hooked {@link Entity} to set
+     */
+    void setCaughtEntity(@Nullable Entity entity);
 }

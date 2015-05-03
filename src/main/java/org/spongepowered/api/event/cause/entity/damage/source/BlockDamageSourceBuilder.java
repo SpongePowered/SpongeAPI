@@ -22,4 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.cause.reason;
+package org.spongepowered.api.event.cause.entity.damage.source;
+
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.world.Location;
+
+public interface BlockDamageSourceBuilder extends DamageSourceBuilder {
+
+    @Override
+    BlockDamageSourceBuilder affectsCreativeMode();
+
+    @Override
+    BlockDamageSourceBuilder scalesWithDifficulty();
+
+    @Override
+    BlockDamageSourceBuilder bypassesArmor();
+
+    @Override
+    BlockDamageSourceBuilder blockable();
+
+    @Override
+    BlockDamageSourceBuilder explosion();
+
+    @Override
+    BlockDamageSourceBuilder absolute();
+
+    @Override
+    BlockDamageSourceBuilder magical();
+
+    @Override
+    BlockDamageSourceBuilder type(DamageType damageType);
+
+    BlockDamageSourceBuilder block(Location location);
+
+    BlockDamageSourceBuilder block(BlockState blockState);
+
+    @Override
+    BlockDamageSource build() throws IllegalStateException;
+}
