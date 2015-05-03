@@ -26,17 +26,7 @@ package org.spongepowered.api.data.prop;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.marker.AchievementData;
-import org.spongepowered.api.data.marker.AgeData;
-import org.spongepowered.api.data.marker.ArtData;
-import org.spongepowered.api.data.marker.BanData;
-import org.spongepowered.api.data.marker.BlockTypeData;
-import org.spongepowered.api.data.marker.BreathingData;
-import org.spongepowered.api.data.marker.DamageableData;
-import org.spongepowered.api.data.marker.DamagingData;
-import org.spongepowered.api.data.marker.ExperienceHolderData;
-import org.spongepowered.api.data.marker.GameData;
-import org.spongepowered.api.data.marker.PartRotationData;
+import org.spongepowered.api.data.marker.*;
 import org.spongepowered.api.data.types.Art;
 import org.spongepowered.api.data.types.BigMushroomType;
 import org.spongepowered.api.data.types.BrickType;
@@ -409,5 +399,14 @@ public class Props {
 
     public static final Prop<Integer, ExperienceHolderData> EXPERIENCE_SINCE_LEVEL = null;
 
+    public static final Prop<Integer, ExperienceHolderData> EXPERIENCE_BETWEEN_LEVELSL = null;
+
+    public static final Prop<Integer, GameData> EXPIRATION_TICKS = null;
+
+    public static final Prop<Integer, GameData> EXPLOSION_RADIUS = null;
+
+    public static final GetterProp<Double, EyeLocationData> EYE_HEIGHT = null;
+
+    public static final GetterProp<Double, EyeLocationData> EYE_LOCATION = null;
 
 }
