@@ -26,12 +26,14 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.gen.WorldGenerator;
 
 /**
  * Represents a world type. This is in general a {@link WorldGenerator} and the
  * settings for the generator.
  */
+@CatalogedBy(GeneratorTypes.class)
 public interface GeneratorType extends CatalogType {
 
     /**
@@ -40,7 +42,7 @@ public interface GeneratorType extends CatalogType {
      * @return The settings
      */
     DataContainer getGeneratorSettings();
-    
+
     /**
      * Creates a new {@link WorldGenerator} for this world type.
      *
