@@ -26,6 +26,7 @@ package org.spongepowered.api.data.prop;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.Exp;
 import org.spongepowered.api.data.marker.*;
 import org.spongepowered.api.data.types.Art;
 import org.spongepowered.api.data.types.BigMushroomType;
@@ -393,13 +394,7 @@ public class Props {
     // TODO also IS_ELDER?
     public static final Prop<Boolean, GameData> IS_ELDER_GUARDIAN = null;
 
-    public static final Prop<Integer, ExperienceHolderData> TOTAL_EXPERIENCE = null;
-
-    public static final Prop<Integer, ExperienceHolderData> EXPERIENCE_LEVEL = null;
-
-    public static final Prop<Integer, ExperienceHolderData> EXPERIENCE_SINCE_LEVEL = null;
-
-    public static final Prop<Integer, ExperienceHolderData> EXPERIENCE_BETWEEN_LEVELSL = null;
+    public static final Prop<Exp, ExperienceHolderData> EXPERIENCE = null;
 
     public static final Prop<Integer, GameData> EXPIRATION_TICKS = null;
 

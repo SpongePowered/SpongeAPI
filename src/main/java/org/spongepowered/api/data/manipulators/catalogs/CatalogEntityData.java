@@ -37,10 +37,10 @@ import org.spongepowered.api.data.manipulators.PotionEffectData;
 import org.spongepowered.api.data.manipulators.RepresentedItemData;
 import org.spongepowered.api.data.manipulators.TargetedLocationData;
 import org.spongepowered.api.data.manipulators.WetData;
-import org.spongepowered.api.data.manipulators.entities.ExperienceHolderData;
-import org.spongepowered.api.data.manipulators.entities.ExpirableData;
-import org.spongepowered.api.data.manipulators.entities.ExplosiveRadiusData;
-import org.spongepowered.api.data.manipulators.entities.EyeLocationData;
+//import org.spongepowered.api.data.manipulators.entities.ExperienceHolderData;
+//import org.spongepowered.api.data.manipulators.entities.ExpirableData;
+//import org.spongepowered.api.data.manipulators.entities.ExplosiveRadiusData;
+//import org.spongepowered.api.data.manipulators.entities.EyeLocationData;
 import org.spongepowered.api.data.manipulators.entities.FallingBlockData;
 import org.spongepowered.api.data.manipulators.entities.FlyingData;
 import org.spongepowered.api.data.manipulators.entities.FoodData;
@@ -241,27 +241,27 @@ public final class CatalogEntityData {
 //     * {@link Guardian}s.
 //     */
 //    public static final Class<ElderData> ELDER_DATA = ElderData.class;
-    /**
-     * Signifies that an entity can hold "experience". Usually applies to
-     * {@link Player}s.
-     */
-    public static final Class<ExperienceHolderData> EXPERIENCE_HOLDER_DATA = ExperienceHolderData.class;
-    /**
-     * Signifies that an entity can expire after a certain amount of time.
-     * Usually applies to {@link Weather}, {@link Endermite}s, and
-     * {@link Item}s.
-     */
-    public static final Class<ExpirableData> EXPIRABLE_DATA_CLASS = ExpirableData.class;
-    /**
-     * Represents the "explosion radius" that an entity will have upon
-     * detonation. Usually applies to all {@link Explosive}s.
-     */
-    public static final Class<ExplosiveRadiusData> EXPLOSIVE_RADIUS_DATA = ExplosiveRadiusData.class;
-    /**
-     * Represents an entity having the notion of a "head" and "eye location".
-     * Usually applies to all {@link Living} entities.
-     */
-    public static final Class<EyeLocationData> EYE_LOCATION_DATA = EyeLocationData.class;
+//    /**
+//     * Signifies that an entity can hold "experience". Usually applies to
+//     * {@link Player}s.
+//     */
+//    public static final Class<ExperienceHolderData> EXPERIENCE_HOLDER_DATA = ExperienceHolderData.class;
+//    /**
+//     * Signifies that an entity can expire after a certain amount of time.
+//     * Usually applies to {@link Weather}, {@link Endermite}s, and
+//     * {@link Item}s.
+//     */
+//    public static final Class<ExpirableData> EXPIRABLE_DATA_CLASS = ExpirableData.class;
+//    /**
+//     * Represents the "explosion radius" that an entity will have upon
+//     * detonation. Usually applies to all {@link Explosive}s.
+//     */
+//    public static final Class<ExplosiveRadiusData> EXPLOSIVE_RADIUS_DATA = ExplosiveRadiusData.class;
+//    /**
+//     * Represents an entity having the notion of a "head" and "eye location".
+//     * Usually applies to all {@link Living} entities.
+//     */
+//    public static final Class<EyeLocationData> EYE_LOCATION_DATA = EyeLocationData.class;
     /**
      * Represents a falling block that can deal damage upon landing.
      * Applies to {@link FallingBlock}s.
