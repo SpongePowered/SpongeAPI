@@ -54,7 +54,7 @@ public interface DataObject<D> {
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E> Optional<E> get(GetterProp<E, ? extends D> prop) throws UnsupportedOperationException;
+    <E> Optional<E> get(GetterProp<E, ? extends D> prop);
 
     /**
      * Gets some value, or the default.
@@ -65,7 +65,7 @@ public interface DataObject<D> {
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E> E getOrElse(GetterProp<E, ? extends D> prop, E defaultValue) throws UnsupportedOperationException;
+    <E> E getOrElse(GetterProp<E, ? extends D> prop, E defaultValue);
 
     /**
      * Sets some value.
@@ -110,7 +110,7 @@ public interface DataObject<D> {
     <E, V extends D> DataObject<V> restrict(Prop<E, V> prop);
 
     /**
-     * Copies all keys in the given data object to those which are supported in the current data object.
+     * Copies all keys from the given data object to those which are supported in the current data object.
      *
      * @param dataObject
      * @return
