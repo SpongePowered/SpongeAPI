@@ -25,10 +25,8 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.marker.GameData;
 import org.spongepowered.api.data.prop.GetterProp;
 import org.spongepowered.api.data.prop.Prop;
-import org.spongepowered.api.data.prop.Props;
 import org.spongepowered.api.data.prop.SetterProp;
 
 /**
@@ -43,22 +41,20 @@ public interface DataObject<D> {
      *
      * @param prop The property
      * @param <E> The type of value
-     * @param <V> The subtype of data that this DataObject supports
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E, V extends D> E getUnsafe(GetterProp<E, V> prop) throws UnsupportedOperationException;
+    <E> E getUnsafe(GetterProp<E, ? extends D> prop) throws UnsupportedOperationException;
 
     /**
      * Gets some value.
      *
      * @param prop The property
      * @param <E> The type of value
-     * @param <V> The subtype of data that this DataObject supports
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E, V extends D> Optional<E> get(GetterProp<E, V> prop) throws UnsupportedOperationException;
+    <E> Optional<E> get(GetterProp<E, ? extends D> prop) throws UnsupportedOperationException;
 
     /**
      * Gets some value, or the default.
@@ -66,11 +62,10 @@ public interface DataObject<D> {
      * @param prop The property
      * @param defaultValue The value if the prop does not exist
      * @param <E> The type of value
-     * @param <V> The subtype of data that this DataObject supports
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E, V extends D> E getOrElse(GetterProp<E, V> prop, E defaultValue) throws UnsupportedOperationException;
+    <E> E getOrElse(GetterProp<E, ? extends D> prop, E defaultValue) throws UnsupportedOperationException;
 
     /**
      * Sets some value.
@@ -78,10 +73,9 @@ public interface DataObject<D> {
      * @param prop The property
      * @param value The value to set
      * @param <E> The type of value
-     * @param <V> The subtype of data that this DataObject supports
      * @return This object
      */
-    <E, V extends D> DataObject<D> set(SetterProp<E, V> prop, E value);
+    <E> DataObject<D> set(SetterProp<E, ? extends D> prop, E value);
 
     /**
      * Sets some value, if it can be set.
@@ -89,10 +83,9 @@ public interface DataObject<D> {
      * @param prop The property
      * @param value The value to set
      * @param <E> The type of value
-     * @param <V> The subtype of data that this DataObject supports
      * @return This object
      */
-    <E, V extends D> DataObject<D> setIfPresent(SetterProp<E, V> prop, E value);
+    <E> DataObject<D> setIfPresent(SetterProp<E, ? extends D> prop, E value);
 
     /**
      * Gets a data object with further restrictions on data.
@@ -103,6 +96,33 @@ public interface DataObject<D> {
      * @param <V> The type of data to restrict to
      * @return The nested data object
      */
-    <V extends D> DataObject<V> get(Class<V> clazz);
+    <V extends D> DataObject<V> restrict(Class<V> clazz);
+
+    /**
+     * Gets a data object with further restrictions on data.
+     *
+     * <p>As an example, use this to get a data "manipulator" from a more generic data object.</p>
+     *
+     * @param prop The prop to restrict to
+     * @param <V> The type of data to restrict to
+     * @return The nested data object
+     */
+    <E, V extends D> DataObject<V> restrict(Prop<E, V> prop);
+
+    /**
+     * Copies all keys in the given data object to those which are supported in the current data object.
+     *
+     * @param dataObject
+     * @return
+     */
+    DataObject<D> copyFrom(DataObject<? extends D> dataObject);
+
+    /**
+     * Copies as many keys as possible in the current data object to the given data object.
+     *
+     * @param dataObject
+     * @return
+     */
+    DataObject<D> copyTo(DataObject<? super D> dataObject);
 
 }
