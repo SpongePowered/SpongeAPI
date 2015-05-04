@@ -71,4 +71,17 @@ public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends D
      */
     <M extends DataManipulator<M>> Optional<T> withData(M manipulator);
 
+    /**
+     * Gets an altered copy of this {@link ImmutableDataHolder} without the
+     * given {@link DataManipulator}. If the data represented by the
+     * manipulator can not exist without a "default state" of the
+     * {@link DataManipulator}, the {@link DataManipulator} is reset to the
+     * "default" state.
+     *
+     * @param manipulator The manipulator data to remove
+     * @param <M> The manipulator
+     * @return A new immutable data holder without the given manipulator
+     */
+    <M extends DataManipulator<M>> Optional<T> withoutData(M manipulator);
+
 }
