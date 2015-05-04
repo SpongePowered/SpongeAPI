@@ -78,10 +78,10 @@ public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends D
      * {@link DataManipulator}, the {@link DataManipulator} is reset to the
      * "default" state.
      *
-     * @param manipulator The manipulator data to remove
-     * @param <M> The manipulator
+     * @param manipulator The manipulator class to remove
+     * @param <M> The manipulator type
      * @return A new immutable data holder without the given manipulator
      */
-    <M extends DataManipulator<M>> Optional<T> withoutData(M manipulator);
+    <M extends DataManipulator<M>> Optional<T> withoutData(Class<M> manipulator);
 
 }
