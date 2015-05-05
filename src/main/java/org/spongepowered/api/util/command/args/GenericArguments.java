@@ -81,7 +81,8 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent an online player,
-     * or if nothing matches and the source is a {@link Player}, give the player.
+     * or if nothing matches and the source is a {@link Player}, give the player. If nothing matches and the source is not a player, throw an
+     * exception
      * Gives value of type {@link Player}
      *
      * @param key The key to store under
