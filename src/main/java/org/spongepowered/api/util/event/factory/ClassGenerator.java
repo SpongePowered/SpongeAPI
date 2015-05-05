@@ -49,6 +49,7 @@ import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
 import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 import static org.objectweb.asm.Opcodes.IRETURN;
+import static org.objectweb.asm.Opcodes.ISUB;
 import static org.objectweb.asm.Opcodes.LLOAD;
 import static org.objectweb.asm.Opcodes.LRETURN;
 import static org.objectweb.asm.Opcodes.NEW;
@@ -320,7 +321,20 @@ class ClassGenerator {
             mv.visitEnd();
         }
 
-        // Create the accessors and mutators
+        // The return value of toString takes the form of "ClassName{param1=value1, param2=value2, ...}"
+
+
+        MethodVisitor toStringMv = cw.visitMethod(ACC_PUBLIC, "toString", "()Ljava/lang/String;", null, null);
+        toStringMv.visitCode();
+        toStringMv.visitTypeInsn(NEW, "java/lang/StringBuilder");
+        toStringMv.visitInsn(DUP);
+        toStringMv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+        toStringMv.visitLdcInsn(type.getName() + "{");
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+        toStringMv.visitVarInsn(ASTORE, 1);
+
+        // Create the accessors and mutators, and fill out the toString method
         for (Property property : properties) {
             if (!hasImplementation(parentType, property.getAccessor())) {
                 Method accessor = property.getAccessor();
@@ -347,7 +361,53 @@ class ClassGenerator {
                 mv.visitMaxs(0, 0);
                 mv.visitEnd();
             }
+
+            // stringBuilder.append(this.'property'.toString())
+
+            Type returnType = Type.getReturnType(property.getAccessor());
+
+            toStringMv.visitVarInsn(ALOAD, 0);
+
+            toStringMv.visitVarInsn(ALOAD, 1);
+            toStringMv.visitLdcInsn(property.getName());
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+            toStringMv.visitLdcInsn("=");
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+            toStringMv.visitVarInsn(ALOAD, 0);
+            toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+
+            String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
+
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append",
+                                       "(" + desc + ")Ljava/lang/StringBuilder;", false);
+
+            toStringMv.visitLdcInsn(", ");
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
         }
+
+        // The StringBuilder is on the top of the stack from the last append() - duplicate it for call to replace()
+        toStringMv.visitVarInsn(ALOAD, 1);
+        toStringMv.visitInsn(DUP);
+
+        // The replace starts at 2 characters before the end, to remove the extra command and space added
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
+        toStringMv.visitLdcInsn(2);
+        toStringMv.visitInsn(ISUB);
+
+        toStringMv.visitVarInsn(ALOAD, 1);
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
+
+        toStringMv.visitLdcInsn("}");
+
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "replace", "(IILjava/lang/String;)Ljava/lang/StringBuilder;", false);
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+
+        toStringMv.visitInsn(ARETURN);
+        toStringMv.visitMaxs(0, 0);
+        toStringMv.visitEnd();
 
         cw.visitEnd();
 
