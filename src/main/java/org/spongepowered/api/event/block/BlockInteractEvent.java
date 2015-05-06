@@ -24,9 +24,15 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.util.Direction;
+
 /**
  * Dispatched when a block is being interacted with.
  */
 public interface BlockInteractEvent extends BlockEvent {
-
+    /**
+     * Gets the 'face' of the block that was interacted as a {@link org.spongepowered.api.util.Direction}.
+     * @return The direction
+     */
+    Direction getSide();
 }

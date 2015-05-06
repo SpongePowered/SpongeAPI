@@ -323,13 +323,15 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
      * @param block The block affected by this event
+     * @param side The face interacted with as a direction
      * @return A new instance of the event
      */
-    public static BlockInteractEvent createBlockInteract(Game game, Cause cause, Location block) {
+    public static BlockInteractEvent createBlockInteract(Game game, Cause cause, Location block, Direction side) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
+        values.put("side", side);
         return createEvent(BlockInteractEvent.class, values);
     }
 
@@ -677,12 +679,13 @@ public final class SpongeEventFactory {
      * @param block The block affected by this event
      * @return A new instance of the event
      */
-    public static EntityInteractBlockEvent createEntityInteractBlock(Game game, Cause cause, Entity entity, Location block) {
+    public static EntityInteractBlockEvent createEntityInteractBlock(Game game, Cause cause, Entity entity, Location block, Direction side) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
         values.put("entity", entity);
+        values.put("side", side);
         return createEvent(EntityInteractBlockEvent.class, values);
     }
 
@@ -1218,16 +1221,18 @@ public final class SpongeEventFactory {
      * @param cause The cause of the event, can be null
      * @param player The player involved in this event
      * @param block The block affected by this event
+     * @param side The face interacted with as a direction
      * @param interactionType The type of interaction used
      * @param location The location of the interaction
      * @return A new instance of the event
      */
-    public static PlayerInteractBlockEvent createPlayerInteractBlock(Game game, Cause cause, Player player, Location block,
+    public static PlayerInteractBlockEvent createPlayerInteractBlock(Game game, Cause cause, Player player, Location block, Direction side,
             EntityInteractionType interactionType, @Nullable Vector3d location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("block", block);
+        values.put("side", side);
         values.put("entity", player);
         values.put("human", player);
         values.put("living", player);
