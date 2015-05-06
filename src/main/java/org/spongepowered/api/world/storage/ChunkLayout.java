@@ -100,6 +100,50 @@ public interface ChunkLayout {
     boolean isValidChunk(int x, int y, int z);
 
     /**
+     * Returns true if the local coordinates fit in a chunk. That is
+     * they are positive and smaller than the chunk's size.
+     *
+     * @param localCoords The coordinates to check
+     * @return Whether or not the coordinates fit in a chunk
+     */
+    boolean isInChunk(Vector3i localCoords);
+
+    /**
+     * Returns true if the local coordinates fit in a chunk. That is
+     * they are positive and smaller than the chunk's size.
+     *
+     * @param x The x local coordinate to validate
+     * @param y The y local coordinate to validate
+     * @param z The z local coordinate to validate
+     * @return Whether or not the coordinates fit in a chunk
+     */
+    boolean isInChunk(int x, int y, int z);
+
+    /**
+     * Returns true if the world coordinates fit in the chunk at the
+     * given coordinates.
+     *
+     * @param worldCoords The world coordinates to validate
+     * @param chunkCoords The chunk coordinates in which they must fit
+     * @return Whether or not the world coordinates fit in the chunk
+     */
+    boolean isInChunk(Vector3i worldCoords, Vector3i chunkCoords);
+
+    /**
+     * Returns true if the world coordinates fit in the chunk at the
+     * given coordinates.
+     *
+     * @param wx The x world coordinate to validate
+     * @param wy The y world coordinate to validate
+     * @param wz The z world coordinate to validate
+     * @param cx The x chunk coordinate in which they must fit
+     * @param cy The y chunk coordinate in which they must fit
+     * @param cz The z chunk coordinate in which they must fit
+     * @return Whether or not the world coordinates fit in the chunk
+     */
+    boolean isInChunk(int wx, int wy, int wz, int cx, int cy, int cz);
+
+    /**
      * Converts world coordinates to chunk coordinates. Returns nothing if the
      * conversion failed because the resulting chunk coordinates aren't valid.
      *
