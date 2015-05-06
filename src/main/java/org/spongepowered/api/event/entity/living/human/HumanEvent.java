@@ -37,11 +37,6 @@ public interface HumanEvent extends LivingEvent {
      *
      * @return The {@link Human} involved
      */
-    Human getHuman();
-
-    @Override
-    Human getLiving();
-
     @Override
     Human getEntity();
 }
