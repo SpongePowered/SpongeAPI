@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.event.GameEvent;
 
 /**
@@ -37,6 +37,6 @@ public interface UserEvent extends GameEvent {
      *
      * @return The user
      */
-    Entity getEntity();
+    User getUser();
 
 }
