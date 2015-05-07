@@ -33,29 +33,6 @@ import org.spongepowered.api.util.command.source.RconSource;
 public interface RconEvent extends GameEvent {
 
     /**
-     * Gets the ID provided by the client for this request
-     *
-     * <p>The provided ID is sent back in the response to the client.</p>
-     *
-     * <p>If authorization failed (password is incorrect, or client didn't authenticate),
-     * the ID will be set to -1 in the response.</p>
-     *
-     * @return The ID provided by the client
-     */
-    int getId();
-
-    /**
-     * Gets the raw payload provided by the client.
-     *
-     * <p>If the client is authenticating, this will be the supplied password.
-     *
-     * If the client is running a command, this will be the command to run.</p>
-     *
-     * @return The raw payload provided by the client
-     */
-    String getRawPayload();
-
-    /**
      * Gets the {@link RconSource} responsible for the event.
      *
      * @return The {@link RconSource} responsible for the event

@@ -32,14 +32,6 @@ import java.net.InetSocketAddress;
 public interface RconSource extends RemoteSource {
 
     /**
-     * Gets the {@link InetSocketAddress} used by the client to connect
-     * to the server.
-     *
-     * @return The {@link InetSocketAddress} used by the client
-     */
-    InetSocketAddress getAddress();
-
-    /**
      * Gets whether this client is logged in, or authenticated.
      *
      * @return Whether this client is logged in

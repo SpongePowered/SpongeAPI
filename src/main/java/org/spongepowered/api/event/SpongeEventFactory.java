@@ -112,6 +112,8 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerHookedEntityEvent
 import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLineEvent;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.rcon.RconLoginEvent;
+import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.event.state.StateEvent;
 import org.spongepowered.api.event.stats.AchievementEvent;
@@ -133,6 +135,7 @@ import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.types.TileEntityInventory;
+import org.spongepowered.api.service.rcon.RconService;
 import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.status.StatusClient;
@@ -140,6 +143,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.source.RconSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.util.event.factory.FactoryProvider;
@@ -1820,4 +1824,31 @@ public final class SpongeEventFactory {
         return createEvent(FurnaceSmeltItemEvent.class, values);
     }
 
+    /**
+     * Create a new {@link RconLoginEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param source The {@link RconSource} that caused this event
+     * @return A new instance of the event
+     */
+    public static RconLoginEvent createRconLoginEvent(Game game, RconSource source) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("source", source);
+        return createEvent(RconLoginEvent.class, values);
+    }
+
+    /**
+     * Create a new {@link RconQuitEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param source The {@link RconSource} that caused this event
+     * @return A new instance of the event
+     */
+    public static RconQuitEvent createRconQuitEvent(Game game, RconSource source) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("source", source);
+        return createEvent(RconQuitEvent.class, values);
+    }
 }

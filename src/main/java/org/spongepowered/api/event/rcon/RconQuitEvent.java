@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.event.rcon;
 
-import org.spongepowered.api.event.Cancellable;
-
 /**
- * An event when an Rcon source logs in to the server.
+ * This event is called when a rcon client disconnects from the server.
  */
-public interface RconLoginEvent extends RconEvent, Cancellable {
+public interface RconQuitEvent extends RconEvent {
+
 }

@@ -22,12 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.rcon;
+package org.spongepowered.api.net;
 
-import org.spongepowered.api.event.Cancellable;
+import java.net.InetSocketAddress;
 
-/**
- * An event when an Rcon source logs in to the server.
- */
-public interface RconLoginEvent extends RconEvent, Cancellable {
+public interface RemoteConnection {
+
+    /**
+     * Gets the {@link InetSocketAddress} of this connection.
+     *
+     * @return The address
+     */
+    InetSocketAddress getAddress();
+
+    /**
+     * Gets the host name the connection is connecting to the server with.
+     *
+     * <p>Examples include: If a player is connecting to `mc.example.com`,
+     * the hostname will show `mc.example.com`. This is NOT the originating
+     * hostname of the client.</p>
+     *
+     * @return The host name
+     */
+    InetSocketAddress getVirtualHost();
 }
