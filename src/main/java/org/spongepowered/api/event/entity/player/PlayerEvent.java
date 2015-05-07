@@ -43,5 +43,5 @@ public interface PlayerEvent extends HumanEvent, UserEvent {
 
     @Override
     Player getUser();
-    
+
 }
