@@ -86,7 +86,7 @@ public interface CommandCallable {
      * @param source The source of the help request
      * @return A description
      */
-    Optional<Text> getShortDescription(CommandSource source);
+    Optional<? extends Text> getShortDescription(CommandSource source);
 
     /**
      * Get a longer formatted help message about this command.
@@ -103,7 +103,7 @@ public interface CommandCallable {
      * @param source The source of the help request
      * @return A help text
      */
-    Optional<Text> getHelp(CommandSource source);
+    Optional<? extends Text> getHelp(CommandSource source);
 
     /**
      * Get the usage string of this command.

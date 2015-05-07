@@ -381,7 +381,8 @@ public final class SimpleDispatcher implements Dispatcher {
                 continue;
             }
             CommandMapping mapping = mappingOpt.get();
-            final Optional<Text> description = mapping.getCallable().getShortDescription(source);
+            @SuppressWarnings("unchecked")
+            final Optional<Text> description = (Optional<Text>) mapping.getCallable().getShortDescription(source);
             build.append(Texts.builder(mapping.getPrimaryAlias())
                     .color(TextColors.GREEN)
                     .style(TextStyles.UNDERLINE)
