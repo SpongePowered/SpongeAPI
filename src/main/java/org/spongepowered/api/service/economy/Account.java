@@ -161,7 +161,8 @@ public interface Account {
      * 
      * <p>If this Account results in holding a negative
      * balance due to this operation, this will return
-     * true.</p>
+     * true. This does not mean the operation is
+     * cancelled.</p>
      * 
      * <p>A negative amount parameter will result in an
      * IllegalArgumentException.</p>
@@ -185,7 +186,8 @@ public interface Account {
      * 
      * <p>If this Account results in holding a negative
      * balance due to this operation, this will return
-     * true.</p>
+     * true. This does not mean the operation is
+     * cancelled.</p>
      * 
      * <p>A negative amount parameter will result in an
      * IllegalArgumentException.</p>
@@ -208,7 +210,8 @@ public interface Account {
      * 
      * <p>If this Account results in holding a negative
      * balance due to this operation, this will return
-     * true.</p>
+     * true. This does not mean the operation is
+     * cancelled.</p>
      * 
      * <p>A negative amount parameter will result in an
      * IllegalArgumentException.</p>
