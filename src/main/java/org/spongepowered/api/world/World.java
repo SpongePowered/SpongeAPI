@@ -79,6 +79,16 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
     Optional<Chunk> getChunk(Vector3i position);
 
     /**
+     * Get the loaded chunk at the given position.
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return The chunk, if available
+     */
+    Optional<Chunk> getChunk(int x, int y, int z);
+
+    /**
      * Get the chunk at the given position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
@@ -87,6 +97,18 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
      * @return The loaded or generated chunk, if already generated
      */
     Optional<Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
+
+    /**
+     * Get the chunk at the given position if it exists or if
+     * {@code shouldGenerate} is true and the chunk is generated.
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param shouldGenerate True to generate a new chunk
+     * @return The loaded or generated chunk, if already generated
+     */
+    Optional<Chunk> loadChunk(int x, int y, int z, boolean shouldGenerate);
 
     /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag
