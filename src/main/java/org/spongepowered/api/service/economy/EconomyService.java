@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.service.economy;
 
-import org.spongepowered.api.entity.player.Player;
-
+import java.util.List;
 import java.util.UUID;
+
+import org.spongepowered.api.entity.player.Player;
 
 import com.google.common.base.Optional;
 
-public interface EconomyService {
+public interface EconomyService {    
     /**
      * Retrieves the {@link Account} denoted by the
      * given owner string.
@@ -91,6 +92,22 @@ public interface EconomyService {
      * @see EconomyService#getAccount(String);
      */
     public Account getServerAccount();
+    
+    /**
+     * Returns an immutable list of all {@link Account}s
+     * belonging to a {@link Player}.
+     * 
+     * @return an immutable List of Accounts
+     */
+    public List<Account> getAllPlayerAccounts();
+    
+    /**
+     * Returns an immutable list of all custom
+     * {@link Account}s made by plugins.
+     * 
+     * @return an immutable List of Accounts
+     */
+    public List<Account> getAllCustomAccounts();
     
     /**
      * Resets the data of the {@link Account} denoted by the
