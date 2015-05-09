@@ -26,6 +26,7 @@ package org.spongepowered.api.service.economy;
 
 import org.spongepowered.api.entity.player.Player;
 
+import java.util.Currency;
 import java.util.UUID;
 
 public interface Account {
@@ -119,25 +120,24 @@ public interface Account {
      * Returns a double representative of the balance stored within this
      * {@link Account}.
      * 
-     * <p>The double returned is not to exceed two decimal places. An example
-     * would be <pre>129.54</pre>.</p>
+     * <p>The balance given should follow the rules of the {@link Currency}
+     * denoted by {@link EconomyService#getCurrency()}.</p>
      * 
-     * @return a double value, with two or less decimal places
+     * @return a Number value representative of the Account's balance
      */
-    double getBalance();
+    Number getBalance();
 
     /**
      * Sets the balance stored by this {@link Account} as the given value.
      * 
-     * <p>The amount set cannot exceed two decimal places (e.g.
-     * <pre>129.54</pre>); as such, the double passed as the amount will be
-     * rounded up or down if it violates the former.</p>
+     * <p>The balance set should follow the rules of the {@link Currency}
+     * denoted by {@link EconomyService#getCurrency()}.</p>
      * 
      * <p>The amount is allowed to be negative.</p>
      * 
-     * @param amount a double value
+     * @param amount a Number value representing the Account's new balance
      */
-    void setBalance(double amount);
+    void setBalance(Number amount);
 
     /**
      * Pays the target {@link Account} the given amount of currency by taking
@@ -151,14 +151,14 @@ public interface Account {
      * IllegalArgumentException.</p>
      * 
      * @param target the Account to send the amount of money to
-     * @param amount a double representative of the amount to give to the target
+     * @param amount a Number representative of the amount to give to the target
      *        Account
      * 
      * @return true if this Account's balance turned negative
      * 
      * @throws IllegalArgumentException if the amount to pay is negative
      */
-    boolean pay(Account target, double amount);
+    boolean pay(Account target, Number amount);
 
     /**
      * Removes the given sum of currency from this {@link Account}.
@@ -170,7 +170,7 @@ public interface Account {
      * <p>A negative amount parameter will result in an
      * IllegalArgumentException.</p>
      * 
-     * @param amount a double representing the amount to remove from the account
+     * @param amount a Number representing the amount to remove from the account
      * 
      * @return true if this Account's balance turned negative
      * 

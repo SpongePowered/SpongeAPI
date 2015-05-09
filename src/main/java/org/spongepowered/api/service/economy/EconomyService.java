@@ -27,11 +27,53 @@ package org.spongepowered.api.service.economy;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
 
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
 import java.util.UUID;
 
 public interface EconomyService {
-
+    
+    /**
+     * Retrieves the {@link Currency} to be followed by the
+     * {@link EconomyServce}.
+     * 
+     * <p>This method returning Optional.absent() is representative of an
+     * integer-based system, in which case methods interacting with
+     * balance should not be returning a decimal value.</p>
+     * 
+     * <p>Methods that involve interaction with an {@link Account}'s balance
+     * should take note of this value, and follow its rules accordingly.</p>
+     * 
+     * @return a Currency
+     * 
+     * @see Currency
+     */
+    public Optional<Currency> getCurrency();
+    
+    /**
+     * Sets the {@link Currency} instance to be followed by the
+     * {@link EconomyService}.
+     * 
+     * @param currency the Currency to set
+     * 
+     * @see Currency
+     * @see EconomyService#getCurrency()
+     */
+    public void setCurrency(Currency currency);
+    
+    /**
+     * Retrieves the {@link NumberFormat} instance responsible for formatting
+     * balance values based on the {@link Currency} denoted by
+     * {@link EconomyService#getCurrency()}.
+     * 
+     * @return a NumberFormat instance
+     * 
+     * @see NumberFormat
+     * @see EconomyService#getCurrency()
+     */
+    public NumberFormat getBalanceFormatter();
+    
     /**
      * Retrieves the {@link Account} denoted by the given owner string.
      * 
