@@ -29,50 +29,52 @@ import org.spongepowered.api.entity.player.Player;
 
 import java.text.NumberFormat;
 import java.util.Currency;
-import java.util.List;
 import java.util.UUID;
 
 public interface EconomyService {
     
     /**
-     * Retrieves the {@link Currency} to be followed by the
-     * {@link EconomyServce}.
+     * Retrieves the default {@link Currency} to be followed by the
+     * {@link EconomyServce} should an {@link Account} not have its
+     * own Currency set.
      * 
      * <p>This method returning Optional.absent() is representative of an
      * integer-based system, in which case methods interacting with
      * balance should not be returning a decimal value.</p>
      * 
-     * <p>Methods that involve interaction with an {@link Account}'s balance
+     * <p>Methods that involve interaction with an Account's balance
      * should take note of this value, and follow its rules accordingly.</p>
      * 
      * @return a Currency
      * 
      * @see Currency
      */
-    public Optional<Currency> getCurrency();
+    public Optional<Currency> getDefaultCurrency();
     
     /**
-     * Sets the {@link Currency} instance to be followed by the
-     * {@link EconomyService}.
+     * Sets the default {@link Currency} instance to be followed by the
+     * {@link EconomyService} should an {@link Account} not have its own
+     * Currency set.
      * 
      * @param currency the Currency to set
      * 
      * @see Currency
      * @see EconomyService#getCurrency()
      */
-    public void setCurrency(Currency currency);
+    public void setDefaultCurrency(Currency currency);
     
     /**
      * Retrieves the {@link NumberFormat} instance responsible for formatting
-     * balance values based on the {@link Currency} denoted by
-     * {@link EconomyService#getCurrency()}.
+     * balance values based on the given {@link Currency}.
+     * 
+     * @param currency the Currency to follow when formatting
      * 
      * @return a NumberFormat instance
      * 
      * @see NumberFormat
      * @see EconomyService#getCurrency()
      */
-    public NumberFormat getBalanceFormatter();
+    public NumberFormat getBalanceFormatter(Currency currency);
     
     /**
      * Retrieves the {@link Account} denoted by the given owner string.
@@ -154,28 +156,6 @@ public interface EconomyService {
      * @see EconomyService#getAccount(String);
      */
     Account getServerAccount();
-
-    /**
-     * Returns an immutable list of all {@link Account}s belonging to a
-     * {@link Player}.
-     * 
-     * <p>This method should try to return all Accounts registered belonging to
-     * Players; including offline Players.</p>
-     * 
-     * @return an immutable List of Accounts
-     * 
-     * @see Account
-     */
-    List<Account> getAllPlayerAccounts();
-
-    /**
-     * Returns an immutable list of all custom {@link Account}s made by plugins.
-     * 
-     * @return an immutable List of Accounts
-     * 
-     * @see Account
-     */
-    List<Account> getAllCustomAccounts();
 
     /**
      * Resets the data of the {@link Account} denoted by the given owner string,

@@ -115,6 +115,29 @@ public interface Account {
      * @see Account#getOwner()
      */
     boolean isCustom();
+    
+    /**
+     * Returns the {@link Currency} followed by this {@link Account}.
+     * 
+     * <p>If this Account does not have its own Currency to follow, it should
+     * return the default Currency denoted by
+     * {@link EconomyService#getDefaultCurrency()}.</p>
+     * 
+     * @return a Currency instance
+     * 
+     * @see Currency
+     * @see EconomyService#getDefaultCurrency()
+     */
+    Currency getCurrency();
+    
+    /**
+     * Sets the {@link Currency} followed by this {@link Account}.
+     * 
+     * @param currency the Currency instance to follow
+     * 
+     * @see Currency
+     */
+    void setCurrency(Currency currency);
 
     /**
      * Returns a double representative of the balance stored within this
@@ -140,41 +163,39 @@ public interface Account {
     void setBalance(Number amount);
 
     /**
-     * Pays the target {@link Account} the given amount of currency by taking
-     * the amount from this Account.
-     * 
-     * <p>If this Account results in holding a negative balance due to this
-     * operation, this will return true. This does not mean the operation is
-     * cancelled.</p>
-     * 
-     * <p>A negative amount parameter will result in an
-     * IllegalArgumentException.</p>
+     * Removes the given amount from this {@link Account} and sends it to the
+     * target Account.
      * 
      * @param target the Account to send the amount of money to
      * @param amount a Number representative of the amount to give to the target
      *        Account
      * 
-     * @return true if this Account's balance turned negative
-     * 
-     * @throws IllegalArgumentException if the amount to pay is negative
+     * @return a {@link TransactionResult} representative of the effects of the
+     *         operation
      */
-    boolean pay(Account target, Number amount);
+    TransactionResult deposit(Account target, Number amount);
 
     /**
-     * Removes the given sum of currency from this {@link Account}.
-     * 
-     * <p>If this Account results in holding a negative balance due to this
-     * operation, this will return true. This does not mean the operation is
-     * cancelled.</p>
-     * 
-     * <p>A negative amount parameter will result in an
-     * IllegalArgumentException.</p>
+     * Removes the given sum of currency the target {@link Account} and gives it
+     * to this Account.
      * 
      * @param amount a Number representing the amount to remove from the account
      * 
-     * @return true if this Account's balance turned negative
-     * 
-     * @throws IllegalArgumentException if the amount to remove is negative
+     * @return a {@link TransactionResult} representative of the effects of the
+     *         operation
      */
-    boolean elicit(double amount);
+    TransactionResult withdraw(Account target, Number amount);
+    
+    /**
+     * Transfers the given amount of currency from the source {@link Account} to
+     * the destination Account.
+     * 
+     * @param source the Account to take from
+     * @param destination the Account to send to
+     * @param amount the amount of currency to transfer
+     * 
+     * @return a {@link TransactionResult} representative of the effects of the
+     *         operation
+     */
+    TransactionResult transfer(Account source, Account destination, Number amount);
 }
