@@ -38,6 +38,7 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
@@ -82,6 +83,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      *
      * @param position The position of the block
      * @return The type of block
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the block volume
      */
     BlockType getBlockType(Vector3i position);
 
@@ -95,6 +98,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param y The Y position
      * @param z The Z position
      * @return The type of block
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the block volume
      */
     BlockType getBlockType(int x, int y, int z);
 

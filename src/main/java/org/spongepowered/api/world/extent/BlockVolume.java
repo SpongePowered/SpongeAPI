@@ -26,6 +26,7 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.util.PositionOutOfBoundsException;
 
 /**
  * A volume containing blocks.
@@ -33,24 +34,25 @@ import org.spongepowered.api.block.BlockState;
 public interface BlockVolume {
 
     /**
-     * Gets the block location with the lowest x, y and z that is still a valid
-     * position for {@link #getBlock(Vector3i)}.
+     * Gets the block location with the lowest x, y and z that is still a
+     * valid position for {@link #getBlock(Vector3i)}.
      *
      * @return The lowest block location
      */
     Vector3i getBlockMin();
 
     /**
-     * Gets the block location with the highest x, y and z that is still a valid
-     * position for {@link #getBlock(Vector3i)}.
+     * Gets the block location with the highest x, y and z that is still a
+     * valid position for {@link #getBlock(Vector3i)}.
      *
      * @return The highest block location
      */
     Vector3i getBlockMax();
 
     /**
-     * Gets the size of the whole volume. Defined as <code>{@link #getBlockMax()} -
-     * {@link #getBlockMin()} + (1, 1, 1)</code>.
+     * Gets the size of the whole volume. Defined as <code>
+     *     {@link #getBlockMax()} - {@link #getBlockMin()} + (1, 1, 1)
+     * </code>.
      *
      * @return The size
      */
@@ -83,8 +85,8 @@ public interface BlockVolume {
      *
      * @param position The position
      * @return The block
-     * @throws IndexOutOfBoundsException If the coordinates are outside of the
-     *     bounds of the world
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the volume
      */
     BlockState getBlock(Vector3i position);
 
@@ -95,8 +97,8 @@ public interface BlockVolume {
      * @param y The Y position
      * @param z The Z position
      * @return The block
-     * @throws IndexOutOfBoundsException If the coordinates are outside of the
-     *     bounds of the world
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the volume
      */
     BlockState getBlock(int x, int y, int z);
 
@@ -105,8 +107,8 @@ public interface BlockVolume {
      *
      * @param position The position
      * @param block The block
-     * @throws IndexOutOfBoundsException If the coordinates are outside of the
-     *     bounds of the world
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the volume
      */
     void setBlock(Vector3i position, BlockState block);
 
@@ -117,8 +119,8 @@ public interface BlockVolume {
      * @param y The Y position
      * @param z The Z position
      * @param block The block
-     * @throws IndexOutOfBoundsException If the coordinates are outside of the
-     *     bounds of the world
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the volume
      */
     void setBlock(int x, int y, int z, BlockState block);
 

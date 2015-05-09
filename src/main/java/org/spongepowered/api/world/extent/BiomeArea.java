@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector2i;
+import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
 
 /**
@@ -87,6 +88,8 @@ public interface BiomeArea {
      *
      * @param position The position
      * @return The biome
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
      */
     BiomeType getBiome(Vector2i position);
 
@@ -96,6 +99,8 @@ public interface BiomeArea {
      * @param x The X position
      * @param z The Z position
      * @return The biome
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
      */
     BiomeType getBiome(int x, int z);
 
@@ -104,6 +109,8 @@ public interface BiomeArea {
      *
      * @param position The position
      * @param biome The biome
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
      */
     void setBiome(Vector2i position, BiomeType biome);
 
@@ -113,6 +120,8 @@ public interface BiomeArea {
      * @param x The X position
      * @param z The Z position
      * @param biome The biome
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
      */
     void setBiome(int x, int z, BiomeType biome);
 }
