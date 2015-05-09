@@ -35,7 +35,8 @@ public interface EventHandler<T extends Event> {
      * Called when a event registered to this handler is called.
      *
      * @param event The called event
+     * @throws Exception If an error occurs
      */
-    void handle(T event);
+    void handle(T event) throws Exception;
 
 }
