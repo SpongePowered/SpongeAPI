@@ -24,17 +24,19 @@
  */
 package org.spongepowered.api.service.economy;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.player.Player;
+
 import java.util.List;
 import java.util.UUID;
 
-import org.spongepowered.api.entity.player.Player;
-
-import com.google.common.base.Optional;
-
-public interface EconomyService {    
+public interface EconomyService {
     /**
      * Retrieves the {@link Account} denoted by the
      * given owner string.
+     * 
+     * <p>If the Account does not exist, this method will
+     * return Optional.absent().</p>
      * 
      * <p>Owner strings are not representative of players
      * only. See {@link Account#getOwner()} for
@@ -46,8 +48,35 @@ public interface EconomyService {
      *         Optional.absent() otherwise
      * 
      * @see Account#getOwner()
+     * @see EconomyService#createNewAccount(String)
      */
-    public Optional<Account> getAccount(String owner);
+    Optional<Account> getAccount(String owner);
+    
+    /**
+     * Creates a new {@link Account} and assigns it to the
+     * given owner string.
+     * 
+     * <p>This method cannot override existing Accounts. If
+     * the Account already exists, this method will return
+     * Optional.absent() to indicate that creation has
+     * failed. Existing Accounts should be reset before
+     * they are replaced.</p>
+     * 
+     * <p>Owner strings are not representative of players
+     * only. See {@link Account#getOwner()} for
+     * reference.</p>
+     * 
+     * @param owner the owner string to assign the new
+     *        Account to
+     * 
+     * @return whether or not the Account was created
+     *         successfully
+     * 
+     * @see Account
+     * @see Account#getOwner()
+     * @see EconomyService#resetAccount(String)
+     */
+    Optional<Account> createNewAccount(String owner);
     
     /**
      * Retrieves the {@link Account} denoted by
@@ -63,7 +92,7 @@ public interface EconomyService {
      * @see Account
      * @see EconomyService#getAccount(String);
      */
-    public Optional<Account> getPlayerAccount(UUID uuid);
+    Optional<Account> getPlayerAccount(UUID uuid);
     
     /**
      * Retrieves the {@link Account} denoted by
@@ -79,7 +108,7 @@ public interface EconomyService {
      * @see Account
      * @see EconomyService#getAccount(String);
      */
-    public Optional<Account> getCustomAccount(String accountName);
+    Optional<Account> getCustomAccount(String accountName);
     
     /**
      * Retrieves the {@link Account} assigned to the
@@ -91,23 +120,31 @@ public interface EconomyService {
      * @see Account
      * @see EconomyService#getAccount(String);
      */
-    public Account getServerAccount();
+    Account getServerAccount();
     
     /**
      * Returns an immutable list of all {@link Account}s
      * belonging to a {@link Player}.
      * 
+     * <p>This method should try to return all Accounts
+     * registered belonging to Players; including offline
+     * Players.</p>
+     * 
      * @return an immutable List of Accounts
+     * 
+     * @see Account
      */
-    public List<Account> getAllPlayerAccounts();
+    List<Account> getAllPlayerAccounts();
     
     /**
      * Returns an immutable list of all custom
      * {@link Account}s made by plugins.
      * 
      * @return an immutable List of Accounts
+     * 
+     * @see Account
      */
-    public List<Account> getAllCustomAccounts();
+    List<Account> getAllCustomAccounts();
     
     /**
      * Resets the data of the {@link Account} denoted by the
@@ -127,5 +164,5 @@ public interface EconomyService {
      * 
      * @see Account#getOwner()
      */
-    public boolean resetAccount(String owner);
+    boolean resetAccount(String owner);
 }

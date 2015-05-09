@@ -74,7 +74,7 @@ public interface Account {
      * @see Account#isServer()
      * @see Account#isCustom()
      */
-    public String getOwner();
+    String getOwner();
 
     /**
      * Returns whether or not the owner of this
@@ -90,7 +90,7 @@ public interface Account {
      * 
      * @see Account#getOwner()
      */
-    public boolean isPlayer();
+    boolean isPlayer();
 
     /**
      * Returns whether or not the owner of this
@@ -106,7 +106,7 @@ public interface Account {
      * 
      * @see Account#getOwner()
      */
-    public boolean isServer();
+    boolean isServer();
 
     /**
      * Returns whether or not the owner of this
@@ -116,8 +116,8 @@ public interface Account {
      * <p>If this returns true, then
      * {@link Account#getOwner()} can safely be expected
      * to return a custom account, of which begins with the
-     * value denoted by
-     * {@link Account#CUSTOM_DATA_PREFIX}.</p>
+     * value denoted by {@link Account#CUSTOM_DATA_PREFIX}
+     * .</p>
      * 
      * @return true if Account.getOwner() returns a
      *         value beginning with the String stored in
@@ -125,7 +125,7 @@ public interface Account {
      * 
      * @see Account#getOwner()
      */
-    public boolean isCustom();
+    boolean isCustom();
 
     /**
      * Returns a double representative of the balance stored
@@ -137,11 +137,11 @@ public interface Account {
      * @return a double value, with two or less decimal
      *         places
      */
-    public double getBalance();
+    double getBalance();
 
     /**
-     * Sets the balance stored by this {@link Account}
-     * as the given value.
+     * Sets the balance stored by this {@link Account} as
+     * the given value.
      * 
      * <p>The amount set cannot exceed two decimal places
      * (e.g. <pre>129.54</pre>); as such, the double passed
@@ -152,7 +152,7 @@ public interface Account {
      * 
      * @param amount a double value
      */
-    public void setBalance(double amount);
+    void setBalance(double amount);
 
     /**
      * Pays the target {@link Account} the given amount
@@ -178,7 +178,7 @@ public interface Account {
      * @throws IllegalArgumentException if the amount to pay
      *         is negative
      */
-    public boolean pay(Account target, double amount);
+    boolean pay(Account target, double amount);
 
     /**
      * Removes the given sum of currency from this
@@ -201,31 +201,5 @@ public interface Account {
      * @throws IllegalArgumentException if the amount to
      *         remove is negative
      */
-    public boolean elicit(double amount);
-
-    /**
-     * Removes the given sum of currency from this
-     * {@link Account} and sends it to the destination
-     * Account.
-     * 
-     * <p>If this Account results in holding a negative
-     * balance due to this operation, this will return
-     * true. This does not mean the operation is
-     * cancelled.</p>
-     * 
-     * <p>A negative amount parameter will result in an
-     * IllegalArgumentException.</p>
-     * 
-     * @param destination the Account to send the
-     *        withdrawn currency to
-     * @param amount a double representing the amount to
-     *        withdraw
-     * 
-     * @return true if this Account's balance turned
-     *         negative
-     * 
-     * @throws IllegalArgumentException if the amount to
-     *         remove is negative
-     */
-    public boolean withdraw(Account destination, double amount);
+    boolean elicit(double amount);
 }
