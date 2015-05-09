@@ -1517,15 +1517,17 @@ public final class SpongeEventFactory {
      * @param weatherUniverse The volume the weather changed in
      * @param initialWeather The previous weather
      * @param resultingWeather The weather to change to
+     * @param duration The lenfth of the resulting weather, in ticks
      * @return A new instance of the event
      */
     public static WeatherChangeEvent createWeatherChange(Game game, WeatherUniverse weatherUniverse, Weather initialWeather,
-            Weather resultingWeather) {
+            Weather resultingWeather, int duration) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("initialWeather", initialWeather);
         values.put("weatherUniverse", weatherUniverse);
         values.put("resultingWeather", resultingWeather);
+        values.put("duration", duration);
         return createEvent(WeatherChangeEvent.class, values);
     }
 
