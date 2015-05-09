@@ -147,6 +147,8 @@ public final class Texts {
                 style = obj.equals(TextStyles.RESET) ? TextStyles.NONE : style.and((TextStyle) obj);
             } else if (obj instanceof Text) {
                 builder.append((Text) obj);
+            } else if (obj instanceof TextBuilder) {
+                builder.append(((TextBuilder) obj).build());
             } else {
                 TextBuilder childBuilder;
 
