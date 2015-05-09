@@ -57,6 +57,28 @@ public interface BlockVolume {
     Vector3i getBlockSize();
 
     /**
+     * Returns true if the block volume contains a block at the specified
+     * position. This is defined as <code>{{@link #getBlockMin()} <=
+     * position <= {@link #getBlockMax()}</code>
+     *
+     * @param position The position to check
+     * @return Whether or not the position has a block in this volume
+     */
+    boolean containsBlock(Vector3i position);
+
+    /**
+     * Returns true if the block volume contains a block at the specified
+     * position. This is defined as <code>{{@link #getBlockMin()} <=
+     * (x, y, z) <= {@link #getBlockMax()}</code>
+     *
+     * @param x The X coordinate to check
+     * @param y The Y coordinate to check
+     * @param z The Z coordinate to check
+     * @return Whether or not the position has a block in this volume
+     */
+    boolean containsBlock(int x, int y, int z);
+
+    /**
      * Get a representation of the block at the given position.
      *
      * @param position The position

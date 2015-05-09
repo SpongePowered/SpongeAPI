@@ -62,6 +62,27 @@ public interface BiomeArea {
     Vector2i getBiomeSize();
 
     /**
+     * Returns true if the biome area contains a biome at the specified
+     * position. This is defined as <code>{{@link #getBiomeMin()} <=
+     * position <= {@link #getBiomeMax()}</code>
+     *
+     * @param position The position to check
+     * @return Whether or not the position has a biome in this area
+     */
+    boolean containsBiome(Vector2i position);
+
+    /**
+     * Returns true if the biome area contains a biome at the specified
+     * position. This is defined as <code>{{@link #getBiomeMin()} <=
+     * (x, z) <= {@link #getBiomeMax()}</code>
+     *
+     * @param x The X coordinate to check
+     * @param z The Z coordinate to check
+     * @return Whether or not the position has a biome in this area
+     */
+    boolean containsBiome(int x, int z);
+
+    /**
      * Get an object representing the biome at the given position.
      *
      * @param position The position
