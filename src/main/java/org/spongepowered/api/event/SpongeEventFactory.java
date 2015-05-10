@@ -941,13 +941,13 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
      * @param player The player involved in this event
-     * @param direction The block direction the player was breaking
+     * @param blockFace The block face the player was breaking
      * @param block The block affected by this event
      * @param replacementBlock The block that will replace the existing block
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static PlayerBreakBlockEvent createPlayerBreakBlock(Game game, Cause cause, Player player, Direction direction, Location block,
+    public static PlayerBreakBlockEvent createPlayerBreakBlock(Game game, Cause cause, Player player, Direction blockFace, Location block,
             BlockSnapshot replacementBlock, int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -959,7 +959,7 @@ public final class SpongeEventFactory {
         values.put("user", player);
         values.put("human", player);
         values.put("living", player);
-        values.put("blockFaceDirection", direction);
+        values.put("blockFace", blockFace);
         values.put("exp", exp);
         return createEvent(PlayerBreakBlockEvent.class, values);
     }
