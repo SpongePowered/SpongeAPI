@@ -38,6 +38,13 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface TradeOffer {
 
     /**
+     * Get the {@link TradeOfferBuilder} used to edit trade offers.
+     *
+     * @return The trade offer builder
+     */
+    TradeOfferBuilder builder();
+
+    /**
      * Gets the first buying item.
      * <p>The first buying item is an item that the customer is selling to the
      * merchant in exchange for {@link #getSellingItem()}.</p>
@@ -76,26 +83,33 @@ public interface TradeOffer {
     ItemStack getSellingItem();
 
     /**
-     * <p>Gets the current uses of this offer.</p>
+     * Gets the current uses of this offer.
      *
      * <p>Usually, the uses of an offer a re limited by the amount of
      * {@link #getMaxUses()}. Once the uses reaches the max uses, the offer may
-     * temporariliy become disabled.</p>
+     * temporarily become disabled.</p>
      *
      * @return The current uses of this trade offer
      */
     int getUses();
 
     /**
-     * <p>Gets the current maximum uses of this offer.</p>
+     * Gets the current maximum uses of this offer.
      *
      * <p>Usually, the uses of an offer a re limited by the amount of maximum
-     * uses. Once the uses reaches the max uses, the offer may temporariliy
+     * uses. Once the uses reaches the max uses, the offer may temporarily
      * become disabled.</p>
      *
      * @return The maximum uses of this trade offer
      */
     int getMaxUses();
+
+    /**
+     * Gets the remaining amount of uses of this offer.
+     *
+     * @return The remaining uses of this offer.
+     */
+    int getRemainingUses();
 
     /**
      * Checks if this trade offer has indeed passed the time of which the uses

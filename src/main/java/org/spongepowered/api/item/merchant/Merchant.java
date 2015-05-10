@@ -27,8 +27,10 @@ package org.spongepowered.api.item.merchant;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.text.Text;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javax.annotation.Nullable;
 
@@ -62,6 +64,13 @@ public interface Merchant extends Carrier {
     List<TradeOffer> getOffers();
 
     /**
+     * Gets a immutable list of Titles that were displayed to the user.
+     *
+     * @return An immutable list of titles
+     */
+    List<Text> getTitles();
+
+    /**
      * Replaces the entire list of trade offers this merchant can trade
      * with a {@link org.spongepowered.api.entity.living.Human}.
      * <p>When a merchant is in the middle of a trade, the offers may change
@@ -72,9 +81,37 @@ public interface Merchant extends Carrier {
     void setOffers(List<TradeOffer> offers);
 
     /**
+     * Gets a specific offer from a list of offers.
+     *
+     * <p>Will return {@link Optional#absent()} when the index specified does not exist.</p>
+     *
+     * @param index The index of the offer
+     * @return The offer
+     */
+    Optional<TradeOffer> getOffer(int index);
+
+    /**
+     * Gets a specific title from a list of titles.
+     *
+     * <p>Will return {@link Optional#absent()} when the index specified does not exist.</p>
+     *
+     * @param index The index
+     * @return The title
+     */
+    Optional<Text> getTitle(int index);
+
+    /**
      * Adds the given offer to the list of offers provided by this merchant.
      *
      * @param offer The offer to add
      */
     void addOffer(TradeOffer offer);
+
+    /**
+     * Removes the five offer to the list of offers provided by this merchant.
+     *
+     * @param offer The offer to remove
+     * @throws NoSuchElementException The offer that is to be removed does not exist
+     */
+    void removeOffer(TradeOffer offer) throws NoSuchElementException;
 }

@@ -25,9 +25,10 @@
 package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents a builder to generate immutable {@link TradeOffer}s.
+ * Represents a builder to generate {@link TradeOffer}s.
  */
 public interface TradeOfferBuilder {
 
@@ -58,13 +59,21 @@ public interface TradeOfferBuilder {
     TradeOfferBuilder sellingItem(ItemStack item);
 
     /**
+     * Set a temporary title that is displayed above the trade offer.
+     *
+     * @param title The title that is displayed
+     * @return This builder
+     */
+    TradeOfferBuilder setTradeTitle(Text title);
+
+    /**
      * Sets the existing uses of the trade offer to be generated. A trade offer
      * will become unusable when the uses surpasses the max uses.
      *
      * @param uses The uses
      * @return This builder
      */
-    TradeOfferBuilder uses(int uses);
+    TradeOfferBuilder setUses(int uses);
 
     /**
      * Sets the maximum uses the generated trade offer will have. A trade offer
@@ -73,7 +82,7 @@ public interface TradeOfferBuilder {
      * @param maxUses The maximum uses of the trade offer
      * @return This builder
      */
-    TradeOfferBuilder maxUses(int maxUses);
+    TradeOfferBuilder setMaxUses(int maxUses);
 
     /**
      * Sets the trade offer to be generated to grant experience upon use.
@@ -87,8 +96,7 @@ public interface TradeOfferBuilder {
      * Creates a new TradeOffer instance with the current state of the builder.
      *
      * @return A new trade offer instance
-     * @throws IllegalStateException If the resulting trade offer would be
-     *      invalid
+     * @throws IllegalStateException If the resulting trade offer would be invalid
      */
     TradeOffer build() throws IllegalStateException;
 

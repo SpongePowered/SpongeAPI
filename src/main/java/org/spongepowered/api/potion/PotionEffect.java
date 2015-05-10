@@ -40,9 +40,16 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
     /**
      * Gets the {@link PotionEffectType} of this potion.
      *
-     * @return The type.
+     * @return The effect type.
      */
-    PotionEffectType getType();
+    PotionEffectType getEffectType();
+
+    /**
+     * Gets the {@link PotionType} of this potion.
+     *
+     * @return The category the potion belongs to.
+     */
+    PotionType getCategory();
 
     /**
      * Gets the duration for which this potion effect
@@ -75,4 +82,20 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
      */
     boolean getShowParticles();
 
+    /**
+     * Gets whether the potion type is a specific
+     * type.
+     *
+     * @param type The PotionEffectType being compared
+     * @return If the potion does have the specific PotionEffectType
+     */
+    boolean isEffectType(PotionEffectType type);
+
+    /**
+     * Gets if the potion created belongs in a specific category.
+     *
+     * @param category The category being compared
+     * @return If the potion does have the specific PotionEffectType
+     */
+    boolean isCategory(PotionType category);
 }

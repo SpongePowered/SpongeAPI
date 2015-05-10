@@ -33,7 +33,7 @@ public interface PotionEffectBuilder {
      * Sets the {@link PotionEffectType} of the potion.
      *
      * @param potionEffectType The type of item
-     * @return This builder, for chaining
+     * @return This builder
      */
     PotionEffectBuilder potionType(PotionEffectType potionEffectType);
 
@@ -41,18 +41,18 @@ public interface PotionEffectBuilder {
      * Sets the duration of the potion effect.
      *
      * @param duration The duration of this effect
-     * @return This builder, for chaining
+     * @return This builder
      */
     PotionEffectBuilder duration(int duration);
 
     /**
      * Sets the amplifier power of the potion effect.
      *
-     * <p>Amplifiers must be above zero.</p>
+     * <p>Amplifiers must be above 0 and below 255.</p>
      *
      * @param amplifier The amplifier power
-     * @return This builder, for chaining
-     * @throws IllegalArgumentException If the amplifier is less than zero
+     * @return This builder
+     * @throws IllegalArgumentException If the amplifier is less than 0 or greater than 255
      */
     PotionEffectBuilder amplifier(int amplifier) throws IllegalArgumentException;
 
@@ -60,7 +60,7 @@ public interface PotionEffectBuilder {
      * Sets the potion effect to be ambient or not.
      *
      * @param ambience Whether the potion effect is ambient
-     * @return This builder, for chaining
+     * @return This builder
      */
     PotionEffectBuilder ambience(boolean ambience);
 
@@ -68,7 +68,7 @@ public interface PotionEffectBuilder {
      * Sets the potion effect to show particles when applied or not.
      *
      * @param showsParticles Whether the potion effect will show particles
-     * @return This builder, for chaining
+     * @return This builder
      */
     PotionEffectBuilder particles(boolean showsParticles);
 

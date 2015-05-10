@@ -22,11 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.potion;
 
 /**
- * An enumaration of all possible {@link PotionEffectType}s in vanilla minecraft.
+ * An enumeration of all possible {@link PotionEffectType}s in vanilla minecraft.
  */
 public final class PotionEffectTypes {
 
@@ -53,6 +52,36 @@ public final class PotionEffectTypes {
     public static final PotionEffectType HEALTH_BOOST = null;
     public static final PotionEffectType ABSORPTION = null;
     public static final PotionEffectType SATURATION = null;
+    public static final PotionEffectType UNINTERESTING = null;
+    public static final PotionEffectType BLAND = null;
+    public static final PotionEffectType CLEAR = null;
+    public static final PotionEffectType MILKY = null;
+    public static final PotionEffectType DIFFUSE = null;
+    public static final PotionEffectType ARTLESS = null;
+    public static final PotionEffectType THIN = null;
+    public static final PotionEffectType FLAT = null;
+    public static final PotionEffectType BULKY = null;
+    public static final PotionEffectType BUNGLING = null;
+    public static final PotionEffectType BUTTERED = null;
+    public static final PotionEffectType SMOOTH = null;
+    public static final PotionEffectType SUAVE = null;
+    public static final PotionEffectType DEBONAIR = null;
+    public static final PotionEffectType ELEGANT = null;
+    public static final PotionEffectType FANCY = null;
+    public static final PotionEffectType CHARMING = null;
+    public static final PotionEffectType DASHING = null;
+    public static final PotionEffectType REFINED = null;
+    public static final PotionEffectType CORDIAL = null;
+    public static final PotionEffectType SPARKLING = null;
+    public static final PotionEffectType POTENT = null;
+    public static final PotionEffectType FOUL = null;
+    public static final PotionEffectType ODORLESS = null;
+    public static final PotionEffectType RANK = null;
+    public static final PotionEffectType HARSH = null;
+    public static final PotionEffectType ACRID = null;
+    public static final PotionEffectType GROSS = null;
+    public static final PotionEffectType STINKY = null;
+    public static final PotionEffectType BURPY = null;
 
     private PotionEffectTypes() {
     }
