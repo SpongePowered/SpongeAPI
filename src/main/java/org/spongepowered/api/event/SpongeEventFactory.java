@@ -955,10 +955,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("entity", player);
         values.put("replacementBlock", replacementBlock);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("blockFaceDirection", direction);
         values.put("exp", exp);
         return createEvent(PlayerBreakBlockEvent.class, values);
@@ -976,10 +973,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("fishHook", fishHook);
         return createEvent(PlayerCastFishingLineEvent.class, values);
     }
@@ -997,10 +991,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("fishHook", fishHook);
         values.put("caughtEntity", Optional.fromNullable(caughtEntity));
         return createEvent(PlayerHookedEntityEvent.class, values);
@@ -1022,10 +1013,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("fishHook", fishHook);
         values.put("caughtEntity", Optional.fromNullable(caughtEntity));
         values.put("caughtItem", Optional.fromNullable(caughtItem));
@@ -1052,10 +1040,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("entity", player);
         values.put("replacementBlock", replacementBlock);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("blockFaceDirection", direction);
         return createEvent(PlayerChangeBlockEvent.class, values);
     }
@@ -1075,10 +1060,7 @@ public final class SpongeEventFactory {
         values.put("entity", player);
         values.put("newGameMode", newGameMode);
         values.put("oldGameMode", oldGameMode);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerChangeGameModeEvent.class, values);
     }
 
@@ -1097,10 +1079,7 @@ public final class SpongeEventFactory {
         values.put("entity", player);
         values.put("fromWorld", fromWorld);
         values.put("toWorld", toWorld);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerChangeWorldEvent.class, values);
     }
 
@@ -1119,10 +1098,7 @@ public final class SpongeEventFactory {
         values.put("entity", player);
         values.put("source", source);
         values.put("message", message);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerChatEvent.class, values);
     }
 
@@ -1149,11 +1125,8 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", player);
         values.put("deathMessage", deathMessage);
-        values.put("player", player);
         values.put("user", player);
         values.put("location", location);
-        values.put("human", player);
-        values.put("living", player);
         values.put("exp", exp);
         values.put("newExperience", newExperience);
         values.put("newLevel", newLevel);
@@ -1177,10 +1150,7 @@ public final class SpongeEventFactory {
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", player);
         values.put("droppedItems", droppedItems);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerDropItemEvent.class, values);
     }
 
@@ -1205,9 +1175,6 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("entity", player);
         values.put("user", player);
-        values.put("player", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("droppedItems", droppedItems);
         values.put("dropChance", dropChance);
         values.put("silkTouch", silkTouch);
@@ -1234,10 +1201,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("side", side);
         values.put("entity", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("interactionType", interactionType);
-        values.put("player", player);
         values.put("user", player);
         values.put("clickedPosition", Optional.fromNullable(location));
         return createEvent(PlayerInteractBlockEvent.class, values);
@@ -1260,10 +1224,7 @@ public final class SpongeEventFactory {
         values.put("entity", player);
         values.put("targetEntity", targetEntity);
         values.put("interactionType", interactionType);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("clickedPosition", Optional.fromNullable(location));
         return createEvent(PlayerInteractEntityEvent.class, values);
     }
@@ -1283,10 +1244,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("interactionType", interactionType);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("clickedPosition", Optional.fromNullable(location));
         return createEvent(PlayerInteractEvent.class, values);
     }
@@ -1304,10 +1262,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("joinMessage", joinMessage);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerJoinEvent.class, values);
     }
 
@@ -1327,10 +1282,7 @@ public final class SpongeEventFactory {
         values.put("entity", player);
         values.put("oldLocation", oldLocation);
         values.put("newLocation", newLocation);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("rotation", rotation);
         return createEvent(PlayerMoveEvent.class, values);
     }
@@ -1349,10 +1301,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("items", items);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("inventory", inventory);
         return createEvent(PlayerPickUpItemEvent.class, values);
     }
@@ -1376,10 +1325,7 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("entity", player);
         values.put("replacementBlock", replacementBlock);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         values.put("blockFaceDirection", direction);
         return createEvent(PlayerPlaceBlockEvent.class, values);
     }
@@ -1397,10 +1343,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("quitMessage", quitMessage);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerQuitEvent.class, values);
     }
 
@@ -1419,10 +1362,7 @@ public final class SpongeEventFactory {
         values.put("entity", player);
         values.put("respawnLocation", respawnLocation);
         values.put("bedSpawn", bedSpawn);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerRespawnEvent.class, values);
     }
 
@@ -1437,10 +1377,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("player", player);
         values.put("user", player);
-        values.put("human", player);
-        values.put("living", player);
         return createEvent(PlayerUpdateEvent.class, values);
     }
 
@@ -1477,9 +1414,6 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("living", player);
-        values.put("human", player);
-        values.put("player", player);
         values.put("user", player);
         values.put("achievement", achievement);
         return createEvent(AchievementEvent.class, values);
@@ -1500,9 +1434,6 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("living", player);
-        values.put("human", player);
-        values.put("player", player);
         values.put("user", player);
         values.put("changedStatistic", changedStatistic);
         values.put("newValue", newValue);

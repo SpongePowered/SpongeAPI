@@ -37,8 +37,6 @@ public interface LivingEvent extends EntityEvent {
      *
      * @return The {@link Living} involved
      */
-    Living getLiving();
-
     @Override
     Living getEntity();
 }

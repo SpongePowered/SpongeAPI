@@ -38,14 +38,6 @@ public interface PlayerEvent extends HumanEvent, UserEvent {
      *
      * @return The {@link Player} involved
      */
-    Player getPlayer();
-
-    @Override
-    Player getHuman();
-
-    @Override
-    Player getLiving();
-
     @Override
     Player getEntity();
 
