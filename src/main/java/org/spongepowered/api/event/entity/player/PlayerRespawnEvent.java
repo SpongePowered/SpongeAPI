@@ -50,6 +50,6 @@ public interface PlayerRespawnEvent extends PlayerEvent {
      *
      * @param respawnLocation The new respawn location
      */
-    void setSpawnLocation(Location respawnLocation);
+    void setRespawnLocation(Location respawnLocation);
 
 }
