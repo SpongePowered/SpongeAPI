@@ -189,8 +189,15 @@ public final class SpongeEventFactory {
     private SpongeEventFactory() {
     }
 
+    /**
+     * Creates an event class from an interface and a map of property names to values.
+     *
+     * @param type The event interface to generate a class for
+     * @param values The map of property names to values
+     * @return The generated event class.
+     */
     @SuppressWarnings("unchecked")
-    private static <T> T createEvent(Class<T> type, Map<String, Object> values) {
+    public static <T> T createEvent(Class<T> type, Map<String, Object> values) {
         return (T) factories.getUnchecked(type).apply(values);
     }
 

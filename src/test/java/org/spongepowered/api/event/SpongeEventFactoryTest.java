@@ -40,7 +40,7 @@ public class SpongeEventFactoryTest {
     @Test
     public void testCreate() throws InvocationTargetException, IllegalAccessException {
         for (Method method : SpongeEventFactory.class.getMethods()) {
-            if (method.getName().startsWith("createState")) {
+            if (method.getName().startsWith("createState") || method.getName().equals("createEvent")) {
                 continue; // TODO minecrell needs to make this possible.
             }
             if (method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())) {
