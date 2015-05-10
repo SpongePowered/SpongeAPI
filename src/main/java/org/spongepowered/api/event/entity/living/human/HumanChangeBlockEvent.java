@@ -33,14 +33,13 @@ import org.spongepowered.api.world.Location;
  * Called when a {@link Human} changes a {@link Location}.
  */
 public interface HumanChangeBlockEvent extends HumanEvent, LivingChangeBlockEvent {
-
     /**
      * Gets the direction of the block face that the human is changing.
      *
-     * <p>Example, if a human is breaking a block and the block is infront of
+     * <p>Example, if a human is breaking a block and the block is in front of
      * the human while the human is facing EAST, the block face will be WEST.</p>
      *
      * @return The direction of the block face
      */
-    Direction getBlockFaceDirection();
+    Direction getBlockFace();
 }
