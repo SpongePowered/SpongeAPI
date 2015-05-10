@@ -47,6 +47,7 @@ import static org.objectweb.asm.Opcodes.IFNULL;
 import static org.objectweb.asm.Opcodes.ILOAD;
 import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
 import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
+import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 import static org.objectweb.asm.Opcodes.IRETURN;
 import static org.objectweb.asm.Opcodes.ISUB;
@@ -356,6 +357,9 @@ class ClassGenerator {
                 mv.visitCode();
                 mv.visitVarInsn(ALOAD, 0);
                 mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+                if (property.getAccessor().getReturnType().equals(Optional.class)) {
+                    mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable", "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
+                }
                 mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
                 mv.visitInsn(RETURN);
                 mv.visitMaxs(0, 0);
