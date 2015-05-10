@@ -22,46 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.util.event.superclasses;
 
 import com.google.common.base.Predicate;
+import org.spongepowered.api.event.AbstractEvent;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.util.annotation.ImplementedBy;
-import org.spongepowered.api.util.event.superclasses.AbstractBulkBlockEvent;
+import org.spongepowered.api.event.block.BulkBlockEvent;
 import org.spongepowered.api.world.Location;
 
-import java.util.List;
+import java.util.Iterator;
 
-/**
- * A base event for events affecting several blocks (as their target).
- */
-@ImplementedBy(AbstractBulkBlockEvent.class)
-public interface BulkBlockEvent extends GameEvent, CauseTracked {
+public abstract class AbstractBulkBlockEvent extends AbstractEvent implements BulkBlockEvent {
 
-    /**
-     * Get a list of affected blocks.
-     *
-     * <p>The list of entities is immutable if this event does not extend
-     * {@link Cancellable}.  Otherwise, the effect of removing a block from
-     * the list is dependent on the event, though it may "cancel" the event
-     * for the removed block .</p>
-     *
-     * @return An list of blocks
-     */
-    List<Location> getBlocks();
-
-    /**
-     * Apply the given predicate to the list of blocks.
-     *
-     * <p>The given predicate should return {@code true} by default, and
-     * return {@code false} to remove the block from the list
-     * of blocks (if the list mutable -- see {@link #getBlocks()}
-     * for more information).</p>
-     *
-     * @param predicate A predicate that returns false to remove the given block
-     */
-    void filter(Predicate<Location> predicate);
+    @Override
+    public void filter(Predicate<Location> predicate) {
+        if (this instanceof Cancellable) {
+            Iterator<Location> iterator = this.getBlocks().iterator();
+            while (iterator.hasNext()) {
+                if (!predicate.apply(iterator.next())) {
+                    iterator.remove();
+                }
+            }
+        }
+    }
 
 }

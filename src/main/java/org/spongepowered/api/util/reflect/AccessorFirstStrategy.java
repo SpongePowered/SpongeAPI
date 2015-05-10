@@ -141,9 +141,10 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
     public ImmutableSet<? extends Property> findProperties(final Class<?> type) {
         checkNotNull(type, "type");
 
-        final Map<String, Method> accessors = Maps.newHashMap();
+        final Multimap<String, Method> accessors = HashMultimap.create();
         final Multimap<String, Method> mutators = HashMultimap.create();
         final Queue<Class<?>> queue = new NonNullUniqueQueue<Class<?>>();
+        final Map<String, Class<?>> accessorHierarchyBottoms = new HashMap<String, Class<?>>();
 
         queue.add(type); // Start off with our target type
 
@@ -152,8 +153,11 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
             for (Method method : scannedType.getMethods()) {
                 String name;
 
-                if ((name = getAccessorName(method)) != null) {
+                if ((name = getAccessorName(method)) != null && accessorHierarchyBottoms.get(name) != method.getReturnType()) {
                     accessors.put(name, method);
+                    if (accessorHierarchyBottoms.get(name) == null || method.getReturnType().isAssignableFrom(accessorHierarchyBottoms.get(name))) {
+                        accessorHierarchyBottoms.put(name, method.getReturnType());
+                    }
                 } else if ((name = getMutatorName(method)) != null) {
                     mutators.put(name, method);
                 }
@@ -162,16 +166,15 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
             for (Class<?> implInterfaces : scannedType.getInterfaces()) {
                 queue.offer(implInterfaces);
             }
-
             queue.offer(scannedType.getSuperclass());
         }
 
         final ImmutableSet.Builder<Property> result = ImmutableSet.builder();
 
-        for (Map.Entry<String, Method> entry : accessors.entrySet()) {
+        for (Map.Entry<String, Method> entry : accessors.entries()) {
             Method accessor = entry.getValue();
             @Nullable Method mutator = findMutator(entry.getValue(), mutators.get(entry.getKey()));
-            result.add(new Property(entry.getKey(), accessor.getReturnType(), accessor, mutator));
+            result.add(new Property(entry.getKey(), accessor.getReturnType(), accessorHierarchyBottoms.get(entry.getKey()), accessor, mutator));
         }
 
         return result.build();

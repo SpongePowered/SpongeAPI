@@ -22,23 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
-
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.gen.Populator;
-
-import java.util.List;
+package org.spongepowered.api.util.event.factory;
 
 /**
- * Called when a {@link Chunk} is about to be populated.
+ ** Represents a class which modifies the behavior of an event generator.
  */
-public interface ChunkPrePopulateEvent extends ChunkEvent {
+public interface EventFactoryPlugin {
 
     /**
-     * Returns a mutable list of all pending populators.
+     * Gets the superclass to use for class generated for the specified
+     * event interface.
      *
-     * @return The populators
+     * <p>All of the registered plugins have this method called in a chain, which each plugin receiving
+     * the return value of the previous plugin as the {@param superClass} parameter.
+     * The first plugin in the chain is passed <code>null</code> as its {@param superClass}.
+     *
+     * If a plugin is able to determine a superclass for an event interface, it should return it.
+     * Otherwise, it should return the value it received as {@param superClass}.
+     *
+     *
+     *
+     * @param eventClass The interface to determine the superclass for
+     * @param superClass The current superclass of the event interface
+     * @return The class to use as the event interface's superclass
      */
-    List<Populator> getPendingPopulators();
+    Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass);
 
 }

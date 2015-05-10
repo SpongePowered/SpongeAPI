@@ -22,23 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.util.annotation;
 
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.gen.Populator;
-
-import java.util.List;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Called when a {@link Chunk} is about to be populated.
+ * Used to indicate the base class that a generated event class extends from.
  */
-public interface ChunkPrePopulateEvent extends ChunkEvent {
+@Inherited
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ImplementedBy {
 
     /**
-     * Returns a mutable list of all pending populators.
+     * Gets the class which serves as the base class which the generated class for this
+     * event interface will extend.
      *
-     * @return The populators
+     * @return The base class to use
      */
-    List<Populator> getPendingPopulators();
+    Class<?> value();
 
 }

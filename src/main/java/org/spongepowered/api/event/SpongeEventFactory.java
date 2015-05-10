@@ -146,8 +146,10 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.RconSource;
+import org.spongepowered.api.util.event.factory.AnnotationEventFactoryPlugin;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
+import org.spongepowered.api.util.event.factory.EventFactoryPlugin;
 import org.spongepowered.api.util.event.factory.FactoryProvider;
 import org.spongepowered.api.util.event.factory.NullPolicy;
 import org.spongepowered.api.world.Chunk;
@@ -160,9 +162,13 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import javax.annotation.Nullable;
 
@@ -173,22 +179,44 @@ public final class SpongeEventFactory {
 
     private static final FactoryProvider factoryProvider;
     private static final LoadingCache<Class<?>, EventFactory<?>> factories;
+    private static final List<EventFactoryPlugin> plugins = new ArrayList<EventFactoryPlugin>();
 
     static {
         factoryProvider = new ClassGeneratorProvider("org.spongepowered.api.event.impl");
         factoryProvider.setNullPolicy(NullPolicy.NON_NULL_BY_DEFAULT);
+
+        plugins.add(0, new AnnotationEventFactoryPlugin());
 
         factories = CacheBuilder.newBuilder()
                 .build(
                         new CacheLoader<Class<?>, EventFactory<?>>() {
                             @Override
                             public EventFactory<?> load(Class<?> type) {
-                                return factoryProvider.create(type, AbstractEvent.class);
+                                return factoryProvider.create(type, getBaseClass(type));
                             }
                         });
     }
 
     private SpongeEventFactory() {
+    }
+
+    private static Class<?> getBaseClass(Class<?> event) {
+        Class<?> superClass = null;
+        for (EventFactoryPlugin plugin: plugins) {
+            superClass = plugin.resolveSuperClassFor(event, superClass);
+        }
+        return superClass;
+    }
+
+    /**
+     * Adds an {@link EventFactoryPlugin} to the chain of plugins.
+     *
+     * <p>The plugin chain is in LIFO order.</p>
+     *
+     * @param plugin The {@link EventFactoryPlugin} to add to the chain
+     */
+    public static void addEventFactoryPlugin(EventFactoryPlugin plugin) {
+        plugins.add(0, plugin);
     }
 
     /**
@@ -1555,7 +1583,7 @@ public final class SpongeEventFactory {
      * @param pendingPopulators All populator's that will populate the chunk
      * @return A new instance of the event
      */
-    public static ChunkPrePopulateEvent createChunkPrePopulate(Game game, Chunk chunk, Iterable<Populator> pendingPopulators) {
+    public static ChunkPrePopulateEvent createChunkPrePopulate(Game game, Chunk chunk, List<Populator> pendingPopulators) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);

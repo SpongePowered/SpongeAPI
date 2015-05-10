@@ -33,14 +33,21 @@ import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpongeEventFactoryTest {
 
     @Test
     public void testCreate() throws InvocationTargetException, IllegalAccessException {
+
+        Object event;
+        List<Method> badMethods = new ArrayList<Method>();
         for (Method method : SpongeEventFactory.class.getMethods()) {
             if (method.getName().startsWith("createState") || method.getName().equals("createEvent")) {
                 continue; // TODO minecrell needs to make this possible.
@@ -53,7 +60,43 @@ public class SpongeEventFactoryTest {
                         params[i] = mockParam(paramTypes[i]);
                     }
 
-                    method.invoke(null, params);
+                    event = method.invoke(null, params);
+                    Method eventMethod2 = null;
+                    for (Method eventMethod : method.getReturnType().getMethods()) {
+                        try {
+                            eventMethod2 = eventMethod;
+                            paramTypes = eventMethod.getParameterTypes();
+                            params = new Object[paramTypes.length];
+                            for (int i = 0; i < paramTypes.length; i++) {
+                                params[i] = mockParam(paramTypes[i]);
+                            }
+
+                            if (eventMethod.getReturnType() != void.class) {
+                                assertNotNull("The return type of " + eventMethod + "was null!", eventMethod.invoke(event, params));
+                            }
+
+                        } catch (Exception e) {
+                            throw new RuntimeException(
+                                    "Invocation of the method '" + eventMethod2 + "' failed\n\n"
+                                    + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
+                                    + "interfaces, the " + SpongeEventFactory.class.getSimpleName()
+                                    + " class dynamically creates concrete classes at "
+                                    + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
+                                    + "are caught during development.)\n\n"
+                                    + "The failure of this test is in regards to invocation of a method of the '" + method.getReturnType().getName()
+                                    + "' event.\n\n"
+                                    + "Reasons for failure include:\n"
+                                    + "(1) The called method does not conform to format that the class generator expects for getters or setters,"
+                                    + "and is not implemented by the abstract class used as the superclass of the generated event."
+                                    + "See the wrapped exception for more details.\n"
+                                    + "\tSolution: Modify the method name and/or signature to follow the expected getter/sett er semantics,"
+                                    + "or annotate the event with @ImplementedBy to indicate the abstract class used as the superclass."
+                                    + "(2) A bug in the class generator was found\n"
+                                    + "\tSolution: Look into " + EventFactory.class.getName() + " and its implementations.\n",
+                            e);
+                        }
+                    }
+
                 } catch (Exception e) {
                     throw new RuntimeException(
                             "Runtime creation of the '" + method.getReturnType().getName() + "' event failed\n\n"
