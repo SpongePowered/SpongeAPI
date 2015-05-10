@@ -31,7 +31,7 @@ import org.spongepowered.api.attribute.AttributeHolder;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.potion.PotionEffect;
-import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.potion.PotionType;
 
 import java.util.Collection;
 import java.util.List;
@@ -130,18 +130,18 @@ public interface Living extends Entity, AttributeHolder {
     /**
      * Remove {@link PotionEffect}s of the specified type from this entity.
      *
-     * @param potionEffectType The {@link PotionEffectType}.
+     * @param potionType The {@link PotionType}.
      */
-    void removePotionEffect(PotionEffectType potionEffectType);
+    void removePotionEffect(PotionType potionType);
 
     /**
      * Gets if this entity has a {@link PotionEffect} of this type.
      *
-     * @param potionEffectType The {@link PotionEffectType}.
+     * @param potionType The {@link PotionType}.
      *
      * @return If it has the potion effect type.
      */
-    boolean hasPotionEffect(PotionEffectType potionEffectType);
+    boolean hasPotionEffect(PotionType potionType);
 
     /**
      * Gets a list of {@link PotionEffect}s currently applied to this entity.

@@ -38,18 +38,18 @@ import org.spongepowered.api.service.persistence.DataSerializable;
 public interface PotionEffect extends DataSerializable, AttributeSource {
 
     /**
-     * Gets the {@link PotionEffectType} of this potion.
+     * Gets the {@link PotionType} of this potion.
      *
      * @return The effect type.
      */
-    PotionEffectType getEffectType();
+    PotionType getEffectType();
 
     /**
-     * Gets the {@link PotionType} of this potion.
+     * Gets the {@link PotionCatagory} of this potion.
      *
      * @return The category the potion belongs to.
      */
-    PotionType getCategory();
+    PotionCatagory getCategory();
 
     /**
      * Gets the duration for which this potion effect
@@ -89,7 +89,7 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
      * @param type The PotionEffectType being compared
      * @return If the potion does have the specific PotionEffectType
      */
-    boolean isEffectType(PotionEffectType type);
+    boolean isEffectType(PotionType type);
 
     /**
      * Gets if the potion created belongs in a specific category.
@@ -97,5 +97,5 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
      * @param category The category being compared
      * @return If the potion does have the specific PotionEffectType
      */
-    boolean isCategory(PotionType category);
+    boolean isCategory(PotionCatagory category);
 }

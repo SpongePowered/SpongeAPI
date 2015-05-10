@@ -62,7 +62,7 @@ import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
-import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.potion.PotionType;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
@@ -385,12 +385,12 @@ public interface GameRegistry {
     Collection<GameMode> getGameModes();
 
     /**
-     * Gets a collection of all available {@link PotionEffectType}s.
+     * Gets a collection of all available {@link PotionType}s.
      *
      * @return A collection containing all potion effect types in registry
      */
     // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
-    Collection<PotionEffectType> getPotionEffects();
+    Collection<PotionType> getPotionEffects();
 
     /**
      * Gets the {@link Enchantment} with the specified id.

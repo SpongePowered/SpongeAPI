@@ -25,18 +25,15 @@
 
 package org.spongepowered.api.potion;
 
-import org.spongepowered.api.text.translation.Translatable;
-
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * An enumeration of all possible potion types in vanilla minecraft.
  */
-public interface PotionEffectType extends Translatable {
+public final class PotionCatagories {
 
-    /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
-     *
-     * @return If applied instantly.
-     */
-    boolean isInstant();
+    public static final PotionCatagory POSITIVE = null;
+    public static final PotionCatagory NEGATIVE = null;
+    public static final PotionCatagory UNUSED = null;
+
+    private PotionCatagories() {
+    }
 }

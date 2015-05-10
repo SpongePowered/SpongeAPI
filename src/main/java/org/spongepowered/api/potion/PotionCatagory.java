@@ -22,55 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.data;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.potion.PotionType;
+package org.spongepowered.api.potion;
+
+import org.spongepowered.api.text.translation.Translatable;
 
 /**
- * Represents a Beacon. 
+ * Represents a possible type of {@link PotionEffect}.
  */
-public interface Beacon extends Lockable {
+public interface PotionCatagory extends Translatable {
 
     /**
-     * Gets the primary effect provided by this beacon.
+     * Gets whether this potion effect is applied
+     * instantly or over time.
      *
-     * @return The primary effect
+     * @return If applied instantly.
      */
-    Optional<PotionType> getPrimaryEffect();
-
-    /**
-     * Sets the primary effect for this beacon.
-     *
-     * @param effect The new primary effect
-     */
-    void setPrimaryEffect(PotionType effect);
-
-    /**
-     * Gets the secondary effect provided by this beacon.
-     *
-     * @return The secondary effect
-     */
-    Optional<PotionType> getSecondaryEffect();
-
-    /**
-     * Sets the secondary effect for this beacon.
-     *
-     * @param effect The new secondary effect
-     */
-    void setSecondaryEffect(PotionType effect);
-
-    /**
-     * Clears all selected potion effects for this beacon.
-     */
-    void clearEffects();
-
-    /**
-     * Gets the number of completed levels of valid beacon structure blocks
-     * beneath this beacon.
-     *
-     * @return The number of levels
-     */
-    int getCompletedLevels();
-
+    boolean isInstant();
 }

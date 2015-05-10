@@ -82,7 +82,7 @@ public interface TradeOfferBuilder {
      * @param maxUses The maximum uses of the trade offer
      * @return This builder
      */
-    TradeOfferBuilder setMaxUses(int maxUses);
+    TradeOfferBuilder maxUses(int maxUses);
 
     /**
      * Sets the trade offer to be generated to grant experience upon use.
@@ -96,7 +96,8 @@ public interface TradeOfferBuilder {
      * Creates a new TradeOffer instance with the current state of the builder.
      *
      * @return A new trade offer instance
-     * @throws IllegalStateException If the resulting trade offer would be invalid
+     * @throws IllegalStateException If the resulting trade offer would be
+     *      invalid
      */
     TradeOffer build() throws IllegalStateException;
 
