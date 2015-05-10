@@ -88,4 +88,13 @@ public interface DataManipulator<T extends DataManipulator<T>> extends Comparabl
      */
     Optional<T> from(DataContainer container);
 
+    /**
+     * Creates a copy of this {@link DataManipulator} and copies all data of
+     * this manipulator into the new {@link DataManipulator}. This manipulator
+     * is left unaffected.
+     *
+     * @return The new copy of this manipulator with all data copied
+     */
+    T copy();
+
 }
