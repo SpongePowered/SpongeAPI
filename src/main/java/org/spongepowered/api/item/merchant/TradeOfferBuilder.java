@@ -28,7 +28,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
 /**
- * Represents a builder to generate {@link TradeOffer}s.
+ * Represents a builder to generate immutable {@link TradeOffer}s.
  */
 public interface TradeOfferBuilder {
 

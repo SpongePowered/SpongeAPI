@@ -48,6 +48,7 @@ public interface Merchant extends Carrier {
 
     /**
      * Sets the currently trading customer with this merchant.
+     *
      * <p>If the human entity is available, a new trading window may open
      * with this merchant.</p>
      *
@@ -83,7 +84,8 @@ public interface Merchant extends Carrier {
     /**
      * Gets a specific offer from a list of offers.
      *
-     * <p>Will return {@link Optional#absent()} when the index specified does not exist.</p>
+     * <p>Will return {@link Optional#absent()} when the index specified
+     * does not exist.</p>
      *
      * @param index The index of the offer
      * @return The offer
@@ -93,7 +95,8 @@ public interface Merchant extends Carrier {
     /**
      * Gets a specific title from a list of titles.
      *
-     * <p>Will return {@link Optional#absent()} when the index specified does not exist.</p>
+     * <p>Will return {@link Optional#absent()} when the index specified
+     * does not exist.</p>
      *
      * @param index The index
      * @return The title
@@ -101,17 +104,18 @@ public interface Merchant extends Carrier {
     Optional<Text> getTitle(int index);
 
     /**
-     * Adds the given offer to the list of offers provided by this merchant.
+     * Adds the given offer to the list of offers provided by
+     * this merchant.
      *
      * @param offer The offer to add
      */
     void addOffer(TradeOffer offer);
 
     /**
-     * Removes the five offer to the list of offers provided by this merchant.
+     * Removes the offer to the list of offers provided by
+     * this merchant.
      *
      * @param offer The offer to remove
-     * @throws NoSuchElementException The offer that is to be removed does not exist
      */
     void removeOffer(TradeOffer offer) throws NoSuchElementException;
 }

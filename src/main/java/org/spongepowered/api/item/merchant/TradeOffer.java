@@ -36,14 +36,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * <p>Also, trade offers are not guaranteed to have two buying items.</p>
  */
 public interface TradeOffer {
-
-    /**
-     * Get the {@link TradeOfferBuilder} used to edit trade offers.
-     *
-     * @return The trade offer builder
-     */
-    TradeOfferBuilder builder();
-
+    
     /**
      * Gets the first buying item.
      * <p>The first buying item is an item that the customer is selling to the
