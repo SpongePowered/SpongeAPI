@@ -26,6 +26,7 @@ package org.spongepowered.api.util.reflect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
@@ -34,6 +35,7 @@ import com.google.common.collect.Multimap;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 import java.util.regex.Matcher;
@@ -66,7 +68,7 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
 
         for (Method method : candidates) {
             // TODO: Handle supertypes
-            if (method.getParameterTypes()[0] == expectedType) {
+            if (method.getParameterTypes()[0] == expectedType || expectedType == Optional.class) {
                 return method;
             }
         }
