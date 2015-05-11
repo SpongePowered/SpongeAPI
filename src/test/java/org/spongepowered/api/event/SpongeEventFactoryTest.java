@@ -106,7 +106,7 @@ public class SpongeEventFactoryTest {
         } else if (Location.class.isAssignableFrom(paramType)) {
             return new Location(mock(Extent.class), 0, 0, 0);
         } else if (paramType == Text[].class) {
-            return new Text[] {Texts.of()};
+            return new Text[] {};
         } else {
             return mock(paramType);
         }
