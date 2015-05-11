@@ -34,13 +34,8 @@ import org.spongepowered.api.event.inventory.BlockInventoryEvent;
  */
 public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
 
-    /**
-     * Gets the {@link Furnace} data that will be represented after the
-     * event.
-     *
-     * @return The resulting furnace data
-     */
-    Furnace getFurnace();
+    @Override
+    Furnace getTile();
 
     @Override
     FurnaceData getCurrentData();

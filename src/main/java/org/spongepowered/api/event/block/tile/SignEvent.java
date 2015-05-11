@@ -32,13 +32,8 @@ import org.spongepowered.api.data.manipulators.tileentities.SignData;
  */
 public interface SignEvent extends TileEntityEvent {
 
-    /**
-     * Gets the {@link Sign} data that will be represented after the
-     * event.
-     *
-     * @return The resulting sign data
-     */
-    Sign getSign();
+    @Override
+    Sign getTile();
 
     @Override
     SignData getCurrentData();

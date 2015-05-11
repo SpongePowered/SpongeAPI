@@ -33,13 +33,8 @@ import org.spongepowered.api.event.inventory.BlockInventoryEvent;
  */
 public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent {
 
-    /**
-     * Gets the {@link BrewingStand} data that will be represented
-     * after this event.
-     *
-     * @return The brewing stand
-     */
-    BrewingStand getBrewingStand();
+    @Override
+    BrewingStand getTile();
 
     @Override
     BrewingData getCurrentData();

@@ -1692,7 +1692,6 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", brewingStand);
-        values.put("brewingStand", brewingStand);
         values.put("sourceItems", sourceItems);
         values.put("fuelSource", fuelSource);
         values.put("brewedItems", brewedItems);
@@ -1723,7 +1722,6 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", furnace);
-        values.put("furnace", furnace);
         values.put("burnedItem", burnedItem);
         values.put("remainingFuel", Optional.fromNullable(remainingFuel));
         values.put("result", Optional.fromNullable(remainingFuel));
@@ -1753,7 +1751,6 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", furnace);
-        values.put("furnace", furnace);
         values.put("cookedItem", cookedItem);
         values.put("sourceItem", sourceItem);
         values.put("result", Optional.fromNullable(cookedItem));
