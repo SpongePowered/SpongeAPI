@@ -27,6 +27,8 @@ package org.spongepowered.api.event;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
@@ -103,6 +105,8 @@ public class SpongeEventFactoryTest {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {
             return new Location(mock(Extent.class), 0, 0, 0);
+        } else if (paramType == Text[].class) {
+            return new Text[] {Texts.of()};
         } else {
             return mock(paramType);
         }
