@@ -63,6 +63,7 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      *
      * @return The connection
      */
+    @Override
     PlayerConnection getConnection();
 
     /**
@@ -80,7 +81,8 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
     TabList getTabList();
 
     /**
-     * Kicks the player.
+     * Kicks the player, showing the default kick reason (the translation key
+     * {@code disconnect.disconnected}).
      */
     void kick();
 
@@ -89,7 +91,7 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      *
      * @param reason The reason for the kick
      */
-    void kick(Text.Literal reason);
+    void kick(Text reason);
 
     /**
      * Gets the {@link Scoreboard} displayed to the player.

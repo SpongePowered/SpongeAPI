@@ -96,7 +96,7 @@ public interface Server extends ChannelRegistrar {
 
     /**
      * Gets the properties of all worlds, loaded or otherwise.
-     * 
+     *
      * @return A collection of world properties
      */
     Collection<WorldProperties> getAllWorldProperties();
@@ -171,14 +171,14 @@ public interface Server extends ChannelRegistrar {
     /**
      * Unloads a {@link World}, if there are any connected players in the given
      * world then no operation will occur.
-     * 
+     *
      * <p>A world which is unloaded will be removed from memory. However if it
      * is still enabled according to {@link WorldProperties#isEnabled()} then it
      * will be loaded again if the server is restarted or an attempt is made by
      * a plugin to transfer an entity to the world using
      * {@link Entity#transferToWorld(String, com.flowpowered.math.vector.Vector3d)}
      * </p>
-     * 
+     *
      * @param world The world to unload
      * @return Whether the operation was successful
      */
@@ -188,17 +188,17 @@ public interface Server extends ChannelRegistrar {
      * Creates a new world from the given {@link WorldCreationSettings}. For the
      * creation of the WorldCreationSettings please see
      * {@link WorldBuilder}.
-     * 
+     *
      * <p>If the world already exists then the existing {@link WorldProperties}
      * are returned else a new world is created and the new WorldProperties
      * returned.</p>
-     * 
+     *
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
-     * 
+     *
      * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(UUID)}
      * </li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
-     * 
+     *
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
@@ -207,7 +207,7 @@ public interface Server extends ChannelRegistrar {
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,
      * updating any modified values.
-     * 
+     *
      * @param properties The world properties to save
      * @return True if the save was successful
      */
@@ -271,6 +271,13 @@ public interface Server extends ChannelRegistrar {
      * @return The server's default description (MOTD)
      */
     Text getMotd();
+
+    /**
+     * Shuts down the server, and kicks all players with the default kick
+     * message (the translation key {@code disconnect.closed}).
+     *
+     */
+    void shutdown();
 
     /**
      * Shuts down the server, and kicks all players with the given message.
