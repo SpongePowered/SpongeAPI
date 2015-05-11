@@ -1773,7 +1773,7 @@ public final class SpongeEventFactory {
     public static SignChangeEvent createSignChangeEvent(Game game, Cause cause, Sign sign, SignData currentData, Text[] previousLines, Text[] newLines) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("cause", cause);
+        values.put("cause", Optional.fromNullable(cause));
         values.put("tile", sign);
         values.put("currentData", currentData);
         values.put("previousLines", previousLines);
