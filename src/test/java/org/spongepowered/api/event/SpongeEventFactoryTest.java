@@ -62,7 +62,7 @@ public class SpongeEventFactoryTest {
 
                     event = method.invoke(null, params);
                     Method eventMethod2 = null;
-                    for (Method eventMethod : method.getReturnType().getMethods()) {
+                    for (Method eventMethod : event.getClass().getMethods()) {
                         try {
                             eventMethod2 = eventMethod;
                             paramTypes = eventMethod.getParameterTypes();

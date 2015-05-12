@@ -373,27 +373,32 @@ class ClassGenerator {
 
             // stringBuilder.append(this.'property'.toString())
 
-            Type returnType = Type.getReturnType(property.getAccessor());
+            if (property.isLeastSpecificType()) {
+                Type returnType = Type.getReturnType(property.getAccessor());
 
-            toStringMv.visitVarInsn(ALOAD, 0);
+                toStringMv.visitVarInsn(ALOAD, 0);
 
-            toStringMv.visitVarInsn(ALOAD, 1);
-            toStringMv.visitLdcInsn(property.getName());
-            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+                toStringMv.visitVarInsn(ALOAD, 1);
+                toStringMv.visitLdcInsn(property.getName());
+                toStringMv
+                        .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-            toStringMv.visitLdcInsn("=");
-            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+                toStringMv.visitLdcInsn("=");
+                toStringMv
+                        .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-            toStringMv.visitVarInsn(ALOAD, 0);
-            toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+                toStringMv.visitVarInsn(ALOAD, 0);
+                toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
 
-            String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
+                String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
 
-            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append",
-                                       "(" + desc + ")Ljava/lang/StringBuilder;", false);
+                toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append",
+                                           "(" + desc + ")Ljava/lang/StringBuilder;", false);
 
-            toStringMv.visitLdcInsn(", ");
-            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+                toStringMv.visitLdcInsn(", ");
+                toStringMv
+                        .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+            }
 
         }
 
