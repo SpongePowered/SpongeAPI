@@ -22,22 +22,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
-
-import org.spongepowered.api.util.Identifiable;
+package org.spongepowered.api.service.profile;
 
 /**
- * Represents a name and an associated unique identifier.
- *
- * <p>Use the {@link org.spongepowered.api.service.user.UserStorage} service to
- * obtain the stored data associated with a profile.</p>
+ * Thrown by a profile lookup service if a profile does not exist.
  */
-public interface GameProfile extends Identifiable {
+public class ProfileNotFoundException extends Exception {
+
+    private static final long serialVersionUID = -6165011303382043479L;
 
     /**
-     * Gets the player's last known username.
-     *
-     * @return The player's last known username
+     * Constructs a new {@link ProfileNotFoundException}.
      */
-    String getName();
+    public ProfileNotFoundException() {
+        super();
+    }
+
+    /**
+     * Constructs a new {@link ProfileNotFoundException} with the specified
+     * message.
+     *
+     * @param message The exception message
+     */
+    public ProfileNotFoundException(String message) {
+        super(message);
+    }
+
+    /**
+     * Constructs a new {@link ProfileNotFoundException} with the specified
+     * cause and a null message.
+     *
+     * @param cause The cause of this exception
+     */
+    public ProfileNotFoundException(Throwable cause) {
+        super(cause);
+    }
+
+    /**
+     * Constructs a new {@link ProfileNotFoundException} with the specified
+     * message and cause.
+     *
+     * @param message The exception message
+     * @param cause The cause of this exception
+     */
+    public ProfileNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
