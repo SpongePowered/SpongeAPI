@@ -22,47 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.types;
 
-import org.spongepowered.api.CatalogType;
+package org.spongepowered.api.item.merchant.generator;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.merchant.TradeOffer;
-import org.spongepowered.api.item.merchant.generator.TradeOfferGenerator;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Represents a Villager Career. A career can define a more specified list of
- * trade offers the villager can give to a player.
+ * A simple trade offer generator, that always returns the same results.
  */
-@CatalogedBy(Careers.class)
-public interface Career extends CatalogType, Translatable {
+public class SimpleTradeOfferGenerator implements TradeOfferGenerator {
 
-    /**
-     * Gets the parent profession of this career. The profession is permanent
-     * and can not be changed.
-     *
-     * @return The profession this career belongs to
-     */
-    Profession getProfession();
+    private final List<TradeOffer> offers;
 
-    Map<Integer, List<TradeOfferGenerator>> getTradeOffers();
+    public SimpleTradeOfferGenerator(TradeOffer... offers) {
+        this(Arrays.asList(checkNotNull(offers, "offers")));
+    }
 
-    /**
-     * Gets an immutable list of the generators for the given Merchant level.
-     * Assuming level 0 is the first one.
-     *
-     * @param level The level to return the {@link TradeOfferGenerator}s for
-     * @return The generators for the given Merchant level
-     */
-    List<TradeOfferGenerator> getTradeOffers(int level);
+    public SimpleTradeOfferGenerator(Collection<TradeOffer> offers) {
+        this.offers = ImmutableList.copyOf(checkNotNull(offers, "offers"));
+    }
 
-    void addTradeOffers(int level, TradeOfferGenerator... generators);
-
-    void setTradeOffers(Map<Integer, List<TradeOfferGenerator>> generators);
-
-    List<TradeOffer> generateTradeOffers(int level);
+    @Override
+    public List<TradeOffer> generate() {
+        return new ArrayList<TradeOffer>(this.offers);
+    }
 
 }

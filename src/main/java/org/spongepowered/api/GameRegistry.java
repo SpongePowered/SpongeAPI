@@ -38,6 +38,7 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
@@ -137,6 +138,14 @@ public interface GameRegistry {
      * @return The item stack builder
      */
     ItemStackBuilder getItemBuilder();
+
+    /**
+     * Get an item stack builder with the given base item stack.
+     *
+     * @param baseItem The base item for this builder
+     * @return The item stack builder
+     */
+    ItemStackBuilder getItemBuilder(ItemStack baseItem);
 
     /**
      * Get a trade offer builder.
