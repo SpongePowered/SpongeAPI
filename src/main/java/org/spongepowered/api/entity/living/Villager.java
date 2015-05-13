@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulators.entities.CareerData;
+import org.spongepowered.api.data.DataObject;
+import org.spongepowered.api.data.marker.CareerData;
 import org.spongepowered.api.item.merchant.Merchant;
 
 /**
@@ -42,11 +43,11 @@ public interface Villager extends Ageable, Merchant {
     boolean isTrading();
 
     /**
-     * Gets a copy of the current {@link CareerData} for this {@link Villager}
+     * Gets a copy of the current {@link DataObject<CareerData>} for this {@link Villager}
      * entity.
      *
      * @return A copy of the career data
      */
-    CareerData getCareerData();
+    DataObject<CareerData> getCareerData();
 
 }

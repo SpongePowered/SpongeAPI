@@ -22,23 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.prop;
 
-import org.spongepowered.api.data.DataObject;
-import org.spongepowered.api.data.marker.DamagingData;
-import org.spongepowered.api.entity.Entity;
+public interface BaseProp<E, V> {
 
-/**
- * Represents an Arrow.
- */
-public interface Arrow extends Projectile {
+    Class<E> getValueClass();
 
-    /**
-     * Gets a copy of the current {@link DataObject<DamagingData>} that this arrow will
-     * deal on an {@link Entity} when hit.
-     *
-     * @return A copy of the damaging data
-     */
-    DataObject<DamagingData> getDamagingData();
+    Class<V> getRestrictorClass();
 
 }

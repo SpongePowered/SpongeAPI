@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.manipulators.entities.DamagingData;
+import org.spongepowered.api.data.DataObject;
+import org.spongepowered.api.data.marker.DamagingData;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -38,6 +39,6 @@ public interface EnderPearl extends Projectile {
      *
      * @return A copy of the damaging data
      */
-    DamagingData getDamagingData();
+    DataObject<DamagingData> getDamagingData();
 
 }
