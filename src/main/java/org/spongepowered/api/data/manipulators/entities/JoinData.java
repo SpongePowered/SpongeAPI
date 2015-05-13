@@ -37,18 +37,9 @@ import java.util.Date;
 public interface JoinData extends DataManipulator<JoinData> {
 
     /**
-     * Checks if this player has joined the server before.
-     *
-     * @return True If player has joined before
-     */
-    boolean hasJoinedBefore();
-
-    /**
      * Gets the first time a player joined the server.
      *
-     * <p>
-     *     This time is based off epoch timestamps.
-     * </p>
+     * <p>This time is based off epoch timestamps.</p>
      *
      * @return The players first join time.
      */
@@ -57,9 +48,7 @@ public interface JoinData extends DataManipulator<JoinData> {
     /**
      * Gets the last time a player was on the server.
      *
-     * <p>
-     *     This time is based off epoch timestamps.
-     * </p>
+     * <p>This time is based off epoch timestamps.</p>
      *
      * @return The last time a player was online.
      */

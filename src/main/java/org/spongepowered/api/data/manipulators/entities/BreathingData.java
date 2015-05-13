@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.manipulators.entities;
 
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.manipulators.IntData;
 
 /**
  * Represents the remaining air information for various entities while they
  * are underwater.
  */
-public interface BreathingData extends DataManipulator<BreathingData> {
+public interface BreathingData extends IntData<BreathingData> {
 
     /**
      * Gets the remaining ticks of air.

@@ -44,8 +44,9 @@ public interface IgniteableData extends IntData<IgniteableData> {
      * Sets the remaining ticks of being lit on fire.
      *
      * @param ticks The ticks of being lit on fire
+     * @return This manipulator, for chaining
      */
-    void setFireTicks(int ticks);
+    IgniteableData setFireTicks(int ticks);
 
     /**
      * Gets the delay in ticks before this entity will catch fire after being in a burning block.

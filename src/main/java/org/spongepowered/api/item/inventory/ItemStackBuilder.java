@@ -53,11 +53,10 @@ public interface ItemStackBuilder {
      * Sets the {@link DataManipulator} to add to the item stack.
      *
      * @param itemData The item data to set
-     * @param <T> The type of item data
      * @return This builder, for chaining
      * @throws IllegalArgumentException If the item data is incompatible with the item
      */
-    <T extends DataManipulator<T>> ItemStackBuilder itemData(T itemData) throws IllegalArgumentException;
+    ItemStackBuilder itemData(DataManipulator<?> itemData) throws IllegalArgumentException;
 
     /**
      * Creates a new builder with the given ItemStack as a blueprint with

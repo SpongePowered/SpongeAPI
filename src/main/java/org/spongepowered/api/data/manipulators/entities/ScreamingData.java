@@ -33,25 +33,4 @@ import org.spongepowered.api.entity.living.monster.Enderman;
  */
 public interface ScreamingData extends DataManipulator<ScreamingData> {
 
-    /**
-     * Gets if the entity is currently screaming.
-     *
-     * <p>This behaviour generally occurs when a player has been
-     * targeted due to staring too long.</p>
-     *
-     * @return If the enderman is screaming
-     */
-    boolean isScreaming();
-
-    /**
-     * Sets if the entity is currently screaming.
-     *
-     * <p>This behaviour generally occurs when a player has been
-     * targeted due to staring too long.</p>
-     *
-     * @param screaming If the enderman should be screaming
-     * @return This instance, for chaining
-     */
-    ScreamingData setScreaming(boolean screaming);
-
 }
