@@ -154,19 +154,19 @@ public final class ItemStackBuilderMutators {
 
     // Data
 
-    public static <T extends DataManipulator<T>> ItemStackBuilderMutator data(T data) {
-        return new DataRandomizer<T>(Suppliers.ofInstance(data));
+    public static ItemStackBuilderMutator data(DataManipulator<?> data) {
+        return new DataRandomizer(Suppliers.ofInstance(data));
     }
 
-    public static <T extends DataManipulator<T>> ItemStackBuilderMutator data(Supplier<T> supplier) {
-        return new DataRandomizer<T>(supplier);
+    public static ItemStackBuilderMutator data(Supplier<? extends DataManipulator<?>> supplier) {
+        return new DataRandomizer(supplier);
     }
 
-    private static class DataRandomizer<T extends DataManipulator<T>> implements ItemStackBuilderMutator {
+    private static class DataRandomizer implements ItemStackBuilderMutator {
 
-        private final Supplier<T> itemData;
+        private final Supplier<? extends DataManipulator<?>> itemData;
 
-        DataRandomizer(Supplier<T> itemData) {
+        DataRandomizer(Supplier<? extends DataManipulator<?>> itemData) {
             super();
             this.itemData = checkNotNull(itemData, "itemData");
         }
