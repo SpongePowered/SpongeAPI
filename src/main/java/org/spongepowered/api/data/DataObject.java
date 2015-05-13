@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.GetterValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.SetterValue;
@@ -36,56 +37,45 @@ import org.spongepowered.api.data.value.SetterValue;
  */
 public interface DataObject<D> {
 
-    /**
-     * Gets some value that is known to be present.
-     *
-     * @param prop The property
-     * @param <E> The type of value
-     * @return The value
-     * @throws UnsupportedOperationException If the value is not present
-     */
-    <E> E getUnsafe(GetterValue<E, ? extends D> prop) throws UnsupportedOperationException;
+    boolean supports(BaseValue<?, ? extends D> value);
 
     /**
      * Gets some value.
      *
-     * @param prop The property
+     * @param value The property
      * @param <E> The type of value
      * @return The value
-     * @throws UnsupportedOperationException If the value is not present
      */
-    <E> Optional<E> get(GetterValue<E, ? extends D> prop);
+    <E> Optional<E> get(GetterValue<E, ? extends D> value);
 
     /**
      * Gets some value, or the default.
      *
-     * @param prop The property
+     * @param value The property
      * @param defaultValue The value if the prop does not exist
      * @param <E> The type of value
      * @return The value
-     * @throws UnsupportedOperationException If the value is not present
      */
-    <E> E getOrElse(GetterValue<E, ? extends D> prop, E defaultValue);
+    <E> E getOrElse(GetterValue<E, ? extends D> value, E defaultValue);
+
+    /**
+     * Gets some value that is known to be present.
+     *
+     * @param value The value
+     * @param <E> The type of value
+     * @return The value
+     */
+    <E> E tryGet(GetterValue<E, ? extends D> value);
 
     /**
      * Sets some value.
      *
-     * @param prop The property
-     * @param value The value to set
+     * @param value The property
+     * @param result The value to set
      * @param <E> The type of value
      * @return This object
      */
-    <E> DataObject<D> set(SetterValue<E, ? extends D> prop, E value);
-
-    /**
-     * Sets some value, if it can be set.
-     *
-     * @param prop The property
-     * @param value The value to set
-     * @param <E> The type of value
-     * @return This object
-     */
-    <E> DataObject<D> setIfPresent(SetterValue<E, ? extends D> prop, E value);
+    <E> DataObject<D> set(SetterValue<E, ? extends D> value, E result);
 
     /**
      * Gets a data object with further restrictions on data.
@@ -96,18 +86,40 @@ public interface DataObject<D> {
      * @param <V> The type of data to restrict to
      * @return The nested data object
      */
-    <V extends D> DataObject<V> restrict(Class<V> clazz);
+    <V extends D> Optional<DataObject<V>> restrict(Class<V> clazz);
 
     /**
      * Gets a data object with further restrictions on data.
      *
      * <p>As an example, use this to get a data "manipulator" from a more generic data object.</p>
      *
-     * @param prop The prop to restrict to
+     * @param value The value to restrict to
      * @param <V> The type of data to restrict to
      * @return The nested data object
      */
-    <E, V extends D> DataObject<V> restrict(Value<E, V> prop);
+    <E, V extends D>  Optional<DataObject<V>> restrict(Value<E, V> value);
+
+    /**
+     * Gets a data object with further restrictions on data.
+     *
+     * <p>As an example, use this to get a data "manipulator" from a more generic data object.</p>
+     *
+     * @param clazz The class of data to restrict to
+     * @param <V> The type of data to restrict to
+     * @return The nested data object
+     */
+    <V extends D> Optional<DataObject<V>> tryRestrict(Class<V> clazz);
+
+    /**
+     * Gets a data object with further restrictions on data.
+     *
+     * <p>As an example, use this to get a data "manipulator" from a more generic data object.</p>
+     *
+     * @param value The value to restrict to
+     * @param <V> The type of data to restrict to
+     * @return The nested data object
+     */
+    <E, V extends D> DataObject<V> tryRestrict(Value<E, V> value);
 
     /**
      * Copies all keys from the given data object to those which are supported in the current data object.
