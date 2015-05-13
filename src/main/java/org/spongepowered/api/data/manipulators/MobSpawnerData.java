@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.data.manipulators;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.util.weighted.WeightedCollection;
 import org.spongepowered.api.util.weighted.WeightedEntity;
+
+import java.util.Collection;
 
 import javax.annotation.Nullable;
 
@@ -187,7 +188,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      *        may be null
      * @return This instance, for chaining
      */
-    MobSpawnerData setNextEntityToSpawn(EntityType type, @Nullable DataContainer additionalProperties);
+    MobSpawnerData setNextEntityToSpawn(EntityType type, @Nullable Collection<DataManipulator<?>> additionalProperties);
 
     /**
      * Sets the next {@link WeightedEntity} to be spawned.
