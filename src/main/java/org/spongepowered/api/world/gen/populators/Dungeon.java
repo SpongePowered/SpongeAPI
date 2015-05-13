@@ -25,12 +25,12 @@
 package org.spongepowered.api.world.gen.populators;
 
 import org.spongepowered.api.data.manipulators.MobSpawnerData;
-import org.spongepowered.api.util.WeightedRandomEntity;
-import org.spongepowered.api.util.WeightedRandomItemStack;
+import org.spongepowered.api.util.weighted.WeightedCollection;
+import org.spongepowered.api.util.weighted.WeightedEntity;
+import org.spongepowered.api.util.weighted.WeightedItem;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Represents a which places 'Dungeon's randomly underground. Each dungeon has
@@ -69,7 +69,7 @@ public interface Dungeon extends Populator {
      * 
      * @return The contents list
      */
-    List<WeightedRandomItemStack> getPossibleContents();
+    WeightedCollection<WeightedItem> getPossibleContents();
 
     /**
      * Gets the number of items which will spawn per chest.
@@ -173,42 +173,42 @@ public interface Dungeon extends Populator {
         Builder spawnRange(short range);
 
         /**
-         * Defines a number of {@link WeightedRandomEntity}s from which the type
+         * Defines a number of {@link WeightedEntity}s from which the type
          * of each batch will be randomly selected based on the weighting value.
          *
          * @param entities The possible entities
          * @return This builder, for chaining
          */
-        Builder possibleEntities(WeightedRandomEntity... entities);
+        Builder possibleEntities(WeightedEntity... entities);
 
         /**
-         * Defines a number of {@link WeightedRandomEntity}s from which the type
+         * Defines a number of {@link WeightedEntity}s from which the type
          * of each batch will be randomly selected based on the weighting value.
          *
          * @param entities The possible entities
          * @return This builder, for chaining
          */
-        Builder possibleEntities(Collection<WeightedRandomEntity> entities);
+        Builder possibleEntities(Collection<WeightedEntity> entities);
 
         /**
-         * Defines a number of {@link WeightedRandomItemStack}s from which items
+         * Defines a number of {@link WeightedItem}s from which items
          * will be randomly selected based on weight in order to calculate the
          * contents of chests placed within the dungeon.
          *
          * @param items The possible items
          * @return This builder, for chaining
          */
-        Builder possibleItems(WeightedRandomItemStack... items);
+        Builder possibleItems(WeightedItem... items);
 
         /**
-         * Defines a number of {@link WeightedRandomItemStack}s from which items
+         * Defines a number of {@link WeightedItem}s from which items
          * will be randomly selected based on weight in order to calculate the
          * contents of chests placed within the dungeon.
          *
          * @param items The possible items
          * @return This builder, for chaining
          */
-        Builder possibleItems(Collection<WeightedRandomItemStack> items);
+        Builder possibleItems(Collection<WeightedItem> items);
 
         /**
          * Sets the number of items which will spawn per chest.

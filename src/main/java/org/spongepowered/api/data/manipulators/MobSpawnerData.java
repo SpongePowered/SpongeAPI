@@ -24,20 +24,17 @@
  */
 package org.spongepowered.api.data.manipulators;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.util.WeightedRandomEntity;
-
-import java.util.Collection;
+import org.spongepowered.api.util.weighted.WeightedCollection;
+import org.spongepowered.api.util.weighted.WeightedEntity;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents the data associated with a mob spawner, including the spawn
- * delay, the spawn count, and the list of possible entities that can be
- * spawned.
+ * Represents the data associated with a mob spawner, including the spawn delay,
+ * the spawn count, and the list of possible entities that can be spawned.
  */
 public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
 
@@ -60,10 +57,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
 
     /**
      * Gets the minimum delay between batches of monsters.
-     * <p>
-     * Each time the timer is reset the new delay is chosen randomly from
-     * between the minimum (inclusive) and maximum (exclusive) delays.
-     * </p>
+     * 
+     * <p> Each time the timer is reset the new delay is chosen randomly from
+     * between the minimum (inclusive) and maximum (exclusive) delays. </p>
      *
      * @return The minimum delay, in ticks
      */
@@ -71,10 +67,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
 
     /**
      * Sets the minimum delay between batches of monsters.
-     * <p>
-     * Each time the timer is reset the new delay is chosen randomly from
-     * between the minimum (inclusive) and maximum (exclusive) delays.
-     * </p>
+     * 
+     * <p> Each time the timer is reset the new delay is chosen randomly from
+     * between the minimum (inclusive) and maximum (exclusive) delays. </p>
      *
      * @param delay The new minimum delay, in ticks
      * @return This instance, for chaining
@@ -83,10 +78,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
 
     /**
      * Gets the maximum delay between batches of monsters.
-     * <p>
-     * Each time the timer is reset the new delay is chosen randomly from
-     * between the minimum (inclusive) and maximum (exclusive) delays.
-     * </p>
+     * 
+     * <p> Each time the timer is reset the new delay is chosen randomly from
+     * between the minimum (inclusive) and maximum (exclusive) delays. </p>
      *
      * @return The maximum delay, in ticks
      */
@@ -94,10 +88,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
 
     /**
      * Sets the maximum delay between batches of monsters.
-     * <p>
-     * Each time the timer is reset the new delay is chosen randomly from
-     * between the minimum (inclusive) and maximum (exclusive) delays.
-     * </p>
+     * 
+     * <p> Each time the timer is reset the new delay is chosen randomly from
+     * between the minimum (inclusive) and maximum (exclusive) delays. </p>
      *
      * @param delay The new maximum delay, in ticks
      * @return This instance, for chaining
@@ -165,11 +158,10 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
 
     /**
      * Gets the range within which the monsters from each batch will be spawned.
-     * <p>
-     * The total region within which the monster may be spawned is defined by a
-     * cuboid with dimensions of {@code range*2+1 x 3 x range*2+1} centered
-     * around the monster spawner.
-     * </p>
+     * 
+     * <p> The total region within which the monster may be spawned is defined
+     * by a cuboid with dimensions of {@code range*2+1 x 3 x range*2+1} centered
+     * around the monster spawner. </p>
      *
      * @return The range
      */
@@ -177,11 +169,10 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
 
     /**
      * Sets the range within which the monsters from each batch will be spawned.
-     * <p>
-     * The total region within which the monster may be spawned is defined by a
-     * cuboid with dimensions of {@code range*2+1 x 3 x range*2+1} centered
-     * around the monster spawner.
-     * </p>
+     * 
+     * <p> The total region within which the monster may be spawned is defined
+     * by a cuboid with dimensions of {@code range*2+1 x 3 x range*2+1} centered
+     * around the monster spawner. </p>
      *
      * @param range The new range
      * @return This instance, for chaining
@@ -192,69 +183,26 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
      * Sets the next entity type and properties to be spawned.
      *
      * @param type The entity type
-     * @param additionalProperties Additional properties to apply to the entity, may be null
+     * @param additionalProperties Additional properties to apply to the entity,
+     *        may be null
      * @return This instance, for chaining
      */
     MobSpawnerData setNextEntityToSpawn(EntityType type, @Nullable DataContainer additionalProperties);
 
     /**
-     * Sets the next {@link WeightedRandomEntity} to be spawned.
+     * Sets the next {@link WeightedEntity} to be spawned.
      *
      * @param entity The random entity entry
      * @return This instance, for chaining
      */
-    MobSpawnerData setNextEntityToSpawn(WeightedRandomEntity entity);
+    MobSpawnerData setNextEntityToSpawn(WeightedEntity entity);
 
     /**
-     * Gets the collection of {@link WeightedRandomEntity} from which the type
-     * of each batch of spawned entities will be selected from.
+     * Gets a mutable {@link WeightedCollection} of {@link WeightedEntity} from
+     * which the type of each batch of spawned entities will be selected from.
      *
      * @return The possible entities
      */
-    Collection<WeightedRandomEntity> getPossibleEntitiesToSpawn();
-
-    /**
-     * Creates a {@link WeightedRandomEntity} with the given properties and
-     * returns the {@link WeightedRandomEntity} if validation passed.
-     *
-     * <p>If there is invalid data, either the entity type, the weight, or
-     * the additional properties are not valid to apply to the entity, the
-     * {@link WeightedRandomEntity} is not created.</p>
-     *
-     * @param entityType The entity type
-     * @param weight The weight of the priority to spawn the entity
-     * @param additionalProperties Any additional properties customizing the
-     *     entity
-     * @return The weighted entity if it was created
-     */
-    Optional<WeightedRandomEntity> addWeightedEntity(EntityType entityType, int weight, Collection<DataManipulator<?>> additionalProperties);
-
-    /**
-     * Removes the given {@link WeightedRandomEntity} from the possible
-     * entities to spawn by the mob spawner.
-     *
-     * @param weightedEntity The weighted entity to remove
-     * @return This instance, for chaining
-     */
-    MobSpawnerData removeWeightedEntity(WeightedRandomEntity weightedEntity);
-
-    /**
-     * Defines a number of {@link WeightedRandomEntity}s from which the type of
-     * each batch will be randomly selected based on the weighting value.
-     *
-     * @param entities The possible entities
-     * @return This instance, for chaining
-     */
-    MobSpawnerData setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
-
-    /**
-     * Defines a number of {@link WeightedRandomEntity}s from which the type of
-     * each batch will be randomly selected based on the weighting value.
-     *
-     * @param entities The possible entities
-     * @return This instance, for chaining
-     */
-    MobSpawnerData setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
-
+    WeightedCollection<WeightedEntity> getPossibleEntitiesToSpawn();
 
 }

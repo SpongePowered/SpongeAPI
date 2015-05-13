@@ -22,38 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
-
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.entity.EntityType;
-
-import java.util.Collection;
-
-/**
- * Represents an entity type with a numerical weight used for random selection
- * from a collection of weighted types.
- */
-public interface WeightedRandomEntity {
-
-    /**
-     * Gets the {@link EntityType}.
-     *
-     * @return The entity type
-     */
-    EntityType getEntityType();
-
-    /**
-     * Gets the additional properties to apply to the entity.
-     *
-     * @return The additional properties
-     */
-    Collection<DataManipulator<?>> getAdditionalProperties();
-
-    /**
-     * Gets the weight of this entity.
-     *
-     * @return The weight
-     */
-    int getWeight();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.util.weighted;
