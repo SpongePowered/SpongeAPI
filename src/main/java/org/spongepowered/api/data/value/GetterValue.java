@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.prop;
+package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.DataObject;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <E> The type of value that this property has
  * @param <V> The type of {@link DataObject}s this property is restricted to
  */
-@CatalogedBy(Props.class)
-public interface GetterProp<E, V> extends BaseProp<E, V> {
+@CatalogedBy(Values.class)
+public interface GetterValue<E, V> extends BaseValue<E, V> {
 }

@@ -22,17 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.prop;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.DataObject;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import java.util.Comparator;
 
-/**
- * Marker interface for props that can only be set.
- *
- * @param <E> The type of value that this property has
- * @param <V> The type of {@link DataObject}s this property is restricted to
- */
-@CatalogedBy(Props.class)
-public interface SetterProp<E, V> extends BaseProp<E, V> {
+// TODO Does a numeric property (int, double) imply boundedness for all possible cases?
+public interface BoundedValue<E, V> extends Value<E, V> {
+
+    Comparator<E> getComparator();
+
+    E getMinimum();
+
+    E getMaximum();
+
 }

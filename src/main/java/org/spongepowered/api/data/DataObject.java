@@ -25,9 +25,9 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.prop.GetterProp;
-import org.spongepowered.api.data.prop.Prop;
-import org.spongepowered.api.data.prop.SetterProp;
+import org.spongepowered.api.data.value.GetterValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.SetterValue;
 
 /**
  * Represents some container of arbitrary data values.
@@ -44,7 +44,7 @@ public interface DataObject<D> {
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E> E getUnsafe(GetterProp<E, ? extends D> prop) throws UnsupportedOperationException;
+    <E> E getUnsafe(GetterValue<E, ? extends D> prop) throws UnsupportedOperationException;
 
     /**
      * Gets some value.
@@ -54,7 +54,7 @@ public interface DataObject<D> {
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E> Optional<E> get(GetterProp<E, ? extends D> prop);
+    <E> Optional<E> get(GetterValue<E, ? extends D> prop);
 
     /**
      * Gets some value, or the default.
@@ -65,7 +65,7 @@ public interface DataObject<D> {
      * @return The value
      * @throws UnsupportedOperationException If the value is not present
      */
-    <E> E getOrElse(GetterProp<E, ? extends D> prop, E defaultValue);
+    <E> E getOrElse(GetterValue<E, ? extends D> prop, E defaultValue);
 
     /**
      * Sets some value.
@@ -75,7 +75,7 @@ public interface DataObject<D> {
      * @param <E> The type of value
      * @return This object
      */
-    <E> DataObject<D> set(SetterProp<E, ? extends D> prop, E value);
+    <E> DataObject<D> set(SetterValue<E, ? extends D> prop, E value);
 
     /**
      * Sets some value, if it can be set.
@@ -85,7 +85,7 @@ public interface DataObject<D> {
      * @param <E> The type of value
      * @return This object
      */
-    <E> DataObject<D> setIfPresent(SetterProp<E, ? extends D> prop, E value);
+    <E> DataObject<D> setIfPresent(SetterValue<E, ? extends D> prop, E value);
 
     /**
      * Gets a data object with further restrictions on data.
@@ -107,7 +107,7 @@ public interface DataObject<D> {
      * @param <V> The type of data to restrict to
      * @return The nested data object
      */
-    <E, V extends D> DataObject<V> restrict(Prop<E, V> prop);
+    <E, V extends D> DataObject<V> restrict(Value<E, V> prop);
 
     /**
      * Copies all keys from the given data object to those which are supported in the current data object.

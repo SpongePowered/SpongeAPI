@@ -22,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.prop;
+package org.spongepowered.api.data.value;
 
-public interface BaseProp<E, V> {
+public interface BaseValue<E, V> {
 
     Class<E> getValueClass();
 
