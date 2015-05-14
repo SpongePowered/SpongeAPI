@@ -111,7 +111,7 @@ public interface GameProfileResolver {
      *
      * @return A {@link Collection} of {@link GameProfile}s
      */
-    Collection<GameProfile> getAllCached();
+    Collection<GameProfile> getAllCachedProfiles();
 
     /**
      * Returns a collection of matching cached {@link GameProfile}s whose last
