@@ -97,7 +97,7 @@ public final class ItemStackGenerator implements Supplier<ItemStack> {
 
         private final GameRegistry registry;
         private ItemStack baseItem = null;
-        private List<ItemStackBuilderMutator> randomizers = new ArrayList<ItemStackBuilderMutator>();
+        private final List<ItemStackBuilderMutator> randomizers = new ArrayList<ItemStackBuilderMutator>();
 
         private Builder(GameRegistry registry) {
             this.registry = checkNotNull(registry, "registry");
