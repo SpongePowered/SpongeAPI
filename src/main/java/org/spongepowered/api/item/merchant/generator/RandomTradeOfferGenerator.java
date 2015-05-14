@@ -39,7 +39,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * A simple trade offer generator, that always returns the same results.
+ * A random trade offer generator, that returns random results from the given
+ * generators.
  */
 public class RandomTradeOfferGenerator implements TradeOfferGenerator {
 
