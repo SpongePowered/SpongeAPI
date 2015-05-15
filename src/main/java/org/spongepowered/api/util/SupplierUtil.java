@@ -33,27 +33,47 @@ import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableList;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
-
- *
+ * A helper class that provides some useful {@link Supplier}s.
  */
 public class SupplierUtil {
 
-    private static final Random RANDOM = new Random();
-
+    /**
+     * Creates a new {@link Supplier} that always returns the same result.
+     *
+     * @param value The value that should always be returned
+     * @return The created supplier
+     */
     public static <E> Supplier<E> fixed(E value) {
         return Suppliers.ofInstance(checkNotNull(value, "value"));
     }
 
+    /**
+     * Creates a new {@link Supplier} that returns values between {@code min}
+     * (inclusive) and {@code max} (inclusive).
+     *
+     * @param min The min value that can be returned
+     * @param max The max value that can be returned
+     * @return The created supplier
+     */
     public static Supplier<Integer> randomBetween(int min, int max) {
         return randomRange(min, max - min);
     }
 
+    /**
+     * Creates a new {@link Supplier} that returns values between {@code min}
+     * (inclusive) and {@code min+delta} (inclusive).
+     *
+     * @param min The min value that can be returned
+     * @param max The none negative delta value
+     * @return The created supplier
+     */
     public static Supplier<Integer> randomRange(int min, int delta) {
         return new RandomIntSupplier(min, delta);
     }
@@ -65,13 +85,14 @@ public class SupplierUtil {
 
         RandomIntSupplier(int min, int delta) {
             super();
+            checkArgument(delta >= 0, "Delta cannot be negative!");
             this.min = min;
             this.delta = delta;
         }
 
         @Override
         public Integer get() {
-            return randomInt(this.min, this.delta);
+            return RandomUtil.randomInt(this.min, this.delta);
         }
 
         @Override
@@ -84,10 +105,22 @@ public class SupplierUtil {
 
     }
 
+    /**
+     * Creates a {@link Supplier} that always return a random element.
+     *
+     * @param elements The possible elements
+     * @return The created supplier.
+     */
     public static <E> Supplier<E> randomOf(E... elements) {
         return randomOf(Arrays.asList(checkNotNull(elements, "elements")));
     }
 
+    /**
+     * Creates a {@link Supplier} that always return a random element.
+     *
+     * @param elements The possible elements
+     * @return The created supplier.
+     */
     public static <E> Supplier<E> randomOf(Collection<? extends E> elements) {
         return new RandomElementSupplier<E>(elements);
     }
@@ -105,7 +138,7 @@ public class SupplierUtil {
 
         @Override
         public E get() {
-            return randomElement(this.elements);
+            return RandomUtil.randomElement(this.elements);
         }
 
         @Override
@@ -117,16 +150,118 @@ public class SupplierUtil {
 
     }
 
-    public static int randomInt(int min, int delta) {
-        return min + RANDOM.nextInt(delta + 1);
+    /**
+     * Creates a {@link Supplier} that always return a given amount of random
+     * elements. If count is higher than the elements count, it is automatically
+     * truncated to that element count.
+     *
+     * @param count The number of random elements
+     * @param elements The possible elements
+     * @return The created supplier.
+     */
+    public static <E> Supplier<List<E>> randomOf(int count, E... elements) {
+        return randomOf(count, Arrays.asList(checkNotNull(elements, "elements")));
     }
 
-    public static int randomIntBetween(int min, int max) {
-        return randomInt(min, max - min);
+    /**
+     * Creates a {@link Supplier} that always return a given amount of random
+     * elements. If count is higher than the elements count, it is automatically
+     * truncated to that element count.
+     *
+     * @param count The number of random elements
+     * @param elements The possible elements
+     * @return The created supplier.
+     */
+    public static <E> Supplier<List<E>> randomOf(int count, Collection<? extends E> elements) {
+        return randomOf(fixed(count), elements);
     }
 
-    public static <E> E randomElement(List<E> elements) {
-        return elements.get(RANDOM.nextInt(elements.size()));
+    /**
+     * Creates a {@link Supplier} that always return a given amount of random
+     * elements. If count is higher than the elements count, it is automatically
+     * truncated to that element count.
+     *
+     * @param count The number of random elements
+     * @param elements The possible elements
+     * @return The created supplier.
+     */
+    public static <E> Supplier<List<E>> randomOf(Supplier<Integer> count, E... elements) {
+        return randomOf(count, Arrays.asList(checkNotNull(elements, "elements")));
+    }
+
+    /**
+     * Creates a {@link Supplier} that always return a given amount of random
+     * elements. If count is higher than the elements count, it is automatically
+     * truncated to that element count.
+     *
+     * @param count The number of random elements
+     * @param elements The possible elements
+     * @return The created supplier.
+     */
+    public static <E> Supplier<List<E>> randomOf(Supplier<Integer> count, Collection<? extends E> elements) {
+        return new RandomElementsSupplier<E>(count, elements);
+    }
+
+    private static class RandomElementsSupplier<E> implements Supplier<List<E>> {
+
+        private final Supplier<Integer> count;
+        private final List<E> elements;
+
+        RandomElementsSupplier(Supplier<Integer> count, Collection<? extends E> elements) {
+            super();
+            this.count = checkNotNull(count, "count");
+            this.elements = ImmutableList.copyOf(checkNotNull(elements, "elements"));
+        }
+
+        @Override
+        public List<E> get() {
+            List<E> result = new ArrayList<E>(this.elements);
+            Collections.shuffle(result);
+            int count = this.count.get();
+            return result.subList(0, Math.min(count, result.size()));
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .add("count", this.count)
+                    .add("elements", Arrays.asList(this.elements.toArray()))
+                    .toString();
+        }
+
+    }
+
+    public static <E> Supplier<List<E>> randomized(E... elements) {
+        return randomized(Arrays.asList(checkNotNull(elements, "elements")));
+    }
+
+    public static <E> Supplier<List<E>> randomized(Collection<? extends E> elements) {
+        return new RandomizedListSupplier<E>(elements);
+    }
+
+    private static class RandomizedListSupplier<E> implements Supplier<List<E>> {
+
+        private final List<E> elements;
+
+        RandomizedListSupplier(Collection<? extends E> elements) {
+            super();
+            this.elements = ImmutableList.copyOf(checkNotNull(elements, "elements"));
+        }
+
+        @Override
+        public List<E> get() {
+            final List<E> result = new ArrayList<E>(this.elements);
+            Collections.shuffle(result);
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .add("elements", Arrays.asList(this.elements.toArray()))
+                    .toString();
+        }
+
     }
 
 }
