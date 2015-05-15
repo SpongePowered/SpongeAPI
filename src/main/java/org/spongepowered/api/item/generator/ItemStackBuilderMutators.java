@@ -31,21 +31,17 @@ import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.items.EnchantmentData;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
+import org.spongepowered.api.util.RandomUtil;
 import org.spongepowered.api.util.SupplierUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Helper class containing mutators for {@link ItemStackBuilder}s. This class
@@ -250,43 +246,54 @@ public final class ItemStackBuilderMutators {
      * @return The newly generated mutator
      */
     public static ItemStackBuilderMutator enchantments(Supplier<Integer> count, Collection<Enchantment> enchantments) {
-        return new EnchantmentRandomizer(count, checkNotNull(enchantments, "enchantments"));
+        return new EnchantmentRandomizer(count, SupplierUtil.randomized(checkNotNull(enchantments, "enchantments")));
+    }
+
+    /**
+     * Creates a mutator, that modifies the builders to add a given number of
+     * {@link Enchantment}s. The {@link Enchantment}s are chosen at random, but
+     * it is ensured that the enchantments are applicable to the item stacks. If
+     * the builder already has the enchantments the current level will be
+     * overwritten.
+     *
+     * @param count The maximum number of enchantments to add
+     * @param enchantments The supplier of possible enchantments
+     * @return The newly generated mutator
+     */
+    public static ItemStackBuilderMutator enchantments(Supplier<Integer> count, Supplier<? extends Iterable<Enchantment>> enchantments) {
+        return new EnchantmentRandomizer(count, enchantments);
     }
 
     private static class EnchantmentRandomizer implements ItemStackBuilderMutator {
 
         private final Supplier<Integer> count;
-        private final List<Enchantment> enchantments;
+        private final Supplier<? extends Iterable<Enchantment>> enchantments;
 
-        EnchantmentRandomizer(Supplier<Integer> count, Collection<Enchantment> enchantments) {
+        EnchantmentRandomizer(Supplier<Integer> count, Supplier<? extends Iterable<Enchantment>> enchantments) {
             super();
             this.count = checkNotNull(count, "count");
-            this.enchantments = ImmutableList.copyOf(enchantments);
+            this.enchantments = checkNotNull(enchantments, "enchantments");
         }
 
         @Override
         public void apply(ItemStackBuilder builder) {
             ItemStack stack = builder.build();
             final Optional<EnchantmentData> optionalData = stack.getOrCreate(EnchantmentData.class);
-            final int count = this.count.get();
             if (optionalData.isPresent()) {
                 final EnchantmentData data = optionalData.get();
-                final List<Enchantment> enchantments = new ArrayList<Enchantment>(this.enchantments);
-                Collections.shuffle(enchantments);
-                final Iterator<Enchantment> it = enchantments.iterator();
-                int applied = 0;
-                while (it.hasNext()) {
-                    final Enchantment enchantment = it.next();
+                int count = this.count.get();
+                for (Enchantment enchantment : this.enchantments.get()) {
                     if (enchantment.canBeAppliedToStack(stack)) {
-                        applied++;
+                        count--;
                         data.set(enchantment, randomLevel(enchantment));
                         builder.itemData(data);
-                        if (applied >= count) {
+                        if (count <= 0) {
                             break;
                         }
                         stack = builder.build();
                     }
                 }
+                builder.itemData(data);
             }
         }
 
@@ -294,12 +301,12 @@ public final class ItemStackBuilderMutators {
         public String toString() {
             return Objects.toStringHelper(this)
                     .add("count", this.count)
-                    .add("enchantments", Arrays.toString(this.enchantments.toArray()))
+                    .add("enchantments", this.enchantments)
                     .toString();
         }
 
         int randomLevel(Enchantment enchantment) {
-            return SupplierUtil.randomIntBetween(enchantment.getMinimumLevel(), enchantment.getMaximumLevel());
+            return RandomUtil.randomInt(enchantment.getMinimumLevel(), enchantment.getMaximumLevel());
         }
 
     }
