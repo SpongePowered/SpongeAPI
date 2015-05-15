@@ -51,6 +51,7 @@ import org.spongepowered.api.util.command.args.GenericArguments;
 import org.spongepowered.api.util.command.args.parsing.InputTokenizer;
 import org.spongepowered.api.util.command.args.parsing.InputTokenizers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -100,7 +101,8 @@ public final class CommandSpec implements CommandCallable {
         private String permission;
         @Nullable
         private CommandExecutor executor;
-        private Map<List<String>, ? extends CommandCallable> childCommandMap;
+        @Nullable
+        private Map<List<String>, CommandCallable> childCommandMap;
         private InputTokenizer argumentParser = InputTokenizers.quotedStrings(false);
 
         private Builder() {}
@@ -129,15 +131,36 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
-         * Set the child arguments for this command. If the executor has already been set, that executor is used as a fallback executor for further
-         * commands.
+         * Adds more child arguments for this command.
+         * If an executor or arguments are set, they are used as fallbacks.
          *
          * @param children The children to use
          * @return this
          */
         public Builder setChildren(Map<List<String>, ? extends CommandCallable> children) {
             Preconditions.checkNotNull(children, "children");
-            this.childCommandMap = children;
+            if (this.childCommandMap == null) {
+                this.childCommandMap = new HashMap<List<String>, CommandCallable>();
+            }
+            this.childCommandMap.putAll(children);
+            return this;
+        }
+
+        /**
+         * Add a single child command to this command.
+         *
+         * @param child The child to add
+         * @param aliases Aliases to make the child available under. First
+         *     one is primary and is the only one guaranteed to be listed in usage
+         *     outputs.
+         *
+         * @return this
+         */
+        public Builder addChild(CommandCallable child, String... aliases) {
+            if (this.childCommandMap == null) {
+                this.childCommandMap = new HashMap<List<String>, CommandCallable>();
+            }
+            this.childCommandMap.put(ImmutableList.copyOf(aliases), child);
             return this;
         }
 
