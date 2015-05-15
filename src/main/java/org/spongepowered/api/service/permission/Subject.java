@@ -95,17 +95,17 @@ public interface Subject {
      *
      * @return The container for permissions data this subject uses
      */
-    SubjectData getData();
+    SubjectData getSubjectData();
 
     /**
      * Returns container for subject data that is guaranteed to be transient
      * (only lasting for the duration of the subject's session, not persisted).
-     * This might return the same object as {@link #getData()} if the provider
+     * This might return the same object as {@link #getSubjectData()} if the provider
      * for this service does not implement persistence for permissions data
      *
      * @return Transient data storage for this subject
      */
-    SubjectData getTransientData();
+    SubjectData getTransientSubjectData();
 
     /**
      * Test whether the subject is permitted to perform an action given as the
