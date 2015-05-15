@@ -66,6 +66,7 @@ import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
+import org.spongepowered.api.util.annotation.SetField;
 import org.spongepowered.api.util.reflect.AccessorFirstStrategy;
 import org.spongepowered.api.util.reflect.Property;
 import org.spongepowered.api.util.reflect.PropertySearchStrategy;
@@ -80,7 +81,7 @@ import javax.annotation.Nullable;
  * Generates the bytecode for classes needed by
  * {@link ClassGeneratorProvider}.
  */
-class ClassGenerator {
+public class ClassGenerator {
 
     private final PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
@@ -150,7 +151,7 @@ class ClassGenerator {
      * @param type The type being returned
      * @return The opcode
      */
-    private static int getReturnOpcode(Class<?> type) {
+    public static int getReturnOpcode(Class<?> type) {
         if (long.class.isAssignableFrom(type)) {
             return LRETURN;
         } else if (float.class.isAssignableFrom(type)) {
@@ -161,6 +162,27 @@ class ClassGenerator {
             return ARETURN;
         } else {
             return IRETURN;
+        }
+    }
+
+    private static SetField getSetField(Class<?> clazz, String fieldName) {
+        try {
+            return clazz.getDeclaredField(fieldName).getAnnotation(SetField.class);
+        } catch (NoSuchFieldException e) {
+            return null;
+        }
+    }
+
+    private static boolean fieldRequired(Class<?> clazz, String fieldName) {
+        SetField setField = getSetField(clazz, fieldName);
+        return setField != null ? setField.isRequired() : true;
+    }
+
+    private static int getModifiers(Class<?> clazz, String fieldName) {
+        try {
+            return clazz.getDeclaredField(fieldName).getModifiers();
+        } catch (NoSuchFieldException e) {
+            return 0;
         }
     }
 
@@ -229,8 +251,13 @@ class ClassGenerator {
         // Create the fields
         for (Property property : properties) {
             if (property.isLeastSpecificType()) {
-                FieldVisitor fv = cw.visitField(ACC_PRIVATE, property.getName(), Type.getDescriptor(property.getType()), null, null);
-                fv.visitEnd();
+                if (getSetField(parentType, property.getName()) == null) {
+                    FieldVisitor fv = cw.visitField(ACC_PRIVATE, property.getName(), Type.getDescriptor(property.getType()), null, null);
+                    fv.visitEnd();
+                } else if ((getModifiers(parentType, property.getName()) & Modifier.PRIVATE) != 0) {
+                    throw new RuntimeException("You've annotated the field " + property.getName() + " with @SetField, " +
+                                               "but it's private. This just won't work.");
+                }
             }
         }
 
@@ -245,7 +272,7 @@ class ClassGenerator {
             mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "<init>", "()V", false);
 
             for (Property property : properties) {
-                if (hasImplementation(parentType, property.getAccessor()) || !property.isLeastSpecificType()) {
+                if (((hasImplementation(parentType, property.getAccessor()) && getSetField(parentType, property.getName()) == null) || !property.isLeastSpecificType())) {
                     continue;
                 }
 
@@ -258,8 +285,8 @@ class ClassGenerator {
                 // Only if we have a null policy:
                 // if (value == null) throw new NullPointerException(...)
                 if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
-                    boolean useNullTest = (this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
-                            || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull());
+                    boolean useNullTest = ((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
+                            || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull())) && fieldRequired(parentType, property.getName());
 
                     if (useNullTest && (!property.getType().isPrimitive() || !this.primitivePropertyExceptions.contains(property.getName()))) {
                         Label afterNullTest = new Label();
@@ -273,6 +300,8 @@ class ClassGenerator {
                         mv.visitLabel(afterNullTest);
                     }
                 }
+
+                boolean hasSetField = getSetField(parentType, property.getName()) != null;
 
                 Label afterPut = new Label();
 
@@ -288,7 +317,11 @@ class ClassGenerator {
                 visitUnboxingMethod(mv, property.getType());
 
                 // this.field = newValue
-                mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+                if (hasSetField) {
+                    mv.visitFieldInsn(PUTFIELD, Type.getInternalName(parentType), property.getName(), Type.getDescriptor(property.getType()));
+                } else {
+                    mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+                }
                 // }
 
                 mv.visitLabel(afterPut);

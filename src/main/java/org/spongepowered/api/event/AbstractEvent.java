@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.util.annotation.SetField;
 import org.spongepowered.api.util.event.callback.CallbackList;
 
 /**
@@ -32,7 +33,8 @@ import org.spongepowered.api.util.event.callback.CallbackList;
  */
 public abstract class AbstractEvent implements Event {
 
-    private final CallbackList callbacks = new CallbackList();
+    @SetField
+    protected final CallbackList callbacks = new CallbackList();
 
     @Override
     public CallbackList getCallbacks() {

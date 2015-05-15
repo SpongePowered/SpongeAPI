@@ -22,29 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- ** Represents a class which modifies the behavior of an event generator.
+ * Used to mark fields which should be set by the class generator, despite
+ * the abstract class having an implementation of the property
  */
-public interface EventFactoryPlugin {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface SetField {
 
     /**
-     * Gets the superclass to use for class generated for the specified
-     * event interface.
+     * Indicates whether having the annotated field is required to be passed in.
      *
-     * <p>All of the registered plugins have this method called in a chain, which each plugin receiving
-     * the return value of the previous plugin as the {@param superClass} parameter.
-     * The first plugin in the chain is passed <code>null</code> as its {@param superClass}.
-     *
-     * If a plugin is able to determine a superclass for an event interface, it should return it.
-     * Otherwise, it should return the value it received as {@param superClass}.
-     *
-     * @param eventClass The interface to determine the superclass for
-     * @param superClass The current superclass of the event interface
-     * @param classLoader The classloader used to load the generated event class
-     * @return The class to use as the event interface's superclass
+     * <p>Setting this to <code>true</code> will require the null check in the event constructor</p>
+     * @return
      */
-    Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass, ClassGeneratorProvider.LocalClassLoader classLoader);
-
+    boolean isRequired() default false;
 }

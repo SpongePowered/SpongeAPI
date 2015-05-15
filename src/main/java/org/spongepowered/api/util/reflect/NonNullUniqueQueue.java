@@ -37,7 +37,7 @@ import java.util.Set;
  *
  * @param <E> The contained type
  */
-class NonNullUniqueQueue<E> extends AbstractQueue<E> implements Queue<E> {
+public class NonNullUniqueQueue<E> extends AbstractQueue<E> implements Queue<E> {
 
     private final Queue<E> queue = new ArrayDeque<E>();
     private final Set<E> set = new HashSet<E>();

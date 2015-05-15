@@ -86,9 +86,18 @@ public class ClassGeneratorProvider implements FactoryProvider {
     }
 
     /**
+     * Gets the {@link LocalClassLoader} used to load generated event classes.
+     *
+     * @return The {@link LocalClassLoader}
+     */
+    public LocalClassLoader getClassLoader() {
+        return this.classLoader;
+    }
+
+    /**
      * Class loader to use to call {@link #defineClass(String, byte[])}.
      */
-    private static class LocalClassLoader extends ClassLoader {
+    public static class LocalClassLoader extends ClassLoader {
 
         public LocalClassLoader(ClassLoader parent) {
             super(parent);

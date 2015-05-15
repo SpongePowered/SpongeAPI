@@ -37,6 +37,7 @@ import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.block.tile.carrier.BrewingStand;
 import org.spongepowered.api.block.tile.carrier.Furnace;
 import org.spongepowered.api.block.tile.carrier.TileEntityCarrier;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.tileentities.BrewingData;
 import org.spongepowered.api.data.manipulators.tileentities.FurnaceData;
 import org.spongepowered.api.data.manipulators.tileentities.SignData;
@@ -67,6 +68,7 @@ import org.spongepowered.api.event.block.tile.BrewingStandBrewEvent;
 import org.spongepowered.api.event.block.tile.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.tile.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.block.tile.SignChangeEvent;
+import org.spongepowered.api.event.block.tile.TileEntityEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
@@ -146,7 +148,8 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.RconSource;
-import org.spongepowered.api.util.event.factory.AnnotationEventFactoryPlugin;
+import org.spongepowered.api.util.event.factory.plugin.AccessorModifierEventFactoryPlugin;
+import org.spongepowered.api.util.event.factory.plugin.AnnotationEventFactoryPlugin;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.util.event.factory.EventFactoryPlugin;
@@ -162,13 +165,11 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
-import java.util.ArrayDeque;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 import javax.annotation.Nullable;
 
@@ -177,7 +178,7 @@ import javax.annotation.Nullable;
  */
 public final class SpongeEventFactory {
 
-    private static final FactoryProvider factoryProvider;
+    private static final ClassGeneratorProvider factoryProvider;
     private static final LoadingCache<Class<?>, EventFactory<?>> factories;
     private static final List<EventFactoryPlugin> plugins = new ArrayList<EventFactoryPlugin>();
 
@@ -187,6 +188,7 @@ public final class SpongeEventFactory {
 
         plugins.add(0, new AnnotationEventFactoryPlugin());
 
+        plugins.add(0, new AccessorModifierEventFactoryPlugin("org.spongepowered.api.event.impl.base"));
         factories = CacheBuilder.newBuilder()
                 .build(
                         new CacheLoader<Class<?>, EventFactory<?>>() {
@@ -203,7 +205,7 @@ public final class SpongeEventFactory {
     private static Class<?> getBaseClass(Class<?> event) {
         Class<?> superClass = null;
         for (EventFactoryPlugin plugin: plugins) {
-            superClass = plugin.resolveSuperClassFor(event, superClass);
+            superClass = plugin.resolveSuperClassFor(event, superClass, factoryProvider.getClassLoader());
         }
         return superClass;
     }

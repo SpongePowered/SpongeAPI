@@ -28,6 +28,7 @@ import com.google.common.base.Predicate;
 import org.spongepowered.api.event.AbstractEvent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.block.BulkBlockEvent;
+import org.spongepowered.api.util.event.callback.CallbackList;
 import org.spongepowered.api.world.Location;
 
 import java.util.Iterator;

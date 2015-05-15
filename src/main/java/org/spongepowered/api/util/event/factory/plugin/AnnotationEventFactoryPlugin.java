@@ -22,10 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.event.factory.plugin;
 
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.ImplementedBy;
+import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
+import org.spongepowered.api.util.event.factory.EventFactoryPlugin;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -41,7 +43,7 @@ import java.util.Queue;
 public class AnnotationEventFactoryPlugin implements EventFactoryPlugin {
 
     @Override
-    public Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass) {
+    public Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass, ClassGeneratorProvider.LocalClassLoader classLoader) {
         if (superClass != null) {
             return superClass;
         }

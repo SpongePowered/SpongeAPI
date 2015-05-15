@@ -26,6 +26,7 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.util.annotation.TransformResult;
 
 /**
  * Dispatched when a block is in the process of changing, before
@@ -38,6 +39,7 @@ public interface BlockChangeEvent extends BlockEvent, Cancellable {
      *
      * @return The block that will replace
      */
+    @TransformResult
     BlockSnapshot getReplacementBlock();
 
 }

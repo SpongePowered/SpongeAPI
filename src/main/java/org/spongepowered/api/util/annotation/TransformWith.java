@@ -22,29 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- ** Represents a class which modifies the behavior of an event generator.
+ * Used to indicate a method that will be called from
+ * the method with the corresponding {@link TransformResult} annotation.
+ *
+ * This annotation should be placed on the method with the least specific return
+ * type, if covariant return types are used.
+ *
+ * The method annotated with this annotation <bold>must</bold> either return
+ * an instance of the method's class, or Object (for compatibility with generics).
  */
-public interface EventFactoryPlugin {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface TransformWith {
 
     /**
-     * Gets the superclass to use for class generated for the specified
-     * event interface.
+     * Gets the name used to match this annotation to a {@link TransformResult} annotation.
      *
-     * <p>All of the registered plugins have this method called in a chain, which each plugin receiving
-     * the return value of the previous plugin as the {@param superClass} parameter.
-     * The first plugin in the chain is passed <code>null</code> as its {@param superClass}.
+     * <p>Changing this is only necessary when this annotation is present on multiple
+     * methods in a class, or its superinterfaces/superclass.
      *
-     * If a plugin is able to determine a superclass for an event interface, it should return it.
-     * Otherwise, it should return the value it received as {@param superClass}.
-     *
-     * @param eventClass The interface to determine the superclass for
-     * @param superClass The current superclass of the event interface
-     * @param classLoader The classloader used to load the generated event class
-     * @return The class to use as the event interface's superclass
+     * @return The name to use
      */
-    Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass, ClassGeneratorProvider.LocalClassLoader classLoader);
+    String value() default "";
 
 }
