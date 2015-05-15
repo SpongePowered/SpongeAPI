@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util.command.spec;
 
+import static org.spongepowered.api.util.command.args.GenericArguments.firstParsing;
+import static org.spongepowered.api.util.command.args.GenericArguments.optional;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Objects;
@@ -88,13 +90,15 @@ public final class CommandSpec implements CommandCallable {
      * Builder for command specs.
      */
     public static final class Builder {
-        private CommandElement args = GenericArguments.none();
+        private static final CommandElement DEFAULT_ARG = GenericArguments.none();
+        private CommandElement args = DEFAULT_ARG;
         @Nullable
         private Text description;
         @Nullable
         private Text extendedDescription;
         @Nullable
         private String permission;
+        @Nullable
         private CommandExecutor executor;
         private Map<List<String>, ? extends CommandCallable> childCommandMap;
         private InputTokenizer argumentParser = InputTokenizers.quotedStrings(false);
@@ -215,7 +219,11 @@ public final class CommandSpec implements CommandCallable {
                     childDispatcher.register(spec.getValue(), spec.getKey());
                 }
 
-                setArguments(childDispatcher);
+                if (this.args == DEFAULT_ARG) {
+                    setArguments(this.executor == null ? childDispatcher : optional(childDispatcher));
+                } else {
+                    setArguments(firstParsing(childDispatcher, this.args));
+                }
                 setExecutor(childDispatcher);
             }
 
@@ -354,7 +362,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (this == o) {
             return true;
         }
