@@ -28,12 +28,20 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.closeTo;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertThat;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.scoreboard.objective.Objective;
+import org.spongepowered.api.util.annotation.TransformResult;
+import org.spongepowered.api.util.annotation.TransformWith;
+
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +56,19 @@ public class ClassGeneratorProviderTest {
 
     private ClassGeneratorProvider createProvider() {
         return new ClassGeneratorProvider("org.spongepowered.test");
+    }
+
+    @Test
+    public void testCreate_ModifierMethodInterface() throws Exception {
+        ClassGeneratorProvider provider = createProvider();
+        EventFactory<ModifiedMethodInterface> factory = provider.create(ModifiedMethodInterface.class, Object.class);
+
+        Map<String, Object> values = Maps.newHashMap();
+
+        ModifiedMethodInterface result = factory.apply(values);
+
+        assertNotSame(result.getNewModifierClass(), result);
+        assertNotSame(result.getOtherModifierClass(), result);
     }
 
     @Test
@@ -537,6 +558,29 @@ public class ClassGeneratorProviderTest {
 
         public boolean isCool() {
             return true;
+        }
+    }
+
+    public interface ModifiedMethodInterface {
+
+        @TransformResult
+        ModifierClass getNewModifierClass();
+
+        @TransformResult("foo")
+        ModifierClass getOtherModifierClass();
+
+    }
+
+    public class ModifierClass {
+
+        @TransformWith
+        public ModifierClass copy() {
+            return new ModifierClass();
+        }
+
+        @TransformWith("foo")
+        public ModifierClass copy2() {
+            return new ModifierClass();
         }
     }
 

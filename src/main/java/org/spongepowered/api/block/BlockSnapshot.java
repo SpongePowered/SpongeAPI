@@ -26,6 +26,7 @@ package org.spongepowered.api.block;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.util.annotation.TransformWith;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -75,6 +76,7 @@ public interface BlockSnapshot extends DataSerializable {
      * Copies the snapshot.
      * @return The copied snapshot
      */
+    @TransformWith
     BlockSnapshot copy();
 
 }

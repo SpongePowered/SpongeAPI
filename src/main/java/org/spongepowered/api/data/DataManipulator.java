@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.util.annotation.TransformWith;
 
 /**
  * Represents a changelist of data that can be applied to a {@link DataHolder}.
@@ -95,6 +96,7 @@ public interface DataManipulator<T extends DataManipulator<T>> extends Comparabl
      *
      * @return The new copy of this manipulator with all data copied
      */
+    @TransformWith
     T copy();
 
 }
