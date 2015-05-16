@@ -47,6 +47,7 @@ public class SupplierUtil {
     /**
      * Creates a new {@link Supplier} that always returns the same result.
      *
+     * @param <E> The element type
      * @param value The value that should always be returned
      * @return The created supplier
      */
@@ -58,6 +59,7 @@ public class SupplierUtil {
      * Creates a new traceable {@link Supplier} that can be used to identify the
      * code that created/set the supplier.
      *
+     * @param <E> The element type
      * @param supplier The supplier that should be made traceable
      * @return The created supplier
      */
@@ -82,7 +84,7 @@ public class SupplierUtil {
      * (inclusive) and {@code min+delta} (inclusive).
      *
      * @param min The min value that can be returned
-     * @param max The none negative delta value
+     * @param delta The none negative delta value
      * @return The created supplier
      */
     public static Supplier<Integer> randomRange(int min, int delta) {
@@ -119,6 +121,7 @@ public class SupplierUtil {
     /**
      * Creates a {@link Supplier} that always return a random element.
      *
+     * @param <E> The element type
      * @param elements The possible elements
      * @return The created supplier.
      */
@@ -129,6 +132,7 @@ public class SupplierUtil {
     /**
      * Creates a {@link Supplier} that always return a random element.
      *
+     * @param <E> The element type
      * @param elements The possible elements
      * @return The created supplier.
      */
@@ -166,6 +170,7 @@ public class SupplierUtil {
      * elements. If count is higher than the elements count, it is automatically
      * truncated to that element count.
      *
+     * @param <E> The element type
      * @param count The number of random elements
      * @param elements The possible elements
      * @return The created supplier.
@@ -179,6 +184,7 @@ public class SupplierUtil {
      * elements. If count is higher than the elements count, it is automatically
      * truncated to that element count.
      *
+     * @param <E> The element type
      * @param count The number of random elements
      * @param elements The possible elements
      * @return The created supplier.
@@ -192,6 +198,7 @@ public class SupplierUtil {
      * elements. If count is higher than the elements count, it is automatically
      * truncated to that element count.
      *
+     * @param <E> The element type
      * @param count The number of random elements
      * @param elements The possible elements
      * @return The created supplier.
@@ -205,6 +212,7 @@ public class SupplierUtil {
      * elements. If count is higher than the elements count, it is automatically
      * truncated to that element count.
      *
+     * @param <E> The element type
      * @param count The number of random elements
      * @param elements The possible elements
      * @return The created supplier.
@@ -242,10 +250,24 @@ public class SupplierUtil {
 
     }
 
+    /**
+     * Creates a {@link Supplier} that randomizes the given elements.
+     *
+     * @param <E> The element type
+     * @param elements The elements that should be randomized
+     * @return The created supplier.
+     */
     public static <E> Supplier<List<E>> randomized(E... elements) {
         return randomized(Arrays.asList(checkNotNull(elements, "elements")));
     }
 
+    /**
+     * Creates a {@link Supplier} that randomizes the given elements.
+     *
+     * @param <E> The element type
+     * @param elements The elements that should be randomized
+     * @return The created supplier.
+     */
     public static <E> Supplier<List<E>> randomized(Collection<? extends E> elements) {
         return new RandomizedListSupplier<E>(elements);
     }

@@ -35,11 +35,21 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * A traceable {@link TradeOfferGenerator} can be used to track down the
+ * original source of a malicious {@link TradeOfferGenerator}. Due to the
+ * callback functionality of trade offer generators the stacktrace of the real
+ * exception is less useful. Instead the location where the trade offer
+ * generators has been set is more important.
  */
 public class TraceableTradeOfferGenerator implements TradeOfferGenerator {
 
-    public static <T> TradeOfferGenerator wrap(TradeOfferGenerator generator) {
+    /**
+     * Wraps the given {@link TradeOfferGenerator} in a traceable generator.
+     *
+     * @param generator The generator to wrap
+     * @return The traceable generator
+     */
+    public static TradeOfferGenerator wrap(TradeOfferGenerator generator) {
         if (generator instanceof TraceableTradeOfferGenerator) {
             return generator;
         } else {
@@ -50,13 +60,23 @@ public class TraceableTradeOfferGenerator implements TradeOfferGenerator {
     private final StackTraceElement[] trace;
     private final TradeOfferGenerator generator;
 
+    /**
+     * Creates a new traceable generator wrapping the given generator.
+     *
+     * @param generator The generator to wrap
+     */
     public TraceableTradeOfferGenerator(TradeOfferGenerator generator) {
         this(generator, Thread.currentThread().getStackTrace());
     }
 
+    /**
+     * Creates a new traceable generator wrapping the given generator.
+     *
+     * @param generator The generator to wrap
+     * @param trace The trace to keep track of
+     */
     public TraceableTradeOfferGenerator(TradeOfferGenerator generator, StackTraceElement[] trace) {
         super();
-
         this.generator = checkNotNull(generator, "generator");
         this.trace = checkNotNull(trace, "trace");
     }
@@ -65,6 +85,8 @@ public class TraceableTradeOfferGenerator implements TradeOfferGenerator {
     public List<TradeOffer> generate() {
         try {
             return checkNoNullElements(this.generator.generate());
+        } catch (TraceableException e) {
+            throw e;
         } catch (Exception e) {
             throw new TraceableException("An error occured while trying to generate trade offers", e, this.generator, this.trace);
         }
@@ -78,6 +100,11 @@ public class TraceableTradeOfferGenerator implements TradeOfferGenerator {
         return tradeOffers;
     }
 
+    /**
+     * Gets the parent generator this generator wraps.
+     *
+     * @return The parent generator
+     */
     public TradeOfferGenerator getParent() {
         return this.generator;
     }

@@ -33,10 +33,22 @@ import com.google.common.base.Supplier;
 import java.util.Arrays;
 
 /**
+ * A traceable {@link Supplier} can be used to track down the original source of
+ * a malicious {@link Supplier}. Due to the callback functionality of suppliers
+ * the stacktrace of the real exception is less useful. Instead the location
+ * where the suppliers has been set is more important.
  *
+ * @param <T> The type of supplied values
  */
 public class TraceableSupplier<T> implements Supplier<T> {
 
+    /**
+     * Wraps the given supplier in a traceable supplier.
+     *
+     * @param <T> The type of supplied values
+     * @param supplier The supplier to wrap
+     * @return The traceable supplier
+     */
     public static <T> Supplier<T> wrap(Supplier<T> supplier) {
         if (supplier instanceof TraceableSupplier) {
             return supplier;
@@ -48,10 +60,21 @@ public class TraceableSupplier<T> implements Supplier<T> {
     private final StackTraceElement[] trace;
     private final Supplier<T> supplier;
 
+    /**
+     * Creates a new traceable supplier wrapping the given supplier.
+     *
+     * @param supplier The supplier to wrap
+     */
     public TraceableSupplier(Supplier<T> supplier) {
         this(supplier, Thread.currentThread().getStackTrace());
     }
 
+    /**
+     * Creates a new traceable supplier wrapping the given supplier.
+     *
+     * @param supplier The supplier to wrap
+     * @param trace The trace to keep track of
+     */
     public TraceableSupplier(Supplier<T> supplier, StackTraceElement[] trace) {
         super();
         this.supplier = checkNotNull(supplier, "supplier");
@@ -62,11 +85,18 @@ public class TraceableSupplier<T> implements Supplier<T> {
     public T get() {
         try {
             return this.supplier.get();
+        } catch (TraceableException e) {
+            throw e;
         } catch (Exception e) {
             throw new TraceableException("An error occured while trying to supply", e, this.supplier, this.trace);
         }
     }
 
+    /**
+     * Gets the parent supplier this supplier wraps.
+     *
+     * @return The parent supplier
+     */
     public Supplier<T> getParent() {
         return this.supplier;
     }

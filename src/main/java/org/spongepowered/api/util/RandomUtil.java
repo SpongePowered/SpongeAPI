@@ -62,6 +62,7 @@ public class RandomUtil {
     /**
      * Returns a random element from the given array.
      *
+     * @param <E> The elements type
      * @param elements The elements to pick a random from
      * @return A random element from the given array
      */
@@ -72,6 +73,7 @@ public class RandomUtil {
     /**
      * Returns a random element from the given list.
      *
+     * @param <E> The elements type
      * @param elements The elements to pick a random from
      * @return A random element from the given list
      */

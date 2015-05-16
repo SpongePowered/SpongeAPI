@@ -25,18 +25,16 @@
 
 package org.spongepowered.api.item.merchant.generator;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.base.Supplier;
 import org.spongepowered.api.item.merchant.TradeOffer;
+import org.spongepowered.api.util.SupplierUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * A random trade offer generator, that returns random results from the given
@@ -44,55 +42,97 @@ import java.util.Random;
  */
 public class RandomTradeOfferGenerator implements TradeOfferGenerator {
 
-    private static final Random RANDOM = new Random();
-    private final List<TradeOfferGenerator> generators;
-    private final int min;
-    private final int max;
+    private final Supplier<Integer> amount;
+    private final Supplier<List<TradeOfferGenerator>> generators;
 
+    /**
+     * Creates a random trade offer generator which always uses one of the
+     * supplied generators.
+     *
+     * @param generators The possible generators to choose from
+     */
     public RandomTradeOfferGenerator(TradeOfferGenerator... generators) {
         this(1, generators);
     }
 
+    /**
+     * Creates a random trade offer generator which always uses a fixed number
+     * of the supplied generators.
+     *
+     * @param amount The amount of generators to use
+     * @param generators The possible generators to choose from
+     */
     public RandomTradeOfferGenerator(int amount, TradeOfferGenerator... generators) {
         this(amount, amount, generators);
     }
 
+    /**
+     * Creates a random trade offer generator which always uses a random number
+     * of the supplied generators.
+     *
+     * @param min The min amount of generators to use
+     * @param max The max amount of generators to use
+     * @param generators The possible generators to choose from
+     */
     public RandomTradeOfferGenerator(int min, int max, TradeOfferGenerator... generators) {
         this(min, max, Arrays.asList(checkNotNull(generators, "generators")));
     }
 
-    public RandomTradeOfferGenerator(Collection<? extends TradeOfferGenerator> offers) {
-        this(1, offers);
+    /**
+     * Creates a random trade offer generator which always uses one of the
+     * supplied generators.
+     *
+     * @param generators The possible generators to choose from
+     */
+    public RandomTradeOfferGenerator(Collection<? extends TradeOfferGenerator> generators) {
+        this(1, generators);
     }
 
+    /**
+     * Creates a random trade offer generator which always uses a fixed number
+     * of the supplied generators.
+     *
+     * @param amount The amount of generators to use
+     * @param generators The possible generators to choose from
+     */
     public RandomTradeOfferGenerator(int amount, Collection<? extends TradeOfferGenerator> generators) {
         this(amount, amount, generators);
     }
 
+    /**
+     * Creates a random trade offer generator which always uses a random number
+     * of the supplied generators.
+     *
+     * @param min The min amount of generators to use
+     * @param max The max amount of generators to use
+     * @param generators The possible generators to choose from
+     */
     public RandomTradeOfferGenerator(int min, int max, Collection<? extends TradeOfferGenerator> generators) {
+        this(SupplierUtil.randomBetween(min, max), SupplierUtil.randomized(checkNotNull(generators, "generators")));
+    }
+
+    /**
+     * Creates a random trade offer generator which always uses a fixed number
+     * of the supplied generators.
+     *
+     * @param amount The amount of generators to use
+     * @param generators The possible generators to choose from
+     */
+    public RandomTradeOfferGenerator(Supplier<Integer> amount, Supplier<List<TradeOfferGenerator>> generators) {
         super();
-        this.generators = ImmutableList.copyOf(checkNotNull(generators, "generators"));
-        checkArgument(min >= 0, "Min cannot be negative");
-        checkArgument(min <= max, "Min cannot be higher than max");
-        checkArgument(max <= generators.size(), "Max cannot be higher than the size of generators");
-        this.min = min;
-        this.max = max;
+        this.generators = checkNotNull(generators, "generators");
+        this.amount = checkNotNull(amount, "amount");
     }
 
     @Override
     public List<TradeOffer> generate() {
-        final List<TradeOfferGenerator> generators = new ArrayList<TradeOfferGenerator>(this.generators);
-        Collections.shuffle(generators);
-        List<TradeOffer> offers = new ArrayList<TradeOffer>();
-        int count = randomRange(this.min, this.max);
-        for (TradeOfferGenerator generator : generators.subList(0, count)) {
+        final List<TradeOffer> offers = new ArrayList<TradeOffer>();
+        final List<TradeOfferGenerator> generators = this.generators.get();
+        final int amount = Math.min(this.amount.get(), generators.size());
+        for (TradeOfferGenerator generator : generators.subList(0, amount)) {
             offers.addAll(generator.generate());
         }
         return offers;
-    }
-
-    private static int randomRange(int minInclusive, int maxInlcusive) {
-        return RANDOM.nextInt(maxInlcusive - minInclusive + 1) + minInclusive;
     }
 
 }

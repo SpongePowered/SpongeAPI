@@ -45,12 +45,31 @@ public class TraceableException extends RuntimeException {
     private final Object causeObject;
     private final StackTraceElement[] trace;
 
+    /**
+     * Creates a new traceable exception that can be used to trace the cause of
+     * an exception in a callback like function.
+     *
+     * @param cause The exception that occurred during the callback
+     * @param causeObject The causing object of that exception
+     * @param trace The trace that should be used to identify the location the
+     *        callback was set
+     */
     public TraceableException(Throwable cause, Object causeObject, StackTraceElement[] trace) {
         super(cause);
         this.causeObject = checkNotNull(causeObject, "causeObject");
         this.trace = checkNotNull(trace, "trace");
     }
 
+    /**
+     * Creates a new traceable exception that can be used to trace the cause of
+     * an exception in a callback like function.
+     *
+     * @param message The error message to show
+     * @param cause The exception that occurred during the callback
+     * @param causeObject The causing object of that exception
+     * @param trace The trace that should be used to identify the location the
+     *        callback was set
+     */
     public TraceableException(String message, Throwable cause, Object causeObject, StackTraceElement[] trace) {
         super(message, cause);
         this.causeObject = checkNotNull(causeObject, "causeObject");
@@ -87,14 +106,13 @@ public class TraceableException extends RuntimeException {
 
     @Override
     public String toString() {
-
         return Objects.toStringHelper(this)
                 .add("causeObject", this.causeObject)
                 .add("trace", Arrays.toString(this.trace))
                 .toString();
     }
 
-    private static interface TracePrinter {
+    private interface TracePrinter {
 
         void println(Object o);
 
