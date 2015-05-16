@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.tile;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulators.tileentities.SignData;
 
 /**
@@ -32,6 +33,6 @@ import org.spongepowered.api.data.manipulators.tileentities.SignData;
 public interface Sign extends TileEntity {
 
     @Override
-    SignData getData();
+    Optional<SignData> getData();
 
 }

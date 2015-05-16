@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.tile;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulators.tileentities.BannerData;
 
 /**
@@ -31,5 +32,5 @@ import org.spongepowered.api.data.manipulators.tileentities.BannerData;
  */
 public interface Banner extends TileEntity {
     @Override
-    BannerData getData();
+    Optional<BannerData> getData();
 }

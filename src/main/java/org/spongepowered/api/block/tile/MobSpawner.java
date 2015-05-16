@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.tile;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulators.MobSpawnerData;
 
 /**
@@ -42,6 +43,6 @@ public interface MobSpawner extends TileEntity {
     void spawnEntityBatchImmediately(boolean force);
 
     @Override
-    MobSpawnerData getData();
+    Optional<MobSpawnerData> getData();
 
 }

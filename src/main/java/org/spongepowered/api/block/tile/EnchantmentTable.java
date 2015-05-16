@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.tile;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulators.items.EnchantmentData;
 
 /**
@@ -31,5 +32,5 @@ import org.spongepowered.api.data.manipulators.items.EnchantmentData;
  */
 public interface EnchantmentTable extends TileEntity {
     @Override
-    EnchantmentData getData();
+    Optional<EnchantmentData> getData();
 }

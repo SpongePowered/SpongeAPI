@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.tile;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulators.tileentities.NoteData;
 import org.spongepowered.api.data.types.NotePitch;
 
@@ -41,6 +42,6 @@ public interface Note extends TileEntity {
     void playNote();
 
     @Override
-    NoteData getData();
+    Optional<NoteData> getData();
 
 }

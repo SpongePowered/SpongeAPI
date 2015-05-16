@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.tile.carrier;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulators.tileentities.BeaconData;
 
 /**
@@ -44,5 +45,5 @@ public interface Beacon extends TileEntityCarrier {
     int getCompletedLevels();
 
     @Override
-    BeaconData getData();
+    Optional<BeaconData> getData();
 }
