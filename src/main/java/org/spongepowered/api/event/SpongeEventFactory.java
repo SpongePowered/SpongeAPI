@@ -37,7 +37,6 @@ import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.block.tile.carrier.BrewingStand;
 import org.spongepowered.api.block.tile.carrier.Furnace;
 import org.spongepowered.api.block.tile.carrier.TileEntityCarrier;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.manipulators.tileentities.BrewingData;
 import org.spongepowered.api.data.manipulators.tileentities.FurnaceData;
 import org.spongepowered.api.data.manipulators.tileentities.SignData;
@@ -68,7 +67,6 @@ import org.spongepowered.api.event.block.tile.BrewingStandBrewEvent;
 import org.spongepowered.api.event.block.tile.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.tile.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.block.tile.SignChangeEvent;
-import org.spongepowered.api.event.block.tile.TileEntityEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
@@ -148,13 +146,12 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.RconSource;
-import org.spongepowered.api.util.event.factory.plugin.AccessorModifierEventFactoryPlugin;
-import org.spongepowered.api.util.event.factory.plugin.AnnotationEventFactoryPlugin;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.util.event.factory.EventFactoryPlugin;
-import org.spongepowered.api.util.event.factory.FactoryProvider;
 import org.spongepowered.api.util.event.factory.NullPolicy;
+import org.spongepowered.api.util.event.factory.plugin.AccessorModifierEventFactoryPlugin;
+import org.spongepowered.api.util.event.factory.plugin.AnnotationEventFactoryPlugin;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.ChunkManager.LoadingTicket;
 import org.spongepowered.api.world.Location;
@@ -165,7 +162,6 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -1796,18 +1792,16 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param sign The {@link Sign}
      * @param currentData The current sign data
-     * @param previousLines The previous lines of {@link Text} the sign had
-     * @param newLines The currently set lines of {@link Text}
+     * @param currentData The new sign data
      * @return A new instance of the event
      */
-    public static SignChangeEvent createSignChangeEvent(Game game, Cause cause, Sign sign, SignData currentData, Text[] previousLines, Text[] newLines) {
+    public static SignChangeEvent createSignChangeEvent(Game game, Cause cause, Sign sign, SignData currentData, SignData newData) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("tile", sign);
         values.put("currentData", currentData);
-        values.put("previousLines", previousLines);
-        values.put("newLines", newLines);
+        values.put("newData", newData);
         return createEvent(SignChangeEvent.class, values);
     }
 
