@@ -26,27 +26,26 @@ package org.spongepowered.api.event.block.tile;
 
 import org.spongepowered.api.block.tile.TileEntity;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.annotation.TransformResult;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents events where the {@link DataManipulator} of the {@link TileEntity} may change from the
+ * resolution of the event.
+ * <p>
+ * An example of this would be {@link SignChangeEvent} where the data of the sign is set after the event
  */
-public interface TileEntityEvent extends GameEvent {
-
+public interface TileEntityChangeEvent extends TileEntityEvent, CauseTracked, Cancellable {
     /**
-     * Gets the {@link TileEntity} related to this event.
-     *
-     * @return The tile entity
+     * Gets the new {@link DataManipulator} that will be offered to the
+     * {@link TileEntity} after event resolution.
+     * <p>
+     * If desiring to change any data of this {@link TileEntity}, do so in
+     * this manipulator.
+     * <p>
+     * If changing any property of this manipulator in a struct invoked after
+     * event resolution (such as a Scheduler task), those changes will not be honored.
+     * @return The data
      */
-    TileEntity getTile();
-
-    /**
-     * Gets a copy of the current {@link DataManipulator} associated with the
-     * {@link TileEntity} associated with this event.
-     *
-     * @return The snapshot of the current tile entity data
-     */
-    @TransformResult
-    DataManipulator<?> getCurrentData();
+    DataManipulator<?> getNewData();
 }

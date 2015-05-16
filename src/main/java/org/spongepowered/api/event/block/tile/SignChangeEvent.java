@@ -25,14 +25,14 @@
 package org.spongepowered.api.event.block.tile;
 
 import org.spongepowered.api.block.tile.Sign;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.data.manipulators.tileentities.SignData;
 
 /**
  * An event when a {@link Sign} is changed.
  *
  * <p>Examples may include: A player writing a sign.</p>
  */
-public interface SignChangeEvent extends SignEvent, CauseTracked, Cancellable {
-
+public interface SignChangeEvent extends SignEvent, TileEntityChangeEvent {
+    @Override
+    SignData getNewData();
 }
