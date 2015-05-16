@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulators.tileentities;
 
 import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;
@@ -34,6 +35,7 @@ import java.util.List;
  * Represents the data for a {@link Sign}.
  */
 public interface SignData extends DataManipulator<SignData> {
+    DataQuery LINES = new DataQuery("Lines");
 
     /**
      * Gets all stored {@link Text}s, representing each line of the data.
