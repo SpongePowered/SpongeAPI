@@ -150,10 +150,24 @@ public final class ItemStackBuilderMutators {
 
     // Data
 
+    /**
+     * Creates a mutator, that modifies the builders to add the given
+     * {@link DataManipulator} to the item stack.
+     *
+     * @param data The data to add
+     * @return The newly generated mutator
+     */
     public static ItemStackBuilderMutator data(DataManipulator<?> data) {
-        return new DataRandomizer(Suppliers.ofInstance(data));
+        return data(Suppliers.ofInstance(checkNotNull(data, "data")));
     }
 
+    /**
+     * Creates a mutator, that modifies the builders to add the given
+     * {@link DataManipulator} to the item stack.
+     *
+     * @param data The data to add
+     * @return The newly generated mutator
+     */
     public static ItemStackBuilderMutator data(Supplier<? extends DataManipulator<?>> supplier) {
         return new DataRandomizer(supplier);
     }

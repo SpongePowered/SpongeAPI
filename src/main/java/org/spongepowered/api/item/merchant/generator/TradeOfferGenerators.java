@@ -101,7 +101,11 @@ public class TradeOfferGenerators {
         }
 
         public TradeOfferGenerator oneOf() {
-            return new RandomTradeOfferGenerator(this.generators);
+            if (this.generators.size() == 1) {
+                return this.generators.get(0);
+            } else {
+                return new RandomTradeOfferGenerator(this.generators);
+            }
         }
 
         public TradeOfferGenerator someOf(int amount) {

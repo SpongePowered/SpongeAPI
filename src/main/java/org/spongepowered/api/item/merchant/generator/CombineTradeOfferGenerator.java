@@ -27,10 +27,12 @@ package org.spongepowered.api.item.merchant.generator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.merchant.TradeOffer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,6 +44,12 @@ public class CombineTradeOfferGenerator implements TradeOfferGenerator {
 
     private final List<TradeOfferGenerator> generators;
 
+    /**
+     * Creates a {@link TradeOfferGenerator} that returns the combined results
+     * of the given generators.
+     *
+     * @param generators The generators to combine
+     */
     public CombineTradeOfferGenerator(Collection<TradeOfferGenerator> generators) {
         super();
         this.generators = ImmutableList.copyOf(checkNotNull(generators, "generator"));
@@ -51,9 +59,16 @@ public class CombineTradeOfferGenerator implements TradeOfferGenerator {
     public List<TradeOffer> generate() {
         final List<TradeOffer> offers = new ArrayList<TradeOffer>();
         for (TradeOfferGenerator generator : this.generators) {
-            offers.addAll(generator.generate());
+            offers.addAll(checkNotNull(generator.generate(), "tradeOffers from %s", generator));
         }
         return offers;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("generators", Arrays.toString(this.generators.toArray()))
+                .toString();
     }
 
 }

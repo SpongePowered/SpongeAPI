@@ -42,10 +42,22 @@ public class SimpleTradeOfferGenerator implements TradeOfferGenerator {
 
     private final List<TradeOffer> offers;
 
+    /**
+     * Creates a new simple trade offer generator always returning the given
+     * results.
+     *
+     * @param offers The trade offers to return
+     */
     public SimpleTradeOfferGenerator(TradeOffer... offers) {
         this(Arrays.asList(checkNotNull(offers, "offers")));
     }
 
+    /**
+     * Creates a new simple trade offer generator always returning the given
+     * results.
+     *
+     * @param offers The trade offers to return
+     */
     public SimpleTradeOfferGenerator(Collection<TradeOffer> offers) {
         this.offers = ImmutableList.copyOf(checkNotNull(offers, "offers"));
     }

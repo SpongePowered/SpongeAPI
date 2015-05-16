@@ -27,6 +27,7 @@ package org.spongepowered.api.item.merchant.generator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import org.spongepowered.api.GameRegistry;
@@ -36,12 +37,21 @@ import org.spongepowered.api.item.merchant.TradeOffer;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 /**
  * A highly dynamic {@link TradeOfferGenerator}, that can only return a single
  * trade offer.
  */
 public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
 
+    /**
+     * Creates a new builder to create a new dynamic {@link TradeOfferGenerator}
+     * instance.
+     *
+     * @param registry The backing {@link GameRegistry}
+     * @return The newly created builder
+     */
     public static Builder builder(GameRegistry registry) {
         return new Builder(registry);
     }
@@ -54,12 +64,29 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
     private final Supplier<Integer> maxUses;
     private final boolean canGrantExperience;
 
-    public DynamicTradeOfferGenerator(GameRegistry registry, Supplier<ItemStack> primaryBuyingItem, Supplier<ItemStack> secondaryBuyingItem,
+    /**
+     * Creates a dynamic {@link TradeOfferGenerator} from the given
+     * specifications always returning a single trade offer.
+     *
+     * @param registry The {@link GameRegistry} to obtain trade offer builders
+     *        from
+     * @param primaryBuyingItem The primary buying item. Should never return
+     *        null
+     * @param secondaryBuyingItem The secondary buying item
+     * @param sellingItem The selling item. Should never return null
+     * @param startUses The start uses for the trade offer. This value is
+     *        automatically truncated to maxUses. Should never return null
+     * @param maxUses The max uses for the trade offer. Should never return null
+     * @param canGrantExperience Whether the generated trade offer can grant
+     *        experience
+     */
+    public DynamicTradeOfferGenerator(GameRegistry registry, Supplier<ItemStack> primaryBuyingItem,
+            @Nullable Supplier<ItemStack> secondaryBuyingItem,
             Supplier<ItemStack> sellingItem, Supplier<Integer> startUses, Supplier<Integer> maxUses, boolean canGrantExperience) {
         super();
         this.registry = checkNotNull(registry, "registry");
         this.primaryBuyingItem = checkNotNull(primaryBuyingItem, "primaryBuyingItem");
-        this.secondaryBuyingItem = checkNotNull(secondaryBuyingItem, "secondaryBuyingItem");
+        this.secondaryBuyingItem = secondaryBuyingItem == null ? Suppliers.<ItemStack>ofInstance(null) : secondaryBuyingItem;
         this.sellingItem = checkNotNull(sellingItem, "sellingItem");
         this.startUses = checkNotNull(startUses, "startUses");
         this.maxUses = checkNotNull(maxUses, "maxUses");
@@ -68,22 +95,39 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
 
     @Override
     public List<TradeOffer> generate() {
-        int maxUses = this.maxUses.get();
-        int startUses = Math.min(maxUses, this.startUses.get());
+        final int maxUses = checkNotNull(this.maxUses.get(), "maxUses from %s", this.maxUses);
+        final int startUses = Math.min(maxUses, checkNotNull(this.startUses.get(), "startUses from %s", this.startUses));
         return Arrays.asList(this.registry.getTradeOfferBuilder()
-                .firstBuyingItem(this.primaryBuyingItem.get())
+                .firstBuyingItem(checkNotNull(this.primaryBuyingItem.get(), "primaryBuyingItem from %s", this.primaryBuyingItem))
                 .secondBuyingItem(this.secondaryBuyingItem.get())
-                .sellingItem(this.sellingItem.get())
+                .sellingItem(checkNotNull(this.sellingItem.get(), "sellingItem from %s", this.sellingItem))
                 .uses(startUses)
                 .maxUses(maxUses)
-                .setCanGrantExperience(this.canGrantExperience).build());
+                .setCanGrantExperience(this.canGrantExperience)
+                .build());
     }
 
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("primaryBuyingItem", this.primaryBuyingItem)
+                .add("secondaryBuyingItem", this.secondaryBuyingItem)
+                .add("sellingItem", this.sellingItem)
+                .add("startUses", this.startUses)
+                .add("maxUses", this.maxUses)
+                .add("canGrantExperience", this.canGrantExperience)
+                .toString();
+    }
+
+    /**
+     * The builder for dynamic {@link TradeOfferGenerator}s.
+     */
     public static class Builder {
 
         private final GameRegistry registry;
         private Supplier<ItemStack> primaryBuyingItem;
-        private Supplier<ItemStack> secondaryBuyingItem = Suppliers.ofInstance(null);
+        @Nullable
+        private Supplier<ItemStack> secondaryBuyingItem;
         private Supplier<ItemStack> sellingItem;
         private Supplier<Integer> startUses = Suppliers.ofInstance(1);
         private Supplier<Integer> maxUses = Suppliers.ofInstance(1);
@@ -93,64 +137,158 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
             this.registry = registry;
         }
 
+        /**
+         * <p>Sets the first selling item of the trade offer to be
+         * generated.</p>
+         *
+         * <p>Trade offers require at least one item to be generated.</p>
+         *
+         * @param item The first item to buy
+         * @return This builder
+         */
         public Builder primaryBuyingItem(Supplier<ItemStack> primaryBuyingItem) {
             this.primaryBuyingItem = primaryBuyingItem;
             return this;
         }
 
+        /**
+         * <p>Sets the first selling item of the trade offer to be
+         * generated.</p>
+         *
+         * <p>Trade offers require at least one item to be generated.</p>
+         *
+         * @param item The first item to buy
+         * @return This builder
+         */
         public Builder primaryBuyingItem(ItemStack primaryBuyingItem) {
             this.primaryBuyingItem = Suppliers.ofInstance(checkNotNull(primaryBuyingItem, "primaryBuyingItem"));
             return this;
         }
 
-        public Builder secondaryBuyingItem(Supplier<ItemStack> secondaryBuyingItem) {
+        /**
+         * Sets the second selling item of the trade offer to be generated.
+         *
+         * @param item The second item to buy
+         * @return This builder
+         */
+        public Builder secondaryBuyingItem(@Nullable Supplier<ItemStack> secondaryBuyingItem) {
             this.secondaryBuyingItem = secondaryBuyingItem;
             return this;
         }
 
-        public Builder secondaryBuyingItem(ItemStack secondaryBuyingItem) {
+        /**
+         * Sets the second selling item of the trade offer to be generated.
+         *
+         * @param item The second item to buy
+         * @return This builder
+         */
+        public Builder secondaryBuyingItem(@Nullable ItemStack secondaryBuyingItem) {
             this.secondaryBuyingItem = Suppliers.ofInstance(secondaryBuyingItem);
             return this;
         }
 
+        /**
+         * Sets the selling item of the trade offer to be generated.
+         *
+         * @param item The item to sell
+         * @return This builder
+         */
         public Builder sellingItem(Supplier<ItemStack> sellingItem) {
             this.sellingItem = sellingItem;
             return this;
         }
 
+        /**
+         * Sets the selling item of the trade offer to be generated.
+         *
+         * @param item The item to sell
+         * @return This builder
+         */
         public Builder sellingItem(ItemStack sellingItem) {
             this.sellingItem = Suppliers.ofInstance(checkNotNull(sellingItem, "sellingItem"));
             return this;
         }
 
+        /**
+         * Sets the existing uses of the trade offer to be generated. A trade
+         * offer will become unusable when the uses surpasses the max uses.
+         *
+         * @param uses The uses
+         * @return This builder
+         */
         public Builder startUses(Supplier<Integer> startUses) {
             this.startUses = startUses;
             return this;
         }
 
+        /**
+         * Sets the existing uses of the trade offer to be generated. A trade
+         * offer will become unusable when the uses surpasses the max uses.
+         *
+         * @param uses The uses
+         * @return This builder
+         */
         public Builder startUses(int startUses) {
             this.startUses = Suppliers.ofInstance(startUses);
             return this;
         }
 
+        /**
+         * Sets the maximum uses the generated trade offer will have. A trade
+         * offer will become unusable when the uses surpasses the max uses.
+         *
+         * @param maxUses The maximum uses of the trade offer
+         * @return This builder
+         */
         public Builder maxUses(Supplier<Integer> maxUses) {
             this.maxUses = maxUses;
             return this;
         }
 
+        /**
+         * Sets the maximum uses the generated trade offer will have. A trade
+         * offer will become unusable when the uses surpasses the max uses.
+         *
+         * @param maxUses The maximum uses of the trade offer
+         * @return This builder
+         */
         public Builder maxUses(int maxUses) {
             this.maxUses = Suppliers.ofInstance(maxUses);
             return this;
         }
 
+        /**
+         * Sets the trade offer to be generated to grant experience upon use.
+         *
+         * @param experience Whether the offer will grant experience
+         * @return This builder
+         */
         public Builder canGrantExperience(boolean canGrantExperience) {
             this.canGrantExperience = canGrantExperience;
             return this;
         }
 
+        /**
+         * Creates a new DynamicTradeOfferGenerator instance with the current
+         * state of the builder.
+         *
+         * @return A new trade offer generator instance
+         */
         public DynamicTradeOfferGenerator build() {
             return new DynamicTradeOfferGenerator(this.registry, this.primaryBuyingItem, this.secondaryBuyingItem, this.sellingItem, this.startUses,
                     this.maxUses, this.canGrantExperience);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .add("primaryBuyingItem", this.primaryBuyingItem)
+                    .add("secondaryBuyingItem", this.secondaryBuyingItem)
+                    .add("sellingItem", this.sellingItem)
+                    .add("startUses", this.startUses)
+                    .add("maxUses", this.maxUses)
+                    .add("canGrantExperience", this.canGrantExperience)
+                    .toString();
         }
 
     }
