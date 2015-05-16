@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.item.generator;
+package org.spongepowered.api.item.inventory.generator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.item.generator;
+package org.spongepowered.api.item.inventory.generator;
 
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 
