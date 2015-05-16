@@ -114,7 +114,7 @@ public final class ItemStackBuilderMutators {
 
     /**
      * Creates a mutator, that modifies the builders to set the quantity based
-     * on the given supplier
+     * on the given supplier.
      *
      * @param supplier The supplier for the quantity
      * @return The newly generated mutator
@@ -165,7 +165,7 @@ public final class ItemStackBuilderMutators {
      * Creates a mutator, that modifies the builders to add the given
      * {@link DataManipulator} to the item stack.
      *
-     * @param data The data to add
+     * @param supplier The data supplier to wrap
      * @return The newly generated mutator
      */
     public static ItemStackBuilderMutator data(Supplier<? extends DataManipulator<?>> supplier) {

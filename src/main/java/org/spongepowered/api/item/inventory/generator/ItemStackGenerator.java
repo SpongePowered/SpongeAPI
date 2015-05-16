@@ -93,7 +93,7 @@ public final class ItemStackGenerator implements Supplier<ItemStack> {
     /**
      * The builder to create new instances of {@link ItemStackGenerator}.
      */
-    public final static class Builder {
+    public static final class Builder {
 
         private final GameRegistry registry;
         private ItemStack baseItem = null;
@@ -128,12 +128,12 @@ public final class ItemStackGenerator implements Supplier<ItemStack> {
         /**
          * Appends the given mutators for the generator.
          *
-         * @param mutator The mutators to append
+         * @param mutators The mutators to append
          * @return This builder
          */
-        public Builder addAll(ItemStackBuilderMutator... randomizers) {
-            for (ItemStackBuilderMutator randomizer : checkNotNull(randomizers, "randomizers")) {
-                add(randomizer);
+        public Builder addAll(ItemStackBuilderMutator... mutators) {
+            for (ItemStackBuilderMutator mutator : checkNotNull(mutators, "mutators")) {
+                add(mutator);
             }
             return this;
         }
@@ -141,12 +141,12 @@ public final class ItemStackGenerator implements Supplier<ItemStack> {
         /**
          * Appends the given mutators for the generator.
          *
-         * @param mutator The mutators to append
+         * @param mutators The mutators to append
          * @return This builder
          */
-        public Builder addAll(Iterable<? extends ItemStackBuilderMutator> randomizers) {
-            for (ItemStackBuilderMutator randomizer : checkNotNull(randomizers, "randomizers")) {
-                add(randomizer);
+        public Builder addAll(Iterable<? extends ItemStackBuilderMutator> mutators) {
+            for (ItemStackBuilderMutator mutator : checkNotNull(mutators, "mutators")) {
+                add(mutator);
             }
             return this;
         }

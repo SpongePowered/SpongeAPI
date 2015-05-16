@@ -146,8 +146,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param item The first item to buy
          * @return This builder
          */
-        public Builder primaryBuyingItem(Supplier<ItemStack> primaryBuyingItem) {
-            this.primaryBuyingItem = primaryBuyingItem;
+        public Builder primaryBuyingItem(Supplier<ItemStack> item) {
+            this.primaryBuyingItem = item;
             return this;
         }
 
@@ -160,8 +160,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param item The first item to buy
          * @return This builder
          */
-        public Builder primaryBuyingItem(ItemStack primaryBuyingItem) {
-            this.primaryBuyingItem = Suppliers.ofInstance(checkNotNull(primaryBuyingItem, "primaryBuyingItem"));
+        public Builder primaryBuyingItem(ItemStack item) {
+            this.primaryBuyingItem = Suppliers.ofInstance(checkNotNull(item, "primaryBuyingItem"));
             return this;
         }
 
@@ -171,8 +171,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param item The second item to buy
          * @return This builder
          */
-        public Builder secondaryBuyingItem(@Nullable Supplier<ItemStack> secondaryBuyingItem) {
-            this.secondaryBuyingItem = secondaryBuyingItem;
+        public Builder secondaryBuyingItem(@Nullable Supplier<ItemStack> item) {
+            this.secondaryBuyingItem = item;
             return this;
         }
 
@@ -182,8 +182,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param item The second item to buy
          * @return This builder
          */
-        public Builder secondaryBuyingItem(@Nullable ItemStack secondaryBuyingItem) {
-            this.secondaryBuyingItem = Suppliers.ofInstance(secondaryBuyingItem);
+        public Builder secondaryBuyingItem(@Nullable ItemStack item) {
+            this.secondaryBuyingItem = Suppliers.ofInstance(item);
             return this;
         }
 
@@ -193,8 +193,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param item The item to sell
          * @return This builder
          */
-        public Builder sellingItem(Supplier<ItemStack> sellingItem) {
-            this.sellingItem = sellingItem;
+        public Builder sellingItem(Supplier<ItemStack> item) {
+            this.sellingItem = item;
             return this;
         }
 
@@ -204,8 +204,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param item The item to sell
          * @return This builder
          */
-        public Builder sellingItem(ItemStack sellingItem) {
-            this.sellingItem = Suppliers.ofInstance(checkNotNull(sellingItem, "sellingItem"));
+        public Builder sellingItem(ItemStack item) {
+            this.sellingItem = Suppliers.ofInstance(checkNotNull(item, "sellingItem"));
             return this;
         }
 
@@ -216,8 +216,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param uses The uses
          * @return This builder
          */
-        public Builder startUses(Supplier<Integer> startUses) {
-            this.startUses = startUses;
+        public Builder startUses(Supplier<Integer> uses) {
+            this.startUses = uses;
             return this;
         }
 
@@ -228,8 +228,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param uses The uses
          * @return This builder
          */
-        public Builder startUses(int startUses) {
-            this.startUses = Suppliers.ofInstance(startUses);
+        public Builder startUses(int uses) {
+            this.startUses = Suppliers.ofInstance(uses);
             return this;
         }
 
@@ -263,8 +263,8 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
          * @param experience Whether the offer will grant experience
          * @return This builder
          */
-        public Builder canGrantExperience(boolean canGrantExperience) {
-            this.canGrantExperience = canGrantExperience;
+        public Builder canGrantExperience(boolean experience) {
+            this.canGrantExperience = experience;
             return this;
         }
 
