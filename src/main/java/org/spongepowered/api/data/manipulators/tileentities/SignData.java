@@ -28,6 +28,7 @@ import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 
 import java.util.List;
 
@@ -66,4 +67,9 @@ public interface SignData extends DataManipulator<SignData> {
      */
     SignData setLine(int index, Text text) throws IndexOutOfBoundsException;
 
+    /**
+     * Resets all lines to being empty ({@link Texts#of()}.
+     * @return This instance, for chaining
+     */
+    SignData reset();
 }
