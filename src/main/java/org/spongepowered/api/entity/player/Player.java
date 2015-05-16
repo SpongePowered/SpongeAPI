@@ -31,7 +31,6 @@ import org.spongepowered.api.data.manipulators.entities.JoinData;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;
-import org.spongepowered.api.event.block.tile.SignChangeEvent;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
