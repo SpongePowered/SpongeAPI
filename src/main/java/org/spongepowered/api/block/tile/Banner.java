@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.block.tile;
 
+import org.spongepowered.api.data.manipulators.tileentities.BannerData;
+
 /**
  * Represents a Banner {@link TileEntity}.
  */
 public interface Banner extends TileEntity {
-
+    @Override
+    BannerData getData();
 }

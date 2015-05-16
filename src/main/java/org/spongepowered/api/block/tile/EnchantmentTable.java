@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.block.tile;
 
+import org.spongepowered.api.data.manipulators.items.EnchantmentData;
+
 /**
  * Represents an Enchantment Table.
  */
 public interface EnchantmentTable extends TileEntity {
-
+    @Override
+    EnchantmentData getData();
 }

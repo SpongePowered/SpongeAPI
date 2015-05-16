@@ -28,5 +28,4 @@ package org.spongepowered.api.block.tile.carrier;
  * Represents a Dropper.
  */
 public interface Dropper extends TileEntityCarrier {
-
 }

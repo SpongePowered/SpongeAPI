@@ -40,11 +40,7 @@ public interface Note extends TileEntity {
      */
     void playNote();
 
-    /**
-     * Gets a copy of the currently used {@link NoteData}.
-     *
-     * @return The currently used note data
-     */
-    NoteData getNoteData();
+    @Override
+    NoteData getData();
 
 }

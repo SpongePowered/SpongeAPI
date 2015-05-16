@@ -31,11 +31,7 @@ import org.spongepowered.api.data.manipulators.tileentities.SignData;
  */
 public interface Sign extends TileEntity {
 
-    /**
-     * Gets a copy of the currently used {@link SignData}.
-     *
-     * @return A copy of the currently used sign data
-     */
-    SignData getSignData();
+    @Override
+    SignData getData();
 
 }

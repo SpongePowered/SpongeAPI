@@ -28,5 +28,4 @@ package org.spongepowered.api.block.tile;
  * Represents an End Portal.
  */
 public interface EndPortal extends TileEntity {
-
 }

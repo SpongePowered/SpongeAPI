@@ -30,5 +30,4 @@ import org.spongepowered.api.entity.projectile.source.BlockProjectileSource;
  * Represents a Dispenser.
  */
 public interface Dispenser extends TileEntityCarrier, BlockProjectileSource {
-
 }

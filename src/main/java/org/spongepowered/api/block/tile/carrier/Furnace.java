@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.block.tile.carrier;
 
+import org.spongepowered.api.data.manipulators.tileentities.FurnaceData;
+
 /**
  * Represents a Furnace.
  */
@@ -38,4 +40,6 @@ public interface Furnace extends TileEntityCarrier {
      */
     boolean smelt();
 
+    @Override
+    FurnaceData getData();
 }

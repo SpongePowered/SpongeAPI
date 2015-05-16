@@ -35,5 +35,4 @@ public interface CommandBlock extends TileEntity, CommandBlockSource {
      * Executes the currently stored command.
      */
     void execute();
-
 }

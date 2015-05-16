@@ -43,4 +43,6 @@ public interface Beacon extends TileEntityCarrier {
      */
     int getCompletedLevels();
 
+    @Override
+    BeaconData getData();
 }

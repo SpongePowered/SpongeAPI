@@ -49,5 +49,4 @@ public interface Jukebox extends TileEntity {
      * @param record The record to insert
      */
     void insertRecord(ItemStack record);
-
 }

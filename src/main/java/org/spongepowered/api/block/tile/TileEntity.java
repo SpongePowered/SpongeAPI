@@ -25,6 +25,7 @@
 package org.spongepowered.api.block.tile;
 
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.world.Location;
 
@@ -89,5 +90,11 @@ public interface TileEntity extends DataHolder, DataSerializable {
      * @return The parent {@link Location}
      */
     Location getBlock();
+
+    /**
+     * Gets a copy of the underlying data of this {@link TileEntity}.
+     * @return The data
+     */
+    DataManipulator<?> getData();
 
 }

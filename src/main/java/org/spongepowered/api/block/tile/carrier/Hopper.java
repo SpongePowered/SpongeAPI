@@ -37,5 +37,4 @@ public interface Hopper extends TileEntityCarrier {
      * available carrier to send an item to, this will perform nothing.</p>
      */
     void transferItem();
-
 }

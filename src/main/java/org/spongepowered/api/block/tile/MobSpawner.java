@@ -41,11 +41,7 @@ public interface MobSpawner extends TileEntity {
      */
     void spawnEntityBatchImmediately(boolean force);
 
-    /**
-     * Gets a copy of the currently used {@link MobSpawnerData} for this mob spawner.
-     *
-     * @return A copy of the mob spawner data
-     */
-    MobSpawnerData getSpawnerData();
+    @Override
+    MobSpawnerData getData();
 
 }
