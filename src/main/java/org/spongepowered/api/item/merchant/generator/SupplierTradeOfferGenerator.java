@@ -99,7 +99,7 @@ public class SupplierTradeOfferGenerator implements TradeOfferGenerator {
          * @param supplier The supplier used to generate the result. Should
          *        never return null
          */
-        public SingleEntrySupplier(Supplier<TradeOffer> supplier) {
+        SingleEntrySupplier(Supplier<TradeOffer> supplier) {
             super();
             this.supplier = supplier;
         }
