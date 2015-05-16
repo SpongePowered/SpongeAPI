@@ -37,4 +37,7 @@ public interface SignEvent extends TileEntityEvent {
 
     @Override
     SignData getCurrentData();
+
+    @Override
+    SignData getNewData();
 }

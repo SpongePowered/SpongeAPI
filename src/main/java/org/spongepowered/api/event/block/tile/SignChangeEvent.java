@@ -27,7 +27,6 @@ package org.spongepowered.api.event.block.tile;
 import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.text.Text;
 
 /**
  * An event when a {@link Sign} is changed.
@@ -35,26 +34,5 @@ import org.spongepowered.api.text.Text;
  * <p>Examples may include: A player writing a sign.</p>
  */
 public interface SignChangeEvent extends SignEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the previous messages in order of line number of the sign.
-     *
-     * @return The previous messages
-     */
-    Text[] getPreviousLines();
-
-    /**
-     * Gets the changed messages.
-     *
-     * @return The new messages
-     */
-    Text[] getNewLines();
-
-    /**
-     * Sets the changed messages.
-     *
-     * @param messages The new messages
-     */
-    void setNewMessages(Text[] messages);
 
 }

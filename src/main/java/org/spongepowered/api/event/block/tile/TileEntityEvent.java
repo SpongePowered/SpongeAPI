@@ -42,7 +42,7 @@ public interface TileEntityEvent extends GameEvent {
     TileEntity getTile();
 
     /**
-     * Gets the current {@link DataManipulator} associated with the
+     * Gets a copy of the current {@link DataManipulator} associated with the
      * {@link TileEntity} associated with this event.
      *
      * @return The snapshot of the current tile entity data
@@ -50,4 +50,16 @@ public interface TileEntityEvent extends GameEvent {
     @TransformResult
     DataManipulator<?> getCurrentData();
 
+    /**
+     * Gets the new {@link DataManipulator} that will be offered to the
+     * {@link TileEntity} after event resolution.
+     * <p>
+     * If desiring to change any data of this {@link TileEntity}, do so in
+     * this manipulator.
+     * <p>
+     * If changing any property of this manipulator in a struct invoked after
+     * event resolution (such as a Scheduler task), those changes will not be honored.
+     * @return The data
+     */
+    DataManipulator<?> getNewData();
 }

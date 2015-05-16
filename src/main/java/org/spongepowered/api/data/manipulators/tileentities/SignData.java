@@ -28,35 +28,28 @@ import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.text.Text;
 
+import java.util.List;
+
 /**
  * Represents the data for a {@link Sign}.
  */
 public interface SignData extends DataManipulator<SignData> {
 
     /**
-     * Gets all lines of text on the sign.
-     *
+     * Gets all stored {@link Text}s, representing each line of the data.
+     * <p>
+     * Each valid index (usually 0-3) will contain no null elements.
      * @return The lines of text
      */
-    Text[] getLines();
-
-    /**
-     * Sets the lines of text on the sign. Any lines past the maximum number of
-     * lines displayable on the sign will be ignored.
-     *
-     * @param lines The new lines
-     * @return This instance, for chaining
-     * @throws IllegalArgumentException If the array is too large
-     */
-    SignData setLines(Text... lines);
+    List<Text> getLines();
 
     /**
      * Gets the line at the given index.
-     *
+     * <p>
+     * If a valid index (usually 0-3), the returned line will not be null.
      * @param index The index
      * @return The line of text
-     * @throws IndexOutOfBoundsException If the index is outside of the allowed
-     *             indices
+     * @throws IndexOutOfBoundsException If the index is outside of the allowed indices
      */
     Text getLine(int index) throws IndexOutOfBoundsException;
 
