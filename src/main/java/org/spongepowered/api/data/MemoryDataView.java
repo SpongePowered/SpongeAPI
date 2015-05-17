@@ -707,6 +707,15 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
+    public DataContainer copy() {
+        final DataContainer container = new MemoryDataContainer();
+        for (DataQuery query : getKeys(false)) {
+            container.set(query, get(query).get());
+        }
+        return container;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hashCode(this.map, this.path);
     }
