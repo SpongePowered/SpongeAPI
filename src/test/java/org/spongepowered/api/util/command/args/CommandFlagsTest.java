@@ -50,9 +50,9 @@ public class CommandFlagsTest {
     @Test
     public void testFlaggedCommand() throws CommandException {
         CommandSpec command = CommandSpec.builder()
-                .setArguments(flags()
+                .arguments(flags()
                         .flag("a").valueFlag(integer(t("quot")), "q").buildWith(string(t("key"))))
-                .setExecutor(new CommandExecutor() {
+                .executor(new CommandExecutor() {
                     @Override
                     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
                         assertEquals(true, args.getOne("a").get());

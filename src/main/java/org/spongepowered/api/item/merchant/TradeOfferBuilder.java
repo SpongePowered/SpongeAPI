@@ -81,7 +81,7 @@ public interface TradeOfferBuilder {
      * @param experience Whether the offer will grant experience
      * @return This builder
      */
-    TradeOfferBuilder setCanGrantExperience(boolean experience);
+    TradeOfferBuilder canGrantExperience(boolean experience);
 
     /**
      * Creates a new TradeOffer instance with the current state of the builder.

@@ -113,7 +113,7 @@ public final class CommandSpec implements CommandCallable {
          * @param permission The permission to check
          * @return this
          */
-        public Builder setPermission(String permission) {
+        public Builder permission(String permission) {
             this.permission = permission;
             return this;
         }
@@ -124,7 +124,7 @@ public final class CommandSpec implements CommandCallable {
          * @param executor The executor that will be called with this command's parsed arguments
          * @return this
          */
-        public Builder setExecutor(CommandExecutor executor) {
+        public Builder executor(CommandExecutor executor) {
             Preconditions.checkNotNull(executor, "executor");
             this.executor = executor;
             return this;
@@ -137,7 +137,7 @@ public final class CommandSpec implements CommandCallable {
          * @param children The children to use
          * @return this
          */
-        public Builder setChildren(Map<List<String>, ? extends CommandCallable> children) {
+        public Builder children(Map<List<String>, ? extends CommandCallable> children) {
             Preconditions.checkNotNull(children, "children");
             if (this.childCommandMap == null) {
                 this.childCommandMap = new HashMap<List<String>, CommandCallable>();
@@ -156,7 +156,7 @@ public final class CommandSpec implements CommandCallable {
          *
          * @return this
          */
-        public Builder addChild(CommandCallable child, String... aliases) {
+        public Builder child(CommandCallable child, String... aliases) {
             if (this.childCommandMap == null) {
                 this.childCommandMap = new HashMap<List<String>, CommandCallable>();
             }
@@ -170,7 +170,7 @@ public final class CommandSpec implements CommandCallable {
          * @param description The description to set
          * @return this
          */
-        public Builder setDescription(@Nullable Text description) {
+        public Builder description(@Nullable Text description) {
             this.description = description;
             return this;
         }
@@ -182,7 +182,7 @@ public final class CommandSpec implements CommandCallable {
          * @param extendedDescription The description to set
          * @return this
          */
-        public Builder setExtendedDescription(@Nullable Text extendedDescription) {
+        public Builder extendedDescription(@Nullable Text extendedDescription) {
             this.extendedDescription = extendedDescription;
             return this;
         }
@@ -195,7 +195,7 @@ public final class CommandSpec implements CommandCallable {
          * @param args The arguments object to use
          * @return this
          */
-        public Builder setArguments(CommandElement args) {
+        public Builder arguments(CommandElement args) {
             Preconditions.checkNotNull(args, "args");
             this.args = args;
             return this;
@@ -203,13 +203,13 @@ public final class CommandSpec implements CommandCallable {
 
         /**
          * Set the argument specification for this command. This method accepts a sequence of arguments. This is equivalent to calling {@code
-         * setArguments(seq(args))}
+         * arguments(seq(args))}
          *
          * @see GenericArguments
          * @param args The arguments object to use
          * @return this
          */
-        public Builder setArguments(CommandElement... args) {
+        public Builder arguments(CommandElement... args) {
             Preconditions.checkNotNull(args, "args");
             this.args = GenericArguments.seq(args);
             return this;
@@ -222,7 +222,7 @@ public final class CommandSpec implements CommandCallable {
          * @param parser The parser to use
          * @return this
          */
-        public Builder setInputTokenizer(InputTokenizer parser) {
+        public Builder inputTokenizer(InputTokenizer parser) {
             Preconditions.checkNotNull(parser, "parser");
             this.argumentParser = parser;
             return this;
@@ -243,11 +243,11 @@ public final class CommandSpec implements CommandCallable {
                 }
 
                 if (this.args == DEFAULT_ARG) {
-                    setArguments(this.executor == null ? childDispatcher : optional(childDispatcher));
+                    arguments(this.executor == null ? childDispatcher : optional(childDispatcher));
                 } else {
-                    setArguments(firstParsing(childDispatcher, this.args));
+                    arguments(firstParsing(childDispatcher, this.args));
                 }
-                setExecutor(childDispatcher);
+                executor(childDispatcher);
             }
 
             return new CommandSpec(this.args, this.executor, this.description, this.extendedDescription, this.permission,

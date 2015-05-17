@@ -43,7 +43,7 @@ public class CommandSpecTest {
     @Test
     public void testNoArgsFunctional() throws CommandException {
         CommandSpec cmd = CommandSpec.builder()
-                .setExecutor(new CommandExecutor() {
+                .executor(new CommandExecutor() {
                     @Override
                     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
                         return CommandResult.empty();
