@@ -40,7 +40,7 @@ public class FirstMatchBlockConsumer implements BlockConsumer {
     private Optional<Direction> faceDirection = Optional.absent();
 
     /**
-     * Creates a new FirstMatchBlockConsumer with the given search condition
+     * Creates a new FirstMatchBlockConsumer with the given search condition.
      *
      * @param matchCondition The match condition
      */

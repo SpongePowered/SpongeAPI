@@ -95,7 +95,7 @@ public final class BlockSearchConditions {
 
     }
 
-    private static abstract class Multi implements BlockSearchCondition {
+    private abstract static class Multi implements BlockSearchCondition {
 
         final List<BlockSearchCondition> conditions;
 

@@ -28,10 +28,19 @@ package org.spongepowered.api.util.raytrace;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
- *
+ * An adapter factory between {@link PositionConsumer} and {@link BlockConsumer}
+ * for ray tracing.
  */
 public interface PositionToBlockAdapterFactory {
 
+    /**
+     * Wraps the given {@link BlockConsumer} in a {@link PositionConsumer} so
+     * that can be used in ray tracing.
+     *
+     * @param world The world to ray trace trough
+     * @param consumer The block consumer to wrap
+     * @return The newly created position consumer
+     */
     PositionConsumer wrap(Extent world, BlockConsumer consumer);
 
 }
