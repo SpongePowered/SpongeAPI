@@ -22,21 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.event.block.tileentity;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.block.tile.carrier.Furnace;
-import org.spongepowered.api.data.manipulators.tileentities.FurnaceData;
-import org.spongepowered.api.event.inventory.BlockInventoryEvent;
+import org.spongepowered.api.event.inventory.ItemResultEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Represents an event that affects a tile entity with a {@link Furnace}
- * data.
+ * An event when a {@link Furnace} consumes an {@link ItemStack} as fuel.
  */
-public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
+public interface FurnaceConsumeFuelEvent extends FurnaceEvent, ItemResultEvent {
 
-    @Override
-    Furnace getTile();
+    /**
+     * Gets the burned item.
+     *
+     * <p>A {@link Furnace} uses {@link ItemStack}s to fuel itself, and after the fuel is
+     * spent, the item is burned.</p>
+     *
+     * @return The burned item
+     */
+    ItemStack getBurnedItem();
 
-    @Override
-    FurnaceData getCurrentData();
+    /**
+     * Gets the remaining fuel {@link ItemStack} within this furnace.
+     *
+     * <p>Fuel burns and may run out.</p>
+     *
+     * @return The fuel item, if available
+     */
+    Optional<ItemStack> getRemainingFuel();
+
 }

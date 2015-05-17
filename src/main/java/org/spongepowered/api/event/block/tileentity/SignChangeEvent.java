@@ -22,30 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.block.tile.Sign;
+import org.spongepowered.api.data.manipulators.tileentities.SignData;
 
 /**
- * Represents events where the {@link DataManipulator} of the {@link TileEntity} may change from the
- * resolution of the event.
- * <p>
- * An example of this would be {@link SignChangeEvent} where the data of the sign is set after the event
+ * An event when a {@link Sign} is changed.
+ *
+ * <p>Examples may include: A player writing a sign.</p>
  */
-public interface TileEntityChangeEvent extends TileEntityEvent, CauseTracked, Cancellable {
-    /**
-     * Gets the new {@link DataManipulator} that will be offered to the
-     * {@link TileEntity} after event resolution.
-     * <p>
-     * If desiring to change any data of this {@link TileEntity}, do so in
-     * this manipulator.
-     * <p>
-     * If changing any property of this manipulator in a struct invoked after
-     * event resolution (such as a Scheduler task), those changes will not be honored.
-     * @return The data
-     */
-    DataManipulator<?> getNewData();
+public interface SignChangeEvent extends SignEvent, TileEntityChangeEvent {
+    @Override
+    SignData getNewData();
 }

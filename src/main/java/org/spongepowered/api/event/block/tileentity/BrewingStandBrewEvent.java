@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tile.carrier.BrewingStand;
 import org.spongepowered.api.event.inventory.BulkItemResultEvent;

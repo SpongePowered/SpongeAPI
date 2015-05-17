@@ -27,16 +27,11 @@ package org.spongepowered.api.event;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockSettings;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.event.block.BlockChangeEvent;
-import org.spongepowered.api.event.block.tile.TileEntityEvent;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;

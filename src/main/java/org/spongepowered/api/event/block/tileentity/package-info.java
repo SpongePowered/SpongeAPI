@@ -22,43 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
-
-import org.spongepowered.api.block.tile.carrier.Furnace;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.inventory.ItemResultEvent;
-import org.spongepowered.api.item.inventory.ItemStack;
-
-/**
- * An event that occurs when a {@link Furnace} smelt an item.
- */
-public interface FurnaceSmeltItemEvent extends FurnaceEvent, ItemResultEvent, Cancellable {
-
-    /**
-     * Gets the freshly cooked {@link ItemStack}.
-     *
-     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
-     * new items.</p>
-     *
-     * @return The cooked item
-     */
-    ItemStack getCookedItem();
-
-    /**
-     * Sets the cooked {@link ItemStack}.
-     *
-     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
-     * new items.</p>
-     *
-     * @param item The resulting cooked item
-     */
-    void setCookedItem(ItemStack item);
-
-    /**
-     * Gets the source {@link ItemStack} that was cooked.
-     *
-     * @return The source item
-     */
-    ItemStack getSourceItem();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.block.tileentity;

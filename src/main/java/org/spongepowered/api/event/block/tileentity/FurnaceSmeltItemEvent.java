@@ -22,20 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.carrier.BrewingStand;
-import org.spongepowered.api.data.manipulators.tileentities.BrewingData;
-import org.spongepowered.api.event.inventory.BlockInventoryEvent;
+import org.spongepowered.api.block.tile.carrier.Furnace;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.inventory.ItemResultEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * An event related to a {@link BrewingStand}.
+ * An event that occurs when a {@link Furnace} smelt an item.
  */
-public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent {
+public interface FurnaceSmeltItemEvent extends FurnaceEvent, ItemResultEvent, Cancellable {
 
-    @Override
-    BrewingStand getTile();
+    /**
+     * Gets the freshly cooked {@link ItemStack}.
+     *
+     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
+     * new items.</p>
+     *
+     * @return The cooked item
+     */
+    ItemStack getCookedItem();
 
-    @Override
-    BrewingData getCurrentData();
+    /**
+     * Sets the cooked {@link ItemStack}.
+     *
+     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
+     * new items.</p>
+     *
+     * @param item The resulting cooked item
+     */
+    void setCookedItem(ItemStack item);
+
+    /**
+     * Gets the source {@link ItemStack} that was cooked.
+     *
+     * @return The source item
+     */
+    ItemStack getSourceItem();
+
 }

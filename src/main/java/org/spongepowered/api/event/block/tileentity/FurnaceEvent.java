@@ -22,31 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.TileEntity;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.annotation.TransformResult;
+import org.spongepowered.api.block.tile.carrier.Furnace;
+import org.spongepowered.api.data.manipulators.tileentities.FurnaceData;
+import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**
- * An event that involves a {@link TileEntity}.
+ * Represents an event that affects a tile entity with a {@link Furnace}
+ * data.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
 
-    /**
-     * Gets the {@link TileEntity} related to this event.
-     *
-     * @return The tile entity
-     */
-    TileEntity getTile();
+    @Override
+    Furnace getTile();
 
-    /**
-     * Gets a copy of the current {@link DataManipulator} associated with the
-     * {@link TileEntity} associated with this event.
-     *
-     * @return The snapshot of the current tile entity data
-     */
-    @TransformResult
-    DataManipulator<?> getCurrentData();
+    @Override
+    FurnaceData getCurrentData();
 }

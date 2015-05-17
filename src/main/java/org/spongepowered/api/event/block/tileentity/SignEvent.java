@@ -22,17 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tile;
+package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.data.manipulators.tileentities.SignData;
 
 /**
- * An event when a {@link Sign} is changed.
- *
- * <p>Examples may include: A player writing a sign.</p>
+ * An event that is associated with a {@link Sign}.
  */
-public interface SignChangeEvent extends SignEvent, TileEntityChangeEvent {
+public interface SignEvent extends TileEntityEvent {
+
     @Override
-    SignData getNewData();
+    Sign getTile();
+
+    @Override
+    SignData getCurrentData();
 }
