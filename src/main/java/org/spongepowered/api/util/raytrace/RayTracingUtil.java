@@ -36,6 +36,10 @@ import org.spongepowered.api.world.extent.Extent;
  */
 public final class RayTracingUtil {
 
+    /**
+     * This applies some server side restrictions on {@link PositionConsumer}s.
+     * Example limits execution to 200 times.
+     */
     private static final Function<PositionConsumer, PositionConsumer> POSITION_LIMITER = Functions.identity();
     private static final PositionToBlockAdapterFactory FACE_BLOCKADAPTER = new SimplePositionToBlockAdapterFactory();
     private static final PositionToBlockAdapterFactory SOLIDBOX_BLOCKADAPTER = FACE_BLOCKADAPTER;
@@ -91,56 +95,86 @@ public final class RayTracingUtil {
      * @param consumer The consumer that consumes all visited blocks
      */
     public static void trace(Vector3d location, Vector3d direction, PositionConsumer consumer) {
+        // Our current location during ray tracing
         double posX = location.getX();
         double posY = location.getY();
         double posZ = location.getZ();
-        // Does not move?
+
         if (direction.lengthSquared() == 0) {
+            // If we don't move  we won't ever pass the borders of a block
             consumer.apply(posX, posY, posZ, direction);
             return;
         }
         final Vector3d normalizedDirection = direction.normalize();
-        final double dx = normalizedDirection.getX();
-        final double dy = normalizedDirection.getY();
-        final double dz = normalizedDirection.getZ();
+        // The velocity we are moving with on each axis
+        final double vX = normalizedDirection.getX();
+        final double vY = normalizedDirection.getY();
+        final double vZ = normalizedDirection.getZ();
+        // Contains the times how often you have to apply the velocity until you
+        // reach the next borders of a block for each axis
         final double[] distances = new double[3];
+
+        // Apply some server side restrictions on position consumers
         final PositionConsumer limitedConsumer = POSITION_LIMITER.apply(consumer);
+
+        // Start calculating ray tracing, starting with the origin
         while (limitedConsumer.apply(posX, posY, posZ, direction)) {
-            distances[0] = distance(posX, dx);
-            distances[1] = distance(posY, dy);
-            distances[2] = distance(posZ, dz);
+            // Calculate how many times we have to apply the velocity to reach the next block
+            distances[0] = distance(posX, vX);
+            distances[1] = distance(posY, vY);
+            distances[2] = distance(posZ, vZ);
+            // We don't want to miss a border, so we use the minimum
             final double min = min(distances);
-            posX = sanitize(posX + min * dx);
-            posY = sanitize(posY + min * dy);
-            posZ = sanitize(posZ + min * dz);
+            // And move that minimum time forward
+            posX = sanitize(posX + min * vX);
+            posY = sanitize(posY + min * vY);
+            posZ = sanitize(posZ + min * vZ);
         }
     }
 
-    // The minimum distance
-    private static double min(double[] moves) {
-        double min = moves[0];
-        if (min > moves[1]) {
-            min = moves[1];
+    /**
+     * Calculates the minimum of those three array elements.
+     *
+     * @param values The values to get the minimum from
+     * @return The minimum value
+     */
+    private static double min(double[] values) {
+        double min = values[0];
+        if (min > values[1]) {
+            min = values[1];
         }
-        if (min > moves[2]) {
-            min = moves[2];
+        if (min > values[2]) {
+            min = values[2];
         }
         return min;
     }
 
-    // times how often you have to apply the given direction to pass any borders
-    private static double distance(double position, double direction) {
-        if (direction == 0) {
+    /**
+     * Calculates how often you have to apply the given velocity until you reach
+     * the next borders of a block on a single axis.
+     *
+     * @param position The position you are currently at on the current axis
+     * @param velocity The velocity on the current axis
+     * @return The total number of times you have to apply the given velocity to
+     *         reach the next block borders
+     */
+    private static double distance(double position, double velocity) {
+        if (velocity == 0) {
+            // Do we move at all? If not we will never hit the borders
             return Double.MAX_VALUE;
         }
-        final double distanceLeft = (position % 1 + 1) % 1;
-        final double absDirection = Math.abs(direction);
-        if (distanceLeft == 0) {
-            return 1 / absDirection;
-        } else if (direction < 0) {
-            return distanceLeft / absDirection;
+        // Calculate the distance to the next block border towards negative infinity
+        final double distanceRemaining = (position % 1 + 1) % 1;
+        final double absVelocity = Math.abs(velocity);
+        if (distanceRemaining == 0) {
+            // Are we currently at a border? Then we need to move an entire block
+            return 1 / absVelocity;
+        } else if (velocity < 0) {
+            // Do we move towards negative infinity?
+            return distanceRemaining / absVelocity;
         } else {
-            return (1 - distanceLeft) / absDirection;
+            // Otherwise calculate the remaining distance in the other direction
+            return (1 - distanceRemaining) / absVelocity;
         }
     }
 

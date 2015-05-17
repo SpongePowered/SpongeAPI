@@ -36,7 +36,8 @@ import org.spongepowered.api.world.Location;
 public class FirstMatchBlockConsumer implements BlockConsumer {
 
     private final BlockSearchCondition matchCondition;
-    private Optional<Location> match = Optional.absent();
+    private Optional<Location> location = Optional.absent();
+    private Optional<Direction> faceDirection = Optional.absent();
 
     /**
      * Creates a new FirstMatchBlockConsumer with the given search condition
@@ -51,19 +52,29 @@ public class FirstMatchBlockConsumer implements BlockConsumer {
     @Override
     public boolean apply(Location location, Direction faceDirection) {
         if (this.matchCondition.apply(location, faceDirection)) {
-            this.match = Optional.of(location);
+            this.location = Optional.of(location);
+            this.faceDirection = Optional.of(faceDirection);
             return true;
         }
         return false;
     }
 
     /**
-     * Gets the match if one was found.
-     * 
-     * @return The match if one was found
+     * Gets the matching {@link Location} if one was found.
+     *
+     * @return The matching location if one was found
      */
-    public Optional<Location> getMatch() {
-        return this.match;
+    public Optional<Location> getLocation() {
+        return this.location;
+    }
+
+    /**
+     * Gets the matching face {@link Direction} if one was found.
+     *
+     * @return The matching face direction if one was found
+     */
+    public Optional<Direction> getFaceDirection() {
+        return this.faceDirection;
     }
 
 }

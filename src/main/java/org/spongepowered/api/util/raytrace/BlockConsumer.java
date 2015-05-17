@@ -37,8 +37,9 @@ public interface BlockConsumer extends BlockSearchCondition {
     /**
      * Consume the current location.
      *
-     * @param location The block's location
-     * @param faceDirection The block face hit
+     * @param location The block's location. The decimal places of this location
+     *        have no meaning
+     * @param faceDirection The block face hit, may be NONE if this is the start
      * @return True, if the ray trace should continue
      */
     @Override

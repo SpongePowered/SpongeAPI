@@ -39,11 +39,18 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- *
+ * Utility class that contains some useful methods to obtain
+ * {@link BlockSearchCondition}s.
  */
 public final class BlockSearchConditions {
 
+    /**
+     * Returns always true.
+     */
     public static final BlockSearchCondition TRUE = new Fixed(true);
+    /**
+     * Returns always false.
+     */
     public static final BlockSearchCondition FALSE = new Fixed(false);
 
     private static class Fixed implements BlockSearchCondition {
@@ -62,6 +69,32 @@ public final class BlockSearchConditions {
 
     }
 
+    /**
+     * Creates a new {@link BlockSearchCondition} that negates the results of
+     * the given condition.
+     *
+     * @param condition The condition to negate
+     * @return The newly created condition
+     */
+    public static BlockSearchCondition not(BlockSearchCondition condition) {
+        return new Not(condition);
+    }
+
+    private static class Not implements BlockSearchCondition {
+
+        private final BlockSearchCondition condition;
+
+        Not(BlockSearchCondition condition) {
+            this.condition = checkNotNull(condition, "condition");
+        }
+
+        @Override
+        public boolean apply(Location location, Direction faceDirection) {
+            return !this.condition.apply(location, faceDirection);
+        }
+
+    }
+
     private static abstract class Multi implements BlockSearchCondition {
 
         final List<BlockSearchCondition> conditions;
@@ -73,10 +106,26 @@ public final class BlockSearchConditions {
 
     }
 
+    /**
+     * Combines the search conditions using an AND operation. The created
+     * {@link BlockSearchCondition} will always return true if the conditions
+     * are empty.
+     *
+     * @param conditions The conditions to AND
+     * @return The newly created condition
+     */
     public static BlockSearchCondition and(BlockSearchCondition... conditions) {
         return and(Arrays.asList(checkNotNull(conditions, "conditions")));
     }
 
+    /**
+     * Combines the search conditions using an AND operation. The created
+     * {@link BlockSearchCondition} will always return true if the conditions
+     * are empty.
+     *
+     * @param conditions The conditions to AND
+     * @return The newly created condition
+     */
     public static BlockSearchCondition and(Collection<? extends BlockSearchCondition> conditions) {
         return new And(conditions);
     }
@@ -99,10 +148,26 @@ public final class BlockSearchConditions {
 
     }
 
+    /**
+     * Combines the search conditions using an OR operation. The created
+     * {@link BlockSearchCondition} will always return false if the conditions
+     * are empty.
+     *
+     * @param conditions The conditions to OR
+     * @return The newly created condition
+     */
     public static BlockSearchCondition or(BlockSearchCondition... conditions) {
         return or(Arrays.asList(checkNotNull(conditions, "conditions")));
     }
 
+    /**
+     * Combines the search conditions using an OR operation. The created
+     * {@link BlockSearchCondition} will always return false if the conditions
+     * are empty.
+     *
+     * @param conditions The conditions to OR
+     * @return The newly created condition
+     */
     public static BlockSearchCondition or(Collection<? extends BlockSearchCondition> conditions) {
         return new Or(conditions);
     }
@@ -125,6 +190,14 @@ public final class BlockSearchConditions {
 
     }
 
+    /**
+     * Creates a BlockSearchCondition using the given {@link Predicate} on
+     * {@link Location}s. This method can be used if you want to check for some
+     * block state like the block type.
+     *
+     * @param filter The filter to use
+     * @return The newly created search condition
+     */
     public static BlockSearchCondition locationFilter(Predicate<Location> filter) {
         return new LocationFilter(filter);
     }
@@ -145,14 +218,39 @@ public final class BlockSearchConditions {
 
     }
 
+    /**
+     * Creates a {@link BlockSearchCondition} based on the direction you are
+     * moving. This condition ensures that there is always a distance of 1.0
+     * between each matching block (Except the ray start). This method ensures
+     * that the maximum possible blocks matches will be found.
+     *
+     * @param direction The direction you are moving to
+     * @return The newly created search condition
+     */
     public static BlockSearchCondition columnFilter(Vector3d direction) {
         return columnFilter(Direction.getClosestAxis(checkNotNull(direction, "direction")).getOpposite());
     }
 
+    /**
+     * Creates a {@link BlockSearchCondition} using the given block face
+     * {@link Direction}. Only calls with the given face direction will match
+     * the condition.
+     *
+     * @param faceDirection The face direction to check for
+     * @return The newly created search condition
+     */
     public static BlockSearchCondition columnFilter(Direction faceDirection) {
         return faceFilter(Predicates.equalTo(checkNotNull(faceDirection, "faceDirection")));
     }
 
+    /**
+     * Creates a BlockSearchCondition using the given {@link Predicate} on
+     * {@link Direction}s. This method can be used if you want to check for some
+     * a specific combination of block faces.
+     *
+     * @param filter The filter to use
+     * @return The newly created search condition
+     */
     public static BlockSearchCondition faceFilter(Predicate<Direction> filter) {
         return new DirectionFilter(filter);
     }

@@ -31,7 +31,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
- *
+ * An simple implementation of the {@link PositionToBlockAdapterFactory}.
  */
 public class SimplePositionToBlockAdapterFactory implements PositionToBlockAdapterFactory {
 
@@ -64,11 +64,11 @@ public class SimplePositionToBlockAdapterFactory implements PositionToBlockAdapt
 
         @Override
         public boolean apply(double posX, double posY, double posZ, Vector3d rayDirection) {
-            Direction faceDirection = null;
+            Direction faceDirection = Direction.NONE;
             if (posX % 1 == 0) {
                 double dirX = rayDirection.getX();
                 // Move inside the block
-                posX += dirX;
+                posX += dirX / 2;
                 if (dirX > 0) {
                     faceDirection = Direction.NORTH;
                 } else if (dirX < 0) {
@@ -78,7 +78,7 @@ public class SimplePositionToBlockAdapterFactory implements PositionToBlockAdapt
             if (posY % 1 == 0) {
                 double dirY = rayDirection.getY();
                 // Move inside the block
-                posY += dirY;
+                posY += dirY / 2;
                 if (dirY > 0) {
                     faceDirection = Direction.DOWN;
                 } else if (dirY < 0) {
@@ -88,7 +88,7 @@ public class SimplePositionToBlockAdapterFactory implements PositionToBlockAdapt
             if (posZ % 1 == 0) {
                 double dirZ = rayDirection.getZ();
                 // Move inside the block
-                posZ += dirZ;
+                posZ += dirZ / 2;
                 if (dirZ > 0) {
                     faceDirection = Direction.WEST;
                 } else if (dirZ < 0) {
