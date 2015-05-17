@@ -149,6 +149,22 @@ public enum Direction {
     }
 
     /**
+     * Gets the closest direction parallel to an axis from the given vector. If
+     * the vector is the 0-Vector, this method returns {@link #NONE}.
+     *
+     * @param vector The vector to convert to a direction
+     * @return The closest direction parallel to an axis.
+     */
+    public static Direction getClosestAxis(Vector3d vector) {
+        if (vector.lengthSquared() == 0) {
+            return NONE;
+        }
+        final int max = vector.getMaxAxis();
+        final int absMax = vector.abs().getMaxAxis();
+        return getFromAxis(Axis.getClosest(vector), max == absMax ? AxisDirection.PLUS : AxisDirection.MINUS);
+    }
+
+    /**
      * Gets the direction associated with the given axis.
      *
      * @param axis The axis
