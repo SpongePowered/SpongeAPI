@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.item.inventory.types.CarriedInventory;
+import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 /**
  * Represents the inventory of a Human or Player. Implementors of this interface

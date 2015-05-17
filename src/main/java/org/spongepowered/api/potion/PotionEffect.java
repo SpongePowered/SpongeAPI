@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.potion;
 
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.ImmutableDataHolder;
-import org.spongepowered.api.data.manipulators.PotionEffectData;
+import org.spongepowered.api.data.manipulator.PotionEffectData;
 
 /**
  * Represents a possible Potion Effect.

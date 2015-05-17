@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -43,7 +43,7 @@ public interface TileEntityChangeEvent extends TileEntityEvent, CauseTracked, Ca
      * {@link TileEntity} after event resolution.
      * <p>
      * If desiring to change any data of this {@link TileEntity}, do so in
-     * this manipulator. Be sure to set this back with {@link TileEntityChangeEvent#setNewData(DataManipulator).}
+     * this manipulator. Be sure to set this back with {@link TileEntityChangeEvent#setNewData(DataManipulator)}.
      * @return The data
      */
     @TransformResult

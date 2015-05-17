@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.types.CarriedInventory;
+import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 /**
  * Represents a minecart with a container inside it. Common extensions

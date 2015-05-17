@@ -36,7 +36,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;

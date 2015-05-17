@@ -27,7 +27,7 @@ package org.spongepowered.api;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.net.ChannelRegistrar;
+import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;

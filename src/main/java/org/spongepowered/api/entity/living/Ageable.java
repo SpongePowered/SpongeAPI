@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulators.entities.AgeableData;
+import org.spongepowered.api.data.manipulator.entity.AgeableData;
 import org.spongepowered.api.entity.Entity;
 
 /**

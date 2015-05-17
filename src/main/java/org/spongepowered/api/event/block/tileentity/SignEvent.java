@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.Sign;
-import org.spongepowered.api.data.manipulators.tileentities.SignData;
+import org.spongepowered.api.block.tileentity.Sign;
+import org.spongepowered.api.data.manipulator.tileentity.SignData;
 
 /**
  * An event that is associated with a {@link Sign}.

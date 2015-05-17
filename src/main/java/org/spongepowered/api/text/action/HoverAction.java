@@ -29,7 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.stats.achievement.Achievement;
+import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Identifiable;
 

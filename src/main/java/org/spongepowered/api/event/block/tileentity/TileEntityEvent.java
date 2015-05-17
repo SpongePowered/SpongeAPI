@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.util.annotation.TransformResult;

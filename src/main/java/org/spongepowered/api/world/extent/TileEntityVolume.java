@@ -27,7 +27,7 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
-import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;

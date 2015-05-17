@@ -31,8 +31,8 @@ import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulatorRegistry;
 import org.spongepowered.api.data.ImmutableDataRegistry;
-import org.spongepowered.api.data.types.Career;
-import org.spongepowered.api.data.types.Profession;
+import org.spongepowered.api.data.type.Career;
+import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
@@ -47,15 +47,15 @@ import org.spongepowered.api.scoreboard.ScoreboardBuilder;
 import org.spongepowered.api.scoreboard.TeamBuilder;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
-import org.spongepowered.api.stats.BlockStatistic;
-import org.spongepowered.api.stats.EntityStatistic;
-import org.spongepowered.api.stats.ItemStatistic;
-import org.spongepowered.api.stats.Statistic;
-import org.spongepowered.api.stats.StatisticBuilder;
-import org.spongepowered.api.stats.StatisticGroup;
-import org.spongepowered.api.stats.TeamStatistic;
-import org.spongepowered.api.stats.achievement.Achievement;
-import org.spongepowered.api.stats.achievement.AchievementBuilder;
+import org.spongepowered.api.statistic.BlockStatistic;
+import org.spongepowered.api.statistic.EntityStatistic;
+import org.spongepowered.api.statistic.ItemStatistic;
+import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.statistic.StatisticBuilder;
+import org.spongepowered.api.statistic.StatisticGroup;
+import org.spongepowered.api.statistic.TeamStatistic;
+import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.statistic.achievement.AchievementBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
@@ -190,7 +190,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link org.spongepowered.api.stats.StatisticBuilder.EntityStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.EntityStatisticBuilder}
      * which may be used to create custom {@link EntityStatistic}s.
      *
      * @return The newly created entity statistic builder
@@ -199,7 +199,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link org.spongepowered.api.stats.StatisticBuilder.BlockStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.BlockStatisticBuilder}
      * which may be used to create custom {@link BlockStatistic}s.
      *
      * @return The newly created block statistic builder
@@ -208,7 +208,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link org.spongepowered.api.stats.StatisticBuilder.ItemStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.ItemStatisticBuilder}
      * which may be used to create custom {@link ItemStatistic}s.
      *
      * @return The newly created item statistic builder
@@ -217,7 +217,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link org.spongepowered.api.stats.StatisticBuilder.TeamStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.TeamStatisticBuilder}
      * which may be used to create custom {@link TeamStatistic}s.
      *
      * @return The newly created team statistic builder

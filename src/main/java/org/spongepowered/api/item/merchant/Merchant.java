@@ -26,11 +26,9 @@ package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulators.entities.TradeOfferData;
+import org.spongepowered.api.data.manipulator.entity.TradeOfferData;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
-
-import java.util.List;
 
 import javax.annotation.Nullable;
 

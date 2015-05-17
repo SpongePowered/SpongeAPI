@@ -27,7 +27,7 @@ package org.spongepowered.api.item.recipe;
 import com.google.common.base.Optional;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.types.GridInventory;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 
 import java.util.List;
 

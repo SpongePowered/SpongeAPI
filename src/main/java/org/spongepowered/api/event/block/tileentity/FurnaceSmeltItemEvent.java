@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.carrier.Furnace;
+import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.inventory.ItemResultEvent;
 import org.spongepowered.api.item.inventory.ItemStack;

@@ -24,31 +24,31 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.gen.populators.BigMushroom;
-import org.spongepowered.api.world.gen.populators.BlockBlob;
-import org.spongepowered.api.world.gen.populators.Cactus;
-import org.spongepowered.api.world.gen.populators.DesertWell;
-import org.spongepowered.api.world.gen.populators.DoublePlant;
-import org.spongepowered.api.world.gen.populators.Dungeon;
-import org.spongepowered.api.world.gen.populators.EnderCrystalPlatform;
-import org.spongepowered.api.world.gen.populators.Flowers;
-import org.spongepowered.api.world.gen.populators.Forest;
-import org.spongepowered.api.world.gen.populators.Glowstone;
-import org.spongepowered.api.world.gen.populators.HugeTree;
-import org.spongepowered.api.world.gen.populators.IcePath;
-import org.spongepowered.api.world.gen.populators.IceSpike;
-import org.spongepowered.api.world.gen.populators.JungleBush;
-import org.spongepowered.api.world.gen.populators.Lake;
-import org.spongepowered.api.world.gen.populators.Melons;
-import org.spongepowered.api.world.gen.populators.Ore;
-import org.spongepowered.api.world.gen.populators.Pumpkin;
-import org.spongepowered.api.world.gen.populators.RandomFire;
-import org.spongepowered.api.world.gen.populators.RandomLiquids;
-import org.spongepowered.api.world.gen.populators.Reeds;
-import org.spongepowered.api.world.gen.populators.SeaFloor;
-import org.spongepowered.api.world.gen.populators.Shrub;
-import org.spongepowered.api.world.gen.populators.Vines;
-import org.spongepowered.api.world.gen.populators.WaterLily;
+import org.spongepowered.api.world.gen.populator.BigMushroom;
+import org.spongepowered.api.world.gen.populator.BlockBlob;
+import org.spongepowered.api.world.gen.populator.Cactus;
+import org.spongepowered.api.world.gen.populator.DesertWell;
+import org.spongepowered.api.world.gen.populator.DoublePlant;
+import org.spongepowered.api.world.gen.populator.Dungeon;
+import org.spongepowered.api.world.gen.populator.EnderCrystalPlatform;
+import org.spongepowered.api.world.gen.populator.Flowers;
+import org.spongepowered.api.world.gen.populator.Forest;
+import org.spongepowered.api.world.gen.populator.Glowstone;
+import org.spongepowered.api.world.gen.populator.HugeTree;
+import org.spongepowered.api.world.gen.populator.IcePath;
+import org.spongepowered.api.world.gen.populator.IceSpike;
+import org.spongepowered.api.world.gen.populator.JungleBush;
+import org.spongepowered.api.world.gen.populator.Lake;
+import org.spongepowered.api.world.gen.populator.Melons;
+import org.spongepowered.api.world.gen.populator.Ore;
+import org.spongepowered.api.world.gen.populator.Pumpkin;
+import org.spongepowered.api.world.gen.populator.RandomFire;
+import org.spongepowered.api.world.gen.populator.RandomLiquids;
+import org.spongepowered.api.world.gen.populator.Reeds;
+import org.spongepowered.api.world.gen.populator.SeaFloor;
+import org.spongepowered.api.world.gen.populator.Shrub;
+import org.spongepowered.api.world.gen.populator.Vines;
+import org.spongepowered.api.world.gen.populator.WaterLily;
 
 /**
  * A factory for creating new populators for use in modifying WorldGenerators.

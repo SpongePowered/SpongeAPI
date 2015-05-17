@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command.source;
 
-import org.spongepowered.api.net.RemoteConnection;
+import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**

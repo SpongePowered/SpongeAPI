@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.manipulators.entities.ExpirableData;
+import org.spongepowered.api.data.manipulator.entity.ExpirableData;
 
 /**
  * Represents an endermite.

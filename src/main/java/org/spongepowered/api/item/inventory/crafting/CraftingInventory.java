@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory.crafting;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.item.inventory.types.GridInventory;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.Recipe;
 
 /**

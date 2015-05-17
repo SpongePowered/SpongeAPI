@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.data.manipulators.entities.ArtData;
+import org.spongepowered.api.data.manipulator.entity.ArtData;
 
 /**
  * Represents a Painting.

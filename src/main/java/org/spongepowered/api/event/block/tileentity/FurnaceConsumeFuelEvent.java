@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.block.tile.carrier.Furnace;
+import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.event.inventory.ItemResultEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 

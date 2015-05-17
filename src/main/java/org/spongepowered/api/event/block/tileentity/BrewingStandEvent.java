@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tile.carrier.BrewingStand;
-import org.spongepowered.api.data.manipulators.tileentities.BrewingData;
+import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
+import org.spongepowered.api.data.manipulator.tileentity.BrewingData;
 import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**

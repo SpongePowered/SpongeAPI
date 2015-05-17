@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.manipulators.entities.HorseData;
+import org.spongepowered.api.data.manipulator.entity.HorseData;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.inventory.Carrier;
 

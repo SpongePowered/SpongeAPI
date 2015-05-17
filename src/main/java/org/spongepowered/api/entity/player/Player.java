@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.entity.player;
 
-import org.spongepowered.api.data.manipulators.DisplayNameData;
-import org.spongepowered.api.data.manipulators.entities.GameModeData;
-import org.spongepowered.api.data.manipulators.entities.JoinData;
+import org.spongepowered.api.data.manipulator.DisplayNameData;
+import org.spongepowered.api.data.manipulator.entity.GameModeData;
+import org.spongepowered.api.data.manipulator.entity.JoinData;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;
-import org.spongepowered.api.net.PlayerConnection;
+import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
