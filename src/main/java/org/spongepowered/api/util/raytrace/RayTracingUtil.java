@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.util.raytrace;
 
+import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
@@ -132,7 +133,7 @@ public final class RayTracingUtil {
     // Sanitize the location (remove double fragments)
     private static double sanitize(double d) {
         final double dd = Math.abs(d % 1);
-        if ((dd != 0 && dd < 0.0000001) || (dd != 1 && dd > 0.9999999)) {
+        if ((dd != 0 && dd < GenericMath.DBL_EPSILON * 2) || (dd != 1 && dd > 1 - GenericMath.DBL_EPSILON * 2)) {
             return Math.round(d);
         } else {
             return d;
