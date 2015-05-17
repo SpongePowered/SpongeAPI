@@ -25,9 +25,31 @@
 package org.spongepowered.api.data.value;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.google.common.base.Optional;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.Exp;
-import org.spongepowered.api.data.marker.*;
+import org.spongepowered.api.data.marker.AchievementData;
+import org.spongepowered.api.data.marker.AgeData;
+import org.spongepowered.api.data.marker.ArtData;
+import org.spongepowered.api.data.marker.BanData;
+import org.spongepowered.api.data.marker.BlockTypeData;
+import org.spongepowered.api.data.marker.BreathingData;
+import org.spongepowered.api.data.marker.DamageableData;
+import org.spongepowered.api.data.marker.DamagingData;
+import org.spongepowered.api.data.marker.EntityTypeData;
+import org.spongepowered.api.data.marker.ExperienceHolderData;
+import org.spongepowered.api.data.marker.EyeLocationData;
+import org.spongepowered.api.data.marker.FallingBlockData;
+import org.spongepowered.api.data.marker.FoodData;
+import org.spongepowered.api.data.marker.GameData;
+import org.spongepowered.api.data.marker.HorseData;
+import org.spongepowered.api.data.marker.IgniteableData;
+import org.spongepowered.api.data.marker.InvisibilityData;
+import org.spongepowered.api.data.marker.JoinData;
+import org.spongepowered.api.data.marker.PartRotationData;
+import org.spongepowered.api.data.marker.SizeData;
+import org.spongepowered.api.data.marker.StatisticData;
 import org.spongepowered.api.data.types.Art;
 import org.spongepowered.api.data.types.BigMushroomType;
 import org.spongepowered.api.data.types.BrickType;
@@ -37,28 +59,48 @@ import org.spongepowered.api.data.types.DirtType;
 import org.spongepowered.api.data.types.DisguisedBlockType;
 import org.spongepowered.api.data.types.DoubleSizePlantType;
 import org.spongepowered.api.data.types.Hinge;
+import org.spongepowered.api.data.types.HorseColor;
+import org.spongepowered.api.data.types.HorseStyle;
+import org.spongepowered.api.data.types.HorseVariant;
 import org.spongepowered.api.data.types.InstrumentType;
+import org.spongepowered.api.data.types.OcelotType;
 import org.spongepowered.api.data.types.PistonType;
 import org.spongepowered.api.data.types.PortionType;
 import org.spongepowered.api.data.types.PrismarineType;
 import org.spongepowered.api.data.types.QuartzType;
+import org.spongepowered.api.data.types.RabbitType;
 import org.spongepowered.api.data.types.RailDirection;
 import org.spongepowered.api.data.types.SandType;
 import org.spongepowered.api.data.types.SandstoneType;
 import org.spongepowered.api.data.types.ShrubType;
+import org.spongepowered.api.data.types.SkeletonType;
 import org.spongepowered.api.data.types.SlabType;
 import org.spongepowered.api.data.types.StairShape;
 import org.spongepowered.api.data.types.StoneType;
 import org.spongepowered.api.data.types.TreeType;
 import org.spongepowered.api.data.types.WallType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.hanging.Painting;
+import org.spongepowered.api.entity.living.*;
+import org.spongepowered.api.entity.living.animal.Animal;
+import org.spongepowered.api.entity.living.monster.Creeper;
+import org.spongepowered.api.entity.living.monster.Zombie;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.merchant.TradeOffer;
+import org.spongepowered.api.stats.Statistic;
 import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.world.Location;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -71,103 +113,185 @@ public class Values {
     // TODO missing Rotation
     // TODO missing Wet
     // TODO missing base manipulators in data.manipulators.*
+    // TODO collection props
 
     /**
-     * Signifies that a block is "attached" or "hanging" on another block.
-     * Usually applicable for {@link BlockTypes#TRIPWIRE}.
+     * Represents whether a block that is "attached" or "hanging" on a block.
+     *
+     * <p>Mainly for {@link BlockTypes#TRIPWIRE}.</p>
+     *
+     * @see BlockTypes#TRIPWIRE
      */
     public static final Value<Boolean, GameData> IS_ATTACHED = null;
 
     /**
-     * Signifies that a block relies on {@link Axis}.
+     * Represents the {@link Axis} that a block that is aligned upon.
+     *
+     * <p>Mainly for {@link BlockTypes#HAY_BLOCK}, {@link BlockTypes#LOG}, and {@link BlockTypes#LOG2}.</p>
+     *
+     * @see BlockTypes#HAY_BLOCK
+     * @see BlockTypes#LOG
+     * @see BlockTypes#LOG2
      */
     public static final Value<Axis, GameData> AXIS = null;
 
     /**
-     * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
-     * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
+     * Represents the {@link Axis} that a block is aligned vertically to.
+     * Can be {@link Axis#X} or {@link Axis#Z}.
+     *
+     * <p>Mainly for {@link BlockTypes#PORTAL}.</p>
+     *
+     * @see BlockTypes#PORTAL
+     */
+    public static final Value<Axis, GameData> VERTICAL_AXIS = null;
+
+    /**
+     * Represents the {@link BigMushroomType} of a block.
+     *
+     * <p>Mainly for big mushroom blocks, including
+     * {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and {@link BlockTypes#RED_MUSHROOM_BLOCK}</p>
+     *
+     * @see BlockTypes#BROWN_MUSHROOM_BLOCK
+     * @see BlockTypes#RED_MUSHROOM_BLOCK
      */
     public static final Value<BigMushroomType, BlockTypeData> BIG_MUSHROOM_TYPE = null;
 
     /**
-     * Represents the type of {@link BrickType} for a
-     * {@link BlockTypes#STONEBRICK}.
+     * Represents the {@link BrickType} of a block.
+     *
+     * <p>Mainly for {@link BlockTypes#STONEBRICK}</p>
+     *
+     * @see BlockTypes#STONEBRICK
      */
     public static final Value<BrickType, BlockTypeData> BRICK_TYPE = null;
 
     /**
-     * Represents the type of {@link Comparison} for a
-     * {@link BlockTypes#POWERED_COMPARATOR} or {@link BlockTypes#UNPOWERED_COMPARATOR}.
+     * Represents the type of {@link Comparison} of a block.
+     *
+     * <p>Mainly for {@link BlockTypes#POWERED_COMPARATOR} and {@link BlockTypes#UNPOWERED_COMPARATOR}.</p>
+     *
+     * @see BlockTypes#POWERED_COMPARATOR
+     * @see BlockTypes#UNPOWERED_COMPARATOR
      */
     public static final Value<Comparison, BlockTypeData> COMPARISON_TYPE = null;
 
-    // TODO list props?
     /**
-     * Signifies that a block is "connected" to a particular {@link Direction}.
-     * Usually applies to {@link BlockTypes#GLASS_PANE},
-     * {@link BlockTypes#STAINED_GLASS_PANE}, and several others.
+     * Represents the {@link Direction}s a block is "connected" to.
+     *
+     * <p>Mainly for {@link BlockTypes#GLASS_PANE}, {@link BlockTypes#STAINED_GLASS_PANE}, and
+     * {@link BlockTypes#IRON_BARS}.</p>
+     *
+     * @see BlockTypes#GLASS_PANE
+     * @see BlockTypes#STAINED_GLASS_PANE
+     * @see BlockTypes#IRON_BARS
      */
     public static final Value<List<Direction>, GameData> CONNECTED_DIRECTIONS = null;
 
     /**
-     * Signifies that a block will "decay" or be removed after a certain time.
-     * Usually applicable to {@link BlockTypes#LEAVES} and
-     * {@link BlockTypes#LEAVES2}.
+     * Represents that a block will "decay" or be removed after a certain time.
+     *
+     * <p>Mainly for leaves, including {@link BlockTypes#LEAVES} and {@link BlockTypes#LEAVES2}.</p>
+     *
+     * @see BlockTypes#LEAVES
+     * @see BlockTypes#LEAVES2
      */
     public static final Value<Boolean, GameData> IS_DECAYABLE = null;
 
-    // naming
     /**
-     * Signifies that a block has a {@link Direction}. Usually applies
-     * to "rotational" blocks, such as {@link BlockTypes#LOG} and
-     * {@link BlockTypes#LOG2} etc.
+     * Represents what {@link Direction} a block is facing.
+     * The available directions can vary.
+     *
+     * <p>Mainly for "rotational" blocks, including {@link BlockTypes#DISPENSER} and
+     * {@link BlockTypes#LOG2} etc.</p>
+     *
+     * @see BlockTypes#LOG
+     * @see BlockTypes#LOG2
      */
-    public static final Value<Direction, GameData> DIRECTION = null;
+    public static final Value<Direction, GameData> FACING = null;
 
     /**
-     * Represents the type of {@link DirtType} for a
-     * {@link BlockTypes#DIRT} block.
+     * Represents the {@link DirtType} for a block.
+     *
+     * <p>Mainly for {@link BlockTypes#DIRT}.</p>
+     *
+     * @see BlockTypes#DIRT
      */
     public static final Value<DirtType, BlockTypeData> DIRT_TYPE = null;
 
     /**
-     * Signifies that a block is "disarmed". Usually applies to
-     * {@link BlockTypes#TRIPWIRE_HOOK}s.
+     * Represents that a block is "disarmed" and won't activate.
+     *
+     * <p>Mainly for {@link BlockTypes#TRIPWIRE_HOOK}s</p>
+     *
+     * @see BlockTypes#TRIPWIRE_HOOK
      */
     public static final Value<Boolean, GameData> IS_DISARMED = null;
 
     /**
-     * Represents the {@link DisguisedBlockType} of a block. Usually applies
-     * to {@link BlockTypes#MONSTER_EGG}.
+     * Represents the {@link DisguisedBlockType} of a block.
+     *
+     * <p>Mainly for {@link BlockTypes#MONSTER_EGG}.</p>
+     *
+     * @see BlockTypes#MONSTER_EGG
      */
     public static final Value<DisguisedBlockType, BlockTypeData> DISGUISED_BLOCK_TYPE = null;
 
     /**
-     * Represents the type of a {@link BlockTypes#DOUBLE_PLANT}.
+     * Represents the {@link DoubleSizePlantType} of a block.
+     *
+     * <p>Mainly for {@link BlockTypes#DOUBLE_PLANT}.</p>
+     *
+     * @see BlockTypes#DOUBLE_PLANT
      */
     public static final Value<DoubleSizePlantType, BlockTypeData> DOUBLE_PLANT_TYPE = null;
 
     /**
-     * Signifies whether the block is "extended". Usually applicable to
-     * {@link BlockTypes#PISTON}.
+     * Represents whether a block is "extended" and takes up extra space.
+     *
+     * <p>Mainly for {@link BlockTypes#PISTON} or {@link BlockTypes#STICKY_PISTON}.</p>
+     *
+     * @see BlockTypes#PISTON
+     * @see BlockTypes#STICKY_PISTON
      */
     public static final Value<Boolean, GameData> IS_EXTENDED = null;
 
     /**
-     * Signifies that the owner is "filled". Usually applicable to
-     * {@link BlockTypes#END_PORTAL_FRAME}.
+     * Represents that a block is in its "filled" state.
+     *
+     * <p>Mainly for {@link BlockTypes#END_PORTAL_FRAME}.</p>
+     *
+     * @see BlockTypes#END_PORTAL_FRAME
      */
     public static final Value<Boolean, GameData> IS_FILLED = null;
 
     /**
-     * Represents the "fluid level" for a liquid block. Usually applicable
-     * to {@link BlockTypes#WATER} and {@link BlockTypes#LAVA}
+     * Represents the "fluid level" or height of a liquid block.
+     *
+     * <p>Mainly for liquid blocks, like {@link BlockTypes#WATER}, {@link BlockTypes#FLOWING_WATER},
+     * {@link BlockTypes#LAVA}, and {@link BlockTypes#FLOWING_LAVA}.</p>
+     *
+     * @see BlockTypes#WATER
+     * @see BlockTypes#FLOWING_WATER
+     * @see BlockTypes#LAVA
+     * @see BlockTypes#FLOWING_LAVA
      */
     public static final BoundedValue<Integer, GameData> FLUID_LEVEL = null;
 
     /**
-     * Represents the "growth" of a block. Usually applicable to
-     * {@link BlockTypes#WHEAT}, {@link BlockTypes#PUMPKIN_STEM}, etc.
+     * Represents the "growth" or "age" of a block.
+     *
+     * <p>Mainly for growable blocks, like {@link BlockTypes#SAPLING}, {@link BlockTypes#WHEAT},
+     * {@link BlockTypes#CACTUS}, {@link BlockTypes#REEDS}, {@link BlockTypes#PUMPKIN_STEM},
+     * {@link BlockTypes#NETHER_WART}, {@link BlockTypes#CARROTS}, or {@link BlockTypes#POTATOES}.</p>
+     *
+     * @see BlockTypes#SAPLING
+     * @see BlockTypes#WHEAT
+     * @see BlockTypes#CACTUS
+     * @see BlockTypes#REEDS
+     * @see BlockTypes#PUMPKIN_STEM
+     * @see BlockTypes#NETHER_BRICK
+     * @see BlockTypes#CARROTS
+     * @see BlockTypes#POTATOES
      */
     public static final BoundedValue<Integer, GameData> GROWTH_STAGE = null;
 
@@ -334,43 +458,138 @@ public class Values {
      */
     public static final Value<WallType, BlockTypeData> WALL_TYPE = null;
 
+    /**
+     * The {@link AchievementData} class that can be applied to
+     * {@link Player}s.
+     */
     public static final Value<Set<Achievement>, AchievementData> ACHIEVEMENTS = null;
 
+    /**
+     * Represents age determining whether an
+     * {@link Entity} is a child or an adult. Always exists for
+     * {@link Ageable} entities.
+     */
     public static final BoundedValue<Integer, AgeData> AGE = null;
 
     // TODO there are other ways to do this, but this is simplest
+    /**
+     * Represents whether the {@link Entity} is an adult. Always exists for
+     * {@link Ageable} entities.
+     */
     public static final Value<Boolean, AgeData> IS_ADULT = null;
+
+    /**
+     * Represents whether the {@link Entity} is a baby. Always exists for
+     * {@link Ageable} entities.
+     */
     public static final Value<Boolean, AgeData> IS_BABY = null;
 
-    public static final Value<Boolean, GameData> AGGRESSIVE = null;
+    /**
+     * Checks whether the {@link Entity} has AI enabled.
+     * Usually applicable to {@link Agent}s.
+     */
+    public static final Value<Boolean, GameData> AI_ENABLED = null;
 
+    /**
+     * Checks whether the {@link Entity} is currently aggressive.
+     * Usually applicable to {@link Agent}s.
+     */
+    public static final Value<Boolean, GameData> IS_AGGRESSIVE = null;
+
+    /**
+     * The time for an {@link Agent} that is currently angry to calm down.
+     */
+    public static final BoundedValue<Boolean, GameData> IS_ANGRY = null;
+
+    /**
+     * Represents the time for an {@link Agent} that is currently angry to calm down.
+     */
     public static final BoundedValue<Integer, GameData> ANGER_LEVEL = null;
 
+    /**
+     * Represents what piece of {@link Art} is being
+     * displayed. It is applicable for {@link Painting} entities.
+     */
     public static final Value<Art, ArtData> ART = null;
 
+    // TODO attribute data
+
+    /**
+     * Represents the bans made, mostly for {@link User}s.
+     */
     public static final Value<Set<Ban.User>, BanData> BANS = null;
 
+    /**
+     * Represents the head rotation of an entity. Usually
+     * applicable to {@link Human}s and {@link ArmorStand}s.
+     */
     public static final Value<Vector3d, PartRotationData> HEAD_ROTATION = null;
 
+    /**
+     * Represents the body rotation of an entity. Usually
+     * applicable to {@link Human}s and {@link ArmorStand}s.
+     */
     public static final Value<Vector3d, PartRotationData> BODY_ROTATION = null;
 
+    /**
+     * Represents the rotation of the left arm of an entity. Usually
+     * applicable to {@link Human}s and {@link ArmorStand}s.
+     */
     public static final Value<Vector3d, PartRotationData> LEFT_ARM_ROTATION = null;
 
+    /**
+     * Represents the rotation of the right arm of an entity. Usually
+     * applicable to {@link Human}s and {@link ArmorStand}s.
+     */
     public static final Value<Vector3d, PartRotationData> RIGHT_ARM_ROTATION = null;
 
+    /**
+     * Represents the rotation of the left leg of an entity. Usually
+     * applicable to {@link Human}s and {@link ArmorStand}s.
+     */
     public static final Value<Vector3d, PartRotationData> LEFT_LEG_ROTATION = null;
 
+    /**
+     * Represents the rotation of the right leg of an entity. Usually
+     * applicable to {@link Human}s and {@link ArmorStand}s.
+     */
     public static final Value<Vector3d, PartRotationData> RIGHT_LEG_ROTATION = null;
 
+    /**
+     * Represents the remaining 'bubbles' of air left for an {@link Entity}.
+     * Usually applies to {@link Living} entities but not {@link Aquatic} entities.
+     */
     public static final Value<Integer, BreathingData> REMAINING_AIR = null;
 
+    /**
+     * Represents the max air 'bubbles' of air left for an {@link Entity}.
+     * Usually applies to {@link Living} entities but not {@link Aquatic} entities.
+     */
     public static final Value<Integer, BreathingData> MAX_AIR = null;
 
-    // TODO name, READY_TO_BREED ?
+    /**
+     * Represents that something is ready to breed. Usually applies to
+     * {@link Animal}s, or sometimes for {@link Zombie}s to call
+     * reinforcements.
+     */
     public static final Value<Boolean, GameData> CAN_BREED = null;
 
+    /**
+     * Represents the {@link Career} of something.
+     *
+     * <p>Mainly for {@link Villager}, to describe their available trades and appearance.</p>
+     *
+     * @see Villager
+     */
     public static final Value<Career, GameData> CAREER = null;
 
+    /**
+     * Represents whether something is "charged".
+     *
+     * <p>Mainly for {@link Creeper}s, who are charged naturally when struck with lightning.</p>
+     *
+     * @see Creeper
+     */
     public static final Value<Boolean, GameData> IS_CHARGED = null;
 
     // TODO called CriticalHitData
@@ -403,5 +622,125 @@ public class Values {
     public static final GetterValue<Double, EyeLocationData> EYE_HEIGHT = null;
 
     public static final GetterValue<Double, EyeLocationData> EYE_LOCATION = null;
+
+    public static final Value<Double, FallingBlockData> FALL_DAMAGE_PER_BLOCK = null;
+
+    public static final Value<Double, FallingBlockData> MAX_FALL_DAMAGE = null;
+
+    public static final Value<BlockState, FallingBlockData> BLOCK_STATE = null;
+
+    public static final Value<Boolean, FallingBlockData> CAN_PLACE_AS_BLOCK = null;
+
+    public static final Value<Double, FallingBlockData> CAN_DROP_AS_ITEM = null;
+
+    public static final Value<Boolean, GameData> FLAMMABLE = null;
+
+    public static final Value<Double, GameData> FLYING = null;
+
+    public static final Value<Double, FoodData> EXHAUSTION = null;
+
+    public static final Value<Double, FoodData> SATURATION = null;
+
+    public static final Value<Double, FoodData> FOOD_LEVEL = null;
+
+    public static final Value<Integer, GameData> FUSE_DURATION = null;
+
+    public static final Value<GameMode, GameData> GAME_MODE = null;
+
+    public static final Value<Boolean, GameData> IS_HEALING_SOURCE = null;
+
+    public static final Value<Integer, GameData> HEALTH = null;
+
+    public static final Value<Integer, GameData> MAX_HEALTH = null;
+
+    public static final Value<HorseStyle, HorseData> HORSE_STYLE = null;
+
+    public static final Value<HorseColor, HorseData> HORSE_COLOR = null;
+
+    public static final Value<HorseVariant, HorseData> HORSE_VARIANT = null;
+
+    public static final GetterValue<Integer, IgniteableData> FIRE_DELAY = null;
+
+    public static final GetterValue<Integer, IgniteableData> FIRE_TICKS = null;
+
+    public static Value<Boolean, InvisibilityData> invisibleTo(Player player) {
+        return null;
+    }
+
+    public static final Value<Integer, GameData> INVLUNERABILE_TICKS = null;
+
+    public static final Value<Boolean, JoinData> HAS_JOINED_BEFORE = null;
+
+    public static final GetterValue<Date, JoinData> GET_FIRST_PLAYED = null;
+
+    public static final GetterValue<Date, JoinData> GET_LAST_PLAYED = null;
+
+    public static final Value<Integer, GameData> KNOCKBACK_STRENGTH = null;
+
+    public static final Value<Optional<Entity>, GameData> LEASH_HOLDER = null;
+
+    public static final Value<OcelotType, EntityTypeData> OCELOT_TYPE = null;
+
+    public static final Value<Integer, GameData> ORB_EXPERIENCE = null;
+
+    public static final Value<Entity, GameData> VEHICLE = null;
+
+    public static final GetterValue<Entity, GameData> BASE_VEHICLE = null;
+
+    public static final Value<Boolean, GameData> WILL_PERSIST = null;
+
+    public static final Value<Boolean, GameData> IS_PLAYER_CREATED = null;
+
+    public static final Value<Boolean, GameData> PLAYER_DATA = null;
+
+    public static final Value<RabbitType, EntityTypeData> RABBIT_TYPE = null;
+
+    public static final Value<Location, GameData> RESPAWN_LOCATION = null;
+
+    public static final Value<ItemStack, GameData> SADDLE = null;
+
+    // meh on IS_SCREAMING
+    public static final Value<Boolean, GameData> IS_GRIMACING = null;
+
+    public static final GetterValue<Boolean, GameData> WILL_SHATTER = null;
+
+    public static final GetterValue<Boolean, GameData> IS_SHEARED = null;
+
+    public static final GetterValue<Boolean, GameData> IS_SITTING = null;
+
+    public static final GetterValue<Float, SizeData> BASE = null;
+
+    public static final GetterValue<Float, SizeData> HEIGHT = null;
+
+    public static final GetterValue<Float, SizeData> SCALE = null;
+
+    public static final Value<SkeletonType, EntityTypeData> SKELETON_TYPE = null;
+
+    public static final Value<Boolean, GameData> IS_SLEEPING = null;
+
+    public static final Value<Integer, GameData> SLIME_SIZE = null;
+
+    public static final Value<Boolean, GameData> IS_SNEAKING = null;
+
+    public static Value<Long, StatisticData> statistic(Statistic statistic) {
+        return null;
+    }
+
+    public static final Value<Tamer, GameData> OWNER = null;
+
+    public static final Value<List<Living>, GameData> TARGETS = null;
+
+    public static final Value<List<TradeOffer>, GameData> TRADE_OFFERS = null;
+
+    public static final Value<Entity, GameData> PASSENGER = null;
+
+    public static final GetterValue<Entity, GameData> TOP_PASSENGER = null;
+
+    public static final Value<Vector3d, GameData> VELOCITY = null;
+
+    public static final Value<Boolean, GameData> IS_VILLAGER_ZOMBIE = null;
+
+    // TODO naming, ON_WHITELIST?
+    public static final GetterValue<Boolean, GameData> IS_WHITELISTED = null;
 
 }

@@ -25,10 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.GetterValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.SetterValue;
+import org.spongepowered.api.data.value.*;
 
 /**
  * Represents some container of arbitrary data values.
