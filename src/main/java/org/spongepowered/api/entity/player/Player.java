@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.player;
 
+import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.data.manipulators.DisplayNameData;
 import org.spongepowered.api.data.manipulators.entities.GameModeData;
 import org.spongepowered.api.data.manipulators.entities.JoinData;
@@ -92,6 +93,17 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      * @param reason The reason for the kick
      */
     void kick(Text reason);
+
+    /**
+     * Opens the sign editing dialog on this {@link Player}'s client.
+     *
+     * <p>Any pre-existing lines on the {@link Sign} given will be filled in to the
+     * dialog, and the {@link Sign} will be edited with the contents of the dialog
+     * after the "Done" button is pressed by the player.</p>
+     *
+     * @param sign The sign to edit.
+     */
+    void editSign(Sign sign);
 
     /**
      * Gets the {@link Scoreboard} displayed to the player.
