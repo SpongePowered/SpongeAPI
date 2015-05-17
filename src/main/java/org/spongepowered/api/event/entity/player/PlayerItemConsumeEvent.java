@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.entity.player;
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanItemConsumeEvent;
 
 /**
- * An event when a player consumes an item. Examples may include: eating,
+ * An event when a {@link Player} consumes an item. Examples may include: eating,
  * drinking a potion, etc.
  */
 public interface PlayerItemConsumeEvent extends PlayerEvent, HumanItemConsumeEvent {

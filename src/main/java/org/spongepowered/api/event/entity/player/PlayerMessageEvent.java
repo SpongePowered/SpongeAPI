@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanPlaceBlockEvent;
+import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Called when a {@link Player} places a {@link BlockType}.
+ * Describes events where a {@link CommandSource} is a {@link Player}
+ * and has sent a {@link Text} message.
  */
-public interface PlayerPlaceBlockEvent extends PlayerChangeBlockEvent, HumanPlaceBlockEvent {
-
+public interface PlayerMessageEvent extends PlayerEvent, MessageEvent {
+    @Override
+    Player getSource();
 }

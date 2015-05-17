@@ -24,35 +24,40 @@
  */
 package org.spongepowered.api.event.message;
 
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Fired when a chat message is said.
+ * Describes events when a {@link CommandSource} sends a {@link Text} message.
  */
-public interface MessageEvent extends GameEvent, Cancellable {
+public interface MessageEvent extends GameEvent {
 
     /**
-     * Get the command source.
+     * Gets the {@link CommandSource} of the event which may
+     * or may not be a target of the {@link Text}.
      *
-     * @return The command source
+     * @return The source
      */
     CommandSource getSource();
 
     /**
-     * Get the message said.
-     *
-     * @return The message said
+     * Gets the {@link Text} message created by the {@link CommandSource} before
+     * the calling of this event.
+     * @return The message
      */
     Text getMessage();
 
     /**
-     * Set the message said.
-     *
-     * @param message The message said
+     * Gets the currently set {@link Text} message.
+     * @return The message
      */
-    void setMessage(Text message);
+    Text getNewMessage();
+
+    /**
+     * Sets the {@link Text} message.
+     * @param message The new message
+     */
+    void setNewMessage(Text message);
 
 }

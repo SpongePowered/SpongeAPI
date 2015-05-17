@@ -971,6 +971,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("source", source);
         values.put("message", message);
+        values.put("newMessage", message);
         return createEvent(MessageEvent.class, values);
     }
 
@@ -1127,16 +1128,16 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
-     * @param source The source of the message
      * @param message The message to say
      * @return A new instance of the event
      */
-    public static PlayerChatEvent createPlayerChat(Game game, Player player, CommandSource source, Text message) {
+    public static PlayerChatEvent createPlayerChat(Game game, Player player, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("source", source);
+        values.put("source", player);
         values.put("message", message);
+        values.put("newMessage", message);
         values.put("user", player);
         return createEvent(PlayerChatEvent.class, values);
     }
@@ -1148,7 +1149,7 @@ public final class SpongeEventFactory {
      * @param cause The cause of the event, can be null
      * @param player The player involved in this event
      * @param location The location of death
-     * @param deathMessage The message to show to the player because they died
+     * @param message The message to show to the player because they died
      * @param exp The experience to give, or take for negative values
      * @param newExperience The new experience the player will have towards the next level
      * @param newLevel The new level the player will have after death
@@ -1156,14 +1157,16 @@ public final class SpongeEventFactory {
      * @param keepsInventory Whether the player should keep inventory
      * @return A new instance of the event
      */
-    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text deathMessage,
+    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text message,
             int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
 
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("entity", player);
-        values.put("deathMessage", deathMessage);
+        values.put("source", player);
+        values.put("message", message);
+        values.put("newMessage", message);
         values.put("user", player);
         values.put("location", location);
         values.put("exp", exp);
@@ -1293,14 +1296,16 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
-     * @param joinMessage The message displayed when the player joins
+     * @param message The message displayed when the player joins
      * @return A new instance of the event
      */
-    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Text joinMessage) {
+    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("joinMessage", joinMessage);
+        values.put("source", player);
+        values.put("message", message);
+        values.put("newMessage", message);
         values.put("user", player);
         return createEvent(PlayerJoinEvent.class, values);
     }
@@ -1374,14 +1379,16 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
-     * @param quitMessage The message to display to the player because they quit
+     * @param message The message to display to the player because they quit
      * @return A new instance of the event
      */
-    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text quitMessage) {
+    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
-        values.put("quitMessage", quitMessage);
+        values.put("source", player);
+        values.put("message", message);
+        values.put("newMessage", message);
         values.put("user", player);
         return createEvent(PlayerQuitEvent.class, values);
     }
@@ -1449,7 +1456,7 @@ public final class SpongeEventFactory {
      * @param achievement The achievement being added to the player
      * @return A new instance of the event
      */
-    public static AchievementEvent createAchievementEvent(Game game, Player player, Achievement achievement) {
+    public static AchievementEvent createAchievement(Game game, Player player, Achievement achievement) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1712,7 +1719,7 @@ public final class SpongeEventFactory {
      * @param data The brewing stand data
      * @return A new instance of the event
      */
-    public static BrewingStandBrewEvent createBrewingStandBrewEvent(Game game, BrewingStand brewingStand, BrewingData data,
+    public static BrewingStandBrewEvent createBrewingStandBrew(Game game, BrewingStand brewingStand, BrewingData data,
                                                                     List<ItemStack> sourceItems, ItemStack fuelSource, List<ItemStack> brewedItems,
                                                                     Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
                                                                     Location block) {
@@ -1742,7 +1749,7 @@ public final class SpongeEventFactory {
      * @param data The furnace data
      * @return A new instance of the event
      */
-    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(Game game, Furnace furnace, FurnaceData data, ItemStack burnedItem,
+    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuel(Game game, Furnace furnace, FurnaceData data, ItemStack burnedItem,
                                                                         ItemStack remainingFuel, Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
                                                                         Location block) {
         Map<String, Object> values = Maps.newHashMap();
@@ -1770,7 +1777,7 @@ public final class SpongeEventFactory {
      * @param data The furnace data
      * @return A new instance of the event
      */
-    public static FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(Game game, Furnace furnace, FurnaceData data, ItemStack cookedItem,
+    public static FurnaceSmeltItemEvent createFurnaceSmeltItem(Game game, Furnace furnace, FurnaceData data, ItemStack cookedItem,
                                                                     ItemStack sourceItem, Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
                                                                     Location block) {
         Map<String, Object> values = Maps.newHashMap();
@@ -1795,7 +1802,7 @@ public final class SpongeEventFactory {
      * @param currentData The new sign data
      * @return A new instance of the event
      */
-    public static SignChangeEvent createSignChangeEvent(Game game, Cause cause, Sign sign, SignData currentData, SignData newData) {
+    public static SignChangeEvent createSignChange(Game game, Cause cause, Sign sign, SignData currentData, SignData newData) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1812,7 +1819,7 @@ public final class SpongeEventFactory {
      * @param source The {@link RconSource} that caused this event
      * @return A new instance of the event
      */
-    public static RconLoginEvent createRconLoginEvent(Game game, RconSource source) {
+    public static RconLoginEvent createRconLogin(Game game, RconSource source) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);
@@ -1826,7 +1833,7 @@ public final class SpongeEventFactory {
      * @param source The {@link RconSource} that caused this event
      * @return A new instance of the event
      */
-    public static RconQuitEvent createRconQuitEvent(Game game, RconSource source) {
+    public static RconQuitEvent createRconQuit(Game game, RconSource source) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);

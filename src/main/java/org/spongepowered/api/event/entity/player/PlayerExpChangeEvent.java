@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.entity.player;
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanExpChangeEvent;
 
 /**
- * Called when a player gains or looses experience.
+ * Called when a {@link Player} gains or looses experience.
  */
 public interface PlayerExpChangeEvent extends HumanExpChangeEvent, PlayerEvent {
 

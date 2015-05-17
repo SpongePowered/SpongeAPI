@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.entity.player;
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanSleepEvent;
 
 /**
- * Called when a {@link org.spongepowered.api.entity.player.Player} interacts with a bed.
+ * Called when a {@link Player} interacts with a bed.
  */
 public interface PlayerSleepEvent extends HumanSleepEvent, PlayerEvent {
 

@@ -25,11 +25,11 @@
 package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Called when a {@link Player} sends a chat message.
  */
-public interface PlayerChatEvent extends MessageEvent, PlayerEvent {
+public interface PlayerChatEvent extends PlayerMessageEvent, Cancellable {
 
 }

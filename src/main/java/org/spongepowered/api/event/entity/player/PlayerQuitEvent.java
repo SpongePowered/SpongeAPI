@@ -25,24 +25,9 @@
 package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.text.Text;
 
 /**
  * Called when a {@link Player} quit the game.
  */
-public interface PlayerQuitEvent extends PlayerEvent {
-
-    /**
-     * Gets the message displayed when the player quits.
-     *
-     * @return The player quit message.
-     */
-    Text getQuitMessage();
-
-    /**
-     * Sets the message displayed when the player quits.
-     *
-     * @param quitMessage The new player quit message.
-     */
-    void setQuitMessage(Text quitMessage);
+public interface PlayerQuitEvent extends PlayerMessageEvent {
 }
