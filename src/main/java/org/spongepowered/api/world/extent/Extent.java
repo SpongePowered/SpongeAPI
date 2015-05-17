@@ -50,14 +50,6 @@ import java.util.Collection;
 public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
 
     /**
-     * Gets if this Extent contains the given {@link Location}.
-     *
-     * @param location The location to test
-     * @return If the extent contains the location
-     */
-    boolean contains(Location location);
-
-    /**
      * Get a representation of the block at the given position.
      *
      * @param position The position
