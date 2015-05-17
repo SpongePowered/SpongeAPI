@@ -29,7 +29,6 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
@@ -37,34 +36,49 @@ import org.spongepowered.api.world.extent.Extent;
  */
 public final class RayTracingUtil {
 
-    private static final Function<BlockConsumer, BlockConsumer> BLOCK_LIMITER = Functions.identity();
     private static final Function<PositionConsumer, PositionConsumer> POSITION_LIMITER = Functions.identity();
+    private static final PositionToBlockAdapterFactory FACE_BLOCKADAPTER = new SimplePositionToBlockAdapterFactory();
+    private static final PositionToBlockAdapterFactory SOLIDBOX_BLOCKADAPTER = FACE_BLOCKADAPTER;
+    private static final PositionToBlockAdapterFactory INTERACTBOX_BLOCKADAPTER = FACE_BLOCKADAPTER;
 
     /**
-     * Starts the ray tracing from the given location.
+     * Wraps the given BlockConsumer in a {@link PositionConsumer}. This does
+     * not check whether the block has been actually hit (Example button).
      *
-     * <p>Note: The range may be truncated by server settings.</p>
-     *
-     * @param location The location to start
-     * @param direction The ray direction
+     * @param world The world to search in
      * @param consumer The consumer that consumes all visited blocks
+     * @return The wrapped consumer
      */
-    public static void trace(Location location, Vector3d direction, BlockConsumer consumer) {
-        trace(location.getPosition(), direction, new PostionToBlockConsumer(location.getExtent(), BLOCK_LIMITER.apply(consumer)));
+    public static PositionConsumer wrapFace(Extent world, BlockConsumer consumer) {
+        return FACE_BLOCKADAPTER.wrap(world, consumer);
     }
 
     /**
-     * Starts the ray tracing from the given location.
-     *
-     * <p>Note: The range may be truncated by server settings.</p>
+     * Wraps the given BlockConsumer in a {@link PositionConsumer}. This tries
+     * to check whether the solid box of the block has been hit. This wrapper
+     * makes some assumptions on blocks, so it might not act the same as the
+     * client.
      *
      * @param world The world to search in
-     * @param location The location to start
-     * @param direction The ray direction
      * @param consumer The consumer that consumes all visited blocks
+     * @return The wrapped consumer
      */
-    public static void trace(Extent world, Vector3d location, Vector3d direction, BlockConsumer consumer) {
-        trace(location, direction, new PostionToBlockConsumer(world, BLOCK_LIMITER.apply(consumer)));
+    public static PositionConsumer wrapSolidBox(Extent world, BlockConsumer consumer) {
+        return SOLIDBOX_BLOCKADAPTER.wrap(world, consumer);
+    }
+
+    /**
+     * Wraps the given BlockConsumer in a {@link PositionConsumer}. This tries
+     * to check whether the interact box of the block has been hit. This wrapper
+     * makes some assumptions on blocks, so it might not act the same as the
+     * client.
+     *
+     * @param world The world to search in
+     * @param consumer The consumer that consumes all visited blocks
+     * @return The wrapped consumer
+     */
+    public static PositionConsumer wrapInteractBox(Extent world, BlockConsumer consumer) {
+        return INTERACTBOX_BLOCKADAPTER.wrap(world, consumer);
     }
 
     /**
