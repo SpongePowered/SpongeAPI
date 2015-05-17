@@ -25,46 +25,36 @@
 
 package org.spongepowered.api.util.raytrace;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * This {@link BlockConsumer} collects all visited locations that matches the
- * given conditions.
+ * This {@link BlockConsumer} runs until the continue condition or the
+ * underlying consumer returns false.
  */
-public class VisitedBlockConsumer implements BlockConsumer {
+public class AbortBlockConsumer implements BlockConsumer {
 
-    private final List<Location> locations = new ArrayList<Location>();
-    private final BlockSearchCondition matchCondition;
+    private final BlockConsumer consumer;
+    private final BlockSearchCondition continueCondition;
 
     /**
-     * Creates a new VisitedBlockConsumer with the given match condition.
+     * Creates a new VisitedBlockConsumer with the given continue condition.
      *
-     * @param matchCondition The condition to collect the visited blocks
+     * @param consumer The consumer to forward the calls to until the abort
+     *        condition matches (exclusive)
+     * @param continueCondition The condition to continue while it returns true
      */
-    public VisitedBlockConsumer(BlockSearchCondition matchCondition) {
+    public AbortBlockConsumer(BlockConsumer consumer, BlockSearchCondition continueCondition) {
         super();
-        this.matchCondition = matchCondition;
+        this.consumer = checkNotNull(consumer, "consumer");
+        this.continueCondition = checkNotNull(continueCondition, "continueCondition");
     }
 
     @Override
     public boolean apply(Location location, Direction faceDirection) {
-        if (this.matchCondition.apply(location, faceDirection)) {
-            this.locations.add(location);
-        }
-        return true;
-    }
-
-    /**
-     * Gets the list of visited locations.
-     *
-     * @return The list of visited locations
-     */
-    public List<Location> getLocations() {
-        return this.locations;
+        return this.continueCondition.apply(location, faceDirection) && this.consumer.apply(location, faceDirection);
     }
 
 }
