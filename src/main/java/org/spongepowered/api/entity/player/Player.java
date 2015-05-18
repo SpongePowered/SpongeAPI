@@ -28,6 +28,7 @@ import org.spongepowered.api.block.tile.Sign;
 import org.spongepowered.api.data.manipulators.DisplayNameData;
 import org.spongepowered.api.data.manipulators.entities.GameModeData;
 import org.spongepowered.api.data.manipulators.entities.JoinData;
+import org.spongepowered.api.data.manipulators.tileentities.SignData;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;
@@ -105,13 +106,13 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      *
      * @param sign The sign to edit
      */
-    void editSign(Sign sign);
+    void editSign(SignData sign);
 
     /**
      * Edits a sign on this {@link Player}'s client.
      *
-     * <p>Any pre-existing lines on the {@link Sign} given will be filled in to the
-     * dialog, and the {@link Sign} will be edited with the contents of the dialog
+     * <p>Any pre-existing lines on the {@link SignData} given will be filled in to the
+     * dialog, and the {@link SignData} will be edited with the contents of the dialog
      * after the "Done" button is pressed by the player.</p>
      *
      * <p>The callback will be invoked when the client
@@ -121,8 +122,9 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      * <p>This method does *not* block until the player has finished editing</p>
      *
      * @param sign The sign to edit
+     * @param callback The callback to invoke once the editing has finished
      */
-    void editSign(Sign sign, SignEditCallback callback);
+    void editSign(SignData sign, SignEditCallback callback);
 
     /**
      * Opens an empty sign editing dialog on this {@link Player}'s client.
@@ -133,6 +135,7 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      * arguments.</p>
      *
      * <p>This method does *not* block until the player has finished editing</p>
+     *
      * @param callback The callback to invoke once the editing has finished
      */
     void editSign(SignEditCallback callback);
