@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import org.spongepowered.api.data.manipulator.RepresentedItemData;
+import org.spongepowered.api.data.component.base.RepresentedItemComponent;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -34,7 +34,7 @@ public interface Jukebox extends TileEntity {
 
     /**
      * Attempts to play the currently stored record according to the
-     * {@link RepresentedItemData} of this {@link Jukebox}.
+     * {@link RepresentedItemComponent} of this {@link Jukebox}.
      */
     void playRecord();
 

@@ -30,20 +30,26 @@ import static org.spongepowered.api.data.DataQuery.of;
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.Component;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataPriority;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.token.BaseToken;
+import org.spongepowered.api.data.token.GetterToken;
+import org.spongepowered.api.data.token.SetterToken;
+import org.spongepowered.api.data.token.Token;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
@@ -51,6 +57,8 @@ import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
+
+import javax.annotation.Nullable;
 
 /**
  * A position within a particular {@link Extent}.
@@ -400,8 +408,8 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public <T extends DataManipulator<T>> boolean remove(Class<T> manipulatorClass) {
-        return getExtent().remove(getBlockPosition(), manipulatorClass);
+    public <T extends Component<T>> boolean remove(Class<T> componentClass) {
+        return getExtent().remove(getBlockPosition(), componentClass);
     }
 
     /**
@@ -612,33 +620,69 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public <T extends DataManipulator<T>> Optional<T> getData(Class<T> dataClass) {
+    public <T extends Component<T>> Optional<T> getData(Class<T> dataClass) {
         return getExtent().getData(getBlockPosition(), dataClass);
     }
 
     @Override
-    public <T extends DataManipulator<T>> Optional<T> getOrCreate(Class<T> manipulatorClass) {
-        return getExtent().getOrCreate(getBlockPosition(), manipulatorClass);
+    public <T extends Component<T>> Optional<T> getOrCreate(Class<T> componentClass) {
+        return getExtent().getOrCreate(getBlockPosition(), componentClass);
     }
 
     @Override
-    public <T extends DataManipulator<T>> boolean isCompatible(Class<T> manipulatorClass) {
-        return getExtent().isCompatible(getBlockPosition(), manipulatorClass);
+    public <T extends Component<T>> boolean isCompatible(Class<T> componentClass) {
+        return getExtent().isCompatible(getBlockPosition(), componentClass);
     }
 
     @Override
-    public <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData) {
-        return getExtent().offer(getBlockPosition(), manipulatorData);
+    public <T extends Component<T>> DataTransactionResult offer(T component) {
+        return getExtent().offer(getBlockPosition(), component);
     }
 
     @Override
-    public <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData, DataPriority priority) {
-        return getExtent().offer(getBlockPosition(), manipulatorData, priority);
+    public <T extends Component<T>> DataTransactionResult offer(T component, DataPriority priority) {
+        return getExtent().offer(getBlockPosition(), component, priority);
     }
 
     @Override
-    public Collection<DataManipulator<?>> getManipulators() {
-        return getExtent().getManipulators(getBlockPosition());
+    public Collection<Component<?>> getComponents() {
+        return getExtent().getComponents(getBlockPosition());
+    }
+
+    @Override
+    public boolean isCompatible(BaseToken<?> baseToken) {
+        return false;
+    }
+
+    @Override
+    public <V> Optional<V> get(GetterToken<V> getterToken) {
+        return getExtent().get(checkNotNull(getterToken), getBlockPosition());
+    }
+
+    @Override
+    public <V> V getOrDefault(GetterToken<V> getterToken, V defaultValue) {
+        return getExtent().getOrDefault(checkNotNull(getterToken), checkNotNull(defaultValue), getBlockPosition());
+    }
+
+    @Nullable
+    @Override
+    public <V> V getOrNull(GetterToken<V> getterToken) {
+        return getExtent().getOrNull(checkNotNull(getterToken), getBlockPosition());
+    }
+
+    @Override
+    public <V> DataHolder set(SetterToken<V> setterToken, V value) {
+        return getExtent().set(checkNotNull(setterToken), checkNotNull(value), getBlockPosition());
+    }
+
+    @Override
+    public <V> DataHolder transform(Token<V> token, Function<V, V> transformerFunction) {
+        return getExtent().transform(checkNotNull(token), checkNotNull(transformerFunction), getBlockPosition());
+    }
+
+    @Override
+    public <V> Optional<Predicate<V>> predicateFor(Token<V> token) {
+        return getExtent().predicateFor(checkNotNull(token), getBlockPosition());
     }
 
     @Override
@@ -671,7 +715,7 @@ public final class Location implements DataHolder {
         container.set(of("x"), this.getX());
         container.set(of("y"), this.getY());
         container.set(of("z"), this.getZ());
-        container.set(of("Manipulators"), getManipulators());
+        container.set(of("Data"), getComponents());
         return container;
     }
 }

@@ -25,36 +25,42 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Component;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.annotation.TransformResult;
 
 /**
- * Represents events where the {@link DataManipulator} of the {@link TileEntity} may change from the
- * resolution of the event.
- * <p>
- * An example of this would be {@link SignChangeEvent} where the data of the sign is set after the event
+ * Represents events where the {@link Component} of the {@link TileEntity}
+ * may change from the resolution of the event.
+ *
+ * <p>An example of this would be {@link SignChangeEvent} where the data of the
+ * sign is set after the event.</p>
  */
 public interface TileEntityChangeEvent extends TileEntityEvent, CauseTracked, Cancellable {
+
     /**
-     * Gets a copy of the new {@link DataManipulator} that will be offered to the
+     * Gets a copy of the new {@link Component} that will be offered to the
      * {@link TileEntity} after event resolution.
-     * <p>
-     * If desiring to change any data of this {@link TileEntity}, do so in
-     * this manipulator. Be sure to set this back with {@link TileEntityChangeEvent#setNewData(DataManipulator)}.
+     *
+     * <p>If desiring to change any data of this {@link TileEntity}, do so in
+     * this component. Be sure to set this back with
+     * {@link TileEntityChangeEvent#setNewData(Component)}.</p>
+     *
      * @return The data
      */
     @TransformResult
-    DataManipulator<?> getNewData();
+    Component<?> getNewData();
 
     /**
-     * Sets the {@link DataManipulator} that will be offered to the {@link TileEntity} after
-     * event resolution.
-     * @param newData The new manipulator to apply to the tile entity
-     * @throws InvalidDataException Depending on the event, this will be thrown if the manipulator being set isn't
+     * Sets the {@link Component} that will be offered to the
+     * {@link TileEntity} after event resolution.
+     *
+     * @param newData The new component to apply to the tile entity
+     * @throws InvalidDataException Depending on the event, this will be thrown
+     *     if the component being set isn't
      * assignable from {@link TileEntityChangeEvent#getNewData()}
      */
-    void setNewData(DataManipulator<?> newData);
+    void setNewData(Component<?> newData);
 }

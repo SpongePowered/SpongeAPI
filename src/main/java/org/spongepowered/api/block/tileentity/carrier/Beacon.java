@@ -25,12 +25,12 @@
 package org.spongepowered.api.block.tileentity.carrier;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.tileentity.BeaconData;
+import org.spongepowered.api.data.component.tileentity.BeaconComponent;
 
 /**
  * Represents a Beacon.
  *
- * <p>Beacons apply prescribed effects according to the {@link BeaconData}.
+ * <p>Beacons apply prescribed effects according to the {@link BeaconComponent}.
  * Depending on the completed levels of the beacon, the effects may be applied
  * at a further range or shorter range.</p>
  */
@@ -45,5 +45,5 @@ public interface Beacon extends TileEntityCarrier {
     int getCompletedLevels();
 
     @Override
-    Optional<BeaconData> getData();
+    Optional<BeaconComponent> getData();
 }

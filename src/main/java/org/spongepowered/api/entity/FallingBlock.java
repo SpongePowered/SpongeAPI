@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.data.manipulator.entity.FallingBlockData;
+import org.spongepowered.api.data.component.entity.FallingBlockComponent;
 
 /**
  * Represents a falling block. A falling block may harm entities where it
@@ -33,10 +33,10 @@ import org.spongepowered.api.data.manipulator.entity.FallingBlockData;
 public interface FallingBlock extends Entity {
 
     /**
-     * Gets a copy of the currently used {@link FallingBlockData}.
+     * Gets a copy of the currently used {@link FallingBlockComponent}.
      *
      * @return A copy of the currently used falling block data
      */
-    FallingBlockData getFallingBlockData();
+    FallingBlockComponent getFallingBlockData();
 
 }

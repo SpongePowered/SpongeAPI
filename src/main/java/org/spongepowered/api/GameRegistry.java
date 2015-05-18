@@ -29,7 +29,7 @@ import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.DataManipulatorRegistry;
+import org.spongepowered.api.data.ComponentRegistry;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.Profession;
@@ -427,11 +427,11 @@ public interface GameRegistry {
     RecipeRegistry getRecipeRegistry();
 
     /**
-     * Retrieves the {@link DataManipulatorRegistry} for this {@link GameRegistry}.
+     * Retrieves the {@link ComponentRegistry} for this {@link GameRegistry}.
      *
-     * @return The manipulator registry
+     * @return The component registry
      */
-    DataManipulatorRegistry getManipulatorRegistry();
+    ComponentRegistry getComponentRegistry();
 
     /**
      * Retrieves the {@link ImmutableDataRegistry} for this {@link GameRegistry}.

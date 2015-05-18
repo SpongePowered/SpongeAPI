@@ -25,12 +25,12 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.tileentity.BannerData;
+import org.spongepowered.api.data.component.tileentity.BannerComponent;
 
 /**
  * Represents a Banner {@link TileEntity}.
  */
 public interface Banner extends TileEntity {
     @Override
-    Optional<BannerData> getData();
+    Optional<BannerComponent> getData();
 }

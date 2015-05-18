@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.weather;
 
-import org.spongepowered.api.data.manipulator.entity.ExpirableData;
+import org.spongepowered.api.data.component.entity.ExpirableComponent;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -47,9 +47,9 @@ public interface WeatherEffect extends Entity {
     void setEffect(boolean effect);
 
     /**
-     * Gets a copy of the {@link ExpirableData} for this weather entity.
+     * Gets a copy of the {@link ExpirableComponent} for this weather entity.
      *
      * @return A copy of the expirable data
      */
-    ExpirableData getExpiringData();
+    ExpirableComponent getExpiringData();
 }

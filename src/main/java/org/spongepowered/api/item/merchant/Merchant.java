@@ -26,7 +26,7 @@ package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.entity.TradeOfferData;
+import org.spongepowered.api.data.component.entity.TradeOfferComponent;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
 
@@ -54,11 +54,11 @@ public interface Merchant extends DataHolder, Carrier {
     void setCustomer(@Nullable Human human);
 
     /**
-     * Gets a copy of the used {@link TradeOfferData} containing all available
+     * Gets a copy of the used {@link TradeOfferComponent} containing all available
      * {@link TradeOffer}s this {@link Merchant} may use.
      *
      * @return A copy of the trade offer data
      */
-    TradeOfferData getTradeOfferData();
+    TradeOfferComponent getTradeOfferData();
 
 }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.manipulator.entity.SlimeData;
+import org.spongepowered.api.data.component.entity.SlimeComponent;
 
 /**
  * Represents a Slime.
@@ -32,10 +32,10 @@ import org.spongepowered.api.data.manipulator.entity.SlimeData;
 public interface Slime extends Monster {
 
     /**
-     * Gets a copy of the current {@link SlimeData} for this {@link Slime}.
+     * Gets a copy of the current {@link SlimeComponent} for this {@link Slime}.
      *
      * @return A copy of the current slime data
      */
-    SlimeData getSlimeData();
+    SlimeComponent getSlimeData();
 
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.util.weighted;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Component;
 import org.spongepowered.api.entity.EntityType;
 
 import java.util.List;
@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class WeightedEntity extends WeightedObject<EntityType> {
 
-    private final ImmutableList<DataManipulator<?>> additionalProperties;
+    private final ImmutableList<Component<?>> additionalProperties;
 
     /**
      * Creates a new {@link WeightedEntity} with no additional properties.
@@ -58,10 +58,10 @@ public class WeightedEntity extends WeightedObject<EntityType> {
      * @param weight The weight
      * @param extraProperties The additional properties to apply to the entity
      */
-    public WeightedEntity(EntityType object, int weight, DataManipulator<?>... extraProperties) {
+    public WeightedEntity(EntityType object, int weight, Component<?>... extraProperties) {
         super(object, weight);
-        ImmutableList.Builder<DataManipulator<?>> builder = ImmutableList.builder();
-        for (DataManipulator<?> property : extraProperties) {
+        ImmutableList.Builder<Component<?>> builder = ImmutableList.builder();
+        for (Component<?> property : extraProperties) {
             builder.add(property.copy());
         }
         this.additionalProperties = builder.build();
@@ -75,10 +75,10 @@ public class WeightedEntity extends WeightedObject<EntityType> {
      * @param weight The weight
      * @param extraProperties The additional properties to apply to the entity
      */
-    public WeightedEntity(EntityType object, int weight, Iterable<DataManipulator<?>> extraProperties) {
+    public WeightedEntity(EntityType object, int weight, Iterable<Component<?>> extraProperties) {
         super(object, weight);
-        ImmutableList.Builder<DataManipulator<?>> builder = ImmutableList.builder();
-        for (DataManipulator<?> property : extraProperties) {
+        ImmutableList.Builder<Component<?>> builder = ImmutableList.builder();
+        for (Component<?> property : extraProperties) {
             builder.add(property.copy());
         }
         this.additionalProperties = builder.build();
@@ -89,7 +89,7 @@ public class WeightedEntity extends WeightedObject<EntityType> {
      *
      * @return The additional properties
      */
-    public List<DataManipulator<?>> getAdditionalProperties() {
+    public List<Component<?>> getAdditionalProperties() {
         return this.additionalProperties;
     }
 

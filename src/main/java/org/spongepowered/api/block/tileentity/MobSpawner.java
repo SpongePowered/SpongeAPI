@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.MobSpawnerData;
+import org.spongepowered.api.data.component.base.MobSpawnerComponent;
 
 /**
  * Represents a Monster Spawner.
@@ -43,6 +43,6 @@ public interface MobSpawner extends TileEntity {
     void spawnEntityBatchImmediately(boolean force);
 
     @Override
-    Optional<MobSpawnerData> getData();
+    Optional<MobSpawnerComponent> getData();
 
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.data.component.tileentity.SignComponent;
 
 /**
  * Represents a sign.
@@ -33,6 +33,6 @@ import org.spongepowered.api.data.manipulator.tileentity.SignData;
 public interface Sign extends TileEntity {
 
     @Override
-    Optional<SignData> getData();
+    Optional<SignComponent> getData();
 
 }

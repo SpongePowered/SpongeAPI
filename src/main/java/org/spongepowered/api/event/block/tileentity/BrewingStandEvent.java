@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
-import org.spongepowered.api.data.manipulator.tileentity.BrewingData;
+import org.spongepowered.api.data.component.tileentity.BrewingComponent;
 import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**
@@ -37,5 +37,5 @@ public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent 
     BrewingStand getTile();
 
     @Override
-    BrewingData getCurrentData();
+    BrewingComponent getCurrentData();
 }

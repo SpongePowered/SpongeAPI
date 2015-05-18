@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.explosive;
 
-import org.spongepowered.api.data.manipulator.entity.ExplosiveRadiusData;
+import org.spongepowered.api.data.component.entity.ExplosiveRadiusComponent;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -38,11 +38,11 @@ public interface Explosive extends Entity {
     void detonate();
 
     /**
-     * Gets a copy of the {@link ExplosiveRadiusData} used by this
+     * Gets a copy of the {@link ExplosiveRadiusComponent} used by this
      * {@link Explosive} entity.
      *
      * @return A copy of the explosive radius data
      */
-    ExplosiveRadiusData getExplosiveRadiusData();
+    ExplosiveRadiusComponent getExplosiveRadiusData();
 
 }

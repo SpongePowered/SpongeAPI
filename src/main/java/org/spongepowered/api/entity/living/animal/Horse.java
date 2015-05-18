@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.manipulator.entity.HorseData;
+import org.spongepowered.api.data.component.entity.HorseComponent;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.inventory.Carrier;
 
@@ -34,10 +34,10 @@ import org.spongepowered.api.item.inventory.Carrier;
 public interface Horse extends Animal, Agent, Carrier {
 
     /**
-     * Gets a copy of the {@link HorseData} representing this {@link Horse}.
+     * Gets a copy of the {@link HorseComponent} representing this {@link Horse}.
      *
      * @return A copy of the horse data
      */
-    HorseData getHorseData();
+    HorseComponent getHorseData();
 
 }

@@ -25,13 +25,13 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.tileentity.NoteData;
+import org.spongepowered.api.data.component.tileentity.NoteComponent;
 import org.spongepowered.api.data.type.NotePitch;
 
 /**
  * Represents a note block.
  *
- * <p>A {@link Note} will always have a valid {@link NoteData} to play.</p>
+ * <p>A {@link Note} will always have a valid {@link NoteComponent} to play.</p>
  */
 public interface Note extends TileEntity {
 
@@ -42,6 +42,6 @@ public interface Note extends TileEntity {
     void playNote();
 
     @Override
-    Optional<NoteData> getData();
+    Optional<NoteComponent> getData();
 
 }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulator.entity.AgeableData;
+import org.spongepowered.api.data.component.entity.AgeableComponent;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -40,11 +40,11 @@ public interface Ageable extends Agent {
     void setScaleForAge();
 
     /**
-     * Gets the {@link AgeableData} that represents age determining whether an
+     * Gets the {@link AgeableComponent} that represents age determining whether an
      * {@link Entity} is a child or an adult.
      *
      * @return The ageable data
      */
-    AgeableData getAgeData();
+    AgeableComponent getAgeData();
 
 }
