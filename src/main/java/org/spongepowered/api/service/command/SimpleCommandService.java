@@ -228,7 +228,7 @@ public class SimpleCommandService implements CommandService {
 
         try {
             try {
-                this.dispatcher.process(source, commandLine);
+                return this.dispatcher.process(source, commandLine);
             } catch (InvocationCommandException ex) {
                 if (ex.getCause() != null) {
                     throw ex.getCause();
