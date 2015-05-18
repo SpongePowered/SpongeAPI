@@ -63,6 +63,7 @@ javadoc {
             'http://zml2008.github.io/configurate/configurate-core/apidocs/',
             'http://zml2008.github.io/configurate/configurate-hocon/apidocs/',
             'http://flowpowered.com/math/',
+            'http://flowpowered.com/noise/',
             'http://asm.ow2.org/asm50/javadoc/user/',
             'http://docs.oracle.com/javase/6/docs/api/'
     )
