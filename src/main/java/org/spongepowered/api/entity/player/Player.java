@@ -32,12 +32,14 @@ import org.spongepowered.api.data.manipulators.tileentities.SignData;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;
+import org.spongepowered.api.event.block.tile.SignChangeEvent;
 import org.spongepowered.api.net.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.source.LocatedSource;
 import org.spongepowered.api.util.command.source.RemoteSource;
+import org.spongepowered.api.world.Location;
 
 import java.util.Date;
 import java.util.Locale;
@@ -98,33 +100,20 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
     /**
      * Edits a sign on this {@link Player}'s client.
      *
-     * <p>Any pre-existing lines on the {@link Sign} given will be filled in to the
-     * dialog, and the {@link Sign} will be edited with the contents of the dialog
-     * after the "Done" button is pressed by the player.</p>
+     * <p>Any pre-existing lines on the sign at the location given will be
+     * filled in the dialog, and the sign will be edited with the contents of
+     * the dialog after the "Done" button is pressed by the player.</p>
      *
-     * <p>This method does *not* block until the player has finished editing</p>
+     * <p>If the block at the given location is not a sign, the client will
+     * make the lines blank, and show an error message in the client's chat box.</p>
+     *
+     * <p>This method does *not* block until the player has finished editing.
+     * Instead, to obtain the edited lines, subscribe to
+     * {@link SignChangeEvent}.</p>
      *
      * @param sign The sign to edit
      */
-    void editSign(SignData sign);
-
-    /**
-     * Edits a sign on this {@link Player}'s client.
-     *
-     * <p>Any pre-existing lines on the {@link SignData} given will be filled in to the
-     * dialog, and the {@link SignData} will be edited with the contents of the dialog
-     * after the "Done" button is pressed by the player.</p>
-     *
-     * <p>The callback will be invoked when the client
-     * clicks the "Done" button, with the four lines of the sign as
-     * arguments.</p>
-     *
-     * <p>This method does *not* block until the player has finished editing</p>
-     *
-     * @param sign The sign to edit
-     * @param callback The callback to invoke once the editing has finished
-     */
-    void editSign(SignData sign, SignEditCallback callback);
+    void editSign(Location sign);
 
     /**
      * Opens an empty sign editing dialog on this {@link Player}'s client.
@@ -182,6 +171,14 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
     GameModeData getGameModeData();
 
     interface SignEditCallback {
-        void finishEdit(Player player, Text[] lines);
+
+        /**
+         * This callback is called once a player has clicked "Done" on
+         * the sign editing dialog.
+         *
+         * @param player The player that edited the sign
+         * @param data The new SignData of the sign
+         */
+        void finishEdit(Player player, SignData data);
     }
 }
