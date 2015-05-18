@@ -95,15 +95,47 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
     void kick(Text reason);
 
     /**
-     * Opens the sign editing dialog on this {@link Player}'s client.
+     * Edits a sign on this {@link Player}'s client.
      *
      * <p>Any pre-existing lines on the {@link Sign} given will be filled in to the
      * dialog, and the {@link Sign} will be edited with the contents of the dialog
      * after the "Done" button is pressed by the player.</p>
      *
-     * @param sign The sign to edit.
+     * <p>This method does *not* block until the player has finished editing</p>
+     *
+     * @param sign The sign to edit
      */
     void editSign(Sign sign);
+
+    /**
+     * Edits a sign on this {@link Player}'s client.
+     *
+     * <p>Any pre-existing lines on the {@link Sign} given will be filled in to the
+     * dialog, and the {@link Sign} will be edited with the contents of the dialog
+     * after the "Done" button is pressed by the player.</p>
+     *
+     * <p>The callback will be invoked when the client
+     * clicks the "Done" button, with the four lines of the sign as
+     * arguments.</p>
+     *
+     * <p>This method does *not* block until the player has finished editing</p>
+     *
+     * @param sign The sign to edit
+     */
+    void editSign(Sign sign, SignEditCallback callback);
+
+    /**
+     * Opens an empty sign editing dialog on this {@link Player}'s client.
+     *
+     * <p>This is not tied to any specific sign, so this method will not
+     * modify anything. The callback will be invoked when the client
+     * clicks the "Done" button, with the four lines of the sign as
+     * arguments.</p>
+     *
+     * <p>This method does *not* block until the player has finished editing</p>
+     * @param callback The callback to invoke once the editing has finished
+     */
+    void editSign(SignEditCallback callback);
 
     /**
      * Gets the {@link Scoreboard} displayed to the player.
@@ -146,4 +178,7 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      */
     GameModeData getGameModeData();
 
+    interface SignEditCallback {
+        void finishEdit(Player player, Text[] lines);
+    }
 }
