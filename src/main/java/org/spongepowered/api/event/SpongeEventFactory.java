@@ -1299,11 +1299,12 @@ public final class SpongeEventFactory {
      * @param message The message displayed when the player joins
      * @return A new instance of the event
      */
-    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Text message) {
+    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Location location, Text message) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
         values.put("source", player);
+        values.put("location", location);
         values.put("message", message);
         values.put("newMessage", message);
         values.put("user", player);
