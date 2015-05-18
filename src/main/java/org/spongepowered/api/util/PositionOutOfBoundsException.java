@@ -29,7 +29,7 @@ import com.flowpowered.math.vector.Vectorf;
 import com.flowpowered.math.vector.Vectori;
 
 /**
- * An exception thrown when a position in outside of its expected bounds.
+ * An exception thrown when a position is outside of its expected bounds.
  */
 public class PositionOutOfBoundsException extends RuntimeException {
     private static final long serialVersionUID = 1;
@@ -68,6 +68,6 @@ public class PositionOutOfBoundsException extends RuntimeException {
     }
 
     private PositionOutOfBoundsException(String position, String min, String max) {
-        super("Position if out of bounds: expected in range " + min + " to " + max + " but got " + position);
+        super("Position is out of bounds: expected in range " + min + " to " + max + " but got " + position);
     }
 }
