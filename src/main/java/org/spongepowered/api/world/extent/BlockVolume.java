@@ -26,6 +26,7 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 
 /**
@@ -123,5 +124,55 @@ public interface BlockVolume {
      *     bounds of the volume
      */
     void setBlock(int x, int y, int z, BlockState block);
+
+    /**
+     * Get the base type of block.
+     *
+     * <p>The type does not include block data such as the contents of
+     * inventories.</p>
+     *
+     * @param position The position of the block
+     * @return The type of block
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the block volume
+     */
+    BlockType getBlockType(Vector3i position);
+
+    /**
+     * Get the base type of block.
+     *
+     * <p>The type does not include block data such as the contents of
+     * inventories.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The type of block
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the block volume
+     */
+    BlockType getBlockType(int x, int y, int z);
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param position The position of the block
+     * @param type The new type
+     */
+    void setBlockType(Vector3i position, BlockType type);
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param type The new type
+     */
+    void setBlockType(int x, int y, int z, BlockType type);
 
 }

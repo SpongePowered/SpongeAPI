@@ -27,7 +27,6 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
@@ -38,7 +37,6 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
@@ -66,56 +64,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @return The block
      */
     Location getFullBlock(int x, int y, int z);
-
-    /**
-     * Get the base type of block.
-     *
-     * <p>The type does not include block data such as the contents of
-     * inventories.</p>
-     *
-     * @param position The position of the block
-     * @return The type of block
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the block volume
-     */
-    BlockType getBlockType(Vector3i position);
-
-    /**
-     * Get the base type of block.
-     *
-     * <p>The type does not include block data such as the contents of
-     * inventories.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return The type of block
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the block volume
-     */
-    BlockType getBlockType(int x, int y, int z);
-
-    /**
-     * Replace the block at this position by a new type.
-     *
-     * <p>This will remove any extended block data at the given position.</p>
-     *
-     * @param position The position of the block
-     * @param type The new type
-     */
-    void setBlockType(Vector3i position, BlockType type);
-
-    /**
-     * Replace the block at this position by a new type.
-     *
-     * <p>This will remove any extended block data at the given position.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param type The new type
-     */
-    void setBlockType(int x, int y, int z, BlockType type);
 
     /**
      * Get a snapshot of this block at the current point in time.
