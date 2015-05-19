@@ -157,7 +157,7 @@ public class SpongeEventFactoryTest {
         } else if (BlockSnapshot.class.isAssignableFrom(paramType)) {
             BlockSnapshot mock = (BlockSnapshot) mock(paramType);
 
-            final Answer answer = new Answer<Object>() {
+            final Answer<Object> answer = new Answer<Object>() {
                 @Override
                 public Object answer(InvocationOnMock invocation) throws Throwable {
                     return mock(paramType);
@@ -167,9 +167,9 @@ public class SpongeEventFactoryTest {
             when(mock.copy()).thenAnswer(answer);
             return mock;
         } else if (DataManipulator.class.isAssignableFrom(paramType)) {
-            DataManipulator mock = (DataManipulator) mock(paramType);
+            DataManipulator<?> mock = (DataManipulator) mock(paramType);
 
-            final Answer answer = new Answer<Object>() {
+            final Answer<Object> answer = new Answer<Object>() {
                 @Override
                 public Object answer(InvocationOnMock invocation) throws Throwable {
                     return mock(paramType);

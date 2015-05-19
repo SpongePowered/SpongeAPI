@@ -45,6 +45,7 @@ import static org.objectweb.asm.Opcodes.IFNE;
 import static org.objectweb.asm.Opcodes.IFNONNULL;
 import static org.objectweb.asm.Opcodes.IFNULL;
 import static org.objectweb.asm.Opcodes.ILOAD;
+import static org.objectweb.asm.Opcodes.INSTANCEOF;
 import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
 import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
@@ -380,7 +381,7 @@ public class ClassGenerator {
                 mv.visitVarInsn(ALOAD, 0);
                 mv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getLeastSpecificType()));
                 if (!property.isLeastSpecificType()) {
-                    mv.visitTypeInsn(CHECKCAST, Type.getInternalName(property.getLeastSpecificType()));
+                    mv.visitTypeInsn(CHECKCAST, Type.getInternalName(property.getType()));
                 }
                 mv.visitInsn(getReturnOpcode(property.getType()));
                 mv.visitMaxs(0, 0);
@@ -395,9 +396,54 @@ public class ClassGenerator {
                 mv.visitCode();
                 mv.visitVarInsn(ALOAD, 0);
                 mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+
                 if (property.getAccessor().getReturnType().equals(Optional.class)) {
                     mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable", "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
                 }
+
+                if (!property.getType().isPrimitive()) {
+                    Class mostSpecificReturn = null;
+                    try {
+                        mostSpecificReturn =
+                                type.getMethod(property.getAccessor().getName(), property.getAccessor().getParameterTypes()).getReturnType();
+                    } catch (NoSuchMethodException e) {
+                        throw new RuntimeException("If you're seeing this, than something's REALLY wrong");
+                    }
+                    Label afterException = new Label();
+                    mv.visitInsn(DUP);
+                    mv.visitJumpInsn(IFNULL, afterException);
+                    mv.visitInsn(DUP);
+                    mv.visitTypeInsn(INSTANCEOF, Type.getInternalName(mostSpecificReturn));
+
+                    mv.visitJumpInsn(IFNE, afterException);
+
+                    mv.visitTypeInsn(NEW, "java/lang/RuntimeException");
+                    mv.visitInsn(DUP);
+
+                    mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
+                    mv.visitInsn(DUP);
+                    mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+
+                    mv.visitLdcInsn("You've attempted to call the method '" + mutator.getName() + "' with an object of type ");
+                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+                    mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);
+                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getName", "()Ljava/lang/String;", false);
+                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+                    mv.visitLdcInsn(", instead of " + mostSpecificReturn.getName() + ". Though you may have been listening for a supertype of this event, it's actually a " + type.getName() + ". " +
+                                    "You need to ensure that the type of the event is what you think it is, before calling the method " +
+                                    "(e.g TileEntityChangeEvent#setNewData");
+                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+
+                    mv.visitMethodInsn(INVOKESPECIAL, "java/lang/RuntimeException", "<init>", "(Ljava/lang/String;)V", false);
+                    mv.visitInsn(ATHROW);
+
+                    mv.visitLabel(afterException);
+                }
+
                 mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
                 mv.visitInsn(RETURN);
                 mv.visitMaxs(0, 0);

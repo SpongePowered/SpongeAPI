@@ -358,6 +358,18 @@ public class ClassGeneratorProviderTest {
         assertThat(getter.getName().get(), is(Matchers.equalTo("Aaron")));
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testCreate_OverloadedSetter() {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("object", "");
+
+        ClassGeneratorProvider provider = createProvider();
+        EventFactory<CovariantMethodOverrideInterface> factory = provider.create(CovariantMethodOverrideInterface.class, Object.class);
+        CovariantMethodOverrideInterface overriden = factory.apply(values);
+
+        overriden.setObject(new Object());
+    }
+
     public interface OptionalGetter {
 
         Optional<String> getName();
@@ -582,6 +594,21 @@ public class ClassGeneratorProviderTest {
         public ModifierClass copy2() {
             return new ModifierClass();
         }
+    }
+
+    public interface CovariantMethodInterface {
+
+        Object getObject();
+
+        void setObject(Object object);
+    }
+
+    public interface CovariantMethodOverrideInterface extends CovariantMethodInterface {
+
+        @Override
+        String getObject();
+
+        void setObject(String object);
     }
 
 }
