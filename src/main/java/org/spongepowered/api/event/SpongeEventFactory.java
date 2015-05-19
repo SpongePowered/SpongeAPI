@@ -83,6 +83,7 @@ import org.spongepowered.api.event.entity.EntityHarvestBlockEvent;
 import org.spongepowered.api.event.entity.EntityInteractBlockEvent;
 import org.spongepowered.api.event.entity.EntityInteractEntityEvent;
 import org.spongepowered.api.event.entity.EntityInteractEvent;
+import org.spongepowered.api.event.entity.EntityLeashEvent;
 import org.spongepowered.api.event.entity.EntityMountEvent;
 import org.spongepowered.api.event.entity.EntityMoveEvent;
 import org.spongepowered.api.event.entity.EntityPickUpItemEvent;
@@ -756,6 +757,21 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", entity);
         return createEvent(EntityInteractEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link EntityLeashEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @return A new instance of the event
+     */
+    public static EntityLeashEvent createEntityLeash(Game game, Entity entity, Entity leashHolder) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("leashHolder", leashHolder);
+        return createEvent(EntityLeashEvent.class, values);
     }
 
     /**
