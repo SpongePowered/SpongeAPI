@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.event.Cancellable;
+
 /**
  * Called when a Block receives a random block tick.
  */
-public interface BlockRandomTickEvent extends BlockEvent {
+public interface BlockRandomTickEvent extends BlockEvent, Cancellable {
 
 }
