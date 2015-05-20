@@ -43,6 +43,11 @@ import org.spongepowered.api.world.gen.GeneratorPopulator;
  */
 public class SkylandsTerrainGenerator implements GeneratorPopulator {
 
+    private static final int MID_POINT = 64;
+    private static final int UPPER_SIZE = 24;
+    private static final int LOWER_SIZE = 24;
+    public static final int MAX_HEIGHT = MID_POINT + UPPER_SIZE - 1;
+    public static final int MIN_HEIGHT = MID_POINT - LOWER_SIZE + 1;
     private static final double THRESHOLD = 0.25;
     private final Perlin inputNoise = new Perlin();
     private final VerticalScaling outputNoise = new VerticalScaling();
@@ -50,7 +55,7 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
     public SkylandsTerrainGenerator() {
         inputNoise.setFrequency(0.04);
         inputNoise.setLacunarity(2);
-        inputNoise.setNoiseQuality(NoiseQuality.BEST);
+        inputNoise.setNoiseQuality(NoiseQuality.STANDARD);
         inputNoise.setPersistence(0.5);
         inputNoise.setOctaveCount(4);
 
@@ -70,19 +75,22 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         exponent.setExponent(2);
 
         outputNoise.setSourceModule(0, exponent);
-        outputNoise.setMidPoint(64);
-        outputNoise.setUpperScale(24);
-        outputNoise.setLowerScale(24);
+        outputNoise.setMidPoint(MID_POINT);
+        outputNoise.setUpperSize(UPPER_SIZE);
+        outputNoise.setLowerSize(LOWER_SIZE);
         outputNoise.setDegree(2);
     }
 
     @Override
     @SuppressWarnings("ConstantConditions")
     public void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes) {
-        final long seed = world.getProperties().getSeed();
-        inputNoise.setSeed((int) (seed >> 32 ^ seed));
         final Vector3i min = buffer.getBlockMin();
         final Vector3i max = buffer.getBlockMax();
+        if (max.getY() < SkylandsTerrainGenerator.MIN_HEIGHT || min.getY() > SkylandsTerrainGenerator.MAX_HEIGHT) {
+            return;
+        }
+        final long seed = world.getProperties().getSeed();
+        inputNoise.setSeed((int) (seed >> 32 ^ seed));
         final double[][][] noise = fastNoise(outputNoise, buffer.getBlockSize(), 4, min);
         final int x = min.getX();
         final int y = min.getY();
@@ -193,11 +201,11 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
             this.midPoint = midPoint;
         }
 
-        public void setUpperScale(double upperScale) {
+        public void setUpperSize(double upperScale) {
             this.upperScale = upperScale;
         }
 
-        public void setLowerScale(double lowerScale) {
+        public void setLowerSize(double lowerScale) {
             this.lowerScale = lowerScale;
         }
 

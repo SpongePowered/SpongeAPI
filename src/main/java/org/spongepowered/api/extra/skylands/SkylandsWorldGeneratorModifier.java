@@ -26,8 +26,11 @@ package org.spongepowered.api.extra.skylands;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
+
+import java.util.List;
 
 /**
  * A world generator modifier for a Skylands look-alike.
@@ -38,8 +41,10 @@ public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
     public void modifyWorldGenerator(WorldCreationSettings world, DataContainer settings, WorldGenerator worldGenerator) {
         worldGenerator.setBaseGeneratorPopulator(new SkylandsTerrainGenerator());
         worldGenerator.setBiomeGenerator(new SkylandsBiomeGenerator());
+        final List<GeneratorPopulator> generatorPopulators = worldGenerator.getGeneratorPopulators();
+        generatorPopulators.clear();
+        generatorPopulators.add(new SkylandsGroundCover());
         // TODO: temporary, need to decide what to use
-        worldGenerator.getGeneratorPopulators().clear();
         worldGenerator.getPopulators().clear();
     }
 
