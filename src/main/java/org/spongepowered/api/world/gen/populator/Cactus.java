@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -34,38 +37,116 @@ import org.spongepowered.api.world.gen.Populator;
 public interface Cactus extends Populator {
 
     /**
+     * Creates a new {@link Builder} to build a {@link Cactus} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the number of cacti to spawn per chunk.
      * 
      * @return The number of cacti to spawn
      */
-    int getCactiPerChunk();
+    VariableAmount getCactiPerChunk();
 
     /**
      * Sets the number of cacti to spawn per chunk, cannot be negative.
      * 
+     * <p><strong>Note:</strong> This number is not a definite number and the
+     * final count of cacti which are successfully spawned by the populator will
+     * almost always be lower.</p>
+     * 
      * @param count The new number of cacti to spawn
      */
-    void setCactiPerChunk(int count);
+    void setCactiPerChunk(VariableAmount count);
+
+    /**
+     * Sets the number of cacti to spawn per chunk, cannot be negative.
+     * 
+     * <p><strong>Note:</strong> This number is not a definite number and the
+     * final count of cacti which are successfully spawned by the populator will
+     * almost always be lower.</p>
+     * 
+     * @param count The new number of cacti to spawn
+     */
+    default void setCactiPerChunk(int count) {
+        setCactiPerChunk(VariableAmount.fixed(count));
+    }
+
+    /**
+     * Gets the height of the cacti.
+     * 
+     * @return The height
+     */
+    VariableAmount getHeight();
+
+    /**
+     * Sets the height of the cacti.
+     * 
+     * @param height The new height
+     */
+    void setHeight(VariableAmount height);
+
+    /**
+     * Sets the height of the cacti.
+     * 
+     * @param count The new height
+     */
+    default void setHeight(int count) {
+        setHeight(VariableAmount.fixed(count));
+    }
 
     /**
      * A builder for constructing {@link Cactus} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the number of cacti to spawn per chunk, cannot be negative.
          * 
+         * <p><strong>Note:</strong> This number is not a definite number and
+         * the final count of cacti which are successfully spawned by the
+         * populator will almost always be lower.</p>
+         * 
          * @param count The new number of cacti to spawn
          * @return This builder, for chaining
          */
-        Builder cactiPerChunk(int count);
+        Builder cactiPerChunk(VariableAmount count);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the number of cacti to spawn per chunk, cannot be negative.
          * 
+         * <p><strong>Note:</strong> This number is not a definite number and
+         * the final count of cacti which are successfully spawned by the
+         * populator will almost always be lower.</p>
+         * 
+         * @param count The new number of cacti to spawn
          * @return This builder, for chaining
          */
-        Builder reset();
+        default Builder cactiPerChunk(int count) {
+            return cactiPerChunk(VariableAmount.fixed(count));
+        }
+
+        /**
+         * Sets the height of the cacti.
+         * 
+         * @param count The new height
+         * @return This builder, for chaining
+         */
+        Builder height(VariableAmount height);
+
+        /**
+         * Sets the height of the cacti.
+         * 
+         * @param count The new height
+         * @return This builder, for chaining
+         */
+        default Builder height(int height) {
+            return height(VariableAmount.fixed(height));
+        }
 
         /**
          * Builds a new instance of a {@link Cactus} populator with the settings
@@ -73,7 +154,7 @@ public interface Cactus extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         Cactus build() throws IllegalStateException;
 

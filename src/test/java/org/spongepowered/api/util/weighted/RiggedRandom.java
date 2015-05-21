@@ -22,24 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.type;
+package org.spongepowered.api.util.weighted;
 
-/**
- * An enumeration of known {@link BiomeTreeType}s.
- */
-public final class BiomeTreeTypes {
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Random;
 
-    public static final BiomeTreeType OAK = null;
-    public static final BiomeTreeType BIRCH = null;
-    public static final BiomeTreeType TALL_TAIGA = null;
-    public static final BiomeTreeType POINTY_TAIGA = null;
-    public static final BiomeTreeType JUNGLE = null;
-    public static final BiomeTreeType JUNGLE_BUSH = null;
-    public static final BiomeTreeType SAVANNA = null;
-    public static final BiomeTreeType CANOPY = null;
-    public static final BiomeTreeType SWAMP = null;
+public class RiggedRandom extends Random {
 
-    private BiomeTreeTypes() {
+    private Deque<Double> queue = new ArrayDeque<>();
+    
+    public RiggedRandom() {
+        
     }
-
+    
+    public void enqueue(double next) {
+        this.queue.add(next);
+    }
+    
+    @Override
+    public double nextDouble() {
+        if(!this.queue.isEmpty()) {
+            return this.queue.pop();
+        }
+        return super.nextDouble();
+    }
+    
 }

@@ -30,12 +30,12 @@ import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
- * Represents a populator which spawns clusters of glowstone.
+ * Represents a populator which spawns patches of fire randomly within chunks.
  */
-public interface Glowstone extends Populator {
+public interface NetherFire extends Populator {
 
     /**
-     * Creates a new {@link Builder} to build a {@link Glowstone} populator.
+     * Creates a new {@link Builder} to build a {@link NetherFire} populator.
      *
      * @return The new builder
      */
@@ -70,70 +70,33 @@ public interface Glowstone extends Populator {
     }
 
     /**
-     * Gets the amount of glowstone to attempt to spawn per cluster, must be
-     * greater than zero.
+     * Gets the number of fire to attempt to spawn per patch, must be greater
+     * than zero.
      * 
      * @return The number to spawn
      */
-    VariableAmount getAttemptsPerCluster();
+    VariableAmount getFirePerCluster();
 
     /**
-     * Sets the amount of glowstone to attempt to spawn per cluster, must be
-     * greater than zero.
+     * Sets the number of fire to attempt to spawn per patch, must be greater
+     * than zero. The default value is 64.
      * 
-     * @param attempts The new amount to spawn
+     * @param count The new number to spawn
      */
-    void setAttemptsPerCluster(VariableAmount attempts);
+    void setFirePerCluster(VariableAmount count);
 
     /**
-     * Sets the amount of glowstone to attempt to spawn per cluster, must be
-     * greater than zero.
+     * Sets the number of Fire to attempt to spawn per patch, must be greater
+     * than zero. The default value is 64.
      * 
-     * @param attempts The new amount to spawn
+     * @param count The new number to spawn
      */
-    default void setAttemptsPerCluster(int attempts) {
-        setAttemptsPerCluster(VariableAmount.fixed(attempts));
+    default void setFirePerCluster(int count) {
+        setFirePerCluster(VariableAmount.fixed(count));
     }
 
     /**
-     * Gets the height of the glowstone cluster.
-     * 
-     * @return The cluster height
-     */
-    VariableAmount getClusterHeight();
-
-    /**
-     * Sets the height of the glowstone cluster.
-     * 
-     * @param height The new cluster height
-     */
-    void setClusterHeight(VariableAmount height);
-
-    /**
-     * Sets the height of the glowstone cluster.
-     * 
-     * @param height The new cluster height
-     */
-    default void setClusterHeight(int height) {
-        setClusterHeight(VariableAmount.fixed(height));
-    }
-
-    /**
-     * Gets the height that the cluster may generate at.
-     * 
-     * @return The height
-     */
-    VariableAmount getHeight();
-
-    /**
-     * Sets the height that the cluster may generate at.
-     * 
-     * @param height The new height
-     */
-    void setHeight(VariableAmount height);
-
-    /**
-     * A builder for constructing {@link Glowstone} populators.
+     * A builder for constructing {@link NetherFire} populators.
      */
     interface Builder extends ResettableBuilder<Builder> {
 
@@ -158,60 +121,34 @@ public interface Glowstone extends Populator {
         }
 
         /**
-         * Sets the amount of glowstone to attempt to spawn per cluster, must be
-         * greater than zero.
+         * Sets the number of fire to attempt to spawn per cluster, must be
+         * greater than zero. The default value is 64.
          * 
-         * @param attempts The new amount to spawn
+         * @param count The new number to spawn
          * @return This builder, for chaining
          */
-        Builder blocksPerCluster(VariableAmount attempts);
+        Builder perCluster(VariableAmount count);
 
         /**
-         * Sets the amount of glowstone to attempt to spawn per cluster, must be
-         * greater than zero.
+         * Sets the number of fire to attempt to spawn per cluster, must be
+         * greater than zero. The default value is 64.
          * 
-         * @param attempts The new amount to spawn
+         * @param count The new number to spawn
          * @return This builder, for chaining
          */
-        default Builder blocksPerCluster(int attempts) {
-            return blocksPerCluster(VariableAmount.fixed(attempts));
+        default Builder perCluster(int count) {
+            return perCluster(VariableAmount.fixed(count));
         }
 
         /**
-         * Sets the height of the glowstone cluster.
-         * 
-         * @param height The new cluster height
-         * @return This builder, for chaining
-         */
-        Builder clusterHeight(VariableAmount height);
-
-        /**
-         * Sets the height of the glowstone cluster.
-         * 
-         * @param height The new cluster height
-         * @return This builder, for chaining
-         */
-        default Builder clusterHeight(int height) {
-            return clusterHeight(VariableAmount.fixed(height));
-        }
-
-        /**
-         * Sets the height that the cluster may generate at.
-         * 
-         * @param height The new height
-         * @return This builder, for chaining
-         */
-        Builder height(VariableAmount height);
-
-        /**
-         * Builds a new instance of a {@link Glowstone} populator with the
+         * Builds a new instance of a {@link NetherFire} populator with the
          * settings set within the builder.
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
          *         which do not have default values
          */
-        Glowstone build() throws IllegalStateException;
+        NetherFire build() throws IllegalStateException;
 
     }
 

@@ -22,24 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.type;
+package org.spongepowered.api.util.weighted;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * An enumeration of known {@link BiomeTreeType}s.
+ * An abstract entry which may be contained in any table.
+ *
+ * @param <T> The entry type
  */
-public final class BiomeTreeTypes {
+public abstract class TableEntry<T> {
 
-    public static final BiomeTreeType OAK = null;
-    public static final BiomeTreeType BIRCH = null;
-    public static final BiomeTreeType TALL_TAIGA = null;
-    public static final BiomeTreeType POINTY_TAIGA = null;
-    public static final BiomeTreeType JUNGLE = null;
-    public static final BiomeTreeType JUNGLE_BUSH = null;
-    public static final BiomeTreeType SAVANNA = null;
-    public static final BiomeTreeType CANOPY = null;
-    public static final BiomeTreeType SWAMP = null;
+    private final double weight;
 
-    private BiomeTreeTypes() {
+    public TableEntry(double weight) {
+        checkArgument(weight >= 0, "Weight cannot be negative");
+        this.weight = weight;
     }
 
+    /**
+     * Gets the weight of this entry.
+     * 
+     * @return The weight
+     */
+    public double getWeight() {
+        return this.weight;
+    }
 }

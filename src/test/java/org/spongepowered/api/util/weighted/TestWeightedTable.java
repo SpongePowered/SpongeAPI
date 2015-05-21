@@ -22,24 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.type;
+package org.spongepowered.api.util.weighted;
 
-/**
- * An enumeration of known {@link BiomeTreeType}s.
- */
-public final class BiomeTreeTypes {
+import org.junit.Assert;
+import org.junit.Test;
 
-    public static final BiomeTreeType OAK = null;
-    public static final BiomeTreeType BIRCH = null;
-    public static final BiomeTreeType TALL_TAIGA = null;
-    public static final BiomeTreeType POINTY_TAIGA = null;
-    public static final BiomeTreeType JUNGLE = null;
-    public static final BiomeTreeType JUNGLE_BUSH = null;
-    public static final BiomeTreeType SAVANNA = null;
-    public static final BiomeTreeType CANOPY = null;
-    public static final BiomeTreeType SWAMP = null;
+import java.util.List;
 
-    private BiomeTreeTypes() {
+public class TestWeightedTable {
+
+    @Test
+    public void test() {
+        RiggedRandom rand = new RiggedRandom();
+        WeightedTable<Object> table = new WeightedTable<>();
+        table.add(new WeightedObject<Object>(this, 4));
+        rand.enqueue(0);
+        List<Object> results = table.get(rand);
+        Assert.assertEquals(this, results.get(0));
     }
 
 }

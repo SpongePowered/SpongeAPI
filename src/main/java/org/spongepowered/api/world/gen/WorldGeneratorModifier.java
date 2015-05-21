@@ -53,12 +53,12 @@ public interface WorldGeneratorModifier extends CatalogType {
      *
      * <p>To replace the base chunk generator, replace the main generator
      * populator using
-     * {@link WorldGenerator#setBaseGeneratorPopulator(GeneratorPopulator)}. To
+     * {@link WorldGenerator#setBaseGenerationPopulator(GenerationPopulator)}. To
      * replace the biome generator, use
      * {@link WorldGenerator#setBiomeGenerator(BiomeGenerator)}. To change
      * terrain population, modify the populator list returned by
      * {@link WorldGenerator#getPopulators()} or
-     * {@link WorldGenerator#getGeneratorPopulators()}.</p>
+     * {@link WorldGenerator#getGenerationPopulators()}.</p>
      *
      * @param world The creation settings of the world.
      * @param settings A data container with (usually) user-provided settings,

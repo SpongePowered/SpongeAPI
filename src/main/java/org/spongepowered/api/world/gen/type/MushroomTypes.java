@@ -25,21 +25,14 @@
 package org.spongepowered.api.world.gen.type;
 
 /**
- * An enumeration of known {@link BiomeTreeType}s.
+ * An enumeration of known {@link MushroomType}s.
  */
-public final class BiomeTreeTypes {
+public final class MushroomTypes {
 
-    public static final BiomeTreeType OAK = null;
-    public static final BiomeTreeType BIRCH = null;
-    public static final BiomeTreeType TALL_TAIGA = null;
-    public static final BiomeTreeType POINTY_TAIGA = null;
-    public static final BiomeTreeType JUNGLE = null;
-    public static final BiomeTreeType JUNGLE_BUSH = null;
-    public static final BiomeTreeType SAVANNA = null;
-    public static final BiomeTreeType CANOPY = null;
-    public static final BiomeTreeType SWAMP = null;
+    public static final MushroomType BROWN = null;
+    public static final MushroomType RED = null;
 
-    private BiomeTreeTypes() {
+    private MushroomTypes() {
     }
 
 }

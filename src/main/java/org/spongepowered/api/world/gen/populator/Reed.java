@@ -24,13 +24,25 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
  * Represents a populator which spawns in reeds near valid water sources within
  * the chunk.
  */
-public interface Reeds extends Populator {
+public interface Reed extends Populator {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Reed} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the number of reeds to attempt to spawn per chunk, must be greater
@@ -38,7 +50,7 @@ public interface Reeds extends Populator {
      * 
      * @return The amount to spawn
      */
-    int getReedsPerChunk();
+    VariableAmount getReedsPerChunk();
 
     /**
      * Sets the number of reeds to attempt to spawn per chunk, must be greater
@@ -46,12 +58,36 @@ public interface Reeds extends Populator {
      * 
      * @param count The new amount to spawn
      */
-    void setReedsPerChunk(int count);
+    void setReedsPerChunk(VariableAmount count);
 
     /**
-     * A builder for constructing {@link Reeds} populators.
+     * Sets the number of reeds to attempt to spawn per chunk, must be greater
+     * than zero.
+     * 
+     * @param count The new amount to spawn
      */
-    interface Builder {
+    default void setReedsPerChunk(int count) {
+        setReedsPerChunk(VariableAmount.fixed(count));
+    }
+
+    /**
+     * Gets the height of the reeds to generate.
+     * 
+     * @return The reed height
+     */
+    VariableAmount getReedHeight();
+
+    /**
+     * Sets the height of the reeds to generate.
+     * 
+     * @param height The new reed height
+     */
+    void setReedHeight(VariableAmount height);
+
+    /**
+     * A builder for constructing {@link Reed} populators.
+     */
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the number of reeds to attempt to spawn per chunk, must be
@@ -60,24 +96,36 @@ public interface Reeds extends Populator {
          * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the number of reeds to attempt to spawn per chunk, must be
+         * greater than zero.
          * 
+         * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder reset();
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
-         * Builds a new instance of a {@link Reeds} populator with the settings
+         * Sets the height of the reeds to generate.
+         * 
+         * @param height The new reed height
+         * @return This builder, for chaining
+         */
+        Builder reedHeight(VariableAmount height);
+
+        /**
+         * Builds a new instance of a {@link Reed} populator with the settings
          * set within the builder.
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
-        Reeds build() throws IllegalStateException;
+        Reed build() throws IllegalStateException;
 
     }
 

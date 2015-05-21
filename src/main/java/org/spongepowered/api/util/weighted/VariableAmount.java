@@ -22,8 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
-
+package org.spongepowered.api.util.weighted;
 
 import com.flowpowered.math.GenericMath;
 import com.google.common.base.Objects;
@@ -36,8 +35,13 @@ import java.util.Random;
 
 /**
  * Represents a value which may vary randomly.
+ * 
+ * <p>Implementors of this interface using it in a fashion in which may ever be
+ * serialized <strong>must</strong> implement the {@link #toContainer()}
+ * method.</p>
  */
-public abstract class VariableAmount implements DataSerializable {
+@FunctionalInterface
+public interface VariableAmount extends DataSerializable {
 
     /**
      * Creates a new 'fixed' variable amount, calls to {@link #getAmount} will
@@ -60,6 +64,19 @@ public abstract class VariableAmount implements DataSerializable {
      * @return A variable amount representation
      */
     public static VariableAmount baseWithVariance(double base, double variance) {
+        return new BaseAndVariance(base, VariableAmount.fixed(variance));
+    }
+
+    /**
+     * Creates a new variable about which has a base and variance. The final
+     * amount will be the base amount plus or minus a random amount between zero
+     * (inclusive) and the variance (exclusive).
+     * 
+     * @param base The base value
+     * @param variance The variance
+     * @return A variable amount representation
+     */
+    public static VariableAmount baseWithVariance(double base, VariableAmount variance) {
         return new BaseAndVariance(base, variance);
     }
 
@@ -73,7 +90,20 @@ public abstract class VariableAmount implements DataSerializable {
      * @return A variable amount representation
      */
     public static VariableAmount baseWithRandomAddition(double base, double addition) {
-        return new BaseAndVariance(base + addition / 2, addition / 2);
+        return new BaseAndAddition(base, VariableAmount.fixed(addition));
+    }
+
+    /**
+     * Creates a new variable amount which has a base and an additional amount.
+     * The final amount will be the base amount plus a random amount between
+     * zero (inclusive) and the additional amount (exclusive).
+     * 
+     * @param base The base value
+     * @param addition The additional amount
+     * @return A variable amount representation
+     */
+    public static VariableAmount baseWithRandomAddition(double base, VariableAmount addition) {
+        return new BaseAndAddition(base, addition);
     }
 
     /**
@@ -90,6 +120,23 @@ public abstract class VariableAmount implements DataSerializable {
      * @return A variable amount representation
      */
     public static VariableAmount baseWithOptionalVariance(double base, double variance, double chance) {
+        return new OptionalAmount(base, chance, baseWithVariance(base, variance));
+    }
+
+    /**
+     * Creates a new variable about which has a base and a chance to apply a
+     * random variance. The chance should be between zero and one with a chance
+     * of one signifying that the variance will always be applied. If the chance
+     * succeeds then the final amount will be the base amount plus or minus a
+     * random amount between zero (inclusive) and the variance (exclusive). If
+     * the chance fails then the final amount will just be the base value.
+     * 
+     * @param base The base value
+     * @param variance The variance
+     * @param chance The chance to apply the variance
+     * @return A variable amount representation
+     */
+    public static VariableAmount baseWithOptionalVariance(double base, VariableAmount variance, double chance) {
         return new OptionalAmount(base, chance, baseWithVariance(base, variance));
     }
 
@@ -112,13 +159,31 @@ public abstract class VariableAmount implements DataSerializable {
     }
 
     /**
+     * Creates a new variable about which has a base and a chance to apply a
+     * random additional amount. The chance should be between zero and one with
+     * a chance of one signifying that the additional amount will always be
+     * applied. If the chance succeeds then the final amount will be the base
+     * amount plus a random amount between zero (inclusive) and the additional
+     * amount (exclusive). If the chance fails then the final amount will just
+     * be the base value.
+     * 
+     * @param base The base value
+     * @param addition The additional amount
+     * @param chance The chance to apply the additional amount
+     * @return A variable amount representation
+     */
+    public static VariableAmount baseWithOptionalAddition(double base, VariableAmount addition, double chance) {
+        return new OptionalAmount(base, chance, baseWithRandomAddition(base, addition));
+    }
+
+    /**
      * Gets an instance of the variable amount depending on the given random
      * object.
      * 
      * @param rand The random object
      * @return The amount
      */
-    public abstract double getAmount(Random rand);
+    double getAmount(Random rand);
 
     /**
      * Gets the amount as if from {@link #getAmount(Random)} but floored to the
@@ -127,20 +192,21 @@ public abstract class VariableAmount implements DataSerializable {
      * @param rand The random object
      * @return The floored amount
      */
-    public int getFlooredAmount(Random rand) {
+    default int getFlooredAmount(Random rand) {
         return GenericMath.floor(getAmount(rand));
     }
 
-    @Override
-    public String toString() {
-        return "a varying amount";
+    // This is overridden to allow this to be a functional interface as this
+    // greatly increases the usability of the interface.
+    default DataContainer toContainer() {
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Represents a fixed amount, calls to {@link #getAmount} will always return
      * the same fixed value.
      */
-    public static class Fixed extends VariableAmount {
+    public static class Fixed implements VariableAmount {
 
         private double amount;
 
@@ -154,11 +220,16 @@ public abstract class VariableAmount implements DataSerializable {
         }
 
         @Override
+        public String toString() {
+            return Objects.toStringHelper(this).add("amount", this.amount).toString();
+        }
+
+        @Override
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
+            if (!(obj instanceof Fixed)) {
                 return false;
             }
             Fixed amount = (Fixed) obj;
@@ -167,13 +238,15 @@ public abstract class VariableAmount implements DataSerializable {
 
         @Override
         public int hashCode() {
-            return Objects.hashCode(this.amount);
+            int result = 1;
+            result = 37 * result + (int) (Double.doubleToLongBits(this.amount) ^ (Double.doubleToLongBits(this.amount) >> 32));
+            return result;
         }
 
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
-                .set(Queries.VARIABLE_AMOUNT, this.amount);
+                    .set(Queries.VARIABLE_AMOUNT, this.amount);
         }
     }
 
@@ -182,19 +255,25 @@ public abstract class VariableAmount implements DataSerializable {
      * base amount plus or minus a random amount between zero (inclusive) and
      * the variance (exclusive).
      */
-    public static class BaseAndVariance extends VariableAmount {
+    public static class BaseAndVariance implements VariableAmount {
 
         private double base;
-        private double variance;
+        private VariableAmount variance;
 
-        private BaseAndVariance(double base, double variance) {
+        private BaseAndVariance(double base, VariableAmount variance) {
             this.base = base;
             this.variance = variance;
         }
 
         @Override
         public double getAmount(Random rand) {
-            return this.base + rand.nextDouble() * this.variance * 2 - this.variance;
+            double var = this.variance.getAmount(rand);
+            return this.base + rand.nextDouble() * var * 2 - var;
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this).add("base", this.base).add("variance", this.variance).toString();
         }
 
         @Override
@@ -202,7 +281,7 @@ public abstract class VariableAmount implements DataSerializable {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
+            if (!(obj instanceof BaseAndVariance)) {
                 return false;
             }
             BaseAndVariance amount = (BaseAndVariance) obj;
@@ -211,14 +290,71 @@ public abstract class VariableAmount implements DataSerializable {
 
         @Override
         public int hashCode() {
-            return Objects.hashCode(this.base, this.variance);
+            int result = 1;
+            result = 37 * result + (int) (Double.doubleToLongBits(this.base) ^ (Double.doubleToLongBits(this.base) >> 32));
+            result = 37 * result + this.variance.hashCode();
+            return result;
         }
 
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
-                .set(Queries.VARIABLE_BASE, this.base)
-                .set(Queries.VARIABLE_VARIANCE, this.variance);
+                    .set(Queries.VARIABLE_BASE, this.base)
+                    .set(Queries.VARIABLE_VARIANCE, this.variance);
+        }
+
+    }
+
+    /**
+     * Represents a base amount with a random addition, the final amount will be
+     * the base amount plus a random amount between zero (inclusive) and the
+     * addition (exclusive).
+     */
+    public static class BaseAndAddition implements VariableAmount {
+
+        private double base;
+        private VariableAmount addition;
+
+        private BaseAndAddition(double base, VariableAmount addition) {
+            this.base = base;
+            this.addition = addition;
+        }
+
+        @Override
+        public double getAmount(Random rand) {
+            return this.base + (rand.nextDouble() * this.addition.getAmount(rand));
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this).add("base", this.base).add("addition", this.addition).toString();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof BaseAndAddition)) {
+                return false;
+            }
+            BaseAndAddition amount = (BaseAndAddition) obj;
+            return amount.base == this.base && amount.addition == this.addition;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = 1;
+            result = 37 * result + (int) (Double.doubleToLongBits(this.base) ^ (Double.doubleToLongBits(this.base) >> 32));
+            result = 37 * result + this.addition.hashCode();
+            return result;
+        }
+
+        @Override
+        public DataContainer toContainer() {
+            return new MemoryDataContainer()
+                    .set(Queries.VARIABLE_BASE, this.base)
+                    .set(Queries.VARIABLE_VARIANCE, this.addition);
         }
     }
 
@@ -227,13 +363,14 @@ public abstract class VariableAmount implements DataSerializable {
      * This wraps another {@link VariableAmount} which it refers to if the
      * chance succeeds.
      */
-    public static class OptionalAmount extends VariableAmount {
+    public static class OptionalAmount implements VariableAmount {
 
         private double chance;
         private double base;
         private VariableAmount inner;
 
         private OptionalAmount(double base, double chance, VariableAmount inner) {
+            this.base = base;
             this.inner = inner;
             this.chance = chance;
         }
@@ -247,11 +384,8 @@ public abstract class VariableAmount implements DataSerializable {
         }
 
         @Override
-        public int getFlooredAmount(Random rand) {
-            if (rand.nextDouble() < this.chance) {
-                return this.inner.getFlooredAmount(rand);
-            }
-            return GenericMath.floor(this.base);
+        public String toString() {
+            return Objects.toStringHelper(this).add("base", this.base).add("chance", this.chance).add("inner", this.inner).toString();
         }
 
         @Override
@@ -259,7 +393,7 @@ public abstract class VariableAmount implements DataSerializable {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
+            if (!(obj instanceof OptionalAmount)) {
                 return false;
             }
             OptionalAmount amount = (OptionalAmount) obj;
@@ -268,15 +402,19 @@ public abstract class VariableAmount implements DataSerializable {
 
         @Override
         public int hashCode() {
-            return Objects.hashCode(this.inner, this.chance, this.base);
+            int result = 1;
+            result = 37 * result + (int) (Double.doubleToLongBits(this.base) ^ (Double.doubleToLongBits(this.base) >> 32));
+            result = 37 * result + (int) (Double.doubleToLongBits(this.chance) ^ (Double.doubleToLongBits(this.chance) >> 32));
+            result = 37 * result + this.inner.hashCode();
+            return result;
         }
 
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
-                .set(Queries.VARIABLE_CHANCE, this.chance)
-                .set(Queries.VARIABLE_BASE, this.base)
-                .set(Queries.VARIABLE_VARIANCE, this.inner);
+                    .set(Queries.VARIABLE_CHANCE, this.chance)
+                    .set(Queries.VARIABLE_BASE, this.base)
+                    .set(Queries.VARIABLE_VARIANCE, this.inner);
         }
     }
 

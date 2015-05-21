@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import com.google.common.base.Predicate;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -32,6 +36,15 @@ import org.spongepowered.api.world.gen.Populator;
  * ores.
  */
 public interface Ore extends Populator {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Ore} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the block to place as ore.
@@ -53,7 +66,7 @@ public interface Ore extends Populator {
      * 
      * @return The deposit size
      */
-    int getDepositSize();
+    VariableAmount getDepositSize();
 
     /**
      * Sets the size of deposit of ore. This is the number of blocks per clump
@@ -61,7 +74,17 @@ public interface Ore extends Populator {
      * 
      * @param size The new deposit size
      */
-    void setDepositSize(int size);
+    void setDepositSize(VariableAmount size);
+
+    /**
+     * Sets the size of deposit of ore. This is the number of blocks per clump
+     * of ores spawned.
+     * 
+     * @param size The new deposit size
+     */
+    default void setDepositSize(int size) {
+        setDepositSize(VariableAmount.fixed(size));
+    }
 
     /**
      * Gets the number of ore clumps to attempt to spawn per chunk, must be
@@ -69,7 +92,7 @@ public interface Ore extends Populator {
      * 
      * @return The number of clumps to spawn
      */
-    int getDepositsPerChunk();
+    VariableAmount getDepositsPerChunk();
 
     /**
      * Sets the number of ore clumps to attempt to spawn per chunk, must be
@@ -77,40 +100,50 @@ public interface Ore extends Populator {
      * 
      * @param count The new number of clumps to spawn
      */
-    void setDepositsPerChunk(int count);
+    void setDepositsPerChunk(VariableAmount count);
 
     /**
-     * Gets the minimum height that the ore can generate at.
+     * Sets the number of ore clumps to attempt to spawn per chunk, must be
+     * greater than zero.
      * 
-     * @return The minimum height
+     * @param count The new number of clumps to spawn
      */
-    int getMinHeight();
+    default void setDepositsPerChunk(int count) {
+        setDepositSize(VariableAmount.fixed(count));
+    }
 
     /**
-     * Sets the minimum height that the ore can generate at.
+     * Gets the height that the ore will generate at.
      * 
-     * @param min The new minimum height
+     * @return The height
      */
-    void setMinHeight(int min);
+    VariableAmount getHeight();
 
     /**
-     * Gets the maximum height that the ore can generate at.
+     * Sets the height that the ore will generate at.
      * 
-     * @return The maximum height
+     * @param height The new height
      */
-    int getMaxHeight();
+    void setHeight(VariableAmount height);
 
     /**
-     * Sets the maximum height that the ore can generate at.
+     * Gets a predicate which checks for the placement conditions for this ore.
      * 
-     * @param max The new maximum height
+     * @return The placement conditions check
      */
-    void setMaxHeight(int max);
+    Predicate<BlockState> getPlacementCondition();
+
+    /**
+     * Sets a predicate which checks for the placement conditions for this ore.
+     * 
+     * @param condition The new placement conditions check
+     */
+    void setPlacementCondition(Predicate<BlockState> condition);
 
     /**
      * A builder for constructing {@link Ore} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the block to place as ore.
@@ -127,7 +160,18 @@ public interface Ore extends Populator {
          * @param size The new deposit size
          * @return This builder, for chaining
          */
-        Builder size(int size);
+        Builder size(VariableAmount size);
+
+        /**
+         * Sets the size of deposit of ore. This is the number of blocks per
+         * clump of ores spawned.
+         * 
+         * @param size The new deposit size
+         * @return This builder, for chaining
+         */
+        default Builder size(int size) {
+            return size(VariableAmount.fixed(size));
+        }
 
         /**
          * Sets the number of ore clumps to attempt to spawn per chunk, must be
@@ -136,30 +180,35 @@ public interface Ore extends Populator {
          * @param count The new number of clumps to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
 
         /**
-         * Sets the minimum height that the ore can generate at.
+         * Sets the number of ore clumps to attempt to spawn per chunk, must be
+         * greater than zero.
          * 
-         * @param min The new minimum height
+         * @param count The new number of clumps to spawn
          * @return This builder, for chaining
          */
-        Builder minHeight(int min);
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
-         * Sets the maximum height that the ore can generate at.
+         * Sets the height that the ore can generate at.
          * 
-         * @param max The new maximum height
+         * @param height The new height
          * @return This builder, for chaining
          */
-        Builder maxHeight(int max);
+        Builder height(VariableAmount height);
 
         /**
-         * Resets this builder to the default values.
+         * Sets a predicate which checks for the placement conditions for this
+         * ore.
          * 
+         * @param condition The new placement conditions check
          * @return This builder, for chaining
          */
-        Builder reset();
+        Builder placementCondition(Predicate<BlockState> condition);
 
         /**
          * Builds a new instance of a {@link Ore} populator with the settings
@@ -167,7 +216,7 @@ public interface Ore extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         Ore build() throws IllegalStateException;
 

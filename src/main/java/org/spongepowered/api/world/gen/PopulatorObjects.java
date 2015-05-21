@@ -24,79 +24,34 @@
  */
 package org.spongepowered.api.world.gen;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.World;
-
-import java.util.Random;
-
 /**
- * Methods for using a {@link PopulatorObject} as a {@link Populator}. These
- * methods follow the rules for populators as outlined by
- * {@link Populator#populate(Chunk, Random)}.
- *
+ * A pseudo-enum of {@link PopulatorObject}s.
  */
-public class PopulatorObjects {
+public final class PopulatorObjects {
 
-    private static class RandomHeightPopulator implements Populator {
+    // Populators
+    public static final PopulatorObject DESERT_WELL = null;
 
-        private final int attemptsPerChunk;
-        private final double chancePerAttempt;
-        private final int maxY;
-        private final int minY;
-        private final PopulatorObject object;
+    // Trees
+    public static final PopulatorObject BIRCH = null;
+    public static final PopulatorObject CANOPY = null;
+    public static final PopulatorObject JUNGLE = null;
+    public static final PopulatorObject JUNGLE_BUSH = null;
+    public static final PopulatorObject MEGA_BIRCH = null;
+    public static final PopulatorObject MEGA_JUNGLE = null;
+    public static final PopulatorObject MEGA_OAK = null;
+    public static final PopulatorObject MEGA_POINTY_TAIGA = null;
+    public static final PopulatorObject MEGA_TALL_TAIGA = null;
+    public static final PopulatorObject OAK = null;
+    public static final PopulatorObject POINTY_TAIGA = null;
+    public static final PopulatorObject SAVANNA = null;
+    public static final PopulatorObject SWAMP = null;
+    public static final PopulatorObject TALL_TAIGA = null;
 
-        private RandomHeightPopulator(int attemptsPerChunk, double chancePerAttempt, int maxY, int minY, PopulatorObject object) {
-            checkArgument(attemptsPerChunk > 0, "attemptPerChunk must be larger than 0");
-            checkArgument(chancePerAttempt >= 0 && chancePerAttempt <= 1, "changePerAttempt must be between 0 and 1, inclusive");
-            checkArgument(maxY >= minY, "maxY must be larger than or equal to minY");
-            checkNotNull(object, "object");
+    // Mushrooms
+    public static final PopulatorObject BROWN = null;
+    public static final PopulatorObject RED = null;
 
-            this.attemptsPerChunk = attemptsPerChunk;
-            this.chancePerAttempt = chancePerAttempt;
-            this.maxY = maxY;
-            this.minY = minY;
-            this.object = object;
-        }
-
-        @Override
-        public void populate(Chunk chunk, Random random) {
-            Vector3i chunkPos = chunk.getPosition();
-            int populationStartX = chunkPos.getX() * 16 + 8;
-            int populationStartZ = chunkPos.getZ() * 16 + 8;
-            World world = chunk.getWorld();
-
-            for (int i = 0; i < this.attemptsPerChunk; i++) {
-                if (this.chancePerAttempt >= random.nextDouble()) {
-                    int spawnX = populationStartX + random.nextInt(16);
-                    int spawnY = random.nextInt(this.maxY - this.minY + 1) + this.minY;
-                    int spawnZ = populationStartZ + random.nextInt(16);
-
-                    if (this.object.canPlaceAt(world, spawnX, spawnY, spawnZ)) {
-                        this.object.placeObject(world, random, spawnX, spawnY, spawnZ);
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Creates a populator that spawns the given object at a random y location.
-     *
-     * @param object The object to spawn.
-     * @param attemptsPerChunk How many times an attempt should be made to place
-     *        this object in a chunk.
-     * @param chancePerAttempt The chance that each attempt succeeds, between 0
-     *        and 1, inclusive.
-     * @param minY The minimum y location, inclusive.
-     * @param maxY The maximum y location, inclusive.
-     * @return the populator
-     */
-    public static Populator spawnAtRandomHeight(PopulatorObject object, int attemptsPerChunk,
-            double chancePerAttempt, int minY, int maxY) {
-        return new RandomHeightPopulator(attemptsPerChunk, chancePerAttempt, maxY, maxY, object);
+    private PopulatorObjects() {
     }
 }

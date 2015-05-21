@@ -24,31 +24,28 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Objects;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.data.Queries;
 
 /**
- * An entry which contains an object.
+ * Represents an entry in a table which has no associated object. Used to have
+ * rolls which give nothing.
  *
- * @param <T> The entry type
+ * @param <T> The type of object of this entries table
  */
-public class WeightedObject<T> extends TableEntry<T> {
+public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
 
-    private final T object;
-
-    public WeightedObject(T obj, double weight) {
+    public EmptyObject(double weight) {
         super(weight);
-        this.object = checkNotNull(obj);
     }
 
-    /**
-     * Gets the entry contained in this entry.
-     * 
-     * @return The object
-     */
-    public T get() {
-        return this.object;
+    @Override
+    public DataContainer toContainer() {
+        return new MemoryDataContainer()
+                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, getWeight());
     }
 
     @Override
@@ -56,11 +53,11 @@ public class WeightedObject<T> extends TableEntry<T> {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof WeightedObject)) {
+        if (!(o instanceof EmptyObject)) {
             return false;
         }
-        WeightedObject<?> c = (WeightedObject<?>) o;
-        return this.object.equals(c.object) && getWeight() == c.getWeight();
+        EmptyObject<?> c = (EmptyObject<?>) o;
+        return getWeight() == c.getWeight();
     }
 
     @Override
@@ -68,12 +65,11 @@ public class WeightedObject<T> extends TableEntry<T> {
         int r = 1;
         long w = Double.doubleToLongBits(getWeight());
         r = r * 37 + (int) (w ^ (w >>> 32));
-        r = r * 37 + this.object.hashCode();
         return r;
     }
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this).add("object", this.object).toString();
+        return Objects.toStringHelper(this).add("weight", getWeight()).toString();
     }
 }

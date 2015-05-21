@@ -37,12 +37,12 @@ import org.spongepowered.api.data.type.ShrubTypes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.ImmutableBiomeArea;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.gen.GeneratorPopulator;
+import org.spongepowered.api.world.gen.GenerationPopulator;
 
 /**
  * Places tall grass with groups of flowers.
  */
-public class SkylandsGrassPopulator implements GeneratorPopulator {
+public class SkylandsGrassPopulator implements GenerationPopulator {
 
     private static final double GRASS_ODDS = 0.3;
     private static final double DOUBLE_GRASS_ODDS = 0.9;

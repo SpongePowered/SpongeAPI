@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -34,6 +37,15 @@ import org.spongepowered.api.world.gen.Populator;
  * radius plus the variance (exclusive).
  */
 public interface BlockBlob extends Populator {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link BlockBlob} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link BlockState} that this populator will place down to form
@@ -52,59 +64,55 @@ public interface BlockBlob extends Populator {
     void setBlock(BlockState state);
 
     /**
-     * Gets the base radius of the area for the blob.
+     * Gets the radius of the area for the blob.
      * 
-     * @return The base radius
+     * @return The radius
      */
-    int getBaseRadius();
+    VariableAmount getRadius();
 
     /**
-     * Sets the base radius of the area for the blob, cannot be negative.
+     * Sets the radius of the area for the blob, cannot be negative.
      * 
-     * <p>This defaults to 1.</p>
-     * 
-     * @param radius The new base radius
+     * @param radius The new radius
      */
-    void setBaseRadius(int radius);
+    void setRadius(VariableAmount radius);
 
     /**
-     * Gets the radius variance of the blob.
+     * Sets the radius of the area for the blob, cannot be negative.
      * 
-     * @return The radius variance
+     * @param radius The new radius
      */
-    int getRadiusVariance();
-
-    /**
-     * Sets the radius variance of the blob, must be greater than zero (a
-     * variance of one will correspond to a final radius of
-     * {@code finalRadius = baseRadius + [0,1) = baseRadius }).
-     * 
-     * <p>This defaults to 2.</p>
-     * 
-     * @param variance The new radius variance
-     */
-    void setRadiusVariance(int variance);
+    default void setRadius(double radius) {
+        setRadius(VariableAmount.fixed(radius));
+    }
 
     /**
      * Gets the number of blobs which will be placed per chunk.
      * 
      * @return The number of blobs
      */
-    int getCount();
+    VariableAmount getCount();
 
     /**
      * Sets the number of blobs to spawn per chunk, must be greater than zero.
      * 
-     * <p>This defaults to 3.</p>
+     * @param count The new number of blobs
+     */
+    void setCount(VariableAmount count);
+
+    /**
+     * Sets the number of blobs to spawn per chunk, must be greater than zero.
      * 
      * @param count The new number of blobs
      */
-    void setCount(int count);
+    default void setCount(int count) {
+        setCount(VariableAmount.fixed(count));
+    }
 
     /**
      * A builder for constructing {@link BlockBlob} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the {@link BlockState} that this populator will place down to
@@ -116,26 +124,26 @@ public interface BlockBlob extends Populator {
         Builder block(BlockState block);
 
         /**
-         * Sets the base radius of the area for the blob, cannot be negative.
+         * Sets the radius of the area for the blob, cannot be negative.
          * 
          * <p>This defaults to 1.</p>
          * 
-         * @param radius The new base radius
+         * @param radius The new radius
          * @return This builder, for chaining
          */
-        Builder baseRadius(int radius);
+        Builder radius(VariableAmount radius);
 
         /**
-         * Sets the radius variance of the blob, must be greater than zero (a
-         * variance of one will correspond to a final radius of
-         * {@code finalRadius = baseRadius + [0,1) = baseRadius }).
+         * Sets the radius of the area for the blob, cannot be negative.
          * 
-         * <p>This defaults to 2.</p>
+         * <p>This defaults to 1.</p>
          * 
-         * @param variance The new radius variance
+         * @param radius The new radius
          * @return This builder, for chaining
          */
-        Builder radiusVariance(int variance);
+        default Builder radius(double radius) {
+            return radius(VariableAmount.fixed(radius));
+        }
 
         /**
          * Sets the number of blobs to spawn per chunk, must be greater than
@@ -146,14 +154,20 @@ public interface BlockBlob extends Populator {
          * @param count The number of blobs to spawn
          * @return This builder, for chaining
          */
-        Builder blockCount(int count);
+        Builder blobCount(VariableAmount count);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the number of blobs to spawn per chunk, must be greater than
+         * zero.
          * 
+         * <p>This defaults to 3.</p>
+         * 
+         * @param count The number of blobs to spawn
          * @return This builder, for chaining
          */
-        Builder reset();
+        default Builder blobCount(int count) {
+            return blobCount(VariableAmount.fixed(count));
+        }
 
         /**
          * Builds a new instance of a {@link BlockBlob} populator with the
@@ -161,7 +175,7 @@ public interface BlockBlob extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         BlockBlob build() throws IllegalStateException;
 

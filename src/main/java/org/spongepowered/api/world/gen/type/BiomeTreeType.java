@@ -24,13 +24,56 @@
  */
 package org.spongepowered.api.world.gen.type;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.gen.PopulatorObject;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents the various types of trees which may be spawned into the world.
  */
 @CatalogedBy(BiomeTreeTypes.class)
 public interface BiomeTreeType extends CatalogType {
+
+    /**
+     * Gets the {@link PopulatorObject} which is used to generate this tree into
+     * the world.
+     * 
+     * @return The populator object
+     */
+    PopulatorObject getPopulatorObject();
+
+    /**
+     * Sets the {@link PopulatorObject} which is used to generate this tree into
+     * the world.
+     * 
+     * @param object The new populator object
+     */
+    void setPopulatorObject(PopulatorObject object);
+    
+    /**
+     * Gets whether this tree type has a larger equivalent.
+     * 
+     * @return Has large equivalent
+     */
+    boolean hasLargeEquivalent();
+    
+    /**
+     * Gets the {@link PopulatorObject} which is used to generate the larger
+     * equivalent of this tree into the world.
+     * 
+     * @return The populator object
+     */
+    Optional<PopulatorObject> getLargePopulatorObject();
+    
+    /**
+     * Sets the {@link PopulatorObject} which is used to generate the larger
+     * equivalent of this tree into the world.
+     * 
+     * @param object The new populator object
+     */
+    void setLargePopulatorObject(@Nullable PopulatorObject object);
 
 }

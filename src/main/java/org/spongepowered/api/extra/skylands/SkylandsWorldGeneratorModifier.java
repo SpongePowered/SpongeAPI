@@ -26,7 +26,7 @@ package org.spongepowered.api.extra.skylands;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.WorldCreationSettings;
-import org.spongepowered.api.world.gen.GeneratorPopulator;
+import org.spongepowered.api.world.gen.GenerationPopulator;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -39,12 +39,12 @@ public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
 
     @Override
     public void modifyWorldGenerator(WorldCreationSettings world, DataContainer settings, WorldGenerator worldGenerator) {
-        worldGenerator.setBaseGeneratorPopulator(new SkylandsTerrainGenerator());
+        worldGenerator.setBaseGenerationPopulator(new SkylandsTerrainGenerator());
         worldGenerator.setBiomeGenerator(new SkylandsBiomeGenerator());
-        final List<GeneratorPopulator> generatorPopulators = worldGenerator.getGeneratorPopulators();
-        generatorPopulators.clear();
-        generatorPopulators.add(new SkylandsGroundCoverPopulator());
-        generatorPopulators.add(new SkylandsGrassPopulator());
+        final List<GenerationPopulator> generationPopulators = worldGenerator.getGenerationPopulators();
+        generationPopulators.clear();
+        generationPopulators.add(new SkylandsGroundCoverPopulator());
+        generationPopulators.add(new SkylandsGrassPopulator());
         // TODO: temporary, need to decide what to use
         worldGenerator.getPopulators().clear();
     }

@@ -199,21 +199,12 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     /**
      * Gets the {@link WorldGenerator} for this world.
      *
-     * <p>Any changes made to the world generator won't affect the world until
-     * {@link #setWorldGenerator(WorldGenerator)}, and even then only newly
-     * changed chunks will be affected.</p>
+     * <p>Any changes made to the world generator will only affect newly
+     * generated chunks.</p>
      *
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();
-
-    /**
-     * Sets the {@link WorldGenerator} for this world to use to create new
-     * chunks.
-     *
-     * @param generator The new generator
-     */
-    void setWorldGenerator(WorldGenerator generator);
 
     /**
      * Returns whether this {@link World}'s spawn chunks remain loaded when no
@@ -231,7 +222,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      * {@link DimensionType}'s keepLoaded value.
      *
      * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded
-     *            without players
+     *        without players
      */
     void setKeepSpawnLoaded(boolean keepLoaded);
 
@@ -273,6 +264,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
 
     /**
      * Gets the {@link Location} of the spawn point.
+     * 
      * @return The location
      */
     Location<World> getSpawnLocation();

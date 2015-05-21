@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import com.google.common.base.Predicate;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -32,6 +36,15 @@ import org.spongepowered.api.world.gen.Populator;
  * on an ocean or river.
  */
 public interface SeaFloor extends Populator {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link SeaFloor} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link BlockState} to place down.
@@ -53,7 +66,7 @@ public interface SeaFloor extends Populator {
      * 
      * @return The amount to spawn
      */
-    int getBlocksPerChunk();
+    VariableAmount getDiscsPerChunk();
 
     /**
      * Sets the number of discs to attempt to spawn per chunk, must be greater
@@ -61,26 +74,85 @@ public interface SeaFloor extends Populator {
      * 
      * @param count The new amount to spawn
      */
-    void setBlocksPerChunk(int count);
+    void setDiscsPerChunk(VariableAmount count);
+
+    /**
+     * Sets the number of discs to attempt to spawn per chunk, must be greater
+     * than zero.
+     * 
+     * @param count The new amount to spawn
+     */
+    default void setDiscsPerChunk(int count) {
+        setDiscsPerChunk(VariableAmount.fixed(count));
+    }
 
     /**
      * Gets the radius of the discs being spawned.
      * 
      * @return The disc radius
      */
-    int getRadius();
+    VariableAmount getRadius();
 
     /**
      * Sets the radius of the discs being spawned.
      * 
      * @param radius The new disc radius
      */
-    void setRadius(int radius);
+    void setRadius(VariableAmount radius);
+
+    /**
+     * Sets the radius of the discs being spawned.
+     * 
+     * @param radius The new disc radius
+     */
+    default void setRadius(double radius) {
+        setRadius(VariableAmount.fixed(radius));
+    }
+
+    /**
+     * Gets the depth of the sea floor cover to generate.
+     * 
+     * @return The depth
+     */
+    VariableAmount getDepth();
+
+    /**
+     * Sets the depth of the sea floor cover to generate.
+     * 
+     * @param depth The new depth
+     */
+    void setDepth(VariableAmount depth);
+
+    /**
+     * Sets the depth of the sea floor cover to generate.
+     * 
+     * @param depth The new depth
+     */
+    default void setDepth(int depth) {
+        setDepth(VariableAmount.fixed(depth));
+    }
+
+    /**
+     * Gets the predicate which is applied to determine what {@link BlockState}s
+     * this populator may replace.
+     * 
+     * @return The replacement check
+     */
+    Predicate<BlockState> getValidBlocksToReplace();
+
+    /**
+     * Sets the predicate which will be applied to all {@link BlockState}s that
+     * this populator attempts to replace in order to determine if they are
+     * valid.
+     * 
+     * @param check The new replacement check
+     */
+    void setValidBlocksToReplace(Predicate<BlockState> check);
 
     /**
      * A builder for constructing {@link SeaFloor} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the {@link BlockState} to place down.
@@ -91,13 +163,24 @@ public interface SeaFloor extends Populator {
         Builder block(BlockState block);
 
         /**
-         * Sets the number of discs to attempt to spawn per chunk, must be greater
-         * than zero.
+         * Sets the number of discs to attempt to spawn per chunk, must be
+         * greater than zero.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
+
+        /**
+         * Sets the number of discs to attempt to spawn per chunk, must be
+         * greater than zero.
+         * 
+         * @param count The new amount to spawn
+         * @return This builder, for chaining
+         */
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
          * Sets the radius of the discs being spawned.
@@ -105,14 +188,45 @@ public interface SeaFloor extends Populator {
          * @param radius The new disc radius
          * @return This builder, for chaining
          */
-        Builder radius(int radius);
+        Builder radius(VariableAmount radius);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the radius of the discs being spawned.
          * 
+         * @param radius The new disc radius
          * @return This builder, for chaining
          */
-        Builder reset();
+        default Builder radius(double radius) {
+            return radius(VariableAmount.fixed(radius));
+        }
+
+        /**
+         * Sets the depth of the sea floor cover to generate.
+         * 
+         * @param depth The new depth
+         * @return This builder, for chaining
+         */
+        Builder depth(VariableAmount depth);
+
+        /**
+         * Sets the depth of the sea floor cover to generate.
+         * 
+         * @param depth The new depth
+         * @return This builder, for chaining
+         */
+        default Builder depth(int depth) {
+            return depth(VariableAmount.fixed(depth));
+        }
+
+        /**
+         * Sets the predicate which will be applied to all {@link BlockState}s
+         * that this populator attempts to replace in order to determine if they
+         * are valid.
+         * 
+         * @param check The new replacement check
+         * @return This builder, for chaining
+         */
+        Builder replace(Predicate<BlockState> check);
 
         /**
          * Builds a new instance of a {@link SeaFloor} populator with the
@@ -120,7 +234,7 @@ public interface SeaFloor extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         SeaFloor build() throws IllegalStateException;
 

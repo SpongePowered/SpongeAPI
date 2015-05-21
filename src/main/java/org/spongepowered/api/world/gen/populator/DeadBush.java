@@ -26,18 +26,16 @@ package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
-import org.spongepowered.api.world.gen.PopulatorObject;
 
 /**
- * Represents a populator which spawns desert wells. The wells will be created
- * according to the spawn probability of {@link #getSpawnProbability} and if the
- * spawn conditions are met (that the block its spawning on is sand).
+ * Represents a populator which places down dead bushes within the chunk.
  */
-public interface DesertWell extends Populator {
+public interface DeadBush extends Populator {
 
     /**
-     * Creates a new {@link Builder} to build a {@link DesertWell} populator.
+     * Creates a new {@link Builder} to build a {@link DeadBush} populator.
      *
      * @return The new builder
      */
@@ -46,63 +44,65 @@ public interface DesertWell extends Populator {
     }
 
     /**
-     * Gets the probability of a desert well spawning.
+     * Gets the number of bushes to attempt to spawn per chunk, must be greater
+     * than zero.
      * 
-     * @return The spawn chance of a well
+     * @return The amount of shrubs to spawn
      */
-    double getSpawnProbability();
+    VariableAmount getShrubsPerChunk();
 
     /**
-     * Sets the probability of a desert well spawning.
+     * Sets the number of bushes to attempt to spawn per chunk, must be greater
+     * than zero.
      * 
-     * @param p The new spawn probability
+     * @param count The new amount of shrubs to spawn
      */
-    void setSpawnProbability(double p);
+    void setShrubsPerChunk(VariableAmount count);
 
     /**
-     * Gets the {@link PopulatorObject} representing the well.
+     * Sets the number of bushes to attempt to spawn per chunk, must be greater
+     * than zero.
      * 
-     * @return The populator object
+     * @param count The new amount of shrubs to spawn
      */
-    PopulatorObject getWellObject();
+    default void setShrubsPerChunk(int count) {
+        setShrubsPerChunk(VariableAmount.fixed(count));
+    }
 
     /**
-     * Sets the {@link PopulatorObject} representing the well.
-     * 
-     * @param obj The new populator object
-     */
-    void setWellObject(PopulatorObject obj);
-
-    /**
-     * A builder for constructing {@link DesertWell} populators.
+     * A builder for constructing {@link DeadBush} populators.
      */
     interface Builder extends ResettableBuilder<Builder> {
 
         /**
-         * Sets the probability of a desert well spawning.
+         * Sets the number of bushes to attempt to spawn per chunk, must be
+         * greater than zero.
          * 
-         * @param p The new spawn probability
+         * @param count The new amount of bushes to spawn
          * @return This builder, for chaining
          */
-        Builder probability(double p);
+        Builder perChunk(VariableAmount count);
 
         /**
-         * Sets the {@link PopulatorObject} representing the well.
+         * Sets the number of bushes to attempt to spawn per chunk, must be
+         * greater than zero.
          * 
-         * @param obj The new populator object
+         * @param count The new amount of bushes to spawn
          * @return This builder, for chaining
          */
-        Builder wellObject(PopulatorObject obj);
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
-         * Builds a new instance of a {@link DesertWell} populator with the
-         * settings set within the builder.
+         * Builds a new instance of a {@link DeadBush} populator with the settings
+         * set within the builder.
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
          *         which do not have default values
          */
-        DesertWell build() throws IllegalStateException;
+        DeadBush build() throws IllegalStateException;
 
     }
 

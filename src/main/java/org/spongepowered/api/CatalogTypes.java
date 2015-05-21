@@ -67,6 +67,7 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.effect.particle.ParticleType;
+import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -74,7 +75,6 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
@@ -90,7 +90,10 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
+import org.spongepowered.api.world.gen.type.BiomeTreeType;
+import org.spongepowered.api.world.gen.type.MushroomType;
 import org.spongepowered.api.world.weather.Weather;
 
 /**
@@ -104,6 +107,7 @@ public final class CatalogTypes {
     public static final Class<Art> ART = Art.class;
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
     public static final Class<BigMushroomType> BIG_MUSHROOM_TYPE = BigMushroomType.class;
+    public static final Class<BiomeTreeType> BIOME_TREE_TYPE = BiomeTreeType.class;
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
     public static final Class<BlockType> BLOCK_TYPE = BlockType.class;
     public static final Class<BodyPart> BODY_PART = BodyPart.class;
@@ -132,6 +136,7 @@ public final class CatalogTypes {
     public static final Class<HorseColor> HORSE_COLOR = HorseColor.class;
     public static final Class<HorseStyle> HORSE_STYLE = HorseStyle.class;
     public static final Class<HorseVariant> HORSE_VARIANT = HorseVariant.class;
+    public static final Class<MushroomType> MUSHROOM_TYPE = MushroomType.class;
     public static final Class<NotePitch> NOTE_PITCH = NotePitch.class;
     public static final Class<InstrumentType> INSTRUMENT_TYPE = InstrumentType.class;
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
@@ -140,8 +145,9 @@ public final class CatalogTypes {
     public static final Class<ParticleType> PARTICLE_TYPE = ParticleType.class;
     public static final Class<PistonType> PISTON_TYPE = PistonType.class;
     public static final Class<PlantType> PLANT_TYPE = PlantType.class;
-    public static final Class<PotionEffectType> POTION_EFFECT_TYPE = PotionEffectType.class;
+    public static final Class<PopulatorObject> POPULATOR_OBJECT = PopulatorObject.class;
     public static final Class<PortionType> PORTION_TYPE = PortionType.class;
+    public static final Class<PotionEffectType> POTION_EFFECT_TYPE = PotionEffectType.class;
     public static final Class<PrismarineType> PRISMARINE_TYPE = PrismarineType.class;
     public static final Class<Profession> PROFESSION = Profession.class;
     public static final Class<QuartzType> QUARTZ_TYPE = QuartzType.class;

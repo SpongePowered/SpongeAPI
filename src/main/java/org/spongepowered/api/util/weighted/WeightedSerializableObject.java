@@ -30,13 +30,19 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 
+/**
+ * An entry which contains an object with the added restriction that the object
+ * be serializable.
+ *
+ * @param <T> The entry type
+ */
 public class WeightedSerializableObject<T extends DataSerializable> extends WeightedObject<T> implements DataSerializable {
 
     /**
      * Creates a new {@link WeightedSerializableObject} with the provided
      * {@link DataSerializable}.
      *
-     * @param object The serializable
+     * @param object The serializable object
      * @param weight The weight
      */
     public WeightedSerializableObject(T object, int weight) {
@@ -46,28 +52,28 @@ public class WeightedSerializableObject<T extends DataSerializable> extends Weig
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-            .add("object", this.object)
-            .add("weight", this.weight)
-            .toString();
+                .add("object", get())
+                .add("weight", getWeight())
+                .toString();
     }
 
     @SuppressWarnings("rawtypes")
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (!(o instanceof WeightedSerializableObject)) {
             return false;
         }
-        WeightedSerializableObject object = (WeightedSerializableObject) obj;
-        return this.object.equals(object.object) && this.weight == object.weight;
+        WeightedSerializableObject object = (WeightedSerializableObject) o;
+        return get().equals(object.get()) && getWeight() == object.getWeight();
     }
 
     @Override
     public DataContainer toContainer() {
         return new MemoryDataContainer()
-            .set(Queries.WEIGHTED_SERIALIZABLE, this.get())
-            .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.weight);
+                .set(Queries.WEIGHTED_SERIALIZABLE, get())
+                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, getWeight());
     }
 }

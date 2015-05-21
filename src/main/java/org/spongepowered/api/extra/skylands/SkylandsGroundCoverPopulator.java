@@ -32,12 +32,12 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.ImmutableBiomeArea;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.gen.GeneratorPopulator;
+import org.spongepowered.api.world.gen.GenerationPopulator;
 
 /**
  * Places grass and dirt on the blocks just bellow air.
  */
-public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
+public class SkylandsGroundCoverPopulator implements GenerationPopulator {
 
     @SuppressWarnings("ConstantConditions")
     private static final GroundCoverLayer[] LAYERS = {

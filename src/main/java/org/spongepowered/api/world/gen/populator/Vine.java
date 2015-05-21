@@ -24,60 +24,86 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
- * Represents a populator which scatters melons randomly around the chunk.
+ * Represents a populator which places large amounts of vines on surfaces within
+ * the chunk.
  */
-public interface Melons extends Populator {
+public interface Vine extends Populator {
 
     /**
-     * Gets the number of melons to attempt to spawn per chunk, must be greater
-     * than zero. The default value is 64.
+     * Creates a new {@link Builder} to build a {@link Vine} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Gets the number of vines to attempt to spawn per chunk, must be greater
+     * than zero.
      * 
      * @return The number to spawn
      */
-    int getMelonsPerChunk();
+    VariableAmount getVinesPerChunk();
 
     /**
-     * Sets the number of melons to attempt to spawn per chunk, must be greater
-     * than zero.
+     * Sets the number of vines to attempt to spawn per chunk, must be greater
+     * than zero. The default value is 50.
      * 
      * @param count The new amount to spawn
      */
-    void setMelonsPerChunk(int count);
+    void setVinesPerChunk(VariableAmount count);
 
     /**
-     * A builder for constructing {@link Melons} populators.
+     * Sets the number of vines to attempt to spawn per chunk, must be greater
+     * than zero. The default value is 50.
+     * 
+     * @param count The new amount to spawn
      */
-    interface Builder {
+    default void setVinesPerChunk(int count) {
+        setVinesPerChunk(VariableAmount.fixed(count));
+    }
+
+    /**
+     * A builder for constructing {@link Vine} populators.
+     */
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
-         * Sets the number of melons to attempt to spawn per chunk. The default
-         * value is 64.
+         * Sets the number of vines to attempt to spawn per chunk. The default
+         * value is 50.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the number of vines to attempt to spawn per chunk. The default
+         * value is 50.
          * 
+         * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder reset();
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
-         * Builds a new instance of a {@link Melons} populator with the settings
+         * Builds a new instance of a {@link Vine} populator with the settings
          * set within the builder.
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
-        Melons build() throws IllegalStateException;
+        Vine build() throws IllegalStateException;
 
     }
-
 }

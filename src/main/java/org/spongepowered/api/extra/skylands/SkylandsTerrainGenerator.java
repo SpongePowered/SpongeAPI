@@ -38,12 +38,12 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.ImmutableBiomeArea;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.gen.GeneratorPopulator;
+import org.spongepowered.api.world.gen.GenerationPopulator;
 
 /**
  * A terrain generator for a Skylands look-alike.
  */
-public class SkylandsTerrainGenerator implements GeneratorPopulator {
+public class SkylandsTerrainGenerator implements GenerationPopulator {
 
     private static final int MID_POINT = 64;
     private static final int UPPER_SIZE = 48;

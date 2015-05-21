@@ -28,27 +28,32 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 
+import java.util.List;
+import java.util.Random;
+
 /**
- * An entry which contains an object.
+ * Represents a {@link RandomObjectTable} which is nested inside the entry of
+ * another table.
  *
  * @param <T> The entry type
  */
-public class WeightedObject<T> extends TableEntry<T> {
+public class NestedTableEntry<T> extends TableEntry<T> {
 
-    private final T object;
+    private final RandomObjectTable<T> table;
 
-    public WeightedObject(T obj, double weight) {
+    public NestedTableEntry(double weight, RandomObjectTable<T> table) {
         super(weight);
-        this.object = checkNotNull(obj);
+        this.table = checkNotNull(table);
     }
 
     /**
-     * Gets the entry contained in this entry.
+     * Retrieves entries from the nested table.
      * 
-     * @return The object
+     * @param rand The random object to use
+     * @return The retrieved entries
      */
-    public T get() {
-        return this.object;
+    public List<T> get(Random rand) {
+        return this.table.get(rand);
     }
 
     @Override
@@ -56,11 +61,11 @@ public class WeightedObject<T> extends TableEntry<T> {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof WeightedObject)) {
+        if (!(o instanceof NestedTableEntry)) {
             return false;
         }
-        WeightedObject<?> c = (WeightedObject<?>) o;
-        return this.object.equals(c.object) && getWeight() == c.getWeight();
+        NestedTableEntry<?> c = (NestedTableEntry<?>) o;
+        return this.table.equals(c.table);
     }
 
     @Override
@@ -68,12 +73,13 @@ public class WeightedObject<T> extends TableEntry<T> {
         int r = 1;
         long w = Double.doubleToLongBits(getWeight());
         r = r * 37 + (int) (w ^ (w >>> 32));
-        r = r * 37 + this.object.hashCode();
+        r = r * 37 + this.table.hashCode();
         return r;
     }
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this).add("object", this.object).toString();
+        return Objects.toStringHelper(this).add("table", this.table).toString();
     }
+
 }

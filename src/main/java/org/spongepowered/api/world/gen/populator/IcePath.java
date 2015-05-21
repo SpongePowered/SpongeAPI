@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -32,18 +35,36 @@ import org.spongepowered.api.world.gen.Populator;
 public interface IcePath extends Populator {
 
     /**
+     * Creates a new {@link Builder} to build a {@link IcePath} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the radius of the path to spawn.
      * 
      * @return The path radius
      */
-    int getRadius();
+    VariableAmount getRadius();
 
     /**
      * Sets the radius of the path to spawn, cannot be negative.
      * 
      * @param radius The new path radius
      */
-    void setRadius(int radius);
+    void setRadius(VariableAmount radius);
+
+    /**
+     * Sets the radius of the path to spawn, cannot be negative.
+     * 
+     * @param radius The new path radius
+     */
+    default void setRadius(double radius) {
+        setRadius(VariableAmount.fixed(radius));
+    }
 
     /**
      * Gets the number of sections to attempt to spawn per chunk, must be
@@ -51,7 +72,7 @@ public interface IcePath extends Populator {
      * 
      * @return The number to spawn
      */
-    int getSectionsPerChunk();
+    VariableAmount getSectionsPerChunk();
 
     /**
      * Sets the number of sections to attempt to spawn per chunk, must be
@@ -59,12 +80,22 @@ public interface IcePath extends Populator {
      * 
      * @param sections The new amount to spawn
      */
-    void setSectionsPerChunk(int sections);
+    void setSectionsPerChunk(VariableAmount sections);
+
+    /**
+     * Sets the number of sections to attempt to spawn per chunk, must be
+     * greater than zero.
+     * 
+     * @param sections The new amount to spawn
+     */
+    default void setSectionsPerChunk(int sections) {
+        setSectionsPerChunk(VariableAmount.fixed(sections));
+    }
 
     /**
      * A builder for constructing {@link IcePath} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the radius of the path to spawn, cannot be negative.
@@ -72,7 +103,17 @@ public interface IcePath extends Populator {
          * @param radius The new path radius
          * @return This builder, for chaining
          */
-        Builder radius(int radius);
+        Builder radius(VariableAmount radius);
+
+        /**
+         * Sets the radius of the path to spawn, cannot be negative.
+         * 
+         * @param radius The new path radius
+         * @return This builder, for chaining
+         */
+        default Builder radius(double radius) {
+            return radius(VariableAmount.fixed(radius));
+        }
 
         /**
          * Sets the number of sections to attempt to spawn per chunk, must be
@@ -81,14 +122,18 @@ public interface IcePath extends Populator {
          * @param sections The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int sections);
+        Builder perChunk(VariableAmount sections);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the number of sections to attempt to spawn per chunk, must be
+         * greater than zero.
          * 
+         * @param sections The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder reset();
+        default Builder perChunk(int sections) {
+            return perChunk(VariableAmount.fixed(sections));
+        }
 
         /**
          * Builds a new instance of a {@link IcePath} populator with the
@@ -96,7 +141,7 @@ public interface IcePath extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         IcePath build() throws IllegalStateException;
 

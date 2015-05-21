@@ -22,37 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.gen.populator;
+package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.ImmutableBiomeArea;
+import org.spongepowered.api.world.extent.MutableBlockVolume;
 
 /**
- * Represents a populator which places large amounts of vines on surfaces within
- * the chunk.
+ * A populator which acts directly on the {@link MutableBlockVolume} during the
+ * generation phase rather than the population phase.
+ * 
+ * <p>Unlike a normal {@link Populator}, a {@link GenerationPopulator} is
+ * restricted to the chunk that is currently being generated.</p>
  */
-public interface Vines extends Populator {
+public interface GenerationPopulator {
 
     /**
-     * A builder for constructing {@link Vines} populators.
+     * Operates on a {@link MutableBlockVolume} either forming the base terrain
+     * or performing modifications during the generation phase.
+     *
+     * @param world The world
+     * @param buffer The buffer to apply the changes to. The buffer can be of
+     *            any size.
+     * @param biomes The biomes for generation
      */
-    interface Builder {
+    void populate(World world, MutableBlockVolume buffer, ImmutableBiomeArea biomes);
 
-        /**
-         * Resets this builder to the default values.
-         * 
-         * @return This builder, for chaining
-         */
-        Builder reset();
-
-        /**
-         * Builds a new instance of a {@link Vines} populator with the settings
-         * set within the builder.
-         * 
-         * @return A new instance of the populator
-         * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
-         */
-        Vines build() throws IllegalStateException;
-
-    }
 }

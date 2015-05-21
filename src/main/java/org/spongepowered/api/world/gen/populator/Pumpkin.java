@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -33,12 +36,21 @@ import org.spongepowered.api.world.gen.Populator;
 public interface Pumpkin extends Populator {
 
     /**
+     * Creates a new {@link Builder} to build a {@link Pumpkin} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the number of pumpkins to attempt to spawn per patch, must be
-     * greater than zero. The default value is 64.
+     * greater than zero.
      * 
      * @return The number to spawn
      */
-    int getPumpkinsPerChunk();
+    VariableAmount getPumpkinsPerChunk();
 
     /**
      * Sets the number of pumpkins to attempt to spawn per patch, must be
@@ -46,28 +58,37 @@ public interface Pumpkin extends Populator {
      * 
      * @param count The new number to spawn
      */
-    void setPumpkinsPerChunk(int count);
+    void setPumpkinsPerChunk(VariableAmount count);
 
     /**
-     * Gets the chance of a pumpkin patch spawning within a chunk. The default
-     * value is 32 (which corresponds to a 1 in 32 chance).
+     * Sets the number of pumpkins to attempt to spawn per patch, must be
+     * greater than zero. The default value is 64.
      * 
-     * @return The chance of a patch spawning
+     * @param count The new number to spawn
      */
-    int getPumpkinChance();
+    default void setPumpkinsPerChunk(int count) {
+        setPumpkinsPerChunk(VariableAmount.fixed(count));
+    }
 
     /**
-     * Sets the chance of a pumpkin patch spawning within a chunk. The default
-     * value is 32 (which corresponds to a 1 in 32 chance).
+     * Gets the probability of a pumpkin patch spawning within a chunk.
      * 
-     * @param chance The new chance of a patch spawning
+     * @return The probability of a patch spawning
      */
-    void setPumpkinChance(int chance);
+    double getPumpkinChance();
+
+    /**
+     * Sets the probability of a pumpkin patch spawning within a chunk. The
+     * default value is 0.03125 (which corresponds to a 1 in 32 chance).
+     * 
+     * @param p The new probability of a patch spawning
+     */
+    void setPumpkinChance(double p);
 
     /**
      * A builder for constructing {@link Pumpkin} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the number of pumpkins to attempt to spawn per patch, must be
@@ -76,23 +97,27 @@ public interface Pumpkin extends Populator {
          * @param count The new number to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
 
         /**
-         * Sets the chance of a pumpkin patch spawning within a chunk. The
-         * default value is 32 (which corresponds to a 1 in 32 chance).
+         * Sets the number of pumpkins to attempt to spawn per patch, must be
+         * greater than zero. The default value is 64.
          * 
-         * @param chance The new chance of a patch spawning
+         * @param count The new number to spawn
          * @return This builder, for chaining
          */
-        Builder chance(int chance);
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
-         * Resets this builder to the default values.
+         * Sets the probability of a pumpkin patch spawning within a chunk. The
+         * default value is 0.03125 (which corresponds to a 1 in 32 chance).
          * 
+         * @param p The new probability of a patch spawning
          * @return This builder, for chaining
          */
-        Builder reset();
+        Builder chance(double p);
 
         /**
          * Builds a new instance of a {@link Pumpkin} populator with the
@@ -100,7 +125,7 @@ public interface Pumpkin extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         Pumpkin build() throws IllegalStateException;
 

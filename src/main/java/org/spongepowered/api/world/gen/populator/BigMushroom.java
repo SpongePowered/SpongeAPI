@@ -24,135 +24,172 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import org.spongepowered.api.data.type.BigMushroomType;
-import org.spongepowered.api.world.biome.BiomeTypes;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
+import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.PopulatorObject;
 
 import java.util.Optional;
+import java.util.function.Function;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents a populator which places a number of large mushrooms. The type of
+ * Represents a populator which places a number of mushrooms. The type of
  * mushroom to place can be set or can be randomized.
  */
 public interface BigMushroom extends Populator {
 
     /**
-     * Gets the type of mushroom being placed by this populator.
-     * <strong>Note:</strong> this type will be ignored if the populator is set
-     * to randomize types {@link #usesRandomizedType()}. If the populator is set
-     * to randomize then this method will return absent.
+     * Creates a new {@link Builder} to build a {@link BigMushroom} populator.
      *
-     * @return The type, if not randomized
+     * @return The new builder
      */
-    Optional<BigMushroomType> getType();
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
-     * Sets the type of mushroom to place. Setting the mushroom type will set
-     * {@link #usesRandomizedType()} to false.
-     *
-     * @param type The new mushroom type
+     * Gets a mutable {@link WeightedTable} of possible mushroom types to spawn.
+     * 
+     * @return The weighted list
      */
-    void setType(BigMushroomType type);
+    WeightedTable<PopulatorObject> getTypes();
 
     /**
-     * Gets whether this populator is randomizing which type it is placing. If
-     * set the mushroom type will be selected at random for each mushroom that
-     * it places.
-     *
-     * <p>This defaults to true.</p>
-     *
-     * @return True if this populator is using randomized mushroom types
-     */
-    boolean usesRandomizedType();
-
-    /**
-     * Sets whether this populator is randomizing which type it is placing. If
-     * set the mushroom type will be selected at random for each mushroom that
-     * it places.
-     *
-     * @param state The new state
-     */
-    void useRandomizedTypes(boolean state);
-
-    /**
-     * Gets the number of mushrooms which will be attempted to be spawned.
-     *
+     * Gets a representation of the amount of mushrooms which will be attempted
+     * to be spawned per chunk.
+     * 
      * <p><strong>Note:</strong> This number is not a definite number and the
      * final count of mushrooms which are successfully spawned by the populator
      * will almost always be lower.</p>
-     *
-     * <p>The default value for this is 1 (from
-     * {@link BiomeTypes#MUSHROOM_ISLAND}.</p>
-     *
+     * 
      * @return The number of mushrooms attempted to be spawned per chunk
      */
-    int getMushroomsPerChunk();
+    VariableAmount getMushroomsPerChunk();
 
     /**
-     * Sets the number of mushrooms which will be attempted to be spawned.
-     *
+     * Sets the representation of the amount of mushrooms which will be
+     * attempted to be spawned per chunk.
+     * 
      * <p><strong>Note:</strong> This number is not a definite number and the
      * final count of mushrooms which are successfully spawned by the populator
      * will almost always be lower.</p>
-     *
+     * 
      * @param count The new amount to attempt to create
      */
-    void setMushroomsPerChunk(int count);
+    void setMushroomsPerChunk(VariableAmount count);
+
+    /**
+     * Sets the amount of mushrooms which will be attempted to be spawned per
+     * chunk.
+     * 
+     * <p><strong>Note:</strong> This number is not a definite number and the
+     * final count of mushrooms which are successfully spawned by the populator
+     * will almost always be lower.</p>
+     * 
+     * @param count The new amount to attempt to create
+     */
+    default void setMushroomsPerChunk(int count) {
+        setMushroomsPerChunk(VariableAmount.fixed(count));
+    }
+
+    /**
+     * Gets the overriding supplier if it exists. If the supplier is present
+     * then it is used in place of the weighted table while determining what
+     * PopulatorObject to place.
+     * 
+     * @return The supplier override
+     */
+    Optional<Function<Location<Chunk>, PopulatorObject>> getSupplierOverride();
+
+    /**
+     * Sets the overriding supplier. If the supplier is present then it is used
+     * in place of the weighted table while determining what PopulatorObject to
+     * place.
+     * 
+     * @param override The new supplier override, or null
+     */
+    void setSupplierOverride(@Nullable Function<Location<Chunk>, PopulatorObject> override);
+
+    /**
+     * Clears the supplier override to force the weighted table to be used
+     * instead.
+     */
+    default void clearSupplierOverride() {
+        setSupplierOverride(null);
+    }
 
     /**
      * A builder for constructing {@link BigMushroom} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
-         * Sets the type of mushroom to place. Setting the mushroom type will
-         * set {@link #usesRandomizedType()} to false.
-         *
-         * <p>Defaults to absent with the
-         * {@link BigMushroom#usesRandomizedType()} flag set to true.</p>
-         *
-         * @param type The new mushroom type
+         * Sets the weighted {@link PopulatorObject}s to select from during
+         * generation.
+         * 
+         * @param types The weighted types
          * @return This builder, for chaining
          */
-        Builder type(BigMushroomType type);
+        Builder types(WeightedTable<PopulatorObject> types);
+
+        /**
+         * Adds the weighted {@link PopulatorObject} to the list of available
+         * types.
+         * 
+         * @param type The new weighted type
+         * @param weight The weight of the new type
+         * @return This builder, for chaining
+         */
+        Builder type(PopulatorObject type, double weight);
 
         /**
          * Sets the number of mushrooms which will be attempted to be spawned.
-         *
+         * 
          * <p><strong>Note:</strong> This number is not a definite number and
          * the final count of mushrooms which are successfully spawned by the
          * populator will almost always be lower.</p>
-         *
+         * 
          * @param count The new amount to attempt to create
          * @return This builder, for chaining
          */
-        Builder mushroomsPerChunk(int count);
+        Builder mushroomsPerChunk(VariableAmount count);
 
         /**
-         * Sets whether this populator is randomizing which type it is placing.
-         * If set the mushroom type will be selected at random for each mushroom
-         * that it places.
-         *
-         * <p>This defaults to true.</p>
-         *
+         * Sets the number of mushrooms which will be attempted to be spawned.
+         * 
+         * <p><strong>Note:</strong> This number is not a definite number and
+         * the final count of mushrooms which are successfully spawned by the
+         * populator will almost always be lower.</p>
+         * 
+         * @param count The new amount to attempt to create
          * @return This builder, for chaining
          */
-        Builder randomizeType();
+        default Builder mushroomsPerChunk(int count) {
+            return mushroomsPerChunk(VariableAmount.fixed(count));
+        }
 
         /**
-         * Resets this builder to the default values.
-         *
+         * Sets the overriding supplier. If the supplier is present then it is
+         * used in place of the weighted table.
+         * 
+         * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder reset();
+        Builder supplier(Function<Location<Chunk>, PopulatorObject> override);
 
         /**
          * Builds a new instance of a {@link BigMushroom} populator with the
          * settings set within the builder.
-         *
+         * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         BigMushroom build() throws IllegalStateException;
 

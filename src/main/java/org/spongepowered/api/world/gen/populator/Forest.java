@@ -24,11 +24,20 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
+import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.api.world.gen.type.BiomeTreeType;
 
 import java.util.Optional;
+import java.util.function.Function;
+
+import javax.annotation.Nullable;
 
 /**
  * A populator which will place several trees into a chunk in order to create a
@@ -37,12 +46,21 @@ import java.util.Optional;
 public interface Forest extends Populator {
 
     /**
+     * Creates a new {@link Builder} to build a {@link Forest} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the number of trees to attempt to spawn per chunk, must be greater
      * than zero.
      *
      * @return The number to spawn
      */
-    int getTreesPerChunk();
+    VariableAmount getTreesPerChunk();
 
     /**
      * Sets the number of trees to attempt to spawn per chunk, must be greater
@@ -50,79 +68,56 @@ public interface Forest extends Populator {
      *
      * @param count The new amount to spawn
      */
-    void setTreesPerChunk(int count);
+    void setTreesPerChunk(VariableAmount count);
 
     /**
-     * Gets whether this populator will ignore the set tree type and default to
-     * the biome's tree type.
-     *
-     * @return Is biome dependent
+     * Sets the number of trees to attempt to spawn per chunk, must be greater
+     * than zero.
+     * 
+     * @param count The new amount to spawn
      */
-    boolean isBiomeDependent();
+    default void setTreesPerChunk(int count) {
+        setTreesPerChunk(VariableAmount.fixed(count));
+    }
 
     /**
-     * Gets whether this populator will ignore the set tree type and default to
-     * the biome's tree type.
-     *
-     * @param state The new biome dependency state
+     * Gets the a mutable weighted collection of {@link PopulatorObject}s to
+     * spawn.
+     * 
+     * @return The type to spawn
      */
-    void setBiomeDependent(boolean state);
+    WeightedTable<PopulatorObject> getTypes();
 
     /**
-     * Gets the {@link BiomeTreeType} to spawn. If this populator is set to be
-     * biome dependent ( {@link #isBiomeDependent()} ) then this will return
-     * absent.
-     *
-     * @return The type to spawn, or absent if biome dependent
+     * Gets the overriding supplier if it exists. If the supplier is present
+     * then it is used in place of the weighted table while determining what
+     * PopulatorObject to place.
+     * 
+     * @return The supplier override
      */
-    Optional<BiomeTreeType> getType();
+    Optional<Function<Location<Chunk>, PopulatorObject>> getSupplierOverride();
 
     /**
-     * Sets the {@link BiomeTreeType} to spawn, this automatically sets the
-     * biome dependency flag to false.
-     *
-     * @param type The new type to spawn
+     * Sets the overriding supplier. If the supplier is present then it is used
+     * in place of the weighted table while determining what PopulatorObject to
+     * place.
+     * 
+     * @param override The new supplier override, or null
      */
-    void setType(BiomeTreeType type);
+    void setSupplierOverride(@Nullable Function<Location<Chunk>, PopulatorObject> override);
 
     /**
-     * Gets the {@link BlockState} to spawn the trunk of the tree with. If this
-     * populator is set to be biome dependent ( {@link #isBiomeDependent()} )
-     * then this will return absent.
-     *
-     * @return The trunk type, or absent if biome dependent
+     * Clears the supplier override to force the weighted table to be used
+     * instead.
      */
-    Optional<BlockState> getTrunkMaterial();
-
-    /**
-     * Sets the {@link BlockState} to spawn the trunk of the tree with, this
-     * automatically sets the biome dependency flag to false.
-     *
-     * @param material The new trunk material
-     */
-    void setTrunkMaterial(BlockState material);
-
-    /**
-     * Gets the {@link BlockState} to spawn the leaves of the tree with. If this
-     * populator is set to be biome dependent ( {@link #isBiomeDependent()} )
-     * then this will return absent.
-     *
-     * @return The leaves type, or absent if biome dependent
-     */
-    Optional<BlockState> getLeavesMaterial();
-
-    /**
-     * Sets the {@link BlockState} to spawn the leaves of the tree with, this
-     * automatically sets the biome dependency flag to false.
-     *
-     * @param material The new leaves material
-     */
-    void setLeavesMaterial(BlockState material);
+    default void clearSupplierOverride() {
+        setSupplierOverride(null);
+    }
 
     /**
      * A builder for constructing {@link Forest} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the number of trees to attempt to spawn per chunk, must be
@@ -131,50 +126,44 @@ public interface Forest extends Populator {
          * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
 
         /**
-         * Gets whether this populator will ignore the set tree type and default
-         * to the biome's tree type.
-         *
-         * @param state The new biome dependency state
+         * Sets the number of trees to attempt to spawn per chunk, must be
+         * greater than zero.
+         * 
+         * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder biomeDependant(boolean state);
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
-         * Sets the {@link BiomeTreeType} to spawn, this automatically sets the
-         * biome dependency flag to false.
-         *
-         * @param type The new type to spawn
+         * Sets the {@link BiomeTreeType}s to spawn.
+         * 
+         * @param types The new types to spawn
          * @return This builder, for chaining
          */
-        Builder type(BiomeTreeType type);
+        Builder types(WeightedTable<PopulatorObject> types);
 
         /**
-         * Sets the {@link BlockState} to spawn the trunk of the tree with, this
-         * automatically sets the biome dependency flag to false.
-         *
-         * @param material The new trunk material
+         * Sets the {@link BiomeTreeType} to the list of weighted types.
+         * 
+         * @param type The new type to add
+         * @param weight The weight of the type
          * @return This builder, for chaining
          */
-        Builder trunk(BlockState material);
+        Builder type(PopulatorObject type, double weight);
 
         /**
-         * Sets the {@link BlockState} to spawn the leaves of the tree with,
-         * this automatically sets the biome dependency flag to false.
-         *
-         * @param material The new leaves material
+         * Sets the overriding supplier. If the supplier is present then it is used
+         * in place of the weighted table.
+         * 
+         * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder leaves(BlockState material);
-
-        /**
-         * Resets this builder to the default values.
-         *
-         * @return This builder, for chaining
-         */
-        Builder reset();
+        Builder supplier(Function<Location<Chunk>, PopulatorObject> override);
 
         /**
          * Builds a new instance of a {@link Forest} populator with the settings
@@ -182,7 +171,7 @@ public interface Forest extends Populator {
          *
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         Forest build() throws IllegalStateException;
 

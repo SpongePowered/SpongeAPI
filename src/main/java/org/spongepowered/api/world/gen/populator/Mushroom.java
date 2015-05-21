@@ -25,13 +25,14 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.type.DoublePlantType;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.ChanceTable;
 import org.spongepowered.api.util.weighted.VariableAmount;
-import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.type.MushroomType;
+import org.spongepowered.api.world.gen.type.MushroomTypes;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -39,14 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
- * Represents a populator which spawns in an assortment of two block tall
- * plants. The number of plants attempted to be generated is
- * {@code final = base + [0,variance) }.
+ * Represents a populator which places a number of mushrooms. The type of
+ * mushroom to place can be set or can be randomized.
  */
-public interface DoublePlant extends Populator {
+public interface Mushroom extends Populator {
 
     /**
-     * Creates a new {@link Builder} to build a {@link DoublePlant} populator.
+     * Creates a new {@link Builder} to build a {@link Mushroom} populator.
      *
      * @return The new builder
      */
@@ -55,64 +55,72 @@ public interface DoublePlant extends Populator {
     }
 
     /**
-     * Gets a mutable weighted collection of possible plants which may be
-     * selected to be spawned in by this populator.
+     * Gets a mutable {@link ChanceTable} of possible mushroom types to spawn.
+     * If the list is empty then a {@link MushroomType} will be selected at
+     * random from all available {@link MushroomTypes}.
      * 
-     * @return The possible types to be spawned
+     * @return The weighted list
      */
-    WeightedTable<DoublePlantType> getPossibleTypes();
+    ChanceTable<MushroomType> getType();
 
     /**
-     * Gets the number of plants to create per chunk.
-     * 
-     * @return The amount
-     */
-    VariableAmount getPlantsPerChunk();
-
-    /**
-     * Sets the number of plants to create per chunk, cannot be negative.
+     * Gets a representation of the amount of mushrooms which will be attempted
+     * to be spawned per chunk.
      * 
      * <p><strong>Note:</strong> This number is not a definite number and the
-     * final count of plants which are successfully spawned by the populator
+     * final count of mushrooms which are successfully spawned by the populator
      * will almost always be lower.</p>
      * 
-     * @param count The new amount
+     * @return The number of mushrooms attempted to be spawned per chunk
      */
-    void setPlantsPerChunk(VariableAmount count);
+    VariableAmount getMushroomsPerChunk();
 
     /**
-     * Sets the number of plants to create per chunk, cannot be negative.
+     * Sets the representation of the amount of mushrooms which will be
+     * attempted to be spawned per chunk.
      * 
      * <p><strong>Note:</strong> This number is not a definite number and the
-     * final count of plants which are successfully spawned by the populator
+     * final count of mushrooms which are successfully spawned by the populator
      * will almost always be lower.</p>
      * 
-     * @param count The new amount
+     * @param count The new amount to attempt to create
      */
-    default void setPlantsPerChunk(int count) {
-        setPlantsPerChunk(VariableAmount.fixed(count));
+    void setMushroomsPerChunk(VariableAmount count);
+
+    /**
+     * Sets the amount of mushrooms which will be attempted to be spawned per
+     * chunk.
+     * 
+     * <p><strong>Note:</strong> This number is not a definite number and the
+     * final count of mushrooms which are successfully spawned by the populator
+     * will almost always be lower.</p>
+     * 
+     * @param count The new amount to attempt to create
+     */
+    default void setMushroomsPerChunk(int count) {
+        setMushroomsPerChunk(VariableAmount.fixed(count));
     }
 
     /**
      * Gets the overriding supplier if it exists. If the supplier is present
      * then it is used in place of the weighted table while determining what
-     * DoublePlantType to place.
+     * MushroomType to place.
      * 
      * @return The supplier override
      */
-    Optional<Function<Location<Chunk>, DoublePlantType>> getSupplierOverride();
+    Optional<Function<Location<Chunk>, MushroomType>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
-     * in place of the weighted table while determining what DoublePlantType to
+     * in place of the chance table while determining what MushroomType to
      * place.
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location<Chunk>, DoublePlantType> override);
+    void setSupplierOverride(@Nullable Function<Location<Chunk>, MushroomType> override);
 
     /**
-     * Clears the supplier override to force the weighted table to be used
+     * Clears the supplier override to force the chance table to be used
      * instead.
      */
     default void clearSupplierOverride() {
@@ -120,71 +128,73 @@ public interface DoublePlant extends Populator {
     }
 
     /**
-     * A builder for constructing {@link DoublePlant} populators.
+     * A builder for constructing {@link Mushroom} populators.
      */
     interface Builder extends ResettableBuilder<Builder> {
 
         /**
-         * Sets which plant types may be spawned in by this populator.
+         * Sets the weighted {@link MushroomType}s to select from during
+         * generation.
          * 
-         * @param types Possible types
+         * @param types The weighted types
          * @return This builder, for chaining
          */
-        Builder types(WeightedTable<DoublePlantType> types);
+        Builder types(ChanceTable<MushroomType> types);
 
         /**
-         * Adds a plant type to the list that may be spawned in by this populator.
+         * Adds the weighted {@link MushroomType} to the list of available
+         * types.
          * 
-         * @param types The new plant type
-         * @param weight The weight
+         * @param type The new weighted type
+         * @param weight The weight of the new type
          * @return This builder, for chaining
          */
-        Builder type(DoublePlantType type, double weight);
+        Builder type(MushroomType type, double weight);
 
         /**
-         * Sets the number of plants to create, cannot be negative.
+         * Sets the number of mushrooms which will be attempted to be spawned.
          * 
          * <p><strong>Note:</strong> This number is not a definite number and
-         * the final count of plants which are successfully spawned by the
+         * the final count of mushrooms which are successfully spawned by the
          * populator will almost always be lower.</p>
          * 
-         * @param count The new base amount
+         * @param count The new amount to attempt to create
          * @return This builder, for chaining
          */
-        Builder perChunk(VariableAmount count);
+        Builder mushroomsPerChunk(VariableAmount count);
 
         /**
-         * Sets the number of plants to create, cannot be negative.
+         * Sets the number of mushrooms which will be attempted to be spawned.
          * 
          * <p><strong>Note:</strong> This number is not a definite number and
-         * the final count of plants which are successfully spawned by the
+         * the final count of mushrooms which are successfully spawned by the
          * populator will almost always be lower.</p>
          * 
-         * @param count The new base amount
+         * @param count The new amount to attempt to create
          * @return This builder, for chaining
          */
-        default Builder perChunk(int count) {
-            return perChunk(VariableAmount.fixed(count));
+        default Builder mushroomsPerChunk(int count) {
+            return mushroomsPerChunk(VariableAmount.fixed(count));
         }
 
         /**
          * Sets the overriding supplier. If the supplier is present then it is used
-         * in place of the weighted table.
+         * in place of the chance table.
          * 
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(Function<Location<Chunk>, DoublePlantType> override);
+        Builder supplier(Function<Location<Chunk>, MushroomType> override);
 
         /**
-         * Builds a new instance of a {@link DoublePlant} populator with the
+         * Builds a new instance of a {@link Mushroom} populator with the
          * settings set within the builder.
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
          *         which do not have default values
          */
-        DoublePlant build() throws IllegalStateException;
+        Mushroom build() throws IllegalStateException;
 
     }
 
