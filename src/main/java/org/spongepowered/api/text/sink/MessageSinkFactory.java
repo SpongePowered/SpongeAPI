@@ -22,57 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.message;
+package org.spongepowered.api.text.sink;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.text.sink.MessageSink;
+
+import java.util.Set;
 
 /**
- * Describes events when a {@link CommandSource} sends a {@link Text} message.
+ * Factory for {@link MessageSink} instances.
  */
-public interface MessageEvent extends GameEvent {
+public interface MessageSinkFactory {
 
     /**
-     * Gets the {@link CommandSource} of the event which may
-     * or may not be a target of the {@link Text}.
+     * A message sink that targets all subjects with the given permission.
      *
-     * @return The source
+     * @param permission The permission to target
+     * @return The sink
      */
-    CommandSource getSource();
+    MessageSink toPermission(String permission);
 
     /**
-     * Gets the {@link Text} message created by the {@link CommandSource} before
-     * the calling of this event.
-     * @return The message
-     */
-    Text getMessage();
-
-    /**
-     * Gets the currently set {@link Text} message.
-     * @return The message
-     */
-    Text getNewMessage();
-
-    /**
-     * Sets the {@link Text} message.
-     * @param message The new message
-     */
-    void setNewMessage(Text message);
-
-    /**
-     * Gets the current sink that this message will be sent to
+     * A message sink that targets all subjects currently active.
      *
-     * @return The message sink the message in this event will be sent to
+     * @return The sink
      */
-    MessageSink getSink();
+    MessageSink toAll();
 
     /**
-     * Set the target for this message to go to.
+     * A message sink that targets all subjects contained within the given targets.
      *
-     * @param sink The sink to set
+     * @param sinks The sinks to combine
+     * @return The sink
      */
-    void setSink(MessageSink sink);
+    MessageSink combined(MessageSink... sinks);
 
+    /**
+     * Get a message sink that targets the given sources.
+     *
+     * @param sources The sources to have as recipients
+     * @return The sink
+     */
+    MessageSink to(Set<CommandSource> sources);
 }

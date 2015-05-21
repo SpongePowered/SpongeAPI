@@ -149,6 +149,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.command.source.RconSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
@@ -1020,14 +1021,16 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param source The source of the message
      * @param message The message to say
+     * @param sink The destination for the message
      * @return A new instance of the event
      */
-    public static MessageEvent createMessage(Game game, CommandSource source, Text message) {
+    public static MessageEvent createMessage(Game game, CommandSource source, Text message, MessageSink sink) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);
         values.put("message", message);
         values.put("newMessage", message);
+        values.put("sink", sink);
         return createEvent(MessageEvent.class, values);
     }
 
@@ -1185,15 +1188,17 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param message The message to say
+     * @param sink The destination for the message
      * @return A new instance of the event
      */
-    public static PlayerChatEvent createPlayerChat(Game game, Player player, Text message) {
+    public static PlayerChatEvent createPlayerChat(Game game, Player player, Text message, MessageSink sink) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
         values.put("source", player);
         values.put("message", message);
         values.put("newMessage", message);
+        values.put("sink", sink);
         values.put("user", player);
         return createEvent(PlayerChatEvent.class, values);
     }
@@ -1206,6 +1211,7 @@ public final class SpongeEventFactory {
      * @param player The player involved in this event
      * @param location The location of death
      * @param message The message to show to the player because they died
+     * @param sink The destination for the message
      * @param exp The experience to give, or take for negative values
      * @param newExperience The new experience the player will have towards the next level
      * @param newLevel The new level the player will have after death
@@ -1213,7 +1219,7 @@ public final class SpongeEventFactory {
      * @param keepsInventory Whether the player should keep inventory
      * @return A new instance of the event
      */
-    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text message,
+    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Location location, Text message, MessageSink sink,
             int exp, int newExperience, int newLevel, boolean keepsLevel, boolean keepsInventory) {
 
         Map<String, Object> values = Maps.newHashMap();
@@ -1223,6 +1229,7 @@ public final class SpongeEventFactory {
         values.put("source", player);
         values.put("message", message);
         values.put("newMessage", message);
+        values.put("sink", sink);
         values.put("user", player);
         values.put("location", location);
         values.put("exp", exp);
@@ -1353,9 +1360,10 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param message The message displayed when the player joins
+     * @param sink The destination for the message
      * @return A new instance of the event
      */
-    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Location location, Text message) {
+    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Location location, Text message, MessageSink sink) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -1363,6 +1371,7 @@ public final class SpongeEventFactory {
         values.put("location", location);
         values.put("message", message);
         values.put("newMessage", message);
+        values.put("sink" ,sink);
         values.put("user", player);
         return createEvent(PlayerJoinEvent.class, values);
     }
@@ -1437,15 +1446,17 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param message The message to display to the player because they quit
+     * @param sink The destination for the message
      * @return A new instance of the event
      */
-    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text message) {
+    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text message, MessageSink sink) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
         values.put("source", player);
         values.put("message", message);
         values.put("newMessage", message);
+        values.put("sink", sink);
         values.put("user", player);
         return createEvent(PlayerQuitEvent.class, values);
     }

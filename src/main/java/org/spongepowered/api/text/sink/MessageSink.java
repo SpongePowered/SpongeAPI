@@ -22,57 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.message;
+package org.spongepowered.api.text.sink;
 
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.text.sink.MessageSink;
 
 /**
- * Describes events when a {@link CommandSource} sends a {@link Text} message.
+ * Represents a function that takes a message and transforms it for distribution to the given targets.
  */
-public interface MessageEvent extends GameEvent {
-
+public abstract class MessageSink {
     /**
-     * Gets the {@link CommandSource} of the event which may
-     * or may not be a target of the {@link Text}.
+     * Process a message using this sink, transforming and sending it to the appropriate recipients.
      *
-     * @return The source
+     * @param text The text to send
      */
-    CommandSource getSource();
+    public final void sendMessage(Text text) {
+        for (CommandSource recipient : getRecipients()) {
+            Text transformed = transformMessage(recipient, text);
+            recipient.sendMessage(transformed == null ? text : transformed);
+        }
+    }
 
     /**
-     * Gets the {@link Text} message created by the {@link CommandSource} before
-     * the calling of this event.
-     * @return The message
-     */
-    Text getMessage();
-
-    /**
-     * Gets the currently set {@link Text} message.
-     * @return The message
-     */
-    Text getNewMessage();
-
-    /**
-     * Sets the {@link Text} message.
-     * @param message The new message
-     */
-    void setNewMessage(Text message);
-
-    /**
-     * Gets the current sink that this message will be sent to
+     * Handle transforming the input message appropriately.
      *
-     * @return The message sink the message in this event will be sent to
+     * @param target The target to transform the message for
+     * @param text The message to send
+     * @return The transformed text. May be input.
      */
-    MessageSink getSink();
+    public Text transformMessage(CommandSource target, Text text) {
+        return text;
+    }
 
     /**
-     * Set the target for this message to go to.
+     * Return all command sources that will receive messages sent through to this sink.
      *
-     * @param sink The sink to set
+     * @return An iterable of all possible receivers of messages
      */
-    void setSink(MessageSink sink);
-
+    public abstract Iterable<CommandSource> getRecipients();
 }
