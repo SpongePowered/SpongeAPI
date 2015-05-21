@@ -24,53 +24,25 @@
  */
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * Represents a function that takes a message and distributes it to the appropriate targets.
  */
-public interface CommandSource extends Subject {
+public interface MessageSink {
+    /**
+     * Handle transforming the input message appropriately.
+     *
+     * @param text The message to send
+     * @return The transformed text. May be input.
+     */
+    Text transformMessage(Text text);
 
     /**
-     * Gets the name identifying this command source.
+     * Return all command sources that will receive messages sent through to this sink.
      *
-     * @return The name of this command source
+     * @return An iterable of all possible receivers of messages
      */
-    String getName();
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The message(s)
-     */
-    void sendMessage(Text... messages);
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    void sendMessage(Iterable<Text> messages);
-
-    /**
-     * Return the message sink that messages from this source should be broadcast to.
-     *
-     * @return This source's active message sink
-     */
-    MessageSink getMessageSink();
-
-    /**
-     * Set the message sink that messages sent by this source should be broadcast to.
-     *
-     * @param sink The message sink to broadcast messages to
-     */
-    void setMessageSink(MessageSink sink);
-
+    Iterable<CommandSource> getReceivers();
 
 }

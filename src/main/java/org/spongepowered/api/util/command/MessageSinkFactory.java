@@ -24,53 +24,32 @@
  */
 package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.Text;
-
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * Factory for {@link MessageSink} instances.
  */
-public interface CommandSource extends Subject {
+public interface MessageSinkFactory {
 
     /**
-     * Gets the name identifying this command source.
+     * A message sink that targets all subjects with the given permission.
      *
-     * @return The name of this command source
+     * @param permission The permission to target
+     * @return The sink
      */
-    String getName();
+    MessageSink toPermission(String permission);
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * A message sink that targets all subjects currently active.
      *
-     * @param messages The message(s)
+     * @return The sink
      */
-    void sendMessage(Text... messages);
+    MessageSink toAll();
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * A message sink that targets all subjects contained within the given targets.
      *
-     * @param messages The messages
+     * @param sinks The sinks to combine
+     * @return
      */
-    void sendMessage(Iterable<Text> messages);
-
-    /**
-     * Return the message sink that messages from this source should be broadcast to.
-     *
-     * @return This source's active message sink
-     */
-    MessageSink getMessageSink();
-
-    /**
-     * Set the message sink that messages sent by this source should be broadcast to.
-     *
-     * @param sink The message sink to broadcast messages to
-     */
-    void setMessageSink(MessageSink sink);
-
+    MessageSink combined(MessageSink... sinks);
 
 }
