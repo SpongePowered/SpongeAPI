@@ -61,7 +61,7 @@ public class SkylandsGroundCover implements GeneratorPopulator {
                 int yy = yStart;
                 yIteration:
                 while (yy >= yEnd) {
-                    yy = getNextStone(buffer, xx, yy, zz, yEnd);
+                    yy = getNextSolid(buffer, xx, yy, zz, yEnd);
                     if (yy < yEnd) {
                         break;
                     }
@@ -73,7 +73,7 @@ public class SkylandsGroundCover implements GeneratorPopulator {
                             if (yy < yEnd) {
                                 break yIteration;
                             }
-                            if (buffer.getBlockType(xx, yy, zz).equals(BlockTypes.STONE)) {
+                            if (!buffer.getBlockType(xx, yy, zz).equals(BlockTypes.AIR)) {
                                 buffer.setBlockType(xx, yy, zz, cover);
                             } else {
                                 break layerIteration;
@@ -86,16 +86,18 @@ public class SkylandsGroundCover implements GeneratorPopulator {
         }
     }
 
-    private int getNextStone(MutableBlockBuffer buffer, int x, int y, int z, int endY) {
-        for (; y >= endY && !buffer.getBlockType(x, y, z).equals(BlockTypes.STONE); y--) {
-            // iterate until we reach stone
+    @SuppressWarnings("StatementWithEmptyBody")
+    private int getNextSolid(MutableBlockBuffer buffer, int x, int y, int z, int endY) {
+        for (; y >= endY && buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
+            // iterate until we reach solid
         }
         return y;
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     private int getNextAir(MutableBlockBuffer buffer, int x, int y, int z, int endY) {
-        for (; y >= endY && buffer.getBlockType(x, y, z).equals(BlockTypes.STONE); y--) {
-            // iterate until we exit the stone column
+        for (; y >= endY && !buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
+            // iterate until we exit the solid column
         }
         return y;
     }
