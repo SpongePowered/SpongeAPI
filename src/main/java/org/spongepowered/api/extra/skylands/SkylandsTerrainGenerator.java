@@ -26,12 +26,14 @@ package org.spongepowered.api.extra.skylands;
 
 import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3i;
+import com.flowpowered.noise.Noise;
 import com.flowpowered.noise.NoiseQuality;
 import com.flowpowered.noise.module.Module;
 import com.flowpowered.noise.module.modifier.Exponent;
 import com.flowpowered.noise.module.modifier.ScaleBias;
 import com.flowpowered.noise.module.modifier.ScalePoint;
 import com.flowpowered.noise.module.source.Perlin;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.util.gen.BiomeBuffer;
 import org.spongepowered.api.util.gen.MutableBlockBuffer;
@@ -51,7 +53,9 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
     private static final double THRESHOLD = 0.215;
     private final Perlin inputNoise = new Perlin();
     private final VerticalScaling outputNoise = new VerticalScaling();
+    private final OreNoise[] oreNoises;
 
+    @SuppressWarnings("ConstantConditions")
     public SkylandsTerrainGenerator() {
         inputNoise.setFrequency(0.04);
         inputNoise.setLacunarity(2);
@@ -79,6 +83,14 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         outputNoise.setUpperSize(UPPER_SIZE);
         outputNoise.setLowerSize(LOWER_SIZE);
         outputNoise.setDegree(2);
+
+        oreNoises = new OreNoise[]{
+                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.07), 0.3, 0.64, BlockTypes.DIAMOND_ORE),
+                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.06), 0.27, 0.64, BlockTypes.GOLD_ORE),
+                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.05), 0.26, 0.64, BlockTypes.REDSTONE_ORE),
+                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0), 0.25, 0.64, BlockTypes.IRON_ORE),
+                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0), 0.22, 0.63, BlockTypes.COAL_ORE)
+        };
     }
 
     @Override
@@ -90,15 +102,23 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
             return;
         }
         final long seed = world.getProperties().getSeed();
-        inputNoise.setSeed((int) (seed >> 32 ^ seed));
+        final int intSeed = (int) (seed >> 32 ^ seed);
+        inputNoise.setSeed(intSeed);
         final double[][][] noise = fastNoise(outputNoise, buffer.getBlockSize(), 4, min);
         final int x = min.getX();
         final int y = min.getY();
         final int z = min.getZ();
         for (int zz = min.getZ(); zz <= max.getZ(); zz++) {
             for (int yy = min.getY(); yy <= max.getY(); yy++) {
+                xIteration:
                 for (int xx = min.getX(); xx <= max.getX(); xx++) {
                     final double density = noise[zz - z][yy - y][xx - x];
+                    for (OreNoise oreNoise : oreNoises) {
+                        if (oreNoise.hasBlock(density, xx, yy, zz, intSeed)) {
+                            buffer.setBlockType(xx, yy, zz, oreNoise.getBlock());
+                            continue xIteration;
+                        }
+                    }
                     buffer.setBlockType(xx, yy, zz, density >= THRESHOLD ? BlockTypes.STONE : BlockTypes.AIR);
                 }
             }
@@ -225,6 +245,32 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
             }
             scale = Math.max(0, 1 - scale);
             return value * scale;
+        }
+    }
+
+    private static class OreNoise {
+
+        private final double densityThreshold;
+        private final double frequency;
+        private final double noiseThreshold;
+        private final BlockType block;
+        private final int seedTransform;
+
+        private OreNoise(double densityThreshold, double frequency, double noiseThreshold, BlockType block) {
+            this.densityThreshold = densityThreshold;
+            this.frequency = frequency;
+            this.noiseThreshold = noiseThreshold;
+            this.block = block;
+            seedTransform = block.getName().hashCode();
+        }
+
+        private boolean hasBlock(double density, double x, double y, double z, int seed) {
+            return density >= densityThreshold && Noise.gradientCoherentNoise3D(x * frequency, y * frequency, z * frequency, seed ^ seedTransform,
+                    NoiseQuality.FAST) >= noiseThreshold;
+        }
+
+        private BlockType getBlock() {
+            return block;
         }
     }
 }
