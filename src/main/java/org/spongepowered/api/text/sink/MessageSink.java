@@ -22,27 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.text.sink;
 
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Represents a function that takes a message and distributes it to the appropriate targets.
+ * Represents a function that takes a message and transforms it for distribution to the given targets.
  */
-public interface MessageSink {
+public abstract class MessageSink {
+    /**
+     * Process a message using this sink, transforming and sending it to the appropriate recipients.
+     *
+     * @param text The text to send
+     */
+    public final void sendMessage(Text text) {
+        for (CommandSource recipient : getRecipients()) {
+            recipient.sendMessage(text);
+        }
+    }
+
     /**
      * Handle transforming the input message appropriately.
      *
      * @param text The message to send
      * @return The transformed text. May be input.
      */
-    Text transformMessage(Text text);
+    public abstract Text transformMessage(Text text);
 
     /**
      * Return all command sources that will receive messages sent through to this sink.
      *
      * @return An iterable of all possible receivers of messages
      */
-    Iterable<CommandSource> getReceivers();
-
+    public abstract Iterable<CommandSource> getRecipients();
 }

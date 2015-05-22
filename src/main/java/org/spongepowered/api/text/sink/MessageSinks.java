@@ -22,12 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.text.sink;
+
+import org.spongepowered.api.util.command.CommandSource;
+
+import java.util.Set;
 
 /**
- * Factory for {@link MessageSink} instances.
+ * Useful building blocks for message sinks.
  */
-public interface MessageSinkFactory {
+public class MessageSinks {
+    private static final MessageSinkFactory factory = null;
 
     /**
      * A message sink that targets all subjects with the given permission.
@@ -35,21 +40,36 @@ public interface MessageSinkFactory {
      * @param permission The permission to target
      * @return The sink
      */
-    MessageSink toPermission(String permission);
+    public static MessageSink toPermission(String permission) {
+        return factory.toPermission(permission);
+    }
 
     /**
      * A message sink that targets all subjects currently active.
      *
      * @return The sink
      */
-    MessageSink toAll();
+    public static MessageSink toAll() {
+        return factory.toAll();
+    }
 
     /**
      * A message sink that targets all subjects contained within the given targets.
      *
      * @param sinks The sinks to combine
-     * @return
+     * @return The sink
      */
-    MessageSink combined(MessageSink... sinks);
+    public static MessageSink combined(MessageSink... sinks) {
+        return factory.combined(sinks);
+    }
 
+    /**
+     * Get a message sink that targets the given sources.
+     *
+     * @param sources The sources to have as recipients
+     * @return The sink
+     */
+    public static MessageSink to(Set<CommandSource> sources) {
+        return factory.to(sources);
+    }
 }

@@ -26,6 +26,7 @@ package org.spongepowered.api.util.command;
 
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.sink.MessageSink;
 
 /**
  * Something that can execute commands.
@@ -71,6 +72,4 @@ public interface CommandSource extends Subject {
      * @param sink The message sink to broadcast messages to
      */
     void setMessageSink(MessageSink sink);
-
-
 }
