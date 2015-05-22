@@ -29,7 +29,7 @@ import org.spongepowered.api.world.biome.BiomeTypes;
 import org.spongepowered.api.world.gen.BiomeGenerator;
 
 /**
- * A biome generator modifier for a Skylands look-alike.
+ * A biome generator for a Skylands look-alike.
  */
 public class SkylandsBiomeGenerator implements BiomeGenerator {
 

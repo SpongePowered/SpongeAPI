@@ -39,16 +39,16 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 
 /**
- * A terrain generator modifier for a Skylands look-alike.
+ * A terrain generator for a Skylands look-alike.
  */
 public class SkylandsTerrainGenerator implements GeneratorPopulator {
 
     private static final int MID_POINT = 64;
-    private static final int UPPER_SIZE = 24;
+    private static final int UPPER_SIZE = 36;
     private static final int LOWER_SIZE = 24;
     public static final int MAX_HEIGHT = MID_POINT + UPPER_SIZE - 1;
     public static final int MIN_HEIGHT = MID_POINT - LOWER_SIZE + 1;
-    private static final double THRESHOLD = 0.25;
+    private static final double THRESHOLD = 0.215;
     private final Perlin inputNoise = new Perlin();
     private final VerticalScaling outputNoise = new VerticalScaling();
 
@@ -72,7 +72,7 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
 
         final Exponent exponent = new Exponent();
         exponent.setSourceModule(0, scalePoint);
-        exponent.setExponent(2);
+        exponent.setExponent(2.2);
 
         outputNoise.setSourceModule(0, exponent);
         outputNoise.setMidPoint(MID_POINT);
