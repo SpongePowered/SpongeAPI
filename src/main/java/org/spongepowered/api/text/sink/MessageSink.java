@@ -38,17 +38,21 @@ public abstract class MessageSink {
      */
     public final void sendMessage(Text text) {
         for (CommandSource recipient : getRecipients()) {
-            recipient.sendMessage(text);
+            Text transformed = transformMessage(recipient, text);
+            recipient.sendMessage(transformed == null ? text : transformed);
         }
     }
 
     /**
      * Handle transforming the input message appropriately.
      *
+     * @param target The target to transform the message for
      * @param text The message to send
      * @return The transformed text. May be input.
      */
-    public abstract Text transformMessage(Text text);
+    public Text transformMessage(CommandSource target, Text text) {
+        return text;
+    }
 
     /**
      * Return all command sources that will receive messages sent through to this sink.
