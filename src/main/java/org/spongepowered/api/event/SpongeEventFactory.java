@@ -43,6 +43,7 @@ import org.spongepowered.api.data.manipulator.tileentity.SignData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
@@ -69,6 +70,7 @@ import org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.block.tileentity.SignChangeEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
+import org.spongepowered.api.event.entity.EntityBreedEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
 import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
 import org.spongepowered.api.event.entity.EntityCollisionEvent;
@@ -516,6 +518,24 @@ public final class SpongeEventFactory {
         values.put("replacementBlock", replacementBlock);
         values.put("exp", exp);
         return createEvent(EntityBreakBlockEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link EntityBreakBlockEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param entity The entity involved in this event
+     * @param parent The parent of the entity
+     * @param otherParent The other parent of the entity
+     * @return A new instance of the event
+     */
+    public static EntityBreedEvent createEntityBreed(Game game, Ageable entity, Ageable parent, Ageable otherParent) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", entity);
+        values.put("parent", parent);
+        values.put("otherParent", otherParent);
+        return createEvent(EntityBreedEvent.class, values);
     }
 
     /**
