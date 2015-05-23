@@ -40,7 +40,7 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [Java]: http://java.oracle.com/
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: http://www.tldrlegal.com/license/mit-license
-[Community Chat]: https://webchat.esper.net/?channels=sponge
-[Development Chat]: https://webchat.esper.net/?channels=spongedev
+[Community Chat]: http://webchat.esper.net/?channels=sponge
+[Development Chat]: http://webchat.esper.net/?channels=spongedev
 [Preparing for Development]: https://docs.spongepowered.org/en/preparing/
 [Javadocs(temporary link)]: http://spongepowered.github.io/SpongeAPI/
