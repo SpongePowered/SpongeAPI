@@ -29,6 +29,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
@@ -231,11 +232,11 @@ public interface Server extends ChannelRegistrar {
     int getRunningTimeTicks();
 
     /**
-     * Sends the given message to all online players.
+     * Get the sink that messages to be broadcast across the whole server should be sent to
      *
-     * @param message The message to send
+     * @return The server-wide broadcast sink
      */
-    void broadcastMessage(Text message);
+    MessageSink getBroadcastSink();
 
     /**
      * Gets the bound {@link InetSocketAddress} from where this server is accepting connections.
