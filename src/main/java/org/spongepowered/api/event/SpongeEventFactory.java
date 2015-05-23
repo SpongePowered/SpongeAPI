@@ -72,7 +72,6 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.entity.EntityBreedEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
-import org.spongepowered.api.event.entity.EntityChangeHealthEvent;
 import org.spongepowered.api.event.entity.EntityCollisionEvent;
 import org.spongepowered.api.event.entity.EntityCollisionWithBlockEvent;
 import org.spongepowered.api.event.entity.EntityCollisionWithEntityEvent;
@@ -558,26 +557,6 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("replacementBlock", replacementBlock);
         return createEvent(EntityChangeBlockEvent.class, values);
-    }
-
-    /**
-     * Creates a new {@link EntityChangeHealthEvent}.
-     *
-     * @param game The game instance for this {@link GameEvent}
-     * @param cause The cause of the event, can be null
-     * @param entity The entity involved in this event
-     * @param newHealth The entity's new health
-     * @param oldHealth The entity's old health
-     * @return A new instance of the event
-     */
-    public static EntityChangeHealthEvent createEntityChangeHealth(Game game, Cause cause, Entity entity, double newHealth, double oldHealth) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", Optional.fromNullable(cause));
-        values.put("entity", entity);
-        values.put("newHealth", newHealth);
-        values.put("oldHealth", oldHealth);
-        return createEvent(EntityChangeHealthEvent.class, values);
     }
 
     /**
