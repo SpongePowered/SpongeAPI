@@ -118,6 +118,7 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerHookedEntityEvent
 import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLineEvent;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
 import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
@@ -990,6 +991,28 @@ public final class SpongeEventFactory {
         values.put("result", Optional.fromNullable(result));
         return createEvent(CommandEvent.class, values);
     }
+
+    /**
+     * Creates a new {@link CommandSuggestionsEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param arguments The arguments provided
+     * @param source The source of the command
+     * @param command The command name
+     * @param suggestions The list of suggestion. Must be mutable.
+     * @return A new instance of the event
+     */
+    public static CommandSuggestionsEvent createCommandSuggestions(Game game, String arguments, CommandSource source, String command,
+            List<String> suggestions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("arguments", arguments);
+        values.put("source", source);
+        values.put("command", command);
+        values.put("suggestions", suggestions);
+        return createEvent(CommandSuggestionsEvent.class, values);
+    }
+
 
     /**
      * Creates a new {@link MessageEvent}.
