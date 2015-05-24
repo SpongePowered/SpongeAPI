@@ -25,8 +25,11 @@
 package org.spongepowered.api.util.command.args;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
+import static org.spongepowered.api.util.command.args.GenericArguments.markTrue;
+import static org.spongepowered.api.util.command.args.GenericArguments.requiringPermission;
 
 import com.google.common.base.Function;
+import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -144,9 +147,10 @@ class CommandFlags extends CommandElement {
                     builder.add("|");
                 }
             }
-            if (!(arg.getValue() instanceof GenericArguments.MarkTrueCommandElement)) { // true flag
+            Text usage = arg.getValue().getUsage(src);
+            if (Texts.toPlain(usage).trim().length() > 0) {
                 builder.add(" ");
-                builder.add(arg.getValue().getUsage(src));
+                builder.add(usage);
             }
             builder.add("]");
             builder.add(" ");
@@ -283,6 +287,40 @@ class CommandFlags extends CommandElement {
 
         Builder() {}
 
+        private static final Function<String, CommandElement> MARK_TRUE_FUNC = new Function<String, CommandElement>() {
+            @Nullable
+            @Override
+            public CommandElement apply(@Nullable String input) {
+                return markTrue(input);
+            }
+        };
+
+        private Builder flag(Function<String, CommandElement> func, String... specs) {
+            final List<String> availableFlags = new ArrayList<String>(specs.length);
+            CommandElement el = null;
+            for (String spec : specs) {
+                if (spec.startsWith("-")) {
+                    final String flagKey = spec.substring(1);
+                    if (el == null) {
+                        el = func.apply(flagKey);
+                    }
+                    availableFlags.add(flagKey);
+                    this.longFlags.put(flagKey.toLowerCase(), el);
+                } else {
+                    for (int i = 0; i < spec.length(); ++i) {
+                        final String flagKey = spec.substring(i, i + 1);
+                        if (el == null) {
+                            el = func.apply(flagKey);
+                        }
+                        availableFlags.add(flagKey);
+                        this.shortFlags.put(flagKey, el);
+                    }
+                }
+            }
+            this.usageFlags.put(availableFlags, el);
+            return this;
+        }
+
         /**
          * Allow a flag with any of the provided specifications that has no value.
          * This flag will be exposed in a {@link CommandContext} under the key equivalent to the first flag in the specification array.
@@ -296,29 +334,26 @@ class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder flag(String... specs) {
-            final List<String> availableFlags = new ArrayList<String>(specs.length);
-            CommandElement el = null;
-            for (String spec : specs) {
-                if (spec.startsWith("-")) {
-                    final String flagKey = spec.substring(1);
-                    if (el == null) {
-                        el = GenericArguments.markTrue(flagKey);
-                    }
-                    availableFlags.add(flagKey);
-                    this.longFlags.put(flagKey.toLowerCase(), el);
-                } else {
-                    for (int i = 0; i < spec.length(); ++i) {
-                        final String flagKey = spec.substring(i, i + 1);
-                        if (el == null) {
-                            el = GenericArguments.markTrue(flagKey);
-                        }
-                        availableFlags.add(flagKey);
-                        this.shortFlags.put(flagKey, el);
-                    }
+            return flag(MARK_TRUE_FUNC, specs);
+        }
+
+        /**
+         * Allow a flag with any of the provided specifications that has no value but requires the source to have a specific permission to specify
+         * the command.
+         *
+         * @see #flag(String...) for details on the format
+         * @param flagPermission The required permission
+         * @param specs The flag specifications
+         * @return this
+         */
+        public Builder permissionFlag(final String flagPermission, String... specs) {
+            return flag(new Function<String, CommandElement>() {
+                @Nullable
+                @Override
+                public CommandElement apply(@Nullable String input) {
+                    return requiringPermission(markTrue(input), flagPermission);
                 }
-            }
-            this.usageFlags.put(availableFlags, el);
-            return this;
+            }, specs);
         }
 
         /**
@@ -330,32 +365,9 @@ class CommandFlags extends CommandElement {
          * @param specs The flag specifications
          * @return this
          */
+        @SuppressWarnings("unchecked") // cuz generics suck
         public Builder valueFlag(CommandElement value, String... specs) {
-            final List<String> availableFlags = new ArrayList<String>(specs.length);
-            String valueStore = null;
-            for (String spec : specs) {
-                if (spec.startsWith("-")) {
-                    availableFlags.add(spec);
-                    final String flagKey = spec.substring(1);
-                    if (valueStore == null) {
-                        valueStore = flagKey;
-                    }
-                    this.longFlags.put(flagKey.toLowerCase(), value);
-                } else {
-                    for (int i = 0; i < spec.length(); ++i) {
-                        final String flagKey = spec.substring(i, i + 1);
-                        if (valueStore == null) {
-                            valueStore = flagKey;
-                        }
-                        availableFlags.add(flagKey);
-                        this.shortFlags.put(flagKey, value);
-                    }
-                }
-            }
-            if (valueStore != null) { // Null if no valid flags were provided. Maybe we should throw an IllegalArgumentExcetpiion
-                this.usageFlags.put(availableFlags, GenericArguments.markTrue(valueStore));
-            }
-            return this;
+            return flag((Function) Functions.constant(value), specs);
         }
 
         /**

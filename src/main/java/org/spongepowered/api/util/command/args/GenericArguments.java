@@ -1191,4 +1191,58 @@ public final class GenericArguments {
             return this.element.complete(src, args, context);
         }
     }
+
+    /**
+     * Checks a permission for a given command argument to be used.
+     *
+     * @param element The element to wrap
+     * @param permission The permission to check
+     * @return the element
+     */
+    public static CommandElement requiringPermission(CommandElement element, String permission) {
+        return new PermissionCommandElement(element, permission);
+    }
+
+    private static class PermissionCommandElement extends CommandElement {
+        private final CommandElement element;
+        private final String permission;
+
+        protected PermissionCommandElement(CommandElement element, String permission) {
+            super(element.getKey());
+            this.element = element;
+            this.permission = permission;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            checkPermission(source, args);
+            return this.element.parseValue(source, args);
+        }
+
+        private void checkPermission(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!source.hasPermission(this.permission)) {
+                throw args.createError(t("You do not have permission to use the %s argument", getKey()));
+            }
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            if (!src.hasPermission(this.permission)) {
+                return ImmutableList.of();
+            }
+            return this.element.complete(src, args, context);
+        }
+
+        @Override
+        public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+            checkPermission(source, args);
+            super.parse(source, args, context);
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return this.element.getUsage(src);
+        }
+    }
 }

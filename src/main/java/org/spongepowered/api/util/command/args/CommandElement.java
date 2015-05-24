@@ -55,12 +55,21 @@ public abstract class CommandElement {
 
     /**
      * Return the plain key, to be used when looking up this command element in a {@link CommandContext}.
+     * If the key is a {@link Text.Translatable}, this is the translation's id. Otherwise, this is the result of {@link Texts#toPlain(Text)}
      *
      * @return the raw key
      */
     @Nullable
     public String getUntranslatedKey() {
-        return this.key == null ? null : Texts.toPlain(this.key);
+        if (this.key == null) {
+            return null;
+        }
+
+        if (this.key instanceof Text.Translatable) { // Use translation key
+            return ((Text.Translatable) this.key).getTranslation().getId();
+        } else {
+            return Texts.toPlain(this.key);
+        }
     }
 
     /**
