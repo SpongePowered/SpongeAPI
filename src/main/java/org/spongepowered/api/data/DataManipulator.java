@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.util.annotation.TransformWith;
 
 /**
  * Represents a changelist of data that can be applied to a {@link DataHolder}.
@@ -55,8 +56,8 @@ public interface DataManipulator<T extends DataManipulator<T>> extends Comparabl
      * method on any {@link DataHolder}.</p>
      *
      * @param dataHolder The {@link DataHolder} to extract data
-     * @return A new instance of this {@link DataManipulator} with relevant
-     *     data filled from the given {@link DataHolder}
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *     given {@link DataHolder}, if compatible
      */
     Optional<T> fill(DataHolder dataHolder);
 
@@ -75,16 +76,20 @@ public interface DataManipulator<T extends DataManipulator<T>> extends Comparabl
      *
      * @param dataHolder The {@link DataHolder} to extract data
      * @param overlap The overlap resolver to decide which data to retain
-     * @return A new instance of this {@link DataManipulator} with relevant
-     *     data filled from the given {@link DataHolder}
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *     given {@link DataHolder}, if compatible
      */
     Optional<T> fill(DataHolder dataHolder, DataPriority overlap);
 
     /**
      * Attempts to read the raw data from the provided {@link DataContainer}.
+     * This manipulator should be "reset" to a default state and apply all data
+     * from the given {@link DataContainer}. If data is missing from the
+     * {@link DataContainer}, {@link Optional#absent()} can be returned.
      *
      * @param container The container of raw data
-     * @return A new instance, if the data was compatible
+     * @return This {@link DataManipulator} with relevant data filled from the
+     *     given {@link DataContainer}, if compatible
      */
     Optional<T> from(DataContainer container);
 
@@ -95,6 +100,7 @@ public interface DataManipulator<T extends DataManipulator<T>> extends Comparabl
      *
      * @return The new copy of this manipulator with all data copied
      */
+    @TransformWith
     T copy();
 
 }

@@ -40,12 +40,11 @@ public interface EventFactoryPlugin {
      * If a plugin is able to determine a superclass for an event interface, it should return it.
      * Otherwise, it should return the value it received as {@param superClass}.
      *
-     *
-     *
      * @param eventClass The interface to determine the superclass for
      * @param superClass The current superclass of the event interface
+     * @param classLoader The classloader used to load the generated event class
      * @return The class to use as the event interface's superclass
      */
-    Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass);
+    Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass, ClassGeneratorProvider.LocalClassLoader classLoader);
 
 }

@@ -32,11 +32,13 @@ import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.message.CommandEvent;
+import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandCallable;
@@ -228,7 +230,7 @@ public class SimpleCommandService implements CommandService {
 
         try {
             try {
-                this.dispatcher.process(source, commandLine);
+                return this.dispatcher.process(source, commandLine);
             } catch (InvocationCommandException ex) {
                 if (ex.getCause() != null) {
                     throw ex.getCause();
@@ -259,7 +261,15 @@ public class SimpleCommandService implements CommandService {
     @Override
     public List<String> getSuggestions(CommandSource src, String arguments) {
         try {
-            return this.dispatcher.getSuggestions(src, arguments);
+            final String[] argSplit = arguments.split(" ", 2);
+            List<String> suggestions = new ArrayList<String>(this.dispatcher.getSuggestions(src, arguments));
+            final CommandSuggestionsEvent event = SpongeEventFactory.createCommandSuggestions(this.game, argSplit.length > 1 ? argSplit[1] : "", src,
+                    argSplit[0], suggestions);
+            if (event.isCancelled()) {
+                return ImmutableList.of();
+            } else {
+                return ImmutableList.copyOf(event.getSuggestions());
+            }
         } catch (CommandException e) {
             src.sendMessage(error(t("Error getting suggestions: %s", e.getText())));
             return Collections.emptyList();

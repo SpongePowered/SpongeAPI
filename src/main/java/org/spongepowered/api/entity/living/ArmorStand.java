@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulators.entities.BodyPartRotationalData;
+import org.spongepowered.api.data.manipulator.entity.BodyPartRotationalData;
 import org.spongepowered.api.entity.ArmorEquipable;
 
 /**

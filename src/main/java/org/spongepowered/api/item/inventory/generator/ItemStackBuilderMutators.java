@@ -32,7 +32,7 @@ import com.google.common.base.Optional;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.manipulators.items.EnchantmentData;
+import org.spongepowered.api.data.manipulator.item.EnchantmentData;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;

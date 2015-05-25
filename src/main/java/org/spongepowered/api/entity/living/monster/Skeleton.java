@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.manipulators.entities.SkeletonData;
+import org.spongepowered.api.data.manipulator.entity.SkeletonData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 

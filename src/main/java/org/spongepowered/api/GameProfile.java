@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.util.Identifiable;
 
 /**
  * Represents a name and an associated unique identifier.
+ *
+ * <p>Use the {@link org.spongepowered.api.service.user.UserStorage} service to
+ * obtain the stored data associated with a profile.</p>
  */
 public interface GameProfile extends Identifiable {
 
@@ -39,12 +40,4 @@ public interface GameProfile extends Identifiable {
      * @return The player's last known username
      */
     String getName();
-
-    /**
-     * Gets the associated persistent {@link User} data of this profile.
-     *
-     * @return The persistent {@link User} data, if available
-     */
-    Optional<User> getUser();
-
 }

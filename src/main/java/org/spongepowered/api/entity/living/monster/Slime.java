@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.manipulators.entities.SlimeData;
+import org.spongepowered.api.data.manipulator.entity.SlimeData;
 
 /**
  * Represents a Slime.

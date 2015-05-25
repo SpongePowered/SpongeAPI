@@ -103,7 +103,7 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
                 .sellingItem(checkNotNull(this.sellingItem.get(), "sellingItem from %s", this.sellingItem))
                 .uses(startUses)
                 .maxUses(maxUses)
-                .setCanGrantExperience(this.canGrantExperience)
+                .canGrantExperience(this.canGrantExperience)
                 .build());
     }
 

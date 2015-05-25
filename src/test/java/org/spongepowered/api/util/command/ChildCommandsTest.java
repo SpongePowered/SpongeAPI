@@ -48,8 +48,8 @@ public class ChildCommandsTest {
     public void testSimpleChildCommand() throws CommandException {
         final AtomicBoolean childExecuted = new AtomicBoolean();
         final CommandSpec spec = CommandSpec.builder()
-                .setChildren(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
-                        .setExecutor(new CommandExecutor() {
+                .children(ImmutableMap.<List<String>, CommandSpec>of(ImmutableList.of("child"), CommandSpec.builder()
+                        .executor(new CommandExecutor() {
                             @Override
                             public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
                                 childExecuted.set(true);

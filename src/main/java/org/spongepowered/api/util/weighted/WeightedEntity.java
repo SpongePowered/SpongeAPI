@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class WeightedEntity extends WeightedObject<EntityType> {
 
-    private ImmutableList<DataManipulator<?>> additionalProperties;
+    private final ImmutableList<DataManipulator<?>> additionalProperties;
 
     /**
      * Creates a new {@link WeightedEntity} with no additional properties.
@@ -60,7 +60,28 @@ public class WeightedEntity extends WeightedObject<EntityType> {
      */
     public WeightedEntity(EntityType object, int weight, DataManipulator<?>... extraProperties) {
         super(object, weight);
-        this.additionalProperties = ImmutableList.copyOf(extraProperties);
+        ImmutableList.Builder<DataManipulator<?>> builder = ImmutableList.builder();
+        for (DataManipulator<?> property : extraProperties) {
+            builder.add(property.copy());
+        }
+        this.additionalProperties = builder.build();
+    }
+
+    /**
+     * Creates a new {@link WeightedEntity} with the given additional
+     * properties.
+     *
+     * @param object The entity type
+     * @param weight The weight
+     * @param extraProperties The additional properties to apply to the entity
+     */
+    public WeightedEntity(EntityType object, int weight, Iterable<DataManipulator<?>> extraProperties) {
+        super(object, weight);
+        ImmutableList.Builder<DataManipulator<?>> builder = ImmutableList.builder();
+        for (DataManipulator<?> property : extraProperties) {
+            builder.add(property.copy());
+        }
+        this.additionalProperties = builder.build();
     }
     
     /**

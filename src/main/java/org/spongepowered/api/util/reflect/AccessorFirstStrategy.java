@@ -144,7 +144,7 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
         final Multimap<String, Method> accessors = HashMultimap.create();
         final Multimap<String, Method> mutators = HashMultimap.create();
         final Queue<Class<?>> queue = new NonNullUniqueQueue<Class<?>>();
-        final Map<String, Class<?>> accessorHierarchyBottoms = new HashMap<String, Class<?>>();
+        final Map<String, Method> accessorHierarchyBottoms = new HashMap<String, Method>();
 
         queue.add(type); // Start off with our target type
 
@@ -153,10 +153,11 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
             for (Method method : scannedType.getMethods()) {
                 String name;
 
-                if ((name = getAccessorName(method)) != null && accessorHierarchyBottoms.get(name) != method.getReturnType()) {
+                Method leastSpecificMethod;
+                if ((name = getAccessorName(method)) != null && ((leastSpecificMethod = accessorHierarchyBottoms.get(name)) == null || leastSpecificMethod.getReturnType() != method.getReturnType())) {
                     accessors.put(name, method);
-                    if (accessorHierarchyBottoms.get(name) == null || method.getReturnType().isAssignableFrom(accessorHierarchyBottoms.get(name))) {
-                        accessorHierarchyBottoms.put(name, method.getReturnType());
+                    if (accessorHierarchyBottoms.get(name) == null || method.getReturnType().isAssignableFrom(accessorHierarchyBottoms.get(name).getReturnType())) {
+                        accessorHierarchyBottoms.put(name, method);
                     }
                 } else if ((name = getMutatorName(method)) != null) {
                     mutators.put(name, method);

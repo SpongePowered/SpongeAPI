@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.crafting;
 
-import org.spongepowered.api.item.inventory.slots.OutputSlot;
+import org.spongepowered.api.item.inventory.slot.OutputSlot;
 
 /**
  * A crafting output slot.

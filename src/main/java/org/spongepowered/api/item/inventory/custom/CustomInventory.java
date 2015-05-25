@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.custom;
 
-import org.spongepowered.api.item.inventory.types.OrderedInventory;
+import org.spongepowered.api.item.inventory.type.OrderedInventory;
 import org.spongepowered.api.util.Identifiable;
 
 /**

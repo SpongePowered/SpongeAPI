@@ -26,26 +26,11 @@ package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanDeathEvent;
-import org.spongepowered.api.text.Text;
 
 /**
  * Called when a {@link Player} is killed.
  */
-public interface PlayerDeathEvent extends HumanDeathEvent, PlayerEvent {
-
-    /**
-     * Gets the death message of this {@link Player}.
-     *
-     * @return The death message.
-     */
-    Text getDeathMessage();
-
-    /**
-     * Sets the death message of this {@link Player}.
-     *
-     * @param deathMessage The new death message.
-     */
-    void setDeathMessage(Text deathMessage);
+public interface PlayerDeathEvent extends HumanDeathEvent, PlayerMessageEvent {
 
     /**
      * Gets whether the player keeps their inventory on death.

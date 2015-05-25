@@ -24,21 +24,114 @@
  */
 package org.spongepowered.api;
 
+import java.util.Map;
+
 /**
- * Effective side platforms.
- *
- * <p>A side is what part of Minecraft this is being run on. The client, or the
- * server. The internal server is also treated like a dedicated server.</p>
+ * Represents a possible platform, or implementation, a {@link Game} could be running on.
  */
-public enum Platform {
+public interface Platform {
 
     /**
-     * The platform of a Minecraft CLIENT is expected.
+     * Retrieves the current {@link Type} this platform is running on.
+     *
+     * @return The current type
      */
-    CLIENT,
+    Type getType();
+
     /**
-     * The platform of a Minecraft SERVER is expected.
+     * Retrieves the current platform name.
+     *
+     * @return The platform name
      */
-    SERVER
+    String getName();
+
+    /**
+     * Retrieves the current platform version.
+     *
+     * <p>This version can be in any format, like a build number or
+     * <a href="http://semver.org/">semantic versioning</a>.</p>
+     *
+     * @return The platform version, as a string
+     */
+    String getVersion();
+
+    /**
+     * Retrieves the current Sponge API version that this platform is implementing.
+     *
+     * @return The API version
+     */
+    String getApiVersion();
+
+    /**
+     * Gets current Minecraft version of this platform.
+     *
+     * @return The Minecraft version
+     */
+    MinecraftVersion getMinecraftVersion();
+
+    /**
+     * Returns this platform instance, as a key-value map.
+     *
+     * <p>The returned map instance is connected directly to this platform instance. Existing
+     * keys like name and version are not modifiable, but new keys are stored in this instance and
+     * are shared between any references to a map obtained through {@link #asMap()}.</p>
+     *
+     * <p>This mechanism allows for platform-specific information like Forge version.</p>
+     *
+     * @return This platform as a map
+     */
+    Map<String, Object> asMap();
+
+    /**
+     * The type of the platform, or where the game is currently running.
+     *
+     * <p>A side is what part of Minecraft this is being run on. The client, or the
+     * server. The internal server is also treated like a dedicated server.</p>
+     */
+    enum Type {
+
+        /**
+         * The platform of a Minecraft CLIENT is expected.
+         */
+        CLIENT,
+
+        /**
+         * The platform of a Minecraft SERVER is expected.
+         */
+        SERVER,
+
+        /**
+         * It is unknown what platform the game is running on.
+         */
+        UNKNOWN;
+
+        /**
+         * Checks for whether the platform is {@link #SERVER}.
+         *
+         * @return True if the platform is {@link #SERVER}, false otherwise
+         */
+        public boolean isServer() {
+            return this == SERVER;
+        }
+
+        /**
+         * Checks for whether the platform is {@link #CLIENT}.
+         *
+         * @return True if the platform is {@link #CLIENT}, false otherwise
+         */
+        public boolean isClient() {
+            return this == CLIENT;
+        }
+
+        /**
+         * Checks for whether the platform is known.
+         *
+         * @return False if the platform is {@link #UNKNOWN}, true otherwise
+         */
+        public boolean isKnown() {
+            return !(this == UNKNOWN);
+        }
+
+    }
 
 }

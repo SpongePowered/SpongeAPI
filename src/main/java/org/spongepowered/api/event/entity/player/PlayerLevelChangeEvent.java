@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.entity.player;
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanLevelChangeEvent;
 
 /**
- * Called when a player's level is changed.
+ * Called when a {@link Player}'s level is changed.
  */
 public interface PlayerLevelChangeEvent extends HumanLevelChangeEvent, PlayerEvent {
 

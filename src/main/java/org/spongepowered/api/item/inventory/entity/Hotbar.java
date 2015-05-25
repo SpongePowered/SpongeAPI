@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.entity;
 
-import org.spongepowered.api.item.inventory.types.InventoryRow;
+import org.spongepowered.api.item.inventory.type.InventoryRow;
 
 /**
  * A human's hotbar.

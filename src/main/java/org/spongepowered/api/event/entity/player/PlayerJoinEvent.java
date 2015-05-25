@@ -25,24 +25,24 @@
 package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Player} joins the game.
+ * Called before a {@link Player} joins the game.
  */
-public interface PlayerJoinEvent extends PlayerEvent {
+public interface PlayerJoinEvent extends PlayerMessageEvent {
 
     /**
-     * Gets the message displayed when the player joins.
-     *
-     * @return The player join message.
+     * Gets the {@link Location} the {@link Player} will join at.
+     * @return The location
      */
-    Text getJoinMessage();
+    Location getLocation();
 
     /**
-     * Sets the message displayed when the player joins.
-     *
-     * @param joinMessage The new player join message.
+     * Sets the {@link Location} the {@link Player} will join at.
+     * <p>
+     * This will be applied after event resolution.
+     * @param location The new location
      */
-    void setJoinMessage(Text joinMessage);
+    void setLocation(Location location);
 }

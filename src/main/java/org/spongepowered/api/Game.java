@@ -40,15 +40,15 @@ import org.spongepowered.api.world.TeleportHelper;
 public interface Game {
 
     /**
-     * Returns the {@link Platform} the implementation
-     * is executing from.
+     * Returns the current platform, or implementation, this {@link Game} is running on.
      *
-     * @return The platform
+     * @return The current implementation
      */
     Platform getPlatform();
 
     /**
      * Gets the {@link Server}.
+     *
      * @return The server
      */
     Server getServer();
@@ -105,27 +105,6 @@ public interface Game {
      * @return The command dispatcher
      */
     CommandService getCommandDispatcher();
-
-    /**
-     * Gets the API version.
-     *
-     * @return The API version
-     */
-    String getApiVersion();
-
-    /**
-     * Gets the implementation version.
-     *
-     * @return The implementation version
-     */
-    String getImplementationVersion();
-
-    /**
-     * Gets the Minecraft version of this game.
-     *
-     * @return The Minecraft version
-     */
-    MinecraftVersion getMinecraftVersion();
 
     /**
      * Gets the {@link TeleportHelper}, used to find safe {@link Location}s.

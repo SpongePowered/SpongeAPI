@@ -7,8 +7,8 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Source]
 * [Issues]
 * [Wiki]
-* [Community Chat]: #sponge on irc.esper.net
-* [Development Chat]: #spongedev on irc.esper.net
+* [Community Chat]: [#sponge on irc.esper.net]
+* [Development Chat]: [#spongedev on irc.esper.net]
 * [Preparing for Development]
 * [Javadocs(temporary link)]
 
@@ -36,11 +36,15 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [Homepage]: http://spongepowered.org/
 [IntelliJ]: http://www.jetbrains.com/idea/
 [Issues]: http://issues.spongepowered.org/
-[Wiki]: https://github.com/SpongePowered/SpongeAPI/wiki/
+[Wiki]: http://github.com/SpongePowered/SpongeAPI/wiki/
 [Java]: http://java.oracle.com/
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: http://www.tldrlegal.com/license/mit-license
-[Community Chat]: https://webchat.esper.net/?channels=sponge
-[Development Chat]: https://webchat.esper.net/?channels=spongedev
-[Preparing for Development]: https://docs.spongepowered.org/en/preparing/
+[Community Chat]: http://webchat.esper.net/?channels=sponge
+[Development Chat]: http://webchat.esper.net/?channels=spongedev
+[Preparing for Development]: http://docs.spongepowered.org/en/preparing/
+[#sponge on irc.esper.net]: irc://irc.esper.net/#sponge
+[Development Chat]: http://webchat.esper.net/?channels=spongedev
+[#spongedev on irc.esper.net]: irc://irc.esper.net/#spongedev
+[Preparing for Development]: http://docs.spongepowered.org/en/preparing/
 [Javadocs(temporary link)]: http://spongepowered.github.io/SpongeAPI/

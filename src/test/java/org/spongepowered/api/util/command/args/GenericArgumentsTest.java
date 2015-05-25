@@ -79,8 +79,8 @@ public class GenericArgumentsTest {
 
     private static CommandContext parseForInput(String input, CommandElement element) throws ArgumentParseException {
         CommandSpec spec = CommandSpec.builder()
-                .setArguments(element)
-                .setExecutor(NULL_EXECUTOR)
+                .arguments(element)
+                .executor(NULL_EXECUTOR)
                 .build();
         final CommandArgs args = new CommandArgs(input, spec.getInputTokenizer().tokenize(input, false));
         final CommandContext context = new CommandContext();

@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.data.DataQuery.of;
 
+import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
@@ -35,7 +36,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.block.tile.TileEntity;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
@@ -46,6 +47,7 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
@@ -149,6 +151,16 @@ public final class Location implements DataHolder {
     }
 
     /**
+     * Gets the underlying biome position. This method creates a new
+     * {@link Vector2i} every time.
+     *
+     * @return The underlying biome position
+     */
+    public Vector2i getBiomePosition() {
+        return getBlockPosition().toVector2(true);
+    }
+
+    /**
      * Get the X component of this instance's position.
      *
      * @return The x component
@@ -200,6 +212,37 @@ public final class Location implements DataHolder {
      */
     public int getBlockZ() {
         return getBlockPosition().getZ();
+    }
+
+    /**
+     * Returns true if this location is in the given extent.
+     * This is implemented as an {@link Object#equals(Object)} check.
+     *
+     * @param extent The extent to check
+     * @return Whether this location is in the extent
+     */
+    public boolean inExtent(Extent extent) {
+        return getExtent().equals(extent);
+    }
+
+    /**
+     * Returns true if this location has a biome at its
+     * {@link #getBiomePosition()}.
+     *
+     * @return Whether or not there is a biome at this location.
+     */
+    public boolean hasBiome() {
+        return getExtent().containsBiome(getBiomePosition());
+    }
+
+    /**
+     * Returns true if this location has a block at its
+     * {@link #getBlockPosition()} ()}.
+     *
+     * @return Whether or not there is a block at this location.
+     */
+    public boolean hasBlock() {
+        return getExtent().containsBlock(getBlockPosition());
     }
 
     /**
@@ -262,6 +305,15 @@ public final class Location implements DataHolder {
      */
     public Location getRelative(Direction direction) {
         return add(direction.toVector3d());
+    }
+
+    /**
+     * Gets the block at this location. Calls {@link #getBiomePosition()}.
+     *
+     * @return The biome at this location
+     */
+    public BiomeType getBiome() {
+        return getExtent().getBiome(getBiomePosition());
     }
 
     /**

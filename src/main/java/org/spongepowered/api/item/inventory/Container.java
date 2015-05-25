@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.item.inventory.types.Interactable;
+import org.spongepowered.api.item.inventory.type.Interactable;
 
 import java.util.Set;
 

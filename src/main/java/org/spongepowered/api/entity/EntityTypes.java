@@ -95,6 +95,7 @@ public final class EntityTypes {
     public static final EntityType RABBIT = null;
     public static final EntityType ENDERMITE = null;
     public static final EntityType UNKNOWN = null;
+    public static final EntityType HUMAN = null;
 
     private EntityTypes() {
     }

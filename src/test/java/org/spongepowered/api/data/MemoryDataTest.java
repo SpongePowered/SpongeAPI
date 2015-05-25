@@ -329,4 +329,16 @@ public class MemoryDataTest {
         assertTrue(myMap.entrySet().equals(retrievedMap.entrySet()));
     }
 
+    @Test
+    public void testCopy() {
+        final DataContainer container = new MemoryDataContainer();
+        container.set(of("Foo"), "foo");
+        final DataContainer newContainer = container.copy();
+        assertTrue(container.equals(newContainer));
+        container.set(of("Foo", "bar"), "foo.bar");
+        final DataView internal = container.getView(of("Foo")).get().copy();
+        final DataContainer internalCopy = new MemoryDataContainer().set(of("bar"), "foo.bar");
+        assertTrue(internal.equals(internalCopy));
+    }
+
 }

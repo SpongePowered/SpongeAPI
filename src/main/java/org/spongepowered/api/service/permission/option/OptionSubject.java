@@ -32,10 +32,10 @@ import java.util.Set;
 
 public interface OptionSubject extends Subject {
     @Override
-    OptionSubjectData getData();
+    OptionSubjectData getSubjectData();
 
     @Override
-    OptionSubjectData getTransientData();
+    OptionSubjectData getTransientSubjectData();
 
     /**
      * Get the value of a given option in the given context.

@@ -27,13 +27,17 @@ package org.spongepowered.api.event;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -72,7 +76,7 @@ public class SpongeEventFactoryTest {
                             }
 
                             if (eventMethod.getReturnType() != void.class) {
-                                assertNotNull("The return type of " + eventMethod + "was null!", eventMethod.invoke(event, params));
+                                assertNotNull("The return type of " + eventMethod + " was null!", eventMethod.invoke(event, params));
                             }
 
                         } catch (Exception e) {
@@ -125,7 +129,7 @@ public class SpongeEventFactoryTest {
         }
     }
 
-    private Object mockParam(Class<?> paramType) {
+    private Object mockParam(final Class<?> paramType) {
         if (paramType == byte.class) {
             return (byte) 0;
         } else if (paramType == short.class) {
@@ -150,6 +154,30 @@ public class SpongeEventFactoryTest {
             return new Location(mock(Extent.class), 0, 0, 0);
         } else if (paramType == Text[].class) {
             return new Text[] {};
+        } else if (BlockSnapshot.class.isAssignableFrom(paramType)) {
+            BlockSnapshot mock = (BlockSnapshot) mock(paramType);
+
+            final Answer<Object> answer = new Answer<Object>() {
+                @Override
+                public Object answer(InvocationOnMock invocation) throws Throwable {
+                    return mock(paramType);
+                }
+            };
+
+            when(mock.copy()).thenAnswer(answer);
+            return mock;
+        } else if (DataManipulator.class.isAssignableFrom(paramType)) {
+            DataManipulator<?> mock = (DataManipulator) mock(paramType);
+
+            final Answer<Object> answer = new Answer<Object>() {
+                @Override
+                public Object answer(InvocationOnMock invocation) throws Throwable {
+                    return mock(paramType);
+                }
+            };
+            when(mock.copy()).thenAnswer(answer);
+
+            return mock;
         } else {
             return mock(paramType);
         }

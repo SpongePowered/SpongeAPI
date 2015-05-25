@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.data.manipulators.RepresentedItemData;
+import org.spongepowered.api.data.manipulator.RepresentedItemData;
 
 /**
  * Represents an Item entity.

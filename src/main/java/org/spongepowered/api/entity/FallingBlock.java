@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.data.manipulators.entities.FallingBlockData;
+import org.spongepowered.api.data.manipulator.entity.FallingBlockData;
 
 /**
  * Represents a falling block. A falling block may harm entities where it

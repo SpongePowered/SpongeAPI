@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.weather;
 
-import org.spongepowered.api.data.manipulators.entities.ExpirableData;
+import org.spongepowered.api.data.manipulator.entity.ExpirableData;
 import org.spongepowered.api.entity.Entity;
 
 /**

@@ -24,20 +24,12 @@
  */
 package org.spongepowered.api.event.entity.player;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.text.Text;
 
 /**
- * Called when a player is kicked.
+ * Called when a {@link Player} is kicked.
  */
-public interface PlayerKickEvent extends PlayerEvent, Cancellable {
-
-    /**
-     * Gets the reason for the kick, if available.
-     *
-     * @return The kick reason as a String, or {@link Optional#absent()}
-     */
-    Optional<Text.Literal> getReason();
+public interface PlayerKickEvent extends PlayerMessageEvent, Cancellable {
 
 }

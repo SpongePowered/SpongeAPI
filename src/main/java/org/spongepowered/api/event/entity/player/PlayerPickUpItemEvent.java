@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.entity.player;
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanPickUpItemEvent;
 
 /**
- * An event where a player is picking up an item.
+ * An event where a {@link Player} is picking up an item.
  */
 public interface PlayerPickUpItemEvent extends PlayerEvent, HumanPickUpItemEvent {
 

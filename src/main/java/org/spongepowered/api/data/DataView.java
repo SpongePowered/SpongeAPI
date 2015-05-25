@@ -444,4 +444,16 @@ public interface DataView {
      */
     <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationService service);
 
+    /**
+     * Copies this {@link DataView} and all of it's contents into a new
+     * {@link DataContainer}.
+     *
+     * <p>Note that the copy will not have the same path as this
+     * {@link DataView} since it will be constructed with the top level path
+     * being itself.</p>
+     *
+     * @return The newly constructed data view
+     */
+    DataContainer copy();
+
 }
