@@ -26,19 +26,39 @@ package org.spongepowered.api.text.selector;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents an immutable selector of targets, as used in commands.
  *
- * <p>In Vanilla, selectors are mostly represented as plain text, starting with
- * an {@code @} symbol and followed by a single character signifying the type,
- * and finally the (optional) arguments in brackets.</p> <p>As an example, the
- * all player selector is {@code @a}, and with a radius of 20 it would be
- * {@code @a[r=20]}.</p>
+ * <p>
+ * In Vanilla, selectors are mostly represented as plain text, starting with an
+ * {@code @} symbol and followed by a single character signifying the type, and
+ * finally the (optional) arguments in brackets.
+ * </p>
+ * <p>
+ * As an example, the all player selector is {@code @a}, and with a radius of
+ * 20 it would be {@code @a[r=20]}.
+ * </p>
+ * </p>
+ * 
+ * <p>
+ * Additionally, Vanilla will ignore position data unless one of the following
+ * arguments is present:
+ * <ul>
+ *   <li>{@link ArgumentTypes#POSITION}</li>
+ *   <li>{@link ArgumentTypes#DIMENSION}</li>
+ *   <li>{@link ArgumentTypes#RADIUS}</li>
+ * </ul>
+ * All {@code resolve} methods have a look-alike named {@code resolveForce}
+ * which always uses the given position data.
+ * </p>
  *
  * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
  *      Target selectors on the Minecraft Wiki</a>
@@ -54,7 +74,9 @@ public interface Selector {
 
     /**
      * Returns the argument value for the specified {@link ArgumentType} in this
-     * {@link Selector}.
+     * {@link Selector}. May be used for {@link ArgumentType.Invertible}, but
+     * the inverted state must be checked with
+     * {@link #isInverted(ArgumentType.Invertible)}.
      *
      * @param type The argument type
      * @param <T> The type of the value
@@ -73,6 +95,16 @@ public interface Selector {
     <T> Optional<Argument<T>> getArgument(ArgumentType<T> type);
 
     /**
+     * Returns the {@link Argument.Invertible} for the specified
+     * {@link ArgumentType.Invertible} in this {@link Selector}.
+     *
+     * @param type The argument type
+     * @param <T> The type of the argument value
+     * @return The argument, if available
+     */
+    <T> Optional<Argument.Invertible<T>> getArgument(ArgumentType.Invertible<T> type);
+
+    /**
      * Returns the arguments for this {@link Selector}.
      *
      * @return The arguments for this {@link Selector}
@@ -80,13 +112,50 @@ public interface Selector {
     List<Argument<?>> getArguments();
 
     /**
-     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
-     * the given {@link Extent}.
+     * Checks for the presence of {@code type} in this {@link Selector}.
+     * 
+     * @param type - The {@link ArgumentType} to check for
+     * @return {@code true} if the given type is present in this
+     *         {@link Selector}, otherwise {@code false}
+     */
+    boolean has(ArgumentType<?> type);
+
+    /**
+     * Checks for the inversion state of {@code type} in this {@link Selector}.
+     * 
+     * @param type - The invertible {@link ArgumentType} to check inversion
+     *         status on
+     * @return {@code true} if the given type is inverted in this
+     *         {@link Selector}, otherwise {@code false}
+     */
+    boolean isInverted(ArgumentType.Invertible<?> type);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around the origin.
      *
-     * @param extent The extent to search for targets
+     * @param origin The source that should be considered the origin of this
+     *        selector
      * @return The matched entities
      */
-    List<Entity> resolve(Extent extent);
+    Set<Entity> resolve(CommandSource origin);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent Extent(s)}.
+     *
+     * @param extent The extents to search for targets
+     * @return The matched entities
+     */
+    Set<Entity> resolve(Extent... extent);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent Extent(s)}.
+     *
+     * @param extent The extents to search for targets
+     * @return The matched entities
+     */
+    Set<Entity> resolve(Collection<? extends Extent> extent);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the given
@@ -95,7 +164,43 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    List<Entity> resolve(Location location);
+    Set<Entity> resolve(Location location);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around the origin.
+     *
+     * @param origin The source that should be considered the origin of this
+     *        selector
+     * @return The matched entities
+     */
+    Set<Entity> resolveForce(CommandSource origin);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent Extent(s)}.
+     *
+     * @param extent The extents to search for targets
+     * @return The matched entities
+     */
+    Set<Entity> resolveForce(Extent... extent);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent Extent(s)}.
+     *
+     * @param extent The extents to search for targets
+     * @return The matched entities
+     */
+    Set<Entity> resolveForce(Collection<? extends Extent> extent);
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around the given
+     * {@link Location}.
+     *
+     * @param location The location to resolve the selector around
+     * @return The matched entities
+     */
+    Set<Entity> resolveForce(Location location);
 
     /**
      * Converts this {@link Selector} to a valid selector string.

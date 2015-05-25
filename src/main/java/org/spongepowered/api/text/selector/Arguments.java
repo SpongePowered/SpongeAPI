@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.selector;
 
+import java.util.Set;
+
 /**
  * Utility class to create {@link Argument}s.
  */
@@ -34,6 +36,8 @@ public final class Arguments {
 
     /**
      * Creates a new {@link Argument} using the specified type and value.
+     * 
+     * <p>If the type is invertible, the {@link Argument} will not be inverted.</p>
      *
      * @param type The type of the argument
      * @param value The value of the argument
@@ -42,19 +46,6 @@ public final class Arguments {
      */
     public static <T> Argument<T> create(ArgumentType<T> type, T value) {
         return Selectors.factory.createArgument(type, value);
-    }
-
-    /**
-     * Creates a new {@link Argument.Invertible} using the specified type and
-     * value. The created {@link Argument} will not be inverted.
-     *
-     * @param type The type of the invertible argument
-     * @param value The value of the invertible argument
-     * @param <T> The type of the argument value
-     * @return The created invertible argument
-     */
-    public static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value) {
-        return create(type, value, false);
     }
 
     /**
@@ -70,6 +61,19 @@ public final class Arguments {
      */
     public static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value, boolean inverted) {
         return Selectors.factory.createArgument(type, value, inverted);
+    }
+
+    /**
+     * Creates a new set of {@link Argument}s using the specified type and value.
+     *
+     * @param type The type of the arguments
+     * @param value The value of the arguments
+     * @param <T> The type of the arguments' joined value
+     * @param <V> The type of the arguments' sub-values
+     * @return The created argument
+     */
+    public static <T, V> Set<Argument<T>> createSet(ArgumentHolder<? extends ArgumentType<T>> type, V value) {
+        return Selectors.factory.createArguments(type, value);
     }
 
     /**
