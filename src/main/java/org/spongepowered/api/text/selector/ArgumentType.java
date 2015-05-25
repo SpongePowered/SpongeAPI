@@ -24,26 +24,41 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.google.common.base.Optional;
+import java.util.Set;
 
 /**
- * Represents the type of an {@link Argument}. This may represent a single
- * argument key in a {@link Selector}, or a compound of multiple argument keys.
+ * Represents the type of an {@link Argument}. This represents a single
+ * argument key in a {@link Selector}.
  *
  * @param <T> The type for the value of this argument type
  * @see Selector
  * @see Argument
  * @see ArgumentTypes
  */
-public interface ArgumentType<T> {
+public interface ArgumentType<T> extends ArgumentHolder<ArgumentType<T>> {
 
     /**
-     * Returns the key associated with this {@link ArgumentType}. This will be
-     * available if the argument type is not a compound of several ones.
+     * Returns the key associated with this {@link ArgumentType}.
      *
-     * @return The key of this argument type, if available
+     * @return The key of this argument type
      */
-    Optional<String> getKey();
+    String getKey();
+
+    /**
+     * Returns 1.
+     * 
+     * @return 1
+     */
+    @Override
+    int getCount();
+
+    /**
+     * Returns a set containing this {@link ArgumentType}.
+     * 
+     * @return A set containing this {@link ArgumentType}
+     */
+    @Override
+    Set<ArgumentType<T>> getTypes();
 
     /**
      * Represents an {@link ArgumentType} that can be inverted.
@@ -53,65 +68,6 @@ public interface ArgumentType<T> {
      * @see Argument.Invertible
      */
     interface Invertible<T> extends ArgumentType<T> {
-
-    }
-
-    /**
-     * Represents a compound {@link ArgumentType} representing a 3-dimensional
-     * vector.
-     *
-     * @param <V> The type of the vector
-     * @param <T> The type of the components of the vector
-     */
-    interface Vector3<V, T> extends ArgumentType<V> {
-
-        /**
-         * Gets the {@link ArgumentType} for the x coordinate of this
-         * {@link Vector3} {@link ArgumentType}.
-         *
-         * @return The x coordinate argument type
-         */
-        ArgumentType<T> x();
-
-        /**
-         * Gets the {@link ArgumentType} for the y coordinate of this
-         * {@link Vector3} {@link ArgumentType}.
-         *
-         * @return The y coordinate argument type
-         */
-        ArgumentType<T> y();
-
-        /**
-         * Gets the {@link ArgumentType} for the z coordinate of this
-         * {@link Vector3} {@link ArgumentType}.
-         *
-         * @return The z coordinate argument type
-         */
-        ArgumentType<T> z();
-
-    }
-
-    /**
-     * Represents the holder of two {@link ArgumentType}s with a minimal and
-     * maximal argument type.
-     *
-     * @param <T> The type of the argument type
-     */
-    interface Limit<T extends ArgumentType<?>> {
-
-        /**
-         * Returns the minimum {@link ArgumentType} of this {@link Limit}.
-         *
-         * @return The minimum argument type
-         */
-        T minimum();
-
-        /**
-         * Returns the maximum {@link ArgumentType} of this {@link Limit}.
-         *
-         * @return The maximum argument type
-         */
-        T maximum();
 
     }
 
