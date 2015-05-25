@@ -25,8 +25,8 @@
 package org.spongepowered.api.service.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
@@ -35,12 +35,16 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
+import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextBuilder;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -51,6 +55,8 @@ import org.spongepowered.api.util.command.InvocationCommandException;
 import org.spongepowered.api.util.command.dispatcher.Disambiguator;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -67,6 +73,7 @@ import javax.inject.Inject;
  */
 public class SimpleCommandService implements CommandService {
     private final Game game;
+    private final Logger log;
     private final SimpleDispatcher dispatcher;
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
     private final Object lock = new Object();
@@ -75,22 +82,24 @@ public class SimpleCommandService implements CommandService {
      * Construct a simple {@link CommandService}.
      *
      * @param game The game to use for this CommandService
+     * @param logger The logger to log error messages to
      */
     @Inject
-    public SimpleCommandService(Game game) {
-        this(game, SimpleDispatcher.FIRST_DISAMBIGUATOR);
+    public SimpleCommandService(Game game, Logger logger) {
+        this(game, logger, SimpleDispatcher.FIRST_DISAMBIGUATOR);
     }
 
     /**
      * Construct a simple {@link CommandService}.
      *
-     * @param disambiguator The function to resolve a single command when multiple options are available
      * @param game The game to use for this CommandService
+     * @param logger The logger to log error messages to
+     * @param disambiguator The function to resolve a single command when multiple options are available
      */
-    @Inject
-    public SimpleCommandService(Game game, Disambiguator disambiguator) {
+    public SimpleCommandService(Game game, Logger logger, Disambiguator disambiguator) {
         checkNotNull(game, "game");
         this.game = game;
+        this.log = logger;
         this.dispatcher = new SimpleDispatcher(disambiguator);
     }
 
@@ -252,8 +261,15 @@ public class SimpleCommandService implements CommandService {
                 }
             }
         } catch (Throwable thr) {
-            source.sendMessage(error(t("Error occurred while executing command: %s", String.valueOf(thr.getMessage()))));
-            thr.printStackTrace();
+            TextBuilder excBuilder = Texts.builder(thr.getMessage());
+            if (source.hasPermission("sponge.debug.hover-stacktrace")) {
+                final StringWriter writer = new StringWriter();
+                thr.printStackTrace(new PrintWriter(writer));
+                excBuilder.onHover(TextActions.showText(Texts.of(writer.toString().replaceAll("\t", "    "))));
+            }
+            source.sendMessage(error(t("Error occurred while executing command: %s", excBuilder.build())));
+            this.log.error(Texts.toPlain(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), thr
+                    .getMessage())), thr);
         }
         return Optional.of(CommandResult.empty());
     }
