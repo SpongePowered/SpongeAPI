@@ -281,6 +281,7 @@ public class SimpleCommandService implements CommandService {
             List<String> suggestions = new ArrayList<String>(this.dispatcher.getSuggestions(src, arguments));
             final CommandSuggestionsEvent event = SpongeEventFactory.createCommandSuggestions(this.game, argSplit.length > 1 ? argSplit[1] : "", src,
                     argSplit[0], suggestions);
+            game.getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();
             } else {
