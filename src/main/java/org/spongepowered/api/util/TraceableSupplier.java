@@ -85,8 +85,6 @@ public class TraceableSupplier<T> implements Supplier<T> {
     public T get() {
         try {
             return this.supplier.get();
-        } catch (TraceableException e) {
-            throw e;
         } catch (Exception e) {
             throw new TraceableException("An error occured while trying to supply", e, this.supplier, this.trace);
         }

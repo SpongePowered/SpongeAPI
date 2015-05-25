@@ -85,8 +85,6 @@ public class TraceableTradeOfferGenerator implements TradeOfferGenerator {
     public List<TradeOffer> generate() {
         try {
             return checkNoNullElements(this.generator.generate());
-        } catch (TraceableException e) {
-            throw e;
         } catch (Exception e) {
             throw new TraceableException("An error occured while trying to generate trade offers", e, this.generator, this.trace);
         }
