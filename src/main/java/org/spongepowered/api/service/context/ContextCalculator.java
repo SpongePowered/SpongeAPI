@@ -22,35 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
-
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
+package org.spongepowered.api.service.context;
 
 import java.util.Set;
 
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
-
-    /**
-     * Get the value of a given option in the given context.
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(Set<Context> contexts, String key);
+/**
+ * Calculate the availability of {@link Context}s for a {@link Contextual}. 
+ * These methods may be invoked frequently, and therefore should be fast.
+ * 
+ */
+public interface ContextCalculator<T extends Contextual> {
 
     /**
-     * Get the value of a given option in the subject's current context
+     * Add any {@link Context}s this calculator determines to be applicable to the
+     * provided context accumulator.
+     * 
      *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * @param {@link Contextual} for this operation
+     * @param {@link Set} of {@link Context}s this operation will append to.
      */
-    Optional<String> getOption(String key);
+    void accumulateContexts(T calculable, Set<Context> accumulator);
+
+    /**
+     * Checks if a {@link Context} is currently applicable to a {@link Contextual}.
+     * 
+     * <p>If this calculator does not handle the given type of context, this method
+     * should return false.</p>
+     *
+     * @param {@link Context} being checked
+     * @param {@link Contextual} the contextual that is being checked against
+     * @return True if the given {@link Context} is handled by this calculator and is
+     *         applicable to the given {@link Contextual}. Otherwise false.
+     */
+    boolean matches(Context context, T subject);
 }

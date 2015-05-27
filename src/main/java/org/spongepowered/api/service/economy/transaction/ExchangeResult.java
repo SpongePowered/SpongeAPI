@@ -22,35 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
-
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
+package org.spongepowered.api.service.economy.transaction;
 
 import java.util.Set;
 
-public interface OptionSubject extends Subject {
+import org.spongepowered.api.service.context.Context;
+
+import com.google.common.base.Optional;
+
+public final class ExchangeResult implements TransactionResult {
+
+    private String message;
+    private ResultType result;
+    private Optional<Set<Context>> contexts;
+    
     @Override
-    OptionSubjectData getSubjectData();
+    public TransactionType getType() {
+        return TransactionType.EXCHANGE;
+    }
 
     @Override
-    OptionSubjectData getTransientSubjectData();
+    public String getMessage() {
+        return message;
+    }
 
-    /**
-     * Get the value of a given option in the given context.
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(Set<Context> contexts, String key);
+    @Override
+    public ResultType getResult() {
+        return result;
+    }
+    
+    @Override
+    public Optional<Set<Context>> getContexts() {
+        return contexts;
+    }
 
-    /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(String key);
 }

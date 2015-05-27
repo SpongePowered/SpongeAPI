@@ -22,35 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy;
 
-import com.google.common.base.Optional;
+import org.spongepowered.api.item.ItemType;
 
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
+/**
+ * Represents a {@link Currency} which is backed by inventory items.
+ * 
+ * <p>Physical currencies have a linked {@link ItemType} that represents how the
+ * currency will show up in inventory when it is held.  This does not mean that 
+ * if an account holds the items that they are currently inside of an inventory.</p>
+ *
+ * @see Currency
+ */
+public interface PhysicalCurrency {
 
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
-
-    /**
-     * Get the value of a given option in the given context.
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(Set<Context> contexts, String key);
-
-    /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(String key);
+    ItemType getItemType();
 }
