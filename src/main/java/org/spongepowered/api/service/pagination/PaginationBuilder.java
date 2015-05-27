@@ -71,6 +71,14 @@ public interface PaginationBuilder {
     PaginationBuilder header(Text header);
 
     /**
+     * Set the footer to be displayed for this output on all pages after the contents and page navigation bar.
+     *
+     * @param footer The footer to set
+     * @return this
+     */
+    PaginationBuilder footer(Text footer);
+
+    /**
      * Set the padding character to be used when centering headers and footers.
      *
      * @param padding The padding to use
