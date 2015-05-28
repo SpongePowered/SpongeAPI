@@ -23,5 +23,11 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Generator classes for TradeOffers.
+ *
+ * <p>They can be used in conjunction with Careers to generate new trade offers
+ * or modify the existing ones.</p>
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.item.merchant.generator;

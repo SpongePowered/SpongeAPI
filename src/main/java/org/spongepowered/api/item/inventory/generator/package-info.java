@@ -23,5 +23,11 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Generator classes for ItemStacks.
+ *
+ * <p>The can be used for all places where item stacks must be generated
+ * (randomly) on the fly.</p>
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.item.inventory.generator;
