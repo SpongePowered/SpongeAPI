@@ -26,13 +26,16 @@
 package org.spongepowered.api.event.entity.living;
 
 import org.spongepowered.api.entity.living.Villager;
-import org.spongepowered.api.event.merchant.MerchantTradeOfferChangeEvent;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.merchant.TradeOffer;
+
+import java.util.List;
 
 /**
  * Called when a {@link Villager} changes his {@link TradeOffer}s.
  */
-public interface VillagerTradeOfferChangeEvent extends MerchantTradeOfferChangeEvent, LivingEvent {
+public interface VillagerTradeOfferChangeEvent extends CauseTracked, LivingEvent, Cancellable {
 
     /**
      * Gets the {@link Villager} involved involved in this event.
@@ -43,11 +46,24 @@ public interface VillagerTradeOfferChangeEvent extends MerchantTradeOfferChangeE
     Villager getEntity();
 
     /**
-     * Gets the {@link Villager} whose trade offer has changed.
+     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
      *
-     * @return The villager whose trade offer has changed
+     * @return A list of trade offers the merchant had before
      */
-    @Override
-    Villager getMerchant();
+    List<TradeOffer> getOldTradeOffers();
+
+    /**
+     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
+     *
+     * @return A list of trade offers the merchant had before
+     */
+    List<TradeOffer> getNewTradeOffers();
+
+    /**
+     * Sets a list of trade offers the merchant should have.
+     *
+     * @param offers A list of trade offers the merchant should have
+     */
+    void setNewTradeOffers(List<TradeOffer> offers);
 
 }

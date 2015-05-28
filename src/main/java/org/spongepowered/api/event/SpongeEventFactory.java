@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.event.entity.living.VillagerLevelChangeEvent;
+
+import org.spongepowered.api.item.merchant.TradeOffer;
+import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.event.entity.living.VillagerTradeOfferChangeEvent;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
@@ -1482,6 +1487,45 @@ public final class SpongeEventFactory {
         values.put("entity", player);
         values.put("user", player);
         return createEvent(PlayerUpdateEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link VillagerLevelChangeEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param villager The villager involved in this event
+     * @param oldLevel The previous level
+     * @param newLevel The new level
+     * @return A new instance of the event
+     */
+    public static VillagerLevelChangeEvent VillagerLevelChange(Game game, Villager villager, int oldLevel, int newLevel) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", villager);
+        values.put("oldLevel", oldLevel);
+        values.put("newLevel", newLevel);
+        return createEvent(VillagerLevelChangeEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link VillagerTradeOfferChangeEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param villager The villager involved in this event
+     * @param oldTradeOffers The previous trade offers
+     * @param newTradeOffers The new trade offers
+     * @param cause The cause of the event
+     * @return A new instance of the event
+     */
+    public static VillagerTradeOfferChangeEvent createVillagerTradeOfferChange(Game game, Villager villager, List<TradeOffer> oldTradeOffers,
+            List<TradeOffer> newTradeOffers, @Nullable Cause cause) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", villager);
+        values.put("oldTradeOffers", oldTradeOffers);
+        values.put("newTradeOffers", newTradeOffers);
+        values.put("cause", cause);
+        return createEvent(VillagerTradeOfferChangeEvent.class, values);
     }
 
     /**

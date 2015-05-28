@@ -25,12 +25,14 @@
 
 package org.spongepowered.api.event.entity.living;
 
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.event.Cancellable;
 
 /**
  * Called when a {@link Villager} changes its level.
  */
-public interface VillagerLevelChangeEvent extends LivingLevelChangeEvent {
+public interface VillagerLevelChangeEvent extends LivingEvent, Cancellable {
 
     /**
      * Gets the {@link Villager} involved involved in this event.
@@ -39,5 +41,26 @@ public interface VillagerLevelChangeEvent extends LivingLevelChangeEvent {
      */
     @Override
     Villager getEntity();
+
+    /**
+     * Gets the level the {@link Living} had before.
+     *
+     * @return The level the living had before
+     */
+    int getOldLevel();
+
+    /**
+     * Gets the new level of the {@link Living}.
+     *
+     * @return The new level of the living
+     */
+    int getNewLevel();
+
+    /**
+     * Sets the new level of the {@link Living}.
+     *
+     * @param level The new level of the living
+     */
+    void setNewLevel(int level);
 
 }
