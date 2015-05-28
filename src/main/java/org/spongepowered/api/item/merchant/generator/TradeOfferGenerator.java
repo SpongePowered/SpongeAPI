@@ -25,21 +25,23 @@
 
 package org.spongepowered.api.item.merchant.generator;
 
+import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.item.merchant.TradeOffer;
 
 import java.util.List;
 
 /**
- * Generates trade offers for new villagers/merchants and if when villagers
- * level up. TradeOfferGenerator will not persist acreoss server restarts.
+ * Generates trade offers for new villagers/merchants and when villagers level
+ * up. TradeOfferGenerators will not persist across server restarts.
  */
 public interface TradeOfferGenerator {
 
     /**
-     * Generates an list of {@link TradeOffer}s.
+     * Modifies the given list to append or modify the {@link Merchant}'s
+     * {@link TradeOffer}s.
      *
-     * @return An list of trade offers.
+     * @param tradeOffers A mutable list of trade offers.
      */
-    List<TradeOffer> generate();
+    void generate(List<TradeOffer> tradeOffers);
 
 }

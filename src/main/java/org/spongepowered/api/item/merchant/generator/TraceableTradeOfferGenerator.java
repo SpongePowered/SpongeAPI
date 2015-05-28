@@ -82,9 +82,11 @@ public class TraceableTradeOfferGenerator implements TradeOfferGenerator {
     }
 
     @Override
-    public List<TradeOffer> generate() {
+    public void generate(List<TradeOffer> tradeOffers) {
+        checkNotNull(tradeOffers, "tradeOffers");
         try {
-            return checkNoNullElements(this.generator.generate());
+            this.generator.generate(tradeOffers);
+            checkNoNullElements(tradeOffers);
         } catch (Exception e) {
             throw new TraceableException("An error occured while trying to generate trade offers", e, this.generator, this.trace);
         }

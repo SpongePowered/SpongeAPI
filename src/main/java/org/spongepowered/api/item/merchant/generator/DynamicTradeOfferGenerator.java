@@ -34,7 +34,6 @@ import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.merchant.TradeOffer;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -94,10 +93,11 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
     }
 
     @Override
-    public List<TradeOffer> generate() {
+    public void generate(List<TradeOffer> tradeOffers) {
+        checkNotNull(tradeOffers, "tradeOffers");
         final int maxUses = checkNotNull(this.maxUses.get(), "maxUses from %s", this.maxUses);
         final int startUses = Math.min(maxUses, checkNotNull(this.startUses.get(), "startUses from %s", this.startUses));
-        return Arrays.asList(this.registry.getTradeOfferBuilder()
+        tradeOffers.add(this.registry.getTradeOfferBuilder()
                 .firstBuyingItem(checkNotNull(this.primaryBuyingItem.get(), "primaryBuyingItem from %s", this.primaryBuyingItem))
                 .secondBuyingItem(this.secondaryBuyingItem.get())
                 .sellingItem(checkNotNull(this.sellingItem.get(), "sellingItem from %s", this.sellingItem))
