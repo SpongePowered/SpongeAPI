@@ -70,6 +70,7 @@ import org.spongepowered.api.data.manipulator.block.StoneData;
 import org.spongepowered.api.data.manipulator.block.SuspendedData;
 import org.spongepowered.api.data.manipulator.block.TreeData;
 import org.spongepowered.api.data.manipulator.block.WallData;
+import org.spongepowered.api.data.manipulator.block.WireAttachmentData;
 import org.spongepowered.api.data.type.BrickType;
 import org.spongepowered.api.data.type.DisguisedBlockType;
 import org.spongepowered.api.data.type.DyeColor;
@@ -86,6 +87,7 @@ import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
+import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -313,6 +315,12 @@ public final class CatalogBlockData {
      * {@link BlockTypes#SPONGE}.
      */
     public static final Class<WetData> WET_DATA = WetData.class;
+
+    /**
+     * Represents the {@link WireAttachmentType}s for the four cardinal directions of a
+     * piece of {@link BlockTypes#REDSTONE_WIRE}.
+     */
+    public static final Class<WireAttachmentData> WIRE_ATTACHMENT_DATA = WireAttachmentData.class;
 
     private CatalogBlockData() {
     }

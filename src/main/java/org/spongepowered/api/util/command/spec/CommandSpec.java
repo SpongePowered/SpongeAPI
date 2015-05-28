@@ -245,7 +245,11 @@ public final class CommandSpec implements CommandCallable {
                 if (this.args == DEFAULT_ARG) {
                     arguments(this.executor == null ? childDispatcher : optional(childDispatcher));
                 } else {
-                    arguments(firstParsing(childDispatcher, this.args));
+                    if (this.executor == null) {
+                        arguments(this.args, childDispatcher);
+                    } else {
+                        arguments(firstParsing(childDispatcher, this.args));
+                    }
                 }
                 executor(childDispatcher);
             }

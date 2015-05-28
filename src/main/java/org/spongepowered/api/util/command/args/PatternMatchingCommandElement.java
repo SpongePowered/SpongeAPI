@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
  * Abstract command element that matches values based on pattern.
  */
 public abstract class PatternMatchingCommandElement extends CommandElement {
+    private static final Text nullKeyArg = t("argument");
 
     protected PatternMatchingCommandElement(@Nullable Text key) {
         super(key);
@@ -68,7 +69,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
                 });
 
         if (!ret.iterator().hasNext()) {
-            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey()));
+            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null ? nullKeyArg : getKey()));
         }
         return ret;
     }
