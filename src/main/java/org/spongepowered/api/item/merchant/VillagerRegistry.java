@@ -103,7 +103,8 @@ public interface VillagerRegistry {
      * Generates a list of {@link TradeOffer}s for the specified level of that
      * career. This method does not include any previous level's trade offers.
      * This method returns an empty list if the given level does not have any
-     * generators attached to it.
+     * generators attached to it. Without providing a context of previous
+     * {@link TradeOffer}s.
      *
      * @param career The career to get the trade offers from
      * @param level The level to generate the trade offers for
@@ -111,5 +112,16 @@ public interface VillagerRegistry {
      * @throws IllegalArgumentException If level is negative
      */
     List<TradeOffer> generateTradeOffers(Career career, int level) throws IllegalArgumentException;
+
+    /**
+     * Updates the given list of {@link TradeOffer}s with new entries, updates
+     * existing {@link TradeOffer}s and may remove old ones.
+     *
+     * @param career The career to generate the trade offers for
+     * @param level The level to generate the trade offers for
+     * @param currentOffers The current trade offers
+     * @throws IllegalArgumentException If level is negative
+     */
+    void generateTradeOffers(Career career, int level, List<TradeOffer> currentOffers) throws IllegalArgumentException;
 
 }
