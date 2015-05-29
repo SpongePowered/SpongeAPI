@@ -36,11 +36,14 @@ import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
+import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -285,6 +288,14 @@ public interface GameRegistry {
      * @return A collection of all villager careers associated with the profession
      */
     Collection<Career> getCareers(Profession profession);
+
+    /**
+     * Gets the {@link VillagerRegistry} that manages {@link Villager} level
+     * upgrades and the {@link TradeOffer} generation.
+     *
+     * @return The villager registry
+     */
+    VillagerRegistry getVillagerRegistry();
 
     /**
      * Gets a {@link Collection} of the default GameRules.
