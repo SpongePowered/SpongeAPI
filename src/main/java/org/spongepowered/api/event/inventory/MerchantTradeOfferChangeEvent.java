@@ -23,44 +23,47 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.merchant.Merchant;
+import org.spongepowered.api.item.merchant.TradeOffer;
+
+import java.util.List;
 
 /**
- * Called when a {@link Villager} changes its level.
+ * Called when a {@link Merchant} changes his {@link TradeOffer}s.
  */
-public interface VillagerLevelChangeEvent extends LivingEvent, Cancellable {
+public interface MerchantTradeOfferChangeEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets the {@link Villager} involved involved in this event.
+     * Gets the {@link Merchant} involved involved in this event.
      *
      * @return The villager involved
      */
-    @Override
-    Villager getEntity();
+    Merchant getMerchant();
 
     /**
-     * Gets the level the {@link Living} had before.
+     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
      *
-     * @return The level the living had before
+     * @return A list of trade offers the merchant had before
      */
-    int getOldLevel();
+    List<TradeOffer> getOldTradeOffers();
 
     /**
-     * Gets the new level of the {@link Living}.
+     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
      *
-     * @return The new level of the living
+     * @return A list of trade offers the merchant had before
      */
-    int getNewLevel();
+    List<TradeOffer> getNewTradeOffers();
 
     /**
-     * Sets the new level of the {@link Living}.
+     * Sets a list of trade offers the merchant should have.
      *
-     * @param level The new level of the living
+     * @param offers A list of trade offers the merchant should have
      */
-    void setNewLevel(int level);
+    void setNewTradeOffers(List<TradeOffer> offers);
 
 }

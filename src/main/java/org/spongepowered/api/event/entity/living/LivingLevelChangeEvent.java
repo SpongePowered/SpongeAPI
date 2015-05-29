@@ -25,45 +25,33 @@
 
 package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.entity.living.Villager;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.item.merchant.TradeOffer;
-
-import java.util.List;
 
 /**
- * Called when a {@link Villager} changes his {@link TradeOffer}s.
+ * Called when a {@link Living} changes its level.
  */
-public interface VillagerTradeOfferChangeEvent extends CauseTracked, LivingEvent, Cancellable {
+public interface LivingLevelChangeEvent extends LivingEvent, Cancellable {
 
     /**
-     * Gets the {@link Villager} involved involved in this event.
+     * Gets the level the {@link Living} had before.
      *
-     * @return The villager involved
+     * @return The level the living had before
      */
-    @Override
-    Villager getEntity();
+    int getOldLevel();
 
     /**
-     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
+     * Gets the new level of the {@link Living}.
      *
-     * @return A list of trade offers the merchant had before
+     * @return The new level of the living
      */
-    List<TradeOffer> getOldTradeOffers();
+    int getNewLevel();
 
     /**
-     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
+     * Sets the new level of the {@link Living}.
      *
-     * @return A list of trade offers the merchant had before
+     * @param level The new level of the living
      */
-    List<TradeOffer> getNewTradeOffers();
-
-    /**
-     * Sets a list of trade offers the merchant should have.
-     *
-     * @param offers A list of trade offers the merchant should have
-     */
-    void setNewTradeOffers(List<TradeOffer> offers);
+    void setNewLevel(int level);
 
 }
