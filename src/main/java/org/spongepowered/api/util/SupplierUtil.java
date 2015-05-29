@@ -38,11 +38,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A helper class that provides some useful {@link Supplier}s.
  */
 public class SupplierUtil {
+
+    private static final Random RANDOM = new Random();
 
     /**
      * Creates a new {@link Supplier} that always returns the same result.
@@ -105,7 +108,7 @@ public class SupplierUtil {
 
         @Override
         public Integer get() {
-            return RandomUtil.randomInt(this.min, this.delta);
+            return randomInt(this.min, this.delta);
         }
 
         @Override
@@ -114,6 +117,10 @@ public class SupplierUtil {
                     .add("min", this.min)
                     .add("delta", this.delta)
                     .toString();
+        }
+
+        static int randomInt(int min, int delta) {
+            return min + RANDOM.nextInt(delta + 1);
         }
 
     }
@@ -153,7 +160,7 @@ public class SupplierUtil {
 
         @Override
         public E get() {
-            return RandomUtil.randomElement(this.elements);
+            return randomElement(this.elements);
         }
 
         @Override
@@ -161,6 +168,10 @@ public class SupplierUtil {
             return Objects.toStringHelper(this)
                     .add("elements", Arrays.asList(this.elements.toArray()))
                     .toString();
+        }
+
+        static <E> E randomElement(List<E> elements) {
+            return elements.get(RANDOM.nextInt(elements.size()));
         }
 
     }

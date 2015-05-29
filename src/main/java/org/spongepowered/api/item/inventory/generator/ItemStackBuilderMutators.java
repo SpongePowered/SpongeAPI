@@ -37,17 +37,19 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
-import org.spongepowered.api.util.RandomUtil;
 import org.spongepowered.api.util.SupplierUtil;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Random;
 
 /**
  * Helper class containing mutators for {@link ItemStackBuilder}s. This class
  * can be used for {@link ItemStackGenerator}s.
  */
 public final class ItemStackBuilderMutators {
+
+    private static final Random RANDOM = new Random();
 
     // ItemType
 
@@ -320,7 +322,9 @@ public final class ItemStackBuilderMutators {
         }
 
         int randomLevel(Enchantment enchantment) {
-            return RandomUtil.randomInt(enchantment.getMinimumLevel(), enchantment.getMaximumLevel());
+            int min = enchantment.getMinimumLevel();
+            int max = enchantment.getMaximumLevel();
+            return min + RANDOM.nextInt(max - min + 1);
         }
 
     }
