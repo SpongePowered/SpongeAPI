@@ -100,6 +100,13 @@ public interface BlockType extends CatalogType, Translatable {
     boolean isGaseous();
 
     /**
+     * Gets if a block type can be replaced by other block types when placed.
+     *
+     * @return If the block type can be replaced
+     */
+    boolean isReplaceable();
+
+    /**
      * Gets if this block is affected by gravity (if it will fall when
      * unsupported).
      *
