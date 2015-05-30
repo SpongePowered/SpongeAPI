@@ -264,6 +264,28 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack);
 
     /**
+     * Gets the temperature at this position.
+     *
+     * <p>Vanilla behaviour for weather causes snow when the temperature is <= 0.15.</p>
+     *
+     * @param position The position of the block
+     * @return The temperature, as a float between 0 and 1, inclusive
+     */
+    float getTemperature(Vector3i position);
+
+    /**
+     * Gets the temperature at this position.
+     *
+     * <p>Vanilla behaviour for weather causes snow when the temperature is <= 0.15.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The temperature, as a float between 0 and 1, inclusive
+     */
+    float getTemperature(int x, int y, int z);
+
+    /**
      * Get the light level for this object.
      *
      * <p>Higher levels indicate a higher luminance.</p>

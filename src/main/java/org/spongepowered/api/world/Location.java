@@ -461,6 +461,17 @@ public final class Location implements DataHolder {
     }
 
     /**
+     * Gets the temperature at this position.
+     *
+     * <p>Vanilla behaviour for weather causes snow when the temperature is <= 0.15.</p>
+     *
+     * @return The temperature, as a float between 0 and 1, inclusive
+     */
+    public float getTemperature() {
+        return getExtent().getTemperature(getBlockPosition());
+    }
+
+    /**
      * Get the light level for this object.
      *
      * <p>Higher levels indicate a higher luminance.</p>
