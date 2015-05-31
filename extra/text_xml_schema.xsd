@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Declarations of various elements -->
+  <xs:element name="a" type="a"/>
+  <xs:element name="b" type="b"/>
+  <xs:element name="c" type="color"/>
+  <xs:element name="color" type="color"/>
+  <xs:element name="i" type="i"/>
+  <xs:element name="o" type="obfuscated"/>
+  <xs:element name="obfuscated" type="obfuscated"/>
+  <xs:element name="s" type="strikethrough"/>
+  <xs:element name="span" type="span"/>
+  <xs:element name="strikethrough" type="strikethrough"/>
+  <xs:element name="tr" type="tr"/>
+  <xs:element name="u" type="u"/>
+
+  <!-- Actual type definitions for individual elements (some elements are aliases/can share types with others) -->
+  <xs:complexType name="element" abstract="true" mixed="true">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="a"/>
+        <xs:element ref="b"/>
+        <xs:element ref="color"/>
+        <xs:element ref="c"/>
+        <xs:element ref="i"/>
+        <xs:element ref="obfuscated"/>
+        <xs:element ref="o"/>
+        <xs:element ref="strikethrough"/>
+        <xs:element ref="s"/>
+        <xs:element ref="span"/>
+        <xs:element ref="tr"/>
+        <xs:element ref="u"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="onClick" type="xs:string"/>
+    <xs:attribute name="onShiftClick" type="xs:string"/>
+    <xs:attribute name="onHover" type="xs:string"/>
+  </xs:complexType>
+  
+  <xs:complexType name="a">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+        <xs:attribute name="href" type="xs:anyURI" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="b">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="color">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="n" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="i">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="obfuscated">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="strikethrough">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="span">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="tr">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+        <xs:attribute name="key" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="u">
+    <xs:complexContent>
+      <xs:extension base="element">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -33,24 +33,6 @@ import java.util.Locale;
 public interface TextFactory {
 
     /**
-     * Parses the specified JSON text and returns the parsed result.
-     *
-     * @param json The valid JSON text
-     * @return The parsed text
-     * @throws IllegalArgumentException If the JSON is invalid
-     */
-    Text parseJson(String json) throws IllegalArgumentException;
-
-    /**
-     * Parses the specified JSON text leniently and returns the parsed result.
-     *
-     * @param json The JSON text
-     * @return The parsed text
-     * @throws IllegalArgumentException If the JSON couldn't be parsed
-     */
-    Text parseJsonLenient(String json) throws IllegalArgumentException;
-
-    /**
      * Returns a plain text representation of the {@link Text} without any
      * formattings.
      *
@@ -70,22 +52,18 @@ public interface TextFactory {
     String toPlain(Text text, Locale locale);
 
     /**
-     * Returns a JSON representation of the {@link Text} as used in commands.
+     * Get a {@link TextRepresentation} for the Mojangson representation of a {@link Text} object.
      *
-     * @param text The text to convert
-     * @return The text converted to JSON
+     * @return The json serializer
      */
-    String toJson(Text text);
+    TextRepresentation json();
 
     /**
-     * Returns a JSON representation of the {@link Text} as used in commands in the specified language.
+     * Get a {@link TextRepresentation} for the TextXML representation of a {@link Text} object.
      *
-     * @param text The text to convert
-     * @param locale The language to get the json in
-     * @return The text converted to JSON
+     * @return The xml text serializer
      */
-    String toJson(Text text, Locale locale);
-
+    TextRepresentation xml();
     /**
      * Returns the default legacy formatting character.
      *
@@ -94,13 +72,13 @@ public interface TextFactory {
     char getLegacyChar();
 
     /**
-     * Creates a Message from a legacy string, given a color character.
+     * Return a representation that accepts and outputs legacy color codes, using the provided legacy character.
      *
-     * @param text The text to be converted as a String
-     * @param code The color character to be replaced
-     * @return The converted Message
+     * @param legacyChar The legacy character to parse and output using
+     * @return The appropriate legacy representation handler
      */
-    Text.Literal parseLegacyMessage(String text, char code);
+    TextRepresentation legacy(char legacyChar);
+
 
     /**
      * Removes the legacy formatting character from a legacy string.
@@ -121,26 +99,4 @@ public interface TextFactory {
      * @return The replaced text
      */
     String replaceLegacyCodes(String text, char from, char to);
-
-    /**
-     * Returns a representation of the {@link Text} using the legacy color
-     * codes.
-     *
-     * @param text The text to convert
-     * @param code The legacy char to use for the message
-     * @return The text converted to the old color codes
-     */
-    String toLegacy(Text text, char code);
-
-    /**
-     * Returns a representation of the {@link Text} using the legacy color
-     * codes in the given Locale.
-     *
-     * @param text The text to convert
-     * @param code The legacy char to use for the message
-     * @param locale The language to translate into
-     * @return The text converted to the old color codes
-     */
-    String toLegacy(Text text, char code, Locale locale);
-
 }
