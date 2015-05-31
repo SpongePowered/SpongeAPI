@@ -45,6 +45,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.action.TextActions;
+import org.spongepowered.api.util.TextMessageException;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -261,7 +262,13 @@ public class SimpleCommandService implements CommandService {
                 }
             }
         } catch (Throwable thr) {
-            TextBuilder excBuilder = Texts.builder(thr.getMessage());
+            TextBuilder excBuilder;
+            if (thr instanceof TextMessageException) {
+                Text text = ((TextMessageException) thr).getText();
+                excBuilder = text == null ? Texts.builder("null") : text.builder();
+            } else {
+                excBuilder = Texts.builder(String.valueOf(thr.getMessage()));
+            }
             if (source.hasPermission("sponge.debug.hover-stacktrace")) {
                 final StringWriter writer = new StringWriter();
                 thr.printStackTrace(new PrintWriter(writer));
@@ -281,7 +288,7 @@ public class SimpleCommandService implements CommandService {
             List<String> suggestions = new ArrayList<String>(this.dispatcher.getSuggestions(src, arguments));
             final CommandSuggestionsEvent event = SpongeEventFactory.createCommandSuggestions(this.game, argSplit.length > 1 ? argSplit[1] : "", src,
                     argSplit[0], suggestions);
-            game.getEventManager().post(event);
+            this.game.getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();
             } else {

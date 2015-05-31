@@ -36,7 +36,7 @@ public interface PaginationService {
      *
      * @return The pagination builder
      */
-    PaginationBuilder newBuilder();
+    PaginationBuilder builder();
 
     /**
      * Register a pagination calculator for a specific type of command source.
