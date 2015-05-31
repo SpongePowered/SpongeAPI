@@ -435,6 +435,29 @@ public final class Texts {
     public static String toJson(Text text, Locale locale) {
         return factory.toJson(text, locale);
     }
+
+    /**
+     * Parses the provided XML-formatted message to a Text object.
+     *
+     * @param input The input string to parse
+     * @return The parsed {@link Text}
+     */
+    public static Text parseXml(String input) {
+        return factory.parseXml(input);
+    }
+
+    /**
+     * Returns an xml representation of the {@link Text} for usage in configurations.
+     * TODO: Does Locale make sense here?
+     *
+     * @param input The input to use
+     * @param locale The locale to dump to
+     * @return The text as xml
+     */
+    public static String toXml(Text input, Locale locale) {
+        return factory.toXml(input, locale);
+    }
+
     /**
      * Returns the default legacy formatting character.
      *

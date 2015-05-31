@@ -87,6 +87,23 @@ public interface TextFactory {
     String toJson(Text text, Locale locale);
 
     /**
+     * Parses the provided XML-formatted message to a Text object.
+     *
+     * @param input The input string to parse
+     * @return The parsed {@link Text}
+     */
+    Text parseXml(String input);
+
+    /**
+     * Returns an xml representation of the {@link Text} for usage in configurations.
+     *
+     * @param input The input to use
+     * @param locale The locale to dump to
+     * @return The text as xml
+     */
+    String toXml(Text input, Locale locale);
+
+    /**
      * Returns the default legacy formatting character.
      *
      * @return The legacy formatting character
