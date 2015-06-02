@@ -48,7 +48,13 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
     private static final int MID_POINT = 64;
     private static final int UPPER_SIZE = 36;
     private static final int LOWER_SIZE = 24;
+    /**
+     * Maximum height of the basic terrain.
+     */
     public static final int MAX_HEIGHT = MID_POINT + UPPER_SIZE - 1;
+    /**
+     * Minimum height of the basic terrain.
+     */
     public static final int MIN_HEIGHT = MID_POINT - LOWER_SIZE + 1;
     private static final double THRESHOLD = 0.215;
     private final Perlin inputNoise = new Perlin();
@@ -208,7 +214,7 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         private double lowerScale;
         private double degree;
 
-        public VerticalScaling() {
+        private VerticalScaling() {
             super(1);
         }
 
@@ -217,19 +223,19 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
             return 1;
         }
 
-        public void setMidPoint(double midPoint) {
+        private void setMidPoint(double midPoint) {
             this.midPoint = midPoint;
         }
 
-        public void setUpperSize(double upperScale) {
+        private void setUpperSize(double upperScale) {
             this.upperScale = upperScale;
         }
 
-        public void setLowerSize(double lowerScale) {
+        private void setLowerSize(double lowerScale) {
             this.lowerScale = lowerScale;
         }
 
-        public void setDegree(double degree) {
+        private void setDegree(double degree) {
             this.degree = degree;
         }
 

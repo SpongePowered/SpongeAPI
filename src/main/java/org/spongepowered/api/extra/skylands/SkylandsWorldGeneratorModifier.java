@@ -43,7 +43,8 @@ public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
         worldGenerator.setBiomeGenerator(new SkylandsBiomeGenerator());
         final List<GeneratorPopulator> generatorPopulators = worldGenerator.getGeneratorPopulators();
         generatorPopulators.clear();
-        generatorPopulators.add(new SkylandsGroundCover());
+        generatorPopulators.add(new SkylandsGroundCoverPopulator());
+        generatorPopulators.add(new SkylandsGrassPopulator());
         // TODO: temporary, need to decide what to use
         worldGenerator.getPopulators().clear();
     }
