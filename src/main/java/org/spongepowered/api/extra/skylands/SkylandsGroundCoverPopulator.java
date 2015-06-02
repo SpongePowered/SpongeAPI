@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.extra.skylands;
 
-import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
@@ -36,7 +35,7 @@ import org.spongepowered.api.world.gen.GeneratorPopulator;
 /**
  * Places grass and dirt on the blocks just bellow air.
  */
-public class SkylandsGroundCover implements GeneratorPopulator {
+public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
 
     @SuppressWarnings("ConstantConditions")
     private static final GroundCoverLayer[] LAYERS = {
@@ -54,8 +53,8 @@ public class SkylandsGroundCover implements GeneratorPopulator {
             return;
         }
         final long seed = world.getProperties().getSeed();
-        final int yStart = GenericMath.clamp(yMax, SkylandsTerrainGenerator.MIN_HEIGHT, SkylandsTerrainGenerator.MAX_HEIGHT);
-        final int yEnd = GenericMath.clamp(yMin, SkylandsTerrainGenerator.MIN_HEIGHT, SkylandsTerrainGenerator.MAX_HEIGHT);
+        final int yStart = Math.min(yMax, SkylandsTerrainGenerator.MAX_HEIGHT);
+        final int yEnd = Math.max(yMin, SkylandsTerrainGenerator.MIN_HEIGHT);
         for (int zz = min.getZ(); zz <= max.getZ(); zz++) {
             for (int xx = min.getX(); xx <= max.getX(); xx++) {
                 int yy = yStart;
@@ -87,16 +86,16 @@ public class SkylandsGroundCover implements GeneratorPopulator {
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
-    private int getNextSolid(MutableBlockBuffer buffer, int x, int y, int z, int endY) {
-        for (; y >= endY && buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
+    private static int getNextSolid(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
+        for (; y >= yEnd && buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
             // iterate until we reach solid
         }
         return y;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
-    private int getNextAir(MutableBlockBuffer buffer, int x, int y, int z, int endY) {
-        for (; y >= endY && !buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
+    private static int getNextAir(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
+        for (; y >= yEnd && !buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
             // iterate until we exit the solid column
         }
         return y;
@@ -134,6 +133,7 @@ public class SkylandsGroundCover implements GeneratorPopulator {
             return (int) (hashToFloat(x, z, seed) * (max - min + 1) + min);
         }
 
+        // TODO: move this to a util class?
         private static float hashToFloat(int x, int y, long seed) {
             final long hash = x * 73428767 ^ y * 9122569 ^ seed * 457;
             return (hash * (hash + 456149) & 0x00ffffff) / (float) 0x01000000;
