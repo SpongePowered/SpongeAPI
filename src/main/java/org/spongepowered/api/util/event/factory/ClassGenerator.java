@@ -402,7 +402,7 @@ public class ClassGenerator {
                 }
 
                 if (!property.getType().isPrimitive()) {
-                    Class mostSpecificReturn = null;
+                    Class<?> mostSpecificReturn;
                     try {
                         mostSpecificReturn =
                                 type.getMethod(property.getAccessor().getName(), property.getAccessor().getParameterTypes()).getReturnType();
