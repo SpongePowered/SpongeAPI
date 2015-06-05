@@ -24,13 +24,9 @@
  */
 package org.spongepowered.api.scoreboard.objective;
 
-import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
-import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.text.Text;
-
-import java.util.Map;
 
 /**
  * Represents a builder to create {@link Objective} instances.
@@ -68,16 +64,6 @@ public interface ObjectiveBuilder {
      * @return This builder
      */
     ObjectiveBuilder objectiveDisplayMode(ObjectiveDisplayMode objectiveDisplayMode);
-
-    /**
-     * Sets the map of entries and {@link Score}s of the {@link Objective}.
-     *
-     * <p>By default, this is the empty map.</p>
-     *
-     * @param entries The map of entries and {@link Score}s to set
-     * @return This builder
-     */
-    ObjectiveBuilder entries(Map<String, Score> entries);
 
     /**
      * Resets all information regarding the {@link Objective} to be created.
