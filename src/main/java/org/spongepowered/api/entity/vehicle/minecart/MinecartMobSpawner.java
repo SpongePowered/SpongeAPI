@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.data.manipulator.MobSpawnerData;
+import org.spongepowered.api.data.component.base.MobSpawnerComponent;
 
 /**
  * Represents a Minecart with a MobSpawner inside it.
@@ -32,10 +32,10 @@ import org.spongepowered.api.data.manipulator.MobSpawnerData;
 public interface MinecartMobSpawner extends Minecart {
 
     /**
-     * Gets a copy of the {@link MobSpawnerData}.
+     * Gets a copy of the {@link MobSpawnerComponent}.
      *
      * @return A copy of the mob spawner data
      */
-    MobSpawnerData getSpawnerData();
+    MobSpawnerComponent getSpawnerData();
 
 }

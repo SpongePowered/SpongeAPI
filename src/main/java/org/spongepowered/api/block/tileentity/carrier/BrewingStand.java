@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity.carrier;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.tileentity.BrewingData;
+import org.spongepowered.api.data.component.tileentity.BrewingComponent;
 
 /**
  * Represents a Brewing Stand.
@@ -42,5 +42,5 @@ public interface BrewingStand extends TileEntityCarrier {
     boolean brew();
 
     @Override
-    Optional<BrewingData> getData();
+    Optional<BrewingComponent> getData();
 }

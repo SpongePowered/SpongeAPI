@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.entity.player;
 
-import org.spongepowered.api.data.manipulator.DisplayNameData;
-import org.spongepowered.api.data.manipulator.entity.GameModeData;
-import org.spongepowered.api.data.manipulator.entity.JoinData;
+import org.spongepowered.api.data.component.base.DisplayNameComponent;
+import org.spongepowered.api.data.component.entity.GameModeComponent;
+import org.spongepowered.api.data.component.entity.JoinComponent;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;
@@ -108,7 +108,7 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
     void setScoreboard(Scoreboard scoreboard);
 
     /**
-     * Gets a copy of the current {@link JoinData}.
+     * Gets a copy of the current {@link JoinComponent}.
      *
      * <p>Since a {@link Player} is already online, it means that the player
      * has joined the server at least once, meaning there is a guaranteed
@@ -117,21 +117,21 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      *
      * @return A copy of the join data
      */
-    JoinData getJoinData();
+    JoinComponent getJoinData();
 
     /**
-     * Gets a copy of the current {@link DisplayNameData} for this
+     * Gets a copy of the current {@link DisplayNameComponent} for this
      * {@link Player}.
      *
      * @return A copy of the current display name data
      */
-    DisplayNameData getDisplayNameData();
+    DisplayNameComponent getDisplayNameData();
 
     /**
-     * Gets a copy of the current {@link GameModeData} for this {@link Player}.
+     * Gets a copy of the current {@link GameModeComponent} for this {@link Player}.
      *
      * @return A copy of the current game mode data
      */
-    GameModeData getGameModeData();
+    GameModeComponent getGameModeData();
 
 }

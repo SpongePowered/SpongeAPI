@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Component;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 
 /**
  * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
- * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to
+ * {@link ImmutableDataBuilder}, the {@link Component}s passed in to
  * create a {@link BlockState} are copied on creation.
  *
  * <p>Note that upon creation, the {@link BlockType} must be set for validation
- * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
+ * of {@link Component}s, otherwise exceptions may be thrown.</p>
  */
 public interface BlockStateBuilder extends ImmutableDataBuilder<BlockState, BlockStateBuilder> {
 
@@ -41,9 +41,9 @@ public interface BlockStateBuilder extends ImmutableDataBuilder<BlockState, Bloc
      * Sets the {@link BlockType} for the {@link BlockState} to build.
      *
      * <p>The {@link BlockType} is used for some pre-validation on addition of
-     * {@link DataManipulator}s through {@link #add(DataManipulator)}. It is
-     * important to understand that not all manipulators are compatible with
-     * all {@link BlockType}s.</p>
+     * {@link Component}s through {@link #add(Component)}. It is
+     * important to understand that not all {@link Component}s are compatible
+     * with all {@link BlockType}s.</p>
      *
      * @param blockType The block type
      * @return This builder, for chaining

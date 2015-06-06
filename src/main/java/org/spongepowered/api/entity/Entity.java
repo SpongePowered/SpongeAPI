@@ -27,7 +27,7 @@ package org.spongepowered.api.entity;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.TargetedLocationData;
+import org.spongepowered.api.data.component.base.TargetedLocationComponent;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
@@ -160,7 +160,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * not have to be loaded (but must at least be enabled).
      *
      * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
+     * setting the location via {@link TargetedLocationComponent}.</p>
      *
      * <p>If the target world is unloaded but is enabled according to its
      * {@link WorldProperties#isEnabled()} then this will first load the world
@@ -180,7 +180,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * not have to be loaded (but must at least be enabled).
      *
      * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
+     * setting the location via {@link TargetedLocationComponent}.</p>
      *
      * <p>If the target world is unloaded but is enabled according to its
      * {@link WorldProperties#isEnabled()} then this will first load the world

@@ -30,7 +30,7 @@ import java.util.Collection;
 
 /**
  * Represents a transaction taking place where a {@link DataHolder} is
- * accepting {@link DataManipulator}s.
+ * accepting {@link Component}s.
  */
 public interface DataTransactionResult {
 
@@ -42,8 +42,8 @@ public interface DataTransactionResult {
         /**
          * The actual result of the operation is undefined, this probably
          * indicates that something went wrong with the operation that the
-         * {@link DataManipulator} couldn't handle or didn't expect. The
-         * state of the {@link DataManipulator} is undefined.
+         * {@link Component} couldn't handle or didn't expect. The
+         * state of the {@link Component} is undefined.
          */
         UNDEFINED,
 
@@ -53,24 +53,24 @@ public interface DataTransactionResult {
         SUCCESS,
 
         /**
-         * The {@link DataManipulator} operation failed for an
-         * <em>expected</em> reason (such as the {@link DataManipulator} being
+         * The {@link Component} operation failed for an
+         * <em>expected</em> reason (such as the {@link Component} being
          * incompatible with the {@link DataHolder}. The condition of the
-         * {@link DataManipulator} is unchanged.
+         * {@link Component} is unchanged.
          */
         FAILURE,
 
         /**
-         * The {@link DataManipulator} operation failed because an
+         * The {@link Component} operation failed because an
          * <em>unexpected</em> condition occurred. The state of the
-         * {@link DataManipulator} is undefined.
+         * {@link Component} is undefined.
          */
         ERROR,
 
         /**
          * An operation was cancelled by a third party (eg. a
-         * {@link DataManipulator} event was cancelled). The condition of the
-         * {@link DataManipulator} is unchanged.
+         * {@link Component} event was cancelled). The condition of the
+         * {@link Component} is unchanged.
          */
         CANCELLED,
         ;
@@ -84,20 +84,20 @@ public interface DataTransactionResult {
     Type getType();
 
     /**
-     * If {@link DataManipulator}s were supplied to the operation, this
-     * collection will return any {@link DataManipulator}s which were rejected
+     * If {@link Component}s were supplied to the operation, this
+     * collection will return any {@link Component}s which were rejected
      * by the target {@link DataHolder}.
      *
      * @return Any data that was rejected from the operation
      */
-    Optional<? extends Collection<? extends DataManipulator<?>>> getRejectedData();
+    Optional<? extends Collection<? extends Component<?>>> getRejectedData();
 
     /**
-     * If the operation replaced {@link DataManipulator}, this returns a collection of
-     * the replaced {@link DataManipulator}.
+     * If the operation replaced {@link Component}, this returns a collection of
+     * the replaced {@link Component}.
      *
      * @return Any data that were replaced
      */
-    Optional<? extends Collection<? extends DataManipulator<?>>> getReplacedData();
+    Optional<? extends Collection<? extends Component<?>>> getReplacedData();
 
 }

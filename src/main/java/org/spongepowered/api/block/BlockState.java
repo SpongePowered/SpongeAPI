@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Component;
 import org.spongepowered.api.data.ImmutableDataHolder;
 
 /**
  * Represents a block using {@link BlockType} and a list of
- * {@link DataManipulator} instances.
+ * {@link Component} instances.
  *
  * <p>States are instances of {@link ImmutableDataHolder}s and therefor once
- * created, cannot be changed. All retrievals of {@link DataManipulator}s are
+ * created, cannot be changed. All retrievals of {@link Component}s are
  * copies.</p>
  */
 public interface BlockState extends ImmutableDataHolder<BlockState> {

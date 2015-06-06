@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.data.manipulator.entity.HealthData;
+import org.spongepowered.api.data.component.entity.HealthComponent;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -39,20 +39,20 @@ public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Canc
      *
      * @return The old health data.
      */
-    HealthData getOldData();
+    HealthComponent getOldData();
 
     /**
      * Gets the new health data of the {@link Living}.
      *
      * @return The new health data.
      */
-    HealthData getNewData();
+    HealthComponent getNewData();
 
     /**
      * Sets the new health data of the {@link Living}.
      *
      * @param newData The new health data
      */
-    void setNewData(HealthData newData);
+    void setNewData(HealthComponent newData);
 
 }

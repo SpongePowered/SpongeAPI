@@ -28,9 +28,9 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.entity.AchievementData;
-import org.spongepowered.api.data.manipulator.entity.BanData;
-import org.spongepowered.api.data.manipulator.entity.StatisticData;
+import org.spongepowered.api.data.component.entity.AchievementComponent;
+import org.spongepowered.api.data.component.entity.BanComponent;
+import org.spongepowered.api.data.component.entity.StatisticComponent;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.Carrier;
@@ -74,24 +74,24 @@ public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, D
     Optional<Player> getPlayer();
 
     /**
-     * Gets a copy of the {@link AchievementData} for this user.
+     * Gets a copy of the {@link AchievementComponent} for this user.
      *
      * @return A copy of the achievement data
      */
-    AchievementData getAchievementData();
+    AchievementComponent getAchievementData();
 
     /**
-     * Gets a copy of the {@link StatisticData} for this user.
+     * Gets a copy of the {@link StatisticComponent} for this user.
      *
      * @return A copy of the statistic data
      */
-    StatisticData getStatisticData();
+    StatisticComponent getStatisticData();
 
     /**
-     * Gets a copy of the current {@link BanData} for this user.
+     * Gets a copy of the current {@link BanComponent} for this user.
      *
      * @return A copy of the ban data
      */
-    BanData getBanData();
+    BanComponent getBanData();
 
 }

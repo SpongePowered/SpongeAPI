@@ -37,20 +37,20 @@ import org.spongepowered.api.service.persistence.DataBuilder;
 public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extends ImmutableDataBuilder<H, E>> extends DataBuilder<H> {
 
     /**
-     * Adds the given {@link DataManipulator} to the builder. The
-     * {@link DataManipulator} is copied when the {@link ImmutableDataHolder}
+     * Adds the given {@link Component} to the builder. The
+     * {@link Component} is copied when the {@link ImmutableDataHolder}
      * is created.
      *
-     * @param manipulator The manipulator to add
+     * @param component The component to add
      * @param <M> The maipulator type
      * @return This builder, for chaining
      */
-    <M extends DataManipulator<M>> E add(M manipulator);
+    <M extends Component<M>> E add(M component);
 
     /**
-     * Copies all known {@link DataManipulator}s from the given
+     * Copies all known {@link Component}s from the given
      * {@link ImmutableDataHolder}. This is a defensive copy as
-     * {@link DataManipulator} is mutable.
+     * {@link Component} is mutable.
      *
      * @param holder The {@link ImmutableDataHolder} to copy from
      * @return This builder for chaining
@@ -59,7 +59,7 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
 
     /**
      * Resets this builder to a "default" state such that there is no
-     * remaining {@link DataManipulator}s to set. This is to be the presumed
+     * remaining {@link Component}s to set. This is to be the presumed
      * "default" state.
      *
      * @return This builder, for chaining

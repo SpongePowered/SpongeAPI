@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.data.component.tileentity.SignComponent;
 
 /**
  * An event when a {@link Sign} is changed.
@@ -34,5 +34,5 @@ import org.spongepowered.api.data.manipulator.tileentity.SignData;
  */
 public interface SignChangeEvent extends SignEvent, TileEntityChangeEvent {
     @Override
-    SignData getNewData();
+    SignComponent getNewData();
 }

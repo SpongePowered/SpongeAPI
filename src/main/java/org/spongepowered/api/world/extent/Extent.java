@@ -25,15 +25,21 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
+import org.spongepowered.api.data.Component;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataPriority;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.token.BaseToken;
+import org.spongepowered.api.data.token.GetterToken;
+import org.spongepowered.api.data.token.SetterToken;
+import org.spongepowered.api.data.token.Token;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
@@ -41,6 +47,8 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.Collection;
+
+import javax.annotation.Nullable;
 
 /**
  * Contains blocks, tile entities, entities, and possibly other game objects.
@@ -125,11 +133,11 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * be returned.</p>
      *
      * @param position The position of the block
-     * @param dataClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
      * @return An instance of the class
      */
-    <T> Optional<T> getBlockData(Vector3i position, Class<T> dataClass);
+    <T> Optional<T> getBlockData(Vector3i position, Class<T> componentClass);
 
     /**
      * Get an instance of the given data class for this block.
@@ -143,11 +151,11 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param dataClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
      * @return An instance of the class
      */
-    <T> Optional<T> getBlockData(int x, int y, int z, Class<T> dataClass);
+    <T> Optional<T> getBlockData(int x, int y, int z, Class<T> componentClass);
 
     /**
      * Simulates the interaction with this object as if a player had done so.
@@ -568,150 +576,150 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * Gets an instance of the given data class for given block at the location.
      *
      * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
+     * {@link Component} class, {@link Optional#absent()} is returned.
      * </p>
      *
      * @param position The position of the block
-     * @param dataClass The data class
+     * @param componentClass The component class
      * @param <T> The type of data
      * @return An instance of the class, if not available
      */
-    <T extends DataManipulator<T>> Optional<T> getData(Vector3i position, Class<T> dataClass);
+    <T extends Component<T>> Optional<T> getData(Vector3i position, Class<T> componentClass);
 
     /**
      * Gets an instance of the given data class for given block at the location.
      *
      * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
+     * {@link Component} class, {@link Optional#absent()} is returned.
      * </p>
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param dataClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
      * @return An instance of the class, if not available
      */
-    <T extends DataManipulator<T>> Optional<T> getData(int x, int y, int z, Class<T> dataClass);
+    <T extends Component<T>> Optional<T> getData(int x, int y, int z, Class<T> componentClass);
 
     /**
-     * Gets or creates a new {@link DataManipulator} that can be accepted by
+     * Gets or creates a new {@link Component} that can be accepted by
      * the block at the location. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new
-     * {@link  DataManipulator} object is created with default values.
+     * be represented by the given {@link Component}, a new
+     * {@link  Component} object is created with default values.
      *
-     * <p>In the event the {@link DataManipulator} can not represent any data
+     * <p>In the event the {@link Component} can not represent any data
      * pertaining to the block at the location, {@link Optional#absent()} is
      * returned.</p>
      *
      * @param position The position of the block
-     * @param manipulatorClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
      * @return An instance of the class, if not available
      */
-    <T extends DataManipulator<T>> Optional<T> getOrCreate(Vector3i position, Class<T> manipulatorClass);
+    <T extends Component<T>> Optional<T> getOrCreate(Vector3i position, Class<T> componentClass);
 
     /**
-     * Gets or creates a new {@link DataManipulator} that can be accepted by
+     * Gets or creates a new {@link Component} that can be accepted by
      * the block at the location. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new
-     * {@link  DataManipulator} object is created with default values.
+     * be represented by the given {@link Component}, a new
+     * {@link  Component} object is created with default values.
      *
-     * <p>In the event the {@link DataManipulator} can not represent any data
+     * <p>In the event the {@link Component} can not represent any data
      * pertaining to the block at the location, {@link Optional#absent()} is
      * returned.</p>
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param manipulatorClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
      * @return An instance of the class, if not available
      */
-    <T extends DataManipulator<T>> Optional<T> getOrCreate(int x, int y, int z, Class<T> manipulatorClass);
+    <T extends Component<T>> Optional<T> getOrCreate(int x, int y, int z, Class<T> componentClass);
 
     /**
-     * Attempts to remove the given {@link DataManipulator} represented by
+     * Attempts to remove the given {@link Component} represented by
      * the block at the given location if possible.
      *
-     * <p>Certain {@link DataManipulator}s can not be removed due to certain
+     * <p>Certain {@link Component}s can not be removed due to certain
      * dependencies relying on the particular data to function.</p>
      *
      * @param position The position of the block
-     * @param manipulatorClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
-     * @return If the manipulator was removed
+     * @return If the component was removed
      */
-    <T extends DataManipulator<T>> boolean remove(Vector3i position, Class<T> manipulatorClass);
+    <T extends Component<T>> boolean remove(Vector3i position, Class<T> componentClass);
 
     /**
-     * Attempts to remove the given {@link DataManipulator} represented by
+     * Attempts to remove the given {@link Component} represented by
      * the block at the given location if possible.
      *
-     * <p>Certain {@link DataManipulator}s can not be removed due to certain
+     * <p>Certain {@link Component}s can not be removed due to certain
      * dependencies relying on the particular data to function.</p>
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param manipulatorClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
-     * @return If the manipulator was removed
+     * @return If the component was removed
      */
-    <T extends DataManipulator<T>> boolean remove(int x, int y, int z, Class<T> manipulatorClass);
+    <T extends Component<T>> boolean remove(int x, int y, int z, Class<T> componentClass);
 
     /**
-     * Checks if the given {@link DataManipulator} class is able to represent
+     * Checks if the given {@link Component} class is able to represent
      * data within the block at the given position.
      *
      * @param position The position of the block
-     * @param manipulatorClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
      * @return True if the block at the given position can accept the
-     *     {@link DataManipulator} object
+     *     {@link Component} object
      */
-    <T extends DataManipulator<T>> boolean isCompatible(Vector3i position, Class<T> manipulatorClass);
+    <T extends Component<T>> boolean isCompatible(Vector3i position, Class<T> componentClass);
 
     /**
-     * Checks if the given {@link DataManipulator} class is able to represent
+     * Checks if the given {@link Component} class is able to represent
      * data within the block at the given position.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param manipulatorClass The data class
+     * @param componentClass The data class
      * @param <T> The type of data
      * @return True if the block at the given position can accept the
-     *     {@link DataManipulator} object
+     *     {@link Component} object
      */
-    <T extends DataManipulator<T>> boolean isCompatible(int x, int y, int z, Class<T> manipulatorClass);
+    <T extends Component<T>> boolean isCompatible(int x, int y, int z, Class<T> componentClass);
 
     /**
-     * Offers the given {@link DataManipulator} to the block at the given
+     * Offers the given {@link Component} to the block at the given
      * position.
      *
-     * <p>In the event that the {@link DataManipulator} contains data that
+     * <p>In the event that the {@link Component} contains data that
      * would otherwise overlap existing data on the block at the given
-     * position, a default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
+     * position, a default {@link DataPriority#COMPONENT} is used.</p>
      *
      * <p>If any data is rejected or existing data is replaced, the
      * {@link DataTransactionResult} will retain the rejected and replaced
      * data.</p>
      *
      * @param position The position of the block
-     * @param manipulatorData The manipulator data to offer
-     * @param <T> The type of manipulator data
+     * @param componentData The component data to offer
+     * @param <T> The type of component data
      * @return The transaction result
      */
-    <T extends DataManipulator<T>> DataTransactionResult offer(Vector3i position, T manipulatorData);
+    <T extends Component<T>> DataTransactionResult offer(Vector3i position, T componentData);
 
     /**
-     * Offers the given {@link DataManipulator} to the block at the given
+     * Offers the given {@link Component} to the block at the given
      * position.
      *
-     * <p>In the event that the {@link DataManipulator} contains data that
+     * <p>In the event that the {@link Component} contains data that
      * would otherwise overlap existing data on the block at the given
-     * position, a default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
+     * position, a default {@link DataPriority#COMPONENT} is used.</p>
      *
      * <p>If any data is rejected or existing data is replaced, the
      * {@link DataTransactionResult} will retain the rejected and replaced
@@ -720,14 +728,14 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param manipulatorData The manipulator data to offer
-     * @param <T> The type of manipulator data
+     * @param componentData The component data to offer
+     * @param <T> The type of component data
      * @return The transaction result
      */
-    <T extends DataManipulator<T>> DataTransactionResult offer(int x, int y, int z, T manipulatorData);
+    <T extends Component<T>> DataTransactionResult offer(int x, int y, int z, T componentData);
 
     /**
-     * Offers the given {@link DataManipulator} to the block at the given
+     * Offers the given {@link Component} to the block at the given
      * position.
      *
      * <p>If any data is rejected or existing data is replaced, the
@@ -735,15 +743,15 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * data.</p>
      *
      * @param position The position of the block
-     * @param manipulatorData The manipulator data to offer
+     * @param componentData The component data to offer
      * @param priority The data priority to use
-     * @param <T> The type of manipulator data
+     * @param <T> The type of component data
      * @return The transaction result
      */
-    <T extends DataManipulator<T>> DataTransactionResult offer(Vector3i position, T manipulatorData, DataPriority priority);
+    <T extends Component<T>> DataTransactionResult offer(Vector3i position, T componentData, DataPriority priority);
 
     /**
-     * Offers the given {@link DataManipulator} to the block at the given
+     * Offers the given {@link Component} to the block at the given
      * position.
      *
      * <p>If any data is rejected or existing data is replaced, the
@@ -753,38 +761,250 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param manipulatorData The manipulator data to offer
+     * @param componentData The component data to offer
      * @param priority The data priority to use
-     * @param <T> The type of manipulator data
+     * @param <T> The type of component data
      * @return The transaction result
      */
-    <T extends DataManipulator<T>> DataTransactionResult offer(int x, int y, int z, T manipulatorData, DataPriority priority);
+    <T extends Component<T>> DataTransactionResult offer(int x, int y, int z, T componentData, DataPriority priority);
 
     /**
-     * Gets an copied collection of all known {@link DataManipulator}s
+     * Gets an copied collection of all known {@link Component}s
      * belonging to the block at the given position. An individual
-     * {@link DataManipulator} can be used for creating new data to replace
+     * {@link Component} can be used for creating new data to replace
      * on the block at the given position.
      *
      * @param position The position of the block
-     * @return A collection of copied data manipulators belonging to the block
+     * @return A collection of copied data components belonging to the block
      *     at the given position
      */
-    Collection<DataManipulator<?>> getManipulators(Vector3i position);
+    Collection<Component<?>> getComponents(Vector3i position);
 
     /**
-     * Gets an copied collection of all known {@link DataManipulator}s
+     * Gets an copied collection of all known {@link Component}s
      * belonging to the block at the given position. An individual
-     * {@link DataManipulator} can be used for creating new data to replace
+     * {@link Component} can be used for creating new data to replace
      * on the block at the given position.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @return A collection of copied data manipulators belonging to the block
+     * @return A collection of copied data components belonging to the block
      *     at the given position
      */
-    Collection<DataManipulator<?>> getManipulators(int x, int y, int z);
+    Collection<Component<?>> getComponents(int x, int y, int z);
+
+    /**
+     * Checks if the given {@link BaseToken} is compatible with this
+     * {@link DataHolder}.
+     *
+     * @param baseToken The token to check
+     * @param position The block position
+     * @return True if the token is compatible with the block at the location
+     */
+    boolean isCompatible(BaseToken<?> baseToken, Vector3i position);
+
+    /**
+     * Checks if the given {@link BaseToken} is compatible with this
+     * {@link DataHolder}.
+     *
+     * @param baseToken The token to check
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return True if the token is compatible with the block at the location
+     */
+    boolean isCompatible(BaseToken<?> baseToken, int x, int y, int z);
+
+    /**
+     * Gets the value keyed by the given {@link GetterToken}. If the value
+     * is supported but not currently set, {@link Optional#absent()} is
+     * returned. If the {@link GetterToken} is not compatible with the
+     * {@link Location}, {@link Optional#absent()} is returned.
+     *
+     * @param getterToken The getter token
+     * @param position The block position
+     * @param <V> The type of value to return
+     * @return The value, if available
+     */
+    <V> Optional<V> get(GetterToken<V> getterToken, Vector3i position);
+
+    /**
+     * Gets the value keyed by the given {@link GetterToken}. If the value
+     * is supported but not currently set, {@link Optional#absent()} is
+     * returned. If the {@link GetterToken} is not compatible with the
+     * {@link Location}, {@link Optional#absent()} is returned.
+     *
+     * @param getterToken The getter token
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param <V> The type of value to return
+     * @return The value, if available
+     */
+    <V> Optional<V> get(GetterToken<V> getterToken, int x, int y, int z);
+
+    /**
+     * Gets the value for the given {@link GetterToken}. If the value is not
+     * set, but supported by the {@link Location}, then the given default
+     * is returned.
+     *
+     * <p>The value is NOT modified in any way.</p>
+     *
+     * @param getterToken The getter token
+     * @param defaultValue The default value if not set
+     * @param position The block position
+     * @param <V> The type of value
+     * @return The value, if not default
+     */
+    <V> V getOrDefault(GetterToken<V> getterToken, V defaultValue, Vector3i position);
+
+    /**
+     * Gets the value for the given {@link GetterToken}. If the value is not
+     * set, but supported by the {@link Location}, then the given default
+     * is returned.
+     *
+     * <p>The value is NOT modified in any way.</p>
+     *
+     * @param getterToken The getter token
+     * @param defaultValue The default value if not set
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param <V> The type of value
+     * @return The value, if not default
+     */
+    <V> V getOrDefault(GetterToken<V> getterToken, V defaultValue, int x, int y, int z);
+
+    /**
+     * Attempts to get the value for the {@link GetterToken}, if the value is
+     * not set, {@code null} is returned. This performs no checks whether the
+     * value to be fetched keyed by the {@link GetterToken} is compatible with
+     * the {@link Location}, so it should be considered that
+     * {@link #isCompatible(BaseToken, Vector3i)} is checked prior to expecting
+     * a value to be returned.
+     *
+     * @param getterToken The getter token
+     * @param position The block position
+     * @param <V> The type of value to be returned
+     * @return The value, or null
+     */
+    @Nullable
+    <V> V getOrNull(GetterToken<V> getterToken, Vector3i position);
+
+    /**
+     * Attempts to get the value for the {@link GetterToken}, if the value is
+     * not set, {@code null} is returned. This performs no checks whether the
+     * value to be fetched keyed by the {@link GetterToken} is compatible with
+     * the {@link Location}, so it should be considered that
+     * {@link #isCompatible(BaseToken, int, int, int)} is checked prior to
+     * expecting a value to be returned.
+     *
+     * @param getterToken The getter token
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param <V> The type of value to be returned
+     * @return The value, or null
+     */
+    @Nullable
+    <V> V getOrNull(GetterToken<V> getterToken, int x, int y, int z);
+
+    /**
+     * Sets the given value type {@link V} determined by the
+     * {@link SetterToken}.
+     *
+     * @param setterToken The setter token to set the underlying value of
+     * @param value The value to set
+     * @param position The block position
+     * @param <V> The type of value
+     * @return The location, for chaining
+     */
+    <V> Location set(SetterToken<V> setterToken, V value, Vector3i position);
+
+    /**
+     * Sets the given value type {@link V} determined by the
+     * {@link SetterToken}.
+     *
+     * @param setterToken The setter token to set the underlying value of
+     * @param value The value to set
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param <V> The type of value
+     * @return The location, for chaining
+     */
+    <V> DataHolder set(SetterToken<V> setterToken, V value, int x, int y, int z);
+
+    /**
+     * Atteps to apply a transformation of the value keyed to the given
+     * {@link Token} such that the given {@link Function} is applied onto the
+     * supplied value.
+     *
+     * <p>Note that the {@link Function} is only applied when the
+     * {@link Location} supports the {@link Token}. If the value is currently
+     * absent or null, the {@link Function} will still be called, but the input
+     * will remain null. The output of the {@link Function} should never return
+     * null.</p>
+     *
+     * @param token The token for the value of data
+     * @param transformerFunction The transformer function to apply to the
+     *     value
+     * @param position The block position
+     * @param <V> The type of value being transformed
+     * @return This data holder, for chaining
+     */
+    <V> DataHolder transform(Token<V> token, Function<V, V> transformerFunction, Vector3i position);
+
+    /**
+     * Atteps to apply a transformation of the value keyed to the given
+     * {@link Token} such that the given {@link Function} is applied onto the
+     * supplied value.
+     *
+     * <p>Note that the {@link Function} is only applied when the
+     * {@link Location} supports the {@link Token}. If the value is currently
+     * absent or null, the {@link Function} will still be called, but the input
+     * will remain null. The output of the {@link Function} should never return
+     * null.</p>
+     *
+     * @param token The token for the value of data
+     * @param transformerFunction The transformer function to apply to the
+     *     value
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param <V> The type of value being transformed
+     * @return This data holder, for chaining
+     */
+    <V> DataHolder transform(Token<V> token, Function<V, V> transformerFunction, int x, int y, int z);
+
+    /**
+     * Attempts to retrieve a {@link Predicate} for the given {@link Token}. If
+     * the {@link Token} is not supported, {@link Optional#absent()} is
+     * returned. The {@link Predicate} can be used to perform validation on a
+     * value prior to {@link DataHolder#set(SetterToken, Object)}.
+     *
+     * @param token The token to get the predicate for
+     * @param position The block position
+     * @param <V> The type of value
+     * @return The predicate, if available
+     */
+    <V> Optional<Predicate<V>> predicateFor(Token<V> token, Vector3i position);
+
+    /**
+     * Attempts to retrieve a {@link Predicate} for the given {@link Token}. If
+     * the {@link Token} is not supported, {@link Optional#absent()} is
+     * returned. The {@link Predicate} can be used to perform validation on a
+     * value prior to {@link DataHolder#set(SetterToken, Object)}.
+     *
+     * @param token The token to get the predicate for
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param <V> The type of value
+     * @return The predicate, if available
+     */
+    <V> Optional<Predicate<V>> predicateFor(Token<V> token, int x, int y, int z);
 
     /**
      * Attempts to retrieve a specific {@link Property} type of this the block
@@ -883,12 +1103,12 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     /**
      * Attempts to set all data of the block at the given position according to
      * the {@link DataContainer}'s held information. Using this to modify known
-     * {@link DataManipulator}s is unsupported and if the data is invalid, an
+     * {@link Component}s is unsupported and if the data is invalid, an
      * {@link InvalidDataException} is thrown.
      *
      * <p>This setter is used to provide setting custom data that is not
      * represented by the Data API, including forge mods and other
-     * unknown data. Attempts at validating known {@link DataManipulator}s
+     * unknown data. Attempts at validating known {@link Component}s
      * contained in the data container are made with the assumption that all
      * necessary data exists.</p>
      *
@@ -903,12 +1123,12 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
     /**
      * Attempts to set all data of the block at the given position according to
      * the {@link DataContainer}'s held information. Using this to modify known
-     * {@link DataManipulator}s is unsupported and if the data is invalid, an
+     * {@link Component}s is unsupported and if the data is invalid, an
      * {@link InvalidDataException} is thrown.
      *
      * <p>This setter is used to provide setting custom data that is not
      * represented by the Data API, including forge mods and other
-     * unknown data. Attempts at validating known {@link DataManipulator}s
+     * unknown data. Attempts at validating known {@link Component}s
      * contained in the data container are made with the assumption that all
      * necessary data exists.</p>
      *

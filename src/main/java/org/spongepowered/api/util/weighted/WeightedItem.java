@@ -27,7 +27,7 @@ package org.spongepowered.api.util.weighted;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.Component;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
@@ -43,7 +43,7 @@ import java.util.Random;
  */
 public class WeightedItem extends WeightedObject<ItemType> {
 
-    private ImmutableList<DataManipulator<?>> additionalProperties;
+    private ImmutableList<Component<?>> additionalProperties;
     private VariableAmount quantity;
 
     /**
@@ -68,7 +68,7 @@ public class WeightedItem extends WeightedObject<ItemType> {
      * @param weight The weight
      * @param collection The additional properties to apply to the entity
      */
-    public WeightedItem(ItemType object, VariableAmount quantity, int weight, Collection<? extends DataManipulator<?>> collection) {
+    public WeightedItem(ItemType object, VariableAmount quantity, int weight, Collection<? extends Component<?>> collection) {
         super(object, weight);
         this.additionalProperties = ImmutableList.copyOf(collection);
         this.quantity = quantity;
@@ -88,7 +88,7 @@ public class WeightedItem extends WeightedObject<ItemType> {
      *
      * @return The additional properties
      */
-    public List<DataManipulator<?>> getAdditionalProperties() {
+    public List<Component<?>> getAdditionalProperties() {
         return this.additionalProperties;
     }
 
@@ -116,7 +116,7 @@ public class WeightedItem extends WeightedObject<ItemType> {
         for (int i = 0; i < total;) {
             int n = (i + type.getMaxStackQuantity() > total) ? total - i : type.getMaxStackQuantity();
             builder.reset().itemType(type).quantity(n);
-            for (DataManipulator data : this.additionalProperties) {
+            for (Component data : this.additionalProperties) {
                 builder.itemData(data);
             }
             result.add(builder.build());

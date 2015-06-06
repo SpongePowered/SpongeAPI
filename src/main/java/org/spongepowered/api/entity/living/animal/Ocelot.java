@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.manipulator.entity.OcelotData;
+import org.spongepowered.api.data.component.entity.OcelotComponent;
 
 /**
  * Represents an Ocelot.
@@ -32,11 +32,11 @@ import org.spongepowered.api.data.manipulator.entity.OcelotData;
 public interface Ocelot extends Animal {
 
     /**
-     * Gets a copy of the current {@link OcelotData} being represented by
+     * Gets a copy of the current {@link OcelotComponent} being represented by
      * this {@link Ocelot}.
      *
      * @return A copy of the current ocelot data
      */
-    OcelotData getOcelotData();
+    OcelotComponent getOcelotData();
 
 }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import org.spongepowered.api.data.manipulator.MobSpawnerData;
+import org.spongepowered.api.data.component.base.MobSpawnerComponent;
 import org.spongepowered.api.util.weighted.WeightedCollection;
 import org.spongepowered.api.util.weighted.WeightedEntity;
 import org.spongepowered.api.util.weighted.WeightedItem;
@@ -34,7 +34,7 @@ import java.util.Collection;
 
 /**
  * Represents a which places 'Dungeon's randomly underground. Each dungeon has
- * some associated MobSpawnerData, and data regarding the contents of any chests
+ * some associated MobSpawnerComponent, and data regarding the contents of any chests
  * generated within the dungeon.
  */
 public interface Dungeon extends Populator {
@@ -55,12 +55,12 @@ public interface Dungeon extends Populator {
     void setAttemptsPerChunk(int attempts);
 
     /**
-     * Gets the {@link MobSpawnerData} which represents the MobSpawner which
+     * Gets the {@link MobSpawnerComponent} which represents the MobSpawner which
      * will be created within the dungeon.
      * 
      * @return The mob spawner data
      */
-    MobSpawnerData getSpawnerData();
+    MobSpawnerComponent getSpawnerData();
 
     /**
      * Gets a mutable List of possible contents of the chests. Items will be
@@ -100,14 +100,14 @@ public interface Dungeon extends Populator {
         Builder attempts(int attempts);
 
         /**
-         * Sets the {@link MobSpawnerData} which represents the MobSpawner which
+         * Sets the {@link MobSpawnerComponent} which represents the MobSpawner which
          * will be created within the dungeon. Setting this directly will
          * overwrite the related builder methods.
          * 
          * @param data The mob spawner data to use
          * @return This builder, for chaining
          */
-        Builder mobSpawnerData(MobSpawnerData data);
+        Builder mobSpawnerData(MobSpawnerComponent data);
 
         /**
          * Sets the minimum delay between batches of monsters. <p> Each time the

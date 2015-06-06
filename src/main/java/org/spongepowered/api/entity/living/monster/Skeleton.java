@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.manipulator.entity.SkeletonData;
+import org.spongepowered.api.data.component.entity.SkeletonComponent;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
@@ -34,11 +34,11 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 public interface Skeleton extends Monster, ArmorEquipable, ProjectileSource {
 
     /**
-     * Gets the current {@link SkeletonData} represented by this
+     * Gets the current {@link SkeletonComponent} represented by this
      * {@link Skeleton}.
      *
      * @return A copy of the current skeleton data
      */
-    SkeletonData getSkeletonData();
+    SkeletonComponent getSkeletonData();
 
 }
