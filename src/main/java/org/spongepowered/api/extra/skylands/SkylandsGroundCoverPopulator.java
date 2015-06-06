@@ -60,7 +60,7 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
                 int yy = yStart;
                 yIteration:
                 while (yy >= yEnd) {
-                    yy = getNextSolid(buffer, xx, yy, zz, yEnd);
+                    yy = SkylandsUtil.getNextSolid(buffer, xx, yy, zz, yEnd);
                     if (yy < yEnd) {
                         break;
                     }
@@ -79,26 +79,10 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
                             }
                         }
                     }
-                    yy = getNextAir(buffer, xx, yy, zz, yEnd);
+                    yy = SkylandsUtil.getNextAir(buffer, xx, yy, zz, yEnd);
                 }
             }
         }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    private static int getNextSolid(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
-        for (; y >= yEnd && buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
-            // iterate until we reach solid
-        }
-        return y;
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    private static int getNextAir(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
-        for (; y >= yEnd && !buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
-            // iterate until we exit the solid column
-        }
-        return y;
     }
 
     private abstract static class GroundCoverLayer {
@@ -130,13 +114,7 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
 
         @Override
         protected int getDepth(int x, int y, int z, long seed) {
-            return (int) (hashToFloat(x, z, seed) * (this.max - this.min + 1) + this.min);
-        }
-
-        // TODO: move this to a util class?
-        private static float hashToFloat(int x, int y, long seed) {
-            final long hash = x * 73428767 ^ y * 9122569 ^ seed * 457;
-            return (hash * (hash + 456149) & 0x00ffffff) / (float) 0x01000000;
+            return (int) (SkylandsUtil.hashToFloat(x, z, seed) * (this.max - this.min + 1) + this.min);
         }
     }
 

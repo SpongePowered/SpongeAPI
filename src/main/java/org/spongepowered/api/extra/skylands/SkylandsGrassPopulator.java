@@ -108,12 +108,12 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
         for (int zz = min.getZ(); zz <= max.getZ(); zz++) {
             for (int xx = min.getX(); xx <= max.getX(); xx++) {
                 // get the y value of the topmost block
-                int yy = getNextSolid(buffer, xx, yStart, zz, yEnd);
+                int yy = SkylandsUtil.getNextSolid(buffer, xx, yStart, zz, yEnd);
                 if (yy < yEnd) {
                     continue;
                 }
                 // some random value to compare to odds
-                float value = hashToFloat(xx, zz, seed);
+                float value = SkylandsUtil.hashToFloat(xx, zz, seed);
                 // get the flower for the current cell, may be null
                 this.flowerCells.setSeed(intSeed);
                 this.flowerDensities.setSeed(intSeed);
@@ -148,41 +148,19 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
                     }
                 }
                 // locations underneath this one will only get grass and less of it as they are covered
-                yy = getNextAir(buffer, xx, yy, zz, yEnd);
-                yy = getNextSolid(buffer, xx, yy, zz, yEnd);
+                yy = SkylandsUtil.getNextAir(buffer, xx, yy, zz, yEnd);
+                yy = SkylandsUtil.getNextSolid(buffer, xx, yy, zz, yEnd);
                 while (yy >= yEnd) {
                     // generate a new random value for the y coordinate
-                    value = hashToFloat(xx, zz, seed ^ yy);
+                    value = SkylandsUtil.hashToFloat(xx, zz, seed ^ yy);
                     if (value >= COVERED_GRASS_ODDS) {
                         buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
                     }
-                    yy = getNextAir(buffer, xx, yy, zz, yEnd);
-                    yy = getNextSolid(buffer, xx, yy, zz, yEnd);
+                    yy = SkylandsUtil.getNextAir(buffer, xx, yy, zz, yEnd);
+                    yy = SkylandsUtil.getNextSolid(buffer, xx, yy, zz, yEnd);
                 }
             }
         }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    private static int getNextSolid(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
-        for (; y >= yEnd && buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
-            // iterate until we reach solid
-        }
-        return y;
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    private static int getNextAir(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
-        for (; y >= yEnd && !buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
-            // iterate until we exit the solid column
-        }
-        return y;
-    }
-
-    // TODO: move this to a util class?
-    private static float hashToFloat(int x, int y, long seed) {
-        final long hash = x * 73428767 ^ y * 9122569 ^ seed * 457;
-        return (hash * (hash + 456149) & 0x00ffffff) / (float) 0x01000000;
     }
 
     private static class Flower {

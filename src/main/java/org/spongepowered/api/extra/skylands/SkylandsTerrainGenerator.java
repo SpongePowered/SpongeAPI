@@ -113,7 +113,7 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         final long seed = world.getProperties().getSeed();
         final int intSeed = (int) (seed >> 32 ^ seed);
         this.inputNoise.setSeed(intSeed);
-        final double[][][] noise = fastNoise(this.outputNoise, buffer.getBlockSize(), 4, min);
+        final double[][][] noise = SkylandsUtil.fastNoise(this.outputNoise, buffer.getBlockSize(), 4, min);
         final int x = min.getX();
         final int y = min.getY();
         final int z = min.getZ();
@@ -132,78 +132,6 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
                 }
             }
         }
-    }
-
-    /**
-     * Generates a 3D noise map using reduced sampling and trilinear
-     * interpolation.
-     * TODO: move this to a util class?
-     *
-     * @param noiseGenerator The noise generator module
-     * @param size The size of the 3D map
-     * @param samplingPeriod The sampling period to use.
-     *     xSize % samplingPeriod, ySize % samplingPeriod
-     *     and zSize % samplingPeriod must return 0.
-     * @param position The position of (0, 0, 0) index of the map in the
-     *     noise space
-     * @return An array containing the noise values, in order [z][y][x]
-     * @throws IllegalArgumentException if the noise generator is null,
-     *     the sampling rate is zero, or xSize % samplingPeriod,
-     *     ySize % samplingPeriod or zSize % samplingPeriod doesn't return 0
-     */
-    public static double[][][] fastNoise(Module noiseGenerator, Vector3i size, int samplingPeriod, Vector3i position) {
-        if (samplingPeriod <= 0) {
-            throw new IllegalArgumentException("samplingPeriod cannot smaller or equal to 0");
-        }
-        final int xSize = size.getX();
-        final int ySize = size.getY();
-        final int zSize = size.getZ();
-        if (xSize % samplingPeriod != 0) {
-            throw new IllegalArgumentException("x size % samplingPeriod must return 0");
-        }
-        if (ySize % samplingPeriod != 0) {
-            throw new IllegalArgumentException("y size % samplingPeriod must return 0");
-        }
-        if (zSize % samplingPeriod != 0) {
-            throw new IllegalArgumentException("z size % samplingPeriod must return 0");
-        }
-        final double[][][] noiseArray = new double[zSize + 1][ySize + 1][xSize + 1];
-        final int x = position.getX();
-        final int y = position.getY();
-        final int z = position.getZ();
-        for (int zz = 0; zz <= zSize; zz += samplingPeriod) {
-            for (int yy = 0; yy <= ySize; yy += samplingPeriod) {
-                for (int xx = 0; xx <= xSize; xx += samplingPeriod) {
-                    noiseArray[zz][yy][xx] = noiseGenerator.getValue(x + xx, y + yy, z + zz);
-                }
-            }
-        }
-        for (int zz = 0; zz < zSize; zz++) {
-            for (int yy = 0; yy < ySize; yy++) {
-                for (int xx = 0; xx < xSize; xx++) {
-                    final int xFract = xx % samplingPeriod;
-                    final int yFract = yy % samplingPeriod;
-                    final int zFract = zz % samplingPeriod;
-                    if (xFract != 0 || yFract != 0 || zFract != 0) {
-                        int nx = xx - xFract;
-                        int ny = yy - yFract;
-                        int nz = zz - zFract;
-                        noiseArray[zz][yy][xx] = GenericMath.triLerp(xx, yy, zz,
-                            noiseArray[nz][ny][nx],
-                            noiseArray[nz][ny + samplingPeriod][nx],
-                            noiseArray[nz + samplingPeriod][ny][nx],
-                            noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx],
-                            noiseArray[nz][ny][nx + samplingPeriod],
-                            noiseArray[nz][ny + samplingPeriod][nx + samplingPeriod],
-                            noiseArray[nz + samplingPeriod][ny][nx + samplingPeriod],
-                            noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx + samplingPeriod],
-                            nx, nx + samplingPeriod, ny, ny + samplingPeriod, nz, nz + samplingPeriod);
-                    }
-                }
-            }
-
-        }
-        return noiseArray;
     }
 
     private static double getOutputMax(Perlin perlin) {
