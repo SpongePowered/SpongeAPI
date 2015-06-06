@@ -22,32 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.block;
+package org.spongepowered.api.data.value.memory;
 
-import org.spongepowered.api.block.tileentity.Comparator;
-import org.spongepowered.api.block.tileentity.DaylightDetector;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.manipulator.IntData;
+import com.google.common.base.Optional;
+import org.spongepowered.api.data.value.CompositeValueStore;
+import org.spongepowered.api.data.value.ValueStore;
 
-/**
- * Represents a {@link TileEntity} that is signaling a redstone output.
- * Usually applicable to {@link Comparator}s and {@link DaylightDetector}s.
- */
-public interface SignaledOutputData extends IntData<SignaledOutputData> {
+public class MemoryCompositeValueStore<S extends CompositeValueStore<S>> extends MemoryValueStore<S> implements CompositeValueStore<S> {
 
-    /**
-     * Gets the output signal strength.
-     *
-     * @return The signal strength
-     */
-    int getOutputSignal();
+    @Override
+    public <T extends ValueStore<T>> Optional<T> get(Class<T> storeClass) {
+        return null;
+    }
 
-    /**
-     * Sets the output signal strength.
-     *
-     * @param signal The new signal strength
-     * @return This instance, for chaining
-     */
-    SignaledOutputData setOutputSignal(int signal);
+    @Override
+    public <T extends ValueStore<T>> T tryGet(Class<T> storeClass) throws UnsupportedOperationException {
+        return null;
+    }
 
+    @Override
+    public <T extends ValueStore<T>> T getOrElse(Class<T> storeClass, T defaultStore) {
+        return null;
+    }
+
+    @Override
+    public boolean supports(Class<? extends ValueStore<?>> storeClass) {
+        return false;
+    }
 }

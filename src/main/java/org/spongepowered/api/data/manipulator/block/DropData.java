@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.block.tileentity.Comparator;
-import org.spongepowered.api.data.manipulator.SingleValueData;
-import org.spongepowered.api.data.type.Comparison;
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
- * Represents the {@link Comparator} data.
+ * Signifies that the owner will not drop anything. Usually applicable
+ * to {@link BlockTypes#SKULL}.
  */
-public interface ComparisonData extends SingleValueData<Comparison, ComparisonData> {
+public interface DropData extends DataManipulator<DropData> {
+
+    Value<Boolean, DropData> willDrop();
 
 }

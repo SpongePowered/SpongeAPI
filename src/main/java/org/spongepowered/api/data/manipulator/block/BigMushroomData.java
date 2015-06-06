@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.BigMushroomType;
 
 /**
  * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
  * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
  */
-public interface BigMushroomData extends SingleValueData<BigMushroomType, BigMushroomData> {
+public interface BigMushroomData extends VariantData<BigMushroomType, BigMushroomData> {
 
 }

@@ -24,31 +24,29 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.util.ban.Ban;
-
-import java.util.Collection;
 
 /**
  * Represents a list of known {@link Ban}s usually applicable to
  * {@link User}s.
  */
-public interface BanData extends ListData<Ban.User, BanData> {
+public interface BanData extends DataManipulator<BanData> {
 
-    /**
-     * Adds the given ban to the owner on top of any other bans.
-     *
-     * @param ban The ban to put on the user
-     * @return This instance, for chaining
-     */
-    BanData ban(Ban.User ban);
+    BanSet bans();
 
-    /**
-     * Gets the bans registered for this user.
-     *
-     * @return Bans on this user
-     */
-    Collection<Ban.User> getBans();
+    interface BanSet extends SetValue<Ban.User, BanData> {
+
+        /**
+         * Adds the given ban to the owner on top of any other bans.
+         *
+         * @param ban The ban to put on the user
+         * @return This instance, for chaining
+         */
+        BanData ban(Ban.User ban);
+
+    }
 
 }

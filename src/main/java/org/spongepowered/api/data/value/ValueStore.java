@@ -22,12 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import com.google.common.base.Optional;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.merge.MergeStrategy;
 
-@CatalogedBy(Comparisons.class)
-public interface Comparison extends CatalogType {
+import javax.annotation.Nullable;
+import java.util.Set;
+
+public interface ValueStore<S extends ValueStore<S>> {
+
+    <E> Optional<E> get(Key<? extends Value<E, ?>> key);
+
+    <E> E tryGet(Key<? extends Value<E, ?>> key) throws UnsupportedOperationException;
+
+    @Nullable
+    <E> E getOrNull(Key<? extends Value<E, ?>> key);
+
+    <E> E getOrElse(Key<? extends Value<E, ?>> key, E defaultValue);
+
+    <E> S set(Key<? extends Value<E, ?>> key, E value);
+
+    <E, V extends Value<E, ?>> Optional<V> bind(Key<V> key);
+
+    <E, V extends Value<E, ?>> V tryBind(Key<V> key);
+
+    boolean supports(Key<?> key);
+
+    boolean canMutate();
+
+    S copy();
+
+    S copyTo(ValueStore<?> that);
+
+    S copyTo(ValueStore<?> that, MergeStrategy strategy);
+
+    S copyFrom(ValueStore<?> that);
+
+    S copyFrom(ValueStore<?> that, MergeStrategy strategy);
+
+    <T extends ValueStore<T>> Optional<T> copyOf();
+
+    Set<Key<?>> getKeys();
+
+    Set<Value<?, S>> getValues();
 
 }

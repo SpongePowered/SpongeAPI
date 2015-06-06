@@ -24,28 +24,21 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.Career;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Villager;
 
 /**
  * Represents the {@link Career} for a {@link Villager}.
  */
-public interface CareerData extends SingleValueData<Career, CareerData> {
+public interface CareerData extends DataManipulator<CareerData> {
 
     /**
      * Gets the current {@link Career}.
      *
      * @return The current career
      */
-    Career getCareer();
-
-    /**
-     * Sets the career.
-     *
-     * @param career The career to set
-     * @return This instance, for chaining
-     */
-    CareerData setCareer(Career career);
+    Value<Career, CareerData> career();
 
 }

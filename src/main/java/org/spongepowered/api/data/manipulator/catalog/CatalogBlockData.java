@@ -49,7 +49,7 @@ import org.spongepowered.api.data.manipulator.block.InWallData;
 import org.spongepowered.api.data.manipulator.block.InstrumentData;
 import org.spongepowered.api.data.manipulator.block.LayeredData;
 import org.spongepowered.api.data.manipulator.block.MoistureData;
-import org.spongepowered.api.data.manipulator.block.NoDropData;
+import org.spongepowered.api.data.manipulator.block.DropData;
 import org.spongepowered.api.data.manipulator.block.OccupiedData;
 import org.spongepowered.api.data.manipulator.block.OpenData;
 import org.spongepowered.api.data.manipulator.block.PistonData;
@@ -208,7 +208,7 @@ public final class CatalogBlockData {
      * Signifies that the owner will not drop anything. Usually applicable
      * to {@link BlockTypes#SKULL}.
      */
-    public static final Class<NoDropData> NO_DROP_DATA = NoDropData.class;
+    public static final Class<DropData> NO_DROP_DATA = DropData.class;
     /**
      * Signifies that a block is considered "occupied". Usually applicable to
      * {@link BlockTypes#BED}.

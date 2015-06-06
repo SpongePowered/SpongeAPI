@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.WallType;
 
 /**
  * Represents the {@link WallType} of a wall block.
  */
-public interface WallData extends SingleValueData<WallType, WallData> {
+public interface WallData extends VariantData<WallType, WallData> {
 
 }

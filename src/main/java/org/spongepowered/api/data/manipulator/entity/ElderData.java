@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Guardian;
 
 /**
@@ -33,5 +34,7 @@ import org.spongepowered.api.entity.living.monster.Guardian;
  * generally have a different size, texture, and health information.
  */
 public interface ElderData extends DataManipulator<ElderData> {
+
+    Value<Boolean, ElderData> elder();
 
 }

@@ -22,21 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.entity;
+
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.monster.Blaze;
 
 /**
- * An enumeration of known vanilla {@link DoubleSizePlantType}s.
+ * Signifies that an {@link Entity} is on fire, but does not have a
+ * set expiration for being aflame. Usually applicable to {@link Blaze}s.
  */
-public final class DoubleSizePlantTypes {
+public interface FlammableData extends DataManipulator<FlammableData> {
 
-    public static final DoubleSizePlantType SUNFLOWER = null;
-    public static final DoubleSizePlantType SYRINGA = null;
-    public static final DoubleSizePlantType GRASS = null;
-    public static final DoubleSizePlantType FERN = null;
-    public static final DoubleSizePlantType ROSE = null;
-    public static final DoubleSizePlantType PAEONIA = null;
-
-    private DoubleSizePlantTypes() {
-    }
+    Value<Boolean, FlammableData> flammable();
 
 }

@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that a block is "suspended". Usually applicable to
  * {@link BlockTypes#TRIPWIRE} if the wire is "suspended in mid air".
  */
 public interface SuspendedData extends DataManipulator<SuspendedData> {
+
+    Value<Boolean, SuspendedData> suspended();
 
 }

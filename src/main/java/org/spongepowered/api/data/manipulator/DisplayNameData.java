@@ -25,6 +25,8 @@
 package org.spongepowered.api.data.manipulator;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
@@ -36,7 +38,7 @@ import org.spongepowered.api.text.Text;
  * <p>Exceptions are made with written books as the title and display name
  * are one and the same.</p>
  */
-public interface DisplayNameData extends SingleValueData<Text, DisplayNameData> {
+public interface DisplayNameData extends DataManipulator<DisplayNameData> {
 
     /**
      * Gets the display name as a {@link Text}. The display name may be
@@ -44,30 +46,13 @@ public interface DisplayNameData extends SingleValueData<Text, DisplayNameData> 
      *
      * @return The display name, if available
      */
-    Text getDisplayName();
-
-    /**
-     * Sets the display name as a {@link Text}. If set to null,
-     * the display name is erased.
-     *
-     * @param displayName The display name
-     * @return This instance, for chaining
-     */
-    DisplayNameData setDisplayName(Text displayName);
+    Value<Text, DisplayNameData> displayName();
 
     /**
      * Returns whether the custom name is visible to players.
      *
      * @return Whether the custom name is visible or not
      */
-    boolean isCustomNameVisible();
-
-    /**
-     * Sets whether the custom name is visible to players.
-     *
-     * @param visible Whether the custom name is visible
-     * @return This instance, for chaining
-     */
-    DisplayNameData setCustomNameVisible(boolean visible);
+    Value<Boolean, DisplayNameData> customNameVisible();
 
 }

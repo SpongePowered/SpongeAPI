@@ -25,12 +25,12 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.DirtType;
 
 /**
  * Represents the {@link DirtType} of a {@link BlockTypes#DIRT}.
  */
-public interface DirtData extends SingleValueData<DirtType, DirtData> {
+public interface DirtData extends VariantData<DirtType, DirtData> {
 
 }

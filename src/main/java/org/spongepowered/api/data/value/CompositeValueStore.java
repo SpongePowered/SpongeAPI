@@ -22,14 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.value;
 
-public final class Comparisons {
+import com.google.common.base.Optional;
 
-    public static final Comparison COMPARE = null;
-    public static final Comparison SUBTRACT = null;
+public interface CompositeValueStore<S extends CompositeValueStore<S>> extends ValueStore<S> {
 
-    private Comparisons() {
-    }
+    <T extends ValueStore<T>> Optional<T> get(Class<T> storeClass);
+
+    <T extends ValueStore<T>> T tryGet(Class<T> storeClass) throws UnsupportedOperationException;
+
+    <T extends ValueStore<T>> T getOrElse(Class<T> storeClass, T defaultStore);
+
+    boolean supports(Class<? extends ValueStore<?>> storeClass);
 
 }

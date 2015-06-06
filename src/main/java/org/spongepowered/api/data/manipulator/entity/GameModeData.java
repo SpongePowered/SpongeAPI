@@ -24,14 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 
 /**
  * Represents the {@link GameMode} of a {@link Player}.
  */
-public interface GameModeData extends SingleValueData<GameMode, GameModeData> {
+public interface GameModeData extends DataManipulator<GameModeData> {
 
     /**
      * Gets the player's game mode.
@@ -39,15 +40,6 @@ public interface GameModeData extends SingleValueData<GameMode, GameModeData> {
      * @return The player's game mode
      * @see org.spongepowered.api.entity.player.gamemode.GameModes
      */
-    GameMode getGameMode();
-
-    /**
-     * Sets the players's game mode.
-     *
-     * @param gameMode The game mode to set
-     * @see org.spongepowered.api.entity.player.gamemode.GameModes
-     * @return This instance, for chaining
-     */
-    GameModeData setGameMode(GameMode gameMode);
+    Value<GameMode, GameModeData> gameMode();
 
 }

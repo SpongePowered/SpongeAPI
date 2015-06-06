@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.MappedData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.Enchantment;
+
+import java.util.Map;
 
 /**
  * Represents item data related to an item having active {@link Enchantment}s.
@@ -33,6 +36,10 @@ import org.spongepowered.api.item.Enchantment;
  * <p>Some enchantments are not compatible with some item types, so checking
  * on the enchantment before setting is recommended.</p>
  */
-public interface EnchantmentData extends MappedData<Enchantment, Integer, EnchantmentData> {
+public interface EnchantmentData extends DataManipulator<EnchantmentData> {
+
+    Value<Integer, EnchantmentData> valueFor(Enchantment enchantment);
+
+    Value<Map<Enchantment, Integer>, EnchantmentData> enchantments();
 
 }

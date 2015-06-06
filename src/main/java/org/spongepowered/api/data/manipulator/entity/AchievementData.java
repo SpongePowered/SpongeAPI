@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**
  * Represents data containing a list of {@link Achievement}s granted and
  * the ability to grant or remove {@link Achievement}s.
  */
-public interface AchievementData extends ListData<Achievement, AchievementData> {
+public interface AchievementData extends DataManipulator<AchievementData> {
+
+    SetValue<Achievement, AchievementData> achievements();
 
 }

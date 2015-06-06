@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.MappedData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.Enchantment;
+
+import java.util.Map;
 
 /**
  * Represents stored enchantments that can be used to apply the stored
@@ -34,6 +37,10 @@ import org.spongepowered.api.item.Enchantment;
  * <p>Common uses of {@link StoredEnchantmentData} is with
  * enchanted books and anvils.</p>
  */
-public interface StoredEnchantmentData extends MappedData<Enchantment, Integer, StoredEnchantmentData> {
+public interface StoredEnchantmentData extends DataManipulator<StoredEnchantmentData> {
+
+    Value<Integer, StoredEnchantmentData> valueFor(Enchantment enchantment);
+
+    Value<Map<Enchantment, Integer>, StoredEnchantmentData> enchantments();
 
 }

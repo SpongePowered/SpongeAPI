@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.User;
 
@@ -43,7 +44,7 @@ public interface JoinData extends DataManipulator<JoinData> {
      *
      * @return The players first join time.
      */
-    Date getFirstPlayed();
+    Value<Date, JoinData> firstPlayed();
 
     /**
      * Gets the last time a player was on the server.
@@ -52,7 +53,7 @@ public interface JoinData extends DataManipulator<JoinData> {
      *
      * @return The last time a player was online.
      */
-    Date getLastPlayed();
+    Value<Date, JoinData> lastPlayed();
 
 
 }

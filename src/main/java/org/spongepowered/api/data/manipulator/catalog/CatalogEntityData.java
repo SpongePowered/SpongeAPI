@@ -72,7 +72,7 @@ import org.spongepowered.api.data.manipulator.entity.JoinData;
 import org.spongepowered.api.data.manipulator.entity.KnockbackData;
 import org.spongepowered.api.data.manipulator.entity.LeashData;
 import org.spongepowered.api.data.manipulator.entity.OcelotData;
-import org.spongepowered.api.data.manipulator.entity.OrbData;
+import org.spongepowered.api.data.manipulator.entity.ExpOrbData;
 import org.spongepowered.api.data.manipulator.entity.PassengerData;
 import org.spongepowered.api.data.manipulator.entity.PersistingData;
 import org.spongepowered.api.data.manipulator.entity.PlayerCreatedData;
@@ -367,7 +367,7 @@ public final class CatalogEntityData {
      * Represents the amount of "experience" an {@link ExperienceOrb}
      * contains.
      */
-    public static final Class<OrbData> ORB_DATA = OrbData.class;
+    public static final Class<ExpOrbData> ORB_DATA = ExpOrbData.class;
     /**
      * Signifies that an entity is owned by a {@link GameProfile}. Usually
      * applicable to {@link Living} entities.

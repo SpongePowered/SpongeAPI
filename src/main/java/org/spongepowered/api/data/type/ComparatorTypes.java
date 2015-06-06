@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+public final class ComparatorTypes {
 
-/**
- * Represents a type of double plant.
- */
-@CatalogedBy(DoubleSizePlantTypes.class)
-public interface DoubleSizePlantType extends CatalogType {
+    public static final ComparatorType COMPARE = null;
+    public static final ComparatorType SUBTRACT = null;
+
+    private ComparatorTypes() {
+    }
 
 }

@@ -25,7 +25,9 @@
 package org.spongepowered.api.data.manipulator.item;
 
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
+
 
 /**
  * Represents an editable collection of {@link BlockType}s that can
@@ -38,6 +40,8 @@ import org.spongepowered.api.data.manipulator.ListData;
  * blocks unless the item has this type of {@link BreakableData} to note
  * which {@link BlockType}s can be broken with that item.</p>
  */
-public interface BreakableData extends ListData<BlockType, BreakableData> {
+public interface BreakableData extends DataManipulator<BreakableData> {
+
+    SetValue<BlockType, BreakableData> breakable();
 
 }

@@ -25,12 +25,15 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents the "moisture" level of a block. Usually applicable to
  * {@link BlockTypes#FARMLAND}.
  */
-public interface MoistureData extends IntData<MoistureData> {
+public interface MoistureData extends DataManipulator<MoistureData> {
+
+    BoundedValue<Integer, MoistureData> moisture();
 
 }

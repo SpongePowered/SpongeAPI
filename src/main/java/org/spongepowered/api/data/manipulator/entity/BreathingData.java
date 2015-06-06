@@ -24,42 +24,17 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents the remaining air information for various entities while they
  * are underwater.
  */
-public interface BreathingData extends IntData<BreathingData> {
+public interface BreathingData extends DataManipulator<BreathingData> {
 
-    /**
-     * Gets the remaining ticks of air.
-     *
-     * @return The ticks of air
-     */
-    int getRemainingAir();
+    BoundedValue<Integer, BreathingData> remainingAir();
 
-    /**
-     * Sets the remaining ticks of air.
-     *
-     * @param air The remaining ticks of air
-     * @return This instance, for chaining
-     */
-    BreathingData setRemainingAir(int air);
-
-    /**
-     * Gets the maximum ticks of air this entity can have.
-     *
-     * @return The maximum ticks of air
-     */
-    int getMaxAir();
-
-    /**
-     * Sets the maximum ticks of air this entity can have.
-     *
-     * @param air The maximum ticks of air
-     * @return This instance, for chaining
-     */
-    BreathingData setMaxAir(int air);
+    BoundedValue<Integer, BreathingData> maxAir();
 
 }

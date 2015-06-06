@@ -25,13 +25,16 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Axis;
 
 /**
  * Represents the {@link Axis} aligned data for various "rotational" blocks
  * such as {@link BlockTypes#LOG}, {@link BlockTypes#QUARTZ_BLOCK}, etc.
  */
-public interface AxisData extends SingleValueData<Axis, AxisData> {
+public interface AxisData extends DataManipulator<AxisData> {
+
+    Value<Axis, AxisData> axis();
 
 }

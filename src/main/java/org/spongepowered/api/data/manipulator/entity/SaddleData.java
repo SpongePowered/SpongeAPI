@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.Pig;
@@ -34,7 +35,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * Signifies that a {@link Entity} is currently "saddled". Usually applicable
  * to {@link Pig}s and {@link Horse}s.
  */
-public interface SaddleData extends SingleValueData<ItemStack, SaddleData> {
+public interface SaddleData extends DataManipulator<SaddleData> {
 
     /**
      * Gets the current saddle this horse is equipped with.
@@ -43,15 +44,6 @@ public interface SaddleData extends SingleValueData<ItemStack, SaddleData> {
      *
      * @return The saddle, if available
      */
-    ItemStack getSaddle();
+    Value<ItemStack, SaddleData> getSaddle();
 
-    /**
-     * Sets the horse to be equipped with the given saddle.
-     *
-     * <p>A saddled horse is player rideable. Not all horses can be saddled.</p>
-     *
-     * @param itemStack The saddle item
-     * @return This instance, for chaining
-     */
-    SaddleData setSaddle(ItemStack itemStack);
 }

@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.Hinge;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the direction a hinge is facing, usually either
  * left or right.
  */
-public interface HingeData extends SingleValueData<Hinge, HingeData> {
+public interface HingeData extends DataManipulator<HingeData> {
+
+    Value<Hinge, HingeData> position();
 
 }

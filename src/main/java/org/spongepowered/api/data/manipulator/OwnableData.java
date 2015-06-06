@@ -27,26 +27,20 @@ package org.spongepowered.api.data.manipulator;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.tileentity.Skull;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents data pertaining to a {@link GameProfile} that is marked as
  * "owning" the {@link DataHolder}. Usually applicable to {@link Skull}s.
  */
-public interface OwnableData extends SingleValueData<GameProfile, OwnableData> {
+public interface OwnableData extends DataManipulator<OwnableData> {
 
     /**
      * Gets the owners profile.
      *
      * @return The owners profile, if available
      */
-    GameProfile getProfile();
-
-    /**
-     * Sets the profile that owns this item stack.
-     *
-     * @param profile The profile that owns this item stack
-     * @return This instance, for chaining
-     */
-    OwnableData setProfile(GameProfile profile);
+    Value<GameProfile, OwnableData> profile();
 
 }

@@ -22,15 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.block;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
-import org.spongepowered.api.data.type.PlantType;
+import java.util.Set;
 
-/**
- * Represents the {@link PlantType} for a {@link BlockTypes#RED_FLOWER}.
- */
-public interface FlowerData extends SingleValueData<PlantType, FlowerData> {
+public interface SetValue<E, S extends ValueStore<S>> extends CollectionValue<E, Set<E>, SetValue<E, S>, S> {
+
+    @Override
+    SetValue<E, S> replace(Set<E> value);
 
 }

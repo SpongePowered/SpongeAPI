@@ -24,17 +24,24 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.MappedData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
+
+import java.util.Map;
 
 /**
  * Represents the container of all known applied {@link Statistic}s and
  * {@link Achievement}s. Usually applicable to {@link Player}s and
  * {@link User}s.
  */
-public interface StatisticData extends MappedData<Statistic, Long, StatisticData> {
+public interface StatisticData extends DataManipulator<StatisticData> {
+
+    Value<Long, StatisticData> valueFor(Statistic statistic);
+
+    Value<Map<Statistic, Long>, StatisticData> statistics();
 
 }

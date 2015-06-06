@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.value.ValueStore;
 import org.spongepowered.api.util.annotation.TransformWith;
 
 /**
@@ -38,7 +39,7 @@ import org.spongepowered.api.util.annotation.TransformWith;
  *
  * @param <T> The type of {@link DataManipulator} for comparisons
  */
-public interface DataManipulator<T extends DataManipulator<T>> extends Comparable<T>, DataSerializable {
+public interface DataManipulator<T extends DataManipulator<T>> extends Comparable<T>, DataSerializable, ValueStore<T> {
 
     /**
      * Attempts to read data from the given {@link DataHolder} and constructs

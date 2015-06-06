@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Human;
 
 /**
@@ -40,18 +41,7 @@ public interface FoodData extends DataManipulator<FoodData> {
      *
      * @return The current exhaustion level
      */
-    double getExhaustion();
-
-    /**
-     * Sets the exhaustion value of this human entity.
-     *
-     * <p>When exhaustion level reaches 0, saturation may begin to diminish.
-     * </p>
-     *
-     * @param exhaustion The new exhaustion level
-     * @return This instance, for chaining
-     */
-    FoodData setExhaustion(double exhaustion);
+    Value<Integer, FoodData> getExhaustion();
 
     /**
      * Gets the current saturation level of this human entity.
@@ -61,18 +51,7 @@ public interface FoodData extends DataManipulator<FoodData> {
      *
      * @return The current saturation level
      */
-    double getSaturation();
-
-    /**
-     * Sets the saturation level of this human entity.
-     *
-     * <p>Saturation acts as a buffer for food level. Food level will not
-     * decrease while the saturation level is greater than zero.</p>
-     *
-     * @param saturation The new saturation level
-     * @return This instance, for chaining
-     */
-    FoodData setSaturation(double saturation);
+    Value<Double, FoodData> getSaturation();
 
     /**
      * Gets the current food saturation of this human entity.
@@ -83,18 +62,6 @@ public interface FoodData extends DataManipulator<FoodData> {
      *
      * @return The current food level
      */
-    double getFoodLevel();
-
-    /**
-     * Sets the current food saturation of this human entity.
-     *
-     * <p>Food level has health effects, depending on game difficulty and
-     * hunger levels. If the food level is high enough, the human entity
-     * may heal. If the food level is at 0, the human entity may starve.</p>
-     *
-     * @param foodLevel The new food level
-     * @return This instance, for chaining
-     */
-    FoodData setFoodLevel(double foodLevel);
+    Value<Double, FoodData> getFoodLevel();
 
 }

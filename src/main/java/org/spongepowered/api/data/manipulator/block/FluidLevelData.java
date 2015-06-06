@@ -25,13 +25,16 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents the liquid filled level state of a block. Usually applicable to
  * {@link BlockTypes#WATER}, {@link BlockTypes#LAVA}, and
  * {@link BlockTypes#CAULDRON}.
  */
-public interface FluidLevelData extends IntData<FluidLevelData> {
+public interface FluidLevelData extends DataManipulator<FluidLevelData> {
+
+    BoundedValue<Integer, FluidLevelData> level();
 
 }

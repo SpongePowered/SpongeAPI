@@ -25,11 +25,14 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
  * Signifies that an {@link Entity} can "grief" blocks in a world.
  */
 public interface GriefingData extends DataManipulator<GriefingData> {
+
+    Value<Boolean, GriefingData> canGrief();
 
 }

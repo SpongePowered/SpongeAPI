@@ -24,28 +24,21 @@
  */
 package org.spongepowered.api.data.manipulator.tileentity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.NotePitch;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents data for a {@link org.spongepowered.api.block.tileentity.Note} that
  * defines what music can be played.
  */
-public interface NoteData extends SingleValueData<NotePitch, NoteData> {
+public interface NoteData extends DataManipulator<NoteData> {
 
     /**
      * Gets the note played by this note block.
      *
      * @return The note
      */
-    NotePitch getNote();
-
-    /**
-     * Sets the note to be played by this note block.
-     *
-     * @param note The new note
-     * @return This instance, for chaining
-     */
-    NoteData setNote(NotePitch note);
+    Value<NotePitch, NoteData> note();
 
 }

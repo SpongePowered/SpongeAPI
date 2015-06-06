@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 
@@ -33,21 +34,13 @@ import org.spongepowered.api.entity.living.Living;
  * the {@link Entity} leash holder. Usually applicable to {@link Living}
  * entities.
  */
-public interface LeashData extends SingleValueData<Entity, LeashData> {
+public interface LeashData extends DataManipulator<LeashData> {
 
     /**
      * Gets the holder of this leashed entity, if available.
      *
      * @return The leash holder, if available
      */
-    Entity getLeashHolder();
-
-    /**
-     * Sets the holder of this leashed entity.
-     *
-     * @param entity The entity to hold the leash
-     * @return This instance, for chaining
-     */
-    LeashData setLeashHolder(Entity entity);
+    Value<Entity, LeashData> getLeashHolder();
 
 }

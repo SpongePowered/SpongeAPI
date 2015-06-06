@@ -25,20 +25,13 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Living;
 
 /**
  * Represents the health information for a {@link Living} entity.
  */
 public interface HealthData extends DataManipulator<HealthData> {
-
-    /**
-     * Subtracts from the health by the given amount.
-     *
-     * @param amount The damage amount
-     * @return This instance, for chaining
-     */
-    HealthData damage(double amount);
 
     /**
      * Returns the health amount.
@@ -52,42 +45,23 @@ public interface HealthData extends DataManipulator<HealthData> {
      *
      * @return Health value
      */
-    double getHealth();
-
-    /**
-     * Sets the health amount.
-     *
-     * <p>The range of the health depends on the object on which this
-     * method is defined. For players in Minecraft, the nominal range is
-     * between 0 and 20, inclusive, but the range can be adjusted.</p>
-     *
-     * <p>Convention dictates that health does not follow below 0 but this
-     * convention may be broken.</p>
-     *
-     * @param health The health to set to
-     * @return This instance, for chaining
-     */
-    HealthData setHealth(double health);
+    HealthValue getHealth();
 
     /**
      * Gets the current maximum health.
      *
-     * <p>The maximum health may or may not include all attribute increasing
-     * health points.</p>
-     *
-     * @return This entities maximum health
-     */
-    double getMaxHealth();
-
-    /**
-     * Sets the current maximum health.
      * <p>The maximum health set here may affect the attribute increasing
      * health points. The base health should be minded that it may be lower
      * than the total maximum health of this entity.</p>
      *
-     * @param maxHealth The maximum health for this entity
-     * @return This instance, for chaining
+     * @return This entities maximum health
      */
-    HealthData setMaxHealth(double maxHealth);
+    Value<Double, HealthData> getMaxHealth();
+
+    interface HealthValue extends Value<Double, HealthData> {
+
+        HealthData damage(double amount);
+
+    }
 
 }

@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that a block is considered "seamless". Usually applicable to
  * {@link BlockTypes#DOUBLE_STONE_SLAB} etc.
  */
 public interface SeamlessData extends DataManipulator<SeamlessData> {
+
+    Value<Boolean, SeamlessData> seamless();
 
 }

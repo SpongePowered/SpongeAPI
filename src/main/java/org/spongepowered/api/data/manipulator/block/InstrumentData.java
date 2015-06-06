@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.InstrumentType;
 
 /**
  * Represents the {@link InstrumentType}. Usually applicable to
  * {@link BlockTypes#NOTEBLOCK}.
  */
-public interface InstrumentData extends SingleValueData<InstrumentType, InstrumentData> {
+public interface InstrumentData extends VariantData<InstrumentType, InstrumentData> {
 
 }

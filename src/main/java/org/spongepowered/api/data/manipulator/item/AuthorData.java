@@ -24,23 +24,17 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.text.Text;
 
-public interface AuthorData extends SingleValueData<Text, AuthorData> {
+public interface AuthorData extends DataManipulator<AuthorData> {
 
     /**
      * Gets the author of this item.
      *
      * @return The author of the item
      */
-    Text getAuthor();
+    Value<Text, AuthorData> author();
 
-    /**
-     * Sets the author of this item.
-     *
-     * @param author The author of this item
-     * @return This instance, for chaining
-     */
-    AuthorData setAuthor(Text author);
 }

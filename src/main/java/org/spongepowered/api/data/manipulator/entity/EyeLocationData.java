@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.entity;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.world.Location;
@@ -42,13 +43,13 @@ public interface EyeLocationData extends DataManipulator<EyeLocationData> {
      *
      * @return The camera height
      */
-    double getEyeHeight();
+    Value<Double, EyeLocationData> eyeHeight();
 
     /**
      * Gets the location of the eye height (camera) of this entity.
      *
      * @return The camera location
      */
-    Vector3d getEyeLocation();
+    Value<Vector3d, EyeLocationData> eyeLocation();
 
 }

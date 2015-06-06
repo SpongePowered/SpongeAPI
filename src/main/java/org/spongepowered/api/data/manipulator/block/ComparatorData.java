@@ -22,25 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.entity;
+package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.block.tileentity.Comparator;
+import org.spongepowered.api.data.manipulator.VariantData;
+import org.spongepowered.api.data.type.ComparatorType;
 
-public interface OrbData extends IntData<OrbData> {
-
-    /**
-     * Gets how much experience will be added to the player on pickup.
-     *
-     * @return Amount of experience
-     */
-    int getExperience();
-
-    /**
-     * Sets how much experience will be added to the player on pickup.
-     *
-     * @param experience The new amount of experience
-     * @return This instance, for chaining
-     */
-    OrbData setExperience(int experience);
+/**
+ * Represents the {@link Comparator} data.
+ */
+public interface ComparatorData extends VariantData<ComparatorType, ComparatorData> {
 
 }

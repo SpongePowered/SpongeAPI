@@ -25,7 +25,8 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.EnderCrystal;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.complex.EnderDragon;
@@ -35,6 +36,8 @@ import org.spongepowered.api.entity.living.complex.EnderDragon;
  * {@link DataHolder}. Usually applicable to {@link EnderDragon}s being healed
  * by {@link EnderCrystal}s.
  */
-public interface HealingSourceData extends SingleValueData<Entity, HealingSourceData> {
+public interface HealingSourceData extends DataManipulator<HealingSourceData> {
+
+    Value<Entity, HealingSourceData> healingSource();
 
 }

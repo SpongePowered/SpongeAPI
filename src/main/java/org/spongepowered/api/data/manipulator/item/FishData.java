@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.Fish;
 
 /**
@@ -34,6 +34,6 @@ import org.spongepowered.api.data.type.Fish;
  * recommended to further check the specific item properties associated with
  * the fish type from the item stack after changing this data.</p>
  */
-public interface FishData extends SingleValueData<Fish, FishData> {
+public interface FishData extends VariantData<Fish, FishData> {
 
 }

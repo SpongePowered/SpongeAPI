@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Wolf;
 
 /**
@@ -34,5 +35,7 @@ import org.spongepowered.api.entity.living.animal.Wolf;
  * to {@link Wolf} entities and {@link BlockTypes#SPONGE} blocks.
  */
 public interface WetData extends DataManipulator<WetData> {
+
+    Value<Boolean, WetData> wet();
 
 }

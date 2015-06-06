@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.data.manipulator.tileentity;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.block.tileentity.carrier.Beacon;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.potion.PotionEffectType;
 
 /**
@@ -39,30 +39,14 @@ public interface BeaconData extends DataManipulator<BeaconData> {
      *
      * @return The primary effect
      */
-    Optional<PotionEffectType> getPrimaryEffect();
-
-    /**
-     * Sets the primary effect for this beacon.
-     *
-     * @param effect The new primary effect
-     * @return This instance, for chaining
-     */
-    BeaconData setPrimaryEffect(PotionEffectType effect);
+    OptionalValue<PotionEffectType, BeaconData> primaryEffect();
 
     /**
      * Gets the secondary effect provided by this beacon.
      *
      * @return The secondary effect
      */
-    Optional<PotionEffectType> getSecondaryEffect();
-
-    /**
-     * Sets the secondary effect for this beacon.
-     *
-     * @param effect The new secondary effect
-     * @return This instance, for chaining
-     */
-    BeaconData setSecondaryEffect(PotionEffectType effect);
+    OptionalValue<PotionEffectType, BeaconData> secondaryEffect();
 
     /**
      * Clears all selected potion effects for this beacon.

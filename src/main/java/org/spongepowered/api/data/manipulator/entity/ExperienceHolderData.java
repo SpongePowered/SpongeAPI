@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Human;
 
 /**
@@ -40,17 +41,7 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      *
      * @return The current experience accumulated since the last level-up.
      */
-    int getExperienceSinceLevel();
-
-    /**
-     * Sets the experience accumulated since the last level-up.
-     *
-     * <p>This is not the total experience this human has.</p>
-     *
-     * @param experience The experience accumulated since the last level-up.
-     * @return This instance, for chaining
-     */
-    ExperienceHolderData setExperienceSinceLevel(int experience);
+    Value<Integer, ExperienceHolderData> experienceSinceLevel();
 
     /**
      * Gets the experience required since the last level to level up.
@@ -61,38 +52,15 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      *
      * @return the experience required since the last level to level up
      */
-    int getExperienceBetweenLevels();
+    Value<Integer, ExperienceHolderData> getExperienceBetweenLevels();
 
     /**
      * Gets the current experience level of this human.
      *
      * @return The current level
      */
-    int getLevel();
+    Value<Integer, ExperienceHolderData> level();
 
-    /**
-     * Sets the level of experience.
-     *
-     * @param level The level of experience
-     * @return This instance, for chaining
-     */
-    ExperienceHolderData setLevel(int level);
-
-    /**
-     * Gets the total accumulated experience this human has, including
-     * the experience to achieve the current experience level and the
-     * experienced gained towards the next level.
-     *
-     * @return The current total accumulated experience
-     */
-    int getTotalExperience();
-
-    /**
-     * Sets the total accumulated experience starting from zero.
-     *
-     * @param totalExperience The total experience
-     * @return This instance, for chaining
-     */
-    ExperienceHolderData setTotalExperience(int totalExperience);
+    Value<Integer, ExperienceHolderData> totalExperience();
 
 }

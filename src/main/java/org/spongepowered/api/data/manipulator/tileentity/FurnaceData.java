@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the data for a {@link Furnace}.
@@ -38,29 +39,13 @@ public interface FurnaceData extends DataManipulator<FurnaceData> {
      *
      * @return The remaining time, in ticks
      */
-    int getRemainingBurnTime();
-
-    /**
-     * Sets the remaining time until a new piece of fuel will be consumed.
-     *
-     * @param time The new time, in ticks
-     * @return This instance, for chaining
-     */
-    FurnaceData setRemainingBurnTime(int time);
+    Value<Integer, FurnaceData> remainingBurnTime();
 
     /**
      * Gets the remaining time until the next item is cooked.
      *
      * @return The remaining time, in ticks
      */
-    int getRemainingCookTime();
-
-    /**
-     * Sets the remaining time until a new item is cooked.
-     *
-     * @param time The new time, in ticks
-     * @return This instance, for chaining
-     */
-    FurnaceData setRemainingCookTime(int time);
+    Value<Integer, FurnaceData> remainingCookTime();
 
 }

@@ -24,27 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.Art;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents data pertaining to a held {@link Art}.
  */
-public interface ArtData extends SingleValueData<Art, ArtData> {
+public interface ArtData extends DataManipulator<ArtData> {
 
-    /**
-     * Gets the currently displayed {@link Art} piece.
-     *
-     * @return The currently displayed Art piece
-     */
-    Art getArt();
-
-    /**
-     * Sets this painting to display the designated Art piece.
-     *
-     * @param art The art piece to display
-     * @return This instance, for chaining
-     */
-    ArtData setArt(Art art);
+    Value<Art, ArtData> art();
 
 }

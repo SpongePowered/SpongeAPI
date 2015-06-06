@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.monster.Blaze;
@@ -34,5 +35,7 @@ import org.spongepowered.api.entity.living.monster.Blaze;
  * {@link Blaze}s, {@link Human}s, etc.
  */
 public interface FlyingData extends DataManipulator<FlyingData> {
+
+    Value<Boolean, FlyingData> flying();
 
 }

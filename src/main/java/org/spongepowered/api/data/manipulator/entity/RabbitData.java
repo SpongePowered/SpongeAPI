@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 
 /**
  * Represents the {@link RabbitType} of a {@link Rabbit}.
  */
-public interface RabbitData extends SingleValueData<RabbitType, RabbitData> {
+public interface RabbitData extends VariantData<RabbitType, RabbitData> {
 
 }

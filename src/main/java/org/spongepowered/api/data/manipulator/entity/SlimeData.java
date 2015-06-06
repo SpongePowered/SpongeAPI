@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Slime;
 
@@ -32,7 +33,7 @@ import org.spongepowered.api.entity.living.monster.Slime;
  * Represents the size of a {@link Slime}. Usually applicable to all
  * {@link Slime}s and {@link MagmaCube}s.
  */
-public interface SlimeData extends IntData<SlimeData> {
+public interface SlimeData extends DataManipulator<SlimeData> {
 
     /**
      * Gets the size of this slime. Size helps define the maximum health and
@@ -40,15 +41,6 @@ public interface SlimeData extends IntData<SlimeData> {
      *
      * @return The current size of this slime
      */
-    int getSize();
+    Value<Integer, SlimeData> size();
 
-    /**
-     * Sets the size of this slime.
-     * <p>The size should always be 1 or more. Setting the size may affect
-     * this slimes maximum health. Sizes should not be negative.</p>
-     *
-     * @param size The size of the slime
-     * @return This instance, for chaining
-     */
-    SlimeData setSize(int size);
 }

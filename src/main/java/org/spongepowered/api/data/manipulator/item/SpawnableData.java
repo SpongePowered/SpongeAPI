@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.EntityType;
 
 /**
  * Represents an item that can spawn entities of a particular
  * {@link EntityType} on use.
  */
-public interface SpawnableData extends SingleValueData<EntityType, SpawnableData> {
+public interface SpawnableData extends DataManipulator<SpawnableData> {
+
+    Value<EntityType, SpawnableData> spawn();
 
 }

@@ -24,27 +24,23 @@
  */
 package org.spongepowered.api.data.manipulator;
 
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
+
 import java.awt.Color;
 
 /**
  * Represents item data that uses colors. Examples may include leather armor,
  * dyes, and wool blocks.
  */
-public interface ColoredData extends SingleValueData<Color, ColoredData> {
+public interface ColoredData extends DataManipulator<ColoredData> {
 
     /**
      * Gets the color data for this item stack.
      *
      * @return The color data for this item stack
      */
-    Color getColor();
+    Value<Color, ColoredData> color();
 
-    /**
-     * Sets the color data for this item stack.
-     *
-     * @param color The color data for this item stack
-     * @return This instance, for chaining
-     */
-    ColoredData setColor(Color color);
 
 }

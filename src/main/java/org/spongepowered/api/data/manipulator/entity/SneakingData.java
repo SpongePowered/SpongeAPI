@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.player.Player;
 
 /**
@@ -32,5 +33,7 @@ import org.spongepowered.api.entity.player.Player;
  * {@link Player}s.
  */
 public interface SneakingData extends DataManipulator<SneakingData> {
+
+    Value<Boolean, SneakingData> sneaking();
 
 }

@@ -25,13 +25,28 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.MappedData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.WireAttachmentType;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
+
+import java.util.Map;
 
 /**
  * Represents the {@link WireAttachmentType}s for the four cardinal directions of a
  * piece of {@link BlockTypes#REDSTONE_WIRE}.
  */
-public interface WireAttachmentData extends MappedData<Direction, WireAttachmentType, WireAttachmentData> {
+public interface WireAttachmentData extends DataManipulator<WireAttachmentData> {
+
+    // TODO flesh out fully
+    Value<Map<Direction, WireAttachmentType>, WireAttachmentData> wireAttachment();
+
+    Value<WireAttachmentType, WireAttachmentData> wireAttachmentNorth();
+
+    Value<WireAttachmentType, WireAttachmentData> wireAttachmentSouth();
+
+    Value<WireAttachmentType, WireAttachmentData> wireAttachmentEast();
+
+    Value<WireAttachmentType, WireAttachmentData> wireAttachmentWest();
+
 }

@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.Ocelot;
@@ -34,23 +35,16 @@ import org.spongepowered.api.entity.living.animal.Wolf;
  * Signifies that an entity is "tamed" and has an owner. Usually applicable
  * to {@link Horse}s, {@link Ocelot}s, and {@link Wolf} entities.
  */
-public interface TameableData extends SingleValueData<Tamer, TameableData> {
+public interface TameableData extends DataManipulator<TameableData> {
 
     /**
      * Gets the current owning Tamer.
      *
-     * @return The tamer, if available
-     */
-    Tamer getOwner();
-
-    /**
-     * Sets this to be owned by given {@link Tamer}.
      * <p>If the tamer is null, this entity will become untamed and become
      * tameable by other tamers.</p>
      *
-     * @param tamer The Tamer who should own this
-     * @return This instance, for chaining
+     * @return The tamer, if available
      */
-    TameableData setOwner(Tamer tamer);
+    OptionalValue<Tamer, TameableData> getOwner();
 
 }

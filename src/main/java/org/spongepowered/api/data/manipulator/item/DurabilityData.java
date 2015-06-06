@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.property.UseLimitProperty;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents an item that has limited number of uses.
@@ -36,7 +37,7 @@ import org.spongepowered.api.data.property.UseLimitProperty;
  * durability limit from the
  * {@link UseLimitProperty}.</p>
  */
-public interface DurabilityData extends IntData<DurabilityData> {
+public interface DurabilityData extends DataManipulator<DurabilityData> {
 
     /**
      * Gets the durability of the item.
@@ -46,19 +47,7 @@ public interface DurabilityData extends IntData<DurabilityData> {
      *
      * @return The durability
      */
-    int getDurability();
-
-    /**
-     * Sets the durability of the item.
-     *
-     * <p>The durability is a number signifying how many "uses' remain on
-     * the item. When the durability reaches their maximum, usually, the item
-     * breaks.</p>
-     *
-     * @param durability The durability
-     * @return This instance, for chaining
-     */
-    DurabilityData setDurability(int durability);
+    Value<Integer, DurabilityData> durability();
 
     /**
      * Sets whether this durable item is breakable or not.
@@ -68,16 +57,6 @@ public interface DurabilityData extends IntData<DurabilityData> {
      *
      * @return Whether the item is breakable or not
      */
-    boolean isBreakable();
+    Value<Boolean, DurabilityData> breakable();
 
-    /**
-     * Sets whether this durable item is breakable or not.
-     *
-     * <p>When an item is unbreakable, it can not be damaged, and
-     * does not reduce in durability.</p>
-     *
-     * @param breakable Whether the item is breakable or not
-     * @return This instance, for chaining
-     */
-    DurabilityData setBreakable(boolean breakable);
 }

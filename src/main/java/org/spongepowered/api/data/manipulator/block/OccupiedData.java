@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that the block is considered "occupied". Usually applicable to
  * {@link BlockTypes#BED}.
  */
 public interface OccupiedData extends DataManipulator<OccupiedData> {
+
+    Value<Boolean, OccupiedData> occupied();
 
 }

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 
@@ -41,17 +42,6 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData> {
      * @param player The other player to check
      * @return Whether this entity is invisible to the given player
      */
-    boolean isInvisibleTo(Player player);
-
-    /**
-     * Sets whether this living entity is rendered invisible to the
-     * given {@link Player} entity.
-     *
-     * @param player The player to toggle invisibility towards
-     * @param invisible Whether this entity is invisible to the targeted
-     *      player
-     * @return This instance, for chaining
-     */
-    InvisibilityData setInvisibleTo(Player player, boolean invisible);
+    Value<Boolean, InvisibilityData> isInvisibleTo(Player player);
 
 }

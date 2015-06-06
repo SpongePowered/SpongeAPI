@@ -28,6 +28,7 @@ import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.HorseVariant;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Horse;
 
 /**
@@ -41,50 +42,26 @@ public interface HorseData extends DataManipulator<HorseData> {
      *
      * @return The current style of this horse
      */
-    HorseStyle getStyle();
+    Value<HorseStyle, HorseData> style();
 
-    /**
-     * Sets this horse to the specified style.
-     *
-     * @param style The new style to set
-     * @return This instance, for chaining
-     */
-    HorseData setStyle(HorseStyle style);
 
     /**
      * Gets the current {@link HorseColor} of this horse.
      *
      * @return The current horse color
      */
-    HorseColor getColor();
-
-    /**
-     * Sets this horse to the specified {@link HorseColor}.
-     *
-     * @param color The new color to set
-     * @return This instance, for chaining
-     */
-    HorseData setColor(HorseColor color);
+    Value<HorseColor, HorseData> color();
 
     /**
      * Gets the current {@link HorseVariant} of this horse.
+     *
      * <p>HorseVariants may change the capability of a horse. Some horses
      * are unable to equip an extra chest, while others are unable to equip
      * armor. Health may be affected.</p>
      *
      * @return The current variant of this horse
      */
-    HorseVariant getVariant();
+    Value<HorseVariant, HorseData> variant();
 
-    /**
-     * Sets this horse to the specified {@link HorseVariant}.
-     * <p>HorseVariants may change the capability of a horse. Some horses
-     * are unable to equip an extra chest, while others are unable to equip
-     * armor. Health may be affected.</p>
-     *
-     * @param variant The variant to set
-     * @return This instance, for chaining
-     */
-    HorseData setVariant(HorseVariant variant);
 
 }

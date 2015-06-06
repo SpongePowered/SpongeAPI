@@ -24,12 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the {@link RailDirection} data for various rail blocks.
  */
-public interface RailDirectionData extends SingleValueData<RailDirection, RailDirectionData> {
+public interface RailDirectionData extends DataManipulator<RailDirectionData> {
+
+    Value<RailDirection, RailDirectionData> railDirection();
 
 }

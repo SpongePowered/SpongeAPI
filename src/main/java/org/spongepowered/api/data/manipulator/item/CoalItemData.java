@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.CoalType;
 
 /**
@@ -32,6 +32,6 @@ import org.spongepowered.api.data.type.CoalType;
  * there are different types of coal, as represented by {@link CoalType},
  * we can further specify the types of coal an item is.
  */
-public interface CoalItemData extends SingleValueData<CoalType, CoalItemData> {
+public interface CoalItemData extends VariantData<CoalType, CoalItemData> {
 
 }

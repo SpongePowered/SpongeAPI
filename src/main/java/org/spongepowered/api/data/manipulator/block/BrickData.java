@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.BrickType;
 
 /**
  * Represents the type of {@link BrickType} for a
  * {@link BlockTypes#STONEBRICK}.
  */
-public interface BrickData extends SingleValueData<BrickType, BrickData> {
+public interface BrickData extends VariantData<BrickType, BrickData> {
 
 }

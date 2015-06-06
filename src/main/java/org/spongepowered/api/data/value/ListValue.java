@@ -22,26 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator;
+package org.spongepowered.api.data.value;
 
-/**
- * Represents an abstract {@link SingleValueData} that has an int value.
- *
- * @param <T> The type of implementing data
- */
-public interface IntData<T extends IntData<T>> extends SingleValueData<Integer, T> {
+import java.util.List;
 
-    /**
-     * Gets the minimum value supported by this {@link IntData}.
-     *
-     * @return The minimum supported value
-     */
-    Integer getMinValue();
+public interface ListValue<E, S extends ValueStore<S>> extends CollectionValue<E, List<E>, ListValue<E, S>,S> {
 
-    /**
-     * Gets the maximum value supported by this {@link IntData}.
-     *
-     * @return The maximum supported value
-     */
-    Integer getMaxValue();
+    @Override
+    ListValue<E, S> replace(List<E> value);
+
 }

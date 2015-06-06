@@ -25,14 +25,15 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
  * Signifies that an entity is currently being ridden by another
  * {@link Entity}.
  */
-public interface VehicleData extends SingleValueData<Entity, VehicleData> {
+public interface VehicleData extends DataManipulator<VehicleData> {
 
     /**
      * Gets the passenger {@link Entity} that is currently riding the
@@ -40,14 +41,8 @@ public interface VehicleData extends SingleValueData<Entity, VehicleData> {
      *
      * @return The entity riding the owner
      */
-    Entity getPassenger();
+    Value<Entity, VehicleData> passenger();
 
-    /**
-     * Sets the passenger entity(the entity that rides this one).
-     *
-     * @param entity The entity passenger, or null to eject
-     * @return True if the set was successful
-     */
-    boolean setPassenger(Entity entity);
+    Value<Entity, VehicleData> topPassenger();
 
 }

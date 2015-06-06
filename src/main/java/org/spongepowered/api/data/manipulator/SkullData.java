@@ -26,11 +26,15 @@ package org.spongepowered.api.data.manipulator;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.Skull;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.SkullType;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents data associated with a {@link Skull} and {@link BlockTypes#SKULL}.
  */
-public interface SkullData extends SingleValueData<SkullType, SkullData> {
+public interface SkullData extends DataManipulator<SkullData> {
+
+    Value<SkullType, SkullData> skull();
 
 }

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.item;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.Carrier;
 
 /**
@@ -33,5 +34,8 @@ import org.spongepowered.api.item.inventory.Carrier;
  * <p>Examples of these include: chests, furnaces, etc.</p>
  */
 public interface InventoryItemData extends DataManipulator<InventoryItemData>, Carrier {
+
+    // TODO could have value or extends carrier
+    Value<Carrier, InventoryItemData> carrier();
 
 }

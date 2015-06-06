@@ -25,12 +25,15 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents the "layer" of an owner. Usually applicable to
  * {@link BlockTypes#CAKE}, {@link BlockTypes#SNOW_LAYER}, etc.
  */
-public interface LayeredData extends IntData<LayeredData> {
+public interface LayeredData extends DataManipulator<LayeredData> {
+
+    BoundedValue<Integer, LayeredData> layer();
 
 }

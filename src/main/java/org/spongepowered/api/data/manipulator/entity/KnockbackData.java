@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.projectile.Arrow;
 
@@ -32,25 +33,16 @@ import org.spongepowered.api.entity.projectile.Arrow;
  * Signifies that an {@link Entity} will "knock back" on the next attack.
  * Usually applicable to {@link Arrow}s.
  */
-public interface KnockbackData extends IntData<KnockbackData> {
+public interface KnockbackData extends DataManipulator<KnockbackData> {
 
     /**
      * Gets the current knockback strength of this arrow.
+     *
      * <p>Knockback is usually from zero to positive. Negative knockback values
      * may not be supported.</p>
      *
      * @return The knockback strength
      */
-    int getKnockbackStrength();
-
-    /**
-     * Sets the knockback strength of this arrow.
-     * <p>Knockback is usually from zero to positive. Negative knockback values
-     * may not be supported.</p>
-     *
-     * @param knockbackStrength The knockback strength
-     * @return This instance, for chaining
-     */
-    KnockbackData setKnockbackStrength(int knockbackStrength);
+    BoundedValue<Integer, KnockbackData> getKnockbackStrength();
 
 }

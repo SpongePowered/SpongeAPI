@@ -25,28 +25,21 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
  * Represents the current velocity of an entity. Applicable to all
  * {@link Entity}.
  */
-public interface VelocityData extends SingleValueData<Vector3d, VelocityData> {
+public interface VelocityData extends DataManipulator<VelocityData> {
 
     /**
      * Gets the current velocity of this entity.
      *
      * @return The current velocity of this entity
      */
-    Vector3d getVelocity();
-
-    /**
-     * Sets the velocity of this entity.
-     *
-     * @param velocity The velocity to set this entity
-     * @return This instance, for chaining
-     */
-    VelocityData setVelocity(Vector3d velocity);
+    Value<Vector3d, VelocityData> getVelocity();
 
 }

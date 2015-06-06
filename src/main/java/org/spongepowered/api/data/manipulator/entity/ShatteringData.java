@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 
 /**
@@ -32,5 +33,7 @@ import org.spongepowered.api.entity.projectile.EyeOfEnder;
  * applicable to {@link EyeOfEnder}.
  */
 public interface ShatteringData extends DataManipulator<ShatteringData> {
+
+    Value<Boolean, ShatteringData> willShatter();
 
 }

@@ -22,15 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.block;
+package org.spongepowered.api.data.key;
 
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
-/**
- * Signifies that the owner will not drop anything. Usually applicable
- * to {@link BlockTypes#SKULL}.
- */
-public interface NoDropData extends DataManipulator<NoDropData> {
+public interface Key<V extends Value<?, ?>> {
+
+    Class<V> getValueClass();
 
 }

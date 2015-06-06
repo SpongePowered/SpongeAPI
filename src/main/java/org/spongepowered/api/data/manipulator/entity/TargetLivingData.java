@@ -24,14 +24,18 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Living;
+
 
 /**
  * Represents the current targets of an owner that is "targeting" some
  * {@link Living} entities. Usually applicable to almost all {@link Agent}s.
  */
-public interface TargetLivingData extends ListData<Living, TargetLivingData> {
+public interface TargetLivingData extends DataManipulator<TargetLivingData> {
+
+    SetValue<Living, TargetLivingData> targets();
 
 }

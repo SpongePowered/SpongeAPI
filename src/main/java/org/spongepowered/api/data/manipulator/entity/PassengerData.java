@@ -24,33 +24,27 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
  * Signifies that an {@link Entity} is a "passenger" of another {@link Entity}.
  */
-public interface PassengerData extends SingleValueData<Entity, PassengerData> {
+public interface PassengerData extends DataManipulator<PassengerData> {
 
     /**
      * Gets the vehicle that this entity is riding.
      *
      * @return The vehicle entity
      */
-    Entity getVehicle();
-
-    /**
-     * Sets the vehicle entity(the entity that is ridden by this one).
-     *
-     * @param entity The entity vehicle
-     * @return True if the set was successful
-     */
-    boolean setVehicle(Entity entity);
+    Value<Entity, PassengerData> vehicle();
 
     /**
      * Gets the base vehicle this entity may indirectly be riding.
      *
      * @return The base vehicle
      */
-    Entity getBaseVehicle();
+    Value<Entity, PassengerData> baseVehicle();
+
 }

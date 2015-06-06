@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that a block is "open". Usually applicable to
  * {@link BlockTypes#WOODEN_DOOR} and other doors.
  */
 public interface OpenData extends DataManipulator<OpenData> {
+
+    Value<Boolean, OpenData> open();
 
 }

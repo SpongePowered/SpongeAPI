@@ -24,41 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.ListData;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.item.merchant.TradeOffer;
-
-import java.util.List;
 
 /**
  * Represents a list of {@link TradeOffer}s that a {@link Merchant} may use.
  */
-public interface TradeOfferData extends ListData<TradeOffer, TradeOfferData> {
+public interface TradeOfferData extends DataManipulator<TradeOfferData> {
 
-    /**
-     * Gets an immutable list of {@link TradeOffer}s that can be offered to a
-     * {@link Human}.
-     *
-     * @return An immutable list of trade offers
-     */
-    List<TradeOffer> getOffers();
-
-    /**
-     * Replaces the entire list of trade offers this merchant can trade
-     * with a {@link Human}.
-     *
-     * @param offers The offers to set
-     * @return This instance, for chaining
-     */
-    TradeOfferData setOffers(List<TradeOffer> offers);
-
-    /**
-     * Adds the given offer to the list of offers.
-     *
-     * @param offer The offer to add
-     * @return This instance, for chaining
-     */
-    TradeOfferData addOffer(TradeOffer offer);
+    SetValue<TradeOffer, TradeOfferData> tradeOffers();
 
 }

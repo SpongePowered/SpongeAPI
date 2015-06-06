@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents an item that can be cloned or copied.
@@ -33,7 +34,7 @@ import org.spongepowered.api.data.manipulator.IntData;
  *
  * <p>Some items may prevent further cloning after a specified generation.</p>
  */
-public interface CloneableData extends IntData<CloneableData> {
+public interface CloneableData extends DataManipulator<CloneableData> {
 
     /**
      * Gets the generation of this cloneable item.
@@ -42,17 +43,7 @@ public interface CloneableData extends IntData<CloneableData> {
      *
      * @return The generation of the cloneable item
      */
-    int getGeneration();
-
-    /**
-     * Sets the generation of this cloneable item.
-     *
-     * <p>The original always starts as generation 0.</p>
-     *
-     * @param generation The generation of this item
-     * @return This instance, for chaining
-     */
-    CloneableData setGeneration(int generation);
+    Value<Integer, CloneableData> generation();
 
     /**
      * Gets the generational limit to which the item would no longer
@@ -60,6 +51,6 @@ public interface CloneableData extends IntData<CloneableData> {
      *
      * @return The generational limit
      */
-    int getGenerationLimit();
+    Value<Integer, CloneableData> generationLimit();
 
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.item;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents data about a block being represented by this item data. Since
@@ -42,7 +42,7 @@ import org.spongepowered.api.data.manipulator.SingleValueData;
  * if complex information is required, use a different {@link DataManipulator}
  * type.</p>
  */
-public interface BlockItemData extends SingleValueData<BlockState, BlockItemData> {
+public interface BlockItemData extends DataManipulator<BlockItemData> {
 
     /**
      * Gets the block state of this item representing a block.
@@ -50,24 +50,15 @@ public interface BlockItemData extends SingleValueData<BlockState, BlockItemData
      * <p>The {@link BlockState} is immutable, to change the block
      * state, use {@link #setState(BlockState)}.</p>
      *
-     * @return The current blockstate represented by this item
-     */
-    BlockState getState();
-
-    /**
-     * Sets the block state of the block being represented by this item
-     * data.
-     *
-     * <p>Since {@link BlockState}s are immutable (they return a new
+     *  <p>Since {@link BlockState}s are immutable (they return a new
      * {@link BlockState} on modification), the block state used here is
      * also immutable and applied directly to the item.</p>
      *
      * <p>It should be noted that the block type should be the same as the
      * item type referenced on the item stack.</p>
      *
-     * @param state The new block state of the block
-     * @return This instance, for chaining
+     * @return The current blockstate represented by this item
      */
-    BlockItemData setState(BlockState state);
+    Value<BlockState, BlockItemData> state();
 
 }

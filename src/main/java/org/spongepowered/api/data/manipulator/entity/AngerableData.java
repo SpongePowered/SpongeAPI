@@ -24,31 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents a decaying "aggressive" level for entities that may attack
  * nearby entities if provoked.
  */
-public interface AngerableData extends IntData<AngerableData> {
+public interface AngerableData extends DataManipulator<AngerableData> {
 
-    /**
-     * Gets the current anger level.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
-     *
-     * @return The current anger level for this zombie pigman
-     */
-    int getAngerLevel();
-
-    /**
-     * Sets the anger level for this zombie pigman.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
-     *
-     * @param angerLevel The new anger level
-     * @return This instance, for chaining
-     */
-    AngerableData setAngerLevel(int angerLevel);
+    BoundedValue<Integer, AngerableData> angerLevel();
 
 }

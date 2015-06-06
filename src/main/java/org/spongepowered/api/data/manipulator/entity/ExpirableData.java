@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.world.weather.Weather;
@@ -34,6 +35,8 @@ import org.spongepowered.api.world.weather.Weather;
  * decayed to the minimum. Usually applicable to {@link Weather},
  * {@link Endermite}s and {@link Item}s.
  */
-public interface ExpirableData extends IntData<ExpirableData> {
+public interface ExpirableData extends DataManipulator<ExpirableData> {
+
+    BoundedValue<Integer, ExpirableData> expireTicks();
 
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.SandstoneType;
 
 /**
@@ -33,6 +33,6 @@ import org.spongepowered.api.data.type.SandstoneType;
  * Usually applicable to {@link BlockTypes#SANDSTONE} and
  * {@link BlockTypes#RED_SANDSTONE}.
  */
-public interface SandstoneData extends SingleValueData<SandstoneType, SandstoneData> {
+public interface SandstoneData extends VariantData<SandstoneType, SandstoneData> {
 
 }

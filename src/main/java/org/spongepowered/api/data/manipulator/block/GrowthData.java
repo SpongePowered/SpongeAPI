@@ -25,45 +25,15 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents the "growth" of a block. Usually applicable to
  * {@link BlockTypes#WHEAT}, {@link BlockTypes#PUMPKIN_STEM}, etc.
  */
-public interface GrowthData extends IntData<GrowthData> {
+public interface GrowthData extends DataManipulator<GrowthData> {
 
-    /**
-     * Gets the current growth stage.
-     *
-     * <p>The growth stage can have multiple meanings, but usually,
-     * the higher the stage, the closer the holder is ready for
-     * harvesting.</p>
-     *
-     * @return The current growth stage.
-     */
-    int getGrowthStage();
-
-    /**
-     * Sets the growth stage.
-     *
-     * <p>The growth stage can have multiple meanings, but usually,
-     * the higher the stage, the closer the holder is ready for
-     * harvesting.</p>
-     *
-     * @param stage The stage to set
-     * @return This instance, for chaining
-     */
-    GrowthData setGrowthStage(int stage);
-
-    /**
-     * Gets the maximum growth stage for the relative owner of this data.
-     *
-     * <p>{@link GrowthData} can be compared, however, the maximum stage
-     * can define that the holder is ready for harvesting.</p>
-     *
-     * @return The maximum stage of growth
-     */
-    int getMaxStage();
+    BoundedValue<Integer, GrowthData> growthStage();
 
 }

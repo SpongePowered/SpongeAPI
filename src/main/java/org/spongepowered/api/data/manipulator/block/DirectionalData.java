@@ -25,7 +25,8 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
 
 /**
@@ -33,6 +34,8 @@ import org.spongepowered.api.util.Direction;
  * {@link DataHolder}, some {@link Direction}s may not be accepted.
  *
  */
-public interface DirectionalData extends SingleValueData<Direction, DirectionalData> {
+public interface DirectionalData extends DataManipulator<DirectionalData> {
+
+    Value<Direction, DirectionalData> direction();
 
 }

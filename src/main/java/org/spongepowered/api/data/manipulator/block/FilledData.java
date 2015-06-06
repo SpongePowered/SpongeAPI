@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that the owner is "filled". Usually applicable to
  * {@link BlockTypes#END_PORTAL_FRAME}.
  */
 public interface FilledData extends DataManipulator<FilledData> {
+
+    Value<Boolean, FilledData> filled();
 
 }

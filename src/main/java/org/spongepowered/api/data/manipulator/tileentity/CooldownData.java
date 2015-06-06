@@ -24,26 +24,20 @@
  */
 package org.spongepowered.api.data.manipulator.tileentity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the data of a {@link org.spongepowered.api.block.tileentity.carrier.Hopper}
  * that can be changed and applied.
  */
-public interface CooldownData extends IntData<CooldownData> {
+public interface CooldownData extends DataManipulator<CooldownData> {
 
     /**
      * Gets the remaining time before the next item will be transfered.
      *
      * @return The remaining time, in ticks
      */
-    int getCooldown();
+    Value<Integer, CooldownData> cooldown();
 
-    /**
-     * Sets the cooldown before the next item will be transfered.
-     *
-     * @param time The new time, in ticks
-     * @return This instance, for chaining
-     */
-    CooldownData setCooldown(int time);
 }

@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that the holder is "extended". Usually applicable to
  * {@link BlockTypes#PISTON}.
  */
 public interface ExtendedData extends DataManipulator<ExtendedData> {
+
+    Value<Boolean, ExtendedData> extended();
 
 }

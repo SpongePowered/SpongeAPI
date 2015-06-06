@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.text.Text;
 
 /**
  * Lore is a list of {@link Text}s that are displayed on an item
  * tooltip that can say anything and everything.
  */
-public interface LoreData extends ListData<Text, LoreData> {
+public interface LoreData extends DataManipulator<LoreData> {
+
+   ListValue<Text, LoreData> lore();
 
 }

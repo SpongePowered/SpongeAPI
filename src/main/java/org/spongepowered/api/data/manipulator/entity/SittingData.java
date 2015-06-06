@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.Wolf;
@@ -34,5 +35,7 @@ import org.spongepowered.api.entity.living.animal.Wolf;
  * to {@link Wolf} and {@link Horse}s.
  */
 public interface SittingData extends DataManipulator<SittingData> {
+
+    Value<Boolean, SittingData> sitting();
 
 }

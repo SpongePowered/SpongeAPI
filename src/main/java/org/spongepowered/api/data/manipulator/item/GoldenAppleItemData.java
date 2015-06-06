@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.GoldenApple;
 
 /**
@@ -34,6 +34,6 @@ import org.spongepowered.api.data.type.GoldenApple;
  * recommended to further check the specific item properties associated with
  * the golden apple type from the item stack after changing this data.</p>
  */
-public interface GoldenAppleItemData extends SingleValueData<GoldenApple, GoldenAppleItemData> {
+public interface GoldenAppleItemData extends VariantData<GoldenApple, GoldenAppleItemData> {
 
 }

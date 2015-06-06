@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.FallingBlock;
 
 /**
@@ -38,15 +39,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      *
      * @return The current fall damage per block
      */
-    double getFallDamagePerBlock();
-
-    /**
-     * Sets the fall damage per block.
-     *
-     * @param damage The fall damage per block
-     * @return This instance, for chaining
-     */
-    FallingBlockData setFallDamagePerBlock(double damage);
+    Value<Double, FallingBlockData> fallDamagePerBlock();
 
     /**
      * Gets the maximum damage this block can deal to another entity
@@ -54,31 +47,14 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      *
      * @return The maximum damage this block can deal
      */
-    double getMaxFallDamage();
-
-    /**
-     * Sets the maximum damage this block can deal to another entity
-     * for falling on the entity.
-     *
-     * @param damage The maximum damage this block can deal
-     * @return This instance, for chaining
-     */
-    FallingBlockData setMaxFallDamage(double damage);
+    Value<Double, FallingBlockData> maxFallDamage();
 
     /**
      * Gets the {@link BlockState} this falling block is representing.
      *
      * @return The falling block's block state
      */
-    BlockState getBlockState();
-
-    /**
-     * Sets the block state for this falling block.
-     *
-     * @param blockState The block state of this falling block
-     * @return This instance, for chaining
-     */
-    FallingBlockData setBlockState(BlockState blockState);
+    Value<BlockState, FallingBlockData> blockState();
 
     /**
      * Gets whether this falling block will try to place itself where
@@ -86,16 +62,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      *
      * @return True if this block will attempt to place itself when it lands
      */
-    boolean getCanPlaceAsBlock();
-
-    /**
-     * Sets whether this falling block can be placed as a block when it lands.
-     *
-     * @param placeable Whether this falling block will attempt to place
-     *                  itself when it lands
-     * @return This instance, for chaining
-     */
-    FallingBlockData setCanPlaceAsBlock(boolean placeable);
+    Value<Boolean, FallingBlockData> canPlaceAsBlock();
 
     /**
      * Gets whether this falling block can drop as an item if it lands in a
@@ -103,14 +70,6 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData> {
      *
      * @return Whether this falling block can drop as an item
      */
-    boolean getCanDropAsItem();
+    Value<Boolean, FallingBlockData> canDropAsItem();
 
-    /**
-     * Sets whether this falling block will drop as an item if it lands in a
-     * way that it can not be placed.
-     *
-     * @param droppable Whether this falling block will drop as an item
-     * @return This instance, for chaining
-     */
-    FallingBlockData setCanDropAsItem(boolean droppable);
 }

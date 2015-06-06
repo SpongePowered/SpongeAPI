@@ -25,105 +25,62 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.data.manipulator.MappedData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.BodyPart;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Human;
+
+import java.util.Map;
 
 /**
  * Represents the mapped rotational data for all known body parts. Usually
  * applicable to {@link Human}s and {@link ArmorStand}s.
  */
-public interface BodyPartRotationalData extends MappedData<BodyPart, Vector3d, BodyPartRotationalData> {
+public interface BodyPartRotationalData extends DataManipulator<BodyPartRotationalData> {
+
+    Value<Map<BodyPart, Vector3d>, BodyPartRotationalData> partRotation();
 
     /**
      * Gets the direction the headpiece is aiming at.
      *
      * @return The direction the headpiece is aiming at
      */
-    Vector3d getHeadDirection();
-
-    /**
-     * Sets the direction of the head.
-     *
-     * @param direction The direction of the head
-     * @return This instance, for chaining
-     */
-    BodyPartRotationalData setHeadDirection(Vector3d direction);
+    Value<Vector3d, BodyPartRotationalData> headDirection();
 
     /**
      * Gets the direction the body is aiming at.
      *
      * @return The direction the body is aiming at
      */
-    Vector3d getBodyRotation();
-
-    /**
-     * Sets the direction of the body.
-     *
-     * @param direction The direction of the body
-     * @return This instance, for chaining
-     */
-    BodyPartRotationalData setBodyDirection(Vector3d direction);
+    Value<Vector3d, BodyPartRotationalData> bodyRotation();
 
     /**
      * Gets the direction the left arm is aiming at.
      *
      * @return The direction the left arm is aiming at
      */
-    Vector3d getLeftArmDirection();
-
-    /**
-     * Sets the direction of the left arm.
-     *
-     * @param direction The direction of the left arm
-     * @return This instance, for chaining
-     */
-    BodyPartRotationalData setLeftArmDirection(Vector3d direction);
+    Value<Vector3d, BodyPartRotationalData> leftArmDirection();
 
     /**
      * Gets the direction the right arm is aiming at.
      *
      * @return The direction the right arm is aiming at
      */
-    Vector3d getRightArmDirection();
-
-    /**
-     * Sets the direction of the right arm.
-     *
-     * @param direction The direction of the right arm
-     * @return This instance, for chaining
-     */
-    BodyPartRotationalData setRightArmDirection(Vector3d direction);
+    Value<Vector3d, BodyPartRotationalData> rightArmDirection();
 
     /**
      * Gets the direction the left leg is aiming at.
      *
      * @return The direction the left leg is aiming at
      */
-    Vector3d getLeftLegDirection();
-
-    /**
-     * Sets the direction of the left leg.
-     *
-     * @param direction The direction of the left leg
-     * @return This instance, for chaining
-     */
-    BodyPartRotationalData setLeftLegDirection(Vector3d direction);
+    Value<Vector3d, BodyPartRotationalData> leftLegDirection();
 
     /**
      * Gets the direction the right leg is aiming at.
      *
      * @return The direction the right leg is aiming at
      */
-    Vector3d getRightLegDirection();
-
-    /**
-     * Sets the direction of the right leg.
-     *
-     * @param direction The direction of the right leg
-     * @return This instance, for chaining
-     */
-    BodyPartRotationalData setRightLegDirection(Vector3d direction);
+    Value<Vector3d, BodyPartRotationalData> rightLegDirection();
 
 }

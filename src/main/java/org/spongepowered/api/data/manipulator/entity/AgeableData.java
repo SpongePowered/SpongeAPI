@@ -24,20 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents data that defines the owner as having a growing
  * age process.
  */
-public interface AgeableData extends IntData<AgeableData> {
-
-    /**
-     * Gets the age of this entity.
-     *
-     * @return The current age of this entity
-     */
-    int getAge();
+public interface AgeableData extends DataManipulator<AgeableData> {
 
     /**
      * Sets the age of this entity.
@@ -50,29 +45,10 @@ public interface AgeableData extends IntData<AgeableData> {
      * @param age The age of this entity
      * @return This instance, for chaining
      */
-    AgeableData setAge(int age);
+    BoundedValue<Integer, AgeableData> age();
 
-    /**
-     * Sets the age of this entity to the minimum required to be considered a
-     * baby. Babies tend to be unable to breed.
-     *
-     * @return This instance, for chaining
-     */
-    AgeableData setBaby();
+    Value<Boolean, AgeableData> baby();
 
-    /**
-     * Sets the age of this entity to the minimum required to be considered a
-     * full grown adult and able to breed.
-     *
-     * @return This instance, for chaining
-     */
-    AgeableData setAdult();
-
-    /**
-     * Returns true if this entity is considered an adult.
-     *
-     * @return True if this entity is an adult
-     */
-    boolean isBaby();
+    Value<Boolean, AgeableData> adult();
 
 }

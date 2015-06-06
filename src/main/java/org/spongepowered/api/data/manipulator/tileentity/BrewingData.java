@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.manipulator.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the information for a {@link BrewingStand}.
  */
-public interface BrewingData extends IntData<BrewingData> {
+public interface BrewingData extends DataManipulator<BrewingData> {
 
     /**
      * Gets the remaining time until the brewing is complete. Will be zero if
@@ -38,15 +39,6 @@ public interface BrewingData extends IntData<BrewingData> {
      *
      * @return The remaining time, in ticks
      */
-    int getRemainingBrewTime();
-
-    /**
-     * Sets the remaining time until the brewing is complete. This will only
-     * have effect if the current items within the brewing stand are valid.
-     *
-     * @param time The new remaining time, in ticks
-     * @return This instance, for chaining
-     */
-    BrewingData setRemainingBrewTime(int time);
+    Value<Integer, BrewingData> getRemainingBrewTime();
 
 }

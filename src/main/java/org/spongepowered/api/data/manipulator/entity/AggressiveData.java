@@ -25,11 +25,14 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a toggle for an entity being "aggressive" and resorting to
  * attacking other nearby entities if possible.
  */
 public interface AggressiveData extends DataManipulator<AggressiveData> {
+
+    Value<Boolean, AggressiveData> aggressive();
 
 }

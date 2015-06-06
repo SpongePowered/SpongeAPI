@@ -25,12 +25,12 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.ShrubType;
 
 /**
  * Represents the {@link ShrubType} of a {@link BlockTypes#TALLGRASS}.
  */
-public interface ShrubData extends SingleValueData<ShrubType, ShrubData> {
+public interface ShrubData extends VariantData<ShrubType, ShrubData> {
 
 }

@@ -24,34 +24,28 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
  * Signifies that an {@link Entity} is on fire for a remaining duration of
  * "ticks".
  */
-public interface IgniteableData extends IntData<IgniteableData> {
+public interface IgniteableData extends DataManipulator<IgniteableData> {
 
     /**
      * Gets the ticks remaining of being lit on fire.
      *
      * @return The remaining fire ticks
      */
-    int getFireTicks();
-
-    /**
-     * Sets the remaining ticks of being lit on fire.
-     *
-     * @param ticks The ticks of being lit on fire
-     * @return This manipulator, for chaining
-     */
-    IgniteableData setFireTicks(int ticks);
+    Value<Integer, IgniteableData> fireTicks();
 
     /**
      * Gets the delay in ticks before this entity will catch fire after being in a burning block.
      *
      * @return The delay before catching fire
      */
-    int getFireDelay();
+    Value<Integer, IgniteableData> fireDelay();
+
 }

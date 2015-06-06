@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Zombie;
 
 /**
@@ -32,5 +33,7 @@ import org.spongepowered.api.entity.living.monster.Zombie;
  * to all {@link Zombie}s.
  */
 public interface VillagerZombieData extends DataManipulator<VillagerZombieData> {
+
+    Value<Boolean, VillagerZombieData> villagerZombie();
 
 }

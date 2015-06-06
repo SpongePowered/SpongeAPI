@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.StoneType;
 
-public interface StoneData extends SingleValueData<StoneType, StoneData> {
+public interface StoneData extends VariantData<StoneType, StoneData> {
 
 }

@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.SlabType;
 
 /**
  * Represents the {@link SlabType} of a slab block. Usually applicable to
  * {@link BlockTypes#WOODEN_SLAB} etc.
  */
-public interface SlabData extends SingleValueData<SlabType, SlabData> {
+public interface SlabData extends VariantData<SlabType, SlabData> {
 
 }

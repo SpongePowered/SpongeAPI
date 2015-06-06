@@ -25,7 +25,9 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Direction;
 
 /**
@@ -33,6 +35,16 @@ import org.spongepowered.api.util.Direction;
  * Examples may include {@link BlockTypes#GLASS_PANE},
  * {@link BlockTypes#IRON_BARS}, etc.
  */
-public interface ConnectedDirectionData extends ListData<Direction, ConnectedDirectionData> {
+public interface ConnectedDirectionData extends DataManipulator<ConnectedDirectionData> {
+
+    SetValue<Direction, ConnectedDirectionData> connectedDirections();
+
+    Value<Boolean, ConnectedDirectionData> connectedNorth();
+
+    Value<Boolean, ConnectedDirectionData> connectedSouth();
+
+    Value<Boolean, ConnectedDirectionData> connectedEast();
+
+    Value<Boolean, ConnectedDirectionData> connectedWest();
 
 }

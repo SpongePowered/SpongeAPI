@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.player.Player;
@@ -34,5 +35,7 @@ import org.spongepowered.api.entity.player.Player;
  * Usually applicable to {@link IronGolem}s.
  */
 public interface PlayerCreatedData extends DataManipulator<PlayerCreatedData> {
+
+    Value<Boolean, PlayerCreatedData> playerCreated();
 
 }

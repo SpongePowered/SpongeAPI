@@ -24,12 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.StairShape;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents the {@link StairShape} of a stair block.
  */
-public interface StairShapeData extends SingleValueData<StairShape, StairShapeData> {
+public interface StairShapeData extends DataManipulator<StairShapeData> {
+
+    Value<StairShape, StairShapeData> shape();
 
 }

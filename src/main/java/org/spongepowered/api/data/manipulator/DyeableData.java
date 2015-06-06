@@ -26,7 +26,9 @@ package org.spongepowered.api.data.manipulator;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.item.ItemTypes;
@@ -36,6 +38,8 @@ import org.spongepowered.api.item.ItemTypes;
  * {@link DyeColor}. Usually applicable to {@link BlockTypes#WOOL},
  * {@link Sheep}, {@link Wolf} collars, and {@link ItemTypes#DYE}, etc.
  */
-public interface DyeableData extends SingleValueData<DyeColor, DyeableData> {
+public interface DyeableData extends DataManipulator<DyeableData> {
+
+    Value<DyeColor, DyeableData> color();
 
 }

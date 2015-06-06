@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Sheep;
 
 /**
@@ -32,5 +33,7 @@ import org.spongepowered.api.entity.living.animal.Sheep;
  * point. Usually applicable to {@link Sheep}.
  */
 public interface ShearedData extends DataManipulator<ShearedData> {
+
+    Value<Boolean, ShearedData> sheared();
 
 }

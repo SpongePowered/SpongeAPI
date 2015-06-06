@@ -25,12 +25,12 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.PrismarineType;
 
 /**
  * Represents the {@link PrismarineType} of a {@link BlockTypes#PRISMARINE}.
  */
-public interface PrismarineData extends SingleValueData<PrismarineType, PrismarineData> {
+public interface PrismarineData extends VariantData<PrismarineType, PrismarineData> {
 
 }

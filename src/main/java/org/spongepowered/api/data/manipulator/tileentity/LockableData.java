@@ -24,13 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.tileentity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a lock token for a {@link org.spongepowered.api.block.tileentity.TileEntity}
  * that can be locked.
  */
-public interface LockableData extends SingleValueData<String, LockableData> {
+public interface LockableData extends DataManipulator<LockableData> {
 
     /**
      * Gets the lock token for this tile entity. Will be empty if this tile
@@ -38,14 +40,6 @@ public interface LockableData extends SingleValueData<String, LockableData> {
      *
      * @return The lock token
      */
-    String getLockToken();
-
-    /**
-     * Sets the lock token for this tile entity.
-     *
-     * @param token The new lock token
-     * @return This instance, for chaining
-     */
-    LockableData setLockToken(String token);
+    Value<String, LockableData> lockToken();
 
 }

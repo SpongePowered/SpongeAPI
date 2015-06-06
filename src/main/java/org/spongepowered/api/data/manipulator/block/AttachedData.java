@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that the owning data holder is "attached" to something.
@@ -32,5 +33,7 @@ import org.spongepowered.api.data.DataManipulator;
  * <p>Examples may include: Banners being attached to a block.</p>
  */
 public interface AttachedData extends DataManipulator<AttachedData> {
+
+    Value<Boolean, AttachedData> attached();
 
 }

@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.explosive.Explosive;
 
 /**
  * Represents the "explosion radius" of an {@link Explosive} entity.
  */
-public interface ExplosiveRadiusData extends IntData<ExplosiveRadiusData> {
+public interface ExplosiveRadiusData extends DataManipulator<ExplosiveRadiusData> {
 
     /**
      * Gets the explosion radius of this creeper.
@@ -39,15 +40,6 @@ public interface ExplosiveRadiusData extends IntData<ExplosiveRadiusData> {
      *
      * @return The explosion radius of the entity
      */
-    int getExplosionRadius();
+    Value<Integer, ExplosiveRadiusData> explosiveRadius();
 
-    /**
-     * Sets the explosion radius of this creeper.
-     *
-     * <p>The explosion radius may be affected by other data manipulators.</p>
-     *
-     * @param radius The explosion radius of the entity
-     * @return This instance, for chaining
-     */
-    ExplosiveRadiusData setExplosionRadius(int radius);
 }

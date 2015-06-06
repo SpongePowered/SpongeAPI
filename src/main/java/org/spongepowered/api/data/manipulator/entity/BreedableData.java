@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Animal;
 
 /**
@@ -32,5 +33,7 @@ import org.spongepowered.api.entity.living.animal.Animal;
  * {@link Animal}s.
  */
 public interface BreedableData extends DataManipulator<BreedableData> {
+
+    Value<Boolean, BreedableData> breedable();
 
 }

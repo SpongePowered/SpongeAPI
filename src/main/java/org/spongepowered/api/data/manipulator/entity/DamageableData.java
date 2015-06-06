@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.OptionalValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 
@@ -42,59 +42,27 @@ public interface DamageableData extends DataManipulator<DamageableData> {
      *
      * @return The last attacker of this entity
      */
-    Optional<Living> getLastAttacker();
-
-    /**
-     * Sets the last living entity to have attacked this entity.
-     * <p>The last attacker may expire over time or when the attacker died.</p>
-     *
-     * @param lastAttacker The last attacker
-     * @return This instance, for chaining
-     */
-    DamageableData setLastAttacker(Living lastAttacker);
+    OptionalValue<Living, DamageableData> lastAttacker();
 
     /**
      * Gets the last amount of damage dealt to this entity.
      *
      * @return The damage amount last dealt
      */
-    Optional<Double> getLastDamage();
-
-    /**
-     * Sets the last damage amount that was dealt to this living entity.
-     *
-     * @param damage The amount of damage last dealt
-     * @return This instance, for chaining
-     */
-    DamageableData setLastDamage(double damage);
+    OptionalValue<Double, DamageableData> lastDamage();
 
     /**
      * Gets the amount of ticks this entity is immune from damage.
      *
      * @return The ticks of immunity towards damage
      */
-    int getInvulnerabilityTicks();
-
-    /**
-     * Sets the amount of ticks this entity is immune from damage.
-     *
-     * @param ticks The ticks of invulnerability
-     * @return This instance, for chaining
-     */
-    DamageableData setInvulnerabilityTicks(int ticks);
+    OptionalValue<Integer, DamageableData> invulnerabilityTicks();
 
     /**
      * Gets the maximum ticks of invulnerability for this entity.
      *
      * @return The maximum ticks of invulnerability
      */
-    int getMaxInvulnerabilityTicks();
+    OptionalValue<Integer, DamageableData> maxInvulnerabilityTicks();
 
-    /**
-     * Sets the maximum ticks of invulnerability for this entity.
-     *
-     * @param ticks The maximum ticks of invulnerability
-     * @return This instance, for chaining
-     */
-    DamageableData setMaxInvulnerabilityTicks(int ticks);
 }

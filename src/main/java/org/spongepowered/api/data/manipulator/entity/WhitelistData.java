@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.User;
 
@@ -33,5 +34,7 @@ import org.spongepowered.api.entity.player.User;
  * server.
  */
 public interface WhitelistData extends DataManipulator<WhitelistData> {
+
+    Value<Boolean, WhitelistData> whitelisted();
 
 }

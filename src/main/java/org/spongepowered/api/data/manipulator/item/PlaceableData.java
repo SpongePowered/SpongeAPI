@@ -25,7 +25,8 @@
 package org.spongepowered.api.data.manipulator.item;
 
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
 
 /**
  * Represents an item that can restrict the placement of itself to the
@@ -35,6 +36,8 @@ import org.spongepowered.api.data.manipulator.ListData;
  * this item data, if added to the item, can prevent placement of the item
  * excluding the {@link BlockType}s from this data.</p>
  */
-public interface PlaceableData extends ListData<BlockType, PlaceableData> {
+public interface PlaceableData extends DataManipulator<PlaceableData> {
+
+    SetValue<BlockType, PlaceableData> placeable();
 
 }

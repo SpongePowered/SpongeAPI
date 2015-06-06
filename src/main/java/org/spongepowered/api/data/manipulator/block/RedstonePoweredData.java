@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
  * Represents the level of "redstone power" for a block.
  */
-public interface RedstonePoweredData extends IntData<RedstonePoweredData> {
+public interface RedstonePoweredData extends DataManipulator<RedstonePoweredData> {
+
+    BoundedValue<Integer, RedstonePoweredData> power();
 
 }

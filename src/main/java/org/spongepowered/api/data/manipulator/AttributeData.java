@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifier;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.SetValue;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents an item data that deals specifically with an item stack granting
@@ -37,30 +39,16 @@ import org.spongepowered.api.attribute.AttributeModifier;
  * attributes should be managed through an {@link AttributeData}
  * object.</p>
  */
-public interface AttributeData extends ListData<AttributeModifier, AttributeData> {
+public interface AttributeData extends DataManipulator<AttributeData> {
 
-    /**
-     * Attempts to get the value for the given {@link Attribute}.
-     *
-     * @param attribute The attribute to calculate
-     * @return The value of the attribute, if available
-     */
-    Optional<Double> getAttributeValue(Attribute attribute);
+    AttributeSet attributes();
 
-    /**
-     * Attempts to get the base value for the given {@link Attribute}.
-     *
-     * @param attribute The attribute
-     * @return The value of the attribute, if available
-     */
-    Optional<Double> getBase(Attribute attribute);
+    interface AttributeSet extends SetValue<AttributeModifier, AttributeData> {
 
-    /**
-     * Sets the base value of the given {@link Attribute}.
-     *
-     * @param attribute The attribute
-     * @param base The base value
-     * @return This instance, for chaining
-     */
-    AttributeData setBase(Attribute attribute, double base);
+        Value<Double, AttributeData> attributeValue(Attribute attribute);
+
+        Value<Double, AttributeData> base(Attribute attribute);
+
+    }
+
 }

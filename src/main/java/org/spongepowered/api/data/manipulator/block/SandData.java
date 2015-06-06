@@ -25,12 +25,12 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.SandType;
 
 /**
  * Represents the {@link SandType} of {@link BlockTypes#SAND}.
  */
-public interface SandData extends SingleValueData<SandType, SandData> {
+public interface SandData extends VariantData<SandType, SandData> {
 
 }

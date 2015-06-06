@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.Enderman;
 
 /**
@@ -32,5 +33,7 @@ import org.spongepowered.api.entity.living.monster.Enderman;
  * {@link Enderman}.
  */
 public interface ScreamingData extends DataManipulator<ScreamingData> {
+
+    Value<Boolean, ScreamingData> screaming();
 
 }

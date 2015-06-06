@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.projectile.Arrow;
@@ -43,15 +44,7 @@ public interface DamagingData extends DataManipulator<DamagingData> {
      *
      * @return The damage to deal
      */
-    double getDamage();
-
-    /**
-     * Sets the damage this projectile will deal to a LivingEntity if hit.
-     *
-     * @param damage The damage to deal
-     * @return This instance, for chaining
-     */
-    DamagingData setDamage(double damage);
+    Value<Double, DamagingData> getDamage();
 
     /**
      * Gets the damage this projectile will deal to the specified
@@ -64,21 +57,7 @@ public interface DamagingData extends DataManipulator<DamagingData> {
      * @param entityType The {@link EntityType} to set the damage amount for
      * @return The damage to deal to the specified {@link EntityType}
      */
-    double getDamageForEntity(EntityType entityType);
-
-    /**
-     * Sets the damage this projectile will deal to the specified
-     * {@link EntityType} if hit.
-     *
-     * <p>Note that in events, the damage defined for the provided
-     * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link #getDamage()}.</p>
-     *
-     * @param entityType The {@link EntityType} to set the damage amount for
-     * @param damage The damage to deal to the specified {@link EntityType}
-     * @return This instance, for chaining
-     */
-    DamagingData setDamageForEntity(EntityType entityType, double damage);
+    Value<Double, DamagingData> damageForEntity(EntityType entityType);
 
 
 }

@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that a block is considered "disarmed". Usually applicable to
  * {@link BlockTypes#TRIPWIRE} and {@link BlockTypes#TRIPWIRE_HOOK}.
  */
 public interface DisarmedData extends DataManipulator<DisarmedData> {
+
+    Value<Boolean, DisarmedData> disarmed();
 
 }

@@ -25,10 +25,13 @@
 package org.spongepowered.api.data.manipulator.tileentity;
 
 import org.spongepowered.api.block.tileentity.Banner;
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.ListData;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.CollectionValue;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.Value;
 
 import java.util.List;
 
@@ -36,53 +39,49 @@ import java.util.List;
  * Represents the information for a {@link Banner} such as the
  * base color and {@link BannerData.PatternLayer}s.
  */
-public interface BannerData extends ListData<BannerData.PatternLayer, BannerData> {
+public interface BannerData extends DataManipulator<BannerData> {
 
     /**
      * Gets the base color of this banner.
      *
      * @return The base color
      */
-    DyeColor getBaseColor();
-
-    /**
-     * Sets the base color of this banner.
-     *
-     * @param color The new color
-     * @return This instance, for chaining
-     */
-    BannerData setBaseColor(DyeColor color);
+    Value<DyeColor, BannerData> baseColor();
 
     /**
      * Gets an ordered list of this Banner's pattern layers.
      *
      * @return The pattern layers
      */
-    List<PatternLayer> getPatternsList();
+    PatternList patternsList();
 
-    /**
-     * Clears this banners Pattern layers leaving only the base color.
-     *
-     * @return This instance, for chaining
-     */
-    BannerData clearPatterns();
+    interface PatternList extends ListValue<PatternLayer, BannerData> {
 
-    /**
-     * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
-     *
-     * @param pattern The new pattern layer
-     * @return This instance, for chaining
-     */
-    BannerData addPatternLayer(PatternLayer pattern);
+        /**
+         * Clears this banners Pattern layers leaving only the base color.
+         *
+         * @return This instance, for chaining
+         */
+        BannerData clearPatterns();
 
-    /**
-     * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
-     *
-     * @param patternShape The pattern shape
-     * @param color The layer color
-     * @return This instance, for chaining
-     */
-    BannerData addPatternLayer(BannerPatternShape patternShape, DyeColor color);
+        /**
+         * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
+         *
+         * @param pattern The new pattern layer
+         * @return This instance, for chaining
+         */
+        BannerData addPatternLayer(PatternLayer pattern);
+
+        /**
+         * Adds a new {@link PatternLayer} to the end of this banner's pattern list.
+         *
+         * @param patternShape The pattern shape
+         * @param color The layer color
+         * @return This instance, for chaining
+         */
+        BannerData addPatternLayer(BannerPatternShape patternShape, DyeColor color);
+
+    }
 
     /**
      * A representation on a single layer of a {@link BannerData}'s pattern.
@@ -94,7 +93,7 @@ public interface BannerData extends ListData<BannerData.PatternLayer, BannerData
          *
          * @return The shape
          */
-        BannerPatternShape getId();
+        BannerPatternShape getShape();
 
         /**
          * Gets the color for this layer.

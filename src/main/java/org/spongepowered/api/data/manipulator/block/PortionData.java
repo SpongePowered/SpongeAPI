@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.PortionType;
 
 /**
  * Represents the {@link PortionType} for a block. Usually applicable to
  * {@link BlockTypes#DOUBLE_PLANT} and slabs.
  */
-public interface PortionData extends SingleValueData<PortionType, PortionData> {
+public interface PortionData extends VariantData<PortionType, PortionData> {
 
 }

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.SkeletonType;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 
 /**
  * Represents the {@link SkeletonType} of a {@link Skeleton}.
  */
-public interface SkeletonData extends SingleValueData<SkeletonType, SkeletonData> {
+public interface SkeletonData extends VariantData<SkeletonType, SkeletonData> {
 
 }

@@ -24,28 +24,20 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.Location;
 
 /**
  * Represents the location of which a data holder may respawn at.
  */
-public interface RespawnLocationData extends SingleValueData<Location, RespawnLocationData> {
+public interface RespawnLocationData extends DataManipulator<RespawnLocationData> {
 
     /**
      * Gets the location of the owned bed spawn.
      *
      * @return The location of the owned bed spawn
      */
-    Location getRespawnLocation();
-
-    /**
-     * Sets the location of the owned bed spawn. Passing <code>null</code>
-     * will clear it.
-     *
-     * @param location The new location of the owned bed spawn
-     * @return This instance, for chaining
-     */
-    RespawnLocationData setRespawnLocation(Location location);
+    Value<Location, RespawnLocationData> getRespawnLocation();
 
 }

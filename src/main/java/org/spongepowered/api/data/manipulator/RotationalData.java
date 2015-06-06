@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator;
 
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.util.rotation.Rotation;
 
@@ -31,6 +33,8 @@ import org.spongepowered.api.util.rotation.Rotation;
  * Represents the {@link Rotation} of a block. Usually applicable to
  * {@link EntityTypes#ITEM_FRAME}s.
  */
-public interface RotationalData extends SingleValueData<Rotation, RotationalData> {
+public interface RotationalData extends DataManipulator<RotationalData> {
+
+    Value<Rotation, RotationalData> rotation();
 
 }

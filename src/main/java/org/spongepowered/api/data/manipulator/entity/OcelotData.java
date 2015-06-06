@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.OcelotType;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 
 /**
  * Represents the {@link OcelotType} for an {@link Ocelot}.
  */
-public interface OcelotData extends SingleValueData<OcelotType, OcelotData> {
+public interface OcelotData extends VariantData<OcelotType, OcelotData> {
 
 }

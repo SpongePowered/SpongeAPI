@@ -25,7 +25,8 @@
 
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Human;
 
 import java.util.UUID;
@@ -36,5 +37,8 @@ import java.util.UUID;
  * <p>Unfortunately the actual binary data for the skin is not able to be
  * manipulated because it must be signed on mojang's server.</p>
  */
-public interface SkinData extends SingleValueData<UUID, SkinData> {
+public interface SkinData extends DataManipulator<SkinData> {
+
+    Value<UUID, SkinData> skin();
+
 }

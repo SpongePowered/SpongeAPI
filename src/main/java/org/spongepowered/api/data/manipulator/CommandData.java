@@ -26,6 +26,8 @@ package org.spongepowered.api.data.manipulator;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.OptionalValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -38,15 +40,7 @@ public interface CommandData extends DataManipulator<CommandData> {
      *
      * @return The command
      */
-    String getStoredCommand();
-
-    /**
-     * Sets the currently stored command.
-     *
-     * @param command The new command
-     * @return This instance, for chaining
-     */
-    CommandData setStoredCommand(String command);
+    Value<String, CommandData> storedCommand();
 
     /**
      * Gets the success count of the last executed command.
@@ -65,16 +59,7 @@ public interface CommandData extends DataManipulator<CommandData> {
      *
      * @return The last success count
      */
-    int getSuccessCount();
-
-    /**
-     * Sets the last success count for this command block.
-     *
-     * @param count The new success count
-     * @see #getSuccessCount()
-     * @return This instance, for chaining
-     */
-    CommandData setSuccessCount(int count);
+    Value<Integer, CommandData> successCount();
 
     /**
      * Gets whether this command block will keep track of the output from the
@@ -82,16 +67,7 @@ public interface CommandData extends DataManipulator<CommandData> {
      *
      * @return Whether the command output is tracked
      */
-    boolean doesTrackOutput();
-
-    /**
-     * Sets whether this command block should track the output from future
-     * commands that it executes.
-     *
-     * @param track Whether the command outputs should be tracked
-     * @return This instance, for chaining
-     */
-    CommandData shouldTrackOutput(boolean track);
+    Value<Boolean, CommandData> doesTrackOutput();
 
     /**
      * Gets the last command output.
@@ -102,14 +78,6 @@ public interface CommandData extends DataManipulator<CommandData> {
      *
      * @return The last command output, if available
      */
-    Optional<Text> getLastOutput();
-
-    /**
-     * Sets the last output message.
-     *
-     * @param message The new message
-     * @return This instance, for chaining
-     */
-    CommandData setLastOutput(Text message);
+    OptionalValue<Text, CommandData> lastOutput();
 
 }

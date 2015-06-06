@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that a block is "powered". Usually applicable to
  * {@link BlockTypes#LEVER} and {@link BlockTypes#STONE_BUTTON}, etc.
  */
 public interface PoweredData extends DataManipulator<PoweredData> {
+
+    Value<Boolean, PoweredData> powered();
 
 }

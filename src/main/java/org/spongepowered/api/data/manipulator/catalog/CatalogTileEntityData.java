@@ -47,8 +47,8 @@ import org.spongepowered.api.data.manipulator.DisplayNameData;
 import org.spongepowered.api.data.manipulator.MobSpawnerData;
 import org.spongepowered.api.data.manipulator.OwnableData;
 import org.spongepowered.api.data.manipulator.RepresentedItemData;
-import org.spongepowered.api.data.manipulator.block.ComparisonData;
-import org.spongepowered.api.data.manipulator.block.SignaledOutputData;
+import org.spongepowered.api.data.manipulator.block.ComparatorData;
+import org.spongepowered.api.data.manipulator.block.SignalOutputData;
 import org.spongepowered.api.data.manipulator.tileentity.BannerData;
 import org.spongepowered.api.data.manipulator.tileentity.BannerData.PatternLayer;
 import org.spongepowered.api.data.manipulator.tileentity.BeaconData;
@@ -86,7 +86,7 @@ public final class CatalogTileEntityData {
     /**
      * Represents the {@link Comparator} data.
      */
-    public static final Class<ComparisonData> COMPARISON_DATA = ComparisonData.class;
+    public static final Class<ComparatorData> COMPARISON_DATA = ComparatorData.class;
     /**
      * Represents an int cooldown for a {@link Hopper}.
      */
@@ -122,7 +122,7 @@ public final class CatalogTileEntityData {
      * Represents a {@link TileEntity} that is signaling a redstone output.
      * Usually applicable to {@link Comparator}s and {@link DaylightDetector}s.
      */
-    public static final Class<SignaledOutputData> SIGNALED_OUTPUT_DATA = SignaledOutputData.class;
+    public static final Class<SignalOutputData> SIGNALED_OUTPUT_DATA = SignalOutputData.class;
     /**
      * Represents a {@link Sign}s data.
      */

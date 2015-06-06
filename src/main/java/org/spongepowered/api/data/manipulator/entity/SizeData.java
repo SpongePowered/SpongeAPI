@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.entity;
 
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -38,20 +39,20 @@ public interface SizeData extends DataManipulator<SizeData> {
      *
      * @return The width of this entity
      */
-    float getBase();
+    Value<Float, SizeData> base();
 
     /**
      * Gets the current y height of this entity.
      *
      * @return The current y height
      */
-    float getHeight();
+    Value<Float, SizeData> height();
 
     /**
      * Gets the current size scale of this entity.
      *
      * @return The current scale of the bounding box
      */
-    float getScale();
+    Value<Float, SizeData> scale();
 
 }

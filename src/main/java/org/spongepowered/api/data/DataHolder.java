@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.value.CompositeValueStore;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 
 import java.util.Collection;
@@ -32,97 +33,8 @@ import java.util.Collection;
 /**
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
- *
- * <p>For example, a chest block, which is of the chest type, also has
- * inventory. This inventory is considered extra data, which can
- * be accessed via {@link #getData(Class)}, provided that an implementation
- * exposes that extra data.</p>
  */
-public interface DataHolder extends DataSerializable {
-
-    /**
-     * Gets an instance of the given data class for this {@link DataHolder}.
-     *
-     * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
-     * </p>
-     *
-     * @param dataClass The data class
-     * @param <T> The type of data
-     * @return An instance of the class, if not available
-     */
-    <T extends DataManipulator<T>> Optional<T> getData(Class<T> dataClass);
-
-    /**
-     * Gets or creates a new {@link DataManipulator} that can be accepted by
-     * this {@link DataHolder}. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new
-     * {@link DataManipulator} object is created with default values.
-     *
-     * <p>In the event the {@link DataManipulator} can not represent any data
-     * pertaining to this {@link DataHolder}, {@link Optional#absent()} is
-     * returned.</p>
-     *
-     * @param manipulatorClass The data class
-     * @param <T> The type of data
-     * @return An instance of the class, if not available
-     */
-    <T extends DataManipulator<T>> Optional<T> getOrCreate(Class<T> manipulatorClass);
-
-    /**
-     * Attempts to remove the given {@link DataManipulator} represented on this
-     * {@link DataHolder} if possible.
-     *
-     * <p>Certain {@link DataManipulator}s can not be removed due to certain
-     * dependencies relying on the particular data to function.</p>
-     *
-     * @param manipulatorClass The data manipulator class
-     * @param <T> The type of data manipulator
-     * @return If the removal was successful
-     */
-    <T extends DataManipulator<T>> boolean remove(Class<T> manipulatorClass);
-
-    /**
-     * Checks if the given {@link DataManipulator} class is able to represent
-     * data within this {@link DataHolder}.
-     *
-     * @param manipulatorClass The data class
-     * @param <T> The type of data
-     * @return True if this {@link DataHolder} can accept the
-     *     {@link DataManipulator} object
-     */
-    <T extends DataManipulator<T>> boolean isCompatible(Class<T> manipulatorClass);
-
-    /**
-     * Offers the given {@link DataManipulator} to this {@link DataHolder}.
-     *
-     * <p>In the event that the {@link DataManipulator} contains data that
-     * would otherwise overlap existing data on this {@link DataHolder}, a
-     * default {@link DataPriority#DATA_MANIPULATOR} is used.</p>
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * @param manipulatorData The manipulator data to offer
-     * @param <T> The type of manipulator data
-     * @return The transaction result
-     */
-    <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData);
-
-    /**
-     * Offers the given {@link DataManipulator} to this {@link DataHolder}.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * @param manipulatorData The manipulator data to offer
-     * @param <T> The type of manipulator data
-     * @param priority The data priority to use
-     * @return The transaction result
-     */
-    <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData, DataPriority priority);
+public interface DataHolder extends DataSerializable, CompositeValueStore<DataHolder> {
 
     /**
      * Gets an copied collection of all known {@link DataManipulator}s

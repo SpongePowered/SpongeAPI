@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 
 /**
  * Represents the "fuse" for a {@link FusedExplosive}.
  */
-public interface FuseData extends IntData<FuseData> {
+public interface FuseData extends DataManipulator<FuseData> {
 
     /**
      * Gets the current fuse duration in ticks on this explosive.
@@ -41,17 +42,6 @@ public interface FuseData extends IntData<FuseData> {
      *
      * @return The current fuse duration in ticks
      */
-    int getFuseDuration();
+    BoundedValue<Integer, FuseData> getFuseDuration();
 
-    /**
-     * Sets the remainig fuse duration in ticks on this explosive.
-     *
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode. If the fuse duration is set to negative, the explosive may
-     * become idle.</p>
-     *
-     * @param fuseTicks The ticks for the fuse
-     * @return This instance, for chaining
-     */
-    FuseData setFuseDuration(int fuseTicks);
 }

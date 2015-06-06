@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that a block is "snowed". Usually applicable to
  * {@link BlockTypes#DIRT} and {@link BlockTypes#GRASS}.
  */
 public interface SnowedData extends DataManipulator<SnowedData> {
+
+    Value<Boolean, SnowedData> hasSnow();
 
 }

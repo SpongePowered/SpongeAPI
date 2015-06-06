@@ -26,11 +26,14 @@ package org.spongepowered.api.data.manipulator.block;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Signifies that the owner is "connected" to a wall. Usually applicable to
  * {@link BlockTypes#FENCE_GATE}.
  */
 public interface InWallData extends DataManipulator<InWallData> {
+
+    Value<Boolean, InWallData> inWall();
 
 }

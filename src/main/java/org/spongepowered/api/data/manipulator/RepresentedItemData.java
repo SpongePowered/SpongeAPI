@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator;
 
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.hanging.ItemFrame;
@@ -34,6 +36,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * {@link Entity}. Usually applicable to {@link Item}s, {@link ItemFrame}s,
  * etc.
  */
-public interface RepresentedItemData extends SingleValueData<ItemStack, RepresentedItemData> {
+public interface RepresentedItemData extends DataManipulator<RepresentedItemData> {
+
+    Value<ItemStack, RepresentedItemData> item();
 
 }

@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
-import org.spongepowered.api.data.type.DoubleSizePlantType;
+import org.spongepowered.api.data.manipulator.VariantData;
+import org.spongepowered.api.data.type.DoublePlantType;
 
 /**
  * Represents the type of a double plant.
  */
-public interface DoublePlantData extends SingleValueData<DoubleSizePlantType, DoublePlantData> {
+public interface DoublePlantData extends VariantData<DoublePlantType, DoublePlantData> {
 
 }

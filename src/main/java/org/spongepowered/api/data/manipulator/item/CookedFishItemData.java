@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
+import org.spongepowered.api.data.manipulator.VariantData;
 import org.spongepowered.api.data.type.CookedFish;
 
 /**
@@ -34,6 +34,6 @@ import org.spongepowered.api.data.type.CookedFish;
  * properties, it is recommended to check for new properties on the item
  * stack after setting this data.</p>
  */
-public interface CookedFishItemData extends SingleValueData<CookedFish, CookedFishItemData> {
+public interface CookedFishItemData extends VariantData<CookedFish, CookedFishItemData> {
 
 }
