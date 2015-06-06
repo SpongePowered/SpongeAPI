@@ -62,18 +62,17 @@ public interface Scoreboard {
     Optional<Objective> getObjective(DisplaySlot slot);
 
     /**
-     * Sets the specified {@link Objective} in the specified {@link DisplaySlot}, removing
-     * it from any other {@link DisplaySlot}.
+     * Sets the specified {@link Objective} in the specified {@link DisplaySlot}.
      *
-     * <p>If another objective is set to the same display slot, that objective will
-     * have it's display slot set to <code>null</code>.</p>
+     * <p>If the {@link Objective} is <code>null</code>, then the specified
+     * {@link DisplaySlot} will be cleared.</p>
      *
      * @param objective The {@link Objective} to set
      * @param displaySlot The {@link DisplaySlot} to the specified {@link Objective} in
      * @throws IllegalStateException if the specified {@link Objective} does not exist
      *                               on this scoreboard
      */
-    void addObjective(Objective objective, @Nullable DisplaySlot displaySlot) throws IllegalStateException;
+    void addObjective(@Nullable Objective objective, DisplaySlot displaySlot) throws IllegalStateException;
 
     /**
      * Adds the specified {@link Objective} to this scoreboard.
