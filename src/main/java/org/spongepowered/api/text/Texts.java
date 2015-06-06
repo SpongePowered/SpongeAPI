@@ -370,31 +370,6 @@ public final class Texts {
     }
 
     /**
-     * Parses the specified JSON text and returns the parsed result.
-     *
-     * @param json The valid JSON text
-     * @return The parsed text
-     * @throws IllegalArgumentException If the JSON is invalid
-     */
-    public static Text parseJson(String json) throws IllegalArgumentException {
-        return factory.parseJson(json);
-    }
-
-    /**
-     * Parses the specified JSON text and returns the parsed result.
-     *
-     * <p>Unlike {@link #parseJson(String)} this will ignore some formatting
-     * errors and parse the JSON data more leniently.</p>
-     *
-     * @param json The JSON text
-     * @return The parsed text
-     * @throws IllegalArgumentException If the JSON couldn't be parsed
-     */
-    public static Text parseJsonLenient(String json) throws IllegalArgumentException {
-        return factory.parseJsonLenient(json);
-    }
-
-    /**
      * Returns a plain text representation of the {@link Text} without any
      * formatting.
      *
@@ -403,16 +378,6 @@ public final class Texts {
      */
     public static String toPlain(Text text) {
         return factory.toPlain(text);
-    }
-
-    /**
-     * Returns a JSON representation of the {@link Text} as used in commands.
-     *
-     * @param text The text to convert
-     * @return The text converted to JSON
-     */
-    public static String toJson(Text text) {
-        return factory.toJson(text);
     }
 
     /**
@@ -427,35 +392,22 @@ public final class Texts {
     }
 
     /**
-     * Returns a JSON representation of the {@link Text} as used in commands.
+     * Get a {@link TextRepresentation} for the Mojangson representation of a {@link Text} object.
      *
-     * @param text The text to convert
-     * @return The text converted to JSON
+     *
+     * @return The json serializer
      */
-    public static String toJson(Text text, Locale locale) {
-        return factory.toJson(text, locale);
+    public static TextRepresentation json() {
+        return factory.json();
     }
 
     /**
-     * Parses the provided XML-formatted message to a Text object.
+     * Get a {@link TextRepresentation} for the TextXML representation of a {@link Text} object.
      *
-     * @param input The input string to parse
-     * @return The parsed {@link Text}
+     * @return The xml text serializer
      */
-    public static Text parseXml(String input) {
-        return factory.parseXml(input);
-    }
-
-    /**
-     * Returns an xml representation of the {@link Text} for usage in configurations.
-     * TODO: Does Locale make sense here?
-     *
-     * @param input The input to use
-     * @param locale The locale to dump to
-     * @return The text as xml
-     */
-    public static String toXml(Text input, Locale locale) {
-        return factory.toXml(input, locale);
+    public static TextRepresentation xml() {
+        return factory.xml();
     }
 
     /**
@@ -470,29 +422,25 @@ public final class Texts {
     }
 
     /**
-     * Creates a Message from a legacy string using the default legacy.
+     * Return a representation that accepts and outputs legacy color codes, using the default legacy char {{@link #getLegacyChar()}}.
      *
-     * @param text The text to be converted as a String
-     * @return The converted Message
-     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     * @return The appropriate legacy representation handler
      */
     @Deprecated
     @SuppressWarnings("deprecation")
-    public static Text.Literal fromLegacy(String text) {
-        return fromLegacy(text, getLegacyChar());
+    public static TextRepresentation legacy() {
+        return legacy(getLegacyChar());
     }
 
     /**
-     * Creates a Message from a legacy string, given a color character.
+     * Return a representation that accepts and outputs legacy color codes, using the provided legacy character.
      *
-     * @param text The text to be converted as a String
-     * @param color The color character to be replaced
-     * @return The converted Message
-     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     * @param legacyChar The legacy character to parse and output using
+     * @return The appropriate legacy representation handler
      */
     @Deprecated
-    public static Text.Literal fromLegacy(String text, char color) {
-        return factory.parseLegacyMessage(text, color);
+    public static TextRepresentation legacy(char legacyChar) {
+        return factory.legacy(legacyChar);
     }
 
     /**
@@ -550,48 +498,4 @@ public final class Texts {
     public static String replaceCodes(String text, char from, char to) {
         return factory.replaceLegacyCodes(text, from, to);
     }
-
-    /**
-     * Returns a representation of the {@link Text} using the legacy color
-     * codes.
-     *
-     * @param text The text to convert
-     * @return The text converted to the old color codes
-     * @deprecated Legacy formatting codes are being phased out of Minecraft
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static String toLegacy(Text text) {
-        return toLegacy(text, getLegacyChar());
-    }
-
-    /**
-     * Returns a representation of the {@link Text} using the legacy color
-     * codes.
-     *
-     * @param text The text to convert
-     * @param code The legacy char to use for the message
-     * @return The text converted to the old color codes
-     * @deprecated Legacy formatting codes are being phased out of Minecraft
-     */
-    @Deprecated
-    public static String toLegacy(Text text, char code) {
-        return factory.toLegacy(text, code);
-    }
-
-    /**
-     * Returns a representation of the {@link Text} using the legacy color
-     * codes.
-     *
-     * @param text The text to convert
-     * @param code The legacy char to use for the message
-     * @param locale The language to return this representation in
-     * @return The text converted to the old color codes
-     * @deprecated Legacy formatting codes are being phased out of Minecraft
-     */
-    @Deprecated
-    public static String toLegacy(Text text, char code, Locale locale) {
-        return factory.toLegacy(text, code, locale);
-    }
-
 }
