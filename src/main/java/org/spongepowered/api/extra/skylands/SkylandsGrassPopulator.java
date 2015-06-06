@@ -30,7 +30,10 @@ import com.flowpowered.noise.module.source.Voronoi;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.manipulator.block.FlowerData;
 import org.spongepowered.api.data.manipulator.block.ShrubData;
+import org.spongepowered.api.data.type.PlantType;
+import org.spongepowered.api.data.type.PlantTypes;
 import org.spongepowered.api.data.type.ShrubTypes;
 import org.spongepowered.api.util.gen.BiomeBuffer;
 import org.spongepowered.api.util.gen.MutableBlockBuffer;
@@ -49,8 +52,12 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
     // the type of flower cells, null means just grass, so it's not all flowers
     @SuppressWarnings("ConstantConditions")
     private static final Flower[] FLOWERS = {
-            new Flower(BlockTypes.REDSTONE_BLOCK, false),
-            new Flower(BlockTypes.GOLD_BLOCK, false),
+            new Flower(BlockTypes.YELLOW_FLOWER),
+            new Flower(PlantTypes.WHITE_TULIP),
+            new Flower(PlantTypes.ORANGE_TULIP),
+            new Flower(PlantTypes.BLUE_ORCHID),
+            new Flower(PlantTypes.HOUSTONIA),
+            new Flower(PlantTypes.POPPY),
             null,
             null,
             null,
@@ -77,7 +84,7 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
         flowerDensities.setDisplacement(0);
         flowerDensities.setEnableDistance(true);
         flowerOdds.setSourceModule(0, flowerDensities);
-        flowerOdds.setDegree(4);
+        flowerOdds.setDegree(5);
     }
 
     @Override
@@ -129,8 +136,10 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
                     // if no flower, check if the value is greater than the grass odds
                     if (value >= DOUBLE_GRASS_ODDS && yy + 1 < yMax) {
                         // tall grass is a bit more rare
-                        buffer.setBlockType(xx, yy + 1, zz, BlockTypes.MELON_BLOCK);
-                        buffer.setBlockType(xx, yy + 2, zz, BlockTypes.MELON_BLOCK);
+                        //buffer.setBlockType(xx, yy + 1, zz, BlockTypes.MELON_BLOCK);
+                        //buffer.setBlockType(xx, yy + 2, zz, BlockTypes.MELON_BLOCK);
+                        // TODO: fix double plants
+                        buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
                     } else {
                         buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
                     }
@@ -175,12 +184,22 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
 
     private static class Flower {
 
+        @SuppressWarnings("ConstantConditions")
+        private static final BlockState DEFAULT_FLOWER = BlockTypes.RED_FLOWER.getDefaultState();
         private final BlockState block;
         private final boolean doubleHeight;
         private final BlockState upperBlock;
 
-        private Flower(BlockType block, boolean doubleHeight) {
-            this.block = block.getDefaultState();
+        private Flower(PlantType type) {
+            this(DEFAULT_FLOWER.withData(DEFAULT_FLOWER.getManipulator(FlowerData.class).get().setValue(type)).get(), false);
+        }
+
+        private Flower(BlockType block) {
+            this(block.getDefaultState(), false);
+        }
+
+        private Flower(BlockState block, boolean doubleHeight) {
+            this.block = block;
             this.doubleHeight = doubleHeight;
             upperBlock = this.block;
         }
