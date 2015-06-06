@@ -46,8 +46,8 @@ import org.spongepowered.api.world.gen.GeneratorPopulator;
 public class SkylandsTerrainGenerator implements GeneratorPopulator {
 
     private static final int MID_POINT = 64;
-    private static final int UPPER_SIZE = 36;
-    private static final int LOWER_SIZE = 24;
+    private static final int UPPER_SIZE = 48;
+    private static final int LOWER_SIZE = 36;
     /**
      * Maximum height of the basic terrain.
      */
