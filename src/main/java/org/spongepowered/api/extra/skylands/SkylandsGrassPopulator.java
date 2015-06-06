@@ -52,18 +52,18 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
     // the type of flower cells, null means just grass, so it's not all flowers
     @SuppressWarnings("ConstantConditions")
     private static final Flower[] FLOWERS = {
-            new Flower(BlockTypes.YELLOW_FLOWER),
-            new Flower(PlantTypes.WHITE_TULIP),
-            new Flower(PlantTypes.ORANGE_TULIP),
-            new Flower(PlantTypes.BLUE_ORCHID),
-            new Flower(PlantTypes.HOUSTONIA),
-            new Flower(PlantTypes.POPPY),
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+        new Flower(BlockTypes.YELLOW_FLOWER),
+        new Flower(PlantTypes.WHITE_TULIP),
+        new Flower(PlantTypes.ORANGE_TULIP),
+        new Flower(PlantTypes.BLUE_ORCHID),
+        new Flower(PlantTypes.HOUSTONIA),
+        new Flower(PlantTypes.POPPY),
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
     };
     private final Voronoi flowerCells = new Voronoi();
     private final Voronoi flowerDensities = new Voronoi();
@@ -76,15 +76,18 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
         TALL_GRASS = defaultGrass.withData(defaultGrass.getManipulator(ShrubData.class).get().setValue(ShrubTypes.TALL_GRASS)).get();
     }
 
+    /**
+     * Constructs a new grass populator for the Skylands.
+     */
     public SkylandsGrassPopulator() {
-        flowerCells.setFrequency(0.1);
-        flowerCells.setDisplacement(FLOWERS.length - 1);
-        flowerCells.setEnableDistance(false);
-        flowerDensities.setFrequency(0.1);
-        flowerDensities.setDisplacement(0);
-        flowerDensities.setEnableDistance(true);
-        flowerOdds.setSourceModule(0, flowerDensities);
-        flowerOdds.setDegree(5);
+        this.flowerCells.setFrequency(0.1);
+        this.flowerCells.setDisplacement(FLOWERS.length - 1);
+        this.flowerCells.setEnableDistance(false);
+        this.flowerDensities.setFrequency(0.1);
+        this.flowerDensities.setDisplacement(0);
+        this.flowerDensities.setEnableDistance(true);
+        this.flowerOdds.setSourceModule(0, this.flowerDensities);
+        this.flowerOdds.setDegree(5);
     }
 
     @Override
@@ -112,17 +115,17 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
                 // some random value to compare to odds
                 float value = hashToFloat(xx, zz, seed);
                 // get the flower for the current cell, may be null
-                flowerCells.setSeed(intSeed);
-                flowerDensities.setSeed(intSeed);
-                Flower flower = FLOWERS[(int) flowerCells.getValue(xx, 0, zz)];
+                this.flowerCells.setSeed(intSeed);
+                this.flowerDensities.setSeed(intSeed);
+                Flower flower = FLOWERS[(int) this.flowerCells.getValue(xx, 0, zz)];
                 // check if we have a flower based on odds for the cell
-                if (flower == null || value < flowerOdds.getValue(xx, 0, zz)) {
+                if (flower == null || value < this.flowerOdds.getValue(xx, 0, zz)) {
                     // try with a different seed to create a second layer of flower cells, giving us some overlap
-                    flowerCells.setSeed(intSeed2);
-                    flowerDensities.setSeed(intSeed2);
-                    flower = FLOWERS[(int) flowerCells.getValue(xx, 0, zz)];
+                    this.flowerCells.setSeed(intSeed2);
+                    this.flowerDensities.setSeed(intSeed2);
+                    flower = FLOWERS[(int) this.flowerCells.getValue(xx, 0, zz)];
                     // try the check again if we have a flower
-                    if (flower != null && value < flowerOdds.getValue(xx, 0, zz)) {
+                    if (flower != null && value < this.flowerOdds.getValue(xx, 0, zz)) {
                         // check failed, no flowers
                         flower = null;
                     }
@@ -201,19 +204,19 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
         private Flower(BlockState block, boolean doubleHeight) {
             this.block = block;
             this.doubleHeight = doubleHeight;
-            upperBlock = this.block;
+            this.upperBlock = this.block;
         }
 
         private BlockState getBlock() {
-            return block;
+            return this.block;
         }
 
         private boolean isDoubleHeight() {
-            return doubleHeight;
+            return this.doubleHeight;
         }
 
         private BlockState getUpperBlock() {
-            return upperBlock;
+            return this.upperBlock;
         }
     }
 
@@ -237,7 +240,7 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
         @Override
         public double getValue(double x, double y, double z) {
             final double value = sourceModule[0].getValue(x, y, z);
-            return 1 - Math.pow(1 - value, degree);
+            return 1 - Math.pow(1 - value, this.degree);
         }
     }
 }

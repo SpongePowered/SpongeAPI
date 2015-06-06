@@ -61,17 +61,20 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
     private final VerticalScaling outputNoise = new VerticalScaling();
     private final OreNoise[] oreNoises;
 
+    /**
+     * Constructs a new Skylands terrain generator.
+     */
     @SuppressWarnings("ConstantConditions")
     public SkylandsTerrainGenerator() {
-        inputNoise.setFrequency(0.04);
-        inputNoise.setLacunarity(2);
-        inputNoise.setNoiseQuality(NoiseQuality.STANDARD);
-        inputNoise.setPersistence(0.5);
-        inputNoise.setOctaveCount(4);
+        this.inputNoise.setFrequency(0.04);
+        this.inputNoise.setLacunarity(2);
+        this.inputNoise.setNoiseQuality(NoiseQuality.STANDARD);
+        this.inputNoise.setPersistence(0.5);
+        this.inputNoise.setOctaveCount(4);
 
         final ScaleBias scaleBias = new ScaleBias();
-        scaleBias.setSourceModule(0, inputNoise);
-        scaleBias.setScale(1 / getOutputMax(inputNoise));
+        scaleBias.setSourceModule(0, this.inputNoise);
+        scaleBias.setScale(1 / getOutputMax(this.inputNoise));
         scaleBias.setBias(0);
 
         final ScalePoint scalePoint = new ScalePoint();
@@ -84,18 +87,18 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         exponent.setSourceModule(0, scalePoint);
         exponent.setExponent(2.2);
 
-        outputNoise.setSourceModule(0, exponent);
-        outputNoise.setMidPoint(MID_POINT);
-        outputNoise.setUpperSize(UPPER_SIZE);
-        outputNoise.setLowerSize(LOWER_SIZE);
-        outputNoise.setDegree(2);
+        this.outputNoise.setSourceModule(0, exponent);
+        this.outputNoise.setMidPoint(MID_POINT);
+        this.outputNoise.setUpperSize(UPPER_SIZE);
+        this.outputNoise.setLowerSize(LOWER_SIZE);
+        this.outputNoise.setDegree(2);
 
-        oreNoises = new OreNoise[]{
-                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.07), 0.3, 0.64, BlockTypes.DIAMOND_ORE),
-                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.06), 0.27, 0.64, BlockTypes.GOLD_ORE),
-                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.05), 0.26, 0.64, BlockTypes.REDSTONE_ORE),
-                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0), 0.25, 0.64, BlockTypes.IRON_ORE),
-                new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0), 0.22, 0.63, BlockTypes.COAL_ORE)
+        this.oreNoises = new OreNoise[]{
+            new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.07), 0.3, 0.64, BlockTypes.DIAMOND_ORE),
+            new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.06), 0.27, 0.64, BlockTypes.GOLD_ORE),
+            new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0.05), 0.26, 0.64, BlockTypes.REDSTONE_ORE),
+            new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0), 0.25, 0.64, BlockTypes.IRON_ORE),
+            new OreNoise(GenericMath.lerp(THRESHOLD, 1, 0), 0.22, 0.63, BlockTypes.COAL_ORE)
         };
     }
 
@@ -109,8 +112,8 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         }
         final long seed = world.getProperties().getSeed();
         final int intSeed = (int) (seed >> 32 ^ seed);
-        inputNoise.setSeed(intSeed);
-        final double[][][] noise = fastNoise(outputNoise, buffer.getBlockSize(), 4, min);
+        this.inputNoise.setSeed(intSeed);
+        final double[][][] noise = fastNoise(this.outputNoise, buffer.getBlockSize(), 4, min);
         final int x = min.getX();
         final int y = min.getY();
         final int z = min.getZ();
@@ -119,7 +122,7 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
                 xIteration:
                 for (int xx = min.getX(); xx <= max.getX(); xx++) {
                     final double density = noise[zz - z][yy - y][xx - x];
-                    for (OreNoise oreNoise : oreNoises) {
+                    for (OreNoise oreNoise : this.oreNoises) {
                         if (oreNoise.hasBlock(density, xx, yy, zz, intSeed)) {
                             buffer.setBlockType(xx, yy, zz, oreNoise.getBlock());
                             continue xIteration;
@@ -132,16 +135,21 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
     }
 
     /**
-     * Generates a 3D noise map using reduced sampling and trilinear interpolation.
+     * Generates a 3D noise map using reduced sampling and trilinear
+     * interpolation.
      * TODO: move this to a util class?
      *
      * @param noiseGenerator The noise generator module
      * @param size The size of the 3D map
-     * @param samplingPeriod The sampling period to use. xSize % samplingPeriod, ySize % samplingPeriod and zSize % samplingPeriod must return 0.
-     * @param position The position of (0, 0, 0) index of the map in the noise space
-     * @throws IllegalArgumentException if the noise generator is null, the sampling rate is zero, or xSize % samplingPeriod, ySize %
-     * samplingPeriod or
-     * zSize % samplingPeriod doesn't return 0
+     * @param samplingPeriod The sampling period to use.
+     *     xSize % samplingPeriod, ySize % samplingPeriod
+     *     and zSize % samplingPeriod must return 0.
+     * @param position The position of (0, 0, 0) index of the map in the
+     *     noise space
+     * @return An array containing the noise values, in order [z][y][x]
+     * @throws IllegalArgumentException if the noise generator is null,
+     *     the sampling rate is zero, or xSize % samplingPeriod,
+     *     ySize % samplingPeriod or zSize % samplingPeriod doesn't return 0
      */
     public static double[][][] fastNoise(Module noiseGenerator, Vector3i size, int samplingPeriod, Vector3i position) {
         if (samplingPeriod <= 0) {
@@ -181,18 +189,19 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
                         int ny = yy - yFract;
                         int nz = zz - zFract;
                         noiseArray[zz][yy][xx] = GenericMath.triLerp(xx, yy, zz,
-                                noiseArray[nz][ny][nx],
-                                noiseArray[nz][ny + samplingPeriod][nx],
-                                noiseArray[nz + samplingPeriod][ny][nx],
-                                noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx],
-                                noiseArray[nz][ny][nx + samplingPeriod],
-                                noiseArray[nz][ny + samplingPeriod][nx + samplingPeriod],
-                                noiseArray[nz + samplingPeriod][ny][nx + samplingPeriod],
-                                noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx + samplingPeriod],
-                                nx, nx + samplingPeriod, ny, ny + samplingPeriod, nz, nz + samplingPeriod);
+                            noiseArray[nz][ny][nx],
+                            noiseArray[nz][ny + samplingPeriod][nx],
+                            noiseArray[nz + samplingPeriod][ny][nx],
+                            noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx],
+                            noiseArray[nz][ny][nx + samplingPeriod],
+                            noiseArray[nz][ny + samplingPeriod][nx + samplingPeriod],
+                            noiseArray[nz + samplingPeriod][ny][nx + samplingPeriod],
+                            noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx + samplingPeriod],
+                            nx, nx + samplingPeriod, ny, ny + samplingPeriod, nz, nz + samplingPeriod);
                     }
                 }
             }
+
         }
         return noiseArray;
     }
@@ -242,12 +251,12 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         @Override
         public double getValue(double x, double y, double z) {
             final double value = sourceModule[0].getValue(x, y, z);
-            y -= midPoint;
+            y -= this.midPoint;
             double scale;
             if (y >= 0) {
-                scale = Math.pow(y / upperScale, degree);
+                scale = Math.pow(y / this.upperScale, this.degree);
             } else {
-                scale = Math.pow(-y / lowerScale, degree);
+                scale = Math.pow(-y / this.lowerScale, this.degree);
             }
             scale = Math.max(0, 1 - scale);
             return value * scale;
@@ -267,16 +276,16 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
             this.frequency = frequency;
             this.noiseThreshold = noiseThreshold;
             this.block = block;
-            seedTransform = block.getName().hashCode();
+            this.seedTransform = block.getName().hashCode();
         }
 
         private boolean hasBlock(double density, double x, double y, double z, int seed) {
-            return density >= densityThreshold && Noise.gradientCoherentNoise3D(x * frequency, y * frequency, z * frequency, seed ^ seedTransform,
-                    NoiseQuality.FAST) >= noiseThreshold;
+            return density >= this.densityThreshold && Noise.gradientCoherentNoise3D(x * this.frequency, y * this.frequency, z * this.frequency,
+                seed ^ this.seedTransform, NoiseQuality.FAST) >= this.noiseThreshold;
         }
 
         private BlockType getBlock() {
-            return block;
+            return this.block;
         }
     }
 }

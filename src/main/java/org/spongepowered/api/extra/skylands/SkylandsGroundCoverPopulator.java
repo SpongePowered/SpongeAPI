@@ -39,8 +39,8 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
 
     @SuppressWarnings("ConstantConditions")
     private static final GroundCoverLayer[] LAYERS = {
-            new UniformGroundCoverLayer(BlockTypes.GRASS, 1),
-            new VariableGroundCoverLayer(BlockTypes.DIRT, 1, 4)
+        new UniformGroundCoverLayer(BlockTypes.GRASS, 1),
+        new VariableGroundCoverLayer(BlockTypes.DIRT, 1, 4)
     };
 
     @Override
@@ -101,7 +101,7 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
         return y;
     }
 
-    private static abstract class GroundCoverLayer {
+    private abstract static class GroundCoverLayer {
 
         private GroundCoverLayer() {
         }
@@ -125,12 +125,12 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
 
         @Override
         protected BlockType getBlock(int x, int y, int z, long seed) {
-            return block;
+            return this.block;
         }
 
         @Override
         protected int getDepth(int x, int y, int z, long seed) {
-            return (int) (hashToFloat(x, z, seed) * (max - min + 1) + min);
+            return (int) (hashToFloat(x, z, seed) * (this.max - this.min + 1) + this.min);
         }
 
         // TODO: move this to a util class?
@@ -152,12 +152,12 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
 
         @Override
         protected BlockType getBlock(int x, int y, int z, long seed) {
-            return block;
+            return this.block;
         }
 
         @Override
         protected int getDepth(int x, int y, int z, long seed) {
-            return depth;
+            return this.depth;
         }
     }
 }
