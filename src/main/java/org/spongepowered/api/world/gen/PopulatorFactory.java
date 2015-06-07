@@ -54,7 +54,7 @@ import org.spongepowered.api.world.gen.populator.WaterLily;
 /**
  * A provider for creating new populators for use in modifying WorldGenerators.
  */
-public interface PopulatorProvider extends Provider {
+public interface PopulatorFactory {
 
     /**
      * Creates a new {@link BigMushroom} populator builder.
