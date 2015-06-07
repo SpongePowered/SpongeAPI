@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
@@ -82,7 +83,7 @@ public interface Game {
      * @param <T> The type of {@link Provider}
      * @return An instance of the requested provider type
      */
-    <T extends Provider> T getProvider(Class<T> providerClass);
+    <T extends Provider> Optional<T> getProvider(Class<T> providerClass);
 
     /**
      * Get the game's instance of the service manager, which is the gateway
