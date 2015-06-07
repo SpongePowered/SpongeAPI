@@ -275,8 +275,8 @@ public class SimpleCommandService implements CommandService {
                 excBuilder.onHover(TextActions.showText(Texts.of(writer.toString().replaceAll("\t", "    "))));
             }
             source.sendMessage(error(t("Error occurred while executing command: %s", excBuilder.build())));
-            this.log.error(Texts.toPlain(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), thr
-                    .getMessage())), thr);
+            this.log.error(Texts.toPlain(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), String
+                    .valueOf(thr.getMessage()))), thr);
         }
         return Optional.of(CommandResult.empty());
     }
