@@ -44,6 +44,7 @@ import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.LocatedSource;
+import org.spongepowered.api.util.provider.CatalogTypeProvider;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -1130,7 +1131,7 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(this.game.getRegistry().getAllOf(this.catalogType), new Function<T, String>() {
+            return Iterables.transform(this.game.getProvider(CatalogTypeProvider.class).getAllOf(this.catalogType), new Function<T, String>() {
                 @Nullable
                 @Override
                 public String apply(@Nullable T input) {
@@ -1141,7 +1142,7 @@ public final class GenericArguments {
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            final Optional<T> ret = this.game.getRegistry().getType(this.catalogType, choice);
+            final Optional<T> ret = this.game.getProvider(CatalogTypeProvider.class).getType(this.catalogType, choice);
             if (!ret.isPresent()) {
                 throw new IllegalArgumentException("Invalid input " + choice + " was found");
             }

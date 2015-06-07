@@ -54,7 +54,7 @@ public interface GameRegistry {
      * @param <T> The type of {@link Provider}
      * @return An instance of the requested provider type
      */
-    <T extends Provider> Optional<T> getProvider(Class<T> providerClass);
+    <T extends Provider> T getProvider(Class<T> providerClass);
 
     /**
      * Gets a {@link Collection} of the default GameRules.
