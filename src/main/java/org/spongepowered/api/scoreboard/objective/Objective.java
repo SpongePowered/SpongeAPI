@@ -32,6 +32,7 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.text.Text;
 
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -93,7 +94,7 @@ public interface Objective {
      *
      * @return The set of {@link Score}s for this objective
      */
-    Set<Score> getScores();
+    Map<Text, Score> getScores();
 
     /**
      * Adds the specified {@link Score} to this objective.
