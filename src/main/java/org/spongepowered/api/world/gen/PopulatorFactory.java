@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.util.factory.Factory;
 import org.spongepowered.api.world.gen.populator.BigMushroom;
 import org.spongepowered.api.world.gen.populator.BlockBlob;
 import org.spongepowered.api.world.gen.populator.Cactus;
@@ -53,7 +54,7 @@ import org.spongepowered.api.world.gen.populator.WaterLily;
 /**
  * A factory for creating new populators for use in modifying WorldGenerators.
  */
-public interface PopulatorFactory {
+public interface PopulatorFactory extends Factory {
 
     /**
      * Creates a new {@link BigMushroom} populator builder.

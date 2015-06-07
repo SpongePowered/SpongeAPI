@@ -25,48 +25,18 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.attribute.AttributeBuilder;
-import org.spongepowered.api.attribute.AttributeCalculator;
-import org.spongepowered.api.attribute.AttributeModifierBuilder;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulatorRegistry;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
-import org.spongepowered.api.effect.particle.ParticleType;
-import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.factory.Factory;
-import org.spongepowered.api.item.FireworkEffectBuilder;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStackBuilder;
-import org.spongepowered.api.item.merchant.TradeOfferBuilder;
+import org.spongepowered.api.util.factory.Factory;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
-import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.scoreboard.ScoreboardBuilder;
-import org.spongepowered.api.scoreboard.TeamBuilder;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
-import org.spongepowered.api.statistic.BlockStatistic;
-import org.spongepowered.api.statistic.EntityStatistic;
-import org.spongepowered.api.statistic.ItemStatistic;
-import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.StatisticBuilder;
-import org.spongepowered.api.statistic.StatisticGroup;
-import org.spongepowered.api.statistic.TeamStatistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
-import org.spongepowered.api.statistic.achievement.AchievementBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldBuilder;
-import org.spongepowered.api.world.WorldCreationSettings;
-import org.spongepowered.api.world.gen.GeneratorPopulator;
-import org.spongepowered.api.world.gen.Populator;
-import org.spongepowered.api.world.gen.PopulatorFactory;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
@@ -145,69 +115,7 @@ public interface GameRegistry {
      */
     Collection<String> getDefaultGameRules();
 
-    /**
-     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
-     * {@link EntityType}. If the statistic group is not a valid
-     * {@link EntityStatistic} group then {@link Optional#absent()} will be
-     * returned.
-     *
-     * @param statisticGroup The type of statistic to return
-     * @param entityType The entity type for the statistic to return
-     * @return The entity statistic or Optional.absent() if not found
-     */
-    Optional<EntityStatistic> getEntityStatistic(StatisticGroup statisticGroup, EntityType entityType);
 
-    /**
-     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
-     * {@link ItemType}. If the statistic group is not a valid
-     * {@link ItemStatistic} group then {@link Optional#absent()} will be
-     * returned.
-     *
-     * @param statisticGroup The type of statistic to return
-     * @param itemType The item type for the statistic to return
-     * @return The item statistic or Optional.absent() if not found
-     */
-    Optional<ItemStatistic> getItemStatistic(StatisticGroup statisticGroup, ItemType itemType);
-
-    /**
-     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
-     * {@link BlockType}. If the statistic group is not a valid
-     * {@link BlockStatistic} group then {@link Optional#absent()} will be
-     * returned.
-     *
-     * @param statisticGroup The type of statistic to return
-     * @param blockType The block type for the statistic to return
-     * @return The block statistic or Optional.absent() if not found
-     */
-    Optional<BlockStatistic> getBlockStatistic(StatisticGroup statisticGroup, BlockType blockType);
-
-    /**
-     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
-     * team's {@link TextColor}. If the {@link StatisticGroup} is not a valid
-     * {@link TeamStatistic} group then {@link Optional#absent()} will be
-     * returned.
-     *
-     * @param statisticGroup The type of statistic to return
-     * @param teamColor The team's color for the statistic to return
-     * @return The team statistic or Optional.absent() if not found
-     */
-    Optional<TeamStatistic> getTeamStatistic(StatisticGroup statisticGroup, TextColor teamColor);
-
-    /**
-     * Gets a list of all available {@link Statistic}s which belong to the given
-     * {@link StatisticGroup}.
-     *
-     * @param statisticGroup The statisticType to return
-     * @return An immutable collection containing all statistics in the group
-     */
-    Collection<Statistic> getStatistics(StatisticGroup statisticGroup);
-
-    /**
-     * Registers a custom statistic.
-     *
-     * @param stat The custom statistic
-     */
-    void registerStatistic(Statistic stat);
 
     /**
      * Gets the {@link Rotation} with the provided degrees.
@@ -326,14 +234,6 @@ public interface GameRegistry {
      * @param modifier The modifier to register
      */
     void registerWorldGeneratorModifier(WorldGeneratorModifier modifier);
-
-    /**
-     * Gets the {@link PopulatorFactory} for creating {@link Populator}s and
-     * {@link GeneratorPopulator}s.
-     * 
-     * @return The populator factory
-     */
-    PopulatorFactory getPopulatorFactory();
 
     /**
      * Gets the {@link Translation} with the provided ID.

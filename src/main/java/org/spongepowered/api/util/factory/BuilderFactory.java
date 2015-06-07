@@ -1,4 +1,4 @@
-package org.spongepowered.api.factory;
+package org.spongepowered.api.util.factory;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.AttributeBuilder;
