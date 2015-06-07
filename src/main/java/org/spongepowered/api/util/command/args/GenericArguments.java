@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 
 
 /**
- * Class containing factory methods for common command elements.
+ * Class containing provider methods for common command elements.
  */
 public final class GenericArguments {
 

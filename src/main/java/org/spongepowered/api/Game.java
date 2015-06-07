@@ -30,6 +30,7 @@ import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
 import org.spongepowered.api.service.scheduler.SynchronousScheduler;
+import org.spongepowered.api.util.provider.Provider;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
@@ -73,6 +74,15 @@ public interface Game {
      * @return The game registry
      */
     GameRegistry getRegistry();
+
+    /**
+     * Gets an instance of the provided {@link Provider} class.
+     *
+     * @param providerClass The class of the type of {@link Provider}
+     * @param <T> The type of {@link Provider}
+     * @return An instance of the requested provider type
+     */
+    <T extends Provider> T getProvider(Class<T> providerClass);
 
     /**
      * Get the game's instance of the service manager, which is the gateway

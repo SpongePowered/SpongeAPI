@@ -121,7 +121,7 @@ public class SpongeEventFactoryTest {
                                     + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
                                     + "was added (i.e. blockList())\n"
                                     + "\tSolution: Revisit " + method.getReturnType().getName() + " and its supertypes. If the method in question "
-                                    + "must exist, then the event factory is capable of accepting a base class to build the "
+                                    + "must exist, then the event provider is capable of accepting a base class to build the "
                                     + "runtime concrete class upon (i.e. " + AbstractEvent.class.getName()
                                     + " is the supertype of all generated event classes).\n", e);
                 }

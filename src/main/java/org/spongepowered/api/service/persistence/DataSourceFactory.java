@@ -29,7 +29,7 @@ import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataSerializable;
 
 /**
- * A standard factory to create {@link DataSource}s to serialize and deserialize
+ * A standard provider to create {@link DataSource}s to serialize and deserialize
  * {@link DataSerializable} objects.
  */
 public interface DataSourceFactory {
@@ -38,7 +38,7 @@ public interface DataSourceFactory {
      * Creates a new {@link DataSource} according to the given configuration.
      *
      * <p>The configuration structure is yet to be defined, however, being
-     * that the factory is abstract, a DataSource can be represented by multiple
+     * that the provider is abstract, a DataSource can be represented by multiple
      * implementations.</p>
      *
      * @param config The configuration to configure the DataSource

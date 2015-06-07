@@ -28,7 +28,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 
 /**
- * A factory for creating {@link ResourcePack}s.
+ * A provider for creating {@link ResourcePack}s.
  */
 public interface ResourcePackFactory {
 

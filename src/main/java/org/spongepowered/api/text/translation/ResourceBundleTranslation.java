@@ -58,7 +58,7 @@ public class ResourceBundleTranslation implements Translation {
     private final Function<Locale, ResourceBundle> bundleFunction;
 
     /**
-     * Create a ResourceBundle-backed translation for the given key and bundle factory.
+     * Create a ResourceBundle-backed translation for the given key and bundle provider.
      *
      * @param key The key to use
      * @param bundleFunction The bundle function to get a bundle from
