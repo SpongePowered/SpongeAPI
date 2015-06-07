@@ -508,11 +508,11 @@ public class ClassGenerator {
     }
 
     /**
-     * Create the provider for an event class.
+     * Create the factory for an event class.
      *
      * @param type The event class
-     * @param name The canonical name of the provider class
-     * @return The provider class' bytes
+     * @param name The canonical name of the factory class
+     * @return The factory class' bytes
      */
     public byte[] createFactory(final Class<?> type, final String name) {
         checkNotNull(type, "type");

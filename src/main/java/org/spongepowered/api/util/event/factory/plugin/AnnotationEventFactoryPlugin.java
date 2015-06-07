@@ -36,7 +36,7 @@ import java.util.Queue;
  * An {@link EventFactoryPlugin} which examines the annotations on an {@link Event}
  * to determine its superclass.
  *
- * This is the base {@link EventFactoryPlugin}. If no other event provider plugins are able
+ * This is the base {@link EventFactoryPlugin}. If no other event factory plugins are able
  * to handle the specified event, then the annotation on the event interface is used
  * by this plugin to determine the superclass.
  */

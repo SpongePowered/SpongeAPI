@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Creates event implementations by generating the necessary event class
- * and event provider at runtime.
+ * and event factory at runtime.
  */
 public class ClassGeneratorProvider implements FactoryProvider {
 
@@ -71,7 +71,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
     @SuppressWarnings("unchecked")
     public <T> EventFactory<T> create(final Class<T> type, Class<?> parentType) {
         String eventName = getClassName(type, "Impl");
-        String factoryName = getClassName(type, "Provider");
+        String factoryName = getClassName(type, "Factory");
 
         Class<?> eventClass = this.classLoader.defineClass(eventName, this.builder.createClass(type, eventName, parentType));
         Class<?> factoryClass = this.classLoader.defineClass(factoryName, this.builder.createFactory(eventClass, factoryName));
@@ -79,9 +79,9 @@ public class ClassGeneratorProvider implements FactoryProvider {
         try {
             return (EventFactory<T>) factoryClass.newInstance();
         } catch (InstantiationException e) {
-            throw new RuntimeException("Failed to create event provider", e);
+            throw new RuntimeException("Failed to create event factory", e);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("Failed to create event provider", e);
+            throw new RuntimeException("Failed to create event factory", e);
         }
     }
 

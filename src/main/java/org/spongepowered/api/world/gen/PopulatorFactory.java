@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.provider.Provider;
 import org.spongepowered.api.world.gen.populator.BigMushroom;
 import org.spongepowered.api.world.gen.populator.BlockBlob;
 import org.spongepowered.api.world.gen.populator.Cactus;
@@ -52,7 +51,7 @@ import org.spongepowered.api.world.gen.populator.Vines;
 import org.spongepowered.api.world.gen.populator.WaterLily;
 
 /**
- * A provider for creating new populators for use in modifying WorldGenerators.
+ * A factory for creating new populators for use in modifying WorldGenerators.
  */
 public interface PopulatorFactory {
 

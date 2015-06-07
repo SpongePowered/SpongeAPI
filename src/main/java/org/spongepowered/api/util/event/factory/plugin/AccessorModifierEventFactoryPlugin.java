@@ -64,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * An event provider plugin to modify the return type of an accessor
+ * An event factory plugin to modify the return type of an accessor
  * by calling one of its methods.
  */
 public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
