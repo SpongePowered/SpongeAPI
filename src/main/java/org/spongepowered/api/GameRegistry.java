@@ -36,6 +36,7 @@ import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.factory.Factory;
 import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
@@ -121,153 +122,13 @@ public interface GameRegistry {
     <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
 
     /**
-     * Gets a builder of the desired class type, examples may include:
-     * {@link org.spongepowered.api.attribute.AttributeBuilder},
-     * {@link org.spongepowered.api.item.FireworkEffectBuilder}, etc.
+     * Gets an instance of the provided {@link Factory} class.
      *
-     * @param builderClass The class of the builder
-     * @param <T> The type of builder
-     * @return The builder, if available
+     * @param factoryClass The class of the type of {@link Factory}
+     * @param <T> The type of {@link Factory}
+     * @return An instance of the requested factory type
      */
-    <T> Optional<T> getBuilderOf(Class<T> builderClass);
-
-    /**
-     * Get an item stack builder.
-     *
-     * @return The item stack builder
-     */
-    ItemStackBuilder getItemBuilder();
-
-    /**
-     * Get a trade offer builder.
-     *
-     * @return The trade offer builder
-     */
-    TradeOfferBuilder getTradeOfferBuilder();
-
-    /**
-     * Gets a new {@link FireworkEffectBuilder}.
-     *
-     * @return A new firework effect builder
-     */
-    FireworkEffectBuilder getFireworkEffectBuilder();
-
-    /**
-     * Get a potion effect builder.
-     *
-     * @return The potion effect builder
-     */
-    PotionEffectBuilder getPotionEffectBuilder();
-
-    /**
-     * Get an objective builder.
-     *
-     * @return The objective builder
-     */
-    ObjectiveBuilder getObjectiveBuilder();
-
-    /**
-     * Get a team builder.
-     *
-     * @return The team builder
-     */
-    TeamBuilder getTeamBuilder();
-
-    /**
-     * Gets a scoreboard builder.
-     *
-     * @return The scoreboard builder
-     */
-    ScoreboardBuilder getScoreboardBuilder();
-
-    /**
-     * Creates a new {@link StatisticBuilder} which may be used to create custom
-     * {@link Statistic}s.
-     *
-     * @return The newly created simple statistic builder
-     */
-    StatisticBuilder getStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link org.spongepowered.api.statistic.StatisticBuilder.EntityStatisticBuilder}
-     * which may be used to create custom {@link EntityStatistic}s.
-     *
-     * @return The newly created entity statistic builder
-     */
-    StatisticBuilder.EntityStatisticBuilder getEntityStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link org.spongepowered.api.statistic.StatisticBuilder.BlockStatisticBuilder}
-     * which may be used to create custom {@link BlockStatistic}s.
-     *
-     * @return The newly created block statistic builder
-     */
-    StatisticBuilder.BlockStatisticBuilder getBlockStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link org.spongepowered.api.statistic.StatisticBuilder.ItemStatisticBuilder}
-     * which may be used to create custom {@link ItemStatistic}s.
-     *
-     * @return The newly created item statistic builder
-     */
-    StatisticBuilder.ItemStatisticBuilder getItemStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link org.spongepowered.api.statistic.StatisticBuilder.TeamStatisticBuilder}
-     * which may be used to create custom {@link TeamStatistic}s.
-     *
-     * @return The newly created team statistic builder
-     */
-    StatisticBuilder.TeamStatisticBuilder getTeamStatisticBuilder();
-
-    /**
-     * Creates a new {@link AchievementBuilder} which may be used to create
-     * custom {@link Achievement}s.
-     *
-     * @return The newly created achievement builder
-     */
-    AchievementBuilder getAchievementBuilder();
-
-    /**
-     * Gets a new {@link AttributeModifierBuilder}.
-     *
-     * @return A new AttributeModifierBuilder
-     */
-    AttributeModifierBuilder getAttributeModifierBuilder();
-
-    /**
-     * Gets the {@link AttributeCalculator}.
-     *
-     * @return The {@link AttributeCalculator}
-     */
-    AttributeCalculator getAttributeCalculator();
-
-    /**
-     * Gets a new {@link AttributeBuilder}.
-     *
-     * @return A new AttributeBuilder
-     */
-    AttributeBuilder getAttributeBuilder();
-
-    /**
-     * Gets a new {@link WorldBuilder} for creating {@link World}s or
-     * {@link WorldCreationSettings}s.
-     *
-     * @return A new builder
-     */
-    WorldBuilder getWorldBuilder();
-
-    /**
-     * Gets a new particle builder for the {@link ParticleType}.
-     *
-     * @param particle The particle type
-     * @return The particle effect builder
-     */
-    ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
+    <T extends Factory> T getFactory(Class<T> factoryClass);
 
     /**
      * Gets all available villager {@link Career}s for the given profession.
