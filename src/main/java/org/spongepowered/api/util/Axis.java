@@ -29,7 +29,7 @@ import com.flowpowered.math.vector.Vector3d;
 /**
  * Represents a three dimensional cartesian axis.
  */
-public enum Axis {
+public enum Axis implements Cycleable<Axis> {
 
     X(new Vector3d(1, 0, 0)),
     Y(new Vector3d(0, 1, 0)),
@@ -133,4 +133,14 @@ public enum Axis {
         return this.direction.mul(axisDirection.getSignum());
     }
 
+    @Override
+    public Axis cycleNext() {
+        if (this == Axis.X) {
+            return Y;
+        }
+        if (this == Axis.Y) {
+            return Z;
+        }
+        return X;
+    }
 }

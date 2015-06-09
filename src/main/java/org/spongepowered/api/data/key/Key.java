@@ -24,10 +24,36 @@
  */
 package org.spongepowered.api.data.key;
 
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataQuery;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.mutable.Value;
 
-public interface Key<V extends Value<?, ?>> {
+/**
+ * Represents a key to an underlying {@link BaseValue} such that the underlying
+ * value can be retrieved from a {@link ValueContainer}. As well, a {@link Key}
+ * can be used for {@link DataSerializable}s with the included
+ * {@link #getQuery()} to retrieve the recommended {@link DataQuery} to use.
+ *
+ * @param <V> The type of {@link BaseValue}
+ */
+public interface Key<V extends BaseValue<?>> {
 
+    /**
+     * Gets the class of the {@link Value} this {@link Key} is representing.
+     *
+     * @return The value class
+     */
     Class<V> getValueClass();
+
+    /**
+     * Gets the {@link DataQuery} for recommended use with
+     * {@link DataContainer}s.
+     *
+     * @return The recommended {@link DataQuery} for use
+     */
+    DataQuery getQuery();
 
 }

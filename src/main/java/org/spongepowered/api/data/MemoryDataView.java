@@ -36,6 +36,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.service.persistence.DataBuilder;
 import org.spongepowered.api.service.persistence.SerializationService;
 import org.spongepowered.api.util.Coerce;
@@ -184,6 +186,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
+    @SuppressWarnings("rawtypes")
     public DataView set(DataQuery path, Object value) {
         checkNotNull(path, "path");
         checkNotNull(value, "value");
@@ -227,6 +230,11 @@ public class MemoryDataView implements DataView {
             }
         }
         return this;
+    }
+
+    @Override
+    public <E> DataView set(Key<? extends BaseValue<E>> key, E value) {
+        return set(checkNotNull(key, "Key was null!").getQuery(), value);
     }
 
     private void setCollection(String key, Collection<?> value) {
@@ -322,6 +330,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
+    @SuppressWarnings("rawtypes")
     public DataView createView(DataQuery path, Map<?, ?> map) {
         checkNotNull(path, "path");
         DataView section = createView(path);
@@ -348,7 +357,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Optional<? extends Map<?, ?>> getMap(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {

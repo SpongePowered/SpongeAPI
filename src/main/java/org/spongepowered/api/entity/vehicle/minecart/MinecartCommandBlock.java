@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.data.manipulator.CommandData;
+import org.spongepowered.api.data.manipulator.mutable.CommandData;
 import org.spongepowered.api.util.command.source.CommandBlockSource;
 
 /**

@@ -28,7 +28,6 @@ import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.tileentity.Banner;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.block.tileentity.Comparator;
-import org.spongepowered.api.block.tileentity.DaylightDetector;
 import org.spongepowered.api.block.tileentity.FlowerPot;
 import org.spongepowered.api.block.tileentity.Jukebox;
 import org.spongepowered.api.block.tileentity.MobSpawner;
@@ -41,23 +40,22 @@ import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.block.tileentity.carrier.Hopper;
 import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.manipulator.CommandData;
-import org.spongepowered.api.data.manipulator.DisplayNameData;
-import org.spongepowered.api.data.manipulator.MobSpawnerData;
-import org.spongepowered.api.data.manipulator.OwnableData;
-import org.spongepowered.api.data.manipulator.RepresentedItemData;
-import org.spongepowered.api.data.manipulator.block.ComparatorData;
-import org.spongepowered.api.data.manipulator.block.SignalOutputData;
-import org.spongepowered.api.data.manipulator.tileentity.BannerData;
-import org.spongepowered.api.data.manipulator.tileentity.BannerData.PatternLayer;
-import org.spongepowered.api.data.manipulator.tileentity.BeaconData;
-import org.spongepowered.api.data.manipulator.tileentity.BrewingData;
-import org.spongepowered.api.data.manipulator.tileentity.CooldownData;
-import org.spongepowered.api.data.manipulator.tileentity.FurnaceData;
-import org.spongepowered.api.data.manipulator.tileentity.LockableData;
-import org.spongepowered.api.data.manipulator.tileentity.NoteData;
-import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.CommandData;
+import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
+import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
+import org.spongepowered.api.data.manipulator.mutable.OwnableData;
+import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
+import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.CooldownData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.LockableData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.NoteData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -118,11 +116,6 @@ public final class CatalogTileEntityData {
      * Usually applicable to {@link Jukebox}es and {@link FlowerPot}s.
      */
     public static final Class<RepresentedItemData> JUKEBOX_DATA = RepresentedItemData.class;
-    /**
-     * Represents a {@link TileEntity} that is signaling a redstone output.
-     * Usually applicable to {@link Comparator}s and {@link DaylightDetector}s.
-     */
-    public static final Class<SignalOutputData> SIGNALED_OUTPUT_DATA = SignalOutputData.class;
     /**
      * Represents a {@link Sign}s data.
      */

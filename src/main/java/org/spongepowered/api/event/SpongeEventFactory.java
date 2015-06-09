@@ -38,9 +38,12 @@ import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
-import org.spongepowered.api.data.manipulator.tileentity.BrewingData;
-import org.spongepowered.api.data.manipulator.tileentity.FurnaceData;
-import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBrewingData;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Tamer;
@@ -1822,7 +1825,7 @@ public final class SpongeEventFactory {
      * @param block The location of the brewing stand
      * @return A new instance of the event
      */
-    public static BrewingStandBrewEvent createBrewingStandBrew(Game game, BrewingStand brewingStand, BrewingData data,
+    public static BrewingStandBrewEvent createBrewingStandBrew(Game game, BrewingStand brewingStand, ImmutableBrewingData data,
                                                                     List<ItemStack> sourceItems, ItemStack fuelSource, List<ItemStack> brewedItems,
                                                                     Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
                                                                     Location block) {
@@ -1853,7 +1856,7 @@ public final class SpongeEventFactory {
      * @param block The location of the furnace
      * @return A new instance of the event
      */
-    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuel(Game game, Furnace furnace, FurnaceData data, ItemStack burnedItem,
+    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuel(Game game, Furnace furnace, ImmutableFurnaceData data, ItemStack burnedItem,
                                                                    ItemStack remainingFuel, Cause cause,
                                                                    TileEntityInventory<TileEntityCarrier> inventory, Location block) {
         Map<String, Object> values = Maps.newHashMap();
@@ -1882,7 +1885,7 @@ public final class SpongeEventFactory {
      * @param block The location of the furnace
      * @return A new instance of the event
      */
-    public static FurnaceSmeltItemEvent createFurnaceSmeltItem(Game game, Furnace furnace, FurnaceData data, ItemStack cookedItem,
+    public static FurnaceSmeltItemEvent createFurnaceSmeltItem(Game game, Furnace furnace, ImmutableFurnaceData data, ItemStack cookedItem,
                                                                ItemStack sourceItem, Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
                                                                Location block) {
         Map<String, Object> values = Maps.newHashMap();
@@ -1907,7 +1910,7 @@ public final class SpongeEventFactory {
      * @param newData The new sign data
      * @return A new instance of the event
      */
-    public static SignChangeEvent createSignChange(Game game, Cause cause, Sign sign, SignData currentData, SignData newData) {
+    public static SignChangeEvent createSignChange(Game game, Cause cause, Sign sign, ImmutableSignData currentData, SignData newData) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));

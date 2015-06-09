@@ -25,8 +25,12 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
-
-import java.util.Collection;
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.CompositeValueStore;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Represents a transaction taking place where a {@link DataHolder} is
@@ -84,20 +88,28 @@ public interface DataTransactionResult {
     Type getType();
 
     /**
-     * If {@link DataManipulator}s were supplied to the operation, this
-     * collection will return any {@link DataManipulator}s which were rejected
+     * If any {@link BaseValue}s applied onto a {@link CompositeValueStore} were
+     * successful, they'll be stored in the given list.
+     *
+     * @return An immutable list of the values successfully offered
+     */
+    ImmutableList<ImmutableValue<?>> getSuccessfulData();
+
+    /**
+     * If {@link Value}s were supplied to the operation, this
+     * collection will return any {@link ImmutableValue}s which were rejected
      * by the target {@link DataHolder}.
      *
      * @return Any data that was rejected from the operation
      */
-    Optional<? extends Collection<? extends DataManipulator<?>>> getRejectedData();
+    ImmutableList<ImmutableValue<?>> getRejectedData();
 
     /**
-     * If the operation replaced {@link DataManipulator}, this returns a collection of
-     * the replaced {@link DataManipulator}.
+     * If the operation replaced any {@link Value}s, this returns a collection
+     * of the replaced {@link ImmutableValue}s.
      *
-     * @return Any data that were replaced
+     * @return Any data that was replaced
      */
-    Optional<? extends Collection<? extends DataManipulator<?>>> getReplacedData();
+    ImmutableList<ImmutableValue<?>> getReplacedData();
 
 }

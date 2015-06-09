@@ -27,30 +27,30 @@ package org.spongepowered.api.data.manipulator.catalog;
 import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.tileentity.EnchantmentTable;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.manipulator.AttributeData;
-import org.spongepowered.api.data.manipulator.ColoredData;
-import org.spongepowered.api.data.manipulator.DisplayNameData;
-import org.spongepowered.api.data.manipulator.DyeableData;
-import org.spongepowered.api.data.manipulator.FireworkData;
-import org.spongepowered.api.data.manipulator.PotionEffectData;
-import org.spongepowered.api.data.manipulator.TargetedLocationData;
-import org.spongepowered.api.data.manipulator.item.BlockItemData;
-import org.spongepowered.api.data.manipulator.item.BreakableData;
-import org.spongepowered.api.data.manipulator.item.CloneableData;
-import org.spongepowered.api.data.manipulator.item.CoalItemData;
-import org.spongepowered.api.data.manipulator.item.CookedFishItemData;
-import org.spongepowered.api.data.manipulator.item.DurabilityData;
-import org.spongepowered.api.data.manipulator.item.EnchantmentData;
-import org.spongepowered.api.data.manipulator.item.FishData;
-import org.spongepowered.api.data.manipulator.item.GoldenAppleItemData;
-import org.spongepowered.api.data.manipulator.item.InventoryItemData;
-import org.spongepowered.api.data.manipulator.item.LoreData;
-import org.spongepowered.api.data.manipulator.item.MapItemData;
-import org.spongepowered.api.data.manipulator.item.PagedData;
-import org.spongepowered.api.data.manipulator.item.PlaceableData;
-import org.spongepowered.api.data.manipulator.item.SpawnableData;
-import org.spongepowered.api.data.manipulator.item.StoredEnchantmentData;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.AttributeData;
+import org.spongepowered.api.data.manipulator.mutable.ColoredData;
+import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
+import org.spongepowered.api.data.manipulator.mutable.DyeableData;
+import org.spongepowered.api.data.manipulator.mutable.FireworkData;
+import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
+import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
+import org.spongepowered.api.data.manipulator.mutable.item.BlockItemData;
+import org.spongepowered.api.data.manipulator.mutable.item.BreakableData;
+import org.spongepowered.api.data.manipulator.mutable.item.CoalData;
+import org.spongepowered.api.data.manipulator.mutable.item.CookedFishData;
+import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
+import org.spongepowered.api.data.manipulator.mutable.item.EnchantmentData;
+import org.spongepowered.api.data.manipulator.mutable.item.FishData;
+import org.spongepowered.api.data.manipulator.mutable.item.GenerationData;
+import org.spongepowered.api.data.manipulator.mutable.item.GoldenAppleData;
+import org.spongepowered.api.data.manipulator.mutable.item.InventoryItemData;
+import org.spongepowered.api.data.manipulator.mutable.item.LoreData;
+import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
+import org.spongepowered.api.data.manipulator.mutable.item.PagedData;
+import org.spongepowered.api.data.manipulator.mutable.item.PlaceableData;
+import org.spongepowered.api.data.manipulator.mutable.item.SpawnableData;
+import org.spongepowered.api.data.manipulator.mutable.item.StoredEnchantmentData;
 import org.spongepowered.api.data.type.CoalType;
 import org.spongepowered.api.data.type.CookedFish;
 import org.spongepowered.api.data.type.DyeColor;
@@ -91,11 +91,11 @@ public final class CatalogItemData {
      * Represents a limitation on the "cloneability" of an item. Usually
      * applicable to {@link ItemTypes#WRITTEN_BOOK}.
      */
-    public static final Class<CloneableData> CLONEABLE_DATA = CloneableData.class;
+    public static final Class<GenerationData> CLONEABLE_DATA = GenerationData.class;
     /**
      * Represents the {@link CoalType} of an {@link ItemTypes#COAL}.
      */
-    public static final Class<CoalItemData> COAL_ITEM_DATA = CoalItemData.class;
+    public static final Class<CoalData> COAL_ITEM_DATA = CoalData.class;
     /**
      * Signifies that an item is rendered by a specific {@link Color}.
      * Usually applicable to {@link ItemTypes#LEATHER_BOOTS} and other leather
@@ -106,7 +106,7 @@ public final class CatalogItemData {
      * Represents the {@link CookedFish} type of a
      * {@link ItemTypes#COOKED_FISH}.
      */
-    public static final Class<CookedFishItemData> COOKED_FISH_ITEM_DATA = CookedFishItemData.class;
+    public static final Class<CookedFishData> COOKED_FISH_ITEM_DATA = CookedFishData.class;
     /**
      * Signifies that an item has a custom name.
      */
@@ -136,7 +136,7 @@ public final class CatalogItemData {
      * Represents the {@link GoldenApple} type of a
      * {@link ItemTypes#GOLDEN_APPLE}.
      */
-    public static final Class<GoldenAppleItemData> GOLDEN_APPLE_ITEM_DATA = GoldenAppleItemData.class;
+    public static final Class<GoldenAppleData> GOLDEN_APPLE_ITEM_DATA = GoldenAppleData.class;
     /**
      * Signifies that an item has an {@link Inventory} attached to it. Usually
      * applicable to {@link ItemTypes#CHEST}

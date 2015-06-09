@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.service.persistence.InvalidDataException;
@@ -51,7 +51,7 @@ public interface TileEntityChangeEvent extends TileEntityEvent, CauseTracked, Ca
      * @return The data
      */
     @TransformResult
-    DataManipulator<?> getNewData();
+    DataManipulator<?, ?> getNewData();
 
     /**
      * Sets the {@link DataManipulator} that will be offered to the
@@ -62,5 +62,5 @@ public interface TileEntityChangeEvent extends TileEntityEvent, CauseTracked, Ca
      *     if the manipulator being set isn't assignable from
      *     {@link TileEntityChangeEvent#getNewData()}
      */
-    void setNewData(DataManipulator<?> newData);
+    void setNewData(DataManipulator<?, ?> newData);
 }

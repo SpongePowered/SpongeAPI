@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.manipulator.entity.OcelotData;
+import org.spongepowered.api.data.manipulator.mutable.entity.OcelotData;
 
 /**
  * Represents an Ocelot.
