@@ -31,8 +31,10 @@ import static org.spongepowered.api.data.DataQuery.of;
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -41,23 +43,21 @@ import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.merge.MergeStrategy;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.ValueStore;
-import org.spongepowered.api.data.value.memory.MemoryCompositeValueStore;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
 
-import javax.annotation.Nullable;
 import java.util.Collection;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -443,6 +443,21 @@ public final class Location implements DataHolder {
         getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR);
     }
 
+    @Override
+    public DataTransactionResult remove(Class<? extends DataManipulator<?, ?>> containerClass) {
+        return getExtent().remove(getBlockPosition(), containerClass);
+    }
+
+    @Override
+    public DataTransactionResult remove(BaseValue<?> value) {
+        return getExtent().remove(getBlockPosition(), value.getKey());
+    }
+
+    @Override
+    public DataTransactionResult remove(Key<?> key) {
+        return getExtent().remove(getBlockPosition(), key);
+    }
+
     /**
      * Simulates the interaction with this object as if a player had done so.
      *
@@ -484,15 +499,6 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Gets the time it takes to dig this block with a fist in ticks.
-     *
-     * @return The time in ticks
-     */
-    public int getBlockDigTime() {
-        return getExtent().getBlockDigTime(getBlockPosition());
-    }
-
-    /**
      * Gets the time it takes to dig this block the specified item in ticks.
      *
      * @param itemStack The item to pretend-dig with
@@ -500,70 +506,6 @@ public final class Location implements DataHolder {
      */
     public int getBlockDigTimeWith(ItemStack itemStack) {
         return getExtent().getBlockDigTimeWith(getBlockPosition(), itemStack);
-    }
-
-    /**
-     * Gets the temperature at this position.
-     *
-     * <p>Vanilla behaviour for weather causes snow when the temperature is <= 0.15.</p>
-     *
-     * @return The temperature, as a float between 0 and 1, inclusive
-     */
-    public float getTemperature() {
-        return getExtent().getTemperature(getBlockPosition());
-    }
-
-    /**
-     * Get the light level for this object.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public int getLuminance() {
-        return getExtent().getLuminance(getBlockPosition());
-    }
-
-    /**
-     * Get the light level for this object that is caused by an overhead sky.
-     *
-     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
-     * the return value may be 0.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public int getLuminanceFromSky() {
-        return getExtent().getLuminanceFromSky(getBlockPosition());
-    }
-
-    /**
-     * Get the light level for this object that is caused by everything other
-     * than the sky.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public int getLuminanceFromGround() {
-        return getExtent().getLuminanceFromGround(getBlockPosition());
-    }
-
-    /**
-     * Test whether the object is powered.
-     *
-     * @return Whether powered
-     */
-    public boolean isBlockPowered() {
-        return getExtent().isBlockPowered(getBlockPosition());
-    }
-
-    /**
-     * Test whether the object is indirectly powered.
-     *
-     * @return Whether powered
-     */
-    public boolean isBlockIndirectlyPowered() {
-        return getExtent().isBlockPowered(getBlockPosition());
     }
 
     /**
@@ -602,15 +544,6 @@ public final class Location implements DataHolder {
      */
     public Collection<Direction> getIndirectlyPoweredBlockFaces() {
         return getExtent().getIndirectlyPoweredBlockFaces(getBlockPosition());
-    }
-
-    /**
-     * Test whether the the block will block the movement of entities.
-     *
-     * @return Blocks movement
-     */
-    public boolean isBlockPassable() {
-        return getExtent().isBlockPassable(getBlockPosition());
     }
 
     /**
@@ -665,11 +598,6 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public Collection<DataManipulator<?>> getManipulators() {
-        return getExtent().getManipulators(getBlockPosition());
-    }
-
-    @Override
     public <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
         return getExtent().getProperty(getBlockPosition(), propertyClass);
     }
@@ -691,117 +619,139 @@ public final class Location implements DataHolder {
 
     @Override
     public DataContainer toContainer() {
-        return new MemoryDataContainer()
-                .set(of("ExtentUUID"), getExtent().getUniqueId())
-                .set(of("X"), getX())
-                .set(of("Y"), getY())
-                .set(of("Z"), getZ());
+        DataContainer container = new MemoryDataContainer();
+        if (getExtent() instanceof World) {
+            container.set(of("WorldName"), ((World) getExtent()).getName());
+            container.set(of("WorldUuid"), getExtent().getUniqueId().toString());
+        } else if (getExtent() instanceof Chunk) {
+            container.set(of("ChunkX"), ((Chunk) getExtent()).getPosition().getX())
+                .set(of("ChunkY"), ((Chunk) getExtent()).getPosition().getY())
+                .set(of("ChunkZ"), ((Chunk) getExtent()).getPosition().getZ())
+                .set(of("WorldName"), ((Chunk) getExtent()).getWorld().getName())
+                .set(of("WorldUuiD"), ((Chunk) getExtent()).getWorld().getUniqueId().toString());
+        }
+        container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId())
+            .set(of("x"), this.getX())
+            .set(of("y"), this.getY())
+            .set(of("z"), this.getZ())
+            .set(of("Manipulators"), getContainers());
+        return container;
     }
 
     @Override
-    public <T extends ValueStore<T>> Optional<T> get(Class<T> storeClass) {
-        return null;
+    public <T extends DataManipulator<?, ?>> Optional<T> get(Class<T> containerClass) {
+        return getExtent().get(getBlockPosition(), containerClass);
     }
 
     @Override
-    public <T extends ValueStore<T>> T tryGet(Class<T> storeClass) throws UnsupportedOperationException {
-        return null;
+    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+        return getExtent().get(getBlockPosition(), key);
     }
 
     @Override
-    public <T extends ValueStore<T>> T getOrElse(Class<T> storeClass, T defaultStore) {
-        return null;
-    }
-
-    @Override
-    public boolean supports(Class<? extends ValueStore<?>> storeClass) {
-        return false;
-    }
-
-    @Override
-    public <E> Optional<E> get(Key<E> key) {
-        return null;
-    }
-
-    @Override
-    public <E> E tryGet(Key<E> key) throws UnsupportedOperationException {
-        return null;
+    public <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Class<T> containerClass) {
+        return getExtent().getOrCreate(getBlockPosition(), containerClass);
     }
 
     @Nullable
     @Override
-    public <E> E getOrNull(Key<E> key) {
-        return null;
+    public <E> E getOrNull(Key<? extends BaseValue<E>> key) {
+        return getExtent().getOrNull(getBlockPosition(), key);
     }
 
     @Override
-    public <E> E getOrElse(Key<E> key, E defaultValue) {
-        return null;
+    public <E> E getOrElse(Key<? extends BaseValue<E>> key, E defaultValue) {
+        return getExtent().getOrElse(getBlockPosition(), key, defaultValue);
     }
 
     @Override
-    public <E> DataHolder set(Key<E> key, E value) {
-        return null;
+    public <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value) {
+        return getExtent().offer(getBlockPosition(), key, value);
     }
 
     @Override
-    public <E> Optional<Value<E, DataHolder>> bind(Key<E> key) {
-        return null;
+    public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> valueHolders) {
+        return getExtent().offer(getBlockPosition(), valueHolders);
     }
 
     @Override
-    public <E> Value<E, DataHolder> tryBind(Key<E> key) {
-        return null;
+    public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> values, MergeFunction function) {
+        return getExtent().offer(getBlockPosition(), values, function);
+    }
+
+    @Override
+    public DataTransactionResult offer(BaseValue<?> value) {
+        return getExtent().offer(getBlockPosition(), value);
+    }
+
+    @Override
+    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer) {
+        return getExtent().offer(getBlockPosition(), valueContainer);
+    }
+
+    @Override
+    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
+        return getExtent().offer(getBlockPosition(), valueContainer, function);
+    }
+
+    @Override
+    public DataTransactionResult undo(DataTransactionResult result) {
+        return getExtent().undo(getBlockPosition(), result);
+    }
+
+    @Override
+    public boolean supports(Class<? extends DataManipulator<?, ?>> holderClass) {
+        return getExtent().supports(getBlockPosition(), holderClass);
     }
 
     @Override
     public boolean supports(Key<?> key) {
-        return false;
+        return getExtent().supports(getBlockPosition(), key);
     }
 
     @Override
-    public boolean canMutate() {
-        return false;
+    public boolean supports(BaseValue<?> baseValue) {
+        return getExtent().supports(getBlockPosition(), baseValue);
+    }
+
+    @Override
+    public <E> DataTransactionResult transform(Key<? extends BaseValue<E>> key, Function<E, E> function) {
+        return getExtent().transform(getBlockPosition(), key, function);
+    }
+
+    @Override
+    public DataTransactionResult copyFrom(DataHolder that) {
+        return getExtent().copyFrom(getBlockPosition(), that);
+    }
+
+    @Override
+    public DataTransactionResult copyFrom(DataHolder that, MergeFunction strategy) {
+        return getExtent().copyFrom(getBlockPosition(), that, strategy);
+    }
+
+    @Override
+    public Collection<DataManipulator<?, ?>> getContainers() {
+        return getExtent().getManipulators(getBlockPosition());
+    }
+
+    @Override
+    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
+        return getExtent().getValue(getBlockPosition(), key);
     }
 
     @Override
     public DataHolder copy() {
-        return null;
+        return new Location(this.extent, getPosition());
     }
 
     @Override
-    public DataHolder copyTo(ValueStore<?> that) {
-        return null;
+    public ImmutableSet<Key<?>> getKeys() {
+        return getExtent().getKeys(getBlockPosition());
     }
 
     @Override
-    public DataHolder copyFrom(ValueStore<?> that) {
-        return null;
-    }
-
-    @Override
-    public DataHolder copyTo(ValueStore<?> that, MergeStrategy strategy) {
-        return null;
-    }
-
-    @Override
-    public DataHolder copyFrom(ValueStore<?> that, MergeStrategy strategy) {
-        return null;
-    }
-
-    @Override
-    public <T extends ValueStore<T>> Optional<T> copyOf() {
-        return null;
-    }
-
-    @Override
-    public Set<Key<?>> getKeys() {
-        return null;
-    }
-
-    @Override
-    public Set<Value<?, DataHolder>> getValues() {
-        return null;
+    public ImmutableSet<ImmutableValue<?>> getValues() {
+        return getExtent().getValues(getBlockPosition());
     }
 
     @Override

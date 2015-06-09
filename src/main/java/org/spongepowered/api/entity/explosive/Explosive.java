@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.explosive;
 
-import org.spongepowered.api.data.manipulator.entity.ExplosiveRadiusData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExplosiveRadiusData;
 import org.spongepowered.api.entity.Entity;
 
 /**

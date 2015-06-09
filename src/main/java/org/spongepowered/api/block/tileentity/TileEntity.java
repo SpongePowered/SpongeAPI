@@ -26,8 +26,8 @@ package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -42,7 +42,7 @@ import org.spongepowered.api.world.Location;
  * <p>Since a {@link TileEntity} is performing various actions, all methods
  * that are purely functional methods reside in the {@link TileEntity}, whereas
  * customizable data associated with a {@link TileEntity} is represented by
- * {@link org.spongepowered.api.data.DataManipulator}.</p>
+ * {@link DataManipulator}.</p>
  */
 public interface TileEntity extends DataHolder, DataSerializable {
 
@@ -93,9 +93,11 @@ public interface TileEntity extends DataHolder, DataSerializable {
     Location getBlock();
 
     /**
-     * Gets a copy of the underlying data of this {@link TileEntity} or {@link Optional#absent()} if none available.
-     * @return The data
+     * Gets a copy of the underlying data of this {@link TileEntity} or
+     * {@link Optional#absent()} if none available.
+     *
+     * @return The data, if available
      */
-    Optional<? extends DataManipulator<?>> getData();
+    Optional<? extends DataManipulator<?, ?>> getData();
 
 }

@@ -32,7 +32,7 @@ import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
@@ -167,7 +167,7 @@ public class SpongeEventFactoryTest {
             when(mock.copy()).thenAnswer(answer);
             return mock;
         } else if (DataManipulator.class.isAssignableFrom(paramType)) {
-            DataManipulator<?> mock = (DataManipulator) mock(paramType);
+            DataManipulator<?, ?> mock = (DataManipulator) mock(paramType);
 
             final Answer<Object> answer = new Answer<Object>() {
                 @Override

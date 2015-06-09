@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.data.manipulator.MobSpawnerData;
+import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 
 /**
  * Represents a Minecart with a MobSpawner inside it.

@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.item.EnchantmentData;
+import org.spongepowered.api.data.manipulator.mutable.item.EnchantmentData;
 
 /**
  * Represents an Enchantment Table.

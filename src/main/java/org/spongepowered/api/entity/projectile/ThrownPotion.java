@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.manipulator.RepresentedItemData;
+import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 
 /**
  * Represents a thrown potion.

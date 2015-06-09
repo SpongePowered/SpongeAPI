@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.entity.player;
 
-import org.spongepowered.api.data.manipulator.DisplayNameData;
-import org.spongepowered.api.data.manipulator.entity.GameModeData;
-import org.spongepowered.api.data.manipulator.entity.JoinData;
+import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
+import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
+import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;

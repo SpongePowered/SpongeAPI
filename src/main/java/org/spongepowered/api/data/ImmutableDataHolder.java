@@ -24,17 +24,26 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableCollection;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValueStore;
 
 /**
- * Represents an immutable variant of the {@link DataHolder} where once built,
- * the {@link ImmutableDataHolder} can not be modified.
+ * A type of {@link DataHolder} variant that is completely immutable once
+ * constructed. The advantage of an {@link ImmutableDataHolder} is that it can
+ * be processed without worry of mutating any existing {@link BaseValue}s
+ * belonging to this {@link ImmutableDataHolder}. It should be considered that
+ * an {@link ImmutableDataHolder} is considered "safe" to process
+ * asynchronously as all {@link BaseValue}s are copied into
+ * {@link ImmutableValue} counterparts.
  *
  * @see DataHolder
  * @param <T> The sub type of immutable data holder
  */
-public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable {
+public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable,
+                                                                               ImmutableValueStore<T, ImmutableDataManipulator<?, ?>> {
 
     /**
      * Get a copy of all properties defined on this
@@ -42,46 +51,6 @@ public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends D
      *
      * @return A collection of all known manipulators
      */
-    ImmutableCollection<DataManipulator<?>> getManipulators();
-
-    /**
-     * Gets an instance of the given data class for this
-     * {@link ImmutableDataHolder}.
-     *
-     * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
-     * </p>
-     *
-     * @param manipulatorClass The data class
-     * @param <M> The type of data
-     * @return An instance of the class, if not available
-     */
-    <M extends DataManipulator<M>> Optional<M> getManipulator(Class<M> manipulatorClass);
-
-    /**
-     * Gets an altered copy of this {@link ImmutableDataHolder} with the given
-     * {@link DataManipulator} modified data. If the data is not compatible for
-     * any reason, {@link Optional#absent()} is returned.
-     *
-     * <p>This does not alter the current {@link ImmutableDataHolder}.</p>
-     *
-     * @param manipulator The new manipulator containing data
-     * @param <M> The type of data manipulator
-     * @return A new immutable data holder with the given manipulator
-     */
-    <M extends DataManipulator<M>> Optional<T> withData(M manipulator);
-
-    /**
-     * Gets an altered copy of this {@link ImmutableDataHolder} without the
-     * given {@link DataManipulator}. If the data represented by the
-     * manipulator can not exist without a "default state" of the
-     * {@link DataManipulator}, the {@link DataManipulator} is reset to the
-     * "default" state.
-     *
-     * @param manipulator The manipulator class to remove
-     * @param <M> The manipulator type
-     * @return A new immutable data holder without the given manipulator
-     */
-    <M extends DataManipulator<M>> Optional<T> withoutData(Class<M> manipulator);
+    ImmutableCollection<ImmutableDataManipulator<?, ?>> getManipulators();
 
 }

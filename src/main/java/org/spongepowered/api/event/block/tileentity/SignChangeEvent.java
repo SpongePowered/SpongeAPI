@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 
 /**
  * An event when a {@link Sign} is changed.

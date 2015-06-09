@@ -27,7 +27,7 @@ package org.spongepowered.api.entity;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.manipulator.TargetedLocationData;
+import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;

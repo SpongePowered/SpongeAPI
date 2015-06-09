@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 
 /**
  * Represents a sign.

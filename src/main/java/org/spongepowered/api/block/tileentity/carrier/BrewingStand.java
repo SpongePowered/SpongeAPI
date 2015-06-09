@@ -25,7 +25,7 @@
 package org.spongepowered.api.block.tileentity.carrier;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.manipulator.tileentity.BrewingData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingData;
 
 /**
  * Represents a Brewing Stand.

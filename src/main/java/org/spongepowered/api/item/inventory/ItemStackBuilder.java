@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.item.ItemType;
 
 /**
@@ -50,13 +51,23 @@ public interface ItemStackBuilder {
     ItemStackBuilder quantity(int quantity) throws IllegalArgumentException;
 
     /**
-     * Sets the {@link DataManipulator} to add to the item stack.
+     * Sets the {@link DataManipulator} to add to the {@link ItemStack}.
      *
      * @param itemData The item data to set
      * @return This builder, for chaining
      * @throws IllegalArgumentException If the item data is incompatible with the item
      */
-    ItemStackBuilder itemData(DataManipulator<?> itemData) throws IllegalArgumentException;
+    ItemStackBuilder itemData(DataManipulator<?, ?> itemData) throws IllegalArgumentException;
+
+    /**
+     * Sets the {@link ImmutableDataManipulator} to add to the
+     * {@link ItemStack}.
+     *
+     * @param itemData The item data to set
+     * @return This builder, for chaining
+     * @throws IllegalArgumentException If the item data is incompatible
+     */
+    ItemStackBuilder itemData(ImmutableDataManipulator<?, ?> itemData) throws IllegalArgumentException;
 
     /**
      * Sets all the settings in this builder from the item stack blueprint.

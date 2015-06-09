@@ -24,302 +24,562 @@
  */
 package org.spongepowered.api.data.key;
 
-import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.manipulator.block.*;
-import org.spongepowered.api.data.merge.MergeStrategy;
-import org.spongepowered.api.data.type.*;
-import org.spongepowered.api.data.value.MapValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.ValueStore;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.service.persistence.InvalidDataException;
+import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.data.DataQuery;
+import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
+import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
+import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
+import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomData;
+import org.spongepowered.api.data.manipulator.mutable.block.BrickData;
+import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
+import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
+import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
+import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
+import org.spongepowered.api.data.manipulator.mutable.block.DirtData;
+import org.spongepowered.api.data.manipulator.mutable.block.DisarmedData;
+import org.spongepowered.api.data.manipulator.mutable.block.DisguisedBlockData;
+import org.spongepowered.api.data.manipulator.mutable.block.DoublePlantData;
+import org.spongepowered.api.data.manipulator.mutable.block.DropData;
+import org.spongepowered.api.data.manipulator.mutable.block.ExtendedData;
+import org.spongepowered.api.data.manipulator.mutable.block.FilledData;
+import org.spongepowered.api.data.manipulator.mutable.block.FluidLevelData;
+import org.spongepowered.api.data.manipulator.mutable.block.GrowthData;
+import org.spongepowered.api.data.manipulator.mutable.block.HingeData;
+import org.spongepowered.api.data.manipulator.mutable.block.InWallData;
+import org.spongepowered.api.data.manipulator.mutable.block.InstrumentData;
+import org.spongepowered.api.data.manipulator.mutable.block.LayeredData;
+import org.spongepowered.api.data.manipulator.mutable.block.MoistureData;
+import org.spongepowered.api.data.manipulator.mutable.block.OccupiedData;
+import org.spongepowered.api.data.manipulator.mutable.block.OpenData;
+import org.spongepowered.api.data.manipulator.mutable.block.PistonData;
+import org.spongepowered.api.data.manipulator.mutable.block.PlantData;
+import org.spongepowered.api.data.manipulator.mutable.block.PortionData;
+import org.spongepowered.api.data.manipulator.mutable.block.PoweredData;
+import org.spongepowered.api.data.manipulator.mutable.block.PrismarineData;
+import org.spongepowered.api.data.manipulator.mutable.block.QuartzData;
+import org.spongepowered.api.data.manipulator.mutable.block.RailDirectionData;
+import org.spongepowered.api.data.manipulator.mutable.block.RedstonePoweredData;
+import org.spongepowered.api.data.manipulator.mutable.block.SandData;
+import org.spongepowered.api.data.manipulator.mutable.block.SandstoneData;
+import org.spongepowered.api.data.manipulator.mutable.block.SeamlessData;
+import org.spongepowered.api.data.manipulator.mutable.block.ShrubData;
+import org.spongepowered.api.data.manipulator.mutable.block.SlabData;
+import org.spongepowered.api.data.manipulator.mutable.block.SnowedData;
+import org.spongepowered.api.data.manipulator.mutable.block.StairShapeData;
+import org.spongepowered.api.data.manipulator.mutable.block.StoneData;
+import org.spongepowered.api.data.manipulator.mutable.block.SuspendedData;
+import org.spongepowered.api.data.manipulator.mutable.block.TreeData;
+import org.spongepowered.api.data.manipulator.mutable.block.WallData;
+import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
+import org.spongepowered.api.data.type.BigMushroomType;
+import org.spongepowered.api.data.type.BrickType;
+import org.spongepowered.api.data.type.ComparatorType;
+import org.spongepowered.api.data.type.DirtType;
+import org.spongepowered.api.data.type.DisguisedBlockType;
+import org.spongepowered.api.data.type.DoublePlantType;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.type.Hinge;
+import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.LogAxis;
+import org.spongepowered.api.data.type.PistonType;
+import org.spongepowered.api.data.type.PlantType;
+import org.spongepowered.api.data.type.PortionType;
+import org.spongepowered.api.data.type.PrismarineType;
+import org.spongepowered.api.data.type.QuartzType;
+import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SandType;
+import org.spongepowered.api.data.type.SandstoneType;
+import org.spongepowered.api.data.type.ShrubType;
+import org.spongepowered.api.data.type.SkullType;
+import org.spongepowered.api.data.type.SlabType;
+import org.spongepowered.api.data.type.StairShape;
+import org.spongepowered.api.data.type.StoneType;
+import org.spongepowered.api.data.type.TreeType;
+import org.spongepowered.api.data.type.WallType;
+import org.spongepowered.api.data.type.WireAttachmentType;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.data.value.mutable.SetValue;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.WeightedEntityCollectionValue;
+import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.merchant.TradeOffer;
+import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.util.RelativePositions;
+import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.util.weighted.WeightedEntity;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.gen.populator.DoublePlant;
 
-import javax.annotation.Nullable;
-import java.util.*;
+import java.awt.Color;
+import java.util.List;
+import java.util.UUID;
 
+/**
+ * An enumeration of known {@link Key}s used throughout the API.
+ */
 public final class Keys {
+
+    public static final Key<Value<String>> COMMAND = null;
+    public static final Key<Value<Integer>> SUCCESS_COUNT = null;
+    public static final Key<Value<Boolean>> TRACKS_OUTPUT = null;
+    public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = null;
+    public static final Key<Value<Color>> COLOR = null;
+    public static final Key<ListValue<Text>> SIGN_LINES = null;
+    public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = null;
+    public static final Key<Value<Text>> DISPLAY_NAME = null;
+    public static final Key<Value<Boolean>> SHOWS_DISPLAY_NAME = null;
+    public static final Key<Value<DyeColor>> DYE_COLOR = null;
+    public static final Key<BoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = null;
+    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQURED_PLAYER_RANGE = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = null;
+    public static final Key<MobSpawnerData.NextEntityToSpawnValue> SPAWNER_NEXT_ENTITY_TO_SPAWN = null;
+    public static final Key<WeightedEntityCollectionValue> SPAWNER_ENTITIES = null;
+    public static final Key<Value<GameProfile>> OWNED_BY_PROFILE = null;
+    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = null;
+    public static final Key<Value<ItemStack>> REPRESENTED_ITEM = null;
+    public static final Key<Value<Rotation>> ROTATION = null;
+    public static final Key<Value<SkullType>> SKULL_TYPE = null;
+    public static final Key<Value<Location>> TARGETED_LOCATION = null;
+    public static final Key<Value<Boolean>> IS_WET = null;
+    public static final Key<Value<LogAxis>> LOG_AXIS = null;
+    public static final Key<MutableBoundedValue<Double>> HEALTH = null;
+    public static final Key<MutableBoundedValue<Double>> MAX_HEALTH = null;
+    public static final Key<Value<UUID>> SKIN = null;
+    public static final Key<Value<PotionEffectType>> BEACON_PRIMARY_EFFECT = null;
+    public static final Key<Value<PotionEffectType>> BEACON_SECONDARY_EFFECT = null;
+
     private Keys() {}
 
     /**
+     * Represents the {@link Key} for representing whether a {@link BlockState}
+     * is "attached" to another block.
+     *
      * @see AttachedData#attached()
      */
-    public static final UniKey<Boolean> ATTACHED = null;
+    public static final Key<Value<Boolean>> ATTACHED = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link Axis} direction
+     * of a {@link BlockState}.
+     *
      * @see AxisData#axis()
      */
-    public static final UniKey<Axis> AXIS = null;
+    public static final Key<Value<Axis>> AXIS = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see BigMushroomData#type()
      */
-    public static final UniKey<BigMushroomType> BIG_MUSHROOM_TYPE = null;
+    public static final Key<Value<BigMushroomType>> BIG_MUSHROOM_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see BrickData#type()
      */
-    public static final UniKey<BrickType> BRICK_TYPE = null;
+    public static final Key<Value<BrickType>> BRICK_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ComparatorData#type()
      */
-    public static final UniKey<ComparatorData> COMPARATOR_TYPE = null;
+    public static final Key<Value<ComparatorType>> COMPARATOR_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ConnectedDirectionData#connectedDirections()
      */
-    public static final UniKey<Set<Direction>> CONNECTED_DIRECTIONS = null;
+    public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ConnectedDirectionData#connectedNorth()
      */
-    public static final UniKey<Boolean> CONNECTED_NORTH = null;
+    public static final Key<Value<Boolean>> CONNECTED_NORTH = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ConnectedDirectionData#connectedSouth()
      */
-    public static final UniKey<Boolean> CONNECTED_SOUTH = null;
+    public static final Key<Value<Boolean>> CONNECTED_SOUTH = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ConnectedDirectionData#connectedEast()
      */
-    public static final UniKey<Boolean> CONNECTED_EAST = null;
+    public static final Key<Value<Boolean>> CONNECTED_EAST = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ConnectedDirectionData#connectedWest()
      */
-    public static final UniKey<Boolean> CONNECTED_WEST = null;
+    public static final Key<Value<Boolean>> CONNECTED_WEST = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see DecayableData#decayable()
      */
-    public static final UniKey<Boolean> DECAYABLE = null;
+    public static final Key<Value<Boolean>> DECAYABLE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see DirectionalData#direction()
      */
-    public static final UniKey<Direction> DIRECTION = null;
+    public static final Key<Value<Direction>> DIRECTION = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see DirtData#type()
      */
-    public static final UniKey<DirtType> DIRT_TYPE = null;
+    public static final Key<Value<DirtType>> DIRT_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see DisarmedData#disarmed()
      */
-    public static final UniKey<Boolean> DISARMED = null;
+    public static final Key<Value<Boolean>> DISARMED = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see DisguisedBlockData#type()
      */
-    public static final UniKey<DisguisedBlockType> DISGUISED_BLOCK_TYPE = null;
+    public static final Key<Value<DisguisedBlockType>> DISGUISED_BLOCK_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see DoublePlantData#type()
      */
-    public static final UniKey<DoublePlantType> DOUBLE_PLANT_TYPE = null;
+    public static final Key<Value<DoublePlantType>> DOUBLE_PLANT_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see DropData#willDrop()
      */
-    public static final UniKey<Boolean> SHOULD_DROP = null;
+    public static final Key<Value<Boolean>> SHOULD_DROP = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ExtendedData#extended()
      */
-    public static final UniKey<Boolean> EXTENDED = null;
+    public static final Key<Value<Boolean>> EXTENDED = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see FilledData#filled()
      */
-    public static final UniKey<Boolean> FILLED = null;
+    public static final Key<Value<Boolean>> FILLED = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see FluidLevelData#level()
      */
-    public static final UniKey<Integer> FLUID_LEVEL = null;
+    public static final Key<MutableBoundedValue<Integer>> FLUID_LEVEL = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see GrowthData#growthStage()
      */
-    public static final UniKey<Integer> GROWTH_STAGE = null;
+    public static final Key<Value<Integer>> GROWTH_STAGE = null;
 
     /**
-     * @see HingeData#position()
+     * Represents the {@link Key} for representing the {@link Hinge}
+     * of a {@link BlockState}.
+     *
+     * @see HingeData#type()
      */
-    public static final UniKey<Hinge> HINGE_POSITION = null;
+    public static final Key<Value<Hinge>> HINGE_POSITION = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link InstrumentType}
+     * of a {@link BlockState}.
+     *
      * @see InstrumentData#type()
      */
-    public static final UniKey<InstrumentType> INSTRUMENT_TYPE = null;
+    public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see InWallData#inWall()
      */
-    public static final UniKey<Boolean> IN_WALL = null;
+    public static final Key<Value<Boolean>> IN_WALL = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see LayeredData#layer()
      */
-    public static final UniKey<Integer> LAYER = null;
+    public static final Key<Value<Integer>> LAYER = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see MoistureData#moisture()
      */
-    public static final UniKey<Integer> MOISTURE = null;
+    public static final Key<Value<Integer>> MOISTURE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see OccupiedData#occupied()
      */
-    public static final UniKey<Boolean> OCCUPIED = null;
+    public static final Key<Value<Boolean>> OCCUPIED = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see OpenData#open()
      */
-    public static final UniKey<Boolean> OPEN = null;
+    public static final Key<Value<Boolean>> OPEN = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see PistonData#type()
      */
-    public static final UniKey<PistonType> PISTON_TYPE = null;
+    public static final Key<Value<PistonType>> PISTON_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see PlantData#type()
      */
-    public static final UniKey<PlantType> PLANT_TYPE = null;
+    public static final Key<Value<PlantType>> PLANT_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see PortionData#type()
      */
-    public static final UniKey<PortionType> PORTION_TYPE = null;
+    public static final Key<Value<PortionType>> PORTION_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see PoweredData#powered()
      */
-    public static final UniKey<Boolean> POWERED = null;
+    public static final Key<Value<Boolean>> POWERED = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see PrismarineData#type()
      */
-    public static final UniKey<PrismarineType> PRISMARINE_TYPE = null;
+    public static final Key<Value<PrismarineType>> PRISMARINE_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see QuartzData#type()
      */
-    public static final UniKey<QuartzType> QUARTZ_TYPE = null;
+    public static final Key<Value<QuartzType>> QUARTZ_TYPE = null;
 
     /**
-     * @see RailDirectionData#railDirection()
+     * Represents the {@link Key} for representing the {@link RailDirection}
+     * of a {@link BlockState}.
+     *
+     * @see RailDirectionData#type()
      */
-    public static final UniKey<RailDirection> RAIL_DIRECTION = null;
+    public static final Key<Value<RailDirection>> RAIL_DIRECTION = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see RedstonePoweredData#power()
      */
-    public static final UniKey<Integer> POWER = null;
+    public static final Key<MutableBoundedValue<Integer>> POWER = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see SandData#type()
      */
-    public static final UniKey<SandType> SAND_TYPE = null;
+    public static final Key<Value<SandType>> SAND_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see SandstoneData#type()
      */
-    public static final UniKey<SandstoneType> SANDSTONE_TYPE = null;
+    public static final Key<Value<SandstoneType>> SANDSTONE_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see SeamlessData#seamless()
      */
-    public static final UniKey<Boolean> SEAMLESS = null;
+    public static final Key<Value<Boolean>> SEAMLESS = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see ShrubData#type()
      */
-    public static final UniKey<ShrubType> SHRUB_TYPE = null;
+    public static final Key<Value<ShrubType>> SHRUB_TYPE = null;
 
     /**
-     * @see SignalOutputData#signalOutput()
-     */
-    public static final UniKey<Integer> SIGNAL_OUTPUT = null;
-
-    /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see SlabData#type()
      */
-    public static final UniKey<SlabType> SLAB_TYPE = null;
+    public static final Key<Value<SlabType>> SLAB_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see SnowedData#hasSnow()
      */
-    public static final UniKey<Boolean> HAS_SNOW = null;
+    public static final Key<Value<Boolean>> SNOWED = null;
 
     /**
-     * @see StairShapeData#shape()
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
+     * @see StairShapeData#type()
      */
-    public static final UniKey<StairShape> STAIR_SHAPE = null;
+    public static final Key<Value<StairShape>> STAIR_SHAPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see StoneData#type()
      */
-    public static final UniKey<StoneType> STONE_TYPE = null;
+    public static final Key<Value<StoneType>> STONE_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see SuspendedData#suspended()
      */
-    public static final UniKey<Boolean> SUSPENDED = null;
+    public static final Key<Value<Boolean>> SUSPENDED = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link TreeType}
+     * of a {@link BlockState}.
+     *
      * @see TreeData#type()
      */
-    public static final UniKey<TreeType> TREE_TYPE = null;
+    public static final Key<Value<TreeType>> TREE_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link WallType}
+     * of a {@link BlockState}.
+     *
      * @see WallData#type()
      */
-    public static final UniKey<WallType> WALL_TYPE = null;
+    public static final Key<Value<WallType>> WALL_TYPE = null;
 
     /**
-     * @see WireAttachmentData#wireAttachment()
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
+     * @see WireAttachmentData#wireAttachments()
      */
-    public static final Key<MapValue<Direction, WireAttachmentType, ?>> WIRE_ATTACHMENTS = null;
-
-    static {
-        Entity e = null;
-        Map<Direction, WireAttachmentType> justMap = e.get(WIRE_ATTACHMENTS).get();
-        MapValue<Direction, WireAttachmentType, ?> mapValue = e.bind(WIRE_ATTACHMENTS).get();
-    }
+    public static final Key<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENTS = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link WireAttachmentType}
+     * of a {@link BlockState}.
+     *
      * @see WireAttachmentData#wireAttachmentNorth()
      */
-    public static final UniKey<WireAttachmentType> WIRE_ATTACHMENT_NORTH = null;
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_NORTH = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link WireAttachmentType}
+     * of a {@link BlockState}.
+     *
      * @see WireAttachmentData#wireAttachmentNorth()
      */
-    public static final UniKey<WireAttachmentType> WIRE_ATTACHMENT_SOUTH = null;
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see WireAttachmentData#wireAttachmentNorth()
      */
-    public static final UniKey<WireAttachmentType> WIRE_ATTACHMENT_EAST = null;
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link BigMushroomType}
+     * of a {@link BlockState}.
+     *
      * @see WireAttachmentData#wireAttachmentNorth()
      */
-    public static final UniKey<WireAttachmentType> WIRE_ATTACHMENT_WEST = null;
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = null;
 
 }

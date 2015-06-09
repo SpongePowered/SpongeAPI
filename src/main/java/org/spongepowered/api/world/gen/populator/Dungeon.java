@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import org.spongepowered.api.data.manipulator.MobSpawnerData;
+import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.util.weighted.WeightedCollection;
 import org.spongepowered.api.util.weighted.WeightedEntity;
 import org.spongepowered.api.util.weighted.WeightedItem;
