@@ -1475,6 +1475,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("entity", player);
         values.put("respawnLocation", respawnLocation);
+        values.put("newRespawnLocation", respawnLocation);
         values.put("bedSpawn", bedSpawn);
         values.put("user", player);
         return createEvent(PlayerRespawnEvent.class, values);
