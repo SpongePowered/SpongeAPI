@@ -478,7 +478,7 @@ public final class Location implements DataHolder {
      *
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    public byte getLuminance() {
+    public int getLuminance() {
         return getExtent().getLuminance(getBlockPosition());
     }
 
@@ -490,7 +490,7 @@ public final class Location implements DataHolder {
      *
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    public byte getLuminanceFromSky() {
+    public int getLuminanceFromSky() {
         return getExtent().getLuminanceFromSky(getBlockPosition());
     }
 
@@ -502,7 +502,7 @@ public final class Location implements DataHolder {
      *
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    public byte getLuminanceFromGround() {
+    public int getLuminanceFromGround() {
         return getExtent().getLuminanceFromGround(getBlockPosition());
     }
 
