@@ -39,6 +39,15 @@ public interface Platform {
     Type getType();
 
     /**
+     * Retrieves the current {@link Type} the platform is executing on.
+     * <p>
+     * A Minecraft instance will have a client and server thread. If the server is executing, this will return
+     * Type.SERVER but {@link Platform#getType()} would return Type.CLIENT
+     * @return The execution type
+     */
+    Type getExecutionType();
+
+    /**
      * Retrieves the current platform name.
      *
      * @return The platform name
