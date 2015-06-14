@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,34 +24,24 @@
  */
 package org.spongepowered.api.entity.projectile.explosive;
 
+import org.spongepowered.api.data.manipulators.entities.DamagingData;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents a {@link DamagingProjectile} which is also an {@link Explosive}.
+ * Represents a {@link Projectile} which is also an {@link Explosive}.
  */
-public interface ExplosiveProjectile extends DamagingProjectile, Explosive {
+public interface ExplosiveProjectile extends Projectile, Explosive {
 
     /**
-     * Gets the explosion power of this explosive projectile.
+     * Gets the damaging data for this {@link ExplosiveProjectile}.
      *
-     * <p>Explosion power must be equal to or greater than zero. Explosion
-     * power defines the amount of block damage an explosive projectile will do upon
-     * exploding.</p>
+     * <p>The damaging data defines how much damage the projectile will deal
+     * upon hitting an {@link Entity}, before the explosion.</p>
      *
-     * @return The explosion power
+     * @return A copy of the damaging data
      */
-    int getExplosionPower();
-
-    /**
-     * Sets the explosion power of this Large Fireball.
-     *
-     * <p>Explosion power must be equal to or greater than zero. Explosion
-     * power defines the amount of block damage an explosive projectile will do upon
-     * exploding.</p>
-     *
-     * @param explosionPower The explosion power
-     */
-    void setExplosionPower(int explosionPower);
+    DamagingData getDamagingData();
 
 }

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
@@ -181,14 +180,16 @@ public interface WorldBorder {
     void setDamageThreshold(double distance);
 
     /**
-     * Get the damage done to a player per second when outside the buffer.
+     * Get the damage done to a player per block per tick when outside the
+     * buffer.
      *
      * @return The damage amount
      */
     int getDamageAmount();
 
     /**
-     * Set the damage done to a player per second when outside the buffer.
+     * Set the damage done to a player per block per tick when outside the
+     * buffer.
      *
      * @param damage The damage amount
      */

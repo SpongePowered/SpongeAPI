@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import org.spongepowered.api.service.persistence.data.DataView;
+import org.spongepowered.api.data.DataView;
 
 /**
- * An exception that occurs when a {@link DataSerializableBuilder} or
+ * An exception that occurs when a {@link DataBuilder} or
  * {@link DataSource} is unable to handle an operation, which can include:
- * {@link DataSerializableBuilder#build(DataView)}, {@link DataSource#deserialize()},
+ * {@link DataBuilder#build(DataView)}, {@link DataSource#deserialize()},
  * etc.
  */
 public class InvalidDataException extends UnsupportedOperationException {
@@ -37,18 +37,39 @@ public class InvalidDataException extends UnsupportedOperationException {
     private static final long serialVersionUID = -754482190837922531L;
 
     /**
-     * Creates a new {@link InvalidDataException} with no message.
+     * Constructs a new {@link InvalidDataException}.
      */
     public InvalidDataException() {
         super();
     }
 
     /**
-     * Creates a new {@link InvalidDataException} with a message.
+     * Constructs a new {@link InvalidDataException} with a message.
      *
      * @param message The message to display with the exception
      */
     public InvalidDataException(String message) {
         super(message);
+    }
+
+    /**
+     * Constructs a new {@link InvalidDataException} with the specified message and
+     * cause.
+     *
+     * @param message The exception message
+     * @param cause The cause of this exception
+     */
+    public InvalidDataException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructs a new {@link InvalidDataException} with the specified cause and a
+     * null message.
+     *
+     * @param cause The cause of this exception
+     */
+    public InvalidDataException(Throwable cause) {
+        super(cause);
     }
 }

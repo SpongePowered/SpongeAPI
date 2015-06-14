@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.data.manipulators.CommandData;
 import org.spongepowered.api.util.command.source.CommandBlockSource;
 
 /**
@@ -32,31 +33,11 @@ import org.spongepowered.api.util.command.source.CommandBlockSource;
 public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
 
     /**
-     * Gets the current command within this command minecart.
+     * Gets a copy of the {@link CommandData} represented by this
+     * {@link MinecartCommandBlock}.
      *
-     * @return The current command stored
+     * @return A copy of the command data
      */
-    String getCommand();
+    CommandData getCommandData();
 
-    /**
-     * Sets the stored command within this command minecart.
-     *
-     * @param command The command
-     */
-    void setCommand(String command);
-
-    /**
-     * Gets the current custom name of this command minecart.
-     *
-     * @return The current command name
-     */
-    String getCommandName();
-
-    /**
-     * Sets the custom command name of this command minecart.
-     * <p>Setting the name to null may default to "@".</p>
-     *
-     * @param name The custom name
-     */
-    void setCommandName(String name);
 }

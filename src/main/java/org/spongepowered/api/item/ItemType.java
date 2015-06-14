@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,18 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.item;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.properties.ItemProperty;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of item.
  */
-public interface ItemType extends Translatable {
+@CatalogedBy(ItemTypes.class)
+public interface ItemType extends CatalogType, Translatable {
 
     /**
      * Gets the id of this item.
@@ -43,7 +45,8 @@ public interface ItemType extends Translatable {
      *
      * @return The id
      */
-    String getId();
+    @Override
+    String getName();
 
     /**
      * Get the default maximum quantity for
@@ -54,7 +57,7 @@ public interface ItemType extends Translatable {
     int getMaxStackQuantity();
 
     /**
-     * Gets the default {@link ItemProperty} of this {@link ItemType}.
+     * Gets the default {@link Property} of this {@link ItemType}.
      *
      * <p>While item stacks do have properties, generally, there is an
      * intrinsic default property for many item types. However, it should be
@@ -67,6 +70,6 @@ public interface ItemType extends Translatable {
      * @param <T> The type of item property
      * @return The item property, if available
      */
-    <T extends ItemProperty<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
+    <T extends Property<?, ?>> Optional<T> getDefaultProperty(Class<T> propertyClass);
 
 }

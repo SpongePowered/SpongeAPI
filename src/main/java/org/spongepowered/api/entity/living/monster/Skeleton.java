@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.manipulators.entities.SkeletonData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
@@ -34,21 +34,11 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 public interface Skeleton extends Monster, ArmorEquipable, ProjectileSource {
 
     /**
-     * Gets the current skeleton type for this skeleton.
-     * <p>A Skeleton type may change the rendering to a client and also
-     * introduce a change in the items this skeleton can pick up and equip.</p>
+     * Gets the current {@link SkeletonData} represented by this
+     * {@link Skeleton}.
      *
-     * @return The current skeleton type
+     * @return A copy of the current skeleton data
      */
-    SkeletonType getSkeletonType();
-
-    /**
-     * Sets the new skeleton type for this skeleton.
-     * <p>A Skeleton type may change the rendering to a client and also
-     * introduce a change in the items this skeleton can pick up and equip.</p>
-     *
-     * @param skeletonType The new skeleton type
-     */
-    void setSkeletonType(SkeletonType skeletonType);
+    SkeletonData getSkeletonData();
 
 }

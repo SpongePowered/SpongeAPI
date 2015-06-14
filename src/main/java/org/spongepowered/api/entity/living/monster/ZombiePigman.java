@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,30 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.monster;
 
 /**
  * Represents a Zombie Pigman.
  */
 public interface ZombiePigman extends Zombie {
-
-    /**
-     * Gets the current anger level.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
-     *
-     * @return The current anger level for this zombie pigman
-     */
-    int getAngerLevel();
-
-    /**
-     * Sets the anger level for this zombie pigman.
-     * <p>Angry Zombie Pigmen may attempt to start attacking nearby
-     * entities.</p>
-     *
-     * @param angerLevel The new anger level
-     */
-    void setAngerLevel(int angerLevel);
 
 }

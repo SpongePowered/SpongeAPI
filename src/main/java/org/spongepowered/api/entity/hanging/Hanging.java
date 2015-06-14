@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,27 +24,19 @@
  */
 package org.spongepowered.api.entity.hanging;
 
+import org.spongepowered.api.data.manipulators.blocks.DirectionalData;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.Direction;
 
 /**
- * Represents a hanging entity, such as a {@link org.spongepowered.api.entity.hanging.Painting}.
+ * Represents a hanging entity, such as a {@link Painting}.
  */
 public interface Hanging extends Entity {
 
     /**
-     * Gets the facing direction of this hanging entity.
+     * Gets a copy of the {@link DirectionalData} being used for this
+     * {@link Hanging} entity.
      *
-     * @return The facing direction
+     * @return A copy of the directional data
      */
-    Direction getHangingDirection();
-
-    /**
-     * Sets the facing direction of this entity.
-     *
-     * @param direction The direction to face
-     * @param forced Whether physics is ignored
-     */
-    void setHangingDirection(Direction direction, boolean forced);
-
+    DirectionalData getDirectionalData();
 }

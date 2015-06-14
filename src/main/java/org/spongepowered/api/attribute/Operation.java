@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,21 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.attribute;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a function used by an {@link AttributeModifier} to modify the
  * value of an {@link Attribute}.
  */
-public interface Operation extends Comparable<Operation> {
-
-    /**
-     * Gets the name of this operation.
-     *
-     * @return The name of this operation
-     */
-    String getName();
+@CatalogedBy(Operations.class)
+public interface Operation extends CatalogType, Comparable<Operation> {
 
     /**
      * Gets the amount the {@link Attribute} should be incremented when this

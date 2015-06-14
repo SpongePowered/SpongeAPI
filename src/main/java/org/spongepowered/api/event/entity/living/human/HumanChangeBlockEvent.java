@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.event.entity.living.LivingChangeBlockEvent;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Human} changes a {@link BlockLoc}.
+ * Called when a {@link Human} changes a {@link Location}.
  */
 public interface HumanChangeBlockEvent extends HumanEvent, LivingChangeBlockEvent {
 

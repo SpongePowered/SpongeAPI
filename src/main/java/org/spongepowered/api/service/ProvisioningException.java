@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -38,31 +37,30 @@ public class ProvisioningException extends RuntimeException {
     private final Class<?> service;
 
     /**
-     * Constructs a new provisioning exception for the specified service with a
-     * null message and a null cause.
+     * Constructs a new {@link ProvisioningException} for the specified service.
      *
      * @param service The service requested
      */
     public ProvisioningException(Class<?> service) {
-        checkNotNull(service);
-        this.service = service;
+        super();
+        this.service = checkNotNull(service);
     }
 
     /**
-     * Constructs a new provisioning exception for the specified service with
-     * the specified message and a null cause.
+     * Constructs a new {@link ProvisioningException} for the specified service with
+     * the specified message.
      *
      * @param message The exception message
      * @param service The service requested
      */
     public ProvisioningException(String message, Class<?> service) {
         super(message);
-        checkNotNull(service);
+        checkNotNull(service, "service");
         this.service = service;
     }
 
     /**
-     * Constructs a new provisioning exception for the specified service with
+     * Constructs a new {@link ProvisioningException} for the specified service with
      * the specified service and cause.
      *
      * @param message The exception message
@@ -71,12 +69,12 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(String message, Throwable cause, Class<?> service) {
         super(message, cause);
-        checkNotNull(service);
+        checkNotNull(service, "service");
         this.service = service;
     }
 
     /**
-     * Constructs a new provisioning exception for the specified service with
+     * Constructs a new {@link ProvisioningException} for the specified service with
      * the specified cause and a null message.
      *
      * @param cause The cause of this exception
@@ -84,7 +82,7 @@ public class ProvisioningException extends RuntimeException {
      */
     public ProvisioningException(Throwable cause, Class<?> service) {
         super(cause);
-        checkNotNull(service);
+        checkNotNull(service, "service");
         this.service = service;
     }
 

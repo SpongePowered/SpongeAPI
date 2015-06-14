@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,11 +25,11 @@
 package org.spongepowered.api.item.inventory.properties;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.item.inventory.InventoryProperty;
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Coerce;
 
 /**
- * Property for inventories of a particular size. For example to allow querying
+ * property for inventories of a particular size. For example to allow querying
  * for InventoryRows of length 9 or GridInventories of size 3x3
  */
 public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
@@ -109,7 +109,7 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
-    public int compareTo(InventoryProperty<?, ?> other) {
+    public int compareTo(Property<?, ?> other) {
         if (other == null) {
             return 1;
         }

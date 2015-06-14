@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,27 +24,19 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.manipulators.entities.RabbitData;
+
 /**
  * Represents a rabbit.
  */
 public interface Rabbit extends Animal {
 
     /**
-     * Gets the current rabbit type for this rabbit.
-     * <p>Rabbit types can change the health of a rabbit, as well as
-     * causing the rabbit to start attacking other entities.</p>
+     * Gets a copy of the {@link RabbitData} representing the specific data for
+     * this {@link Rabbit}.
      *
-     * @return The type of rabbit
+     * @return A copy of the rabbit data
      */
-    RabbitType getRabbitType();
-
-    /**
-     * Sets the new rabbit type for this rabbit.
-     * <p>Rabbit types can change the health of a rabbit, as well as
-     * causing the rabbit to start attacking other entities.</p>
-     *
-     * @param type The type of rabbit
-     */
-    void setRabbitType(RabbitType type);
+    RabbitData getRabbitData();
 
 }

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,16 +24,13 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a method of interacting with a block or entity.
  */
-public interface EntityInteractionType {
-
-    /**
-     * Gets the name of this entity interaction type.
-     *
-     * @return The name of this entity interaction type
-     */
-    String getName();
+@CatalogedBy(EntityInteractionTypes.class)
+public interface EntityInteractionType extends CatalogType {
 
 }

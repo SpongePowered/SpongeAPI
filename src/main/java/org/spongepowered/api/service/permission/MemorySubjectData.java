@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,16 +26,17 @@ package org.spongepowered.api.service.permission;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.service.permission.context.Context;
+import org.spongepowered.api.service.permission.option.OptionSubjectData;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -48,9 +49,10 @@ import javax.annotation.Nullable;
  *
  * <p>This class is thread-safe.
  */
-public class MemorySubjectData implements SubjectData {
+public class MemorySubjectData implements OptionSubjectData {
 
     private final PermissionService service;
+    private final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
     private final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
     private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = Maps.newConcurrentMap();
 
@@ -60,7 +62,7 @@ public class MemorySubjectData implements SubjectData {
      * @param service The service to request subjects from
      */
     public MemorySubjectData(PermissionService service) {
-        checkNotNull(service);
+        checkNotNull(service, "service");
         this.service = service;
     }
 
@@ -71,6 +73,18 @@ public class MemorySubjectData implements SubjectData {
             ret.put(ent.getKey(), ent.getValue().asMap());
         }
         return ret.build();
+    }
+
+    /**
+     * Get the calculated node tree representation of the permissions for this subject data instance.
+     * If no data is present for the given context, returns null.
+     *
+     * @param contexts The contexts to get a node tree for
+     * @return The node tree
+     */
+    public NodeTree getNodeTree(Set<Context> contexts) {
+        NodeTree perms = this.permissions.get(contexts);
+        return perms == null ? NodeTree.of(Collections.<String, Boolean>emptyMap()) : perms;
     }
 
     @Override
@@ -93,7 +107,7 @@ public class MemorySubjectData implements SubjectData {
                     break;
                 }
             } else {
-                if (this.permissions.replace(contexts, oldTree, oldTree.withValue(permission, value))) {
+                if (oldTree == null || this.permissions.replace(contexts, oldTree, oldTree.withValue(permission, value))) {
                     break;
                 }
             }
@@ -126,11 +140,8 @@ public class MemorySubjectData implements SubjectData {
     List<Subject> toSubjectList(List<Map.Entry<String, String>> parents) {
         ImmutableList.Builder<Subject> ret = ImmutableList.builder();
         for (Map.Entry<String, String> ent : parents) {
-            Optional<SubjectCollection> collection = this.service.getSubjects(ent.getKey());
-            if (!collection.isPresent()) {
-                continue;
-            }
-            ret.add(collection.get().get(ent.getValue()));
+            SubjectCollection collection = this.service.getSubjects(ent.getKey());
+            ret.add(collection.get(ent.getValue()));
         }
         return ret.build();
     }
@@ -207,5 +218,54 @@ public class MemorySubjectData implements SubjectData {
     @Override
     public boolean clearParents(Set<Context> contexts) {
         return this.parents.remove(contexts) != null;
+    }
+
+    @Override
+    public Map<Set<Context>, Map<String, String>> getAllOptions() {
+        return ImmutableMap.copyOf(this.options);
+    }
+
+    @Override
+    public Map<String, String> getOptions(Set<Context> contexts) {
+        return this.options.get(contexts);
+    }
+
+    @Override
+    public boolean setOption(Set<Context> contexts, String key, @Nullable String value) {
+        Map<String, String> origMap = this.options.get(contexts);
+        Map<String, String> newMap;
+
+        if (origMap == null) {
+            if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
+                return true;
+            }
+        }
+        do {
+            if (value == null) {
+                if (!origMap.containsKey(key)) {
+                    return false;
+                }
+                newMap = new HashMap<String, String>();
+                newMap.putAll(origMap);
+                newMap.remove(key);
+            } else {
+                newMap = new HashMap<String, String>();
+                newMap.putAll(origMap);
+                newMap.put(key, value);
+            }
+            newMap = Collections.unmodifiableMap(newMap);
+        } while (!this.options.replace(contexts, origMap, newMap));
+        return true;
+    }
+
+    @Override
+    public boolean clearOptions(Set<Context> contexts) {
+        return this.options.remove(contexts) != null;
+    }
+
+    @Override
+    public boolean clearOptions() {
+        this.options.clear();
+        return true;
     }
 }

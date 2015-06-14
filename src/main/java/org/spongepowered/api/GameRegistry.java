@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,58 +22,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
-import org.spongepowered.api.attribute.Operation;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.meta.BannerPatternShape;
-import org.spongepowered.api.block.meta.NotePitch;
-import org.spongepowered.api.block.meta.SkullType;
+import org.spongepowered.api.data.DataManipulatorRegistry;
+import org.spongepowered.api.data.ImmutableDataRegistry;
+import org.spongepowered.api.data.types.Career;
+import org.spongepowered.api.data.types.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
-import org.spongepowered.api.effect.sound.SoundType;
-import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.hanging.art.Art;
-import org.spongepowered.api.entity.living.animal.HorseColor;
-import org.spongepowered.api.entity.living.animal.HorseStyle;
-import org.spongepowered.api.entity.living.animal.HorseVariant;
-import org.spongepowered.api.entity.living.animal.OcelotType;
-import org.spongepowered.api.entity.living.animal.RabbitType;
-import org.spongepowered.api.entity.living.monster.SkeletonType;
-import org.spongepowered.api.entity.living.villager.Career;
-import org.spongepowered.api.entity.living.villager.Profession;
-import org.spongepowered.api.entity.player.gamemode.GameMode;
-import org.spongepowered.api.item.CoalType;
-import org.spongepowered.api.item.CookedFish;
-import org.spongepowered.api.item.DyeColor;
-import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.FireworkEffectBuilder;
-import org.spongepowered.api.item.Fish;
-import org.spongepowered.api.item.GoldenApple;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
-import org.spongepowered.api.potion.PotionType;
+import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.scoreboard.ScoreboardBuilder;
+import org.spongepowered.api.scoreboard.TeamBuilder;
+import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
+import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
+import org.spongepowered.api.stats.BlockStatistic;
+import org.spongepowered.api.stats.EntityStatistic;
+import org.spongepowered.api.stats.ItemStatistic;
+import org.spongepowered.api.stats.Statistic;
+import org.spongepowered.api.stats.StatisticBuilder;
+import org.spongepowered.api.stats.StatisticGroup;
+import org.spongepowered.api.stats.TeamStatistic;
+import org.spongepowered.api.stats.achievement.Achievement;
+import org.spongepowered.api.stats.achievement.AchievementBuilder;
 import org.spongepowered.api.status.Favicon;
-import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.text.selector.ArgumentType;
-import org.spongepowered.api.text.selector.SelectorType;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.DimensionType;
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldBuilder;
+import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.gen.GeneratorPopulator;
+import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.PopulatorFactory;
+import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -82,7 +75,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -100,49 +92,44 @@ import java.util.UUID;
 public interface GameRegistry {
 
     /**
-     * Gets a {@link BlockType} by its identifier.
+     * Attempts to retrieve the specific type of {@link CatalogType} based on
+     * the string id given.
      *
-     * @param id The id to look up
-     * @return The block or Optional.absent() if not found
+     * <p>Some types may not be available for various reasons including but not
+     * restricted to: mods adding custom types, plugins providing custom types,
+     * game version changes.</p>
+     *
+     * @param typeClass The class of the type of {@link CatalogType}
+     * @param id The string id of the catalog type
+     * @param <T> The type of catalog type
+     * @return The found catalog type, if available
      */
-    Optional<BlockType> getBlock(String id);
+    <T extends CatalogType> Optional<T> getType(Class<T> typeClass, String id);
 
     /**
-     * Gets a collection of all available {@link BlockType}s.
+     * Gets a collection of all available found specific types of
+     * {@link CatalogType} requested.
      *
-     * @return A collection containing all block types in registry
+     * <p>The presented {@link CatalogType}s may not exist in default catalogs
+     * due to various reasons including but not restricted to: mods, plugins,
+     * game changes.</p>
+     *
+     * @param typeClass The class of {@link CatalogType}
+     * @param <T> The type of {@link CatalogType}
+     * @return A collection of all known types of the requested catalog type
      */
-    Collection<BlockType> getBlocks();
+    <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
 
     /**
-     * Gets an {@link ItemType} by its identifier.
+     * Gets a builder of the desired class type, examples may include:
+     * {@link org.spongepowered.api.attribute.AttributeBuilder},
+     * {@link org.spongepowered.api.item.FireworkEffectBuilder}, etc.
      *
-     * @param id The id to look up
-     * @return The item or Optional.absent() if not found
+     * @param builderClass The class of the builder
+     * @param <T> The type of builder
+     * @return The builder, if available
      */
-    Optional<ItemType> getItem(String id);
-
-    /**
-     * Gets a collection of all available {@link ItemType}s.
-     *
-     * @return A collection containing all item types in registry
-     */
-    Collection<ItemType> getItems();
-
-    /**
-     * Gets a {@link BiomeType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The biome or Optional.absent() if not found
-     */
-    Optional<BiomeType> getBiome(String id);
-
-    /**
-     * Gets a collection of all available {@link BiomeType}s.
-     *
-     * @return A collection containing all biome types
-     */
-    Collection<BiomeType> getBiomes();
+    <T> Optional<T> getBuilderOf(Class<T> builderClass);
 
     /**
      * Get an item stack builder.
@@ -159,6 +146,13 @@ public interface GameRegistry {
     TradeOfferBuilder getTradeOfferBuilder();
 
     /**
+     * Gets a new {@link FireworkEffectBuilder}.
+     *
+     * @return A new firework effect builder
+     */
+    FireworkEffectBuilder getFireworkEffectBuilder();
+
+    /**
      * Get a potion effect builder.
      *
      * @return The potion effect builder
@@ -166,19 +160,106 @@ public interface GameRegistry {
     PotionEffectBuilder getPotionEffectBuilder();
 
     /**
-     * Gets a {@link ParticleType} by name.
+     * Get an objective builder.
      *
-     * @param name The particle name
-     * @return The corresponding particle or Optional.absent() if not found
+     * @return The objective builder
      */
-    Optional<ParticleType> getParticleType(String name);
+    ObjectiveBuilder getObjectiveBuilder();
 
     /**
-     * Gets a collection of all available {@link ParticleType}s.
+     * Get a team builder.
      *
-     * @return A collection containing all particle types in registry
+     * @return The team builder
      */
-    Collection<ParticleType> getParticleTypes();
+    TeamBuilder getTeamBuilder();
+
+    /**
+     * Gets a scoreboard builder.
+     *
+     * @return The scoreboard builder
+     */
+    ScoreboardBuilder getScoreboardBuilder();
+
+    /**
+     * Creates a new {@link StatisticBuilder} which may be used to create custom
+     * {@link Statistic}s.
+     *
+     * @return The newly created simple statistic builder
+     */
+    StatisticBuilder getStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.EntityStatisticBuilder}
+     * which may be used to create custom {@link EntityStatistic}s.
+     *
+     * @return The newly created entity statistic builder
+     */
+    StatisticBuilder.EntityStatisticBuilder getEntityStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.BlockStatisticBuilder}
+     * which may be used to create custom {@link BlockStatistic}s.
+     *
+     * @return The newly created block statistic builder
+     */
+    StatisticBuilder.BlockStatisticBuilder getBlockStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.ItemStatisticBuilder}
+     * which may be used to create custom {@link ItemStatistic}s.
+     *
+     * @return The newly created item statistic builder
+     */
+    StatisticBuilder.ItemStatisticBuilder getItemStatisticBuilder();
+
+    /**
+     * Creates a new
+     * {@link org.spongepowered.api.stats.StatisticBuilder.TeamStatisticBuilder}
+     * which may be used to create custom {@link TeamStatistic}s.
+     *
+     * @return The newly created team statistic builder
+     */
+    StatisticBuilder.TeamStatisticBuilder getTeamStatisticBuilder();
+
+    /**
+     * Creates a new {@link AchievementBuilder} which may be used to create
+     * custom {@link Achievement}s.
+     *
+     * @return The newly created achievement builder
+     */
+    AchievementBuilder getAchievementBuilder();
+
+    /**
+     * Gets a new {@link AttributeModifierBuilder}.
+     *
+     * @return A new AttributeModifierBuilder
+     */
+    AttributeModifierBuilder getAttributeModifierBuilder();
+
+    /**
+     * Gets the {@link AttributeCalculator}.
+     *
+     * @return The {@link AttributeCalculator}
+     */
+    AttributeCalculator getAttributeCalculator();
+
+    /**
+     * Gets a new {@link AttributeBuilder}.
+     *
+     * @return A new AttributeBuilder
+     */
+    AttributeBuilder getAttributeBuilder();
+
+    /**
+     * Gets a new {@link WorldBuilder} for creating {@link World}s or
+     * {@link WorldCreationSettings}s.
+     *
+     * @return A new builder
+     */
+    WorldBuilder getWorldBuilder();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
@@ -189,223 +270,12 @@ public interface GameRegistry {
     ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
 
     /**
-     * Gets a {@link SoundType} by name.
-     *
-     * @param name The sound name
-     * @return The sound or Optional.absent() if not found
-     */
-    Optional<SoundType> getSound(String name);
-
-    /**
-     * Gets a collection of all known {@link SoundType}s.
-     *
-     * @return A collection containing all sounds in the registry
-     */
-    Collection<SoundType> getSounds();
-
-    /**
-     * Gets an {@link EntityType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The entity type or Optional.absent() if not found
-     */
-    Optional<EntityType> getEntity(String id);
-
-    /**
-     * Gets a collection of all available {@link EntityType}s.
-     *
-     * @return A collection containing all entity types in registry
-     */
-    Collection<EntityType> getEntities();
-
-    /**
-     * Gets an {@link Art} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The art piece or Optional.absent() if not found
-     */
-    Optional<Art> getArt(String id);
-
-    /**
-     * Gets a collection of all available {@link Art} pieces.
-     *
-     * @return A collection of all available art pieces
-     */
-    Collection<Art> getArts();
-
-    /**
-     * Gets a {@link DyeColor} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The dye color or Optional.absent() if not found
-     */
-    Optional<DyeColor> getDye(String id);
-
-    /**
-     * Gets a collection of all available {@link DyeColor}s.
-     *
-     * @return A collection containing all dyes in registry
-     */
-    Collection<DyeColor> getDyes();
-
-    /**
-     * Gets a {@link HorseColor} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The horse color or Optional.absent() if not found
-     */
-    Optional<HorseColor> getHorseColor(String id);
-
-    /**
-     * Gets a collection of all available {@link HorseColor}s.
-     *
-     * @return A collection containing all horse colors in registry
-     */
-    Collection<HorseColor> getHorseColors();
-
-    /**
-     * Gets a {@link HorseStyle} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The horse style or Optional.absent() if not found
-     */
-    Optional<HorseStyle> getHorseStyle(String id);
-
-    /**
-     * Gets a collection of all available {@link HorseStyle}s.
-     *
-     * @return A collection containing all horse styles in registry
-     */
-    Collection<HorseStyle> getHorseStyles();
-
-    /**
-     * Gets a {@link HorseVariant} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The horse variant or Optional.absent() if not found
-     */
-    Optional<HorseVariant> getHorseVariant(String id);
-
-    /**
-     * Gets a collection of all available {@link HorseVariant}s.
-     *
-     * @return A collection containing all horse variants in registry
-     */
-    Collection<HorseVariant> getHorseVariants();
-
-    /**
-     * Gets an {@link OcelotType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The ocelot type or Optional.absent() if not found
-     */
-    Optional<OcelotType> getOcelotType(String id);
-
-    /**
-     * Gets a collection of all available {@link OcelotType}s.
-     *
-     * @return A collection containing all ocelot types in registry
-     */
-    Collection<OcelotType> getOcelotTypes();
-
-    /**
-     * Gets a {@link RabbitType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The rabbit type or Optional.absent() if not found
-     */
-    Optional<RabbitType> getRabbitType(String id);
-
-    /**
-     * Gets a collection of all available {@link RabbitType}s.
-     *
-     * @return A collection containing all rabbit types in registry
-     */
-    Collection<RabbitType> getRabbitTypes();
-
-    /**
-     * Gets a {@link SkeletonType} by its identifier.
-     *
-     * @param id The id to look up
-     * @return The skeleton type or Optional.absent() if not found
-     */
-    Optional<SkeletonType> getSkeletonType(String id);
-
-    /**
-     * Gets a collection of all available {@link SkeletonType}s.
-     *
-     * @return A collection containing all skeleton types in registry
-     */
-    Collection<SkeletonType> getSkeletonTypes();
-
-    /**
-     * Gets the villager {@link Career} with the specified id.
-     *
-     * @param id The id of the career to return
-     * @return The career with the given id or Optional.absent() if not found
-     */
-    Optional<Career> getCareer(String id);
-
-    /**
-     * Gets all available villager {@link Career}s.
-     *
-     * @return A collection of all villager careers
-     */
-    Collection<Career> getCareers();
-
-    /**
      * Gets all available villager {@link Career}s for the given profession.
      *
      * @param profession The villager profession to collection careers from
      * @return A collection of all villager careers associated with the profession
      */
     Collection<Career> getCareers(Profession profession);
-
-    /**
-     * Gets the villager {@link Profession} with the specified id.
-     *
-     * @param id The id of the profession to return
-     * @return The profession with the given id or Optional.absent() if not found
-     */
-    Optional<Profession> getProfession(String id);
-
-    /**
-     * Gets all available villager {@link Profession}s.
-     *
-     * @return A collection of all villager professions
-     */
-    Collection<Profession> getProfessions();
-
-    /**
-     * Gets a collection of all available {@link GameMode}s.
-     *
-     * @return A collection containing all game modes in registry
-     */
-    // TODO: GameMode from string? Should add 'String getId()' to GameMode if so.
-    Collection<GameMode> getGameModes();
-
-    /**
-     * Gets a collection of all available {@link PotionType}s.
-     *
-     * @return A collection containing all potion effect types in registry
-     */
-    // TODO: PotionEffectType from string? Should add 'String getId()' to PotionEffectType if so.
-    Collection<PotionType> getPotionEffects();
-
-    /**
-     * Gets the {@link Enchantment} with the specified id.
-     *
-     * @param id The id of the enchantment to return
-     * @return The enchantment with the given id or Optional.absent() if not found
-     */
-    Optional<Enchantment> getEnchantment(String id);
-
-    /**
-     * Gets all available {@link Enchantment}s.
-     *
-     * @return A collection of all enchantments
-     */
-    Collection<Enchantment> getEnchantments();
 
     /**
      * Gets a {@link Collection} of the default GameRules.
@@ -415,19 +285,68 @@ public interface GameRegistry {
     Collection<String> getDefaultGameRules();
 
     /**
-     * Gets the {@link DimensionType} with the provided name.
+     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
+     * {@link EntityType}. If the statistic group is not a valid
+     * {@link EntityStatistic} group then {@link Optional#absent()} will be
+     * returned.
      *
-     * @param name The name of the dimension type
-     * @return The {@link DimensionType} with the given name or Optional.absent() if not found
+     * @param statisticGroup The type of statistic to return
+     * @param entityType The entity type for the statistic to return
+     * @return The entity statistic or Optional.absent() if not found
      */
-    Optional<DimensionType> getDimensionType(String name);
+    Optional<EntityStatistic> getEntityStatistic(StatisticGroup statisticGroup, EntityType entityType);
 
     /**
-     * Gets a {@link Collection} of all possible {@link DimensionType}s.
+     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
+     * {@link ItemType}. If the statistic group is not a valid
+     * {@link ItemStatistic} group then {@link Optional#absent()} will be
+     * returned.
      *
-     * @return The collection of all available {@link DimensionType}s
+     * @param statisticGroup The type of statistic to return
+     * @param itemType The item type for the statistic to return
+     * @return The item statistic or Optional.absent() if not found
      */
-    Collection<DimensionType> getDimensionTypes();
+    Optional<ItemStatistic> getItemStatistic(StatisticGroup statisticGroup, ItemType itemType);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
+     * {@link BlockType}. If the statistic group is not a valid
+     * {@link BlockStatistic} group then {@link Optional#absent()} will be
+     * returned.
+     *
+     * @param statisticGroup The type of statistic to return
+     * @param blockType The block type for the statistic to return
+     * @return The block statistic or Optional.absent() if not found
+     */
+    Optional<BlockStatistic> getBlockStatistic(StatisticGroup statisticGroup, BlockType blockType);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link StatisticGroup} and
+     * team's {@link TextColor}. If the {@link StatisticGroup} is not a valid
+     * {@link TeamStatistic} group then {@link Optional#absent()} will be
+     * returned.
+     *
+     * @param statisticGroup The type of statistic to return
+     * @param teamColor The team's color for the statistic to return
+     * @return The team statistic or Optional.absent() if not found
+     */
+    Optional<TeamStatistic> getTeamStatistic(StatisticGroup statisticGroup, TextColor teamColor);
+
+    /**
+     * Gets a list of all available {@link Statistic}s which belong to the given
+     * {@link StatisticGroup}.
+     *
+     * @param statisticGroup The statisticType to return
+     * @return An immutable collection containing all statistics in the group
+     */
+    Collection<Statistic> getStatistics(StatisticGroup statisticGroup);
+
+    /**
+     * Registers a custom statistic.
+     *
+     * @param stat The custom statistic
+     */
+    void registerStatistic(Statistic stat);
 
     /**
      * Gets the {@link Rotation} with the provided degrees.
@@ -436,15 +355,6 @@ public interface GameRegistry {
      * @return The {@link Rotation} with the given degrees or Optional.absent() if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link Rotation}s.
-     *
-     * @return The collection of all available {@link Rotation}s
-     */
-    Collection<Rotation> getRotations();
-
-    // TODO: Find a better place for these methods
 
     /**
      * Creates a new {@link GameProfile} using the specified unique identifier and name.
@@ -503,59 +413,6 @@ public interface GameRegistry {
     Favicon loadFavicon(BufferedImage image) throws IOException;
 
     /**
-     * Gets the {@link NotePitch} with the provided name.
-     *
-     * @param name The name of the note pitch
-     * @return The {@link NotePitch} with the given name or Optional.absent() if not found
-     */
-    Optional<NotePitch> getNotePitch(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link NotePitch}s.
-     *
-     * @return The collection of all available {@link NotePitch}s
-     */
-    Collection<NotePitch> getNotePitches();
-
-    /**
-     * Gets the {@link SkullType} with the provided name.
-     *
-     * @param name The name of the skull type
-     * @return The {@link SkullType} with the given name or Optional.absent() if not found
-     */
-    Optional<SkullType> getSkullType(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link SkullType}s.
-     *
-     * @return The collection of all available {@link SkullType}s
-     */
-    Collection<SkullType> getSkullTypes();
-
-    /**
-     * Gets the {@link BannerPatternShape} with the provided name.
-     *
-     * @param name The name of the BannerPatternShape
-     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
-     */
-    Optional<BannerPatternShape> getBannerPatternShape(String name);
-
-    /**
-     * Gets the {@link BannerPatternShape} with the provided name.
-     *
-     * @param id The id of the BannerPatternShape
-     * @return The {@link BannerPatternShape} with the given name or Optional.absent() if not found
-     */
-    Optional<BannerPatternShape> getBannerPatternShapeById(String id);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link BannerPatternShape}s.
-     *
-     * @return The collection of all available {@link BannerPatternShape}s
-     */
-    Collection<BannerPatternShape> getBannerPatternShapes();
-
-    /**
      * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
      *
      * @return The item dictionary
@@ -570,252 +427,52 @@ public interface GameRegistry {
     RecipeRegistry getRecipeRegistry();
 
     /**
-     * Gets a collection of all available {@link Difficulty}s.
+     * Retrieves the {@link DataManipulatorRegistry} for this {@link GameRegistry}.
      *
-     * @return A collection containing all Difficulties in registry
+     * @return The manipulator registry
      */
-    Collection<Difficulty> getDifficulties();
+    DataManipulatorRegistry getManipulatorRegistry();
 
     /**
-     * Gets a {@link Difficulty} by name.
+     * Retrieves the {@link ImmutableDataRegistry} for this {@link GameRegistry}.
      *
-     * @param name The name of the difficulty
-     * @return The difficulty with that name, or {@link Optional#absent()}
+     * @return The immutable data registry
      */
-    Optional<Difficulty> getDifficulty(String name);
+    ImmutableDataRegistry getImmutableDataRegistry();
 
     /**
-     * Gets a collection of all available {@link EntityInteractionType}s.
+     * Gets a {@link ResourcePack} that's already been created by its ID.
      *
-     * @return A collection of all available {@link EntityInteractionType}s
+     * @param id The ID of the pack
+     * @return The ResourcePack with the specified ID, or Optional.absent() if
+     *         none could be found
      */
-    Collection<EntityInteractionType> getEntityInteractionTypes();
+    Optional<ResourcePack> getById(String id);
 
     /**
-     * Gets an {@link EntityInteractionType} by name.
+     * Gets a {@link DisplaySlot} which displays only for teams
+     * with the provided color.
      *
-     * @param name The name of the {@link EntityInteractionType}
-     * @return The {@link EntityInteractionType} with that name, or {@link Optional#absent()}
+     * @param color The color for the display slot
+     * @return The {@link DisplaySlot} with the provided color, or Optional.absent() if not found
      */
-    Optional<EntityInteractionType> getEntityInteractionType(String name);
+    Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
 
     /**
-     * Gets an {@link Attribute} by name.
+     * Registers a {@link WorldGeneratorModifier}, so that the server is able to
+     * use it for modifying the world generator of a new world.
+     *
+     * @param modifier The modifier to register
+     */
+    void registerWorldGeneratorModifier(WorldGeneratorModifier modifier);
+
+    /**
+     * Gets the {@link PopulatorFactory} for creating {@link Populator}s and
+     * {@link GeneratorPopulator}s.
      * 
-     * @param name The name of the Attribute
-     * @return The {@link Attribute} with the given name or
-     *         {@link Optional#absent()} if not found
+     * @return The populator factory
      */
-    Optional<Attribute> getAttribute(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link Attribute}s.
-     * 
-     * @return The collection of all available {@link Attribute}s
-     */
-    Collection<Attribute> getAttributes();
-
-    /**
-     * Gets an {@link Operation} by name.
-     * 
-     * @param name The name of the Operation
-     * @return The {@link Operation} with the given name or
-     *         {@link Optional#absent()} if not found
-     */
-    Optional<Operation> getOperation(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link Operation}s.
-     * 
-     * @return The collection of all available {@link Operation}s
-     */
-    Collection<Operation> getOperations();
-
-    /**
-     * Gets a new {@link AttributeModifierBuilder}.
-     * 
-     * @return A new AttributeModifierBuilder
-     */
-    AttributeModifierBuilder getAttributeModifierBuilder();
-
-    /**
-     * Gets the {@link AttributeCalculator}.
-     *
-     * @return The {@link AttributeCalculator}
-     */
-    AttributeCalculator getAttributeCalculator();
-
-    /**
-     * Gets a new {@link AttributeBuilder}.
-     *
-     * @return A new AttributeBuilder
-     */
-    AttributeBuilder getAttributeBuilder();
-
-    /**
-     * Gets a {@link CoalType} by name.
-     *
-     * @param name The name of the coal type
-     * @return The coal type or Optional.absent() if not found
-     */
-    Optional<CoalType> getCoalType(String name);
-
-    /**
-     * Gets a collection of all available {@link CoalType}s.
-     *
-     * @return A collection of all coal types
-     */
-    Collection<CoalType> getCoalTypes();
-
-    /**
-     * Gets a {@link Fish} by name.
-     *
-     * @param name The name of the fish type
-     * @return The fish type or Optional.absent() if not found
-     */
-    Optional<Fish> getFishType(String name);
-
-    /**
-     * Gets a collection of all available {@link Fish} types.
-     *
-     * @return A collection of all fish types
-     */
-    Collection<Fish> getFishTypes();
-
-    /**
-     * Gets a {@link CookedFish} by name.
-     *
-     * @param name The name of the cooked fish type
-     * @return The cooked fish type or Optional.absent() if not found
-     */
-    Optional<CookedFish> getCookedFishType(String name);
-
-    /**
-     * Gets a collection of all available {@link CookedFish}s.
-     *
-     * @return A collection of all cooked fish types
-     */
-    Collection<CookedFish> getCookedFishTypes();
-
-    /**
-     * Gets a {@link GoldenApple} by name.
-     *
-     * @param name The name of the golden apple type
-     * @return The golden apple type or Optional.absent() if not found
-     */
-    Optional<GoldenApple> getGoldenAppleType(String name);
-
-    /**
-     * Gets a collection of all available {@link GoldenApple}s.
-     *
-     * @return A collection of all golden apple types
-     */
-    Collection<GoldenApple> getGoldenAppleTypes();
-
-    /**
-     * Gets a new {@link FireworkEffectBuilder}.
-     *
-     * @return A new firework effect builder
-     */
-    FireworkEffectBuilder getFireworkEffectBuilder();
-
-    /**
-     * Gets the {@link TextColor} with the provided name.
-     *
-     * @param name The name of the text color
-     * @return The {@link TextColor} with the given name or Optional.absent() if not found
-     */
-    Optional<TextColor> getTextColor(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link TextColor}s.
-     *
-     * @return The collection of all available {@link TextColor}s
-     */
-    Collection<TextColor> getTextColors();
-
-    /**
-     * Gets the {@link TextStyle} with the provided name.
-     *
-     * @param name The name of the text style
-     * @return The {@link TextStyle} with the given name or Optional.absent() if not found
-     */
-    Optional<TextStyle> getTextStyle(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link TextStyle}s.
-     *
-     * @return The collection of all available {@link TextStyle}s
-     */
-    Collection<TextStyle> getTextStyles();
-
-    /**
-     * Gets the {@link ChatType} with the provided name.
-     *
-     * @param name The name of the chat type
-     * @return The {@link ChatType} with the given name or Optional.absent() if not found
-     */
-    Optional<ChatType> getChatType(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link TextStyle}s.
-     *
-     * @return The collection of all available {@link TextStyle}s
-     */
-    Collection<ChatType> getChatTypes();
-
-    /**
-     * Gets the {@link SelectorType} with the provided name.
-     *
-     * @param name The name of the selector type
-     * @return The {@link SelectorType} with the given name or Optional.absent() if not found
-     */
-    Optional<SelectorType> getSelectorType(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link SelectorType}s.
-     *
-     * @return The list of all available {@link SelectorType}s
-     */
-    Collection<SelectorType> getSelectorTypes();
-
-    /**
-     * Gets the {@link ArgumentType} with the provided name.
-     *
-     * @param name The name of the argument type
-     * @return The {@link ArgumentType} with the given name or Optional.absent() if not found
-     */
-    Optional<ArgumentType<?>> getArgumentType(String name);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link ArgumentType}s.
-     *
-     * @return The list of all available {@link ArgumentType}s
-     */
-    Collection<ArgumentType<?>> getArgumentTypes();
-
-    /**
-     * Gets the {@link Locale} with the provided name.
-     *
-     * @param name The name of the locale
-     * @return The {@link Locale} with the given name or Optional.absent() if not found
-     */
-    Optional<Locale> getLocale(String name);
-
-    /**
-     * Gets the {@link Locale} with the provided ID.
-     *
-     * @param id The ID of the locale
-     * @return The {@link Locale} with the given ID or Optional.absent() if not found
-     */
-    Optional<Locale> getLocaleById(String id);
-
-    /**
-     * Gets a {@link Collection} of all possible {@link Locale}s.
-     *
-     * @return The collection of all available {@link Locale}s
-     */
-    Collection<Locale> getLocales();
+    PopulatorFactory getPopulatorFactory();
 
     /**
      * Gets the {@link Translation} with the provided ID.
@@ -824,5 +481,4 @@ public interface GameRegistry {
      * @return The {@link Translation} with the given ID or Optional.absent() if not found
      */
     Optional<Translation> getTranslationById(String id);
-
 }

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.explosive;
 
+import org.spongepowered.api.data.manipulators.entities.ExplosiveRadiusData;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -35,5 +36,13 @@ public interface Explosive extends Entity {
      * Detonates this explosive immediately.
      */
     void detonate();
+
+    /**
+     * Gets a copy of the {@link ExplosiveRadiusData} used by this
+     * {@link Explosive} entity.
+     *
+     * @return A copy of the explosive radius data
+     */
+    ExplosiveRadiusData getExplosiveRadiusData();
 
 }

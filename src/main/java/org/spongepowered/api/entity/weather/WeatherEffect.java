@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.weather;
 
+import org.spongepowered.api.data.manipulators.entities.ExpirableData;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -44,4 +45,11 @@ public interface WeatherEffect extends Entity {
      * @param effect Whether this weather effect is an effect
      */
     void setEffect(boolean effect);
+
+    /**
+     * Gets a copy of the {@link ExpirableData} for this weather entity.
+     *
+     * @return A copy of the expirable data
+     */
+    ExpirableData getExpiringData();
 }

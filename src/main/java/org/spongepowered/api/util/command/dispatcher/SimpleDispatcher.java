@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,38 +22,88 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
+import static org.spongepowered.api.util.command.CommandMessageFormatting.NEWLINE_TEXT;
+import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_TEXT;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextBuilder;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.action.TextActions;
+import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextStyles;
+import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandMessageFormatting;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * A simple implementation of a {@link Dispatcher}.
  */
-public class SimpleDispatcher implements Dispatcher {
+public final class SimpleDispatcher implements Dispatcher {
 
-    private final Map<String, CommandMapping> commands = Maps.newHashMap();
+    /**
+     * This is a disambiguator function that returns the first matching command.
+     */
+    public static final Disambiguator FIRST_DISAMBIGUATOR = new Disambiguator() {
+        @Override
+        public Optional<CommandMapping> disambiguate(CommandSource source, final String aliasUsed, List<CommandMapping> availableOptions) {
+            for (CommandMapping mapping : availableOptions) {
+                if (mapping.getPrimaryAlias().toLowerCase().equals(aliasUsed.toLowerCase())) {
+                    return Optional.of(mapping);
+                }
+            }
+            return Optional.of(availableOptions.get(0));
+        }
+    };
+
+    private final Disambiguator disambiguatorFunc;
+    private final ListMultimap<String, CommandMapping> commands = ArrayListMultimap.create();
+
+    /**
+     * Creates a basic new dispatcher.
+     */
+    public SimpleDispatcher() {
+        this(FIRST_DISAMBIGUATOR);
+    }
+
+    /**
+     * Creates a new dispatcher with a specific disambiguator.
+     *
+     * @param disambiguatorFunc Function that returns the preferred command if multiple exist for a given alias
+     */
+    public SimpleDispatcher(Disambiguator disambiguatorFunc) {
+        this.disambiguatorFunc = disambiguatorFunc;
+    }
 
     /**
      * Register a given command using the given list of aliases.
@@ -71,7 +121,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be registered
      */
     public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
-        checkNotNull(alias);
+        checkNotNull(alias, "alias");
         return register(callable, Arrays.asList(alias));
     }
 
@@ -112,40 +162,22 @@ public class SimpleDispatcher implements Dispatcher {
      * @param aliases A list of aliases
      * @param callback The callback
      * @return The registered command mapping, unless no aliases could be registered
-     * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
      */
     public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
-        checkNotNull(aliases);
-        checkNotNull(callable);
-        checkNotNull(callback);
-
-        List<String> free = new ArrayList<String>();
-
-        // Filter out commands that are already registered
-        for (String alias : aliases) {
-            if (!this.commands.containsKey(alias.toLowerCase())) {
-                free.add(alias);
-            }
-        }
+        checkNotNull(aliases, "aliases");
+        checkNotNull(callable, "callable");
+        checkNotNull(callback, "callback");
 
         // Invoke the callback with the commands that /can/ be registered
         //noinspection ConstantConditions
-        free = new ArrayList<String>(callback.apply(free));
-
-        if (!free.isEmpty()) {
-            // The callback should /not/ have added any new commands
-            for (String alias : free) {
-                if (this.commands.containsKey(alias.toLowerCase())) {
-                    throw new IllegalArgumentException("A command by the name of '" + alias + "' already exists");
-                }
-            }
-
-            String primary = free.get(0);
-            List<String> secondary = free.subList(1, free.size());
+        aliases = ImmutableList.copyOf(callback.apply(aliases));
+        if (!aliases.isEmpty()) {
+            String primary = aliases.get(0);
+            List<String> secondary = aliases.subList(1, aliases.size());
             CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
 
-            for (String alias : free) {
+            for (String alias : aliases) {
                 this.commands.put(alias.toLowerCase(), mapping);
             }
 
@@ -161,24 +193,25 @@ public class SimpleDispatcher implements Dispatcher {
      * @param alias The alias
      * @return The previous mapping associated with the alias, if one was found
      */
-    public synchronized Optional<CommandMapping> remove(String alias) {
-        return Optional.of(this.commands.remove(alias.toLowerCase()));
+    public synchronized Collection<CommandMapping> remove(String alias) {
+        return this.commands.removeAll(alias.toLowerCase());
     }
 
     /**
      * Remove all mappings identified by the given aliases.
      *
-     * @param c A collection of aliases
+     * @param aliases A collection of aliases
      * @return Whether any were found
      */
-    public synchronized boolean removeAll(Collection<?> c) {
-        checkNotNull(c);
+    public synchronized boolean removeAll(Collection<?> aliases) {
+        checkNotNull(aliases, "aliases");
 
         boolean found = false;
 
-        for (Object alias : c) {
-            this.commands.remove(alias.toString().toLowerCase());
-            found = true;
+        for (Object alias : aliases) {
+            if (!this.commands.removeAll(alias.toString().toLowerCase()).isEmpty()) {
+                found = true;
+            }
         }
 
         return found;
@@ -191,7 +224,7 @@ public class SimpleDispatcher implements Dispatcher {
      * @return The previous mapping associated with the alias, if one was found
      */
     public synchronized Optional<CommandMapping> removeMapping(CommandMapping mapping) {
-        checkNotNull(mapping);
+        checkNotNull(mapping, "mapping");
 
         CommandMapping found = null;
 
@@ -210,17 +243,17 @@ public class SimpleDispatcher implements Dispatcher {
     /**
      * Remove all mappings contained with the given collection.
      *
-     * @param c The collection
+     * @param mappings The collection
      * @return Whether the at least one command was removed
      */
-    public synchronized boolean removeMappings(Collection<?> c) {
-        checkNotNull(c);
+    public synchronized boolean removeMappings(Collection<?> mappings) {
+        checkNotNull(mappings, "mappings");
 
         boolean found = false;
 
         Iterator<CommandMapping> it = this.commands.values().iterator();
         while (it.hasNext()) {
-            if (c.contains(it.next())) {
+            if (mappings.contains(it.next())) {
                 it.remove();
                 found = true;
             }
@@ -257,8 +290,26 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public synchronized Optional<CommandMapping> get(String alias) {
-        return Optional.fromNullable(this.commands.get(alias.toLowerCase()));
+    public Optional<CommandMapping> get(String alias) {
+        return get(alias, null);
+    }
+
+    /**
+     * Get a given command in the context of a certain command source.
+     *
+     * @param alias The alias to look up
+     * @param source The source this alias is being looked up for
+     * @return the command if exactly one matches
+     */
+    public synchronized Optional<CommandMapping> get(String alias, @Nullable CommandSource source) {
+        List<CommandMapping> results = this.commands.get(alias.toLowerCase());
+        if (results.size() == 1) {
+            return Optional.of(results.get(0));
+        } else if (results.size() == 0 || source == null) {
+            return Optional.absent();
+        } else {
+            return this.disambiguatorFunc.disambiguate(source, alias, results);
+        }
     }
 
     @Override
@@ -268,7 +319,7 @@ public class SimpleDispatcher implements Dispatcher {
 
     @Override
     public boolean containsMapping(CommandMapping mapping) {
-        checkNotNull(mapping);
+        checkNotNull(mapping, "mapping");
 
         for (CommandMapping test : this.commands.values()) {
             if (mapping.equals(test)) {
@@ -277,6 +328,80 @@ public class SimpleDispatcher implements Dispatcher {
         }
 
         return false;
+    }
+
+    @Override
+    public Optional<CommandResult> process(CommandSource source, String commandLine) throws CommandException {
+        final String[] argSplit = commandLine.split(" ", 2);
+        Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
+        if (!cmdOptional.isPresent()) {
+            return Optional.absent();
+        }
+        final String arguments = argSplit.length > 1 ? argSplit[1] : "";
+        final CommandCallable spec = cmdOptional.get().getCallable();
+        return spec.process(source, arguments);
+    }
+
+    @Override
+    public List<String> getSuggestions(CommandSource src, final String arguments) throws CommandException {
+        final String[] argSplit = arguments.split(" ", 2);
+        Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
+        if (argSplit.length == 1) {
+            return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(argSplit[0])));
+        } else if (!cmdOptional.isPresent()) {
+            return ImmutableList.of();
+        }
+        return cmdOptional.get().getCallable().getSuggestions(src, argSplit[1]);
+    }
+
+    @Override
+    public boolean testPermission(CommandSource source) {
+        for (CommandMapping mapping : this.commands.values()) {
+            if (mapping.getCallable().testPermission(source)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Optional<Text> getShortDescription(CommandSource source) {
+        return Optional.absent();
+    }
+
+    @Override
+    public Optional<Text> getHelp(CommandSource source) {
+        if (this.commands.isEmpty()) {
+            return Optional.absent();
+        }
+        TextBuilder build = t("Available commands:\n").builder();
+        for (Iterator<String> it = filterCommands(source).iterator(); it.hasNext();) {
+            final Optional<CommandMapping> mappingOpt = get(it.next(), source);
+            if (!mappingOpt.isPresent()) {
+                continue;
+            }
+            CommandMapping mapping = mappingOpt.get();
+            @SuppressWarnings("unchecked")
+            final Optional<Text> description = (Optional<Text>) mapping.getCallable().getShortDescription(source);
+            build.append(Texts.builder(mapping.getPrimaryAlias())
+                    .color(TextColors.GREEN)
+                    .style(TextStyles.UNDERLINE)
+                    .onClick(TextActions.suggestCommand("/" + mapping.getPrimaryAlias())).build(),
+                    SPACE_TEXT, description.or(mapping.getCallable().getUsage(source)));
+            if (it.hasNext()) {
+                build.append(NEWLINE_TEXT);
+            }
+        }
+        return Optional.of(build.build());
+    }
+
+    private Iterable<String> filterCommands(final CommandSource src) {
+        return Multimaps.filterValues(this.commands, new Predicate<CommandMapping>() {
+            @Override
+            public boolean apply(@Nullable CommandMapping input) {
+                return input != null && input.getCallable().testPermission(src);
+            }
+        }).keys();
     }
 
     /**
@@ -289,75 +414,35 @@ public class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException {
-        String[] parts = arguments.split(" +", 2);
-        Optional<CommandMapping> mapping = get(parts[0]);
-
-        if (mapping.isPresent()) {
-            List<String> passedParents = new ArrayList<String>(parents.size() + 1);
-            passedParents.addAll(parents);
-            passedParents.add(parts[0]);
-
-            mapping.get().getCallable().call(source, parts.length > 1 ? parts[1] : "", Collections.unmodifiableList(passedParents));
-
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public synchronized boolean testPermission(CommandSource source) {
-        for (CommandMapping mapping : this.commands.values()) {
-            if (!mapping.getCallable().testPermission(source)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
-        String[] parts = arguments.split(" +", 2);
-        List<String> suggestions = new ArrayList<String>();
-
-        if (parts.length == 1) { // Auto completing commands
-            String incompleteCommand = parts[0].toLowerCase();
-
-            synchronized (this) {
-                for (CommandMapping mapping : this.commands.values()) {
-                    for (String alias : mapping.getAllAliases()) {
-                        if (alias.toLowerCase().startsWith(incompleteCommand)) {
-                            suggestions.add(alias);
-                        }
-                    }
+    public Text getUsage(final CommandSource source) {
+        final TextBuilder build = Texts.builder();
+        Iterable<String> filteredCommands = Iterables.filter(filterCommands(source), new Predicate<String>() {
+            @Override
+            public boolean apply(@Nullable String input) {
+                if (input == null) {
+                    return false;
                 }
+                final Optional<CommandMapping> ret = get(input, source);
+                return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
             }
-        } else { // Complete using subcommand
-            Optional<CommandMapping> mapping = get(parts[0]);
+        });
 
-            if (mapping.isPresent()) {
-                mapping.get().getCallable().getSuggestions(source, parts.length > 1 ? parts[1] : "");
+        for (Iterator<String> it = filteredCommands.iterator(); it.hasNext();) {
+            build.append(Texts.of(it.next()));
+            if (it.hasNext()) {
+                build.append(CommandMessageFormatting.PIPE_TEXT);
             }
         }
-
-        return Collections.unmodifiableList(suggestions);
+        return build.build();
     }
 
     @Override
-    public Optional<String> getShortDescription() {
-        return Optional.absent();
+    public synchronized Set<CommandMapping> getAll(String alias) {
+        return ImmutableSet.copyOf(this.commands.get(alias));
     }
 
     @Override
-    public Optional<String> getHelp() {
-        return Optional.absent();
+    public Multimap<String, CommandMapping> getAll() {
+        return ImmutableMultimap.copyOf(this.commands);
     }
-
-    @Override
-    public String getUsage() {
-        return "<sub-command>"; // @TODO: Translate
-    }
-
 }

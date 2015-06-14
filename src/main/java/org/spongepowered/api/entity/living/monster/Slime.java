@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,8 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.monster;
+
+import org.spongepowered.api.data.manipulators.entities.SlimeData;
 
 /**
  * Represents a Slime.
@@ -31,20 +32,10 @@ package org.spongepowered.api.entity.living.monster;
 public interface Slime extends Monster {
 
     /**
-     * Gets the size of this slime. Size helps define the maximum health and
-     * damage dealt by this slime.
+     * Gets a copy of the current {@link SlimeData} for this {@link Slime}.
      *
-     * @return The current size of this slime
+     * @return A copy of the current slime data
      */
-    int getSize();
-
-    /**
-     * Sets the size of this slime.
-     * <p>The size should always be 1 or more. Setting the size may affect
-     * this slimes maximum health. Sizes should not be negative.</p>
-     *
-     * @param size The size of the slime
-     */
-    void setSize(int size);
+    SlimeData getSlimeData();
 
 }

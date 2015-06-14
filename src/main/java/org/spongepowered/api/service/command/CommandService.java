@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service.command;
 
 import com.google.common.base.Function;
@@ -30,6 +29,8 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
 
 import java.util.List;
@@ -104,14 +105,6 @@ public interface CommandService extends Dispatcher {
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
 
     /**
-     * Remove a mapping identified by the given alias.
-     *
-     * @param alias The alias
-     * @return The previous mapping associated with the alias, if one was found
-     */
-    Optional<CommandMapping> remove(String alias);
-
-    /**
      * Remove a command identified by the given mapping.
      *
      * @param mapping The mapping
@@ -140,5 +133,31 @@ public interface CommandService extends Dispatcher {
      * @return The number of aliases
      */
     int size();
+
+    /**
+     * Execute the command based on input arguments.
+     *
+     * <p>The implementing class must perform the necessary permission
+     * checks.</p>
+     *
+     * @param source The caller of the command
+     * @param arguments The raw arguments for this command
+     * @return The result of a command being processed
+     */
+    @Override
+    Optional<CommandResult> process(CommandSource source, String arguments);
+
+    /**
+     * Get a list of suggestions based on input.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * @param source The command source
+     * @param arguments The arguments entered up to this point
+     * @return A list of suggestions
+     */
+    @Override
+    List<String> getSuggestions(CommandSource source, String arguments);
 
 }

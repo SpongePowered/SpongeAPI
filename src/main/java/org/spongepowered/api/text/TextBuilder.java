@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -927,8 +927,7 @@ public abstract class TextBuilder {
      */
     public static class Score extends TextBuilder {
 
-        // TODO: Update with Statistic API
-        protected Object score;
+        protected org.spongepowered.api.scoreboard.Score score;
         @Nullable protected String override;
 
         /**
@@ -936,7 +935,7 @@ public abstract class TextBuilder {
          *
          * @param score The score for the text builder
          */
-        public Score(Object score) {
+        public Score(org.spongepowered.api.scoreboard.Score score) {
             score(score);
         }
 
@@ -947,7 +946,7 @@ public abstract class TextBuilder {
          * @param text The text to apply the properties from
          * @param score The score for the text builder
          */
-        public Score(Text text, Object score) {
+        public Score(Text text, org.spongepowered.api.scoreboard.Score score) {
             super(text);
             score(score);
         }
@@ -970,7 +969,7 @@ public abstract class TextBuilder {
          * @return The current score
          * @see Text.Score#getScore()
          */
-        public final Object getScore() {
+        public final org.spongepowered.api.scoreboard.Score getScore() {
             return this.score;
         }
 
@@ -981,7 +980,7 @@ public abstract class TextBuilder {
          * @return This text builder
          * @see Text.Score#getScore()
          */
-        public Score score(Object score) {
+        public Score score(org.spongepowered.api.scoreboard.Score score) {
             this.score = checkNotNull(score, "score");
             return this;
         }

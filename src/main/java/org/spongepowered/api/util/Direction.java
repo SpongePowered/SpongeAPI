@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -68,8 +68,8 @@ public enum Direction {
     private final int flags;
     private Direction opposite;
 
-    private Direction(Vector3d vector3d, int flags) {
-        if (vector3d.length() == 0) {
+    Direction(Vector3d vector3d, int flags) {
+        if (vector3d.lengthSquared() == 0) {
             // Prevent normalization of the zero direction
             this.direction = vector3d;
         } else {

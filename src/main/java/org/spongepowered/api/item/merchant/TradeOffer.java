@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.merchant;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -35,8 +36,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
  *
  * <p>Also, trade offers are not guaranteed to have two buying items.</p>
  */
-public interface TradeOffer {
-    
+public interface TradeOffer extends DataSerializable {
+
     /**
      * Gets the first buying item.
      * <p>The first buying item is an item that the customer is selling to the
@@ -76,33 +77,26 @@ public interface TradeOffer {
     ItemStack getSellingItem();
 
     /**
-     * Gets the current uses of this offer.
+     * <p>Gets the current uses of this offer.</p>
      *
      * <p>Usually, the uses of an offer a re limited by the amount of
      * {@link #getMaxUses()}. Once the uses reaches the max uses, the offer may
-     * temporarily become disabled.</p>
+     * temporariliy become disabled.</p>
      *
      * @return The current uses of this trade offer
      */
     int getUses();
 
     /**
-     * Gets the current maximum uses of this offer.
+     * <p>Gets the current maximum uses of this offer.</p>
      *
      * <p>Usually, the uses of an offer a re limited by the amount of maximum
-     * uses. Once the uses reaches the max uses, the offer may temporarily
+     * uses. Once the uses reaches the max uses, the offer may temporariliy
      * become disabled.</p>
      *
      * @return The maximum uses of this trade offer
      */
     int getMaxUses();
-
-    /**
-     * Gets the remaining amount of uses of this offer.
-     *
-     * @return The remaining uses of this offer.
-     */
-    int getRemainingUses();
 
     /**
      * Checks if this trade offer has indeed passed the time of which the uses

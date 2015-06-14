@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,21 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.command;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.util.command.completion.CommandCompleter;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.command.spec.CommandSpec;
 
 import java.util.List;
 
 /**
- * A command that can be executed.
+ * A low-level interface for commands that can be executed. For almost all use
+ * cases, higher-level tools should be used instead, like {@link CommandSpec}.
  *
  * <p>Implementations are not required to implement a sane
- * {@link java.lang.Object#equals(Object)} but may choose to do so.</p>
+ * {@link java.lang.Object#equals(Object)} but really should.</p>
  */
-public interface CommandCallable extends CommandCompleter {
+public interface CommandCallable {
 
     /**
      * Execute the command based on input arguments.
@@ -46,12 +47,23 @@ public interface CommandCallable extends CommandCompleter {
      *
      * @param source The caller of the command
      * @param arguments The raw arguments for this command
-     * @param parents A stack of parent commands, where the first entry is
-     *                the root command
-     * @return Whether a command was processed
+     * @return The result of a command being processed
      * @throws CommandException Thrown on a command error
      */
-    boolean call(CommandSource source, String arguments, List<String> parents) throws CommandException;
+    Optional<CommandResult> process(CommandSource source, String arguments) throws CommandException;
+
+    /**
+     * Get a list of suggestions based on input.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * @param source The command source
+     * @param arguments The arguments entered up to this point
+     * @return A list of suggestions
+     * @throws CommandException Thrown if there was a parsing error
+     */
+    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
 
     /**
      * Test whether this command can probably be executed by the given source.
@@ -69,16 +81,29 @@ public interface CommandCallable extends CommandCompleter {
     /**
      * Get a short one-line description of this command.
      *
-     * @return A description, if available
+     * <p>The help system may display the description in the command list.</p>
+     *
+     * @param source The source of the help request
+     * @return A description
      */
-    Optional<String> getShortDescription();
+    Optional<? extends Text> getShortDescription(CommandSource source);
 
     /**
-     * Get a longer help text about this command.
+     * Get a longer formatted help message about this command.
      *
-     * @return A help text, if available
+     * <p>It is recommended to use the default text color and style. Sections
+     * with text actions (e.g. hyperlinks) should be underlined.</p>
+     *
+     * <p>Multi-line messages can be created by separating the lines with
+     * {@code \n}.</p>
+     *
+     * <p>The help system may display this message when a source requests
+     * detailed information about a command.</p>
+     *
+     * @param source The source of the help request
+     * @return A help text
      */
-    Optional<String> getHelp();
+    Optional<? extends Text> getHelp(CommandSource source);
 
     /**
      * Get the usage string of this command.
@@ -86,8 +111,11 @@ public interface CommandCallable extends CommandCompleter {
      * <p>A usage string may look like
      * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
      *
+     * <p>The string must not contain the command alias.</p>
+     *
+     * @param source The source of the help request
      * @return A usage string
      */
-    String getUsage();
+    Text getUsage(CommandSource source);
 
 }

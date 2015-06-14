@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,13 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world.gen;
 
 import org.spongepowered.api.world.World;
 
+import java.util.Random;
+
 /**
- * Represents a structure which can be placed into the world by a populator.
+ * Represents an object placed in the world during terrain population. Populator
+ * objects typically fit in a single chunk.
+ *
+ * @see PopulatorObjects
  */
 public interface PopulatorObject {
 
@@ -48,10 +52,12 @@ public interface PopulatorObject {
      * Places the object into the world at the given location.
      *
      * @param world The world
+     * @param random Random number generator based on the world seed and
+     *        position.
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      */
-    void placeObject(World world, int x, int y, int z);
+    void placeObject(World world, Random random, int x, int y, int z);
 
 }

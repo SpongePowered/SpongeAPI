@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.world.Location;
 
 /**
  * Base event for events affecting a single block.
@@ -38,6 +38,6 @@ public interface BlockEvent extends GameEvent, CauseTracked {
      *
      * @return Related block
      */
-    BlockLoc getBlock();
+    Location getBlock();
 
 }

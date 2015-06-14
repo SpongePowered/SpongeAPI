@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.properties;
 
+import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 
 import javax.annotation.Nullable;
@@ -153,7 +154,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      *          org.spongepowered.api.item.inventory.InventoryProperty)
      */
     @Override
-    public boolean matches(@Nullable InventoryProperty<?, ?> other) {
+    public boolean matches(@Nullable Property<?, ?> other) {
         return this.getOperator().compare(this, other);
     }
 

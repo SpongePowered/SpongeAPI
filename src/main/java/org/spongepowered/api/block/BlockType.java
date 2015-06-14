@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,13 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemBlock;
-import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a base type of block.
@@ -37,7 +38,8 @@ import org.spongepowered.api.text.translation.Translatable;
  * data, such as inventory contents, are considered data, which is provided
  * via {@link DataHolder}.</p>
  */
-public interface BlockType extends Translatable {
+@CatalogedBy(BlockTypes.class)
+public interface BlockType extends CatalogType, Translatable {
 
     /**
      * Return the internal ID for the block.
@@ -48,7 +50,8 @@ public interface BlockType extends Translatable {
      *
      * @return The id
      */
-    String getId();
+    @Override
+    String getName();
 
     /**
      * Return the default state for this block.
@@ -56,16 +59,6 @@ public interface BlockType extends Translatable {
      * @return The default state
      */
     BlockState getDefaultState();
-
-    /**
-     * Get the block state for a given data value.
-     *
-     * @param data The data value to extract into a block state
-     * @return Block state with properties set according to the data value
-     * @deprecated Exists for backwards-compatibility/transitional use
-     */
-    @Deprecated
-    BlockState getStateFromDataValue(byte data);
 
     /**
      * Gets if this BlockType is set to receive random block ticks.
@@ -98,6 +91,13 @@ public interface BlockType extends Translatable {
      * @return Is solid block
      */
     boolean isSolidCube();
+
+    /**
+     * Gets if a block type is a gas, like air.
+     *
+     * @return Is gas
+     */
+    boolean isGaseous();
 
     /**
      * Gets if this block is affected by gravity (if it will fall when

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,10 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service.event;
 
-import org.spongepowered.api.util.event.Event;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.EventHandler;
+import org.spongepowered.api.event.Order;
+import org.spongepowered.api.event.Subscribe;
 
 /**
  * Manages the registration of event handlers and the dispatching of events.
@@ -33,13 +35,47 @@ import org.spongepowered.api.util.event.Event;
 public interface EventManager {
 
     /**
-     * Registers an object to receive {@link Event}s.
+     * Registers {@link Event} methods annotated with @{@link Subscribe} in the
+     * specified object.
      *
-     * @param plugin A plugin instance
+     * @param plugin The plugin instance
      * @param obj The object
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
+     *         instance
      */
     void register(Object plugin, Object obj);
+
+    /**
+     * Registers an event handler for a specific event class.
+     *
+     * <p>Normally, the annotation-based way in
+     * {@link #register(Object, Object)} should be preferred over this way. This
+     * method exists primarily to support dynamic event registration like needed
+     * in scripting plugins.</p>
+     *
+     * @param plugin The plugin instance
+     * @param eventClass The event to listen to
+     * @param handler The handler to receive the events
+     * @param <T> The type of the event
+     */
+    <T extends Event> void register(Object plugin, Class<T> eventClass, EventHandler<? super T> handler);
+
+    /**
+     * Registers an event handler with the specified order for a specific event
+     * class.
+     *
+     * <p>Normally, the annotation-based way in
+     * {@link #register(Object, Object)} should be preferred over this way. This
+     * method exists primarily to support dynamic event registration like needed
+     * in scripting plugins.</p>
+     *
+     * @param plugin The plugin instance
+     * @param eventClass The event to listen to
+     * @param order The order the handler will get called at
+     * @param handler The handler to receive the events
+     * @param <T> The type of the event
+     */
+    <T extends Event> void register(Object plugin, Class<T> eventClass, Order order, EventHandler<? super T> handler);
 
     /**
      * Un-registers an object from receiving {@link Event}s.
@@ -49,10 +85,17 @@ public interface EventManager {
     void unregister(Object obj);
 
     /**
+     * Un-registers all event handlers of a plugin.
+     *
+     * @param plugin The plugin instance
+     */
+    void unregisterPlugin(Object plugin);
+
+    /**
      * Calls a {@link Event} to all handlers that handle it.
      *
      * @param event The event
-     * @return True if canceled, false if not
+     * @return True if cancelled, false if not
      */
     boolean post(Event event);
 

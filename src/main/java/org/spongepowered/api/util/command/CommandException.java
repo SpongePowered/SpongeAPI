@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,51 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.command;
 
-import javax.annotation.Nullable;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.TextMessageException;
 
 /**
  * Thrown when an executed command raises an error or when execution of
  * the command failed.
  */
-public class CommandException extends Exception {
+public class CommandException extends TextMessageException {
 
-    private static final long serialVersionUID = 4626722936890074825L;
-
-    /**
-     * Construct a new exception with a {@code null} message.
-     */
-    public CommandException() {
-    }
+    private static final long serialVersionUID = 4626722485860074825L;
 
     /**
-     * Construct a new exception with the given message.
+     * Constructs a new {@link CommandException} with the given message.
      *
      * @param message The detail message
      */
-    public CommandException(@Nullable String message) {
+    public CommandException(Text message) {
         super(message);
     }
 
     /**
-     * Construct a new exception with the given message and the given cause.
+     * Constructs a new {@link CommandException} with the given message and
+     * the given cause.
      *
      * @param message The detail message
      * @param cause The cause
      */
-    public CommandException(@Nullable String message, @Nullable Throwable cause) {
+    public CommandException(Text message, Throwable cause) {
         super(message, cause);
     }
-
-    /**
-     * Constructs a new exception with the specified cause.
-     *
-     * @param cause The cause
-     */
-    public CommandException(@Nullable Throwable cause) {
-        super(cause);
-    }
-
 }

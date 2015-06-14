@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world.biome;
 
 /**
@@ -71,6 +70,7 @@ public final class BiomeTypes {
     public static final BiomeType MESA = null;
     public static final BiomeType MESA_PLATEAU_FOREST = null;
     public static final BiomeType MESA_PLATEAU = null;
+
     // Mutated Biomes
     public static final BiomeType SUNFLOWER_PLAINS = null;
     public static final BiomeType DESERT_MOUNTAINS = null;

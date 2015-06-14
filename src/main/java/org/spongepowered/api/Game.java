@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,16 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
 import org.spongepowered.api.service.scheduler.SynchronousScheduler;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.TeleportHelper;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -48,10 +48,10 @@ public interface Game {
     Platform getPlatform();
 
     /**
-     * Gets the running {@link Server}, if any.
+     * Gets the {@link Server}.
      * @return The server
      */
-    Optional<Server> getServer();
+    Server getServer();
 
     /**
      * Gets the {@link PluginManager}.
@@ -126,5 +126,11 @@ public interface Game {
      * @return The Minecraft version
      */
     MinecraftVersion getMinecraftVersion();
+
+    /**
+     * Gets the {@link TeleportHelper}, used to find safe {@link Location}s.
+     * @return The teleport helper
+     */
+    TeleportHelper getTeleportHelper();
 
 }

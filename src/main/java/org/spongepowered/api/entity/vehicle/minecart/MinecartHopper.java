@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,9 +24,21 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.data.manipulators.tileentities.CooldownData;
+import org.spongepowered.api.item.inventory.ItemStack;
+
 /**
- * Represents a minecart with a Hopper in it.
+ * Represents a {@link Minecart} with a Hopper in it.
  */
 public interface MinecartHopper extends MinecartContainer {
+
+    /**
+     * Gets a copy of the {@link CooldownData}. The cooldown data represents
+     * the delay before this {@link MinecartHopper} will attempt to transfer
+     * an {@link ItemStack}.
+     *
+     * @return A copy of the cooldown data
+     */
+    CooldownData getCooldownData();
 
 }

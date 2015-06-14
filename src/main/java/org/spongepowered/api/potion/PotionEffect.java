@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,34 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.potion;
 
-import org.spongepowered.api.attribute.AttributeSource;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.manipulators.PotionEffectData;
 
 /**
  * Represents a possible Potion Effect.
  *
- * <p>PotionEffects can be added to {@link Living} entities via
- * {@link Living#addPotionEffect(PotionEffect, boolean)}.</p>
+ * <p>PotionEffects can be added to entities via
+ * {@link PotionEffectData#addPotionEffect(PotionEffect, boolean)}.</p>
  */
-public interface PotionEffect extends DataSerializable, AttributeSource {
+public interface PotionEffect extends DataSerializable, ImmutableDataHolder<PotionEffect> {
 
     /**
-     * Gets the {@link PotionType} of this potion.
+     * Gets the {@link PotionEffectType} of this potion.
      *
-     * @return The effect type.
+     * @return The type.
      */
-    PotionType getEffectType();
-
-    /**
-     * Gets the {@link PotionCatagory} of this potion.
-     *
-     * @return The category the potion belongs to.
-     */
-    PotionCatagory getCategory();
+    PotionEffectType getType();
 
     /**
      * Gets the duration for which this potion effect
@@ -82,20 +75,4 @@ public interface PotionEffect extends DataSerializable, AttributeSource {
      */
     boolean getShowParticles();
 
-    /**
-     * Gets whether the potion type is a specific
-     * type.
-     *
-     * @param type The PotionEffectType being compared
-     * @return If the potion does have the specific PotionEffectType
-     */
-    boolean isEffectType(PotionType type);
-
-    /**
-     * Gets if the potion created belongs in a specific category.
-     *
-     * @param category The category being compared
-     * @return If the potion does have the specific PotionEffectType
-     */
-    boolean isCategory(PotionCatagory category);
 }

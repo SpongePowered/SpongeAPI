@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -488,11 +488,10 @@ public abstract class Text {
      */
     public static class Score extends Text {
 
-        // TODO: Update with Statistic API
-        protected final Object score;
+        protected final org.spongepowered.api.scoreboard.Score score;
         protected final Optional<String> override;
 
-        Score(Object score) {
+        Score(org.spongepowered.api.scoreboard.Score score) {
             this.score = checkNotNull(score, "score");
             this.override = Optional.absent();
         }
@@ -515,7 +514,8 @@ public abstract class Text {
          *        for none
          */
         public Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Object score, @Nullable String override) {
+                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
+                org.spongepowered.api.scoreboard.Score score, @Nullable String override) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
             this.score = checkNotNull(score, "score");
             this.override = Optional.fromNullable(override);
@@ -526,7 +526,7 @@ public abstract class Text {
          *
          * @return The score in this text
          */
-        public final Object getScore() {
+        public final org.spongepowered.api.scoreboard.Score getScore() {
             return this.score;
         }
 
@@ -556,7 +556,7 @@ public abstract class Text {
             }
 
             Score that = (Score) o;
-            return this.override.equals(that.override) && this.score.equals(that.score);
+            return this.score.equals(that.score) && this.override.equals(that.override);
         }
 
         @Override

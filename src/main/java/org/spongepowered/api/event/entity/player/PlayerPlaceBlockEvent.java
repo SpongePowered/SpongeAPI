@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanPlaceBlockEvent;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Player} places a {@link BlockLoc}.
+ * Called when a {@link Player} places a {@link Location}.
  */
 public interface PlayerPlaceBlockEvent extends PlayerChangeBlockEvent, HumanPlaceBlockEvent {
 

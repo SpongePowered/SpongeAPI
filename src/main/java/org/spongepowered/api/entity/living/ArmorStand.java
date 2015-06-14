@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.manipulators.entities.BodyPartRotationalData;
 import org.spongepowered.api.entity.ArmorEquipable;
 
 /**
@@ -33,88 +33,12 @@ import org.spongepowered.api.entity.ArmorEquipable;
 public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
-     * Gets the direction the headpiece is aiming at.
+     * Gets a copy of the current {@link BodyPartRotationalData} used by this
+     * {@link ArmorStand}.
      *
-     * @return The direction the headpiece is aiming at
+     * @return A copy of the current body rotational data
      */
-    Vector3d getHeadDirection();
-
-    /**
-     * Sets the direction of the head.
-     *
-     * @param direction The direction of the head
-     */
-    void setHeadDirection(Vector3d direction);
-
-    /**
-     * Gets the direction the body is aiming at.
-     *
-     * @return The direction the body is aiming at
-     */
-    Vector3d getBodyRotation();
-
-    /**
-     * Sets the direction of the body.
-     *
-     * @param direction The direction of the body
-     */
-    void setBodyDirection(Vector3d direction);
-
-    /**
-     * Gets the direction the left arm is aiming at.
-     *
-     * @return The direction the left arm is aiming at
-     */
-    Vector3d getLeftArmDirection();
-
-    /**
-     * Sets the direction of the left arm.
-     *
-     * @param direction The direction of the left arm
-     */
-    void setLeftArmDirection(Vector3d direction);
-
-    /**
-     * Gets the direction the right arm is aiming at.
-     *
-     * @return The direction the right arm is aiming at
-     */
-    Vector3d getRightArmDirection();
-
-    /**
-     * Sets the direction of the right arm.
-     *
-     * @param direction The direction of the right arm
-     */
-    void setRightArmDirection(Vector3d direction);
-
-    /**
-     * Gets the direction the left leg is aiming at.
-     *
-     * @return The direction the left leg is aiming at
-     */
-    Vector3d getLeftLegDirection();
-
-    /**
-     * Sets the direction of the left leg.
-     *
-     * @param direction The direction of the left leg
-     */
-    void setLeftLegDirection(Vector3d direction);
-
-    /**
-     * Gets the direction the right leg is aiming at.
-     *
-     * @return The direction the right leg is aiming at
-     */
-    Vector3d getRightLegDirection();
-
-    /**
-     * Sets the direction of the right leg.
-     *
-     * @param direction The direction of the right leg
-     */
-    void setRightLegDirection(Vector3d direction);
+    BodyPartRotationalData getBodyPartRotationalData();
 
     /**
      * Returns whether this armor stand is a small armor stand or not.

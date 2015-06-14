@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,48 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.monster;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.block.BlockState;
-
-import javax.annotation.Nullable;
+import org.spongepowered.api.item.inventory.Carrier;
 
 /**
  * Represents an Enderman.
  */
-public interface Enderman extends Monster {
+public interface Enderman extends Monster, Carrier {
 
-    /**
-     * Gets the {@link BlockState} currently carried by the enderman.
-     *
-     * @return The {@link BlockState}, if available
-     */
-    Optional<BlockState> getCarriedBlock();
-
-    /**
-     * Sets the {@link BlockState} currently carried by the enderman.
-     *
-     * @param carriedBlock The carried {@link BlockState} or null for no block
-     */
-    void setCarriedBlock(@Nullable BlockState carriedBlock);
-
-    /**
-     * Gets if the enderman is currently screaming.
-     * <p>This behaviour generally occurs when a player has been
-     * targeted due to staring too long.</p>
-     *
-     * @return If the enderman is screaming
-     */
-    boolean isScreaming();
-
-    /**
-     * Sets if the enderman is currently screaming.
-     * <p>This behaviour generally occurs when a player has been
-     * targeted due to staring too long.</p>
-     *
-     * @param screaming If the enderman should be screaming
-     */
-    void setScreaming(boolean screaming);
 }

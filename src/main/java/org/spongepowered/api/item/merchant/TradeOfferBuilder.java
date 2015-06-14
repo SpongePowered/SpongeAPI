@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.Text;
 
 /**
  * Represents a builder to generate immutable {@link TradeOffer}s.
@@ -59,21 +58,13 @@ public interface TradeOfferBuilder {
     TradeOfferBuilder sellingItem(ItemStack item);
 
     /**
-     * Set a temporary title that is displayed above the trade offer.
-     *
-     * @param title The title that is displayed
-     * @return This builder
-     */
-    TradeOfferBuilder setTradeTitle(Text title);
-
-    /**
      * Sets the existing uses of the trade offer to be generated. A trade offer
      * will become unusable when the uses surpasses the max uses.
      *
      * @param uses The uses
      * @return This builder
      */
-    TradeOfferBuilder setUses(int uses);
+    TradeOfferBuilder uses(int uses);
 
     /**
      * Sets the maximum uses the generated trade offer will have. A trade offer

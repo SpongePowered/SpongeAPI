@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.manipulators.TargetedLocationData;
 
 /**
  * Represents an Eye of Ender.
@@ -32,33 +32,11 @@ import com.flowpowered.math.vector.Vector3d;
 public interface EyeOfEnder extends Projectile {
 
     /**
-     * Gets the target location this eye is flying towards.
+     * Gets a copy of the {@link TargetedLocationData} this {@link EyeOfEnder}
+     * is "flying" towards.
      *
-     * @return The location this eye is flying towards
+     * @return A copy of the targeted location data
      */
-    Vector3d getTargetedLocation();
-
-    /**
-     * Sets the target location this eye will fly towards.
-     *
-     * @param vector3d The target location for this eye to fly towards
-     */
-    void setTargetedLocation(Vector3d vector3d);
-
-    /**
-     * Returns whether this eye will shatter or drop a new eye in the
-     * form of an {@link org.spongepowered.api.entity.Item}.
-     *
-     * @return True if this eye will shatter or not
-     */
-    boolean doesShatterOnDrop();
-
-    /**
-     * Sets whether this eye will shatter or drop a new eye in the
-     * form of an {@link org.spongepowered.api.entity.Item}.
-     *
-     * @param shatterOnDrop Whether this eye will shatter or not
-     */
-    void setShatterOnDrop(boolean shatterOnDrop);
+    TargetedLocationData getTargetLocationData();
 
 }

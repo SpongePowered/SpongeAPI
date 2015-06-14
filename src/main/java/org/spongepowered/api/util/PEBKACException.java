@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util;
 
 /**
@@ -33,15 +32,14 @@ public class PEBKACException extends UnsupportedOperationException {
     private static final long serialVersionUID = 6434648270429319820L;
 
     /**
-     * Creates a new {@link PEBKACException} with a null message and cause.
+     * Constructs a new {@link PEBKACException}.
      */
     public PEBKACException() {
         super();
     }
 
     /**
-     * Creates a new {@link PEBKACException} with the given message and null
-     * cause.
+     * Constructs a new {@link PEBKACException} with the given message.
      * 
      * @param msg The exception message
      */
@@ -50,7 +48,8 @@ public class PEBKACException extends UnsupportedOperationException {
     }
 
     /**
-     * Creates a new {@link PEBKACException} with the given message and cause.
+     * Constructs a new {@link PEBKACException} with the given message and
+     * cause.
      * 
      * @param msg The exception message
      * @param cause The cause of the exception
@@ -60,8 +59,7 @@ public class PEBKACException extends UnsupportedOperationException {
     }
 
     /**
-     * Creates a new {@link PEBKACException} with the given cause and a null
-     * message.
+     * Constructs a new {@link PEBKACException} with the given cause.
      * 
      * @param cause The cause of the exception
      */

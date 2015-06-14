@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.awt.Color;
 
@@ -33,7 +35,8 @@ import java.awt.Color;
  *
  * @see TextColors
  */
-public interface TextColor {
+@CatalogedBy(TextColors.class)
+public interface TextColor extends CatalogType {
 
     /**
      * Returns the corresponding {@link Color} for this {@link TextColor}.

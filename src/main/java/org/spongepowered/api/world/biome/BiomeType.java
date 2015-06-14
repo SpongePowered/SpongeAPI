@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,22 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world.biome;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.data.types.BiomeCatagoryType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
+
+import java.util.List;
 
 /**
  * Represents a biome.
  */
-public interface BiomeType {
-
-    /**
-     * Gets the name of this biome type.
-     *
-     * @return The name of this biome type
-     */
-    String getName();
+@CatalogedBy(BiomeTypes.class)
+public interface BiomeType extends CatalogType {
 
     /**
      * Get the temperature of this biome.
@@ -68,22 +68,68 @@ public interface BiomeType {
     float getMaxHeight();
 
     /**
-     * Returns an ordered Collection of {@link Populator}s specific to this
-     * biome.
+     * Check if biome is custom or not.
+     *
+     * @return If the biome is custom or not
+     */
+    boolean isCustom();
+
+    /**
+     * Gets a mutable ordered list of {@link GroundCoverLayer}s. These layers
+     * will be applied to the base terrain during the generation phase starting
+     * at the topmost stone block in each column.
+     * 
+     * @return The ground cover layers
+     */
+    List<GroundCoverLayer> getGroundCover();
+
+    /**
+     * Gets a mutable list of {@link GeneratorPopulator}s. These populators work
+     * strictly on a single chunk. They will be executed directly after the
+     * {@link #getGroundCover() ground cover layers} are applied. These
+     * generator populators are typically used to generate large terrain
+     * features, like caves and ravines.
+     *
+     * @return The generator populators
+     */
+    List<GeneratorPopulator> getGeneratorPopulators();
+
+    /**
+     * Returns a mutable list of {@link Populator}s specific to this biome.
+     * Changing this list will affect population of all new chunks.
      *
      * @return The populators
      */
-    Iterable<Populator> getPopulators();
+    List<Populator> getPopulators();
 
     /**
-     * Inserts a new populator to this Biome's ordered collection of
-     * populators. The new populator is inserted at the given index. If the
-     * index is larger than the current amount of populators then the new
-     * populator in inserted at the end of the collection.
+     * Gets the possible id if the biome is customized. If the biome is not
+     * customized, will return {@link Optional#absent()}.
      *
-     * @param populator The new populator
-     * @param index THe index to insert the populator at
+     * @return The id, if exists
      */
-    void insertPopulator(Populator populator, int index);
+    Optional<Integer> getBiomeId();
+
+    /**
+     * Gets the possible category if the biome is customized. If the biome is
+     * not customized, returns {@link Optional#absent()}.
+     *
+     * @return The {@link BiomeCatagoryType}, if possible
+     */
+    Optional<BiomeCatagoryType> getCategory();
+
+    Optional<Integer> getSize();
+
+    Optional<Integer> getRarity();
+
+    Optional<String> getColor();
+
+    Optional<Float> getHeight();
+
+    Optional<Float> getMaxAverageHeight();
+
+    Optional<Float> getMaxAverageDepth();
+
+    Optional<Integer> getSmoothRadius();
 
 }

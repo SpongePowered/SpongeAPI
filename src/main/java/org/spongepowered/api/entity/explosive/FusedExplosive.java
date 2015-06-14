@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.explosive;
 
+import org.spongepowered.api.data.manipulators.entities.FuseData;
+
 /**
  * Represents an explosive that detonates after its fuse has expired.
  * <p>A FusedExplosive may already be ignited once spawned.</p>
@@ -31,23 +33,11 @@ package org.spongepowered.api.entity.explosive;
 public interface FusedExplosive extends Explosive {
 
     /**
-     * Gets the current fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
+     * Gets a copy of the {@link FuseData} representing the fuse
+     * for this {@link FusedExplosive} entity.
      *
-     * @return The current fuse duration in ticks
+     * @return A copy of the fuse data
      */
-    int getFuseDuration();
-
-    /**
-     * Sets the remainig fuse duration in ticks on this explosive.
-     * <p>After the fuse duration diminishes to zero, explosive entities
-     * may explode.</p><p>If the fuse duration is set to negative,
-     * the explosive may become idle.</p>
-     *
-     * @param fuseTicks The ticks for the fuse
-     */
-    void setFuseDuration(int fuseTicks);
+    FuseData getFuseData();
 
 }

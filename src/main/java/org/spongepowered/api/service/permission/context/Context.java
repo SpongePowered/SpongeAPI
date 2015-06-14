@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,6 +38,10 @@ import java.util.Map;
 public final class Context implements Map.Entry<String, String> {
     public static final String WORLD_KEY = "world";
     public static final String DIMENSION_KEY = "dimension";
+    public static final String REMOTE_IP_KEY = "remoteip";
+    public static final String LOCAL_HOST_KEY = "localhost";
+    public static final String LOCAL_IP_KEY = "localip";
+    public static final String LOCAL_PORT_KEY = "localport"; // This portkey is an old boot
 
     private final Map.Entry<String, String> wrapped;
 

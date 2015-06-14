@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,6 +27,9 @@ package org.spongepowered.api.effect;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.title.Title;
 
 /**
  * A Viewer is something that sees effects.
@@ -88,5 +91,51 @@ public interface Viewer {
      * @param minVolume The minimum volume to play the sound at, usually between 0 and 2
      */
     void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
+
+    /**
+     * Sends the plain text message(s) with the specified {@link ChatType} on
+     * the client.
+     * <p>
+     * Use {@link #sendMessage(ChatType, Text...)} for a formatted message.
+     * </p>
+     *
+     * @param type The chat type to send the messages to
+     * @param message The message(s) to send
+     */
+    void sendMessage(ChatType type, String... message);
+
+    /**
+     * Sends the message(s) with the specified {@link ChatType} on the client.
+     *
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatType type, Text... messages);
+
+    /**
+     * Sends the message(s) with the specified {@link ChatType} on the client.
+     *
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
+     */
+    void sendMessage(ChatType type, Iterable<Text> messages);
+
+    /**
+     * Sends a {@link Title} to this player.
+     *
+     * @param title The {@link Title} to send to the player
+     */
+    void sendTitle(Title title);
+
+    /**
+     * Removes the currently displayed {@link Title} from the player and resets
+     * all settings back to default values.
+     */
+    void resetTitle();
+
+    /**
+     * Removes the currently displayed {@link Title} from the player's screen.
+     */
+    void clearTitle();
 
 }

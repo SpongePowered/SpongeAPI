@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,32 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Dyeable;
+import org.spongepowered.api.data.manipulators.DyeableData;
 
 /**
  * Represents a Sheep.
  */
-public interface Sheep extends Animal, Dyeable {
+public interface Sheep extends Animal {
 
     /**
-     * Returns whether this sheep is sheared or not.
-     * <p>A sheared sheep may not return a wool block from shearing.
-     * It may also attempt to consume a grass block to grow back its fur.</p>
+     * Gets a copy of the {@link DyeableData} representing the color of this
+     * {@link Sheep} entity.
      *
-     * @return True if this sheep has been sheared
+     * @return A copy of the dye data
      */
-    boolean isSheared();
-
-    /**
-     * Sets whether this sheep is sheared or not.
-     * <p>A sheared sheep may not return a wool block from shearing.
-     * It may also attempt to consume a grass block to grow back its fur.</p>
-     *
-     * @param sheared Whether this sheep is sheared or not
-     */
-    void setSheared(boolean sheared);
+    DyeableData getDyeData();
 
 }

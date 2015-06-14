@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,54 +24,85 @@
  */
 package org.spongepowered.api.world.gen;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.util.gen.BlockBuffer;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.biome.BiomeType;
+
+import java.util.List;
 
 /**
- * Represents a generator for chunks into a world.
+ * Represents the world generator of a world. This interface contains all
+ * settings for the world generator, like which populators are in use, but also
+ * the world seed.
+ * 
+ * <p>The generation process for chunks is divided into two phases, generation
+ * and population. The generation phase is in charge of creating the base
+ * terrain shape and generating large terrain features. All operations during
+ * the generation phase act upon a BlockBuffer rather than a live chunk
+ * object.</p>
+ * 
+ * <p>Conversely the population phase operates against a live chunk object and
+ * has the guarantee that all immediately surrounding chunks have at least
+ * passed the generation phase. The population phase is typically used for the
+ * placement of small features and objects placed may cross chunk
+ * boundaries.</p>
+ * 
+ * <ol><strong>The generation phase:</strong> <li>Create a BlockBuffer
+ * representing the chunk's area</li> <li>Call the
+ * {@link #getBaseGeneratorPopulator() base GeneratorPopulator} from the
+ * WorldGenerator to create the base terrain shape.</li> <li>Call each of the
+ * {@link BiomeType#getGeneratorPopulators() GeneratorPopulators} registered to
+ * the BiomeCatagoryType.</li> <li>Call each of the {@link #getGeneratorPopulators()
+ * GeneratorPopulators} registered to the WorldGenerator.</li> <li>Build the
+ * final Chunk object from the contents of the BlockBuffer.</li> </ol>
+ * 
+ * <ol><strong>The population phase:</strong> <li>Validate surrounding
+ * chunks.</li> <li>Using the biome at an arbitrary point within the chunk ({16,
+ * 0, 16} in the vanilla game), pass the chunk to each of the
+ * {@link BiomeType#getPopulators() Populators} registered to the chosen
+ * biome.</li> <li>Pass the chunk to each of the {@link #getPopulators()
+ * Populators} registered to the WorldGenerator.</li> </ol>
  */
 public interface WorldGenerator {
 
     /**
-     * Generates the chunk at the given position in the world. The position
-     * specified is the chunk position (ie. the world position divided by the
-     * chunk size). The newly generated chunk should be placed into the given
-     * {@link BlockBuffer}.
+     * Gets the main {@link GeneratorPopulator}. This generator populator is
+     * responsible for generating the base terrain of the chunk.
      *
-     * @param world The world
-     * @param buffer The buffer to generate the region into
-     * @param position The chunk position
+     * @return The {@link GeneratorPopulator}.
+     * @see #setBaseGeneratorPopulator(GeneratorPopulator)
      */
-    void generateChunk(World world, MutableBlockBuffer buffer, Vector3i position);
+    GeneratorPopulator getBaseGeneratorPopulator();
 
     /**
-     * Gets whether map features are enabled and if this generator will be
-     * creating structures (such as villages and strongholds etc.)
+     * Sets the {@link GeneratorPopulator}. This generator populator is
+     * responsible for generating the base terrain of the chunk.
      *
-     * @return Map features enabled
+     * @param generator The generator.
      */
-    boolean areMapFeaturesEnabled();
+    void setBaseGeneratorPopulator(GeneratorPopulator generator);
 
     /**
-     * Gets an ordered collection of {@link Populator}s which are applied
-     * globally.
+     * Gets a mutable list of {@link GeneratorPopulator}s. These populators work
+     * strictly on a single chunk. They will be executed directly after the
+     * {@link BiomeType#getGroundCover() biome ground cover layers} and the
+     * {@link BiomeType#getGeneratorPopulators() biome generator populators}
+     * have been called. These generator populators are typically used to
+     * generate large terrain features, like caves and ravines.
      *
+     * <p>This list does not include {@link #getBaseGeneratorPopulator() the
+     * base generator}.</p>
+     *
+     * @return The generator populators
+     */
+    List<GeneratorPopulator> getGeneratorPopulators();
+
+    /**
+     * Gets a mutable list of {@link Populator}s which are applied globally (in
+     * the whole world).
+     *
+     * @see BiomeType#getPopulators()
      * @return The populators
      */
-    Iterable<Populator> getGlobalPopulators();
-
-    /**
-     * Inserts a new populator to this Biome's ordered collection of
-     * populators. The new populator is inserted at the given index. If the
-     * index is larger than the current amount of populators then the new
-     * populator in inserted at the end of the collection.
-     *
-     * @param populator The new populator
-     * @param index THe index to insert the populator at
-     */
-    void insertPopulator(Populator populator, int index);
+    List<Populator> getPopulators();
 
     /**
      * Gets the {@link BiomeGenerator} for this world generator.
@@ -83,8 +114,8 @@ public interface WorldGenerator {
     /**
      * Sets the {@link BiomeGenerator} for this world generator.
      *
-     * @param biomeManager The new biome generator
+     * @param biomeGenerator The new biome generator
      */
-    void setBiomeGenerator(BiomeGenerator biomeManager);
+    void setBiomeGenerator(BiomeGenerator biomeGenerator);
 
 }

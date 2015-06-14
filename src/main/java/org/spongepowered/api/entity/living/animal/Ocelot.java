@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,28 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.entity.living.Sittable;
+import org.spongepowered.api.data.manipulators.entities.OcelotData;
 
 /**
  * Represents an Ocelot.
  */
-public interface Ocelot extends Animal, Sittable {
+public interface Ocelot extends Animal {
 
     /**
-     * Gets the current {@link OcelotType} of this ocelot.
+     * Gets a copy of the current {@link OcelotData} being represented by
+     * this {@link Ocelot}.
      *
-     * @return The current ocelot type
+     * @return A copy of the current ocelot data
      */
-    OcelotType getOcelotType();
-
-    /**
-     * Sets this ocelot to become the given {@link OcelotType}.
-     *
-     * @param ocelotType The new ocelot type
-     */
-    void setOcelotType(final OcelotType ocelotType);
+    OcelotData getOcelotData();
 
 }

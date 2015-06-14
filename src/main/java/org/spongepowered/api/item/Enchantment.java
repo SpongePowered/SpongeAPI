@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,13 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface Enchantment extends Translatable {
+/**
+ * Represents a modifier on an item that has various effects.
+ */
+@CatalogedBy(Enchantments.class)
+public interface Enchantment extends CatalogType, Translatable {
 
     /**
      * Gets the id of this enchantment.
@@ -38,7 +43,8 @@ public interface Enchantment extends Translatable {
      *
      * @return The id
      */
-    String getId();
+    @Override
+    String getName();
 
     /**
      * Get the weight of the enchantment.

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,13 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.attribute;
 
 import org.spongepowered.api.attribute.Attribute;
-import org.spongepowered.api.attribute.AttributeHolder;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.event.Cancellable;
 
 /**
  * An event fired when an {@link Attribute} is changed in any way.
@@ -36,17 +35,17 @@ import org.spongepowered.api.util.event.Cancellable;
 public interface AttributeEvent extends Cancellable, GameEvent {
 
     /**
-     * Gets the {@link AttributeHolder} whose attributes are being changed.
+     * Gets the {@link DataHolder} whose attributes are being changed.
      *
-     * @return The AttributeHolder whose attributes are being changed
+     * @return The {@link DataHolder} whose attributes are being changed
      */
-    AttributeHolder getHolder();
+    DataHolder getHolder();
 
     /**
      * Gets the {@link org.spongepowered.api.attribute.Attribute} that is being
      * changed.
      *
-     * @return The Attribute that is being changed
+     * @return The {@link Attribute} that is being changed
      */
     Attribute getAttribute();
 

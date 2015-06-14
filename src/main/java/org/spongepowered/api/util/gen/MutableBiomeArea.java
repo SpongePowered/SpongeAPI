@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,11 +25,13 @@
 package org.spongepowered.api.util.gen;
 
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.custom.CustomBiome;
 import org.spongepowered.api.world.extent.BiomeArea;
 
 /**
  * A mutable buffer for {@link BiomeType} data. This buffer has no direct relation
  * to the world and changes to it are not synchronized to the world.
+ *
  */
 public interface MutableBiomeArea extends BiomeBuffer, BiomeArea {
 

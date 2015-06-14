@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,33 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.gen.ImmutableBiomeArea;
+import org.spongepowered.api.util.gen.BiomeBuffer;
 import org.spongepowered.api.util.gen.MutableBlockBuffer;
+import org.spongepowered.api.world.World;
 
 /**
  * A populator which acts directly on the {@link MutableBlockBuffer} during the
  * generation phase rather than the population phase.
+ * 
+ * <p>Unlike a normal {@link Populator}, a {@link GeneratorPopulator} is
+ * restricted to the chunk that is currently being generated.</p>
  */
 public interface GeneratorPopulator {
 
     /**
-     * Performs the changes to the given {@link MutableBlockBuffer}.
+     * Operates on a {@link MutableBlockBuffer} either forming the base terrain
+     * or performing modifications during the generation phase.
      *
-     * <p>The given position is the lowest point of the buffer in order to
-     * properly mutate the seed to ensure that all chunks are unique, while
-     * at the same time the same chunk will always generate the same for a
-     * given seed.</p>
-     *
-     * @param buffer The buffer to apply the changes to
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
+     * @param world The world
+     * @param buffer The buffer to apply the changes to. The buffer can be of
+     *            any size.
      * @param biomes The biomes for generation
-     * @param seed The random seed
      */
-    void populate(MutableBlockBuffer buffer, int x, int y, int z, ImmutableBiomeArea biomes, long seed);
+    void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes);
 
 }

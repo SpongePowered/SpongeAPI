@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.entity.hanging.art.Art;
+import org.spongepowered.api.data.manipulators.entities.ArtData;
 
 /**
  * Represents a Painting.
@@ -32,17 +32,10 @@ import org.spongepowered.api.entity.hanging.art.Art;
 public interface Painting extends Hanging {
 
     /**
-     * Gets the currently displayed {@link Art} piece.
+     * Gets a copy of the {@link ArtData} represented by this {@link Painting}.
      *
-     * @return The currently displayed Art piece
+     * @return A copy of the art data
      */
-    Art getArt();
-
-    /**
-     * Sets this painting to display the designated Art piece.
-     *
-     * @param art The art piece to display
-     */
-    void setArt(Art art);
+    ArtData getArtData();
 
 }

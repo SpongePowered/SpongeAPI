@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,22 +24,21 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a type of {@link Dimension}.
  */
-public interface DimensionType {
+@CatalogedBy(DimensionTypes.class)
+public interface DimensionType extends CatalogType {
 
     /**
-     * Returns the name of this {@link DimensionType}.
+     * Returns whether spawn chunks of this {@link DimensionType} remain loaded
+     * when no players are present.
      *
-     * @return The name
-     */
-    String getName();
-
-    /**
-     * Returns whether spawn chunks of this {@link DimensionType} remain loaded when no players are present.
-     *
-     * @return True if spawn chunks of this {@link DimensionType} remain loaded without players, false if not
+     * @return True if spawn chunks of this {@link DimensionType} remain loaded
+     *         without players, false if not
      */
     boolean doesKeepSpawnLoaded();
 

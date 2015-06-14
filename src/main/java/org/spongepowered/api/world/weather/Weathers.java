@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,15 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world.weather;
+
+import javax.annotation.Nullable;
 
 /**
  * All possible {@link Weather}s in vanilla minecraft.
  */
-public class Weathers {
+public final class Weathers {
 
     public static final Weather CLEAR = null;
     public static final Weather RAIN = null;
+    public static final Weather SNOW = RAIN;
     public static final Weather THUNDER_STORM = null;
+
+    private Weathers() {
+    }
 }

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.ArmorEquipable;
@@ -32,19 +31,5 @@ import org.spongepowered.api.entity.living.Ageable;
  * Represents a Zombie.
  */
 public interface Zombie extends Monster, ArmorEquipable, Ageable {
-
-    /**
-     * Gets if this Zombie is a villager Zombie.
-     *
-     * @return If the Zombie is a villager Zombie
-     */
-    boolean isVillagerZombie();
-
-    /**
-     * Sets if this Zombie should be a villager Zombie.
-     *
-     * @param villagerZombie If the Zombie should be a villager Zombie
-     */
-    void setVillagerZombie(boolean villagerZombie);
 
 }

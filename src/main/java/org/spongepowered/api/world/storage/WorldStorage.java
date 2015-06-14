@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,7 +27,7 @@ package org.spongepowered.api.world.storage;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.Chunk;
 
 /**
@@ -84,5 +84,13 @@ public interface WorldStorage {
      * @return The data container representing the chunk data, if available
      */
     ListenableFuture<Optional<DataContainer>> getChunkData(Vector3i chunkCoords);
+    
+    /**
+     * Gets the {@link WorldProperties} of this storage. In the vanilla storage
+     * medium this represents the data available in the level.dat file.
+     * 
+     * @return The world properties
+     */
+    WorldProperties getWorldProperties();
 
 }

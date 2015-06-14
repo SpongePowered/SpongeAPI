@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,43 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-
-import java.util.List;
 
 /**
  * Represents the Wither.
  */
 public interface Wither extends Monster, ProjectileSource, Boss, Aerial {
 
-    /**
-     * Gets the amount of ticks that the Wither should stay
-     * invulnerable for.
-     *
-     * @return The invulnerable time in ticks
-     */
-    int getInvulnerableTicks();
-
-    /**
-     * Sets the amount of ticks that the Wither should stay
-     * invulnerable for.
-     *
-     * <b>Note: This causes an explosion when the time runs out.</b>
-     *
-     * @param invulnerableTicks The invulnerable time in ticks
-     */
-    void setInvulnerableTicks(int invulnerableTicks);
-
-    /**
-     * Gets the entities currently being targeted by this wither.
-     * <p>This list should contain a maximum of 3 entities.</p>
-     *
-     * @return The Wither's targets
-     */
-    List<Living> getTargets();
 }

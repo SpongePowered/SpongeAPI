@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.service.persistence;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
 
 /**
- * A service that manages {@link DataSerializableBuilder}s and sometimes the
+ * A service that manages {@link DataBuilder}s and sometimes the
  * deserialization of various {@link DataSerializable}s.
  */
 public interface SerializationService {
 
     /**
-     * Registers a {@link DataSerializableBuilder} that will dynamically build
+     * Registers a {@link DataBuilder} that will dynamically build
      * the given {@link DataSerializable} from a {@link DataContainer}.
      *
      * <p>Builders may not always exist for a given {@link DataSerializable},
@@ -47,20 +47,20 @@ public interface SerializationService {
      * @param builder The builder that can build the data serializable
      * @param <T> The type of data serializable
      */
-    <T extends DataSerializable> void registerBuilder(Class<T> clazz,
-            DataSerializableBuilder<T> builder);
+    <T extends DataSerializable> void registerBuilder(Class<T> clazz, DataBuilder<T> builder);
 
     /**
-     * Attempts to retrieve the {@link DataSerializableBuilder} for the desired {@link
-     * DataSerializable} class.
+     * Attempts to retrieve the {@link DataBuilder} for the desired 
+     * {@link DataSerializable} class.
      *
-     * <p>Builders may not always exist for a given {@link DataSerializable}, nor is it
-     * guaranteed that a provided builder will function with all {@link DataContainer}s.</p>
+     * <p>Builders may not always exist for a given {@link DataSerializable},
+     * nor is it guaranteed that a provided builder will function with all
+     * {@link DataContainer}s.</p>
      *
      * @param clazz The class of the data serializable
      * @param <T> The type of data serializable
      * @return The builder, if available
      */
-    <T extends DataSerializable>  Optional<DataSerializableBuilder<T>> getBuilder(Class<T> clazz);
+    <T extends DataSerializable>  Optional<DataBuilder<T>> getBuilder(Class<T> clazz);
 
 }

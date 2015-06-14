@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,8 @@
 package org.spongepowered.api.service.persistence;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
 
 /**
  * Represents a source that data may be serialized to and from. The source
@@ -52,9 +53,9 @@ public interface DataSource {
             throws InvalidDataException;
 
     /**
-     * Deserializes all data existing in this source into a single {@link
-     * DataContainer}. This can be used for passing around data containers
-     * without knowing the contents.
+     * Deserializes all data existing in this source into a single
+     * {@link DataContainer}. This can be used for passing around data
+     * containers without knowing the contents.
      *
      * @return A data container containing all data from this source
      */

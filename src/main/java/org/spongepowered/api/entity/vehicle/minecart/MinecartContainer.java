@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,11 +24,15 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.item.inventory.types.CarriedInventory;
+
 /**
  * Represents a minecart with a container inside it. Common extensions
  * of this are: {@link MinecartChest} and {@link MinecartHopper}.
  */
-public interface MinecartContainer extends Minecart {
+public interface MinecartContainer extends Minecart, Carrier {
 
-
+    @Override
+    CarriedInventory<MinecartContainer> getInventory();
 }

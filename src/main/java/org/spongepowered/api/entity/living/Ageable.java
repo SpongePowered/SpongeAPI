@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.data.manipulators.entities.AgeableData;
+import org.spongepowered.api.entity.Entity;
+
 /**
  * Represents a living entity that can change in size as it ages
  * and can spawn children.
@@ -31,59 +34,17 @@ package org.spongepowered.api.entity.living;
 public interface Ageable extends Agent {
 
     /**
-     * Gets the age of this entity.
-     *
-     * @return The current age of this entity
-     */
-    int getAge();
-
-    /**
-     * Sets the age of this entity.
-     * <p>Negative ages tend to equate to the entity being a baby and
-     * therefor can not breed more of this entity. Setting a positive age
-     * tends to equate to the entity being an adult and able to breed children.
-     * </p>
-     *
-     * @param age The age of this entity
-     */
-    void setAge(int age);
-
-    /**
-     * Sets the age of this entity to the minimum required to be considered a
-     * baby. Babies tend to be unable to breed.
-     */
-    void setBaby();
-
-    /**
-     * Sets the age of this entity to the minimum required to be considered a
-     * full grown adult and able to breed.
-     */
-    void setAdult();
-
-    /**
-     * Returns true if this entity is considered an adult.
-     *
-     * @return True if this entity is an adult
-     */
-    boolean isBaby();
-
-    /**
-     * Returns true if this entity is able to breed. Some entities have
-     * cooldowns between being able to breed new entities.
-     *
-     * @return True if this entity is able to breed
-     */
-    boolean canBreed();
-
-    /**
-     * Sets whether this entity can breed a new child.
-     * @param breeding Whether this entity can breed
-     */
-    void setBreeding(boolean breeding);
-
-    /**
      * Sets the scaling to be 1 if this entity is an adult and 0.5 if it is
      * a baby.
      */
     void setScaleForAge();
+
+    /**
+     * Gets the {@link AgeableData} that represents age determining whether an
+     * {@link Entity} is a child or an adult.
+     *
+     * @return The ageable data
+     */
+    AgeableData getAgeData();
+
 }

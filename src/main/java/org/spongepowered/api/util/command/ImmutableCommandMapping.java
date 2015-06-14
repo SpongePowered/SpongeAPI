@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -37,7 +36,7 @@ import java.util.Set;
  * An immutable command mapping instance that returns the same objects that
  * this instance is constructed with.
  */
-public class ImmutableCommandMapping implements CommandMapping {
+public final class ImmutableCommandMapping implements CommandMapping {
 
     private final String primary;
     private final Set<String> aliases;
@@ -52,7 +51,7 @@ public class ImmutableCommandMapping implements CommandMapping {
      * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
     public ImmutableCommandMapping(CommandCallable callable, String primary, String... alias) {
-        this(callable, primary, Arrays.asList(checkNotNull(alias)));
+        this(callable, primary, Arrays.asList(checkNotNull(alias, "alias")));
     }
 
     /**
@@ -64,13 +63,12 @@ public class ImmutableCommandMapping implements CommandMapping {
      * @throws IllegalArgumentException Thrown if aliases are duplicated
      */
     public ImmutableCommandMapping(CommandCallable callable, String primary, Collection<String> aliases) {
-        checkNotNull(callable);
-        checkNotNull(primary);
-        checkNotNull(aliases);
+        checkNotNull(primary, "primary");
+        checkNotNull(aliases, "aliases");
         this.primary = primary;
         this.aliases = new HashSet<String>(aliases);
         this.aliases.add(primary);
-        this.callable = callable;
+        this.callable = checkNotNull(callable, "callable");
     }
 
     @Override
@@ -93,7 +91,7 @@ public class ImmutableCommandMapping implements CommandMapping {
         return "ImmutableCommandMapping{"
                 + "primary='" + this.primary + '\''
                 + ", aliases=" + this.aliases
-                + ", callable=" + this.callable
+                + ", spec=" + this.callable
                 + '}';
     }
 }

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,19 +28,5 @@ package org.spongepowered.api.entity;
  * Represents an experience orb.
  */
 public interface ExperienceOrb extends Entity {
-
-    /**
-     * Gets how much experience will be added to the player on pickup.
-     *
-     * @return Amount of experience
-     */
-    int getExperience();
-
-    /**
-     * Sets how much experience will be added to the player on pickup.
-     *
-     * @param experience The new amount of experience
-     */
-    void setExperience(int experience);
 
 }

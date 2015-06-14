@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.service.permission.context.Contextual;
@@ -31,13 +30,6 @@ import org.spongepowered.api.service.permission.context.Contextual;
  * Represents the dimension of a {@link World}.
  */
 public interface Dimension extends Contextual {
-
-    /**
-     * Returns the dimension id of the current {@link Dimension}.
-     *
-     * @return The dimension id
-     */
-    int getDimensionId();
 
     /**
      * Returns the name of this {@link Dimension}.
@@ -94,4 +86,16 @@ public interface Dimension extends Contextual {
      * @return The type of dimension
      */
     DimensionType getType();
+
+    /**
+     * Gets the highest naturally generated y-coordinate of {@link World}s in this dimension. Usually 128 (no sky) or 256 (sky).
+     * @return The generated height
+     */
+    int getHeight();
+
+    /**
+     * Gets the maximum y-coordinate a non-air cuboid can exist at of {@link World}s in this dimension. Usually 256.
+     * @return The build height
+     */
+    int getBuildHeight();
 }

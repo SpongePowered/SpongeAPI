@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
 import com.flowpowered.math.vector.Vector4i;
@@ -32,7 +34,6 @@ import com.flowpowered.math.vector.Vectord;
 import com.flowpowered.math.vector.Vectorf;
 import com.flowpowered.math.vector.Vectorl;
 import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Bytes;
@@ -52,7 +53,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
-
 
 /**
  * Utility class for coercing unknown values to specific target types.
@@ -121,7 +121,7 @@ public final class Coerce {
             return (List<?>)obj;
         }
         
-        Class<? extends Object> clazz = obj.getClass();
+        Class<?> clazz = obj.getClass();
         if (clazz.isArray()) {
             if (clazz.getComponentType().isPrimitive()) {
                 return Coerce.primitiveArrayToList(obj);
@@ -148,7 +148,7 @@ public final class Coerce {
             return Optional.<List<?>>of((List<?>) obj);
         }
 
-        Class<? extends Object> clazz = obj.getClass();
+        Class<?> clazz = obj.getClass();
         if (clazz.isArray()) {
             if (clazz.getComponentType().isPrimitive()) {
                 return Optional.<List<?>>of(Coerce.primitiveArrayToList(obj));
@@ -172,7 +172,7 @@ public final class Coerce {
      */
     @SuppressWarnings("unchecked")
     public static <T> List<T> toListOf(@Nullable Object obj, Class<T> ofClass) {
-        Preconditions.checkNotNull(ofClass);
+        checkNotNull(ofClass, "ofClass");
         List<T> filteredList = Lists.newArrayList();
 
         for (Object o : Coerce.toList(obj)) {
@@ -206,7 +206,7 @@ public final class Coerce {
             return false;
         }
         
-        return (obj instanceof Boolean) ? ((Boolean)obj).booleanValue() : obj.toString().trim().matches("^(1|true|yes)$");
+        return (obj instanceof Boolean) ? (Boolean) obj : obj.toString().trim().matches("^(1|true|yes)$");
     }
 
     /**
@@ -241,7 +241,7 @@ public final class Coerce {
         String strObj = Coerce.sanitiseNumber(obj);
         Integer iParsed = Ints.tryParse(strObj);
         if (iParsed != null) {
-            return iParsed.intValue();
+            return iParsed;
         }
 
         Double dParsed = Doubles.tryParse(strObj);
@@ -595,8 +595,8 @@ public final class Coerce {
      * @return Coerced enum value
      */
     public static <E extends Enum<E>> E toEnum(@Nullable Object obj, Class<E> enumClass, E defaultValue) {
-        Preconditions.checkNotNull(enumClass);
-        Preconditions.checkNotNull(defaultValue);
+        checkNotNull(enumClass, "enumClass");
+        checkNotNull(defaultValue, "defaultValue");
         if (obj == null) {
             return defaultValue;
         }
@@ -638,9 +638,9 @@ public final class Coerce {
      * @return Coerced value or default if coercion fails
      */
     public static <T> T toPseudoEnum(@Nullable Object obj, Class<T> pseudoEnumClass, Class<?> dictionaryClass, T defaultValue) {
-        Preconditions.checkNotNull(pseudoEnumClass);
-        Preconditions.checkNotNull(dictionaryClass);
-        Preconditions.checkNotNull(defaultValue);
+        checkNotNull(pseudoEnumClass, "pseudoEnumClass");
+        checkNotNull(dictionaryClass, "dictionaryClass");
+        checkNotNull(defaultValue, "defaultValue");
         if (obj == null) {
             return defaultValue;
         }

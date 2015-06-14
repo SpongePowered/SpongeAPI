@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,46 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.projectile;
+
+import org.spongepowered.api.data.manipulators.entities.DamagingData;
+import org.spongepowered.api.entity.Entity;
 
 /**
  * Represents an Arrow.
  */
-public interface Arrow extends DamagingProjectile {
+public interface Arrow extends Projectile {
 
     /**
-     * Returns whether this arrow is a critical arrow or not.
-     * <p>Usually, critical arrows deal more damage.</p>
+     * Gets a copy of the current {@link DamagingData} that this arrow will
+     * deal on an {@link Entity} when hit.
      *
-     * @return True if this arrow is critical
+     * @return A copy of the damaging data
      */
-    boolean isCritical();
-
-    /**
-     * Sets whether this arrow is a critical arrow or not.
-     * <p>Usually, critical arrows deal more damage.</p>
-     *
-     * @param critical Whether this arrow is a critical or not
-     */
-    void setCritical(boolean critical);
-
-    /**
-     * Gets the current knockback strength of this arrow.
-     * <p>Knockback is usually from zero to positive. Negative knockback values
-     * may not be supported.</p>
-     *
-     * @return The knockback strength
-     */
-    int getKnockbackStrength();
-
-    /**
-     * Sets the knockback strength of this arrow.
-     * <p>Knockback is usually from zero to positive. Negative knockback values
-     * may not be supported.</p>
-     *
-     * @param knockbackStrength The knockback strength
-     */
-    void setKnockbackStrength(int knockbackStrength);
+    DamagingData getDamagingData();
 
 }

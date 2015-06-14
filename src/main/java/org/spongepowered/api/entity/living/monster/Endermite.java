@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,22 +24,18 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.manipulators.entities.ExpirableData;
+
 /**
  * Represents an endermite.
  */
 public interface Endermite extends Monster {
 
     /**
-     * Gets if this {@link Endermite} was created by a player.
+     * Gets a copy of the {@link ExpirableData} for this endermite.
      *
-     * @return If the {@link Endermite} was created by a player
+     * @return A copy of the expirable data
      */
-    boolean isPlayerCreated();
+    ExpirableData getExpirableData();
 
-    /**
-     * Sets if this {@link Endermite} was created by a player.
-     *
-     * @param playerCreated If the {@link Endermite} should be created by a player
-     */
-    void setPlayerCreated(boolean playerCreated);
 }

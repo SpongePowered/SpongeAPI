@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.Collection;
 
@@ -37,7 +37,8 @@ public interface ItemDropEvent extends GameEvent {
     /**
      * Gets the items that are being dropped.
      *
-     * @return The dropped item entities
+     * @return The dropped item stacks
      */
-    Collection<Item> getDroppedItems();
+    Collection<ItemStack> getDroppedItems();
+
 }

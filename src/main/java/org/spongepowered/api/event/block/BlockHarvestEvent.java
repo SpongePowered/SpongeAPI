@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,18 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockLoc;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.inventory.ItemDropEvent;
-import org.spongepowered.api.util.event.Cancellable;
+import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 
 /**
- * Dispatched when a {@link BlockLoc} is about to drop it's items.
+ * Dispatched when a {@link Location} is about to drop it's items.
  */
 public interface BlockHarvestEvent extends BlockEvent, ItemDropEvent, Cancellable {
 

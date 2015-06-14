@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,20 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
-import org.spongepowered.api.service.persistence.data.DataHolder;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulators.TargetedLocationData;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.EnumSet;
-
-import javax.annotation.Nullable;
+import java.util.UUID;
 
 /**
  * An entity is a Minecraft entity.
@@ -53,7 +54,14 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, EntityState, DataHolder {
+public interface Entity extends Identifiable, DataHolder, DataSerializable {
+
+    /**
+     * Get the type of entity.
+     *
+     * @return The type of entity
+     */
+    EntityType getType();
 
     /**
      * Gets the current world this entity resides in.
@@ -74,9 +82,8 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * and also moves this entity's passengers.
      *
      * @param location The location to set
-     * @return True if the teleport was successful
      */
-    boolean setLocation(Location location);
+    void setLocation(Location location);
 
     /**
      * Moves the entity to the specified location, and sets the rotation.
@@ -88,9 +95,8 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      *
      * @param location The location to set
      * @param rotation The rotation to set
-     * @return True if the teleport was successful
      */
-    boolean setLocationAndRotation(Location location, Vector3d rotation);
+    void setLocationAndRotation(Location location, Vector3d rotation);
 
     /**
      * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
@@ -104,9 +110,90 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @param location The location to set
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
+     */
+    void setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
+     * teleport and also moves this entity's passengers.
+     *
+     * @param location The location to set
+     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     */
+    boolean setLocationSafely(Location location);
+
+    /**
+     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     */
+    boolean setLocationAndRotationSafely(Location location, Vector3d rotation);
+
+    /**
+     * Sets the location using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
+     * entity. {@link RelativePositions} listed inside the EnumSet are
+     * considered relative.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @param relativePositions The coordinates to set relatively
+     * @return True if location was set successfully, false if location
+     *     couldn't be set as no safe location was found
+     */
+    boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Sets the location of this entity to a new position in a world which does
+     * not have to be loaded (but must at least be enabled).
+     *
+     * <p>If the target world is loaded then this is equivalent to
+     * setting the location via {@link TargetedLocationData}.</p>
+     *
+     * <p>If the target world is unloaded but is enabled according to its
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
+     *
+     * <p>If the target world is unloaded and not enabled then the transfer
+     * will fail.</p>
+     *
+     * @param worldName The name of the world to transfer to
+     * @param position The position in the target world
      * @return True if the teleport was successful
      */
-    boolean setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    boolean transferToWorld(String worldName, Vector3d position);
+
+    /**
+     * Sets the location of this entity to a new position in a world which does
+     * not have to be loaded (but must at least be enabled).
+     *
+     * <p>If the target world is loaded then this is equivalent to
+     * setting the location via {@link TargetedLocationData}.</p>
+     *
+     * <p>If the target world is unloaded but is enabled according to its
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
+     *
+     * <p>If the target world is unloaded and not enabled then the transfer
+     * will fail.</p>
+     *
+     * @param uuid The UUID of the target world to transfer to
+     * @param position The position in the target world
+     * @return True if the teleport was successful
+     */
+    boolean transferToWorld(UUID uuid, Vector3d position);
 
     /**
      * Gets the rotation as a Vector3f.
@@ -131,82 +218,6 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      * @param rotation The rotation to set the entity to
      */
     void setRotation(Vector3d rotation);
-
-    /**
-     * Gets the current velocity of this entity.
-     *
-     * @return The current velocity of this entity
-     */
-    Vector3d getVelocity();
-
-    /**
-     * Sets the velocity of this entity.
-     *
-     * @param velocity The velocity to set this entity
-     */
-    void setVelocity(Vector3d velocity);
-
-    /**
-     * Gets the entity passenger that rides this entity, if available.
-     *
-     * @return The passenger entity, if it exists
-     */
-    Optional<Entity> getPassenger();
-
-    /**
-     * Gets the entity vehicle that this entity is riding, if available.
-     *
-     * @return The vehicle entity, if it exists
-     */
-    Optional<Entity> getVehicle();
-
-    /**
-     * Gets the entity vehicle that is the base of what ever stack the current
-     * entity is a part of. This can be the current entity, if it is not riding any vehicle.
-     *
-     * <p>The returned entity can never ride another entity, that would make
-     * the ridden entity the base of the stack.</p>
-     *
-     * @return The vehicle entity
-     */
-    Entity getBaseVehicle();
-
-    /**
-     * Sets the passenger entity(the entity that rides this one).
-     *
-     * @param entity The entity passenger, or null to eject
-     * @return True if the set was successful
-     */
-    boolean setPassenger(@Nullable Entity entity);
-
-    /**
-     * Sets the vehicle entity(the entity that is ridden by this one).
-     *
-     * @param entity The entity vehicle, or null to dismount
-     * @return True if the set was successful
-     */
-    boolean setVehicle(@Nullable Entity entity);
-
-    /**
-     * Gets the current x/z size of this entity.
-     *
-     * @return The width of this entity
-     */
-    float getBase();
-
-    /**
-     * Gets the current y height of this entity.
-     *
-     * @return The current y height
-     */
-    float getHeight();
-
-    /**
-     * Gets the current size scale of this entity.
-     *
-     * @return The current scale of the bounding box
-     */
-    float getScale();
 
     /**
      * Returns whether this entity is on the ground (not in the air) or not.
@@ -235,38 +246,4 @@ public interface Entity extends Identifiable, EntityState, DataHolder {
      */
     void remove();
 
-    /**
-     * Gets the ticks remaining of being lit on fire.
-     *
-     * @return The remaining fire ticks
-     */
-    int getFireTicks();
-
-    /**
-     * Sets the remaining ticks of being lit on fire.
-     *
-     * @param ticks The ticks of being lit on fire
-     */
-    void setFireTicks(int ticks);
-
-    /**
-     * Gets the delay in ticks before this entity will catch fire after being in a burning block.
-     *
-     * @return The delay before catching fire
-     */
-    int getFireDelay();
-
-    /**
-     * Returns whether this entity will be persistent when no player is near.
-     *
-     * @return True if this entity is persistent
-     */
-    boolean isPersistent();
-
-    /**
-     * Sets whether this entity will be persistent when no player is near.
-     *
-     * @param persistent Whether the entity will be persistent
-     */
-    void setPersistent(boolean persistent);
 }

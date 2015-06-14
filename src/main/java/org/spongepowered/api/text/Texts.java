@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,6 +27,7 @@ package org.spongepowered.api.text;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyle;
@@ -34,6 +35,8 @@ import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
+
+import java.util.Locale;
 
 /**
  * Utility class to work with and create {@link Text}.
@@ -114,8 +117,7 @@ public final class Texts {
      * @return The created text
      * @see Text.Score
      */
-    // TODO: Replace with Statistic API
-    public static Text.Score of(Object score) {
+    public static Text.Score of(Score score) {
         return new Text.Score(score);
     }
 
@@ -151,11 +153,11 @@ public final class Texts {
                 if (obj instanceof String) {
                     childBuilder = Texts.builder((String) obj);
                 } else if (obj instanceof Translation) {
-                    childBuilder = Texts.builder((Translation) obj, new Object[0]); // TODO: Remove explicit array initializer
+                    childBuilder = Texts.builder((Translation) obj);
                 } else if (obj instanceof Selector) {
                     childBuilder = Texts.builder((Selector) obj);
-                /*} else if (obj instanceof Object) { // TODO: Statistic API
-                    childBuilder = Texts.builder((Object) obj);*/
+                } else if (obj instanceof Score) {
+                    childBuilder = Texts.builder((Score) obj);
                 } else {
                     childBuilder = Texts.builder(String.valueOf(obj));
                 }
@@ -289,8 +291,6 @@ public final class Texts {
         return new TextBuilder.Selector(text, selector);
     }
 
-    // TODO: Replace with Statistic API
-
     /**
      * Creates a new unformatted {@link TextBuilder.Score} with the given score.
      *
@@ -299,7 +299,7 @@ public final class Texts {
      * @see Text.Score
      * @see TextBuilder.Score
      */
-    public static TextBuilder.Score builder(Object score) {
+    public static TextBuilder.Score builder(Score score) {
         return new TextBuilder.Score(score);
     }
 
@@ -313,7 +313,7 @@ public final class Texts {
      * @see Text.Score
      * @see TextBuilder.Score
      */
-    public static TextBuilder.Score builder(Text text, Object score) {
+    public static TextBuilder.Score builder(Text text, Score score) {
         return new TextBuilder.Score(text, score);
     }
 
@@ -414,6 +414,26 @@ public final class Texts {
     }
 
     /**
+     * Returns a plain text representation of the {@link Text} without any
+     * formatting.
+     *
+     * @param text The text to convert
+     * @return The text converted to plain text
+     */
+    public static String toPlain(Text text, Locale locale) {
+        return factory.toPlain(text, locale);
+    }
+
+    /**
+     * Returns a JSON representation of the {@link Text} as used in commands.
+     *
+     * @param text The text to convert
+     * @return The text converted to JSON
+     */
+    public static String toJson(Text text, Locale locale) {
+        return factory.toJson(text, locale);
+    }
+    /**
      * Returns the default legacy formatting character.
      *
      * @return The legacy formatting character
@@ -432,6 +452,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static Text.Literal fromLegacy(String text) {
         return fromLegacy(text, getLegacyChar());
     }
@@ -457,6 +478,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static String stripCodes(String text) {
         return stripCodes(text, getLegacyChar());
     }
@@ -484,6 +506,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static String replaceCodes(String text, char from) {
         return replaceCodes(text, from, getLegacyChar());
     }
@@ -512,6 +535,7 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
+    @SuppressWarnings("deprecation")
     public static String toLegacy(Text text) {
         return toLegacy(text, getLegacyChar());
     }
@@ -528,6 +552,21 @@ public final class Texts {
     @Deprecated
     public static String toLegacy(Text text, char code) {
         return factory.toLegacy(text, code);
+    }
+
+    /**
+     * Returns a representation of the {@link Text} using the legacy color
+     * codes.
+     *
+     * @param text The text to convert
+     * @param code The legacy char to use for the message
+     * @param locale The language to return this representation in
+     * @return The text converted to the old color codes
+     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     */
+    @Deprecated
+    public static String toLegacy(Text text, char code, Locale locale) {
+        return factory.toLegacy(text, code, locale);
     }
 
 }

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,21 +24,17 @@
  */
 package org.spongepowered.api.effect.particle;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.awt.Color;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.
  */
-public interface ParticleType {
-
-    /**
-     * Gets the particle name.
-     *
-     * @return The particle's name
-     */
-    String getName();
+@CatalogedBy(ParticleTypes.class)
+public interface ParticleType extends CatalogType {
 
     /**
      * Gets whether the particle able is to have a motion vector.

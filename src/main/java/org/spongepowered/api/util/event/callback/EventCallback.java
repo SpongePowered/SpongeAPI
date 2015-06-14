@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,8 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.event.callback;
+
+import org.spongepowered.api.event.Order;
 
 /**
  * A callback is called upon completing the dispatch of an event. Callbacks
@@ -38,5 +39,12 @@ public interface EventCallback extends Runnable {
      * @return Whether it's for the base game
      */
     boolean isBaseGame();
+
+    /**
+     * Gets the order of this {@link EventCallback}.
+     *
+     * @return The order
+     */
+    Order getOrder();
 
 }

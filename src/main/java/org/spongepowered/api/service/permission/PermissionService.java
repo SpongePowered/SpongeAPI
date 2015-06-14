@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.service.permission.context.ContextCalculator;
 
 import java.util.Map;
@@ -38,6 +37,8 @@ public interface PermissionService {
 
     String SUBJECTS_USER = "user";
     String SUBJECTS_GROUP = "group";
+    String SUBJECTS_SYSTEM = "system";
+    String SUBJECTS_COMMAND_BLOCK = "commandblock";
 
     /**
      * Returns the permissions level that describes users. User identifiers are
@@ -67,10 +68,9 @@ public interface PermissionService {
      * Returns a subject collection with the given identifier.
      *
      * @param identifier The identifier
-     * @return a subject collection, or null if this permission service does not
-     *          support alternate subject collections.
+     * @return a subject collection for this type of subject
      */
-    Optional<SubjectCollection> getSubjects(String identifier);
+    SubjectCollection getSubjects(String identifier);
 
     /**
      * Returns an immutable copy of the mapping of all subject collections

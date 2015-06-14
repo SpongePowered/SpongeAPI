@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,7 +38,8 @@ public interface ChannelRegistrar {
      * @param plugin The plugin registering the channel
      * @param listener The listener that will listen for
      * @param channel The channel to register
-     * @throws ChannelRegistrationException If the channel is already registered
+     * @throws ChannelRegistrationException The channel name is too long
+     * @throws ChannelRegistrationException The channel name is reserved
      */
     void registerChannel(Object plugin, ChannelListener listener, String channel) throws ChannelRegistrationException;
 

@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,11 +25,16 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.net.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.gen.WorldGenerator;
+import org.spongepowered.api.world.WorldBuilder;
+import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.storage.ChunkLayout;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.net.InetSocketAddress;
 import java.util.Collection;
@@ -78,12 +83,27 @@ public interface Server extends ChannelRegistrar {
     /**
      * Gets all currently loaded {@link World}s.
      *
-     * @return Collection of loaded worlds
+     * @return A collection of loaded worlds
      */
     Collection<World> getWorlds();
 
     /**
-     * Gets a loaded {@link World} by its unique id ({@link UUID}), if any.
+     * Gets the properties of all unloaded worlds.
+     *
+     * @return A collection of world properties
+     */
+    Collection<WorldProperties> getUnloadedWorlds();
+
+    /**
+     * Gets the properties of all worlds, loaded or otherwise.
+     * 
+     * @return A collection of world properties
+     */
+    Collection<WorldProperties> getAllWorldProperties();
+
+    /**
+     * Gets a loaded {@link World} by its unique id ({@link UUID}), if it
+     * exists.
      *
      * @param uniqueId UUID to lookup
      * @return The world, if found
@@ -91,7 +111,7 @@ public interface Server extends ChannelRegistrar {
     Optional<World> getWorld(UUID uniqueId);
 
     /**
-     * Gets a loaded {@link World} by name, if any.
+     * Gets a loaded {@link World} by name, if it exists.
      *
      * @param worldName Name to lookup
      * @return The world, if found
@@ -99,59 +119,106 @@ public interface Server extends ChannelRegistrar {
     Optional<World> getWorld(String worldName);
 
     /**
-     * Loads a {@link World} from the default storage container.
+     * Loads a {@link World} from the default storage container. If a world with
+     * the given name is already loaded then it is returned instead.
      *
      * @param worldName The name to lookup
-     * @return the world, if found
+     * @return The world, if found
      */
     Optional<World> loadWorld(String worldName);
 
     /**
+     * Loads a {@link World} from the default storage container. If a world with
+     * the given UUID is already loaded then it is returned instead.
+     *
+     * @param uniqueId The UUID to lookup
+     * @return The world, if found
+     */
+    Optional<World> loadWorld(UUID uniqueId);
+
+    /**
+     * Loads a {@link World} from the default storage container. If the world
+     * associated with the given properties is already loaded then it is
+     * returned instead.
+     *
+     * @param properties The properties of the world to load
+     * @return The world, if found
+     */
+    Optional<World> loadWorld(WorldProperties properties);
+
+    /**
+     * Gets the {@link WorldProperties} of a world. If a world with the given
+     * name is loaded then this is equivalent to calling
+     * {@link World#getProperties()}. However, if no loaded world is found then
+     * an attempt will be made to match unloaded worlds.
+     *
+     * @param worldName The name to lookup
+     * @return The world properties, if found
+     */
+    Optional<WorldProperties> getWorldProperties(String worldName);
+
+    /**
+     * Gets the {@link WorldProperties} of a world. If a world with the given
+     * UUID is loaded then this is equivalent to calling
+     * {@link World#getProperties()}. However, if no loaded world is found then
+     * an attempt will be made to match unloaded worlds.
+     *
+     * @param uniqueId The UUID to lookup
+     * @return The world properties, if found
+     */
+    Optional<WorldProperties> getWorldProperties(UUID uniqueId);
+
+    /**
      * Unloads a {@link World}, if there are any connected players in the given
      * world then no operation will occur.
-     *
+     * 
+     * <p>A world which is unloaded will be removed from memory. However if it
+     * is still enabled according to {@link WorldProperties#isEnabled()} then it
+     * will be loaded again if the server is restarted or an attempt is made by
+     * a plugin to transfer an entity to the world using
+     * {@link Entity#transferToWorld(String, com.flowpowered.math.vector.Vector3d)}
+     * </p>
+     * 
      * @param world The world to unload
      * @return Whether the operation was successful
      */
     boolean unloadWorld(World world);
 
     /**
-     * Creates a new world with the given name and generator options.
-     *
-     * <p>If a world with the given name is already loaded then it is returned
-     * instead.</p>
-     *
-     * @param worldName The new world name
-     * @param generator The generator to generate the world with
-     * @param seed The random seed for the world
-     * @return The new world
+     * Creates a new world from the given {@link WorldCreationSettings}. For the
+     * creation of the WorldCreationSettings please see
+     * {@link WorldBuilder}.
+     * 
+     * <p>If the world already exists then the existing {@link WorldProperties}
+     * are returned else a new world is created and the new WorldProperties
+     * returned.</p>
+     * 
+     * <p>Although the world is created it is not loaded at this time. Please
+     * see one of the following methods for loading the world.</p>
+     * 
+     * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(UUID)}
+     * </li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
+     * 
+     * @param settings The settings for creation
+     * @return The new or existing world properties, if creation was successful
      */
-    World createWorld(String worldName, WorldGenerator generator, long seed);
+    Optional<WorldProperties> createWorld(WorldCreationSettings settings);
 
     /**
-     * Creates a world with the given generator but using the default seed from
-     * the server settings.
-     *
-     * <p>If a world with the given name is already loaded then it is returned
-     * instead.</p>
-     *
-     * @param worldName The new world name
-     * @param generator The generator to generate the world with
-     * @return The new world
+     * Persists the given {@link WorldProperties} to the world storage for it,
+     * updating any modified values.
+     * 
+     * @param properties The world properties to save
+     * @return True if the save was successful
      */
-    World createWorld(String worldName, WorldGenerator generator);
+    boolean saveWorldProperties(WorldProperties properties);
 
     /**
-     * Creates a world using the default seed and generator from the server
-     * settings.
+     * Returns information about the chunk layout used by this server implementation.
      *
-     * <p>If a world with the given name is already loaded then it is returned
-     * instead.</p>
-     *
-     * @param worldName The new world name
-     * @return The new world
+     * @return The chunk layout used by the implementation
      */
-    World createWorld(String worldName);
+    ChunkLayout getChunkLayout();
 
     /**
      * Gets the time, in ticks, since this server began running for the current session.
@@ -211,5 +278,12 @@ public interface Server extends ChannelRegistrar {
      * @param kickMessage The message to kick players with
      */
     void shutdown(Text kickMessage);
+
+    /**
+     * Gets the command source used for commands coming from this server's console.
+     *
+     * @return This server's console command source
+     */
+    ConsoleSource getConsole();
 
 }

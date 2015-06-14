@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,18 +24,20 @@
  */
 package org.spongepowered.api.potion;
 
+import org.spongepowered.api.data.ImmutableDataBuilder;
+
 /**
  * Represents a builder interface to create a {@link PotionEffect}.
  */
-public interface PotionEffectBuilder {
+public interface PotionEffectBuilder extends ImmutableDataBuilder<PotionEffect, PotionEffectBuilder> {
 
     /**
-     * Sets the {@link PotionType} of the potion.
+     * Sets the {@link PotionEffectType} of the potion.
      *
-     * @param potionType The type of item
+     * @param potionEffectType The type of item
      * @return This builder, for chaining
      */
-    PotionEffectBuilder potionType(PotionType potionType);
+    PotionEffectBuilder potionType(PotionEffectType potionEffectType);
 
     /**
      * Sets the duration of the potion effect.
@@ -48,11 +50,11 @@ public interface PotionEffectBuilder {
     /**
      * Sets the amplifier power of the potion effect.
      *
-     * <p>Amplifiers must be above 0 and below 255.</p>
+     * <p>Amplifiers must be above zero.</p>
      *
      * @param amplifier The amplifier power
      * @return This builder, for chaining
-     * @throws IllegalArgumentException If the amplifier is less than 0 or greater than 255
+     * @throws IllegalArgumentException If the amplifier is less than zero
      */
     PotionEffectBuilder amplifier(int amplifier) throws IllegalArgumentException;
 
@@ -77,6 +79,7 @@ public interface PotionEffectBuilder {
      *
      * @return This builder, for chaining
      */
+    @Override
     PotionEffectBuilder reset();
 
     /**
@@ -85,6 +88,7 @@ public interface PotionEffectBuilder {
      * @return A new instance of a PotionEffect
      * @throws IllegalStateException If the potion effect is not completed
      */
+    @Override
     PotionEffect build() throws IllegalStateException;
 
 }

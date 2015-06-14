@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,27 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.player;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulators.entities.AchievementData;
+import org.spongepowered.api.data.manipulators.entities.BanData;
+import org.spongepowered.api.data.manipulators.entities.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.world.Location;
-
-import java.util.Date;
-import javax.annotation.Nullable;
 
 /**
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
-public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject, Carrier {
+public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject, Carrier {
 
     /**
      * Gets the associated {@link GameProfile} of this player.
@@ -60,70 +59,11 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
     String getName();
 
     /**
-     * Checks if this player has joined the server before.
-     *
-     * @return True If player has joined before
-     */
-    boolean hasJoinedBefore();
-
-    /**
-     * Gets the first time a player joined the server.
-     *
-     * <p>
-     *     This time is based off epoch timestamps.
-     * </p>
-     *
-     * @return The players first join time.
-     */
-    Date getFirstPlayed();
-
-    /**
-     * Gets the last time a player was on the server.
-     *
-     * <p>
-     *     This time is based off epoch timestamps.
-     * </p>
-     *
-     * @return The last time a player was online.
-     */
-    Date getLastPlayed();
-
-    /**
-     * Checks if this player is banned.
-     *
-     * @return True If banned
-     */
-    boolean isBanned();
-
-    /**
-     * Checks if this player is whitelisted.
-     *
-     * @return True If whitelisted
-     */
-    boolean isWhitelisted();
-
-    /**
-     * Checks if this player is online or not.
+     * Checks if this user is online or not.
      *
      * @return True if the corresponding player is online
      */
     boolean isOnline();
-
-    /**
-     * Gets the location of this player's bed spawn.
-     *
-     * @return The location of this player's bed spawn, or
-     * {@link Optional#absent} if it is not set
-     */
-    Optional<Location> getBedLocation();
-
-    /**
-     * Sets the location of this player's bed spawn. Passing <code>null</code>
-     * will clear it.
-     *
-     * @param location The new location of this player's bed spawn
-     */
-    void setBedLocation(@Nullable Location location);
 
     /**
      * Gets the related online {@link Player} if the player is
@@ -132,5 +72,26 @@ public interface User extends Identifiable, ArmorEquipable, Tamer, DataSerializa
      * @return The associated online Player, if available
      */
     Optional<Player> getPlayer();
+
+    /**
+     * Gets a copy of the {@link AchievementData} for this user.
+     *
+     * @return A copy of the achievement data
+     */
+    AchievementData getAchievementData();
+
+    /**
+     * Gets a copy of the {@link StatisticData} for this user.
+     *
+     * @return A copy of the statistic data
+     */
+    StatisticData getStatisticData();
+
+    /**
+     * Gets a copy of the current {@link BanData} for this user.
+     *
+     * @return A copy of the ban data
+     */
+    BanData getBanData();
 
 }

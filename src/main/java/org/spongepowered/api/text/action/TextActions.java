@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,6 +27,7 @@ package org.spongepowered.api.text.action;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.stats.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 
 import java.net.URL;
@@ -115,7 +116,7 @@ public final class TextActions {
      * @param achievement The achievement to display
      * @return The created hover action instance
      */
-    public static HoverAction.ShowAchievement showAchievement(Object achievement) {
+    public static HoverAction.ShowAchievement showAchievement(Achievement achievement) {
         return new HoverAction.ShowAchievement(achievement);
     }
 

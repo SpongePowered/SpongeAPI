@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile.source;
 
-import org.spongepowered.api.block.BlockLoc;
+import org.spongepowered.api.world.Location;
 
 /**
  * Represents a {@link ProjectileSource} that is a block. Examples are
@@ -37,6 +37,6 @@ public interface BlockProjectileSource extends ProjectileSource {
      *
      * @return The block of this source
      */
-    BlockLoc getBlock();
+    Location getBlock();
 
 }

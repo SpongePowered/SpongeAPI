@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.plugin;
 
 import com.google.common.base.Optional;
@@ -31,9 +30,9 @@ import org.slf4j.Logger;
 import java.util.Collection;
 
 /**
- * The manager that manages plugins. This manager can retrieve {@link
- * PluginContainer}s from {@link Plugin} instances, getting {@link Logger}s,
- * etc.
+ * The manager that manages plugins. This manager can retrieve
+ * {@link PluginContainer}s from {@link Plugin} instances, getting
+ * {@link Logger}s, etc.
  */
 public interface PluginManager {
 

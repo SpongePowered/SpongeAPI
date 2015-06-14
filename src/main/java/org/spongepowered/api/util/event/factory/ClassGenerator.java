@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.util.event.factory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -50,6 +49,7 @@ import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
 import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 import static org.objectweb.asm.Opcodes.IRETURN;
+import static org.objectweb.asm.Opcodes.ISUB;
 import static org.objectweb.asm.Opcodes.LLOAD;
 import static org.objectweb.asm.Opcodes.LRETURN;
 import static org.objectweb.asm.Opcodes.NEW;
@@ -60,7 +60,6 @@ import static org.objectweb.asm.Opcodes.V1_6;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
@@ -72,7 +71,6 @@ import org.spongepowered.api.util.reflect.PropertySearchStrategy;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -323,7 +321,20 @@ class ClassGenerator {
             mv.visitEnd();
         }
 
-        // Create the accessors and mutators
+        // The return value of toString takes the form of "ClassName{param1=value1, param2=value2, ...}"
+
+
+        MethodVisitor toStringMv = cw.visitMethod(ACC_PUBLIC, "toString", "()Ljava/lang/String;", null, null);
+        toStringMv.visitCode();
+        toStringMv.visitTypeInsn(NEW, "java/lang/StringBuilder");
+        toStringMv.visitInsn(DUP);
+        toStringMv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+        toStringMv.visitLdcInsn(type.getName() + "{");
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+        toStringMv.visitVarInsn(ASTORE, 1);
+
+        // Create the accessors and mutators, and fill out the toString method
         for (Property property : properties) {
             if (!hasImplementation(parentType, property.getAccessor())) {
                 Method accessor = property.getAccessor();
@@ -350,7 +361,53 @@ class ClassGenerator {
                 mv.visitMaxs(0, 0);
                 mv.visitEnd();
             }
+
+            // stringBuilder.append(this.'property'.toString())
+
+            Type returnType = Type.getReturnType(property.getAccessor());
+
+            toStringMv.visitVarInsn(ALOAD, 0);
+
+            toStringMv.visitVarInsn(ALOAD, 1);
+            toStringMv.visitLdcInsn(property.getName());
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+            toStringMv.visitLdcInsn("=");
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+            toStringMv.visitVarInsn(ALOAD, 0);
+            toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+
+            String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
+
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append",
+                                       "(" + desc + ")Ljava/lang/StringBuilder;", false);
+
+            toStringMv.visitLdcInsn(", ");
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
         }
+
+        // The StringBuilder is on the top of the stack from the last append() - duplicate it for call to replace()
+        toStringMv.visitVarInsn(ALOAD, 1);
+        toStringMv.visitInsn(DUP);
+
+        // The replace starts at 2 characters before the end, to remove the extra command and space added
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
+        toStringMv.visitLdcInsn(2);
+        toStringMv.visitInsn(ISUB);
+
+        toStringMv.visitVarInsn(ALOAD, 1);
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
+
+        toStringMv.visitLdcInsn("}");
+
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "replace", "(IILjava/lang/String;)Ljava/lang/StringBuilder;", false);
+        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+
+        toStringMv.visitInsn(ARETURN);
+        toStringMv.visitMaxs(0, 0);
+        toStringMv.visitEnd();
 
         cw.visitEnd();
 

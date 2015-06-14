@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,28 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.entity.living.animal;
 
 /**
  * Represents a Pig.
  */
 public interface Pig extends Animal {
-
-    /**
-     * Returns whether this pig is saddled or not.
-     * <p>A saddled pig becomes player rideable with vanilla mechanics.</p>
-     *
-     * @return Whether this pig is saddled
-     */
-    boolean isSaddled();
-
-    /**
-     * Sets this pig to be saddled or not.
-     * <p>A saddled pig becomes player rideable with vanilla mechanics.</p>
-     *
-     * @param saddled Whether this pig is to be saddled or not
-     */
-    void setSaddled(boolean saddled);
 
 }

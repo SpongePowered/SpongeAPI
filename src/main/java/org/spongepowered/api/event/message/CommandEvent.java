@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,12 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.message;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.event.Cancellable;
+
+import javax.annotation.Nullable;
 
 /**
  * Fired when a command has been used and needs to be processed.
@@ -60,5 +63,20 @@ public interface CommandEvent extends GameEvent, Cancellable {
      * @return The arguments
      */
     String getArguments();
+
+    /**
+     * The result of the command. This is only available after the execution
+     * of the command.
+     *
+     * @return The result of the command, if present
+     */
+    Optional<CommandResult> getResult();
+
+    /**
+     * Sets the result of the command.
+     *
+     * @param result The result of the command, or null
+     */
+    void setResult(@Nullable CommandResult result);
 
 }

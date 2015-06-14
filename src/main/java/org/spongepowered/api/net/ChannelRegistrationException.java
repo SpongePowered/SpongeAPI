@@ -1,7 +1,7 @@
 /*
- * This file is part of Sponge, licensed under the MIT License (MIT).
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,18 +34,39 @@ public class ChannelRegistrationException extends RuntimeException {
     private static final long serialVersionUID = 7258019249864102811L;
 
     /**
-     * Creates a new ChannelRegsitrationException.
+     * Constructs a new {@link ChannelRegistrationException}.
      */
     public ChannelRegistrationException() {
         super();
     }
 
     /**
-     * Creates a new ChannelRegsitrationException with a message.
+     * Constructs a new {@link ChannelRegistrationException} with a message.
      *
      * @param message The message to include in the stacktrace
      */
     public ChannelRegistrationException(String message) {
         super(message);
+    }
+
+    /**
+     * Constructs a new {@link ChannelRegistrationException} with the specified message and
+     * cause.
+     *
+     * @param message The exception message
+     * @param cause The cause of this exception
+     */
+    public ChannelRegistrationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructs a new {@link ChannelRegistrationException} with the specified cause and a
+     * null message.
+     *
+     * @param cause The cause of this exception
+     */
+    public ChannelRegistrationException(Throwable cause) {
+        super(cause);
     }
 }
