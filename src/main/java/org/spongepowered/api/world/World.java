@@ -250,16 +250,4 @@ public interface World extends Extent, Viewer, Contextual, Identifiable {
      * @return The location
      */
     Location getSpawnLocation();
-
-    /**
-     * Gets the highest naturally generated y-coordinate. Usually 128 (no sky) or 256 (sky).
-     * @return The generated height
-     */
-    int getHeight();
-
-    /**
-     * Gets the maximum y-coordinate a non-air cuboid can exist at in this world. Usually 256.
-     * @return The build height
-     */
-    int getBuildHeight();
 }
