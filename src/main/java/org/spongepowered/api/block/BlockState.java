@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a block using {@link BlockType} and a list of
@@ -35,7 +37,8 @@ import org.spongepowered.api.data.ImmutableDataHolder;
  * created, cannot be changed. All retrievals of {@link DataManipulator}s are
  * copies.</p>
  */
-public interface BlockState extends ImmutableDataHolder<BlockState> {
+@CatalogedBy(BlockStates.class)
+public interface BlockState extends CatalogType, ImmutableDataHolder<BlockState> {
 
     /**
      * Get the base type of block.
