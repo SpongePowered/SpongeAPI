@@ -1868,7 +1868,7 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param sign The {@link Sign}
      * @param currentData The current sign data
-     * @param currentData The new sign data
+     * @param newData The new sign data
      * @return A new instance of the event
      */
     public static SignChangeEvent createSignChange(Game game, Cause cause, Sign sign, SignData currentData, SignData newData) {

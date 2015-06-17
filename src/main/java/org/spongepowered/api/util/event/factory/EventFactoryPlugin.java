@@ -34,11 +34,11 @@ public interface EventFactoryPlugin {
      * event interface.
      *
      * <p>All of the registered plugins have this method called in a chain, which each plugin receiving
-     * the return value of the previous plugin as the {@param superClass} parameter.
-     * The first plugin in the chain is passed <code>null</code> as its {@param superClass}.
+     * the return value of the previous plugin as the <b>superClass</b> parameter.
+     * The first plugin in the chain is passed <code>null</code> as its <b>superClass</b>.
      *
      * If a plugin is able to determine a superclass for an event interface, it should return it.
-     * Otherwise, it should return the value it received as {@param superClass}.
+     * Otherwise, it should return the value it received as <b>superClass</b>.
      *
      * @param eventClass The interface to determine the superclass for
      * @param superClass The current superclass of the event interface

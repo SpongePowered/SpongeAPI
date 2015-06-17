@@ -37,7 +37,7 @@ import java.lang.annotation.Target;
  * type, if covariant return types are used.
  *
  * The return type of the annotation, or a superclass/superinterface of it,
- * must have a method annotated with {@link TransformWith}, with a matching {@link #name()}.
+ * must have a method annotated with {@link TransformWith}, with a matching {@link #value()}.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
