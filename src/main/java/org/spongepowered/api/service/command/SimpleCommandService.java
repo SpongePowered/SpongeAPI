@@ -272,7 +272,10 @@ public class SimpleCommandService implements CommandService {
             if (source.hasPermission("sponge.debug.hover-stacktrace")) {
                 final StringWriter writer = new StringWriter();
                 thr.printStackTrace(new PrintWriter(writer));
-                excBuilder.onHover(TextActions.showText(Texts.of(writer.toString().replaceAll("\t", "    "))));
+                excBuilder.onHover(TextActions.showText(Texts.of(writer.toString()
+                        .replace("\t", "    ")
+                        .replace("\r\n", "\n")
+                        .replace("\r", "\n")))); // I mean I guess somebody could be running this on like OS 9?
             }
             source.sendMessage(error(t("Error occurred while executing command: %s", excBuilder.build())));
             this.log.error(Texts.toPlain(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), String
