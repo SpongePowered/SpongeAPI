@@ -47,9 +47,9 @@ import java.util.NoSuchElementException;
  * starting from the start location. This class implements the {@link Iterator} interface
  * with the exception of {@link Iterator#remove()}.
  *
- * Filters determine at what location a {@link BlockRay} should stop. A filter
+ * <p>Filters determine at what location a {@link BlockRay} should stop. A filter
  * is called at the boundary of each new location that a {@link BlockRay} passes through in order
- * to determine whether the ray cast should continue or terminate at that location.
+ * to determine whether the ray cast should continue or terminate at that location.</p>
  *
  * <p>Any one instance of a {@link Predicate} should only be run on one path.
  * It is not specified that {@link Predicate}s have to be stateless, pure functions.
@@ -63,10 +63,10 @@ import java.util.NoSuchElementException;
  * {@link BlockRay#maxDistanceFilter(Vector3d, double)} to limit the target block to be within some
  * distance.</p>
  *
- * To get the block targeted by an entity, use the following:
+ * <p>To get the block targeted by an entity, use the following:
  * <pre>
  * {@code final Optional<BlockRayHit> block = BlockRay.from(entity).filter(BlockRay.ONLY_AIR_FILTER).end();}
- * </pre>
+ * </pre></p>
  *
  * @see BlockRayHit
  */
@@ -109,21 +109,35 @@ public class BlockRay implements Iterator<BlockRayHit> {
     // Direction of the ray
     private final Vector3d direction;
     // The directions the faces are passed through
-    private final Vector3d xNormal, yNormal, zNormal;
+    private final Vector3d xNormal;
+    private final Vector3d yNormal;
+    private final Vector3d zNormal;
     // The directions the edges and corners are passed through, lazily computed
-    private Vector3d xyzNormal, xyNormal, xzNormal, yzNormal;
+    private Vector3d xyzNormal;
+    private Vector3d xyNormal;
+    private Vector3d xzNormal;
+    private Vector3d yzNormal;
     // The plane increments for the direction
-    private final int xPlaneIncrement, yPlaneIncrement, zPlaneIncrement;
+    private final int xPlaneIncrement;
+    private final int yPlaneIncrement;
+    private final int zPlaneIncrement;
     // The current coordinates
-    private double xCurrent, yCurrent, zCurrent;
+    private double xCurrent;
+    private double yCurrent;
+    private double zCurrent;
     // The current passed face
     private Vector3d normalCurrent;
     // The next plane values
-    private int xPlaneNext, yPlaneNext, zPlaneNext;
+    private int xPlaneNext;
+    private int yPlaneNext;
+    private int zPlaneNext;
     // The solutions for the nearest plane intersections
-    private double xPlaneT, yPlaneT, zPlaneT;
+    private double xPlaneT;
+    private double yPlaneT;
+    private double zPlaneT;
     // Limits to help prevent infinite iteration
-    private int blockLimit = DEFAULT_BLOCK_LIMIT, blockCount;
+    private int blockLimit = DEFAULT_BLOCK_LIMIT;
+    private int blockCount;
     // Last block hit
     private BlockRayHit hit;
     // If hasNext() is called, we need to move ahead to check the next hit
@@ -327,7 +341,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
         this.xCurrent = this.xPlaneNext;
         this.yCurrent = this.yPlaneNext;
         this.zCurrent = this.zPlaneNext;
-        this.normalCurrent = getXYZNormal();
+        this.normalCurrent = getXyzNormal();
         // Prepare next intersection
         this.xPlaneNext += this.xPlaneIncrement;
         this.yPlaneNext += this.yPlaneIncrement;
@@ -341,7 +355,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
         this.xCurrent = this.xPlaneNext;
         this.yCurrent = this.yPlaneNext;
         this.zCurrent = this.direction.getZ() * this.xPlaneT + this.position.getZ();
-        this.normalCurrent = getXYNormal();
+        this.normalCurrent = getXyNormal();
         // Prepare next intersection
         this.xPlaneNext += this.xPlaneIncrement;
         this.yPlaneNext += this.yPlaneIncrement;
@@ -353,7 +367,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
         this.xCurrent = this.xPlaneNext;
         this.yCurrent = this.direction.getY() * this.xPlaneT + this.position.getY();
         this.zCurrent = this.zPlaneNext;
-        this.normalCurrent = getXZNormal();
+        this.normalCurrent = getXzNormal();
         // Prepare next intersection
         this.xPlaneNext += this.xPlaneIncrement;
         this.zPlaneNext += this.zPlaneIncrement;
@@ -365,7 +379,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
         this.xCurrent = this.direction.getX() * this.yPlaneT + this.position.getX();
         this.yCurrent = this.yPlaneNext;
         this.zCurrent = this.zPlaneNext;
-        this.normalCurrent = getYZNormal();
+        this.normalCurrent = getYzNormal();
         // Prepare next intersection
         this.yPlaneNext += this.yPlaneIncrement;
         this.zPlaneNext += this.zPlaneIncrement;
@@ -403,28 +417,28 @@ public class BlockRay implements Iterator<BlockRayHit> {
         this.zPlaneT = (this.zPlaneNext - this.position.getZ()) / this.direction.getZ();
     }
 
-    private Vector3d getXYZNormal() {
+    private Vector3d getXyzNormal() {
         if (this.xyzNormal == null) {
             this.xyzNormal = this.xNormal.add(this.yNormal).add(this.zNormal).normalize();
         }
         return this.xyzNormal;
     }
 
-    private Vector3d getXYNormal() {
+    private Vector3d getXyNormal() {
         if (this.xyNormal == null) {
             this.xyNormal = this.xNormal.add(this.yNormal).normalize();
         }
         return this.xyNormal;
     }
 
-    private Vector3d getXZNormal() {
+    private Vector3d getXzNormal() {
         if (this.xzNormal == null) {
             this.xzNormal = this.xNormal.add(this.zNormal).normalize();
         }
         return this.xzNormal;
     }
 
-    private Vector3d getYZNormal() {
+    private Vector3d getYzNormal() {
         if (this.yzNormal == null) {
             this.yzNormal = this.yNormal.add(this.zNormal).normalize();
         }
@@ -502,13 +516,30 @@ public class BlockRay implements Iterator<BlockRayHit> {
         }
 
         /**
+         * Adds the filter to the block ray. This is optional.
+         * Multiple filters will be ANDed together.
+         *
+         * @param filter The filter to add
+         * @return This for chained calls
+         */
+        public BlockRayBuilder filter(final Predicate<BlockRayHit> filter) {
+            Preconditions.checkNotNull(filter, "filter ");
+            if (this.filter == ALL_FILTER) {
+                this.filter = filter;
+            } else {
+                this.filter = Predicates.and(this.filter, filter);
+            }
+            return this;
+        }
+
+        /**
          * Adds filters to the block ray. This is optional.
          * Multiple filters will be ANDed together.
          *
          * @param filters The filters to add
          * @return This for chained calls
          */
-        public BlockRayBuilder filter(Predicate<BlockRayHit>... filters) {
+        public BlockRayBuilder filter(final Predicate<BlockRayHit>... filters) {
             Preconditions.checkNotNull(filters, "filters ");
             final Predicate<BlockRayHit> filter = filters.length == 1 ? filters[0] : Predicates.and(filters);
             if (this.filter == ALL_FILTER) {

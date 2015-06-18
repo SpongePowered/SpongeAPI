@@ -49,6 +49,7 @@ public final class Property {
      *
      * @param name The name of the property
      * @param type The type of property
+     * @param leastSpecificMethod  The least specific method
      * @param accessor The accessor
      * @param mutator The mutator
      */

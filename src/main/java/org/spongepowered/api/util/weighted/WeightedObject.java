@@ -79,6 +79,11 @@ public class WeightedObject<T> {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hashCode(this.object, this.weight);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

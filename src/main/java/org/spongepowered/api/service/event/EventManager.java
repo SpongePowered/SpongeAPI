@@ -37,8 +37,9 @@ public interface EventManager {
     /**
      * Registers {@link Event} methods annotated with @{@link Subscribe} in the
      * specified object.
-     * <p>
-     * Only methods that are public will be registered and the class must be public as well.
+     *
+     * <p>Only methods that are public will be registered and the class must be
+     * public as well.</p>
      *
      * @param plugin The plugin instance
      * @param obj The object

@@ -30,24 +30,26 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Used to indicate a method that will be called from
- * the method with the corresponding {@link TransformResult} annotation.
+ * Used to indicate a method that will be called from the method with the
+ * corresponding {@link TransformResult} annotation.
  *
- * This annotation should be placed on the method with the least specific return
- * type, if covariant return types are used.
+ * <p>This annotation should be placed on the method with the least specific
+ * return type, if covariant return types are used.</p>
  *
- * The method annotated with this annotation <bold>must</bold> either return
- * an instance of the method's class, or Object (for compatibility with generics).
+ * <p>The method annotated with this annotation <bold>must</bold> either return
+ * an instance of the method's class, or Object (for compatibility with
+ * generics).</p>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface TransformWith {
 
     /**
-     * Gets the name used to match this annotation to a {@link TransformResult} annotation.
+     * Gets the name used to match this annotation to a {@link TransformResult}
+     * annotation.
      *
-     * <p>Changing this is only necessary when this annotation is present on multiple
-     * methods in a class, or its superinterfaces/superclass.
+     * <p>Changing this is only necessary when this annotation is present on
+     * multiple methods in a class, or its superinterfaces/superclass.</p>
      *
      * @return The name to use
      */

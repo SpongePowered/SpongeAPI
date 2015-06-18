@@ -61,15 +61,16 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
             }
         }
         Iterable<Object> ret = Iterables.transform(filteredChoices, new Function<String, Object>() {
-                    @Nullable
-                    @Override
-                    public Object apply(@Nullable String input) {
-                        return input == null ? null : getValue(input);
-                    }
-                });
+            @Nullable
+            @Override
+            public Object apply(@Nullable String input) {
+                return input == null ? null : getValue(input);
+            }
+        });
 
         if (!ret.iterator().hasNext()) {
-            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null ? nullKeyArg : getKey()));
+            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null
+                                                                                                            ? nullKeyArg : getKey()));
         }
         return ret;
     }

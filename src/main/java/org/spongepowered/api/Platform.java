@@ -27,7 +27,8 @@ package org.spongepowered.api;
 import java.util.Map;
 
 /**
- * Represents a possible platform, or implementation, a {@link Game} could be running on.
+ * Represents a possible platform, or implementation, a {@link Game} could be
+ * running on.
  */
 public interface Platform {
 
@@ -40,9 +41,11 @@ public interface Platform {
 
     /**
      * Retrieves the current {@link Type} the platform is executing on.
-     * <p>
-     * A Minecraft instance will have a client and server thread. If the server is executing, this will return
-     * Type.SERVER but {@link Platform#getType()} would return Type.CLIENT
+     *
+     * <p>A Minecraft instance will have a client and server thread. If the
+     * server is executing, this will return {@linkplain Type#SERVER} but
+     * {@link Platform#getType()} would return {@linkplain Type#CLIENT}.</p>
+     *
      * @return The execution type
      */
     Type getExecutionType();
@@ -65,7 +68,8 @@ public interface Platform {
     String getVersion();
 
     /**
-     * Retrieves the current Sponge API version that this platform is implementing.
+     * Retrieves the current Sponge API version that this platform is
+     * implementing.
      *
      * @return The API version
      */
@@ -81,11 +85,13 @@ public interface Platform {
     /**
      * Returns this platform instance, as a key-value map.
      *
-     * <p>The returned map instance is connected directly to this platform instance. Existing
-     * keys like name and version are not modifiable, but new keys are stored in this instance and
-     * are shared between any references to a map obtained through {@link #asMap()}.</p>
+     * <p>The returned map instance is connected directly to this platform
+     * instance. Existing keys like name and version are not modifiable, but
+     * new keys are stored in this instance and are shared between any
+     * references to a map obtained through the retrieved map.</p>
      *
-     * <p>This mechanism allows for platform-specific information like Forge version.</p>
+     * <p>This mechanism allows for platform-specific information like Forge
+     * version.</p>
      *
      * @return This platform as a map
      */
@@ -94,8 +100,9 @@ public interface Platform {
     /**
      * The type of the platform, or where the game is currently running.
      *
-     * <p>A side is what part of Minecraft this is being run on. The client, or the
-     * server. The internal server is also treated like a dedicated server.</p>
+     * <p>A side is what part of Minecraft this is being run on. The client, or
+     * the server. The internal server is also treated like a dedicated server.
+     * </p>
      */
     enum Type {
 

@@ -30,24 +30,27 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Used to indicate that the return type of a method should be transformed
- * by calling a method on it, indicated by the {@link TransformWith} annotation.
+ * Used to indicate that the return type of a method should be transformed by
+ * calling a method on it, indicated by the {@link TransformWith} annotation.
  *
- * This annotation should be placed on the method with the least specific return
- * type, if covariant return types are used.
+ * <p>This annotation should be placed on the method with the least specific
+ * return type, if covariant return types are used.</p>
  *
- * The return type of the annotation, or a superclass/superinterface of it,
- * must have a method annotated with {@link TransformWith}, with a matching {@link #value()}.
+ * <p>The return type of the annotation, or a superclass/superinterface of it,
+ * must have a method annotated with {@link TransformWith}, with a matching
+ * {@link #value()}.</p>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface TransformResult {
 
     /**
-     * Gets the name used to match this annotation to a {@link TransformWith} annotation.
+     * Gets the name used to match this annotation to a {@link TransformWith}
+     * annotation.
      *
-     * <p>Changing this is only necessary when multiple {@link TransformWith} annotations
-     * are present in the annotated method's return type's class.</p>
+     * <p>Changing this is only necessary when multiple {@link TransformWith}
+     * annotations are present in the annotated method's return type's class.
+     * </p>
      *
      * @return The name to use
      */

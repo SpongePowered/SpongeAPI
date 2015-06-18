@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
@@ -177,8 +178,7 @@ public interface Server extends ChannelRegistrar {
      * is still enabled according to {@link WorldProperties#isEnabled()} then it
      * will be loaded again if the server is restarted or an attempt is made by
      * a plugin to transfer an entity to the world using
-     * {@link Entity#transferToWorld(String, com.flowpowered.math.vector.Vector3d)}
-     * </p>
+     * {@link Entity#transferToWorld(String, Vector3d)}.</p>
      *
      * @param world The world to unload
      * @return Whether the operation was successful
@@ -215,14 +215,16 @@ public interface Server extends ChannelRegistrar {
     boolean saveWorldProperties(WorldProperties properties);
 
     /**
-     * Returns information about the chunk layout used by this server implementation.
+     * Returns information about the chunk layout used by this server
+     * implementation.
      *
      * @return The chunk layout used by the implementation
      */
     ChunkLayout getChunkLayout();
 
     /**
-     * Gets the time, in ticks, since this server began running for the current session.
+     * Gets the time, in ticks, since this server began running for the current
+     * session.
      *
      * <p>This value is not persisted across server restarts, it is set to zero
      * each time the server starts.</p>
@@ -232,14 +234,17 @@ public interface Server extends ChannelRegistrar {
     int getRunningTimeTicks();
 
     /**
-     * Get the sink that messages to be broadcast across the whole server should be sent to
+     * Get the sink that messages to be broadcast across the whole server
+     * should be sent to.
      *
      * @return The server-wide broadcast sink
      */
     MessageSink getBroadcastSink();
 
     /**
-     * Gets the bound {@link InetSocketAddress} from where this server is accepting connections.
+     * Gets the bound {@link InetSocketAddress} from where this server is accepting
+     * connections.
+     *
      * @return The address or Optional.absent() if not found
      */
     Optional<InetSocketAddress> getBoundAddress();

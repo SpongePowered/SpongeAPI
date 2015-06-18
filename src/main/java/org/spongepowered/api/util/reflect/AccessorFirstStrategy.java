@@ -154,9 +154,11 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
                 String name;
 
                 Method leastSpecificMethod;
-                if ((name = getAccessorName(method)) != null && ((leastSpecificMethod = accessorHierarchyBottoms.get(name)) == null || leastSpecificMethod.getReturnType() != method.getReturnType())) {
+                if ((name = getAccessorName(method)) != null && ((leastSpecificMethod = accessorHierarchyBottoms.get(name)) == null
+                                                                 || leastSpecificMethod.getReturnType() != method.getReturnType())) {
                     accessors.put(name, method);
-                    if (accessorHierarchyBottoms.get(name) == null || method.getReturnType().isAssignableFrom(accessorHierarchyBottoms.get(name).getReturnType())) {
+                    if (accessorHierarchyBottoms.get(name) == null
+                        || method.getReturnType().isAssignableFrom(accessorHierarchyBottoms.get(name).getReturnType())) {
                         accessorHierarchyBottoms.put(name, method);
                     }
                 } else if ((name = getMutatorName(method)) != null) {

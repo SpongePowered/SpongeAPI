@@ -117,8 +117,8 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerCastFishingLineEv
 import org.spongepowered.api.event.entity.player.fishing.PlayerHookedEntityEvent;
 import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLineEvent;
 import org.spongepowered.api.event.message.CommandEvent;
-import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.message.CommandSuggestionsEvent;
+import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
 import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
@@ -146,10 +146,10 @@ import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.command.source.RconSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
@@ -227,6 +227,7 @@ public final class SpongeEventFactory {
      *
      * @param type The event interface to generate a class for
      * @param values The map of property names to values
+     * @param <T> The type of event to be created
      * @return The generated event class.
      */
     @SuppressWarnings("unchecked")
@@ -719,6 +720,7 @@ public final class SpongeEventFactory {
      * @param cause The cause of the event, can be null
      * @param entity The entity involved in this event
      * @param block The block affected by this event
+     * @param side The side of the block affected
      * @return A new instance of the event
      */
     public static EntityInteractBlockEvent createEntityInteractBlock(Game game, Cause cause, Entity entity, Location block, Direction side) {
@@ -1359,6 +1361,7 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
+     * @param location The location of where the player is joining
      * @param message The message displayed when the player joins
      * @param sink The destination for the message
      * @return A new instance of the event
@@ -1786,6 +1789,7 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param inventory The inventory of the brewing stand
      * @param data The brewing stand data
+     * @param block The location of the brewing stand
      * @return A new instance of the event
      */
     public static BrewingStandBrewEvent createBrewingStandBrew(Game game, BrewingStand brewingStand, BrewingData data,
@@ -1816,11 +1820,12 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param inventory The inventory of the furnace
      * @param data The furnace data
+     * @param block The location of the furnace
      * @return A new instance of the event
      */
     public static FurnaceConsumeFuelEvent createFurnaceConsumeFuel(Game game, Furnace furnace, FurnaceData data, ItemStack burnedItem,
-                                                                        ItemStack remainingFuel, Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
-                                                                        Location block) {
+                                                                   ItemStack remainingFuel, Cause cause,
+                                                                   TileEntityInventory<TileEntityCarrier> inventory, Location block) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", furnace);
@@ -1844,11 +1849,12 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param inventory The inventory of the furnace
      * @param data The furnace data
+     * @param block The location of the furnace
      * @return A new instance of the event
      */
     public static FurnaceSmeltItemEvent createFurnaceSmeltItem(Game game, Furnace furnace, FurnaceData data, ItemStack cookedItem,
-                                                                    ItemStack sourceItem, Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
-                                                                    Location block) {
+                                                               ItemStack sourceItem, Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
+                                                               Location block) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("tile", furnace);

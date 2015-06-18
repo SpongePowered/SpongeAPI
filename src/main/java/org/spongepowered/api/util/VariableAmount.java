@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import com.google.common.base.Objects;
+
 import java.util.Random;
 
 /**
@@ -157,6 +159,10 @@ public abstract class VariableAmount {
             return amount.amount == this.amount;
         }
 
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(this.amount);
+        }
     }
 
     /**
@@ -191,6 +197,10 @@ public abstract class VariableAmount {
             return amount.base == this.base && amount.variance == this.variance;
         }
 
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(this.base, this.variance);
+        }
     }
 
     /**
@@ -234,12 +244,13 @@ public abstract class VariableAmount {
                 return false;
             }
             OptionalAmount amount = (OptionalAmount) obj;
-            if (!this.inner.equals(amount.inner)) {
-                return false;
-            }
-            return amount.base == this.base && this.chance == amount.chance;
+            return this.inner.equals(amount.inner) && amount.base == this.base && this.chance == amount.chance;
         }
 
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(this.inner, this.chance, this.base);
+        }
     }
 
 }
