@@ -228,12 +228,6 @@ public class BlockRay implements Iterator<BlockRayHit> {
     }
 
     private void advance() {
-        // Check if we're ahead because of hasNext(), if so we don't need to do anything
-        if (this.ahead) {
-            this.ahead = false;
-            return;
-        }
-
         // Check the block limit if in use
         if (this.blockLimit >= 0 && this.blockCount >= this.blockLimit) {
             throw new NoSuchElementException("Block limit reached");
@@ -309,6 +303,10 @@ public class BlockRay implements Iterator<BlockRayHit> {
 
     @Override
     public boolean hasNext() {
+        if (this.ahead) {
+            // We already checked
+            return true;
+        }
         try {
             advance();
             this.ahead = true;
@@ -320,7 +318,12 @@ public class BlockRay implements Iterator<BlockRayHit> {
 
     @Override
     public BlockRayHit next() {
-        advance();
+        if (this.ahead) {
+            // We already advanced in hasNext()
+            this.ahead = false;
+        } else {
+            advance();
+        }
         return this.hit;
     }
 
