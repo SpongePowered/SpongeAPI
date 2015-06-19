@@ -25,6 +25,7 @@
 package org.spongepowered.api.world;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.flowpowered.math.vector.Vector2i;
@@ -52,6 +53,8 @@ import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
 
+import javax.annotation.Nullable;
+
 /**
  * A position within a particular {@link Extent}.
  *
@@ -70,8 +73,13 @@ import java.util.Collection;
 public final class Location implements DataHolder {
 
     private final Extent extent;
-    private final Vector3d position;
-    private final Vector3i blockPosition;
+    // Lazily computed, either position or blockPosition is set by the constructor
+    @Nullable
+    private Vector3d position = null;
+    @Nullable
+    private Vector3i blockPosition = null;
+    @Nullable
+    private Vector2i biomePosition = null;
 
     /**
      * Create a new instance.
@@ -80,10 +88,8 @@ public final class Location implements DataHolder {
      * @param position The position
      */
     public Location(Extent extent, Vector3d position) {
-        checkNotNull(position, "position");
         this.extent = checkNotNull(extent, "extent");
-        this.position = position;
-        this.blockPosition = position.floor().toInt();
+        this.position = checkNotNull(position, "position");
     }
 
     /**
@@ -102,13 +108,11 @@ public final class Location implements DataHolder {
      * Create a new instance.
      *
      * @param extent The extent
-     * @param position The position
+     * @param blockPosition The position
      */
-    public Location(Extent extent, Vector3i position) {
-        checkNotNull(position, "position");
+    public Location(Extent extent, Vector3i blockPosition) {
         this.extent = checkNotNull(extent, "extent");
-        this.position = position.toDouble();
-        this.blockPosition = position;
+        this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
 
     /**
@@ -138,6 +142,10 @@ public final class Location implements DataHolder {
      * @return The underlying position
      */
     public Vector3d getPosition() {
+        if (this.position == null) {
+            checkState(this.blockPosition != null);
+            this.position = getBlockPosition().toDouble();
+        }
         return this.position;
     }
 
@@ -147,17 +155,23 @@ public final class Location implements DataHolder {
      * @return The underlying block position
      */
     public Vector3i getBlockPosition() {
+        if (this.blockPosition == null) {
+            checkState(this.position != null);
+            this.blockPosition = getPosition().floor().toInt();
+        }
         return this.blockPosition;
     }
 
     /**
-     * Gets the underlying biome position. This method creates a new
-     * {@link Vector2i} every time.
+     * Gets the underlying biome position.
      *
      * @return The underlying biome position
      */
     public Vector2i getBiomePosition() {
-        return getBlockPosition().toVector2(true);
+        if (this.biomePosition == null) {
+            this.biomePosition = getBlockPosition().toVector2(true);
+        }
+        return this.biomePosition;
     }
 
     /**
@@ -308,7 +322,7 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Gets the block at this location. Calls {@link #getBiomePosition()}.
+     * Gets the block at this location.
      *
      * @return The biome at this location
      */
