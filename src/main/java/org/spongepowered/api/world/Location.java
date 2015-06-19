@@ -699,4 +699,9 @@ public final class Location implements DataHolder {
         container.set(of("Manipulators"), getManipulators());
         return container;
     }
+
+    @Override
+    public String toString() {
+        return "Location(" + getPosition() + " in " + getExtent() + ")";
+    }
 }
