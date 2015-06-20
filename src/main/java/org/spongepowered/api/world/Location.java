@@ -31,6 +31,7 @@ import static org.spongepowered.api.data.DataQuery.of;
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
@@ -356,7 +357,7 @@ public final class Location implements DataHolder {
      *
      * @return True if the block at this position has tile entity data, false otherwise
      */
-    boolean hasTileEntity() {
+    public boolean hasTileEntity() {
         return getExtent().getTileEntity(getBlockPosition()).isPresent();
     }
 
@@ -632,7 +633,7 @@ public final class Location implements DataHolder {
      *
      * @param update The ScheduledBlockUpdate to remove
      */
-    void removeScheduledUpdate(ScheduledBlockUpdate update) {
+    public void removeScheduledUpdate(ScheduledBlockUpdate update) {
         getExtent().removeScheduledUpdate(getBlockPosition(), update);
     }
 
@@ -704,4 +705,19 @@ public final class Location implements DataHolder {
     public String toString() {
         return "Location(" + getPosition() + " in " + getExtent() + ")";
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.extent, this.getPosition());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Location)) {
+            return false;
+        }
+        Location otherLoc = (Location) other;
+        return otherLoc.extent.equals(this.extent) && otherLoc.getPosition().equals(this.getPosition());
+    }
+
 }
