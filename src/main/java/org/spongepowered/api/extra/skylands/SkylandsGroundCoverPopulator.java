@@ -55,8 +55,12 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
         final long seed = world.getProperties().getSeed();
         final int yStart = Math.min(yMax, SkylandsTerrainGenerator.MAX_HEIGHT);
         final int yEnd = Math.max(yMin, SkylandsTerrainGenerator.MIN_HEIGHT);
-        for (int zz = min.getZ(); zz <= max.getZ(); zz++) {
-            for (int xx = min.getX(); xx <= max.getX(); xx++) {
+        final int xMin = min.getX();
+        final int zMin = min.getZ();
+        final int xMax = max.getX();
+        final int zMax = max.getZ();
+        for (int zz = zMin; zz <= zMax; zz++) {
+            for (int xx = xMin; xx <= xMax; xx++) {
                 int yy = yStart;
                 yIteration:
                 while (yy >= yEnd) {

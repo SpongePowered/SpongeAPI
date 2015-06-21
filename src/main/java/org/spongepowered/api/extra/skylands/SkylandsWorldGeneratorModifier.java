@@ -51,7 +51,7 @@ public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
 
     @Override
     public String getId() {
-        return "skylands";
+        return "sponge:skylands";
     }
 
     @Override
