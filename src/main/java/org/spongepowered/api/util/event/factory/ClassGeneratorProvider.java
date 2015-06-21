@@ -99,10 +99,22 @@ public class ClassGeneratorProvider implements FactoryProvider {
      */
     public static class LocalClassLoader extends ClassLoader {
 
+        /**
+         * Creates a new {@link LocalClassLoader}.
+         *
+         * @param parent The parent class loader
+         */
         public LocalClassLoader(ClassLoader parent) {
             super(parent);
         }
 
+        /**
+         * Defines the class by name and bytecode arrray.
+         *
+         * @param name The name of the class
+         * @param b The bytecode array
+         * @return The class
+         */
         public Class<?> defineClass(String name, byte[] b) {
             return defineClass(name, b, 0, b.length);
         }

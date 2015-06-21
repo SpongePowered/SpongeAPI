@@ -22,7 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@NonnullByDefault
+@org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.util.event.superclasses;
-
-import org.spongepowered.api.util.annotation.NonnullByDefault;

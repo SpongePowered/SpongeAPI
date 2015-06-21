@@ -385,6 +385,7 @@ public final class Texts {
      * formatting.
      *
      * @param text The text to convert
+     * @param locale The locale to translate
      * @return The text converted to plain text
      */
     public static String toPlain(Text text, Locale locale) {

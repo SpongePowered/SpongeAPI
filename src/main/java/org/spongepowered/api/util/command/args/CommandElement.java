@@ -54,8 +54,11 @@ public abstract class CommandElement {
     }
 
     /**
-     * Return the plain key, to be used when looking up this command element in a {@link CommandContext}.
-     * If the key is a {@link Text.Translatable}, this is the translation's id. Otherwise, this is the result of {@link Texts#toPlain(Text)}
+     * Return the plain key, to be used when looking up this command element in
+     * a {@link CommandContext}. If the key is a
+     * {@link org.spongepowered.api.text.Text.Translatable}, this is the
+     * translation's id. Otherwise, this is the result of
+     * {@link Texts#toPlain(Text)}.
      *
      * @return the raw key
      */
@@ -73,9 +76,12 @@ public abstract class CommandElement {
     }
 
     /**
-     * Attempt to extract a value for this element from the given arguments and put it in the given context. This method normally delegates to
-     * {@link #parseValue(CommandSource, CommandArgs)} for getting the values. This method is expected to have no side-effects for the source, meaning
-     * that executing it will not change the state of the {@link CommandSource} in any way
+     * Attempt to extract a value for this element from the given arguments and
+     * put it in the given context. This method normally delegates to
+     * {@link #parseValue(CommandSource, CommandArgs)} for getting the values.
+     * This method is expected to have no side-effects for the source, meaning
+     * that executing it will not change the state of the {@link CommandSource}
+     * in any way.
      *
      * @param source The source to parse for
      * @param args The args to extract from
@@ -97,9 +103,10 @@ public abstract class CommandElement {
     }
 
     /**
-     * Attempt to extract a value for this element from the given arguments. This method is expected to have no side-effects for the source, meaning
-     * that executing it will not change the state of the {@link CommandSource} in any way
-     *
+     * Attempt to extract a value for this element from the given arguments.
+     * This method is expected to have no side-effects for the source, meaning
+     * that executing it will not change the state of the {@link CommandSource}
+     * in any way.
      *
      * @param source The source to parse for
      * @param args the arguments

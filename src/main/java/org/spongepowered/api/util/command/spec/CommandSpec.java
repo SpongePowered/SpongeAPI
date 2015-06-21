@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.util.command.spec;
 
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.util.command.args.GenericArguments.optional;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;

@@ -31,17 +31,20 @@ import java.lang.annotation.Target;
 
 /**
  * Used to mark fields which should be set by the class generator, despite
- * the abstract class having an implementation of the property
+ * the abstract class having an implementation of the property.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface SetField {
 
     /**
-     * Indicates whether having the annotated field is required to be passed in.
+     * Indicates whether the field is required to be passed in to an event
+     * constructor.
      *
-     * <p>Setting this to <code>true</code> will require the null check in the event constructor</p>
-     * @return
+     * <p>Setting this to <code>true</code> will enable the null check in the
+     * event constructor.</p>
+     *
+     * @return Whether having the field is required to be passed in.
      */
     boolean isRequired() default false;
 }

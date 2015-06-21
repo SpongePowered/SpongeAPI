@@ -22,7 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/**
- * Created by aaron on 5/11/15.
- */
+@org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.util.event.factory.plugin;

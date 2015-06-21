@@ -40,6 +40,7 @@ public interface OptionSubject extends Subject {
     /**
      * Get the value of a given option in the given context.
      *
+     * @param contexts The contexts to get the options from
      * @param key The key to get an option by. Case-insensitive.
      * @return The value of the option, if any is present
      */

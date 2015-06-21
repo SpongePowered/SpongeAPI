@@ -30,10 +30,10 @@ import com.flowpowered.math.vector.Vector3d;
  * Represent the 16 main and secondary cardinal directions plus up and down.
  * With the following assumptions:
  * <ul>
- * <li>{@link #NORTH} targeting towards -X</li>
- * <li>{@link #EAST}  targeting towards +Z</li>
- * <li>{@link #SOUTH} targeting towards +X</li>
- * <li>{@link #WEST}  targeting towards -Z</li>
+ * <li>{@link #NORTH} targeting towards -Z</li>
+ * <li>{@link #EAST}  targeting towards +X</li>
+ * <li>{@link #SOUTH} targeting towards +Z</li>
+ * <li>{@link #WEST}  targeting towards -X</li>
  * <li>{@link #UP}    targeting towards +Y</li>
  * <li>{@link #DOWN}  targeting towards -Y</li>
  * </ul>

@@ -38,16 +38,18 @@ public interface SignData extends DataManipulator<SignData> {
 
     /**
      * Gets all stored {@link Text}s, representing each line of the data.
-     * <p>
-     * Each valid index (usually 0-3) will contain no null elements.
+     *
+     * <p>Each valid index (usually 0-3) will contain no null elements.</p>
+     *
      * @return The lines of text
      */
     List<Text> getLines();
 
     /**
      * Gets the line at the given index.
-     * <p>
-     * If a valid index (usually 0-3), the returned line will not be null.
+     *
+     * <p>If a valid index (usually 0-3), the returned line will not be null.</p>
+     *
      * @param index The index
      * @return The line of text
      * @throws IndexOutOfBoundsException If the index is outside of the allowed indices
@@ -67,6 +69,7 @@ public interface SignData extends DataManipulator<SignData> {
 
     /**
      * Resets all lines to being empty ({@link Texts#of()}.
+     *
      * @return This instance, for chaining
      */
     SignData reset();

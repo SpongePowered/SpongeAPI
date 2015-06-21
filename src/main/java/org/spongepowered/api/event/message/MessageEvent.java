@@ -26,8 +26,8 @@ package org.spongepowered.api.event.message;
 
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.text.sink.MessageSink;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
  * Describes events when a {@link CommandSource} sends a {@link Text} message.
@@ -45,24 +45,27 @@ public interface MessageEvent extends GameEvent {
     /**
      * Gets the {@link Text} message created by the {@link CommandSource} before
      * the calling of this event.
+     *
      * @return The message
      */
     Text getMessage();
 
     /**
      * Gets the currently set {@link Text} message.
+     *
      * @return The message
      */
     Text getNewMessage();
 
     /**
      * Sets the {@link Text} message.
+     *
      * @param message The new message
      */
     void setNewMessage(Text message);
 
     /**
-     * Gets the current sink that this message will be sent to
+     * Gets the current sink that this message will be sent to.
      *
      * @return The message sink the message in this event will be sent to
      */

@@ -34,14 +34,16 @@ public interface PlayerJoinEvent extends PlayerMessageEvent {
 
     /**
      * Gets the {@link Location} the {@link Player} will join at.
+     *
      * @return The location
      */
     Location getLocation();
 
     /**
      * Sets the {@link Location} the {@link Player} will join at.
-     * <p>
-     * This will be applied after event resolution.
+     *
+     * <p>This will be applied after event resolution.</p>
+     *
      * @param location The new location
      */
     void setLocation(Location location);

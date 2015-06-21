@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util.event.factory.plugin;
 
+import static org.objectweb.asm.Opcodes.ACC_PROTECTED;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.ACC_SUPER;
 import static org.objectweb.asm.Opcodes.ALOAD;
@@ -32,9 +33,7 @@ import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
 import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
 import static org.objectweb.asm.Opcodes.RETURN;
 import static org.objectweb.asm.Opcodes.V1_6;
-import static org.objectweb.asm.Opcodes.ACC_PROTECTED;
 
-import com.google.common.base.Optional;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -86,6 +85,11 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
     private ClassGeneratorProvider.LocalClassLoader classLoader;
     private Class<?> superClass;
 
+    /**
+     * Creates a new {@link AccessorModifierEventFactoryPlugin} for the targeted package.
+     *
+     * @param targetPackage The target package
+     */
     public AccessorModifierEventFactoryPlugin(String targetPackage) {
         this.targetPackage = targetPackage;
     }
@@ -128,7 +132,6 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
         for (MethodPair pair: pairs) {
             Property property = pair.getProperty();
             Method accessor = property.getAccessor();
-            Method transformerMethod = pair.getTransfomrerMethod();
 
             if (property.isLeastSpecificType()) {
                 FieldVisitor fv = cw.visitField(ACC_PROTECTED, property.getName(), Type.getDescriptor(property.getLeastSpecificType()), null, null);
@@ -149,8 +152,10 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
                 opcode = INVOKEINTERFACE;
             }
 
+            Method transformerMethod = pair.getTransfomrerMethod();
 
-            mv.visitMethodInsn(opcode, Type.getInternalName(accessor.getReturnType()), transformerMethod.getName(), Type.getMethodDescriptor(transformerMethod), opcode == INVOKESPECIAL ? false : true);
+            mv.visitMethodInsn(opcode, Type.getInternalName(accessor.getReturnType()), transformerMethod.getName(),
+                               Type.getMethodDescriptor(transformerMethod), opcode == INVOKESPECIAL ? false : true);
 
             mv.visitInsn(ClassGenerator.getReturnOpcode(property.getType()));
             mv.visitMaxs(0, 0);
@@ -180,16 +185,16 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
                 for (Method method: property.getAccessor().getReturnType().getMethods()) {
                     if ((transformWith = method.getAnnotation(TransformWith.class)) != null && transformWith.value().equals(name)) {
                         if (methodPairs.get(property).containsKey(name)) {
-                            throw new RuntimeException("Multiple @TransformResult annotations were found with the name " +
-                                                       name + ". One of them needs to be changed!");
+                            throw new RuntimeException("Multiple @TransformResult annotations were found with the name "
+                                                       + name + ". One of them needs to be changed!");
                         }
                         methodPairs.get(property).put(name, new MethodPair(name, leastSpecificMethod, method, property));
                         break;
                     }
                 }
                 if (!methodPairs.get(property).containsKey(name)) {
-                    throw new RuntimeException("Unable to locate a matching @TransformWith annotation with the name " +
-                                              name + " for the method" + property.getAccessor());
+                    throw new RuntimeException("Unable to locate a matching @TransformWith annotation with the name "
+                                               + name + " for the method" + property.getAccessor());
                 }
             }
         }
@@ -224,11 +229,11 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
         }
 
         public String getName() {
-            return name;
+            return this.name;
         }
 
         public Method getTransfomrerMethod() {
-            return transformerMethod;
+            return this.transformerMethod;
         }
 
         public Property getProperty() {

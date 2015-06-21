@@ -128,7 +128,7 @@ public interface Scoreboard {
      *
      * @param user The {@link User} to search for
      * @return The {@link User}'s {@link Team}, or Optional.absent()
-     * if the user has no team
+     *     if the user has no team
      */
     Optional<Team> getUserTeam(User user);
 

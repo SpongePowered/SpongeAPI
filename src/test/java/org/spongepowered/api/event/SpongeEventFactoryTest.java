@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.event;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
@@ -35,9 +37,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
-
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

@@ -256,8 +256,8 @@ public class ClassGenerator {
                     FieldVisitor fv = cw.visitField(ACC_PRIVATE, property.getName(), Type.getDescriptor(property.getType()), null, null);
                     fv.visitEnd();
                 } else if ((getModifiers(parentType, property.getName()) & Modifier.PRIVATE) != 0) {
-                    throw new RuntimeException("You've annotated the field " + property.getName() + " with @SetField, " +
-                                               "but it's private. This just won't work.");
+                    throw new RuntimeException("You've annotated the field " + property.getName() + " with @SetField, "
+                                               + "but it's private. This just won't work.");
                 }
             }
         }
@@ -273,7 +273,8 @@ public class ClassGenerator {
             mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "<init>", "()V", false);
 
             for (Property property : properties) {
-                if (((hasImplementation(parentType, property.getAccessor()) && getSetField(parentType, property.getName()) == null) || !property.isLeastSpecificType())) {
+                if (((hasImplementation(parentType, property.getAccessor()) && getSetField(parentType, property.getName()) == null)
+                     || !property.isLeastSpecificType())) {
                     continue;
                 }
 
@@ -287,7 +288,8 @@ public class ClassGenerator {
                 // if (value == null) throw new NullPointerException(...)
                 if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
                     boolean useNullTest = ((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
-                            || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull())) && fieldRequired(parentType, property.getName());
+                            || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull()))
+                                          && fieldRequired(parentType, property.getName());
 
                     if (useNullTest && (!property.getType().isPrimitive() || !this.primitivePropertyExceptions.contains(property.getName()))) {
                         Label afterNullTest = new Label();
@@ -302,7 +304,7 @@ public class ClassGenerator {
                     }
                 }
 
-                boolean hasSetField = getSetField(parentType, property.getName()) != null;
+                final boolean hasSetField = getSetField(parentType, property.getName()) != null;
 
                 Label afterPut = new Label();
 
@@ -398,7 +400,8 @@ public class ClassGenerator {
                 mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
 
                 if (property.getAccessor().getReturnType().equals(Optional.class)) {
-                    mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable", "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
+                    mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable",
+                                       "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
                 }
 
                 if (!property.getType().isPrimitive()) {
@@ -432,9 +435,9 @@ public class ClassGenerator {
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getName", "()Ljava/lang/String;", false);
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-                    mv.visitLdcInsn(", instead of " + mostSpecificReturn.getName() + ". Though you may have been listening for a supertype of this event, it's actually a " + type.getName() + ". " +
-                                    "You need to ensure that the type of the event is what you think it is, before calling the method " +
-                                    "(e.g TileEntityChangeEvent#setNewData");
+                    mv.visitLdcInsn(", instead of " + mostSpecificReturn.getName() + ". Though you may have been listening for a supertype of this "
+                                    + "event, it's actually a " + type.getName() + ". You need to ensure that the type of the event is what you think"
+                                    + " it is, before calling the method (e.g TileEntityChangeEvent#setNewData");
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
 

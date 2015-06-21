@@ -35,13 +35,8 @@ import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.SpongeEventFactory;
-import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.util.annotation.TransformResult;
 import org.spongepowered.api.util.annotation.TransformWith;
-
-import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

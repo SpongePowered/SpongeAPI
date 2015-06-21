@@ -29,8 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.OptBool;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import javax.annotation.Nullable;
 
