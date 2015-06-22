@@ -55,8 +55,8 @@ public class MessageSinks {
 
     /**
      * A message sink that targets all subjects contained within the given sinks
-     * and applies the message transformations of each sink in order (so with n sinks, {@code sinks[n-1].transform(sinks[n-2].transform(sink[...]
-     * .transform(sink[0].transform(input))))} would occur)
+     * and applies the message transformations of each sink in order (so with n sinks, {@code sinks[n-1].transformMessage(sinks[n-2].transformMessage(sinks[...]
+     * .transformMessage(sinks[0].transformMessage(input))))} would occur)
      *
      * @param sinks The sinks to combine
      * @return The sink
