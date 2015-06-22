@@ -22,23 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.util.command.source;
 
-import org.spongepowered.api.data.manipulator.CommandData;
-import org.spongepowered.api.util.command.source.CommandBlockSource;
-import org.spongepowered.api.util.command.source.EntitySource;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Represents a minecart with a command block inside it.
+ * Entity sources are {@link CommandSource}s that represent entities.
  */
-public interface MinecartCommandBlock extends Minecart, CommandBlockSource, EntitySource {
+public interface EntitySource extends LocatedSource {
 
     /**
-     * Gets a copy of the {@link CommandData} represented by this
-     * {@link MinecartCommandBlock}.
+     * Gets the entity that the source represents.
      *
-     * @return A copy of the command data
+     * @return The entity
      */
-    CommandData getCommandData();
+    Entity getEntity();
 
 }

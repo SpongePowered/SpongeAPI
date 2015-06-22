@@ -34,7 +34,7 @@ import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.source.LocatedSource;
+import org.spongepowered.api.util.command.source.EntitySource;
 import org.spongepowered.api.util.command.source.RemoteSource;
 
 import java.util.Date;
@@ -48,7 +48,7 @@ import java.util.Locale;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer {
+public interface Player extends Human, User, EntitySource, RemoteSource, Viewer {
 
     /**
      * Gets the locale used by the player.

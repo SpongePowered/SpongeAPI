@@ -22,23 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.util.command.source;
 
-import org.spongepowered.api.data.manipulator.CommandData;
-import org.spongepowered.api.util.command.source.CommandBlockSource;
-import org.spongepowered.api.util.command.source.EntitySource;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Represents a minecart with a command block inside it.
+ * Proxy sources are {@link CommandSource}s that are run by one source as a
+ * different entity.
  */
-public interface MinecartCommandBlock extends Minecart, CommandBlockSource, EntitySource {
+public interface ProxySource extends EntitySource {
 
     /**
-     * Gets a copy of the {@link CommandData} represented by this
-     * {@link MinecartCommandBlock}.
+     * Gets the command source that originated the command.
      *
-     * @return A copy of the command data
+     * @return The originating command source
      */
-    CommandData getCommandData();
+    CommandSource getCause();
 
 }
