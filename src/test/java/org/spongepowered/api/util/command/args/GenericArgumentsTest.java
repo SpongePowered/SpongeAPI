@@ -25,6 +25,7 @@
 package org.spongepowered.api.util.command.args;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.spongepowered.api.util.command.args.GenericArguments.allOf;
 import static org.spongepowered.api.util.command.args.GenericArguments.bool;
@@ -54,12 +55,12 @@ import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.util.command.spec.CommandSpec;
+import org.spongepowered.api.util.test.TestHooks;
 
 
 /**
  * Tests for all argument types contained in GenericArguments.
  */
-@Ignore("Cannot run these tests unless Text factories are available in testing")
 public class GenericArgumentsTest {
 
     private static final CommandSource MOCK_SOURCE = Mockito.mock(CommandSource.class);
@@ -69,6 +70,10 @@ public class GenericArgumentsTest {
             return CommandResult.empty();
         }
     };
+
+    static {
+        TestHooks.initialize();
+    }
 
     private static Text untr(String string) {
         return Texts.of(string);
@@ -129,7 +134,7 @@ public class GenericArgumentsTest {
     public void testOptional() throws ArgumentParseException {
         CommandElement el = optional(string(untr("val")));
         CommandContext context = parseForInput("", el);
-        assertNull(context.getOne("val"));
+        assertFalse(context.getOne("val").isPresent());
 
         el = optional(string(untr("val")), "def");
         context = parseForInput("", el);
@@ -147,13 +152,13 @@ public class GenericArgumentsTest {
     @Test
     public void testRepeated() throws ArgumentParseException {
         CommandContext context = parseForInput("1 1 2 3 5", repeated(integer(untr("key")), 5));
-        assertEquals(ImmutableList.<Object>of(1, 1, 2, 3, 5), context.getAll("key"));
+        assertEquals(ImmutableList.<Object>of(1, 1, 2, 3, 5), ImmutableList.copyOf(context.getAll("key")));
     }
 
     @Test
     public void testAllOf() throws ArgumentParseException {
         CommandContext context = parseForInput("2 4 8 16 32 64 128", allOf(integer(untr("key"))));
-        assertEquals(ImmutableList.<Object>of(2, 4, 8, 16, 32, 64, 128), context.getAll("key"));
+        assertEquals(ImmutableList.<Object>of(2, 4, 8, 16, 32, 64, 128), ImmutableList.copyOf(context.getAll("key")));
     }
 
     @Test

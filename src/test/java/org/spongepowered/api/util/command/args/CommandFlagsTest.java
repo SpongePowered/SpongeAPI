@@ -30,7 +30,6 @@ import static org.spongepowered.api.util.command.args.GenericArguments.flags;
 import static org.spongepowered.api.util.command.args.GenericArguments.integer;
 import static org.spongepowered.api.util.command.args.GenericArguments.string;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.util.command.CommandException;
@@ -38,14 +37,18 @@ import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.util.command.spec.CommandSpec;
+import org.spongepowered.api.util.test.TestHooks;
 
 
 /**
  * Test for command flags.
  */
-@Ignore("Cannot run these tests unless Text factories are available in testing")
 public class CommandFlagsTest {
     private static final CommandSource TEST_SOURCE = Mockito.mock(CommandSource.class);
+
+    static {
+        TestHooks.initialize();
+    }
 
     @Test
     public void testFlaggedCommand() throws CommandException {
