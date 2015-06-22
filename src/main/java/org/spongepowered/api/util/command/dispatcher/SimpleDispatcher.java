@@ -75,6 +75,7 @@ public final class SimpleDispatcher implements Dispatcher {
      * This is a disambiguator function that returns the first matching command.
      */
     public static final Disambiguator FIRST_DISAMBIGUATOR = new Disambiguator() {
+
         @Override
         public Optional<CommandMapping> disambiguate(CommandSource source, final String aliasUsed, List<CommandMapping> availableOptions) {
             for (CommandMapping mapping : availableOptions) {
@@ -119,7 +120,7 @@ public final class SimpleDispatcher implements Dispatcher {
      * @param callable The command
      * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be registered
-     */
+    */
     public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
         checkNotNull(alias, "alias");
         return register(callable, Arrays.asList(alias));
@@ -170,7 +171,7 @@ public final class SimpleDispatcher implements Dispatcher {
         checkNotNull(callback, "callback");
 
         // Invoke the callback with the commands that /can/ be registered
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         aliases = ImmutableList.copyOf(callback.apply(aliases));
         if (!aliases.isEmpty()) {
             String primary = aliases.get(0);
@@ -331,11 +332,11 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public Optional<CommandResult> process(CommandSource source, String commandLine) throws CommandException {
+    public CommandResult process(CommandSource source, String commandLine) throws CommandException {
         final String[] argSplit = commandLine.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
         if (!cmdOptional.isPresent()) {
-            return Optional.absent();
+            throw new CommandException(Texts.of("Command not found: " + argSplit[0]));
         }
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         final CommandCallable spec = cmdOptional.get().getCallable();
@@ -397,6 +398,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
     private Iterable<String> filterCommands(final CommandSource src) {
         return Multimaps.filterValues(this.commands, new Predicate<CommandMapping>() {
+
             @Override
             public boolean apply(@Nullable CommandMapping input) {
                 return input != null && input.getCallable().testPermission(src);
@@ -417,6 +419,7 @@ public final class SimpleDispatcher implements Dispatcher {
     public Text getUsage(final CommandSource source) {
         final TextBuilder build = Texts.builder();
         Iterable<String> filteredCommands = Iterables.filter(filterCommands(source), new Predicate<String>() {
+
             @Override
             public boolean apply(@Nullable String input) {
                 if (input == null) {
