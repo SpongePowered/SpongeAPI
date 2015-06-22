@@ -1006,16 +1006,16 @@ public final class SpongeEventFactory {
      * @param arguments The arguments provided
      * @param source The source of the command
      * @param command The command name
-     * @param result The result of the command, or null
+     * @param result The result of the command
      * @return A new instance of the event
      */
-    public static CommandEvent createCommand(Game game, String arguments, CommandSource source, String command, @Nullable CommandResult result) {
+    public static CommandEvent createCommand(Game game, String arguments, CommandSource source, String command, CommandResult result) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("arguments", arguments);
         values.put("source", source);
         values.put("command", command);
-        values.put("result", Optional.fromNullable(result));
+        values.put("result", result);
         return createEvent(CommandEvent.class, values);
     }
 

@@ -28,7 +28,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.NEWLINE_TEXT;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_TEXT;
-
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
@@ -52,6 +51,7 @@ import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
+import org.spongepowered.api.util.command.CommandNotFoundException;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.ImmutableCommandMapping;
@@ -75,6 +75,7 @@ public final class SimpleDispatcher implements Dispatcher {
      * This is a disambiguator function that returns the first matching command.
      */
     public static final Disambiguator FIRST_DISAMBIGUATOR = new Disambiguator() {
+
         @Override
         public Optional<CommandMapping> disambiguate(CommandSource source, final String aliasUsed, List<CommandMapping> availableOptions) {
             for (CommandMapping mapping : availableOptions) {
@@ -170,7 +171,7 @@ public final class SimpleDispatcher implements Dispatcher {
         checkNotNull(callback, "callback");
 
         // Invoke the callback with the commands that /can/ be registered
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         aliases = ImmutableList.copyOf(callback.apply(aliases));
         if (!aliases.isEmpty()) {
             String primary = aliases.get(0);
@@ -331,15 +332,19 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     @Override
-    public Optional<CommandResult> process(CommandSource source, String commandLine) throws CommandException {
+    public CommandResult process(CommandSource source, String commandLine) throws CommandException {
         final String[] argSplit = commandLine.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
         if (!cmdOptional.isPresent()) {
-            return Optional.absent();
+            throw new CommandNotFoundException(t("commands.generic.notFound"), argSplit[0]); // TODO: Fix properly to use a SpongeTranslation??
         }
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         final CommandCallable spec = cmdOptional.get().getCallable();
-        return spec.process(source, arguments);
+        try {
+            return spec.process(source, arguments);
+        } catch (CommandNotFoundException e) {
+            throw new CommandException(t("No such child command: %s", e.getCommand()));
+        }
     }
 
     @Override
@@ -397,6 +402,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
     private Iterable<String> filterCommands(final CommandSource src) {
         return Multimaps.filterValues(this.commands, new Predicate<CommandMapping>() {
+
             @Override
             public boolean apply(@Nullable CommandMapping input) {
                 return input != null && input.getCallable().testPermission(src);
@@ -417,6 +423,7 @@ public final class SimpleDispatcher implements Dispatcher {
     public Text getUsage(final CommandSource source) {
         final TextBuilder build = Texts.builder();
         Iterable<String> filteredCommands = Iterables.filter(filterCommands(source), new Predicate<String>() {
+
             @Override
             public boolean apply(@Nullable String input) {
                 if (input == null) {

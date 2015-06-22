@@ -22,57 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.message;
+package org.spongepowered.api.util.command.source;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.command.CommandResult;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Fired when a command has been used and needs to be processed.
+ * Proxy sources are {@link CommandSource}s that are run by one source as a
+ * different source.
  */
-public interface CommandEvent extends GameEvent, Cancellable {
+public interface ProxySource extends LocatedSource {
 
     /**
-     * Get the source of the command.
+     * Get the {@link CommandSource} this source is proxying. This
      *
-     * @return The source of the command
+     * @return The proxied source
      */
-    CommandSource getSource();
-
-    /**
-     * Get the command as a string, without any sort of command prefix.
-     *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the command would be {@code example}.</p>
-     *
-     * @return The commands
-     */
-    String getCommand();
-
-    /**
-     * Get the arguments as a string.
-     *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the arguments would be {@code bob 3 -f}.</p>
-     *
-     * @return The arguments
-     */
-    String getArguments();
-
-    /**
-     * The result of the command.
-     *
-     * @return The result of the command
-     */
-    CommandResult getResult();
-
-    /**
-     * Sets the result of the command.
-     *
-     * @param result The result of the command
-     */
-    void setResult(CommandResult result);
-
+    CommandSource getOriginalSource();
 }
