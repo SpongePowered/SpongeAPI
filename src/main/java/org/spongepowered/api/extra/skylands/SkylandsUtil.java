@@ -38,76 +38,83 @@ class SkylandsUtil {
 
     /**
      * Generates a 3D noise map using reduced sampling and trilinear
-     * interpolation.
+     * interpolation. The returned array is one larger in all dimensions.
      * TODO: make me public?
      *
      * @param noiseGenerator The noise generator module
-     * @param size The size of the 3D map
      * @param samplingRate The sampling rate to use for each axis
+     * @param x The x position of the origin of the map in the noise space
+     * @param y The y position of the origin of the map in the noise space
+     * @param z The z position of the origin of the map in the noise space
+     * @param xSize The size on x
+     * @param ySize The size on y
+     * @param zSize the size on z
      *     xSize % samplingRate.getX(), ySize % samplingRate.getY()
      *     and zSize % samplingRate.getZ() must return 0.
-     * @param position The position of (0, 0, 0) index of the map in the
-     *     noise space
-     * @return An array containing the noise values, in order [z][y][x]
+     * @return A flat array containing the noise values,
+     *     use {@link #index3D(int, int, int, int, int)} with size + 1
+     *     to index it
      */
-    static double[][][] fastNoise(Module noiseGenerator, Vector3i size, Vector3i samplingRate, Vector3i position) {
-        final int xSize = size.getX();
-        final int ySize = size.getY();
-        final int zSize = size.getZ();
+    static double[] fastNoise(Module noiseGenerator, Vector3i samplingRate, int x, int y, int z, int xSize, int ySize, int zSize) {
+        xSize += 1;
+        ySize += 1;
+        zSize += 1;
         final int samplingRateX = samplingRate.getX();
         final int samplingRateY = samplingRate.getY();
         final int samplingRateZ = samplingRate.getZ();
-        final double[][][] noiseArray = new double[zSize + 1][ySize + 1][xSize + 1];
-        final int x = position.getX();
-        final int y = position.getY();
-        final int z = position.getZ();
-        for (int zz = 0; zz <= zSize; zz += samplingRateZ) {
-            final double[][] zNoiseArray = noiseArray[zz];
-            for (int yy = 0; yy <= ySize; yy += samplingRateY) {
-                final double[] yNoiseArray = zNoiseArray[yy];
-                for (int xx = 0; xx <= xSize; xx += samplingRateX) {
-                    yNoiseArray[xx] = noiseGenerator.getValue(x + xx, y + yy, z + zz);
+        final double[] noiseArray = new double[xSize * ySize * zSize];
+        for (int zz = 0; zz < zSize; zz += samplingRateZ) {
+            for (int yy = 0; yy < ySize; yy += samplingRateY) {
+                for (int xx = 0; xx < xSize; xx += samplingRateX) {
+                    noiseArray[index3D(xx, yy, zz, xSize, ySize)] = noiseGenerator.getValue(x + xx, y + yy, z + zz);
                 }
             }
         }
-        for (int zz = 0; zz < zSize; zz++) {
-            final double[][] zNoiseArray = noiseArray[zz];
+        for (int zz = 0; zz < zSize - 1; zz++) {
             final int zFract = zz % samplingRateZ;
             final int zPrevious = zz - zFract;
             final int zNext = zPrevious + samplingRateZ;
-            final double[][] zPreviousSample = noiseArray[zPrevious];
-            final double[][] zNextSample = noiseArray[(zNext)];
-            for (int yy = 0; yy < ySize; yy++) {
-                final double[] yNoiseArray = zNoiseArray[yy];
+            for (int yy = 0; yy < ySize - 1; yy++) {
                 final int yFract = yy % samplingRateY;
                 final int yPrevious = yy - yFract;
                 final int yNext = yPrevious + samplingRateY;
-                final double[] yPreviousPreviousSample = zPreviousSample[yPrevious];
-                final double[] yPreviousNextSample = zPreviousSample[(yNext)];
-                final double[] yNextPreviousSample = zNextSample[yPrevious];
-                final double[] yNextNextSample = zNextSample[(yNext)];
-                for (int xx = 0; xx < xSize; xx++) {
+                for (int xx = 0; xx < xSize - 1; xx++) {
                     final int xFract = xx % samplingRateX;
                     if (xFract == 0 && yFract == 0 && zFract == 0) {
                         continue;
                     }
                     final int xPrevious = xx - xFract;
                     final int xNext = xPrevious + samplingRateX;
-                    yNoiseArray[xx] = GenericMath.triLerp(xx, yy, zz,
-                        yPreviousPreviousSample[xPrevious],
-                        yPreviousNextSample[xPrevious],
-                        yNextPreviousSample[xPrevious],
-                        yNextNextSample[xPrevious],
-                        yPreviousPreviousSample[xNext],
-                        yPreviousNextSample[xNext],
-                        yNextPreviousSample[xNext],
-                        yNextNextSample[xNext],
+                    noiseArray[index3D(xx, yy, zz, xSize, ySize)] = GenericMath.triLerp(xx, yy, zz,
+                        noiseArray[index3D(xPrevious, yPrevious, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xPrevious, yNext, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xPrevious, yPrevious, zNext, xSize, ySize)],
+                        noiseArray[index3D(xPrevious, yNext, zNext, xSize, ySize)],
+                        noiseArray[index3D(xNext, yPrevious, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xNext, yNext, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xNext, yPrevious, zNext, xSize, ySize)],
+                        noiseArray[index3D(xNext, yNext, zNext, xSize, ySize)],
                         xPrevious, xNext, yPrevious, yNext, zPrevious, zNext);
                 }
             }
 
         }
         return noiseArray;
+    }
+
+    /**
+     * Returns the index in the flat array corresponding to the 3D coordinates.
+     * // TODO: make me public?
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param xSize The size on x
+     * @param ySize The size on y
+     * @return The index in the array
+     */
+    static int index3D(int x, int y, int z, int xSize, int ySize) {
+        return z * xSize * ySize + y * xSize + x;
     }
 
     /**
