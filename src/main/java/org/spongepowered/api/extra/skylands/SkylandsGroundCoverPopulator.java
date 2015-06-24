@@ -25,6 +25,8 @@
 package org.spongepowered.api.extra.skylands;
 
 import com.flowpowered.math.vector.Vector3i;
+import com.flowpowered.noise.Noise;
+import com.flowpowered.noise.NoiseQuality;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.util.gen.BiomeBuffer;
@@ -42,6 +44,7 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
         new UniformGroundCoverLayer(BlockTypes.GRASS, 1),
         new VariableGroundCoverLayer(BlockTypes.DIRT, 1, 4)
     };
+    private static final double HOLE_THRESHOLD = 0.6;
 
     @Override
     public void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes) {
@@ -53,6 +56,7 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
             return;
         }
         final long seed = world.getProperties().getSeed();
+        final int intSeed = (int) (seed >> 32 ^ seed);
         final int yStart = Math.min(yMax, SkylandsTerrainGenerator.MAX_HEIGHT);
         final int yEnd = Math.max(yMin, SkylandsTerrainGenerator.MIN_HEIGHT);
         final int xMin = min.getX();
@@ -62,27 +66,31 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
         for (int zz = zMin; zz <= zMax; zz++) {
             for (int xx = xMin; xx <= xMax; xx++) {
                 int yy = yStart;
+                int layerNumber = 0;
                 yIteration:
                 while (yy >= yEnd) {
                     yy = SkylandsUtil.getNextSolid(buffer, xx, yy, zz, yEnd);
                     if (yy < yEnd) {
                         break;
                     }
-                    layerIteration:
-                    for (GroundCoverLayer layer : LAYERS) {
-                        final int yBottom = yy - layer.getDepth(xx, yy, zz, seed);
-                        final BlockType cover = layer.getBlock(xx, yy, zz, seed);
-                        for (; yy > yBottom; yy--) {
-                            if (yy < yEnd) {
-                                break yIteration;
-                            }
-                            if (!buffer.getBlockType(xx, yy, zz).equals(BlockTypes.AIR)) {
-                                buffer.setBlockType(xx, yy, zz, cover);
-                            } else {
-                                break layerIteration;
+                    if (Noise.gradientCoherentNoise3D(xx * 0.01, 0, zz * 0.01, intSeed ^ layerNumber, NoiseQuality.FAST) < HOLE_THRESHOLD) {
+                        layerIteration:
+                        for (GroundCoverLayer layer : LAYERS) {
+                            final int yBottom = yy - layer.getDepth(xx, yy, zz, layerNumber, seed);
+                            final BlockType cover = layer.getBlock(xx, yy, zz, layerNumber, seed);
+                            for (; yy > yBottom; yy--) {
+                                if (yy < yEnd) {
+                                    break yIteration;
+                                }
+                                if (!buffer.getBlockType(xx, yy, zz).equals(BlockTypes.AIR)) {
+                                    buffer.setBlockType(xx, yy, zz, cover);
+                                } else {
+                                    break layerIteration;
+                                }
                             }
                         }
                     }
+                    layerNumber++;
                     yy = SkylandsUtil.getNextAir(buffer, xx, yy, zz, yEnd);
                 }
             }
@@ -94,9 +102,9 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
         private GroundCoverLayer() {
         }
 
-        protected abstract BlockType getBlock(int x, int y, int z, long seed);
+        protected abstract BlockType getBlock(int x, int y, int z, int layer, long seed);
 
-        protected abstract int getDepth(int x, int y, int z, long seed);
+        protected abstract int getDepth(int x, int y, int z, int layer, long seed);
     }
 
     private static class VariableGroundCoverLayer extends GroundCoverLayer {
@@ -112,13 +120,13 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
         }
 
         @Override
-        protected BlockType getBlock(int x, int y, int z, long seed) {
+        protected BlockType getBlock(int x, int y, int z, int layer, long seed) {
             return this.block;
         }
 
         @Override
-        protected int getDepth(int x, int y, int z, long seed) {
-            return (int) (SkylandsUtil.hashToFloat(x, z, seed) * (this.max - this.min + 1) + this.min);
+        protected int getDepth(int x, int y, int z, int layer, long seed) {
+            return (int) (SkylandsUtil.hashToFloat(x, layer, z, seed) * (this.max - this.min + 1) + this.min);
         }
     }
 
@@ -133,12 +141,12 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
         }
 
         @Override
-        protected BlockType getBlock(int x, int y, int z, long seed) {
+        protected BlockType getBlock(int x, int y, int z, int layer, long seed) {
             return this.block;
         }
 
         @Override
-        protected int getDepth(int x, int y, int z, long seed) {
+        protected int getDepth(int x, int y, int z, int layer, long seed) {
             return this.depth;
         }
     }

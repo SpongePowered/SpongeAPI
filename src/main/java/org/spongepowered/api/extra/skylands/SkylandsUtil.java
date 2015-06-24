@@ -104,7 +104,7 @@ class SkylandsUtil {
 
     /**
      * Returns the index in the flat array corresponding to the 3D coordinates.
-     * // TODO: make me public?
+     * TODO: make me public?
      *
      * @param x The x coordinate
      * @param y The y coordinate
@@ -129,6 +129,22 @@ class SkylandsUtil {
      */
     static float hashToFloat(int x, int y, long seed) {
         final long hash = x * 73428767 ^ y * 9122569 ^ seed * 457;
+        return (hash * (hash + 456149) & 0x00ffffff) / (float) 0x01000000;
+    }
+
+    /**
+     * Hashes a 3D location and seed to return a normalized float.
+     * TODO: make me public?
+     *
+     * @param x The x coordinate to hash
+     * @param y The y coordinate to hash
+     * @param z The z coordinate to hash
+     * @param seed The seed
+     * @return A float in the range [0, 1[ constant for a constant seed
+     *     and constant position
+     */
+    static float hashToFloat(int x, int y, int z, long seed) {
+        final long hash = x * 73428767 ^ y * 9122569 ^ z * 4382893 ^ seed * 457;
         return (hash * (hash + 456149) & 0x00ffffff) / (float) 0x01000000;
     }
 
