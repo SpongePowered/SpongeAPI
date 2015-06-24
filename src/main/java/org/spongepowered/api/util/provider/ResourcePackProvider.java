@@ -22,33 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.util.provider;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
+import com.google.common.base.Optional;
+import org.spongepowered.api.resourcepack.ResourcePack;
 
-/**
- * A provider for creating {@link ResourcePack}s.
- */
-public interface ResourcePackFactory {
+public interface ResourcePackProvider extends Provider {
 
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
+     * Gets a {@link ResourcePack} that's already been created by its ID.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     * @param id The ID of the pack
+     * @return The ResourcePack with the specified ID, or Optional.absent() if
+     *         none could be found
      */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
-
-    /**
-     * Creates a {@link ResourcePack} from a URL.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     */
-    ResourcePack fromUrlUnchecked(URL url);
-
+    Optional<ResourcePack> getById(String id);
 }

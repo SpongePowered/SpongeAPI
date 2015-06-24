@@ -22,33 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.util.provider;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
+import org.spongepowered.api.world.gen.PopulatorFactory;
 
-/**
- * A provider for creating {@link ResourcePack}s.
- */
-public interface ResourcePackFactory {
-
+public interface FactoryProvider extends Provider {
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
+     * Gets the {@link PopulatorFactory} for creating {@link Populator}s and
+     * {@link GeneratorPopulator}s.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     * @return The populator factory
      */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
-
-    /**
-     * Creates a {@link ResourcePack} from a URL.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     */
-    ResourcePack fromUrlUnchecked(URL url);
-
+    PopulatorFactory getPopulatorFactory();
 }

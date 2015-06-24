@@ -22,33 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.util.provider;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
+import com.google.common.base.Optional;
+import org.spongepowered.api.text.translation.Translation;
 
-/**
- * A provider for creating {@link ResourcePack}s.
- */
-public interface ResourcePackFactory {
-
+public interface TranslationProvider extends Provider {
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
+     * Gets the {@link Translation} with the provided ID.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     * @param id The ID of the translation
+     * @return The {@link Translation} with the given ID or Optional.absent() if not found
      */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
-
-    /**
-     * Creates a {@link ResourcePack} from a URL.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     */
-    ResourcePack fromUrlUnchecked(URL url);
-
+    Optional<Translation> getTranslationById(String id);
 }

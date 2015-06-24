@@ -22,33 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.util.provider;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
+import com.google.common.base.Optional;
+import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
+import org.spongepowered.api.text.format.TextColor;
 
-/**
- * A provider for creating {@link ResourcePack}s.
- */
-public interface ResourcePackFactory {
+public interface DisplaySlotProvider extends Provider {
 
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
+     * Gets a {@link DisplaySlot} which displays only for teams
+     * with the provided color.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     * @param color The color for the display slot
+     * @return The {@link DisplaySlot} with the provided color, or Optional.absent() if not found
      */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
-
-    /**
-     * Creates a {@link ResourcePack} from a URL.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     */
-    ResourcePack fromUrlUnchecked(URL url);
-
+    Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
 }

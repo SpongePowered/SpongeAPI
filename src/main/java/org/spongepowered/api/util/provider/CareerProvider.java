@@ -22,33 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.util.provider;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
+import org.spongepowered.api.data.type.Career;
+import org.spongepowered.api.data.type.Profession;
 
-/**
- * A provider for creating {@link ResourcePack}s.
- */
-public interface ResourcePackFactory {
+import java.util.Collection;
 
-    /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
-     */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
+public interface CareerProvider extends Provider {
 
     /**
-     * Creates a {@link ResourcePack} from a URL.
+     * Gets all available villager {@link Career}s for the given profession.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
+     * @param profession The villager profession to collection careers from
+     * @return A collection of all villager careers associated with the profession
      */
-    ResourcePack fromUrlUnchecked(URL url);
-
+    Collection<Career> getCareers(Profession profession);
 }

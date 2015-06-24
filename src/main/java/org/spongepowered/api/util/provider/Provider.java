@@ -22,33 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
-
-import java.io.FileNotFoundException;
-import java.net.URL;
+package org.spongepowered.api.util.provider;
 
 /**
- * A provider for creating {@link ResourcePack}s.
+ * Contract that implementing classes are retrievable through {@link org.spongepowered.api.GameRegistry#getProvider(Class)}
+ *
+ * Not to be confused with a provider for the {@link org.spongepowered.api.service.ServiceManager}.
  */
-public interface ResourcePackFactory {
-
-    /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
-     */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
-
-    /**
-     * Creates a {@link ResourcePack} from a URL.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     */
-    ResourcePack fromUrlUnchecked(URL url);
-
+public interface Provider {
 }

@@ -22,33 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.util.provider;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
+import org.spongepowered.api.GameProfile;
 
-/**
- * A provider for creating {@link ResourcePack}s.
- */
-public interface ResourcePackFactory {
+import java.util.UUID;
 
+public interface GameProfileProvider extends Provider {
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
+     * Creates a new {@link GameProfile} using the specified unique identifier and name.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     * @param uuid The unique identifier for the profile
+     * @param name The name for the profile
+     * @return The created profile
      */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
-
-    /**
-     * Creates a {@link ResourcePack} from a URL.
-     *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     */
-    ResourcePack fromUrlUnchecked(URL url);
-
+    GameProfile createGameProfile(UUID uuid, String name);
 }

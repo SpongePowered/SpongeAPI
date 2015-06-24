@@ -22,33 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.util.provider;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
+import org.spongepowered.api.GameDictionary;
+import org.spongepowered.api.GameRegistry;
+import org.spongepowered.api.data.DataManipulatorRegistry;
+import org.spongepowered.api.data.ImmutableDataRegistry;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
-/**
- * A provider for creating {@link ResourcePack}s.
- */
-public interface ResourcePackFactory {
+public interface RegistryProvider extends Provider {
+    /**
+     * Retrieves the GameDictionary (item dictionary) for this RegistryProvider.
+     *
+     * @return The item dictionary
+     */
+    GameDictionary getGameDictionary();
 
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
-     * it.
+     * Retrieves the GameRegistry for this RegistryProvider.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
-     * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     * @return The game registry
      */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
+    GameRegistry getGameRegistry();
 
     /**
-     * Creates a {@link ResourcePack} from a URL.
+     * Retrieves the RecipeRegistry for this RegistryProvider.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
+     * @return The recipe registry
      */
-    ResourcePack fromUrlUnchecked(URL url);
+    RecipeRegistry getRecipeRegistry();
 
+    /**
+     * Retrieves the {@link DataManipulatorRegistry} for this {@link RegistryProvider}.
+     *
+     * @return The manipulator registry
+     */
+    DataManipulatorRegistry getManipulatorRegistry();
+
+    /**
+     * Retrieves the {@link ImmutableDataRegistry} for this {@link RegistryProvider}.
+     *
+     * @return The immutable data registry
+     */
+    ImmutableDataRegistry getImmutableDataRegistry();
 }
