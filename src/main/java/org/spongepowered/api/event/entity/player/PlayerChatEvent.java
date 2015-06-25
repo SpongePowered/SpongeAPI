@@ -26,10 +26,18 @@ package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.text.Text;
 
 /**
  * Called when a {@link Player} sends a chat message.
  */
 public interface PlayerChatEvent extends PlayerMessageEvent, Cancellable {
+
+    /**
+     * Returns the message as the player provided it, without being formatted with the player's name or any other decorations.
+     *
+     * @return The unformatted message
+     */
+    Text getUnformattedMessage();
 
 }
