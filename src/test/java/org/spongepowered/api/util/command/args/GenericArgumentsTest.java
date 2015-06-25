@@ -26,7 +26,6 @@ package org.spongepowered.api.util.command.args;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.spongepowered.api.util.command.args.GenericArguments.allOf;
 import static org.spongepowered.api.util.command.args.GenericArguments.bool;
 import static org.spongepowered.api.util.command.args.GenericArguments.choices;
@@ -43,7 +42,6 @@ import static org.spongepowered.api.util.command.args.GenericArguments.string;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
