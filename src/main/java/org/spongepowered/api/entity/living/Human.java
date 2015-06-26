@@ -67,4 +67,26 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      */
     void closeInventory();
 
+    /**
+     * Returns whether this {@link Human} will be ignored when checking whether
+     * to skip the night due to players sleeping. The time in a world will be
+     * advanced to day if all players in it either are sleeping or have this
+     * tag.
+     *
+     * @return Whether this {@link Human} will be ignored when checking whether
+     *         to skip the night
+     */
+    boolean isSleepingIgnored();
+
+    /**
+     * Sets whether this {@link Human} will be ignored when checking whether
+     * to skip the night due to players sleeping. The time in a world will be
+     * advanced to day if all players in it either are sleeping or have this
+     * tag.
+     *
+     * @return Whether this {@link Human} will be ignored when checking whether
+     *         to skip the night
+     */
+    void setSleepingIgnored(boolean sleepingIgnored);
+
 }
