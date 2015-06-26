@@ -135,23 +135,23 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
     GameModeData getGameModeData();
 
     /**
-     * Returns whether this {@link Human} will be ignored when checking whether
+     * Returns whether this {@link Player} will be ignored when checking whether
      * to skip the night due to players sleeping. The time in a world will be
      * advanced to day if all players in it either are sleeping or have this
      * tag.
      *
-     * @return Whether this {@link Human} will be ignored when checking whether
+     * @return Whether this {@link Player} will be ignored when checking whether
      *         to skip the night
      */
     boolean isSleepingIgnored();
 
     /**
-     * Sets whether this {@link Human} will be ignored when checking whether
+     * Sets whether this {@link Player} will be ignored when checking whether
      * to skip the night due to players sleeping. The time in a world will be
      * advanced to day if all players in it either are sleeping or have this
      * tag.
      *
-     * @return Whether this {@link Human} will be ignored when checking whether
+     * @return Whether this {@link Player} will be ignored when checking whether
      *         to skip the night
      */
     void setSleepingIgnored(boolean sleepingIgnored);
