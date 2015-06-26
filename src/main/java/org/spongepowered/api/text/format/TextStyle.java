@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.OptBool;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -55,7 +56,6 @@ import javax.annotation.Nullable;
  *
  * @see TextStyles
  */
-@CatalogedBy(TextStyles.class)
 public class TextStyle {
 
     /**
@@ -507,7 +507,8 @@ public class TextStyle {
      * @see TextStyle
      * @see Base
      */
-    public abstract static class Base extends TextStyle implements BaseFormatting {
+    @CatalogedBy(TextStyles.class)
+    public abstract static class Base extends TextStyle implements BaseFormatting, CatalogType {
 
         /**
          * Constructs a new {@link Base}.
