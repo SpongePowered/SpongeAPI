@@ -200,6 +200,38 @@ public interface Team {
     boolean removeUser(User user);
 
     /**
+     * Gets the {@link Text}s on the team.
+     *
+     * <p>Text-based methods on {@link Team} are usually used for "fake player" entries on the
+     * scoreboard.</p>
+     *
+     * @return The {@link Text}s on the team
+     */
+    Set<Text> getTexts();
+
+    /**
+     * Adds the specified {@link Text} to this team for the {@link Scoreboard}.
+     *
+     * <p>Text-based methods on {@link Team} are usually used for "fake player" entries on the
+     * scoreboard.</p>
+     * <p>This will remove the {@link Text} from any other team on the {@link Scoreboard}.</p>
+     *
+     * @param text The {@link Text} to add
+     */
+    void addText(Text text);
+
+    /**
+     * Removes the specified {@link Text} from this team.
+     *
+     * <p>Text-based methods on {@link Team} are usually used for "fake player" entries on the
+     * scoreboard.</p>
+     *
+     * @param text The {@link Text} to remove
+     * @return Whether the {@link Text} was on this team
+     */
+    boolean removeText(Text text);
+
+    /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this {@link Team} is
      * registered to.
      *
