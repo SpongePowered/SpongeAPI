@@ -544,7 +544,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
          */
         public BlockRayBuilder filter(final Predicate<BlockRayHit>... filters) {
             Preconditions.checkNotNull(filters, "filters ");
-            final Predicate<BlockRayHit> filter = filters.length == 1 ? filters[0] : Predicates.and(filters);
+            final Predicate<BlockRayHit> filter = filters.length == 1 ? filters[0] : Predicates.<BlockRayHit>and(filters);
             if (this.filter == ALL_FILTER) {
                 this.filter = filter;
             } else {
