@@ -691,7 +691,9 @@ public final class Location implements DataHolder {
     public DataContainer toContainer() {
         DataContainer container = new MemoryDataContainer();
         if (getExtent() instanceof World) {
-            container.set(of("WorldName"), ((World) getExtent()).getName());
+            World world = (World) getExtent();
+            container.set(of("WorldName"), world.getName());
+            container.set(of("WorldUUID"), world.getUniqueId());
         }
         container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId());
         container.set(of("x"), this.getX());
