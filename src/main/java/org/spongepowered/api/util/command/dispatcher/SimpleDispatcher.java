@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.util.command.dispatcher;
 
+import org.spongepowered.api.util.command.CommandNotFoundException;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.NEWLINE_TEXT;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_TEXT;
-
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
@@ -336,7 +337,7 @@ public final class SimpleDispatcher implements Dispatcher {
         final String[] argSplit = commandLine.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
         if (!cmdOptional.isPresent()) {
-            throw new CommandException(Texts.of("Command not found: " + argSplit[0]));
+            throw new CommandNotFoundException(Texts.of("No such command: " + argSplit[0]));
         }
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         final CommandCallable spec = cmdOptional.get().getCallable();
