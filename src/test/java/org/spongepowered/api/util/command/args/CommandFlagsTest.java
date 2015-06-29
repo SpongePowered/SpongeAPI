@@ -33,7 +33,6 @@ import static org.spongepowered.api.util.command.args.GenericArguments.integer;
 import static org.spongepowered.api.util.command.args.GenericArguments.none;
 import static org.spongepowered.api.util.command.args.GenericArguments.string;
 
-import jdk.nashorn.internal.runtime.QuotedStringTokenizer;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -45,8 +44,6 @@ import org.spongepowered.api.util.command.args.parsing.InputTokenizers;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.util.command.spec.CommandSpec;
 import org.spongepowered.api.util.test.TestHooks;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 
 /**

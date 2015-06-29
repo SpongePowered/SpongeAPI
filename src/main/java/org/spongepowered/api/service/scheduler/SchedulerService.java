@@ -35,7 +35,7 @@ import java.util.UUID;
 public interface SchedulerService {
 
     /**
-     * Gets a new instance of a {@TaskBuilder}.
+     * Gets a new instance of a {@link TaskBuilder}.
      *
      * @return A new task builder
      */

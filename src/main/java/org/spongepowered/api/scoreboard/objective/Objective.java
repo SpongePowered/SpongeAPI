@@ -24,18 +24,14 @@
  */
 package org.spongepowered.api.scoreboard.objective;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
-import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.text.Text;
 
 import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.Nullable;
 
 /**
  * An objective tracks an integer score for each entry it contains.

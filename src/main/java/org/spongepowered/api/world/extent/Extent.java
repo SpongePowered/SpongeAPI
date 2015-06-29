@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -48,22 +49,48 @@ import java.util.Collection;
 public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
      *
      * @param position The position
-     * @return The block
+     * @return The location in this extent
      */
-    Location getFullBlock(Vector3i position);
+    Location getLocation(Vector3i position);
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @return The block
+     * @return The location in this extent
      */
-    Location getFullBlock(int x, int y, int z);
+    Location getLocation(int x, int y, int z);
+
+    /**
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
+     * This method supports sub-block positions.
+     * Block-related methods use flooring to get integer coordinates.
+     *
+     * @param position The position
+     * @return The location in this extent
+     */
+    Location getLocation(Vector3d position);
+
+    /**
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
+     * This method supports sub-block positions.
+     * Block-related methods use flooring to get integer coordinates.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The location in this extent
+     */
+    Location getLocation(double x, double y, double z);
 
     /**
      * Get a snapshot of this block at the current point in time.
