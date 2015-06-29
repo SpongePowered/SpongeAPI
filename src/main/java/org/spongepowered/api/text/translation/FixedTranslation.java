@@ -22,22 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
+package org.spongepowered.api.text.translation;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.text.Text;
+import java.util.Locale;
 
 /**
- * Called when a {@link Player} sends a chat message.
+ * A translation providing a fixed value.
  */
-public interface PlayerChatEvent extends PlayerMessageEvent, Cancellable {
+public class FixedTranslation implements Translation {
+    private final String value;
 
     /**
-     * Returns the message as the player provided it, without being formatted with the player's name or any other decorations.
+     * Create a new translation with an id and value that are the same.
      *
-     * @return The unformatted message
+     * @param value The id and value
      */
-    Text getUnformattedMessage();
+    public FixedTranslation(String value) {
+        this.value = value;
+    }
 
+    @Override
+    public String getId() {
+        return this.value;
+    }
+
+    @Override
+    public String get(Locale locale) {
+        return this.value;
+    }
+
+    @Override
+    public String get(Locale locale, Object... args) {
+        return String.format(locale, this.value, args);
+    }
 }

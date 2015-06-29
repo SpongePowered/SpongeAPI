@@ -114,20 +114,22 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         final long seed = world.getProperties().getSeed();
         final int intSeed = (int) (seed >> 32 ^ seed);
         this.inputNoise.setSeed(intSeed);
-        final double[][][] noise = SkylandsUtil.fastNoise(this.outputNoise, buffer.getBlockSize(), NOISE_SAMPLING_RATE, min);
+        final Vector3i size = buffer.getBlockSize();
+        final int xSize = size.getX();
+        final int ySize = size.getY();
+        final int zSize = size.getZ();
         final int xMin = min.getX();
         final int yMin = min.getY();
         final int zMin = min.getZ();
         final int xMax = max.getX();
         final int yMax = max.getY();
         final int zMax = max.getZ();
+        final double[] noise = SkylandsUtil.fastNoise(this.outputNoise, NOISE_SAMPLING_RATE, xMin, yMin, zMin, xSize, ySize, zSize);
         for (int zz = zMin; zz <= zMax; zz++) {
-            final double[][] zNoise = noise[zz - zMin];
             for (int yy = yMin; yy <= yMax; yy++) {
-                final double[] yNoise = zNoise[yy - yMin];
                 xIteration:
                 for (int xx = xMin; xx <= xMax; xx++) {
-                    final double density = yNoise[xx - xMin];
+                    final double density = noise[SkylandsUtil.index3D(xx - xMin, yy - yMin, zz - zMin, xSize + 1, ySize + 1)];
                     if (density >= THRESHOLD) {
                         for (OreNoise oreNoise : this.oreNoises) {
                             if (oreNoise.hasBlock(density, xx, yy, zz, intSeed)) {

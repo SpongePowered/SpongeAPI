@@ -43,7 +43,7 @@ import java.util.Locale;
  */
 public final class Texts {
 
-    private static final TextFactory factory = null;
+    private static TextFactory factory = null;
     static final Text.Literal EMPTY = new Text.Literal();
 
     private Texts() {

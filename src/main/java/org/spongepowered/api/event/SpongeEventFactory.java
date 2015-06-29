@@ -1190,16 +1190,18 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param player The player involved in this event
      * @param message The message to say
+     * @param unformattedMessage The unformatted message
      * @param sink The destination for the message
      * @return A new instance of the event
      */
-    public static PlayerChatEvent createPlayerChat(Game game, Player player, Text message, MessageSink sink) {
+    public static PlayerChatEvent createPlayerChat(Game game, Player player, Text message, Text unformattedMessage, MessageSink sink) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
         values.put("source", player);
         values.put("message", message);
         values.put("newMessage", message);
+        values.put("unformattedMessage", unformattedMessage);
         values.put("sink", sink);
         values.put("user", player);
         return createEvent(PlayerChatEvent.class, values);

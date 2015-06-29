@@ -22,22 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
+package org.spongepowered.api.util.test;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 
-/**
- * Called when a {@link Player} sends a chat message.
- */
-public interface PlayerChatEvent extends PlayerMessageEvent, Cancellable {
+import java.lang.reflect.Field;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class TestHooks {
+    private static final AtomicBoolean INITIALIZED = new AtomicBoolean();
 
     /**
-     * Returns the message as the player provided it, without being formatted with the player's name or any other decorations.
-     *
-     * @return The unformatted message
+     * Perform initialization necessary to create a testing environment.
      */
-    Text getUnformattedMessage();
+    public static void initialize()  {
+        if (INITIALIZED.compareAndSet(false, true)) {
+            try {
+                Field textField = Texts.class.getDeclaredField("factory");
+                textField.setAccessible(true);
+                textField.set(null, new TestTextFactory());
+            } catch (Exception e) {
+                throw new ExceptionInInitializerError(e);
+            }
+        }
+    }
 
 }

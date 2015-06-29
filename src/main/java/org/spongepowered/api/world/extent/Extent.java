@@ -293,7 +293,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position of the block
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminance(Vector3i position);
+    int getLuminance(Vector3i position);
 
     /**
      * Get the light level for this object.
@@ -305,7 +305,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminance(int x, int y, int z);
+    int getLuminance(int x, int y, int z);
 
     /**
      * Get the light level for this object that is caused by an overhead sky.
@@ -316,7 +316,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position of the block
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromSky(Vector3i position);
+    int getLuminanceFromSky(Vector3i position);
 
     /**
      * Get the light level for this object that is caused by an overhead sky.
@@ -329,7 +329,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromSky(int x, int y, int z);
+    int getLuminanceFromSky(int x, int y, int z);
 
     /**
      * Get the light level for this object that is caused by everything
@@ -340,7 +340,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position of the block
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromGround(Vector3i position);
+    int getLuminanceFromGround(Vector3i position);
 
     /**
      * Get the light level for this object that is caused by everything
@@ -353,7 +353,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromGround(int x, int y, int z);
+    int getLuminanceFromGround(int x, int y, int z);
 
     /**
      * Test whether the object is powered.

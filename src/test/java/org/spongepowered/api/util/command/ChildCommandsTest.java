@@ -35,6 +35,7 @@ import org.spongepowered.api.util.command.args.CommandContext;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.util.command.spec.CommandSpec;
+import org.spongepowered.api.util.test.TestHooks;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -43,8 +44,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Tests for child commands.
  */
 public class ChildCommandsTest {
+    static {
+        TestHooks.initialize();
+    }
+
     @Test
-    @Ignore("Cannot run these tests unless Text factories are available in testing")
     public void testSimpleChildCommand() throws CommandException {
         final AtomicBoolean childExecuted = new AtomicBoolean();
         final CommandSpec spec = CommandSpec.builder()

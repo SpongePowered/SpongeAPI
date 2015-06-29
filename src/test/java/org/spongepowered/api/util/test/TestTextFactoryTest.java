@@ -22,22 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
+package org.spongepowered.api.util.test;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.Cancellable;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.translation.FixedTranslation;
 
-/**
- * Called when a {@link Player} sends a chat message.
- */
-public interface PlayerChatEvent extends PlayerMessageEvent, Cancellable {
+public class TestTextFactoryTest {
+    static {
+        TestHooks.initialize();
+    }
 
-    /**
-     * Returns the message as the player provided it, without being formatted with the player's name or any other decorations.
-     *
-     * @return The unformatted message
-     */
-    Text getUnformattedMessage();
+    @Test
+    public void testToPlainLiterals() {
+        Text testText = Texts.builder("Hello ").append(Texts.of("world"), Texts.of(", this is here")).build();
+        assertEquals("Hello world, this is here", Texts.toPlain(testText));
+    }
+
+    @Test
+    public void testToPlainTranslatables() {
+        Text testText = Texts.of(new FixedTranslation("This is a translated %s"), Texts.of("string"));
+        assertEquals("This is a translated string", Texts.toPlain(testText));
+    }
 
 }
