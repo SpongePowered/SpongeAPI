@@ -27,7 +27,9 @@ package org.spongepowered.api.plugin;
 import com.google.common.base.Optional;
 import org.slf4j.Logger;
 
+import java.net.URLClassLoader;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * The manager that manages plugins. This manager can retrieve
@@ -75,5 +77,23 @@ public interface PluginManager {
      * @return {@code true} if loaded {@code false} if not loaded.
      */
     boolean isLoaded(String id);
+
+    // TODO Would you prefer the following two methods in another interface à la DynamicPluginManager extends PluginManager, which some (Vanilla) but not all (other) implement, or is this OK like this?
+
+    /**
+     * Load additional plugins.
+     *
+     * @param classLoader a ClassLoader to scan for classes annotated with {@link Plugin}
+     * @return the {@link PluginContainer}s which were successfully loaded from the given ClassLoader
+     */
+	Set<PluginContainer> loadPlugins(URLClassLoader classLoader);
+
+	/**
+	 * Unload a previously loaded plugin.
+	 * 
+	 * @param pluginContainer the {@link PluginContainer} to unload
+	 * @return {@code true} if successfully unloaded, {@code false} if not
+	 */
+	boolean unloadPlugin(PluginContainer pluginContainer);
 
 }
