@@ -26,6 +26,10 @@ package org.spongepowered.api.plugin;
 
 import com.google.common.base.Optional;
 import org.slf4j.Logger;
+import org.spongepowered.api.GameState;
+import org.spongepowered.api.event.plugin.PluginLoadedEvent;
+import org.spongepowered.api.event.plugin.PluginUnloadingEvent;
+import org.spongepowered.api.event.state.StateEvent;
 
 import java.net.URLClassLoader;
 import java.util.Collection;
@@ -78,10 +82,23 @@ public interface PluginManager {
      */
     boolean isLoaded(String id);
 
-    // TODO Would you prefer the following two methods in another interface à la DynamicPluginManager extends PluginManager, which some (Vanilla) but not all (other) implement, or is this OK like this?
+    // TODO Sponge team: Would you prefer the following two methods in another interface à la DynamicPluginManager extends PluginManager, which some (Vanilla) but not all (other) implement, or is this OK like this?
 
     /**
-     * Load additional plugins.
+     * Load an additional plugin instance.
+     * 
+     * This will fire a {@link PluginLoadedEvent} (but NOT the {@link StateEvent} notifications for {@link GameState}, because the Game may already be running since a long time).
+     *
+     * @param pluginClass some class annotated with {@link Plugin}
+     * @param source some identification of where this pluginClass is from, just for logging
+     * @return the {@link PluginContainer} descriptor for this Plugin
+     */
+	PluginContainer loadPlugin(Class<?> pluginClass, String source);
+
+    /**
+     * Load additional plugins, by finding all annotated Plugin classes.
+     * 
+     * This will fire a {@link PluginLoadedEvent} (but NOT the {@link StateEvent} notifications for {@link GameState}, because the Game may already be running since a long time).
      *
      * @param classLoader a ClassLoader to scan for classes annotated with {@link Plugin}
      * @return the {@link PluginContainer}s which were successfully loaded from the given ClassLoader
@@ -90,6 +107,8 @@ public interface PluginManager {
 
 	/**
 	 * Unload a previously loaded plugin.
+	 * 
+	 * This will fire a {@link PluginUnloadingEvent} (but NOT the {@link StateEvent} notifications for {@link GameState}, because the Game may continue running long after).
 	 * 
 	 * @param pluginContainer the {@link PluginContainer} to unload
 	 * @return {@code true} if successfully unloaded, {@code false} if not

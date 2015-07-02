@@ -25,7 +25,7 @@
 package org.spongepowered.api;
 
 /**
- * Top to bottom order of the lifecycle.
+ * Top to bottom order of the game lifecycle.
  */
 public enum GameState {
     /**
