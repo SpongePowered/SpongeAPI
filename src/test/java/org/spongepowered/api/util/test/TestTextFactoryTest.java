@@ -22,53 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.selector;
+package org.spongepowered.api.util.test;
 
-import java.util.Set;
+import static org.junit.Assert.assertEquals;
 
-/**
- * Represents the type of an {@link Argument}. This represents a single
- * argument key in a {@link Selector}.
- *
- * @param <T> The type for the value of this argument type
- * @see Selector
- * @see Argument
- * @see ArgumentTypes
- */
-public interface ArgumentType<T> extends ArgumentHolder<ArgumentType<T>> {
+import org.junit.Test;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.translation.FixedTranslation;
 
-    /**
-     * Returns the key associated with this {@link ArgumentType}.
-     *
-     * @return The key of this argument type
-     */
-    String getKey();
+public class TestTextFactoryTest {
+    static {
+        TestHooks.initialize();
+    }
 
-    /**
-     * Returns 1.
-     * 
-     * @return 1
-     */
-    @Override
-    int getCount();
+    @Test
+    public void testToPlainLiterals() {
+        Text testText = Texts.builder("Hello ").append(Texts.of("world"), Texts.of(", this is here")).build();
+        assertEquals("Hello world, this is here", Texts.toPlain(testText));
+    }
 
-    /**
-     * Returns a set containing this {@link ArgumentType}.
-     * 
-     * @return A set containing this {@link ArgumentType}
-     */
-    @Override
-    Set<ArgumentType<T>> getTypes();
-
-    /**
-     * Represents an {@link ArgumentType} that can be inverted.
-     *
-     * @param <T> The type for the value of this argument type
-     * @see ArgumentType
-     * @see Argument.Invertible
-     */
-    interface Invertible<T> extends ArgumentType<T> {
-
+    @Test
+    public void testToPlainTranslatables() {
+        Text testText = Texts.of(new FixedTranslation("This is a translated %s"), Texts.of("string"));
+        assertEquals("This is a translated string", Texts.toPlain(testText));
     }
 
 }

@@ -56,6 +56,7 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
      * Minimum height of the basic terrain.
      */
     public static final int MIN_HEIGHT = MID_POINT - LOWER_SIZE + 1;
+    private static final Vector3i NOISE_SAMPLING_RATE = new Vector3i(4, 8, 4);
     private static final double THRESHOLD = 0.215;
     private final Perlin inputNoise = new Perlin();
     private final VerticalScaling outputNoise = new VerticalScaling();
@@ -113,22 +114,31 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         final long seed = world.getProperties().getSeed();
         final int intSeed = (int) (seed >> 32 ^ seed);
         this.inputNoise.setSeed(intSeed);
-        final double[][][] noise = SkylandsUtil.fastNoise(this.outputNoise, buffer.getBlockSize(), 4, min);
-        final int x = min.getX();
-        final int y = min.getY();
-        final int z = min.getZ();
-        for (int zz = min.getZ(); zz <= max.getZ(); zz++) {
-            for (int yy = min.getY(); yy <= max.getY(); yy++) {
+        final Vector3i size = buffer.getBlockSize();
+        final int xSize = size.getX();
+        final int ySize = size.getY();
+        final int zSize = size.getZ();
+        final int xMin = min.getX();
+        final int yMin = min.getY();
+        final int zMin = min.getZ();
+        final int xMax = max.getX();
+        final int yMax = max.getY();
+        final int zMax = max.getZ();
+        final double[] noise = SkylandsUtil.fastNoise(this.outputNoise, NOISE_SAMPLING_RATE, xMin, yMin, zMin, xSize, ySize, zSize);
+        for (int zz = zMin; zz <= zMax; zz++) {
+            for (int yy = yMin; yy <= yMax; yy++) {
                 xIteration:
-                for (int xx = min.getX(); xx <= max.getX(); xx++) {
-                    final double density = noise[zz - z][yy - y][xx - x];
-                    for (OreNoise oreNoise : this.oreNoises) {
-                        if (oreNoise.hasBlock(density, xx, yy, zz, intSeed)) {
-                            buffer.setBlockType(xx, yy, zz, oreNoise.getBlock());
-                            continue xIteration;
+                for (int xx = xMin; xx <= xMax; xx++) {
+                    final double density = noise[SkylandsUtil.index3D(xx - xMin, yy - yMin, zz - zMin, xSize + 1, ySize + 1)];
+                    if (density >= THRESHOLD) {
+                        for (OreNoise oreNoise : this.oreNoises) {
+                            if (oreNoise.hasBlock(density, xx, yy, zz, intSeed)) {
+                                buffer.setBlockType(xx, yy, zz, oreNoise.getBlock());
+                                continue xIteration;
+                            }
                         }
+                        buffer.setBlockType(xx, yy, zz, BlockTypes.STONE);
                     }
-                    buffer.setBlockType(xx, yy, zz, density >= THRESHOLD ? BlockTypes.STONE : BlockTypes.AIR);
                 }
             }
         }
@@ -178,16 +188,14 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
 
         @Override
         public double getValue(double x, double y, double z) {
-            final double value = sourceModule[0].getValue(x, y, z);
             y -= this.midPoint;
-            double scale;
+            final double scale;
             if (y >= 0) {
-                scale = Math.pow(y / this.upperScale, this.degree);
+                scale = 1 - Math.pow(y / this.upperScale, this.degree);
             } else {
-                scale = Math.pow(-y / this.lowerScale, this.degree);
+                scale = 1 - Math.pow(-y / this.lowerScale, this.degree);
             }
-            scale = Math.max(0, 1 - scale);
-            return value * scale;
+            return scale > 0 ? sourceModule[0].getValue(x, y, z) * scale : 0;
         }
     }
 
@@ -197,19 +205,19 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
         private final double frequency;
         private final double noiseThreshold;
         private final BlockType block;
-        private final int seedTransform;
+        private final int seedModifier;
 
         private OreNoise(double densityThreshold, double frequency, double noiseThreshold, BlockType block) {
             this.densityThreshold = densityThreshold;
             this.frequency = frequency;
             this.noiseThreshold = noiseThreshold;
             this.block = block;
-            this.seedTransform = block.getName().hashCode();
+            this.seedModifier = block.getName().hashCode();
         }
 
         private boolean hasBlock(double density, double x, double y, double z, int seed) {
             return density >= this.densityThreshold && Noise.gradientCoherentNoise3D(x * this.frequency, y * this.frequency, z * this.frequency,
-                seed ^ this.seedTransform, NoiseQuality.FAST) >= this.noiseThreshold;
+                seed ^ this.seedModifier, NoiseQuality.FAST) >= this.noiseThreshold;
         }
 
         private BlockType getBlock() {

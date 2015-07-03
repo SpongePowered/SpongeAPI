@@ -28,8 +28,7 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.service.scheduler.AsynchronousScheduler;
-import org.spongepowered.api.service.scheduler.SynchronousScheduler;
+import org.spongepowered.api.service.scheduler.SchedulerService;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
@@ -85,18 +84,11 @@ public interface Game {
     ServiceManager getServiceManager();
 
     /**
-     * Gets the {@link org.spongepowered.api.service.scheduler.SynchronousScheduler}.
+     * Gets the scheduler used to schedule tasks.
      *
      * @return The scheduler
      */
-    SynchronousScheduler getSyncScheduler();
-
-    /**
-     * Gets the {@link org.spongepowered.api.service.scheduler.AsynchronousScheduler}.
-     *
-     * @return The scheduler
-     */
-    AsynchronousScheduler getAsyncScheduler();
+    SchedulerService getScheduler();
 
     /**
      * Get the command dispatcher used for registering and dispatching

@@ -38,74 +38,83 @@ class SkylandsUtil {
 
     /**
      * Generates a 3D noise map using reduced sampling and trilinear
-     * interpolation.
+     * interpolation. The returned array is one larger in all dimensions.
      * TODO: make me public?
      *
      * @param noiseGenerator The noise generator module
-     * @param size The size of the 3D map
-     * @param samplingPeriod The sampling period to use.
-     *     xSize % samplingPeriod, ySize % samplingPeriod
-     *     and zSize % samplingPeriod must return 0.
-     * @param position The position of (0, 0, 0) index of the map in the
-     *     noise space
-     * @return An array containing the noise values, in order [z][y][x]
-     * @throws IllegalArgumentException if the noise generator is null,
-     *     the sampling rate is zero, or xSize % samplingPeriod,
-     *     ySize % samplingPeriod or zSize % samplingPeriod doesn't return 0
+     * @param samplingRate The sampling rate to use for each axis
+     * @param x The x position of the origin of the map in the noise space
+     * @param y The y position of the origin of the map in the noise space
+     * @param z The z position of the origin of the map in the noise space
+     * @param xSize The size on x
+     * @param ySize The size on y
+     * @param zSize the size on z
+     *     xSize % samplingRate.getX(), ySize % samplingRate.getY()
+     *     and zSize % samplingRate.getZ() must return 0.
+     * @return A flat array containing the noise values,
+     *     use {@link #index3D(int, int, int, int, int)} with size + 1
+     *     to index it
      */
-    static double[][][] fastNoise(Module noiseGenerator, Vector3i size, int samplingPeriod, Vector3i position) {
-        if (samplingPeriod <= 0) {
-            throw new IllegalArgumentException("samplingPeriod cannot smaller or equal to 0");
-        }
-        final int xSize = size.getX();
-        final int ySize = size.getY();
-        final int zSize = size.getZ();
-        if (xSize % samplingPeriod != 0) {
-            throw new IllegalArgumentException("x size % samplingPeriod must return 0");
-        }
-        if (ySize % samplingPeriod != 0) {
-            throw new IllegalArgumentException("y size % samplingPeriod must return 0");
-        }
-        if (zSize % samplingPeriod != 0) {
-            throw new IllegalArgumentException("z size % samplingPeriod must return 0");
-        }
-        final double[][][] noiseArray = new double[zSize + 1][ySize + 1][xSize + 1];
-        final int x = position.getX();
-        final int y = position.getY();
-        final int z = position.getZ();
-        for (int zz = 0; zz <= zSize; zz += samplingPeriod) {
-            for (int yy = 0; yy <= ySize; yy += samplingPeriod) {
-                for (int xx = 0; xx <= xSize; xx += samplingPeriod) {
-                    noiseArray[zz][yy][xx] = noiseGenerator.getValue(x + xx, y + yy, z + zz);
+    static double[] fastNoise(Module noiseGenerator, Vector3i samplingRate, int x, int y, int z, int xSize, int ySize, int zSize) {
+        xSize += 1;
+        ySize += 1;
+        zSize += 1;
+        final int samplingRateX = samplingRate.getX();
+        final int samplingRateY = samplingRate.getY();
+        final int samplingRateZ = samplingRate.getZ();
+        final double[] noiseArray = new double[xSize * ySize * zSize];
+        for (int zz = 0; zz < zSize; zz += samplingRateZ) {
+            for (int yy = 0; yy < ySize; yy += samplingRateY) {
+                for (int xx = 0; xx < xSize; xx += samplingRateX) {
+                    noiseArray[index3D(xx, yy, zz, xSize, ySize)] = noiseGenerator.getValue(x + xx, y + yy, z + zz);
                 }
             }
         }
-        for (int zz = 0; zz < zSize; zz++) {
-            for (int yy = 0; yy < ySize; yy++) {
-                for (int xx = 0; xx < xSize; xx++) {
-                    final int xFract = xx % samplingPeriod;
-                    final int yFract = yy % samplingPeriod;
-                    final int zFract = zz % samplingPeriod;
-                    if (xFract != 0 || yFract != 0 || zFract != 0) {
-                        int nx = xx - xFract;
-                        int ny = yy - yFract;
-                        int nz = zz - zFract;
-                        noiseArray[zz][yy][xx] = GenericMath.triLerp(xx, yy, zz,
-                            noiseArray[nz][ny][nx],
-                            noiseArray[nz][ny + samplingPeriod][nx],
-                            noiseArray[nz + samplingPeriod][ny][nx],
-                            noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx],
-                            noiseArray[nz][ny][nx + samplingPeriod],
-                            noiseArray[nz][ny + samplingPeriod][nx + samplingPeriod],
-                            noiseArray[nz + samplingPeriod][ny][nx + samplingPeriod],
-                            noiseArray[nz + samplingPeriod][ny + samplingPeriod][nx + samplingPeriod],
-                            nx, nx + samplingPeriod, ny, ny + samplingPeriod, nz, nz + samplingPeriod);
+        for (int zz = 0; zz < zSize - 1; zz++) {
+            final int zFract = zz % samplingRateZ;
+            final int zPrevious = zz - zFract;
+            final int zNext = zPrevious + samplingRateZ;
+            for (int yy = 0; yy < ySize - 1; yy++) {
+                final int yFract = yy % samplingRateY;
+                final int yPrevious = yy - yFract;
+                final int yNext = yPrevious + samplingRateY;
+                for (int xx = 0; xx < xSize - 1; xx++) {
+                    final int xFract = xx % samplingRateX;
+                    if (xFract == 0 && yFract == 0 && zFract == 0) {
+                        continue;
                     }
+                    final int xPrevious = xx - xFract;
+                    final int xNext = xPrevious + samplingRateX;
+                    noiseArray[index3D(xx, yy, zz, xSize, ySize)] = GenericMath.triLerp(xx, yy, zz,
+                        noiseArray[index3D(xPrevious, yPrevious, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xPrevious, yNext, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xPrevious, yPrevious, zNext, xSize, ySize)],
+                        noiseArray[index3D(xPrevious, yNext, zNext, xSize, ySize)],
+                        noiseArray[index3D(xNext, yPrevious, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xNext, yNext, zPrevious, xSize, ySize)],
+                        noiseArray[index3D(xNext, yPrevious, zNext, xSize, ySize)],
+                        noiseArray[index3D(xNext, yNext, zNext, xSize, ySize)],
+                        xPrevious, xNext, yPrevious, yNext, zPrevious, zNext);
                 }
             }
 
         }
         return noiseArray;
+    }
+
+    /**
+     * Returns the index in the flat array corresponding to the 3D coordinates.
+     * TODO: make me public?
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param xSize The size on x
+     * @param ySize The size on y
+     * @return The index in the array
+     */
+    static int index3D(int x, int y, int z, int xSize, int ySize) {
+        return z * xSize * ySize + y * xSize + x;
     }
 
     /**
@@ -120,6 +129,22 @@ class SkylandsUtil {
      */
     static float hashToFloat(int x, int y, long seed) {
         final long hash = x * 73428767 ^ y * 9122569 ^ seed * 457;
+        return (hash * (hash + 456149) & 0x00ffffff) / (float) 0x01000000;
+    }
+
+    /**
+     * Hashes a 3D location and seed to return a normalized float.
+     * TODO: make me public?
+     *
+     * @param x The x coordinate to hash
+     * @param y The y coordinate to hash
+     * @param z The z coordinate to hash
+     * @param seed The seed
+     * @return A float in the range [0, 1[ constant for a constant seed
+     *     and constant position
+     */
+    static float hashToFloat(int x, int y, int z, long seed) {
+        final long hash = x * 73428767 ^ y * 9122569 ^ z * 4382893 ^ seed * 457;
         return (hash * (hash + 456149) & 0x00ffffff) / (float) 0x01000000;
     }
 

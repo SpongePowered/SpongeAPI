@@ -105,57 +105,69 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
         final int intSeed2 = intSeed * 28703;
         final int yStart = Math.min(yMax, SkylandsTerrainGenerator.MAX_HEIGHT);
         final int yEnd = Math.max(yMin, SkylandsTerrainGenerator.MIN_HEIGHT);
-        for (int zz = min.getZ(); zz <= max.getZ(); zz++) {
-            for (int xx = min.getX(); xx <= max.getX(); xx++) {
+        final int xMin = min.getX();
+        final int zMin = min.getZ();
+        final int xMax = max.getX();
+        final int zMax = max.getZ();
+        for (int zz = zMin; zz <= zMax; zz++) {
+            for (int xx = xMin; xx <= xMax; xx++) {
                 // get the y value of the topmost block
                 int yy = SkylandsUtil.getNextSolid(buffer, xx, yStart, zz, yEnd);
                 if (yy < yEnd) {
                     continue;
                 }
-                // some random value to compare to odds
-                float value = SkylandsUtil.hashToFloat(xx, zz, seed);
-                // get the flower for the current cell, may be null
-                this.flowerCells.setSeed(intSeed);
-                this.flowerDensities.setSeed(intSeed);
-                Flower flower = FLOWERS[(int) this.flowerCells.getValue(xx, 0, zz)];
-                // check if we have a flower based on odds for the cell
-                if (flower == null || value < this.flowerOdds.getValue(xx, 0, zz)) {
-                    // try with a different seed to create a second layer of flower cells, giving us some overlap
-                    this.flowerCells.setSeed(intSeed2);
-                    this.flowerDensities.setSeed(intSeed2);
-                    flower = FLOWERS[(int) this.flowerCells.getValue(xx, 0, zz)];
-                    // try the check again if we have a flower
-                    if (flower != null && value < this.flowerOdds.getValue(xx, 0, zz)) {
-                        // check failed, no flowers
-                        flower = null;
+                // only place tall grass and flowers on grass blocks
+                if (buffer.getBlockType(xx, yy, zz) == BlockTypes.GRASS) {
+                    // some random value to compare to odds
+                    final float value = SkylandsUtil.hashToFloat(xx, zz, seed);
+                    // get the flower for the current cell, may be null
+                    this.flowerCells.setSeed(intSeed);
+                    this.flowerDensities.setSeed(intSeed);
+                    Flower flower = FLOWERS[(int) this.flowerCells.getValue(xx, 0, zz)];
+                    // check if we have a flower based on odds for the cell
+                    if (flower == null || value < this.flowerOdds.getValue(xx, 0, zz)) {
+                        // try with a different seed to create a second layer of flower cells, giving us some overlap
+                        this.flowerCells.setSeed(intSeed2);
+                        this.flowerDensities.setSeed(intSeed2);
+                        flower = FLOWERS[(int) this.flowerCells.getValue(xx, 0, zz)];
+                        // try the check again if we have a flower
+                        if (flower != null && value < this.flowerOdds.getValue(xx, 0, zz)) {
+                            // check failed, no flowers
+                            flower = null;
+                        }
                     }
-                }
-                if (flower != null) {
-                    buffer.setBlock(xx, yy + 1, zz, flower.getBlock());
-                    if (flower.isDoubleHeight()) {
-                        buffer.setBlock(xx, yy + 2, zz, flower.getUpperBlock());
-                    }
-                } else if (value >= GRASS_ODDS) {
-                    // if no flower, check if the value is greater than the grass odds
-                    if (value >= DOUBLE_GRASS_ODDS && yy + 1 < yMax) {
-                        // tall grass is a bit more rare
-                        //buffer.setBlockType(xx, yy + 1, zz, BlockTypes.MELON_BLOCK);
-                        //buffer.setBlockType(xx, yy + 2, zz, BlockTypes.MELON_BLOCK);
-                        // TODO: fix double plants
-                        buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
-                    } else {
-                        buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                    if (flower != null) {
+                        buffer.setBlock(xx, yy + 1, zz, flower.getBlock());
+                        if (flower.isDoubleHeight()) {
+                            buffer.setBlock(xx, yy + 2, zz, flower.getUpperBlock());
+                        }
+                    } else if (value >= GRASS_ODDS) {
+                        // if no flower, check if the value is greater than the grass odds
+                        if (value >= DOUBLE_GRASS_ODDS && yy + 1 < yMax) {
+                            // tall grass is a bit more rare
+                            //buffer.setBlockType(xx, yy + 1, zz, BlockTypes.MELON_BLOCK);
+                            //buffer.setBlockType(xx, yy + 2, zz, BlockTypes.MELON_BLOCK);
+                            // TODO: fix double plants
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                        } else {
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                        }
                     }
                 }
                 // locations underneath this one will only get grass and less of it as they are covered
                 yy = SkylandsUtil.getNextAir(buffer, xx, yy, zz, yEnd);
                 yy = SkylandsUtil.getNextSolid(buffer, xx, yy, zz, yEnd);
+                int layerNumber = 0;
                 while (yy >= yEnd) {
-                    // generate a new random value for the y coordinate
-                    value = SkylandsUtil.hashToFloat(xx, zz, seed ^ yy);
-                    if (value >= COVERED_GRASS_ODDS) {
-                        buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                    // only place on grass blockss
+                    if (buffer.getBlockType(xx, yy, zz) == BlockTypes.GRASS) {
+                        // generate a new random value for the layer
+                        final float value = SkylandsUtil.hashToFloat(xx, layerNumber, zz, seed);
+                        if (value >= COVERED_GRASS_ODDS) {
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                        }
                     }
+                    layerNumber++;
                     yy = SkylandsUtil.getNextAir(buffer, xx, yy, zz, yEnd);
                     yy = SkylandsUtil.getNextSolid(buffer, xx, yy, zz, yEnd);
                 }

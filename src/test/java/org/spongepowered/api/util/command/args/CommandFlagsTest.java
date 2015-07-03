@@ -25,27 +25,38 @@
 package org.spongepowered.api.util.command.args;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.args.GenericArguments.flags;
 import static org.spongepowered.api.util.command.args.GenericArguments.integer;
+import static org.spongepowered.api.util.command.args.GenericArguments.none;
 import static org.spongepowered.api.util.command.args.GenericArguments.string;
 
-import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.spongepowered.api.util.command.CommandException;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.args.parsing.InputTokenizers;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.util.command.spec.CommandSpec;
+import org.spongepowered.api.util.test.TestHooks;
 
 
 /**
  * Test for command flags.
  */
-@Ignore("Cannot run these tests unless Text factories are available in testing")
 public class CommandFlagsTest {
+    @Rule
+    public final ExpectedException expected = ExpectedException.none();
     private static final CommandSource TEST_SOURCE = Mockito.mock(CommandSource.class);
+
+    static {
+        TestHooks.initialize();
+    }
 
     @Test
     public void testFlaggedCommand() throws CommandException {
@@ -72,5 +83,69 @@ public class CommandFlagsTest {
         final CommandContext context = new CommandContext();
         spec.populateContext(TEST_SOURCE, args, context);
         spec.getExecutor().execute(TEST_SOURCE, context);
+    }
+
+    private CommandContext parseWithInput(CommandElement element, String input) throws ArgumentParseException {
+        CommandContext context = new CommandContext();
+        element.parse(TEST_SOURCE, new CommandArgs(input, InputTokenizers.quotedStrings(false).tokenize(input, false)), context);
+        return context;
+    }
+
+    @Test
+    public void testUnknownFlagBehaviorError() throws ArgumentParseException {
+        CommandElement flags = flags()
+                .setUnknownLongFlagBehavior(CommandFlags.UnknownFlagBehavior.ERROR)
+                .setUnknownShortFlagBehavior(CommandFlags.UnknownFlagBehavior.ERROR)
+                .flag("h", "-help")
+                .buildWith(none());
+        CommandContext context = parseWithInput(flags, "-h");
+        assertTrue(context.hasAny("h"));
+
+        this.expected.expect(ArgumentParseException.class);
+        parseWithInput(flags, "--another");
+    }
+
+    @Test
+    public void testUnknownFlagBehaviorIgnore() throws ArgumentParseException {
+        CommandElement flags = flags()
+                .setUnknownLongFlagBehavior(CommandFlags.UnknownFlagBehavior.IGNORE)
+                .setUnknownShortFlagBehavior(CommandFlags.UnknownFlagBehavior.IGNORE)
+                .flag("h", "-help")
+                .buildWith(none());
+
+        CommandContext context = parseWithInput(flags, "-h --other -q");
+        assertTrue(context.hasAny("h"));
+        assertFalse(context.hasAny("other"));
+        assertFalse(context.hasAny("q"));
+    }
+
+    @Test
+    public void testUnknownFlagBehaviorAcceptNonValue() throws ArgumentParseException {
+        CommandElement flags = flags()
+                .setUnknownLongFlagBehavior(CommandFlags.UnknownFlagBehavior.ACCEPT_NONVALUE)
+                .setUnknownShortFlagBehavior(CommandFlags.UnknownFlagBehavior.ACCEPT_NONVALUE)
+                .flag("h", "-help")
+                .buildWith(none());
+
+        CommandContext context = parseWithInput(flags, "-h --other something -q else --forceargs=always");
+        assertTrue(context.hasAny("h"));
+        assertEquals(true, context.getOne("other").get());
+        assertEquals(true, context.getOne("q").get());
+        assertEquals("always", context.getOne("forceargs").get());
+    }
+
+    @Test
+    public void testUnknownFlagBehaviorAcceptValue() throws ArgumentParseException {
+        CommandElement flags = flags()
+                .setUnknownLongFlagBehavior(CommandFlags.UnknownFlagBehavior.ACCEPT_VALUE)
+                .setUnknownShortFlagBehavior(CommandFlags.UnknownFlagBehavior.ACCEPT_VALUE)
+                .flag("h", "-help")
+                .buildWith(none());
+
+        CommandContext context = parseWithInput(flags, "-h --other something -q else --forceargs=always");
+        assertTrue(context.hasAny("h"));
+        assertEquals("something", context.getOne("other").get());
+        assertEquals("else", context.getOne("q").get());
+        assertEquals("always", context.getOne("forceargs").get());
     }
 }

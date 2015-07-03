@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.scheduler;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
 
@@ -38,7 +37,7 @@ public interface Task extends Identifiable {
      *
      * @return The name of the task
      */
-    Optional<String> getName();
+    String getName();
 
     /**
      * Returns the plugin that scheduled this task.
@@ -48,23 +47,28 @@ public interface Task extends Identifiable {
     PluginContainer getOwner();
 
     /**
-     * Gets the delay that the task was scheduled to run after.
+     * Gets the delay that the task was scheduled to run after. A delay of 0
+     * represents that the task started immediately.
      *
-     * @return The delay (offset) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
+     * @return The delay (offset) in either milliseconds or ticks (ticks are
+     *         exclusive to synchronous tasks)
      */
-    Optional<Long> getDelay();
+    long getDelay();
 
     /**
-     * Gets the interval for repeating tasks.
+     * Gets the interval for repeating tasks. An interval of 0 represents that
+     * the task does not repeat.
      *
-     * @return The interval (period) in the scale of the time unit applied if asynchronous, otherwise raw synchronous ticks
+     * @return The interval (period) in either milliseconds or ticks (ticks are
+     *         exclusive to synchronous tasks)
      */
-    Optional<Long> getInterval();
+    long getInterval();
 
     /**
-     * Cancels the task, if it has not already run.
+     * Cancels the task. Cancelling a repeating task will prevent any further
+     * repetitions of the task.
      *
-     * @return If the task was cancelled
+     * @return If the task is not running and was cancelled
      */
     boolean cancel();
 
@@ -73,45 +77,13 @@ public interface Task extends Identifiable {
      *
      * @return The runnable
      */
-    Optional<Runnable> getRunnable();
+    Runnable getRunnable();
 
     /**
-     * Gets the truth if the Task is Synchronous.
+     * Gets whether this task is asynchronous.
      *
-     * @return The truth if the task is synchronous
+     * @return True if asynchronous, false if synchronous
      */
-    boolean isSynchronous();
-
-    /**
-     * Sets the name of the Task.
-     *
-     * <p>If the name is not set by the user, by default, the name of
-     * the task will be the form:<br>
-     * <tt>PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID</tt>
-     * </p>
-     *
-     * <p>The default name of the task is set when the Task is created by the Scheduler.</p>
-     *
-     * <p>If the <tt>PLUGIN_ID</tt> is not known, the string
-     * <tt>Unknown</tt> will be used.</p>
-     *
-     * <p>
-     * Examples of default Task names:<br>
-     *
-     * <tt>FooPlugin-A12"</tt><br>
-     * <tt>"BarPlugin-S4322"</tt><br>
-     * </p>
-     *
-     * <p>No two active Synchronous Tasks will have the same Sequence number.
-     * No two active Asynchronous Tasks will have the same Sequence number.</p>
-     *
-     * <p>There is no check made on the requested Task name.   It can be any String
-     * that is not null.  If the requested name is null, the name of the task is
-     * not changed.</p>
-     *
-     * @param name  The name of the task requested.
-     * @return The current name of the Task after trying to set the name of the task.
-     */
-    String setName(String name);
+    boolean isAsynchronous();
 
 }

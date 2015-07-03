@@ -22,53 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.selector;
+package org.spongepowered.api.text.translation;
 
-import java.util.Set;
+import java.util.Locale;
 
 /**
- * Represents the type of an {@link Argument}. This represents a single
- * argument key in a {@link Selector}.
- *
- * @param <T> The type for the value of this argument type
- * @see Selector
- * @see Argument
- * @see ArgumentTypes
+ * A translation providing a fixed value.
  */
-public interface ArgumentType<T> extends ArgumentHolder<ArgumentType<T>> {
+public class FixedTranslation implements Translation {
+    private final String value;
 
     /**
-     * Returns the key associated with this {@link ArgumentType}.
+     * Create a new translation with an id and value that are the same.
      *
-     * @return The key of this argument type
+     * @param value The id and value
      */
-    String getKey();
-
-    /**
-     * Returns 1.
-     * 
-     * @return 1
-     */
-    @Override
-    int getCount();
-
-    /**
-     * Returns a set containing this {@link ArgumentType}.
-     * 
-     * @return A set containing this {@link ArgumentType}
-     */
-    @Override
-    Set<ArgumentType<T>> getTypes();
-
-    /**
-     * Represents an {@link ArgumentType} that can be inverted.
-     *
-     * @param <T> The type for the value of this argument type
-     * @see ArgumentType
-     * @see Argument.Invertible
-     */
-    interface Invertible<T> extends ArgumentType<T> {
-
+    public FixedTranslation(String value) {
+        this.value = value;
     }
 
+    @Override
+    public String getId() {
+        return this.value;
+    }
+
+    @Override
+    public String get(Locale locale) {
+        return this.value;
+    }
+
+    @Override
+    public String get(Locale locale, Object... args) {
+        return String.format(locale, this.value, args);
+    }
 }

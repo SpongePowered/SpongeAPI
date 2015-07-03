@@ -218,4 +218,9 @@ public class BlockRayHit {
         }
         return this.faces;
     }
+
+    @Override
+    public String toString() {
+        return "BlockRayHit{" + getPosition() + " in " + getExtent() + "}";
+    }
 }

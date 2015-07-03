@@ -46,8 +46,10 @@ public final class SelectorTypes {
      */
     public static final SelectorType NEAREST_PLAYER = null;
     /**
-     * The random player selector type.
+     * The random selector type. This targets only players by default, but may
+     * be used with entities if {@link ArgumentTypes#ENTITY_TYPE} is present in
+     * a selector.
      */
-    public static final SelectorType RANDOM_PLAYER = null;
+    public static final SelectorType RANDOM = null;
 
 }

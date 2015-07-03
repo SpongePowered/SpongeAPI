@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -48,22 +49,48 @@ import java.util.Collection;
 public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
      *
      * @param position The position
-     * @return The block
+     * @return The location in this extent
      */
-    Location getFullBlock(Vector3i position);
+    Location getLocation(Vector3i position);
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @return The block
+     * @return The location in this extent
      */
-    Location getFullBlock(int x, int y, int z);
+    Location getLocation(int x, int y, int z);
+
+    /**
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
+     * This method supports sub-block positions.
+     * Block-related methods use flooring to get integer coordinates.
+     *
+     * @param position The position
+     * @return The location in this extent
+     */
+    Location getLocation(Vector3d position);
+
+    /**
+     * Gets a location in this extent at the given position.
+     * Essentially, this is a 3D pointer in the extent.
+     * This method supports sub-block positions.
+     * Block-related methods use flooring to get integer coordinates.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @return The location in this extent
+     */
+    Location getLocation(double x, double y, double z);
 
     /**
      * Get a snapshot of this block at the current point in time.
@@ -293,7 +320,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position of the block
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminance(Vector3i position);
+    int getLuminance(Vector3i position);
 
     /**
      * Get the light level for this object.
@@ -305,7 +332,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminance(int x, int y, int z);
+    int getLuminance(int x, int y, int z);
 
     /**
      * Get the light level for this object that is caused by an overhead sky.
@@ -316,7 +343,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position of the block
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromSky(Vector3i position);
+    int getLuminanceFromSky(Vector3i position);
 
     /**
      * Get the light level for this object that is caused by an overhead sky.
@@ -329,7 +356,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromSky(int x, int y, int z);
+    int getLuminanceFromSky(int x, int y, int z);
 
     /**
      * Get the light level for this object that is caused by everything
@@ -340,7 +367,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param position The position of the block
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromGround(Vector3i position);
+    int getLuminanceFromGround(Vector3i position);
 
     /**
      * Get the light level for this object that is caused by everything
@@ -353,7 +380,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param z The Z position
      * @return A light level, nominally between 0 and 15, inclusive
      */
-    byte getLuminanceFromGround(int x, int y, int z);
+    int getLuminanceFromGround(int x, int y, int z);
 
     /**
      * Test whether the object is powered.
