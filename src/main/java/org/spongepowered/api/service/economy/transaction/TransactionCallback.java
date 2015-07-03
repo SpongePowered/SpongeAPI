@@ -22,36 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy.transaction;
 
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
-
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
+/**
+ * The TransactionCallback should be implemented when a plugin wants to receive
+ * notifications from the EconomyService of completed Transactions.  The 
+ * EconomyService should call the notify method each time a transaction is
+ * attempted.
+ * 
+ */
+public interface TransactionCallback {
 
     /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * Notify this TransactionCallback of the {@link TransactionResult}
+     * 
+     * @param result
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
-
-    /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(String key);
+    void notify(TransactionResult result);
 }

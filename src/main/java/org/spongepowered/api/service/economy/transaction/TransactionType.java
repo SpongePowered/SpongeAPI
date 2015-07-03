@@ -22,36 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy.transaction;
 
-import com.google.common.base.Optional;
-
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
-
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
-
+public enum TransactionType {
     /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * The {@link Account} Received some of a currency
+     * 
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
-
+    DEPOSIT,
+    
     /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * The {@link Account} lost some of a currency
      */
-    Optional<String> getOption(String key);
+    WITHDRAW,
+    
+    /**
+     * The {@link Account} transfered some of a currency to another account
+     */
+    TRANSFER,
+    
+    /** 
+     * The {@link Account} exchanged some currency for another currency from another account
+     */
+    EXCHANGE;
 }

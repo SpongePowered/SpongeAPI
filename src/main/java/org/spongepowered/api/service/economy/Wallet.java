@@ -22,19 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
+package org.spongepowered.api.service.economy;
+
+import java.util.UUID;
+
+import org.spongepowered.api.entity.player.User;
 
 /**
- * A common interface for objects that have a relevant context.
+ * Represents an {@link Account} which is specific to a {@link User}.  A user
+ * should never have more than one wallet, although the contents of the wallet may 
+ * change depending on the {@link Context}, such as if the user changed to a different 
+ * world.
+ * 
+ * @see Account
  */
-public interface Contextual {
+public interface Wallet extends Account {
 
     /**
-     * Returns the context most relevant to this object. This context may be the
-     * same across multiple invocations (but may not, so don't count on this
-     * being true).
-     *
-     * @return A given context
+     * Gets the owner's {@link UUID}
+     * 
+     * <p>This should always return a {@link User} UUID.</>
+     * 
+     * @return uuid of the owner.
      */
-    Context getContext();
+    UUID getOwnerId();
 }

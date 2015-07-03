@@ -22,36 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
-
-import org.spongepowered.api.service.permission.Subject;
+package org.spongepowered.api.service.economy.transaction;
 
 import java.util.Set;
 
+import org.spongepowered.api.service.context.Context;
+
+import com.google.common.base.Optional;
+
 /**
- * Calculate the availability of contexts. These methods may be invoked
- * frequently, and therefore should be fast.
+ * 
+ * TODO: doc
+ *
  */
-public interface ContextCalculator {
+public interface TransactionResult {
+    
+    /**
+     * The message associated with this transaction result.
+     * @return message
+     */
+    String getMessage();
+    
+    /**
+     * Get the {@link ResultType} of this transaction
+     * @return resultType
+     */
+    ResultType getResult();
 
     /**
-     * Add any contexts this calculator determines to be applicable to the
-     * provided accumulator.
-     *
-     * @param subject The subject being checked
-     * @param accumulator The accumulator to add to
+     * Returns the {@link TransactionType} of this result
+     * 
+     * @return type of Transaction
      */
-    void accumulateContexts(Subject subject, Set<Context> accumulator);
-
+    TransactionType getType();
+    
     /**
-     * Checks if a single context is currently applicable to a single subject.
-     * If this calculator does not handle the given type of context, this method
-     * should return false.
-     *
-     * @param context The context being checked
-     * @param subject The subject this context is being checked against
-     * @return Whether the given context is handled by this calculator and is
-     *         applicable to the given subject
+     * Returns the {@link Optional} set of {@link Context}s used to perform the 
+     * transaction.
+     * 
+     * @return optional set of contexts
      */
-    boolean matches(Context context, Subject subject);
+    Optional<Set<Context>> getContexts();
 }

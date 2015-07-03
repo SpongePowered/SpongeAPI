@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.permission.context.ContextCalculator;
+import org.spongepowered.api.service.context.ContextualService;
 
 import java.util.Map;
 
@@ -33,7 +33,7 @@ import java.util.Map;
  * Represents a provider for permissions. This is the interface that a
  * permissions plugin must implement to provide permissions for a user.
  */
-public interface PermissionService {
+public interface PermissionService extends ContextualService<Subject> {
 
     String SUBJECTS_USER = "user";
     String SUBJECTS_GROUP = "group";
@@ -79,12 +79,4 @@ public interface PermissionService {
      * @return The known subjects for this map
      */
     Map<String, SubjectCollection> getKnownSubjects();
-
-    /**
-     * Register a function that calculates contexts relevant to a given user at
-     * the time the function is called.
-     *
-     * @param calculator The context calculator to register
-     */
-    void registerContextCalculator(ContextCalculator calculator);
 }

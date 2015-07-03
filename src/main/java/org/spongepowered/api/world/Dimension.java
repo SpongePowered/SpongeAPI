@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.service.permission.context.Contextual;
+import org.spongepowered.api.service.context.ContextSource;
 
 /**
  * Represents the dimension of a {@link World}.
  */
-public interface Dimension extends Contextual {
+public interface Dimension extends ContextSource {
 
     /**
      * Returns the name of this {@link Dimension}.

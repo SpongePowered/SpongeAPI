@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
+package org.spongepowered.api.service.context;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -31,11 +31,12 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 /**
- * The context that a permission check occurs in. Instances of a context are
+ * The context that a service check occurs in. Instances of a context are
  * designed to function as cache keys, meaning they should be fairly lightweight
  * and not hold references to large objects
  */
 public final class Context implements Map.Entry<String, String> {
+    public static final String USER_KEY = "user";
     public static final String WORLD_KEY = "world";
     public static final String DIMENSION_KEY = "dimension";
     public static final String REMOTE_IP_KEY = "remoteip";
@@ -73,6 +74,7 @@ public final class Context implements Map.Entry<String, String> {
      * @return the specific name of the item involved in this context, for
      *         example if the type were {@code world} this would be the name of the
      *         world.
+     * 
      */
     public String getName() {
         return getValue();
