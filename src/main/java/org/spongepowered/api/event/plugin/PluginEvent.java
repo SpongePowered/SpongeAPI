@@ -25,11 +25,19 @@
 package org.spongepowered.api.event.plugin;
 
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginState;
 
 /**
  * Represents all plugin state events, see sub interfaces and {@link PluginState}.
  */
 public interface PluginEvent extends GameEvent {
+
+	/**
+	 * Get the Plugin
+	 * 
+	 * @return the {@link PluginContainer}
+	 */
+	PluginContainer getPluginContainer();
 
 }

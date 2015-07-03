@@ -251,8 +251,9 @@ public final class SpongeEventFactory {
         return createEvent(type, values);
     }
 
-    public static <T extends PluginEvent> T createPlugin(Class<T> type, PluginContainer pluginContainer) {
+    public static <T extends PluginEvent> T createPlugin(Class<T> type, Game game, PluginContainer pluginContainer) {
         Map<String, Object> values = Maps.newHashMapWithExpectedSize(2);
+        values.put("game", game);
         values.put("pluginContainer", pluginContainer);
         return createEvent(type, values);
     }
