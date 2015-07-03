@@ -88,7 +88,7 @@ public interface Ban {
          *
          * @return The user
          */
-        User getUser();
+        org.spongepowered.api.entity.player.User getUser();
 
     }
 
