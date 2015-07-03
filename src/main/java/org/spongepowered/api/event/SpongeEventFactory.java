@@ -119,6 +119,7 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLin
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.plugin.PluginEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
 import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
@@ -142,6 +143,7 @@ import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.TileEntityInventory;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.status.StatusClient;
@@ -249,6 +251,13 @@ public final class SpongeEventFactory {
         return createEvent(type, values);
     }
 
+    public static <T extends PluginEvent> T createPlugin(Class<T> type, Game game, PluginContainer pluginContainer) {
+        Map<String, Object> values = Maps.newHashMapWithExpectedSize(2);
+        values.put("game", game);
+        values.put("pluginContainer", pluginContainer);
+        return createEvent(type, values);
+    }
+    
     /**
      * Creates a new {@link BlockBreakEvent}.
      *

@@ -22,14 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
-
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.event.GameEvent;
+package org.spongepowered.api.plugin;
 
 /**
- * Represents all game state events, see sub interfaces and {@link GameState}.
+ * Top to bottom order of the plugin lifecycle.
  */
-public interface StateEvent extends GameEvent {
+public enum PluginState {
 
+	/**
+	 * This {@link org.spongepowered.api.plugin.Plugin} instance just got
+	 * loaded. Dependency injection is done. The plugin now can load its
+	 * persistent state and programmatically register listeners to subscribe to
+	 * game events etc.
+	 */
+	LOADED,
+	
+	/**
+	 * Plugin is being unloaded, and must now unregister any objects which it
+	 * has hooked into game wide global registries, so that its classes can get
+	 * unloaded and garbage collected without leaving any dangling references.
+	 */
+	UNLOADING
+	
 }

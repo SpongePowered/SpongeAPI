@@ -22,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.state;
+package org.spongepowered.api.event.plugin;
 
-import org.spongepowered.api.GameState;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.plugin.PluginState;
 
 /**
- * Represents all game state events, see sub interfaces and {@link GameState}.
+ * Represents the {@link PluginState#LOADED} event.
  */
-public interface StateEvent extends GameEvent {
+public interface PluginLoadedEvent extends PluginEvent {
 
 }
