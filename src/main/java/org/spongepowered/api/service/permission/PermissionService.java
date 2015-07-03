@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.service.permission;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.permission.context.ContextCalculator;
 
+import java.util.Collection;
 import java.util.Map;
 
 
@@ -87,4 +90,34 @@ public interface PermissionService {
      * @param calculator The context calculator to register
      */
     void registerContextCalculator(ContextCalculator calculator);
+
+    /**
+     * Creates a new description builder for the given plugin's permission. May
+     * return {@link Optional#absent()} if the service does not support
+     * {@link PermissionDescription}s.
+     *
+     * @param plugin The plugin to create permission descriptions for
+     * @return The newly created permission description builder, if supported
+     */
+    Optional<PermissionDescription.Builder> newDescriptionBuilder(PluginContainer plugin);
+
+    /**
+     * Gets the registered or generated {@link PermissionDescription} for the
+     * given permission if available.
+     *
+     * @param permission The permission to get the description for
+     * @return The description for the given permission or
+     *         {@link Optional#absent()}
+     */
+    Optional<PermissionDescription> getDescription(String permission);
+
+    /**
+     * Gets a immutable collection containing all registered or generated
+     * {@link PermissionDescription}s.
+     *
+     * @return An immutable collection contain all registered or generated
+     *         descriptions
+     */
+    Collection<PermissionDescription> getDescriptions();
+
 }
