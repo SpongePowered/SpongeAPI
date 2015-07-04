@@ -703,7 +703,7 @@ public final class Location implements DataHolder {
 
     @Override
     public String toString() {
-        return "Location(" + getPosition() + " in " + getExtent() + ")";
+        return "Location{" + getPosition() + " in " + getExtent() + "}";
     }
 
     @Override

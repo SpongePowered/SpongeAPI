@@ -230,6 +230,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
     private void advance() {
         // Check the block limit if in use
         if (this.blockLimit >= 0 && this.blockCount >= this.blockLimit) {
+            this.hit = null;
             throw new NoSuchElementException("Block limit reached");
         }
 
@@ -291,14 +292,20 @@ public class BlockRay implements Iterator<BlockRayHit> {
             zIntersect();
         }
 
-        // Check the block filter
         final BlockRayHit hit = new BlockRayHit(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
-        if (this.filter.apply(hit)) {
-            this.hit = hit;
-            this.blockCount++;
-        } else {
+
+        // Make sure we actually have a block
+        if (!this.extent.containsBlock(hit.getBlockX(), hit.getBlockY(), hit.getBlockZ())) {
+            this.hit = null;
+            throw new NoSuchElementException("Extent limit reached");
+        }
+        // Check the block filter
+        if (!this.filter.apply(hit)) {
             throw new NoSuchElementException("Filter limit reached");
         }
+
+        this.hit = hit;
+        this.blockCount++;
     }
 
     @Override
@@ -310,10 +317,10 @@ public class BlockRay implements Iterator<BlockRayHit> {
         try {
             advance();
             this.ahead = true;
+            return true;
         } catch (NoSuchElementException exception) {
             return false;
         }
-        return true;
     }
 
     @Override
@@ -328,14 +335,15 @@ public class BlockRay implements Iterator<BlockRayHit> {
     }
 
     /**
-     * Traces the block ray to the end and returns the last block hit,
-     * or none if the block had no rays. This advances the iterator.
+     * Traces the block ray to the end and returns the last block
+     * accepted by the filter, or none if the extent or block limit was reached.
+     * This advances the iterator.
      *
      * @return The last block of the ray, if any
      */
     public Optional<BlockRayHit> end() {
         while (hasNext()) {
-            advance();
+            next();
         }
         return Optional.fromNullable(this.hit);
     }
