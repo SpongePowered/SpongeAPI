@@ -26,6 +26,7 @@ package org.spongepowered.api.util.command;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -35,12 +36,12 @@ import org.spongepowered.api.text.Text;
 public class CommandNotFoundException extends CommandException {
 
     private static final long serialVersionUID = -7714518367616848051L;
-    
+
     private final String command;
 
     /**
      * Create an exception with the default message.
-     * 
+     *
      * @param command The command that was queried for
      */
     public CommandNotFoundException(String command) {
@@ -55,12 +56,12 @@ public class CommandNotFoundException extends CommandException {
      */
     public CommandNotFoundException(Text message, String command) {
         super(message);
-        this.command = command;
+        this.command = Preconditions.checkNotNull(command, "command");
     }
-    
+
     /**
      * Returns the command that was queried for.
-     * 
+     *
      * @return The command
      */
     public String getCommand() {
