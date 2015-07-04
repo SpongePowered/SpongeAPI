@@ -24,13 +24,21 @@
  */
 package org.spongepowered.api.util.command.source;
 
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
  * Proxy sources are {@link CommandSource}s that are run by one source as a
  * different entity.
  */
-public interface ProxySource extends EntitySource {
+public interface ProxySource extends LocatedSource {
+
+    /**
+     * Gets the entity operated on by this proxy.
+     *
+     * @return The entity
+     */
+    Entity getEntity();
 
     /**
      * Gets the command source that originated the command.

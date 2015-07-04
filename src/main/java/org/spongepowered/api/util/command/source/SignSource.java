@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util.command.source;
 
+import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -31,7 +32,10 @@ import org.spongepowered.api.util.command.CommandSource;
  * Sign sources are {@link CommandSource}s that execute commands when a player
  * clicks a sign. Their location is set to the sign's location.
  */
-public interface SignSource extends EntitySource {
+public interface SignSource extends ProxySource {
+
+    @Override
+    Sign getCause();
 
     @Override
     Player getEntity();
