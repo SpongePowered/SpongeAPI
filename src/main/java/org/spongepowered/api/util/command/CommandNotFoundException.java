@@ -35,20 +35,35 @@ import org.spongepowered.api.text.Text;
 public class CommandNotFoundException extends CommandException {
 
     private static final long serialVersionUID = -7714518367616848051L;
+    
+    private final String command;
 
     /**
      * Create an exception with the default message.
+     * 
+     * @param command The command that was queried for
      */
-    public CommandNotFoundException() {
-        this(t("No such command"));
+    public CommandNotFoundException(String command) {
+        this(t("No such command"), command);
     }
 
     /**
      * Create an exception with a custom message.
      *
      * @param message The message
+     * @param command The command that was queried for
      */
-    public CommandNotFoundException(Text message) {
+    public CommandNotFoundException(Text message, String command) {
         super(message);
+        this.command = command;
+    }
+    
+    /**
+     * Returns the command that was queried for.
+     * 
+     * @return The command
+     */
+    public String getCommand() {
+        return command;
     }
 }

@@ -48,6 +48,7 @@ import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
+import org.spongepowered.api.text.translation.FixedTranslation;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
@@ -337,11 +338,15 @@ public final class SimpleDispatcher implements Dispatcher {
         final String[] argSplit = commandLine.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
         if (!cmdOptional.isPresent()) {
-            throw new CommandNotFoundException(Texts.of("No such command: " + argSplit[0]));
+            throw new CommandNotFoundException(Texts.of(new FixedTranslation("commands.generic.notFound")), argSplit[0]);
         }
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
         final CommandCallable spec = cmdOptional.get().getCallable();
-        return spec.process(source, arguments);
+        try {
+            return spec.process(source, arguments);
+        } catch (CommandNotFoundException e) {
+            throw new CommandNotFoundException(Texts.of("No such command: " + e.getCommand()), argSplit[0] + e.getCommand());
+        }
     }
 
     @Override
