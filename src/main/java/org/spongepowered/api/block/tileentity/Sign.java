@@ -26,11 +26,12 @@ package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.service.permission.Subject;
 
 /**
  * Represents a sign.
  */
-public interface Sign extends TileEntity {
+public interface Sign extends TileEntity, Subject {
 
     @Override
     Optional<SignData> getData();

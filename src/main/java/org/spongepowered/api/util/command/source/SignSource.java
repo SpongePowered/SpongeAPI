@@ -35,7 +35,10 @@ import org.spongepowered.api.util.command.CommandSource;
 public interface SignSource extends ProxySource {
 
     @Override
-    Sign getCause();
+    Player getInitiator();
+
+    @Override
+    Sign getProvider();
 
     @Override
     Player getEntity();
