@@ -206,6 +206,15 @@ public interface Server extends ChannelRegistrar {
     Optional<WorldProperties> createWorld(WorldCreationSettings settings);
 
     /**
+     * Creates a copy of the provided world under the new name given and returns
+     * the new copy if the copy was possible
+     *
+     * @param originalWorld The original world instance to copy
+     * @param copyName The name that should be used in the duplicated entry instead of the originalWorld's name.
+     */
+    Optional<World> copyWorld(World originalWorld, String copyName);
+
+    /**
      * Persists the given {@link WorldProperties} to the world storage for it,
      * updating any modified values.
      *
