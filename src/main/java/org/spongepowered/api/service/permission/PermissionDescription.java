@@ -73,14 +73,38 @@ public interface PermissionDescription {
     static final String RANK_ADMIN = "admin";
     /**
      * A permission with this rank should normally not granted to anybody. This
-     * usually applies to debug permissions.
+     * usually applies to debug permissions or specializations of permissions
+     * that would already be granted.
+     *
+     * <p>Examples can be show debug messages or myPlugin.give.type.DIRT where
+     * myPlugin.give.type is already granted.</p>
      */
     static final String RANK_NOBODY = "nobody";
 
     /**
-     * Gets the permission id this description belongs too. May include
-     * placeholders {@code "<SomeParameter>"} such as in
-     * {@code "pluginId.give.item.<ItemType>"}.
+     * Gets the permission id this description belongs too.
+     *
+     * <p>The permission id must be of the specified format as specified using
+     * EBNF:
+     * <ul>
+     * <li>CHARACTER  = "A" - "Z" | "a" - "z" | "0" - "9" | "_" | "-"</li>
+     * <li>NAME       = CHARACTER , { CHARACTER }</li>
+     * <li>TEMPLATE   = "&lt" , NAME , "&gt"</li>
+     * <li>PART       = NAME | TEMPLATE</li>
+     * <li>PERMISSION = NAME , { "." , PART }</li>
+     * </ul>
+     * </p>
+     *
+     * <p>Examples:
+     * <ul>
+     * <li>"myPlugin.give.type" - Grants all ItemTypes</li>
+     * <li>"myPlugin.give.type.&ltItemType&gt" - A template should not be granted to anybody</li>
+     * <li>"myPlugin.give.type.DIAMOND" - Only grants DIAMOND</li>
+     * </ul>
+     * </p>
+     *
+     * <p><b>Note:</b> Permission ids are case insensitive! Permission ids should
+     * start with the owning plugin's id.</p>
      *
      * @return The permission id
      */
@@ -118,9 +142,8 @@ public interface PermissionDescription {
     interface Builder {
 
         /**
-         * Sets the permission id for the description this builder creates. May
-         * include placeholders {@code "<SomeParameter>"} such as in
-         * {@code "pluginId.give.item.<ItemType>"}.
+         * Sets the permission id for the description this builder creates. See
+         * {@link PermissionDescription#getId()} for format specifications.
          *
          * @param permissionId The permission id
          * @return This builder for chaining
