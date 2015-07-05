@@ -38,7 +38,7 @@ public interface SignSource extends ProxySource {
     Player getInitiator();
 
     @Override
-    Sign getProvider();
+    Sign getSubject();
 
     @Override
     Player getEntity();

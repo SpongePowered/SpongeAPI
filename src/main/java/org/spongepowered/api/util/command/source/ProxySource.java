@@ -54,6 +54,6 @@ public interface ProxySource extends LocatedSource {
      *
      * @return The permission holder
      */
-    Subject getProvider();
+    Subject getSubject();
 
 }
