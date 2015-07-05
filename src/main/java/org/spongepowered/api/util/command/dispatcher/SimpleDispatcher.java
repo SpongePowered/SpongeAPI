@@ -122,7 +122,7 @@ public final class SimpleDispatcher implements Dispatcher {
      * @param callable The command
      * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be registered
-    */
+     */
     public Optional<CommandMapping> register(CommandCallable callable, String... alias) {
         checkNotNull(alias, "alias");
         return register(callable, Arrays.asList(alias));
