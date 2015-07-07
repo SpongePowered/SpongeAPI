@@ -30,6 +30,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.network.ChannelRegistrar;
+import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.world.ChunkLoadService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
@@ -366,4 +367,12 @@ public interface Server extends ChannelRegistrar {
      * @return The current ticks per second
      */
     double getTicksPerSecond();
+
+    /**
+     * Gets the default resource pack. The default resource pack is sent to
+     * players when they join the server.
+     * 
+     * @return The default resource pack
+     */
+    Optional<ResourcePack> getDefaultResourcePack();
 }

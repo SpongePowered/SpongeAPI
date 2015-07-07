@@ -26,7 +26,7 @@ package org.spongepowered.api.resourcepack;
 
 import com.google.common.base.Optional;
 
-import java.net.URL;
+import java.net.URI;
 
 /**
  * Represents a resource pack that can be sent to the client.
@@ -34,11 +34,11 @@ import java.net.URL;
 public interface ResourcePack {
 
     /**
-     * Gets the URL associated with this ResourcePack.
+     * Gets the URI associated with this ResourcePack.
      *
-     * @return The URL associated with this ResourcePack
+     * @return The URI associated with this ResourcePack
      */
-    URL getUrl();
+    URI getUri();
 
     /**
      * Gets the name of this resource pack. This is the filename of the pack
@@ -60,7 +60,7 @@ public interface ResourcePack {
 
     /**
      * If this resource pack was initialized through
-     * {@link ResourcePackFactory#fromUrl(URL)}, the hash, as calculated with
+     * {@link ResourcePackFactory#fromUri(URI)}, the hash, as calculated with
      * <code>com.google.common.hash.Hashing.sha1().hashBytes(com.google.common.io.Files.toByteArray(resourcepackfile)).toString();</code>
      *
      * @return The hash of this pack, if present
