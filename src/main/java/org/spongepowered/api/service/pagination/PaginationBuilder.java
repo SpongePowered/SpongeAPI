@@ -35,9 +35,9 @@ import java.util.List;
 public interface PaginationBuilder {
 
     /**
-     * Set the contents of this output as an Iterable. If this {@link Iterable}
-     * is a {@link List}, bidirectional navigation is supported. Otherwise, only
-     * going to the next page will be supported
+     * Set the contents of this output as an Iterable.
+     * If this {@link Iterable} is a {@link List}, bidirectional navigation is supported.
+     * Otherwise, only going to the next page will be supported
      *
      * @param contents The contents to output
      * @return this
@@ -53,8 +53,8 @@ public interface PaginationBuilder {
     PaginationBuilder contents(Text... contents);
 
     /**
-     * Set the title text to be used in the title bar of this pagination. This
-     * should be less than one line long.
+     * Set the title text to be used in the title bar of this pagination.
+     * This should be less than one line long.
      *
      * @param title The title to use.
      * @return this
@@ -62,9 +62,8 @@ public interface PaginationBuilder {
     PaginationBuilder title(Text title);
 
     /**
-     * Set the header to be displayed for this output on all pages after the
-     * title bar but before the contents Header and footer will use this Text's
-     * style and color for formatting.
+     * Set the header to be displayed for this output on all pages after the title bar but before the contents
+     * Header and footer will use this Text's style and color for formatting.
      *
      * @param header The header to set
      * @return this
@@ -72,8 +71,7 @@ public interface PaginationBuilder {
     PaginationBuilder header(Text header);
 
     /**
-     * Set the footer to be displayed for this output on all pages after the
-     * contents and page navigation bar.
+     * Set the footer to be displayed for this output on all pages after the contents and page navigation bar.
      *
      * @param footer The footer to set
      * @return this
