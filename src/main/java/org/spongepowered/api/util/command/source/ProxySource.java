@@ -25,7 +25,6 @@
 package org.spongepowered.api.util.command.source;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
@@ -43,17 +42,12 @@ public interface ProxySource extends LocatedSource {
 
     /**
      * Gets the command source that caused the command to be executed.
+     * 
+     * <p>Do not use this for permissions handling. Use this
+     * {@code ProxySource} instead.</p>
      *
      * @return The initiating command source
      */
     CommandSource getInitiator();
-
-    /**
-     * Gets the {@link Subject} that holds the permissions necessary to perform
-     * the command.
-     *
-     * @return The permission holder
-     */
-    Subject getSubject();
 
 }
