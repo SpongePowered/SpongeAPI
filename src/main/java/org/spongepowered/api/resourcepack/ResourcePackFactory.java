@@ -25,7 +25,7 @@
 package org.spongepowered.api.resourcepack;
 
 import java.io.FileNotFoundException;
-import java.net.URL;
+import java.net.URI;
 
 /**
  * A factory for creating {@link ResourcePack}s.
@@ -33,22 +33,22 @@ import java.net.URL;
 public interface ResourcePackFactory {
 
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
+     * Creates a {@link ResourcePack} from a URI and tries to download and hash
      * it.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
+     * @param uri The URI to look in
+     * @return A ResourcePack with the specified URI
      * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     *         downloaded from the URI
      */
-    ResourcePack fromUrl(URL url) throws FileNotFoundException;
+    ResourcePack fromUri(URI uri) throws FileNotFoundException;
 
     /**
-     * Creates a {@link ResourcePack} from a URL.
+     * Creates a {@link ResourcePack} from a URI.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
+     * @param uri The URI to look in
+     * @return A ResourcePack with the specified URI
      */
-    ResourcePack fromUrlUnchecked(URL url);
+    ResourcePack fromUriUnchecked(URI uri);
 
 }

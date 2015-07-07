@@ -69,12 +69,12 @@ public interface ResourcePackStatusEvent extends GameEvent {
         DECLINED(false),
 
         /**
-         * The pack was not a .zip file.
+         * The client failed to download the resource pack.
          */
-        PACK_FILE_FORMAT_NOT_RECOGNIZED(false),
+        FAILED(false),
 
         /**
-         * The pack URL was successfully loaded. This does not mean that pack
+         * The pack URI was successfully loaded. This does not mean that pack
          * was loaded, as the vanilla client sends this even when encountering a
          * 404 or similar.
          */

@@ -25,7 +25,7 @@
 package org.spongepowered.api.resourcepack;
 
 import java.io.FileNotFoundException;
-import java.net.URL;
+import java.net.URI;
 
 /**
  * A class for creating {@link ResourcePack}s.
@@ -35,26 +35,26 @@ public final class ResourcePacks {
     private static final ResourcePackFactory factory = null;
 
     /**
-     * Creates a {@link ResourcePack} from a URL and tries to download and hash
+     * Creates a {@link ResourcePack} from a URI and tries to download and hash
      * it.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
+     * @param uri The URI to look in
+     * @return A ResourcePack with the specified URI
      * @throws FileNotFoundException If a valid resourcepack could not be
-     *         downloaded from the URL
+     *         downloaded from the URI
      */
-    public static ResourcePack fromUrl(URL url) throws FileNotFoundException {
-        return factory.fromUrl(url);
+    public static ResourcePack fromUri(URI uri) throws FileNotFoundException {
+        return factory.fromUri(uri);
     }
 
     /**
-     * Creates a {@link ResourcePack} from a URL, without checking ("unchecked")
-     * if there is a valid pack at the URL.
+     * Creates a {@link ResourcePack} from a URI, without checking ("unchecked")
+     * if there is a valid pack at the URI.
      *
-     * @param url The URL to look in
-     * @return A ResourcePack with the specified URL
+     * @param uri The URI to look in
+     * @return A ResourcePack with the specified URI
      */
-    public static ResourcePack fromUrlUnchecked(URL url) {
-        return factory.fromUrlUnchecked(url);
+    public static ResourcePack fromUriUnchecked(URI uri) {
+        return factory.fromUriUnchecked(uri);
     }
 }
