@@ -28,7 +28,7 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3i;
 import com.flowpowered.noise.module.Module;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
+import org.spongepowered.api.world.extent.MutableBlockVolume;
 
 /**
  * Private utility methods for the Skylands generator too specific to be made
@@ -161,7 +161,7 @@ class SkylandsUtil {
      *     found.
      */
     @SuppressWarnings("StatementWithEmptyBody")
-    static int getNextSolid(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
+    static int getNextSolid(MutableBlockVolume buffer, int x, int y, int z, int yEnd) {
         for (; y >= yEnd && buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
             // iterate until we reach solid
         }
@@ -180,7 +180,7 @@ class SkylandsUtil {
      * @return The y coordinate of the next air block or yEnd if none found.
      */
     @SuppressWarnings("StatementWithEmptyBody")
-    static int getNextAir(MutableBlockBuffer buffer, int x, int y, int z, int yEnd) {
+    static int getNextAir(MutableBlockVolume buffer, int x, int y, int z, int yEnd) {
         for (; y >= yEnd && !buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
             // iterate until we exit the solid column
         }

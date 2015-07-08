@@ -44,9 +44,9 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 import java.util.Collection;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * A mutable object containing blocks, tile entities, entities, and possibly other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, MutableBiomeArea {
 
     /**
      * Gets a location in this extent at the given position.

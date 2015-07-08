@@ -22,4 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.util.gen;
+package org.spongepowered.api.world.extent;
+
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockType;
+
+/**
+ * A volume containing blocks that can be accessed and modified.
+ *
+ * @see BlockVolume
+ */
+public interface MutableBlockVolume extends BlockVolume {
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param position The position of the block
+     * @param type The new type
+     */
+    void setBlockType(Vector3i position, BlockType type);
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param type The new type
+     */
+    void setBlockType(int x, int y, int z, BlockType type);
+
+}

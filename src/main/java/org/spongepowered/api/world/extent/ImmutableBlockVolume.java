@@ -22,11 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.gen;
+package org.spongepowered.api.world.extent;
 
 /**
- * An immutable version of a {@link org.spongepowered.api.world.extent.BiomeArea}.
+ * A volume containing blocks that can be accessed but not modified.
+ *
+ * @see BlockVolume
  */
-public interface ImmutableBiomeBuffer extends BiomeBuffer {
+public interface ImmutableBlockVolume extends BlockVolume {
 
 }
