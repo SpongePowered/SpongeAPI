@@ -24,37 +24,26 @@
  */
 package org.spongepowered.api.world;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-import static org.spongepowered.api.data.DataQuery.of;
-
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.block.ScheduledBlockUpdate;
+import org.spongepowered.api.block.*;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.DataPriority;
-import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.MemoryDataContainer;
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.*;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
-import javax.annotation.Nullable;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+import static org.spongepowered.api.data.DataQuery.of;
 
 /**
  * A position within a particular {@link Extent}.
@@ -689,16 +678,11 @@ public final class Location implements DataHolder {
 
     @Override
     public DataContainer toContainer() {
-        DataContainer container = new MemoryDataContainer();
-        if (getExtent() instanceof World) {
-            container.set(of("WorldName"), ((World) getExtent()).getName());
-        }
-        container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId());
-        container.set(of("x"), this.getX());
-        container.set(of("y"), this.getY());
-        container.set(of("z"), this.getZ());
-        container.set(of("Manipulators"), getManipulators());
-        return container;
+        return new MemoryDataContainer()
+                .set(of("ExtentUUID"), getExtent().getUniqueId())
+                .set(of("X"), getX())
+                .set(of("Y"), getY())
+                .set(of("Z"), getZ());
     }
 
     @Override
