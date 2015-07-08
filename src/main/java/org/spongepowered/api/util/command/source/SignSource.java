@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util.command.source;
 
+import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -38,5 +39,7 @@ public interface SignSource extends ProxySource {
 
     @Override
     Player getEntity();
+
+    Sign getSign();
 
 }
