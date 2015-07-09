@@ -207,12 +207,27 @@ public interface Server extends ChannelRegistrar {
 
     /**
      * Creates a copy of the provided world under the new name given and returns
-     * the new copy if the copy was possible
+     * the new copy if the copy was possible. 
      *
      * @param originalWorld The original world instance to copy
      * @param copyName The name that should be used in the duplicated entry instead of the originalWorld's name.
      */
-    Optional<World> copyWorld(World originalWorld, String copyName);
+    Optional<WorldProperties> copyWorld(WorldProperties originalWorld, String copyName);
+
+    /**
+     * Allows the copy to be made while the world is still loaded by forcing a save
+     * first, this could cause changes to be missed if made after that save. By
+     * using this method the developer is assumed to properly respect that large worlds
+     * will likely take a long enough period to copy that a reasonable number of changes are
+     * missed.
+     *
+     * A {@link World} instance is used here because unloaded worlds should not be copied
+     * using this method, and instead should be copied using {@link #copyWorld(WorldProperties,String)}.
+     *
+     * @param originalWorld The original world instance to copy
+     * @param copyName The name for the copy that is made
+     */
+    Optional<WorldProperties> copyLoadedWorld(World originalWorld, String copyName);
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,
