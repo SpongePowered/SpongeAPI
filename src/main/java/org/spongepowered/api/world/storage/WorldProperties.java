@@ -39,7 +39,6 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
@@ -104,6 +103,15 @@ public interface WorldProperties extends DataSerializable {
      * @return The name
      */
     String getWorldName();
+
+    /**
+     * Changes the name of this world.
+     *
+     * @param worldName The name that this world should be changed to
+     * @return An {@link Optional} containing the {@link WorldProperties} of this world
+     *         if the rename invalidated the old properties
+     */
+    Optional<WorldProperties> renameWorld(String worldName);
 
     /**
      * Gets the {@link UUID} of the world.
