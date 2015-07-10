@@ -233,6 +233,7 @@ public interface Server extends ChannelRegistrar {
 
     /**
      * Deletes the provided world's files from the disk.
+     *
      * @param worldProperties The world instance to delete
      * @return True if the deletion was successful.
      */
