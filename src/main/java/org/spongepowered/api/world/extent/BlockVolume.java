@@ -27,6 +27,7 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 
 /**
@@ -104,28 +105,6 @@ public interface BlockVolume {
     BlockState getBlock(int x, int y, int z);
 
     /**
-     * Sets the block at the given position in the world.
-     *
-     * @param position The position
-     * @param block The block
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
-     */
-    void setBlock(Vector3i position, BlockState block);
-
-    /**
-     * Sets the block at the given position in the world.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param block The block
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
-     */
-    void setBlock(int x, int y, int z, BlockState block);
-
-    /**
      * Get the base type of block.
      *
      * <p>The type does not include block data such as the contents of
@@ -152,5 +131,74 @@ public interface BlockVolume {
      *     bounds of the block volume
      */
     BlockType getBlockType(int x, int y, int z);
+
+    /**
+     * Returns a new volume that is the same or smaller than the current
+     * volume. This does not copy the blocks, it only provides a new view
+     * of the storage.
+     *
+     * @param newMin The new minimum coordinates in this volume
+     * @param newMax The new maximum coordinates in this volume
+     * @return The new volume with the new bounds
+     * @throws PositionOutOfBoundsException If the new minimum and maximum
+     *     are outside the current volume
+     */
+    BlockVolume getBlockView(Vector3i newMin, Vector3i newMax);
+
+    /**
+     * Returns a new volume that is viewed through some transformation.
+     * This does not copy the blocks, it only provides a new view of the
+     * storage.
+     *
+     * @param transform The transformation to be applied
+     * @return The new volume with the transform
+     */
+    BlockVolume getBlockView(DiscreteTransform3 transform);
+
+    /**
+     * Returns a new volume that is translated so that
+     * {@link BlockVolume#getBlockMin()} returns {@link Vector3i#ZERO}.
+     * This does not copy the blocks, it only provides a new view of the
+     * storage.
+     *
+     * @return The new volume with its minimum at zero
+     */
+    BlockVolume getRelativeBlockView();
+
+    /**
+     * Returns a new volume that cannot be modified through this view. Unlike
+     * immutable storage, it can be changed by holders of mutable views.
+     * This does not copy the blocks, it only provides a new view of the
+     * storage.
+     *
+     * @return The new volume, which cannot be modified
+     */
+    UnmodifiableBlockVolume getUnmodifiableBlockView();
+
+    /**
+     * Returns a mutable copy of the blocks stored in this volume.
+     * This uses the default storage type of {@link StorageType#STANDARD}.
+     *
+     * @return A copy of the blocks
+     */
+    MutableBlockVolume getBlockCopy();
+
+    /**
+     * Returns a mutable copy of the blocks stored in this volume.
+     * This uses the provided storage type.
+     *
+     * @param type The type of storage used by the new blocks
+     * @return A copy of the blocks
+     */
+    MutableBlockVolume getBlockCopy(StorageType type);
+
+    /**
+     * Returns an immutable copy of the blocks stored in this volume.
+     * This uses some internal storage solution that is thread-safe
+     * by nature.
+     *
+     * @return An immutable copy of the blocks
+     */
+    ImmutableBlockVolume getImmutableBlockCopy();
 
 }

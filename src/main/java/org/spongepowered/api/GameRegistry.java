@@ -63,6 +63,7 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.extent.ExtentBufferFactory;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorFactory;
@@ -473,6 +474,14 @@ public interface GameRegistry {
      * @return The populator factory
      */
     PopulatorFactory getPopulatorFactory();
+
+    /**
+     * Gets the {@link ExtentBufferFactory} for creating buffers
+     * to store extent data.
+     *
+     * @return The extent buffer factory
+     */
+    ExtentBufferFactory getExtentBufferFactory();
 
     /**
      * Gets the {@link Translation} with the provided ID.
