@@ -22,40 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.gen;
+package org.spongepowered.api.world.extent;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.world.extent.BlockVolume;
+import com.flowpowered.math.vector.Vector2i;
+import org.spongepowered.api.util.PositionOutOfBoundsException;
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * A mutable buffer for {@link BlockType} data. This buffer has no direct relation
- * to the world and changes to it are not synchronized to the world.
+ * An area containing biomes that can be accessed and modified.
+ *
+ * @see BiomeArea
  */
-public interface MutableBlockBuffer extends BlockBuffer, BlockVolume {
+public interface MutableBiomeArea extends BiomeArea {
 
     /**
-     * Fills the entire buffer with the given block.
+     * Sets the biome at the given position in the world.
      *
-     * @param block The block to fill with
+     * @param position The position
+     * @param biome The biome
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
      */
-    void fill(BlockState block);
+    void setBiome(Vector2i position, BiomeType biome);
 
     /**
-     * Sets all horizontal layers between {@code y} (inclusive) and 
-     * {@code y+height} (exclusive) to the given block type.
+     * Sets the biome at the given position in the world.
      *
-     * @param y The starting Y position
-     * @param height The height
-     * @param block The block type
+     * @param x The X position
+     * @param z The Z position
+     * @param biome The biome
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
      */
-    void setHorizontalLayer(int y, int height, BlockState block);
-
-    /**
-     * Returns an immutable copy of this block buffer.
-     *
-     * @return An immutable copy
-     */
-    ImmutableBlockBuffer getImmutableClone();
-
+    void setBiome(int x, int z, BiomeType biome);
 }

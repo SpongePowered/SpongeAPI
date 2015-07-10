@@ -689,16 +689,11 @@ public final class Location implements DataHolder {
 
     @Override
     public DataContainer toContainer() {
-        DataContainer container = new MemoryDataContainer();
-        if (getExtent() instanceof World) {
-            container.set(of("WorldName"), ((World) getExtent()).getName());
-        }
-        container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId());
-        container.set(of("x"), this.getX());
-        container.set(of("y"), this.getY());
-        container.set(of("z"), this.getZ());
-        container.set(of("Manipulators"), getManipulators());
-        return container;
+        return new MemoryDataContainer()
+                .set(of("ExtentUUID"), getExtent().getUniqueId())
+                .set(of("X"), getX())
+                .set(of("Y"), getY())
+                .set(of("Z"), getZ());
     }
 
     @Override

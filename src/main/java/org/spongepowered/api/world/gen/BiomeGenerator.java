@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.gen.MutableBiomeBuffer;
+import org.spongepowered.api.world.extent.MutableBiomeArea;
 
 /**
  * Manages the biome generation for an extent.
@@ -42,6 +42,6 @@ public interface BiomeGenerator {
      *
      * @param buffer The buffer to generate the biomes into.
      */
-    void generateBiomes(MutableBiomeBuffer buffer);
+    void generateBiomes(MutableBiomeArea buffer);
 
 }

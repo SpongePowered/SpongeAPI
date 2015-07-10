@@ -30,7 +30,6 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataPriority;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -38,15 +37,16 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.Collection;
 
 /**
- * Contains blocks, tile entities, entities, and possibly other game objects.
+ * A mutable object containing blocks, tile entities, entities, and possibly other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, BiomeArea {
+public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, MutableBiomeArea, Identifiable {
 
     /**
      * Gets a location in this extent at the given position.

@@ -29,7 +29,7 @@ import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * An area containing biomes.
+ * An area containing biomes that can be at least accessed.
  *
  * <p>Some methods accept a pair of two ints, representing the x and z location
  * of a biome. Some other methods accept or return a {@link Vector2i}. The
@@ -103,25 +103,4 @@ public interface BiomeArea {
      *     bounds of the area
      */
     BiomeType getBiome(int x, int z);
-
-    /**
-     * Sets the biome at the given position in the world.
-     *
-     * @param position The position
-     * @param biome The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
-     */
-    void setBiome(Vector2i position, BiomeType biome);
-
-    /**
-     * Sets the biome at the given position in the world.
-     *
-     * @param x The X position
-     * @param z The Z position
-     * @param biome The biome
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
-     */
-    void setBiome(int x, int z, BiomeType biome);
 }

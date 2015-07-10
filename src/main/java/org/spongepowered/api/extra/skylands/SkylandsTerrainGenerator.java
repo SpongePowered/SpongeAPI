@@ -35,9 +35,9 @@ import com.flowpowered.noise.module.modifier.ScalePoint;
 import com.flowpowered.noise.module.source.Perlin;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.util.gen.BiomeBuffer;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.ImmutableBiomeArea;
+import org.spongepowered.api.world.extent.MutableBlockVolume;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 
 /**
@@ -105,7 +105,7 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes) {
+    public void populate(World world, MutableBlockVolume buffer, ImmutableBiomeArea biomes) {
         final Vector3i min = buffer.getBlockMin();
         final Vector3i max = buffer.getBlockMax();
         if (max.getY() < SkylandsTerrainGenerator.MIN_HEIGHT || min.getY() > SkylandsTerrainGenerator.MAX_HEIGHT) {

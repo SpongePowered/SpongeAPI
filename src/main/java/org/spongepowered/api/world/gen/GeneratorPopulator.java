@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.util.gen.BiomeBuffer;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.ImmutableBiomeArea;
+import org.spongepowered.api.world.extent.MutableBlockVolume;
 
 /**
- * A populator which acts directly on the {@link MutableBlockBuffer} during the
+ * A populator which acts directly on the {@link MutableBlockVolume} during the
  * generation phase rather than the population phase.
  * 
  * <p>Unlike a normal {@link Populator}, a {@link GeneratorPopulator} is
@@ -38,7 +38,7 @@ import org.spongepowered.api.world.World;
 public interface GeneratorPopulator {
 
     /**
-     * Operates on a {@link MutableBlockBuffer} either forming the base terrain
+     * Operates on a {@link MutableBlockVolume} either forming the base terrain
      * or performing modifications during the generation phase.
      *
      * @param world The world
@@ -46,6 +46,6 @@ public interface GeneratorPopulator {
      *            any size.
      * @param biomes The biomes for generation
      */
-    void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes);
+    void populate(World world, MutableBlockVolume buffer, ImmutableBiomeArea biomes);
 
 }
