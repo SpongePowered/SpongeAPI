@@ -106,13 +106,6 @@ public interface WorldProperties extends DataSerializable {
     String getWorldName();
 
     /**
-     * Gets the directory the files for this world are located.
-     *
-     * @return The directory the files are located in
-     */
-    File getWorldDirectory();
-
-    /**
      * Gets the {@link UUID} of the world.
      * 
      * @return The unique Id
