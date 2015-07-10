@@ -232,7 +232,17 @@ public interface Server extends ChannelRegistrar {
     Optional<WorldProperties> copyLoadedWorld(World originalWorld, String copyName);
 
     /**
+     * Renames an unloaded world.
+     *
+     * @param worldProperties The world instance to rename
+     * @param newName The name that should be used as a replacement for the current world name
+     * @return An {@link Optional} containing the new {@link WorldProperties} if the rename was successful
+     */
+    Optional<WorldProperties> renameWorld(WorldProperties worldProperties, String newName);
+
+    /**
      * Deletes the provided world's files from the disk.
+     *
      * @param worldProperties The world instance to delete
      * @return True if the deletion was successful.
      */

@@ -39,7 +39,6 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
