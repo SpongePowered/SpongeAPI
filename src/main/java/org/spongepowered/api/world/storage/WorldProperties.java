@@ -39,6 +39,7 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
@@ -103,6 +104,13 @@ public interface WorldProperties extends DataSerializable {
      * @return The name
      */
     String getWorldName();
+
+    /**
+     * Gets the directory the files for this world are located.
+     *
+     * @return The directory the files are located in
+     */
+    File getWorldDirectory();
 
     /**
      * Gets the {@link UUID} of the world.
