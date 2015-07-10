@@ -210,7 +210,8 @@ public interface Server extends ChannelRegistrar {
      * the new copy if the copy was possible. 
      *
      * @param originalWorld The original world instance to copy
-     * @param copyName The name that should be used in the duplicated entry instead of the originalWorld's name.
+     * @param copyName The name that should be used in the duplicated entry instead of the originalWorld's name
+     * @return An {@link Optional} containing the properties of the new world instance, if the copy was successful
      */
     Optional<WorldProperties> copyWorld(WorldProperties originalWorld, String copyName);
 
@@ -226,8 +227,16 @@ public interface Server extends ChannelRegistrar {
      *
      * @param originalWorld The original world instance to copy
      * @param copyName The name for the copy that is made
+     * @return An {@link Optional} containing the properties of the new world instance, if the copy was successful
      */
     Optional<WorldProperties> copyLoadedWorld(World originalWorld, String copyName);
+
+    /**
+     * Deletes the provided world's files from the disk.
+     * @param worldProperties The world instance to delete
+     * @return True if the deletion was successful.
+     */
+    boolean deleteWorld(WorldProperties worldProperties);
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,
