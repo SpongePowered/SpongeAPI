@@ -105,15 +105,6 @@ public interface WorldProperties extends DataSerializable {
     String getWorldName();
 
     /**
-     * Changes the name of this world.
-     *
-     * @param worldName The name that this world should be changed to
-     * @return An {@link Optional} containing the {@link WorldProperties} of this world
-     *         if the rename invalidated the old properties
-     */
-    Optional<WorldProperties> renameWorld(String worldName);
-
-    /**
      * Gets the {@link UUID} of the world.
      * 
      * @return The unique Id
