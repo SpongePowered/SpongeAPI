@@ -35,9 +35,9 @@ import org.spongepowered.api.data.manipulator.block.ShrubData;
 import org.spongepowered.api.data.type.PlantType;
 import org.spongepowered.api.data.type.PlantTypes;
 import org.spongepowered.api.data.type.ShrubTypes;
-import org.spongepowered.api.util.gen.BiomeBuffer;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.ImmutableBiomeArea;
+import org.spongepowered.api.world.extent.MutableBlockVolume;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 
 /**
@@ -92,7 +92,7 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes) {
+    public void populate(World world, MutableBlockVolume buffer, ImmutableBiomeArea biomes) {
         final Vector3i max = buffer.getBlockMax();
         final Vector3i min = buffer.getBlockMin();
         final int yMax = max.getY() - 2;

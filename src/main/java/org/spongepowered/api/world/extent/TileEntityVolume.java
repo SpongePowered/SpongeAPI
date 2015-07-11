@@ -33,9 +33,9 @@ import org.spongepowered.api.world.Location;
 import java.util.Collection;
 
 /**
- * A block volume that also contains {@link TileEntity} instances.
+ * A mutable block volume that also contains {@link TileEntity} instances.
  */
-public interface TileEntityVolume extends BlockVolume {
+public interface TileEntityVolume extends MutableBlockVolume {
 
     /**
      * Return a collection of tile entities contained within this volume,

@@ -29,9 +29,9 @@ import com.flowpowered.noise.Noise;
 import com.flowpowered.noise.NoiseQuality;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.util.gen.BiomeBuffer;
-import org.spongepowered.api.util.gen.MutableBlockBuffer;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.ImmutableBiomeArea;
+import org.spongepowered.api.world.extent.MutableBlockVolume;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 
 /**
@@ -47,7 +47,7 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
     private static final double HOLE_THRESHOLD = 0.6;
 
     @Override
-    public void populate(World world, MutableBlockBuffer buffer, BiomeBuffer biomes) {
+    public void populate(World world, MutableBlockVolume buffer, ImmutableBiomeArea biomes) {
         final Vector3i max = buffer.getBlockMax();
         final Vector3i min = buffer.getBlockMin();
         final int yMax = max.getY();
