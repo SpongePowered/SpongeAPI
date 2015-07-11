@@ -29,6 +29,7 @@ import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.service.scheduler.SchedulerService;
+import org.spongepowered.api.world.ChunkManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
@@ -103,5 +104,12 @@ public interface Game {
      * @return The teleport helper
      */
     TeleportHelper getTeleportHelper();
+
+    /**
+     * Gets the {@link ChunkManager} used to force load chunks in the world.
+     *
+     * @return The chunk manager
+     */
+    ChunkManager getChunkManager();
 
 }
