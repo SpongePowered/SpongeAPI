@@ -104,7 +104,8 @@ public interface PermissionService {
 
     /**
      * Gets the registered or generated {@link PermissionDescription} for the
-     * given permission if available.
+     * given permission if available. If the given permission is not defined
+     * itself this might also return the associated permission template.
      *
      * @param permission The permission to get the description for
      * @return The description for the given permission or

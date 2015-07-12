@@ -161,13 +161,14 @@ public interface PermissionDescription {
          * If the given subject does not exist it will be created. It is
          * recommended, but not necessary to use the role suggestions provided
          * by this class. It is also recommended to prefix the role template
-         * with the plugin name to make the assignment of the template groups to
-         * real groups more differentiated. Example: "myPlugin.user". Please do
-         * not assign a permission to user, staff and admin at the same time but
-         * solve this with subject inheritance if possible.
+         * with the plugin's name to make the assignment of the template groups
+         * to real groups more differentiated. Example: "myPlugin.user". Please
+         * do not assign a permission to user, staff and admin at the same time
+         * but solve this with subject inheritance if possible.
          *
          * <p><b>Note:</b> The permissions are only assigned during
-         * {@link #register()}.</p>
+         * {@link #register()}. Permission templates should not be assigned to
+         * anyone.</p>
          *
          * @param role The role-template to assign the permission to
          * @param value The value to to assign
