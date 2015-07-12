@@ -42,6 +42,7 @@ public interface PermissionService {
     String SUBJECTS_GROUP = "group";
     String SUBJECTS_SYSTEM = "system";
     String SUBJECTS_COMMAND_BLOCK = "commandblock";
+    String SUBJECTS_ROLE_TEMPLATE = "role-template";
 
     /**
      * Returns the permissions level that describes users. User identifiers are

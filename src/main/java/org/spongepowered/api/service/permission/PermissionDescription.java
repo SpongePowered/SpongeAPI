@@ -25,11 +25,10 @@
 
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 
-import javax.annotation.Nullable;
+import java.util.Set;
 
 /**
  * A description object for permissions. The description is meant to provide
@@ -40,46 +39,20 @@ import javax.annotation.Nullable;
 public interface PermissionDescription {
 
     /**
-     * A permission with this rank can be granted to anybody including the
-     * untrusted guests. For most servers there is no difference between
-     * {@link #RANK_GUEST} and {@link #RANK_USER}.
-     *
-     * <p>Examples can be chat, MotD receive.</p>
+     * The user role should be assigned to everyone who should have basic access
+     * permissions. For example: joining in an arena.
      */
-    static final String RANK_GUEST = "guest";
+    static final String ROLE_USER = "user";
     /**
-     * A permission with this rank can be granted to anybody that should have
-     * default user access. For most servers there is no difference between
-     * {@link #RANK_GUEST} and {@link #RANK_USER}.
-     *
-     * <p>Examples can be claim city plot, access to games and public warps.</p>
+     * The staff role should be assigned to everyone who should have elevated
+     * access permissions. For example: force start an arena.
      */
-    static final String RANK_USER = "user";
+    static final String ROLE_STAFF = "staff";
     /**
-     * A permission with this rank should only be granted to known server staff.
-     * The permission's impact on the server is quite low.
-     *
-     * <p>Examples can be give items, teleport other players, access to support
-     * commands, globally mute other players.</p>
+     * The admin role should be assigned to everyone who should have full access
+     * permissions. For example: setup an arena.
      */
-    static final String RANK_STAFF = "staff";
-    /**
-     * A permission with this rank should only be granted to fully trusted
-     * server administrators. The permission's impact on the server may be high.
-     *
-     * <p>Examples can be create/delete worlds, grant permissions, restart
-     * server.</p>
-     */
-    static final String RANK_ADMIN = "admin";
-    /**
-     * A permission with this rank should normally not granted to anybody. This
-     * usually applies to debug permissions or specializations of permissions
-     * that would already be granted.
-     *
-     * <p>Examples can be show debug messages or myPlugin.give.type.DIRT where
-     * myPlugin.give.type is already granted.</p>
-     */
-    static final String RANK_NOBODY = "nobody";
+    static final String ROLE_ADMIN = "admin";
 
     /**
      * Gets the permission id this description belongs too.
@@ -95,16 +68,36 @@ public interface PermissionDescription {
      * </ul>
      * </p>
      *
-     * <p>Examples:
+     * <p>The following examples shall help you to structure your permissions
+     * well:
      * <ul>
+     * <li>"myPlugin" - Grants everything in myPlugin</li>
+     * <li>"myPlugin.give" - Grants everything related to give including
+     * all ItemTypes and Enchantments</li>
+     * <li>"myPlugin.give.execute" - Allows the execution of give</li>
      * <li>"myPlugin.give.type" - Grants all ItemTypes</li>
-     * <li>"myPlugin.give.type.&ltItemType&gt" - A template should not be granted to anybody</li>
+     * <li>"myPlugin.give.type.&ltItemType&gt" - A template should not be
+     * granted to anybody</li>
      * <li>"myPlugin.give.type.DIAMOND" - Only grants DIAMOND</li>
+     * <li>"myPlugin.give.enchantment" - Grants all Enchantments</li>
+     * <li>"myPlugin.give.others" - Allow giving to other players</li>
+     * </ul>
+     * The addition of the "execute" permission instead of just "myPlugin.give"
+     * permission is useful to prevent unauthorized access to sub-permissions
+     * that are not documented or have been added lately.
+     * </p>
+     *
+     * <p>
+     * So if you want to allow someone to give himself only DIAMONDs, you would
+     * assign him the following permissions:
+     * <ul>
+     * <li>"myPlugin.give.execute"</li>
+     * <li>"myPlugin.give.type.DIAMOND"</li>
      * </ul>
      * </p>
      *
-     * <p><b>Note:</b> Permission ids are case insensitive! Permission ids should
-     * start with the owning plugin's id.</p>
+     * <p><b>Note:</b> Permission ids are case insensitive! Permission ids
+     * should start with the owning plugin's id.</p>
      *
      * @return The permission id
      */
@@ -119,15 +112,18 @@ public interface PermissionDescription {
     Text getDescription();
 
     /**
-     * Gets the human readable <b>suggested</b> rank the players should have
-     * before they should have access to this permission.
+     * Gets an immutable {@link Set} of {@link Subject}s that have set a none
+     * default value for this permission (true and false). This may include
+     * permissions that are directly related to this permission.
      *
-     * <p><b>Note:</b> This is a suggestion for server owners and does not have
-     * any impact on the results of the permission checks.</p>
+     * <p>If you want to know to which role-templates this permission is
+     * assigned use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.</p>
      *
-     * @return The suggested player rank the permission should be granted to
+     * @param identifier The subject type identifier to use
+     * @return An immutable set of subjects that have an none default value for
+     *         this or a directly related permission
      */
-    Optional<String> getSuggestedRank();
+    Set<Subject> getAssignedSubjects(String identifier);
 
     /**
      * Gets the owning plugin the permission belongs to.
@@ -160,14 +156,23 @@ public interface PermissionDescription {
         Builder description(Text description);
 
         /**
-         * Sets the suggested rank players should have before being able to
-         * access this permission. Setting this is optional although
-         * recommended.
+         * Assigns this permission to the given role-template {@link Subject}.
+         * If the given subject does not exist it will be created. It is
+         * recommended, but not necessary to use the role suggestions provided
+         * by this class. It is also recommended to prefix the role template
+         * with the plugin name to make the assignment of the template groups to
+         * real groups more differentiated. Example: "myPlugin.user". Please do
+         * not assign a permission to user, staff and admin at the same time but
+         * solve this with subject inheritance if possible.
          *
-         * @param rank The suggested rank to have
+         * <p><b>Note:</b> The permissions are only assigned during
+         * {@link #register()}.</p>
+         *
+         * @param role The role-template to assign the permission to
+         * @param value The value to to assign
          * @return This builder for chaining
          */
-        Builder suggestedRank(@Nullable String rank);
+        Builder assign(String role, boolean value);
 
         /**
          * Creates and registers a new {@link PermissionDescription} instance
