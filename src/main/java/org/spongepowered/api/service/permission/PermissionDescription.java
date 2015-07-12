@@ -114,7 +114,8 @@ public interface PermissionDescription {
     /**
      * Gets an immutable {@link Set} of {@link Subject}s that have set a none
      * default value for this permission (true and false). This may include
-     * permissions that are directly related to this permission.
+     * permissions that are directly related to this permission. This may not
+     * include subjects that inherit the none default value.
      *
      * <p>If you want to know to which role-templates this permission is
      * assigned use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.</p>
