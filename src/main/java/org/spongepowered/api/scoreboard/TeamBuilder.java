@@ -29,6 +29,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Represents a builder tp create {@link Team} instances.
@@ -125,14 +126,14 @@ public interface TeamBuilder {
     TeamBuilder deathTextVisibility(Visibility visibility);
 
     /**
-     * Sets the set of {@link User}s on the {@link Team}.
+     * Sets the set of {@link UUID}s on the {@link UUID}.
      *
      * <p>By default, this is the empty set.</p>
      *
-     * @param users The set of {@link User}s on the {@link Team}
+     * @param uuids The set of {@link User}s on the {@link Team}
      * @return This builder
      */
-    TeamBuilder users(Set<User> users);
+    TeamBuilder UUIDs(Set<UUID> uuids);
 
     /**
      * Resets all information regarding the {@link Team} to be created.

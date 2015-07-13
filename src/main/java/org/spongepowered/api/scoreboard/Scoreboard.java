@@ -25,15 +25,13 @@
 package org.spongepowered.api.scoreboard;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
 
-import java.util.Set;
-
 import javax.annotation.Nullable;
+import java.util.Set;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.
@@ -124,13 +122,13 @@ public interface Scoreboard {
     void removeScores(Text name);
 
     /**
-     * Gets a {@link User}'s {@link Team} on this scoreboard.
+     * Gets a {@link Teammate}'s {@link Team} on this scoreboard.
      *
-     * @param user The {@link User} to search for
-     * @return The {@link User}'s {@link Team}, or Optional.absent()
+     * @param teammate The {@link Teammate} to search for
+     * @return The {@link Teammate}'s {@link Team}, or Optional.absent()
      *     if the user has no team
      */
-    Optional<Team> getUserTeam(User user);
+    Optional<Team> getTeam(Teammate teammate);
 
     /**
      * Gets a {@link Team} by name on this scoreboard.

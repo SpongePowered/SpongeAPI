@@ -25,7 +25,6 @@
 package org.spongepowered.api.scoreboard;
 
 
-import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 
@@ -176,28 +175,28 @@ public interface Team {
     void setDeathTextVisibility(Visibility visibility);
 
     /**
-     * Gets the {@link User}s on the team.
+     * Gets the {@link Teammate}s on the team.
      *
-     * @return The {@link User}s on the team
+     * @return The {@link Teammate}s on the team
      */
-    Set<User> getUsers();
+    Set<Teammate> getTeammates();
 
     /**
-     * Adds the specified {@link User} to this team for the {@link Scoreboard}.
+     * Adds the specified {@link Teammate} to this team for the {@link Scoreboard}.
      *
-     * <p>This will remove the {@link User} from any other team on the {@link Scoreboard}.</p>
+     * <p>This will remove the {@link Teammate} from any other team on the {@link Scoreboard}.</p>
      *
-     * @param user The {@link User} to add
+     * @param teammate The {@link Teammate} to add
      */
-    void addUser(User user);
+    void addTeammate(Teammate teammate);
 
     /**
-     * Removes the specified {@link User} from this team.
+     * Removes the specified {@link Teammate} from this team.
      *
-     * @param user The {@link User} to remove
-     * @return Whether the {@link User} was on this team
+     * @param teammate The {@link Teammate} to remove
+     * @return Whether the {@link Teammate} was on this team
      */
-    boolean removeUser(User user);
+    boolean removeTeammate(Teammate teammate);
 
     /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this {@link Team} is
