@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.util.command.args;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.util.command.CommandException;
@@ -59,7 +59,7 @@ public final class CommandContext {
      */
     @SuppressWarnings("unchecked")
     public <T> Collection<T> getAll(String key) {
-        return Collections.unmodifiableCollection((Collection) this.parsedArgs.get(key));
+        return Collections.unmodifiableCollection((Collection<T>) this.parsedArgs.get(key));
     }
 
     /**
@@ -86,7 +86,7 @@ public final class CommandContext {
      * @param value the value for this argument
      */
     public void putArg(String key, Object value) {
-        Preconditions.checkNotNull(value, "value");
+        checkNotNull(value, "value");
         this.parsedArgs.put(key, value);
     }
 

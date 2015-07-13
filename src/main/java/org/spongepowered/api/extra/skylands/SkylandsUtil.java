@@ -160,7 +160,6 @@ class SkylandsUtil {
      * @return The y coordinate of the next non-air block or yEnd if none
      *     found.
      */
-    @SuppressWarnings("StatementWithEmptyBody")
     static int getNextSolid(MutableBlockVolume buffer, int x, int y, int z, int yEnd) {
         for (; y >= yEnd && buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
             // iterate until we reach solid
@@ -179,7 +178,6 @@ class SkylandsUtil {
      * @param yEnd The lowest y coordinate to check
      * @return The y coordinate of the next air block or yEnd if none found.
      */
-    @SuppressWarnings("StatementWithEmptyBody")
     static int getNextAir(MutableBlockVolume buffer, int x, int y, int z, int yEnd) {
         for (; y >= yEnd && !buffer.getBlockType(x, y, z).equals(BlockTypes.AIR); y--) {
             // iterate until we exit the solid column

@@ -158,7 +158,7 @@ class CommandFlags extends CommandElement {
                         if (i == 0) {
                             return false;
                         }
-                    // FALL - THROUGH
+                    // $FALL-THROUGH$
                     case ERROR:
                         throw args.createError(t("Unknown short flag %s specified", flagChar));
                     case ACCEPT_NONVALUE:
@@ -439,7 +439,7 @@ class CommandFlags extends CommandElement {
          * @param specs The flag specifications
          * @return this
          */
-        @SuppressWarnings("unchecked") // cuz generics suck
+        @SuppressWarnings({"unchecked", "rawtypes"}) // cuz generics suck
         public Builder valueFlag(CommandElement value, String... specs) {
             return flag((Function) Functions.constant(value), specs);
         }

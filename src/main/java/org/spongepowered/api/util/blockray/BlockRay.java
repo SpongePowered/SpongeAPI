@@ -24,12 +24,15 @@
  */
 package org.spongepowered.api.util.blockray;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
 import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import org.spongepowered.api.block.BlockType;
@@ -468,7 +471,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
      * @return A new block ray builder
      */
     public static BlockRayBuilder from(Location start) {
-        Preconditions.checkNotNull(start, "start");
+        checkNotNull(start, "start");
         return from(start.getExtent(), start.getPosition());
     }
 
@@ -480,8 +483,8 @@ public class BlockRay implements Iterator<BlockRayHit> {
      * @return A new block ray builder
      */
     public static BlockRayBuilder from(Extent extent, Vector3d start) {
-        Preconditions.checkNotNull(extent, "extent");
-        Preconditions.checkNotNull(start, "start");
+        checkNotNull(extent, "extent");
+        checkNotNull(start, "start");
         return new BlockRayBuilder(extent, start);
     }
 
@@ -495,7 +498,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
      * @return A new block ray builder
      */
     public static BlockRayBuilder from(Entity entity) {
-        Preconditions.checkNotNull(entity, "entity");
+        checkNotNull(entity, "entity");
         final Vector3d rotation = entity.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getY(), 360 - rotation.getX(), rotation.getZ()).getDirection();
         final Location location = entity.getLocation();
@@ -534,7 +537,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
          * @return This for chained calls
          */
         public BlockRayBuilder filter(final Predicate<BlockRayHit> filter) {
-            Preconditions.checkNotNull(filter, "filter ");
+            checkNotNull(filter, "filter ");
             if (this.filter == ALL_FILTER) {
                 this.filter = filter;
             } else {
@@ -551,7 +554,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
          * @return This for chained calls
          */
         public BlockRayBuilder filter(final Predicate<BlockRayHit>... filters) {
-            Preconditions.checkNotNull(filters, "filters ");
+            checkNotNull(filters, "filters");
             final Predicate<BlockRayHit> filter = filters.length == 1 ? filters[0] : Predicates.<BlockRayHit>and(filters);
             if (this.filter == ALL_FILTER) {
                 this.filter = filter;
@@ -568,9 +571,9 @@ public class BlockRay implements Iterator<BlockRayHit> {
          * @return This for chained calls
          */
         public BlockRayBuilder to(Vector3d end) {
-            Preconditions.checkState(this.direction == null, "Direction has already been set");
-            Preconditions.checkNotNull(end, "end");
-            Preconditions.checkArgument(!this.position.equals(end), "Start and end cannot be equal");
+            checkState(this.direction == null, "Direction has already been set");
+            checkNotNull(end, "end");
+            checkArgument(!this.position.equals(end), "Start and end cannot be equal");
             this.direction = end.sub(this.position).normalize();
             return filter(new TargetBlockFilter(end));
         }
@@ -582,9 +585,9 @@ public class BlockRay implements Iterator<BlockRayHit> {
          * @return This for chained calls
          */
         public BlockRayBuilder direction(Vector3d direction) {
-            Preconditions.checkState(this.direction == null, "Direction has already been set");
-            Preconditions.checkNotNull(direction, "direction");
-            Preconditions.checkArgument(direction.lengthSquared() != 0, "Direction must be a non-zero vector");
+            checkState(this.direction == null, "Direction has already been set");
+            checkNotNull(direction, "direction");
+            checkArgument(direction.lengthSquared() != 0, "Direction must be a non-zero vector");
             this.direction = direction.normalize();
             return this;
         }
@@ -608,7 +611,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
          * @return A block ray
          */
         public BlockRay build() {
-            Preconditions.checkState(this.direction != null, "Either end point or direction needs to be set");
+            checkState(this.direction != null, "Either end point or direction needs to be set");
             final BlockRay blockRay = new BlockRay(this.filter, this.extent, this.position, this.direction);
             blockRay.setBlockLimit(this.blockLimit);
             return blockRay;

@@ -421,9 +421,11 @@ public final class Location implements DataHolder {
 
     /**
      * Simulates the interaction with this object as if a player had done so.
+     *
+     * @param side The side of the block to interact with
      */
-    public void interactBlock() {
-        getExtent().interactBlock(getBlockPosition());
+    public void interactBlock(Direction side) {
+        getExtent().interactBlock(getBlockPosition(), side);
     }
 
     /**
@@ -431,9 +433,10 @@ public final class Location implements DataHolder {
      * the player had done so.
      *
      * @param itemStack The item
+     * @param side The side of the block to interact with
      */
-    public void interactBlockWith(ItemStack itemStack) {
-        getExtent().interactBlockWith(getBlockPosition(), itemStack);
+    public void interactBlockWith(ItemStack itemStack, Direction side) {
+        getExtent().interactBlockWith(getBlockPosition(), itemStack, side);
     }
 
     /**

@@ -30,6 +30,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataPriority;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -180,8 +181,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * Simulates the interaction with this object as if a player had done so.
      *
      * @param position The position of the block
+     * @param side The side of the block to interact with
      */
-    void interactBlock(Vector3i position);
+    void interactBlock(Vector3i position, Direction side);
 
     /**
      * Simulates the interaction with this object as if a player had done so.
@@ -189,8 +191,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
+     * @param side The side of the block to interact with
      */
-    void interactBlock(int x, int y, int z);
+    void interactBlock(int x, int y, int z, Direction side);
 
     /**
      * Simulates the interaction with this object using the given item as if
@@ -198,8 +201,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      *
      * @param position The position of the block
      * @param itemStack The item
+     * @param side The side of the block to interact with
      */
-    void interactBlockWith(Vector3i position, ItemStack itemStack);
+    void interactBlockWith(Vector3i position, ItemStack itemStack, Direction side);
 
     /**
      * Simulates the interaction with this object using the given item as if
@@ -209,8 +213,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      * @param y The Y position
      * @param z The Z position
      * @param itemStack The item
+     * @param side The side of the block to interact with
      */
-    void interactBlockWith(int x, int y, int z, ItemStack itemStack);
+    void interactBlockWith(int x, int y, int z, ItemStack itemStack, Direction side);
 
     /**
      * Simulate the digging of the block as if a player had done so.

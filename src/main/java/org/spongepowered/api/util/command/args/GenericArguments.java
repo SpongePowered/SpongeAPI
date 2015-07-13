@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.util.command.args;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
@@ -64,6 +64,8 @@ import javax.annotation.Nullable;
  */
 public final class GenericArguments {
 
+    private static final CommandElement NONE = new SequenceCommandElement(ImmutableList.<CommandElement>of());
+
     private GenericArguments() {}
 
     /**
@@ -72,7 +74,7 @@ public final class GenericArguments {
      * @return An expectation of no arguments
      */
     public static CommandElement none() {
-        return new SequenceCommandElement(ImmutableList.<CommandElement>of());
+        return NONE;
     }
 
     static CommandElement markTrue(String flag) {
@@ -1075,7 +1077,7 @@ public final class GenericArguments {
             Object world;
             Object vec = null;
             try {
-                world = Preconditions.checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
+                world = checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
             } catch (ArgumentParseException ex) {
                 args.setState(state);
                 if (!(source instanceof LocatedSource)) {
@@ -1083,22 +1085,22 @@ public final class GenericArguments {
                 }
                 world = ((LocatedSource) source).getWorld();
                 try {
-                    vec = Preconditions.checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
+                    vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
                 } catch (ArgumentParseException ex2) {
                     args.setState(state);
                     throw ex;
                 }
             }
             if (vec == null) {
-                vec = Preconditions.checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
+                vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
             }
 
             if (world instanceof Collection<?>) {
                 // multiple values
-                if (((Collection) world).size() != 1) {
+                if (((Collection<?>) world).size() != 1) {
                     throw args.createError(t("A location must be specified in only one world!"));
                 }
-                world = ((Collection) world).iterator().next();
+                world = ((Collection<?>) world).iterator().next();
             }
             WorldProperties targetWorldProps = ((WorldProperties) world);
             Optional<World> targetWorld = this.game.getServer().getWorld(targetWorldProps.getUniqueId());
