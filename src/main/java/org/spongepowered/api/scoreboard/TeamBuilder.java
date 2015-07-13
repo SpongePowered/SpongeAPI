@@ -126,14 +126,14 @@ public interface TeamBuilder {
     TeamBuilder deathTextVisibility(Visibility visibility);
 
     /**
-     * Sets the set of {@link UUID}s on the {@link UUID}.
+     * Sets the set of {@link Teammate}s on the {@link Teammate}.
      *
      * <p>By default, this is the empty set.</p>
      *
-     * @param uuids The set of {@link User}s on the {@link Team}
+     * @param teammates The set of {@link Teammate}s on the {@link Team}
      * @return This builder
      */
-    TeamBuilder UUIDs(Set<UUID> uuids);
+    TeamBuilder Teammates(Set<Teammate> teammates);
 
     /**
      * Resets all information regarding the {@link Team} to be created.

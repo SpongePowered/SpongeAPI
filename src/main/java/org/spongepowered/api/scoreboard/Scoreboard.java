@@ -30,8 +30,9 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
 
-import javax.annotation.Nullable;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.

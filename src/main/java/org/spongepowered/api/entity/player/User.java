@@ -27,21 +27,19 @@ package org.spongepowered.api.entity.player;
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.entity.AchievementData;
 import org.spongepowered.api.data.manipulator.entity.BanData;
 import org.spongepowered.api.data.manipulator.entity.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
-import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.scoreboard.Teammate;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.util.Identifiable;
 
 /**
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
-public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject, Carrier {
+public interface User extends DataHolder, Teammate, ArmorEquipable, Tamer, Subject {
 
     /**
      * Gets the associated {@link GameProfile} of this player.
