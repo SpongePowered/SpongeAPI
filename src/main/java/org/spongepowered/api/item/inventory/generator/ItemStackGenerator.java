@@ -78,11 +78,9 @@ public final class ItemStackGenerator implements Supplier<ItemStack> {
 
     @Override
     public ItemStack get() {
-        final ItemStackBuilder builder;
-        if (this.baseItem == null) {
-            builder = this.registry.getItemBuilder();
-        } else {
-            builder = this.registry.getItemBuilder(this.baseItem);
+        final ItemStackBuilder builder = this.registry.getItemBuilder();
+        if (this.baseItem != null) {
+            builder.fromItemStack(this.baseItem);
         }
         for (ItemStackBuilderMutator randomizer : this.randomizers) {
             randomizer.apply(builder);

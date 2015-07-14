@@ -143,14 +143,6 @@ public interface GameRegistry {
     ItemStackBuilder getItemBuilder();
 
     /**
-     * Get an item stack builder with the given base item stack.
-     *
-     * @param baseItem The base item for this builder
-     * @return The item stack builder
-     */
-    ItemStackBuilder getItemBuilder(ItemStack baseItem);
-
-    /**
      * Get a trade offer builder.
      *
      * @return The trade offer builder
