@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.text.translation;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Function;
-import com.google.common.base.Preconditions;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -75,7 +76,7 @@ public class ResourceBundleTranslation implements Translation {
 
     @Override
     public String get(Locale locale) {
-        Preconditions.checkNotNull(locale, "locale");
+        checkNotNull(locale, "locale");
         try {
             ResourceBundle bundle = this.bundleFunction.apply(locale);
             return bundle == null ? this.key : bundle.getString(this.key);

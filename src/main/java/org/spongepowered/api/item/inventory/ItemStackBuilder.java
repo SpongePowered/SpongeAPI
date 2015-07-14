@@ -59,8 +59,7 @@ public interface ItemStackBuilder {
     ItemStackBuilder itemData(DataManipulator<?> itemData) throws IllegalArgumentException;
 
     /**
-     * Creates a new builder with the given ItemStack as a blueprint with
-     * all the defaults.
+     * Sets all the settings in this builder from the item stack blueprint.
      *
      * @param itemStack The item stack to copy
      * @return This builder, for chaining
@@ -81,5 +80,5 @@ public interface ItemStackBuilder {
      * @throws IllegalStateException If the item stack is not completed
      */
     ItemStack build() throws IllegalStateException;
-    
+
 }

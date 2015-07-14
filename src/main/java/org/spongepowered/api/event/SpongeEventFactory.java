@@ -1934,7 +1934,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link RconLoginEvent}.
+     * Creates a new {@link RconLoginEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param source The {@link RconSource} that caused this event
@@ -1948,7 +1948,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link RconQuitEvent}.
+     * Creates a new {@link RconQuitEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param source The {@link RconSource} that caused this event

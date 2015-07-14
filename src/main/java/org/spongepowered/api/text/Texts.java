@@ -428,7 +428,6 @@ public final class Texts {
      * @return The appropriate legacy representation handler
      */
     @Deprecated
-    @SuppressWarnings("deprecation")
     public static TextRepresentation legacy() {
         return legacy(getLegacyChar());
     }
@@ -452,7 +451,6 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    @SuppressWarnings("deprecation")
     public static String stripCodes(String text) {
         return stripCodes(text, getLegacyChar());
     }
@@ -480,7 +478,6 @@ public final class Texts {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    @SuppressWarnings("deprecation")
     public static String replaceCodes(String text, char from) {
         return replaceCodes(text, from, getLegacyChar());
     }

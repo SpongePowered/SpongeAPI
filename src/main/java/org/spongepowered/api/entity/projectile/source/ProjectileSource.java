@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.projectile.source;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
@@ -32,14 +33,16 @@ import org.spongepowered.api.entity.projectile.Projectile;
  */
 public interface ProjectileSource {
 
+    UnknownProjectileSource UNKNOWN = new UnknownProjectileSource();
+
     /**
      * Launches a {@link Projectile} from this projectile source.
      *
      * @param projectileClass The class of the projectile
      * @param <T> The Type of Projectile
-     * @return The projectile instance that was launched
+     * @return The projectile instance if it was launched, or absent
      */
-    <T extends Projectile> T launchProjectile(Class<T> projectileClass);
+    <T extends Projectile> Optional<T> launchProjectile(Class<T> projectileClass);
 
     /**
      * Launches a {@link Projectile} from this projectile source.
@@ -47,7 +50,7 @@ public interface ProjectileSource {
      * @param projectileClass The class of the projectile
      * @param velocity The velocity to launch the projectile
      * @param <T> The Type of Projectile
-     * @return The projectile instance that was launched
+     * @return The projectile instance if it was launched, or absent
      */
-    <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3d velocity);
+    <T extends Projectile> Optional<T> launchProjectile(Class<T> projectileClass, Vector3d velocity);
 }

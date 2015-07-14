@@ -25,21 +25,25 @@
 package org.spongepowered.api.entity.projectile.source;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents a {@link ProjectileSource} that is not part of the API, such
- * as a plugin or mod spawning a Projectile.
+ * Represents a {@link ProjectileSource} that is not part of the API, such as a
+ * plugin or mod spawning a Projectile.
  */
 public final class UnknownProjectileSource implements ProjectileSource {
 
-    @Override
-    public <T extends Projectile> T launchProjectile(Class<T> projectileClass) {
-        return null;
+    UnknownProjectileSource() {
     }
 
     @Override
-    public <T extends Projectile> T launchProjectile(Class<T> projectileClass, Vector3d velocity) {
-        return null;
+    public <T extends Projectile> Optional<T> launchProjectile(Class<T> projectileClass) {
+        return Optional.absent();
+    }
+
+    @Override
+    public <T extends Projectile> Optional<T> launchProjectile(Class<T> projectileClass, Vector3d velocity) {
+        return Optional.absent();
     }
 }
