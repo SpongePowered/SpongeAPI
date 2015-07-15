@@ -60,6 +60,7 @@ import org.spongepowered.api.event.block.BlockInteractEvent;
 import org.spongepowered.api.event.block.BlockMoveEvent;
 import org.spongepowered.api.event.block.BlockPlaceEvent;
 import org.spongepowered.api.event.block.BlockRandomTickEvent;
+import org.spongepowered.api.event.block.BlockRedstoneUpdateEvent;
 import org.spongepowered.api.event.block.BlockUpdateEvent;
 import org.spongepowered.api.event.block.FloraGrowEvent;
 import org.spongepowered.api.event.block.FluidSpreadEvent;
@@ -446,6 +447,29 @@ public final class SpongeEventFactory {
         values.put("block", block);
         values.put("affectedBlocks", affectedBlocks);
         return createEvent(BlockUpdateEvent.class, values);
+    }
+
+    /**
+     * Create a new {@link BlockRedstoneUpdateEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param cause The cause of the event, can be null
+     * @param block The block affected by this event
+     * @param affectedBlocks The blocks affeceted by the event
+     * @param oldCurrent The previous signal strength of the redstone
+     * @param newCurrent The updated signal strength of the redstone
+     * @return A new instance of the event
+     */
+    public static BlockRedstoneUpdateEvent createBlockRedstoneUpdate(Game game, Cause cause, Location block, Collection<Location> affectedBlocks,
+            int oldCurrent, int newCurrent) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
+        values.put("block", block);
+        values.put("affectedBlocks", affectedBlocks);
+        values.put("oldSignalStrength", oldCurrent);
+        values.put("newSignalStrength", newCurrent);
+        return createEvent(BlockRedstoneUpdateEvent.class, values);
     }
 
     /**
