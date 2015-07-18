@@ -55,6 +55,16 @@ public interface ItemType extends CatalogType, Translatable {
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
+    
+    /**
+     * Gets whether or not this item will cause a reaction when
+     * right-clicked.
+     * 
+     * <p>This includes items that open GUIs or switch their own states
+     * when right-clicked in hand, e.g. opening a Written Book to view its
+     * contents or drinking a Potion.</p>
+     */
+    boolean isInteractable();
 
     /**
      * Gets the default {@link Property} of this {@link ItemType}.
