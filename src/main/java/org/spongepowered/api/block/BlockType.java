@@ -113,7 +113,16 @@ public interface BlockType extends CatalogType, Translatable {
      * @return Is affected by gravity
      */
     boolean isAffectedByGravity();
-
+    
+    /**
+     * Gets whether or not this block will cause a reaction when
+     * right-clicked.
+     * 
+     * <p>This includes blocks that open GUIs and switch their own states
+     * when right-clicked, e.g. opening/closing a door or opening a chest.</p>
+     */
+    boolean isInteractable();
+    
     /**
      * Gets if a block should be counted for statistics gathering.
      *
