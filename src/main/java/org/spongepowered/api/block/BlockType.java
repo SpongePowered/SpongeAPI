@@ -27,6 +27,7 @@ package org.spongepowered.api.block;
 import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.ItemBlock;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -115,13 +116,14 @@ public interface BlockType extends CatalogType, Translatable {
     boolean isAffectedByGravity();
     
     /**
-     * Gets whether or not this block will cause a reaction when
-     * right-clicked.
+     * Gets whether or not this block will cause a reaction when right-clicked
+     * by the given {@link Human} entity.
      * 
-     * <p>This includes blocks that open GUIs and switch their own states
-     * when right-clicked, e.g. opening/closing a door or opening a chest.</p>
+     * <p>This includes blocks that open GUIs and switch their own states when
+     * right-clicked, e.g. opening/closing a door or opening a chest. Mod
+     * objects may make this value vary based on the given Human.</p>
      */
-    boolean isInteractable();
+    boolean isInteractable(Human cause);
     
     /**
      * Gets if a block should be counted for statistics gathering.

@@ -27,6 +27,7 @@ package org.spongepowered.api.item;
 import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -57,14 +58,15 @@ public interface ItemType extends CatalogType, Translatable {
     int getMaxStackQuantity();
     
     /**
-     * Gets whether or not this item will cause a reaction when
-     * right-clicked.
+     * Gets whether or not this item will cause a reaction when right-clicked by
+     * the given {@link Human} entity.
      * 
-     * <p>This includes items that open GUIs or switch their own states
-     * when right-clicked in hand, e.g. opening a Written Book to view its
-     * contents or drinking a Potion.</p>
+     * <p>This includes items that open GUIs or switch their own states when
+     * right-clicked in hand, e.g. opening a Written Book to view its contents
+     * or drinking a Potion. Mod objects may make this value vary based on the
+     * given Human.</p>
      */
-    boolean isInteractable();
+    boolean isInteractable(Human cause);
 
     /**
      * Gets the default {@link Property} of this {@link ItemType}.
