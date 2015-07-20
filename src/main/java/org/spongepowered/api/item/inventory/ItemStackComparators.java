@@ -64,7 +64,6 @@ public final class ItemStackComparators {
      * results as ItemStack.equals(ItemStack) for ItemStacks with extra attached
      * data or different damage values.
      */
-    @SuppressWarnings("unchecked")
     public static final Comparator<ItemStack> TYPE_SIZE = Ordering.compound(ImmutableList.of(TYPE, SIZE));
 
     /**

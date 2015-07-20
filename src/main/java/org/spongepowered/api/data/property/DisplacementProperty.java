@@ -36,18 +36,20 @@ import javax.annotation.Nullable;
 public class DisplacementProperty extends AbstractProperty<String, Set<BlockType>> {
 
     /**
-     * Creates a {@link HarvestingProperty} with a specific set of {@link BlockType}s.
+     * Creates a {@link DisplacementProperty} with a specific set of
+     * {@link BlockType}s.
      *
-     * @param value The harvestable block types
+     * @param value The displaceable block types
      */
     public DisplacementProperty(@Nullable Set<BlockType> value) {
         super(value == null ? ImmutableSet.<BlockType>of() : ImmutableSet.copyOf(value));
     }
 
     /**
-     * Creates a {@link HarvestingProperty} with a specific set of {@link BlockType}s.
+     * Creates a {@link DisplacementProperty} with a specific set of
+     * {@link BlockType}s.
      *
-     * @param value The harvestable block types
+     * @param value The displaceable block types
      * @param op The operator to use when comparing against other properties
      */
     public DisplacementProperty(@Nullable Set<BlockType> value, Operator op) {

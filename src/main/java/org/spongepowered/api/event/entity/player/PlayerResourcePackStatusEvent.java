@@ -22,10 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.entity.player;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.event.entity.player.PlayerEvent;
 import org.spongepowered.api.resourcepack.ResourcePack;
 
 /**

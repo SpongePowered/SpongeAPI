@@ -101,7 +101,7 @@ public class WeightedItem extends WeightedObject<ItemType> {
      * @param maxStacks The maximum number of item stacks that may be created
      * @return The item stacks
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings("rawtypes")
     public Collection<ItemStack> getRandomItem(ItemStackBuilder builder, Random rand, int maxStacks) {
         int total = this.quantity.getFlooredAmount(rand);
         if (total <= 0) {

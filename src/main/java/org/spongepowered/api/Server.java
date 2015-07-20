@@ -280,7 +280,7 @@ public interface Server extends ChannelRegistrar {
 
     /**
      * Shuts down the server, and kicks all players with the default kick
-     * message (the translation key {@code disconnect.closed}).
+     * message.
      *
      */
     void shutdown();

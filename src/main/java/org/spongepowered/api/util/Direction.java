@@ -105,11 +105,11 @@ public enum Direction {
     }
 
     /**
-     * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
-     * has the same horizontal and vertical length, a horizontal direction will
-     * be returned. If the vector has the same angle to two directions the
-     * clockwise next will be selected.
+     * Gets the closest direction from the given vector. If the vector is the
+     * 0-Vector, this method returns {@link #NONE}. If the vector has the same
+     * horizontal and vertical length, a horizontal direction will be returned.
+     * If the vector has the same angle to two directions the clockwise next
+     * will be selected.
      *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
