@@ -30,6 +30,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -37,6 +38,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -144,6 +146,7 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
         final Multimap<String, Method> mutators = HashMultimap.create();
         final Queue<Class<?>> queue = new NonNullUniqueQueue<Class<?>>();
         final Map<String, Method> accessorHierarchyBottoms = new HashMap<String, Method>();
+        final Set<String> signatures = Sets.newHashSet();
 
         queue.add(type); // Start off with our target type
 
@@ -152,10 +155,18 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
             for (Method method : scannedType.getMethods()) {
                 String name;
 
+                String signature = method.getName() + ";";
+                for (Class<?> parameterType: method.getParameterTypes()) {
+                    signature += parameterType.getName() + ";";
+                }
+                signature += method.getReturnType().getName();
+
                 Method leastSpecificMethod;
-                if ((name = getAccessorName(method)) != null && ((leastSpecificMethod = accessorHierarchyBottoms.get(name)) == null
+                if ((name = getAccessorName(method)) != null && !signatures.contains(signature) && ((leastSpecificMethod = accessorHierarchyBottoms.get(name)) == null
                                                                  || leastSpecificMethod.getReturnType() != method.getReturnType())) {
                     accessors.put(name, method);
+                    signatures.add(signature);
+
                     if (accessorHierarchyBottoms.get(name) == null
                         || method.getReturnType().isAssignableFrom(accessorHierarchyBottoms.get(name).getReturnType())) {
                         accessorHierarchyBottoms.put(name, method);
