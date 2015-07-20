@@ -145,7 +145,7 @@ public interface CommandService extends Dispatcher {
      * @return The result of a command being processed
      */
     @Override
-    Optional<CommandResult> process(CommandSource source, String arguments);
+    CommandResult process(CommandSource source, String arguments);
 
     /**
      * Get a list of suggestions based on input.

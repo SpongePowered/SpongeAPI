@@ -87,6 +87,19 @@ public interface PaginationBuilder {
     PaginationBuilder paddingString(String padding);
 
     /**
+     * Sets the page to attempt to start the pagination on.
+     *
+     * <p>Whether the page is available is dependent on the command source and
+     * cannot be determined until {@link #sendTo(CommandSource)} is called. An
+     * illegal page will not throw an exception; instead, a message will be sent
+     * to the target command sender.</p>
+     * 
+     * @param page
+     * @return
+     */
+    PaginationBuilder page(int page);
+
+    /**
      * Send the constructed to the given source.
      *
      * @param source The source to send to

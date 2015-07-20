@@ -22,57 +22,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.message;
+package org.spongepowered.api.util.command;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.util.command.CommandResult;
-import org.spongepowered.api.util.command.CommandSource;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
+
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.text.Text;
 
 /**
- * Fired when a command has been used and needs to be processed.
+ * This exception is thrown when a sender tries to execute a command that does
+ * not exist.
  */
-public interface CommandEvent extends GameEvent, Cancellable {
+public class CommandNotFoundException extends CommandException {
+
+    private static final long serialVersionUID = -7714518367616848051L;
+
+    private final String command;
 
     /**
-     * Get the source of the command.
+     * Create an exception with the default message.
      *
-     * @return The source of the command
+     * @param command The command that was queried for
      */
-    CommandSource getSource();
+    public CommandNotFoundException(String command) {
+        this(t("No such command"), command);
+    }
 
     /**
-     * Get the command as a string, without any sort of command prefix.
+     * Create an exception with a custom message.
      *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the command would be {@code example}.</p>
-     *
-     * @return The commands
+     * @param message The message
+     * @param command The command that was queried for
      */
-    String getCommand();
+    public CommandNotFoundException(Text message, String command) {
+        super(message);
+        this.command = Preconditions.checkNotNull(command, "command");
+    }
 
     /**
-     * Get the arguments as a string.
+     * Returns the command that was queried for.
      *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the arguments would be {@code bob 3 -f}.</p>
-     *
-     * @return The arguments
+     * @return The command
      */
-    String getArguments();
-
-    /**
-     * The result of the command.
-     *
-     * @return The result of the command
-     */
-    CommandResult getResult();
-
-    /**
-     * Sets the result of the command.
-     *
-     * @param result The result of the command
-     */
-    void setResult(CommandResult result);
-
+    public String getCommand() {
+        return command;
+    }
 }
