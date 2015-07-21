@@ -84,13 +84,6 @@ public interface Game {
     ServiceManager getServiceManager();
 
     /**
-     * Gets the scheduler used to schedule tasks.
-     *
-     * @return The scheduler
-     */
-    SchedulerService getScheduler();
-
-    /**
      * Get the command dispatcher used for registering and dispatching
      * registered commands.
      *
