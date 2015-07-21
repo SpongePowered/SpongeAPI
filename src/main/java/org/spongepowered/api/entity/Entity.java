@@ -245,5 +245,19 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * within one game tick.
      */
     void remove();
+    
+    /**
+     * Returns whether this entity is currently sneaking
+     * 
+     * @return True if this entity is currently sneaking
+     */
+    boolean isSneaking();
+
+    /**
+     * Sets the entity's current sneaking status
+     * 
+     * @param sneaking Determines if entity is sneaking
+     */
+	void setSneaking(boolean sneaking);
 
 }
