@@ -119,5 +119,4 @@ public interface Chunk extends Extent {
      * @return The regional difficulty percentage for this chunk
      */
     float getRegionalDifficultyPercentage();
-
 }
