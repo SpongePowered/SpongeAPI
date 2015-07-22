@@ -104,7 +104,7 @@ public interface Chunk extends Extent {
      * 
      * @return The regional difficulty factor for this chunk
      */
-    float getRegionalDifficultyFactor();
+    double getRegionalDifficultyFactor();
 
     /**
      * Gets the regional difficulty percentage for this chunk. It is calculated
@@ -118,5 +118,5 @@ public interface Chunk extends Extent {
      * 
      * @return The regional difficulty percentage for this chunk
      */
-    float getRegionalDifficultyPercentage();
+    double getRegionalDifficultyPercentage();
 }
