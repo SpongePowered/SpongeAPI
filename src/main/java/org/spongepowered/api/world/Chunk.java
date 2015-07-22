@@ -98,4 +98,39 @@ public interface Chunk extends Extent {
      * @return Whether or not the chunk unloaded
      */
     boolean unloadChunk();
+
+    /**
+     * Gets the number of ticks players have been present in this chunk, used
+     * for calculation of the regional difficulty factor. In vanilla, it is
+     * increased by the number of players in the chunk every tick, and is capped
+     * at 3,600,000 ticks (50 hours).
+     */
+    int getInhabittedTime();
+
+    /**
+     * 
+     * Gets the regional difficulty factor for this chunk. In vanilla, it is
+     * dependent on the playtime of the world, inhabited time of the chunk, the
+     * phase of the moon, and the current difficulty setting. This number ranges
+     * from 0.75-1.5 on easy, 1.5-4.0 on normal, and 2.25-6.75 on hard.
+     * 
+     * This value is used for display only in vanilla.
+     * 
+     * @return The regional difficulty factor for this chunk
+     */
+    double getRegionalDifficultyFactor();
+
+    /**
+     * Gets the regional difficulty percentage for this chunk. It is calculated
+     * by taking the regional difficulty factor and using the following rules:
+     * If the factor is less than 2.0, the percentage is 0%. If the factor is
+     * greater than 4.0, the percentage is 100%. Otherwise, the percentage is
+     * the factor minus 2.0, divided by 2.0.
+     * 
+     * This is the value that is used in vanilla to find which effects are
+     * caused by the regional difficulty.
+     * 
+     * @return The regional difficulty percentage for this chunk
+     */
+    double getRegionalDifficultyPercentage();
 }
