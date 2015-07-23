@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
@@ -527,6 +528,194 @@ public abstract class TextBuilder {
         @Override
         public Literal removeAll() {
             return (Literal) super.removeAll();
+        }
+
+    }
+
+    /**
+     * Represents a {@link TextBuilder} creating immutable {@link Text.Template}
+     * instances.
+     *
+     * @see Text.Template
+     */
+    public static class Template extends Literal {
+
+        protected String key;
+
+        /**
+         * Constructs a new empty {@link Literal}.
+         */
+        public Template() {
+            this("");
+        }
+
+        /**
+         * Constructs a new unformatted {@link Literal} with the given content.
+         *
+         * @param content The content for the text builder
+         */
+        public Template(String key) {
+            key(key);
+            content(key);
+        }
+
+        /**
+         * Constructs a new {@link Literal} with the formatting and actions of
+         * the specified {@link Text} and the given content.
+         *
+         * @param text The text to apply the properties from
+         * @param content The content for the text builder
+         */
+        public Template(Text text, String key) {
+            super(text, "{" + key + "}");
+            key(key);
+        }
+
+        /**
+         * Constructs a new {@link Literal} with the formatting, actions and
+         * content of the specified {@link Text.Literal}.
+         *
+         * @param text The text to apply the properties from
+         */
+        public Template(Text.Template text) {
+            super(text);
+            this.key = text.key;
+        }
+
+        /**
+         * Returns the current key of this builder.
+         *
+         * @return The current key
+         * @see Text.Template#getKey()
+         */
+        public final String getKey() {
+            return this.key;
+        }
+
+        /**
+         * Sets the plain text content of this text.
+         *
+         * @param content The content of this text
+         * @return This text builder
+         * @see Text.Template#getKey()
+         */
+        public Template key(String key) {
+            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+            this.key = key;
+            return this;
+        }
+
+        /**
+         * Sets the plain text content of this text.
+         *
+         * @param content The content of this text
+         * @return This text builder
+         * @see Text.Template#getContent()
+         */
+        @Override
+        public Template content(String content) {
+            return (Template) super.content(content);
+        }
+
+        @Override
+        public Text.Template build() {
+            return new Text.Template(
+                    this.color,
+                    this.style,
+                    ImmutableList.copyOf(this.children),
+                    this.clickAction,
+                    this.hoverAction,
+                    this.shiftClickAction,
+                    this.key,
+                    this.content);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Template) || !super.equals(o)) {
+                return false;
+            }
+
+            Template that = (Template) o;
+            return Objects.equal(this.key, that.key) && Objects.equal(this.content, that.content);
+
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.content);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .addValue(super.toString())
+                    .add("key", this.key)
+                    .add("content", this.content)
+                    .toString();
+        }
+
+        @Override
+        public Template color(TextColor color) {
+            return (Template) super.color(color);
+        }
+
+        @Override
+        public Template style(TextStyle... styles) {
+            return (Template) super.style(styles);
+        }
+
+        @Override
+        public Template onClick(@Nullable ClickAction<?> clickAction) {
+            return (Template) super.onClick(clickAction);
+        }
+
+        @Override
+        public Template onHover(@Nullable HoverAction<?> hoverAction) {
+            return (Template) super.onHover(hoverAction);
+        }
+
+        @Override
+        public Template onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
+            return (Template) super.onShiftClick(shiftClickAction);
+        }
+
+        @Override
+        public Template append(Text... children) {
+            return (Template) super.append(children);
+        }
+
+        @Override
+        public Template append(Iterable<? extends Text> children) {
+            return (Template) super.append(children);
+        }
+
+        @Override
+        public Template insert(int pos, Text... children) {
+            return (Template) super.insert(pos, children);
+        }
+
+        @Override
+        public Template insert(int pos, Iterable<? extends Text> children) {
+            return (Template) super.insert(pos, children);
+        }
+
+        @Override
+        public Template remove(Text... children) {
+            return (Template) super.remove(children);
+        }
+
+        @Override
+        public Template remove(Iterable<? extends Text> children) {
+            return (Template) super.remove(children);
+        }
+
+        @Override
+        public Template removeAll() {
+            return (Template) super.removeAll();
         }
 
     }

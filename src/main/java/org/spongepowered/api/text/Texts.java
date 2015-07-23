@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.scoreboard.Score;
+import org.spongepowered.api.text.Text.Template;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyle;
@@ -36,7 +38,9 @@ import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Utility class to work with and create {@link Text}.
@@ -71,6 +75,34 @@ public final class Texts {
             return EMPTY;
         }
         return new Text.Literal(content);
+    }
+
+    /**
+     * Creates a template {@link Text} with the specified key. The created
+     * message won't have any formatting or events configured.
+     *
+     * @param key The key of the template
+     * @return The created text
+     * @see Text.Template
+     */
+    public static Text.Template templateOf(String key) {
+        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+        return new Text.Template(key);
+    }
+
+    /**
+     * Creates a template {@link Text} with the specified key and fallback. The
+     * created message won't have any formatting or events configured.
+     *
+     * @param key The key of the template
+     * @param fallback The fallback of the text if it is not replaced
+     * @return The created text
+     * @see Text.Template
+     */
+    public static Text.Template templateOf(String key, String fallback) {
+        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+        checkNotNull(fallback, "fallback");
+        return new Text.Template(key, fallback);
     }
 
     /**
@@ -172,6 +204,72 @@ public final class Texts {
     }
 
     /**
+     * Replaces all instances of {@link Template} with the given replacements.
+     * All templates without a none null replacement are ignored. All
+     * replacements will be wrapped in a {@link Text} using
+     * {@link Texts#of(Object...)} the color and the style from the template are
+     * transfered to that method as well.
+     *
+     * @param template The template text in which all {@link Template}s should
+     *        be replaced
+     * @param replacements The values available to replace the templates
+     * @return The text with all possible templates replaced
+     */
+    public static Text format(Text template, Map<String, ?> replacements) {
+        checkNotNull(template, "template");
+        checkNotNull(replacements, "values");
+        if (replacements.isEmpty()) {
+            return template;
+        }
+        return formatNoChecks(template, replacements);
+    }
+
+    /**
+     * Replaces all instances of {@link Template} with the given replacements.
+     * All templates without a none null replacement are ignored. All
+     * replacements will be wrapped in a {@link Text} using
+     * {@link Texts#of(Object...)} the color and the style from the template are
+     * transfered to that method as well.
+     *
+     * @param template The template text in which all {@link Template}s should
+     *        be replaced
+     * @param replacements The values available to replace the templates
+     * @return The text with all possible templates replaced
+     */
+    public static Text format(Text template, Object... replacements) {
+        checkNotNull(template, "template");
+        checkNotNull(replacements, "values");
+        Map<String, Object> replacementsMap = new HashMap<String, Object>();
+        int index = 0;
+        for (Object replacement : replacements) {
+            replacementsMap.put(Integer.toString(index++), replacement);
+        }
+        return formatNoChecks(template, replacementsMap);
+    }
+
+    private static Text formatNoChecks(Text template, Map<String, ?> replacements) {
+        // Is this a template that should be replaced?
+        if (template instanceof Template) {
+            Object replacement = replacements.get(((Template) template).getKey());
+            // Only replace
+            if (replacement != null) {
+                // Copy color and style from template
+                return Texts.of(template.getColor(), template.getStyle(), replacement);
+            }
+        }
+        if (template.getChildren().isEmpty()) {
+            return template;
+        }
+        // Also check child texts for templates
+        TextBuilder builder = template.builder();
+        builder.removeAll();
+        for (Text child : template.getChildren()) {
+            builder.append(formatNoChecks(child, replacements));
+        }
+        return builder.build();
+    }
+
+    /**
      * Creates a {@link TextBuilder} with empty text.
      *
      * @return A new text builder with empty text
@@ -205,6 +303,19 @@ public final class Texts {
      */
     public static TextBuilder.Literal builder(Text text, String content) {
         return new TextBuilder.Literal(text, content);
+    }
+
+    /**
+     * Creates a new unformatted {@link TextBuilder.Template} with the specified
+     * key.
+     *
+     * @param key The key of the template
+     * @return The created template builder
+     * @see Text.Template
+     * @see TextBuilder.Template
+     */
+    public static TextBuilder.Template templateBuilder(String key) {
+        return new TextBuilder.Template(key);
     }
 
     /**
