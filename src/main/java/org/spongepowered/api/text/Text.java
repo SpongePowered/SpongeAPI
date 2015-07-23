@@ -310,28 +310,28 @@ public abstract class Text {
     }
 
     /**
-     * Represents a {@link Text} template that can be replaced with another Text
-     * by {@Texts#format(Text, Map)}.
+     * Represents a {@link Text} placeholder that can be replaced with another
+     * Text by {@Texts#format(Text, Map)}.
      *
-     * @see TextBuilder.Template
+     * @see TextBuilder.Placeholder
      */
-    public static class Template extends Text.Literal {
+    public static class Placeholder extends Text.Literal {
 
         protected final String key;
 
-        Template(String key) {
+        Placeholder(String key) {
             this(key, "{" + key + "}");
         }
 
-        Template(String key, String fallback) {
+        Placeholder(String key, String fallback) {
             super(fallback);
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
             this.key = key;
         }
 
         /**
-         * Constructs a new immutable {@link Literal} for the given plain text
-         * content with the specified formatting and text actions applied.
+         * Constructs a new immutable {@link Placeholder} for the given plain
+         * text content with the specified formatting and text actions applied.
          *
          * @param color The color of the text
          * @param style The style of the text
@@ -342,10 +342,10 @@ public abstract class Text {
          *        none
          * @param shiftClickAction The shift click action of the text, or
          *        {@code null} for none
-         * @param key The key of the template
+         * @param key The key of the placeholder
          * @param fallback The fallback text if this does not get replaced
          */
-        public Template(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        public Placeholder(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String key, String fallback) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction, fallback);
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
@@ -353,8 +353,8 @@ public abstract class Text {
         }
 
         /**
-         * Returns the template key used to replace this template with the real
-         * content.
+         * Returns the placeholder key used to replace this placeholder with the
+         * real content.
          *
          * @return The template key of this template
          */
@@ -363,8 +363,8 @@ public abstract class Text {
         }
 
         @Override
-        public TextBuilder.Template builder() {
-            return new TextBuilder.Template(this);
+        public TextBuilder.Placeholder builder() {
+            return new TextBuilder.Placeholder(this);
         }
 
         @Override
@@ -376,7 +376,7 @@ public abstract class Text {
                 return false;
             }
 
-            Template that = (Template) o;
+            Placeholder that = (Placeholder) o;
             return Objects.equal(this.key, that.key) && Objects.equal(this.content, that.content);
         }
 

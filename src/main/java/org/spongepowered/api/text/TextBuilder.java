@@ -533,19 +533,19 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Represents a {@link TextBuilder} creating immutable {@link Text.Template}
-     * instances.
+     * Represents a {@link TextBuilder} creating immutable
+     * {@link Text.Placeholder} instances.
      *
-     * @see Text.Template
+     * @see Text.Placeholder
      */
-    public static class Template extends Literal {
+    public static class Placeholder extends Literal {
 
         protected String key;
 
         /**
          * Constructs a new empty {@link Literal}.
          */
-        public Template() {
+        public Placeholder() {
             this("");
         }
 
@@ -554,7 +554,7 @@ public abstract class TextBuilder {
          *
          * @param content The content for the text builder
          */
-        public Template(String key) {
+        public Placeholder(String key) {
             key(key);
             content(key);
         }
@@ -566,7 +566,7 @@ public abstract class TextBuilder {
          * @param text The text to apply the properties from
          * @param content The content for the text builder
          */
-        public Template(Text text, String key) {
+        public Placeholder(Text text, String key) {
             super(text, "{" + key + "}");
             key(key);
         }
@@ -577,7 +577,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        public Template(Text.Template text) {
+        public Placeholder(Text.Placeholder text) {
             super(text);
             this.key = text.key;
         }
@@ -586,7 +586,7 @@ public abstract class TextBuilder {
          * Returns the current key of this builder.
          *
          * @return The current key
-         * @see Text.Template#getKey()
+         * @see Text.Placeholder#getKey()
          */
         public final String getKey() {
             return this.key;
@@ -597,9 +597,9 @@ public abstract class TextBuilder {
          *
          * @param content The content of this text
          * @return This text builder
-         * @see Text.Template#getKey()
+         * @see Text.Placeholder#getKey()
          */
-        public Template key(String key) {
+        public Placeholder key(String key) {
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
             this.key = key;
             return this;
@@ -610,16 +610,16 @@ public abstract class TextBuilder {
          *
          * @param content The content of this text
          * @return This text builder
-         * @see Text.Template#getContent()
+         * @see Text.Placeholder#getContent()
          */
         @Override
-        public Template content(String content) {
-            return (Template) super.content(content);
+        public Placeholder content(String content) {
+            return (Placeholder) super.content(content);
         }
 
         @Override
-        public Text.Template build() {
-            return new Text.Template(
+        public Text.Placeholder build() {
+            return new Text.Placeholder(
                     this.color,
                     this.style,
                     ImmutableList.copyOf(this.children),
@@ -635,11 +635,11 @@ public abstract class TextBuilder {
             if (this == o) {
                 return true;
             }
-            if (!(o instanceof Template) || !super.equals(o)) {
+            if (!(o instanceof Placeholder) || !super.equals(o)) {
                 return false;
             }
 
-            Template that = (Template) o;
+            Placeholder that = (Placeholder) o;
             return Objects.equal(this.key, that.key) && Objects.equal(this.content, that.content);
 
         }
@@ -659,63 +659,63 @@ public abstract class TextBuilder {
         }
 
         @Override
-        public Template color(TextColor color) {
-            return (Template) super.color(color);
+        public Placeholder color(TextColor color) {
+            return (Placeholder) super.color(color);
         }
 
         @Override
-        public Template style(TextStyle... styles) {
-            return (Template) super.style(styles);
+        public Placeholder style(TextStyle... styles) {
+            return (Placeholder) super.style(styles);
         }
 
         @Override
-        public Template onClick(@Nullable ClickAction<?> clickAction) {
-            return (Template) super.onClick(clickAction);
+        public Placeholder onClick(@Nullable ClickAction<?> clickAction) {
+            return (Placeholder) super.onClick(clickAction);
         }
 
         @Override
-        public Template onHover(@Nullable HoverAction<?> hoverAction) {
-            return (Template) super.onHover(hoverAction);
+        public Placeholder onHover(@Nullable HoverAction<?> hoverAction) {
+            return (Placeholder) super.onHover(hoverAction);
         }
 
         @Override
-        public Template onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
-            return (Template) super.onShiftClick(shiftClickAction);
+        public Placeholder onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
+            return (Placeholder) super.onShiftClick(shiftClickAction);
         }
 
         @Override
-        public Template append(Text... children) {
-            return (Template) super.append(children);
+        public Placeholder append(Text... children) {
+            return (Placeholder) super.append(children);
         }
 
         @Override
-        public Template append(Iterable<? extends Text> children) {
-            return (Template) super.append(children);
+        public Placeholder append(Iterable<? extends Text> children) {
+            return (Placeholder) super.append(children);
         }
 
         @Override
-        public Template insert(int pos, Text... children) {
-            return (Template) super.insert(pos, children);
+        public Placeholder insert(int pos, Text... children) {
+            return (Placeholder) super.insert(pos, children);
         }
 
         @Override
-        public Template insert(int pos, Iterable<? extends Text> children) {
-            return (Template) super.insert(pos, children);
+        public Placeholder insert(int pos, Iterable<? extends Text> children) {
+            return (Placeholder) super.insert(pos, children);
         }
 
         @Override
-        public Template remove(Text... children) {
-            return (Template) super.remove(children);
+        public Placeholder remove(Text... children) {
+            return (Placeholder) super.remove(children);
         }
 
         @Override
-        public Template remove(Iterable<? extends Text> children) {
-            return (Template) super.remove(children);
+        public Placeholder remove(Iterable<? extends Text> children) {
+            return (Placeholder) super.remove(children);
         }
 
         @Override
-        public Template removeAll() {
-            return (Template) super.removeAll();
+        public Placeholder removeAll() {
+            return (Placeholder) super.removeAll();
         }
 
     }
