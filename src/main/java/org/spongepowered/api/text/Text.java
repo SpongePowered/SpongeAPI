@@ -311,7 +311,7 @@ public abstract class Text {
 
     /**
      * Represents a {@link Text} placeholder that can be replaced with another
-     * Text by {@Texts#format(Text, Map)}.
+     * Text by {@link Texts#format(Text, java.util.Map)}.
      *
      * @see TextBuilder.Placeholder
      */

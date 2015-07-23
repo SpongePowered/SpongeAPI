@@ -543,16 +543,17 @@ public abstract class TextBuilder {
         protected String key;
 
         /**
-         * Constructs a new empty {@link Literal}.
+         * Constructs a new empty {@link Placeholder}.
          */
         public Placeholder() {
             this("");
         }
 
         /**
-         * Constructs a new unformatted {@link Literal} with the given content.
+         * Constructs a new unformatted {@link Placeholder} with the given
+         * content.
          *
-         * @param content The content for the text builder
+         * @param key The key for the text builder
          */
         public Placeholder(String key) {
             key(key);
@@ -560,11 +561,11 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Literal} with the formatting and actions of
-         * the specified {@link Text} and the given content.
+         * Constructs a new {@link Placeholder} with the formatting and actions
+         * of the specified {@link Text} and the given content.
          *
          * @param text The text to apply the properties from
-         * @param content The content for the text builder
+         * @param key The key for the text builder
          */
         public Placeholder(Text text, String key) {
             super(text, "{" + key + "}");
@@ -572,8 +573,8 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Literal} with the formatting, actions and
-         * content of the specified {@link Text.Literal}.
+         * Constructs a new {@link Placeholder} with the formatting, actions and
+         * content of the specified {@link Text.Placeholder}.
          *
          * @param text The text to apply the properties from
          */
@@ -593,9 +594,9 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Sets the plain text content of this text.
+         * Sets the plain text replacement key of this text.
          *
-         * @param content The content of this text
+         * @param key The key of this text
          * @return This text builder
          * @see Text.Placeholder#getKey()
          */
