@@ -162,8 +162,9 @@ public class AccessorFirstStrategy implements PropertySearchStrategy {
                 signature += method.getReturnType().getName();
 
                 Method leastSpecificMethod;
-                if ((name = getAccessorName(method)) != null && !signatures.contains(signature) && ((leastSpecificMethod = accessorHierarchyBottoms.get(name)) == null
-                                                                 || leastSpecificMethod.getReturnType() != method.getReturnType())) {
+                if ((name = getAccessorName(method)) != null && !signatures.contains(signature)
+                        && ((leastSpecificMethod = accessorHierarchyBottoms.get(name)) == null
+                                || leastSpecificMethod.getReturnType() != method.getReturnType())) {
                     accessors.put(name, method);
                     signatures.add(signature);
 

@@ -25,7 +25,7 @@
 package org.spongepowered.api.util.command.source;
 
 import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
@@ -33,5 +33,11 @@ import org.spongepowered.api.util.command.CommandSource;
  * clicks a sign. Their location is set to the sign's location.
  */
 public interface SignSource extends ProxySource {
+
+    /**
+     * Get the sign {@link TileEntity} that this source has been created for.
+     *
+     * @return The {@link Sign}
+     */
     Sign getSign();
 }

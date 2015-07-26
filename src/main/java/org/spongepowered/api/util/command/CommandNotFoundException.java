@@ -65,6 +65,6 @@ public class CommandNotFoundException extends CommandException {
      * @return The command
      */
     public String getCommand() {
-        return command;
+        return this.command;
     }
 }
