@@ -181,6 +181,8 @@ public final class Texts {
                 builder.append((Text) obj);
             } else if (obj instanceof TextBuilder) {
                 builder.append(((TextBuilder) obj).build());
+            } else if (obj instanceof TextRepresentable) {
+                builder.append(((TextRepresentable) obj).toText());
             } else {
                 TextBuilder childBuilder;
 
