@@ -543,17 +543,10 @@ public abstract class TextBuilder {
         protected String key;
 
         /**
-         * Constructs a new empty {@link Placeholder}.
-         */
-        public Placeholder() {
-            this("");
-        }
-
-        /**
          * Constructs a new unformatted {@link Placeholder} with the given
          * content.
          *
-         * @param key The key for the text builder
+         * @param key The none empty replacement key for the placeholder builder
          */
         public Placeholder(String key) {
             key(key);
@@ -565,7 +558,7 @@ public abstract class TextBuilder {
          * of the specified {@link Text} and the given content.
          *
          * @param text The text to apply the properties from
-         * @param key The key for the text builder
+         * @param key The none empty replacement key for the placeholder builder
          */
         public Placeholder(Text text, String key) {
             super(text, "{" + key + "}");
@@ -584,9 +577,9 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Returns the current key of this builder.
+         * Returns the current replacement key of this builder.
          *
-         * @return The current key
+         * @return The current replacement key
          * @see Text.Placeholder#getKey()
          */
         public final String getKey() {
