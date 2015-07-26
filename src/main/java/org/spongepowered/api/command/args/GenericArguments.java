@@ -37,6 +37,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.command.source.ProxySource;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.GuavaCollectors;
@@ -49,11 +51,14 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -903,7 +908,8 @@ public final class GenericArguments {
         }
     }
 
-    private static class PlayerCommandElement extends PatternMatchingCommandElement {
+    private static class PlayerCommandElement extends SelectorCommandElement {
+        
         private final boolean returnSource;
 
         protected PlayerCommandElement(Text key, boolean returnSource) {
@@ -911,16 +917,16 @@ public final class GenericArguments {
             this.returnSource = returnSource;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            // TODO: Make player name resolution better -- support selectors, etc
             if (!args.hasNext() && this.returnSource) {
                 return tryReturnSource(source, args);
             }
 
             Object state = args.getState();
             try {
-                return super.parseValue(source, args);
+                return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
@@ -948,6 +954,9 @@ public final class GenericArguments {
         }
 
         private Player tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof ProxySource && ((ProxySource) source).getTarget() instanceof Player) {
+                return (Player) ((ProxySource) source).getTarget();
+            }
             if (source instanceof Player) {
                 return ((Player) source);
             } else {
@@ -1247,4 +1256,87 @@ public final class GenericArguments {
             return this.element.getUsage(src);
         }
     }
+    
+    public static CommandElement entity(Text key) {
+        return new EntityCommandElement(key, false);
+    }
+    
+    public static CommandElement entityOrSource(Text key) {
+        return new EntityCommandElement(key, true);
+    }
+
+    private static class EntityCommandElement extends SelectorCommandElement {
+
+        private final boolean returnSource;
+    
+        protected EntityCommandElement(Text key, boolean returnSource) {
+            super(key);
+            this.returnSource = returnSource;
+        }
+    
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!args.hasNext() && this.returnSource) {
+                return tryReturnSource(source, args);
+            }
+    
+            Object state = args.getState();
+            try {
+                return super.parseValue(source, args);
+            } catch (ArgumentParseException ex) {
+                if (this.returnSource) {
+                    args.setState(state);
+                    return tryReturnSource(source, args);
+                } else {
+                    throw ex;
+                }
+            }
+        }
+    
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            Set<Iterable<Entity>> worldEntities = new HashSet<Iterable<Entity>>();
+            for (World world : Sponge.getServer().getWorlds()) {
+                worldEntities.add(world.getEntities());
+            }
+            return Iterables.transform(Iterables.concat(worldEntities), input -> {
+                if (input == null) {
+                    return null;
+                }
+                if (input instanceof Player) {
+                    return ((Player)input).getName();
+                }
+                return input.getUniqueId().toString();
+            });
+        }
+    
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            UUID uuid = UUID.fromString(choice);
+            for (World world : Sponge.getServer().getWorlds()) {
+                Optional<Entity> ret = world.getEntity(uuid);
+                if (ret.isPresent()) {
+                    return ret.get();
+                }
+            }
+            throw new IllegalArgumentException("Input value " + choice + " was not an entity");
+        }
+    
+        private static Entity tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof ProxySource && ((ProxySource) source).getTarget() instanceof Entity) {
+                return (Entity) ((ProxySource) source).getTarget();
+            }
+            if (source instanceof Entity) {
+                return (Entity) source;
+            } else {
+                throw args.createError(t("No entities matched and source was not an entity!"));
+            }
+        }
+    
+        @Override
+        public Text getUsage(CommandSource src) {
+            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+    }
+    
 }

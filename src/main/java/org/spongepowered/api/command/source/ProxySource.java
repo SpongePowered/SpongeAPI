@@ -28,14 +28,21 @@ import org.spongepowered.api.command.CommandSource;
 
 /**
  * Proxy sources are {@link CommandSource}s that are run by one source as a
- * different source.
+ * different object.
  */
-public interface ProxySource extends LocatedSource {
+public interface ProxySource extends CommandSource {
 
     /**
-     * Gets the {@link CommandSource} this source is proxying.
+     * Gets the {@link CommandSource} this source is created by.
      *
      * @return The proxied source
      */
     CommandSource getOriginalSource();
+
+    /**
+     * Get the target of this source.
+     *
+     * @return The target
+     */
+    ProxySourceTarget getTarget();
 }
