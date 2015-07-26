@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.text.TextRepresentable;
 
 /**
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
@@ -36,7 +37,7 @@ import org.spongepowered.api.item.ItemType;
  * use {@link DataHolder#getData(Class)} to retrieve different information
  * regarding this item stack.</p>
  */
-public interface ItemStack extends DataHolder, DataSerializable {
+public interface ItemStack extends DataHolder, DataSerializable, TextRepresentable {
 
     /**
      * Gets the {@link ItemType} of this {@link ItemStack}.
