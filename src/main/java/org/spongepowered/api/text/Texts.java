@@ -204,66 +204,64 @@ public final class Texts {
     }
 
     /**
-     * Replaces all instances of {@link Placeholder} with the given
-     * replacements. All placeholders without a none null replacement are
-     * ignored. All replacements will be wrapped in a {@link Text} using
-     * {@link Texts#of(Object...)} the color and the style from the placeholder
-     * are transfered to that method as well.
+     * Creates a new Text instance with all {@link Placeholder}s replaced. All
+     * placeholders without a non-null replacement are ignored. All replacements
+     * will be wrapped in a {@link Text} using {@link Texts#of(Object...)} the
+     * color and the style from the placeholder are transfered to that method as
+     * well.
      *
-     * @param placeholder The placeholder text in which all {@link Placeholder}s
+     * @param template The template text in which all {@link Placeholder}s
      *        should be replaced
      * @param replacements The values available to replace the placeholders
      * @return The text with all possible placeholders replaced
      */
-    public static Text format(Text placeholder, Map<String, ?> replacements) {
-        checkNotNull(placeholder, "placeholder");
+    public static Text format(Text template, Map<String, ?> replacements) {
+        checkNotNull(template, "template");
         checkNotNull(replacements, "values");
         if (replacements.isEmpty()) {
-            return placeholder;
+            return template;
         }
-        return formatNoChecks(placeholder, replacements);
+        return formatNoChecks(template, replacements);
     }
 
     /**
-     * Replaces all instances of {@link Placeholder} with the given
-     * replacements. All placeholders without a none null replacement are
-     * ignored. All replacements will be wrapped in a {@link Text} using
-     * {@link Texts#of(Object...)} the color and the style from the placeholder
-     * are transfered to that method as well.
+     * Creates a new Text instance with all {@link Placeholder}s replaced. All
+     * placeholders without a non-null replacement are ignored. All replacements
+     * will be wrapped in a {@link Text} using {@link Texts#of(Object...)} the
+     * color and the style from the placeholder are transfered to that method as
+     * well.
      *
-     * @param placeholder The placeholder text in which all {@link Placeholder}s
+     * @param template The template text in which all {@link Placeholder}s
      *        should be replaced
-     * @param replacements The values available to replace the placeholders
+     * @param replacements The values available to replace the placeholders. May
+     *        contain null values to skip the placeholder
      * @return The text with all possible placeholders replaced
      */
-    public static Text format(Text placeholder, Object... replacements) {
-        checkNotNull(placeholder, "placeholder");
+    public static Text format(Text template, Object... replacements) {
+        checkNotNull(template, "template");
         checkNotNull(replacements, "values");
         Map<String, Object> replacementsMap = new HashMap<String, Object>();
         int index = 0;
         for (Object replacement : replacements) {
             replacementsMap.put(Integer.toString(index++), replacement);
         }
-        return formatNoChecks(placeholder, replacementsMap);
+        return formatNoChecks(template, replacementsMap);
     }
 
-    private static Text formatNoChecks(Text placeholder, Map<String, ?> replacements) {
+    private static Text formatNoChecks(Text template, Map<String, ?> replacements) {
         // Is this a placeholder that should be replaced?
-        if (placeholder instanceof Placeholder) {
-            Object replacement = replacements.get(((Placeholder) placeholder).getKey());
+        if (template instanceof Placeholder) {
+            Object replacement = replacements.get(((Placeholder) template).getKey());
             // Only replace
             if (replacement != null) {
                 // Copy color and style from placeholder
-                return Texts.of(placeholder.getColor(), placeholder.getStyle(), replacement);
+                return Texts.of(template.getColor(), template.getStyle(), replacement);
             }
         }
-        if (placeholder.getChildren().isEmpty()) {
-            return placeholder;
-        }
         // Also check child texts for placeholders
-        TextBuilder builder = placeholder.builder();
+        TextBuilder builder = template.builder();
         builder.removeAll();
-        for (Text child : placeholder.getChildren()) {
+        for (Text child : template.getChildren()) {
             builder.append(formatNoChecks(child, replacements));
         }
         return builder.build();
