@@ -502,7 +502,8 @@ public final class Texts {
     }
 
     /**
-     * Get a {@link TextRepresentation} for the Mojangson representation of a {@link Text} object.
+     * Get a {@link TextRepresentation} for the Mojangson representation of a
+     * {@link Text} object.
      *
      *
      * @return The json serializer
@@ -512,7 +513,8 @@ public final class Texts {
     }
 
     /**
-     * Get a {@link TextRepresentation} for the TextXML representation of a {@link Text} object.
+     * Get a {@link TextRepresentation} for the TextXML representation of a
+     * {@link Text} object.
      *
      * @return The xml text serializer
      */
@@ -532,7 +534,8 @@ public final class Texts {
     }
 
     /**
-     * Return a representation that accepts and outputs legacy color codes, using the default legacy char {{@link #getLegacyChar()}}.
+     * Return a representation that accepts and outputs legacy color codes,
+     * using the default legacy char {{@link #getLegacyChar()} .
      *
      * @return The appropriate legacy representation handler
      */
@@ -542,7 +545,8 @@ public final class Texts {
     }
 
     /**
-     * Return a representation that accepts and outputs legacy color codes, using the provided legacy character.
+     * Return a representation that accepts and outputs legacy color codes,
+     * using the provided legacy character.
      *
      * @param legacyChar The legacy character to parse and output using
      * @return The appropriate legacy representation handler
