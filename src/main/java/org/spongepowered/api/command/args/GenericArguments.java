@@ -38,12 +38,14 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.blockray.BlockRay;
@@ -56,6 +58,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +66,8 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -396,19 +401,15 @@ public final class GenericArguments {
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
             return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    new com.google.common.base.Function<CommandElement, List<String>>() {
-
-                        @Override
-                        public List<String> apply(@Nullable CommandElement input) {
-                            if (input == null) {
-                                return ImmutableList.of();
-                            }
-
-                            Object startState = args.getState();
-                            List<String> ret = input.complete(src, args, context);
-                            args.setState(startState);
-                            return ret;
+                    input -> {
+                        if (input == null) {
+                            return ImmutableList.of();
                         }
+
+                        Object startState = args.getState();
+                        List<String> ret = input.complete(src, args, context);
+                        args.setState(startState);
+                        return ret;
                     })));
         }
 
@@ -969,7 +970,8 @@ public final class GenericArguments {
         }
     }
 
-    private static class PlayerCommandElement extends PatternMatchingCommandElement {
+    private static class PlayerCommandElement extends SelectorCommandElement {
+
         private final boolean returnSource;
 
         protected PlayerCommandElement(Text key, boolean returnSource) {
@@ -977,16 +979,16 @@ public final class GenericArguments {
             this.returnSource = returnSource;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            // TODO: Make player name resolution better -- support selectors, etc
             if (!args.hasNext() && this.returnSource) {
                 return tryReturnSource(source, args);
             }
 
             Object state = args.getState();
             try {
-                return super.parseValue(source, args);
+                return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
@@ -1016,6 +1018,8 @@ public final class GenericArguments {
         private Player tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
             if (source instanceof Player) {
                 return ((Player) source);
+            } else if (source instanceof ProxySource && ((ProxySource) source).getOriginalSource() instanceof Player) {
+                return (Player) ((ProxySource) source).getOriginalSource();
             } else {
                 throw args.createError(t("No players matched and source was not a player!"));
             }
@@ -1206,6 +1210,12 @@ public final class GenericArguments {
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Object state = args.getState();
+            if (args.peek().startsWith("@")) { // We are a selector
+                return Selector.parse(args.next()).resolve(source).stream()
+                        .map(Entity::getLocation)
+                        .collect(GuavaCollectors.toImmutableSet());
+            }
+
             Object world;
             Object vec = null;
             try {
@@ -1243,12 +1253,18 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             Object state = args.getState();
-            List<String> ret;
-            if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+            Optional<String> nextPossibility = args.nextIfPresent();
+            if (nextPossibility.isPresent() && nextPossibility.get().startsWith("@")) {
+                return Selector.complete(nextPossibility.get());
+            } else {
                 args.setState(state);
-                ret = this.vectorParser.complete(src, args, context);
+                List<String> ret;
+                if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+                    args.setState(state);
+                    ret = this.vectorParser.complete(src, args, context);
+                }
+                return ret;
             }
-            return ret;
         }
     }
 
@@ -1375,4 +1391,86 @@ public final class GenericArguments {
             return this.element.getUsage(src);
         }
     }
+
+    public static CommandElement entity(Text key) {
+        return new EntityCommandElement(key, false);
+    }
+
+    public static CommandElement entityOrSource(Text key) {
+        return new EntityCommandElement(key, true);
+    }
+
+    private static class EntityCommandElement extends SelectorCommandElement {
+
+        private final boolean returnSource;
+
+        protected EntityCommandElement(Text key, boolean returnSource) {
+            super(key);
+            this.returnSource = returnSource;
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!args.hasNext() && this.returnSource) {
+                return tryReturnSource(source, args);
+            }
+
+            Object state = args.getState();
+            try {
+                return super.parseValue(source, args);
+            } catch (ArgumentParseException ex) {
+                if (this.returnSource) {
+                    args.setState(state);
+                    return tryReturnSource(source, args);
+                } else {
+                    throw ex;
+                }
+            }
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            Set<Iterable<Entity>> worldEntities = new HashSet<Iterable<Entity>>();
+            for (World world : Sponge.getServer().getWorlds()) {
+                worldEntities.add(world.getEntities());
+            }
+            return Iterables.transform(Iterables.concat(worldEntities), input -> {
+                if (input == null) {
+                    return null;
+                }
+                if (input instanceof Player) {
+                    return ((Player)input).getName();
+                }
+                return input.getUniqueId().toString();
+            });
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            UUID uuid = UUID.fromString(choice);
+            for (World world : Sponge.getServer().getWorlds()) {
+                Optional<Entity> ret = world.getEntity(uuid);
+                if (ret.isPresent()) {
+                    return ret.get();
+                }
+            }
+            throw new IllegalArgumentException("Input value " + choice + " was not an entity");
+        }
+
+        private static Entity tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof Entity) {
+                return (Entity) source;
+            } else if (source instanceof ProxySource && ((ProxySource) source).getOriginalSource() instanceof Entity) {
+                return (Entity) ((ProxySource) source).getOriginalSource();
+            } else {
+                throw args.createError(t("No entities matched and source was not an entity!"));
+            }
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+    }
+
 }
