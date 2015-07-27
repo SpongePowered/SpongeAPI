@@ -39,7 +39,8 @@ public interface TextRepresentable {
      * Gets the textual representation of this instance for its usage in other
      * {@link Text} objects. This may but does not need to include
      * {@link HoverAction hover texts} or other {@link TextAction actions}. This
-     * method is basically the {@link #toString()} equivalent for {@link Text}s.
+     * method is basically the {@link Object#toString() toString()} equivalent
+     * for {@link Text}s.
      * 
      * @return The text instance representing this instance
      */
