@@ -206,7 +206,7 @@ public final class SpongeEventFactory {
 
     private static Class<?> getBaseClass(Class<?> event) {
         Class<?> superClass = null;
-        for (EventFactoryPlugin plugin: plugins) {
+        for (EventFactoryPlugin plugin : plugins) {
             superClass = plugin.resolveSuperClassFor(event, superClass, factoryProvider.getClassLoader());
         }
         return superClass;
