@@ -90,7 +90,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
      * @param location The location to set
@@ -104,7 +104,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
      * @param location The location to set
@@ -127,7 +127,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
      * @param location The location to set
@@ -144,7 +144,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
      * @param location The location to set
@@ -200,7 +200,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
      * @return The rotation as a Vector3f
@@ -212,7 +212,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
      * @param rotation The rotation to set the entity to
