@@ -31,16 +31,20 @@ import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
+import org.spongepowered.api.util.blockray.BlockRay;
+import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -961,23 +965,64 @@ public final class GenericArguments {
         }
     }
 
+    /**
+     * Acceped formats:
+     *
+     * <ul>
+     *     <li>#first</li>
+     *     <li>#&lt;dimension></li>
+     *     <li>&lt;name></li>
+     *     <li>#me</li>
+     * </ul>
+     */
     private static class WorldPropertiesCommandElement extends PatternMatchingCommandElement {
+        private final CommandElement dimensionTypeElement;
 
         protected WorldPropertiesCommandElement(@Nullable Text key) {
             super(key);
+            this.dimensionTypeElement = dimension(key);
         }
 
         @Nullable
         @Override
         public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            final String next = args.peek();
+            if (next.startsWith("#")) {
+                String specifier = next.substring(1);
+                if (specifier.equalsIgnoreCase("first")) {
+                    args.next();
+                    return Iterables.filter(Sponge.getGame().getServer().getAllWorldProperties(), input -> {
+                            return input != null && input.isEnabled();
+                    }).iterator().next();
+                } else if (specifier.equalsIgnoreCase("me") && source instanceof LocatedSource) {
+                    args.next();
+                    return ((LocatedSource) source).getWorld();
+                } else {
+                    boolean firstOnly = false;
+                    if (specifier.endsWith(":first")) {
+                        firstOnly = true;
+                        specifier = specifier.substring(0, specifier.length() - 6);
+                    }
+                    args.next();
+                    args.insertArg(specifier);
+                    final DimensionType type = (DimensionType) this.dimensionTypeElement.parseValue(source, args);
+                    Iterable<WorldProperties> ret = Iterables.filter(Sponge.getGame().getServer().getAllWorldProperties(), input -> {
+                            return input != null && input.isEnabled() && input.getDimensionType().equals(type);
+                    });
+                    return firstOnly ? ret.iterator().next() : ret;
+                }
+            }
+
             return super.parseValue(source, args);
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Sponge.getGame().getServer().getAllWorldProperties().stream()
+            return Iterables.concat(Sponge.getGame().getServer().getAllWorldProperties().stream()
                 .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), ImmutableSet.of("#first", "#me"), Iterables.transform(Sponge.getGame().getRegistry().getAllOf(DimensionType
+                    .class),
+                    input2 -> "#" + input2.getId()));
         }
 
         @Override
@@ -998,6 +1043,7 @@ public final class GenericArguments {
      *
      */
     private static class Vector3dCommandElement extends CommandElement {
+        private static final ImmutableSet<String> SPECIAL_TOKENS = ImmutableSet.of("#target", "#me");
 
         protected Vector3dCommandElement(@Nullable Text key) {
             super(key);
@@ -1017,6 +1063,14 @@ public final class GenericArguments {
                 xStr = split[0];
                 yStr = split[1];
                 zStr = split[2];
+            } else if (xStr.equals("#target") && source instanceof Entity) {
+                Optional<BlockRayHit<World>> hit = BlockRay.from(((Entity) source)).filter(BlockRay.onlyAirFilter()).build().end();
+                if (!hit.isPresent()) {
+                    throw args.createError(t("No target block is available! Stop stargazing!"));
+                }
+                return hit.get().getPosition();
+            } else if (xStr.equalsIgnoreCase("#me") && source instanceof LocatedSource) {
+                return ((LocatedSource) source).getLocation().getPosition();
             } else {
                 yStr = args.next();
                 zStr = args.next();
@@ -1033,7 +1087,9 @@ public final class GenericArguments {
             Optional<String> arg = args.nextIfPresent();
             // Traverse through the possible arguments. We can't really complete arbitrary integers
             if (arg.isPresent()) {
-                if (arg.get().contains(",") || !args.hasNext()) {
+                if (arg.get().startsWith("#")) {
+                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg.get())).collect(GuavaCollectors.toImmutableList());
+                } else if (arg.get().contains(",") || !args.hasNext()) {
                     return ImmutableList.of(arg.get());
                 } else {
                     arg = args.nextIfPresent();
@@ -1055,6 +1111,9 @@ public final class GenericArguments {
                     throw args.createError(t("Relative position specified but source does not have a postion"));
                 }
                 arg = arg.substring(1);
+                if (arg.isEmpty()) {
+                    return relativeTo;
+                }
             }
             try {
                 double ret = Double.parseDouble(arg);
@@ -1065,6 +1124,13 @@ public final class GenericArguments {
         }
     }
 
+    /**
+     * Listens to:
+     * <ul>
+     *     <li>#spawn:&lt;world></li>
+     *     <li>#me: Location of the current source</li>
+     * </ul>
+     */
     private static class LocationCommandElement extends CommandElement {
         private final WorldPropertiesCommandElement worldParser;
         private final Vector3dCommandElement vectorParser;
