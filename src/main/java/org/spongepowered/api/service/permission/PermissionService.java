@@ -100,7 +100,7 @@ public interface PermissionService {
      * @param plugin The plugin to create permission descriptions for
      * @return The newly created permission description builder, if supported
      */
-    Optional<PermissionDescription.Builder> newDescriptionBuilder(PluginContainer plugin);
+    Optional<PermissionDescription.Builder> newDescriptionBuilder(Object plugin);
 
     /**
      * Gets the registered or generated {@link PermissionDescription} for the
