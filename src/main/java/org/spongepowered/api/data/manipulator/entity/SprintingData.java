@@ -33,5 +33,5 @@ import org.spongepowered.api.entity.player.Player;
  * {@link Player}s.
  */
 public interface SprintingData extends DataManipulator<SprintingData> {
-
+	
 }

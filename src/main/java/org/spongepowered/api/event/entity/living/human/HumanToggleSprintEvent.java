@@ -32,5 +32,15 @@ import org.spongepowered.api.event.Cancellable;
  * Called when a {@link Human} changes to/from sprint.
  */
 public interface HumanToggleSprintEvent extends HumanEvent, Cancellable {
+	
+	/**
+	 * gets whether the event was triggered due to {@link Human} 
+	 * is 'sprinting' or has stopped 'sprinting'
+	 * 
+	 * <p>This is the result after the event is triggered, as in
+	 * if the {@link Human} was walking and is now sprinting,
+	 * this method will return 'true'.</p>
+	 * 
+	 */
 	boolean isNowSprinting();
 }
