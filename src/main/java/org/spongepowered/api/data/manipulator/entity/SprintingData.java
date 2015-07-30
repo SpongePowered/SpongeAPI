@@ -23,14 +23,15 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.entity.player;
+package org.spongepowered.api.data.manipulator.entity;
 
+import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
 
 /**
- * Called when a {@link Player} changes to/from sprint.
+ * Signifies that an entity is currently "sprinting". Usually applicable to
+ * {@link Player}s.
  */
-public interface PlayerToggleSprintEvent extends PlayerEvent, HumanToggleSprintEvent {
+public interface SprintingData extends DataManipulator<SprintingData> {
 
 }
