@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanMoveEvent;
+import org.spongepowered.api.event.entity.living.human.HumanToggleSprintEvent;
 
 /**
  * Called when a {@link Player} changes to/from sprint.
