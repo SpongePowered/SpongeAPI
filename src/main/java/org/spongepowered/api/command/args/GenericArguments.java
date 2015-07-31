@@ -40,6 +40,9 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.LocatedSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
@@ -106,6 +109,16 @@ public final class GenericArguments {
      */
     public static CommandElement player(Text key) {
         return new PlayerCommandElement(key, false);
+    }
+
+    /**
+     * Expect an argument to represent a player who has been online at some point, as a {@link User}
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement user(Text key) {
+        return new UserCommandElement(key);
     }
 
     /**
@@ -904,6 +917,37 @@ public final class GenericArguments {
         @Override
         public Text getUsage(CommandSource src) {
             return Text.of(Joiner.on(' ').join(this.expectedArgs));
+        }
+    }
+
+    private static class UserCommandElement extends PatternMatchingCommandElement {
+        private final PlayerCommandElement possiblePlayer;
+
+        protected UserCommandElement(@Nullable Text key) {
+            super(key);
+            this.possiblePlayer = new PlayerCommandElement(key, false);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object state = args.getState();
+            try {
+                return possiblePlayer.parseValue(source, args);
+            } catch (ArgumentParseException ex) {
+                args.setState(state);
+                return super.parseValue(source, args);
+            }
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Iterables.transform(Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).getAll(), GameProfile::getName);
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
         }
     }
 
