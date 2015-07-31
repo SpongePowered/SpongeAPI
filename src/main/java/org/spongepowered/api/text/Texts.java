@@ -184,10 +184,6 @@ public final class Texts {
                 color = (TextColor) obj;
             } else if (obj instanceof TextStyle) {
                 style = obj.equals(TextStyles.RESET) ? TextStyles.NONE : style.and((TextStyle) obj);
-            } else if (obj instanceof Text) {
-                builder.append((Text) obj);
-            } else if (obj instanceof TextBuilder) {
-                builder.append(((TextBuilder) obj).build());
             } else if (obj instanceof TextRepresentable) {
                 builder.append(((TextRepresentable) obj).toText());
             } else if (obj instanceof TextAction) {

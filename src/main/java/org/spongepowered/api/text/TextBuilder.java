@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *
  * @see Text
  */
-public abstract class TextBuilder {
+public abstract class TextBuilder implements TextRepresentable {
 
     protected TextColor color = TextColors.NONE;
     protected TextStyle style = TextStyles.NONE;
@@ -352,6 +352,11 @@ public abstract class TextBuilder {
                 .add("hoverAction", this.hoverAction)
                 .add("shiftClickAction", this.shiftClickAction)
                 .toString();
+    }
+
+    @Override
+    public final Text toText() {
+        return build();
     }
 
     /**

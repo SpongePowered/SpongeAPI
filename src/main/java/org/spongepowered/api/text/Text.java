@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  * @see Selector
  * @see Score
  */
-public abstract class Text {
+public abstract class Text implements TextRepresentable {
 
     protected final TextColor color;
     protected final TextStyle style;
@@ -227,6 +227,11 @@ public abstract class Text {
                 .add("hoverAction", this.hoverAction)
                 .add("shiftClickAction", this.shiftClickAction)
                 .toString();
+    }
+
+    @Override
+    public final Text toText() {
+        return this;
     }
 
     /**
