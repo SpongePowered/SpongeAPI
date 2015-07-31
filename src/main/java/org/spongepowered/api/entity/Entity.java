@@ -86,6 +86,39 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     void setLocation(Location location);
 
     /**
+     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
+     * teleport and also moves this entity's passengers.
+     *
+     * @param location The location to set
+     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     */
+    boolean setLocationSafely(Location location);
+
+    /**
+     * Gets the rotation.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @return The rotation
+     */
+    Vector3d getRotation();
+
+    /**
+     * Sets the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(Vector3d rotation);
+
+    /**
      * Moves the entity to the specified location, and sets the rotation.
      *
      * <p>The format of the rotation is represented by:</p>
@@ -97,6 +130,20 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param rotation The rotation to set
      */
     void setLocationAndRotation(Location location, Vector3d rotation);
+
+    /**
+     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     */
+    boolean setLocationAndRotationSafely(Location location, Vector3d rotation);
 
     /**
      * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
@@ -112,29 +159,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param relativePositions The coordinates to set relatively
      */
     void setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
-
-    /**
-     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
-     * teleport and also moves this entity's passengers.
-     *
-     * @param location The location to set
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
-     */
-    boolean setLocationSafely(Location location);
-
-    /**
-     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
-     */
-    boolean setLocationAndRotationSafely(Location location, Vector3d rotation);
 
     /**
      * Sets the location using a safe one from
@@ -154,6 +178,38 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *     couldn't be set as no safe location was found
      */
     boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Gets the entity scale. Not currently used.
+     * Returns {@link Vector3d#ONE}.
+     *
+     * @return The entity scale
+     */
+    Vector3d getScale();
+
+    /**
+     * Gets the entity scale. Not currently used.
+     * Does nothing.
+     *
+     * @param scale The scale
+     */
+    void setScale(Vector3d scale);
+
+    /**
+     * Returns the entity transform as a new copy.
+     * Combines the position, rotation and scale.
+     *
+     * @return The transform as a new copy
+     */
+    Transform getTransform();
+
+    /**
+     * Sets the entity transform. Sets the
+     * position, rotation and scale at once.
+     *
+     * @param transform The transform to set
+     */
+    void setTransform(Transform transform);
 
     /**
      * Sets the location of this entity to a new position in a world which does
@@ -194,30 +250,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return True if the teleport was successful
      */
     boolean transferToWorld(UUID uuid, Vector3d position);
-
-    /**
-     * Gets the rotation as a Vector3f.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @return The rotation as a Vector3f
-     */
-    Vector3d getRotation();
-
-    /**
-     * Sets the rotation of this entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param rotation The rotation to set the entity to
-     */
-    void setRotation(Vector3d rotation);
 
     /**
      * Returns whether this entity is on the ground (not in the air) or not.
