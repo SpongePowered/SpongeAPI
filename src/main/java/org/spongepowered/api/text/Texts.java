@@ -30,6 +30,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.Text.Placeholder;
+import org.spongepowered.api.text.action.ClickAction;
+import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.action.ShiftClickAction;
+import org.spongepowered.api.text.action.TextAction;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyle;
@@ -171,6 +175,9 @@ public final class Texts {
         TextBuilder builder = builder();
         TextColor color = TextColors.NONE;
         TextStyle style = TextStyles.NONE;
+        HoverAction<?> hoverAction = null;
+        ClickAction<?> clickAction = null;
+        ShiftClickAction<?> shiftClickAction = null;
 
         for (Object obj : objects) {
             if (obj instanceof TextColor) {
@@ -183,6 +190,16 @@ public final class Texts {
                 builder.append(((TextBuilder) obj).build());
             } else if (obj instanceof TextRepresentable) {
                 builder.append(((TextRepresentable) obj).toText());
+            } else if (obj instanceof TextAction) {
+                if (obj instanceof HoverAction) {
+                    hoverAction = (HoverAction<?>) obj;
+                } else if (obj instanceof ClickAction) {
+                    clickAction = (ClickAction<?>) obj;
+                } else if (obj instanceof ShiftClickAction) {
+                    shiftClickAction = (ShiftClickAction<?>) obj;
+                } else {
+                    // Unsupported TextAction
+                }
             } else {
                 TextBuilder childBuilder;
 
@@ -196,6 +213,16 @@ public final class Texts {
                     childBuilder = Texts.builder((Score) obj);
                 } else {
                     childBuilder = Texts.builder(String.valueOf(obj));
+                }
+
+                if (hoverAction != null) {
+                    builder.onHover(hoverAction);
+                }
+                if (clickAction != null) {
+                    builder.onClick(clickAction);
+                }
+                if (shiftClickAction != null) {
+                    builder.onShiftClick(shiftClickAction);
                 }
 
                 builder.append(childBuilder.color(color).style(style).build());
@@ -256,8 +283,13 @@ public final class Texts {
             Object replacement = replacements.get(((Placeholder) template).getKey());
             // Only replace
             if (replacement != null) {
-                // Copy color and style from placeholder
-                return Texts.of(template.getColor(), template.getStyle(), replacement);
+                // Copy color, style and text actions from placeholder
+                return Texts.of(template.getColor(),
+                        template.getStyle(),
+                        template.getHoverAction().orNull(),
+                        template.getClickAction().orNull(),
+                        template.getShiftClickAction().orNull(),
+                        replacement);
             }
         }
         // Also check child texts for placeholders
