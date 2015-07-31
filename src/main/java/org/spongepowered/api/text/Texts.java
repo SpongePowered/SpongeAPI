@@ -27,6 +27,7 @@ package org.spongepowered.api.text;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.Text.Placeholder;
@@ -42,7 +43,9 @@ import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -280,12 +283,24 @@ public final class Texts {
             // Only replace
             if (replacement != null) {
                 // Copy color, style and text actions from placeholder
-                return Texts.of(template.getColor(),
-                        template.getStyle(),
-                        template.getHoverAction().orNull(),
-                        template.getClickAction().orNull(),
-                        template.getShiftClickAction().orNull(),
-                        replacement);
+                List<Object> formats = new ArrayList<Object>();
+                formats.add(template.getColor());
+                formats.add(template.getStyle());
+                Optional<HoverAction<?>> hoverAction = template.getHoverAction();
+                if (hoverAction.isPresent()) {
+                    formats.add(hoverAction.get());
+                }
+                Optional<ClickAction<?>> clickAction = template.getClickAction();
+                if (clickAction.isPresent()) {
+                    formats.add(clickAction.get());
+                }
+                Optional<ShiftClickAction<?>> shiftClickAction = template.getShiftClickAction();
+                if (shiftClickAction.isPresent()) {
+                    formats.add(shiftClickAction.get());
+                }
+                formats.add(replacement);
+
+                return Texts.of(formats.toArray());
             }
         }
         // Also check child texts for placeholders
