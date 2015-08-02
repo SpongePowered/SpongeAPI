@@ -36,6 +36,7 @@ import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 
@@ -86,6 +87,26 @@ public interface World extends Extent, Viewer, Contextual {
      * @return The chunk, if available
      */
     Optional<Chunk> getChunk(int x, int y, int z);
+    
+    /**
+     * Get the loaded chunk at the given position
+     * 
+     * <p>Please note this is not like the other
+     * getChunk() methods. This takes the blocks
+     * location instead of the chunks location.</p>
+     * 
+     * @param loc The blocks position
+     * @return The Chunk, if available
+     */
+    Optional<Chunk> getChunk(Location loc);
+    
+    /**
+     * Get the chunks in the world.
+     * 
+     * @return The chunks
+     */
+    
+    Collection<Chunk> getChunks();
 
     /**
      * Get the chunk at the given position if it exists or if
