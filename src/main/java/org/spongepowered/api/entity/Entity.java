@@ -30,7 +30,6 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.TargetedLocationData;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
-import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
@@ -64,13 +63,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      */
     EntityType getType();
 
-    /**
-     * Gets the current chunk this entity resides in.
-     * 
-     * @return The current chunk this entity resides in
-     */
-    Chunk getChunk();
-    
     /**
      * Gets the current world this entity resides in.
      *
