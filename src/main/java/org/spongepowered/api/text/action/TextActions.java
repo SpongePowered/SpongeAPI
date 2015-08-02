@@ -29,6 +29,8 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.Consumer;
+import org.spongepowered.api.util.command.CommandSource;
 
 import java.net.URL;
 import java.util.UUID;
@@ -85,6 +87,18 @@ public final class TextActions {
      */
     public static ClickAction.SuggestCommand suggestCommand(String command) {
         return new ClickAction.SuggestCommand(command);
+    }
+
+    /**
+     * Creates a new {@link ExecuteCallback} that will execute the given
+     * runnable on the server when clicked. The callback will expire after some amount of time (not particularly instantly, but not like
+     * overnight really either).
+     *
+     * @param callback The callback to execute
+     * @return The created click action instance
+     */
+    public static ClickAction.ExecuteCallback executeCallback(Consumer<CommandSource> callback) {
+        return new ClickAction.ExecuteCallback(callback);
     }
 
     /**
