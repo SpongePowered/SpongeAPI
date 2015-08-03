@@ -953,4 +953,12 @@ public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUnivers
      *     data that this holder will refuse
      */
     void setRawData(int x, int y, int z, DataContainer container) throws InvalidDataException;
+
+    /**
+     * Gets whether or not this extent is currently loaded.
+     *
+     * @return Whether or not this extent is loaded
+     */
+    boolean isLoaded();
+
 }
