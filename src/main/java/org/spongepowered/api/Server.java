@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.world.ChunkLoadService;
+import org.spongepowered.api.service.error.Reportable;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.command.source.ConsoleSource;
@@ -47,7 +48,7 @@ import java.util.UUID;
 /**
  * Represents a typical Minecraft Server.
  */
-public interface Server {
+public interface Server extends Reportable {
 
     /**
      * Gets the {@link Player}s currently online.

@@ -39,6 +39,9 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteCommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.service.error.ErrorReport;
+import org.spongepowered.api.service.error.ErrorReportService;
+import org.spongepowered.api.service.error.Reportable;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
@@ -244,6 +247,7 @@ public class SimpleCommandService implements CommandService {
         if (event.isCancelled()) {
             return event.getResult();
         }
+        final Optional<CommandMapping> mapping = this.dispatcher.get(argSplit[0], source);
 
         try {
             try {
@@ -263,12 +267,24 @@ public class SimpleCommandService implements CommandService {
                     source.sendMessage(error(text));
                 }
 
-                final Optional<CommandMapping> mapping = this.dispatcher.get(argSplit[0], source);
                 if (mapping.isPresent()) {
                     source.sendMessage(error(t("Usage: /%s %s", argSplit[0], mapping.get().getCallable().getUsage(source))));
                 }
             }
         } catch (Throwable thr) {
+            ErrorReport report = this.game.getServiceManager().provideUnchecked(ErrorReportService.class).createReport(thr, t("Error while executing "
+                    + "command '%s' for source %s", commandLine, source.toString()));
+
+            try {
+                if (mapping.isPresent() && mapping.get().getCallable() instanceof Reportable) {
+                    report.addReportable(((Reportable) mapping.get().getCallable()));
+                }
+            } catch (Throwable t) {
+                report.appendSection("CommandCallable-provided information")
+                        .addEntry(t("Unable to get information for command output due to an error"))
+                        .setException(t);
+            }
+
             TextBuilder excBuilder;
             if (thr instanceof TextMessageException) {
                 Text text = ((TextMessageException) thr).getText();
@@ -279,12 +295,14 @@ public class SimpleCommandService implements CommandService {
             if (source.hasPermission("sponge.debug.hover-stacktrace")) {
                 final StringWriter writer = new StringWriter();
                 thr.printStackTrace(new PrintWriter(writer));
-                excBuilder.onHover(TextActions.showText(Texts.of(writer.toString()
+                excBuilder.onHover(TextActions.showText(Texts.of(t("Click me to get an error report link that can be sent to a plugin "
+                        + "developer"), writer.toString()
                         .replace("\t", "    ")
                         .replace("\r\n", "\n")
                         .replace("\r", "\n")))); // I mean I guess somebody could be running this on like OS 9?
             }
             source.sendMessage(error(t("Error occurred while executing command: %s", excBuilder.build())));
+            report.dispatchToConsole();
             this.log.error(Texts.toPlain(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), String
                     .valueOf(thr.getMessage()))), thr);
         }
