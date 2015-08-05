@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.service.world;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
@@ -32,6 +32,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.World;
 
 import java.util.List;
 import java.util.UUID;
@@ -40,7 +41,7 @@ import java.util.UUID;
  * A manager of chunks. Chunks can be managed via tickets that may represent
  * forced-chunk-loading, player-chunk-loading, entity-chunk-loading, etc.
  */
-public interface ChunkManager {
+public interface ChunkLoadService {
 
     /**
      * Sets the callback for handling loading forced chunk tickets on world load.
