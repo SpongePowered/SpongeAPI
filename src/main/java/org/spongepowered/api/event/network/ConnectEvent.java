@@ -22,39 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
 
-import com.google.common.base.Optional;
+package org.spongepowered.api.event.network;
+
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.event.GameEvent;
 
 /**
- * This event is called after a player object has been created but before it is placed in any sort of location.
+ * Represents a remote connection trying to connect.
  *
- * <p>This is the best event to use when determining if a player should be kicked because of being banned, unwhitelisted, etc, as well as
- * performing player state initialization.
+ * <p>Cancelling the event will prevent the source from connecting.</p>
  */
-public interface PlayerLoginEvent extends PlayerEvent, Cancellable, CauseTracked {
+public interface ConnectEvent extends GameEvent, Cancellable {
 
-    /**
-     * Get the message that will be sent to the player logging in.
-     * @return The
-     */
-    Optional<Text> getKickMessage();
-
-    /**
-     * Set the message to kick this event's player with. If the event is not already cancelled, calling this method will cancel the event.
-     *
-     * @param message The message to kick the player with
-     */
-    void setKickMessage(Text message);
-
-    /**
-     * Set the cause for this event being cancelled. If the event is not already cancelled, calling this method will cancel the event.
-     *
-     * @param cause The cause to set
-     */
-    void setCause(Cause cause);
 }

@@ -22,42 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
+package org.spongepowered.api.event.network;
 
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.network.RemoteConnection;
-
-import java.util.UUID;
+import org.spongepowered.api.event.entity.player.PlayerJoinEvent;
 
 /**
- * This event is called asynchronously immediately after a player has been authenticated. This event is primarily useful for performing
- * asynchronous caching of player data, since it is primarily immutable
+ * Fired when a game client attempts to connect to the server.
  *
- * <p>Because a {@link Player} object has not been constructed yet at this point in the login process, this event only contains some relevant
- * information
+ * <p>This event is fired after {@link GameClientAuthEvent}, and in the main
+ * thread.</p>
  *
+ * <p>This event fires during the login process when the login state is
+ * {@code READY_TO_ACCEPT} - after the token has been verified but before the
+ * connection state switches to 'play'. See
+ * http://wiki.vg/Protocol#Login_Success for the protocol info.</p>
+ *
+ * <p>The server may have cancelled the event if the client's profile or IP is
+ * banned or not on the whitelist (if these features are enabled). Be sure to
+ * set {@code ignoreCancelled = false} in the {@code @Subscribe} annotation to
+ * receive the event in this case.</p>
+ *
+ * <p>Cancelling the event will prevent the client from joining and show
+ * {@link #getDisconnectMessage} to the client.</p>
+ *
+ * @see GameClientAuthEvent
+ * @see PlayerJoinEvent
  */
-public interface PlayerPreLoginEvent extends UserEvent {
-
-    /**
-     * The name of the player connecting.
-     *
-     * @return The name of the player connecting.
-     */
-    String getName();
-
-    /**
-     * Thee {@link UUID} of the player connecting. This is determined by Mojang unless the server is in offline mode.
-     *
-     * @return The unique id
-     */
-    UUID getUniqueId();
-
-    /**
-     * Get the connection information related to the player in the process of connecting.
-     *
-     * @return The player's connection
-     */
-    RemoteConnection getConnection();
+public interface GameClientConnectEvent extends GameClientLoginEvent {
 }

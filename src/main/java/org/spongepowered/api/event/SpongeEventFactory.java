@@ -32,6 +32,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
@@ -45,7 +46,6 @@ import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.entity.projectile.Projectile;
@@ -109,11 +109,9 @@ import org.spongepowered.api.event.entity.player.PlayerInteractBlockEvent;
 import org.spongepowered.api.event.entity.player.PlayerInteractEntityEvent;
 import org.spongepowered.api.event.entity.player.PlayerInteractEvent;
 import org.spongepowered.api.event.entity.player.PlayerJoinEvent;
-import org.spongepowered.api.event.entity.player.PlayerLoginEvent;
 import org.spongepowered.api.event.entity.player.PlayerMoveEvent;
 import org.spongepowered.api.event.entity.player.PlayerPickUpItemEvent;
 import org.spongepowered.api.event.entity.player.PlayerPlaceBlockEvent;
-import org.spongepowered.api.event.entity.player.PlayerPreLoginEvent;
 import org.spongepowered.api.event.entity.player.PlayerQuitEvent;
 import org.spongepowered.api.event.entity.player.PlayerRespawnEvent;
 import org.spongepowered.api.event.entity.player.PlayerUpdateEvent;
@@ -123,6 +121,8 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLin
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.network.GameClientAuthEvent;
+import org.spongepowered.api.event.network.GameClientConnectEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
 import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
@@ -176,7 +176,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -1947,41 +1946,47 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Create a new {@link PlayerPreLoginEvent}.
+     * Creates a new {@link GameClientConnectEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param user The stored data for the player attempting to connect
-     * @param name The name of the player attempting to connect
-     * @param uniqueId The unique ID of the player attempting to connect
-     * @param connection The connection in progress
+     * @param connection The connection info of the client
+     * @param profile The profile of the client attempting to connect
+     * @param disconnectMessage The message to show to the client if the event
+     *        is cancelled
+     * @param disconnectCause The cause for disconnected if the event is cancelled
      * @return A new instance of the event
      */
-    public static PlayerPreLoginEvent createPlayerPreLogin(Game game, User user, String name, UUID uniqueId, RemoteConnection connection) {
+    public static GameClientConnectEvent createClientConnect(Game game, RemoteConnection connection, GameProfile profile,
+            @Nullable Text disconnectMessage, @Nullable Cause disconnectCause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("user", user);
-        values.put("name", name);
-        values.put("uniqueId", uniqueId);
         values.put("connection", connection);
-        return createEvent(PlayerPreLoginEvent.class, values);
+        values.put("profile", profile);
+        values.put("disconnectMessage", Optional.fromNullable(disconnectMessage));
+        values.put("disconnectCause", Optional.fromNullable(disconnectCause));
+        return createEvent(GameClientConnectEvent.class, values);
     }
 
     /**
-     * Create a new {@link PlayerLoginEvent}.
+     * Creates a new {@link GameClientAuthEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param player The player logging in
-     * @param cause The reason this player would be kicked, if present
-     * @param kickMessage The kick message for the player, if present
+     * @param connection The connection info of the client
+     * @param profile The profile of the client attempting to connect
+     * @param disconnectMessage The message to show to the client if the event
+     *        is cancelled
+     * @param disconnectCause The cause for disconnected if the event is cancelled
      * @return A new instance of the event
      */
-    public static PlayerLoginEvent createPlayerLogin(Game game, Player player, @Nullable Cause cause, @Nullable Text kickMessage) {
+    public static GameClientAuthEvent createClientAuth(Game game, RemoteConnection connection, GameProfile profile,
+            @Nullable Text disconnectMessage, @Nullable Cause disconnectCause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("user", player);
-        values.put("entity", player);
-        values.put("cause", Optional.fromNullable(cause));
-        values.put("kickMessage", Optional.fromNullable(kickMessage));
-        return createEvent(PlayerLoginEvent.class, values);
+        values.put("connection", connection);
+        values.put("profile", profile);
+        values.put("disconnectMessage", Optional.fromNullable(disconnectMessage));
+        values.put("disconnectCause", Optional.fromNullable(disconnectCause));
+        return createEvent(GameClientAuthEvent.class, values);
     }
+
 }

@@ -22,13 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
-
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.network.DisconnectEvent;
+package org.spongepowered.api.event.network;
 
 /**
- * Called when a {@link Player} quit the game.
+ * Fired when a game client has authenticated with the server.
+ *
+ * <p>This event is fired asynchronously, i.e. not in the main thread.</p>
+ *
+ * <p>After the event is fired, the login state switches to
+ * {@code READY_TO_ACCEPT} and the thread dies. (The main thread then
+ * acknowledges the {@code READY_TO_ACCEPT} state and proceeds to firing
+ * {@link GameClientConnectEvent}). The event is triggered after the encryption
+ * response is sent from the client, see
+ * http://wiki.vg/Protocol#Encryption_Response for more info.</p>
+ *
+ * <p>Cancelling the event will prevent the client from joining and show
+ * {@link #getDisconnectMessage} to the client.</p>
+ *
+ * @see GameClientConnectEvent
  */
-public interface PlayerQuitEvent extends PlayerMessageEvent, DisconnectEvent {
+public interface GameClientAuthEvent extends GameClientLoginEvent {
 }

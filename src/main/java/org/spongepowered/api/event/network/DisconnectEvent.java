@@ -22,13 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.network.DisconnectEvent;
+package org.spongepowered.api.event.network;
+
+import org.spongepowered.api.event.GameEvent;
 
 /**
- * Called when a {@link Player} quit the game.
+ * Represents a remote connection disconnecting. The remote connection may have
+ * hung up or the server may have disconnected it.
  */
-public interface PlayerQuitEvent extends PlayerMessageEvent, DisconnectEvent {
+public interface DisconnectEvent extends GameEvent {
+
 }
