@@ -45,6 +45,7 @@ import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.entity.projectile.Projectile;
@@ -108,9 +109,11 @@ import org.spongepowered.api.event.entity.player.PlayerInteractBlockEvent;
 import org.spongepowered.api.event.entity.player.PlayerInteractEntityEvent;
 import org.spongepowered.api.event.entity.player.PlayerInteractEvent;
 import org.spongepowered.api.event.entity.player.PlayerJoinEvent;
+import org.spongepowered.api.event.entity.player.PlayerLoginEvent;
 import org.spongepowered.api.event.entity.player.PlayerMoveEvent;
 import org.spongepowered.api.event.entity.player.PlayerPickUpItemEvent;
 import org.spongepowered.api.event.entity.player.PlayerPlaceBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerPreLoginEvent;
 import org.spongepowered.api.event.entity.player.PlayerQuitEvent;
 import org.spongepowered.api.event.entity.player.PlayerRespawnEvent;
 import org.spongepowered.api.event.entity.player.PlayerUpdateEvent;
@@ -143,6 +146,7 @@ import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.TileEntityInventory;
+import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
@@ -172,6 +176,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -1939,5 +1944,44 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("source", source);
         return createEvent(RconQuitEvent.class, values);
+    }
+
+    /**
+     * Create a new {@link PlayerPreLoginEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param user The stored data for the player attempting to connect
+     * @param name The name of the player attempting to connect
+     * @param uniqueId The unique ID of the player attempting to connect
+     * @param connection The connection in progress
+     * @return A new instance of the event
+     */
+    public static PlayerPreLoginEvent createPlayerPreLogin(Game game, User user, String name, UUID uniqueId, RemoteConnection connection) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("user", user);
+        values.put("name", name);
+        values.put("uniqueId", uniqueId);
+        values.put("connection", connection);
+        return createEvent(PlayerPreLoginEvent.class, values);
+    }
+
+    /**
+     * Create a new {@link PlayerLoginEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param player The player logging in
+     * @param cause The reason this player would be kicked, if present
+     * @param kickMessage The kick message for the player, if present
+     * @return A new instance of the event
+     */
+    public static PlayerLoginEvent createPlayerLogin(Game game, Player player, @Nullable Cause cause, @Nullable Text kickMessage) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("user", player);
+        values.put("entity", player);
+        values.put("cause", Optional.fromNullable(cause));
+        values.put("kickMessage", Optional.fromNullable(kickMessage));
+        return createEvent(PlayerLoginEvent.class, values);
     }
 }

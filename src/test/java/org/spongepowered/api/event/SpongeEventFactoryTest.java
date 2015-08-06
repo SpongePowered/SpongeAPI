@@ -43,6 +43,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SpongeEventFactoryTest {
 
@@ -177,6 +178,8 @@ public class SpongeEventFactoryTest {
             when(mock.copy()).thenAnswer(answer);
 
             return mock;
+        } else if (paramType == UUID.class) {
+            return UUID.randomUUID();
         } else {
             return mock(paramType);
         }
