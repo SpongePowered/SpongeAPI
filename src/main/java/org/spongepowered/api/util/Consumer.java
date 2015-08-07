@@ -27,7 +27,7 @@ package org.spongepowered.api.util;
 /**
  * A functional interface. This replicates java 8's {@link java.util.function.Consumer} interface, for backwards compatibility.
  *
- * This interfice represents a function that takes one argument and returns nothing
+ * This interface represents a function that takes one argument and returns nothing
  *
  * @param <T> The type to accept
  */
