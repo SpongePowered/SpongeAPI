@@ -30,11 +30,11 @@ import org.spongepowered.api.util.PositionOutOfBoundsException;
 
 /**
  * A volume containing blocks that can be accessed but not modified.
- * The data will never change.
+ * The data may be changed by other processes.
  *
  * @see BlockVolume
  */
-public interface ImmutableBlockVolume extends UnmodifiableBlockVolume {
+public interface UnmodifiableBlockVolume extends BlockVolume {
 
     /**
      * Returns a new volume that is the same or smaller than the current
@@ -48,7 +48,7 @@ public interface ImmutableBlockVolume extends UnmodifiableBlockVolume {
      *     are outside the current volume
      */
     @Override
-    ImmutableBlockVolume getBlockView(Vector3i newMin, Vector3i newMax);
+    UnmodifiableBlockVolume getBlockView(Vector3i newMin, Vector3i newMax);
 
     /**
      * Returns a new volume that is viewed through some transformation.
@@ -59,7 +59,7 @@ public interface ImmutableBlockVolume extends UnmodifiableBlockVolume {
      * @return The new volume with the transform
      */
     @Override
-    ImmutableBlockVolume getBlockView(DiscreteTransform3 transform);
+    UnmodifiableBlockVolume getBlockView(DiscreteTransform3 transform);
 
     /**
      * Returns a new volume that is translated so that
@@ -70,6 +70,6 @@ public interface ImmutableBlockVolume extends UnmodifiableBlockVolume {
      * @return The new volume with its minimum at zero
      */
     @Override
-    ImmutableBlockVolume getRelativeBlockView();
+    UnmodifiableBlockVolume getRelativeBlockView();
 
 }

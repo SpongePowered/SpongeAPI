@@ -24,11 +24,52 @@
  */
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.vector.Vector2i;
+import org.spongepowered.api.util.DiscreteTransform2;
+import org.spongepowered.api.util.PositionOutOfBoundsException;
+
 /**
  * An area containing biomes that can be accessed but not modified.
+ * The data will never change.
  *
  * @see BiomeArea
  */
-public interface ImmutableBiomeArea extends BiomeArea {
+public interface ImmutableBiomeArea extends UnmodifiableBiomeArea {
+
+    /**
+     * Returns a new area that is the same or smaller than the current area.
+     * This does not copy the biomes, it only provides a new view of the
+     * storage.
+     *
+     * @param newMin The new minimum coordinates in this area
+     * @param newMax The new maximum coordinates in this area
+     * @return The new area with the new bounds
+     * @throws PositionOutOfBoundsException If the new minimum and maximum
+     *     are outside the current area
+     */
+    @Override
+    ImmutableBiomeArea getBiomeView(Vector2i newMin, Vector2i newMax);
+
+    /**
+     * Returns a new area that is viewed through some transformation.
+     * This does not copy the biomes, it only provides a new view of the
+     * storage.
+     *
+     * @param transform The transformation to be applied
+     * @return The new area with the transform
+     */
+    @Override
+    ImmutableBiomeArea getBiomeView(DiscreteTransform2 transform);
+
+    /**
+     * Returns a new area that is translated so that
+     * {@link BiomeArea#getBiomeMin()} returns {@link Vector2i#ZERO}.
+     * This does not copy the biomes, it only provides a new view of the
+     * storage.
+     *
+     * @return The new area with its minimum at zero
+     */
+    @Override
+    ImmutableBiomeArea getRelativeBiomeView();
 
 }
