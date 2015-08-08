@@ -61,6 +61,7 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.world.ExplosionBuilder;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
@@ -262,6 +263,13 @@ public interface GameRegistry {
      * @return A new builder
      */
     WorldBuilder getWorldBuilder();
+
+    /**
+     * Gets a new {@link ExplosionBuilder} for creating {@link Explosion}s.
+     *
+     * @return A new builder
+     */
+    ExplosionBuilder getExplosionBuilder();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.

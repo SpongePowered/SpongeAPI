@@ -242,4 +242,11 @@ public interface World extends Extent, Viewer, Contextual {
      * @return The location
      */
     Location getSpawnLocation();
+
+    /**
+     * Causes an {@link Explosion} in a world.
+     * 
+     * @param explosion The explosion to cause
+     */
+    void triggerExplosion(Explosion explosion);
 }

@@ -22,48 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.Explosion;
 
 /**
- * Represents an event when an {@link Explosive} is about to explode.
- *
- * <p>Explosions usually affect a radius and ignite, depending on the explosion.</p>
+ * Called when an {@link Explosion} occurs in a {@link World}.
  */
-public interface ExplosionPrimeEvent extends EntityEvent, Cancellable {
+public interface WorldExplosionEvent extends WorldEvent {
 
     /**
-     * Gets the explosive radius that the {@link Explosive} will affect.
+     * Gets the {@link Explosion} involved in this event.
      *
-     * @return The radius of effect
+     * @return The explosion that this event is involved in
      */
-    double getRadius();
-
-    /**
-     * Sets the explosion radius.
-     *
-     * @param radius The explosion radius
-     */
-    void setRadius(double radius);
-
-    /**
-     * Gets whether the explosion will ignite ignitable blocks.
-     *
-     * <p>Blocks that may be ignited include logs, leaves, wool, etc.</p>
-     *
-     * @return Whether this explosion is flammable
-     */
-    boolean isFlammable();
-
-    /**
-     * Sets whether this explosion will be flammable or not.
-     *
-     * <p>Blocks that may be ignited include logs, leaves, wool, etc.</p>
-     *
-     * @param flammable Whether this explosion is flammable
-     */
-    void setFlammable(boolean flammable);
-
+    Explosion getExplosion();
 }

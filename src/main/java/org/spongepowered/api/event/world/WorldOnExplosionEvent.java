@@ -22,43 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.block.BulkBlockEvent;
-import org.spongepowered.api.world.Location;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.Explosion;
+
+import java.util.List;
 
 /**
- * Represents an event when an explosion already has taken place and blocks
- * are about to be broken/affected.
+ * Called once an {@link Explosion} has a list of affected blocks and entities.
  */
-public interface EntityExplosionEvent extends EntityEvent, BulkBlockEvent {
+public interface WorldOnExplosionEvent extends WorldExplosionEvent {
 
     /**
-     * Gets the location of the explosion. This is separate from the
-     * entity as the entity already blew up.
+     * Gets the affected block positions of the explosion.
      *
-     * @return The location of detonation
+     * @return A mutable list of the affected block positions
      */
-    Location getExplosionLocation();
+    List<Vector3i> getAffectedBlockPositions();
 
     /**
-     * Gets the damaging yield of the explosion to affect blocks.
+     * Gets the affected entities of the explosion.
      *
-     * <p>The higher the yield, the more blocks are broken. The yield
-     * is between 0 and 100.</p>
-     *
-     * @return The damaging yield of the explosion
+     * @return A mutable list of the affected entities
      */
-    double getYield();
+    List<Entity> getAffectedEntities();
 
     /**
-     * Sets the damaging yield of the explosion to affect blocks.
+     * Gets the original affected block positions of the explosion.
      *
-     * <p>The higher the yield, the more blocks are broken. The yield
-     * is between 0 and 100.</p>
-     *
-     * @param yield The damaging yield of the explosion
+     * @return An immutable list of the affected block positions
      */
-    void setYield(double yield);
+    List<Vector3i> getOriginalAffectedBlockPositions();
 
+    /**
+     * Gets the original affected entities of the explosion.
+     *
+     * @return An immutable list of the affected entities
+     */
+    List<Entity> getOriginalAffectedEntities();
 }
