@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.effect.Viewer;
@@ -45,6 +46,18 @@ import java.util.UUID;
  * A loaded Minecraft world.
  */
 public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
+
+    @Override
+    Location<World> getLocation(Vector3i position);
+
+    @Override
+    Location<World> getLocation(int x, int y, int z);
+
+    @Override
+    Location<World> getLocation(Vector3d position);
+
+    @Override
+    Location<World> getLocation(double x, double y, double z);
 
     /**
      * Gets the {@link Difficulty} setting for this world.
@@ -152,7 +165,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
 
     /**
      * Gets a map of the currently set game rules and their values.
-     * 
+     *
      * @return An immutable map of the game rules
      */
     Map<String, String> getGameRules();
@@ -170,7 +183,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      * <p>Any changes made to the world generator won't affect the world until
      * {@link #setWorldGenerator(WorldGenerator)}, and even then only newly
      * changed chunks will be affected.</p>
-     * 
+     *
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();
@@ -227,14 +240,14 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     /**
      * Gets the {@link WorldCreationSettings} which were used to create this
      * world.
-     * 
+     *
      * @return The settings
      */
     WorldCreationSettings getCreationSettings();
 
     /**
      * Gets the properties for this world.
-     * 
+     *
      * @return The properties
      */
     WorldProperties getProperties();
@@ -243,11 +256,11 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      * Gets the {@link Location} of the spawn point.
      * @return The location
      */
-    Location getSpawnLocation();
+    Location<World> getSpawnLocation();
 
     /**
      * Causes an {@link Explosion} in a world.
-     * 
+     *
      * @param explosion The explosion to cause
      */
     void triggerExplosion(Explosion explosion);

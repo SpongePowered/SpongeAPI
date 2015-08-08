@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.projectile.source;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents a {@link ProjectileSource} that is a block. Examples are
@@ -38,7 +39,7 @@ public interface BlockProjectileSource extends ProjectileSource {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Gets the {@link BlockState} of the projectile source.

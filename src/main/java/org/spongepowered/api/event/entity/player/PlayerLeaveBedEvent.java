@@ -28,6 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanLeaveBedEvent;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link Player} leaves a bed.
@@ -52,7 +53,7 @@ public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEven
      * @return The players new spawn location, if available
      */
     @Override
-    Optional<Location> getSpawnLocation();
+    Optional<Location<World>> getSpawnLocation();
 
     /**
      * Sets the new spawn location of the player leaving the bed.
@@ -64,6 +65,6 @@ public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEven
      * @param location The new spawn location for the player
      */
     @Override
-    void setSpawnLocation(Location location);
+    void setSpawnLocation(Location<World> location);
 
 }

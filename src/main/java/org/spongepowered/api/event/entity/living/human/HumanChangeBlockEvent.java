@@ -42,4 +42,5 @@ public interface HumanChangeBlockEvent extends HumanEvent, LivingChangeBlockEven
      * @return The direction of the block face
      */
     Direction getBlockFace();
+
 }

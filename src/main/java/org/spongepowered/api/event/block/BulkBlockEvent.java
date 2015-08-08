@@ -30,6 +30,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.annotation.ImplementedBy;
 import org.spongepowered.api.util.event.superclasses.AbstractBulkBlockEvent;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public interface BulkBlockEvent extends GameEvent, CauseTracked {
      *
      * @return The list of locations
      */
-    List<Location> getLocations();
+    List<Location<World>> getLocations();
 
     /**
      * Apply the given predicate to the list of {@link Location}s.
@@ -61,6 +62,6 @@ public interface BulkBlockEvent extends GameEvent, CauseTracked {
      *
      * @param predicate A predicate that returns false to remove the given block
      */
-    void filterLocations(Predicate<Location> predicate);
+    void filterLocations(Predicate<Location<World>> predicate);
 
 }

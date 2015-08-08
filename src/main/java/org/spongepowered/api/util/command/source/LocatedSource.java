@@ -38,7 +38,7 @@ public interface LocatedSource extends CommandSource {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Gets the world that this source resides in.

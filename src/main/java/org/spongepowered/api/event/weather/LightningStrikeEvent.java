@@ -36,4 +36,5 @@ public interface LightningStrikeEvent extends EntityEvent, WeatherEvent, BulkBlo
 
     @Override
     Lightning getEntity();
+
 }

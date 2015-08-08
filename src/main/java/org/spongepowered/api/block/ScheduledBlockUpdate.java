@@ -25,6 +25,7 @@
 package org.spongepowered.api.block;
 
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents a scheduled block update. SBUs with higher priorities are
@@ -37,7 +38,7 @@ public interface ScheduledBlockUpdate {
      *
      * @return The location of this scheduled block update
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Gets the amount of ticks until this SBU should cause the block to update.

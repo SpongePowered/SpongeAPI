@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity.living.human;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link org.spongepowered.api.entity.living.Human} interacts with a bed.
@@ -37,13 +38,13 @@ public interface HumanSleepEvent extends HumanEvent, Cancellable {
      *
      * @return The location of the human
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Gets the block of the bed being used.
      *
      * @return The block of the bed
      */
-    Location getBed();
+    Location<World> getBed();
 
 }

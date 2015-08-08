@@ -28,6 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.ExperienceEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when an {@link Entity} is killed or removed due to unload.
@@ -39,6 +40,6 @@ public interface EntityDeathEvent extends EntityEvent, ExperienceEvent, CauseTra
      *
      * @return The {@link Location} of the player's death
      */
-    Location getLocation();
+    Location<World> getLocation();
 
 }

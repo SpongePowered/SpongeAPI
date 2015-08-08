@@ -28,6 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.block.BulkBlockEvent;
 import org.spongepowered.api.event.entity.BulkEntityEvent;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public interface WorldOnExplosionEvent extends WorldExplosionEvent, BulkBlockEve
      *
      * @return An immutable list of the affected locations
      */
-    List<Location> getOriginalLocations();
+    List<Location<World>> getOriginalLocations();
 
     /**
      * Gets the original affected entities of the explosion.

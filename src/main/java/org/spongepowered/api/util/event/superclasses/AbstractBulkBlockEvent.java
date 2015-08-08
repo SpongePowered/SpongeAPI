@@ -29,15 +29,16 @@ import org.spongepowered.api.event.AbstractEvent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.block.BulkBlockEvent;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.Iterator;
 
 public abstract class AbstractBulkBlockEvent extends AbstractEvent implements BulkBlockEvent {
 
     @Override
-    public void filterLocations(Predicate<Location> predicate) {
+    public void filterLocations(Predicate<Location<World>> predicate) {
         if (this instanceof Cancellable) {
-            Iterator<Location> iterator = this.getLocations().iterator();
+            Iterator<Location<World>> iterator = this.getLocations().iterator();
             while (iterator.hasNext()) {
                 if (!predicate.apply(iterator.next())) {
                     iterator.remove();

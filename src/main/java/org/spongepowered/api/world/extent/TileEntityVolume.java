@@ -28,7 +28,6 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 
@@ -81,13 +80,5 @@ public interface TileEntityVolume extends MutableBlockVolume {
      * @return The tile entity, or {@link Optional#absent()}
      */
     Optional<TileEntity> getTileEntity(int x, int y, int z);
-
-    /**
-     * Get the tile entity at the block in the given location, if it exists.
-     *
-     * @param blockLoc The block position
-     * @return The tile entity, or {@link Optional#absent()}
-     */
-    Optional<TileEntity> getTileEntity(Location blockLoc);
 
 }

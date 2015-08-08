@@ -49,7 +49,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position
      * @return The location in this extent
      */
-    Location getLocation(Vector3i position);
+    Location<? extends Extent> getLocation(Vector3i position);
 
     /**
      * Gets a location in this extent at the given position.
@@ -60,7 +60,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param z The Z position
      * @return The location in this extent
      */
-    Location getLocation(int x, int y, int z);
+    Location<? extends Extent> getLocation(int x, int y, int z);
 
     /**
      * Gets a location in this extent at the given position.
@@ -71,7 +71,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position
      * @return The location in this extent
      */
-    Location getLocation(Vector3d position);
+    Location<? extends Extent> getLocation(Vector3d position);
 
     /**
      * Gets a location in this extent at the given position.
@@ -84,7 +84,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param z The Z position
      * @return The location in this extent
      */
-    Location getLocation(double x, double y, double z);
+    Location<? extends Extent> getLocation(double x, double y, double z);
 
     /**
      * Get a snapshot of this block at the current point in time.

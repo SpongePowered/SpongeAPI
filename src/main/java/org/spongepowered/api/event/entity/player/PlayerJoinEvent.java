@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called before a {@link Player} joins the game.
@@ -37,7 +38,7 @@ public interface PlayerJoinEvent extends PlayerMessageEvent {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Sets the {@link Location} the {@link Player} will join at.
@@ -46,5 +47,5 @@ public interface PlayerJoinEvent extends PlayerMessageEvent {
      *
      * @param location The new location
      */
-    void setLocation(Location location);
+    void setLocation(Location<World> location);
 }

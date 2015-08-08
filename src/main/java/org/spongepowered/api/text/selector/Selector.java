@@ -28,6 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
@@ -164,7 +165,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    Set<Entity> resolve(Location location);
+    Set<Entity> resolve(Location<World> location);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the origin.
@@ -200,7 +201,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    Set<Entity> resolveForce(Location location);
+    Set<Entity> resolveForce(Location<World> location);
 
     /**
      * Converts this {@link Selector} to a valid selector string.

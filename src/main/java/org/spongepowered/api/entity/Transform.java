@@ -48,8 +48,10 @@ import org.spongepowered.api.world.extent.Extent;
  * <p>Even though Minecraft doesn't currently support entity scales
  * it is part of the transform in case it gets added later. For now
  * this return {@link Vector3d#ONE}.</p>
+ *
+ * @param <E> The extent containing the transform
  */
-public interface Transform {
+public interface Transform<E extends Extent> {
 
     /**
      * Gets the {@link Location} this transform contains.
@@ -58,7 +60,7 @@ public interface Transform {
      * @return The location
      * @throws IllegalStateException If the transform doesn't have an extent
      */
-    Location getLocation();
+    Location<E> getLocation();
 
     /**
      * Sets the {@link Location} of this transform.
@@ -67,7 +69,7 @@ public interface Transform {
      * @param location The new location
      * @return This object, for chaining
      */
-    Transform setLocation(Location location);
+    Transform<E> setLocation(Location<E> location);
 
     /**
      * Gets the {@link Extent} this transform contains.
@@ -75,7 +77,7 @@ public interface Transform {
      * @return The extent
      * @throws IllegalStateException If the transform doesn't have an extent
      */
-    Extent getExtent();
+    E getExtent();
 
     /**
      * Sets the {@link Extent} of this transform.
@@ -83,7 +85,7 @@ public interface Transform {
      * @param extent The new extent
      * @return This object, for chaining
      */
-    Transform setExtent(Extent extent);
+    Transform<E> setExtent(E extent);
 
     /**
      * Gets the coordinates of this transform.
@@ -98,7 +100,7 @@ public interface Transform {
      * @param position The new position
      * @return The object, for chaining
      */
-    Transform setPosition(Vector3d position);
+    Transform<E> setPosition(Vector3d position);
 
     /**
      * Gets the rotation of this transform, as a {@link Vector3d}.
@@ -127,7 +129,7 @@ public interface Transform {
      * @param rotation The new rotation
      * @return This object, for chaining
      */
-    Transform setRotation(Vector3d rotation);
+    Transform<E> setRotation(Vector3d rotation);
 
     /**
      * Returns the rotation as a quaternion.
@@ -150,7 +152,7 @@ public interface Transform {
      * @param rotation The rotation
      * @return This object, for chaining
      */
-    Transform setRotation(Quaterniond rotation);
+    Transform<E> setRotation(Quaterniond rotation);
 
     /**
      * Gets the pitch component of this transform rotation
@@ -185,7 +187,7 @@ public interface Transform {
      *
      * @return This object, for chaining
      */
-    Transform setScale(Vector3d scale);
+    Transform<E> setScale(Vector3d scale);
 
     /**
      * "Adds" another transform to this one.
@@ -196,7 +198,7 @@ public interface Transform {
      * @param other The transform to add
      * @return This object, for chaining
      */
-    Transform add(Transform other);
+    Transform<E> add(Transform<E> other);
 
     /**
      * Adds a translation to this transform.
@@ -204,7 +206,7 @@ public interface Transform {
      * @param translation The translation to add
      * @return This object, for chaining
      */
-    Transform addTranslation(Vector3d translation);
+    Transform<E> addTranslation(Vector3d translation);
 
     /**
      * Adds a rotation to this transform.
@@ -212,7 +214,7 @@ public interface Transform {
      * @param rotation The rotation to add
      * @return This object, for chaining
      */
-    Transform addRotation(Vector3d rotation);
+    Transform<E> addRotation(Vector3d rotation);
 
     /**
      * Adds a rotation to this transform.
@@ -226,7 +228,7 @@ public interface Transform {
      * @param rotation The rotation to add
      * @return This object, for chaining
      */
-    Transform addRotation(Quaterniond rotation);
+    Transform<E> addRotation(Quaterniond rotation);
 
     /**
      * "Adds" a scale to this transform.
@@ -237,7 +239,7 @@ public interface Transform {
      * @param scale The scale to add
      * @return This object, for chaining
      */
-    Transform addScale(Vector3d scale);
+    Transform<E> addScale(Vector3d scale);
 
     /**
      * Returns a matrix representation of this transform.

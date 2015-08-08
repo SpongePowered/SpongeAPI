@@ -50,6 +50,6 @@ public interface PropertyStore<T extends Property<?, ?>> {
      * @param location The data holder to get a property from
      * @return The type of property
      */
-    Optional<T> getFor(Location location);
+    Optional<T> getFor(Location<?> location);
 
 }

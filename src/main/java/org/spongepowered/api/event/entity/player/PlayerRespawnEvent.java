@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when a player respawns.
@@ -36,13 +37,13 @@ public interface PlayerRespawnEvent extends PlayerEvent {
      *
      * @return The respawn location of the player
      */
-    Location getRespawnLocation();
+    Location<World> getRespawnLocation();
 
     /**
      * Gets the new respawn location of the player.
      * @return The new respawn location of the player
      */
-    Location getNewRespawnLocation();
+    Location<World> getNewRespawnLocation();
 
     /**
      * Gets whether the original respawn location was set by a bed or not.
@@ -56,6 +57,6 @@ public interface PlayerRespawnEvent extends PlayerEvent {
      *
      * @param respawnLocation The new respawn location
      */
-    void setNewRespawnLocation(Location respawnLocation);
+    void setNewRespawnLocation(Location<World> respawnLocation);
 
 }

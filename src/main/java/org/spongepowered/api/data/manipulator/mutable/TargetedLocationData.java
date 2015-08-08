@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.projectile.EnderPearl;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * An {@link DataManipulator} handling the supposed targetted
@@ -47,6 +48,6 @@ public interface TargetedLocationData extends DataManipulator<TargetedLocationDa
      *
      * @return The value for the targeted location
      */
-    Value<Location> target();
+    Value<Location<World>> target();
 
 }

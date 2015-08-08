@@ -114,7 +114,6 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
@@ -142,6 +141,7 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.awt.Color;
 import java.util.Date;
@@ -178,7 +178,7 @@ public final class Keys {
     public static final Key<Value<ItemStack>> REPRESENTED_ITEM = null;
     public static final Key<Value<Rotation>> ROTATION = null;
     public static final Key<Value<SkullType>> SKULL_TYPE = null;
-    public static final Key<Value<Location>> TARGETED_LOCATION = null;
+    public static final Key<Value<Location<World>>> TARGETED_LOCATION = null;
     public static final Key<Value<Boolean>> IS_WET = null;
     public static final Key<Value<LogAxis>> LOG_AXIS = null;
     public static final Key<MutableBoundedValue<Double>> HEALTH = null;

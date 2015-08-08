@@ -503,7 +503,7 @@ public interface GameRegistry {
      * @return A new invalid identity transform
      * @see #createTransform(Extent)
      */
-    Transform createTransform();
+    <E extends Extent> Transform<E> createTransform();
 
     /**
      * Returns a new identity transform for the given extent.
@@ -517,7 +517,7 @@ public interface GameRegistry {
      * @param extent The extent which contains the transform
      * @return A new identity transform
      */
-    Transform createTransform(Extent extent);
+    <E extends Extent> Transform<E> createTransform(E extent);
 
     /**
      * Gets the {@link ExtentBufferFactory} for creating buffers

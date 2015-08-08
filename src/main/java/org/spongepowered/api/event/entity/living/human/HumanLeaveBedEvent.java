@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity.living.human;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when a Human leaves a bed.
@@ -51,7 +52,7 @@ public interface HumanLeaveBedEvent extends HumanSleepEvent {
      *
      * @return The humans new spawn location, if available
      */
-    Optional<Location> getSpawnLocation();
+    Optional<Location<World>> getSpawnLocation();
 
     /**
      * Sets the new spawn location of the human leaving the bed.
@@ -62,6 +63,6 @@ public interface HumanLeaveBedEvent extends HumanSleepEvent {
      *
      * @param location The new spawn location for the human
      */
-    void setSpawnLocation(Location location);
+    void setSpawnLocation(Location<World> location);
 
 }
