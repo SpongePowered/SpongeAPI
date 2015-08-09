@@ -22,16 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.explosion;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.world.World;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents an explosion in a world.
+ * Represents an explosion in a {@link World}.
  */
 public interface Explosion {
 
@@ -50,18 +51,18 @@ public interface Explosion {
     void setWorld(World world);
 
     /**
-     * Gets the source entity of the explosion.
+     * Gets the source {@link Explosive} of the explosion.
      *
-     * @return The source entity or null if there is no source
+     * @return The source explosive or null if there is no source
      */
-    Optional<Entity> getSourceEntity();
+    Optional<Explosive> getSourceExplosive();
 
     /**
-     * Sets the source entity of the explosion.
+     * Sets the source explosive of the explosion.
      *
-     * @param source The source entity
+     * @param source The source explosive
      */
-    void setSourceEntity(@Nullable Entity source);
+    void setSourceExplosive(@Nullable Explosive source);
 
     /**
      * Gets the radius of the explosion.

@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world;
+package org.spongepowered.api.world.explosion;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.world.World;
 
 import javax.annotation.Nullable;
 
@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 public interface ExplosionBuilder {
 
     /**
-     * Sets the world the explosion will occur in.
+     * Sets the {@link World} the explosion will occur in.
      *
      * @param world The world
      * @return The builder, for chaining
@@ -44,12 +44,12 @@ public interface ExplosionBuilder {
     ExplosionBuilder world(World world);
 
     /**
-     * Sets the source entity of the explosion.
+     * Sets the source explosive of the explosion.
      *
      * @param source The source entity
      * @return The builder, for chaining
      */
-    ExplosionBuilder sourceEntity(@Nullable Entity source);
+    ExplosionBuilder sourceExplosive(@Nullable Explosive source);
 
     /**
      * Sets the radius of the explosion.
@@ -93,8 +93,9 @@ public interface ExplosionBuilder {
     /**
      * Attempts to create a {@link Explosion} from the specified parameters.
      *
+     * @throws IllegalArgumentException If any builder parameter is invalid
      * @return The explosion, if successful
      */
-    Optional<Explosion> build();
+    Explosion build() throws IllegalArgumentException;
 
 }

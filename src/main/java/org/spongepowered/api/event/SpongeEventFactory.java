@@ -30,6 +30,7 @@ import com.google.common.base.Optional;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
@@ -143,7 +144,10 @@ import org.spongepowered.api.event.world.ChunkUnforcedEvent;
 import org.spongepowered.api.event.world.ChunkUnloadEvent;
 import org.spongepowered.api.event.world.GameRuleChangeEvent;
 import org.spongepowered.api.event.world.WorldCreateEvent;
+import org.spongepowered.api.event.world.WorldExplosionEvent;
 import org.spongepowered.api.event.world.WorldLoadEvent;
+import org.spongepowered.api.event.world.WorldOnExplosionEvent;
+import org.spongepowered.api.event.world.WorldPreExplosionEvent;
 import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -169,6 +173,7 @@ import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
@@ -2026,4 +2031,60 @@ public final class SpongeEventFactory {
         return createEvent(GameClientAuthEvent.class, values);
     }
 
+    /**
+     * Creates a new {@link WorldExplosionEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param world The world
+     * @param explosion The explosion
+     * @return A new instance of the event
+     */
+    public static WorldExplosionEvent createWorldExplosion(Game game, World world, Explosion explosion) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("world", world);
+        values.put("explosion", explosion);
+        return createEvent(WorldExplosionEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link WorldPreExplosionEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param world The world
+     * @param explosion The explosion
+     * @return A new instance of the event
+     */
+    public static WorldPreExplosionEvent createWorldPreExplosion(Game game, World world, Explosion explosion) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("world", world);
+        values.put("explosion", explosion);
+        return createEvent(WorldPreExplosionEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link WorldOnExplosionEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param world The world
+     * @param explosion The explosion
+     * @param locations The affected locations
+     * @param entities The affected entities
+     * @return A new instance of the event
+     */
+    public static WorldOnExplosionEvent createWorldOnExplosion(Game game, Cause cause, World world, Explosion explosion, List<Location> locations,
+            List<Entity>
+            entities) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
+        values.put("world", world);
+        values.put("explosion", explosion);
+        values.put("locations", locations);
+        values.put("originalLocations", ImmutableList.of(locations));
+        values.put("entities", entities);
+        values.put("originalEntities", ImmutableList.of(entities));
+        return createEvent(WorldOnExplosionEvent.class, values);
+    }
 }

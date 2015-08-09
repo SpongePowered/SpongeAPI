@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.explosion.Explosion;
 
 /**
  * Called before an {@link Explosion} actually occurs. Canceling this event will stop the explosion.
