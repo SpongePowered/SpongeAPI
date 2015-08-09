@@ -59,6 +59,11 @@ public final class TextColors {
         public String getId() {
             return "NONE";
         }
+
+        public String toString() {
+            return getId();
+        };
+
     };
 
     public static final TextColor.Base BLACK = null;
