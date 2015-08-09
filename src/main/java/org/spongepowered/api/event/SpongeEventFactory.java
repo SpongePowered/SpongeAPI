@@ -718,8 +718,7 @@ public final class SpongeEventFactory {
      * @param rotation The rotation the entity is facing
      * @return A new instance of the event
      */
-    public static EntityDisplaceEvent createEntityDisplace(Game game, Entity entity,
-            Location oldLocation, Location newLocation, Vector3d rotation) {
+    public static EntityDisplaceEvent createEntityDisplace(Game game, Entity entity, Location oldLocation, Location newLocation, Vector3d rotation) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
@@ -1408,17 +1407,17 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param entity The player
      * @param interactionType The type of interaction used
-     * @param location The location of the interaction
+     * @param clickedPosition The location of the interaction
      * @return A new instance of the event
      */
     public static PlayerInteractEvent createPlayerInteract(Game game, Player entity, EntityInteractionType interactionType,
-            @Nullable Vector3d location) {
+            @Nullable Vector3d clickedPosition) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("user", entity);
         values.put("interactionType", interactionType);
-        values.put("clickedPosition", Optional.fromNullable(location));
+        values.put("clickedPosition", Optional.fromNullable(clickedPosition));
         return createEvent(PlayerInteractEvent.class, values);
     }
 
@@ -1576,9 +1575,8 @@ public final class SpongeEventFactory {
      * @param locations The affected locations
      * @return A new instance of the event
      */
-    public static LightningStrikeEvent createLightningStrike(Game game, Cause cause, WeatherUniverse weatherUniverse, Lightning entity, List<Entity>
-            entities,
-            List<Location> locations) {
+    public static LightningStrikeEvent createLightningStrike(Game game, Cause cause, WeatherUniverse weatherUniverse, Lightning entity,
+            List<Entity> entities, List<Location> locations) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -1616,8 +1614,8 @@ public final class SpongeEventFactory {
      * @param newValue The new value of the statistic
      * @return A new instance of the event
      */
-    public static StatisticChangeEvent createStatisticChangeEvent(Game game, Player entity, Statistic changedStatistic,
-                                                                  long newValue, long oldValue) {
+    public static StatisticChangeEvent createStatisticChangeEvent(Game game, Player entity, Statistic changedStatistic, long newValue,
+            long oldValue) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
@@ -1851,29 +1849,28 @@ public final class SpongeEventFactory {
      * Creates a new {@link BrewingStandBrewEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
+     * @param cause The cause
      * @param brewingStand The {@link BrewingStand} involved in this event
      * @param sourceItems The {@link ItemStack}s being modified
      * @param fuelSource The {@link ItemStack} used as the reagent to modify the source items
      * @param brewedItems The {@link ItemStack}s produced as a result
-     * @param cause The cause
      * @param inventory The inventory of the brewing stand
      * @param data The brewing stand data
      * @param location The location
      * @return A new instance of the event
      */
-    public static BrewingStandBrewEvent createBrewingStandBrew(Game game, BrewingStand brewingStand, ImmutableBrewingData data,
-                                                                    List<ItemStack> sourceItems, ItemStack fuelSource, List<ItemStack> brewedItems,
-                                                                    Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
-                                                                    Location location) {
+    public static BrewingStandBrewEvent createBrewingStandBrew(Game game, Cause cause, BrewingStand brewingStand, ImmutableBrewingData data,
+            List<ItemStack> sourceItems, ItemStack fuelSource, List<ItemStack> brewedItems, TileEntityInventory<TileEntityCarrier> inventory,
+            Location location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
         values.put("tile", brewingStand);
         values.put("sourceItems", sourceItems);
         values.put("fuelSource", fuelSource);
         values.put("brewedItems", brewedItems);
         values.put("results", brewedItems);
         values.put("inventory", inventory);
-        values.put("cause", Optional.fromNullable(cause));
         values.put("location", location);
         values.put("block", location.getBlock());
         values.put("currentData", data);
@@ -1884,6 +1881,7 @@ public final class SpongeEventFactory {
      * Creates a new {@link FurnaceConsumeFuelEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
+     * @param cause The cause
      * @param furnace The {@link Furnace} involved in this event
      * @param burnedItem The {@link ItemStack} consumed for fuel
      * @param remainingFuel The {@link ItemStack} representing the remaining fuel, can be null
@@ -1893,17 +1891,16 @@ public final class SpongeEventFactory {
      * @param location The location
      * @return A new instance of the event
      */
-    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuel(Game game, Furnace furnace, ImmutableFurnaceData data, ItemStack burnedItem,
-                                                                   ItemStack remainingFuel, Cause cause,
-                                                                   TileEntityInventory<TileEntityCarrier> inventory, Location location) {
+    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuel(Game game, Cause cause, Furnace furnace, ImmutableFurnaceData data,
+            ItemStack burnedItem, ItemStack remainingFuel, TileEntityInventory<TileEntityCarrier> inventory, Location location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
         values.put("tile", furnace);
         values.put("burnedItem", burnedItem);
         values.put("remainingFuel", Optional.fromNullable(remainingFuel));
         values.put("result", Optional.fromNullable(remainingFuel));
         values.put("inventory", inventory);
-        values.put("cause", Optional.fromNullable(cause));
         values.put("location", location);
         values.put("block", location.getBlock());
         values.put("currentData", data);
@@ -1914,25 +1911,24 @@ public final class SpongeEventFactory {
      * Creates a new {@link FurnaceSmeltItemEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
+     * @param cause The cause
      * @param furnace The {@link Furnace} involved in this event
      * @param cookedItem The {@link ItemStack} resulting from smelting the source item
      * @param sourceItem The {@link ItemStack} smelted to create the cooked item
-     * @param cause The cause
      * @param inventory The inventory of the furnace
      * @param data The furnace data
      * @param location The location
      * @return A new instance of the event
      */
-    public static FurnaceSmeltItemEvent createFurnaceSmeltItem(Game game, Furnace furnace, ImmutableFurnaceData data, ItemStack cookedItem,
-                                                               ItemStack sourceItem, Cause cause, TileEntityInventory<TileEntityCarrier> inventory,
-                                                               Location location) {
+    public static FurnaceSmeltItemEvent createFurnaceSmeltItem(Game game, Cause cause, Furnace furnace, ImmutableFurnaceData data, ItemStack
+            cookedItem, ItemStack sourceItem, TileEntityInventory<TileEntityCarrier> inventory, Location location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", Optional.fromNullable(cause));
         values.put("tile", furnace);
         values.put("cookedItem", cookedItem);
         values.put("sourceItem", sourceItem);
         values.put("result", Optional.fromNullable(cookedItem));
-        values.put("cause", Optional.fromNullable(cause));
         values.put("inventory", inventory);
         values.put("location", location);
         values.put("block", location.getBlock());
@@ -2074,8 +2070,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static WorldOnExplosionEvent createWorldOnExplosion(Game game, Cause cause, World world, Explosion explosion, List<Location> locations,
-            List<Entity>
-            entities) {
+            List<Entity> entities) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
