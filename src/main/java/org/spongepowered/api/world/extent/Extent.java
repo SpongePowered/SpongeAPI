@@ -32,14 +32,13 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.Collection;
 
 /**
  * A mutable object containing blocks, tile entities, entities, and possibly other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, WeatherUniverse, MutableBiomeArea, LocationCompositeValueStore, Identifiable {
+public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable {
 
     /**
      * Gets a location in this extent at the given position.
