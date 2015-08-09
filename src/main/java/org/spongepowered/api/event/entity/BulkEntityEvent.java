@@ -37,7 +37,7 @@ import java.util.List;
 public interface BulkEntityEvent extends GameEvent {
 
     /**
-     * Get a list of affected entities.
+     * Get a list of the affected entities.
      *
      * <p>The list of entities is immutable if this event does not extend
      * {@link Cancellable}. Otherwise, the effect of removing an entity from
@@ -59,6 +59,6 @@ public interface BulkEntityEvent extends GameEvent {
      *
      * @param predicate A predicate that returns false to remove the given entity
      */
-    void filter(Predicate<Entity> predicate);
+    void filterEntities(Predicate<Entity> predicate);
 
 }

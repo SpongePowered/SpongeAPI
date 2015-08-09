@@ -27,8 +27,10 @@ package org.spongepowered.api.event;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.withSettings;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -151,7 +153,7 @@ public class SpongeEventFactoryTest {
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {
-            return new Location(mock(Extent.class), 0, 0, 0);
+            return new Location(mock(Extent.class, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS)), 0, 0, 0);
         } else if (paramType == Text[].class) {
             return new Text[] {};
         } else if (BlockSnapshot.class.isAssignableFrom(paramType)) {

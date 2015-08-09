@@ -373,9 +373,9 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Get the block state for this position.
+     * Get the {@link BlockState} for this position.
      *
-     * @return The current block state
+     * @return The block state
      */
     public BlockState getBlock() {
         return getExtent().getBlock(getBlockPosition());

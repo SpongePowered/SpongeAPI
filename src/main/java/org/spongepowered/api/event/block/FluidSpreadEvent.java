@@ -29,6 +29,6 @@ import org.spongepowered.api.event.Cancellable;
 /**
  * Dispatched when fluid is about to spread.
  */
-public interface FluidSpreadEvent extends BulkBlockEvent, Cancellable {
+public interface FluidSpreadEvent extends BlockEvent, BulkBlockEvent, Cancellable {
 
 }

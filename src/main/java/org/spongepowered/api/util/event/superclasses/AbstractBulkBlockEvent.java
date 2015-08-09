@@ -35,9 +35,9 @@ import java.util.Iterator;
 public abstract class AbstractBulkBlockEvent extends AbstractEvent implements BulkBlockEvent {
 
     @Override
-    public void filter(Predicate<Location> predicate) {
+    public void filterLocations(Predicate<Location> predicate) {
         if (this instanceof Cancellable) {
-            Iterator<Location> iterator = this.getBlocks().iterator();
+            Iterator<Location> iterator = this.getLocations().iterator();
             while (iterator.hasNext()) {
                 if (!predicate.apply(iterator.next())) {
                     iterator.remove();

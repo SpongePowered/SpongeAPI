@@ -25,6 +25,8 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -81,16 +83,22 @@ public interface TileEntity extends DataHolder, DataSerializable {
     TileEntityType getType();
 
     /**
-     * Gets the parent {@link Location} that this {@link TileEntity} resides
-     * in.
+     * Gets the {@link Location} that this {@link TileEntity} resides
+     * at.
      *
-     * <p>If the {@link Location}'s block type is changed, this
-     * {@link TileEntity} may be removed as it has no parent
-     * {@link Location}.</p>
+     * <p>If the {@link Location}'s {@link BlockType} is changed, this
+     * {@link TileEntity} may be removed as a consequence.
      *
-     * @return The parent {@link Location}
+     * @return The location
      */
-    Location getBlock();
+    Location getLocation();
+
+    /**
+     * Gets the {@link BlockState} that this {@link TileEntity} represents.
+     *
+     * @return The blockstate
+     */
+    BlockState getBlock();
 
     /**
      * Gets a copy of the underlying data of this {@link TileEntity} or
