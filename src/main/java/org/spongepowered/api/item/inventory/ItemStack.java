@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import org.spongepowered.api.text.translation.Translatable;
+
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.item.ItemType;
@@ -37,7 +39,7 @@ import org.spongepowered.api.text.TextRepresentable;
  * use {@link DataHolder#getData(Class)} to retrieve different information
  * regarding this item stack.</p>
  */
-public interface ItemStack extends DataHolder, DataSerializable, TextRepresentable {
+public interface ItemStack extends DataHolder, DataSerializable, TextRepresentable, Translatable {
 
     /**
      * Gets the {@link ItemType} of this {@link ItemStack}.
