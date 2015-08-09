@@ -26,7 +26,6 @@ package org.spongepowered.api.data.key;
 
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
 import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
@@ -74,6 +73,7 @@ import org.spongepowered.api.data.manipulator.mutable.block.WallData;
 import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
 import org.spongepowered.api.data.type.BigMushroomType;
 import org.spongepowered.api.data.type.BrickType;
+import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.ComparatorType;
 import org.spongepowered.api.data.type.DirtType;
 import org.spongepowered.api.data.type.DisguisedBlockType;
@@ -98,7 +98,6 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -116,12 +115,9 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.util.weighted.WeightedEntity;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.gen.populator.DoublePlant;
 
 import java.awt.Color;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -163,6 +159,9 @@ public final class Keys {
     public static final Key<Value<UUID>> SKIN = null;
     public static final Key<Value<PotionEffectType>> BEACON_PRIMARY_EFFECT = null;
     public static final Key<Value<PotionEffectType>> BEACON_SECONDARY_EFFECT = null;
+    public static final Key<Value<Career>> CAREER = null;
+    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY = null;
+    public static final Key<ListValue<Text>> ITEM_LORE = null;
 
     private Keys() {}
 
