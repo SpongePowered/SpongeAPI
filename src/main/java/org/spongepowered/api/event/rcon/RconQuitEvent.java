@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.event.rcon;
 
+import org.spongepowered.api.event.network.DisconnectEvent;
+
 /**
  * This event is called when a rcon client disconnects from the server.
  */
-public interface RconQuitEvent extends RconEvent {
+public interface RconQuitEvent extends RconEvent, DisconnectEvent {
 
 }

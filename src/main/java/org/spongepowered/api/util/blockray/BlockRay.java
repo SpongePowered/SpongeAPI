@@ -500,7 +500,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
     public static BlockRayBuilder from(Entity entity) {
         checkNotNull(entity, "entity");
         final Vector3d rotation = entity.getRotation();
-        final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getY(), 360 - rotation.getX(), rotation.getZ()).getDirection();
+        final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
         final Location location = entity.getLocation();
         final Vector3d position;
         final Optional<EyeLocationData> data = entity.getData(EyeLocationData.class);
@@ -513,7 +513,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
     }
 
     /**
-     * A builder for block ray, which also implements {@link Iterable} which makes it
+     * A builder for block ray, which also implements {@link Iterable}, which makes it
      * useful for 'advanced for loops'. Use {@link #from(Location)} to get an instance.
      */
     public static class BlockRayBuilder implements Iterable<BlockRayHit> {

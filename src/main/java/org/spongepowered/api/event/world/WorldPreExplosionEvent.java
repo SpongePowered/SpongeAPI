@@ -22,49 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.event.world;
 
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
-
-import com.google.common.base.Preconditions;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.event.Cancellable;
 
 /**
- * This exception is thrown when a sender tries to execute a command that does
- * not exist.
+ * Called before an {@link Explosion} actually occurs. Canceling this event will stop the explosion.
  */
-public class CommandNotFoundException extends CommandException {
+public interface WorldPreExplosionEvent extends WorldExplosionEvent, Cancellable {
 
-    private static final long serialVersionUID = -7714518367616848051L;
-
-    private final String command;
-
-    /**
-     * Create an exception with the default message.
-     *
-     * @param command The command that was queried for
-     */
-    public CommandNotFoundException(String command) {
-        this(t("No such command"), command);
-    }
-
-    /**
-     * Create an exception with a custom message.
-     *
-     * @param message The message
-     * @param command The command that was queried for
-     */
-    public CommandNotFoundException(Text message, String command) {
-        super(message);
-        this.command = Preconditions.checkNotNull(command, "command");
-    }
-
-    /**
-     * Returns the command that was queried for.
-     *
-     * @return The command
-     */
-    public String getCommand() {
-        return this.command;
-    }
 }

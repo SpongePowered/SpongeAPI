@@ -22,49 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
-
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
-
-import com.google.common.base.Preconditions;
-import org.spongepowered.api.text.Text;
+package org.spongepowered.api.event.network;
 
 /**
- * This exception is thrown when a sender tries to execute a command that does
- * not exist.
+ * Fired when a game client has authenticated with the server.
+ *
+ * <p>This event is fired asynchronously, i.e. not in the main thread.</p>
+ *
+ * <p>After the event is fired, the login state switches to
+ * {@code READY_TO_ACCEPT} and the thread dies. (The main thread then
+ * acknowledges the {@code READY_TO_ACCEPT} state and proceeds to firing
+ * {@link GameClientConnectEvent}). The event is triggered after the encryption
+ * response is sent from the client, see
+ * http://wiki.vg/Protocol#Encryption_Response for more info.</p>
+ *
+ * <p>Cancelling the event will prevent the client from joining and show
+ * {@link #getDisconnectMessage} to the client.</p>
+ *
+ * @see GameClientConnectEvent
  */
-public class CommandNotFoundException extends CommandException {
-
-    private static final long serialVersionUID = -7714518367616848051L;
-
-    private final String command;
-
-    /**
-     * Create an exception with the default message.
-     *
-     * @param command The command that was queried for
-     */
-    public CommandNotFoundException(String command) {
-        this(t("No such command"), command);
-    }
-
-    /**
-     * Create an exception with a custom message.
-     *
-     * @param message The message
-     * @param command The command that was queried for
-     */
-    public CommandNotFoundException(Text message, String command) {
-        super(message);
-        this.command = Preconditions.checkNotNull(command, "command");
-    }
-
-    /**
-     * Returns the command that was queried for.
-     *
-     * @return The command
-     */
-    public String getCommand() {
-        return this.command;
-    }
+public interface GameClientAuthEvent extends GameClientLoginEvent {
 }

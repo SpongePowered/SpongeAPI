@@ -63,13 +63,6 @@ public interface World extends Extent, Viewer, Contextual {
     String getName();
 
     /**
-     * Returns whether this world is loaded.
-     *
-     * @return True if this world is loaded
-     */
-    boolean isLoaded();
-
-    /**
      * Get the loaded chunk at the given position.
      *
      * @param position The position
@@ -249,4 +242,11 @@ public interface World extends Extent, Viewer, Contextual {
      * @return The location
      */
     Location getSpawnLocation();
+
+    /**
+     * Causes an {@link Explosion} in a world.
+     * 
+     * @param explosion The explosion to cause
+     */
+    void triggerExplosion(Explosion explosion);
 }

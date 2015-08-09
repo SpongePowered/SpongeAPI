@@ -22,43 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.event.block.BulkBlockEvent;
-import org.spongepowered.api.world.Location;
+package org.spongepowered.api.util;
 
 /**
- * Represents an event when an explosion already has taken place and blocks
- * are about to be broken/affected.
+ * A functional interface. This replicates java 8's {@link java.util.function.Consumer} interface, for backwards compatibility.
+ *
+ * This interface represents a function that takes one argument and returns nothing
+ *
+ * @param <T> The type to accept
  */
-public interface EntityExplosionEvent extends EntityEvent, BulkBlockEvent {
-
-    /**
-     * Gets the location of the explosion. This is separate from the
-     * entity as the entity already blew up.
-     *
-     * @return The location of detonation
-     */
-    Location getExplosionLocation();
-
-    /**
-     * Gets the damaging yield of the explosion to affect blocks.
-     *
-     * <p>The higher the yield, the more blocks are broken. The yield
-     * is between 0 and 100.</p>
-     *
-     * @return The damaging yield of the explosion
-     */
-    double getYield();
-
-    /**
-     * Sets the damaging yield of the explosion to affect blocks.
-     *
-     * <p>The higher the yield, the more blocks are broken. The yield
-     * is between 0 and 100.</p>
-     *
-     * @param yield The damaging yield of the explosion
-     */
-    void setYield(double yield);
-
+public interface Consumer<T> {
+     /**
+      * The method to be implemented as a function.
+      *
+      * @param value The argument accepted by the function
+      */
+     void accept(T value);
 }

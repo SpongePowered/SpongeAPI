@@ -22,48 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.entity.player.PlayerJoinEvent;
 
 /**
- * Represents an event when an {@link Explosive} is about to explode.
+ * Fired when a game client attempts to connect to the server.
  *
- * <p>Explosions usually affect a radius and ignite, depending on the explosion.</p>
+ * <p>This event is fired after {@link GameClientAuthEvent}, and in the main
+ * thread.</p>
+ *
+ * <p>This event fires during the login process when the login state is
+ * {@code READY_TO_ACCEPT} - after the token has been verified but before the
+ * connection state switches to 'play'. See
+ * http://wiki.vg/Protocol#Login_Success for the protocol info.</p>
+ *
+ * <p>The server may have cancelled the event if the client's profile or IP is
+ * banned or not on the whitelist (if these features are enabled). Be sure to
+ * set {@code ignoreCancelled = false} in the {@code @Subscribe} annotation to
+ * receive the event in this case.</p>
+ *
+ * <p>Cancelling the event will prevent the client from joining and show
+ * {@link #getDisconnectMessage} to the client.</p>
+ *
+ * @see GameClientAuthEvent
+ * @see PlayerJoinEvent
  */
-public interface ExplosionPrimeEvent extends EntityEvent, Cancellable {
-
-    /**
-     * Gets the explosive radius that the {@link Explosive} will affect.
-     *
-     * @return The radius of effect
-     */
-    double getRadius();
-
-    /**
-     * Sets the explosion radius.
-     *
-     * @param radius The explosion radius
-     */
-    void setRadius(double radius);
-
-    /**
-     * Gets whether the explosion will ignite ignitable blocks.
-     *
-     * <p>Blocks that may be ignited include logs, leaves, wool, etc.</p>
-     *
-     * @return Whether this explosion is flammable
-     */
-    boolean isFlammable();
-
-    /**
-     * Sets whether this explosion will be flammable or not.
-     *
-     * <p>Blocks that may be ignited include logs, leaves, wool, etc.</p>
-     *
-     * @param flammable Whether this explosion is flammable
-     */
-    void setFlammable(boolean flammable);
-
+public interface GameClientConnectEvent extends GameClientLoginEvent {
 }

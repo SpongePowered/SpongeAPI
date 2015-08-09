@@ -32,6 +32,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
@@ -120,6 +121,8 @@ import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLin
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.network.GameClientAuthEvent;
+import org.spongepowered.api.event.network.GameClientConnectEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
 import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
@@ -143,6 +146,8 @@ import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.TileEntityInventory;
+import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.status.StatusClient;
@@ -159,7 +164,6 @@ import org.spongepowered.api.util.event.factory.NullPolicy;
 import org.spongepowered.api.util.event.factory.plugin.AccessorModifierEventFactoryPlugin;
 import org.spongepowered.api.util.event.factory.plugin.AnnotationEventFactoryPlugin;
 import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.ChunkManager.LoadingTicket;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
@@ -206,7 +210,7 @@ public final class SpongeEventFactory {
 
     private static Class<?> getBaseClass(Class<?> event) {
         Class<?> superClass = null;
-        for (EventFactoryPlugin plugin: plugins) {
+        for (EventFactoryPlugin plugin : plugins) {
             superClass = plugin.resolveSuperClassFor(event, superClass, factoryProvider.getClassLoader());
         }
         return superClass;
@@ -1940,4 +1944,49 @@ public final class SpongeEventFactory {
         values.put("source", source);
         return createEvent(RconQuitEvent.class, values);
     }
+
+    /**
+     * Creates a new {@link GameClientConnectEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param connection The connection info of the client
+     * @param profile The profile of the client attempting to connect
+     * @param disconnectMessage The message to show to the client if the event
+     *        is cancelled
+     * @param disconnectCause The cause for disconnected if the event is cancelled
+     * @return A new instance of the event
+     */
+    public static GameClientConnectEvent createClientConnect(Game game, RemoteConnection connection, GameProfile profile,
+            @Nullable Text disconnectMessage, @Nullable Cause disconnectCause) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("connection", connection);
+        values.put("profile", profile);
+        values.put("disconnectMessage", Optional.fromNullable(disconnectMessage));
+        values.put("disconnectCause", Optional.fromNullable(disconnectCause));
+        return createEvent(GameClientConnectEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link GameClientAuthEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param connection The connection info of the client
+     * @param profile The profile of the client attempting to connect
+     * @param disconnectMessage The message to show to the client if the event
+     *        is cancelled
+     * @param disconnectCause The cause for disconnected if the event is cancelled
+     * @return A new instance of the event
+     */
+    public static GameClientAuthEvent createClientAuth(Game game, RemoteConnection connection, GameProfile profile,
+            @Nullable Text disconnectMessage, @Nullable Cause disconnectCause) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("connection", connection);
+        values.put("profile", profile);
+        values.put("disconnectMessage", Optional.fromNullable(disconnectMessage));
+        values.put("disconnectCause", Optional.fromNullable(disconnectCause));
+        return createEvent(GameClientAuthEvent.class, values);
+    }
+
 }

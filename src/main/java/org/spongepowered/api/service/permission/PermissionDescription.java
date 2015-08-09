@@ -43,7 +43,7 @@ public interface PermissionDescription {
      * The user role should be assigned to everyone who should have basic access
      * permissions. For example: joining in an arena.
      */
-     String ROLE_USER = "user";
+    String ROLE_USER = "user";
     /**
      * The staff role should be assigned to everyone who should have elevated
      * access permissions. For example: force start an arena.
@@ -113,13 +113,13 @@ public interface PermissionDescription {
     Text getDescription();
 
     /**
-     * This method returns all subjects that have this permission set.
+     * Get all subjects that have this permission set.
      *
      * <p>If you want to know to which role-templates this permission is
-     * assigned use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.</p>
+     * assigned use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.
      *
      * @param type The subject type identifier to use
-     * @return An immutable set of
+     * @return An immutable set of subjects that have this permission set
      * @see SubjectCollection#getAllWithPermission(String)
      */
     Map<Subject, Boolean> getAssignedSubjects(String type);

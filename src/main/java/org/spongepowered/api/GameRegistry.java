@@ -36,6 +36,7 @@ import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
@@ -60,9 +61,11 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.world.ExplosionBuilder;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorFactory;
@@ -260,6 +263,13 @@ public interface GameRegistry {
      * @return A new builder
      */
     WorldBuilder getWorldBuilder();
+
+    /**
+     * Gets a new {@link ExplosionBuilder} for creating {@link Explosion}s.
+     *
+     * @return A new builder
+     */
+    ExplosionBuilder getExplosionBuilder();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
@@ -473,6 +483,20 @@ public interface GameRegistry {
      * @return The populator factory
      */
     PopulatorFactory getPopulatorFactory();
+
+    /**
+     * Returns a new identity transform for the given extent.
+     * This transform has no translation, rotation or scale
+     * (position and rotation are (0, 0, 0) and scale is (1, 1, 1)).
+     * Use chained setter calls to configure it. Example:
+     * <pre>{@code createTransform(extent)
+     * .setPosition(position)
+     * .setRotation(rotation)}</pre>
+     *
+     * @param extent The extent which contains the transform
+     * @return A new identity transform
+     */
+    Transform createTransform(Extent extent);
 
     /**
      * Gets the {@link Translation} with the provided ID.

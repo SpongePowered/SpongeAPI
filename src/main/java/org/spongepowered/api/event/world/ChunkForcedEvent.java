@@ -26,10 +26,10 @@ package org.spongepowered.api.event.world;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.world.ChunkManager;
+import org.spongepowered.api.service.world.ChunkLoadService;
 
 /**
- * Represents a {@link org.spongepowered.api.world.ChunkManager.LoadingTicket}
+ * Represents a {@link org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket}
  * forcing a chunk to load into the world. Note that the loading ticket may
  * have not finished so the chunk may not have finished loading yet.
  */
@@ -40,7 +40,7 @@ public interface ChunkForcedEvent extends GameEvent {
      *
      * @return The ticket the chunk was added to
      */
-    ChunkManager.LoadingTicket getTicket();
+    ChunkLoadService.LoadingTicket getTicket();
 
     /**
      * Gets the added chunk coordinates.

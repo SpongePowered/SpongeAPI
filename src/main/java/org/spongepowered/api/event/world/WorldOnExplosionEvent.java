@@ -22,49 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command;
+package org.spongepowered.api.event.world;
 
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.Explosion;
 
-import com.google.common.base.Preconditions;
-import org.spongepowered.api.text.Text;
+import java.util.List;
 
 /**
- * This exception is thrown when a sender tries to execute a command that does
- * not exist.
+ * Called once an {@link Explosion} has a list of affected blocks and entities.
  */
-public class CommandNotFoundException extends CommandException {
-
-    private static final long serialVersionUID = -7714518367616848051L;
-
-    private final String command;
+public interface WorldOnExplosionEvent extends WorldExplosionEvent {
 
     /**
-     * Create an exception with the default message.
+     * Gets the affected block positions of the explosion.
      *
-     * @param command The command that was queried for
+     * @return A mutable list of the affected block positions
      */
-    public CommandNotFoundException(String command) {
-        this(t("No such command"), command);
-    }
+    List<Vector3i> getAffectedBlockPositions();
 
     /**
-     * Create an exception with a custom message.
+     * Gets the affected entities of the explosion.
      *
-     * @param message The message
-     * @param command The command that was queried for
+     * @return A mutable list of the affected entities
      */
-    public CommandNotFoundException(Text message, String command) {
-        super(message);
-        this.command = Preconditions.checkNotNull(command, "command");
-    }
+    List<Entity> getAffectedEntities();
 
     /**
-     * Returns the command that was queried for.
+     * Gets the original affected block positions of the explosion.
      *
-     * @return The command
+     * @return An immutable list of the affected block positions
      */
-    public String getCommand() {
-        return this.command;
-    }
+    List<Vector3i> getOriginalAffectedBlockPositions();
+
+    /**
+     * Gets the original affected entities of the explosion.
+     *
+     * @return An immutable list of the affected entities
+     */
+    List<Entity> getOriginalAffectedEntities();
 }

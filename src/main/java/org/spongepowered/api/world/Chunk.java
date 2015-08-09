@@ -48,13 +48,6 @@ public interface Chunk extends Extent {
     Vector3i getPosition();
 
     /**
-     * Gets whether or not this chunk is currently loaded.
-     *
-     * @return Whether or not this chunk is loaded
-     */
-    boolean isLoaded();
-
-    /**
      * Gets the world the chunk is in.
      *
      * @return The world

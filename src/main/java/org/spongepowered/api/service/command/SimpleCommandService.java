@@ -188,9 +188,15 @@ public class SimpleCommandService implements CommandService {
     }
 
     @Override
-    public Set<CommandMapping> getOwnedBy(PluginContainer container) {
+    public Set<CommandMapping> getOwnedBy(Object instance) {
+        Optional<PluginContainer> container = this.game.getPluginManager().fromInstance(instance);
+        if (!container.isPresent()) {
+            throw new IllegalArgumentException("The provided plugin object does not have an associated plugin container "
+                            + "(in other words, is 'plugin' actually your plugin object?)");
+        }
+
         synchronized (this.lock) {
-            return ImmutableSet.copyOf(this.owners.get(container));
+            return ImmutableSet.copyOf(this.owners.get(container.get()));
         }
     }
 
@@ -232,7 +238,8 @@ public class SimpleCommandService implements CommandService {
     @Override
     public CommandResult process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit.length > 1 ? argSplit[1] : "", source, argSplit[0], CommandResult.empty());
+        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit.length > 1 ? argSplit[1] : "", source, argSplit[0],
+                CommandResult.empty());
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
             return event.getResult();

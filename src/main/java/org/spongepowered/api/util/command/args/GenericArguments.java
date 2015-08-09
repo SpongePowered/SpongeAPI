@@ -1083,7 +1083,7 @@ public final class GenericArguments {
                 if (!(source instanceof LocatedSource)) {
                     throw args.createError(t("Source must have a location in order to have a fallback world"));
                 }
-                world = ((LocatedSource) source).getWorld();
+                world = ((LocatedSource) source).getWorld().getProperties();
                 try {
                     vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
                 } catch (ArgumentParseException ex2) {

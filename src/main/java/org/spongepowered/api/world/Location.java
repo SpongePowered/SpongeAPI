@@ -289,6 +289,30 @@ public final class Location implements DataHolder {
     }
 
     /**
+     * Subtract another Vector3d to the position on this instance, returning
+     * a new Location instance.
+     *
+     * @param v The vector to subtract
+     * @return A new instance
+     */
+    public Location sub(Vector3d v) {
+        return sub(v.getX(), v.getY(), v.getZ());
+    }
+
+    /**
+     * Subtract vector components to the position on this instance, returning
+     * a new Location instance.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return A new instance
+     */
+    public Location sub(double x, double y, double z) {
+        return setPosition(getPosition().sub(x, y, z));
+    }
+
+    /**
      * Add another Vector3d to the position on this instance, returning
      * a new Location instance.
      *

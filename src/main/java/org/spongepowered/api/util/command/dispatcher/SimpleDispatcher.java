@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.NEWLINE_TEXT;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_TEXT;
+
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Optional;
