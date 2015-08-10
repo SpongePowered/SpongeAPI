@@ -2075,9 +2075,9 @@ public final class SpongeEventFactory {
         values.put("world", world);
         values.put("explosion", explosion);
         values.put("locations", locations);
-        values.put("originalLocations", ImmutableList.of(locations));
+        values.put("originalLocations", ImmutableList.copyOf(locations));
         values.put("entities", entities);
-        values.put("originalEntities", ImmutableList.of(entities));
+        values.put("originalEntities", ImmutableList.copyOf(entities));
         return createEvent(WorldOnExplosionEvent.class, values);
     }
 }
