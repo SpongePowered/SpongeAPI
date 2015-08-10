@@ -30,7 +30,9 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
@@ -395,5 +397,38 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @return Whether or not this extent is loaded
      */
     boolean isLoaded();
+
+    /**
+     * Returns a new extent that is the same or smaller than the current
+     * extent. This does not copy the data, it only provides a new view
+     * of the extent.
+     *
+     * @param newMin The new minimum coordinates in this extent
+     * @param newMax The new maximum coordinates in this extent
+     * @return The new extent with the new bounds
+     * @throws PositionOutOfBoundsException If the new minimum and maximum
+     *     are outside the current extent
+     */
+    Extent getExtentView(Vector3i newMin, Vector3i newMax);
+
+    /**
+     * Returns a new extent that is viewed through some transformation.
+     * This does not copy the data, it only provides a new view of the
+     * extent.
+     *
+     * @param transform The transformation to be applied
+     * @return The new extent with the transform
+     */
+    Extent getExtentView(DiscreteTransform3 transform);
+
+    /**
+     * Returns a new extent that is translated so that
+     * {@link Extent#getBlockMin()} returns {@link Vector3i#ZERO}.
+     * This does not copy the data, it only provides a new view of the
+     * extent.
+     *
+     * @return The new extent its minimum at zero
+     */
+    Extent getRelativeExtentView();
 
 }
