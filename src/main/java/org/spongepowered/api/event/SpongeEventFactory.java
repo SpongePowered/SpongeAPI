@@ -540,7 +540,6 @@ public final class SpongeEventFactory {
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
      * @param location The location
-     * @param block The block
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
@@ -549,7 +548,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("location", location);
-        values.put("block", location.getBlock())
+        values.put("block", location.getBlock());
         values.put("replacementBlock", replacementBlock);
         return createEvent(LeafDecayEvent.class, values);
     }
