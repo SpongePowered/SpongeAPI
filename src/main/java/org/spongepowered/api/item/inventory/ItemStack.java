@@ -36,7 +36,7 @@ import org.spongepowered.api.text.TextRepresentable;
  * can be compared using the comparators listed in {@link ItemStackComparators}.
  *
  * <p>{@link ItemStack}s have varying properties and data, it is adviseable to
- * use {@link DataHolder#getData(Class)} to retrieve different information
+ * use {@link DataHolder#get(Class)} to retrieve different information
  * regarding this item stack.</p>
  */
 public interface ItemStack extends DataHolder, DataSerializable, TextRepresentable, Translatable {
@@ -75,4 +75,6 @@ public interface ItemStack extends DataHolder, DataSerializable, TextRepresentab
      */
     int getMaxStackQuantity();
 
+    @Override
+    ItemStack copy();
 }

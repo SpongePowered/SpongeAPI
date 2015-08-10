@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.service.persistence.DataBuilder;
 
 /**
@@ -45,7 +47,16 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
      * @param <M> The maipulator type
      * @return This builder, for chaining
      */
-    <M extends DataManipulator<M>> E add(M manipulator);
+    <M extends DataManipulator<M, ?>> E add(M manipulator);
+
+    /**
+     * Adds the given {@link ImmutableDataManipulator} to the builder.
+     *
+     * @param manipulator The manipulator to add
+     * @param <I> The type of manipulator
+     * @return This builder, for chaining
+     */
+    <I extends ImmutableDataManipulator<I, ?>> E add(I manipulator);
 
     /**
      * Copies all known {@link DataManipulator}s from the given

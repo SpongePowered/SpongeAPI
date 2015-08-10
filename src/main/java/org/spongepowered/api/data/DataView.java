@@ -25,6 +25,8 @@
 package org.spongepowered.api.data;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.service.persistence.DataBuilder;
 import org.spongepowered.api.service.persistence.SerializationService;
 
@@ -140,6 +142,17 @@ public interface DataView {
      * @return This view, for chaining
      */
     DataView set(DataQuery path, Object value);
+
+    /**
+     * Sets the given {@link Key}ed value according to the provided
+     * {@link Key}'s {@link Key#getQuery()}.
+     *
+     * @param key The key of the value to set
+     * @param value The value of the data
+     * @param <E> The type of value
+     * @return This view, for chaining
+     */
+    <E> DataView set(Key<? extends BaseValue<E>> key, E value);
 
     /**
      * Removes the data associated to the given path relative to this

@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.world.Explosion;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.explosion.Explosion;
 
 /**
  * Called when an {@link Explosion} occurs in a {@link World}.

@@ -24,14 +24,19 @@
  */
 package org.spongepowered.api.util;
 
+import static org.spongepowered.api.data.DataQuery.of;
+
 import com.google.common.base.Objects;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
 
 import java.util.Random;
 
 /**
  * Represents a value which may vary randomly.
  */
-public abstract class VariableAmount {
+public abstract class VariableAmount implements DataSerializable {
 
     /**
      * Creates a new 'fixed' variable amount, calls to {@link #getAmount} will
@@ -163,6 +168,12 @@ public abstract class VariableAmount {
         public int hashCode() {
             return Objects.hashCode(this.amount);
         }
+
+        @Override
+        public DataContainer toContainer() {
+            return new MemoryDataContainer()
+                .set(of("Amount"), this.amount);
+        }
     }
 
     /**
@@ -200,6 +211,13 @@ public abstract class VariableAmount {
         @Override
         public int hashCode() {
             return Objects.hashCode(this.base, this.variance);
+        }
+
+        @Override
+        public DataContainer toContainer() {
+            return new MemoryDataContainer()
+                .set(of("Base"), this.base)
+                .set(of("Variance"), this.variance);
         }
     }
 
@@ -250,6 +268,14 @@ public abstract class VariableAmount {
         @Override
         public int hashCode() {
             return Objects.hashCode(this.inner, this.chance, this.base);
+        }
+
+        @Override
+        public DataContainer toContainer() {
+            return new MemoryDataContainer()
+                .set(of("Chance"), this.chance)
+                .set(of("Base"), this.base)
+                .set(of("Variance"), this.inner);
         }
     }
 

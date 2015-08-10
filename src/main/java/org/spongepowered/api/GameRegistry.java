@@ -29,8 +29,8 @@ import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.data.DataManipulatorRegistry;
 import org.spongepowered.api.data.ImmutableDataRegistry;
+import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
@@ -61,11 +61,13 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.ExplosionBuilder;
+import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.explosion.ExplosionBuilder;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.ExtentBufferFactory;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorFactory;
@@ -132,56 +134,56 @@ public interface GameRegistry {
      * @param <T> The type of builder
      * @return The builder, if available
      */
-    <T> Optional<T> getBuilderOf(Class<T> builderClass);
+    <T> Optional<T> createBuilderOfType(Class<T> builderClass);
 
     /**
      * Get an item stack builder.
      *
      * @return The item stack builder
      */
-    ItemStackBuilder getItemBuilder();
+    ItemStackBuilder createItemBuilder();
 
     /**
      * Get a trade offer builder.
      *
      * @return The trade offer builder
      */
-    TradeOfferBuilder getTradeOfferBuilder();
+    TradeOfferBuilder createTradeOfferBuilder();
 
     /**
      * Gets a new {@link FireworkEffectBuilder}.
      *
      * @return A new firework effect builder
      */
-    FireworkEffectBuilder getFireworkEffectBuilder();
+    FireworkEffectBuilder createFireworkEffectBuilder();
 
     /**
      * Get a potion effect builder.
      *
      * @return The potion effect builder
      */
-    PotionEffectBuilder getPotionEffectBuilder();
+    PotionEffectBuilder createPotionEffectBuilder();
 
     /**
      * Get an objective builder.
      *
      * @return The objective builder
      */
-    ObjectiveBuilder getObjectiveBuilder();
+    ObjectiveBuilder createObjectiveBuilder();
 
     /**
      * Get a team builder.
      *
      * @return The team builder
      */
-    TeamBuilder getTeamBuilder();
+    TeamBuilder createTeamBuilder();
 
     /**
      * Gets a scoreboard builder.
      *
      * @return The scoreboard builder
      */
-    ScoreboardBuilder getScoreboardBuilder();
+    ScoreboardBuilder createScoreboardBuilder();
 
     /**
      * Creates a new {@link StatisticBuilder} which may be used to create custom
@@ -189,7 +191,7 @@ public interface GameRegistry {
      *
      * @return The newly created simple statistic builder
      */
-    StatisticBuilder getStatisticBuilder();
+    StatisticBuilder createStatisticBuilder();
 
     /**
      * Creates a new
@@ -198,7 +200,7 @@ public interface GameRegistry {
      *
      * @return The newly created entity statistic builder
      */
-    StatisticBuilder.EntityStatisticBuilder getEntityStatisticBuilder();
+    StatisticBuilder.EntityStatisticBuilder createEntityStatisticBuilder();
 
     /**
      * Creates a new
@@ -207,7 +209,7 @@ public interface GameRegistry {
      *
      * @return The newly created block statistic builder
      */
-    StatisticBuilder.BlockStatisticBuilder getBlockStatisticBuilder();
+    StatisticBuilder.BlockStatisticBuilder createBlockStatisticBuilder();
 
     /**
      * Creates a new
@@ -216,7 +218,7 @@ public interface GameRegistry {
      *
      * @return The newly created item statistic builder
      */
-    StatisticBuilder.ItemStatisticBuilder getItemStatisticBuilder();
+    StatisticBuilder.ItemStatisticBuilder createItemStatisticBuilder();
 
     /**
      * Creates a new
@@ -225,7 +227,7 @@ public interface GameRegistry {
      *
      * @return The newly created team statistic builder
      */
-    StatisticBuilder.TeamStatisticBuilder getTeamStatisticBuilder();
+    StatisticBuilder.TeamStatisticBuilder createTeamStatisticBuilder();
 
     /**
      * Creates a new {@link AchievementBuilder} which may be used to create
@@ -233,14 +235,14 @@ public interface GameRegistry {
      *
      * @return The newly created achievement builder
      */
-    AchievementBuilder getAchievementBuilder();
+    AchievementBuilder createAchievementBuilder();
 
     /**
      * Gets a new {@link AttributeModifierBuilder}.
      *
      * @return A new AttributeModifierBuilder
      */
-    AttributeModifierBuilder getAttributeModifierBuilder();
+    AttributeModifierBuilder createAttributeModifierBuilder();
 
     /**
      * Gets the {@link AttributeCalculator}.
@@ -254,7 +256,7 @@ public interface GameRegistry {
      *
      * @return A new AttributeBuilder
      */
-    AttributeBuilder getAttributeBuilder();
+    AttributeBuilder createAttributeBuilder();
 
     /**
      * Gets a new {@link WorldBuilder} for creating {@link World}s or
@@ -262,14 +264,14 @@ public interface GameRegistry {
      *
      * @return A new builder
      */
-    WorldBuilder getWorldBuilder();
+    WorldBuilder createWorldBuilder();
 
     /**
      * Gets a new {@link ExplosionBuilder} for creating {@link Explosion}s.
      *
      * @return A new builder
      */
-    ExplosionBuilder getExplosionBuilder();
+    ExplosionBuilder createExplosionBuilder();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
@@ -277,7 +279,7 @@ public interface GameRegistry {
      * @param particle The particle type
      * @return The particle effect builder
      */
-    ParticleEffectBuilder getParticleEffectBuilder(ParticleType particle);
+    ParticleEffectBuilder createParticleEffectBuilder(ParticleType particle);
 
     /**
      * Gets all available villager {@link Career}s for the given profession.
@@ -497,6 +499,14 @@ public interface GameRegistry {
      * @return A new identity transform
      */
     Transform createTransform(Extent extent);
+
+    /**
+     * Gets the {@link ExtentBufferFactory} for creating buffers
+     * to store extent data.
+     *
+     * @return The extent buffer factory
+     */
+    ExtentBufferFactory getExtentBufferFactory();
 
     /**
      * Gets the {@link Translation} with the provided ID.

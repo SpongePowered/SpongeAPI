@@ -27,12 +27,14 @@ package org.spongepowered.api.event;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.withSettings;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
@@ -151,7 +153,7 @@ public class SpongeEventFactoryTest {
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {
-            return new Location(mock(Extent.class), 0, 0, 0);
+            return new Location((Extent) mockParam(Extent.class), 0, 0, 0);
         } else if (paramType == Text[].class) {
             return new Text[] {};
         } else if (BlockSnapshot.class.isAssignableFrom(paramType)) {
@@ -167,7 +169,7 @@ public class SpongeEventFactoryTest {
             when(mock.copy()).thenAnswer(answer);
             return mock;
         } else if (DataManipulator.class.isAssignableFrom(paramType)) {
-            DataManipulator<?> mock = (DataManipulator) mock(paramType);
+            DataManipulator<?, ?> mock = (DataManipulator) mock(paramType);
 
             final Answer<Object> answer = new Answer<Object>() {
                 @Override
@@ -181,7 +183,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == UUID.class) {
             return UUID.randomUUID();
         } else {
-            return mock(paramType);
+            return mock(paramType, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
         }
     }
 }

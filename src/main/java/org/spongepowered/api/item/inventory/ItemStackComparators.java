@@ -27,8 +27,8 @@ package org.spongepowered.api.item.inventory;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 
 import java.util.Comparator;
 import java.util.List;
@@ -152,15 +152,15 @@ public final class ItemStackComparators {
             if (o2 == null) {
                 return -1;
             }
-            List<DataManipulator<?>> properties = Lists.newArrayList(o2.getManipulators());
-            for (DataManipulator<?> property : o1.getManipulators()) {
-                if (properties.contains(property)) {
-                    properties.remove(property);
+            List<DataManipulator<?, ?>> manipulators = Lists.newArrayList(o2.getContainers());
+            for (final DataManipulator<?, ?> manipulator : o1.getContainers()) {
+                if (manipulators.contains(manipulator)) {
+                    manipulators.remove(manipulator);
                 } else {
                     return -1;
                 }
             }
-            return properties.size();
+            return manipulators.size();
         }
     }
 }

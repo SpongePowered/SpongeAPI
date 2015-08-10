@@ -31,6 +31,9 @@ import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.service.scheduler.SchedulerService;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
+import org.spongepowered.api.world.World;
+
+import java.io.File;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -103,5 +106,11 @@ public interface Game {
      * @return The teleport helper
      */
     TeleportHelper getTeleportHelper();
+
+    /**
+     * Gets the saves directory where {@link World} data currently resides.
+     * @return The directory
+     */
+    File getSavesDirectory();
 
 }

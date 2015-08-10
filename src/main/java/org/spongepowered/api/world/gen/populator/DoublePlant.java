@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.gen.populator;
 
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.data.type.DoubleSizePlantType;
+import org.spongepowered.api.data.type.DoublePlantType;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.Collection;
@@ -43,21 +43,21 @@ public interface DoublePlant extends Populator {
      * 
      * @return The possible types to be spawned
      */
-    ImmutableSet<DoubleSizePlantType> getPossibleTypes();
+    ImmutableSet<DoublePlantType> getPossibleTypes();
 
     /**
      * Sets which plant types may be spawned in by this populator.
      * 
      * @param types A collection of possible types
      */
-    void setPossibleTypes(Collection<DoubleSizePlantType> types);
+    void setPossibleTypes(Collection<DoublePlantType> types);
 
     /**
      * Sets which plant types may be spawned in by this populator.
      * 
      * @param types Possible types
      */
-    void setPossibleTypes(DoubleSizePlantType... types);
+    void setPossibleTypes(DoublePlantType... types);
 
     /**
      * Gets the base number of plants to create.
@@ -98,7 +98,7 @@ public interface DoublePlant extends Populator {
          * @param types Possible types
          * @return This builder, for chaining
          */
-        Builder possibleTypes(DoubleSizePlantType... types);
+        Builder possibleTypes(DoublePlantType... types);
 
         /**
          * Sets which plant types may be spawned in by this populator.
@@ -106,7 +106,7 @@ public interface DoublePlant extends Populator {
          * @param types A collection of possible types
          * @return This builder, for chaining
          */
-        Builder possibleTypes(Collection<DoubleSizePlantType> types);
+        Builder possibleTypes(Collection<DoublePlantType> types);
 
         /**
          * Sets the base number of plants to create, cannot be negative.

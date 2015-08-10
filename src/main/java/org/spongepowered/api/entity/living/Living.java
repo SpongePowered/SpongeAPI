@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulator.entity.DamageableData;
-import org.spongepowered.api.data.manipulator.entity.HealthData;
+import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
+import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.potion.PotionEffect;
 

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulator.entity.CareerData;
+import org.spongepowered.api.data.manipulator.mutable.entity.CareerData;
 import org.spongepowered.api.item.merchant.Merchant;
 
 /**

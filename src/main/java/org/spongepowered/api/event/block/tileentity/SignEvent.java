@@ -25,7 +25,8 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.data.manipulator.tileentity.SignData;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 
 /**
  * An event that is associated with a {@link Sign}.
@@ -36,5 +37,5 @@ public interface SignEvent extends TileEntityEvent {
     Sign getTile();
 
     @Override
-    SignData getCurrentData();
+    ImmutableSignData getCurrentData();
 }

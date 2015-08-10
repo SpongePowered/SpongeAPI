@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.manipulator.TargetedLocationData;
+import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 
 /**
  * Represents an Eye of Ender.

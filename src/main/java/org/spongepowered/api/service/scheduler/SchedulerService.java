@@ -39,7 +39,7 @@ public interface SchedulerService {
      *
      * @return A new task builder
      */
-    TaskBuilder getTaskBuilder();
+    TaskBuilder createTaskBuilder();
 
     /**
      * Retrieves a scheduled or running task by its unique ID.

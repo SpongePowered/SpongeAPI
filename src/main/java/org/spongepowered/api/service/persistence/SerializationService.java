@@ -27,6 +27,7 @@ package org.spongepowered.api.service.persistence;
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.DataView;
 
 /**
  * A service that manages {@link DataBuilder}s and sometimes the
@@ -62,5 +63,18 @@ public interface SerializationService {
      * @return The builder, if available
      */
     <T extends DataSerializable>  Optional<DataBuilder<T>> getBuilder(Class<T> clazz);
+
+    /**
+     * Attempts to deserialize an instance of the {@link DataSerializable} from
+     * the provided {@link DataView}. If there is no {@link DataBuilder}
+     * registered for the provided {@link DataSerializable}, then
+     * {@link Optional#absent()} may be returned.
+     *
+     * @param clazz The class of the data serializable
+     * @param dataView The data view containing raw data
+     * @param <T> The type of data serializable
+     * @return The data serializable, if available
+     */
+    <T extends DataSerializable> Optional<T> deserialize(Class<T> clazz, DataView dataView);
 
 }

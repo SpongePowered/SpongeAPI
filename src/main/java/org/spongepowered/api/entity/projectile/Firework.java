@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.data.manipulator.FireworkData;
+import org.spongepowered.api.data.manipulator.mutable.FireworkData;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 
 /**

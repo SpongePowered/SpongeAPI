@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.hanging;
 
-import org.spongepowered.api.data.manipulator.block.DirectionalData;
+import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
 import org.spongepowered.api.entity.Entity;
 
 /**

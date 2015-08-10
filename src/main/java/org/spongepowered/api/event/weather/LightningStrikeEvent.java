@@ -24,35 +24,16 @@
  */
 package org.spongepowered.api.event.weather;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.weather.Lightning;
-import org.spongepowered.api.world.Location;
-
-import java.util.List;
+import org.spongepowered.api.event.block.BulkBlockEvent;
+import org.spongepowered.api.event.entity.BulkEntityEvent;
+import org.spongepowered.api.event.entity.EntityEvent;
 
 /**
  * Called when there is a lightning strike.
  */
-public interface LightningStrikeEvent extends WeatherEvent {
+public interface LightningStrikeEvent extends EntityEvent, WeatherEvent, BulkBlockEvent, BulkEntityEvent {
 
-    /**
-     * Gets the {@link Lightning} of the lightning strike.
-     *
-     * @return The {@link Lightning} of the lightning strike
-     */
-    Lightning getLightningStrike();
-
-    /**
-     * Gets a {@link List} of all struck {@link Entity}s.
-     *
-     * @return A list of struck entities.
-     */
-    List<Entity> getStruckEntities();
-
-    /**
-     * Gets a {@link List} of all struck {@link Location}s.
-     *
-     * @return A list of struck blocks.
-     */
-    List<Location> getStruckBlocks();
+    @Override
+    Lightning getEntity();
 }
