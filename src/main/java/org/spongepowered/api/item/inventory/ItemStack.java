@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.text.translation.Translatable;
-
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.TextRepresentable;
+import org.spongepowered.api.text.translation.Translatable;
 
 /**
  * Represents a stack of a specific {@link ItemType}. Supports serialization and

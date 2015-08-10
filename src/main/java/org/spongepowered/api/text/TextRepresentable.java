@@ -25,9 +25,8 @@
 
 package org.spongepowered.api.text;
 
-import org.spongepowered.api.text.action.TextAction;
-
 import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.action.TextAction;
 
 /**
  * Represents an instance that have a {@link Text} representation that should be
@@ -41,7 +40,7 @@ public interface TextRepresentable {
      * {@link HoverAction hover texts} or other {@link TextAction actions}. This
      * method is basically the {@link Object#toString() toString()} equivalent
      * for {@link Text}s.
-     * 
+     *
      * @return The text instance representing this instance
      */
     Text toText();

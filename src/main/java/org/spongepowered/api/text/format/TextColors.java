@@ -60,6 +60,7 @@ public final class TextColors {
             return "NONE";
         }
 
+        @Override
         public String toString() {
             return getId();
         };
