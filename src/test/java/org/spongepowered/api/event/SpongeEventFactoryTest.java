@@ -153,7 +153,7 @@ public class SpongeEventFactoryTest {
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {
-            return new Location(mock(Extent.class, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS)), 0, 0, 0);
+            return new Location((Extent) mockParam(Extent.class), 0, 0, 0);
         } else if (paramType == Text[].class) {
             return new Text[] {};
         } else if (BlockSnapshot.class.isAssignableFrom(paramType)) {
@@ -183,7 +183,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == UUID.class) {
             return UUID.randomUUID();
         } else {
-            return mock(paramType);
+            return mock(paramType, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
         }
     }
 }
