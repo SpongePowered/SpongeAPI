@@ -35,7 +35,6 @@ import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
@@ -545,12 +544,12 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static LeafDecayEvent createLeafDecay(Game game, Cause cause, Location location, BlockState block, BlockSnapshot replacementBlock) {
+    public static LeafDecayEvent createLeafDecay(Game game, Cause cause, Location location, BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("location", location);
-        values.put("block", block);
+        values.put("block", location.getBlock())
         values.put("replacementBlock", replacementBlock);
         return createEvent(LeafDecayEvent.class, values);
     }
