@@ -188,7 +188,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     Vector3d getScale();
 
     /**
-     * Gets the entity scale. Not currently used.
+     * Sets the entity scale. Not currently used.
      * Does nothing.
      *
      * @param scale The scale
