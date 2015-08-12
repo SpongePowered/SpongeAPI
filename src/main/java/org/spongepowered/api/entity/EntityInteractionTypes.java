@@ -53,6 +53,15 @@ public final class EntityInteractionTypes {
      */
     public static final EntityInteractionType USE = null;
 
+    /**
+     * Represents an interaction that occurs indirectly by an {@link Entity}.
+     *
+     * <p>A good example is an entity walking over a pressure plate and invoking
+     * an event. The interaction type in the event would be considered "indirect" as
+     * the entity wasn't directly interacting with the pressure plate.</p>
+     */
+    public static final EntityInteractionType INDIRECT = null;
+
     private EntityInteractionTypes() {
 
     }
