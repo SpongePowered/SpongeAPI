@@ -445,13 +445,19 @@ public class TextStyle {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .add("bold", this.bold)
-                .add("italic", this.italic)
-                .add("underline", this.underline)
-                .add("strikethrough", this.strikethrough)
-                .add("obfuscated", this.obfuscated)
-                .toString();
+        if (bold.isPresent() || italic.isPresent() || underline.isPresent() || strikethrough.isPresent() || obfuscated.isPresent()) {
+            return Objects.toStringHelper(this)
+                    .add("bold", this.bold)
+                    .add("italic", this.italic)
+                    .add("underline", this.underline)
+                    .add("strikethrough", this.strikethrough)
+                    .add("obfuscated", this.obfuscated)
+                    .toString();
+        } else {
+            return Objects.toStringHelper(this)
+                    .addValue("NONE")
+                    .toString();
+        }
     }
 
     /**

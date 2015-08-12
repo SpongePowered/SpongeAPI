@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
  *
  * @see Text
  */
-public abstract class TextBuilder {
+public abstract class TextBuilder implements TextRepresentable {
 
     protected TextColor color = TextColors.NONE;
     protected TextStyle style = TextStyles.NONE;
@@ -353,6 +354,11 @@ public abstract class TextBuilder {
                 .toString();
     }
 
+    @Override
+    public final Text toText() {
+        return build();
+    }
+
     /**
      * Represents a {@link TextBuilder} creating immutable {@link Text.Literal}
      * instances.
@@ -527,6 +533,188 @@ public abstract class TextBuilder {
         @Override
         public Literal removeAll() {
             return (Literal) super.removeAll();
+        }
+
+    }
+
+    /**
+     * Represents a {@link TextBuilder} creating immutable
+     * {@link Text.Placeholder} instances.
+     *
+     * @see Text.Placeholder
+     */
+    public static class Placeholder extends Literal {
+
+        protected String key;
+
+        /**
+         * Constructs a new unformatted {@link Placeholder} with the given
+         * content.
+         *
+         * @param key The none empty replacement key for the placeholder builder
+         */
+        public Placeholder(String key) {
+            key(key);
+            content(key);
+        }
+
+        /**
+         * Constructs a new {@link Placeholder} with the formatting and actions
+         * of the specified {@link Text} and the given content.
+         *
+         * @param text The text to apply the properties from
+         * @param key The none empty replacement key for the placeholder builder
+         */
+        public Placeholder(Text text, String key) {
+            super(text, "{" + key + "}");
+            key(key);
+        }
+
+        /**
+         * Constructs a new {@link Placeholder} with the formatting, actions and
+         * content of the specified {@link Text.Placeholder}.
+         *
+         * @param text The text to apply the properties from
+         */
+        public Placeholder(Text.Placeholder text) {
+            super(text);
+            this.key = text.key;
+        }
+
+        /**
+         * Returns the current replacement key of this builder.
+         *
+         * @return The current replacement key
+         * @see Text.Placeholder#getKey()
+         */
+        public final String getKey() {
+            return this.key;
+        }
+
+        /**
+         * Sets the plain text replacement key of this text.
+         *
+         * @param key The key of this text
+         * @return This text builder
+         * @see Text.Placeholder#getKey()
+         */
+        public Placeholder key(String key) {
+            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+            this.key = key;
+            return this;
+        }
+
+        /**
+         * Sets the plain text content of this text.
+         *
+         * @param content The content of this text
+         * @return This text builder
+         * @see Text.Placeholder#getContent()
+         */
+        @Override
+        public Placeholder content(String content) {
+            return (Placeholder) super.content(content);
+        }
+
+        @Override
+        public Text.Placeholder build() {
+            return new Text.Placeholder(
+                    this.color,
+                    this.style,
+                    ImmutableList.copyOf(this.children),
+                    this.clickAction,
+                    this.hoverAction,
+                    this.shiftClickAction,
+                    this.key,
+                    this.content);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Placeholder) || !super.equals(o)) {
+                return false;
+            }
+
+            Placeholder that = (Placeholder) o;
+            return Objects.equal(this.key, that.key) && Objects.equal(this.content, that.content);
+
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.content);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .addValue(super.toString())
+                    .add("key", this.key)
+                    .add("content", this.content)
+                    .toString();
+        }
+
+        @Override
+        public Placeholder color(TextColor color) {
+            return (Placeholder) super.color(color);
+        }
+
+        @Override
+        public Placeholder style(TextStyle... styles) {
+            return (Placeholder) super.style(styles);
+        }
+
+        @Override
+        public Placeholder onClick(@Nullable ClickAction<?> clickAction) {
+            return (Placeholder) super.onClick(clickAction);
+        }
+
+        @Override
+        public Placeholder onHover(@Nullable HoverAction<?> hoverAction) {
+            return (Placeholder) super.onHover(hoverAction);
+        }
+
+        @Override
+        public Placeholder onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
+            return (Placeholder) super.onShiftClick(shiftClickAction);
+        }
+
+        @Override
+        public Placeholder append(Text... children) {
+            return (Placeholder) super.append(children);
+        }
+
+        @Override
+        public Placeholder append(Iterable<? extends Text> children) {
+            return (Placeholder) super.append(children);
+        }
+
+        @Override
+        public Placeholder insert(int pos, Text... children) {
+            return (Placeholder) super.insert(pos, children);
+        }
+
+        @Override
+        public Placeholder insert(int pos, Iterable<? extends Text> children) {
+            return (Placeholder) super.insert(pos, children);
+        }
+
+        @Override
+        public Placeholder remove(Text... children) {
+            return (Placeholder) super.remove(children);
+        }
+
+        @Override
+        public Placeholder remove(Iterable<? extends Text> children) {
+            return (Placeholder) super.remove(children);
+        }
+
+        @Override
+        public Placeholder removeAll() {
+            return (Placeholder) super.removeAll();
         }
 
     }
