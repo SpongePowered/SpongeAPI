@@ -2029,14 +2029,13 @@ public final class SpongeEventFactory {
      * Creates a new {@link WorldExplosionEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param world The world
      * @param explosion The explosion
      * @return A new instance of the event
      */
-    public static WorldExplosionEvent createWorldExplosion(Game game, World world, Explosion explosion) {
+    public static WorldExplosionEvent createWorldExplosion(Game game, Explosion explosion) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("world", world);
+        values.put("world", explosion.getWorld());
         values.put("explosion", explosion);
         return createEvent(WorldExplosionEvent.class, values);
     }
@@ -2045,14 +2044,13 @@ public final class SpongeEventFactory {
      * Creates a new {@link WorldPreExplosionEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param world The world
      * @param explosion The explosion
      * @return A new instance of the event
      */
-    public static WorldPreExplosionEvent createWorldPreExplosion(Game game, World world, Explosion explosion) {
+    public static WorldPreExplosionEvent createWorldPreExplosion(Game game, Explosion explosion) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("world", world);
+        values.put("world", explosion.getWorld());
         values.put("explosion", explosion);
         return createEvent(WorldPreExplosionEvent.class, values);
     }
@@ -2061,18 +2059,17 @@ public final class SpongeEventFactory {
      * Creates a new {@link WorldOnExplosionEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param world The world
      * @param explosion The explosion
      * @param locations The affected locations
      * @param entities The affected entities
      * @return A new instance of the event
      */
-    public static WorldOnExplosionEvent createWorldOnExplosion(Game game, Cause cause, World world, Explosion explosion, List<Location> locations,
+    public static WorldOnExplosionEvent createWorldOnExplosion(Game game, Cause cause, Explosion explosion, List<Location> locations,
             List<Entity> entities) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
-        values.put("world", world);
+        values.put("world", explosion.getWorld());
         values.put("explosion", explosion);
         values.put("locations", locations);
         values.put("originalLocations", ImmutableList.copyOf(locations));
