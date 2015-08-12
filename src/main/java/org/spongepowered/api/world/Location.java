@@ -31,8 +31,10 @@ import static org.spongepowered.api.data.DataQuery.of;
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -41,11 +43,14 @@ import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.DataPriority;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
@@ -289,6 +294,30 @@ public final class Location implements DataHolder {
     }
 
     /**
+     * Subtract another Vector3d to the position on this instance, returning
+     * a new Location instance.
+     *
+     * @param v The vector to subtract
+     * @return A new instance
+     */
+    public Location sub(Vector3d v) {
+        return sub(v.getX(), v.getY(), v.getZ());
+    }
+
+    /**
+     * Subtract vector components to the position on this instance, returning
+     * a new Location instance.
+     *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     * @return A new instance
+     */
+    public Location sub(double x, double y, double z) {
+        return setPosition(getPosition().sub(x, y, z));
+    }
+
+    /**
      * Add another Vector3d to the position on this instance, returning
      * a new Location instance.
      *
@@ -344,9 +373,9 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Get the block state for this position.
+     * Get the {@link BlockState} for this position.
      *
-     * @return The current block state
+     * @return The block state
      */
     public BlockState getBlock() {
         return getExtent().getBlock(getBlockPosition());
@@ -415,8 +444,18 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public <T extends DataManipulator<T>> boolean remove(Class<T> manipulatorClass) {
-        return getExtent().remove(getBlockPosition(), manipulatorClass);
+    public DataTransactionResult remove(Class<? extends DataManipulator<?, ?>> containerClass) {
+        return getExtent().remove(getBlockPosition(), containerClass);
+    }
+
+    @Override
+    public DataTransactionResult remove(BaseValue<?> value) {
+        return getExtent().remove(getBlockPosition(), value.getKey());
+    }
+
+    @Override
+    public DataTransactionResult remove(Key<?> key) {
+        return getExtent().remove(getBlockPosition(), key);
     }
 
     /**
@@ -460,15 +499,6 @@ public final class Location implements DataHolder {
     }
 
     /**
-     * Gets the time it takes to dig this block with a fist in ticks.
-     *
-     * @return The time in ticks
-     */
-    public int getBlockDigTime() {
-        return getExtent().getBlockDigTime(getBlockPosition());
-    }
-
-    /**
      * Gets the time it takes to dig this block the specified item in ticks.
      *
      * @param itemStack The item to pretend-dig with
@@ -476,70 +506,6 @@ public final class Location implements DataHolder {
      */
     public int getBlockDigTimeWith(ItemStack itemStack) {
         return getExtent().getBlockDigTimeWith(getBlockPosition(), itemStack);
-    }
-
-    /**
-     * Gets the temperature at this position.
-     *
-     * <p>Vanilla behaviour for weather causes snow when the temperature is <= 0.15.</p>
-     *
-     * @return The temperature, as a float between 0 and 1, inclusive
-     */
-    public float getTemperature() {
-        return getExtent().getTemperature(getBlockPosition());
-    }
-
-    /**
-     * Get the light level for this object.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public int getLuminance() {
-        return getExtent().getLuminance(getBlockPosition());
-    }
-
-    /**
-     * Get the light level for this object that is caused by an overhead sky.
-     *
-     * <p>Higher levels indicate a higher luminance. If no sky is overheard,
-     * the return value may be 0.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public int getLuminanceFromSky() {
-        return getExtent().getLuminanceFromSky(getBlockPosition());
-    }
-
-    /**
-     * Get the light level for this object that is caused by everything other
-     * than the sky.
-     *
-     * <p>Higher levels indicate a higher luminance.</p>
-     *
-     * @return A light level, nominally between 0 and 15, inclusive
-     */
-    public int getLuminanceFromGround() {
-        return getExtent().getLuminanceFromGround(getBlockPosition());
-    }
-
-    /**
-     * Test whether the object is powered.
-     *
-     * @return Whether powered
-     */
-    public boolean isBlockPowered() {
-        return getExtent().isBlockPowered(getBlockPosition());
-    }
-
-    /**
-     * Test whether the object is indirectly powered.
-     *
-     * @return Whether powered
-     */
-    public boolean isBlockIndirectlyPowered() {
-        return getExtent().isBlockPowered(getBlockPosition());
     }
 
     /**
@@ -578,15 +544,6 @@ public final class Location implements DataHolder {
      */
     public Collection<Direction> getIndirectlyPoweredBlockFaces() {
         return getExtent().getIndirectlyPoweredBlockFaces(getBlockPosition());
-    }
-
-    /**
-     * Test whether the the block will block the movement of entities.
-     *
-     * @return Blocks movement
-     */
-    public boolean isBlockPassable() {
-        return getExtent().isBlockPassable(getBlockPosition());
     }
 
     /**
@@ -641,36 +598,6 @@ public final class Location implements DataHolder {
     }
 
     @Override
-    public <T extends DataManipulator<T>> Optional<T> getData(Class<T> dataClass) {
-        return getExtent().getData(getBlockPosition(), dataClass);
-    }
-
-    @Override
-    public <T extends DataManipulator<T>> Optional<T> getOrCreate(Class<T> manipulatorClass) {
-        return getExtent().getOrCreate(getBlockPosition(), manipulatorClass);
-    }
-
-    @Override
-    public <T extends DataManipulator<T>> boolean isCompatible(Class<T> manipulatorClass) {
-        return getExtent().isCompatible(getBlockPosition(), manipulatorClass);
-    }
-
-    @Override
-    public <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData) {
-        return getExtent().offer(getBlockPosition(), manipulatorData);
-    }
-
-    @Override
-    public <T extends DataManipulator<T>> DataTransactionResult offer(T manipulatorData, DataPriority priority) {
-        return getExtent().offer(getBlockPosition(), manipulatorData, priority);
-    }
-
-    @Override
-    public Collection<DataManipulator<?>> getManipulators() {
-        return getExtent().getManipulators(getBlockPosition());
-    }
-
-    @Override
     public <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass) {
         return getExtent().getProperty(getBlockPosition(), propertyClass);
     }
@@ -692,11 +619,139 @@ public final class Location implements DataHolder {
 
     @Override
     public DataContainer toContainer() {
-        return new MemoryDataContainer()
-                .set(of("ExtentUUID"), getExtent().getUniqueId())
-                .set(of("X"), getX())
-                .set(of("Y"), getY())
-                .set(of("Z"), getZ());
+        DataContainer container = new MemoryDataContainer();
+        if (getExtent() instanceof World) {
+            container.set(of("WorldName"), ((World) getExtent()).getName());
+            container.set(of("WorldUuid"), getExtent().getUniqueId().toString());
+        } else if (getExtent() instanceof Chunk) {
+            container.set(of("ChunkX"), ((Chunk) getExtent()).getPosition().getX())
+                .set(of("ChunkY"), ((Chunk) getExtent()).getPosition().getY())
+                .set(of("ChunkZ"), ((Chunk) getExtent()).getPosition().getZ())
+                .set(of("WorldName"), ((Chunk) getExtent()).getWorld().getName())
+                .set(of("WorldUuiD"), ((Chunk) getExtent()).getWorld().getUniqueId().toString());
+        }
+        container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId())
+            .set(of("x"), this.getX())
+            .set(of("y"), this.getY())
+            .set(of("z"), this.getZ())
+            .set(of("Manipulators"), getContainers());
+        return container;
+    }
+
+    @Override
+    public <T extends DataManipulator<?, ?>> Optional<T> get(Class<T> containerClass) {
+        return getExtent().get(getBlockPosition(), containerClass);
+    }
+
+    @Override
+    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+        return getExtent().get(getBlockPosition(), key);
+    }
+
+    @Override
+    public <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Class<T> containerClass) {
+        return getExtent().getOrCreate(getBlockPosition(), containerClass);
+    }
+
+    @Nullable
+    @Override
+    public <E> E getOrNull(Key<? extends BaseValue<E>> key) {
+        return getExtent().getOrNull(getBlockPosition(), key);
+    }
+
+    @Override
+    public <E> E getOrElse(Key<? extends BaseValue<E>> key, E defaultValue) {
+        return getExtent().getOrElse(getBlockPosition(), key, defaultValue);
+    }
+
+    @Override
+    public <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value) {
+        return getExtent().offer(getBlockPosition(), key, value);
+    }
+
+    @Override
+    public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> valueHolders) {
+        return getExtent().offer(getBlockPosition(), valueHolders);
+    }
+
+    @Override
+    public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> values, MergeFunction function) {
+        return getExtent().offer(getBlockPosition(), values, function);
+    }
+
+    @Override
+    public DataTransactionResult offer(BaseValue<?> value) {
+        return getExtent().offer(getBlockPosition(), value);
+    }
+
+    @Override
+    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer) {
+        return getExtent().offer(getBlockPosition(), valueContainer);
+    }
+
+    @Override
+    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
+        return getExtent().offer(getBlockPosition(), valueContainer, function);
+    }
+
+    @Override
+    public DataTransactionResult undo(DataTransactionResult result) {
+        return getExtent().undo(getBlockPosition(), result);
+    }
+
+    @Override
+    public boolean supports(Class<? extends DataManipulator<?, ?>> holderClass) {
+        return getExtent().supports(getBlockPosition(), holderClass);
+    }
+
+    @Override
+    public boolean supports(Key<?> key) {
+        return getExtent().supports(getBlockPosition(), key);
+    }
+
+    @Override
+    public boolean supports(BaseValue<?> baseValue) {
+        return getExtent().supports(getBlockPosition(), baseValue);
+    }
+
+    @Override
+    public <E> DataTransactionResult transform(Key<? extends BaseValue<E>> key, Function<E, E> function) {
+        return getExtent().transform(getBlockPosition(), key, function);
+    }
+
+    @Override
+    public DataTransactionResult copyFrom(DataHolder that) {
+        return getExtent().copyFrom(getBlockPosition(), that);
+    }
+
+    @Override
+    public DataTransactionResult copyFrom(DataHolder that, MergeFunction strategy) {
+        return getExtent().copyFrom(getBlockPosition(), that, strategy);
+    }
+
+    @Override
+    public Collection<DataManipulator<?, ?>> getContainers() {
+        return getExtent().getManipulators(getBlockPosition());
+    }
+
+    @Override
+    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
+        return getExtent().getValue(getBlockPosition(), key);
+    }
+
+    @Override
+    public DataHolder copy() {
+        return new Location(this.extent, getPosition());
+    }
+
+    @Override
+    public ImmutableSet<Key<?>> getKeys() {
+        return getExtent().getKeys(getBlockPosition());
+    }
+
+    @Override
+    public ImmutableSet<ImmutableValue<?>> getValues() {
+        return getExtent().getValues(getBlockPosition());
     }
 
     @Override

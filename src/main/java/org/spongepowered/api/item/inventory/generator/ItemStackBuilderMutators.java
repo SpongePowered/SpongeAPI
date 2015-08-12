@@ -29,10 +29,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.manipulator.item.EnchantmentData;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.item.EnchantmentData;
+import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -159,7 +162,45 @@ public final class ItemStackBuilderMutators {
      * @param data The data to add
      * @return The newly generated mutator
      */
-    public static ItemStackBuilderMutator data(DataManipulator<?> data) {
+    public static ItemStackBuilderMutator immutableData(ImmutableDataManipulator<?, ?> data) {
+        return immutableData(Suppliers.ofInstance(checkNotNull(data, "data")));
+    }
+
+    /**
+     * Creates a mutator, that modifies the builders to add the given
+     * {@link ImmutableDataManipulator} to the item stack.
+     *
+     * @param supplier The data supplier to wrap
+     * @return The newly generated mutator
+     */
+    public static ItemStackBuilderMutator immutableData(Supplier<? extends ImmutableDataManipulator<?, ?>> supplier) {
+        return new ImmutableDataRandomizer(supplier);
+    }
+
+    private static class ImmutableDataRandomizer implements ItemStackBuilderMutator {
+
+        private final Supplier<? extends ImmutableDataManipulator<?, ?>> itemData;
+
+        ImmutableDataRandomizer(Supplier<? extends ImmutableDataManipulator<?, ?>> itemData) {
+            super();
+            this.itemData = checkNotNull(itemData, "itemData");
+        }
+
+        @Override
+        public void apply(ItemStackBuilder builder) {
+            builder.itemData(this.itemData.get());
+        }
+
+    }
+
+    /**
+     * Creates a mutator, that modifies the builders to add the given
+     * {@link DataManipulator} to the item stack.
+     *
+     * @param data The data to add
+     * @return The newly generated mutator
+     */
+    public static ItemStackBuilderMutator data(DataManipulator<?, ?> data) {
         return data(Suppliers.ofInstance(checkNotNull(data, "data")));
     }
 
@@ -170,15 +211,15 @@ public final class ItemStackBuilderMutators {
      * @param supplier The data supplier to wrap
      * @return The newly generated mutator
      */
-    public static ItemStackBuilderMutator data(Supplier<? extends DataManipulator<?>> supplier) {
+    public static ItemStackBuilderMutator data(Supplier<? extends DataManipulator<?, ?>> supplier) {
         return new DataRandomizer(supplier);
     }
 
     private static class DataRandomizer implements ItemStackBuilderMutator {
 
-        private final Supplier<? extends DataManipulator<?>> itemData;
+        private final Supplier<? extends DataManipulator<?, ?>> itemData;
 
-        DataRandomizer(Supplier<? extends DataManipulator<?>> itemData) {
+        DataRandomizer(Supplier<? extends DataManipulator<?, ?>> itemData) {
             super();
             this.itemData = checkNotNull(itemData, "itemData");
         }
@@ -298,10 +339,18 @@ public final class ItemStackBuilderMutators {
             if (optionalData.isPresent()) {
                 final EnchantmentData data = optionalData.get();
                 int count = this.count.get();
-                for (Enchantment enchantment : this.enchantments.get()) {
+                for (final Enchantment enchantment : this.enchantments.get()) {
                     if (enchantment.canBeAppliedToStack(stack)) {
                         count--;
-                        data.set(enchantment, randomLevel(enchantment));
+                        data.set(data.enchantments().filter(new Predicate<ItemEnchantment>() {
+
+                            @Override
+                            public boolean apply(ItemEnchantment input) {
+                                return !input.getEnchantment().equals(enchantment);
+                            }
+
+                        })
+                            .add(new ItemEnchantment(enchantment, randomLevel(enchantment))));
                         builder.itemData(data);
                         if (count <= 0) {
                             break;

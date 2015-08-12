@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a side of a hinge.
  */
 @CatalogedBy(Hinges.class)
-public interface Hinge extends CatalogType {
+public interface Hinge extends CatalogType, Cycleable<Hinge> {
 
 }

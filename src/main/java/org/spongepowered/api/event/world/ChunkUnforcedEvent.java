@@ -26,7 +26,7 @@ package org.spongepowered.api.event.world;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.world.ChunkManager;
+import org.spongepowered.api.service.world.ChunkLoadService;
 
 // NOTE: This does not extend ChunkEvent as Chunk may not be currently loaded.
 public interface ChunkUnforcedEvent extends GameEvent {
@@ -36,7 +36,7 @@ public interface ChunkUnforcedEvent extends GameEvent {
      *
      * @return The ticket the chunk was removed from
      */
-    ChunkManager.LoadingTicket getTicket();
+    ChunkLoadService.LoadingTicket getTicket();
 
     /**
      * Gets the removed chunk coordinates.

@@ -25,9 +25,10 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RailDirections.class)
-public interface RailDirection extends CatalogType {
+public interface RailDirection extends CatalogType, Cycleable<RailDirection> {
 
 }

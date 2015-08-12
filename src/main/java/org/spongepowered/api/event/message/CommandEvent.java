@@ -24,13 +24,10 @@
  */
 package org.spongepowered.api.event.message;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.util.command.CommandResult;
 import org.spongepowered.api.util.command.CommandSource;
-
-import javax.annotation.Nullable;
 
 /**
  * Fired when a command has been used and needs to be processed.
@@ -65,18 +62,17 @@ public interface CommandEvent extends GameEvent, Cancellable {
     String getArguments();
 
     /**
-     * The result of the command. This is only available after the execution
-     * of the command.
+     * The result of the command.
      *
-     * @return The result of the command, if present
+     * @return The result of the command
      */
-    Optional<CommandResult> getResult();
+    CommandResult getResult();
 
     /**
      * Sets the result of the command.
      *
-     * @param result The result of the command, or null
+     * @param result The result of the command
      */
-    void setResult(@Nullable CommandResult result);
+    void setResult(CommandResult result);
 
 }

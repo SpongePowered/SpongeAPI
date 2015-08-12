@@ -24,16 +24,20 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.util.Cycleable;
+import org.spongepowered.api.world.Location;
 
 /**
- * Represents a block using {@link BlockType} and a list of
- * {@link DataManipulator} instances.
- *
- * <p>States are instances of {@link ImmutableDataHolder}s and therefor once
- * created, cannot be changed. All retrievals of {@link DataManipulator}s are
- * copies.</p>
+ * Represents a particular "state" that can exist at a {@link Location} with
+ * a particular {@link BlockType} and various {@link ImmutableValue}s defining
+ * the information for the "block". Note that normally, there may exist only
+ * a single instance of a particular {@link BlockState} as they are immutable,
+ * a particular instance may be cached for various uses.
  */
 public interface BlockState extends ImmutableDataHolder<BlockState> {
 
@@ -46,5 +50,16 @@ public interface BlockState extends ImmutableDataHolder<BlockState> {
      * @return The type of block
      */
     BlockType getType();
+
+    /**
+     * Gets the associated {@link BlockState} with the cycled
+     * {@link BaseValue}. Note that only {@link Cycleable} values can be
+     * cycled. To change a particular {@link Key}'ed {@link Value}, usage
+     * of the {@link BlockState#with(Key, Object)} is recommended.
+     *
+     * @param key The key to cycle
+     * @return The blockstate instance with the cycled value
+     */
+    BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
 
 }

@@ -120,12 +120,12 @@ public interface CommandService extends Dispatcher {
     Set<PluginContainer> getPluginContainers();
 
     /**
-     * Get a set of commands owned by the given plugin container.
+     * Get a set of commands owned by the given plugin instance.
      *
-     * @param container The plugin container
+     * @param instance The plugin instance
      * @return A set of mappings
      */
-    Set<CommandMapping> getOwnedBy(PluginContainer container);
+    Set<CommandMapping> getOwnedBy(Object instance);
 
     /**
      * Get the number of registered aliases.
@@ -145,7 +145,7 @@ public interface CommandService extends Dispatcher {
      * @return The result of a command being processed
      */
     @Override
-    Optional<CommandResult> process(CommandSource source, String arguments);
+    CommandResult process(CommandSource source, String arguments);
 
     /**
      * Get a list of suggestions based on input.

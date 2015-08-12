@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.annotation.ImplementedBy;
@@ -35,33 +34,33 @@ import org.spongepowered.api.world.Location;
 import java.util.List;
 
 /**
- * A base event for events affecting several blocks (as their target).
+ * A base event for events affecting several {@link Location}s (as their target).
  */
 @ImplementedBy(AbstractBulkBlockEvent.class)
 public interface BulkBlockEvent extends GameEvent, CauseTracked {
 
     /**
-     * Get a list of affected blocks.
+     * Get the list of the affected {@link Location}s.
      *
-     * <p>The list of entities is immutable if this event does not extend
-     * {@link Cancellable}.  Otherwise, the effect of removing a block from
-     * the list is dependent on the event, though it may "cancel" the event
-     * for the removed block .</p>
+     * <p>Removal of any location from this list will, by consequence,
+     * cause the event to not affect the removed location. This is only
+     * true if and only if this event is not cancelled (if the event
+     * implements cancellable).</p>
      *
-     * @return An list of blocks
+     * @return The list of locations
      */
-    List<Location> getBlocks();
+    List<Location> getLocations();
 
     /**
-     * Apply the given predicate to the list of blocks.
+     * Apply the given predicate to the list of {@link Location}s.
      *
      * <p>The given predicate should return {@code true} by default, and
-     * return {@code false} to remove the block from the list
-     * of blocks (if the list mutable -- see {@link #getBlocks()}
+     * return {@code false} to remove the location from the list
+     * of locations (if the event isn't cancelled -- see {@link #getLocations()}
      * for more information).</p>
      *
      * @param predicate A predicate that returns false to remove the given block
      */
-    void filter(Predicate<Location> predicate);
+    void filterLocations(Predicate<Location> predicate);
 
 }

@@ -40,12 +40,12 @@ public interface ImmutableDataRegistry {
      * create new instances of the given {@link ImmutableDataHolder} for data
      * retrieval, data representation, etc.
      *
-     * @param manipulatorClass The class of the immutable data holder
+     * @param holderClass The class of the immutable data holder
      * @param builder The builder instance of the immutable data holder
      * @param <T> The type of immutable data holder
      * @param <B> The type of immutable data builder
      */
-    <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> void register(Class<T> manipulatorClass, B builder);
+    <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> void register(Class<T> holderClass, B builder);
 
     /**
      * Attempts to retrieve the builder for the given
@@ -54,11 +54,11 @@ public interface ImmutableDataRegistry {
      * <p>If the {@link ImmutableDataHolder} was not registered, multiple
      * systems could fail to retrieve specific data.</p>
      *
-     * @param manipulatorClass The immutable data holder class
+     * @param holderClass The immutable data holder class
      * @param <T> The type of immutable data holder
      * @param <B> The type of immutable data builder
      * @return The builder, if available
      */
-    <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> Optional<B> getBuilder(Class<T> manipulatorClass);
+    <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> Optional<B> getBuilder(Class<T> holderClass);
 
 }

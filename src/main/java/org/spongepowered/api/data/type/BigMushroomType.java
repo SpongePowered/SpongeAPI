@@ -27,6 +27,9 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents the various "sided" big mushroom block types.
+ */
 @CatalogedBy(BigMushroomTypes.class)
 public interface BigMushroomType extends CatalogType {
 

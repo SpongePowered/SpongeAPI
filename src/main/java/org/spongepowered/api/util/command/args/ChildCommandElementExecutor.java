@@ -181,7 +181,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
             return spec.getExecutor().execute(src, args);
         } else {
             final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").or("");
-            return mapping.getCallable().process(src, arguments).or(CommandResult.empty());
+            return mapping.getCallable().process(src, arguments);
         }
     }
 

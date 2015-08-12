@@ -25,9 +25,11 @@
 package org.spongepowered.api.block.tileentity;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -42,7 +44,7 @@ import org.spongepowered.api.world.Location;
  * <p>Since a {@link TileEntity} is performing various actions, all methods
  * that are purely functional methods reside in the {@link TileEntity}, whereas
  * customizable data associated with a {@link TileEntity} is represented by
- * {@link org.spongepowered.api.data.DataManipulator}.</p>
+ * {@link DataManipulator}.</p>
  */
 public interface TileEntity extends DataHolder, DataSerializable {
 
@@ -81,21 +83,29 @@ public interface TileEntity extends DataHolder, DataSerializable {
     TileEntityType getType();
 
     /**
-     * Gets the parent {@link Location} that this {@link TileEntity} resides
-     * in.
+     * Gets the {@link Location} that this {@link TileEntity} resides
+     * at.
      *
-     * <p>If the {@link Location}'s block type is changed, this
-     * {@link TileEntity} may be removed as it has no parent
-     * {@link Location}.</p>
+     * <p>If the {@link Location}'s {@link BlockType} is changed, this
+     * {@link TileEntity} may be removed as a consequence.
      *
-     * @return The parent {@link Location}
+     * @return The location
      */
-    Location getBlock();
+    Location getLocation();
 
     /**
-     * Gets a copy of the underlying data of this {@link TileEntity} or {@link Optional#absent()} if none available.
-     * @return The data
+     * Gets the {@link BlockState} that this {@link TileEntity} represents.
+     *
+     * @return The blockstate
      */
-    Optional<? extends DataManipulator<?>> getData();
+    BlockState getBlock();
+
+    /**
+     * Gets a copy of the underlying data of this {@link TileEntity} or
+     * {@link Optional#absent()} if none available.
+     *
+     * @return The data, if available
+     */
+    Optional<? extends DataManipulator<?, ?>> getData();
 
 }

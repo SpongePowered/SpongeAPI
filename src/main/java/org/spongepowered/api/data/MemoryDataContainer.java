@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.data;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Optional;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.value.BaseValue;
 
 /**
  * The default implementation of {@link DataContainer} that can be instantiated
@@ -46,6 +50,11 @@ public class MemoryDataContainer extends MemoryDataView implements DataContainer
     @Override
     public DataContainer set(DataQuery path, Object value) {
         return (DataContainer) super.set(path, value);
+    }
+
+    @Override
+    public <E> DataContainer set(Key<? extends BaseValue<E>> key, E value) {
+        return set(checkNotNull(key).getQuery(), value);
     }
 
     @Override

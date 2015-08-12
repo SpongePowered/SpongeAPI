@@ -60,6 +60,7 @@ import javax.annotation.Nullable;
  * Specification for how command arguments should be parsed.
  */
 public final class CommandSpec implements CommandCallable {
+
     private final CommandElement args;
     private final CommandExecutor executor;
     private final Optional<Text> description;
@@ -90,6 +91,7 @@ public final class CommandSpec implements CommandCallable {
      * Builder for command specs.
      */
     public static final class Builder {
+
         private static final CommandElement DEFAULT_ARG = GenericArguments.none();
         private CommandElement args = DEFAULT_ARG;
         @Nullable
@@ -323,14 +325,13 @@ public final class CommandSpec implements CommandCallable {
         return this.argumentParser;
     }
 
-
     @Override
-    public Optional<CommandResult> process(CommandSource source, String arguments) throws CommandException {
+    public CommandResult process(CommandSource source, String arguments) throws CommandException {
         checkPermission(source);
         final CommandArgs args = new CommandArgs(arguments, getInputTokenizer().tokenize(arguments, false));
         final CommandContext context = new CommandContext();
         this.populateContext(source, args, context);
-        return Optional.of(getExecutor().execute(source, context));
+        return getExecutor().execute(source, context);
     }
 
     @Override
@@ -421,4 +422,3 @@ public final class CommandSpec implements CommandCallable {
                 .toString();
     }
 }
-

@@ -24,20 +24,27 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
 
 /**
- * Base event for events affecting a single block.
+ * Base event for events affecting a {@link BlockState}
  */
 public interface BlockEvent extends GameEvent, CauseTracked {
 
     /**
-     * Get the block affected by the event (the target block).
+     * Gets the {@link Location} affected by this event (where the block is being affected).
      *
-     * @return Related block
+     * @return The location
      */
-    Location getBlock();
+    Location getLocation();
 
+    /**
+     * Gets the {@link BlockState} affected by this event.
+     *
+     * @return The blockstate
+     */
+    BlockState getBlock();
 }

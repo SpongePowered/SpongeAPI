@@ -97,7 +97,7 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
         checkNotNull(tradeOffers, "tradeOffers");
         final int maxUses = checkNotNull(this.maxUses.get(), "maxUses from %s", this.maxUses);
         final int startUses = Math.min(maxUses, checkNotNull(this.startUses.get(), "startUses from %s", this.startUses));
-        tradeOffers.add(this.registry.getTradeOfferBuilder()
+        tradeOffers.add(this.registry.createTradeOfferBuilder()
                 .firstBuyingItem(checkNotNull(this.primaryBuyingItem.get(), "primaryBuyingItem from %s", this.primaryBuyingItem))
                 .secondBuyingItem(this.secondaryBuyingItem.get())
                 .sellingItem(checkNotNull(this.sellingItem.get(), "sellingItem from %s", this.sellingItem))
@@ -126,8 +126,7 @@ public final class DynamicTradeOfferGenerator implements TradeOfferGenerator {
 
         private final GameRegistry registry;
         private Supplier<ItemStack> primaryBuyingItem;
-        @Nullable
-        private Supplier<ItemStack> secondaryBuyingItem;
+        @Nullable private Supplier<ItemStack> secondaryBuyingItem;
         private Supplier<ItemStack> sellingItem;
         private Supplier<Integer> startUses = Suppliers.ofInstance(1);
         private Supplier<Integer> maxUses = Suppliers.ofInstance(1);

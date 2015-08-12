@@ -30,6 +30,7 @@ import com.google.common.collect.Lists;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.SimpleConfigurationNode;
 import org.junit.Test;
+import org.spongepowered.api.data.translator.ConfigurateTranslator;
 
 import java.util.Collections;
 import java.util.List;

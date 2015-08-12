@@ -31,10 +31,12 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.context.Contextual;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.Map;
 import java.util.UUID;
@@ -42,7 +44,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, Viewer, Contextual {
+public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
 
     /**
      * Gets the {@link Difficulty} setting for this world.
@@ -61,13 +63,6 @@ public interface World extends Extent, Viewer, Contextual {
      * @see #getUniqueId() A method to get a unique identifier
      */
     String getName();
-
-    /**
-     * Returns whether this world is loaded.
-     *
-     * @return True if this world is loaded
-     */
-    boolean isLoaded();
 
     /**
      * Get the loaded chunk at the given position.
@@ -249,4 +244,11 @@ public interface World extends Extent, Viewer, Contextual {
      * @return The location
      */
     Location getSpawnLocation();
+
+    /**
+     * Causes an {@link Explosion} in a world.
+     * 
+     * @param explosion The explosion to cause
+     */
+    void triggerExplosion(Explosion explosion);
 }

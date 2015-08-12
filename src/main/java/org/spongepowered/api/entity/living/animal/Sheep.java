@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.manipulator.DyeableData;
+import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 
 /**
  * Represents a Sheep.

@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.entity.player;
 
-import org.spongepowered.api.data.manipulator.DisplayNameData;
-import org.spongepowered.api.data.manipulator.entity.GameModeData;
-import org.spongepowered.api.data.manipulator.entity.JoinData;
+import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
+import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
+import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.tab.TabList;
@@ -133,5 +133,27 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      * @return A copy of the current game mode data
      */
     GameModeData getGameModeData();
+
+    /**
+     * Gets whether this {@link Player} will be ignored when checking whether to
+     * skip the night due to players sleeping. The time in a world will be
+     * advanced to day if all players in it either are sleeping or have this
+     * tag.
+     *
+     * @return Whether this {@link Player} will be ignored when checking whether
+     *     to skip the night
+     */
+    boolean isSleepingIgnored();
+
+    /**
+     * Sets whether this {@link Player} will be ignored when checking whether
+     * to skip the night due to players sleeping. The time in a world will be
+     * advanced to day if all players in it either are sleeping or have this
+     * tag.
+     *
+     * @param sleepingIgnored Whether this {@link Player} will be ignored when
+     *     checking whether to skip the night
+     */
+    void setSleepingIgnored(boolean sleepingIgnored);
 
 }

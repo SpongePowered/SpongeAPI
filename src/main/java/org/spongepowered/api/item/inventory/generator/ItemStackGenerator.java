@@ -78,7 +78,7 @@ public final class ItemStackGenerator implements Supplier<ItemStack> {
 
     @Override
     public ItemStack get() {
-        final ItemStackBuilder builder = this.registry.getItemBuilder();
+        final ItemStackBuilder builder = this.registry.createItemBuilder();
         if (this.baseItem != null) {
             builder.fromItemStack(this.baseItem);
         }

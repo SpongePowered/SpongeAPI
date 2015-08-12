@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.ImmutableDataBuilder;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 
 /**
  * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the

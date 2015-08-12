@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.attribute;
 
+import org.spongepowered.api.data.DataHolder;
+
 /**
- * A modifier that changes the value of an {@link Attribute} on an
- * {@link org.spongepowered.api.data.DataHolder}.
+ * A modifier that changes the value of an {@link Attribute} on a
+ * {@link DataHolder}.
  */
 public interface AttributeModifier {
 

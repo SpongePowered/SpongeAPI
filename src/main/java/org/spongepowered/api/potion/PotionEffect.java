@@ -26,13 +26,16 @@ package org.spongepowered.api.potion;
 
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.ImmutableDataHolder;
-import org.spongepowered.api.data.manipulator.PotionEffectData;
+import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
+import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents a possible Potion Effect.
- *
- * <p>PotionEffects can be added to entities via
- * {@link PotionEffectData#addPotionEffect(PotionEffect, boolean)}.</p>
+ * Represents an effect of a {@link PotionEffectType} for a specified
+ * {@link #getDuration()}, {@link #getAmplifier()}, and
+ * {@link #getShowParticles()}. The {@link PotionEffect} itself is immutable
+ * once created and can be offered to {@link Entity} instances through
+ * the {@link PotionEffectData}.
  */
 public interface PotionEffect extends DataSerializable, ImmutableDataHolder<PotionEffect> {
 

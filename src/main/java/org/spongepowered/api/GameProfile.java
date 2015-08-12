@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.util.Identifiable;
 
 /**
@@ -32,7 +33,7 @@ import org.spongepowered.api.util.Identifiable;
  * <p>Use the {@link org.spongepowered.api.service.user.UserStorage} service to
  * obtain the stored data associated with a profile.</p>
  */
-public interface GameProfile extends Identifiable {
+public interface GameProfile extends Identifiable, DataSerializable {
 
     /**
      * Gets the player's last known username.

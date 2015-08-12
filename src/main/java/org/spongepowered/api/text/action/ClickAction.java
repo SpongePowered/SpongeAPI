@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.spongepowered.api.util.Consumer;
+import org.spongepowered.api.util.command.CommandSource;
+
 import java.net.URL;
 
 /**
@@ -108,6 +111,23 @@ public abstract class ClickAction<R> extends TextAction<R> {
             super(command);
         }
 
+    }
+
+    /**
+     * Execute a callback.
+     */
+    public static final class ExecuteCallback extends ClickAction<Consumer<CommandSource>> {
+
+        /**
+         * Constructs a new {@link ExecuteCallback} that will execute the given
+         * runnable on the server when clicked. The callback will expire after some amount of time (not particularly instantly, but not like
+         * overnight really either).
+         *
+         * @param result The callback
+         */
+        protected ExecuteCallback(Consumer<CommandSource> result) {
+            super(result);
+        }
     }
 
 }

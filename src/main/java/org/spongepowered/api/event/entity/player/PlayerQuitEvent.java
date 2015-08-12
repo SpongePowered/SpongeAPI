@@ -25,9 +25,10 @@
 package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.event.network.DisconnectEvent;
 
 /**
  * Called when a {@link Player} quit the game.
  */
-public interface PlayerQuitEvent extends PlayerMessageEvent {
+public interface PlayerQuitEvent extends PlayerMessageEvent, DisconnectEvent {
 }

@@ -175,6 +175,9 @@ public class WeightedCollection<T extends WeightedObject<?>> implements Collecti
         if (this == obj) {
             return true;
         }
+        if (!(obj instanceof WeightedCollection)) {
+            return false;
+        }
         ListIterator<T> element = this.objects.listIterator();
         ListIterator<?> otherElement = ((List<?>) obj).listIterator();
         while (element.hasNext() && otherElement.hasNext()) {
