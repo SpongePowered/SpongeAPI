@@ -25,13 +25,13 @@
 package org.spongepowered.api.event.ban;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.ban.Ban;
 
 /**
  * Called when a ban is made on an IP address.
  */
-public interface IpBanEvent extends GameEvent, Cancellable {
+public interface IpBanEvent extends Cancellable, Event {
 
     /**
      * Gets the ban made in this event.

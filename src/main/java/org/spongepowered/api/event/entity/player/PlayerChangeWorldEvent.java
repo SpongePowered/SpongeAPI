@@ -24,26 +24,8 @@
  */
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.entity.living.human.HumanChangeWorldEvent;
 
-/**
- * Called when the {@link Player} changes {@link World}.
- */
-public interface PlayerChangeWorldEvent extends PlayerEvent, Cancellable {
+public interface PlayerChangeWorldEvent extends PlayerEvent, HumanChangeWorldEvent {
 
-    /**
-     * Gets the {@link World} the player is leaving.
-     *
-     * @return The from world.
-     */
-    World getFromWorld();
-
-    /**
-     * Gets the {@link World} the player is entering.
-     *
-     * @return The to world.
-     */
-    World getToWorld();
 }

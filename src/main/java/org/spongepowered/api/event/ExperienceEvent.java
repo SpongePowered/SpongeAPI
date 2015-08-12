@@ -27,14 +27,14 @@ package org.spongepowered.api.event;
 /**
  * An event that is related to experience.
  */
-public interface ExperienceEvent {
+public interface ExperienceEvent extends Event {
 
     /**
      * Get the experience after an event has been processed.
      *
      * @return The experience to receive
      */
-    int getExp();
+    int getExperience();
 
     /**
      * Set the amount of experience after an event has been processed.
@@ -42,6 +42,6 @@ public interface ExperienceEvent {
      *
      * @param exp The experience to give or take
      */
-    void setExp(int exp);
+    void setExperience(int exp);
 
 }

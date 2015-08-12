@@ -26,13 +26,13 @@
 package org.spongepowered.api.event.network;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 /**
  * Represents a remote connection trying to connect.
  *
  * <p>Cancelling the event will prevent the source from connecting.</p>
  */
-public interface ConnectEvent extends GameEvent, Cancellable {
+public interface ConnectEvent extends Event, Cancellable {
 
 }

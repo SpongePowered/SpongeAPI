@@ -29,7 +29,7 @@ import org.spongepowered.api.item.inventory.Container;
 
 
 /**
- * A ContainerEvent is a GameEvent that involves a {@link Container}.
+ * Base event for all events with a {@link Container} as the source.
  */
 public interface ContainerEvent extends GameEvent {
 

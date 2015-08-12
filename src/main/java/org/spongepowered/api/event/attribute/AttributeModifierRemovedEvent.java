@@ -27,13 +27,12 @@ package org.spongepowered.api.event.attribute;
 import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.event.Cancellable;
 
 /**
  * An event fired when an {@link AttributeModifier} is removed from an
  * {@link org.spongepowered.api.data.DataHolder}.
  */
-public interface AttributeModifierRemovedEvent extends AttributeEvent, Cancellable {
+public interface AttributeModifierRemovedEvent extends AttributeEvent {
 
     /**
      * Gets the {@link AttributeModifier} that was removed in this event.

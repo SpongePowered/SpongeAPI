@@ -31,6 +31,6 @@ import org.spongepowered.api.world.Location;
 /**
  * Called when an {@link Entity} places a {@link Location}.
  */
-public interface EntityPlaceBlockEvent extends EntityChangeBlockEvent, BlockPlaceEvent {
+public interface EntityPlaceBlockEvent extends BlockPlaceEvent, EntityEvent, BlockChangeEvent {
 
 }

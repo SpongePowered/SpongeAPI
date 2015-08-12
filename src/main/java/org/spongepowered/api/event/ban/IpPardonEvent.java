@@ -25,13 +25,13 @@
 package org.spongepowered.api.event.ban;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.ban.Ban;
 
 /**
  * Called when a pardon is made on an IP address.
  */
-public interface IpPardonEvent extends GameEvent, Cancellable {
+public interface IpPardonEvent extends Cancellable, Event {
 
     /**
      * Gets the ban pardoned in this event.

@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.entity.player;
 
 import org.spongepowered.api.entity.player.User;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 /**
  * Represents an event that involves a User.
  */
-public interface UserEvent extends GameEvent {
+public interface UserEvent extends Event {
 
     /**
      * Gets the user involved in this event.

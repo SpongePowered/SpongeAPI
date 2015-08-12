@@ -27,7 +27,7 @@ package org.spongepowered.api.event.entity;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.ImplementedBy;
 import org.spongepowered.api.util.event.superclasses.AbstractBulkEntityEvent;
 
@@ -37,7 +37,7 @@ import java.util.List;
  * An event that involves multiple entities at once.
  */
 @ImplementedBy(AbstractBulkEntityEvent.class)
-public interface BulkEntityEvent extends GameEvent {
+public interface BulkEntityEvent extends Event {
 
     /**
      * Get a list of the affected entities.

@@ -29,6 +29,6 @@ import org.spongepowered.api.event.block.BlockEvent;
 /**
  * Represents an InventoryEvent that involves a Block as a carrier.
  */
-public interface BlockInventoryEvent extends InventoryEvent, BlockEvent {
+public interface BlockInventoryEvent extends BlockEvent, InventoryEvent {
 
 }

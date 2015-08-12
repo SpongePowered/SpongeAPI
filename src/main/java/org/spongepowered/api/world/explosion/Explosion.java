@@ -107,6 +107,20 @@ public interface Explosion {
     void canCauseFire(boolean fire);
 
     /**
+     * Gets whether the explosion will play a smoke effect.
+     *
+     * @return Whether the explosion will play smoke
+     */
+    boolean shouldPlaySmoke();
+
+    /**
+     * Sets whether the explosion will show smoke to the client
+     *
+     * @param smoke Whether the explosion will play smoke
+     */
+    void canPlaySmoke(boolean smoke);
+
+    /**
      * Gets whether the affected blocks should be destroyed on explosion.
      *
      * @return Whether the affected blocks should be destroyed

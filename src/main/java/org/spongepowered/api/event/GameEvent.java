@@ -27,14 +27,12 @@ package org.spongepowered.api.event;
 import org.spongepowered.api.Game;
 
 /**
- * An event that deals with the game.
- *
- * @see Game
+ * Base event for all events within the {@link Game}.
  */
 public interface GameEvent extends Event {
 
     /**
-     * Get the game.
+     * Gets the {@link Game}.
      *
      * @return The game
      */

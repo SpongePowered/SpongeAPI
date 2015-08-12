@@ -31,6 +31,6 @@ import org.spongepowered.api.event.entity.living.human.HumanPlaceBlockEvent;
 /**
  * Called when a {@link Player} places a {@link BlockType}.
  */
-public interface PlayerPlaceBlockEvent extends PlayerChangeBlockEvent, HumanPlaceBlockEvent {
+public interface PlayerPlaceBlockEvent extends HumanPlaceBlockEvent, PlayerEvent {
 
 }

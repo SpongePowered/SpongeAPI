@@ -26,6 +26,7 @@ package org.spongepowered.api.event.network;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.text.Text;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
  * @see GameClientAuthEvent
  * @see GameClientConnectEvent
  */
-public interface GameClientLoginEvent extends ConnectEvent {
+public interface GameClientLoginEvent extends GameEvent, ConnectEvent {
 
     /**
      * Gets the {@link RemoteConnection} representing the client connection.

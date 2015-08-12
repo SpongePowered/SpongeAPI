@@ -481,7 +481,7 @@ public final class SpongeEventFactory {
      * @return A new instance of the event
      */
     public static BlockRedstoneUpdateEvent createBlockRedstoneUpdate(Game game, Cause cause, Location<World> location,
-        List<Location<World>> locations, int oldCurrent, int newCurrent) {
+            List<Location<World>> locations, int oldCurrent, int newCurrent) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -781,7 +781,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
-        values.put("entity", entity);        
+        values.put("entity", entity);
         values.put("location", location);
         values.put("block", location.getBlock());
         values.put("side", side);
@@ -1889,7 +1889,7 @@ public final class SpongeEventFactory {
      */
     public static FurnaceConsumeFuelEvent createFurnaceConsumeFuel(Game game, Cause cause, Furnace furnace, ImmutableFurnaceData data,
             ItemStack burnedItem, ItemStack remainingFuel, TileEntityInventory<TileEntityCarrier> inventory, Location<World> location) {
-            Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("tile", furnace);
@@ -1918,7 +1918,7 @@ public final class SpongeEventFactory {
      */
     public static FurnaceSmeltItemEvent createFurnaceSmeltItem(Game game, Cause cause, Furnace furnace, ImmutableFurnaceData data, ItemStack
             cookedItem, ItemStack sourceItem, TileEntityInventory<TileEntityCarrier> inventory, Location<World> location) {
-            Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("tile", furnace);

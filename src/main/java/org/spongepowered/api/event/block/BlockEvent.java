@@ -24,28 +24,41 @@
  */
 package org.spongepowered.api.event.block;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Base event for events affecting a {@link BlockState}
+ * Base event for all events with a {@link BlockState}, with an {@link Optional<Direction>} side, at a {@link Location} as the source.
  */
 public interface BlockEvent extends GameEvent, CauseTracked {
 
     /**
-     * Gets the {@link Location} affected by this event (where the block is being affected).
+     * Gets the {@link Location}.
      *
-     * @return The location
+     * @return The Location
      */
     Location<World> getLocation();
 
     /**
-     * Gets the {@link BlockState} affected by this event.
+     * Gets the {@link BlockState}.
      *
-     * @return The blockstate
+     * @return The BlockState
      */
     BlockState getBlock();
+
+    /**
+     * Gets the "side" as a {@link Direction}.
+     *
+     * <p>
+     *     Depending on the event, this may or may not be known(hence the optional)
+     * </p>
+     *
+     * @return An optional containing the side or {@link Optional#absent()} if not known
+     */
+    Optional<Direction> getSide();
 }

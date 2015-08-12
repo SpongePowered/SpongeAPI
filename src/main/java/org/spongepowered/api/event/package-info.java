@@ -22,4 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * The Sponge Event Structure is easy to understand if you think of base events as being
+ * "sources".
+ *
+ * Their names are composed as Source|Action|Target.
+ *
+ * ie. BlockInteractEntityEvent is when a source (block) interacts (verb) a target (entity).
+ *
+ * Source: {@link org.spongepowered.api.block.BlockState} or "Block"
+ * Action: Interact or some verb (Use, Break, etc)
+ * Target: {@link org.spongepowered.api.entity.Entity} or "Entity"
+ *
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event;

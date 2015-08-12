@@ -28,16 +28,9 @@ import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.event.entity.EntityEvent;
 
 /**
- * Called when a {@link Minecart} is affected by anything.
+ * Base event for all events with a {@link Minecart} as the source.
  */
 public interface MinecartEvent extends EntityEvent {
-
-    /**
-     * Gets the {@link Minecart} associated with this event.
-     *
-     * @return The minecart associated with this event
-     */
-    Minecart getMinecart();
 
     @Override
     Minecart getEntity();

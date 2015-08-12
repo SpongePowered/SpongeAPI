@@ -28,15 +28,15 @@ import org.spongepowered.api.util.annotation.ImplementedBy;
 import org.spongepowered.api.util.event.callback.CallbackList;
 
 /**
- * An event that occurs in Sponge.
+ * An event called within Sponge.
  */
 @ImplementedBy(AbstractEvent.class)
 public interface Event {
 
     /**
-     * Get a list of callbacks.
+     * Gets the {@link CallbackList} that is invoked after resolution of this event.
      *
-     * @return A list of callbacks
+     * @return The callbacklist
      */
     CallbackList getCallbacks();
 

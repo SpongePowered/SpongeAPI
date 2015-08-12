@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.event.server.query;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 import java.net.InetSocketAddress;
 
 /**
  * Called when the server is queried through the Query protocol.
  */
-public interface QueryEvent extends GameEvent {
+public interface QueryEvent extends Event {
 
     /**
      * Gets the MOTD to respond with.

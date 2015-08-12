@@ -26,11 +26,12 @@ package org.spongepowered.api.event.entity.living;
 
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
+import org.spongepowered.api.event.entity.EntityEvent;
 import org.spongepowered.api.world.Location;
 
 /**
  * Called when a {@link Living} breaks a {@link Location}.
  */
-public interface LivingBreakBlockEvent extends LivingChangeBlockEvent, EntityBreakBlockEvent {
+public interface LivingBreakBlockEvent extends EntityBreakBlockEvent, LivingEvent, EntityEvent {
 
 }

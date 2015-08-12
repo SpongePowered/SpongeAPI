@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.service.world.ChunkLoadService;
 
 /**
@@ -33,7 +33,7 @@ import org.spongepowered.api.service.world.ChunkLoadService;
  * forcing a chunk to load into the world. Note that the loading ticket may
  * have not finished so the chunk may not have finished loading yet.
  */
-public interface ChunkForcedEvent extends GameEvent {
+public interface ChunkForcedEvent extends Event {
 
     /**
      * Gets the ticket that the chunk was added to.

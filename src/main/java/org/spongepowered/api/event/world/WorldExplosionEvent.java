@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
 /**
  * Called when an {@link Explosion} occurs in a {@link World}.
  */
-public interface WorldExplosionEvent extends WorldEvent {
+public interface WorldExplosionEvent extends WorldEvent, Cancellable {
 
     /**
      * Gets the {@link Explosion} involved in this event.

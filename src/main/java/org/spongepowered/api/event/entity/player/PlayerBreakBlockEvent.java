@@ -31,6 +31,6 @@ import org.spongepowered.api.world.Location;
 /**
  * Called when a {@link Player} breaks a {@link Location}.
  */
-public interface PlayerBreakBlockEvent extends HumanBreakBlockEvent, PlayerChangeBlockEvent {
+public interface PlayerBreakBlockEvent extends HumanBreakBlockEvent, PlayerEvent {
 
 }

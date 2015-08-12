@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.annotation.ImplementedBy;
 import org.spongepowered.api.util.event.superclasses.AbstractBulkBlockEvent;
@@ -38,7 +38,7 @@ import java.util.List;
  * A base event for events affecting several {@link Location}s (as their target).
  */
 @ImplementedBy(AbstractBulkBlockEvent.class)
-public interface BulkBlockEvent extends GameEvent, CauseTracked {
+public interface BulkBlockEvent extends CauseTracked, Event {
 
     /**
      * Get the list of the affected {@link Location}s.

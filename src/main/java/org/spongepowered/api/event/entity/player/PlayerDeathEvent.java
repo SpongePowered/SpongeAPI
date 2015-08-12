@@ -61,24 +61,6 @@ public interface PlayerDeathEvent extends HumanDeathEvent, PlayerMessageEvent {
     void setKeepsLevel(boolean keepLevel);
 
     /**
-     * Gets the new experience the player will have towards the next level.
-     *
-     * <p>This is not the total experience the player will have overall.</p>
-     *
-     * @return The new experience towards the next level
-     */
-    int getNewExperience();
-
-    /**
-     * Sets the new experience towards the next level after death.
-     *
-     * <p>This is not the total experience the player will have overall.</p>
-     *
-     * @param experience The new experiences towards the next level
-     */
-    void setNewExperience(int experience);
-
-    /**
      * Gets the new level the player will have after death.
      *
      * @return The new level after death

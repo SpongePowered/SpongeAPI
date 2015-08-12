@@ -28,15 +28,10 @@ import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.event.entity.living.LivingEvent;
 
 /**
- * Describes events which contain a {@link Human}.
+ * Base event for all events with an {@link Human} as the source.
  */
 public interface HumanEvent extends LivingEvent {
 
-    /**
-     * Gets the {@link Human} involved involved in this event.
-     *
-     * @return The {@link Human} involved
-     */
     @Override
     Human getEntity();
 }

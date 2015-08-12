@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event.inventory;
 
+import org.spongepowered.api.event.inventory.viewer.ViewerEvent;
+
 /**
  * Represents an event when a viewer has clicked inside an inventory.
  *

@@ -25,16 +25,11 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.InteractEntityEvent;
 
 /**
- * Called when a {@link Entity} interacts with an {@link Entity}.
+ * Base event for all interactions where an {@link Entity} targets another {@link Entity}.
  */
-public interface EntityInteractEntityEvent extends EntityInteractEvent {
+public interface EntityInteractEntityEvent extends EntityEvent, InteractEntityEvent {
 
-    /**
-     * Get the entity being interacted with.
-     *
-     * @return The target entity
-     */
-    Entity getTargetEntity();
 }

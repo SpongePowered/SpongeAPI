@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 /**
  * Represents a remote connection disconnecting. The remote connection may have
  * hung up or the server may have disconnected it.
  */
-public interface DisconnectEvent extends GameEvent {
+public interface DisconnectEvent extends Event {
 
 }

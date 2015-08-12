@@ -25,44 +25,45 @@
 package org.spongepowered.api.event.weather;
 
 import org.spongepowered.api.world.weather.Weather;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 
 /**
- * Called when a world's weather changes.
+ * Called when a {@link WeatherUniverse}'s {@link Weather} changes.
  */
 public interface WeatherChangeEvent extends WeatherEvent {
 
     /**
      * Gets the {@link Weather} that was happening before this event.
      *
-     * @return The {@link Weather} before the event was called
+     * @return The Weather before the event was called
      */
     Weather getInitialWeather();
 
     /**
      * Gets the {@link Weather} that this event is creating.
      *
-     * @return The {@link Weather} after this event is called
+     * @return The Weather after this event is called
      */
     Weather getResultingWeather();
 
     /**
      * Sets what the new {@link Weather} should be with a random duration.
      *
-     * @param weather The new {@link Weather}
+     * @param weather The new Weather
      */
     void setResultingWeather(Weather weather);
 
     /**
-     * Sets the duration of the {@link Weather}.
+     * Sets the duration of the {@link Weather} (in ticks).
      *
-     * @return The duration of the weather in ticks
+     * @return The duration of the weather (in ticks)
      */
     int getDuration();
 
     /**
-     * Sets the duration of the {@link Weather}.
+     * Sets the duration of the {@link Weather} (in ticks).
      *
-     * @param duration The duration of the weather in ticks
+     * @param duration The duration of the weather (in ticks)
      */
     void setDuration(int duration);
 }

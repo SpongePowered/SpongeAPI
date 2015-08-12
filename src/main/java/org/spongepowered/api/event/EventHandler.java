@@ -25,14 +25,14 @@
 package org.spongepowered.api.event;
 
 /**
- * Represents a handler accepting events of a specified type.
+ * Represents a handler accepting {@link Event}s of a specified type.
  *
  * @param <T> The type of the event
  */
 public interface EventHandler<T extends Event> {
 
     /**
-     * Called when a event registered to this handler is called.
+     * Called when a {@link Event} registered to this handler is called.
      *
      * @param event The called event
      * @throws Exception If an error occurs

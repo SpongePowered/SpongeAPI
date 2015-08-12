@@ -27,12 +27,12 @@ package org.spongepowered.api.event.weather;
 import org.spongepowered.api.entity.weather.Lightning;
 import org.spongepowered.api.event.block.BulkBlockEvent;
 import org.spongepowered.api.event.entity.BulkEntityEvent;
-import org.spongepowered.api.event.entity.EntityEvent;
+import org.spongepowered.api.event.entity.EntitySpawnEvent;
 
 /**
- * Called when there is a lightning strike.
+ * Called when a {@link Lightning} is spawned.
  */
-public interface LightningStrikeEvent extends EntityEvent, WeatherEvent, BulkBlockEvent, BulkEntityEvent {
+public interface LightningStrikeEvent extends EntitySpawnEvent, BulkBlockEvent, BulkEntityEvent {
 
     @Override
     Lightning getEntity();

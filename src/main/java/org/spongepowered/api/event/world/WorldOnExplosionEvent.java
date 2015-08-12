@@ -35,6 +35,9 @@ import java.util.List;
 
 /**
  * Called once an {@link Explosion} has a list of affected locations and entities.
+ *
+ * <p>Marking this event as cancelled will stop all block and entity damage as well as
+ * the explosion showing smoke.</p>
  */
 public interface WorldOnExplosionEvent extends WorldExplosionEvent, BulkBlockEvent, BulkEntityEvent {
 

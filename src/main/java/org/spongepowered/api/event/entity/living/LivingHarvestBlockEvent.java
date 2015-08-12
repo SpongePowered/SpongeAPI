@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.event.entity.living;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.entity.EntityHarvestBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link Living} entity harvests a {@link Location}.
+ * Called when a {@link Living} harvests a {@link BlockState} at a {@link Location}.
  */
 public interface LivingHarvestBlockEvent extends LivingEvent, EntityHarvestBlockEvent {
 

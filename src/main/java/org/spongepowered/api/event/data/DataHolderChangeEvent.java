@@ -26,7 +26,7 @@ package org.spongepowered.api.event.data;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 /**
  * An event that is associated with a {@link DataHolder} that may have some
@@ -34,7 +34,7 @@ import org.spongepowered.api.event.GameEvent;
  * methods relating to modifying a {@link DataHolder} while this event
  * is being processed may produce awkward results.
  */
-public interface DataHolderChangeEvent extends GameEvent {
+public interface DataHolderChangeEvent extends Event {
 
     /**
      * Gets the {@link DataHolder} associated with this event.

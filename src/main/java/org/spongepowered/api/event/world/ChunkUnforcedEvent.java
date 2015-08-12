@@ -25,11 +25,11 @@
 package org.spongepowered.api.event.world;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.service.world.ChunkLoadService;
 
 // NOTE: This does not extend ChunkEvent as Chunk may not be currently loaded.
-public interface ChunkUnforcedEvent extends GameEvent {
+public interface ChunkUnforcedEvent extends Event {
 
     /**
      * Gets the ticket that the chunk was removed from.

@@ -32,7 +32,7 @@ import org.spongepowered.api.event.GameEvent;
 /**
  * An event fired when an {@link Attribute} is changed in any way.
  */
-public interface AttributeEvent extends Cancellable, GameEvent {
+public interface AttributeEvent extends GameEvent, Cancellable {
 
     /**
      * Gets the {@link DataHolder} whose attributes are being changed.

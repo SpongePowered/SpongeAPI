@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.inventory.viewer.ViewerEvent;
 
 /**
  * Fired when a viewer closes an inventory.

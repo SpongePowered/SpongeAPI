@@ -24,13 +24,8 @@
  */
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanInteractBlockEvent;
-import org.spongepowered.api.world.Location;
 
-/**
- * Called when a {@link Player} interacts with a {@link Location}.
- */
-public interface PlayerInteractBlockEvent extends PlayerInteractEvent, HumanInteractBlockEvent {
+public interface PlayerInteractBlockEvent extends PlayerEvent, HumanInteractBlockEvent {
 
 }

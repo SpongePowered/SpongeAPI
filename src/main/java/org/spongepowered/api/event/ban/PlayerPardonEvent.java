@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.event.ban;
 
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.player.PlayerEvent;
 
 /**
  * Called when a player is pardoned.
  */
-public interface PlayerPardonEvent extends UserPardonEvent, PlayerEvent, Cancellable {
+public interface PlayerPardonEvent extends UserPardonEvent, PlayerEvent {
 
 }
