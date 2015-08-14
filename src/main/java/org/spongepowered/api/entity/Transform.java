@@ -28,7 +28,6 @@ import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.matrix.Matrix4d;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
@@ -37,6 +36,10 @@ import org.spongepowered.api.world.extent.Extent;
  * and the scale. The implementation may internally use a location or a
  * separate extent and position. Be wary that calling {@link #getLocation()}
  * could result in object creation.
+ *
+ * <p>A transform might not have an extent if it is invalid. In this case
+ * all methods which return a reference to it will throw
+ * {@link IllegalStateException}.</p>
  *
  * <p>This is an entity transform, not a model one. These values are subject
  * to interpretation by the implementation and may trigger animations
@@ -53,6 +56,7 @@ public interface Transform {
      * This is the position and the extent.
      *
      * @return The location
+     * @throws IllegalStateException If the transform doesn't have an extent
      */
     Location getLocation();
 
@@ -69,6 +73,7 @@ public interface Transform {
      * Gets the {@link Extent} this transform contains.
      *
      * @return The extent
+     * @throws IllegalStateException If the transform doesn't have an extent
      */
     Extent getExtent();
 
@@ -260,12 +265,18 @@ public interface Transform {
      * Returns if this {@link Transform} is still valid.
      * Examples of invalid Transforms are:
      * <ul>
-     *     <li>A Transform whose {@link World} object is no longer present</li>
+     *     <li>A Transform without an {@link Extent}</li>
+     *     <li>A Transform whose {@link Extent} object is no longer present</li>
      *     <li>A Transform whose coordinates are illegal (defined by the implementation)</li>
      * </ul>
      *
      * @return True if valid, false if not
      */
     boolean isValid();
+
+    /**
+     * Invalidates this transform. {@link #isValid()} will return false.
+     */
+    void invalidate();
 
 }

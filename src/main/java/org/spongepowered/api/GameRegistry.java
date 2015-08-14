@@ -496,6 +496,16 @@ public interface GameRegistry {
     PopulatorFactory getPopulatorFactory();
 
     /**
+     * Returns a new invalid identity transform.
+     * The extent needs to be set using
+     * {@link Transform#setExtent(Extent)} to validate it.
+     *
+     * @return A new invalid identity transform
+     * @see #createTransform(Extent)
+     */
+    Transform createTransform();
+
+    /**
      * Returns a new identity transform for the given extent.
      * This transform has no translation, rotation or scale
      * (position and rotation are (0, 0, 0) and scale is (1, 1, 1)).
