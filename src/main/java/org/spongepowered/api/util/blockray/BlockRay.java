@@ -555,6 +555,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
          */
         public BlockRayBuilder filter(final Predicate<BlockRayHit>... filters) {
             checkNotNull(filters, "filters");
+            @SuppressWarnings("RedundantTypeArguments") // For Apple JDK 6, don't remove
             final Predicate<BlockRayHit> filter = filters.length == 1 ? filters[0] : Predicates.<BlockRayHit>and(filters);
             if (this.filter == ALL_FILTER) {
                 this.filter = filter;
@@ -688,7 +689,7 @@ public class BlockRay implements Iterator<BlockRayHit> {
         private final Vector3i target;
 
         private TargetBlockFilter(Vector3d target) {
-            this.target = target.floor().toInt();
+            this.target = target.toInt();
         }
 
         @Override

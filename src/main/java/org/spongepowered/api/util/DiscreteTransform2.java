@@ -90,7 +90,7 @@ public class DiscreteTransform2 {
      */
     public Vector2i transform(int x, int y) {
         final Vector3d vector = this.transform.transform(x, y, 1);
-        return new Vector2i(GenericMath.floor(vector.getX() + GenericMath.FLT_EPSILON), GenericMath.floor(vector.getY() + GenericMath.FLT_EPSILON));
+        return new Vector2i(vector.getX() + GenericMath.FLT_EPSILON, vector.getY() + GenericMath.FLT_EPSILON);
     }
 
     /**

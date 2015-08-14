@@ -29,7 +29,7 @@ dependencies {
     compile 'ninja.leaping.configurate:configurate-gson:2.0'
     compile 'ninja.leaping.configurate:configurate-yaml:2.0'
 
-    compile 'com.flowpowered:flow-math:1.0.0'
+    compile 'com.flowpowered:flow-math:1.0.1'
     compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
 
     compile 'org.ow2.asm:asm:5.0.3'

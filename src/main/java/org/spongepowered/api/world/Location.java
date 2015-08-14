@@ -163,7 +163,7 @@ public final class Location implements DataHolder {
     public Vector3i getBlockPosition() {
         if (this.blockPosition == null) {
             checkState(this.position != null);
-            this.blockPosition = getPosition().floor().toInt();
+            this.blockPosition = getPosition().toInt();
         }
         return this.blockPosition;
     }

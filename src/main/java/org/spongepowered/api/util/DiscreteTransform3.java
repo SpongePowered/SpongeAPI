@@ -95,8 +95,8 @@ public class DiscreteTransform3 {
      */
     public Vector3i transform(int x, int y, int z) {
         final Vector4d vector = this.transform.transform(x, y, z, 1);
-        return new Vector3i(GenericMath.floor(vector.getX() + GenericMath.FLT_EPSILON), GenericMath.floor(vector.getY() + GenericMath.FLT_EPSILON),
-            GenericMath.floor(vector.getZ() + GenericMath.FLT_EPSILON));
+        return new Vector3i(vector.getX() + GenericMath.FLT_EPSILON, vector.getY() + GenericMath.FLT_EPSILON,
+            vector.getZ() + GenericMath.FLT_EPSILON);
     }
 
     /**
