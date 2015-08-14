@@ -34,10 +34,35 @@ import org.spongepowered.api.text.Text;
 public interface PlayerChatEvent extends PlayerMessageEvent, Cancellable {
 
     /**
+     * The placeholder key that will be replaced with the player's name
+     */
+    String PLACEHOLDER_NAME = "name";
+
+    /**
+     * The placeholder key that will be replaced with the output of {@link #getUnformattedMessage()}
+     */
+    String PLACEHOLDER_MESSAGE = "message";
+
+    /**
      * Returns the message as the player provided it, without being formatted with the player's name or any other decorations.
      *
      * @return The unformatted message
      */
     Text getUnformattedMessage();
 
+    /**
+     * Set the unformatted message that will be provided for this event
+     *
+     * @param message The message to set
+     */
+    void setUnformattedMessage(Text message);
+
+    /**
+     * Set the new message to be used in this event. The placeholders {@code name} and {@code message} will be replaced with the sender's display
+     * name and {@link #getUnformattedMessage()} in the provided text.
+     *
+     * @param message The new message
+     */
+    @Override
+    void setNewMessage(Text message);
 }
