@@ -79,7 +79,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.PlayerCreatedData;
 import org.spongepowered.api.data.manipulator.mutable.entity.PlayingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.RabbitData;
 import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData;
-import org.spongepowered.api.data.manipulator.mutable.entity.SaddleData;
+import org.spongepowered.api.data.manipulator.mutable.entity.PigSaddleData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ScreamingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ShatteringData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ShearedData;
@@ -416,7 +416,7 @@ public final class CatalogEntityData {
      * Signifies that an entity has a "saddle". Usually applicable to
      * {@link Pig}. and {@link Horse}s.
      */
-    public static final Class<SaddleData> SADDLE_DATA = SaddleData.class;
+    public static final Class<PigSaddleData> SADDLE_DATA = PigSaddleData.class;
     /**
      * Signifies that an entity is currently "screaming". Usually applicable
      * to {@link Enderman}.

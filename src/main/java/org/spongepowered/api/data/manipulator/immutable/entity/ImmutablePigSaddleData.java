@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.SaddleData;
+import org.spongepowered.api.data.manipulator.mutable.entity.PigSaddleData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.Pig;
@@ -36,13 +36,13 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * is used as the saddle. Usually applicable for {@link Horse}s and
  * {@link Pig}s.
  */
-public interface ImmutableSaddleData extends ImmutableDataManipulator<ImmutableSaddleData, SaddleData> {
+public interface ImmutablePigSaddleData extends ImmutableDataManipulator<ImmutablePigSaddleData, PigSaddleData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link ItemStack} saddle.
+     * Gets the {@link ImmutableValue} for the "saddled" state.
      *
-     * @return The immutable value for the saddle itemstack
+     * @return The immutable value for the saddle state
      */
-    ImmutableValue<ItemStack> saddle();
+    ImmutableValue<Boolean> saddle();
 
 }

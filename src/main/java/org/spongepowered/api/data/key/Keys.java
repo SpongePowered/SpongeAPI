@@ -258,7 +258,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_PLAYING = null;
     public static final Key<Value<RabbitType>> RABBIT_TYPE = null;
     public static final Key<MapValue<UUID, Vector3d>> RESPAWN_LOCATIONS = null;
-    public static final Key<Value<ItemStack>> SADDLE = null;
+    public static final Key<Value<Boolean>> SADDLE = null;
     public static final Key<Value<Boolean>> IS_SCREAMING = null;
     public static final Key<Value<Boolean>> WILL_SHATTER = null;
     public static final Key<Value<Boolean>> IS_SHEARED = null;

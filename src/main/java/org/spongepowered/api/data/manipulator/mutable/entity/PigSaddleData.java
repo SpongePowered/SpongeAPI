@@ -25,24 +25,23 @@
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSaddleData;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePigSaddleData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.Pig;
-import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * Signifies that a {@link Entity} is currently "saddled". Usually applicable
  * to {@link Pig}s and {@link Horse}s.
  */
-public interface SaddleData extends DataManipulator<SaddleData, ImmutableSaddleData> {
+public interface PigSaddleData extends DataManipulator<PigSaddleData, ImmutablePigSaddleData> {
 
     /**
-     * Gets the {@link Value} for the {@link ItemStack} saddle.
+     * Gets the {@link Value} for the the "saddled" state.
      *
-     * @return The value for the saddle itemstack
+     * @return The value for the saddle state
      */
-    Value<ItemStack> saddle();
+    Value<Boolean> saddle();
 
 }
