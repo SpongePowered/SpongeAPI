@@ -33,7 +33,7 @@ import org.spongepowered.api.entity.living.animal.Pig;
 
 /**
  * Signifies that a {@link Entity} is currently "saddled". Usually applicable
- * to {@link Pig}s and {@link Horse}s.
+ * to {@link Pig}s.
  */
 public interface PigSaddleData extends DataManipulator<PigSaddleData, ImmutablePigSaddleData> {
 
