@@ -24,9 +24,18 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.manipulator.mutable.entity.AngerableData;
+
 /**
  * Represents a Zombie Pigman.
  */
 public interface ZombiePigman extends Zombie {
+
+    /**
+     * Gets a copy of the {@link AngerableData} for this {@link ZombiePigman}.
+     *
+     * @return A copy of the anger data for this pigman
+     */
+    AngerableData getAngerData();
 
 }

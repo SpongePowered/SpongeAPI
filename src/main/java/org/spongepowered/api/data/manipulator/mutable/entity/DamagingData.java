@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDamagingData;
 import org.spongepowered.api.data.value.mutable.MapValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.projectile.Arrow;
@@ -46,7 +46,7 @@ public interface DamagingData extends DataManipulator<DamagingData, ImmutableDam
      *
      * @return The damage to deal
      */
-    Value<Double> damage();
+    MutableBoundedValue<Double> damage();
 
     /**
      * Gets the {@link MapValue} for representing the custom damage

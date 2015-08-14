@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -137,21 +138,58 @@ public interface ValueBuilder {
     <K, V> MapValue<K, V> createMapValue(Key<MapValue<K, V>> key, Map<K, V> map, Map<K, V> defaults);
 
     /**
-     * Creates a {@link MutableBoundedValue} for the provided {@link Key}
-     * @param key
-     * @param value
-     * @param comparator
-     * @param minimum
-     * @param maximum
-     * @param <E>
-     * @return
+     * Creates a {@link MutableBoundedValue} for the provided {@link Key} with the provided
+     * {@link Comparator} and <code>E</code> minimum and maximum values.
+     *
+     * @param key The key to the value
+     * @param value The actual value
+     * @param comparator The comparator
+     * @param minimum The minimum limit
+     * @param maximum The maximum limit
+     * @param <E> The type of value
+     * @return The newly created value
      */
     <E> MutableBoundedValue<E> createBoundedValue(Key<MutableBoundedValue<E>> key, E value, Comparator<E> comparator, E minimum, E maximum);
 
+    /**
+     * Creates a {@link MutableBoundedValue} for the provided {@link Key} with the provided
+     * {@link Comparator} and <code>E</code> minimum and maximum values.
+     *
+     * @param key The key to the value
+     * @param value The actual value
+     * @param comparator The comparator
+     * @param minimum The minimum limit
+     * @param maximum The maximum limit
+     * @param defaultElement The default value
+     * @param <E> The type of value
+     * @return The newly created value
+     */
     <E> MutableBoundedValue<E> createBoundedValue(Key<MutableBoundedValue<E>> key, E value, Comparator<E> comparator, E minimum, E maximum, E defaultElement);
 
+    /**
+     * Creates an {@link OptionalValue} where even the default value may be
+     * {@link Optional#absent()}. These types of values should be restricted
+     * to values that are live, that can be potentially large to retain a
+     * reference to, and otherwise, not thread safe.
+     *
+     * @param key The key to the value
+     * @param element The element, if available
+     * @param <E> The type of element
+     * @return The newly created value
+     */
     <E> OptionalValue<E> createOptionalValue(Key<OptionalValue<E>> key, @Nullable E element);
 
+    /**
+     * Creates an {@link OptionalValue} where the default is NOT
+     * <code>null</code>, such that the actual value may be retained as
+     * <code>null</code>.
+     *
+     * @param key The key of the value
+     * @param element The element
+     * @param defaultElement The default value
+     * @param <E> The type of element
+     * @return The newly created value
+     */
     <E> OptionalValue<E> createOptionalValue(Key<OptionalValue<E>> key, @Nullable E element, E defaultElement);
 
 }

@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.manipulator.mutable.entity.DamagingData;
+import org.spongepowered.api.data.manipulator.mutable.entity.KnockbackData;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -39,5 +40,13 @@ public interface Arrow extends Projectile {
      * @return A copy of the damaging data
      */
     DamagingData getDamagingData();
+
+    /**
+     * Gets a copy of the current {@link KnockbackData} that this arrow
+     * has.
+     *
+     * @return A copy of the knockback data
+     */
+    KnockbackData getKnockbackData();
 
 }
