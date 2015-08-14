@@ -33,6 +33,8 @@ import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.value.ValueBuilder;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
@@ -272,6 +274,13 @@ public interface GameRegistry {
      * @return A new builder
      */
     ExplosionBuilder createExplosionBuilder();
+
+    /**
+     * Gets a new {@link ValueBuilder} for creating {@link Value}s.
+     *
+     * @return A new builder
+     */
+    ValueBuilder createValueBuilder();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.

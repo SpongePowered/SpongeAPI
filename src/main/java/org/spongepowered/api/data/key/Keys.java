@@ -98,6 +98,7 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -162,6 +163,7 @@ public final class Keys {
     public static final Key<Value<Career>> CAREER = null;
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY = null;
     public static final Key<ListValue<Text>> ITEM_LORE = null;
+    public static final Key<MutableBoundedValue<Integer>> AGE = null;
 
     private Keys() {}
 

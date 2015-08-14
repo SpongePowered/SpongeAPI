@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.block;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
 import org.spongepowered.api.data.type.LogAxes;
 import org.spongepowered.api.data.type.LogAxis;
@@ -41,7 +42,7 @@ import org.spongepowered.api.util.Axis;
  * utilize {@link Axis} but instead use {@link LogAxis} due to their nature
  * of having {@link LogAxes#NONE}.</p>
  */
-public interface ImmutableAxisData extends ImmutableDataManipulator<ImmutableAxisData, AxisData> {
+public interface ImmutableAxisData extends ImmutableVariantData<Axis, ImmutableAxisData, AxisData> {
 
     /**
      * Gets the {@link ImmutableValue} for the {@link Axis} value.

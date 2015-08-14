@@ -52,51 +52,6 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends Comparable<I>,
                                                                                                                              DataSerializable,
                                                                                                                              ValueContainer<I> {
-    /**
-     * Attempts to read data from the given {@link DataHolder} and constructs
-     * a new copy of this {@link DataManipulator} as an instance of
-     * <code>T</code>.
-     *
-     * <p>Any data that overlaps existing data from the {@link DataHolder} will
-     * take priority and be overwriten from the pre-existing data from the
-     * {@link DataHolder}. It is recommended that a call from
-     * {@link DataHolder#supports(Class)} is checked prior to using this
-     * method on any {@link DataHolder}.</p>
-     *
-     * @param dataHolder The {@link DataHolder} to extract data
-     * @return A new {@link ImmutableDataManipulator} with all the merged data
-     */
-    Optional<I> fill(DataHolder dataHolder);
-
-    /**
-     * Attempts to read data from the given {@link DataHolder} and constructs
-     * a new copy of this {@link DataManipulator} as an instance of
-     * <code>T</code>. Any data that overlaps between this and the given
-     * {@link DataHolder} will be resolved using the given
-     * {@link MergeFunction}.
-     *
-     * <p>Any data that overlaps existing data from the {@link DataHolder} will
-     * take priority and be overwriten from the pre-existing data from the
-     * {@link DataHolder}. It is recommended that a call from
-     * {@link DataHolder#supports(Class)} is checked prior to using this
-     * method on any {@link DataHolder}.</p>
-     *
-     * @param dataHolder The {@link DataHolder} to extract data
-     * @param overlap The overlap resolver to decide which data to retain
-     * @return A new {@link ImmutableDataManipulator} with all the merged data
-     */
-    Optional<I> fill(DataHolder dataHolder, MergeFunction overlap);
-
-    /**
-     * Attempts to read the raw data from the provided {@link DataContainer}.
-     * This manipulator should be "reset" to a default state and apply all data
-     * from the given {@link DataContainer}. If data is missing from the
-     * {@link DataContainer}, {@link Optional#absent()} can be returned.
-     *
-     * @param container The container of raw data
-     * @return A new {@link ImmutableDataManipulator} with all the merged data
-     */
-    Optional<I> from(DataContainer container);
 
     /**
      * Creates a new {@link ImmutableDataManipulator} with the provided value
