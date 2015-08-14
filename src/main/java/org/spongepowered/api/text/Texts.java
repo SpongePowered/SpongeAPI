@@ -25,6 +25,7 @@
 package org.spongepowered.api.text;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Optional;
@@ -309,14 +310,16 @@ public final class Texts {
         }
         // Also check child texts for placeholders
         TextBuilder builder = null;
-        for (Text child : template.getChildren()) {
+        List<Text> children = template.getChildren();
+        for (int i = 0; i < children.size(); ++i) {
+            final Text child = children.get(i);
             Text formatted = formatNoChecks(child, replacements);
             if (builder == null) {
                 if (formatted == child) {
                     continue;
                 }
                 builder = template.builder();
-                builder.removeAll();
+                builder.remove(children.subList(i, children.size()));
             }
             builder.append(formatted);
         }
