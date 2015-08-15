@@ -49,7 +49,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
      *
      * @param result The result of the hover action
      */
-    protected HoverAction(R result) {
+    HoverAction(R result) {
         super(result);
     }
 
@@ -64,7 +64,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
          *
          * @param text The message to show
          */
-        public ShowText(Text text) {
+        ShowText(Text text) {
             super(text);
         }
     }
@@ -80,7 +80,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
          *
          * @param item The item to display
          */
-        public ShowItem(ItemStack item) {
+        ShowItem(ItemStack item) {
             super(item);
         }
 
@@ -97,7 +97,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
          *
          * @param achievement The achievement to display
          */
-        public ShowAchievement(Achievement achievement) {
+        ShowAchievement(Achievement achievement) {
             super(achievement);
         }
 
@@ -114,7 +114,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
          *
          * @param ref The reference to the entity to display
          */
-        public ShowEntity(Ref ref) {
+        ShowEntity(Ref ref) {
             super(ref);
         }
 

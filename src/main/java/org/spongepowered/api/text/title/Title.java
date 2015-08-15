@@ -66,7 +66,7 @@ public class Title {
      * @param reset {@code true} if this title resets all settings to default
      *        first
      */
-    public Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Integer fadeIn, @Nullable Integer stay, @Nullable Integer fadeOut,
+    Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Integer fadeIn, @Nullable Integer stay, @Nullable Integer fadeOut,
             boolean clear, boolean reset) {
         this.title = Optional.fromNullable(title);
         this.subtitle = Optional.fromNullable(subtitle);

@@ -102,7 +102,7 @@ public abstract class Text implements TextRepresentable {
      * @param shiftClickAction The shift click action of the text, or
      *        {@code null} for none
      */
-    protected Text(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+    Text(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
             @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction) {
         this.color = checkNotNull(color, "color");
         this.style = checkNotNull(style, "style");
@@ -266,7 +266,7 @@ public abstract class Text implements TextRepresentable {
          *        {@code null} for none
          * @param content The plain text content of the text
          */
-        public Literal(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Literal(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String content) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
             this.content = checkNotNull(content, "content");
@@ -352,7 +352,7 @@ public abstract class Text implements TextRepresentable {
          * @param key The key of the placeholder
          * @param fallback The fallback text if this does not get replaced
          */
-        public Placeholder(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Placeholder(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String key, Text fallback) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
@@ -376,7 +376,7 @@ public abstract class Text implements TextRepresentable {
          * @return The fallback text
          */
         public Optional<Text> getFallback() {
-            return fallback;
+            return this.fallback;
         }
 
         @Override
@@ -445,7 +445,7 @@ public abstract class Text implements TextRepresentable {
          * @param translation The translation of the text
          * @param arguments The arguments for the translation
          */
-        public Translatable(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Translatable(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Translation translation,
                 ImmutableList<Object> arguments) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
@@ -537,7 +537,7 @@ public abstract class Text implements TextRepresentable {
          *        {@code null} for none
          * @param selector The selector of the text
          */
-        public Selector(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Selector(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
                 org.spongepowered.api.text.selector.Selector selector) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
@@ -618,7 +618,7 @@ public abstract class Text implements TextRepresentable {
          * @param override The text to override the score with, or {@code null}
          *        for none
          */
-        public Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
                 org.spongepowered.api.scoreboard.Score score, @Nullable String override) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);

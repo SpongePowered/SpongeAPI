@@ -445,7 +445,8 @@ public class TextStyle {
 
     @Override
     public String toString() {
-        if (bold.isPresent() || italic.isPresent() || underline.isPresent() || strikethrough.isPresent() || obfuscated.isPresent()) {
+        if (this.bold.isPresent() || this.italic.isPresent() || this.underline.isPresent() || this.strikethrough.isPresent() || this.obfuscated
+                .isPresent()) {
             return Objects.toStringHelper(this)
                     .add("bold", this.bold)
                     .add("italic", this.italic)

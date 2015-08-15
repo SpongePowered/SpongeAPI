@@ -71,7 +71,7 @@ public abstract class TextBuilder implements TextRepresentable {
      *
      * @param text The text to copy the values from
      */
-    public TextBuilder(Text text) {
+    TextBuilder(Text text) {
         checkNotNull(text, "text");
         this.color = text.color;
         this.style = text.style;
@@ -372,7 +372,7 @@ public abstract class TextBuilder implements TextRepresentable {
         /**
          * Constructs a new empty {@link Literal}.
          */
-        public Literal() {
+        Literal() {
             this("");
         }
 
@@ -381,7 +381,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param content The content for the text builder
          */
-        public Literal(String content) {
+        Literal(String content) {
             content(content);
         }
 
@@ -392,7 +392,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param text The text to apply the properties from
          * @param content The content for the text builder
          */
-        public Literal(Text text, String content) {
+        Literal(Text text, String content) {
             super(text);
             content(content);
         }
@@ -403,7 +403,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param text The text to apply the properties from
          */
-        public Literal(Text.Literal text) {
+        Literal(Text.Literal text) {
             super(text);
             this.content = text.content;
         }
@@ -553,7 +553,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param key The none empty replacement key for the placeholder builder
          */
-        public Placeholder(String key) {
+        Placeholder(String key) {
             key(key);
         }
 
@@ -564,7 +564,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param text The text to apply the properties from
          * @param key The none empty replacement key for the placeholder builder
          */
-        public Placeholder(Text text, String key) {
+        Placeholder(Text text, String key) {
             super(text);
             key(key);
         }
@@ -575,7 +575,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param text The text to apply the properties from
          */
-        public Placeholder(Text.Placeholder text) {
+        Placeholder(Text.Placeholder text) {
             super(text);
             this.key = text.key;
             if (text.getFallback().isPresent()) {
@@ -739,7 +739,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param translation The translation for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(Translation translation, Object... args) {
+        Translatable(Translation translation, Object... args) {
             translation(translation, args);
         }
 
@@ -751,7 +751,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param translatable The translatable for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
+        Translatable(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
             translation(translatable, args);
         }
 
@@ -764,7 +764,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param translation The translation for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(Text text, Translation translation, Object... args) {
+        Translatable(Text text, Translation translation, Object... args) {
             super(text);
             translation(translation, args);
         }
@@ -778,7 +778,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param translatable The translatable for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(Text text, org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
+        Translatable(Text text, org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
             super(text);
             translation(translatable, args);
         }
@@ -789,7 +789,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param text The text to apply the properties from
          */
-        public Translatable(Text.Translatable text) {
+        Translatable(Text.Translatable text) {
             super(text);
             this.translation = text.translation;
             this.arguments = text.arguments;
@@ -959,7 +959,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param selector The selector for the builder
          */
-        public Selector(org.spongepowered.api.text.selector.Selector selector) {
+        Selector(org.spongepowered.api.text.selector.Selector selector) {
             selector(selector);
         }
 
@@ -970,7 +970,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param text The text to apply the properties from
          * @param selector The selector for the builder
          */
-        public Selector(Text text, org.spongepowered.api.text.selector.Selector selector) {
+        Selector(Text text, org.spongepowered.api.text.selector.Selector selector) {
             super(text);
             selector(selector);
         }
@@ -981,7 +981,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param text The text to apply the properties from
          */
-        public Selector(Text.Selector text) {
+        Selector(Text.Selector text) {
             super(text);
             this.selector = text.selector;
         }
@@ -1125,7 +1125,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param score The score for the text builder
          */
-        public Score(org.spongepowered.api.scoreboard.Score score) {
+        Score(org.spongepowered.api.scoreboard.Score score) {
             score(score);
         }
 
@@ -1136,7 +1136,7 @@ public abstract class TextBuilder implements TextRepresentable {
          * @param text The text to apply the properties from
          * @param score The score for the text builder
          */
-        public Score(Text text, org.spongepowered.api.scoreboard.Score score) {
+        Score(Text text, org.spongepowered.api.scoreboard.Score score) {
             super(text);
             score(score);
         }
@@ -1147,7 +1147,7 @@ public abstract class TextBuilder implements TextRepresentable {
          *
          * @param text The text to apply the properties from
          */
-        public Score(Text.Score text) {
+        Score(Text.Score text) {
             super(text);
             this.score = text.score;
             this.override = text.override.orNull();
