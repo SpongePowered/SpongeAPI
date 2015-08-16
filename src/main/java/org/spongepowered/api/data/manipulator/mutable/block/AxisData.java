@@ -43,11 +43,4 @@ import org.spongepowered.api.util.Axis;
  */
 public interface AxisData extends VariantData<Axis, AxisData, ImmutableAxisData> {
 
-    /**
-     * Gets the {@link Value} for the {@link Axis} value.
-     *
-     * @return The value for the axis
-     */
-    Value<Axis> axis();
-
 }

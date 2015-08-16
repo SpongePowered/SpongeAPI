@@ -35,11 +35,4 @@ import org.spongepowered.api.entity.living.Villager;
  */
 public interface CareerData extends VariantData<Career, CareerData, ImmutableCareerData> {
 
-    /**
-     * Gets the {@link Value} for the {@link Career}.
-     *
-     * @return The value for the career
-     */
-    Value<Career> career();
-
 }

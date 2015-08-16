@@ -32,18 +32,22 @@ import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Wolf;
 
+import java.util.UUID;
+
 /**
- * An {@link DataManipulator} that handles the link to the {@link Tamer} that
- * has "tamed" an {@link Animal}. Usually {@link Animal}s can not be tamed,
- * however, certain few can. Such as {@link Wolf} and {@link Ocelot}s.
+ * An {@link DataManipulator} that handles the link to the {@link UUID} of the
+ * {@link Tamer} that has "tamed" an {@link Animal}. Usually {@link Animal}s
+ * can not be tamed, however, certain few can. Such as {@link Wolf} and
+ * {@link Ocelot}s.
  */
 public interface TameableData extends DataManipulator<TameableData, ImmutableTameableData> {
 
     /**
-     * Gets the {@link OptionalValue} for the tamer.
+     * Gets the {@link OptionalValue} for the {@link UUID} of the
+     * {@link Tamer}.
      *
-     * @return The optional value for the tamer
+     * @return The optional value for the uuid of the tamer
      */
-    OptionalValue<Tamer> owner();
+    OptionalValue<UUID> owner();
 
 }

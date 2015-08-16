@@ -123,8 +123,8 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * {@link ValueContainer} may be unsupported, the required data missing
      * and ignoring the possibility of {@code null}s, it is a guarantee that if
      * the {@link Optional#isPresent()} is {@code true}, the
-     * {@link ValueContainer} not only is supported, but there is already pre-
-     * existing data for the {@link ValueContainer}.</p>
+     * {@link ValueContainer} not only is supported, but some default values
+     * can be generated to create the desired {@link ValueContainer}.</p>
      *
      * <p>If it is necessary to ignore the {@link Optional},
      * {@link Optional#orNull()} can be used to return a potentially

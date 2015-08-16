@@ -73,6 +73,6 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return A copy of the current food data
      */
-    FoodData foodData();
+    FoodData getFoodData();
 
 }

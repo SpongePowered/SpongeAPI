@@ -37,11 +37,20 @@ import org.spongepowered.api.entity.Entity;
 public interface ImmutableVehicleData extends ImmutableDataManipulator<ImmutableVehicleData, VehicleData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the current {@link Entity} acting
-     * as a passenger.
+     * Gets the {@link ImmutableValue} for the current "vehicle" being ridden.
      *
-     * @return The immutable value for the passenger entity
+     * @return The immutable value for the vehicle being ridden
      */
-    ImmutableValue<Entity> passenger();
+    ImmutableValue<Entity> vehicle();
+
+    /**
+     * Gets the base {@link ImmutableValue} for the "base vehicle" being ridden
+     * such that the current vehicle may be riding another {@link Entity},
+     * causing that entity to be called the "base vehicle".
+     *
+     * @return The immutable value for the base vehicle
+     */
+    ImmutableValue<Entity> baseVehicle();
+
 
 }

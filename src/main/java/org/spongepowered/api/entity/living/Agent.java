@@ -24,10 +24,19 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
+
 /**
  * An Agent represents a {@link Living} that has AI. In the future Sponge will
  * allow for custom AIs, but for now vanilla behavior can only be disabled.
  */
 public interface Agent extends Living {
+
+    /**
+     * Gets a copy of the {@link AgentData} associated with this {@link Agent}.
+     *
+     * @return A copy of the agent data
+     */
+    AgentData getAgentData();
 
 }

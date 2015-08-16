@@ -74,7 +74,9 @@ public interface BaseValue<E> {
     boolean exists();
 
     /**
-     * Gets the default value if there is one.
+     * Gets the default value. There is always a default value, however,
+     * usability of the default value may be questionable in certain
+     * circumstances.
      *
      * @return The default value
      */
