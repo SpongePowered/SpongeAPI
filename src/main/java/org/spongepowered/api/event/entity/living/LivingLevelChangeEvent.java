@@ -22,25 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.event.entity.living;
+
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.Cancellable;
 
 /**
- * Represents a Villager Career. A career can define a more specified list of
- * trade offers the villager can give to a player.
+ * Called when a {@link Living} changes its level.
  */
-@CatalogedBy(Careers.class)
-public interface Career extends CatalogType, Translatable {
+public interface LivingLevelChangeEvent extends LivingEvent, Cancellable {
 
     /**
-     * Gets the parent profession of this career. The profession is permanent
-     * and can not be changed.
+     * Gets the level the {@link Living} had before.
      *
-     * @return The profession this career belongs to
+     * @return The level the living had before
      */
-    Profession getProfession();
+    int getOldLevel();
+
+    /**
+     * Gets the new level of the {@link Living}.
+     *
+     * @return The new level of the living
+     */
+    int getNewLevel();
+
+    /**
+     * Sets the new level of the {@link Living}.
+     *
+     * @param level The new level of the living
+     */
+    void setNewLevel(int level);
 
 }

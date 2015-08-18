@@ -22,25 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.data.manipulator.immutable.entity;
+
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceLevelData;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 
 /**
- * Represents a Villager Career. A career can define a more specified list of
- * trade offers the villager can give to a player.
+ * Represents data that defines the owner as having some experience level. This
+ * is usually the case for villagers.
  */
-@CatalogedBy(Careers.class)
-public interface Career extends CatalogType, Translatable {
+public interface ImmutableExperienceLevelData extends ImmutableDataManipulator<ImmutableExperienceLevelData, ExperienceLevelData> {
 
     /**
-     * Gets the parent profession of this career. The profession is permanent
-     * and can not be changed.
+     * Gets the {@link ImmutableBoundedValue} for the "level" state.
      *
-     * @return The profession this career belongs to
+     * @return The immutable bounded value for the "level"
      */
-    Profession getProfession();
+    ImmutableBoundedValue<Integer> level();
 
 }

@@ -22,25 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.event.inventory;
+
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.merchant.Merchant;
+import org.spongepowered.api.item.merchant.TradeOffer;
+
+import java.util.List;
 
 /**
- * Represents a Villager Career. A career can define a more specified list of
- * trade offers the villager can give to a player.
+ * Called when a {@link Merchant} changes his {@link TradeOffer}s.
  */
-@CatalogedBy(Careers.class)
-public interface Career extends CatalogType, Translatable {
+public interface MerchantTradeOfferChangeEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets the parent profession of this career. The profession is permanent
-     * and can not be changed.
+     * Gets the {@link Merchant} involved involved in this event.
      *
-     * @return The profession this career belongs to
+     * @return The villager involved
      */
-    Profession getProfession();
+    Merchant getMerchant();
+
+    /**
+     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
+     *
+     * @return A list of trade offers the merchant had before
+     */
+    List<TradeOffer> getOldTradeOffers();
+
+    /**
+     * Gets an immutable list of {@link TradeOffer}s the merchant had before.
+     *
+     * @return A list of trade offers the merchant had before
+     */
+    List<TradeOffer> getNewTradeOffers();
+
+    /**
+     * Sets a list of trade offers the merchant should have.
+     *
+     * @param offers A list of trade offers the merchant should have
+     */
+    void setNewTradeOffers(List<TradeOffer> offers);
 
 }

@@ -47,6 +47,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
@@ -99,6 +100,7 @@ import org.spongepowered.api.event.entity.EntityTeleportEvent;
 import org.spongepowered.api.event.entity.EntityUnleashEvent;
 import org.spongepowered.api.event.entity.EntityUpdateEvent;
 import org.spongepowered.api.event.entity.ProjectileLaunchEvent;
+import org.spongepowered.api.event.entity.living.LivingLevelChangeEvent;
 import org.spongepowered.api.event.entity.player.PlayerBreakBlockEvent;
 import org.spongepowered.api.event.entity.player.PlayerChangeBlockEvent;
 import org.spongepowered.api.event.entity.player.PlayerChangeGameModeEvent;
@@ -120,6 +122,7 @@ import org.spongepowered.api.event.entity.player.PlayerUpdateEvent;
 import org.spongepowered.api.event.entity.player.fishing.PlayerCastFishingLineEvent;
 import org.spongepowered.api.event.entity.player.fishing.PlayerHookedEntityEvent;
 import org.spongepowered.api.event.entity.player.fishing.PlayerRetractFishingLineEvent;
+import org.spongepowered.api.event.inventory.MerchantTradeOfferChangeEvent;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.event.message.MessageEvent;
@@ -151,6 +154,8 @@ import org.spongepowered.api.event.world.WorldUnloadEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.TileEntityInventory;
+import org.spongepowered.api.item.merchant.Merchant;
+import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket;
 import org.spongepowered.api.statistic.Statistic;
@@ -1560,6 +1565,45 @@ public final class SpongeEventFactory {
         values.put("entity", entity);
         values.put("user", entity);
         return createEvent(PlayerUpdateEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link LivingLevelChangeEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param living The living involved in this event
+     * @param oldLevel The previous level
+     * @param newLevel The new level
+     * @return A new instance of the event
+     */
+    public static LivingLevelChangeEvent createLivingLevelChange(Game game, Living living, int oldLevel, int newLevel) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", living);
+        values.put("oldLevel", oldLevel);
+        values.put("newLevel", newLevel);
+        return createEvent(LivingLevelChangeEvent.class, values);
+    }
+
+    /**
+     * Creates a new {@link MerchantTradeOfferChangeEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param merchant The merchant involved in this event
+     * @param oldTradeOffers The previous trade offers
+     * @param newTradeOffers The new trade offers
+     * @param cause The cause of the event
+     * @return A new instance of the event
+     */
+    public static MerchantTradeOfferChangeEvent createMerchantTradeOfferChange(Game game, Merchant merchant, List<TradeOffer> oldTradeOffers,
+            List<TradeOffer> newTradeOffers, @Nullable Cause cause) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("merchant", merchant);
+        values.put("oldTradeOffers", oldTradeOffers);
+        values.put("newTradeOffers", newTradeOffers);
+        values.put("cause", Optional.fromNullable(cause));
+        return createEvent(MerchantTradeOfferChangeEvent.class, values);
     }
 
     /**

@@ -22,25 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.item.inventory.generator;
+
+import org.spongepowered.api.item.inventory.ItemStackBuilder;
 
 /**
- * Represents a Villager Career. A career can define a more specified list of
- * trade offers the villager can give to a player.
+ * Represents a mutator for {@link ItemStackBuilder}s. This interface is used in
+ * {@link ItemStackGenerator} to modify the properties of the generated items.
  */
-@CatalogedBy(Careers.class)
-public interface Career extends CatalogType, Translatable {
+public interface ItemStackBuilderMutator {
 
     /**
-     * Gets the parent profession of this career. The profession is permanent
-     * and can not be changed.
+     * Applies this mutator to the given item stack builder.
      *
-     * @return The profession this career belongs to
+     * @param builder The builder this mutator should be applied to.
      */
-    Profession getProfession();
+    void apply(ItemStackBuilder builder);
 
 }

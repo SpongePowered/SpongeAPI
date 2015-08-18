@@ -22,25 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.item.merchant.generator;
+
+import org.spongepowered.api.item.merchant.Merchant;
+import org.spongepowered.api.item.merchant.TradeOffer;
+
+import java.util.List;
 
 /**
- * Represents a Villager Career. A career can define a more specified list of
- * trade offers the villager can give to a player.
+ * Generates trade offers for new villagers/merchants and when villagers level
+ * up. TradeOfferGenerators will not persist across server restarts.
  */
-@CatalogedBy(Careers.class)
-public interface Career extends CatalogType, Translatable {
+public interface TradeOfferGenerator {
 
     /**
-     * Gets the parent profession of this career. The profession is permanent
-     * and can not be changed.
+     * Modifies the given list to append or modify the {@link Merchant}'s
+     * {@link TradeOffer}s.
      *
-     * @return The profession this career belongs to
+     * @param tradeOffers A mutable list of trade offers.
      */
-    Profession getProfession();
+    void generate(List<TradeOffer> tradeOffers);
 
 }
