@@ -22,26 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.map;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.map.MapView;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.player.Player;
 
 /**
- * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Plugin classes should implement this to modify the image shown on a map.
  */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+public interface MapRenderer {
 
     /**
-     * Gets the {@link Value} for the {@link MapView} attached to this
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
+     * Returns if this map renders different views for each player viewing it.
      *
-     * @return The value for the attached map view
+     * <p>Most maps representing shared content are the same for all players
+     * that hold them, but sometimes a plugin may wish to render a unique view
+     * for each player.</p>
+     *
+     * @return True if the rendering is specific to each player, false otherwise
      */
-    Value<MapView> attachedMapView();
+    boolean isContextual();
+
+    /**
+     * Gives access to the {@link MapCanvas} for rendering onto a map, this also
+     * provides a viewer and a reference to the original map data to allow
+     * updating cursors and accessing relevant information to the render.
+     *
+     * <p>The viewer is guaranteed to be present if {@link #isContextual()}
+     * returns true.</p>
+     *
+     * @param viewer The player viewing this render, {@link Optional#absent()}
+     *        otherwise
+     * @param view The map that's being rendered
+     * @param canvas The canvas that the renderer will draw onto
+     */
+    void render(Optional<Player> viewer, MapView view, MapCanvas canvas);
 }

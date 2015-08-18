@@ -44,6 +44,8 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.map.MapView;
+import org.spongepowered.api.map.MapViewRegistry;
 import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.ScoreboardBuilder;
@@ -534,4 +536,12 @@ public interface GameRegistry {
      * @return The {@link Translation} with the given ID or Optional.absent() if not found
      */
     Optional<Translation> getTranslationById(String id);
+
+    /**
+     * Returns the {@link MapViewRegistry} to use for manipulating
+     * {@link MapView}s.
+     *
+     * @return The map view registry
+     */
+    MapViewRegistry getMapViewRegistry();
 }

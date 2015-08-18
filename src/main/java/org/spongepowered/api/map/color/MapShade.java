@@ -22,26 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.map.MapView;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * A representation of the shading that an entry in the {@link MapPalette} can
+ * take on.
  */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+@CatalogedBy(MapShades.class)
+public interface MapShade extends CatalogType {
 
     /**
-     * Gets the {@link Value} for the {@link MapView} attached to this
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
+     * Returns this shade's multiplication factor to the base color.
      *
-     * @return The value for the attached map view
+     * @return The multiplication factor
      */
-    Value<MapView> attachedMapView();
+    int getMultiplication();
 }
