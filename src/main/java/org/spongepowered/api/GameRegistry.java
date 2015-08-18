@@ -33,6 +33,8 @@ import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.value.ValueBuilder;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
@@ -65,9 +67,9 @@ import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.explosion.ExplosionBuilder;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.extent.Extent;
@@ -276,6 +278,13 @@ public interface GameRegistry {
      * @return A new builder
      */
     ExplosionBuilder createExplosionBuilder();
+
+    /**
+     * Gets a new {@link ValueBuilder} for creating {@link Value}s.
+     *
+     * @return A new builder
+     */
+    ValueBuilder createValueBuilder();
 
     /**
      * Gets a new particle builder for the {@link ParticleType}.
@@ -499,6 +508,16 @@ public interface GameRegistry {
     PopulatorFactory getPopulatorFactory();
 
     /**
+     * Returns a new invalid identity transform.
+     * The extent needs to be set using
+     * {@link Transform#setExtent(Extent)} to validate it.
+     *
+     * @return A new invalid identity transform
+     * @see #createTransform(Extent)
+     */
+    <E extends Extent> Transform<E> createTransform();
+
+    /**
      * Returns a new identity transform for the given extent.
      * This transform has no translation, rotation or scale
      * (position and rotation are (0, 0, 0) and scale is (1, 1, 1)).
@@ -510,7 +529,7 @@ public interface GameRegistry {
      * @param extent The extent which contains the transform
      * @return A new identity transform
      */
-    Transform createTransform(Extent extent);
+    <E extends Extent> Transform<E> createTransform(E extent);
 
     /**
      * Gets the {@link ExtentBufferFactory} for creating buffers

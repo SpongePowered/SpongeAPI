@@ -130,7 +130,9 @@ public interface CollectionValue<E, C extends Collection<E>, V extends Collectio
      * Applies a {@link Predicate} to filter the underlying elements in the
      * backed {@link Collection} to create a new {@link CollectionValue}
      * separate from this {@link CollectionValue}. This value is not modified,
-     * nor is the underlying {@link Collection}.
+     * nor is the underlying {@link Collection}. Elements that return
+     * <code>true</code> from {@link Predicate#apply(Object)} are kept, and
+     * those that return <code>false</code> are excluded.
      *
      * @param predicate The predicate to filter
      * @return This value, for chaining

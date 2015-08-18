@@ -62,7 +62,7 @@ public interface ImmutableExperienceHolderData extends ImmutableDataManipulator<
     ImmutableBoundedValue<Integer> experienceBetweenLevels();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} fro the current "level" of
+     * Gets the {@link ImmutableBoundedValue} for the current "level" of
      * experience deserved according to the {@link #totalExperience()} and
      * a function from implementation defining how much experience required
      * per level.

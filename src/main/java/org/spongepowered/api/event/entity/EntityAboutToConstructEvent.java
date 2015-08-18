@@ -29,6 +29,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents an event where an entity is about to be constructed and
@@ -54,6 +55,6 @@ public interface EntityAboutToConstructEvent extends GameEvent, CauseTracked, Ca
      *
      * @return The location that the entity would spawn at
      */
-    Location getLocation();
+    Location<World> getLocation();
 
 }

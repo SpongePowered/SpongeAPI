@@ -34,10 +34,12 @@ import org.spongepowered.api.world.extent.Extent;
 /**
  * Represents a block hit by a ray. Stores more information than a regular location.
  * Extra object are lazily computed and cached.
+ *
+ *  * @param <E> The extent containing the hit
  */
-public class BlockRayHit {
+public class BlockRayHit<E extends Extent> {
 
-    private final Extent extent;
+    private final E extent;
     private final double x;
     private final double y;
     private final double z;
@@ -49,7 +51,7 @@ public class BlockRayHit {
     private final Vector3d direction;
     private final Vector3d normal;
     private Direction[] faces = null;
-    private Location location = null;
+    private Location<E> location = null;
 
     /**
      * Constructs a new block ray hit from the extent that contains it, the coordinates
@@ -62,7 +64,7 @@ public class BlockRayHit {
      * @param direction A normal vector of the ray direction
      * @param normal The normal of the entered face, edge or corner
      */
-    public BlockRayHit(Extent extent, double x, double y, double z, Vector3d direction, Vector3d normal) {
+    public BlockRayHit(E extent, double x, double y, double z, Vector3d direction, Vector3d normal) {
         this.extent = extent;
         this.x = x;
         this.y = y;
@@ -82,7 +84,7 @@ public class BlockRayHit {
      *
      * @return The extent
      */
-    public Extent getExtent() {
+    public E getExtent() {
         return this.extent;
     }
 
@@ -169,9 +171,9 @@ public class BlockRayHit {
      *
      * @return The location of the hit block
      */
-    public Location getLocation() {
+    public Location<E> getLocation() {
         if (this.location == null) {
-            this.location = new Location(this.extent, this.xBlock, this.yBlock, this.zBlock);
+            this.location = new Location<E>(this.extent, this.xBlock, this.yBlock, this.zBlock);
         }
         return this.location;
     }
@@ -223,4 +225,5 @@ public class BlockRayHit {
     public String toString() {
         return "BlockRayHit{" + getPosition() + " in " + getExtent() + "}";
     }
+
 }

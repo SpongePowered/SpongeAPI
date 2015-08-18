@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
@@ -63,7 +64,7 @@ import javax.annotation.Nullable;
  * @see Selector
  * @see Score
  */
-public abstract class Text {
+public abstract class Text implements TextRepresentable {
 
     protected final TextColor color;
     protected final TextStyle style;
@@ -101,7 +102,7 @@ public abstract class Text {
      * @param shiftClickAction The shift click action of the text, or
      *        {@code null} for none
      */
-    protected Text(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+    Text(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
             @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction) {
         this.color = checkNotNull(color, "color");
         this.style = checkNotNull(style, "style");
@@ -228,6 +229,11 @@ public abstract class Text {
                 .toString();
     }
 
+    @Override
+    public final Text toText() {
+        return this;
+    }
+
     /**
      * Represents a {@link Text} containing a plain text {@link String}.
      *
@@ -260,7 +266,7 @@ public abstract class Text {
          *        {@code null} for none
          * @param content The plain text content of the text
          */
-        public Literal(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Literal(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String content) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
             this.content = checkNotNull(content, "content");
@@ -309,6 +315,105 @@ public abstract class Text {
     }
 
     /**
+     * Represents a {@link Text} placeholder that can be replaced with another
+     * Text by {@link Texts#format(Text, java.util.Map)}.
+     *
+     * @see TextBuilder.Placeholder
+     */
+    public static class Placeholder extends Text {
+
+        protected final String key;
+        private final Optional<Text> fallback;
+
+
+        Placeholder(String key) {
+            this(key, null);
+        }
+
+        Placeholder(String key, Text fallback) {
+            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+            this.key = key;
+            this.fallback = Optional.fromNullable(fallback);
+        }
+
+        /**
+         * Constructs a new immutable {@link Placeholder} for the given plain
+         * text content with the specified formatting and text actions applied.
+         *
+         * @param color The color of the text
+         * @param style The style of the text
+         * @param children The immutable list of children of the text
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
+         * @param key The key of the placeholder
+         * @param fallback The fallback text if this does not get replaced
+         */
+        Placeholder(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String key, Text fallback) {
+            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+            this.key = key;
+            this.fallback = Optional.fromNullable(fallback);
+        }
+
+        /**
+         * Returns the placeholder key used to replace this placeholder with the
+         * real content.
+         *
+         * @return The template key of this template
+         */
+        public final String getKey() {
+            return this.key;
+        }
+
+        /**
+         * Get the fallback text that will be used in place if this placeholder has no value.
+         *
+         * @return The fallback text
+         */
+        public Optional<Text> getFallback() {
+            return this.fallback;
+        }
+
+        @Override
+        public TextBuilder.Placeholder builder() {
+            return new TextBuilder.Placeholder(this);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Placeholder) || !super.equals(o)) {
+                return false;
+            }
+
+            Placeholder that = (Placeholder) o;
+            return Objects.equal(this.key, that.key) && Objects.equal(this.fallback, that.fallback);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.key);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .add("key", this.key)
+                    .add("fallback", this.fallback)
+                    .addValue(super.toString())
+                    .toString();
+        }
+
+    }
+
+    /**
      * Represents a {@link Text} containing a {@link Translation} identifier
      * that gets translated into the current locale on the client.
      *
@@ -340,7 +445,7 @@ public abstract class Text {
          * @param translation The translation of the text
          * @param arguments The arguments for the translation
          */
-        public Translatable(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Translatable(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Translation translation,
                 ImmutableList<Object> arguments) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
@@ -432,7 +537,7 @@ public abstract class Text {
          *        {@code null} for none
          * @param selector The selector of the text
          */
-        public Selector(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Selector(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
                 org.spongepowered.api.text.selector.Selector selector) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);
@@ -513,7 +618,7 @@ public abstract class Text {
          * @param override The text to override the score with, or {@code null}
          *        for none
          */
-        public Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
                 org.spongepowered.api.scoreboard.Score score, @Nullable String override) {
             super(color, style, children, clickAction, hoverAction, shiftClickAction);

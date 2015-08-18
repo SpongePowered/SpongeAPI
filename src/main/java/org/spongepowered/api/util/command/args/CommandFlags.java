@@ -148,6 +148,7 @@ class CommandFlags extends CommandElement {
         return true;
     }
 
+    @SuppressWarnings("fallthrough")
     private boolean parseShortFlags(CommandSource source, String shortFlags, CommandArgs args, CommandContext context) throws ArgumentParseException {
         for (int i = 0; i < shortFlags.length(); ++i) {
             final String flagChar = shortFlags.substring(i, i + 1);
@@ -158,7 +159,6 @@ class CommandFlags extends CommandElement {
                         if (i == 0) {
                             return false;
                         }
-                    // $FALL-THROUGH$
                     case ERROR:
                         throw args.createError(t("Unknown short flag %s specified", flagChar));
                     case ACCEPT_NONVALUE:

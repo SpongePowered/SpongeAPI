@@ -26,6 +26,7 @@ package org.spongepowered.api.util;
 
 import static org.spongepowered.api.data.DataQuery.of;
 
+import com.flowpowered.math.GenericMath;
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
@@ -127,7 +128,7 @@ public abstract class VariableAmount implements DataSerializable {
      * @return The floored amount
      */
     public int getFlooredAmount(Random rand) {
-        return (int) Math.floor(getAmount(rand));
+        return GenericMath.floor(getAmount(rand));
     }
 
     @Override
@@ -250,7 +251,7 @@ public abstract class VariableAmount implements DataSerializable {
             if (rand.nextDouble() < this.chance) {
                 return this.inner.getFlooredAmount(rand);
             }
-            return (int) Math.floor(this.base);
+            return GenericMath.floor(this.base);
         }
 
         @Override

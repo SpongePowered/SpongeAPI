@@ -96,7 +96,9 @@ public interface ImmutableMapValue<K, V> extends ImmutableValue<Map<K, V>> {
     /**
      * Creates a new {@link ImmutableMapValue} such that all entries are
      * filtered by the provided {@link Predicate}, any that return
-     * {@code true} are retained in the new value.
+     * {@code true} are retained in the new value. Elements that return
+     * <code>true</code> from {@link Predicate#apply(Object)} are kept, and
+     * those that return <code>false</code> are excluded.
      *
      * @param predicate The predicate to filter
      * @return The new value, for chaining

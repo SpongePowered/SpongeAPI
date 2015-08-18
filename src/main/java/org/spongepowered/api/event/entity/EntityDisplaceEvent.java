@@ -27,6 +27,7 @@ package org.spongepowered.api.event.entity;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when an {@link org.spongepowered.api.entity.Entity} changes position (also known as
@@ -42,21 +43,21 @@ public interface EntityDisplaceEvent extends EntityEvent, Cancellable {
      *
      * @return The old location
      */
-    Location getOldLocation();
+    Location<World> getOldLocation();
 
     /**
      * Gets the new {@link Location} that the entity is in.
      *
      * @return The new location
      */
-    Location getNewLocation();
+    Location<World> getNewLocation();
 
     /**
      * Sets the new {@link Location} that the entity is in.
      *
      * @param location The new location
      */
-    void setNewLocation(Location location);
+    void setNewLocation(Location<World> location);
 
     /**
      * Gets the rotation the entity is facing.

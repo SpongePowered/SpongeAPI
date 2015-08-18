@@ -75,7 +75,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Sets the location of this entity. This is equivalent to a teleport,
@@ -83,7 +83,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * @param location The location to set
      */
-    void setLocation(Location location);
+    void setLocation(Location<World> location);
 
     /**
      * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
@@ -92,7 +92,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't be set as no safe location was found
      */
-    boolean setLocationSafely(Location location);
+    boolean setLocationSafely(Location<World> location);
 
     /**
      * Gets the rotation.
@@ -129,7 +129,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param location The location to set
      * @param rotation The rotation to set
      */
-    void setLocationAndRotation(Location location, Vector3d rotation);
+    void setLocationAndRotation(Location<World> location, Vector3d rotation);
 
     /**
      * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
@@ -143,7 +143,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param rotation The rotation to set
      * @return True if location was set successfully, false if location couldn't be set as no safe location was found
      */
-    boolean setLocationAndRotationSafely(Location location, Vector3d rotation);
+    boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation);
 
     /**
      * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
@@ -158,7 +158,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      */
-    void setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    void setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Sets the location using a safe one from
@@ -177,7 +177,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return True if location was set successfully, false if location
      *     couldn't be set as no safe location was found
      */
-    boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Gets the entity scale. Not currently used.
@@ -201,7 +201,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * @return The transform as a new copy
      */
-    Transform getTransform();
+    Transform<World> getTransform();
 
     /**
      * Sets the entity transform. Sets the
@@ -209,7 +209,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      *
      * @param transform The transform to set
      */
-    void setTransform(Transform transform);
+    void setTransform(Transform<World> transform);
 
     /**
      * Sets the location of this entity to a new position in a world which does

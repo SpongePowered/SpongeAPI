@@ -1105,7 +1105,7 @@ public final class GenericArguments {
             WorldProperties targetWorldProps = ((WorldProperties) world);
             Optional<World> targetWorld = this.game.getServer().getWorld(targetWorldProps.getUniqueId());
             Vector3d vector = (Vector3d) vec;
-            return new Location(targetWorld.get(), vector);
+            return new Location<World>(targetWorld.get(), vector);
         }
 
         @Override

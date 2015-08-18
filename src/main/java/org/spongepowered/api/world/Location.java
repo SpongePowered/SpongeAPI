@@ -75,10 +75,12 @@ import javax.annotation.Nullable;
  *
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
+ *
+ * @param <E> The type of extent containing this location
  */
-public final class Location implements DataHolder {
+public final class Location<E extends Extent> implements DataHolder {
 
-    private final Extent extent;
+    private final E extent;
     // Lazily computed, either position or blockPosition is set by the constructor
     @Nullable
     private Vector3d position = null;
@@ -93,7 +95,7 @@ public final class Location implements DataHolder {
      * @param extent The extent
      * @param position The position
      */
-    public Location(Extent extent, Vector3d position) {
+    public Location(E extent, Vector3d position) {
         this.extent = checkNotNull(extent, "extent");
         this.position = checkNotNull(position, "position");
     }
@@ -106,7 +108,7 @@ public final class Location implements DataHolder {
      * @param y The Y-axis position
      * @param z The Z-axis position
      */
-    public Location(Extent extent, double x, double y, double z) {
+    public Location(E extent, double x, double y, double z) {
         this(extent, new Vector3d(x, y, z));
     }
 
@@ -116,7 +118,7 @@ public final class Location implements DataHolder {
      * @param extent The extent
      * @param blockPosition The position
      */
-    public Location(Extent extent, Vector3i blockPosition) {
+    public Location(E extent, Vector3i blockPosition) {
         this.extent = checkNotNull(extent, "extent");
         this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
@@ -129,7 +131,7 @@ public final class Location implements DataHolder {
      * @param y The Y-axis position
      * @param z The Z-axis position
      */
-    public Location(Extent extent, int x, int y, int z) {
+    public Location(E extent, int x, int y, int z) {
         this(extent, new Vector3i(x, y, z));
     }
 
@@ -138,7 +140,7 @@ public final class Location implements DataHolder {
      *
      * @return The extent
      */
-    public Extent getExtent() {
+    public E getExtent() {
         return this.extent;
     }
 
@@ -163,7 +165,7 @@ public final class Location implements DataHolder {
     public Vector3i getBlockPosition() {
         if (this.blockPosition == null) {
             checkState(this.position != null);
-            this.blockPosition = getPosition().floor().toInt();
+            this.blockPosition = getPosition().toInt();
         }
         return this.blockPosition;
     }
@@ -271,12 +273,12 @@ public final class Location implements DataHolder {
      * @param extent The new extent
      * @return A new instance
      */
-    public Location setExtent(Extent extent) {
+    public Location<E> setExtent(E extent) {
         checkNotNull(extent, "extent");
         if (extent == getExtent()) {
             return this;
         }
-        return new Location(extent, getPosition());
+        return new Location<E>(extent, getPosition());
     }
 
     /**
@@ -285,12 +287,12 @@ public final class Location implements DataHolder {
      * @param position The new position
      * @return A new instance
      */
-    public Location setPosition(Vector3d position) {
+    public Location<E> setPosition(Vector3d position) {
         checkNotNull(position, "position");
         if (position == getPosition()) {
             return this;
         }
-        return new Location(getExtent(), position);
+        return new Location<E>(getExtent(), position);
     }
 
     /**
@@ -300,7 +302,7 @@ public final class Location implements DataHolder {
      * @param v The vector to subtract
      * @return A new instance
      */
-    public Location sub(Vector3d v) {
+    public Location<E> sub(Vector3d v) {
         return sub(v.getX(), v.getY(), v.getZ());
     }
 
@@ -313,7 +315,7 @@ public final class Location implements DataHolder {
      * @param z The z component
      * @return A new instance
      */
-    public Location sub(double x, double y, double z) {
+    public Location<E> sub(double x, double y, double z) {
         return setPosition(getPosition().sub(x, y, z));
     }
 
@@ -324,7 +326,7 @@ public final class Location implements DataHolder {
      * @param v The vector to add
      * @return A new instance
      */
-    public Location add(Vector3d v) {
+    public Location<E> add(Vector3d v) {
         return add(v.getX(), v.getY(), v.getZ());
     }
 
@@ -337,7 +339,7 @@ public final class Location implements DataHolder {
      * @param z The z component
      * @return A new instance
      */
-    public Location add(double x, double y, double z) {
+    public Location<E> add(double x, double y, double z) {
         return setPosition(getPosition().add(x, y, z));
     }
 
@@ -347,7 +349,7 @@ public final class Location implements DataHolder {
      * @param direction The direction to look in
      * @return The block in that direction
      */
-    public Location getRelative(Direction direction) {
+    public Location<E> getRelative(Direction direction) {
         return add(direction.toVector3d());
     }
 
@@ -741,7 +743,7 @@ public final class Location implements DataHolder {
 
     @Override
     public DataHolder copy() {
-        return new Location(this.extent, getPosition());
+        return new Location<E>(this.extent, getPosition());
     }
 
     @Override
@@ -766,10 +768,10 @@ public final class Location implements DataHolder {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Location)) {
+        if (!(other instanceof Location<?>)) {
             return false;
         }
-        Location otherLoc = (Location) other;
+        Location<?> otherLoc = (Location<?>) other;
         return otherLoc.extent.equals(this.extent) && otherLoc.getPosition().equals(this.getPosition());
     }
 

@@ -59,6 +59,12 @@ public final class TextColors {
         public String getId() {
             return "NONE";
         }
+
+        @Override
+        public String toString() {
+            return getId();
+        }
+
     };
 
     public static final TextColor.Base BLACK = null;
@@ -77,7 +83,7 @@ public final class TextColors {
     public static final TextColor.Base LIGHT_PURPLE = null;
     public static final TextColor.Base YELLOW = null;
     public static final TextColor.Base WHITE = null;
-    
+
     /**
      * Resets the current color to the default one on the client. In most cases
      * this should be the same as {@link #WHITE}.

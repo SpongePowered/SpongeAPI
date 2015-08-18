@@ -36,7 +36,7 @@ public abstract class ShiftClickAction<R> extends TextAction<R> {
      *
      * @param result The result of the shift click action
      */
-    protected ShiftClickAction(R result) {
+    ShiftClickAction(R result) {
         super(result);
     }
 
@@ -51,7 +51,7 @@ public abstract class ShiftClickAction<R> extends TextAction<R> {
          *
          * @param text The text to insert
          */
-        public InsertText(String text) {
+        InsertText(String text) {
             super(text);
         }
 

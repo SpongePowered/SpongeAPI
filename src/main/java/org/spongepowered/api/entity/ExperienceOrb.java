@@ -24,9 +24,19 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.data.manipulator.mutable.entity.ExpOrbData;
+
 /**
  * Represents an experience orb.
  */
 public interface ExperienceOrb extends Entity {
+
+    /**
+     * Gets a copy of the {@link ExpOrbData} associated with this
+     * {@link ExperienceOrb}.
+     *
+     * @return A copy of the experience orb data
+     */
+    ExpOrbData experienceHeld();
 
 }

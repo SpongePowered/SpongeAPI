@@ -22,27 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSaddleData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.animal.Horse;
-import org.spongepowered.api.entity.living.animal.Pig;
-import org.spongepowered.api.item.inventory.ItemStack;
+package org.spongepowered.api.text;
+
+import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.text.action.TextAction;
 
 /**
- * Signifies that a {@link Entity} is currently "saddled". Usually applicable
- * to {@link Pig}s and {@link Horse}s.
+ * Represents an instance that have a {@link Text} representation that should be
+ * used when this instance should be used inside a {@link Text}.
  */
-public interface SaddleData extends DataManipulator<SaddleData, ImmutableSaddleData> {
+public interface TextRepresentable {
 
     /**
-     * Gets the {@link Value} for the {@link ItemStack} saddle.
+     * Gets the textual representation of this instance for its usage in other
+     * {@link Text} objects. This may but does not need to include
+     * {@link HoverAction hover texts} or other {@link TextAction actions}. This
+     * method is basically the {@link Object#toString() toString()} equivalent
+     * for {@link Text}s.
      *
-     * @return The value for the saddle itemstack
+     * @return The text instance representing this instance
      */
-    Value<ItemStack> saddle();
+    Text toText();
 
 }

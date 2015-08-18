@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
  *
  * @see Text
  */
-public abstract class TextBuilder {
+public abstract class TextBuilder implements TextRepresentable {
 
     protected TextColor color = TextColors.NONE;
     protected TextStyle style = TextStyles.NONE;
@@ -70,7 +71,7 @@ public abstract class TextBuilder {
      *
      * @param text The text to copy the values from
      */
-    public TextBuilder(Text text) {
+    TextBuilder(Text text) {
         checkNotNull(text, "text");
         this.color = text.color;
         this.style = text.style;
@@ -353,6 +354,11 @@ public abstract class TextBuilder {
                 .toString();
     }
 
+    @Override
+    public final Text toText() {
+        return build();
+    }
+
     /**
      * Represents a {@link TextBuilder} creating immutable {@link Text.Literal}
      * instances.
@@ -366,7 +372,7 @@ public abstract class TextBuilder {
         /**
          * Constructs a new empty {@link Literal}.
          */
-        public Literal() {
+        Literal() {
             this("");
         }
 
@@ -375,7 +381,7 @@ public abstract class TextBuilder {
          *
          * @param content The content for the text builder
          */
-        public Literal(String content) {
+        Literal(String content) {
             content(content);
         }
 
@@ -386,7 +392,7 @@ public abstract class TextBuilder {
          * @param text The text to apply the properties from
          * @param content The content for the text builder
          */
-        public Literal(Text text, String content) {
+        Literal(Text text, String content) {
             super(text);
             content(content);
         }
@@ -397,7 +403,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        public Literal(Text.Literal text) {
+        Literal(Text.Literal text) {
             super(text);
             this.content = text.content;
         }
@@ -533,6 +539,190 @@ public abstract class TextBuilder {
 
     /**
      * Represents a {@link TextBuilder} creating immutable
+     * {@link Text.Placeholder} instances.
+     *
+     * @see Text.Placeholder
+     */
+    public static class Placeholder extends TextBuilder {
+        private String key;
+        private Text fallback;
+
+        /**
+         * Constructs a new unformatted {@link Placeholder} with the given
+         * content.
+         *
+         * @param key The none empty replacement key for the placeholder builder
+         */
+        Placeholder(String key) {
+            key(key);
+        }
+
+        /**
+         * Constructs a new {@link Placeholder} with the formatting and actions
+         * of the specified {@link Text} and the given content.
+         *
+         * @param text The text to apply the properties from
+         * @param key The none empty replacement key for the placeholder builder
+         */
+        Placeholder(Text text, String key) {
+            super(text);
+            key(key);
+        }
+
+        /**
+         * Constructs a new {@link Placeholder} with the formatting, actions and
+         * content of the specified {@link Text.Placeholder}.
+         *
+         * @param text The text to apply the properties from
+         */
+        Placeholder(Text.Placeholder text) {
+            super(text);
+            this.key = text.key;
+            if (text.getFallback().isPresent()) {
+                this.fallback = text.getFallback().get();
+            }
+        }
+
+        /**
+         * Returns the current replacement key of this builder.
+         *
+         * @return The current replacement key
+         * @see Text.Placeholder#getKey()
+         */
+        public final String getKey() {
+            return this.key;
+        }
+
+        /**
+         * Sets the plain text replacement key of this text.
+         *
+         * @param key The key of this text
+         * @return This text builder
+         * @see Text.Placeholder#getKey()
+         */
+        public Placeholder key(String key) {
+            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+            this.key = key;
+            return this;
+        }
+
+        /**
+         * Sets the fallback text that will be used if no value is present for this placeholder
+         *
+         * @param fallback The content of this text
+         * @return This text builder
+         * @see Text.Placeholder#getFallback()
+         */
+        public Placeholder fallback(Text fallback) {
+            this.fallback = fallback;
+            return this;
+        }
+
+        @Override
+        public Text.Placeholder build() {
+            return new Text.Placeholder(
+                    this.color,
+                    this.style,
+                    ImmutableList.copyOf(this.children),
+                    this.clickAction,
+                    this.hoverAction,
+                    this.shiftClickAction,
+                    this.key,
+                    this.fallback);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Placeholder) || !super.equals(o)) {
+                return false;
+            }
+
+            Placeholder that = (Placeholder) o;
+            return Objects.equal(this.key, that.key) && Objects.equal(this.fallback, that.fallback);
+
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(super.hashCode(), this.fallback);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                    .addValue(super.toString())
+                    .add("key", this.key)
+                    .add("fallback", this.fallback)
+                    .toString();
+        }
+
+        @Override
+        public Placeholder color(TextColor color) {
+            return (Placeholder) super.color(color);
+        }
+
+        @Override
+        public Placeholder style(TextStyle... styles) {
+            return (Placeholder) super.style(styles);
+        }
+
+        @Override
+        public Placeholder onClick(@Nullable ClickAction<?> clickAction) {
+            return (Placeholder) super.onClick(clickAction);
+        }
+
+        @Override
+        public Placeholder onHover(@Nullable HoverAction<?> hoverAction) {
+            return (Placeholder) super.onHover(hoverAction);
+        }
+
+        @Override
+        public Placeholder onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
+            return (Placeholder) super.onShiftClick(shiftClickAction);
+        }
+
+        @Override
+        public Placeholder append(Text... children) {
+            return (Placeholder) super.append(children);
+        }
+
+        @Override
+        public Placeholder append(Iterable<? extends Text> children) {
+            return (Placeholder) super.append(children);
+        }
+
+        @Override
+        public Placeholder insert(int pos, Text... children) {
+            return (Placeholder) super.insert(pos, children);
+        }
+
+        @Override
+        public Placeholder insert(int pos, Iterable<? extends Text> children) {
+            return (Placeholder) super.insert(pos, children);
+        }
+
+        @Override
+        public Placeholder remove(Text... children) {
+            return (Placeholder) super.remove(children);
+        }
+
+        @Override
+        public Placeholder remove(Iterable<? extends Text> children) {
+            return (Placeholder) super.remove(children);
+        }
+
+        @Override
+        public Placeholder removeAll() {
+            return (Placeholder) super.removeAll();
+        }
+
+    }
+
+    /**
+     * Represents a {@link TextBuilder} creating immutable
      * {@link Text.Translatable} instances.
      *
      * @see Text.Translatable
@@ -549,7 +739,7 @@ public abstract class TextBuilder {
          * @param translation The translation for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(Translation translation, Object... args) {
+        Translatable(Translation translation, Object... args) {
             translation(translation, args);
         }
 
@@ -561,7 +751,7 @@ public abstract class TextBuilder {
          * @param translatable The translatable for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
+        Translatable(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
             translation(translatable, args);
         }
 
@@ -574,7 +764,7 @@ public abstract class TextBuilder {
          * @param translation The translation for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(Text text, Translation translation, Object... args) {
+        Translatable(Text text, Translation translation, Object... args) {
             super(text);
             translation(translation, args);
         }
@@ -588,7 +778,7 @@ public abstract class TextBuilder {
          * @param translatable The translatable for the builder
          * @param args The arguments for the translation
          */
-        public Translatable(Text text, org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
+        Translatable(Text text, org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
             super(text);
             translation(translatable, args);
         }
@@ -599,7 +789,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        public Translatable(Text.Translatable text) {
+        Translatable(Text.Translatable text) {
             super(text);
             this.translation = text.translation;
             this.arguments = text.arguments;
@@ -769,7 +959,7 @@ public abstract class TextBuilder {
          *
          * @param selector The selector for the builder
          */
-        public Selector(org.spongepowered.api.text.selector.Selector selector) {
+        Selector(org.spongepowered.api.text.selector.Selector selector) {
             selector(selector);
         }
 
@@ -780,7 +970,7 @@ public abstract class TextBuilder {
          * @param text The text to apply the properties from
          * @param selector The selector for the builder
          */
-        public Selector(Text text, org.spongepowered.api.text.selector.Selector selector) {
+        Selector(Text text, org.spongepowered.api.text.selector.Selector selector) {
             super(text);
             selector(selector);
         }
@@ -791,7 +981,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        public Selector(Text.Selector text) {
+        Selector(Text.Selector text) {
             super(text);
             this.selector = text.selector;
         }
@@ -935,7 +1125,7 @@ public abstract class TextBuilder {
          *
          * @param score The score for the text builder
          */
-        public Score(org.spongepowered.api.scoreboard.Score score) {
+        Score(org.spongepowered.api.scoreboard.Score score) {
             score(score);
         }
 
@@ -946,7 +1136,7 @@ public abstract class TextBuilder {
          * @param text The text to apply the properties from
          * @param score The score for the text builder
          */
-        public Score(Text text, org.spongepowered.api.scoreboard.Score score) {
+        Score(Text text, org.spongepowered.api.scoreboard.Score score) {
             super(text);
             score(score);
         }
@@ -957,7 +1147,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        public Score(Text.Score text) {
+        Score(Text.Score text) {
             super(text);
             this.score = text.score;
             this.override = text.override.orNull();

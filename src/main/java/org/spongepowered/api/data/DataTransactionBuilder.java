@@ -125,7 +125,7 @@ public final class DataTransactionBuilder {
      * @param replaced The successfully replaced immutable values
      * @return The new data transaction result
      */
-    public static DataTransactionResult successReplaceResult(Iterable<ImmutableValue<?>> successful, Iterable<ImmutableValue<?>> replaced) {
+    public static DataTransactionResult successReplaceResult(Collection<ImmutableValue<?>> successful, Collection<ImmutableValue<?>> replaced) {
         return builder().success(successful).replace(replaced).result(DataTransactionResult.Type.SUCCESS).build();
     }
 
@@ -231,9 +231,10 @@ public final class DataTransactionBuilder {
      * @param values The values to replace
      * @return This builder, for chaining
      */
-    public DataTransactionBuilder replace(final ImmutableValue<?>... values) {
-        for (ImmutableValue<?> value : values) {
-            replace(checkNotNull(value));
+    public DataTransactionBuilder replace(final ImmutableValue<?> value, final ImmutableValue<?>... values) {
+        replace(checkNotNull(value));
+        for (ImmutableValue<?> additional : values) {
+            replace(checkNotNull(additional));
         }
         return this;
     }
@@ -249,7 +250,7 @@ public final class DataTransactionBuilder {
      * @param values The values to replace
      * @return This builder, for chaining
      */
-    public DataTransactionBuilder replace(final Iterable<ImmutableValue<?>> values) {
+    public DataTransactionBuilder replace(final Collection<ImmutableValue<?>> values) {
         for (ImmutableValue<?> value : values) {
             replace(checkNotNull(value));
         }

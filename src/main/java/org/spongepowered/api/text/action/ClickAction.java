@@ -41,7 +41,7 @@ public abstract class ClickAction<R> extends TextAction<R> {
      *
      * @param result The result of the click action
      */
-    protected ClickAction(R result) {
+    ClickAction(R result) {
         super(result);
     }
 
@@ -56,7 +56,7 @@ public abstract class ClickAction<R> extends TextAction<R> {
          *
          * @param url The url to open
          */
-        public OpenUrl(URL url) {
+        OpenUrl(URL url) {
             super(url);
         }
 
@@ -73,7 +73,7 @@ public abstract class ClickAction<R> extends TextAction<R> {
          *
          * @param command The command to execute
          */
-        public RunCommand(String command) {
+        RunCommand(String command) {
             super(command);
         }
 
@@ -90,7 +90,7 @@ public abstract class ClickAction<R> extends TextAction<R> {
          *
          * @param page The book page to switch to
          */
-        public ChangePage(int page) {
+        ChangePage(int page) {
             super(page);
         }
 
@@ -107,7 +107,7 @@ public abstract class ClickAction<R> extends TextAction<R> {
          *
          * @param command The command to suggest
          */
-        public SuggestCommand(String command) {
+        SuggestCommand(String command) {
             super(command);
         }
 
@@ -125,7 +125,7 @@ public abstract class ClickAction<R> extends TextAction<R> {
          *
          * @param result The callback
          */
-        protected ExecuteCallback(Consumer<CommandSource> result) {
+        ExecuteCallback(Consumer<CommandSource> result) {
             super(result);
         }
     }

@@ -22,29 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.superclasses;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import com.google.common.base.Predicate;
-import org.spongepowered.api.event.AbstractEvent;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.block.BulkBlockEvent;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePigSaddleData;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.Pig;
 
-import java.util.Iterator;
+/**
+ * Signifies that a {@link Entity} is currently "saddled". Usually applicable
+ * to {@link Pig}s.
+ */
+public interface PigSaddleData extends DataManipulator<PigSaddleData, ImmutablePigSaddleData> {
 
-public abstract class AbstractBulkBlockEvent extends AbstractEvent implements BulkBlockEvent {
-
-    @Override
-    public void filterLocations(Predicate<Location<World>> predicate) {
-        if (this instanceof Cancellable) {
-            Iterator<Location<World>> iterator = this.getLocations().iterator();
-            while (iterator.hasNext()) {
-                if (!predicate.apply(iterator.next())) {
-                    iterator.remove();
-                }
-            }
-        }
-    }
+    /**
+     * Gets the {@link Value} for the the "saddled" state.
+     *
+     * @return The value for the saddle state
+     */
+    Value<Boolean> saddle();
 
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -34,6 +35,18 @@ import org.spongepowered.api.world.extent.Extent;
  * of each chunk varies between worlds.</p>
  */
 public interface Chunk extends Extent {
+
+    @Override
+    Location<Chunk> getLocation(Vector3i position);
+
+    @Override
+    Location<Chunk> getLocation(int x, int y, int z);
+
+    @Override
+    Location<Chunk> getLocation(Vector3d position);
+
+    @Override
+    Location<Chunk> getLocation(double x, double y, double z);
 
     /**
      * Get the position of the chunk.

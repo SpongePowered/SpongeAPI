@@ -28,6 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Base event for events affecting a {@link BlockState}
@@ -39,7 +40,7 @@ public interface BlockEvent extends GameEvent, CauseTracked {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Gets the {@link BlockState} affected by this event.

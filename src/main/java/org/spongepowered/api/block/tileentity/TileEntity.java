@@ -31,6 +31,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents an abstract Tile Entity. It is a functional block that is
@@ -91,7 +92,7 @@ public interface TileEntity extends DataHolder, DataSerializable {
      *
      * @return The location
      */
-    Location getLocation();
+    Location<World> getLocation();
 
     /**
      * Gets the {@link BlockState} that this {@link TileEntity} represents.

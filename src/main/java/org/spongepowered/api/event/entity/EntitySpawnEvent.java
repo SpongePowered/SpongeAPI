@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Raised when entities are spawned.
@@ -37,6 +38,6 @@ public interface EntitySpawnEvent extends EntityEvent, Cancellable {
      *
      * @return The location where this entity is spawning
      */
-    Location getLocation();
+    Location<World> getLocation();
 
 }

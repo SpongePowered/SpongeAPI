@@ -57,7 +57,7 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
     BoundedValue<Integer> getExperienceBetweenLevels();
 
     /**
-     * Gets the {@link BoundedValue} fro the current "level" of
+     * Gets the {@link BoundedValue} for the current "level" of
      * experience deserved according to the {@link #totalExperience()} and
      * a function from implementation defining how much experience required
      * per level.

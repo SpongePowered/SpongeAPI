@@ -55,7 +55,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#absent} will be returned.
      */
-    Optional<Location> getSafeLocation(Location location);
+    Optional<Location<World>> getSafeLocation(Location<World> location);
 
     /**
      * Gets the next safe {@link Location} around the given location with a
@@ -74,5 +74,5 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#absent} will be returned
      */
-    Optional<Location> getSafeLocation(Location location, int height, int width);
+    Optional<Location<World>> getSafeLocation(Location<World> location, int height, int width);
 }
