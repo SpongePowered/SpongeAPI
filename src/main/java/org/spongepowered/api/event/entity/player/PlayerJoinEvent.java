@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity.player;
 
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
@@ -34,18 +34,18 @@ import org.spongepowered.api.world.World;
 public interface PlayerJoinEvent extends PlayerMessageEvent {
 
     /**
-     * Gets the {@link Location} the {@link Player} will join at.
+     * Gets a copy of the transform the {@link Player} will join at.
      *
-     * @return The location
+     * @return The transform
      */
-    Location<World> getLocation();
+    Transform<World> getTransform();
 
     /**
-     * Sets the {@link Location} the {@link Player} will join at.
+     * Sets the {@link Transform} the {@link Player} will join at.
      *
      * <p>This will be applied after event resolution.</p>
      *
-     * @param location The new location
+     * @param location The new transform
      */
-    void setLocation(Location<World> location);
+    void setTransform(Transform<World> location);
 }

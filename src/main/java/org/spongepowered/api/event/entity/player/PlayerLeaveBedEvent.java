@@ -25,9 +25,9 @@
 package org.spongepowered.api.event.entity.player;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.entity.living.human.HumanLeaveBedEvent;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
@@ -44,27 +44,27 @@ public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEven
     boolean wasSpawnSet();
 
     /**
-     * Gets the spawn location of the player when leaving the bed.
+     * Gets a copy of the spawn transform of the player when leaving the bed.
      *
      * <p>This may have not been set by the event, so checking
      * {@link #wasSpawnSet()} is advisable. If spawn has not been set,
      * it will return {@link Optional#absent()}.</p>
      *
-     * @return The players new spawn location, if available
+     * @return The player new spawn transform, if available
      */
     @Override
-    Optional<Location<World>> getSpawnLocation();
+    Optional<Transform<World>> getSpawnTransform();
 
     /**
-     * Sets the new spawn location of the player leaving the bed.
+     * Sets the new spawn transform of the player leaving the bed.
      *
      * <p>If spawn {@link #wasSpawnSet} was not infact set by this event,
      * this does not override the return value. The given spawn should be
      * a valid location.</p>
      *
-     * @param location The new spawn location for the player
+     * @param transform The new spawn transform for the player
      */
     @Override
-    void setSpawnLocation(Location<World> location);
+    void setSpawnTransform(Transform<World> transform);
 
 }

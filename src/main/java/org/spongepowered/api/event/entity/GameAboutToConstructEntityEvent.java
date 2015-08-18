@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -51,10 +52,11 @@ public interface GameAboutToConstructEntityEvent extends CauseTracked, Cancellab
     EntityType getEntityType();
 
     /**
-     * Gets the {@link Location} of the entity that is going to be constructed.
+     * Gets a copy of the transform of the entity that is going to be
+     * constructed.
      *
-     * @return The location that the entity would spawn at
+     * @return A copy of the transform that the entity would spawn at
      */
-    Location<World> getLocation();
+    Transform<World> getTransform();
 
 }

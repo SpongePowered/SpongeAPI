@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -34,11 +35,11 @@ import org.spongepowered.api.world.World;
 public interface HumanSleepEvent extends HumanEvent, Cancellable {
 
     /**
-     * Gets the location of the human before entering the bed.
+     * A copy of the transform of the human before entering the bed.
      *
-     * @return The location of the human
+     * @return The transform of the human
      */
-    Location<World> getLocation();
+    Transform<World> getTransform();
 
     /**
      * Gets the block of the bed being used.

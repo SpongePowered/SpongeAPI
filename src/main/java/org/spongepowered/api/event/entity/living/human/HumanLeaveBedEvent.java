@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.entity.living.human;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.world.World;
 
 /**
@@ -34,35 +34,35 @@ import org.spongepowered.api.world.World;
 public interface HumanLeaveBedEvent extends HumanSleepEvent {
 
     /**
-     * Gets whether the spawn location for the human was set.
+     * Gets whether the spawn transform for the human was set.
      *
      * <p>The case that spawn may have not been set includes:</p>
      * <ul><li>A player attempting to sleep in a bed in the nether</li></ul>
      *
-     * @return Whether the spawn location for the human was set
+     * @return Whether the spawn transform for the human was set
      */
     boolean wasSpawnSet();
 
     /**
-     * Gets the spawn location of the human when leaving the bed.
+     * Gets a copy of the spawn transform of the human when leaving the bed.
      *
      * <p>This may have not been set by the event, so checking
      * {@link #wasSpawnSet()} is advisable. If spawn has not been set,
      * it will return {@link Optional#absent()}.</p>
      *
-     * @return The humans new spawn location, if available
+     * @return The humans new spawn transform, if available
      */
-    Optional<Location<World>> getSpawnLocation();
+    Optional<Transform<World>> getSpawnTransform();
 
     /**
-     * Sets the new spawn location of the human leaving the bed.
+     * Sets the new spawn transform of the human leaving the bed.
      *
      * <p>If spawn {@link #wasSpawnSet} was not infact set by this event,
      * this does not override the return value. The given spawn should be
      * a valid location.</p>
      *
-     * @param location The new spawn location for the human
+     * @param transform The new spawn transform for the human
      */
-    void setSpawnLocation(Location<World> location);
+    void setSpawnTransform(Transform<World> transform);
 
 }

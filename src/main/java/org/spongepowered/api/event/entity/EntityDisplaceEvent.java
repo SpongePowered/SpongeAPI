@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
@@ -39,38 +38,24 @@ import org.spongepowered.api.world.World;
 public interface EntityDisplaceEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the previous {@link Location} that the entity was in.
+     * Gets a copy of the previous transform that the entity was in.
      *
-     * @return The old location
+     * @return A copy of the old transform
      */
-    Location<World> getOldLocation();
+    Transform<World> getOldTransform();
 
     /**
-     * Gets the new {@link Location} that the entity is in.
+     * Gets a copy of the new transform that the entity is in.
      *
-     * @return The new location
+     * @return A copy of the new transform
      */
-    Location<World> getNewLocation();
+    Transform<World> getNewTransform();
 
     /**
-     * Sets the new {@link Location} that the entity is in.
+     * Sets the new transform that the entity is in.
      *
-     * @param location The new location
+     * @param transform The new transform
      */
-    void setNewLocation(Location<World> location);
-
-    /**
-     * Gets the rotation the entity is facing.
-     *
-     * @return The rotation the entity is facing
-     */
-    Vector3d getRotation();
-
-    /**
-     * Sets the rotation the entity is facing.
-     *
-     * @param rotation The rotation the entity is facing
-     */
-    void setRotation(Vector3d rotation);
+    void setNewTransform(Transform<World> transform);
 
 }

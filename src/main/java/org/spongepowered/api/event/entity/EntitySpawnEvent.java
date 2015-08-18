@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
@@ -34,10 +34,10 @@ import org.spongepowered.api.world.World;
 public interface EntitySpawnEvent extends EntityEvent, Cancellable {
 
     /**
-     * Returns the location where this entity is spawning.
+     * Returns a copy of the transform where this entity is spawning.
      *
-     * @return The location where this entity is spawning
+     * @return A copy of the transform where this entity is spawning
      */
-    Location<World> getLocation();
+    Transform<World> getTransform();
 
 }

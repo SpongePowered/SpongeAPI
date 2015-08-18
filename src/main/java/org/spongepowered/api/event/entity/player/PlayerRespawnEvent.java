@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.world.World;
 
 /**
@@ -33,30 +33,31 @@ import org.spongepowered.api.world.World;
 public interface PlayerRespawnEvent extends PlayerEvent {
 
     /**
-     * Gets the respawn location of the player.
+     * Gets a copy of the respawn transform of the player.
      *
-     * @return The respawn location of the player
+     * @return The respawn transform of the player
      */
-    Location<World> getRespawnLocation();
+    Transform<World> getRespawnTransform();
 
     /**
-     * Gets the new respawn location of the player.
+     * Gets a copy of the new respawn transform of the player.
+     *
      * @return The new respawn location of the player
      */
-    Location<World> getNewRespawnLocation();
+    Transform<World> getNewRespawnTransform();
 
     /**
-     * Gets whether the original respawn location was set by a bed or not.
+     * Gets whether the original respawn transform was set by a bed or not.
      *
-     * @return Whether the original respawn location was set by a bed
+     * @return Whether the original respawn transform was set by a bed
      */
     boolean isBedSpawn();
 
     /**
-     * Sets the new player respawn location permanently.
+     * Sets the new player respawn transform permanently.
      *
-     * @param respawnLocation The new respawn location
+     * @param respawnTransform The new respawn transform
      */
-    void setNewRespawnLocation(Location<World> respawnLocation);
+    void setNewRespawnTransform(Transform<World> respawnTransform);
 
 }
