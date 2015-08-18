@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.map.cursor.MapCursor;
 import org.spongepowered.api.map.cursor.MapCursorHandle;
+import org.spongepowered.api.map.cursor.MapCursors;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.Collection;
@@ -41,7 +42,8 @@ public interface MapView extends Identifiable {
 
     /**
      * Sets the {@link MapCursor} used for players on the map when
-     * {@link #isUsingVanillaCursors()} is true.
+     * {@link #isUsingVanillaCursors()} is true. By default this is a
+     * {@link MapCursors#WHITE_POINTER}.
      *
      * @param cursor The new cursor for player positions
      */
@@ -49,11 +51,21 @@ public interface MapView extends Identifiable {
 
     /**
      * Sets the {@link MapCursor} used for item frame locations on the map when
-     * {@link #isUsingVanillaCursors()} is true.
+     * {@link #isUsingVanillaCursors()} is true. By default this is a
+     * {@link MapCursors#GREEN_POINTER}.
      *
-     * @param cursor The new cursor for item frame positions.
+     * @param cursor The new cursor for item frame positions
      */
     void setItemFrameCursor(MapCursor cursor);
+
+    /**
+     * Sets the {@link MapCursor} used for player locations on the edge
+     * when players go out of bounds when  {@link #isUsingVanillaCursors()} is
+     * true. By default this is a {@link MapCursors#WHITE_CIRCLE}.
+     *
+     * @param cursor The new cursor for edge positions
+     */
+    void setEdgeCursor(MapCursor cursor);
 
     /**
      * Returns if vanilla's default handling of cursors with item frames and

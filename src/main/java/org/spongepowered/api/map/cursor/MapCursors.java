@@ -63,20 +63,20 @@ public final class MapCursors {
     public static final MapCursor BLUE_POINTER = null;
 
     /**
-     * Not used by vanilla, looks like a white colored square X, centered on the
-     * position of the cursor.
+     * Not used by vanilla, looks like a white colored square X, centered on
+     * the position of the cursor.
      */
     public static final MapCursor WHITE_X = null;
 
     /**
-     * Note used by vanilla, looks like a red wedge, centered on the middle of the
-     * wedge not the tip.
+     * Note used by vanilla, looks like a red wedge, centered on the middle of
+     * the wedge not the tip.
      */
     public static final MapCursor RED_WEDGE = null;
 
     /**
-     * Not used by vanilla, looks like a white circle, centered in the middle of the
-     * circle.
+     * A white circle with the circle centered on cursor position. In vanilla
+     * this is used for out of bound position indication.
      */
     public static final MapCursor WHITE_CIRCLE = null;
 
