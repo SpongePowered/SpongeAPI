@@ -59,18 +59,6 @@ public class SupplierUtil {
     }
 
     /**
-     * Creates a new traceable {@link Supplier} that can be used to identify the
-     * code that created/set the supplier.
-     *
-     * @param <E> The element type
-     * @param supplier The supplier that should be made traceable
-     * @return The created supplier
-     */
-    public static <E> Supplier<E> traceable(Supplier<E> supplier) {
-        return TraceableSupplier.wrap(supplier);
-    }
-
-    /**
      * Creates a new {@link Supplier} that returns values between {@code min}
      * (inclusive) and {@code max} (inclusive).
      *
