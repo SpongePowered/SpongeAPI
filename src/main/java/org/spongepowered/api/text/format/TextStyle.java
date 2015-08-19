@@ -56,6 +56,7 @@ import javax.annotation.Nullable;
  *
  * @see TextStyles
  */
+@CatalogedBy(TextStyles.class)
 public class TextStyle {
 
     /**
@@ -514,7 +515,6 @@ public class TextStyle {
      * @see TextStyle
      * @see Base
      */
-    @CatalogedBy(TextStyles.class)
     public abstract static class Base extends TextStyle implements BaseFormatting, CatalogType {
 
         /**

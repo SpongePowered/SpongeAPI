@@ -37,7 +37,7 @@ import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.action.TextAction;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
@@ -177,8 +177,7 @@ public final class Texts {
      */
     public static Text of(Object... objects) {
         TextBuilder builder = builder();
-        TextColor color = TextColors.NONE;
-        TextStyle style = TextStyles.NONE;
+        TextFormat format = new TextFormat();
         HoverAction<?> hoverAction = null;
         ClickAction<?> clickAction = null;
         ShiftClickAction<?> shiftClickAction = null;
@@ -188,10 +187,12 @@ public final class Texts {
         }
 
         for (Object obj : objects) {
-            if (obj instanceof TextColor) {
-                color = (TextColor) obj;
+            if (obj instanceof TextFormat) {
+                format = (TextFormat) obj;
+            } else if (obj instanceof TextColor) {
+                format = format.color((TextColor) obj);
             } else if (obj instanceof TextStyle) {
-                style = obj.equals(TextStyles.RESET) ? TextStyles.NONE : style.and((TextStyle) obj);
+                format.style(obj.equals(TextStyles.RESET) ? TextStyles.NONE : format.getStyle().and((TextStyle) obj));
             } else if (obj instanceof TextRepresentable) {
                 builder.append(((TextRepresentable) obj).toText());
             } else if (obj instanceof TextAction) {
@@ -229,7 +230,7 @@ public final class Texts {
                     builder.onShiftClick(shiftClickAction);
                 }
 
-                builder.append(childBuilder.color(color).style(style).build());
+                builder.append(childBuilder.format(format).build());
             }
         }
 

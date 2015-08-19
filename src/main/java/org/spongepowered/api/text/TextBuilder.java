@@ -36,8 +36,8 @@ import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Collections;
@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  */
 public abstract class TextBuilder implements TextRepresentable {
 
-    protected TextColor color = TextColors.NONE;
-    protected TextStyle style = TextStyles.NONE;
+    protected TextFormat format = new TextFormat();
     protected List<Text> children = Lists.newArrayList();
     @Nullable protected ClickAction<?> clickAction;
     @Nullable protected HoverAction<?> hoverAction;
@@ -73,12 +72,33 @@ public abstract class TextBuilder implements TextRepresentable {
      */
     TextBuilder(Text text) {
         checkNotNull(text, "text");
-        this.color = text.color;
-        this.style = text.style;
+        this.format = text.format;
         this.children = Lists.newArrayList(text.children);
         this.clickAction = text.clickAction.orNull();
         this.hoverAction = text.hoverAction.orNull();
         this.shiftClickAction = text.shiftClickAction.orNull();
+    }
+
+    /**
+     * Returns the current format of the {@link Text} in this builder.
+     *
+     * @return The current format
+     * @see Text#getFormat()
+     */
+    public final TextFormat getFormat() {
+        return this.format;
+    }
+
+    /**
+     * Sets the {@link TextFormat} of this text.
+     *
+     * @param format The new text format for this text
+     * @return The text builder
+     * @see Text#getFormat()
+     */
+    public TextBuilder format(TextFormat format) {
+        this.format = checkNotNull(format, "format");
+        return this;
     }
 
     /**
@@ -88,7 +108,7 @@ public abstract class TextBuilder implements TextRepresentable {
      * @see Text#getColor()
      */
     public final TextColor getColor() {
-        return this.color;
+        return this.format.getColor();
     }
 
     /**
@@ -99,7 +119,7 @@ public abstract class TextBuilder implements TextRepresentable {
      * @see Text#getColor()
      */
     public TextBuilder color(TextColor color) {
-        this.color = checkNotNull(color, "color");
+        this.format = this.format.color(checkNotNull(color, "color"));
         return this;
     }
 
@@ -110,7 +130,7 @@ public abstract class TextBuilder implements TextRepresentable {
      * @see Text#getStyle()
      */
     public final TextStyle getStyle() {
-        return this.style;
+        return this.format.getStyle();
     }
 
     /**
@@ -124,7 +144,7 @@ public abstract class TextBuilder implements TextRepresentable {
      */
     // TODO: Make sure this is the correct behaviour
     public TextBuilder style(TextStyle... styles) {
-        this.style = this.style.and(styles);
+        this.format = this.format.style(this.format.getStyle().and(checkNotNull(styles, "styles")));
         return this;
     }
 
@@ -329,8 +349,7 @@ public abstract class TextBuilder implements TextRepresentable {
         }
 
         TextBuilder that = (TextBuilder) o;
-        return Objects.equal(this.color, that.color)
-                && Objects.equal(this.style, that.style)
+        return Objects.equal(this.format, that.format)
                 && Objects.equal(this.clickAction, that.clickAction)
                 && Objects.equal(this.hoverAction, that.hoverAction)
                 && Objects.equal(this.shiftClickAction, that.shiftClickAction)
@@ -339,14 +358,13 @@ public abstract class TextBuilder implements TextRepresentable {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.color, this.style, this.clickAction, this.hoverAction, this.shiftClickAction, this.children);
+        return Objects.hashCode(this.format, this.clickAction, this.hoverAction, this.shiftClickAction, this.children);
     }
 
     @Override
     public String toString() {
         return Objects.toStringHelper(TextBuilder.class)
-                .add("color", this.color)
-                .add("style", this.style)
+                .add("format", this.format)
                 .add("children", this.children)
                 .add("clickAction", this.clickAction)
                 .add("hoverAction", this.hoverAction)
@@ -433,14 +451,14 @@ public abstract class TextBuilder implements TextRepresentable {
         @Override
         public Text.Literal build() {
             // Special case for empty builder
-            if (this.content.isEmpty() && this.color == TextColors.NONE && this.style.isEmpty() && this.children.isEmpty()
-                    && this.clickAction == null && this.hoverAction == null && this.shiftClickAction == null) {
+            if (this.content.isEmpty() && this.format.getColor() == TextColors.NONE && this.format.getStyle().isEmpty()
+                && this.children.isEmpty() && this.clickAction == null && this.hoverAction == null
+                && this.shiftClickAction == null) {
                 return Texts.EMPTY;
             }
 
             return new Text.Literal(
-                    this.color,
-                    this.style,
+                    this.format,
                     ImmutableList.copyOf(this.children),
                     this.clickAction,
                     this.hoverAction,
@@ -621,8 +639,7 @@ public abstract class TextBuilder implements TextRepresentable {
         @Override
         public Text.Placeholder build() {
             return new Text.Placeholder(
-                    this.color,
-                    this.style,
+                    this.format,
                     ImmutableList.copyOf(this.children),
                     this.clickAction,
                     this.hoverAction,
@@ -842,8 +859,7 @@ public abstract class TextBuilder implements TextRepresentable {
         @Override
         public Text.Translatable build() {
             return new Text.Translatable(
-                    this.color,
-                    this.style,
+                    this.format,
                     ImmutableList.copyOf(this.children),
                     this.clickAction,
                     this.hoverAction,
@@ -1011,8 +1027,7 @@ public abstract class TextBuilder implements TextRepresentable {
         @Override
         public Text.Selector build() {
             return new Text.Selector(
-                    this.color,
-                    this.style,
+                    this.format,
                     ImmutableList.copyOf(this.children),
                     this.clickAction,
                     this.hoverAction,
@@ -1201,8 +1216,7 @@ public abstract class TextBuilder implements TextRepresentable {
         @Override
         public Text.Score build() {
             return new Text.Score(
-                    this.color,
-                    this.style,
+                    this.format,
                     ImmutableList.copyOf(this.children),
                     this.clickAction,
                     this.hoverAction,

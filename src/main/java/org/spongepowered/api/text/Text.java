@@ -35,9 +35,8 @@ import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Iterator;
@@ -66,8 +65,7 @@ import javax.annotation.Nullable;
  */
 public abstract class Text implements TextRepresentable {
 
-    protected final TextColor color;
-    protected final TextStyle style;
+    protected final TextFormat format;
     protected final ImmutableList<Text> children;
     protected final Optional<ClickAction<?>> clickAction;
     protected final Optional<HoverAction<?>> hoverAction;
@@ -87,29 +85,36 @@ public abstract class Text implements TextRepresentable {
     };
 
     Text() {
-        this(TextColors.NONE, TextStyles.NONE, ImmutableList.<Text>of(), null, null, null);
+        this(new TextFormat(), ImmutableList.<Text>of(), null, null, null);
     }
 
     /**
      * Constructs a new immutable {@link Text} with the specified formatting and
      * text actions applied.
      *
-     * @param color The color of the text
-     * @param style The style of the text
+     * @param format The format of the text
      * @param children The immutable list of children of the text
      * @param clickAction The click action of the text, or {@code null} for none
      * @param hoverAction The hover action of the text, or {@code null} for none
      * @param shiftClickAction The shift click action of the text, or
      *        {@code null} for none
      */
-    Text(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+    Text(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
             @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction) {
-        this.color = checkNotNull(color, "color");
-        this.style = checkNotNull(style, "style");
+        this.format = checkNotNull(format, "format");
         this.children = checkNotNull(children, "children");
         this.clickAction = Optional.<ClickAction<?>>fromNullable(clickAction);
         this.hoverAction = Optional.<HoverAction<?>>fromNullable(hoverAction);
         this.shiftClickAction = Optional.<ShiftClickAction<?>>fromNullable(shiftClickAction);
+    }
+
+    /**
+     * Returns the format of this {@link Text}.
+     *
+     * @return The format of this text
+     */
+    public final TextFormat getFormat() {
+        return this.format;
     }
 
     /**
@@ -118,7 +123,7 @@ public abstract class Text implements TextRepresentable {
      * @return The color of this text
      */
     public final TextColor getColor() {
-        return this.color;
+        return this.format.getColor();
     }
 
     /**
@@ -128,7 +133,7 @@ public abstract class Text implements TextRepresentable {
      * @return The style of this text
      */
     public final TextStyle getStyle() {
-        return this.style;
+        return this.getStyle();
     }
 
     /**
@@ -204,8 +209,7 @@ public abstract class Text implements TextRepresentable {
         }
 
         Text that = (Text) o;
-        return this.color.equals(that.color)
-                && this.style.equals(that.style)
+        return this.format.equals(that.format)
                 && this.children.equals(that.children)
                 && this.clickAction.equals(that.clickAction)
                 && this.hoverAction.equals(that.hoverAction)
@@ -214,14 +218,13 @@ public abstract class Text implements TextRepresentable {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.color, this.style, this.children, this.clickAction, this.hoverAction, this.shiftClickAction);
+        return Objects.hashCode(this.format, this.children, this.clickAction, this.hoverAction, this.shiftClickAction);
     }
 
     @Override
     public String toString() {
         return Objects.toStringHelper(Text.class)
-                .add("color", this.color)
-                .add("style", this.style)
+                .add("format", this.format)
                 .add("children", this.children)
                 .add("clickAction", this.clickAction)
                 .add("hoverAction", this.hoverAction)
@@ -255,8 +258,7 @@ public abstract class Text implements TextRepresentable {
          * Constructs a new immutable {@link Literal} for the given plain text
          * content with the specified formatting and text actions applied.
          *
-         * @param color The color of the text
-         * @param style The style of the text
+         * @param format The format of the text
          * @param children The immutable list of children of the text
          * @param clickAction The click action of the text, or {@code null} for
          *        none
@@ -266,9 +268,9 @@ public abstract class Text implements TextRepresentable {
          *        {@code null} for none
          * @param content The plain text content of the text
          */
-        Literal(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Literal(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String content) {
-            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            super(format, children, clickAction, hoverAction, shiftClickAction);
             this.content = checkNotNull(content, "content");
         }
 
@@ -340,8 +342,7 @@ public abstract class Text implements TextRepresentable {
          * Constructs a new immutable {@link Placeholder} for the given plain
          * text content with the specified formatting and text actions applied.
          *
-         * @param color The color of the text
-         * @param style The style of the text
+         * @param format The format of the text
          * @param children The immutable list of children of the text
          * @param clickAction The click action of the text, or {@code null} for
          *        none
@@ -352,9 +353,9 @@ public abstract class Text implements TextRepresentable {
          * @param key The key of the placeholder
          * @param fallback The fallback text if this does not get replaced
          */
-        Placeholder(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Placeholder(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String key, Text fallback) {
-            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            super(format, children, clickAction, hoverAction, shiftClickAction);
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
             this.key = key;
             this.fallback = Optional.fromNullable(fallback);
@@ -433,8 +434,7 @@ public abstract class Text implements TextRepresentable {
          * Constructs a new immutable {@link Translatable} for the given
          * translation with the specified formatting and text actions applied.
          *
-         * @param color The color of the text
-         * @param style The style of the text
+         * @param format The format of the text
          * @param children The immutable list of children of the text
          * @param clickAction The click action of the text, or {@code null} for
          *        none
@@ -445,10 +445,10 @@ public abstract class Text implements TextRepresentable {
          * @param translation The translation of the text
          * @param arguments The arguments for the translation
          */
-        Translatable(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Translatable(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Translation translation,
                 ImmutableList<Object> arguments) {
-            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            super(format, children, clickAction, hoverAction, shiftClickAction);
             this.translation = checkNotNull(translation, "translation");
             this.arguments = checkNotNull(arguments, "arguments");
         }
@@ -526,8 +526,7 @@ public abstract class Text implements TextRepresentable {
          * Constructs a new immutable {@link Selector} for the given selector
          * with the specified formatting and text actions applied.
          *
-         * @param color The color of the text
-         * @param style The style of the text
+         * @param format The format of the text
          * @param children The immutable list of children of the text
          * @param clickAction The click action of the text, or {@code null} for
          *        none
@@ -537,10 +536,10 @@ public abstract class Text implements TextRepresentable {
          *        {@code null} for none
          * @param selector The selector of the text
          */
-        Selector(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Selector(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
                 org.spongepowered.api.text.selector.Selector selector) {
-            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            super(format, children, clickAction, hoverAction, shiftClickAction);
             this.selector = checkNotNull(selector, "selector");
         }
 
@@ -605,8 +604,7 @@ public abstract class Text implements TextRepresentable {
          * Constructs a new immutable {@link Score} for the given score with the
          * specified formatting and text actions applied.
          *
-         * @param color The color of the text
-         * @param style The style of the text
+         * @param format The format of the text
          * @param children The immutable list of children of the text
          * @param clickAction The click action of the text, or {@code null} for
          *        none
@@ -618,10 +616,10 @@ public abstract class Text implements TextRepresentable {
          * @param override The text to override the score with, or {@code null}
          *        for none
          */
-        Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
+        Score(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
                 org.spongepowered.api.scoreboard.Score score, @Nullable String override) {
-            super(color, style, children, clickAction, hoverAction, shiftClickAction);
+            super(format, children, clickAction, hoverAction, shiftClickAction);
             this.score = checkNotNull(score, "score");
             this.override = Optional.fromNullable(override);
         }
