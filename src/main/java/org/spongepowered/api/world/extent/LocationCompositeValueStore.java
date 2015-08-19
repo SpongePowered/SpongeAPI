@@ -490,7 +490,7 @@ public interface LocationCompositeValueStore {
      * @param value The value to offer
      * @return The transaction result
      */
-    DataTransactionResult offer(Vector3i coordinates, BaseValue<?> value);
+    <E> DataTransactionResult offer(Vector3i coordinates, BaseValue<E> value);
 
     /**
      * Offers the given {@link BaseValue} to the block at the given
@@ -506,7 +506,7 @@ public interface LocationCompositeValueStore {
      * @param value The value to offer
      * @return The transaction result
      */
-    DataTransactionResult offer(int x, int y, int z, BaseValue<?> value);
+    <E> DataTransactionResult offer(int x, int y, int z, BaseValue<E> value);
 
     /**
      * Offers the given {@link DataManipulator} to the block at the given
