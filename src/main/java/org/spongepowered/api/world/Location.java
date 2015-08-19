@@ -682,7 +682,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public DataTransactionResult offer(BaseValue<?> value) {
+    public <E> DataTransactionResult offer(BaseValue<E> value) {
         return getExtent().offer(getBlockPosition(), value);
     }
 
