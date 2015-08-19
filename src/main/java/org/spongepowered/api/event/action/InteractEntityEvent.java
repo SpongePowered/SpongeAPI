@@ -22,37 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.InteractEvent;
 
 /**
- * Called when a {@link BlockState} changes the power level of another
- * {@link BlockState}.
- *
- * <p>ie. Redstone updating a power level of another BlockState</p>
+ * Base event for all interactions targeting an {@link Entity}.
  */
-public interface BlockUpdateBlockPowerEvent extends BlockUpdateNeighborBlockEvent {
+public interface InteractEntityEvent extends InteractEvent {
 
     /**
-     * Gets the signal strength of the {@link BlockState} prior to event.
+     * Gets the target {@link Entity}.
      *
-     * @return The old signal strength
+     * @return The entity
      */
-    int getOriginalSignalStrength();
-
-    /**
-     * Gets the signal strength that the {@link BlockState} will be at after event resolution.
-     *
-     * @return The new signal strength
-     */
-    int getSignalStrength();
-
-    /**
-     * Sets the signal strength that the {@link BlockState} will be at after event resolution.
-     *
-     * @param newSignalStrength The new signal strength.
-     */
-    void setSignalStrength(int newSignalStrength);
-
+    Entity getTarget();
 }

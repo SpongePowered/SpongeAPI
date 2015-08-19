@@ -25,14 +25,13 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event that involves a {@link TileEntity}.
  */
-public interface TileEntityEvent extends GameEvent {
+public interface TileEntityEvent extends GameEvent, CauseTracked {
 
     /**
      * Gets the {@link TileEntity} related to this event.
@@ -40,12 +39,4 @@ public interface TileEntityEvent extends GameEvent {
      * @return The tile entity
      */
     TileEntity getTile();
-
-    /**
-     * Gets a copy of the current {@link DataManipulator} associated with the
-     * {@link TileEntity} associated with this event.
-     *
-     * @return The snapshot of the current tile entity data
-     */
-    ImmutableDataManipulator<?, ?> getCurrentData();
 }

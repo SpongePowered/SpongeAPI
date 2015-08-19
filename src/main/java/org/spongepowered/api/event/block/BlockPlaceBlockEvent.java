@@ -24,35 +24,8 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.event.action.PlaceBlockEvent;
 
-/**
- * Called when a {@link BlockState} changes the power level of another
- * {@link BlockState}.
- *
- * <p>ie. Redstone updating a power level of another BlockState</p>
- */
-public interface BlockUpdateBlockPowerEvent extends BlockUpdateNeighborBlockEvent {
-
-    /**
-     * Gets the signal strength of the {@link BlockState} prior to event.
-     *
-     * @return The old signal strength
-     */
-    int getOriginalSignalStrength();
-
-    /**
-     * Gets the signal strength that the {@link BlockState} will be at after event resolution.
-     *
-     * @return The new signal strength
-     */
-    int getSignalStrength();
-
-    /**
-     * Sets the signal strength that the {@link BlockState} will be at after event resolution.
-     *
-     * @param newSignalStrength The new signal strength.
-     */
-    void setSignalStrength(int newSignalStrength);
+public interface BlockPlaceBlockEvent extends BlockChangeBlockEvent, PlaceBlockEvent {
 
 }

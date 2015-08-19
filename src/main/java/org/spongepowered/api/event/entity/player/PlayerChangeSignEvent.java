@@ -22,37 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.tileentity.Sign;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 
-/**
- * Called when a {@link BlockState} changes the power level of another
- * {@link BlockState}.
- *
- * <p>ie. Redstone updating a power level of another BlockState</p>
- */
-public interface BlockUpdateBlockPowerEvent extends BlockUpdateNeighborBlockEvent {
+public interface PlayerChangeSignEvent extends PlayerEvent {
 
     /**
-     * Gets the signal strength of the {@link BlockState} prior to event.
+     * Gets the target {@link Sign} being changed.
      *
-     * @return The old signal strength
+     * @return The Sign
      */
-    int getOriginalSignalStrength();
+    Sign getTarget();
 
     /**
-     * Gets the signal strength that the {@link BlockState} will be at after event resolution.
-     *
-     * @return The new signal strength
+     * Gets the original {@link ImmutableSignData} before event changes.
+     * @return The immutable SignData
      */
-    int getSignalStrength();
+    ImmutableSignData getOriginalText();
 
     /**
-     * Sets the signal strength that the {@link BlockState} will be at after event resolution.
-     *
-     * @param newSignalStrength The new signal strength.
+     * Gets the {@link SignData} to be applied to the {@link Sign} after event resolution.
+     * @return The SignData
      */
-    void setSignalStrength(int newSignalStrength);
-
+    SignData getText();
 }

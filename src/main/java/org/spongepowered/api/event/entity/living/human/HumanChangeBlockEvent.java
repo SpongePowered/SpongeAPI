@@ -22,14 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.event.entity.living.LivingChangeBlockEvent;
 
-/**
- * Dispatched when a {@link Location} is in the process of being placed, before
- * the placement has been made.
- */
-public interface BlockPlaceEvent extends BlockChangeEvent {
+public interface HumanChangeBlockEvent extends HumanEvent, LivingChangeBlockEvent {
 
 }

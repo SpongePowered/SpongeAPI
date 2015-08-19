@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.action;
 
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.ExperienceEvent;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
@@ -36,7 +37,7 @@ import java.util.Collection;
 /**
  * Base event for when a target {@link BlockState} at a {@link Location} is being harvested and one or more {@link ItemStack}(s) are dropped.
  */
-public interface HarvestBlockEvent extends GameEvent, Cancellable {
+public interface HarvestBlockEvent extends GameEvent, ExperienceEvent, Cancellable {
 
     /**
      * Gets the target {@link Location} being harvested.

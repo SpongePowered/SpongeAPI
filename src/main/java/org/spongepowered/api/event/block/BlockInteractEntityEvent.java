@@ -26,7 +26,7 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.InteractEntityEvent;
+import org.spongepowered.api.event.action.InteractEntityEvent;
 
 /**
  * Called when a {@link BlockState} performs an interaction against an {@link Entity}.

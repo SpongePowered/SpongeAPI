@@ -24,12 +24,8 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.event.action.BreakBlockEvent;
 
-/**
- * Called when a {@link BlockState} breaks another {@link BlockState} at a {@link Location}.
- */
-public interface BlockBreakBlockEvent extends BlockEvent, BreakBlockEvent {
+public interface BlockBreakBlockEvent extends BlockChangeBlockEvent, BreakBlockEvent {
 
 }

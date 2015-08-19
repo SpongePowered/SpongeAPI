@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.InteractEntityEvent;
+import org.spongepowered.api.event.action.InteractEntityEvent;
 
 /**
  * Base event for all interactions where an {@link Entity} targets another {@link Entity}.

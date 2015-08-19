@@ -22,14 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.Location;
 
 /**
- * Base event for all "use" interactions involving a {@link BlockState} at a {@link Location}.
+ * Base event for all "attack" interactions involving a {@link BlockState} at a {@link Location}.
  */
-public interface UseBlockEvent extends InteractBlockEvent {
+public interface AttackBlockEvent extends InteractBlockEvent {
 
 }

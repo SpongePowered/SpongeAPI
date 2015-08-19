@@ -22,14 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
 
-/**
- * Base event for all "attack" interactions involving a {@link BlockState} at a {@link Location}.
- */
-public interface AttackBlockEvent extends InteractBlockEvent {
+public interface LivingChangeBlockEvent extends LivingEvent, EntityChangeBlockEvent {
 
 }

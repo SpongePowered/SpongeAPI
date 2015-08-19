@@ -30,6 +30,8 @@ import org.spongepowered.api.world.Location;
 
 /**
  * Called when a {@link BlockState} moves another {@link BlockState} from one {@link Location} to another.
+ *
+ * TODO BlockChangeBlock Candidate for Bulk?
  */
 public interface BlockMoveBlockEvent extends BlockEvent, Cancellable {
 

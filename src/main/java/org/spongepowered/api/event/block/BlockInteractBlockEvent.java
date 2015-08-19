@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.InteractBlockEvent;
+import org.spongepowered.api.event.action.InteractBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**

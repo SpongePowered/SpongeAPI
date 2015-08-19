@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.AttackEntityEvent;
+import org.spongepowered.api.event.action.AttackEntityEvent;
 
 /**
  * Called when an {@link Entity} performs an "attack" interaction on another {@link Entity}.

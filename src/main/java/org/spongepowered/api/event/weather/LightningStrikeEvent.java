@@ -25,8 +25,6 @@
 package org.spongepowered.api.event.weather;
 
 import org.spongepowered.api.entity.weather.Lightning;
-import org.spongepowered.api.event.block.BulkBlockEvent;
-import org.spongepowered.api.event.entity.BulkEntityEvent;
 import org.spongepowered.api.event.entity.EntitySpawnEvent;
 
 /**

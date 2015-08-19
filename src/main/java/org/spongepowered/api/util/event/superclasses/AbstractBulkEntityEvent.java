@@ -28,7 +28,6 @@ import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.AbstractEvent;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.BulkEntityEvent;
 
 import java.util.Iterator;
 

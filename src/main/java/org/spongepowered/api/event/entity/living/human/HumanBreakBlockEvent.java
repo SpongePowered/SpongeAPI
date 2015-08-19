@@ -24,13 +24,8 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.event.entity.living.LivingBreakBlockEvent;
-import org.spongepowered.api.world.Location;
 
-/**
- * Called when a {@link Human} breaks a {@link Location}.
- */
 public interface HumanBreakBlockEvent extends HumanChangeBlockEvent, LivingBreakBlockEvent {
 
 }

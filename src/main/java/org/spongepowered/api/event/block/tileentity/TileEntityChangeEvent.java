@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.TransformResult;
  * Represents events where the {@link DataManipulator} of the
  * {@link TileEntity} may change from the resolution of the event.
  *
- * <p>An example of this would be {@link SignChangeEvent} where the data of the
+ * <p>An example of this would be {@link SignChangeTextEvent} where the data of the
  * sign is set after the event.</p>
  */
 public interface TileEntityChangeEvent extends TileEntityEvent, CauseTracked, Cancellable {

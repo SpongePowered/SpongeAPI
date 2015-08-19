@@ -29,6 +29,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.Map;
 
@@ -38,8 +39,8 @@ import java.util.Map;
 public interface BlockUpdateNeighborBlockEvent extends BlockEvent, Cancellable {
 
     /**
-     * Gets a mutable copy of the original {@link Map} containing the {@link Direction} (face) and {@link Location} relative from
-     * {@link BlockEvent#getLocation()} unaffected by event changes.
+     * Gets a mutable copy of the original {@link Map} containing the {@link Direction} (face) and {@link Location<World>}
+     * relative from {@link BlockEvent#getLocation()} unaffected by event changes.
      *
      * <p>
      *     ie. If the {@link BlockEvent#getBlock()} is redstone and is providing power to another {@link BlockState},
@@ -50,10 +51,10 @@ public interface BlockUpdateNeighborBlockEvent extends BlockEvent, Cancellable {
      *
      * @return The map
      */
-    Map<Direction, Location> getOriginalRelatives();
+    Map<Direction, Location<World>> getOriginalRelatives();
 
     /**
-     * Gets a mutable {@link Map} containing the {@link Direction} (face) and {@link Location} relative from
+     * Gets a mutable {@link Map} containing the {@link Direction} (face) and {@link Location<World>} relative from
      * {@link BlockEvent#getLocation()}.
      *
      * <p>
@@ -65,7 +66,7 @@ public interface BlockUpdateNeighborBlockEvent extends BlockEvent, Cancellable {
      *
      * @return The map
      */
-    Map<Direction, Location> getRelatives();
+    Map<Direction, Location<World>> getRelatives();
 
     /**
      * Filters out {@link Direction}s from {@link BlockUpdateNeighborBlockEvent#getRelatives()} to be affected by this event.
@@ -73,13 +74,13 @@ public interface BlockUpdateNeighborBlockEvent extends BlockEvent, Cancellable {
      * @param predicate The predicate to use for filtering.
      * @return The filtered map
      */
-    Map<Direction, Location> filterDirections(Predicate<Direction> predicate);
+    Map<Direction, Location<World>> filterDirections(Predicate<Direction> predicate);
 
     /**
-     * Filters out {@link Location}'s from {@link BlockUpdateNeighborBlockEvent#getRelatives()} to be affected by this event.
+     * Filters out {@link Location<World>}'s from {@link BlockUpdateNeighborBlockEvent#getRelatives()} to be affected by this event.
      *
      * @param predicate The predicate to use for filtering
      * @return The filtered map
      */
-    Map<Direction, Location> filterLocations(Predicate<Location> predicate);
+    Map<Direction, Location<World>> filterLocations(Predicate<Location<World>> predicate);
 }

@@ -61,7 +61,6 @@ import org.spongepowered.api.event.block.BlockHarvestEvent;
 import org.spongepowered.api.event.block.BlockIgniteEvent;
 import org.spongepowered.api.event.block.BlockInteractEvent;
 import org.spongepowered.api.event.block.BlockMoveEvent;
-import org.spongepowered.api.event.block.BlockPlaceEvent;
 import org.spongepowered.api.event.block.BlockRandomTickEvent;
 import org.spongepowered.api.event.block.BlockRedstoneUpdateEvent;
 import org.spongepowered.api.event.block.BlockUpdateEvent;
@@ -71,7 +70,6 @@ import org.spongepowered.api.event.block.LeafDecayEvent;
 import org.spongepowered.api.event.block.tileentity.BrewingStandBrewEvent;
 import org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent;
-import org.spongepowered.api.event.block.tileentity.SignChangeEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.entity.EntityBreedEvent;
@@ -1933,7 +1931,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link SignChangeEvent}.
+     * Creates a new {@link SignChangeTextEvent}.
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause
      * @param sign The {@link Sign}
@@ -1941,14 +1939,14 @@ public final class SpongeEventFactory {
      * @param newData The new sign data
      * @return A new instance of the event
      */
-    public static SignChangeEvent createSignChange(Game game, Cause cause, Sign sign, ImmutableSignData currentData, SignData newData) {
+    public static SignChangeTextEvent createSignChange(Game game, Cause cause, Sign sign, ImmutableSignData currentData, SignData newData) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
         values.put("tile", sign);
         values.put("currentData", currentData);
         values.put("newData", newData);
-        return createEvent(SignChangeEvent.class, values);
+        return createEvent(SignChangeTextEvent.class, values);
     }
 
     /**

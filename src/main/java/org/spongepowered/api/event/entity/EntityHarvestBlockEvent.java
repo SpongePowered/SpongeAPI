@@ -26,7 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.block.HarvestBlockEvent;
+import org.spongepowered.api.event.action.HarvestBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**

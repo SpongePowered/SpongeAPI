@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
@@ -100,13 +99,5 @@ public interface TileEntity extends DataHolder, DataSerializable {
      * @return The blockstate
      */
     BlockState getBlock();
-
-    /**
-     * Gets a copy of the underlying data of this {@link TileEntity} or
-     * {@link Optional#absent()} if none available.
-     *
-     * @return The data, if available
-     */
-    Optional<? extends DataManipulator<?, ?>> getData();
 
 }

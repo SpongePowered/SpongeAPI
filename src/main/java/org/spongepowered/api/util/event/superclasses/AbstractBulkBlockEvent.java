@@ -27,7 +27,6 @@ package org.spongepowered.api.util.event.superclasses;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.event.AbstractEvent;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.block.BulkBlockEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 

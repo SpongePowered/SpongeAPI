@@ -22,20 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tileentity;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
- * An event that is associated with a {@link Sign}.
+ * Base event for when {@link BlockState}s at {@link Location< World >}s are being broke.
  */
-public interface SignEvent extends TileEntityEvent {
+public interface BreakBlockEvent extends ChangeBlockEvent {
 
-    @Override
-    Sign getTile();
-
-    @Override
-    ImmutableSignData getCurrentData();
 }

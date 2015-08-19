@@ -24,13 +24,8 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.event.entity.living.LivingPlaceBlockEvent;
-import org.spongepowered.api.world.Location;
 
-/**
- * Called when a {@link Human} places a {@link Location}.
- */
 public interface HumanPlaceBlockEvent extends HumanChangeBlockEvent, LivingPlaceBlockEvent {
 
 }
