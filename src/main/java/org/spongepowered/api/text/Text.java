@@ -133,7 +133,7 @@ public abstract class Text implements TextRepresentable {
      * @return The style of this text
      */
     public final TextStyle getStyle() {
-        return this.getStyle();
+        return this.format.getStyle();
     }
 
     /**

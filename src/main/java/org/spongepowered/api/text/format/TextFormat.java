@@ -26,6 +26,8 @@ package org.spongepowered.api.text.format;
 
 import com.google.common.base.Objects;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Represents a pair of {@link TextStyle and {@link TextColor}}.
  */
@@ -48,8 +50,8 @@ public final class TextFormat {
      * @param color The color
      */
     public TextFormat(TextStyle style, TextColor color) {
-        this.style = style;
-        this.color = color;
+        this.style = checkNotNull(style, "style");
+        this.color = checkNotNull(color, "color");
     }
 
     /**
