@@ -123,6 +123,13 @@ public interface Server extends ChannelRegistrar {
     Optional<World> getWorld(String worldName);
 
     /**
+     * Gets the properties of default world.
+     *
+     * @return The world properties
+     */
+    Optional<WorldProperties> getDefaultWorld();
+
+    /**
      * Loads a {@link World} from the default storage container. If a world with
      * the given name is already loaded then it is returned instead.
      *
