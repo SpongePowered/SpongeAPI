@@ -207,6 +207,49 @@ public interface Server extends ChannelRegistrar {
     Optional<WorldProperties> createWorld(WorldCreationSettings settings);
 
     /**
+     * Creates a copy of the provided world under the new name given and returns
+     * the new copy if the copy was possible. 
+     *
+     * @param originalWorld The original world instance to copy
+     * @param copyName The name that should be used in the duplicated entry instead of the originalWorld's name
+     * @return An {@link Optional} containing the properties of the new world instance, if the copy was successful
+     */
+    Optional<WorldProperties> copyWorld(WorldProperties originalWorld, String copyName);
+
+    /**
+     * Allows the copy to be made while the world is still loaded by forcing a save
+     * first, this could cause changes to be missed if made after that save. By
+     * using this method the developer is assumed to properly respect that large worlds
+     * will likely take a long enough period to copy that a reasonable number of changes are
+     * missed.
+     *
+     * A {@link World} instance is used here because unloaded worlds should not be copied
+     * using this method, and instead should be copied using {@link #copyWorld(WorldProperties,String)}.
+     *
+     * @param originalWorld The original world instance to copy
+     * @param copyName The name for the copy that is made
+     * @return An {@link Optional} containing the properties of the new world instance, if the copy was successful
+     */
+    Optional<WorldProperties> copyLoadedWorld(World originalWorld, String copyName);
+
+    /**
+     * Renames an unloaded world.
+     *
+     * @param worldProperties The world instance to rename
+     * @param newName The name that should be used as a replacement for the current world name
+     * @return An {@link Optional} containing the new {@link WorldProperties} if the rename was successful
+     */
+    Optional<WorldProperties> renameWorld(WorldProperties worldProperties, String newName);
+
+    /**
+     * Deletes the provided world's files from the disk.
+     *
+     * @param worldProperties The world instance to delete
+     * @return True if the deletion was successful.
+     */
+    boolean deleteWorld(WorldProperties worldProperties);
+
+    /**
      * Persists the given {@link WorldProperties} to the world storage for it,
      * updating any modified values.
      *
