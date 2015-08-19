@@ -26,28 +26,18 @@ package org.spongepowered.api.data.manipulator;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.service.persistence.DataBuilder;
 
-/**
- * A builder of {@link DataManipulator}s. This builder can build
- * a specific {@link DataManipulator} that can be used to pre-construct
- * customized data prior to applying to a {@link DataHolder}.
- *
- * <p>{@link DataManipulatorBuilder}s must be registered with the
- * {@link DataManipulatorRegistry} before they can be used by the game
- * and plugins. Failure to do so may prevent the {@link DataManipulator} from
- * being used.</p>
- *
- * @param <T> The type of {@link DataManipulator}
- */
-public interface DataManipulatorBuilder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> extends DataBuilder<T> {
+public interface ImmutableDataManipulatorBuilder<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends DataBuilder<I> {
+
 
     /**
-     * Creates a new specific {@link DataManipulator} for consumption.
+     * Creates a new specific {@link ImmutableDataManipulator} for consumption.
      *
-     * @return The newly created data manipulator
+     * @return The newly created immutable data manipulator
      */
-    T create();
+    I createImmutable();
 
     /**
      * Attempts to read data from the given {@link DataHolder} and constructs
@@ -64,6 +54,7 @@ public interface DataManipulatorBuilder<T extends DataManipulator<T, I>, I exten
      * @return A new instance of this {@link DataManipulator} with relevant data
      *     filled from the given {@link DataHolder}, if available
      */
-    Optional<T> createFrom(DataHolder dataHolder);
+    Optional<I> createFrom(DataHolder dataHolder);
 
+    Optional<I> createFrom(ImmutableDataHolder<?> dataHolder);
 }
