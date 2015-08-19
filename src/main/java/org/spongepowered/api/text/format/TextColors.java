@@ -67,27 +67,27 @@ public final class TextColors {
 
     };
 
-    public static final TextColor.Base BLACK = null;
-    public static final TextColor.Base DARK_BLUE = null;
-    public static final TextColor.Base DARK_GREEN = null;
-    public static final TextColor.Base DARK_AQUA = null;
-    public static final TextColor.Base DARK_RED = null;
-    public static final TextColor.Base DARK_PURPLE = null;
-    public static final TextColor.Base GOLD = null;
-    public static final TextColor.Base GRAY = null;
-    public static final TextColor.Base DARK_GRAY = null;
-    public static final TextColor.Base BLUE = null;
-    public static final TextColor.Base GREEN = null;
-    public static final TextColor.Base AQUA = null;
-    public static final TextColor.Base RED = null;
-    public static final TextColor.Base LIGHT_PURPLE = null;
-    public static final TextColor.Base YELLOW = null;
-    public static final TextColor.Base WHITE = null;
+    public static final TextColor BLACK = null;
+    public static final TextColor DARK_BLUE = null;
+    public static final TextColor DARK_GREEN = null;
+    public static final TextColor DARK_AQUA = null;
+    public static final TextColor DARK_RED = null;
+    public static final TextColor DARK_PURPLE = null;
+    public static final TextColor GOLD = null;
+    public static final TextColor GRAY = null;
+    public static final TextColor DARK_GRAY = null;
+    public static final TextColor BLUE = null;
+    public static final TextColor GREEN = null;
+    public static final TextColor AQUA = null;
+    public static final TextColor RED = null;
+    public static final TextColor LIGHT_PURPLE = null;
+    public static final TextColor YELLOW = null;
+    public static final TextColor WHITE = null;
 
     /**
      * Resets the current color to the default one on the client. In most cases
      * this should be the same as {@link #WHITE}.
      */
-    public static final TextColor.Base RESET = null;
+    public static final TextColor RESET = null;
 
 }

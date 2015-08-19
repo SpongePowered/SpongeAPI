@@ -290,8 +290,7 @@ public final class Texts {
             if (replacement != null) {
                 // Copy color, style and text actions from placeholder
                 List<Object> formats = new ArrayList<Object>();
-                formats.add(template.getColor());
-                formats.add(template.getStyle());
+                formats.add(template.getFormat());
                 Optional<HoverAction<?>> hoverAction = template.getHoverAction();
                 if (hoverAction.isPresent()) {
                     formats.add(hoverAction.get());

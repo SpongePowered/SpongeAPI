@@ -45,14 +45,4 @@ public interface TextColor extends CatalogType {
      */
     Color getColor();
 
-    /**
-     * Represents a base {@link TextColor} in Minecraft. It can be represented
-     * using legacy formatting codes.
-     *
-     * @see TextColors
-     */
-    interface Base extends TextColor, BaseFormatting {
-
-    }
-
 }

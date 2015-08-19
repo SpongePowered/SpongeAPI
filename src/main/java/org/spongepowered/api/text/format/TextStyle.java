@@ -509,13 +509,12 @@ public class TextStyle {
 
     /**
      * Represents a {@link TextStyle} that is not a composite, for example
-     * {@link TextStyles#BOLD}. It is a base text style in Minecraft with a name
-     * and a legacy formatting code.
+     * {@link TextStyles#BOLD}. It is a base text style in Minecraft with a name.
      *
      * @see TextStyle
      * @see Base
      */
-    public abstract static class Base extends TextStyle implements BaseFormatting, CatalogType {
+    public abstract static class Base extends TextStyle implements CatalogType {
 
         /**
          * Constructs a new {@link Base}.
