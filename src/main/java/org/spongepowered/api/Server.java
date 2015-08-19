@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Optional;
+import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.network.ChannelRegistrar;
@@ -205,6 +206,45 @@ public interface Server extends ChannelRegistrar {
      * @return The new or existing world properties, if creation was successful
      */
     Optional<WorldProperties> createWorld(WorldCreationSettings settings);
+
+    /**
+     * Creates a world copy asynchronously using the new name given and returns
+     * the new world properties if the copy was possible.
+     * 
+     * <p>If the world is already loaded then the following will occur:</p>
+     * 
+     * <ul> 
+     * <li>World is saved.</li> 
+     * <li>World saving is disabled.</li>
+     * <li>World is copied. </li>
+     * <li>World saving is enabled.</li>
+     * </ul>
+     *
+     * @param worldProperties The world properties to copy
+     * @param copyName The name for copied world
+     * @return An {@link Optional} containing the properties of the new world 
+     *         instance, if the copy was successful
+     */
+    ListenableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
+
+    /**
+     * Renames an unloaded world.
+     *
+     * @param worldProperties The world properties to rename
+     * @param newName The name that should be used as a replacement for the 
+     *        current world name
+     * @return An {@link Optional} containing the new {@link WorldProperties} 
+     *         if the rename was successful
+     */
+    Optional<WorldProperties> renameWorld(WorldProperties worldProperties, String newName);
+
+    /**
+     * Deletes the provided world's files asynchronously from the disk.
+     *
+     * @param worldProperties The world properties to delete
+     * @return True if the deletion was successful.
+     */
+    ListenableFuture<Boolean> deleteWorld(WorldProperties worldProperties);
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,
