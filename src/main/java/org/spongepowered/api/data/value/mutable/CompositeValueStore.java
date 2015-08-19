@@ -182,6 +182,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * {@link CompositeValueStore}.
      *
      * @param value The value to set
+     * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
     <E> DataTransactionResult offer(BaseValue<E> value);

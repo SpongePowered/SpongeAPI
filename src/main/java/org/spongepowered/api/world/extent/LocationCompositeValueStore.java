@@ -488,6 +488,7 @@ public interface LocationCompositeValueStore {
      *
      * @param coordinates The position of the block
      * @param value The value to offer
+     * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
     <E> DataTransactionResult offer(Vector3i coordinates, BaseValue<E> value);
@@ -504,6 +505,7 @@ public interface LocationCompositeValueStore {
      * @param y The Y position
      * @param z The Z position
      * @param value The value to offer
+     * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
     <E> DataTransactionResult offer(int x, int y, int z, BaseValue<E> value);
