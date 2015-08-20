@@ -32,8 +32,6 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Preconditions;
 
-import javax.annotation.Nullable;
-
 /**
  * Represents a transform. It is 2 dimensional and discrete.
  * It will never cause aliasing.
@@ -50,14 +48,14 @@ public class DiscreteTransform2 {
      * Represents an identity transformation. Does nothing!
      */
     public static final DiscreteTransform2 IDENTITY = new DiscreteTransform2(Matrix3d.IDENTITY);
-    private final Matrix3d transform;
-    @Nullable
-    private Vector3d transformRow0 = null;
-    @Nullable
-    private Vector3d transformRow1 = null;
+    private final Matrix3d matrix;
+    private final Vector3d matrixRow0;
+    private final Vector3d matrixRow1;
 
-    private DiscreteTransform2(Matrix3d transform) {
-        this.transform = transform;
+    private DiscreteTransform2(Matrix3d matrix) {
+        this.matrix = matrix;
+        this.matrixRow0 = matrix.getRow(0);
+        this.matrixRow1 = matrix.getRow(1);
     }
 
     /**
@@ -67,7 +65,7 @@ public class DiscreteTransform2 {
      * @return The matrix for this transform
      */
     public Matrix3d getMatrix() {
-        return this.transform;
+        return this.matrix;
     }
 
     /**
@@ -89,8 +87,7 @@ public class DiscreteTransform2 {
      * @return The transformed vector
      */
     public Vector2i transform(int x, int y) {
-        final Vector3d vector = this.transform.transform(x, y, 1);
-        return new Vector2i(vector.getX() + GenericMath.FLT_EPSILON, vector.getY() + GenericMath.FLT_EPSILON);
+        return new Vector2i(transformX(x, y), transformY(x, y));
     }
 
     /**
@@ -115,10 +112,7 @@ public class DiscreteTransform2 {
      * @return The transformed x coordinate
      */
     public int transformX(int x, int y) {
-        if (this.transformRow0 == null) {
-            this.transformRow0 = this.transform.getRow(0);
-        }
-        return GenericMath.floor(this.transformRow0.dot(x, y, 1) + GenericMath.FLT_EPSILON);
+        return GenericMath.floor(this.matrixRow0.dot(x, y, 1) + GenericMath.FLT_EPSILON);
     }
 
     /**
@@ -143,10 +137,7 @@ public class DiscreteTransform2 {
      * @return The transformed y coordinate
      */
     public int transformY(int x, int y) {
-        if (this.transformRow1 == null) {
-            this.transformRow1 = this.transform.getRow(1);
-        }
-        return GenericMath.floor(this.transformRow1.dot(x, y, 1) + GenericMath.FLT_EPSILON);
+        return GenericMath.floor(this.matrixRow1.dot(x, y, 1) + GenericMath.FLT_EPSILON);
     }
 
     /**
@@ -155,7 +146,7 @@ public class DiscreteTransform2 {
      * @return The inverse of this transform
      */
     public DiscreteTransform2 invert() {
-        return new DiscreteTransform2(this.transform.invert());
+        return new DiscreteTransform2(this.matrix.invert());
     }
 
     /**
@@ -178,7 +169,7 @@ public class DiscreteTransform2 {
      * @return The translated transform as a copy
      */
     public DiscreteTransform2 withTranslation(int x, int y) {
-        return new DiscreteTransform2(this.transform.translate(x, y));
+        return new DiscreteTransform2(this.matrix.translate(x, y));
     }
 
     /**
@@ -216,7 +207,7 @@ public class DiscreteTransform2 {
     public DiscreteTransform2 withScale(int x, int y) {
         Preconditions.checkArgument(x != 0, "x == 0");
         Preconditions.checkArgument(y != 0, "y == 0");
-        return new DiscreteTransform2(this.transform.scale(x, y, 1));
+        return new DiscreteTransform2(this.matrix.scale(x, y, 1));
     }
 
     /**
@@ -230,7 +221,7 @@ public class DiscreteTransform2 {
      * @return The rotated transform as a copy
      */
     public DiscreteTransform2 withRotation(int quarterTurns) {
-        return new DiscreteTransform2(this.transform.rotate(Complexd.fromAngleDeg(quarterTurns * 90)));
+        return new DiscreteTransform2(this.matrix.rotate(Complexd.fromAngleDeg(quarterTurns * 90)));
     }
 
     /**
@@ -252,7 +243,7 @@ public class DiscreteTransform2 {
             pointDouble = pointDouble.add(0.5, 0.5);
         }
         return new DiscreteTransform2(
-            this.transform.translate(pointDouble.negate()).rotate(Complexd.fromAngleDeg(quarterTurns * 90)).translate(pointDouble));
+            this.matrix.translate(pointDouble.negate()).rotate(Complexd.fromAngleDeg(quarterTurns * 90)).translate(pointDouble));
     }
 
     /**
@@ -281,7 +272,7 @@ public class DiscreteTransform2 {
         if (tileCornerY) {
             pointDouble = pointDouble.add(0, 0.5);
         }
-        return new DiscreteTransform2(this.transform.translate(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate
+        return new DiscreteTransform2(this.matrix.translate(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate
             (pointDouble));
     }
 
