@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.action.ChangeBlockEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -37,7 +38,7 @@ import java.util.List;
  * <p>Marking this event as cancelled will stop all block and entity damage as well as
  * the explosion showing smoke.</p>
  */
-public interface WorldOnExplosionEvent extends WorldExplosionEvent, BulkBlockEvent, BulkEntityEvent {
+public interface WorldOnExplosionEvent extends WorldExplosionEvent, ChangeBlockEvent {
 
     /**
      * Gets the original affected locations of the explosion.

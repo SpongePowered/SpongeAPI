@@ -25,8 +25,6 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
-import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
 import org.spongepowered.api.event.inventory.BlockInventoryEvent;
 
 /**
@@ -37,7 +35,4 @@ public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
 
     @Override
     Furnace getTile();
-
-    @Override
-    ImmutableFurnaceData getCurrentData();
 }

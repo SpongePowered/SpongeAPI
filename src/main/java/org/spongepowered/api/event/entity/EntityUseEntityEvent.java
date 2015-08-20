@@ -28,7 +28,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.UseEntityEvent;
 
 /**
- * Called when an {@link Entity} performs a "use" interaction on another {@link Entity}.
+ * Called when an {@link Entity} performs a "use" interaction on another 
+ * {@link Entity}.
  */
 public interface EntityUseEntityEvent extends UseEntityEvent, EntityInteractEntityEvent {
 }

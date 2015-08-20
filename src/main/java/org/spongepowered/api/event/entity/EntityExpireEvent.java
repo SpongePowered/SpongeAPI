@@ -29,7 +29,8 @@ import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Called when an {@link Entity} is expiring from the world.
- * <p>Examples may include when an endermite expires, or when Lightning expires.</p>
+ * <p>Examples may include when an endermite expires, or when Lightning expires.
+ * </p>
  */
 public interface EntityExpireEvent extends EntityEvent, CauseTracked {
 

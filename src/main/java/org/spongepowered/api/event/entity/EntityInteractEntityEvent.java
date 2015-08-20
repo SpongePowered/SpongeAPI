@@ -28,7 +28,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.InteractEntityEvent;
 
 /**
- * Base event for all interactions where an {@link Entity} targets another {@link Entity}.
+ * Base event for all interactions where an {@link Entity} targets another 
+ * {@link Entity}.
  */
 public interface EntityInteractEntityEvent extends EntityEvent, InteractEntityEvent {
 

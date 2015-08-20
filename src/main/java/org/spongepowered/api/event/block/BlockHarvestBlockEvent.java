@@ -29,7 +29,8 @@ import org.spongepowered.api.event.action.HarvestBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link BlockState} harvests another {@link BlockState} at a {@link Location}.
+ * Called when a {@link BlockState} harvests another {@link BlockState} at a 
+ * {@link Location}.
  */
 public interface BlockHarvestBlockEvent extends BlockEvent, HarvestBlockEvent {
 

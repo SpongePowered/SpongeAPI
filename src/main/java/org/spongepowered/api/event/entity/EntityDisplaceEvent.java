@@ -29,11 +29,13 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when an {@link org.spongepowered.api.entity.Entity} changes position (also known as
- * undergoing displacement).
+ * Called when an {@link org.spongepowered.api.entity.Entity} changes position 
+ * (also known as undergoing displacement).
  *
- * <p>This encapsulates both continuous ({@link org.spongepowered.api.event.entity.EntityMoveEvent})
- * and discrete ({@link org.spongepowered.api.event.entity.EntityTeleportEvent}) movement.</p>
+ * <p>This encapsulates both continuous 
+ * ({@link org.spongepowered.api.event.entity.EntityMoveEvent}) and discrete 
+ * ({@link org.spongepowered.api.event.entity.EntityTeleportEvent}) movement.
+ * </p>
  */
 public interface EntityDisplaceEvent extends EntityEvent, Cancellable {
 

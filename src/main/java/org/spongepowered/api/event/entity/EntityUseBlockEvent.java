@@ -30,7 +30,8 @@ import org.spongepowered.api.event.action.UseEntityEvent;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link Entity} performs a "use" interaction on a {@link BlockState} at a {@link Location}.
+ * Called when an {@link Entity} performs a "use" interaction on a 
+ * {@link BlockState} at a {@link Location}.
  */
 public interface EntityUseBlockEvent extends UseEntityEvent, EntityInteractBlockEvent {
 }

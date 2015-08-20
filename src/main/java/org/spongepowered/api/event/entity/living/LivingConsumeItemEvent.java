@@ -28,7 +28,8 @@ import org.spongepowered.api.event.entity.EntityConsumeItemEvent;
 
 /**
  * Called when an entity consumes an itemstack for any reason.
- * <p>Examples may include: A player eating food, a witch drinking a potion, etc.</p>
+ * <p>Examples may include: A player eating food, a witch drinking a 
+ * potion, etc.</p>
  */
 public interface LivingConsumeItemEvent extends EntityConsumeItemEvent, LivingEvent {
 

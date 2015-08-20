@@ -27,7 +27,8 @@ package org.spongepowered.api.event.block;
 import org.spongepowered.api.block.BlockState;
 
 /**
- * Called when a {@link BlockState} removes another {@link BlockState} due to fire.
+ * Called when a {@link BlockState} removes another {@link BlockState} due to 
+ * fire.
  */
 public interface BlockBurnBlockEvent extends BlockUpdateNeighborBlockEvent {
 

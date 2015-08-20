@@ -28,7 +28,8 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.Location;
 
 /**
- * Base event for all "attack" interactions involving a {@link BlockState} at a {@link Location}.
+ * Base event for all "attack" interactions involving a {@link BlockState} at a 
+ * {@link Location}.
  */
 public interface AttackBlockEvent extends InteractBlockEvent {
 

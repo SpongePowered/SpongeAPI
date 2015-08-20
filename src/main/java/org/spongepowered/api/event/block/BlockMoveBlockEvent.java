@@ -27,6 +27,7 @@ package org.spongepowered.api.event.block;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link BlockState} moves another {@link BlockState} from one {@link Location} to another.
@@ -47,19 +48,21 @@ public interface BlockMoveBlockEvent extends BlockEvent, Cancellable {
      *
      * @return The original Location
      */
-    Location getOriginalTargetLocation();
+    Location<World> getOriginalTargetLocation();
 
     /**
-     * Gets the {@link Location} the {@link BlockState} will be at after event resolution.
+     * Gets the {@link Location} the {@link BlockState} will be at after event 
+     * resolution.
      *
      * @return The new Location
      */
-    Location getNewTargetLocation();
+    Location<World> getNewTargetLocation();
 
     /**
-     * Sets the {@link Location} the {@link BlockState} will be at after event resolution.
+     * Sets the {@link Location} the {@link BlockState} will be at after event 
+     * resolution.
      *
      * @param location The new Location
      */
-    void setNewTargetLocation(Location location);
+    void setNewTargetLocation(Location<World> location);
 }

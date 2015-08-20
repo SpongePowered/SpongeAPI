@@ -30,7 +30,8 @@ import org.spongepowered.api.event.action.AttackBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link Entity} performs an "attack" interaction on a {@link BlockState} at a {@link Location}.
+ * Called when an {@link Entity} performs an "attack" interaction on a {@link 
+ * BlockState} at a {@link Location}.
  */
 public interface EntityAttackBlockEvent extends AttackBlockEvent, EntityInteractBlockEvent {
 

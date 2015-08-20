@@ -28,7 +28,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.AttackEntityEvent;
 
 /**
- * Called when an {@link Entity} performs an "attack" interaction on another {@link Entity}.
+ * Called when an {@link Entity} performs an "attack" interaction on another 
+ * {@link Entity}.
  */
 public interface EntityAttackEntityEvent extends AttackEntityEvent, EntityInteractEntityEvent {
 

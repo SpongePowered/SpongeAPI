@@ -51,10 +51,10 @@ public interface EntityChangePotionEffectEvent extends EntityEvent, CauseTracked
     /**
      * Gets whether the entity is gaining the linked {@link PotionEffect}.
      *
-     * <p>If the potion effect is being lost, {@link #setPotionEffect(PotionEffect)}
-     * will have no change to the potion effect being removed. If a potion
-     * effect is being removed due to expiration, cancelling the event will
-     * have no change.</p>
+     * <p>If the potion effect is being lost, {@link 
+     * #setPotionEffect(PotionEffect)} will have no change to the potion effect 
+     * being removed. If a potion effect is being removed due to expiration, 
+     * cancelling the event will have no change.</p>
      *
      * @return If the potion effect is being added
      */
@@ -64,8 +64,8 @@ public interface EntityChangePotionEffectEvent extends EntityEvent, CauseTracked
      * Sets the potion effect to be added to the entity.
      *
      * <p>Setting the potion effect only changes the potion effect if the
-     * effect is being added, a check for {@link #isBeingAdded()} is recommended.
-     * </p>
+     * effect is being added, a check for {@link #isBeingAdded()} is
+     * recommended.</p>
      *
      * <p>If the potion effect is being lost, setting the {@link PotionEffect}
      * will have no change to the potion effect being removed. If a potion

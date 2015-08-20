@@ -28,6 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when an {@link Entity} collides with a {@link BlockState} at a {@link Location}.
@@ -39,7 +40,7 @@ public interface EntityCollideBlockEvent extends EntityCollideEvent {
      *
      * @return The Location
      */
-    Location getTargetLocation();
+    Location<World> getTargetLocation();
 
     /**
      * Gets the target {@link BlockState}.

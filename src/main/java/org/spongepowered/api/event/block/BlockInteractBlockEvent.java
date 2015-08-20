@@ -29,7 +29,8 @@ import org.spongepowered.api.event.action.InteractBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link BlockState} performs an interaction against another {@link BlockState} at a {@link Location}.
+ * Called when a {@link BlockState} performs an interaction against another 
+ * {@link BlockState} at a {@link Location}.
  */
 public interface BlockInteractBlockEvent extends BlockEvent, InteractBlockEvent {
 

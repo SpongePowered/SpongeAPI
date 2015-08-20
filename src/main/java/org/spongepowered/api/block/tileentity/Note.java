@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.NoteData;
 import org.spongepowered.api.data.type.NotePitch;
 
@@ -40,8 +39,5 @@ public interface Note extends TileEntity {
      * {@link Note} tile entity.
      */
     void playNote();
-
-    @Override
-    Optional<NoteData> getData();
 
 }

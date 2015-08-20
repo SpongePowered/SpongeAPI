@@ -33,7 +33,8 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Base event for all events with a {@link BlockState}, with an {@link Optional<Direction>} side, at a {@link Location} as the source.
+ * Base event for all events with a {@link BlockState}, with an {@link 
+ * Optional<Direction>} side, at a {@link Location} as the source.
  */
 public interface BlockEvent extends GameEvent, CauseTracked {
 
@@ -54,11 +55,11 @@ public interface BlockEvent extends GameEvent, CauseTracked {
     /**
      * Gets the "side" as a {@link Direction}.
      *
-     * <p>
-     *     Depending on the event, this may or may not be known(hence the optional)
-     * </p>
+     * <p>Depending on the event, this may or may not be known(hence the 
+     * optional)</p>
      *
-     * @return An optional containing the side or {@link Optional#absent()} if not known
+     * @return An optional containing the side or {@link Optional#absent()} if 
+     *     not known
      */
     Optional<Direction> getSide();
 }

@@ -28,7 +28,8 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when a {@link BlockState} ignites another {@link BlockState} at a {@link Location}.
+ * Called when a {@link BlockState} ignites another {@link BlockState} at a 
+ * {@link Location}.
  */
 public interface BlockIgniteBlockEvent extends BlockUpdateNeighborBlockEvent {
 

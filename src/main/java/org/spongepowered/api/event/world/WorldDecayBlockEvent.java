@@ -22,27 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.superclasses;
+package org.spongepowered.api.event.world;
 
-import com.google.common.base.Predicate;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.AbstractEvent;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.action.ChangeBlockEvent;
 
-import java.util.Iterator;
-
-public abstract class AbstractBulkEntityEvent extends AbstractEvent implements BulkEntityEvent {
-
-    @Override
-    public void filterEntities(Predicate<Entity> predicate) {
-        if (this instanceof Cancellable) {
-            Iterator<Entity> iterator = this.getEntities().iterator();
-            while (iterator.hasNext()) {
-                if (!predicate.apply(iterator.next())) {
-                    iterator.remove();
-                }
-            }
-        }
-    }
+/**
+ * Called when a world is about to decay a block.
+ */
+public interface WorldDecayBlockEvent extends ChangeBlockEvent, WorldEvent {
 
 }

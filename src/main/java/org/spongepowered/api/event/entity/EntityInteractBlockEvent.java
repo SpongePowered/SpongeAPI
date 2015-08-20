@@ -30,7 +30,8 @@ import org.spongepowered.api.event.action.InteractBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**
- * Base event for all interactions where an {@link Entity} targets a {@link BlockState} at a {@link Location}.
+ * Base event for all interactions where an {@link Entity} targets a 
+ * {@link BlockState} at a {@link Location}.
  */
 public interface EntityInteractBlockEvent extends EntityEvent, InteractBlockEvent {
 }

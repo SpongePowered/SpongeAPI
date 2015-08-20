@@ -27,11 +27,10 @@ package org.spongepowered.api.event.block;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.action.ChangeBlockEvent;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
- * Base event for when a {@link BlockState} at a {@link Location<World>} is changing {@link BlockState}s at
- * {@link Location <World>}s.
+ * Base event for when a {@link BlockState} at a {@link Location<World>} is 
+ * changing {@link BlockState}s at {@link Location <World>}s.
  */
 public interface BlockChangeBlockEvent extends BlockEvent, ChangeBlockEvent {
 

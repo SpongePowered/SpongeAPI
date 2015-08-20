@@ -30,7 +30,8 @@ import org.spongepowered.api.event.action.HarvestBlockEvent;
 import org.spongepowered.api.world.Location;
 
 /**
- * Called when an {@link Entity} harvests a {@link BlockState} at a {@link Location}.
+ * Called when an {@link Entity} harvests a {@link BlockState} at a 
+ * {@link Location}.
  */
 public interface EntityHarvestBlockEvent extends EntityEvent, HarvestBlockEvent {
 
