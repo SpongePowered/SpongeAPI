@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.storage;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameRegistry;
@@ -35,7 +36,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
-import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -81,8 +81,8 @@ public interface WorldProperties extends DataSerializable {
     void setLoadOnStartup(boolean state);
 
     /**
-     * Gets whether spawn chunks of this world remain loaded when no players
-     * are present.
+     * Gets whether spawn chunks of this world remain loaded when no players are
+     * present.
      *
      * @return True if spawn chunks of this world remain loaded without players,
      *         false if not
@@ -331,11 +331,158 @@ public interface WorldProperties extends DataSerializable {
     void setDifficulty(Difficulty difficulty);
 
     /**
-     * Gets the {@link WorldBorder} of this world.
+     * Gets the center of the world border.
      * 
-     * @return The world border
+     * <p>The returned position is three-dimensional. As the worldborder extends
+     * over the entire y-axis, the returned position will always have a
+     * {@code y} set to 0.</p>
+     *
+     * @return The center
      */
-    WorldBorder getWorldBorder();
+    Vector3d getWorldBorderCenter();
+
+    /**
+     * Sets the center of the world border.
+     *
+     * @param x The x-axis center of the world border
+     * @param z The z-axis center of the world border
+     */
+    void setWorldBorderCenter(double x, double z);
+
+    /**
+     * Gets the diameter of the world border.
+     *
+     * <p>The returned diameter applies to the x and z axis. The world border
+     * extends over the entire y-axis.</p>
+     *
+     * @return The diameter
+     */
+    double getWorldBorderDiameter();
+
+    /**
+     * Sets the diameter of the world border.
+     *
+     * <p>The specified diameter applies to the x and z axis. The world border
+     * extends over the entire y-axis.</p>
+     *
+     * @param diameter The diameter
+     */
+    void setWorldBorderDiameter(double diameter);
+
+    /**
+     * Get the time remaining until the world border stops expanding or
+     * contracting.
+     *
+     * @return The time remaining, in milliseconds
+     */
+    long getWorldBorderTimeRemaining();
+
+    /**
+     * Sets the time remaining until the world border stops expanding or
+     * contracting.
+     * 
+     * @param time The new remaining time
+     */
+    void setWorldBorderTimeRemaining(long time);
+
+    /**
+     * Gets the diameter the world border is expanding or contracting to.
+     *
+     * <p>This will return the same value as {@link #getWorldBorderDiameter}
+     * unless {@link #getWorldBorderTimeRemaining} is greater than 0.</p>
+     *
+     * @return The diameter being changed to
+     */
+    double getWorldBorderTargetDiameter();
+
+    /**
+     * Sets the target diameter of the world border.
+     *
+     * <p>The world border diameter increases/decrease linearly over time
+     * specified in {@link #getWorldBorderTimeRemaining()}. The specified
+     * diameter applies to the x and z axis. The world border extends over the
+     * entire y-axis.</p>
+     *
+     * @param diameter The diameter where the border will expand/contract to
+     * @param time The time over which to change, in milliseconds
+     */
+    void setWorldBorderTargetDiameter(double diameter);
+
+    /**
+     * Get the distance a player may be outside the world border before taking
+     * damage.
+     *
+     * @return The distance
+     */
+    double getWorldBorderDamageThreshold();
+
+    /**
+     * Set the distance a player may be be outside the world border before
+     * taking damage.
+     *
+     * @param distance The distance
+     */
+    void setWorldBorderDamageThreshold(double distance);
+
+    /**
+     * Get the damage done to a player per block per tick when outside the
+     * buffer.
+     *
+     * @return The damage amount
+     */
+    double getWorldBorderDamageAmount();
+
+    /**
+     * Set the damage done to a player per block per tick when outside the
+     * buffer.
+     *
+     * @param damage The damage amount
+     */
+    void setWorldBorderDamageAmount(double damage);
+
+    /**
+     * Get the time when a contracting world border will warn a player for whom
+     * the world border will reach in {@code time} seconds.
+     *
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
+     *
+     * @return The time, in seconds
+     */
+    int getWorldBorderWarningTime();
+
+    /**
+     * Set the time when a contracting world border will warn a player for whom
+     * the world border will reach in {@code time} seconds.
+     *
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
+     *
+     * @param time The time, in seconds
+     */
+    void setWorldBorderWarningTime(int time);
+
+    /**
+     * Get the distance when a contracting world border will warn a player for
+     * whom the world border is {@code distance} blocks away.
+     *
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
+     *
+     * @return The distance, in blocks
+     */
+    int getWorldBorderWarningDistance();
+
+    /**
+     * Set the distance when a contracting world border will warn a player for
+     * whom the world border is {@code distance} blocks away.
+     *
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
+     *
+     * @param distance The distance, in blocks
+     */
+    void setWorldBorderWarningDistance(int distance);
 
     /**
      * Gets the specified GameRule value.
