@@ -81,13 +81,13 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
     void setReplacementBlock(BlockState block);
 
     /**
-     * Gets the first {@link BlockState} within 
+     * Gets the first {@link BlockSnapshot} within 
      * {@link ChangeBlockEvent#getSnapshots()} that will be changed
      * to {@link ChangeBlockEvent#getReplacementBlock()}.
      *
-     * @return The BlockState
+     * @return The BlockSnapshot
      */
-    BlockState getTargetBlock();
+    BlockSnapshot getSnapshot();
 
     /**
      * Gets the first {@link Location<World>} within 

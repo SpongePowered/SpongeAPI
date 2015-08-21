@@ -22,31 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.plugin;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.WorldCreationSettings;
-import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.event.action.UnloadWorldEvent;
 
+import org.spongepowered.api.world.World;
 
 /**
- * An event for when a world has been created. Often paired with a
- * {@link WorldLoadEvent}, but that is not guaranteed.
+ * Called when a {@link PluginContainer} unloads a {@link World} level.
  */
-public interface WorldCreateEvent extends Event {
+public interface PluginUnloadWorldEvent extends UnloadWorldEvent {
 
-    /**
-     * Gets the properties of the newly created world.
-     * 
-     * @return The properties
-     */
-    WorldProperties getWorldProperties();
-    
-    /**
-     * Gets the {@link WorldCreationSettings} used to create the world.
-     * 
-     * @return The creation settings
-     */
-    WorldCreationSettings getWorldCreationSettings();
-    
 }

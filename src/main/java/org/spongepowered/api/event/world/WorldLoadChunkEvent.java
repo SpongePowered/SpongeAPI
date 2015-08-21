@@ -24,8 +24,13 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.action.LoadChunkEvent;
+import org.spongepowered.api.event.action.ChangeChunkEvent;
 
-public interface WorldLoadChunkEvent extends WorldChangeChunkEvent, LoadChunkEvent {
+import org.spongepowered.api.world.Chunk;
+
+/**
+ * Base event for when a {@link World} loads a {@link Chunk}.
+ */
+public interface WorldLoadChunkEvent extends WorldChangeChunkEvent, ChangeChunkEvent {
 
 }

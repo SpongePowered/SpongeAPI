@@ -22,10 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.event.action.ChangeBlockEvent;
+import org.spongepowered.api.event.GameEvent;
 
-public interface WorldChangeBlock extends WorldEvent, ChangeBlockEvent {
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.world.World;
+
+/**
+ * Called when a {@link World} is loaded.
+ */
+public interface LoadWorldEvent extends GameEvent, CauseTracked, Cancellable {
 
 }

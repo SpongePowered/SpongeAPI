@@ -22,10 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.plugin;
 
-import org.spongepowered.api.event.action.UnloadChunkEvent;
+import org.spongepowered.api.event.world.WorldEvent;
 
-public interface WorldUnloadEvent extends WorldChangeChunkEvent, UnloadChunkEvent {
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.service.world.ChunkLoadService;
 
+// NOTE: This does not extend WorldChangeChunkEvent as Chunk may not be currently loaded.
+public interface PluginUnforceChunkEvent extends WorldEvent {
+
+    /**
+     * Gets the ticket that the chunk was removed from.
+     *
+     * @return The ticket the chunk was removed from
+     */
+    ChunkLoadService.LoadingTicket getTicket();
+
+    /**
+     * Gets the removed chunk coordinates.
+     *
+     * @return The coordinated of the removed chunk
+     */
+    Vector3i getChunkCoords();
 }

@@ -22,15 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.event.action.ChangeChunkEvent;
+
+import org.spongepowered.api.world.Chunk;
 
 /**
- * Base event for when {@link BlockState}s at {@link Location <World>}s are
- * being broke.
+ * Called when a {@link Chunk} has just been generated.
  */
-public interface BreakBlockEvent extends ChangeBlockEvent {
+public interface WorldPostGenerateChunkEvent extends ChangeChunkEvent {
 
 }

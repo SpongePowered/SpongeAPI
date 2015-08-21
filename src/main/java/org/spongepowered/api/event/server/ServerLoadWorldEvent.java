@@ -22,23 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.server;
 
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.gen.Populator;
-
-import java.util.List;
+import org.spongepowered.api.event.action.LoadWorldEvent;
+import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Chunk} is about to be populated.
+ * Called when a {@link Server} loads a {@link World} level.
  */
-public interface ChunkPrePopulateEvent extends ChunkEvent {
-
-    /**
-     * Returns a mutable list of all pending populators.
-     *
-     * @return The populators
-     */
-    List<Populator> getPendingPopulators();
+public interface ServerLoadWorldEvent extends LoadWorldEvent, ServerEvent {
 
 }

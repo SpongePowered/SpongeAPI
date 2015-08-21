@@ -22,13 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.event.world.WorldEvent;
+import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
- * Called when a {@link Chunk} has just been generated.
+ * An event for when a world has been created. Often paired with a
+ * {@link LoadWorldEvent}, but that is not guaranteed.
  */
-public interface ChunkPostGenerateEvent extends ChunkEvent {
+public interface CreateWorldEvent extends WorldEvent {
 
+    /**
+     * Gets the properties of the newly created world.
+     * 
+     * @return The properties
+     */
+    WorldProperties getWorldProperties();
+    
+    /**
+     * Gets the {@link WorldCreationSettings} used to create the world.
+     * 
+     * @return The creation settings
+     */
+    WorldCreationSettings getWorldCreationSettings();
+    
 }

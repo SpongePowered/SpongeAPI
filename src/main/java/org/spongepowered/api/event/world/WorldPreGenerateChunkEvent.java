@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.event.action.ChangeChunkEvent;
+
 import org.spongepowered.api.world.Chunk;
 
 /**
- * Called when a {@link Chunk} is unloaded.
+ * Called when a {@link Chunk} is about to be generated.
  */
-public interface ChunkUnloadEvent extends ChunkEvent {
+public interface WorldPreGenerateChunkEvent extends ChangeChunkEvent {
 
 }

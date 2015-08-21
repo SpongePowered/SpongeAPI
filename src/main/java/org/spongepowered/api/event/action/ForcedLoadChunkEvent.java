@@ -22,13 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.world.Chunk;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.service.world.ChunkLoadService;
 
-/**
- * Called when a {@link Chunk} is about to be generated.
- */
-public interface ChunkPreGenerateEvent extends ChunkEvent {
+public interface ForcedLoadChunkEvent extends ChangeChunkEvent {
 
+    /**
+     * Gets the ticket that the chunk was removed from.
+     *
+     * @return The ticket the chunk was removed from
+     */
+    ChunkLoadService.LoadingTicket getTicket();
+
+    /**
+     * Gets the removed chunk coordinates.
+     *
+     * @return The coordinated of the removed chunk
+     */
+    Vector3i getChunkCoords();
 }

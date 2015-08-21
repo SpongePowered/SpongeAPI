@@ -22,13 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.plugin;
 
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.event.action.LoadWorldEvent;
+import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Chunk} has just been populated.
+ * Called when a {@link PluginContainer} loads a {@link World} level.
  */
-public interface ChunkPostPopulateEvent extends ChunkEvent {
+public interface PluginLoadWorldEvent extends LoadWorldEvent, PluginEvent {
 
 }

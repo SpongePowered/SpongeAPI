@@ -32,6 +32,6 @@ import org.spongepowered.api.world.explosion.Explosion;
  * <p>Marking this event as cancelled will stop all block and entity damage as well as
  * the explosion showing smoke.</p>
  */
-public interface WorldOnExplosionEvent extends WorldExplosionEvent, WorldChangeBlock {
+public interface WorldOnExplosionEvent extends WorldExplosionEvent, WorldChangeBlockEvent {
 
 }

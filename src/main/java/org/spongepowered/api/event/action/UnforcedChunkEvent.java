@@ -22,14 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 
-/**
- * Called when a {@link Game} loads a {@link World} level.
- */
-public interface WorldLoadEvent extends WorldEvent {
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.service.world.ChunkLoadService;
 
+// NOTE: This does not extend ChangeChunkEvent as Chunk may not be currently loaded.
+public interface UnforcedChunkEvent extends GameEvent, CauseTracked, Cancellable {
+
+    /**
+     * Gets the ticket that the chunk was removed from.
+     *
+     * @return The ticket the chunk was removed from
+     */
+    ChunkLoadService.LoadingTicket getTicket();
+
+    /**
+     * Gets the removed chunk coordinates.
+     *
+     * @return The coordinated of the removed chunk
+     */
+    Vector3i getChunkCoords();
 }

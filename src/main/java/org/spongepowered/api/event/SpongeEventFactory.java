@@ -24,36 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.event.entity.player.PlayerChangeSignEvent;
-
-import org.spongepowered.api.event.block.tileentity.FurnaceItemSmeltEvent;
-import org.spongepowered.api.event.block.tileentity.FurnaceFuelConsumeEvent;
-import org.spongepowered.api.event.entity.player.PlayerChangeStatisticEvent;
-import org.spongepowered.api.event.entity.player.PlayerPickupItemEvent;
-import org.spongepowered.api.event.entity.player.PlayerRetractFishingLineEvent;
-import org.spongepowered.api.event.entity.player.PlayerHookEntityEvent;
-import org.spongepowered.api.event.entity.player.PlayerCastFishingLineEvent;
-import org.spongepowered.api.event.entity.projectile.ProjectileLaunchEvent;
-import org.spongepowered.api.event.entity.EntityPickupItemEvent;
-import org.spongepowered.api.event.block.BlockSpreadBlockEvent;
-import org.spongepowered.api.event.entity.EntityCollideEntityEvent;
-import org.spongepowered.api.event.entity.EntityCollideBlockEvent;
-import org.spongepowered.api.event.entity.EntityCollideEvent;
-import org.spongepowered.api.event.entity.EntityBreedWithEntityEvent;
-import org.spongepowered.api.event.world.WorldDecayBlockEvent;
-import org.spongepowered.api.event.world.WorldGrowBlockEvent;
-import org.spongepowered.api.event.block.BlockUpdateBlockPowerEvent;
-import org.spongepowered.api.event.block.BlockUpdateNeighborBlockEvent;
-import org.spongepowered.api.event.world.WorldTickBlockEvent;
-import org.spongepowered.api.event.block.BlockPlaceBlockEvent;
-import org.spongepowered.api.event.block.BlockMoveBlockEvent;
-import org.spongepowered.api.event.block.BlockInteractBlockEvent;
-import org.spongepowered.api.event.block.BlockIgniteBlockEvent;
-import org.spongepowered.api.event.block.BlockHarvestBlockEvent;
-import org.spongepowered.api.event.block.BlockDispenseItemEvent;
-import org.spongepowered.api.event.block.BlockChangeBlockEvent;
-import org.spongepowered.api.event.block.BlockBurnBlockEvent;
-import org.spongepowered.api.event.block.BlockBreakBlockEvent;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
@@ -83,10 +53,34 @@ import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.entity.weather.Lightning;
+import org.spongepowered.api.event.action.CreateWorldEvent;
+import org.spongepowered.api.event.action.LoadChunkEvent;
+import org.spongepowered.api.event.action.LoadWorldEvent;
+import org.spongepowered.api.event.action.UnforcedChunkEvent;
+import org.spongepowered.api.event.action.UnloadChunkEvent;
+import org.spongepowered.api.event.action.UnloadWorldEvent;
+import org.spongepowered.api.event.block.BlockBreakBlockEvent;
+import org.spongepowered.api.event.block.BlockBurnBlockEvent;
+import org.spongepowered.api.event.block.BlockChangeBlockEvent;
+import org.spongepowered.api.event.block.BlockDispenseItemEvent;
+import org.spongepowered.api.event.block.BlockHarvestBlockEvent;
+import org.spongepowered.api.event.block.BlockIgniteBlockEvent;
+import org.spongepowered.api.event.block.BlockInteractBlockEvent;
+import org.spongepowered.api.event.block.BlockMoveBlockEvent;
+import org.spongepowered.api.event.block.BlockPlaceBlockEvent;
+import org.spongepowered.api.event.block.BlockSpreadBlockEvent;
+import org.spongepowered.api.event.block.BlockUpdateBlockPowerEvent;
+import org.spongepowered.api.event.block.BlockUpdateNeighborBlockEvent;
 import org.spongepowered.api.event.block.tileentity.BrewingStandBrewEvent;
+import org.spongepowered.api.event.block.tileentity.FurnaceFuelConsumeEvent;
+import org.spongepowered.api.event.block.tileentity.FurnaceItemSmeltEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.entity.EntityBreakBlockEvent;
+import org.spongepowered.api.event.entity.EntityBreedWithEntityEvent;
 import org.spongepowered.api.event.entity.EntityChangeBlockEvent;
+import org.spongepowered.api.event.entity.EntityCollideBlockEvent;
+import org.spongepowered.api.event.entity.EntityCollideEntityEvent;
+import org.spongepowered.api.event.entity.EntityCollideEvent;
 import org.spongepowered.api.event.entity.EntityConstructingEvent;
 import org.spongepowered.api.event.entity.EntityDeathEvent;
 import org.spongepowered.api.event.entity.EntityDismountEvent;
@@ -98,6 +92,7 @@ import org.spongepowered.api.event.entity.EntityInteractEntityEvent;
 import org.spongepowered.api.event.entity.EntityLeashEvent;
 import org.spongepowered.api.event.entity.EntityMountEvent;
 import org.spongepowered.api.event.entity.EntityMoveEvent;
+import org.spongepowered.api.event.entity.EntityPickupItemEvent;
 import org.spongepowered.api.event.entity.EntityPlaceBlockEvent;
 import org.spongepowered.api.event.entity.EntitySpawnEvent;
 import org.spongepowered.api.event.entity.EntityTameEvent;
@@ -105,54 +100,57 @@ import org.spongepowered.api.event.entity.EntityTeleportEvent;
 import org.spongepowered.api.event.entity.EntityUnleashEvent;
 import org.spongepowered.api.event.entity.EntityUpdateEvent;
 import org.spongepowered.api.event.entity.player.PlayerBreakBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerCastFishingLineEvent;
 import org.spongepowered.api.event.entity.player.PlayerChangeBlockEvent;
 import org.spongepowered.api.event.entity.player.PlayerChangeGameModeEvent;
+import org.spongepowered.api.event.entity.player.PlayerChangeSignEvent;
+import org.spongepowered.api.event.entity.player.PlayerChangeStatisticEvent;
 import org.spongepowered.api.event.entity.player.PlayerChangeWorldEvent;
 import org.spongepowered.api.event.entity.player.PlayerChatEvent;
 import org.spongepowered.api.event.entity.player.PlayerDeathEvent;
 import org.spongepowered.api.event.entity.player.PlayerDropItemEvent;
 import org.spongepowered.api.event.entity.player.PlayerHarvestBlockEvent;
+import org.spongepowered.api.event.entity.player.PlayerHookEntityEvent;
 import org.spongepowered.api.event.entity.player.PlayerInteractBlockEvent;
 import org.spongepowered.api.event.entity.player.PlayerInteractEntityEvent;
 import org.spongepowered.api.event.entity.player.PlayerJoinEvent;
 import org.spongepowered.api.event.entity.player.PlayerMoveEvent;
+import org.spongepowered.api.event.entity.player.PlayerPickupItemEvent;
 import org.spongepowered.api.event.entity.player.PlayerPlaceBlockEvent;
 import org.spongepowered.api.event.entity.player.PlayerQuitEvent;
 import org.spongepowered.api.event.entity.player.PlayerRespawnEvent;
+import org.spongepowered.api.event.entity.player.PlayerRetractFishingLineEvent;
 import org.spongepowered.api.event.entity.player.PlayerUpdateEvent;
+import org.spongepowered.api.event.entity.projectile.ProjectileLaunchEvent;
 import org.spongepowered.api.event.message.CommandEvent;
 import org.spongepowered.api.event.message.CommandSuggestionsEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.network.GameClientAuthEvent;
 import org.spongepowered.api.event.network.GameClientConnectEvent;
+import org.spongepowered.api.event.plugin.PluginForceChunkEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
 import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.event.state.StateEvent;
 import org.spongepowered.api.event.weather.LightningStrikeEvent;
 import org.spongepowered.api.event.weather.WeatherChangeEvent;
-import org.spongepowered.api.event.plugin.PluginForceLoadChunkEvent;
-import org.spongepowered.api.event.world.WorldLoadChunkEvent;
-import org.spongepowered.api.event.world.ChunkPostGenerateEvent;
-import org.spongepowered.api.event.world.ChunkPostPopulateEvent;
-import org.spongepowered.api.event.world.ChunkPreGenerateEvent;
-import org.spongepowered.api.event.world.ChunkPrePopulateEvent;
-import org.spongepowered.api.event.world.ChunkUnforcedEvent;
-import org.spongepowered.api.event.world.ChunkUnloadEvent;
 import org.spongepowered.api.event.world.GameRuleChangeEvent;
-import org.spongepowered.api.event.world.WorldCreateEvent;
+import org.spongepowered.api.event.world.WorldDecayBlockEvent;
 import org.spongepowered.api.event.world.WorldExplosionEvent;
-import org.spongepowered.api.event.world.WorldLoadEvent;
+import org.spongepowered.api.event.world.WorldGrowBlockEvent;
 import org.spongepowered.api.event.world.WorldOnExplosionEvent;
+import org.spongepowered.api.event.world.WorldPostGenerateChunkEvent;
+import org.spongepowered.api.event.world.WorldPostPopulateChunkEvent;
 import org.spongepowered.api.event.world.WorldPreExplosionEvent;
-import org.spongepowered.api.event.world.WorldUnloadEvent;
+import org.spongepowered.api.event.world.WorldPreGenerateChunkEvent;
+import org.spongepowered.api.event.world.WorldPrePopulateChunkEvent;
+import org.spongepowered.api.event.world.WorldTickBlockEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.TileEntityInventory;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
@@ -1610,121 +1608,121 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link PluginForceLoadChunkEvent}.
+     * Creates a new {@link PluginForceChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param ticket The ticket that will load the chunk
      * @param chunkCoords The coordinates of the chunk being added
      * @return A new instance of the event
      */
-    public static PluginForceLoadChunkEvent createChunkForced(Game game, LoadingTicket ticket, Vector3i chunkCoords) {
+    public static PluginForceChunkEvent createChunkForced(Game game, LoadingTicket ticket, Vector3i chunkCoords) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("ticket", ticket);
         values.put("chunkCoords", chunkCoords);
-        return createEvent(PluginForceLoadChunkEvent.class, values);
+        return createEvent(PluginForceChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link WorldLoadChunkEvent}.
+     * Creates a new {@link LoadChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static WorldLoadChunkEvent createChunkLoad(Game game, Chunk chunk) {
+    public static LoadChunkEvent createChunkLoad(Game game, Chunk chunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
-        return createEvent(WorldLoadChunkEvent.class, values);
+        return createEvent(LoadChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link ChunkPostGenerateEvent}.
+     * Creates a new {@link WorldPostGenerateChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static ChunkPostGenerateEvent createChunkPostGenerate(Game game, Chunk chunk) {
+    public static WorldPostGenerateChunkEvent createChunkPostGenerate(Game game, Chunk chunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
-        return createEvent(ChunkPostGenerateEvent.class, values);
+        return createEvent(WorldPostGenerateChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link ChunkPostPopulateEvent}.
+     * Creates a new {@link WorldPostPopulateChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static ChunkPostPopulateEvent createChunkPostPopulate(Game game, Chunk chunk) {
+    public static WorldPostPopulateChunkEvent createChunkPostPopulate(Game game, Chunk chunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
-        return createEvent(ChunkPostPopulateEvent.class, values);
+        return createEvent(WorldPostPopulateChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link ChunkPreGenerateEvent}.
+     * Creates a new {@link WorldPreGenerateChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static ChunkPreGenerateEvent createChunkPreGenerate(Game game, Chunk chunk) {
+    public static WorldPreGenerateChunkEvent createChunkPreGenerate(Game game, Chunk chunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
-        return createEvent(ChunkPreGenerateEvent.class, values);
+        return createEvent(WorldPreGenerateChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link ChunkPrePopulateEvent}.
+     * Creates a new {@link WorldPrePopulateChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @param pendingPopulators All populator's that will populate the chunk
      * @return A new instance of the event
      */
-    public static ChunkPrePopulateEvent createChunkPrePopulate(Game game, Chunk chunk, List<Populator> pendingPopulators) {
+    public static WorldPrePopulateChunkEvent createChunkPrePopulate(Game game, Chunk chunk, List<Populator> pendingPopulators) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
         values.put("pendingPopulators", pendingPopulators);
-        return createEvent(ChunkPrePopulateEvent.class, values);
+        return createEvent(WorldPrePopulateChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link ChunkUnforcedEvent}.
+     * Creates a new {@link UnforcedChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param ticket The ticket the chunk was removed from
      * @param chunkCoords The coordinates of the removed chunk*
      * @return A new instance of the event
      */
-    public static ChunkUnforcedEvent createChunkUnforced(Game game, LoadingTicket ticket, Vector3i chunkCoords) {
+    public static UnforcedChunkEvent createChunkUnforced(Game game, LoadingTicket ticket, Vector3i chunkCoords) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("ticket", ticket);
         values.put("chunkCoords", chunkCoords);
-        return createEvent(ChunkUnforcedEvent.class, values);
+        return createEvent(UnforcedChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link ChunkUnloadEvent}.
+     * Creates a new {@link UnloadChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static ChunkUnloadEvent createChunkUnload(Game game, Chunk chunk) {
+    public static UnloadChunkEvent createChunkUnload(Game game, Chunk chunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
-        return createEvent(ChunkUnloadEvent.class, values);
+        return createEvent(UnloadChunkEvent.class, values);
     }
 
     /**
@@ -1748,47 +1746,47 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link WorldCreateEvent}.
+     * Creates a new {@link CreateWorldEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param properties The properties of the new world
      * @param settings The creation settings
      * @return A new instance of the event
      */
-    public static WorldCreateEvent createWorldCreate(Game game, WorldProperties properties, WorldCreationSettings settings) {
+    public static CreateWorldEvent createWorldCreate(Game game, WorldProperties properties, WorldCreationSettings settings) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("worldProperties", properties);
         values.put("worldCreationSettings", settings);
-        return createEvent(WorldCreateEvent.class, values);
+        return createEvent(CreateWorldEvent.class, values);
     }
 
     /**
-     * Creates a new {@link WorldLoadEvent}.
+     * Creates a new {@link LoadWorldEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param world The world involved in this event
      * @return A new instance of the event
      */
-    public static WorldLoadEvent createWorldLoad(Game game, World world) {
+    public static LoadWorldEvent createWorldLoad(Game game, World world) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("world", world);
-        return createEvent(WorldLoadEvent.class, values);
+        return createEvent(LoadWorldEvent.class, values);
     }
 
     /**
-     * Creates a new {@link WorldUnloadEvent}.
+     * Creates a new {@link UnloadWorldEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param world The world involved in this event
      * @return A new instance of the event
      */
-    public static WorldUnloadEvent createWorldUnload(Game game, World world) {
+    public static UnloadWorldEvent createWorldUnload(Game game, World world) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("world", world);
-        return createEvent(WorldUnloadEvent.class, values);
+        return createEvent(UnloadWorldEvent.class, values);
     }
 
     /**

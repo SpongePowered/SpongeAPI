@@ -24,24 +24,23 @@
  */
 package org.spongepowered.api.event.world;
 
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.service.world.ChunkLoadService;
+import org.spongepowered.api.event.action.ChangeChunkEvent;
 
-// NOTE: This does not extend ChunkEvent as Chunk may not be currently loaded.
-public interface ChunkUnforcedEvent extends Event {
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.gen.Populator;
 
-    /**
-     * Gets the ticket that the chunk was removed from.
-     *
-     * @return The ticket the chunk was removed from
-     */
-    ChunkLoadService.LoadingTicket getTicket();
+import java.util.List;
+
+/**
+ * Called when a {@link Chunk} is about to be populated.
+ */
+public interface WorldPrePopulateChunkEvent extends ChangeChunkEvent {
 
     /**
-     * Gets the removed chunk coordinates.
+     * Returns a mutable list of all pending populators.
      *
-     * @return The coordinated of the removed chunk
+     * @return The populators
      */
-    Vector3i getChunkCoords();
+    List<Populator> getPendingPopulators();
+
 }

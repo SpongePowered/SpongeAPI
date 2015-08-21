@@ -29,7 +29,6 @@ import org.spongepowered.api.world.World;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.action.ChangeBlockEvent;
-
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 

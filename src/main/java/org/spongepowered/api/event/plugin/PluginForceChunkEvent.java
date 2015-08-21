@@ -31,10 +31,10 @@ import org.spongepowered.api.service.world.ChunkLoadService;
 
 /**
  * Represents a {@link org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket}
- * forcing a chunk to load into the world. Note that the loading ticket may
+ * forcing a chunk to stay loaded in the world. Note that the loading ticket may
  * have not finished so the chunk may not have finished loading yet.
  */
-public interface PluginForceLoadChunkEvent extends PluginEvent, CauseTracked, Cancellable {
+public interface PluginForceChunkEvent extends PluginEvent, CauseTracked, Cancellable {
 
     /**
      * Gets the ticket that the chunk was added to.
