@@ -37,5 +37,5 @@ public interface InteractEntityEvent extends InteractEvent {
      *
      * @return The entity
      */
-    Entity getTarget();
+    Entity getTargetEntity();
 }

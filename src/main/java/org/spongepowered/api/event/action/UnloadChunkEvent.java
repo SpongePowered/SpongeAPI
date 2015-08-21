@@ -22,16 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.world.explosion.Explosion;
-
-/**
- * Called once an {@link Explosion} has a list of affected locations and entities.
- *
- * <p>Marking this event as cancelled will stop all block and entity damage as well as
- * the explosion showing smoke.</p>
- */
-public interface WorldOnExplosionEvent extends WorldExplosionEvent, WorldChangeBlock {
+public interface UnloadChunkEvent extends ChangeChunkEvent {
 
 }

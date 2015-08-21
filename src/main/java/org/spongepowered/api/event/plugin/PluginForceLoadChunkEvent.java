@@ -22,16 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.plugin;
 
-import org.spongepowered.api.world.explosion.Explosion;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.service.world.ChunkLoadService;
 
 /**
- * Called once an {@link Explosion} has a list of affected locations and entities.
- *
- * <p>Marking this event as cancelled will stop all block and entity damage as well as
- * the explosion showing smoke.</p>
+ * Represents a {@link org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket}
+ * forcing a chunk to load into the world. Note that the loading ticket may
+ * have not finished so the chunk may not have finished loading yet.
  */
-public interface WorldOnExplosionEvent extends WorldExplosionEvent, WorldChangeBlock {
+public interface PluginForceLoadChunkEvent extends PluginEvent, CauseTracked, Cancellable {
 
+    /**
+     * Gets the ticket that the chunk was added to.
+     *
+     * @return The ticket the chunk was added to
+     */
+    ChunkLoadService.LoadingTicket getTicket();
+
+    /**
+     * Gets the added chunk coordinates.
+     *
+     * @return The coordinated of the added chunk
+     */
+    Vector3i getChunkCoords();
 }

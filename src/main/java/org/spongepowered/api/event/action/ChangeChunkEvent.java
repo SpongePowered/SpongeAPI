@@ -22,16 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.world.Chunk;
 
 /**
- * Called once an {@link Explosion} has a list of affected locations and entities.
- *
- * <p>Marking this event as cancelled will stop all block and entity damage as well as
- * the explosion showing smoke.</p>
+ * Base event for all changes involving a {@link Chunk}.
  */
-public interface WorldOnExplosionEvent extends WorldExplosionEvent, WorldChangeBlock {
+public interface ChangeChunkEvent extends GameEvent, CauseTracked {
 
+    /**
+     * Gets the {@link Chunk} being changed.
+     *
+     * @return The Chunk
+     */
+    Chunk getTargetChunk();
 }

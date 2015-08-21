@@ -25,15 +25,16 @@
 package org.spongepowered.api.event.action;
 
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * Base event for when {@link BlockState}s at {@link Location<World>}s are being
@@ -42,25 +43,22 @@ import java.util.Map;
 public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets a mutable copy of the original {@link Location<World>}s with their 
-     * {@link BlockState}s being changed.
+     * Gets an {@link ImmutableList<BlockSnapshot>} of the block data un-affected by event changes.
      *
-     * @return The original map
+     * @return The ImmutableList
      */
-    Map<Location<World>, BlockState> getOriginalTargetBlocks();
+    ImmutableList<BlockSnapshot> getSnapshots();
 
     /**
-     * Gets the mutable map of {@link Location<World>}s with their 
-     * {@link BlockState}s that will be affected by the change dictated
-     * in {@link ChangeBlockEvent#getReplacementBlock()} after event resolution.
+     * Gets the {@link List<Location<World>>} who will be affected after event resolution.
      *
-     * @return The map
+     * @return The List
      */
-    Map<Location<World>, BlockState> getTargetBlocks();
+    List<Location<World>> getLocations();
 
     /**
      * Gets the original {@link BlockState} that will replace the BlockStates in 
-     * {@link ChangeBlockEvent#getTargetBlocks()} unaffected by event changes.
+     * {@link ChangeBlockEvent#getSnapshots()} unaffected by event changes.
      *
      * @return The original replacement BlockState
      */
@@ -68,7 +66,7 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
      * Gets the {@link BlockState} that will replace the BlockStates in 
-     * {@link ChangeBlockEvent#getTargetBlocks()} after event resolution.
+     * {@link ChangeBlockEvent#getLocations()} after event resolution.
      *
      * @return The replacement BlockState
      */
@@ -76,7 +74,7 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
      * Sets the {@link BlockState} that will replace the BlockStates in 
-     * {@link ChangeBlockEvent#getTargetBlocks()} after event resolution.
+     * {@link ChangeBlockEvent#getLocations()} after event resolution.
      *
      * @param block The BlockState
      */
@@ -84,46 +82,28 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
      * Gets the first {@link BlockState} within 
-     * {@link ChangeBlockEvent#getOriginalTargetBlocks()} that will be changed 
+     * {@link ChangeBlockEvent#getSnapshots()} that will be changed
      * to {@link ChangeBlockEvent#getReplacementBlock()}.
      *
      * @return The BlockState
      */
-    BlockState getFirstTargetBlock();
+    BlockState getTargetBlock();
 
     /**
      * Gets the first {@link Location<World>} within 
-     * {@link ChangeBlockEvent#getOriginalTargetBlocks()} being changed.
+     * {@link ChangeBlockEvent#getSnapshots()} being changed.
      *
      * @return The Location
      */
-    Location<World> getFirstTargetLocation();
+    Location<World> getTargetLocation();
 
     /**
      * Filters out {@link Location<World>}'s from 
-     * {@link ChangeBlockEvent#getTargetBlocks()} to be affected by this event.
+     * {@link ChangeBlockEvent#getLocations()} to be affected by this event.
      *
      * @param predicate The predicate to use for filtering
-     * @return The filtered map
+     * @return The filtered list
      */
-    Map<Location<World>, BlockState> filterLocations(Predicate<Location<World>> predicate);
+    List<Location<World>> filterBlockLocations(Predicate<Location<World>> predicate);
 
-    /**
-     * Filters out {@link BlockState}'s from 
-     * {@link ChangeBlockEvent#getTargetBlocks()} to be affected by this event.
-     *
-     * @param predicate The predicate to use for filtering
-     * @return The filtered map
-     */
-    Map<Location<World>, BlockState> filterBlocks(Predicate<BlockState> predicate);
-
-    /**
-     * Filters out {@link BlockState}'s based on their {@link BlockType} from 
-     * {@link ChangeBlockEvent#getTargetBlocks()} to
-     * be affected by this event.
-     *
-     * @param predicate The predicate to use for filtering
-     * @return The filtered map
-     */
-    Map<Location<World>, BlockState> filterBlockTypes(Predicate<BlockType> predicate);
 }

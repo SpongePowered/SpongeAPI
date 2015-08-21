@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.world.World;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
@@ -42,7 +43,7 @@ public interface BlockUpdateNeighborBlockEvent extends ChangeBlockEvent {
 
     /**
      * Gets a mutable copy of the original {@link Map} containing the {@link 
-     * Direction} (face) and {@link Location} relative from {@link 
+     * Direction} (face) and {@link BlockSnapshot} relative from {@link
      * BlockEvent#getLocation()} unaffected by event changes.
      *
      * <p>ie. If the {@link BlockEvent#getBlock()} is redstone and is providing 
@@ -54,7 +55,7 @@ public interface BlockUpdateNeighborBlockEvent extends ChangeBlockEvent {
      *
      * @return The map
      */
-    Map<Direction, Location<World>> getOriginalRelatives();
+    Map<Direction, BlockSnapshot> getSnapshotRelatives();
 
     /**
      * Gets a mutable {@link Map} containing the {@link Direction} (face) and 

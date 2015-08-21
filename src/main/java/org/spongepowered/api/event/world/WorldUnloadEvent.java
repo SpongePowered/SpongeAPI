@@ -24,12 +24,8 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.action.UnloadChunkEvent;
 
-/**
- * Called when a {@link Game} unloads a {@link World} level.
- */
-public interface WorldUnloadEvent extends WorldEvent {
+public interface WorldUnloadEvent extends WorldChangeChunkEvent, UnloadChunkEvent {
 
 }

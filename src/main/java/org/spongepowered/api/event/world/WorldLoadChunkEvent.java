@@ -24,14 +24,8 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.event.action.LoadChunkEvent;
 
-/**
- * Called once an {@link Explosion} has a list of affected locations and entities.
- *
- * <p>Marking this event as cancelled will stop all block and entity damage as well as
- * the explosion showing smoke.</p>
- */
-public interface WorldOnExplosionEvent extends WorldExplosionEvent, WorldChangeBlock {
+public interface WorldLoadChunkEvent extends WorldChangeChunkEvent, LoadChunkEvent {
 
 }

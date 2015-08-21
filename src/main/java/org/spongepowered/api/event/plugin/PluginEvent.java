@@ -22,13 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.plugin;
 
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.plugin.PluginContainer;
 
 /**
- * Called when a {@link Chunk} is loaded in an existing {@link org.spongepowered.api.world.World} map
+ * Base event where a {@link PluginContainer} is the source.
  */
-public interface ChunkLoadEvent extends ChunkEvent {
+public interface PluginEvent extends GameEvent {
 
+    /**
+     * Gets the {@link PluginContainer} who caused this event.
+     *
+     * @return The PluginContainer
+     */
+    PluginContainer getPlugin();
 }

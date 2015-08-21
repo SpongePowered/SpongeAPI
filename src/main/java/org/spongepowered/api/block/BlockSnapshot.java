@@ -25,58 +25,34 @@
 package org.spongepowered.api.block;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.util.annotation.TransformWith;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.world.World;
+
+import java.util.UUID;
 
 /**
- * A mutable complete representation of a block type and its associated data. Any changes made to the snapshot do not
- * reflect back on the block type and data that this snapshot came from.
- *
- * <p>A block snapshot contains block type, block properties (state), as
- * well as extra block data.</p>
- *
- * @see Location
+ * An immutable representation of a {@link BlockState} and its {@link Vector3i} coordinates.
  */
-public interface BlockSnapshot extends DataSerializable {
+public interface BlockSnapshot extends ImmutableDataHolder<BlockSnapshot> {
 
     /**
-     * Get the block state for this snapshot.
+     * Gets the {@link UUID} of the {@link World} where this snapshot was created from.
      *
-     * @return The stored block state
+     * @return The UUID
+     */
+    UUID getWorldUniqueId();
+
+    /**
+     * Gets the {@link BlockState}.
+     *
+     * @return The BlockState
      */
     BlockState getState();
 
     /**
-     * Sets the {@link BlockState} for this {@link BlockSnapshot}.
+     * Gets the position from which the {@link BlockState} came from (as a {@link Vector3i}).
      *
-     * @param blockState The block state to set
+     * @return The position
      */
-    void setBlockState(BlockState blockState);
-
-    /**
-     * Gets the {@link Vector3i} of this {@link BlockSnapshot}. The vector and
-     * this snapshot may be out of sync with regards to actual data at the
-     * vector, however, the {@link BlockState} remains immutable.
-     *
-     * @return The vector location of this snapshot
-     */
-    Vector3i getLocation();
-
-    /**
-     * Sets the {@link Vector3i} location of this {@link BlockSnapshot} that
-     * can be applied to {@link Extent}s.
-     *
-     * @param location The vector location to set
-     */
-    void setLocation(Vector3i location);
-
-    /**
-     * Copies the snapshot.
-     * @return The copied snapshot
-     */
-    @TransformWith
-    BlockSnapshot copy();
-
+    Vector3i getPosition();
 }

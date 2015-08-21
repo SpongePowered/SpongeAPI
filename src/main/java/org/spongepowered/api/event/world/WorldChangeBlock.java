@@ -24,19 +24,8 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.event.action.ChangeBlockEvent;
 
-/**
- * Describes events which involve a {@link Chunk}.
- */
-public interface ChunkEvent extends GameEvent {
-
-    /**
-     * Gets the {@link Chunk} included in the event.
-     *
-     * @return The {@link Chunk} in this event
-     */
-    Chunk getChunk();
+public interface WorldChangeBlock extends WorldEvent, ChangeBlockEvent {
 
 }

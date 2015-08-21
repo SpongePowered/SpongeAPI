@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.action.ChangeBlockEvent;
+import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link World} is about to grow a block because it would have
@@ -38,6 +38,6 @@ import org.spongepowered.api.event.action.ChangeBlockEvent;
  *     <li>The change in state of a wheat block because it grew.</li>
  * </ul>
  */
-public interface WorldGrowBlockEvent extends ChangeBlockEvent, WorldEvent {
+public interface WorldGrowBlockEvent extends WorldChangeBlock {
 
 }

@@ -28,6 +28,8 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
+import org.spongepowered.api.block.BlockSnapshotBuilder;
+import org.spongepowered.api.block.BlockStateBuilder;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
@@ -37,6 +39,7 @@ import org.spongepowered.api.data.value.ValueBuilder;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
+import org.spongepowered.api.entity.EntitySnapshotBuilder;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.item.FireworkEffectBuilder;
@@ -64,10 +67,10 @@ import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.explosion.ExplosionBuilder;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.explosion.ExplosionBuilder;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.extent.ExtentBufferFactory;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
@@ -137,6 +140,27 @@ public interface GameRegistry {
      * @return The builder, if available
      */
     <T> Optional<T> createBuilderOfType(Class<T> builderClass);
+
+    /**
+     * Gets an {@link BlockStateBuilder}.
+     *
+     * @return The BlockStateBuilder
+     */
+    BlockStateBuilder createBlockStateBuilder();
+
+    /**
+     * Gets an {@link BlockSnapshotBuilder}.
+     *
+     * @return The BlockSnapshotBuilder
+     */
+    BlockSnapshotBuilder createBlockSnapshotBuilder();
+
+    /**
+     * Gets an {@link EntitySnapshotBuilder}.
+     *
+     * @return The EntitySnapshotBuilder
+     */
+    EntitySnapshotBuilder createEntitySnapshotBuilder();
 
     /**
      * Get an item stack builder.

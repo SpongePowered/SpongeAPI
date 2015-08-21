@@ -22,30 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.entity;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.service.world.ChunkLoadService;
+import com.google.common.base.Optional;
+import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.world.World;
 
-/**
- * Represents a {@link org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket}
- * forcing a chunk to load into the world. Note that the loading ticket may
- * have not finished so the chunk may not have finished loading yet.
- */
-public interface ChunkForcedEvent extends Event {
+import java.util.UUID;
+
+public interface EntitySnapshot extends ImmutableDataHolder<EntitySnapshot> {
 
     /**
-     * Gets the ticket that the chunk was added to.
+     * Gets the {@link UUID} of a {@link World} where this snapshot was created from.
      *
-     * @return The ticket the chunk was added to
+     * @return The World UUID
      */
-    ChunkLoadService.LoadingTicket getTicket();
+    UUID getWorldUniqueId();
 
     /**
-     * Gets the added chunk coordinates.
+     * Gets an {@link Optional} containing the {@link UUID}.
      *
-     * @return The coordinated of the added chunk
+     * <p>
+     *     A value of {@link Optional#absent()} means the UUID cannot be found. This means
+     *     this snapshot was made from {@link EntitySnapshotBuilder} without an {@link Entity}
+     *     as a source.
+     * </p>
+     *
+     * @return The Optional where the UUID may be present
      */
-    Vector3i getChunkCoords();
+    Optional<UUID> getUniqueId();
+
+    /**
+     * Gets the {@link EntityType}.
+     *
+     * @return The EntityType
+     */
+    EntityType getType();
+
+    /**
+     * Gets the position from which the {@link Entity} was at when snapshot (as {@link Vector3i}).
+     *
+     * @return The coordinates as a Vector3i
+     */
+    Vector3i getPosition();
+
+
 }

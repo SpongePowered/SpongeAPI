@@ -131,8 +131,8 @@ import org.spongepowered.api.event.server.StatusPingEvent;
 import org.spongepowered.api.event.state.StateEvent;
 import org.spongepowered.api.event.weather.LightningStrikeEvent;
 import org.spongepowered.api.event.weather.WeatherChangeEvent;
-import org.spongepowered.api.event.world.ChunkForcedEvent;
-import org.spongepowered.api.event.world.ChunkLoadEvent;
+import org.spongepowered.api.event.plugin.PluginForceLoadChunkEvent;
+import org.spongepowered.api.event.world.WorldLoadChunkEvent;
 import org.spongepowered.api.event.world.ChunkPostGenerateEvent;
 import org.spongepowered.api.event.world.ChunkPostPopulateEvent;
 import org.spongepowered.api.event.world.ChunkPreGenerateEvent;
@@ -1610,33 +1610,33 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link ChunkForcedEvent}.
+     * Creates a new {@link PluginForceLoadChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param ticket The ticket that will load the chunk
      * @param chunkCoords The coordinates of the chunk being added
      * @return A new instance of the event
      */
-    public static ChunkForcedEvent createChunkForced(Game game, LoadingTicket ticket, Vector3i chunkCoords) {
+    public static PluginForceLoadChunkEvent createChunkForced(Game game, LoadingTicket ticket, Vector3i chunkCoords) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("ticket", ticket);
         values.put("chunkCoords", chunkCoords);
-        return createEvent(ChunkForcedEvent.class, values);
+        return createEvent(PluginForceLoadChunkEvent.class, values);
     }
 
     /**
-     * Creates a new {@link ChunkLoadEvent}.
+     * Creates a new {@link WorldLoadChunkEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static ChunkLoadEvent createChunkLoad(Game game, Chunk chunk) {
+    public static WorldLoadChunkEvent createChunkLoad(Game game, Chunk chunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
-        return createEvent(ChunkLoadEvent.class, values);
+        return createEvent(WorldLoadChunkEvent.class, values);
     }
 
     /**

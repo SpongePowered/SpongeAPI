@@ -26,9 +26,10 @@ package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
- * Base event for all "use" interactions involving a {@link BlockState} at a {@link Location}.
+ * Base event for all "use" interactions involving a {@link BlockState} at a {@link Location<World>}.
  */
 public interface UseBlockEvent extends InteractBlockEvent {
 
