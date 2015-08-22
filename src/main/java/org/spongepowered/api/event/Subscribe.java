@@ -58,4 +58,13 @@ public @interface Subscribe {
      */
     boolean ignoreCancelled() default true;
 
+    /**
+     * Whether this handler should be called before any other server mods, such
+     * as Forge mods. All Sponge event handlers are called after mods, unless
+     * they specify the {@link #beforeModifications()} flag to be true.
+     *
+     * @return If the handler should be fired before other server mods
+     */
+    boolean beforeModifications() default false;
+
 }

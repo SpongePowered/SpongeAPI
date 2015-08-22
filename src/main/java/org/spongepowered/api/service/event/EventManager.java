@@ -81,6 +81,25 @@ public interface EventManager {
     <T extends Event> void register(Object plugin, Class<T> eventClass, Order order, EventHandler<? super T> handler);
 
     /**
+     * Registers an event handler with the specified order for a specific event
+     * class.
+     *
+     * <p>Normally, the annotation-based way in
+     * {@link #register(Object, Object)} should be preferred over this way. This
+     * method exists primarily to support dynamic event registration like needed
+     * in scripting plugins.</p>
+     *
+     * @param plugin The plugin instance
+     * @param eventClass The event to listen to
+     * @param order The order the handler will get called at
+     * @param beforeModifications Whether to call the handler before other server modifications
+     * @param handler The handler to receive the events
+     * @param <T> The type of the event
+     */
+    <T extends Event> void register(Object plugin, Class<T> eventClass, Order order, boolean beforeModifications,
+                                    EventHandler<? super T> handler);
+
+    /**
      * Un-registers an object from receiving {@link Event}s.
      *
      * @param obj The object
