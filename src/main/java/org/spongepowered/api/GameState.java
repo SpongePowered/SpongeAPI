@@ -84,5 +84,7 @@ public enum GameState {
      * The server has stopped saving and no players are connected. Any changes
      * to the worlds are not saved.
      */
-    SERVER_STOPPED
+    SERVER_STOPPED,
+    ;
+
 }

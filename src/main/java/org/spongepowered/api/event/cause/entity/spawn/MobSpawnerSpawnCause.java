@@ -26,7 +26,7 @@ package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
 
-public interface MobSpawnerSpawnCause extends SpawnCause {
+public interface MobSpawnerSpawnCause extends BlockSpawnCause {
 
     ImmutableMobSpawnerData getMobSpawnerData();
 

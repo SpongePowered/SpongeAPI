@@ -26,10 +26,10 @@ package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.entity.EntitySpawnEvent;
+import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
 
 /**
- * Represents a specific cause for an {@link EntitySpawnEvent} such that
+ * Represents a specific cause for an {@link SpawnEntityEvent} such that
  * the cause has more information relevant to the "reason" for an entity spawn,
  * such as {@link MobSpawnerSpawnCause} linking to the {@link MobSpawnerData}
  * related to spawning the {@link Entity}.

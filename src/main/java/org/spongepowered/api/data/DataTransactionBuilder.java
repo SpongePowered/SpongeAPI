@@ -27,23 +27,21 @@ package org.spongepowered.api.data;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.event.data.ValueChangeEvent;
+import org.spongepowered.api.event.target.data.ChangeDataHolderValueEvent;
 
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.Nullable;
 
 /**
  * A type of builder for building {@link DataTransactionResult}s. The common
  * use is for both implementations of {@link DataHolder}s, and various
- * {@link ValueChangeEvent}s.
+ * {@link ChangeDataHolderValueEvent}s.
  */
 public final class DataTransactionBuilder {
 

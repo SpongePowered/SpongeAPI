@@ -47,6 +47,12 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSourceBuilde
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSourceBuilder;
 import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSourceBuilder;
 import org.spongepowered.api.event.cause.entity.damage.source.ProjectileDamageSourceBuilder;
+import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCauseBuilder;
+import org.spongepowered.api.event.cause.entity.spawn.BreedingSpawnCauseBuilder;
+import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCauseBuilder;
+import org.spongepowered.api.event.cause.entity.spawn.MobSpawnerSpawnCauseBuilder;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnCauseBuilder;
+import org.spongepowered.api.event.cause.entity.spawn.WeatherSpawnCauseBuilder;
 import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
@@ -573,5 +579,17 @@ public interface GameRegistry {
     FallingBlockDamageSourceBuilder createFallingBlockDamageSourceBuilder();
 
     ProjectileDamageSourceBuilder createProjectileDamageSourceBuilder();
+
+    SpawnCauseBuilder createSpawnCauseBuilder();
+
+    BlockSpawnCauseBuilder createBlockSpawnCauseBuilder();
+
+    EntitySpawnCauseBuilder createEntitySpawnCauseBuilder();
+
+    BreedingSpawnCauseBuilder createBreedingSpawnCauseBuilder();
+
+    MobSpawnerSpawnCauseBuilder createMobSpawnerSpawnCauseBuilder();
+
+    WeatherSpawnCauseBuilder createWeatherSpawnCauseBuilder();
 
 }

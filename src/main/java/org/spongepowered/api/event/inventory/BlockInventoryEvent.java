@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.event.block.BlockEvent;
+import org.spongepowered.api.event.source.block.BlockEvent;
 
 /**
  * Represents an InventoryEvent that involves a Block as a carrier.

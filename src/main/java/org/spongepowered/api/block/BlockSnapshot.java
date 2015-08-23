@@ -25,22 +25,18 @@
 package org.spongepowered.api.block;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.world.World;
 
 import java.util.UUID;
 
 /**
- * An immutable representation of a {@link BlockState} and its {@link Vector3i} coordinates.
+ * An immutable representation of a {@link BlockState} and any extra data that
+ * may be associated with it, including {@link TileEntity} related data..
  */
-public interface BlockSnapshot extends ImmutableDataHolder<BlockSnapshot> {
-
-    /**
-     * Gets the {@link UUID} of the {@link World} where this snapshot was created from.
-     *
-     * @return The UUID
-     */
-    UUID getWorldUniqueId();
+public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
 
     /**
      * Gets the {@link BlockState}.
@@ -50,9 +46,11 @@ public interface BlockSnapshot extends ImmutableDataHolder<BlockSnapshot> {
     BlockState getState();
 
     /**
-     * Gets the position from which the {@link BlockState} came from (as a {@link Vector3i}).
+     * Creates a new {@link BlockSnapshot} with the provided {@link BlockState}
      *
-     * @return The position
+     * @param blockState
+     * @return
      */
-    Vector3i getPosition();
+    BlockSnapshot setState(BlockState blockState);
+
 }

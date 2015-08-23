@@ -33,8 +33,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
-import org.spongepowered.api.event.action.DamageEntityEvent;
-import org.spongepowered.api.event.entity.EntitySpawnEvent;
+import org.spongepowered.api.event.target.entity.DamageEntityEvent;
+import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
 
 import java.util.Arrays;
 
@@ -81,7 +81,7 @@ public abstract class Cause {
      * <p>Usually, in most cases, some {@link Event}s will have "helper"
      * objects to interface with their direct causes, such as
      * {@link DamageSource} for an {@link DamageEntityEvent}, or a
-     * {@link SpawnCause} for an {@link EntitySpawnEvent}.</p>
+     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
      *
      * @param objects The objects being the cause
      * @return

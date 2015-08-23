@@ -24,13 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.block.BlockSnapshot;
 
 public interface BlockSpawnCause extends SpawnCause {
 
-    Location getLocation();
-
-    BlockState getBlockState();
+    BlockSnapshot getBlockSnapshot();
 
 }

@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 
 /**
  * A {@link SpawnCause} that involves two entities that "mate" to breed a new
@@ -32,6 +33,6 @@ import org.spongepowered.api.entity.Entity;
  */
 public interface BreedingSpawnCause extends EntitySpawnCause {
 
-    Entity getMate();
+    EntitySnapshot getMate();
 
 }

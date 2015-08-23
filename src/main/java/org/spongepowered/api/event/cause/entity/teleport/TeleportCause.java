@@ -26,10 +26,10 @@ package org.spongepowered.api.event.cause.entity.teleport;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.Enderman;
-import org.spongepowered.api.event.entity.EntityTeleportEvent;
+import org.spongepowered.api.event.target.entity.TeleportEntityEvent;
 
 /**
- * Represents a cause for a {@link EntityTeleportEvent} such that there is an
+ * Represents a cause for a {@link TeleportEntityEvent} such that there is an
  * associated {@link TeleportType} and possibly, an object associated with the
  * type.
  *

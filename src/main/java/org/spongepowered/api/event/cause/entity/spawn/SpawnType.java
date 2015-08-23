@@ -25,8 +25,9 @@
 package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-
+@CatalogedBy(SpawnTypes.class)
 public interface SpawnType extends CatalogType {
 
 }

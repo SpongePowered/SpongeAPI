@@ -42,5 +42,6 @@ public final class SpawnTypes {
     public static final SpawnType STRUCTURE = null;
     public static final SpawnType TNT_IGNITE = null;
     public static final SpawnType WEATHER = null;
+    public static final SpawnType CUSTOM = null;
 
 }

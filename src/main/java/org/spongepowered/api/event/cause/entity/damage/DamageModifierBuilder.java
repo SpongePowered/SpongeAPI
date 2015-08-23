@@ -29,11 +29,6 @@ import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSource;
-import org.spongepowered.api.item.Enchantment;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.potion.PotionEffect;
-import org.spongepowered.api.potion.PotionEffectTypes;
 
 /**
  * An index of known vanilla {@link DamageModifier}s that can be applied by

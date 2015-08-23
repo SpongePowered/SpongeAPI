@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 
 public interface EntitySpawnCause extends SpawnCause {
 
-    Entity getEntity();
+    EntitySnapshot getEntity();
 
 }

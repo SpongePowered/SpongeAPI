@@ -25,10 +25,8 @@
 package org.spongepowered.api.event.cause.entity.damage;
 
 import com.google.common.base.Function;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a modifier that will apply a function on a damage value to

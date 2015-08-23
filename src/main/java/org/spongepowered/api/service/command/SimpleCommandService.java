@@ -38,8 +38,8 @@ import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventFactory;
-import org.spongepowered.api.event.message.CommandEvent;
-import org.spongepowered.api.event.message.CommandSuggestionsEvent;
+import org.spongepowered.api.event.source.command.SendCommandEvent;
+import org.spongepowered.api.event.source.command.TabCompleteCommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
@@ -238,7 +238,7 @@ public class SimpleCommandService implements CommandService {
     @Override
     public CommandResult process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final CommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit.length > 1 ? argSplit[1] : "", source, argSplit[0],
+        final SendCommandEvent event = SpongeEventFactory.createCommand(this.game, argSplit.length > 1 ? argSplit[1] : "", source, argSplit[0],
                 CommandResult.empty());
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
@@ -296,13 +296,13 @@ public class SimpleCommandService implements CommandService {
         try {
             final String[] argSplit = arguments.split(" ", 2);
             List<String> suggestions = new ArrayList<String>(this.dispatcher.getSuggestions(src, arguments));
-            final CommandSuggestionsEvent event = SpongeEventFactory.createCommandSuggestions(this.game, argSplit.length > 1 ? argSplit[1] : "", src,
+            final TabCompleteCommandEvent event = SpongeEventFactory.createCommandSuggestions(this.game, argSplit.length > 1 ? argSplit[1] : "", src,
                     argSplit[0], suggestions);
             this.game.getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();
             } else {
-                return ImmutableList.copyOf(event.getSuggestions());
+                return ImmutableList.copyOf(event.getTabCompletions());
             }
         } catch (CommandException e) {
             src.sendMessage(error(t("Error getting suggestions: %s", e.getText())));

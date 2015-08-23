@@ -31,6 +31,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
@@ -61,5 +62,8 @@ public interface BlockState extends ImmutableDataHolder<BlockState> {
      * @return The blockstate instance with the cycled value
      */
     BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
+
+
+    BlockSnapshot snapshotFor(Location<World> location);
 
 }

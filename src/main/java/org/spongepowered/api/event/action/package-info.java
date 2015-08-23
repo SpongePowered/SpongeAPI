@@ -1,7 +1,7 @@
 /*
  * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,14 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 /**
  * A common root package of all {@link org.spongepowered.api.event.Event}s that
- * lack a common "Source" for the "SourceActionTargetEvent" naming structure
- * such that the "Action" and "Target"s are known. Examples include
- * {@link org.spongepowered.api.event.action.ChangeBlockEvent},
- * {@link org.spongepowered.api.event.action.InteractBlockEvent},
- * {@link org.spongepowered.api.event.action.LoadChunkEvent},
- * {@link org.spongepowered.api.event.action.UseEntityEvent}, etc.
+ * lack a common "Source" and "Target" such that only the "Action" is known.
  */
 @org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.action;

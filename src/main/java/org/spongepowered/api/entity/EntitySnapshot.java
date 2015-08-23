@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.entity;
 
-import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.UUID;
@@ -45,15 +45,7 @@ import java.util.UUID;
  * from the {@link Game} instance such that external processing, building,
  * and manipulation can take place.</p>
  */
-public interface EntitySnapshot extends ImmutableDataHolder<EntitySnapshot> {
-
-    /**
-     * Gets the {@link UUID} of a {@link World} where this snapshot was created
-     * from.
-     *
-     * @return The World UUID
-     */
-    UUID getWorldUniqueId();
+public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
 
     /**
      * Gets an {@link Optional} containing the {@link UUID} of the
@@ -67,19 +59,18 @@ public interface EntitySnapshot extends ImmutableDataHolder<EntitySnapshot> {
     Optional<UUID> getUniqueId();
 
     /**
+     * Gets the {@link Transform} as an {@link Optional} as the
+     * {@link Location} may be undefined if this {@link EntitySnapshot} was
+     * built without a location. This method is linked to {@link #getLocation()}
+     * @return
+     */
+    Optional<Transform<World>> getTransform();
+
+    /**
      * Gets the {@link EntityType}.
      *
      * @return The EntityType
      */
     EntityType getType();
-
-    /**
-     * Gets the position from which the {@link Entity} was at when snapshot (as
-     * {@link Vector3i}).
-     *
-     * @return The coordinates as a Vector3i
-     */
-    Vector3i getPosition();
-
 
 }

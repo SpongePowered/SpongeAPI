@@ -27,20 +27,20 @@ package org.spongepowered.api.status;
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
-import org.spongepowered.api.event.server.StatusPingEvent;
+import org.spongepowered.api.event.target.server.PingServerEvent;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;
 
 /**
- * Represents the response to a status request. Unlike {@link StatusPingEvent}
+ * Represents the response to a status request. Unlike {@link PingServerEvent}
  * this is immutable.
  * <p>
  * This interface exists mostly for convenience and can be implemented in a
  * library pinging other servers for example.
  * </p>
  *
- * @see StatusPingEvent
+ * @see PingServerEvent
  */
 public interface StatusResponse {
 

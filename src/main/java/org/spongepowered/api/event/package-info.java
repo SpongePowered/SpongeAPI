@@ -33,23 +33,23 @@
  *   <li>The roots are structured such that it is either a “SourceEvent”, “ActionTargetEvent”</li>
  *   <li>Almost all “Target” getters and setters will include “target” in the method names:
  *   <ul>
- *       <li>The {@link org.spongepowered.api.event.action.PlaceBlockEvent#getReplacementBlocks()}
+ *       <li>The {@link org.spongepowered.api.event.target.block.PlaceBlockEvent#getReplacementBlocks()}
  *       refers to the {@link org.spongepowered.api.block.BlockState}s being replaced. The "Action" is "Placing",
  *       and the "Target" is either a single "block" or multiple "blocks".</li>
- *       <li>The {@link org.spongepowered.api.event.action.InteractEntityEvent} has a method to retrieve
+ *       <li>The {@link org.spongepowered.api.event.target.entity.InteractEntityEvent} has a method to retrieve
  *       the {@link org.spongepowered.api.entity.Entity} instance being affected with
- *       {@link org.spongepowered.api.event.action.InteractEntityEvent#getTargetEntity()}.</li>
+ *       {@link org.spongepowered.api.event.target.entity.InteractEntityEvent#getTargetEntity()}.</li>
  *   </ul>
  *   </li>
  *   <li>Contractually, all "Source" events will be prefixed with the "source" in the event name.</li>
  *   <ul>
- *       <li>{@link org.spongepowered.api.event.block.BlockEvent} is for when a
+ *       <li>{@link org.spongepowered.api.event.source.block.BlockEvent} is for when a
  *       {@link org.spongepowered.api.world.Location} is performing an action, but not being affected by
  *       another action.</li>
- *       <li>{@link org.spongepowered.api.event.entity.EntityEvent} is for when an
+ *       <li>{@link org.spongepowered.api.event.source.entity.EntityEvent} is for when an
  *       {@link org.spongepowered.api.entity.Entity} is performing an action, but the action is not known.
  *       The "source" in this case is retrieved from the event through
- *       {@link org.spongepowered.api.event.entity.EntityEvent#getEntity()}.</li>
+ *       {@link org.spongepowered.api.event.source.entity.EntityEvent#getEntity()}.</li>
  *   </ul>
  * </ul>
  * </p>

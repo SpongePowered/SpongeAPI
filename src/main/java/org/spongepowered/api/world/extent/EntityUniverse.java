@@ -29,8 +29,12 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
+import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
 
 import java.util.Collection;
 
@@ -130,8 +134,14 @@ public interface EntityUniverse {
     Optional<Entity> createEntity(DataContainer entityContainer, Vector3d position);
 
     /**
-     * Spawns an entity using the already set properties (extent, position,
-     * rotation).
+     * Spawns an {@link Entity} using the already set properties (extent,
+     * position, rotation) and applicable {@link DataManipulator}s with the
+     * specified {@link Cause} for spawning the entity.
+     *
+     * <p>Note that for the
+     * {@link Cause} to be useful in the expected {@link SpawnEntityEvent},
+     * a {@link SpawnCause} should be provided in the {@link Cause} for other
+     * plugins to understand and have finer control over the event.</p>
      *
      * <p>The requirements involve that all necessary setup of states and data
      * is already preformed on the entity retrieved from the various
@@ -142,7 +152,8 @@ public interface EntityUniverse {
      * should be taken note that there can be many reasons for a failure.</p>
      *
      * @param entity The entity to spawn
+     * @param cause The cause for the entity spawn
      * @return True if successful, false if not
      */
-    boolean spawnEntity(Entity entity);
+    boolean spawnEntity(Entity entity, Cause cause);
 }
