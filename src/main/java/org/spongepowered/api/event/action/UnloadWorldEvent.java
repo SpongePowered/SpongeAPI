@@ -31,8 +31,15 @@ import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a @link World} unloads.
+ * Base event for when a @link World} is unloaded.
  */
 public interface UnloadWorldEvent extends GameEvent, CauseTracked, Cancellable {
+
+    /**
+     * Gets the target {@link World}.
+     *
+     * @return The target world
+     */
+    World getTargetWorld();
 
 }

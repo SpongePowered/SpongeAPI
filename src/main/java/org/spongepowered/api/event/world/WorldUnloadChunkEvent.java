@@ -22,24 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.action.ChangeChunkEvent;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.Chunk;
 
 /**
- * Base event for when a {@link World} is loaded.
+ * Base event for when a {@link World} unloads a {@link Chunk}.
  */
-public interface LoadWorldEvent extends GameEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the target {@link World}.
-     *
-     * @return The target world
-     */
-    World getTargetWorld();
+public interface WorldUnloadChunkEvent extends WorldChangeChunkEvent, ChangeChunkEvent {
 
 }
