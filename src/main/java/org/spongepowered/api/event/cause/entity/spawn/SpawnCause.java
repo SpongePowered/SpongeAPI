@@ -22,40 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.cause.entity.spawn;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.action.DamageEntityEvent;
+import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.entity.EntitySpawnEvent;
 
 /**
- * An event that is processed after any {@link DamageEntityEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * Represents a specific cause for an {@link EntitySpawnEvent} such that
+ * the cause has more information relevant to the "reason" for an entity spawn,
+ * such as {@link MobSpawnerSpawnCause} linking to the {@link MobSpawnerData}
+ * related to spawning the {@link Entity}.
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public interface SpawnCause {
 
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
-
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    SpawnType getType();
 
 }

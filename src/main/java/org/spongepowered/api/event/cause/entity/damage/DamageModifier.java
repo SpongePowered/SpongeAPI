@@ -22,40 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.action.DamageEntityEvent;
+import com.google.common.base.Function;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An event that is processed after any {@link DamageEntityEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * Represents a modifier that will apply a function on a damage value to
+ * deal towards an entity such that the raw damage is the input of a
+ * {@link Function} such that the output will be the final damage applied
+ * to the {@link Entity}.
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public interface DamageModifier {
 
     /**
-     * Gets the old health data of the {@link Living}.
+     * Gets the {@link DamageModifierType} for this {@link DamageModifier}.
      *
-     * @return The old health data.
+     * @return The damage modifier type
      */
-    HealthData getOldData();
+    DamageModifierType getType();
 
     /**
-     * Gets the new health data of the {@link Living}.
+     * Gets the cause of this {@link DamageModifier}.
      *
-     * @return The new health data.
+     * @return The cause of this damage modifier
      */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    Cause getCause();
 
 }

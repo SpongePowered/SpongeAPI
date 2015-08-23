@@ -22,40 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.action.DamageEntityEvent;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
-/**
- * An event that is processed after any {@link DamageEntityEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
- */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public interface BlockDamageSourceBuilder extends DamageSourceBuilder {
 
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
+    @Override
+    BlockDamageSourceBuilder affectsCreativeMode();
 
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
+    @Override
+    BlockDamageSourceBuilder scalesWithDifficulty();
 
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    @Override
+    BlockDamageSourceBuilder bypassesArmor();
 
+    @Override
+    BlockDamageSourceBuilder blockable();
+
+    @Override
+    BlockDamageSourceBuilder explosion();
+
+    @Override
+    BlockDamageSourceBuilder absolute();
+
+    @Override
+    BlockDamageSourceBuilder magical();
+
+    @Override
+    BlockDamageSourceBuilder type(DamageType damageType);
+
+    BlockDamageSourceBuilder block(Location<World> location);
+
+    BlockDamageSourceBuilder block(BlockState blockState);
+
+    @Override
+    BlockDamageSource build() throws IllegalStateException;
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,40 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.action.DamageEntityEvent;
+package org.spongepowered.api.event.cause.entity.damage;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An event that is processed after any {@link DamageEntityEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * A type of {@link DamageModifier} that can apply a "grouping" so to speak
+ * for the damage modifier. The use case is being able to differentiate between
+ * various {@link DamageModifier}s based on the {@link DamageModifierType}
+ * without digging through the {@link Cause} provided by
+ * {@link DamageModifier#getCause()}.
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
-
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+@CatalogedBy(DamageModifierTypes.class)
+public interface DamageModifierType extends CatalogType {
 
 }

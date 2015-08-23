@@ -22,40 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.action.DamageEntityEvent;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An event that is processed after any {@link DamageEntityEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * A {@link DamageType} is a type of "grouping" for {@link DamageSource}s since
+ * a {@link DamageSource} instance can be inherently different from another
+ * {@link DamageSource} by virtue of the {@link Object} backing the source.
+ * Furthermore, it is impossible to refer to {@link DamageSource}s statically
+ * due to the nature of constructing them. It is possible however, that the
+ * parent {@link Object} being referred to as the "damage source" can damage
+ * an {@link Entity} with varying {@link DamageType}s depending on the
+ * circumstances.
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
-
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+@CatalogedBy(DamageTypes.class)
+public interface DamageType extends CatalogType {
 
 }

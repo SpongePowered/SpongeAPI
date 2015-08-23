@@ -42,6 +42,11 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntitySnapshotBuilder;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.event.cause.entity.damage.source.BlockDamageSourceBuilder;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSourceBuilder;
+import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSourceBuilder;
+import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSourceBuilder;
+import org.spongepowered.api.event.cause.entity.damage.source.ProjectileDamageSourceBuilder;
 import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
@@ -558,4 +563,15 @@ public interface GameRegistry {
      * @return The {@link Translation} with the given ID or Optional.absent() if not found
      */
     Optional<Translation> getTranslationById(String id);
+
+    BlockDamageSourceBuilder createBlockDamageSourceBuilder();
+
+    DamageSourceBuilder createDamageSourceBuilder();
+
+    EntityDamageSourceBuilder createEntityDamageSourceBuilder();
+
+    FallingBlockDamageSourceBuilder createFallingBlockDamageSourceBuilder();
+
+    ProjectileDamageSourceBuilder createProjectileDamageSourceBuilder();
+
 }

@@ -22,14 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.reason;
+package org.spongepowered.api.event.cause.entity.spawn;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.weather.Weather;
 
 /**
- * A reason explains a {@link Cause}. For example, a cause might be a fire
- * block, and the reason would be fire spread.
+ * Signifies that a spawn was caused by a specific {@link Weather} state.
  */
-public interface Reason {
+public interface WeatherSpawnCause extends SpawnCause {
+
+    /**
+     * Gets the current {@link Weather} state that caused the {@link Entity} to
+     * spawn.
+     *
+     * @return The weather state causing the spawn
+     */
+    Weather getWeather();
 
 }

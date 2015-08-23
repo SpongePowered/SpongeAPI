@@ -22,40 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.action.DamageEntityEvent;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.base.Objects;
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
- * An event that is processed after any {@link DamageEntityEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * A tuple of objects. This can be considered a {@link Pair}
+ * @param <K> 
+ * @param <V>
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public class Tuple<K, V> {
 
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
+    private final K first;
+    private final V second;
 
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
+    public Tuple(K first, V second) {
+        this.first = checkNotNull(first);
+        this.second = checkNotNull(second);
+    }
 
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    public K getFirst() {
+        return this.first;
+    }
 
+    public V getSecond() {
+        return this.second;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.first, this.second);
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tuple other = (Tuple) obj;
+        return Objects.equal(this.first, other.first)
+                && Objects.equal(this.second, other.second);
+    }
 }
