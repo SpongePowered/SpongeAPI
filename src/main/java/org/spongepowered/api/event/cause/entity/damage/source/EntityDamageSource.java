@@ -22,15 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player.fishing;
+package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.event.entity.living.human.fishing.HumanFishEvent;
-import org.spongepowered.api.event.entity.player.PlayerEvent;
+import org.spongepowered.api.entity.Entity;
 
-/**
- * Called when a {@link org.spongepowered.api.entity.player.Player} performs
- * a fishing-related action
- */
-public interface PlayerFishEvent extends HumanFishEvent, PlayerEvent {
+public interface EntityDamageSource extends DamageSource {
+
+    Entity getSource();
 
 }

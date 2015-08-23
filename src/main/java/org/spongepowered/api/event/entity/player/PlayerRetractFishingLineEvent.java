@@ -22,40 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityDamageEvent;
+import org.spongepowered.api.event.entity.living.human.HumanRetractFishingLineEvent;
 
 /**
- * An event that is processed after any {@link EntityDamageEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
+ * Called when a {@link org.spongepowered.api.entity.player.Player} retracts
+ * a fishing line.
  */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
-
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+public interface PlayerRetractFishingLineEvent extends HumanRetractFishingLineEvent, PlayerFishEvent {
 
 }

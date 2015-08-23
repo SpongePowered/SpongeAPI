@@ -22,40 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityDamageEvent;
+public final class DamageSources {
 
-/**
- * An event that is processed after any {@link EntityDamageEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
- */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
-
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
-
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    public static final DamageSource POISON = null;
+    public static final DamageSource EXPLOSION = null;
+    public static final DamageSource MELTING = null;
+    public static final DamageSource IN_FIRE = null;
+    public static final DamageSource LIGHTNING = null;
+    public static final DamageSource FIRE_TICK = null;
+    public static final BlockDamageSource LAVA = null;
+    public static final BlockDamageSource IN_WALL = null;
+    public static final DamageSource DROWNING = null;
+    public static final EntityDamageSource STARVATION = null;
+    public static final BlockDamageSource CONTACT = null;
+    public static final DamageSource FALLING = null;
+    public static final DamageSource VOID = null;
+    public static final DamageSource GENERIC = null;
+    public static final DamageSource MAGIC = null;
+    public static final DamageSource WITHER = null;
+    public static final EntityDamageSource ANVIL = null;
+    public static final FallingBlockDamageSource FALLING_BLOCK = null;
 
 }

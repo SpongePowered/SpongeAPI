@@ -22,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player.fishing;
+package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.event.entity.living.human.fishing.HumanHookedEntityEvent;
+import org.spongepowered.api.event.entity.living.human.HumanHookedEntityEvent;
 
 /**
  * Called when a {@link org.spongepowered.api.entity.player.Player} hooks an

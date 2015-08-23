@@ -22,22 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human.fishing;
+package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.entity.projectile.FishHook;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.entity.living.human.HumanFishEvent;
+import org.spongepowered.api.event.entity.player.PlayerEvent;
 
 /**
- * Called when a {@link org.spongepowered.api.entity.living.Human} performs
- * a fishing-related action.
+ * Called when a {@link org.spongepowered.api.entity.player.Player} performs
+ * a fishing-related action
  */
-public interface HumanFishEvent extends HumanEvent, Cancellable {
+public interface PlayerFishEvent extends HumanFishEvent, PlayerEvent {
 
-    /**
-     * Gets the {@link FishHook} used in this event.
-     *
-     * @return The {@link FishHook used} in this event
-     */
-    FishHook getFishHook();
 }

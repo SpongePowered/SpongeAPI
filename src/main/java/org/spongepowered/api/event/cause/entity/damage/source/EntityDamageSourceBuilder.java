@@ -22,40 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living;
+package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityDamageEvent;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
 
-/**
- * An event that is processed after any {@link EntityDamageEvent}s or when the
- * {@link Living} entity is healed. This is a post event after all damage has been
- * calculated.
- */
-public interface LivingChangeHealthEvent extends LivingEvent, CauseTracked, Cancellable {
+public interface EntityDamageSourceBuilder extends DamageSourceBuilder {
 
-    /**
-     * Gets the old health data of the {@link Living}.
-     *
-     * @return The old health data.
-     */
-    HealthData getOldData();
+    @Override
+    EntityDamageSourceBuilder affectsCreativeMode();
 
-    /**
-     * Gets the new health data of the {@link Living}.
-     *
-     * @return The new health data.
-     */
-    HealthData getNewData();
+    @Override
+    EntityDamageSourceBuilder scalesWithDifficulty();
 
-    /**
-     * Sets the new health data of the {@link Living}.
-     *
-     * @param newData The new health data
-     */
-    void setNewData(HealthData newData);
+    @Override
+    EntityDamageSourceBuilder bypassesArmor();
+
+    @Override
+    EntityDamageSourceBuilder blockable();
+
+    @Override
+    EntityDamageSourceBuilder explosion();
+
+    @Override
+    EntityDamageSourceBuilder absolute();
+
+    @Override
+    EntityDamageSourceBuilder magical();
+
+    @Override
+    EntityDamageSourceBuilder type(DamageType damageType);
+
+    EntityDamageSourceBuilder entity(Entity entity);
+
+    @Override
+    EntityDamageSource build() throws IllegalStateException;
 
 }
