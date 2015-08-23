@@ -1,7 +1,7 @@
 /*
  * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,26 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
-
-import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Base event for all interactions.
+ * A common root package of all {@link org.spongepowered.api.event.Event}s that
+ * lack a common "Source" for the "SourceActionTargetEvent" naming structure
+ * such that the "Action" and "Target"s are known. Examples include
+ * {@link org.spongepowered.api.event.action.ChangeBlockEvent},
+ * {@link org.spongepowered.api.event.action.InteractBlockEvent},
+ * {@link org.spongepowered.api.event.action.LoadChunkEvent},
+ * {@link org.spongepowered.api.event.action.UseEntityEvent}, etc.
  */
-public interface InteractEvent extends GameEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the point of interaction where the interaction occurred as a
-     * {@link Vector3d}.
-     *
-     * <p>Depending on the interaction, this may or may not be known(hence
-     * the optional).</p>
-     *
-     * @return An optional containing the point of interaction or
-     *     {@link Optional#absent()} if not known
-     */
-    Optional<Vector3d> getInteractionPoint();
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.action;

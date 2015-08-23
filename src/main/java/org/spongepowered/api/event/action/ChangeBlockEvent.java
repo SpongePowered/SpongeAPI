@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.event.action;
 
+import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
@@ -35,6 +38,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Base event for when {@link BlockState}s at {@link Location<World>}s are being
@@ -43,34 +47,41 @@ import java.util.List;
 public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets an {@link ImmutableList<BlockSnapshot>} of the block data un-affected by event changes.
+     * Gets an {@link ImmutableList<BlockSnapshot>} of the block data un-
+     * affected by event changes.
      *
      * @return The ImmutableList
      */
     ImmutableList<BlockSnapshot> getSnapshots();
 
     /**
-     * Gets the {@link List<Location<World>>} who will be affected after event resolution.
+     * Gets the {@link List} of {@link Location}s that will be affected after
+     * this event is processed.
      *
-     * @return The List
+     * @return The List of locations
      */
     List<Location<World>> getLocations();
 
     /**
-     * Gets the original {@link BlockState} that will replace the BlockStates in 
-     * {@link ChangeBlockEvent#getSnapshots()} unaffected by event changes.
+     * Gets the original {@link BlockState}s that will replace the BlockStates
+     * in {@link ChangeBlockEvent#getSnapshots()} unaffected by event changes.
      *
      * @return The original replacement BlockState
      */
-    BlockState getOriginalReplacementBlock();
+    ImmutableMap<Vector3i, BlockState> getOriginalReplacementBlocks();
 
     /**
-     * Gets the {@link BlockState} that will replace the BlockStates in 
+     * Gets the mapped {@link BlockState}s to {@link Vector3i} coordinates
+     * that will replace the {@link BlockState}s in
      * {@link ChangeBlockEvent#getLocations()} after event resolution.
      *
-     * @return The replacement BlockState
+     * <p>Changes to the targeted locations via
+     * {@link #filterBlockLocations(Predicate)} will likewise affect the
+     * produced {@link Map}.</p>
+     *
+     * @return The replacement BlockStates
      */
-    BlockState getReplacementBlock();
+    Map<Vector3i, BlockState> getReplacementBlocks();
 
     /**
      * Sets the {@link BlockState} that will replace the BlockStates in 
@@ -83,7 +94,7 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
     /**
      * Gets the first {@link BlockSnapshot} within 
      * {@link ChangeBlockEvent#getSnapshots()} that will be changed
-     * to {@link ChangeBlockEvent#getReplacementBlock()}.
+     * to {@link ChangeBlockEvent#getReplacementBlocks()}.
      *
      * @return The BlockSnapshot
      */

@@ -30,6 +30,10 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.UUID;
 
+/**
+ * An {@link ImmutableDataBuilder} for building {@link EntitySnapshot}s. The
+ * requirements
+ */
 public interface EntitySnapshotBuilder extends ImmutableDataBuilder<EntitySnapshot, EntitySnapshotBuilder> {
 
     /**
@@ -59,14 +63,6 @@ public interface EntitySnapshotBuilder extends ImmutableDataBuilder<EntitySnapsh
      * @return This builder, for chaining
      */
     EntitySnapshotBuilder position(Vector3i position);
-
-    /**
-     * Copies over entity data from an existing {@link EntitySnapshot}.
-     *
-     * @param entitySnapshot The EntitySnapshot to copy from
-     * @return This builder, for chaining
-     */
-    EntitySnapshotBuilder from(EntitySnapshot entitySnapshot);
 
     /**
      * Copies over data from an {@link Entity}.

@@ -63,14 +63,6 @@ public interface BlockSnapshotBuilder extends ImmutableDataBuilder<BlockSnapshot
     BlockSnapshotBuilder position(Vector3i position);
 
     /**
-     * Copies over block data from an existing {@link BlockSnapshot}.
-     *
-     * @param blockSnapshot The BlockSnapshot to copy from
-     * @return This builder, for chaining
-     */
-    BlockSnapshotBuilder from(BlockSnapshot blockSnapshot);
-
-    /**
      * Copies over block data from a {@link Location<World>}.
      * @param location The Location to copy from
      * @return This builder, for chaining

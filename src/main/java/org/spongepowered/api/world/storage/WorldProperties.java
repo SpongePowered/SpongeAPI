@@ -404,7 +404,6 @@ public interface WorldProperties extends DataSerializable {
      * entire y-axis.</p>
      *
      * @param diameter The diameter where the border will expand/contract to
-     * @param time The time over which to change, in milliseconds
      */
     void setWorldBorderTargetDiameter(double diameter);
 

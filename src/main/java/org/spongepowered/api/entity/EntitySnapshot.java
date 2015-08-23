@@ -26,28 +26,41 @@ package org.spongepowered.api.entity;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.World;
 
 import java.util.UUID;
 
+/**
+ * Represents a snapshot of an {@link Entity} and all of it's related data in
+ * the form of {@link ImmutableDataManipulator}s and {@link ImmutableValue}s.
+ * While an {@link Entity} is a live instance and therefor residing in a
+ * {@link World}, an {@link EntitySnapshot} may be snapshotted of a
+ * {@link World} that is not currently loaded, or may not exist any longer.
+ *
+ * <p>All data associated with the {@link EntitySnapshot} should be separated
+ * from the {@link Game} instance such that external processing, building,
+ * and manipulation can take place.</p>
+ */
 public interface EntitySnapshot extends ImmutableDataHolder<EntitySnapshot> {
 
     /**
-     * Gets the {@link UUID} of a {@link World} where this snapshot was created from.
+     * Gets the {@link UUID} of a {@link World} where this snapshot was created
+     * from.
      *
      * @return The World UUID
      */
     UUID getWorldUniqueId();
 
     /**
-     * Gets an {@link Optional} containing the {@link UUID}.
-     *
-     * <p>
-     *     A value of {@link Optional#absent()} means the UUID cannot be found. This means
-     *     this snapshot was made from {@link EntitySnapshotBuilder} without an {@link Entity}
-     *     as a source.
-     * </p>
+     * Gets an {@link Optional} containing the {@link UUID} of the
+     * {@link Entity} that this {@link EntitySnapshot} is representing. If the
+     * {@link Optional} is {@link Optional#absent()}, then this snapshot must
+     * have been created by an {@link EntitySnapshotBuilder} without an
+     * {@link Entity} as a source.
      *
      * @return The Optional where the UUID may be present
      */
@@ -61,7 +74,8 @@ public interface EntitySnapshot extends ImmutableDataHolder<EntitySnapshot> {
     EntityType getType();
 
     /**
-     * Gets the position from which the {@link Entity} was at when snapshot (as {@link Vector3i}).
+     * Gets the position from which the {@link Entity} was at when snapshot (as
+     * {@link Vector3i}).
      *
      * @return The coordinates as a Vector3i
      */

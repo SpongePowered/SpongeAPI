@@ -316,7 +316,7 @@ public final class Keys {
      * Represents the {@link Key} for representing the {@link Axis} direction
      * of a {@link BlockState}.
      *
-     * @see AxisData#axis()
+     * @see AxisData#type()
      */
     public static final Key<Value<Axis>> AXIS = null;
 

@@ -22,4 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/**
+ * All events relating to an {@link org.spongepowered.api.entity.Entity} or
+ * multiple Entities being the "Source" of an event.
+ *
+ * Refer to {@link org.spongepowered.api.event} for the naming structure of events.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.entity;
