@@ -71,3 +71,4 @@ nb-configuration.xml
 *.iml
 *.ipr
 *.iws
+*.launch

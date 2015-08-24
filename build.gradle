@@ -83,6 +83,11 @@ genEventImpl {
     validateCode = true
 }
 
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
 shadowJar {
     classifier = 'shaded'
 }

@@ -17,10 +17,6 @@ repositories {
         name = 'sponge'
         url = 'http://repo.spongepowered.org/maven'
     }
-    maven {
-        name = 'sonatype-nexus'
-        url = 'https://oss.sonatype.org/content/groups/public/'
-    }
 }
 
 // Testing dependencies
@@ -83,19 +79,16 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
-task sourceJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
-artifacts {
-    archives sourceJar
-    archives javadocJar
+afterEvaluate {
+    artifacts {
+        archives sourceJar
+        archives javadocJar
+    }
 }
 
 // Apply code style plugins
