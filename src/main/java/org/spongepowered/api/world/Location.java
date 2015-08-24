@@ -621,7 +621,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public DataContainer toContainer() {
-        DataContainer container = new MemoryDataContainer();
+        final DataContainer container = new MemoryDataContainer();
         if (getExtent() instanceof World) {
             container.set(of("WorldName"), ((World) getExtent()).getName());
             container.set(of("WorldUuid"), getExtent().getUniqueId().toString());
@@ -635,8 +635,7 @@ public final class Location<E extends Extent> implements DataHolder {
         container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId())
             .set(of("x"), this.getX())
             .set(of("y"), this.getY())
-            .set(of("z"), this.getZ())
-            .set(of("Manipulators"), getContainers());
+            .set(of("z"), this.getZ());
         return container;
     }
 
