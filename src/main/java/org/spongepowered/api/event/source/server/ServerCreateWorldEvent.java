@@ -22,16 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.entity.living.human;
+package org.spongepowered.api.event.source.server;
 
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.Server;
+import org.spongepowered.api.event.target.world.CreateWorldEvent;
+import org.spongepowered.api.world.World;
 
 /**
- * Base event for all events with an {@link Human} as the source.
+ * Called when a {@link Server} loads a {@link World} level.
  */
-public interface HumanEvent extends LivingEvent {
+public interface ServerCreateWorldEvent extends CreateWorldEvent, ServerEvent {
 
-    @Override
-    Human getSourceEntity();
 }

@@ -36,13 +36,13 @@ import org.spongepowered.api.world.World;
 public interface EntityEvent extends GameEvent, CauseTracked {
 
     /**
-     * Gets the {@link Entity}.
-     * @return The entity
+     * Gets the source {@link Entity}.
+     * @return The source entity
      */
-    Entity getEntity();
+    Entity getSourceEntity();
 
-    Transform<World> getTransform();
+    Transform<World> getSourceTransform();
 
-    EntityEvent setTransform(Transform<World> transform);
+    EntityEvent setSourceTransform(Transform<World> transform);
 
 }

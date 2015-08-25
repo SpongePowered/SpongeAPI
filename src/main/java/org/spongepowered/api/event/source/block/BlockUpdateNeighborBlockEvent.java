@@ -43,11 +43,11 @@ public interface BlockUpdateNeighborBlockEvent extends ChangeBlockEvent {
     /**
      * Gets a mutable copy of the original {@link Map} containing the {@link 
      * Direction} (face) and {@link BlockSnapshot} relative from {@link
-     * BlockEvent#getLocation()} unaffected by event changes.
+     * BlockEvent#getSourceLocation()} unaffected by event changes.
      *
-     * <p>ie. If the {@link BlockEvent#getBlock()} is redstone and is providing 
+     * <p>ie. If the {@link BlockEvent#getSourceBlock()} is redstone and is providing 
      * power to another {@link BlockState}, this map would contain the direction
-     * from {@link BlockEvent#getLocation()} and the location in that direction.
+     * from {@link BlockEvent#getSourceLocation()} and the location in that direction.
      *
      * To get the direction or face of the target being powered, use 
      * {@link Direction#getOpposite()}.</p>
@@ -58,11 +58,11 @@ public interface BlockUpdateNeighborBlockEvent extends ChangeBlockEvent {
 
     /**
      * Gets a mutable {@link Map} containing the {@link Direction} (face) and 
-     * {@link Location} relative from {@link BlockEvent#getLocation()}.
+     * {@link Location} relative from {@link BlockEvent#getSourceLocation()}.
      *
-     * <p>ie. If the {@link BlockEvent#getBlock()} is redstone and is providing 
+     * <p>ie. If the {@link BlockEvent#getSourceBlock()} is redstone and is providing 
      * power to another {@link BlockState}, this map would contain the direction
-     * from {@link BlockEvent#getLocation()} and the location in that direction.
+     * from {@link BlockEvent#getSourceLocation()} and the location in that direction.
      *
      * To get the direction or face of the target being powered, use 
      * {@link Direction#getOpposite()}.</p>

@@ -34,11 +34,11 @@ import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
 public interface PlayerEvent extends HumanEvent {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Gets the source {@link Player} involved involved in this event.
      *
-     * @return The {@link Player} involved
+     * @return The source {@link Player} involved
      */
     @Override
-    Player getEntity();
+    Player getSourceEntity();
 
 }

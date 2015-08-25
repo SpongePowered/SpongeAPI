@@ -39,21 +39,21 @@ import org.spongepowered.api.world.World;
 public interface BlockEvent extends GameEvent, CauseTracked {
 
     /**
-     * Gets the {@link Location}.
+     * Gets the source {@link Location}.
      *
-     * @return The Location
+     * @return The source Location
      */
-    Location<World> getLocation();
+    Location<World> getSourceLocation();
 
     /**
-     * Gets the {@link BlockState}.
+     * Gets the source {@link BlockState}.
      *
-     * @return The BlockState
+     * @return The source BlockState
      */
-    BlockState getBlock();
+    BlockState getSourceBlock();
 
     /**
-     * Gets the "side" as a {@link Direction}.
+     * Gets the source "side" as a {@link Direction}.
      *
      * <p>Depending on the event, this may or may not be known(hence the 
      * optional)</p>
@@ -61,5 +61,5 @@ public interface BlockEvent extends GameEvent, CauseTracked {
      * @return An optional containing the side or {@link Optional#absent()} if 
      *     not known
      */
-    Optional<Direction> getSide();
+    Optional<Direction> getSourceSide();
 }

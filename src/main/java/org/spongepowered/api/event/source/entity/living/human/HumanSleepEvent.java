@@ -35,16 +35,16 @@ import org.spongepowered.api.world.World;
 public interface HumanSleepEvent extends HumanEvent, Cancellable {
 
     /**
-     * A copy of the transform of the human before entering the bed.
+     * A copy of the source transform of the human before entering the bed.
      *
-     * @return The transform of the human
+     * @return The source transform of the human
      */
-    Transform<World> getTransform();
+    Transform<World> getSourceTransform();
 
     /**
-     * Gets the block of the bed being used.
+     * Gets the location of the bed being used.
      *
-     * @return The block of the bed
+     * @return The location of the bed
      */
     Location<World> getBed();
 

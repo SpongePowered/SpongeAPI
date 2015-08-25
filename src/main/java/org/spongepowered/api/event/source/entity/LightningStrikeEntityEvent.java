@@ -33,6 +33,6 @@ import org.spongepowered.api.entity.weather.Lightning;
 public interface LightningStrikeEntityEvent extends EntityAttackEntityEvent {
 
     @Override
-    Lightning getEntity();
+    Lightning getSourceEntity();
 
 }

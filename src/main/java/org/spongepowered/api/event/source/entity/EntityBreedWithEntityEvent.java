@@ -35,12 +35,12 @@ import org.spongepowered.api.event.Cancellable;
 public interface EntityBreedWithEntityEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the {@link Entity} wanting to breed.
+     * Gets the source {@link Entity} wanting to breed.
      *
-     * @return The entity
+     * @return The source entity
      */
     @Override
-    Ageable getEntity();
+    Ageable getSourceEntity();
 
     /**
      * Gets the {@link Entity} being bred with.

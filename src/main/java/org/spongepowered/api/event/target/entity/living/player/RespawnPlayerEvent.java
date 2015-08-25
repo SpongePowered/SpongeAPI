@@ -33,13 +33,11 @@ import org.spongepowered.api.world.World;
 public interface RespawnPlayerEvent extends TargetPlayerEvent {
 
     /**
-     * Gets a copy of the new respawn transform of the player.
+     * Gets a copy of the origin transform of the player.
      *
-     * @return The new respawn location of the player
+     * @return The origin transform of the player
      */
     Transform<World> getOriginTransform();
-
-    Transform<World> getTransform();
 
     /**
      * Gets whether the original respawn transform was set by a bed or not.
@@ -49,10 +47,10 @@ public interface RespawnPlayerEvent extends TargetPlayerEvent {
     boolean isBedSpawn();
 
     /**
-     * Sets the new player respawn transform permanently.
+     * Sets the target player respawn transform permanently.
      *
-     * @param respawnTransform The new respawn transform
+     * @param targetTransform The target respawn transform
      */
-    void setNewRespawnTransform(Transform<World> respawnTransform);
+    void setTargetTransform(Transform<World> targetTransform);
 
 }

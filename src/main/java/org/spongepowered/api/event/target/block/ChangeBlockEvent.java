@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.event.target.block;
 
-import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.Cancellable;
@@ -35,8 +33,6 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-
-import java.util.List;
 
 /**
  * Base event for when {@link BlockState}s at {@link Location<World>}s are being

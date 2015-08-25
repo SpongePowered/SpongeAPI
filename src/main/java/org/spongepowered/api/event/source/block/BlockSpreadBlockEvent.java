@@ -40,7 +40,7 @@ public interface BlockSpreadBlockEvent extends BlockUpdateNeighborBlockEvent {
      * Gets the {@link BlockState} that is being spread.
      *
      * <p>
-     *     This block may or may not be the same as {@link BlockEvent#getBlock()}.
+     *     This block may or may not be the same as {@link BlockEvent#getSourceBlock()}.
      * </p>
      *
      * @return The BlockState
