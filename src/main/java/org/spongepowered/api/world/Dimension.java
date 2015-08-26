@@ -98,4 +98,11 @@ public interface Dimension extends Contextual {
      * @return The build height
      */
     int getBuildHeight();
+
+    /**
+     * Gets the generator type of dimension.
+     * 
+     * @return The generator type of dimension.
+     */
+    GeneratorType getGeneratorType();
 }
