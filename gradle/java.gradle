@@ -43,6 +43,7 @@ test {
     }
 }
 
+
 // Set manifest entries
 jar {
     manifest {
@@ -51,7 +52,8 @@ jar {
                 'Created-By': "${System.properties['java.vm.version']} (${System.properties['java.vm.vendor']})",
                 'Implementation-Name': project.name,
                 'Implementation-Version': project.version,
-                'Implementation-Vendor': project.url
+                'Implementation-Vendor': project.url,
+                'git-commit': System.getenv().commit != null ? System.getenv().commit : 'unknown'
         )
     }
 }
