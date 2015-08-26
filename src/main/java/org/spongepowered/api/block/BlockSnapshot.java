@@ -24,13 +24,8 @@
  */
 package org.spongepowered.api.block;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.LocateableSnapshot;
-import org.spongepowered.api.world.World;
-
-import java.util.UUID;
 
 /**
  * An immutable representation of a {@link BlockState} and any extra data that
@@ -46,11 +41,13 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
     BlockState getState();
 
     /**
-     * Creates a new {@link BlockSnapshot} with the provided {@link BlockState}
+     * Creates a new {@link BlockSnapshot} with the provided
+     * {@link BlockState}. Any additional data associated with a
+     * {@link TileEntity} or custom data may be lost.
      *
-     * @param blockState
-     * @return
+     * @param blockState The block state
+     * @return The new snapshot
      */
-    BlockSnapshot setState(BlockState blockState);
+    BlockSnapshot withState(BlockState blockState);
 
 }

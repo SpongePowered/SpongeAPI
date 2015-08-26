@@ -28,13 +28,9 @@ import org.spongepowered.api.event.cause.entity.damage.DamageType;
 
 public interface DamageSourceBuilder {
 
-    DamageSourceBuilder affectsCreativeMode();
-
     DamageSourceBuilder scalesWithDifficulty();
 
     DamageSourceBuilder bypassesArmor();
-
-    DamageSourceBuilder blockable();
 
     DamageSourceBuilder explosion();
 

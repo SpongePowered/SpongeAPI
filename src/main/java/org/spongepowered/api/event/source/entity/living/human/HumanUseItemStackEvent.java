@@ -24,13 +24,27 @@
  */
 package org.spongepowered.api.event.source.entity.living.human;
 
-import org.spongepowered.api.event.source.entity.living.LivingConsumeItemEvent;
+import org.spongepowered.api.event.source.entity.living.LivingUseItemStackEvent;
 
 /**
  * Called when an entity consumes an itemstack for any reason.
  * <p>Examples may include: A player eating food, a witch drinking a potion, etc.</p>
  */
-public interface HumanConsumeItemEvent extends LivingConsumeItemEvent, HumanEvent {
+public interface HumanUseItemStackEvent extends LivingUseItemStackEvent, HumanEvent {
 
+    interface Start extends LivingUseItemStackEvent.Start, HumanUseItemStackEvent {
 
+    }
+
+    interface Tick extends LivingUseItemStackEvent.Tick, HumanUseItemStackEvent {
+
+    }
+
+    interface Stop extends LivingUseItemStackEvent.Stop, HumanUseItemStackEvent {
+
+    }
+
+    interface Finish extends LivingUseItemStackEvent.Finish, HumanUseItemStackEvent {
+
+    }
 }

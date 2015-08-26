@@ -27,7 +27,8 @@ package org.spongepowered.api.event.target.entity.item;
 import org.spongepowered.api.event.target.entity.ExpireEntityEvent;
 
 /**
- * An event that represents when an item disappears from the world due to expiration.
+ * An event that represents when an item disappears from the world due to
+ * expiration.
  */
 public interface ExpireItemEvent extends TargetItemEvent, ExpireEntityEvent {
 

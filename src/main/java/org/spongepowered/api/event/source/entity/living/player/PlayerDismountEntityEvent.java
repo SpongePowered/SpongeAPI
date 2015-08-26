@@ -22,14 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.world;
 
-import org.spongepowered.api.event.target.world.chunk.ChangeChunkEvent;
-import org.spongepowered.api.world.Chunk;
+package org.spongepowered.api.event.source.entity.living.player;
 
-/**
- * Called when a {@link Chunk} has just been generated.
- */
-public interface WorldPostGenerateChunkEvent extends ChangeChunkEvent {
+import org.spongepowered.api.event.source.entity.living.human.HumanDismountEntityEvent;
+
+public interface PlayerDismountEntityEvent extends HumanDismountEntityEvent, PlayerEvent {
 
 }

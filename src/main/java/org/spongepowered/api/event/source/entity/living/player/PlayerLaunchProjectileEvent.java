@@ -22,23 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.item.inventory.ItemStack;
+package org.spongepowered.api.event.source.entity.living.player;
 
-import java.util.Collection;
+import org.spongepowered.api.event.source.entity.living.human.HumanLaunchProjectileEvent;
 
-/**
- * Handles when any item or items are dropped on the ground.
- */
-public interface ItemDropEvent extends GameEvent {
-
-    /**
-     * Gets the items that are being dropped.
-     *
-     * @return The dropped item stacks
-     */
-    Collection<ItemStack> getDroppedItems();
+public interface PlayerLaunchProjectileEvent extends PlayerEvent, HumanLaunchProjectileEvent {
 
 }

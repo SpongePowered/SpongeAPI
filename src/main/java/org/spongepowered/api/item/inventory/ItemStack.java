@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.translation.Translatable;
@@ -73,6 +74,15 @@ public interface ItemStack extends DataHolder, DataSerializable, TextRepresentab
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
+
+    /**
+     * Gets the {@link ItemStackSnapshot} of this {@link ItemStack}. All known
+     * {@link DataManipulator}s existing on this {@link ItemStack} are added
+     * as copies to the {@link ItemStackSnapshot}.
+     *
+     * @return The newly created item stack snapshot
+     */
+    ItemStackSnapshot createSnapshot();
 
     @Override
     ItemStack copy();

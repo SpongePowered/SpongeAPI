@@ -25,12 +25,14 @@
 package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.monster.Endermite;
+import org.spongepowered.api.entity.weather.Lightning;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Called when an {@link Entity} is expiring from the world.
- * <p>Examples may include when an endermite expires, or when Lightning expires.
- * </p>
+ * Called when an {@link Entity} is expiring from the world. Examples may
+ * include when an {@link Endermite} expires, or when {@link Lightning}
+ * expires.
  */
 public interface ExpireEntityEvent extends TargetEntityEvent, CauseTracked {
 

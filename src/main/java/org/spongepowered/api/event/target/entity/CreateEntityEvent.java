@@ -22,24 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.world;
 
-import org.spongepowered.api.event.target.world.chunk.ChangeChunkEvent;
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.gen.Populator;
+package org.spongepowered.api.event.target.entity;
 
-import java.util.List;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Chunk} is about to be populated.
+ * An event where an {@link Entity} is already created, but has not been
+ * "spawned" or "added" to a {@link World}. All data associated with the
+ * {@link Entity} should be readily available by this time.
  */
-public interface WorldPrePopulateChunkEvent extends ChangeChunkEvent {
-
-    /**
-     * Returns a mutable list of all pending populators.
-     *
-     * @return The populators
-     */
-    List<Populator> getPendingPopulators();
+public interface CreateEntityEvent extends TargetEntityEvent, CauseTracked {
 
 }

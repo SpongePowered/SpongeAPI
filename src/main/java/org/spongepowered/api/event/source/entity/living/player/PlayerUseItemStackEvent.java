@@ -24,47 +24,29 @@
  */
 package org.spongepowered.api.event.source.entity.living.player;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.source.entity.living.human.HumanLeaveBedEvent;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.source.entity.living.human.HumanUseItemStackEvent;
 
 /**
- * Called when a {@link Player} leaves a bed.
+ * An event when a {@link Player} consumes an item. Examples may include: eating,
+ * drinking a potion, etc.
  */
-public interface PlayerLeaveBedEvent extends HumanLeaveBedEvent, PlayerSleepEvent {
+public interface PlayerUseItemStackEvent extends PlayerEvent, HumanUseItemStackEvent {
 
-    /**
-     * Gets whether the spawn location for the player was set.
-     *
-     * @return Whether the spawn location for the player was set
-     */
-    @Override
-    boolean wasSpawnSet();
+    interface Start extends HumanUseItemStackEvent.Start, PlayerUseItemStackEvent {
 
-    /**
-     * Gets a copy of the spawn transform of the player when leaving the bed.
-     *
-     * <p>This may have not been set by the event, so checking
-     * {@link #wasSpawnSet()} is advisable. If spawn has not been set,
-     * it will return {@link Optional#absent()}.</p>
-     *
-     * @return The player new spawn transform, if available
-     */
-    @Override
-    Optional<Transform<World>> getSpawnTransform();
+    }
 
-    /**
-     * Sets the new spawn transform of the player leaving the bed.
-     *
-     * <p>If spawn {@link #wasSpawnSet} was not infact set by this event,
-     * this does not override the return value. The given spawn should be
-     * a valid location.</p>
-     *
-     * @param transform The new spawn transform for the player
-     */
-    @Override
-    void setSpawnTransform(Transform<World> transform);
+    interface Tick extends HumanUseItemStackEvent.Tick, PlayerUseItemStackEvent {
+
+    }
+
+    interface Stop extends HumanUseItemStackEvent.Stop, PlayerUseItemStackEvent {
+
+    }
+
+    interface Finish extends HumanUseItemStackEvent.Finish, PlayerUseItemStackEvent {
+
+    }
 
 }

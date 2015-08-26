@@ -40,6 +40,10 @@ import org.spongepowered.api.world.World;
  */
 public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
+    /**
+     * Gets a list of the {@link BlockTransaction}s for this event. If a
+     * @return
+     */
     ImmutableList<BlockTransaction> getTransactions();
 
     /**
@@ -51,6 +55,6 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
      *
      * @param predicate The predicate to use for filtering
      */
-    void invalidateTransactions(Predicate<Location<World>> predicate);
+    void filter(Predicate<Location<World>> predicate);
 
 }

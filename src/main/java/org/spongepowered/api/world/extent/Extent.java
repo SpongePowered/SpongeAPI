@@ -96,7 +96,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position of the block
      * @return A snapshot
      */
-    BlockSnapshot getBlockSnapshot(Vector3i position);
+    BlockSnapshot createSnapshot(Vector3i position);
 
     /**
      * Get a snapshot of this block at the current point in time.
@@ -110,7 +110,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param z The Z position
      * @return A snapshot
      */
-    BlockSnapshot getBlockSnapshot(int x, int y, int z);
+    BlockSnapshot createSnapshot(int x, int y, int z);
 
     /**
      * Replace the block at this position with a copy of the given snapshot.
@@ -121,7 +121,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position of the block
      * @param snapshot The snapshot
      */
-    void setBlockSnapshot(Vector3i position, BlockSnapshot snapshot);
+    void restoreSnapshot(Vector3i position, BlockSnapshot snapshot);
 
     /**
      * Replace the block at this position with a copy of the given snapshot.
@@ -134,7 +134,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param z The Z position
      * @param snapshot The snapshot
      */
-    void setBlockSnapshot(int x, int y, int z, BlockSnapshot snapshot);
+    void restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot);
 
     /**
      * Simulates the interaction with this object as if a player had done so.

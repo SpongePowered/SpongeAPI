@@ -22,14 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.entity.living;
 
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.source.entity.EntityDropItemEvent;
+package org.spongepowered.api.event.target.entity.living;
+
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.target.entity.CreateEntityEvent;
+import org.spongepowered.api.event.target.entity.PreCreateEntityEvent;
+import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
 
 /**
- * Called when a {@link Living} drops an item(s).
+ * Raised when an {@link Entity} is spawned. This usually follows the chain of
+ * the various entity creation events: {@link PreCreateEntityEvent},
+ * {@link CreateEntityEvent}, and finally {@link SpawnLivingEvent}.
  */
-public interface LivingDropItemEvent extends LivingEvent, EntityDropItemEvent {
+public interface SpawnLivingEvent extends TargetLivingEvent, SpawnEntityEvent {
+
+    interface CheckSpawn extends SpawnLivingEvent {
+
+    }
 
 }

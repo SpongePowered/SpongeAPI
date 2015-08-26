@@ -22,29 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.entity.living;
+package org.spongepowered.api.event.target.entity;
 
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.potion.PotionEffect;
 
-import java.util.List;
-
 /**
- * An event that involves a living entity having effects added and removed.
+ * An event that occurs when a {@link Living} gains a {@link PotionEffect}.
  */
-public interface PotionEffectLivingEvent extends TargetLivingEvent {
-
-    /**
-     * Gets a copy of all current effects applied on the living entity.
-     *
-     * @return A copy of the potion effects
-     */
-    List<PotionEffect> getCurrentEffects();
-
-    /**
-     * Gets the potion effect involved in this event.
-     *
-     * @return The potion effect involved in this event
-     */
-    PotionEffect getPotionEffect();
+public interface GainEntityPotionEffectEvent extends ChangeEntityPotionEffectEvent {
 
 }

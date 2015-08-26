@@ -22,41 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.block;
+package org.spongepowered.api.event.source.entity;
 
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
 /**
- * Base event for all interactions involving a {@link BlockState} at a
- * {@link Location}.
+ * Called when an entity consumes an itemstack for any reason.
+ * <p>Examples may include: A player eating food, a witch drinking a 
+ * potion, etc.</p>
  */
-public interface InteractBlockEvent extends InteractEvent {
+public interface EntityUseItemStackEvent extends EntityEvent, Cancellable {
 
     /**
-     * Gets the target {@link Location} being interacted with.
+     * Gets the {@link ItemStack} being consumed.
      *
-     * @return The location
+     * @return The item being consumed
      */
-    Location<World> getTargetLocation();
+    ItemStackTransaction getConsumedItem();
 
     /**
-     * Gets the target {@link BlockSnapshot} being interacted with.
+     * Sets the item to be consumed.
      *
-     * @return The block state
+     * @param item The item being consumed
      */
-    BlockSnapshot getTargetBlock();
+    void setItem(ItemStackSnapshot item);
 
-    /**
-     * Gets the target "side" of the {@link BlockState} being interacted with
-     * or {@link Direction#NONE} if not known.
-     *
-     * @return An optional containing the side being interacted with or
-     *     {@link Direction#NONE}
-     */
-    Direction getTargetSide();
+    interface Start extends EntityUseItemStackEvent {
+
+    }
+
+    interface Tick extends EntityUseItemStackEvent {
+
+    }
+
+    interface Stop extends EntityUseItemStackEvent {
+
+    }
+
+    interface Finish extends EntityUseItemStackEvent {
+
+    }
+
 }

@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.event.source.block;
 
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 
 /**
  * Called when a {@link BlockState} removes another {@link BlockState} due to 
- * fire.
+ * fire. Usually, this means that the {@link #getSourceBlock()} is "burning"
+ * the {@link BlockSnapshot}s provided in {@link #getTransactions()}
  */
 public interface BlockBurnBlockEvent extends BlockUpdateNeighborBlockEvent {
 

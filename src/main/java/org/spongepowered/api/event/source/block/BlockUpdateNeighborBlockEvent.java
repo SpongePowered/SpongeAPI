@@ -25,59 +25,44 @@
 package org.spongepowered.api.event.source.block;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.block.BlockSnapshot;
+import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.target.block.ChangeBlockEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
-
-import java.util.Map;
 
 /**
- * Called when a {@link BlockState} triggers an update to one or more {@link 
- * BlockState}s.
+ * Called when a block at a {@link Location} triggers an update to one or more
+ * {@link BlockState}s. There are always two ways to mark an "update" as being
+ * "invalid" and "cancelled": {@link #filterDirections(Predicate)} will apply a
+ * {@link Predicate} such that if the predicate returns <code>false</code>, the
+ * {@link BlockTransaction} is marked "invalid" and therefor will not receive
+ * an "update", and secondly through {@link #filter(Predicate)}
+ * will apply a similar {@link Predicate} that if returning <code>false</code>,
+ * the same {@link BlockTransaction} will be marked as "invalid" and therefor
+ * will not receive an "update".
  */
-public interface BlockUpdateNeighborBlockEvent extends ChangeBlockEvent {
+public interface BlockUpdateNeighborBlockEvent extends ChangeBlockEvent, BlockEvent {
 
     /**
-     * Gets a mutable copy of the original {@link Map} containing the {@link 
-     * Direction} (face) and {@link BlockSnapshot} relative from {@link
-     * BlockEvent#getSourceLocation()} unaffected by event changes.
-     *
-     * <p>ie. If the {@link BlockEvent#getSourceBlock()} is redstone and is providing 
-     * power to another {@link BlockState}, this map would contain the direction
-     * from {@link BlockEvent#getSourceLocation()} and the location in that direction.
-     *
-     * To get the direction or face of the target being powered, use 
-     * {@link Direction#getOpposite()}.</p>
+     * Gets the {@link ImmutableMap} of {@link Direction} to
+     * {@link BlockTransaction} of the {@link BlockState}s that will be marked
+     * for "updating". If a {@link BlockTransaction#isValid()} returns
+     * <code>false</code>, the location will not be "updated".
      *
      * @return The map
      */
-    Map<Direction, BlockSnapshot> getSnapshotRelatives();
+    ImmutableMap<Direction, BlockTransaction> getRelatives();
 
     /**
-     * Gets a mutable {@link Map} containing the {@link Direction} (face) and 
-     * {@link Location} relative from {@link BlockEvent#getSourceLocation()}.
-     *
-     * <p>ie. If the {@link BlockEvent#getSourceBlock()} is redstone and is providing 
-     * power to another {@link BlockState}, this map would contain the direction
-     * from {@link BlockEvent#getSourceLocation()} and the location in that direction.
-     *
-     * To get the direction or face of the target being powered, use 
-     * {@link Direction#getOpposite()}.</p>
-     *
-     * @return The map
-     */
-    Map<Direction, Location<World>> getRelatives();
-
-    /**
-     * Filters out {@link Direction}s from 
-     * {@link BlockUpdateNeighborBlockEvent#getRelatives()} to be affected by 
-     * this event.
+     * Filters out {@link Direction}s of the {@link BlockTransaction}s to be
+     * marked as "valid" after this event. If the
+     * {@link Predicate#apply(Object)} returns <code>false</code>, the
+     * {@link BlockTransaction} for that {@link Direction} is marked as
+     * "invalid" and will not receive an "update".
      *
      * @param predicate The predicate to use for filtering.
-     * @return The filtered map
      */
-    Map<Direction, Location<World>> filterDirections(Predicate<Direction> predicate);
+    void filterDirections(Predicate<Direction> predicate);
 }

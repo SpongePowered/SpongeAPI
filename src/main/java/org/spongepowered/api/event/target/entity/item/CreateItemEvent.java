@@ -22,41 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.block;
 
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
+package org.spongepowered.api.event.target.entity.item;
+
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.target.entity.CreateEntityEvent;
 import org.spongepowered.api.world.World;
 
 /**
- * Base event for all interactions involving a {@link BlockState} at a
- * {@link Location}.
+ * An event where an {@link Item} {@link Entity} is already created, but has
+ * not been "spawned" or "added" to a {@link World}. All data associated with
+ * the {@link Item} should be readily available by this time.
  */
-public interface InteractBlockEvent extends InteractEvent {
+public interface CreateItemEvent extends TargetItemEvent, CreateEntityEvent {
 
-    /**
-     * Gets the target {@link Location} being interacted with.
-     *
-     * @return The location
-     */
-    Location<World> getTargetLocation();
-
-    /**
-     * Gets the target {@link BlockSnapshot} being interacted with.
-     *
-     * @return The block state
-     */
-    BlockSnapshot getTargetBlock();
-
-    /**
-     * Gets the target "side" of the {@link BlockState} being interacted with
-     * or {@link Direction#NONE} if not known.
-     *
-     * @return An optional containing the side being interacted with or
-     *     {@link Direction#NONE}
-     */
-    Direction getTargetSide();
 }

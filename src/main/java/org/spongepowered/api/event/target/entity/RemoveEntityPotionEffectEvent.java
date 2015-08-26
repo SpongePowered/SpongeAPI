@@ -22,17 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.world;
+package org.spongepowered.api.event.target.entity;
 
-import org.spongepowered.api.event.target.entity.AffectEntityEvent;
-import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.potion.PotionEffect;
 
 /**
- * Called once an {@link Explosion} has a list of affected locations and entities.
+ * An event that occurs when a {@link Living}'s {@link PotionEffect} is removed.
  *
- * <p>Marking this event as cancelled will stop all block and entity damage as well as
- * the explosion showing smoke.</p>
+ * <p>Examples may include: a Player drinking milk.</p>
  */
-public interface WorldOnExplosionEvent extends WorldExplosionEvent, WorldChangeBlockEvent, AffectEntityEvent {
+public interface RemoveEntityPotionEffectEvent extends ChangeEntityPotionEffectEvent {
 
 }

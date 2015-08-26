@@ -31,16 +31,10 @@ import org.spongepowered.api.event.cause.entity.damage.DamageType;
 public interface ProjectileDamageSourceBuilder extends EntityDamageSourceBuilder {
 
     @Override
-    ProjectileDamageSourceBuilder affectsCreativeMode();
-
-    @Override
     ProjectileDamageSourceBuilder scalesWithDifficulty();
 
     @Override
     ProjectileDamageSourceBuilder bypassesArmor();
-
-    @Override
-    ProjectileDamageSourceBuilder blockable();
 
     @Override
     ProjectileDamageSourceBuilder explosion();

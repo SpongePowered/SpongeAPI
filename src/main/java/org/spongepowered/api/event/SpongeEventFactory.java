@@ -80,12 +80,12 @@ import org.spongepowered.api.event.source.entity.EntityBreedWithEntityEvent;
 import org.spongepowered.api.event.source.entity.EntityChangeBlockEvent;
 import org.spongepowered.api.event.source.entity.EntityCollideBlockEvent;
 import org.spongepowered.api.event.source.entity.EntityCollideEntityEvent;
-import org.spongepowered.api.event.source.entity.EntityDropItemEvent;
 import org.spongepowered.api.event.source.entity.EntityHarvestBlockEvent;
 import org.spongepowered.api.event.source.entity.EntityInteractBlockEvent;
 import org.spongepowered.api.event.source.entity.EntityInteractEntityEvent;
 import org.spongepowered.api.event.source.entity.EntityPickupItemEvent;
 import org.spongepowered.api.event.source.entity.EntityPlaceBlockEvent;
+import org.spongepowered.api.event.source.entity.EntityPreDropItemStackEvent;
 import org.spongepowered.api.event.source.entity.living.human.HumanSleepEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerBreakBlockEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerCastFishingLineEvent;
@@ -93,7 +93,6 @@ import org.spongepowered.api.event.source.entity.living.player.PlayerChangeBlock
 import org.spongepowered.api.event.source.entity.living.player.PlayerChangeSignEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerChangeStatisticEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerChatEvent;
-import org.spongepowered.api.event.source.entity.living.player.PlayerDropItemEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerHarvestBlockEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerHookEntityEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerInteractBlockEvent;
@@ -101,6 +100,7 @@ import org.spongepowered.api.event.source.entity.living.player.PlayerInteractEnt
 import org.spongepowered.api.event.source.entity.living.player.PlayerJoinEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerPickupItemEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerPlaceBlockEvent;
+import org.spongepowered.api.event.source.entity.living.player.PlayerPreDropItemStackEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerQuitEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerRetractFishingLineEvent;
 import org.spongepowered.api.event.source.game.state.GameStateEvent;
@@ -114,18 +114,13 @@ import org.spongepowered.api.event.source.server.ServerLoadWorldEvent;
 import org.spongepowered.api.event.source.server.ServerUnloadWorldEvent;
 import org.spongepowered.api.event.source.world.WorldDecayBlockEvent;
 import org.spongepowered.api.event.source.world.WorldExplosionEvent;
+import org.spongepowered.api.event.source.world.WorldGenerateChunkEvent;
 import org.spongepowered.api.event.source.world.WorldGrowBlockEvent;
-import org.spongepowered.api.event.source.world.WorldOnExplosionEvent;
-import org.spongepowered.api.event.source.world.WorldPostGenerateChunkEvent;
-import org.spongepowered.api.event.source.world.WorldPostPopulateChunkEvent;
-import org.spongepowered.api.event.source.world.WorldPreExplosionEvent;
-import org.spongepowered.api.event.source.world.WorldPreGenerateChunkEvent;
-import org.spongepowered.api.event.source.world.WorldPrePopulateChunkEvent;
+import org.spongepowered.api.event.source.world.WorldPopulateChunkEvent;
 import org.spongepowered.api.event.source.world.WorldTickBlockEvent;
 import org.spongepowered.api.event.target.block.ChangeBlockEvent;
 import org.spongepowered.api.event.target.block.HarvestBlockEvent;
 import org.spongepowered.api.event.target.entity.CollideEntityEvent;
-import org.spongepowered.api.event.target.entity.ConstructEntityEvent;
 import org.spongepowered.api.event.target.entity.DestructEntityEvent;
 import org.spongepowered.api.event.target.entity.DismountEntityEvent;
 import org.spongepowered.api.event.target.entity.DisplaceEntityEvent;
@@ -133,6 +128,7 @@ import org.spongepowered.api.event.target.entity.HarvestEntityEvent;
 import org.spongepowered.api.event.target.entity.LeashEntityEvent;
 import org.spongepowered.api.event.target.entity.MountEntityEvent;
 import org.spongepowered.api.event.target.entity.MoveEntityEvent;
+import org.spongepowered.api.event.target.entity.PreCreateEntityEvent;
 import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.target.entity.TameEntityEvent;
 import org.spongepowered.api.event.target.entity.TargetEntityEvent;
@@ -726,7 +722,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link EntityDropItemEvent}.
+     * Creates a new {@link EntityPreDropItemStackEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of this event
@@ -734,13 +730,13 @@ public final class SpongeEventFactory {
      * @param droppedItems The items to drop
      * @return A new instance of the event
      */
-    public static EntityDropItemEvent createEntityDropItem(Game game, Cause cause, Entity entity, Collection<ItemStack> droppedItems) {
+    public static EntityPreDropItemStackEvent createEntityDropItem(Game game, Cause cause, Entity entity, Collection<ItemStack> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("entity", entity);
         values.put("droppedItems", droppedItems);
-        return createEvent(EntityDropItemEvent.class, values);
+        return createEvent(EntityPreDropItemStackEvent.class, values);
     }
 
     /**
@@ -808,7 +804,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link HumanSleepEvent}.
+     * Creates a new {@link HumanSleepEvent.Enter}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The human entity
@@ -816,13 +812,13 @@ public final class SpongeEventFactory {
      * @param bed The bed
      * @return A new instance of the event
      */
-    public static HumanSleepEvent createHumanSleep(Game game, Human entity, Transform<World> transform, Location<World> bed) {
+    public static HumanSleepEvent.Enter createHumanSleep(Game game, Human entity, Transform<World> transform, Location<World> bed) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
         values.put("transform", transform);
         values.put("bed", bed);
-        return createEvent(HumanSleepEvent.class, values);
+        return createEvent(HumanSleepEvent.Enter.class, values);
     }
 
     /**
@@ -982,17 +978,17 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link ConstructEntityEvent}.
+     * Creates a new {@link PreCreateEntityEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The entity
      * @return A new instance of the event
      */
-    public static ConstructEntityEvent createConstructEntity(Game game, Entity entity) {
+    public static PreCreateEntityEvent createConstructEntity(Game game, Entity entity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", entity);
-        return createEvent(ConstructEntityEvent.class, values);
+        return createEvent(PreCreateEntityEvent.class, values);
     }
 
     /**
@@ -1317,7 +1313,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link PlayerDropItemEvent}.
+     * Creates a new {@link PlayerPreDropItemStackEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The player
@@ -1325,14 +1321,14 @@ public final class SpongeEventFactory {
      * @param droppedItems The items to drop
      * @return A new instance of the event
      */
-    public static PlayerDropItemEvent createPlayerDropItem(Game game, Player entity, Cause cause, Collection<ItemStack> droppedItems) {
+    public static PlayerPreDropItemStackEvent createPlayerDropItem(Game game, Player entity, Cause cause, Collection<ItemStack> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("entity", entity);
         values.put("user", entity);
         values.put("droppedItems", droppedItems);
-        return createEvent(PlayerDropItemEvent.class, values);
+        return createEvent(PlayerPreDropItemStackEvent.class, values);
     }
 
     /**
@@ -1440,9 +1436,9 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param entity The player
-     * @param oldLocation The previous location of the entity
-     * @param newLocation The new location of the entity
-     * @param rotation The rotation the entity is facing
+     * @param oldTransform The previous location of the entity
+     * @param newTransform The new location of the entity
+     * @param targetTransform The current transform of the targeted entity
      * @return A new instance of the event
      */
     public static MovePlayerEvent createMovePlayer(Game game, Player entity, Transform<World> oldTransform, Transform<World> newTransform, Transform<World> targetTransform) {
@@ -1632,61 +1628,61 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link WorldPostGenerateChunkEvent}.
+     * Creates a new {@link WorldGenerateChunkEvent.Post}.
      *
      * @param game The game instance for this {@link GameEvent}
-     * @param chunk The chunk involved in this event
+     * @param targetChunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static WorldPostGenerateChunkEvent createWorldPostGenerateChunk(Game game, Chunk targetChunk) {
+    public static WorldGenerateChunkEvent.Post createWorldPostGenerateChunk(Game game, Chunk targetChunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return createEvent(WorldPostGenerateChunkEvent.class, values);
+        return createEvent(WorldGenerateChunkEvent.Post.class, values);
     }
 
     /**
-     * Creates a new {@link WorldPostPopulateChunkEvent}.
+     * Creates a new {@link WorldGenerateChunkEvent.Pre}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @return A new instance of the event
      */
-    public static WorldPostPopulateChunkEvent createWorldPostPopulateChunk(Game game, Chunk chunk) {
+    public static WorldGenerateChunkEvent.Pre createWorldPreGenerateChunk(Game game, Chunk chunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
-        return createEvent(WorldPostPopulateChunkEvent.class, values);
+        return createEvent(WorldGenerateChunkEvent.Pre.class, values);
     }
 
     /**
-     * Creates a new {@link WorldPreGenerateChunkEvent}.
-     *
-     * @param game The game instance for this {@link GameEvent}
-     * @param chunk The chunk involved in this event
-     * @return A new instance of the event
-     */
-    public static WorldPreGenerateChunkEvent createWorldPreGenerateChunk(Game game, Chunk chunk) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("chunk", chunk);
-        return createEvent(WorldPreGenerateChunkEvent.class, values);
-    }
-
-    /**
-     * Creates a new {@link WorldPrePopulateChunkEvent}.
+     * Creates a new {@link WorldPopulateChunkEvent.Pre}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param chunk The chunk involved in this event
      * @param pendingPopulators All populator's that will populate the chunk
      * @return A new instance of the event
      */
-    public static WorldPrePopulateChunkEvent createWorldPrePopulateChunk(Game game, Chunk chunk, List<Populator> pendingPopulators) {
+    public static WorldPopulateChunkEvent.Pre createWorldPrePopulateChunk(Game game, Chunk chunk, List<Populator> pendingPopulators) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunk", chunk);
         values.put("pendingPopulators", pendingPopulators);
-        return createEvent(WorldPrePopulateChunkEvent.class, values);
+        return createEvent(WorldPopulateChunkEvent.Pre.class, values);
+    }
+
+    /**
+     * Creates a new {@link WorldPopulateChunkEvent.Post}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param chunk The chunk involved in this event
+     * @return A new instance of the event
+     */
+    public static WorldPopulateChunkEvent.Post createWorldPostPopulateChunk(Game game, Chunk chunk) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("chunk", chunk);
+        return createEvent(WorldPopulateChunkEvent.Post.class, values);
     }
 
     /**
@@ -1759,7 +1755,6 @@ public final class SpongeEventFactory {
     /**
      * Creates a new {@link ServerLoadWorldEvent}.
      *
-     * @param cause The cause
      * @param game The game instance for this {@link GameEvent}
      * @param world The world involved in this event
      * @return A new instance of the event
@@ -1775,7 +1770,6 @@ public final class SpongeEventFactory {
     /**
      * Creates a new {@link ServerUnloadWorldEvent}.
      *
-     * @param cause The cause
      * @param game The game instance for this {@link GameEvent}
      * @param world The world involved in this event
      * @return A new instance of the event
@@ -1990,8 +1984,8 @@ public final class SpongeEventFactory {
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
-     * @param location The location
-     * @param replacementBlock The block that will replace the existing block
+     * @param world The world
+     * @param transactions The list of block transactions
      * @return A new instance of the event
      */
     public static WorldDecayBlockEvent createWorldDecayBlock(Game game, Cause cause, World world, ImmutableList<BlockTransaction> transactions) {
@@ -2019,22 +2013,22 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link WorldPreExplosionEvent}.
+     * Creates a new {@link WorldExplosionEvent.Pre}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param explosion The explosion
      * @return A new instance of the event
      */
-    public static WorldPreExplosionEvent createWorldPreExplosion(Game game, Explosion explosion) {
+    public static WorldExplosionEvent.Pre createWorldPreExplosion(Game game, Explosion explosion) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("world", explosion.getWorld());
         values.put("explosion", explosion);
-        return createEvent(WorldPreExplosionEvent.class, values);
+        return createEvent(WorldExplosionEvent.Pre.class, values);
     }
 
     /**
-     * Creates a new {@link WorldOnExplosionEvent}.
+     * Creates a new {@link WorldExplosionEvent.OnExplosion}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param explosion The explosion
@@ -2042,7 +2036,7 @@ public final class SpongeEventFactory {
      * @param entities The affected entities
      * @return A new instance of the event
      */
-    public static WorldOnExplosionEvent createWorldOnExplosion(Game game, Cause cause, Explosion explosion, List<Location<World>> locations,
+    public static WorldExplosionEvent.OnExplosion createWorldOnExplosion(Game game, Cause cause, Explosion explosion, List<Location<World>> locations,
             List<Entity> entities) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -2053,6 +2047,6 @@ public final class SpongeEventFactory {
         values.put("originalLocations", ImmutableList.copyOf(locations));
         values.put("entities", entities);
         values.put("originalEntities", ImmutableList.copyOf(entities));
-        return createEvent(WorldOnExplosionEvent.class, values);
+        return createEvent(WorldExplosionEvent.OnExplosion.class, values);
     }
 }

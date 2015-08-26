@@ -22,13 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.entity.living.player;
 
-import org.spongepowered.api.event.source.entity.living.human.HumanEnterBedEvent;
+package org.spongepowered.api.event.source.entity.living.human;
 
-/**
- * Called when a Player enters a bed to sleep in.
- */
-public interface PlayerEnterBedEvent extends HumanEnterBedEvent, PlayerSleepEvent {
+import org.spongepowered.api.event.source.entity.living.LivingLaunchProjectileEvent;
+
+public interface HumanLaunchProjectileEvent extends HumanEvent, LivingLaunchProjectileEvent {
 
 }

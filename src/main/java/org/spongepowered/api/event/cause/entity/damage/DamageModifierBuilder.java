@@ -27,12 +27,12 @@ package org.spongepowered.api.event.cause.entity.damage;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import org.spongepowered.api.entity.Entity;
+import com.google.common.base.Objects;
 import org.spongepowered.api.event.cause.Cause;
 
 /**
- * An index of known vanilla {@link DamageModifier}s that can be applied by
- * an {@link Entity}.
+ * A builder that creates {@link DamageModifier}s, for use in both plugin and
+ * implementation requirements.
  */
 public final class DamageModifierBuilder {
 
@@ -42,20 +42,44 @@ public final class DamageModifierBuilder {
     private DamageModifierBuilder() {
     }
 
-    public static DamageModifierBuilder createBuilder() {
+    /**
+     * Creates a new {@link DamageModifierBuilder}.
+     *
+     * @return The new builder instance
+     */
+    public static DamageModifierBuilder builder() {
         return new DamageModifierBuilder();
     }
 
+    /**
+     * Sets the {@link DamageModifierType} for the {@link DamageModifier} to
+     * build.
+     *
+     * @param damageModifierType The damage modifier type
+     * @return This builder, for chaining
+     */
     public DamageModifierBuilder type(DamageModifierType damageModifierType) {
         this.type = checkNotNull(damageModifierType);
         return this;
     }
 
+    /**
+     * Sets the {@link Cause} for the {@link DamageModifier} to build.
+     *
+     * @param cause The cause for the damage modifier
+     * @return This builder, for chaining
+     */
     public DamageModifierBuilder cause(Cause cause) {
         this.cause = checkNotNull(cause);
         return this;
     }
 
+    /**
+     * Creates a new {@link DamageModifier} with this builder's provided
+     * {@link Cause} and {@link DamageModifierType}.
+     *
+     * @return The newly created damage modifier
+     */
     public DamageModifier build() {
         checkState(this.type != null, "The DamageModifierType must not be null!");
         checkState(this.cause != null, "The cause for the DamageModifier must not be null!");
@@ -80,6 +104,32 @@ public final class DamageModifierBuilder {
         @Override
         public Cause getCause() {
             return this.cause;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(this.type, this.cause);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            final ImplementedDamageModifier other = (ImplementedDamageModifier) obj;
+            return Objects.equal(this.type, other.type)
+                   && Objects.equal(this.cause, other.cause);
+        }
+
+        @Override
+        public String toString() {
+            return Objects.toStringHelper(this)
+                .add("type", this.type)
+                .add("cause", this.cause)
+                .toString();
         }
     }
 

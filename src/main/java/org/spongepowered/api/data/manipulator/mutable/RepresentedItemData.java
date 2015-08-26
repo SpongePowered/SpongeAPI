@@ -29,6 +29,7 @@ import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedItem
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * An {@link DataManipulator} handling the representation of an
@@ -39,10 +40,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface RepresentedItemData extends DataManipulator<RepresentedItemData, ImmutableRepresentedItemData> {
 
     /**
-     * Gets the {@link Value} for the represented {@link ItemStack}.
+     * Gets the {@link Value} for the represented {@link ItemStack} as
+     * an {@link ItemStackSnapshot}.
      *
-     * @return The value for the item stack
+     * @return The value for the item stack snapshot
      */
-    Value<ItemStack> item();
+    Value<ItemStackSnapshot> item();
 
 }

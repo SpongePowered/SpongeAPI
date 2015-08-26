@@ -22,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.entity;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.source.entity.EntityEvent;
+package org.spongepowered.api.event.cause.entity.health;
 
-/**
- * Called during the construction of a {@link Entity}.
- */
-public interface ConstructEntityEvent extends EntityEvent {
+public final class HealTypes {
+
+    public static final HealType POTION = null;
+    public static final HealType UNDEAD = null;
+    public static final HealType FOOD = null;
 
 }

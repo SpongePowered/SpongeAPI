@@ -36,6 +36,10 @@ import org.apache.commons.lang3.tuple.Pair;
  */
 public class Tuple<K, V> {
 
+    public static <K, V> Tuple<K, V> of(K first, V second) {
+        return new Tuple<K, V>(first, second);
+    }
+
     private final K first;
     private final V second;
 
@@ -50,6 +54,14 @@ public class Tuple<K, V> {
 
     public V getSecond() {
         return this.second;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+            .add("first", this.first)
+            .add("second", this.second)
+            .toString();
     }
 
     @Override

@@ -22,15 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.entity.living.player;
+package org.spongepowered.api.event.target.entity;
 
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.source.entity.living.human.HumanConsumeItemEvent;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.potion.PotionEffect;
 
 /**
- * An event when a {@link Player} consumes an item. Examples may include: eating,
- * drinking a potion, etc.
+ * An event that occurs when a {@link PotionEffect} expires on an
+ * {@link Entity}.
  */
-public interface PlayerConsumeItemEvent extends PlayerEvent, HumanConsumeItemEvent {
+public interface ExpireEntityPotionEffectEvent extends ChangeEntityPotionEffectEvent {
 
 }

@@ -24,63 +24,27 @@
  */
 package org.spongepowered.api.event.target.entity;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.potion.PotionEffect;
 
-import java.util.Collection;
-
 /**
- * An event when an {@link Entity} gains or removes a {@link PotionEffect}.
- *
- * <p>If the potion effect is being lost, {@link #setPotionEffect(PotionEffect)}
- * will have no change to the potion effect being removed. If a potion
- * effect is being removed due to expiration, cancelling the event will
- * have no change.</p>
+ * An event that involves a living entity having effects added and removed.
  */
-public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, CauseTracked, Cancellable {
+public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, CauseTracked {
 
     /**
-     * Gets the {@link PotionEffect} being added or removed.
+     * Gets a copy of all current effects applied on the entity.
      *
-     * @return The potion effect
+     * @return A copy of the potion effects
+     */
+    ImmutableList<PotionEffect> getCurrentEffects();
+
+    /**
+     * Gets the potion effect involved in this event.
+     *
+     * @return The potion effect involved in this event
      */
     PotionEffect getPotionEffect();
-
-    /**
-     * Gets whether the entity is gaining the linked {@link PotionEffect}.
-     *
-     * <p>If the potion effect is being lost, {@link 
-     * #setPotionEffect(PotionEffect)} will have no change to the potion effect 
-     * being removed. If a potion effect is being removed due to expiration, 
-     * cancelling the event will have no change.</p>
-     *
-     * @return If the potion effect is being added
-     */
-    boolean isBeingAdded();
-
-    /**
-     * Sets the potion effect to be added to the entity.
-     *
-     * <p>Setting the potion effect only changes the potion effect if the
-     * effect is being added, a check for {@link #isBeingAdded()} is
-     * recommended.</p>
-     *
-     * <p>If the potion effect is being lost, setting the {@link PotionEffect}
-     * will have no change to the potion effect being removed. If a potion
-     * effect is being removed due to expiration, cancelling the event will
-     * have no change.</p>
-     *
-     * @param potionEffect The potion effect to add
-     */
-    void setPotionEffect(PotionEffect potionEffect);
-
-    /**
-     * Gets a copy of all currently active {@link PotionEffect}s on the entity.
-     *
-     * @return A copy of all potion effects active on the entity
-     */
-    Collection<PotionEffect> getCurrentEffects();
 
 }

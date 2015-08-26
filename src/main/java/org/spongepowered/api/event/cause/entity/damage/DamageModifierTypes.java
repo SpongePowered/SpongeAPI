@@ -24,18 +24,28 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSource;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.potion.PotionEffectTypes;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.difficulty.Difficulty;
 
 public final class DamageModifierTypes {
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
      * an {@link Enchantment} on an equipped {@link ItemStack}.
+     *
+     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * an {@link ItemStackSnapshot} and an {@link ItemEnchantment} signifying
+     * that the {@link Enchantment} of the {@link ItemStack} is modifying the
+     * incoming/outgoing damage.</p>
      */
     public static final DamageModifierType WEAPON_ENCHANTMENT = null;
     /**
@@ -44,8 +54,32 @@ public final class DamageModifierTypes {
      */
     public static final DamageModifierType OFFENSIVE_POTION_EFFECT = null;
     /**
+     * Represents a {@link DamageModifier} that will reduce damage based on
+     * the {@link PotionEffectTypes#RESISTANCE} or any other
+     * {@link PotionEffectType} that can be deemed as reducing incoming damage.
+     *
+     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * a {@link PotionEffect} including the amplifier and duration, signifying
+     * that the {@link PotionEffectType} is modifying the incoming damage.</p>
+     */
+    public static final DamageModifierType DEFENSIVE_POTION_EFFECT = null;
+    /**
+     * Represents a {@link DamageModifier} that will reduce outgoing damage
+     * based on a {@link PotionEffect}.
+     *
+     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * a {@link PotionEffect} including the amplifier and duration, signifying
+     * that the {@link PotionEffectType} is reducing the outgoing damage.</p>
+     */
+    public static final DamageModifierType NEGATIVE_POTION_EFFECT = null;
+    /**
      * Represents the {@link DamageModifier} that will modify damage from
      * a {@link FallingBlockDamageSource}.
+     *
+     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * an {@link ItemStackSnapshot} and an {@link ItemEnchantment} signifying
+     * that the {@link Enchantment} of the {@link ItemStack} is modifying the
+     * incoming/outgoing damage.</p>
      */
     public static final DamageModifierType HARD_HAT = null;
     /**
@@ -60,9 +94,17 @@ public final class DamageModifierTypes {
     public static final DamageModifierType ARMOR = null;
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
-     * the {@link PotionEffectTypes#RESISTANCE}.
+     * the {@link Enchantment}s applicable to an {@link ItemStack} that is
+     * considered to be "armor" currently equipped on the owner.
+     *
+     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * an {@link ItemStackSnapshot} and an {@link ItemEnchantment} signifying
+     * that the {@link Enchantment} of the {@link ItemStack} is modifying the
+     * incoming/outgoing damage. There can be multiple {@link DamageModifier}s
+     * of this type in a single event due to the variety of possibilities in
+     * customization of armor handling.</p>
      */
-    public static final DamageModifierType DEFENSIVE_POTION_EFFECT = null;
+    public static final DamageModifierType ARMOR_ENCHANTMENT = null;
     /**
      * Represents a {@link DamageModifier} that will modify damage based on
      * magic.
@@ -74,6 +116,11 @@ public final class DamageModifierTypes {
      * {@link Entity}.
      */
     public static final DamageModifierType ABSORPTION = null;
+    /**
+     * Represents a {@link DamageModifier} that enhances damage based on the
+     * current {@link Difficulty} of the {@link World}.
+     */
+    public static final DamageModifierType DIFFICULTY = null;
 
     private DamageModifierTypes() {
 

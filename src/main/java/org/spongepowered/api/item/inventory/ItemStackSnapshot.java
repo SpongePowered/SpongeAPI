@@ -22,15 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.entity;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.inventory.ItemDropEvent;
+package org.spongepowered.api.item.inventory;
 
-/**
- * Called when a player drops an item stack.
- */
-public interface EntityDropItemEvent extends EntityEvent, CauseTracked, Cancellable, ItemDropEvent {
+import org.spongepowered.api.data.ImmutableDataHolder;
+import org.spongepowered.api.item.ItemType;
+
+public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot> {
+
+    ItemType getType();
+
+    int getCount();
 
 }

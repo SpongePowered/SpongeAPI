@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.source.block;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -50,7 +51,7 @@ public interface BlockEvent extends GameEvent, CauseTracked {
      *
      * @return The source BlockState
      */
-    BlockState getSourceBlock();
+    BlockSnapshot getSourceBlock();
 
     /**
      * Gets the source "side" as a {@link Direction}.

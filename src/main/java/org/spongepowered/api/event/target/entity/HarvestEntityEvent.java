@@ -29,7 +29,7 @@ import org.spongepowered.api.event.action.ChangeExperienceEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Called when an {@link Entity} is killed or removed due to unload.
+ * Called when an {@link Entity} is killed.
  */
 public interface HarvestEntityEvent extends TargetEntityEvent, ChangeExperienceEvent, CauseTracked {
 

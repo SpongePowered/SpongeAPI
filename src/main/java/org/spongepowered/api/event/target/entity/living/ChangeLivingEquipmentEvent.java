@@ -24,13 +24,24 @@
  */
 package org.spongepowered.api.event.target.entity.living;
 
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.source.entity.living.LivingEvent;
 import org.spongepowered.api.event.target.entity.ChangeEntityEquipmentEvent;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackTransaction;
+import org.spongepowered.api.item.inventory.Slot;
 
 /**
- * Called when an entity changes an equipped item.
- * <p>Examples include: A zombie picking up a weapon, a Player switching
- * their current item in hand, etc.</p>
+ * Called when an entity changes an equipped item. This can occur whenever
+ * a {@link Slot} belonging to an {@link Inventory} of an {@link Living} entity
+ * is filled with an {@link ItemStack}, emptied of an {@link ItemStack},
+ * or swapped with an {@link ItemStack}. The requirement of course is
+ * that if the {@link #getOriginalItem()} is {@link Optional#absent()}, then
+ * the {@link #getNewItemStack()} must be present, and vice versa. In the event
+ * that a change to the suggested {@link ItemStack}, the use of the
+ * {@link ItemStackTransaction} is recommended.
  */
 public interface ChangeLivingEquipmentEvent extends LivingEvent, ChangeEntityEquipmentEvent {
 

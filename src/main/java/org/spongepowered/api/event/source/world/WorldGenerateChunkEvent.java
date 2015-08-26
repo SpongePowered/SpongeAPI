@@ -22,14 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.entity.living.human;
+package org.spongepowered.api.event.source.world;
 
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.event.source.entity.living.LivingDropItemEvent;
+import org.spongepowered.api.event.target.world.chunk.ChangeChunkEvent;
+import org.spongepowered.api.world.Chunk;
 
 /**
- * Called when a {@link Human} drops an item(s).
+ * Called when a {@link Chunk} is about to be generated.
  */
-public interface HumanDropItemEvent extends HumanEvent, LivingDropItemEvent {
+public interface WorldGenerateChunkEvent extends ChangeChunkEvent {
+
+    interface Pre extends WorldGenerateChunkEvent {
+
+    }
+
+    interface Post extends WorldGenerateChunkEvent {
+
+    }
 
 }

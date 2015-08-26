@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.event.target.entity;
 
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Raised when entities are spawned.
+ * Raised when an {@link Entity} is spawned. This usually follows the chain of
+ * the various entity creation events: {@link PreCreateEntityEvent},
+ * {@link CreateEntityEvent}, and finally {@link SpawnEntityEvent}.
  */
 public interface SpawnEntityEvent extends TargetEntityEvent, CauseTracked {
 

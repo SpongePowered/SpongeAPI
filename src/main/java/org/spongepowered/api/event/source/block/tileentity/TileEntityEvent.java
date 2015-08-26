@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.source.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.source.block.BlockEvent;
 

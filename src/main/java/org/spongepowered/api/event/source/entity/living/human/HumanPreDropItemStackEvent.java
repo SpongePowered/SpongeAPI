@@ -22,11 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.entity;
+package org.spongepowered.api.event.source.entity.living.human;
 
-import org.spongepowered.api.event.source.entity.EntityEvent;
-import org.spongepowered.api.event.target.entity.projectile.LaunchProjectileEvent;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.source.entity.living.LivingPreDropItemStackEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-public interface EntityLaunchProjectileEvent extends EntityEvent, LaunchProjectileEvent {
+/**
+ * Handles when any {@link ItemStack}(s) is/are about to be "dropped" onto
+ * the ground. This will happen before they are physically dropped, in which
+ * case before an {@link Item} entity is actually constructed, let alone
+ * spawned.
+ */
+public interface HumanPreDropItemStackEvent extends HumanEvent, LivingPreDropItemStackEvent {
 
 }

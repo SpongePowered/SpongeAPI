@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.source.world;
 
 import org.spongepowered.api.event.target.block.ChangeBlockEvent;
+import org.spongepowered.api.event.target.entity.AffectEntityEvent;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
@@ -39,4 +40,12 @@ public interface WorldExplosionEvent extends ChangeBlockEvent, WorldEvent {
      * @return The explosion that this event is involved in
      */
     Explosion getExplosion();
+
+    interface Pre extends WorldExplosionEvent {
+
+    }
+
+    interface OnExplosion extends WorldExplosionEvent, WorldChangeBlockEvent, AffectEntityEvent {
+
+    }
 }

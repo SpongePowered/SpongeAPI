@@ -72,7 +72,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      */
     World getWorld();
 
-    EntitySnapshot getSnapshot();
+    EntitySnapshot createSnapshot();
 
     /**
      * Get the location of this entity.

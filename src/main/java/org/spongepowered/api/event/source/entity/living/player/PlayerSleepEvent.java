@@ -24,12 +24,23 @@
  */
 package org.spongepowered.api.event.source.entity.living.player;
 
-import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.source.entity.living.human.HumanSleepEvent;
 
 /**
- * Called when a {@link Player} interacts with a bed.
+ * Called when a Player enters a bed to sleep in.
  */
 public interface PlayerSleepEvent extends HumanSleepEvent, PlayerEvent {
+
+    interface Enter extends HumanSleepEvent.Enter, PlayerSleepEvent {
+
+    }
+
+    interface StartSleeping extends HumanSleepEvent.StartSleeping, PlayerSleepEvent {
+
+    }
+
+    interface StopSleeping extends HumanSleepEvent.StopSleeping, PlayerSleepEvent {
+
+    }
 
 }

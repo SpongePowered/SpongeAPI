@@ -22,15 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.entity.living;
 
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.potion.PotionEffect;
+package org.spongepowered.api.event.source.entity;
 
-/**
- * An event that occurs when a {@link Living} gains a {@link PotionEffect}.
- */
-public interface GainPotionEffectLivingEvent extends PotionEffectLivingEvent, Cancellable {
+import org.spongepowered.api.event.target.entity.DismountEntityEvent;
+
+public interface EntityDismountEntityEvent extends EntityEvent, DismountEntityEvent {
 
 }

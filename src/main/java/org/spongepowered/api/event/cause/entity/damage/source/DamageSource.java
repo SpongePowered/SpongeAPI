@@ -44,14 +44,6 @@ public interface DamageSource {
     DamageType getDamageType();
 
     /**
-     * Gets whether this {@link DamageSource} is blockable by weapon
-     * blocking.
-     *
-     * @return True if the source can be blocked
-     */
-    boolean isBlockable();
-
-    /**
      * Gets whether this {@link DamageSource} can not be modified and the
      * damage is absolute.
      *

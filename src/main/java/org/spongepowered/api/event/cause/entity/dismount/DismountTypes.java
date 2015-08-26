@@ -22,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.world;
 
-import org.spongepowered.api.event.target.world.chunk.ChangeChunkEvent;
-import org.spongepowered.api.world.Chunk;
+package org.spongepowered.api.event.cause.entity.dismount;
 
-/**
- * Called when a {@link Chunk} is about to be generated.
- */
-public interface WorldPreGenerateChunkEvent extends ChangeChunkEvent {
+public final class DismountTypes {
+
+    public static final DismountType DEATH = null;
+    public static final DismountType PLAYER = null;
+    public static final DismountType DERAIL = null;
 
 }

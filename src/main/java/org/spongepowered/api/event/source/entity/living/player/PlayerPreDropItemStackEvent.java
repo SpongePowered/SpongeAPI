@@ -22,14 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.entity.living;
+package org.spongepowered.api.event.source.entity.living.player;
 
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.source.entity.living.human.HumanPreDropItemStackEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * An event that occurs when a {@link Living}'s {@link PotionEffect} expires.
+ * Handles when any {@link ItemStack}(s) is/are about to be "dropped" onto
+ * the ground. This will happen before they are physically dropped, in which
+ * case before an {@link Item} entity is actually constructed, let alone
+ * spawned.
  */
-public interface ExpirePotionEffectLivingEvent extends PotionEffectLivingEvent {
+public interface PlayerPreDropItemStackEvent extends PlayerEvent, HumanPreDropItemStackEvent {
 
 }

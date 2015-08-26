@@ -22,13 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.world;
+package org.spongepowered.api.event.source.entity;
 
-import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.target.inventory.PreDropItemStackEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * Called before an {@link Explosion} actually occurs. Canceling this event will stop the explosion.
+ * Handles when any {@link ItemStack}(s) is/are about to be "dropped" onto
+ * the ground. This will happen before they are physically dropped, in which
+ * case before an {@link Item} entity is actually constructed, let alone
+ * spawned.
  */
-public interface WorldPreExplosionEvent extends WorldExplosionEvent {
+public interface EntityPreDropItemStackEvent extends EntityEvent, PreDropItemStackEvent {
 
 }

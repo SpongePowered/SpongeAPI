@@ -32,11 +32,13 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.world.Location;
 
 import javax.annotation.Nullable;
 
 /**
- *
+ * Represents a "transaction" of a {@link BlockSnapshot} at a specific
+ * {@link Location} being changed to a "replacement" {@link BlockSnapshot}.
  */
 public final class BlockTransaction implements DataSerializable {
 

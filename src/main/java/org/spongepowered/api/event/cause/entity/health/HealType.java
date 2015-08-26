@@ -22,14 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.source.world;
 
-import org.spongepowered.api.event.target.world.chunk.ChangeChunkEvent;
-import org.spongepowered.api.world.Chunk;
+package org.spongepowered.api.event.cause.entity.health;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.event.target.entity.HealEntityEvent;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Called when a {@link Chunk} has just been populated.
+ * Represents a type of "healing", used for {@link HealEntityEvent}s.
  */
-public interface WorldPostPopulateChunkEvent extends ChangeChunkEvent {
+@CatalogedBy(HealTypes.class)
+public interface HealType extends CatalogType {
 
 }

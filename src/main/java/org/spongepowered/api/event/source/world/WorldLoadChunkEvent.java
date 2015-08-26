@@ -26,6 +26,7 @@ package org.spongepowered.api.event.source.world;
 
 import org.spongepowered.api.event.target.world.chunk.ChangeChunkEvent;
 import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.World;
 
 /**
  * Base event for when a {@link World} loads a {@link Chunk}.

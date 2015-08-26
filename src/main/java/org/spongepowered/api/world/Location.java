@@ -431,8 +431,8 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param snapshot The snapshot
      */
-    public void setBlockSnapshot(BlockSnapshot snapshot) {
-        getExtent().setBlockSnapshot(getBlockPosition(), snapshot);
+    public void restoreSnapshot(BlockSnapshot snapshot) {
+        getExtent().restoreSnapshot(getBlockPosition(), snapshot);
     }
 
     /**
@@ -566,8 +566,8 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @return A snapshot
      */
-    public BlockSnapshot getBlockSnapshot() {
-        return getExtent().getBlockSnapshot(getBlockPosition());
+    public BlockSnapshot createSnapshot() {
+        return getExtent().createSnapshot(getBlockPosition());
     }
 
     /**

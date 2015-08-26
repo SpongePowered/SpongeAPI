@@ -25,26 +25,36 @@
 package org.spongepowered.api.event.target.entity;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.inventory.InventoryEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.ItemStackTransaction;
 import org.spongepowered.api.item.inventory.Slot;
 
 /**
- * Called when an entity changes an equipped item.
- * <p>Examples include: A zombie picking up a weapon, a Player switching
- * their current item in hand, etc.</p>
+ * Called when an entity changes an equipped item. This can occur whenever
+ * a {@link Slot} belonging to an {@link Inventory} of an {@link Entity}
+ * is filled with an {@link ItemStack}, emptied of an {@link ItemStack},
+ * or swapped with an {@link ItemStack}. The requirement of course is
+ * that if the {@link #getOriginalItem()} is {@link Optional#absent()}, then
+ * the {@link #getNewItemStack()} must be present, and vice versa. In the event
+ * that a change to the suggested {@link ItemStack}, the use of the
+ * {@link ItemStackTransaction} is recommended.
  */
 public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, InventoryEvent, Cancellable {
 
     /**
-     * Gets the previously equipped item stack.
+     * Gets the previously equipped {@link ItemStack} as an
+     * {@link ItemStackSnapshot}.
      *
      * <p>The previously equipped item may have been empty.</p>
      *
      * @return The original itemstack, if available
      */
-    Optional<ItemStack> getOriginalItem();
+    Optional<ItemStackSnapshot> getOriginalItem();
 
     /**
      * Gets the {@link ItemStack} that is being equipped in the relative
@@ -54,7 +64,7 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, Inventory
      *
      * @return The item stack, if available
      */
-    Optional<ItemStack> getNewItemStack();
+    Optional<ItemStackTransaction> getNewItemStack();
 
     @Override
     Slot getInventory();

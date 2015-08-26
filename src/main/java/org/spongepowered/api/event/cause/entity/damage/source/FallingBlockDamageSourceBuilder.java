@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 
 public interface FallingBlockDamageSourceBuilder extends EntityDamageSourceBuilder {
@@ -35,9 +35,6 @@ public interface FallingBlockDamageSourceBuilder extends EntityDamageSourceBuild
 
     @Override
     FallingBlockDamageSourceBuilder bypassesArmor();
-
-    @Override
-    FallingBlockDamageSourceBuilder blockable();
 
     @Override
     FallingBlockDamageSourceBuilder explosion();
@@ -52,12 +49,9 @@ public interface FallingBlockDamageSourceBuilder extends EntityDamageSourceBuild
     FallingBlockDamageSourceBuilder entity(Entity entity);
 
     @Override
-    FallingBlockDamageSourceBuilder affectsCreativeMode();
-
-    @Override
     FallingBlockDamageSourceBuilder type(DamageType damageType);
 
-    FallingBlockDamageSourceBuilder fallingBlock(FallingBlock fallingBlock);
+    FallingBlockDamageSourceBuilder fallingBlock(ImmutableFallingBlockData fallingBlock);
 
     @Override
     FallingBlockDamageSource build() throws IllegalStateException;

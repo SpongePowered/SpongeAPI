@@ -131,6 +131,7 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.player.gamemode.GameMode;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
@@ -175,7 +176,7 @@ public final class Keys {
     public static final Key<WeightedEntityCollectionValue> SPAWNER_ENTITIES = null;
     public static final Key<Value<GameProfile>> OWNED_BY_PROFILE = null;
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = null;
-    public static final Key<Value<ItemStack>> REPRESENTED_ITEM = null;
+    public static final Key<Value<ItemStackSnapshot>> REPRESENTED_ITEM = null;
     public static final Key<Value<Rotation>> ROTATION = null;
     public static final Key<Value<SkullType>> SKULL_TYPE = null;
     public static final Key<Value<Location<World>>> TARGETED_LOCATION = null;

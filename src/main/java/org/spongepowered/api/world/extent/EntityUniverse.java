@@ -31,6 +31,7 @@ import com.google.common.base.Predicate;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
@@ -132,6 +133,23 @@ public interface EntityUniverse {
      * @return An entity, if one was created
      */
     Optional<Entity> createEntity(DataContainer entityContainer, Vector3d position);
+
+    /**
+     * Creates and restores an {@link Entity} from the provided
+     * {@link EntitySnapshot} at the provided {@link Vector3d} position.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An entity
+     * created means the entity can be spawned at the given location. If
+     * {@link Optional#absent()} was returned, the entity is not able to spawn
+     * at the given location. Furthermore, this allows for the {@link Entity} to
+     * be customized further prior to traditional "ticking" and processing by
+     * core systems.</p>
+     *
+     * @param snapshot The entity snapshot of the entity
+     * @param position The position of the entity to spawn at
+     * @return An entity, if one was created
+     */
+    Optional<Entity> restoreSnapshot(EntitySnapshot snapshot, Vector3d position);
 
     /**
      * Spawns an {@link Entity} using the already set properties (extent,

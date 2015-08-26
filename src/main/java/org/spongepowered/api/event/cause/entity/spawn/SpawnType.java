@@ -25,8 +25,13 @@
 package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a type of "spawning" for a {@link SpawnEntityEvent}. Always
+ * included with a {@link SpawnCause} for further specification.
+ */
 @CatalogedBy(SpawnTypes.class)
 public interface SpawnType extends CatalogType {
 

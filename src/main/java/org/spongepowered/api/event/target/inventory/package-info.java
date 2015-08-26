@@ -22,17 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.target.entity.living;
 
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.potion.PotionEffect;
-
-/**
- * An event that occurs when a {@link Living}'s {@link PotionEffect} is removed.
- *
- * <p>Examples may include: a Player drinking milk.</p>
- */
-public interface RemovePotionEffectLivingEvent extends PotionEffectLivingEvent, Cancellable {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.target.inventory;
