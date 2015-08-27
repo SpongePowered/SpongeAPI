@@ -211,6 +211,21 @@ public class ClassGenerator {
         return false;
     }
 
+    public static boolean hasDeclaredMethod(Class<?> type, String name, Class<?>... params) {
+        while (type != null) {
+            try {
+                type.getDeclaredMethod(name, params);
+                return true;
+            } catch (NoSuchMethodException ignored) {
+                // Try the superclass
+            }
+
+            type = type.getSuperclass();
+        }
+
+        return false;
+    }
+
     /**
      * Get the policy regarding how null parameters are handled.
      *
@@ -353,6 +368,12 @@ public class ClassGenerator {
                 mv.visitInsn(ATHROW);
 
                 mv.visitLabel(afterException);
+            }
+
+            // super.init();
+            if (hasDeclaredMethod(parentType, "init")) {
+                mv.visitVarInsn(ALOAD, 0);
+                mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "init", "()V", false);
             }
 
             mv.visitInsn(RETURN);

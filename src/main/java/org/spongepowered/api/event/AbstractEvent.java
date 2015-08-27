@@ -41,4 +41,14 @@ public abstract class AbstractEvent implements Event {
         return this.callbacks;
     }
 
+    /**
+     * Called once all fields have been set by the generated
+     * constructor in a subclass.
+     *
+     * <p>This method should be used
+     * to initialize any fields that depend on parameters
+     * passed to the constructor.</p>
+     */
+    protected void init() {}
+
 }
