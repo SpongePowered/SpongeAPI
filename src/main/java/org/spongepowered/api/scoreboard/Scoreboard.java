@@ -124,13 +124,13 @@ public interface Scoreboard {
     void removeScores(Text name);
 
     /**
-     * Gets a {@link User}'s {@link Team} on this scoreboard.
+     * Gets a {@link Text} member's {@link Team} on this scoreboard.
      *
-     * @param user The {@link User} to search for
-     * @return The {@link User}'s {@link Team}, or Optional.absent()
-     *     if the user has no team
+     * @param member The {@link Text} to search for
+     * @return The {@link Text} member's {@link Team}, or Optional.absent()
+     *     if the member has no team
      */
-    Optional<Team> getUserTeam(User user);
+    Optional<Team> getMemberTeam(Text member);
 
     /**
      * Gets a {@link Team} by name on this scoreboard.

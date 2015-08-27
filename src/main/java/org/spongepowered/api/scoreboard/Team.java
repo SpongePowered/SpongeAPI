@@ -25,6 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
@@ -34,6 +35,13 @@ import java.util.Set;
 /**
  * A team on a scoreboard that has a common display theme and other
  * properties.
+ *
+ * <p>A team is comprised of different members, represented by {@link Text} objects.
+ * While any {@link Text} can be added to a team, certain {@link Text}s convey a special
+ * meaning.</p>
+ *
+ * <p>Examples of this include players, whose names gain the prefix and suffix of
+ * the team they are on.</p>
  */
 public interface Team {
 
@@ -176,28 +184,34 @@ public interface Team {
     void setDeathTextVisibility(Visibility visibility);
 
     /**
-     * Gets the {@link User}s on the team.
+     * Gets the {@link Text}s representing the members of this team.
      *
-     * @return The {@link User}s on the team
+     * @return the {@link Text}s for this team's members
      */
-    Set<User> getUsers();
+    Set<Text> getMembers();
 
     /**
-     * Adds the specified {@link User} to this team for the {@link Scoreboard}.
+     * Adds the specified {@link Text} to this team.
      *
-     * <p>This will remove the {@link User} from any other team on the {@link Scoreboard}.</p>
+     * <p>While any {@link Text} may be added, the {@link Text}
+     * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
+     * on a {@link TeamMember}, such as a {@link Player}.</p>
      *
-     * @param user The {@link User} to add
+     * @param member the {@link Text} to add
      */
-    void addUser(User user);
+    void addMember(Text member);
 
     /**
-     * Removes the specified {@link User} from this team.
+     * Removes the specified {@link Text} from this team.
      *
-     * @param user The {@link User} to remove
-     * @return Whether the {@link User} was on this team
+     * <p>While any {@link Text} may be removed, the {@link Text}
+     * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
+     * on a {@link TeamMember}, such as a {@link Player}.</p
+     *
+     * @param member The {@link Text} to remove
+     * @return Whether the {@link Text} was on this team
      */
-    boolean removeUser(User user);
+    boolean removeMember(Text member);
 
     /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this {@link Team} is

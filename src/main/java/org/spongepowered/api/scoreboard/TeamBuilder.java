@@ -125,14 +125,14 @@ public interface TeamBuilder {
     TeamBuilder deathTextVisibility(Visibility visibility);
 
     /**
-     * Sets the set of {@link User}s on the {@link Team}.
+     * Sets the set of {@link Text} members on the {@link Team}.
      *
      * <p>By default, this is the empty set.</p>
      *
-     * @param users The set of {@link User}s on the {@link Team}
+     * @param users The set of {@link Text} members on the {@link Team}
      * @return This builder
      */
-    TeamBuilder users(Set<User> users);
+    TeamBuilder members(Set<Text> users);
 
     /**
      * Resets all information regarding the {@link Team} to be created.

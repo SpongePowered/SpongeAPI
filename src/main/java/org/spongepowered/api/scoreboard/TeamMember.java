@@ -22,36 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.scoreboard;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.potion.PotionEffect;
-import org.spongepowered.api.scoreboard.TeamMember;
+
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.text.Text;
+
+import java.util.UUID;
 
 /**
- * Represents an entity that is living, and therefor can be damaged.
+ * A team member represents something which has a meaningful {@link Text}
+ * representation on a {@link Team}. The client may be able to link the team
+ * {@link Text} entry to a particular object, and perform extra functionality.
  *
- * <p>Living entities can have {@link PotionEffect}s, breathing air
- * under water, custom names, be meaningfully added to teams, and become invisible.</p>
+ * <p>Examples include:</p>
+ *
+ * <ul>
+ *     <li>{@link Player}s, represented in Vanilla by their name</li>
+ *     <li>Other {@link Living living entities}, represented in Vanilla by their {@link UUID}</li>
+ * </ul>
+ *
  */
-public interface Living extends Entity, TeamMember {
+public interface TeamMember {
 
     /**
-     * Gets a copy of the current {@link HealthData}.
+     * Gets an {@link Text} representing this team member, suitable for
+     * adding to an {@link Team} with {@link Team#addMember(Text).
      *
-     * @return A copy of the current health data
+     * @return an {@link Text} representing this team member
      */
-    HealthData getHealthData();
-
-    /**
-     * Gets a copy of the current {@link DamageableData}.
-     *
-     * @return A copy of the current damageable data
-     */
-    DamageableData getMortalData();
-
-
+    Text getTeamRepresentation();
 
 }
