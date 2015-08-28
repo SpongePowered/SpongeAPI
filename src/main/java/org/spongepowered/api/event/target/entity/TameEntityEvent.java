@@ -25,11 +25,22 @@
 package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 
 /**
  * Called when an {@link Entity} is tamed.
  */
 public interface TameEntityEvent extends TargetEntityEvent {
 
+    interface SourceEntity extends TameEntityEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

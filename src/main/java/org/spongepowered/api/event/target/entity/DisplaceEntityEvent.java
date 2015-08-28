@@ -26,6 +26,11 @@ package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.target.entity.living.TargetLivingEvent;
+import org.spongepowered.api.event.target.entity.living.human.TargetHumanEvent;
+import org.spongepowered.api.event.target.entity.living.human.player.TargetPlayerEvent;
+import org.spongepowered.api.world.TeleporterAgent;
 import org.spongepowered.api.world.World;
 
 /**
@@ -33,8 +38,8 @@ import org.spongepowered.api.world.World;
  * (also known as undergoing displacement).
  *
  * <p>This encapsulates both continuous 
- * ({@link MoveEntityEvent}) and discrete
- * ({@link TeleportEntityEvent}) movement.
+ * ({@link DisplaceEntityEvent.Move}) and discrete
+ * ({@link DisplaceEntityEvent.Teleport}) movement.
  * </p>
  */
 public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
@@ -59,5 +64,49 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
      * @param transform The new transform
      */
     void setNewTransform(Transform<World> transform);
+
+    interface Move extends DisplaceEntityEvent {
+
+        interface TargetLiving extends Move, DisplaceEntityEvent.TargetLiving { }
+
+        interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
+
+        interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
+    }
+
+    interface Teleport extends DisplaceEntityEvent, CauseTracked {
+
+        /// TODO review teleporter stuff.
+
+        TeleporterAgent getTeleporterAgent();
+
+        /**
+         * Gets whether the entity teleporting will maintain its velocity
+         * after teleport.
+         *
+         * @return Whether the entity will maintain momentum after teleport
+         */
+        boolean getKeepsVelocity();
+
+        /**
+         * Sets whether the entity teleporting will maintain its velocity
+         * after teleport.
+         *
+         * @param keepsVelocity Whether the entity will maintain velocity
+         */
+        void setKeepsVelocity(boolean keepsVelocity);
+
+        interface TargetLiving extends Teleport, DisplaceEntityEvent.TargetLiving { }
+
+        interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
+
+        interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
+    }
+
+    interface TargetLiving extends DisplaceEntityEvent, TargetLivingEvent { }
+
+    interface TargetHuman extends TargetLiving, TargetHumanEvent { }
+
+    interface TargetPlayer extends TargetHuman, TargetPlayerEvent { }
 
 }

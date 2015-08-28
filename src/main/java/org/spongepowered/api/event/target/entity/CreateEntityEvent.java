@@ -27,6 +27,7 @@ package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.target.entity.item.TargetItemEvent;
 import org.spongepowered.api.world.World;
 
 /**
@@ -35,5 +36,7 @@ import org.spongepowered.api.world.World;
  * {@link Entity} should be readily available by this time.
  */
 public interface CreateEntityEvent extends TargetEntityEvent, CauseTracked {
+
+    interface TargetItem extends CreateEntityEvent, TargetItemEvent { }
 
 }

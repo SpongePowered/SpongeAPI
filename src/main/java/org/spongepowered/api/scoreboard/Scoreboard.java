@@ -25,7 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.
- * The server has a default scoreboard, but each {@link org.spongepowered.api.entity.player.Player}
+ * The server has a default scoreboard, but each {@link org.spongepowered.api.entity.living.player.Player}
  * can have their own scoreboard.
  *
  * @see <a href="http://minecraft.gamepedia.com/Scoreboard">Scoreboards on the Minecraft Wiki</a>

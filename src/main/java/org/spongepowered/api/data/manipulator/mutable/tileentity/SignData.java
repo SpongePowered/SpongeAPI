@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;

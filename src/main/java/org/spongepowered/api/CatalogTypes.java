@@ -72,7 +72,7 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;

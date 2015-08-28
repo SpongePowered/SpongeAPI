@@ -25,9 +25,10 @@
 package org.spongepowered.api.event.target.entity.living.human;
 
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.target.entity.living.human.player.TargetPlayerEvent;
 
 /**
  * Called when a {@link Human} changes {@link GameMode}.
@@ -54,4 +55,8 @@ public interface ChangeHumanGameModeEvent extends TargetHumanEvent, CauseTracked
      * @param newGameMode The new {@link GameMode} value.
      */
     void setNewGameMode(GameMode newGameMode);
+
+    interface TargetPlayer extends ChangeHumanGameModeEvent, TargetPlayerEvent {
+
+    }
 }

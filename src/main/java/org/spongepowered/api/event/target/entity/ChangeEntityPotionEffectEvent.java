@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.target.entity;
 
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.potion.PotionEffect;
 
@@ -47,4 +48,9 @@ public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, CauseT
      */
     PotionEffect getPotionEffect();
 
+    interface Gain extends ChangeEntityPotionEffectEvent { }
+
+    interface Remove extends ChangeEntityPotionEffectEvent { }
+
+    interface Expire extends ChangeEntityPotionEffectEvent { }
 }

@@ -27,8 +27,9 @@ package org.spongepowered.api.event.source.entity.living.human;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.entity.Transform;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -92,6 +93,21 @@ public interface HumanSleepEvent extends HumanEvent, Cancellable {
          * @param transform The new spawn transform for the human
          */
         void setSpawnTransform(Transform<World> transform);
+    }
+
+    interface SourcePlayer extends HumanSleepEvent, PlayerEvent {
+
+        interface Enter extends HumanSleepEvent.Enter, SourcePlayer {
+
+        }
+
+        interface StartSleeping extends HumanSleepEvent.StartSleeping, SourcePlayer {
+
+        }
+
+        interface StopSleeping extends HumanSleepEvent.StopSleeping, SourcePlayer {
+
+        }
     }
 
 }

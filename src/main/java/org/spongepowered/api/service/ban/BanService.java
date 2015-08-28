@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.ban;
 
-import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.util.ban.Ban;
 
 import java.net.InetAddress;

@@ -26,8 +26,8 @@ package org.spongepowered.api.service.user;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.service.profile.GameProfileResolver;
 
 import java.util.Collection;

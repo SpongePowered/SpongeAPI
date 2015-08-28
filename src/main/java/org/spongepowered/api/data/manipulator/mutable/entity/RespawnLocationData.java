@@ -29,7 +29,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableRespawnLocation;
 import org.spongepowered.api.data.value.mutable.MapValue;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.World;
 
 import java.util.UUID;

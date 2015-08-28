@@ -36,7 +36,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;

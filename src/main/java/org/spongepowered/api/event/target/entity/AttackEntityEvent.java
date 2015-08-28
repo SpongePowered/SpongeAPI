@@ -31,17 +31,24 @@ import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.Skeleton;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.Arrow;
+import org.spongepowered.api.entity.weather.Lightning;
+import org.spongepowered.api.event.AbstractAttackEntityEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierBuilder;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Tuple;
+import org.spongepowered.api.util.annotation.ImplementedBy;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulties;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -68,7 +75,7 @@ import java.util.List;
  * to a particular {@link DamageType}, has no static finalized amount of damage
  * to deal to a particular {@link Entity}. To properly represent this,
  * a {@link DamageSource} has various "states" such as:
- * {@link DamageSource#isAbsolute()}, or {@link DamageSource#isBlockable()}.
+ * {@link DamageSource#isAbsolute()} or {@link DamageSource#isBypassingArmor()}.
  * Quite simply, the {@link DamageSource} will always be the "first" element
  * within a {@link Cause} that can be retrieved from {@link #getCause()}.</p>
  *
@@ -129,6 +136,7 @@ import java.util.List;
  * to process the various {@link DamageModifier}s of which originate or are
  * associated with the targeted {@link Entity}.</p>
  */
+@ImplementedBy(AbstractAttackEntityEvent.class)
 public interface AttackEntityEvent extends InteractEntityEvent {
 
     /**
@@ -231,5 +239,20 @@ public interface AttackEntityEvent extends InteractEntityEvent {
      * @return A list of damage modifiers to functions
      */
     ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
+
+    interface SourceEntity extends AttackEntityEvent, EntityEvent { }
+
+    interface SourceLightning extends SourceEntity {
+
+        @Override
+        Lightning getSourceEntity();
+
+    }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

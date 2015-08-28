@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event.target.entity.living.human;
 
+import org.spongepowered.api.event.target.entity.living.human.player.TargetPlayerEvent;
+
 /**
  * Called when a human's level is changed.
  */
@@ -52,4 +54,8 @@ public interface ChangeHumanLevelEvent extends TargetHumanEvent {
      * @param newLevel The level to change to
      */
     void setNewLevel(int newLevel);
+
+    interface TargetPlayer extends ChangeHumanLevelEvent, TargetPlayerEvent {
+
+    }
 }

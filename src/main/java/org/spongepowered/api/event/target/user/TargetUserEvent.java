@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.target.user;
 
-import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Event;
 
 public interface TargetUserEvent extends Event {

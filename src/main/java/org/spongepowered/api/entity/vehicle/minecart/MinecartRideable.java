@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.vehicle.minecart;
 
 /**
  * Represents a minecart that is rideable by other entities, such
- * as {@link org.spongepowered.api.entity.player.Player}.
+ * as {@link org.spongepowered.api.entity.living.player.Player}.
  */
 public interface MinecartRideable extends Minecart {
 

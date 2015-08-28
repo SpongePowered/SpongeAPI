@@ -31,6 +31,11 @@ import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.source.block.BlockEvent;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -56,5 +61,15 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
      * @param predicate The predicate to use for filtering
      */
     void filter(Predicate<Location<World>> predicate);
+
+    interface SourceBlock extends ChangeBlockEvent, BlockEvent { }
+
+    interface SourceEntity extends ChangeBlockEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

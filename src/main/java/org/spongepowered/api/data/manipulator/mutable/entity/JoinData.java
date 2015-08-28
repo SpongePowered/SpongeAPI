@@ -28,8 +28,8 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableJoinData;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
 
 import java.util.Date;
 

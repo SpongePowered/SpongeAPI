@@ -29,6 +29,11 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.action.ChangeExperienceEvent;
+import org.spongepowered.api.event.source.block.BlockEvent;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -128,5 +133,15 @@ public interface HarvestBlockEvent extends GameEvent, ChangeExperienceEvent, Can
      * @param chance The chance
      */
     void setDropChance(float chance);
+
+    interface SourceBlock extends HarvestBlockEvent, BlockEvent { }
+
+    interface SourceEntity extends HarvestBlockEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

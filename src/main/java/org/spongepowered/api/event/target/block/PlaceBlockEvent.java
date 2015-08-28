@@ -34,4 +34,14 @@ import org.spongepowered.api.world.World;
  */
 public interface PlaceBlockEvent extends ChangeBlockEvent {
 
+    interface SourceBlock extends PlaceBlockEvent, ChangeBlockEvent.SourceBlock { }
+
+    interface SourceEntity extends PlaceBlockEvent, ChangeBlockEvent.SourceEntity { }
+
+    interface SourceLiving extends SourceEntity, ChangeBlockEvent.SourceLiving { }
+
+    interface SourceHuman extends SourceLiving, ChangeBlockEvent.SourceHuman { }
+
+    interface SourcePlayer extends SourceHuman, ChangeBlockEvent.SourcePlayer { }
+
 }

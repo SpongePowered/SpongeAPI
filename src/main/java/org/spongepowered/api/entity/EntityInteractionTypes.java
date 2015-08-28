@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.entity.player.gamemode.GameModes;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 
 /**
  * An list {@link EntityInteractionType}s available in Vanilla.

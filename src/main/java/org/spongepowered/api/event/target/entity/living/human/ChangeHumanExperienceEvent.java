@@ -27,6 +27,7 @@ package org.spongepowered.api.event.target.entity.living.human;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.action.ChangeExperienceEvent;
 import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.target.entity.living.human.player.TargetPlayerEvent;
 
 /**
  * Called when a human gains or looses experience.
@@ -39,5 +40,9 @@ public interface ChangeHumanExperienceEvent extends HumanEvent, ChangeExperience
      * @return The current experience
      */
     int getCurrentExperience();
+
+    interface TargetPlayer extends ChangeHumanExperienceEvent, TargetPlayerEvent {
+
+    }
 
 }

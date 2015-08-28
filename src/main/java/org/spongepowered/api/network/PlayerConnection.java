@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 
 /**
  * Represents a connection of a client to the server.

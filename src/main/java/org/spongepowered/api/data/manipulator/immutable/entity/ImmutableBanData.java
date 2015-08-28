@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.BanData;
 import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.util.ban.Ban;
 
 /**

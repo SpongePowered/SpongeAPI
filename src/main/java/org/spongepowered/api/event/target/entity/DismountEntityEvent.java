@@ -26,8 +26,12 @@ package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Horse;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 
 /**
  * Raised when the targeted {@link Entity} is being dismounted from another
@@ -37,4 +41,11 @@ import org.spongepowered.api.event.cause.CauseTracked;
  */
 public interface DismountEntityEvent extends TargetEntityEvent, CauseTracked {
 
+    interface SourceEntity extends DismountEntityEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 }

@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.service.world.ChunkLoadService;
 import org.spongepowered.api.text.Text;

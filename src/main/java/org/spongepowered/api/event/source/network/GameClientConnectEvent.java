@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.source.network;
 
-import org.spongepowered.api.event.source.entity.living.player.PlayerJoinEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerJoinEvent;
 
 /**
  * Fired when a game client attempts to connect to the server.

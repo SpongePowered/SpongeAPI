@@ -28,7 +28,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableWhitelistData;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 
 /**
  * A {@link DataManipulator} handling the "whitelisted" state of a

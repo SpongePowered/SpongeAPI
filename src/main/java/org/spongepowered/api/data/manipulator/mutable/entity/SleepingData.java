@@ -28,7 +28,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSleepingData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Bat;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 
 /**
  * An {@link DataManipulator} for the "sleeping" state of a

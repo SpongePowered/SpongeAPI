@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.statistic.Statistic;
 
 /**

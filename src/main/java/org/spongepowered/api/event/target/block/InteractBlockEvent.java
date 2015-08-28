@@ -27,6 +27,10 @@ package org.spongepowered.api.event.target.block;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -59,4 +63,23 @@ public interface InteractBlockEvent extends InteractEvent {
      *     {@link Direction#NONE}
      */
     Direction getTargetSide();
+
+    interface Use extends InteractBlockEvent {
+
+        interface SourceEntity extends Use, InteractBlockEvent.SourceEntity { }
+
+        interface SourceLiving extends SourceEntity, InteractBlockEvent.SourceLiving { }
+
+        interface SourceHuman extends SourceLiving, InteractBlockEvent.SourceHuman { }
+
+        interface SourcePlayer extends SourceHuman, InteractBlockEvent.SourcePlayer { }
+    }
+
+    interface SourceEntity extends InteractBlockEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 }

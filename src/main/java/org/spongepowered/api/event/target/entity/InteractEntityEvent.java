@@ -26,10 +26,33 @@ package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 
 /**
  * Base event for all interactions targeting an {@link Entity}.
  */
 public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
+
+    interface Use extends InteractEntityEvent {
+
+        interface SourceEntity extends Use, InteractEntityEvent.SourceEntity { }
+
+        interface SourceLiving extends SourceEntity, InteractEntityEvent.SourceLiving { }
+
+        interface SourceHuman extends SourceLiving, InteractEntityEvent.SourceHuman { }
+
+        interface SourcePlayer extends SourceHuman, InteractEntityEvent.SourcePlayer { }
+    }
+
+    interface SourceEntity extends InteractEntityEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

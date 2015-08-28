@@ -26,10 +26,22 @@ package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 
 /**
  * Called when an {@link Entity} collides with something.
  */
 public interface CollideEntityEvent extends TargetEntityEvent, CauseTracked {
+
+    interface SourceEntity extends CollideEntityEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

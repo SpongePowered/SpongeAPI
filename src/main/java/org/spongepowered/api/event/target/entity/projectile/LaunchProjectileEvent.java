@@ -28,12 +28,15 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 
 /**
  * Called when a {@link Projectile} is launched.
  */
 public interface LaunchProjectileEvent extends TargetProjectileEvent, CauseTracked {
-
 
     /**
      * Gets the source that shot the projectile.
@@ -44,5 +47,13 @@ public interface LaunchProjectileEvent extends TargetProjectileEvent, CauseTrack
      * @return The projectile source, if available
      */
     Optional<ProjectileSource> getSource();
+
+    interface SourceEntity extends LaunchProjectileEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

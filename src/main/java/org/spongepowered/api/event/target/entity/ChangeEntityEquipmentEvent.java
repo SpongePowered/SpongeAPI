@@ -28,6 +28,9 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.inventory.InventoryEvent;
+import org.spongepowered.api.event.target.entity.living.TargetLivingEvent;
+import org.spongepowered.api.event.target.entity.living.human.TargetHumanEvent;
+import org.spongepowered.api.event.target.entity.living.human.player.TargetPlayerEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -68,4 +71,10 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, Inventory
 
     @Override
     Slot getInventory();
+
+    interface TargetLiving extends ChangeEntityEquipmentEvent, TargetLivingEvent { }
+
+    interface TargetHuman extends TargetLiving, TargetHumanEvent { }
+
+    interface TargetPlayer extends TargetHuman, TargetPlayerEvent { }
 }

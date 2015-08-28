@@ -27,6 +27,10 @@ package org.spongepowered.api.event.target.block;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.source.entity.EntityEvent;
+import org.spongepowered.api.event.source.entity.living.LivingEvent;
+import org.spongepowered.api.event.source.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.source.entity.living.human.player.PlayerEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -55,4 +59,12 @@ public interface CollideBlockEvent extends GameEvent, CauseTracked {
      *     {@link Direction#NONE}
      */
     Direction getTargetSide();
+
+    interface SourceEntity extends CollideBlockEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 }

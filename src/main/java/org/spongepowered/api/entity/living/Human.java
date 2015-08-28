@@ -28,7 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.mutable.entity.FoodData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;

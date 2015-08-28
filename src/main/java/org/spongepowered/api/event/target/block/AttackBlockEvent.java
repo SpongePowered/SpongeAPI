@@ -25,6 +25,10 @@
 package org.spongepowered.api.event.target.block;
 
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -32,5 +36,29 @@ import org.spongepowered.api.world.Location;
  * {@link Location}.
  */
 public interface AttackBlockEvent extends InteractBlockEvent {
+
+    /**
+     * A type of {@link AttackBlockEvent} where the source is an
+     * {@link Entity}.
+     */
+    interface SourceEntity extends AttackBlockEvent, InteractBlockEvent.SourceEntity { }
+
+    /**
+     * A type of {@link AttackBlockEvent} where the source is a
+     * {@link Living}.
+     */
+    interface SourceLiving extends SourceEntity, InteractBlockEvent.SourceLiving { }
+
+    /**
+     * A type of {@link AttackBlockEvent} where the source is a
+     * {@link Human}.
+     */
+    interface SourceHuman extends SourceLiving, InteractBlockEvent.SourceHuman { }
+
+    /**
+     * A type of {@link AttackBlockEvent} where the source is a
+     * {@link Player}.
+     */
+    interface SourcePlayer extends SourceHuman, InteractBlockEvent.SourcePlayer { }
 
 }

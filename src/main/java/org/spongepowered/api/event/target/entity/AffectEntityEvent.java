@@ -32,7 +32,6 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.source.entity.EntityAttackEntityEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -42,11 +41,11 @@ import java.util.List;
 /**
  * An event that affects multiple {@link Entity} instances as a bulk action.
  * The constraint is that if an action can be deemed as necessary for selective
- * individualized processing, such as {@link EntityAttackEntityEvent}, the
- * actioned {@link Event} is handled individually. If a bulk of {@link Entity}
- * instances are being affected, for example by an {@link Explosion} "damaging"
- * a varying amount of {@link Entity} instances. Other cases will be included
- * as necessary.
+ * individualized processing, such as {@link AttackEntityEvent.SourceEntity},
+ * the actioned {@link Event} is handled individually. If a bulk of
+ * {@link Entity} instances are being affected, for example by an
+ * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
+ * Other cases will be included as necessary.
  */
 public interface AffectEntityEvent extends GameEvent, CauseTracked, Cancellable {
 
@@ -64,14 +63,7 @@ public interface AffectEntityEvent extends GameEvent, CauseTracked, Cancellable 
      *
      * @return The List
      */
-    List<Entity> getEntities();
-
-    /**
-     * Gets the first {@link Entity} to be affected after event resolution.
-     *
-     * @return The Entity
-     */
-    Entity getTargetEntity();
+    List<? extends Entity> getEntities();
 
     /**
      * Filters out {@link Location<World>}'s from
@@ -80,7 +72,7 @@ public interface AffectEntityEvent extends GameEvent, CauseTracked, Cancellable 
      * @param predicate The predicate to use for filtering
      * @return The filtered map
      */
-    List<Entity> filterEntityLocations(Predicate<Location<World>> predicate);
+    List<? extends Entity> filterEntityLocations(Predicate<Location<World>> predicate);
 
     /**
      * Filters out {@link Entity}'s from {@link AffectEntityEvent#getEntities()}
@@ -89,5 +81,5 @@ public interface AffectEntityEvent extends GameEvent, CauseTracked, Cancellable 
      * @param predicate The predicate to use for filtering
      * @return The filtered map
      */
-    List<Entity> filterEntities(Predicate<Entity> predicate);
+    List<? extends Entity> filterEntities(Predicate<? extends Entity> predicate);
 }

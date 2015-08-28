@@ -27,10 +27,63 @@ package org.spongepowered.api.event.target.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.ChangeExperienceEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.target.entity.living.TargetLivingEvent;
+import org.spongepowered.api.event.target.entity.living.human.TargetHumanEvent;
+import org.spongepowered.api.event.target.entity.living.human.player.TargetPlayerEvent;
 
 /**
  * Called when an {@link Entity} is killed.
  */
 public interface HarvestEntityEvent extends TargetEntityEvent, ChangeExperienceEvent, CauseTracked {
+
+    interface TargetLiving extends HarvestEntityEvent, TargetLivingEvent { }
+
+    interface TargetHuman extends TargetLiving, TargetHumanEvent { }
+
+    interface TargetPlayer extends TargetHuman, TargetPlayerEvent {
+
+        /**
+         * Gets whether the player keeps their inventory on death.
+         *
+         * @return Whether the player keeps their inventory on death
+         */
+        boolean keepsInventory();
+
+        /**
+         * Sets if the player keeps their inventory on death.
+         *
+         * @param keepInventory Whether the player should keep inventory
+         */
+        void setKeepsInventory(boolean keepInventory);
+
+        /**
+         * Gets whether the player keeps all of their EXP on death.
+         *
+         * @return Whether the player keeps all of their EXP on death
+         */
+        boolean keepsLevel();
+
+        /**
+         * Sets if the player keeps all of their EXP on death.
+         *
+         * @param keepLevel Whether the player will keep experience on death
+         */
+        void setKeepsLevel(boolean keepLevel);
+
+        /**
+         * Gets the new level the player will have after death.
+         *
+         * @return The new level after death
+         */
+        int getNewLevel();
+
+        /**
+         * Sets the new level the player will have after death.
+         *
+         * @param level The new level after death
+         */
+        void setNewLevel(int level);
+
+    }
 
 }

@@ -35,7 +35,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableWeightedEntityCollect
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartMobSpawner;
 import org.spongepowered.api.util.weighted.WeightedEntity;
 

@@ -264,4 +264,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      * @param explosion The explosion to cause
      */
     void triggerExplosion(Explosion explosion);
+
+    TeleporterAgent getTeleporterAgent();
 }

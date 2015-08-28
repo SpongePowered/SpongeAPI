@@ -25,7 +25,11 @@
 package org.spongepowered.api.event.target.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.source.block.BlockEvent;
+import org.spongepowered.api.event.source.world.WorldEvent;
+import org.spongepowered.api.event.target.entity.living.TargetLivingEvent;
 
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of
@@ -33,5 +37,20 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * {@link CreateEntityEvent}, and finally {@link SpawnEntityEvent}.
  */
 public interface SpawnEntityEvent extends TargetEntityEvent, CauseTracked {
+
+    interface SourceBlock extends SpawnEntityEvent, BlockEvent { }
+
+    interface SourceWorld extends SpawnEntityEvent, WorldEvent { }
+
+    interface TargetLiving extends SpawnEntityEvent, TargetLivingEvent {
+
+        /**
+         * Represents an event where a {@link Living} entity may be "checked"
+         * for any restrictions of spawning at the suggested
+         * {@link #getTargetTransform()} location.
+         */
+        interface CheckSpawn extends TargetLiving { }
+
+    }
 
 }

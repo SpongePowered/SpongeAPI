@@ -123,7 +123,7 @@ public interface GameProfileResolver {
      * <p>Use
      * {@link org.spongepowered.api.service.user.UserStorage#match(String)} for
      * a collection that only contains {@link GameProfile}s with attached
-     * {@link org.spongepowered.api.entity.player.User} data.</p>
+     * {@link org.spongepowered.api.entity.living.player.User} data.</p>
      *
      * <p>This method only searches the local cache, so the data may not be up
      * to date.</p>
