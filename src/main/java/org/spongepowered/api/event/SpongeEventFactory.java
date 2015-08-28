@@ -58,7 +58,6 @@ import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.source.block.BlockBreakBlockEvent;
 import org.spongepowered.api.event.source.block.BlockBurnBlockEvent;
 import org.spongepowered.api.event.source.block.BlockChangeBlockEvent;
 import org.spongepowered.api.event.source.block.BlockDispenseItemEvent;
@@ -75,7 +74,6 @@ import org.spongepowered.api.event.source.block.tileentity.FurnaceConsumeFuelEve
 import org.spongepowered.api.event.source.block.tileentity.FurnaceSmeltItemEvent;
 import org.spongepowered.api.event.source.command.SendCommandEvent;
 import org.spongepowered.api.event.source.command.TabCompleteCommandEvent;
-import org.spongepowered.api.event.source.entity.EntityBreakBlockEvent;
 import org.spongepowered.api.event.source.entity.EntityBreedWithEntityEvent;
 import org.spongepowered.api.event.source.entity.EntityChangeBlockEvent;
 import org.spongepowered.api.event.source.entity.EntityCollideBlockEvent;
@@ -87,7 +85,6 @@ import org.spongepowered.api.event.source.entity.EntityPickupItemEvent;
 import org.spongepowered.api.event.source.entity.EntityPlaceBlockEvent;
 import org.spongepowered.api.event.source.entity.EntityPreDropItemStackEvent;
 import org.spongepowered.api.event.source.entity.living.human.HumanSleepEvent;
-import org.spongepowered.api.event.source.entity.living.player.PlayerBreakBlockEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerCastFishingLineEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerChangeBlockEvent;
 import org.spongepowered.api.event.source.entity.living.player.PlayerChangeSignEvent;
@@ -118,6 +115,7 @@ import org.spongepowered.api.event.source.world.WorldGenerateChunkEvent;
 import org.spongepowered.api.event.source.world.WorldGrowBlockEvent;
 import org.spongepowered.api.event.source.world.WorldPopulateChunkEvent;
 import org.spongepowered.api.event.source.world.WorldTickBlockEvent;
+import org.spongepowered.api.event.target.block.BreakBlockEvent;
 import org.spongepowered.api.event.target.block.ChangeBlockEvent;
 import org.spongepowered.api.event.target.block.HarvestBlockEvent;
 import org.spongepowered.api.event.target.entity.CollideEntityEvent;
@@ -259,7 +257,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link BlockBreakBlockEvent}.
+     * Creates a new {@link BlockBreakBlockEvent.SourceBlock}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -268,14 +266,14 @@ public final class SpongeEventFactory {
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static BlockBreakBlockEvent createBlockBreakBlock(Game game, Cause cause, Location<World> location, BlockSnapshot replacementBlock, int exp) {
+    public static BreakBlockEvent.SourceBlock createBlockBreakBlock(Game game, Cause cause, Location<World> location, BlockSnapshot replacementBlock, int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("location", location);
         values.put("block", location.getBlock());
         values.put("replacementBlock", replacementBlock);
-        return createEvent(BlockBreakBlockEvent.class, values);
+        return createEvent(BreakBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -529,7 +527,7 @@ public final class SpongeEventFactory {
      }
 
     /**
-     * Creates a new {@link EntityBreakBlockEvent}.
+     * Creates a new {@link BreakBlockEvent.SourceEntity}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -539,7 +537,7 @@ public final class SpongeEventFactory {
      * @param exp The experience to give, or take for negative values
      * @return A new instance of the event
      */
-    public static EntityBreakBlockEvent createEntityBreakBlock(Game game, Cause cause, Entity entity, Location<World> location, BlockSnapshot replacementBlock,
+    public static BreakBlockEvent.SourceEntity createEntityBreakBlock(Game game, Cause cause, Entity entity, Location<World> location, BlockSnapshot replacementBlock,
             int exp) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -549,7 +547,7 @@ public final class SpongeEventFactory {
         values.put("block", location.getBlock());
         values.put("replacementBlock", replacementBlock);
         values.put("exp", exp);
-        return createEvent(EntityBreakBlockEvent.class, values);
+        return createEvent(BreakBlockEvent.SourceEntity.class, values);
     }
 
 
@@ -1113,7 +1111,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link PlayerBreakBlockEvent}.
+     * Creates a new {@link BreakBlockEvent.SourcePlayer}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -1122,14 +1120,14 @@ public final class SpongeEventFactory {
      * @param transactions The block transactions
      * @return A new instance of the event
      */
-    public static PlayerBreakBlockEvent createPlayerBreakBlock(Game game, Cause cause, Player entity, Transform<World> transform, ImmutableList<BlockTransaction> transactions) {
+    public static BreakBlockEvent.SourcePlayer createPlayerBreakBlock(Game game, Cause cause, Player entity, Transform<World> transform, ImmutableList<BlockTransaction> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("entity", entity);
         values.put("transform", entity);
         values.put("transactions", transactions);
-        return createEvent(PlayerBreakBlockEvent.class, values);
+        return createEvent(BreakBlockEvent.SourcePlayer.class, values);
     }
 
     /**
