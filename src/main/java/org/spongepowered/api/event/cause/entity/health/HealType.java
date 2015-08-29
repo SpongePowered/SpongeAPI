@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.cause.entity.health;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.target.entity.HealEntityEvent;
+import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**

@@ -27,7 +27,7 @@ package org.spongepowered.api.status;
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
-import org.spongepowered.api.event.target.server.PingServerEvent;
+import org.spongepowered.api.event.server.PingServerEvent;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;

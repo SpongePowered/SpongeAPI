@@ -26,7 +26,7 @@ package org.spongepowered.api.event.cause.entity.teleport;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.Enderman;
-import org.spongepowered.api.event.target.entity.DisplaceEntityEvent;
+import org.spongepowered.api.event.entity.DisplaceEntityEvent;
 
 /**
  * Represents a cause for a {@link DisplaceEntityEvent.Teleport} such that there is an

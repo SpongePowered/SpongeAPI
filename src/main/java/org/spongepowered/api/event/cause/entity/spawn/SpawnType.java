@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**

@@ -35,7 +35,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
-import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.Collection;
 

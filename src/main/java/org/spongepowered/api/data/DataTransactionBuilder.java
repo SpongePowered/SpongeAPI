@@ -33,7 +33,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.event.target.data.ChangeDataHolderEvent;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
 import java.util.Collection;
 import java.util.List;

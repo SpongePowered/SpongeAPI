@@ -26,7 +26,7 @@ package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.target.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 /**
  * Represents a specific cause for an {@link SpawnEntityEvent} such that

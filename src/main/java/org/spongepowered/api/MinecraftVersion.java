@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.event.target.server.PingServerEvent;
+import org.spongepowered.api.event.server.PingServerEvent;
 import org.spongepowered.api.status.StatusResponse;
 
 /**
