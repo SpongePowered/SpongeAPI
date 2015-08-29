@@ -29,22 +29,22 @@ import com.google.common.base.Optional;
 
 public interface TeleporterAgent {
 
-    int getSearchRadius();
+    int getTeleporterSearchRadius();
 
-    TeleporterAgent setSearchRadius(int radius);
+    TeleporterAgent setTeleporterSearchRadius(int radius);
 
-    int getCreationRadius();
+    int getTeleporterCreationRadius();
 
-    TeleporterAgent setCreationRadius(int radius);
+    TeleporterAgent setTeleporterCreationRadius(int radius);
 
     boolean canCreateTeleporter();
 
     TeleporterAgent setCanCreateTeleporter();
 
-    Optional<Location<World>> findOrCreate(Location<World> targetLocation);
+    Optional<Location<World>> findOrCreateTeleporter(Location<World> targetLocation);
 
-    Optional<Location<World>> find(Location<World> targetLocation);
+    Optional<Location<World>> findTeleporter(Location<World> targetLocation);
 
-    Optional<Location<World>> create(Location<World> targetLocation);
+    Optional<Location<World>> createTeleporter(Location<World> targetLocation);
 
 }
