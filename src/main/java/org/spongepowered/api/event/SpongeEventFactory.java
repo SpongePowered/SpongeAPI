@@ -424,7 +424,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("targetLocation", location);
         values.put("targetBlock", location.getBlock());
-        values.put("world", location.getExtent());
+        values.put("sourceWorld", location.getExtent());
         return createEvent(WorldTickBlockEvent.class, values);
     }
 
@@ -1710,7 +1710,7 @@ public final class SpongeEventFactory {
     public static ChangeWorldGameRuleEvent createChangeWorldGameRule(Game game, World world, String name, String oldValue, String newValue) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("world", world);
+        values.put("targetWorld", world);
         values.put("name", name);
         values.put("oldValue", oldValue);
         values.put("newValue", newValue);
@@ -1745,7 +1745,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Cause.of(game.getServer()));
-        values.put("world", world);
+        values.put("targetWorld", world);
         return createEvent(ServerLoadWorldEvent.class, values);
     }
 
@@ -1760,7 +1760,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Cause.of(game.getServer()));
-        values.put("world", world);
+        values.put("targetWorld", world);
         return createEvent(ServerUnloadWorldEvent.class, values);
     }
 
@@ -1974,7 +1974,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("world", world);
+        values.put("sourceWorld", world);
         values.put("transactions", transactions);
         return createEvent(WorldDecayBlockEvent.class, values);
     }
@@ -1989,7 +1989,7 @@ public final class SpongeEventFactory {
     public static WorldExplosionEvent createWorldExplosion(Game game, Explosion explosion) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("world", explosion.getWorld());
+        values.put("sourceWorld", explosion.getWorld());
         values.put("explosion", explosion);
         return createEvent(WorldExplosionEvent.class, values);
     }
@@ -2004,7 +2004,7 @@ public final class SpongeEventFactory {
     public static WorldExplosionEvent.Pre createWorldPreExplosion(Game game, Explosion explosion) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("world", explosion.getWorld());
+        values.put("sourceWorld", explosion.getWorld());
         values.put("explosion", explosion);
         return createEvent(WorldExplosionEvent.Pre.class, values);
     }
@@ -2023,7 +2023,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
-        values.put("world", explosion.getWorld());
+        values.put("sourceWorld", explosion.getWorld());
         values.put("explosion", explosion);
         values.put("locations", locations);
         values.put("originalLocations", ImmutableList.copyOf(locations));
