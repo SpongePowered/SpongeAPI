@@ -22,24 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+ package org.spongepowered.api.util.event.factory;
 
-import org.spongepowered.api.util.annotation.ImplementedBy;
-import org.spongepowered.api.util.event.callback.CallbackList;
-import org.spongepowered.api.util.event.factory.UnderlyingFields;
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+ import java.lang.annotation.Target;
 
 /**
- * An event called within Sponge.
+ * Sponge uses a compile time code analyzer to determine the fields contained
+ * in the event classes so they can be automatically generated. Some times
+ * fields cannot be easily inferred from the methods. This annotation is used
+ * to explicitely declare the field(s) used by an event or a method.
+ *
+ * <p>When used on an interface, the fields will not be inferred and the given
+ * value will be used instead.</p>
+ *
+ * <p>When used on a method, no fields will be inferred from it and the given
+ * value will be used instead.</p>
  */
-@ImplementedBy(AbstractEvent.class)
-public interface Event {
+@Retention(RetentionPolicy.SOURCE)
+@Target({ElementType.TYPE, ElementType.METHOD})
+public @interface UnderlyingFields {
 
     /**
-     * Gets the {@link CallbackList} that is invoked after resolution of this event.
+     * The fields for this element, explicit instead of inferred. Format is:
+     * {@code name:qualifiedTypeName}
      *
-     * @return The callbacklist
+     * <p>Example: {@code location:org.spongepowered.api.world.Location}</p>
+     *
+     * @return The fields to use
      */
-    @UnderlyingFields({})
-    CallbackList getCallbacks();
+    String[] value() default {};
 
 }
