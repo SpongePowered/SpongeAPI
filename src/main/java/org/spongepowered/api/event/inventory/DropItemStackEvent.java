@@ -25,19 +25,18 @@
 package org.spongepowered.api.event.inventory;
 
 import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.block.BlockEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.event.entity.EntityEvent;
 import org.spongepowered.api.event.entity.living.LivingEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
-import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
@@ -61,7 +60,7 @@ public interface DropItemStackEvent extends GameEvent, CauseTracked, Cancellable
          *
          * @return The list of itemstack transactions
          */
-        ImmutableList<ItemStackSnapshot> getDefaultDroppedItems();
+        List<ItemStackSnapshot> getDefaultDroppedItems();
 
         /**
          * Gets the list of {@link ItemStackTransaction}s of the {@link ItemStack}s
@@ -72,7 +71,7 @@ public interface DropItemStackEvent extends GameEvent, CauseTracked, Cancellable
          *
          * @return The customized list of item stacks to drop
          */
-        ImmutableList<ItemStackTransaction> getDroppedItems();
+        List<ItemStackTransaction> getDroppedItems();
 
         /**
          * Adds the provided {@link ItemStackSnapshot} to the list of dropped
@@ -107,7 +106,7 @@ public interface DropItemStackEvent extends GameEvent, CauseTracked, Cancellable
     interface Post extends DropItemStackEvent, AffectEntityEvent {
 
         @Override
-        ImmutableList<EntitySnapshot> getEntitySnapshots();
+        List<EntitySnapshot> getEntitySnapshots();
 
         @Override
         List<Item> getEntities();

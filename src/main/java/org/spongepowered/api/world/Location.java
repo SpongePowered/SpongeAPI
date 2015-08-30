@@ -34,7 +34,6 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -58,6 +57,7 @@ import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
+import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -746,12 +746,12 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public ImmutableSet<Key<?>> getKeys() {
+    public Set<Key<?>> getKeys() {
         return getExtent().getKeys(getBlockPosition());
     }
 
     @Override
-    public ImmutableSet<ImmutableValue<?>> getValues() {
+    public Set<ImmutableValue<?>> getValues() {
         return getExtent().getValues(getBlockPosition());
     }
 

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.data.value.mutable.Value;
+
+import java.util.List;
 
 /**
  * Represents a transaction taking place where a {@link DataHolder} is
@@ -93,7 +93,7 @@ public interface DataTransactionResult {
      *
      * @return An immutable list of the values successfully offered
      */
-    ImmutableList<ImmutableValue<?>> getSuccessfulData();
+    List<ImmutableValue<?>> getSuccessfulData();
 
     /**
      * If {@link Value}s were supplied to the operation, this
@@ -102,7 +102,7 @@ public interface DataTransactionResult {
      *
      * @return Any data that was rejected from the operation
      */
-    ImmutableList<ImmutableValue<?>> getRejectedData();
+    List<ImmutableValue<?>> getRejectedData();
 
     /**
      * If the operation replaced any {@link Value}s, this returns a collection
@@ -110,6 +110,6 @@ public interface DataTransactionResult {
      *
      * @return Any data that was replaced
      */
-    ImmutableList<ImmutableValue<?>> getReplacedData();
+    List<ImmutableValue<?>> getReplacedData();
 
 }

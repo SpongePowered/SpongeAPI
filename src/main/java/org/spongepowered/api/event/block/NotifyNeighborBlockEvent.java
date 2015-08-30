@@ -26,53 +26,65 @@
 package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 
+import java.util.Map;
+
 /**
  * Called when a block at a {@link Location} triggers an update to one or more
- * {@link BlockState}s. There are always two ways to mark an "update" as being
- * "invalid" and "cancelled": {@link #filterDirections(Predicate)} will apply a
+ * {@link BlockState}s. There is a way to mark an "update" as being "invalid"
+ * or "cancelled": {@link #filterDirections(Predicate)} will apply a
  * {@link Predicate} such that if the predicate returns <code>false</code>, the
- * {@link BlockTransaction} is marked "invalid" and therefor will not receive
- * an "update", and secondly through {@link #filter(Predicate)}
- * will apply a similar {@link Predicate} that if returning <code>false</code>,
- * the same {@link BlockTransaction} will be marked as "invalid" and therefor
- * will not receive an "update".
+ * {@link BlockState} removed from the {@link #getRelatives()} map.
  */
-public interface UpdateNeighborBlockEvent extends ChangeBlockEvent {
+public interface NotifyNeighborBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets the {@link ImmutableMap} of {@link Direction} to
-     * {@link BlockTransaction} of the {@link BlockState}s that will be marked
-     * for "updating". If a {@link BlockTransaction#isValid()} returns
-     * <code>false</code>, the location will not be "updated".
+     * Gets the immutable {@link Map} of {@link Direction} to
+     * {@link BlockState} of the block states that would normally be notified
+     * of changes.
+     *
+     * @return
+     */
+    Map<Direction, BlockState> getOriginalRelatives();
+
+    /**
+     * Gets an immutable {@link Map} of {@link Direction} to
+     * {@link BlockState} of the {@link BlockState}s that will be notified of
+     * an update. If a {@link Direction} is not required or needing to be
+     * excluded from an update, {@link #filterDirections(Predicate)} will
+     * perform that exclusion.
      *
      * @return The map
      */
-    ImmutableMap<Direction, BlockTransaction> getRelatives();
+    Map<Direction, BlockState> getRelatives();
 
     /**
-     * Filters out {@link Direction}s of the {@link BlockTransaction}s to be
+     * Filters out {@link Direction}s of the {@link BlockState}s to be
      * marked as "valid" after this event. If the
      * {@link Predicate#apply(Object)} returns <code>false</code>, the
-     * {@link BlockTransaction} for that {@link Direction} is marked as
-     * "invalid" and will not receive an "update".
+     * {@link BlockState} is removed from {@link #getRelatives()} map.
      *
      * @param predicate The predicate to use for filtering.
      */
     void filterDirections(Predicate<Direction> predicate);
 
-    interface Ignite extends UpdateNeighborBlockEvent {
+    /**
+     *
+     */
+    interface Ignite extends NotifyNeighborBlockEvent {
 
-        interface SourceBlock extends Ignite, UpdateNeighborBlockEvent.SourceBlock { }
+        interface SourceBlock extends Ignite, NotifyNeighborBlockEvent.SourceBlock { }
 
     }
 
-    interface Spread extends UpdateNeighborBlockEvent {
+    interface Spread extends NotifyNeighborBlockEvent {
 
         /**
          * Gets the {@link BlockState} that is being spread.
@@ -85,22 +97,22 @@ public interface UpdateNeighborBlockEvent extends ChangeBlockEvent {
          */
         BlockState getSpreadingBlock();
 
-        interface SourceBlock extends Spread, UpdateNeighborBlockEvent.SourceBlock { }
+        interface SourceBlock extends Spread, NotifyNeighborBlockEvent.SourceBlock { }
 
     }
 
-    interface Burn extends UpdateNeighborBlockEvent {
+    interface Burn extends NotifyNeighborBlockEvent {
 
-        interface SourceBlock extends Burn, UpdateNeighborBlockEvent.SourceBlock { }
-
-    }
-
-    interface Power extends UpdateNeighborBlockEvent {
-
-        interface SourceBlock extends Power, UpdateNeighborBlockEvent.SourceBlock { }
+        interface SourceBlock extends Burn, NotifyNeighborBlockEvent.SourceBlock { }
 
     }
 
-    interface SourceBlock extends UpdateNeighborBlockEvent, ChangeBlockEvent.SourceBlock { }
+    interface Power extends NotifyNeighborBlockEvent {
+
+        interface SourceBlock extends Power, NotifyNeighborBlockEvent.SourceBlock { }
+
+    }
+
+    interface SourceBlock extends NotifyNeighborBlockEvent, ChangeBlockEvent.SourceBlock { }
 
 }

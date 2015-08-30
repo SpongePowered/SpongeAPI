@@ -33,6 +33,8 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValueStore;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 
+import java.util.Set;
+
 import javax.annotation.Nullable;
 
 /**
@@ -133,7 +135,7 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      *
      * @return An immutable set of known {@link Key}s
      */
-    ImmutableSet<Key<?>> getKeys();
+    Set<Key<?>> getKeys();
 
     /**
      * Gets all applicable {@link BaseValue}s associated with this
@@ -143,6 +145,6 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      *
      * @return An immutable set of copied values
      */
-    ImmutableSet<ImmutableValue<?>> getValues();
+    Set<ImmutableValue<?>> getValues();
 
 }

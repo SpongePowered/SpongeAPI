@@ -34,4 +34,6 @@ public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot
 
     int getCount();
 
+    ItemStack createStack();
+
 }

@@ -129,11 +129,11 @@ public final class DataQuery {
     }
 
     /**
-     * Gets the parts that make up this query.
+     * Gets the parts that make up this query. The returned list is immutable.
      *
      * @return The parts of this query
      */
-    public ImmutableList<String> getParts() {
+    public List<String> getParts() {
         return this.parts;
     }
 
@@ -155,11 +155,12 @@ public final class DataQuery {
     }
 
     /**
-     * Returns the parts of this query as individual queries.
+     * Returns the parts of this query as individual queries. The returned list
+     * is immutable.
      *
      * @return The constructed queries
      */
-    public ImmutableList<DataQuery> getQueryParts() {
+    public List<DataQuery> getQueryParts() {
         ImmutableList.Builder<DataQuery> builder =
                 new ImmutableList.Builder<DataQuery>();
 

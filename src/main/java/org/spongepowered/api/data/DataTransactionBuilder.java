@@ -564,17 +564,17 @@ public final class DataTransactionBuilder {
         }
 
         @Override
-        public ImmutableList<ImmutableValue<?>> getSuccessfulData() {
+        public List<ImmutableValue<?>> getSuccessfulData() {
             return this.success;
         }
 
         @Override
-        public ImmutableList<ImmutableValue<?>> getRejectedData() {
+        public List<ImmutableValue<?>> getRejectedData() {
             return this.rejected;
         }
 
         @Override
-        public ImmutableList<ImmutableValue<?>> getReplacedData() {
+        public List<ImmutableValue<?>> getReplacedData() {
             return this.replaced;
         }
     }

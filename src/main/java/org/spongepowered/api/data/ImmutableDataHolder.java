@@ -30,6 +30,8 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValueStore;
 
+import java.util.List;
+
 /**
  * A type of {@link DataHolder} variant that is completely immutable once
  * constructed. The advantage of an {@link ImmutableDataHolder} is that it can
@@ -51,6 +53,6 @@ public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends D
      *
      * @return A collection of all known manipulators
      */
-    ImmutableCollection<ImmutableDataManipulator<?, ?>> getManipulators();
+    List<ImmutableDataManipulator<?, ?>> getManipulators();
 
 }

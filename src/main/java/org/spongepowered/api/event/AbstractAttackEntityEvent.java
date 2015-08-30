@@ -98,12 +98,12 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     }
 
     @Override
-    public final ImmutableMap<DamageModifier, Double> getOriginalDamages() {
+    public final Map<DamageModifier, Double> getOriginalDamages() {
         return this.originalModifiers;
     }
 
     @Override
-    public final ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> getOriginalFunctions() {
+    public final List<Tuple<DamageModifier, Function<? super Double, Double>>> getOriginalFunctions() {
         return this.originalFunctions;
     }
 
@@ -150,7 +150,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     }
 
     @Override
-    public final ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers() {
+    public final List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers() {
         ImmutableList.Builder<Tuple<DamageModifier, Function<? super Double, Double>>> builder = ImmutableList.builder();
         for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
             builder.add(new Tuple<DamageModifier, Function<? super Double, Double>>(entry.getKey(), entry.getValue()));

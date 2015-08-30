@@ -341,4 +341,12 @@ public class MemoryDataTest {
         assertTrue(internal.equals(internalCopy));
     }
 
+    @Test
+    public void testTest() {
+
+        DataContainer containertest = new MemoryDataContainer();
+        DataContainer containertest2 = new MemoryDataContainer();
+        containertest.set(new DataQuery("test1", "test2", "test3"), containertest2);
+    }
+
 }

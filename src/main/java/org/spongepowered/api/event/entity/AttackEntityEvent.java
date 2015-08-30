@@ -25,8 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
 import org.spongepowered.api.entity.Entity;
@@ -53,6 +51,7 @@ import org.spongepowered.api.world.difficulty.Difficulties;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Represents the base event for when an {@link Entity} is being "attacked".
@@ -147,7 +146,7 @@ public interface AttackEntityEvent extends InteractEntityEvent {
 
     double getOriginalFinalDamage();
 
-    ImmutableMap<DamageModifier, Double> getOriginalDamages();
+    Map<DamageModifier, Double> getOriginalDamages();
 
     /**
      * Gets the original damage for the provided {@link DamageModifier}.
@@ -162,7 +161,7 @@ public interface AttackEntityEvent extends InteractEntityEvent {
      *
      * @return The list of damage modifier functions
      */
-    ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> getOriginalFunctions();
+    List<Tuple<DamageModifier, Function<? super Double, Double>>> getOriginalFunctions();
 
     /**
      * Gets the "base" damage to deal to the targeted {@link Entity}. The
@@ -237,7 +236,7 @@ public interface AttackEntityEvent extends InteractEntityEvent {
      *
      * @return A list of damage modifiers to functions
      */
-    ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
+    List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
     interface SourceEntity extends AttackEntityEvent, EntityEvent { }
 

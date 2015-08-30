@@ -91,7 +91,7 @@ import org.spongepowered.api.event.block.CollideBlockEvent;
 import org.spongepowered.api.event.block.HarvestBlockEvent;
 import org.spongepowered.api.event.block.InteractBlockEvent;
 import org.spongepowered.api.event.block.PlaceBlockEvent;
-import org.spongepowered.api.event.block.UpdateNeighborBlockEvent;
+import org.spongepowered.api.event.block.NotifyNeighborBlockEvent;
 import org.spongepowered.api.event.entity.BreedEntityEvent;
 import org.spongepowered.api.event.entity.CollideEntityEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
@@ -252,7 +252,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link UpdateNeighborBlockEvent.Burn.SourceBlock}.
+     * Creates a new {@link NotifyNeighborBlockEvent.Burn.SourceBlock}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -260,14 +260,14 @@ public final class SpongeEventFactory {
      * @param replacementBlock The block that will replace the existing block
      * @return A new instance of the event
      */
-    public static UpdateNeighborBlockEvent.Burn.SourceBlock createBlockBurnBlock(Game game, Cause cause, Location<World> location, BlockSnapshot replacementBlock) {
+    public static NotifyNeighborBlockEvent.Burn.SourceBlock createBlockBurnBlock(Game game, Cause cause, Location<World> location, BlockSnapshot replacementBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("location", location);
         values.put("block", location.getBlock());
         values.put("replacementBlock", replacementBlock);
-        return createEvent(UpdateNeighborBlockEvent.Burn.SourceBlock.class, values);
+        return createEvent(NotifyNeighborBlockEvent.Burn.SourceBlock.class, values);
     }
 
     /**
@@ -333,20 +333,20 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link UpdateNeighborBlockEvent.Ignite.SourceBlock}.
+     * Creates a new {@link NotifyNeighborBlockEvent.Ignite.SourceBlock}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
      * @param location The location
      * @return A new instance of the event
      */
-    public static UpdateNeighborBlockEvent.Ignite.SourceBlock createBlockIgniteBlock(Game game, Cause cause, Location<World> location) {
+    public static NotifyNeighborBlockEvent.Ignite.SourceBlock createBlockIgniteBlock(Game game, Cause cause, Location<World> location) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("location", location);
         values.put("block", location.getBlock());
-        return createEvent(UpdateNeighborBlockEvent.Ignite.SourceBlock.class, values);
+        return createEvent(NotifyNeighborBlockEvent.Ignite.SourceBlock.class, values);
     }
 
     /**
@@ -422,7 +422,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link UpdateNeighborBlockEvent.SourceBlock}.
+     * Creates a new {@link NotifyNeighborBlockEvent.SourceBlock}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param directions The directions
@@ -431,18 +431,18 @@ public final class SpongeEventFactory {
      * @param transactions The block transactions
      * @return A new instance of the event
      */
-    public static UpdateNeighborBlockEvent.SourceBlock createBlockUpdateNeighborBlock(Game game, ImmutableList<BlockTransaction> transactions, Map<Direction, Location<World>> directions, Map<Direction, Location<World>> relatives, Map<Direction, BlockSnapshot> snapshotRelatives) {
+    public static NotifyNeighborBlockEvent.SourceBlock createBlockUpdateNeighborBlock(Game game, ImmutableList<BlockTransaction> transactions, Map<Direction, Location<World>> directions, Map<Direction, Location<World>> relatives, Map<Direction, BlockSnapshot> snapshotRelatives) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("transactions", transactions);
         values.put("directions", directions);
         values.put("relatives", relatives);
         values.put("snapshotRelatives", snapshotRelatives);
-        return createEvent(UpdateNeighborBlockEvent.SourceBlock.class, values);
+        return createEvent(NotifyNeighborBlockEvent.SourceBlock.class, values);
     }
 
     /**
-     * Create a new {@link UpdateNeighborBlockEvent.Power.SourceBlock}.
+     * Create a new {@link NotifyNeighborBlockEvent.Power.SourceBlock}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -452,7 +452,7 @@ public final class SpongeEventFactory {
      * @param newCurrent The updated signal strength of the redstone
      * @return A new instance of the event
      */
-    public static UpdateNeighborBlockEvent.Power.SourceBlock createBlockUpdateBlockPower(Game game, Cause cause, Location<World> location,
+    public static NotifyNeighborBlockEvent.Power.SourceBlock createBlockUpdateBlockPower(Game game, Cause cause, Location<World> location,
             List<Location<World>> locations, int oldCurrent, int newCurrent) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
@@ -462,7 +462,7 @@ public final class SpongeEventFactory {
         values.put("locations", locations);
         values.put("oldSignalStrength", oldCurrent);
         values.put("newSignalStrength", newCurrent);
-        return createEvent(UpdateNeighborBlockEvent.Power.SourceBlock.class, values);
+        return createEvent(NotifyNeighborBlockEvent.Power.SourceBlock.class, values);
     }
 
     /**
@@ -485,7 +485,7 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates a new {@link UpdateNeighborBlockEvent.Spread.SourceBlock}.
+     * Creates a new {@link NotifyNeighborBlockEvent.Spread.SourceBlock}.
      *
      * @param game The game instance for this {@link GameEvent}
      * @param cause The cause of the event, can be null
@@ -493,14 +493,14 @@ public final class SpongeEventFactory {
      * @param locations The affected locations
      * @return A new instance of the event
      */
-     public static UpdateNeighborBlockEvent.Spread.SourceBlock createBlockSpreadBlock(Game game, Cause cause, Location<World> location, List<Location<World>> locations) {
+     public static NotifyNeighborBlockEvent.Spread.SourceBlock createBlockSpreadBlock(Game game, Cause cause, Location<World> location, List<Location<World>> locations) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("location", location);
         values.put("block", location.getBlock());
         values.put("locations", locations);
-        return createEvent(UpdateNeighborBlockEvent.Spread.SourceBlock.class, values);
+        return createEvent(NotifyNeighborBlockEvent.Spread.SourceBlock.class, values);
      }
 
     /**

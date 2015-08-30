@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.Cancellable;
@@ -39,6 +38,8 @@ import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.List;
+
 /**
  * Base event for when {@link BlockState}s at {@link Location<World>}s are being
  * changed.
@@ -49,10 +50,10 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
      * Gets a list of the {@link BlockTransaction}s for this event. If a
      * @return
      */
-    ImmutableList<BlockTransaction> getTransactions();
+    List<BlockTransaction> getTransactions();
 
     /**
-     * Applies the provided {@link Predicate} to the {@link ImmutableList} of
+     * Applies the provided {@link Predicate} to the {@link List} of
      * {@link BlockTransaction}s from {@link #getTransactions()} such that
      * any time that {@link Predicate#apply(Object)} returns <code>false</code>
      * on a {@link BlockTransaction}, the {@link BlockTransaction} is

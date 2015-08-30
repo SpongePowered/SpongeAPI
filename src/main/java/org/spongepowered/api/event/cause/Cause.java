@@ -37,6 +37,7 @@ import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -119,16 +120,6 @@ public abstract class Cause {
     public abstract Optional<?> getRoot();
 
     /**
-     * Gets the root {@link Event} of this cause. The root event can be any
-     * event that is involved in this {@link Cause} for the event of this
-     * {@link Cause}. The root {@link Event} may not be present, in which
-     * case {@link Optional#absent()} is returned.
-     *
-     * @return The root event cause for this cause
-     */
-    public abstract Optional<Event> getRootEvent();
-
-    /**
      * Gets the first <code>T</code> object of this {@link Cause}, if
      * available.
      *
@@ -152,18 +143,18 @@ public abstract class Cause {
      * Gets an {@link ImmutableList} of all objects that are instances of the
      * given {@link Class} type <code>T</code>.
      *
-     * @param target The class of the target type
      * @param <T> The type of objects to query for
+     * @param target The class of the target type
      * @return An immutable list of the objects queried
      */
-    public abstract <T> ImmutableList<T> getAllOf(Class<T> target);
+    public abstract <T> List<T> getAllOf(Class<T> target);
 
     /**
-     * Gets an {@link ImmutableList} of all causes within this {@link Cause}.
+     * Gets an {@link List} of all causes within this {@link Cause}.
      *
      * @return An immutable list of all the causes
      */
-    public abstract ImmutableList<Object> getAllCauses();
+    public abstract List<Object> getAllCauses();
 
     /**
      * Returns {@code true} if {@code object} is a {@code Cause} instance, and
@@ -200,11 +191,6 @@ public abstract class Cause {
         }
 
         @Override
-        public Optional<Event> getRootEvent() {
-            return null;
-        }
-
-        @Override
         public <T> Optional<T> getFirst(Class<T> target) {
             for (Object aCause : this.cause) {
                 if (target.isInstance(aCause)) {
@@ -215,7 +201,7 @@ public abstract class Cause {
         }
 
         @Override
-        public <T> ImmutableList<T> getAllOf(Class<T> target) {
+        public <T> List<T> getAllOf(Class<T> target) {
             ImmutableList.Builder<T> builder = ImmutableList.builder();
             for (Object aCause : this.cause) {
                 if (target.isInstance(aCause)) {
@@ -236,7 +222,7 @@ public abstract class Cause {
         }
 
         @Override
-        public ImmutableList<Object> getAllCauses() {
+        public List<Object> getAllCauses() {
             return ImmutableList.copyOf(this.cause);
         }
 
@@ -270,11 +256,6 @@ public abstract class Cause {
         }
 
         @Override
-        public Optional<Event> getRootEvent() {
-            return Optional.absent();
-        }
-
-        @Override
         public <T> Optional<T> getFirst(Class<T> target) {
             return Optional.absent();
         }
@@ -285,12 +266,12 @@ public abstract class Cause {
         }
 
         @Override
-        public <T> ImmutableList<T> getAllOf(Class<T> target) {
+        public <T> List<T> getAllOf(Class<T> target) {
             return ImmutableList.of();
         }
 
         @Override
-        public ImmutableList<Object> getAllCauses() {
+        public List<Object> getAllCauses() {
             return ImmutableList.of();
         }
 

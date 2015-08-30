@@ -25,13 +25,14 @@
 package org.spongepowered.api.event.entity.living.human;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+
+import java.util.List;
 
 /**
  * Called when a Human enters a bed to sleep in.
@@ -52,11 +53,11 @@ public interface HumanSleepEvent extends HumanEvent, Cancellable {
     interface StartSleeping extends HumanSleepEvent {
 
         // todo maybe move this?
-        ImmutableList<Player> getAwokenPlayers();
+        List<Player> getAwokenPlayers();
 
         void ignorePlayer(Player player);
 
-        ImmutableList<Player> getIgnoredPlayers();
+        List<Player> getIgnoredPlayers();
 
     }
 

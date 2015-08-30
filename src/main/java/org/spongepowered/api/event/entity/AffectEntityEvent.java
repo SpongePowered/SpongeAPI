@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
@@ -50,12 +49,12 @@ import java.util.List;
 public interface AffectEntityEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets an {@link ImmutableList<EntitySnapshot>} of the entity data
+     * Gets an {@link List<EntitySnapshot>} of the entity data
      * un-affected by event changes.
      *
      * @return The ImmutableList
      */
-    ImmutableList<EntitySnapshot> getEntitySnapshots();
+    List<EntitySnapshot> getEntitySnapshots();
 
     /**
      * Gets the {@link List<Entity>} who will be affected after event

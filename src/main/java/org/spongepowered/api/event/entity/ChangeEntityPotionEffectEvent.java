@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.potion.PotionEffect;
+
+import java.util.List;
 
 /**
  * An event that involves a living entity having effects added and removed.
@@ -38,7 +39,7 @@ public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, CauseT
      *
      * @return A copy of the potion effects
      */
-    ImmutableList<PotionEffect> getCurrentEffects();
+    List<PotionEffect> getCurrentEffects();
 
     /**
      * Gets the potion effect involved in this event.
