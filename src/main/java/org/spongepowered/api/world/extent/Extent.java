@@ -113,10 +113,37 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     BlockSnapshot createSnapshot(int x, int y, int z);
 
     /**
-     * Replace the block at this position with a copy of the given snapshot.
+     * Restores the given {@link BlockSnapshot}.
      *
-     * <p>Changing the snapshot afterwards will not affect the block that
-     * has been placed at this location.</p>
+     * <p>This restore will not update the state of the block if the 
+     * {@link BlockType} no longer matches. Neighboring blocks will be notified 
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param snapshot The snapshot
+     */
+    void restoreSnapshot(BlockSnapshot snapshot);
+
+    /**
+     * Restores the given {@link BlockSnapshot}.
+     * 
+     * <p>If forced, the state of the block will change its {@link BlockType}
+     * to match that of the snapshot then set the state.
+     * If notifyNeighbors is true, neighboring blocks will be notified of
+     * changes at the restored block location triggering physic updates.</p>
+     *
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set
+     * @param notifyNeighbors If true, notifies neighboring blocks to update
+     *     physics
+     */
+    void restoreSnapshot(BlockSnapshot snapshot, boolean force, boolean notifyNeighbors);
+
+    /**
+     * Restores the {@link BlockSnapshot} at given position.
+     *
+     * <p>This restore will not update the state of the block if the 
+     * {@link BlockType} no longer matches. Neighboring blocks will be notified 
+     * of changes at the restored block location triggering physic updates.</p>
      *
      * @param position The position of the block
      * @param snapshot The snapshot
@@ -124,10 +151,11 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     void restoreSnapshot(Vector3i position, BlockSnapshot snapshot);
 
     /**
-     * Replace the block at this position with a copy of the given snapshot.
-     *
-     * <p>Changing the snapshot afterwards will not affect the block that
-     * has been placed at this location.</p>
+     * Restores the {@link BlockSnapshot} at given position.
+     * 
+     * <p>This restore will not update the state of the block if the 
+     * {@link BlockType} no longer matches. Neighboring blocks will be notified 
+     * of changes at the restored block location triggering physic updates.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -135,6 +163,40 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param snapshot The snapshot
      */
     void restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot);
+
+    /**
+     * Restores the {@link BlockSnapshot} at given position.
+     * 
+     * <p>If forced, the state of the block will change its {@link BlockType}
+     * to match that of the snapshot then set the state.
+     * If notifyNeighbors is true, neighboring blocks will be notified of
+     * changes at the restored block location triggering physic updates.</p>
+     *
+     * @param position The position of the block
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set
+     * @param notifyNeighbors If true, notifies neighboring blocks to update
+     *     physics
+     */
+    void restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, boolean notifyNeighbors);
+
+    /**
+     * Restores the {@link BlockSnapshot} at given position.
+     * 
+     * <p>If forced, the state of the block will change its {@link BlockType}
+     * to match that of the snapshot then set the state.
+     * If notifyNeighbors is true, neighboring blocks will be notified of
+     * changes at the restored block location triggering physic updates.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set
+     * @param notifyNeighbors If true, notifies neighboring blocks to update
+     *     physics
+     */
+    void restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, boolean notifyNeighbors);
 
     /**
      * Simulates the interaction with this object as if a player had done so.
