@@ -31,7 +31,6 @@ import static org.spongepowered.api.data.DataQuery.of;
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -59,6 +58,7 @@ import org.spongepowered.api.world.extent.Extent;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 

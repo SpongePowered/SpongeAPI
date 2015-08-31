@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.value.immutable.ImmutableCollectionValue;
 
 import java.util.Collection;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Represents a {@link Value} that is backed by a {@link Collection} of
@@ -101,7 +101,7 @@ public interface CollectionValue<E, C extends Collection<E>, V extends Collectio
 
     /**
      * Iterates over all existing elements and removes any elements that
-     * {@link Predicate#apply(Object)} returns {@code true}.
+     * {@link Predicate#test(Object)} returns {@code true}.
      *
      * @param predicate The predicate to remove elements
      * @return This value, for chaining
@@ -131,7 +131,7 @@ public interface CollectionValue<E, C extends Collection<E>, V extends Collectio
      * backed {@link Collection} to create a new {@link CollectionValue}
      * separate from this {@link CollectionValue}. This value is not modified,
      * nor is the underlying {@link Collection}. Elements that return
-     * <code>true</code> from {@link Predicate#apply(Object)} are kept, and
+     * <code>true</code> from {@link Predicate#test(Object)} are kept, and
      * those that return <code>false</code> are excluded.
      *
      * @param predicate The predicate to filter

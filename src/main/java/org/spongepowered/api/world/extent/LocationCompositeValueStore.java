@@ -25,8 +25,6 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -42,6 +40,8 @@ import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
 
 /**
  * A type of {@link Location} based value store that can handle proxied
@@ -377,16 +377,16 @@ public interface LocationCompositeValueStore {
     boolean supports(int x, int y, int z, DataManipulator<?, ?> manipulator);
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Key}s for the block at
+     * Gets an {@link Set} of {@link Key}s for the block at
      * the given location.
      *
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
      */
-    ImmutableSet<Key<?>> getKeys(Vector3i coordinates);
+    Set<Key<?>> getKeys(Vector3i coordinates);
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Key}s for the block at
+     * Gets an {@link Set} of {@link Key}s for the block at
      * the given location.
      *
      * @param x The X position
@@ -394,19 +394,19 @@ public interface LocationCompositeValueStore {
      * @param z The Z position
      * @return The immutable set of values for the block
      */
-    ImmutableSet<Key<?>> getKeys(int x, int y, int z);
+    Set<Key<?>> getKeys(int x, int y, int z);
 
     /**
-     * Gets an {@link ImmutableSet} of {@link ImmutableValue}s for the block at
+     * Gets an {@link Set} of {@link ImmutableValue}s for the block at
      * the given location.
      *
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
      */
-    ImmutableSet<ImmutableValue<?>> getValues(Vector3i coordinates);
+    Set<ImmutableValue<?>> getValues(Vector3i coordinates);
 
     /**
-     * Gets an {@link ImmutableSet} of {@link ImmutableValue}s for the block at
+     * Gets an {@link Set} of {@link ImmutableValue}s for the block at
      * the given location.
      *
      * @param x The X position
@@ -414,7 +414,7 @@ public interface LocationCompositeValueStore {
      * @param z The Z position
      * @return The immutable set of values for the block
      */
-    ImmutableSet<ImmutableValue<?>> getValues(int x, int y, int z);
+    Set<ImmutableValue<?>> getValues(int x, int y, int z);
 
     /**
      * Applies a transformation on the pre-existing value of the data keyed

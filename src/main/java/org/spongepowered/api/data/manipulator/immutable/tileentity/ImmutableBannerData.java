@@ -31,7 +31,7 @@ import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.value.immutable.ImmutablePatternListValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * An {@link ImmutableDataManipulator} handling the various information for a

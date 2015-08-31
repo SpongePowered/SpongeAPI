@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+
+import java.util.function.Function;
 
 /**
  * A type of {@link BoundedValue} that is immutable as an

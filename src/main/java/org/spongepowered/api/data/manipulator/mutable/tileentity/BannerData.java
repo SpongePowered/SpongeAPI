@@ -32,7 +32,7 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.mutable.PatternListValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * An {@link DataManipulator} handling the various information for a

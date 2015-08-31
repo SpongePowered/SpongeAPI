@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.mutable.Value;
+
+import java.util.function.Function;
 
 /**
  * Represents an immutable representation of a {@link BaseValue} where any

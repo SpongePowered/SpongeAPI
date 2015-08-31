@@ -65,7 +65,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.text.Text;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * An enumeration of known {@link DataManipulator}s applicable to

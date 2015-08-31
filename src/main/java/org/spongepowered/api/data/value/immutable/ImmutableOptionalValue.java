@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
