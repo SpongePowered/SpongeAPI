@@ -43,7 +43,7 @@ public class NodeTree {
 
 
     private NodeTree(Tristate value) {
-        this.rootNode = new Node(new HashMap<String, Node>());
+        this.rootNode = new Node(new HashMap<>());
         this.rootNode.value = value;
     }
 
@@ -77,7 +77,7 @@ public class NodeTree {
                 if (currentNode.children.containsKey(part)) {
                     currentNode = currentNode.children.get(part);
                 } else {
-                    Node newNode = new Node(new HashMap<String, Node>());
+                    Node newNode = new Node(new HashMap<>());
                     currentNode.children.put(part, newNode);
                     currentNode = newNode;
                 }
@@ -141,14 +141,14 @@ public class NodeTree {
      */
     public NodeTree withValue(String node, Tristate value) {
         String[] parts = SPLIT_REGEX.split(node.toLowerCase());
-        Node newRoot = new Node(new HashMap<String, Node>(this.rootNode.children));
+        Node newRoot = new Node(new HashMap<>(this.rootNode.children));
         Node newPtr = newRoot;
         Node currentPtr = this.rootNode;
 
         newPtr.value = currentPtr == null ? Tristate.UNDEFINED : currentPtr.value;
         for (String part : parts) {
             Node oldChild = currentPtr == null ? null : currentPtr.children.get(part);
-            Node newChild = new Node(oldChild != null ? new HashMap<String, Node>(oldChild.children) : new HashMap<String, Node>());
+            Node newChild = new Node(oldChild != null ? new HashMap<>(oldChild.children) : new HashMap<>());
             newPtr.children.put(part, newChild);
             currentPtr = oldChild;
             newPtr = newChild;

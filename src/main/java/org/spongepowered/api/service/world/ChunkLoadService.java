@@ -258,6 +258,7 @@ public interface ChunkLoadService {
 
     }
 
+    @FunctionalInterface
     interface Callback {
 
         /**

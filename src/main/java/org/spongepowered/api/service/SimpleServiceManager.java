@@ -26,7 +26,6 @@ package org.spongepowered.api.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.MapMaker;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
@@ -38,6 +37,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -94,7 +94,7 @@ public class SimpleServiceManager implements ServiceManager {
     @SuppressWarnings("unchecked")
     @Override
     public <T> ServiceReference<T> potentiallyProvide(Class<T> service) {
-        SimpleServiceReference<T> ref = new SimpleServiceReference<T>(provide(service));
+        SimpleServiceReference<T> ref = new SimpleServiceReference<>(provide(service));
         @SuppressWarnings("rawtypes")
         SimpleServiceReference newRef = this.potentials.putIfAbsent(service, ref);
         if (newRef != null) {
@@ -140,7 +140,7 @@ public class SimpleServiceManager implements ServiceManager {
 
     private static class SimpleServiceReference<T> implements ServiceReference<T> {
 
-        private final List<Predicate<T>> actionsOnPresent = new CopyOnWriteArrayList<Predicate<T>>();
+        private final List<Consumer<? super T>> actionsOnPresent = new CopyOnWriteArrayList<>();
         private final Lock waitLock = new ReentrantLock();
         private final Condition waitCondition = this.waitLock.newCondition();
         private volatile Optional<T> service;
@@ -171,11 +171,11 @@ public class SimpleServiceManager implements ServiceManager {
         }
 
         @Override
-        public void executeWhenPresent(Predicate<T> run) {
+        public void executeWhenPresent(Consumer<? super T> run) {
             if (!this.service.isPresent()) {
                 this.actionsOnPresent.add(run);
             } else {
-                run.apply(this.service.get());
+                run.accept(this.service.get());
             }
         }
 
@@ -187,11 +187,8 @@ public class SimpleServiceManager implements ServiceManager {
             } finally {
                 this.waitLock.unlock();
             }
-            for (Predicate<T> func : this.actionsOnPresent) {
-                func.apply(service);
-            }
+            this.actionsOnPresent.forEach(func -> func.accept(service));
             this.actionsOnPresent.clear();
-
         }
     }
 
