@@ -1,10 +1,15 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            name = 'sponge'
+            url = 'http://repo.spongepowered.org/maven'
+        }
     }
 
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+        classpath 'org.spongepowered:event-impl-gen:0.0.1-SNAPSHOT'
     }
 }
 

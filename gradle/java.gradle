@@ -23,6 +23,35 @@ repositories {
     }
 }
 
+apply plugin: 'event-impl-gen'
+
+// Compile time code generator for the event factory
+genEventImpl {
+    includeSrc = [
+        'src/main/java/org/spongepowered/api/event/action/',
+        'src/main/java/org/spongepowered/api/event/block/',
+        'src/main/java/org/spongepowered/api/event/command/',
+        'src/main/java/org/spongepowered/api/event/data/',
+        'src/main/java/org/spongepowered/api/event/entity/',
+        'src/main/java/org/spongepowered/api/event/game/',
+        'src/main/java/org/spongepowered/api/event/inventory/',
+        'src/main/java/org/spongepowered/api/event/network/',
+        'src/main/java/org/spongepowered/api/event/plugin/',
+        'src/main/java/org/spongepowered/api/event/rcon/',
+        'src/main/java/org/spongepowered/api/event/server/',
+        'src/main/java/org/spongepowered/api/event/user/',
+        'src/main/java/org/spongepowered/api/event/world/',
+        'src/main/java/org/spongepowered/api/event/Event.java',
+        'src/main/java/org/spongepowered/api/event/GameEvent.java'
+    ]
+    excludeSrc = []
+    outputDir = "src/main/java/"
+    outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
+    validateCode = true
+    eventImplCreateMethod = "createEventImpl"
+    disambAnnot = 'org.spongepowered.api.util.event.factory.UnderlyingFields';
+}
+
 // Testing dependencies
 dependencies {
     testCompile 'junit:junit:4.12'
