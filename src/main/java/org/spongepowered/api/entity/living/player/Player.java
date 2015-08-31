@@ -117,7 +117,9 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      *
      * @return A copy of the join data
      */
-    JoinData getJoinData();
+    default JoinData getJoinData() {
+        return get(JoinData.class).get();
+    }
 
     /**
      * Gets a copy of the current {@link DisplayNameData} for this
@@ -125,14 +127,18 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      *
      * @return A copy of the current display name data
      */
-    DisplayNameData getDisplayNameData();
+    default DisplayNameData getDisplayNameData() {
+        return get(DisplayNameData.class).get();
+    }
 
     /**
      * Gets a copy of the current {@link GameModeData} for this {@link Player}.
      *
      * @return A copy of the current game mode data
      */
-    GameModeData getGameModeData();
+    default GameModeData getGameModeData() {
+        return get(GameModeData.class).get();
+    }
 
     /**
      * Gets whether this {@link Player} will be ignored when checking whether to

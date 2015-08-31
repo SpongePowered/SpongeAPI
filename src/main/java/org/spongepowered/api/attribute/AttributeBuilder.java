@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.attribute;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.text.Text;
+
+import java.util.function.Predicate;
 
 /**
  * A builder for plugins to create custom {@link Attribute}s.

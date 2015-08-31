@@ -39,6 +39,8 @@ public interface MinecartHopper extends MinecartContainer {
      *
      * @return A copy of the cooldown data
      */
-    CooldownData getCooldownData();
+    default CooldownData getCooldownData() {
+        return get(CooldownData.class).get();
+    }
 
 }

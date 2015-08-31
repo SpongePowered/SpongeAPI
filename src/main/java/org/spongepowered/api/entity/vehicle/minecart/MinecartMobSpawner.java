@@ -36,6 +36,8 @@ public interface MinecartMobSpawner extends Minecart {
      *
      * @return A copy of the mob spawner data
      */
-    MobSpawnerData getSpawnerData();
+    default MobSpawnerData getSpawnerData() {
+        return get(MobSpawnerData.class).get();
+    }
 
 }

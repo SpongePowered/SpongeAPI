@@ -37,6 +37,8 @@ public interface Item extends Entity {
      *
      * @return A copy of the represented item data
      */
-    RepresentedItemData getItemData();
+    default RepresentedItemData getItemData() {
+        return get(RepresentedItemData.class).get();
+    }
 
 }

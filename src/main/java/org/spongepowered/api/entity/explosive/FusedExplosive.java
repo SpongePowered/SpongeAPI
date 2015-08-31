@@ -38,6 +38,8 @@ public interface FusedExplosive extends Explosive {
      *
      * @return A copy of the fuse data
      */
-    FuseData getFuseData();
+    default FuseData getFuseData() {
+        return get(FuseData.class).get();
+    }
 
 }

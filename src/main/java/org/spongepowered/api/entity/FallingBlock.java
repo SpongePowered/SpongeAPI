@@ -37,6 +37,8 @@ public interface FallingBlock extends Entity {
      *
      * @return A copy of the currently used falling block data
      */
-    FallingBlockData getFallingBlockData();
+    default FallingBlockData getFallingBlockData() {
+        return get(FallingBlockData.class).get();
+    }
 
 }

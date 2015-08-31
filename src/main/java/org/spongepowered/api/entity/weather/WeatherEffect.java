@@ -51,5 +51,7 @@ public interface WeatherEffect extends Entity {
      *
      * @return A copy of the expirable data
      */
-    ExpirableData getExpiringData();
+    default ExpirableData getExpiringData() {
+        return get(ExpirableData.class).get();
+    }
 }

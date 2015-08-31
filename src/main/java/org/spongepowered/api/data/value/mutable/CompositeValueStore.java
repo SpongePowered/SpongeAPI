@@ -126,7 +126,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * can be generated to create the desired {@link ValueContainer}.</p>
      *
      * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orNull()} can be used to return a potentially
+     * {@link Optional#orElse(Object)} can be used to return a potentially
      * {@code null} {@link ValueContainer}.</p>
      *
      *
@@ -184,7 +184,9 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
-    <E> DataTransactionResult offer(BaseValue<E> value);
+    default <E> DataTransactionResult offer(BaseValue<E> value) {
+        return offer(value.getKey(), value.get());
+    }
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
@@ -196,7 +198,9 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param valueContainer The value to set
      * @return The transaction result
      */
-    DataTransactionResult offer(H valueContainer);
+    default DataTransactionResult offer(H valueContainer) {
+        return offer(valueContainer, MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Offers the given {@link ValueContainer} such that all of the available
@@ -222,7 +226,9 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param valueContainers The values to set
      * @return The transaction result
      */
-    DataTransactionResult offer(Iterable<H> valueContainers);
+    default DataTransactionResult offer(Iterable<H> valueContainers) {
+        return offer(valueContainers, MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Offers all provided {@link ValueContainer}s to this
@@ -261,7 +267,9 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param value The value to remove
      * @return The transaction result
      */
-    DataTransactionResult remove(BaseValue<?> value);
+    default DataTransactionResult remove(BaseValue<?> value) {
+        return remove(value.getKey());
+    }
 
     /**
      * Attempts to remove the data associated with the provided {@link Key}.
@@ -296,7 +304,9 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @param that The other {@link CompositeValueStore} to copy values from
      * @return The transaction result
      */
-    DataTransactionResult copyFrom(S that);
+    default DataTransactionResult copyFrom(S that) {
+        return copyFrom(that, MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Performs an absolute copy of all {@link Value}s and

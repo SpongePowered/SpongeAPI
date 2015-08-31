@@ -37,6 +37,8 @@ public interface Agent extends Living {
      *
      * @return A copy of the agent data
      */
-    AgentData getAgentData();
+    default AgentData getAgentData() {
+        return get(AgentData.class).get();
+    }
 
 }

@@ -38,6 +38,8 @@ public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
      *
      * @return A copy of the command data
      */
-    CommandData getCommandData();
+    default CommandData getCommandData() {
+        return get(CommandData.class).get();
+    }
 
 }
