@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.service.persistence.DataBuilder;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 
 import java.util.List;
+import java.util.Optional;
 
 class SimpleDataBuilder implements DataBuilder<SimpleData> {
 
