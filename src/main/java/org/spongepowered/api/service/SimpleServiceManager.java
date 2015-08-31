@@ -37,7 +37,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Predicate;
+import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -140,7 +140,7 @@ public class SimpleServiceManager implements ServiceManager {
 
     private static class SimpleServiceReference<T> implements ServiceReference<T> {
 
-        private final List<Predicate<T>> actionsOnPresent = new CopyOnWriteArrayList<>();
+        private final List<Consumer<? super T>> actionsOnPresent = new CopyOnWriteArrayList<>();
         private final Lock waitLock = new ReentrantLock();
         private final Condition waitCondition = this.waitLock.newCondition();
         private volatile Optional<T> service;
@@ -171,11 +171,11 @@ public class SimpleServiceManager implements ServiceManager {
         }
 
         @Override
-        public void executeWhenPresent(Predicate<T> run) {
+        public void executeWhenPresent(Consumer<? super T> run) {
             if (!this.service.isPresent()) {
                 this.actionsOnPresent.add(run);
             } else {
-                run.test(this.service.get());
+                run.accept(this.service.get());
             }
         }
 
@@ -187,11 +187,8 @@ public class SimpleServiceManager implements ServiceManager {
             } finally {
                 this.waitLock.unlock();
             }
-            for (Predicate<T> func : this.actionsOnPresent) {
-                func.test(service);
-            }
+            this.actionsOnPresent.forEach(func -> func.accept(service));
             this.actionsOnPresent.clear();
-
         }
     }
 

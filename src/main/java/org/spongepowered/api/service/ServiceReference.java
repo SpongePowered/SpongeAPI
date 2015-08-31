@@ -25,7 +25,7 @@
 package org.spongepowered.api.service;
 
 import java.util.Optional;
-import java.util.function.Predicate;
+import java.util.function.Consumer;
 
 /**
  * A reference to a service that may or may not be currently registered, but will be updated if a registration does happen.
@@ -58,5 +58,5 @@ public interface ServiceReference<T> {
      *
      * @param run The function to execute
      */
-    void executeWhenPresent(Predicate<T> run);
+    void executeWhenPresent(Consumer<? super T> run);
 }
