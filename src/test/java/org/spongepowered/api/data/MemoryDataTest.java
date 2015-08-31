@@ -28,7 +28,6 @@ import static org.junit.Assert.assertTrue;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -40,6 +39,7 @@ import org.spongepowered.api.service.persistence.SerializationService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class MemoryDataTest {
