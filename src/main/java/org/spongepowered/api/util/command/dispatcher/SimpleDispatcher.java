@@ -31,7 +31,6 @@ import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
-import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
@@ -63,6 +62,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Nullable;

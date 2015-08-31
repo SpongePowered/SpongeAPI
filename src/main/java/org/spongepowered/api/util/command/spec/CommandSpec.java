@@ -30,7 +30,6 @@ import static org.spongepowered.api.util.command.args.GenericArguments.firstPars
 import static org.spongepowered.api.util.command.args.GenericArguments.optional;
 
 import com.google.common.base.Objects;
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
@@ -53,6 +52,7 @@ import org.spongepowered.api.util.command.args.parsing.InputTokenizers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

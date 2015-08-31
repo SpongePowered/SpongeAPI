@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
+
+import java.util.Optional;
 
 /**
  * Represents a source that data may be serialized to and from. The source

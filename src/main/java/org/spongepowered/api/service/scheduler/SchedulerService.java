@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.scheduler;
 
 import java.util.Optional;
-
 import java.util.Set;
 import java.util.UUID;
 

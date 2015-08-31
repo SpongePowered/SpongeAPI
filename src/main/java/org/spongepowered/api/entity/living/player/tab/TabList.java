@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living.player.tab;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;

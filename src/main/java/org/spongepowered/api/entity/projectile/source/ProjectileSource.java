@@ -25,8 +25,9 @@
 package org.spongepowered.api.entity.projectile.source;
 
 import com.flowpowered.math.vector.Vector3d;
-import java.util.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
+
+import java.util.Optional;
 
 /**
  * Represents a valid source of a projectile.

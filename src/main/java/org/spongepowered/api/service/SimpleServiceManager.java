@@ -26,13 +26,13 @@ package org.spongepowered.api.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.MapMaker;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Condition;

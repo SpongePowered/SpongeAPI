@@ -25,9 +25,10 @@
 package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Direction.Flag;
+
+import java.util.Optional;
 
 /**
  * A class for information about the chunk coordinate space, aka the layout.

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
-import java.util.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -33,6 +32,8 @@ import org.spongepowered.api.item.inventory.property.EquipmentSlotType;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.item.inventory.type.OrderedInventory;
+
+import java.util.Optional;
 
 /**
  * Equipment inventory for {@link org.spongepowered.api.item.inventory.Carrier}s

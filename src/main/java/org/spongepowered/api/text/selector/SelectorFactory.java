@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.text.selector;
 
-import java.util.Optional;
 import org.spongepowered.api.text.selector.ArgumentHolder.Limit;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
 
 /**

@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.statistic;
 
-import java.util.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Optional;
 
 /**
  * Represents some statistic in Minecraft with a string ID.

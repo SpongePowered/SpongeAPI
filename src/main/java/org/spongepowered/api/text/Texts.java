@@ -27,7 +27,6 @@ package org.spongepowered.api.text;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.Text.Placeholder;
@@ -48,6 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Utility class to work with and create {@link Text}.

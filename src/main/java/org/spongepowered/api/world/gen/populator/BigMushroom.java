@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import java.util.Optional;
 import org.spongepowered.api.data.type.BigMushroomType;
 import org.spongepowered.api.world.biome.BiomeTypes;
 import org.spongepowered.api.world.gen.Populator;
+
+import java.util.Optional;
 
 /**
  * Represents a populator which places a number of large mushrooms. The type of

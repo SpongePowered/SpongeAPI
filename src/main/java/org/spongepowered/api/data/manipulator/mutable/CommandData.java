@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
-import java.util.Optional;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -33,6 +32,8 @@ import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
 import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
 
 /**
  * An {@link DataManipulator} handling all related {@link Value}s for command

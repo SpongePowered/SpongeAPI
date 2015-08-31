@@ -30,7 +30,6 @@ import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
-import java.util.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -65,6 +64,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.inject.Inject;

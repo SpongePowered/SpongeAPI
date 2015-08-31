@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.service.permission.option;
 
-import java.util.Optional;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.permission.context.Context;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface OptionSubject extends Subject {

@@ -25,10 +25,11 @@
 package org.spongepowered.api.data.property;
 
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.world.Location;
+
+import java.util.Optional;
 
 public interface PropertyStore<T extends Property<?, ?>> {
 

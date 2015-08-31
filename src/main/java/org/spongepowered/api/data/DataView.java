@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import java.util.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.service.persistence.DataBuilder;
@@ -32,6 +31,7 @@ import org.spongepowered.api.service.persistence.SerializationService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**

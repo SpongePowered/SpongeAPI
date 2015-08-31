@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * A builder for {@link FireworkEffect}s.

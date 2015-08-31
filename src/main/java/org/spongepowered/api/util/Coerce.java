@@ -33,7 +33,6 @@ import com.flowpowered.math.vector.VectorNi;
 import com.flowpowered.math.vector.Vectord;
 import com.flowpowered.math.vector.Vectorf;
 import com.flowpowered.math.vector.Vectorl;
-import java.util.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Bytes;
@@ -49,6 +48,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

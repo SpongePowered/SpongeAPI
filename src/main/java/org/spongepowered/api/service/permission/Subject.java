@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.service.permission;
 
-import java.util.Optional;
 import org.spongepowered.api.service.permission.context.Context;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**

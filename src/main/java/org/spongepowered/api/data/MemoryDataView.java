@@ -30,7 +30,6 @@ import static com.google.common.base.Preconditions.checkState;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -46,6 +45,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Nullable;

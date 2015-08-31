@@ -25,7 +25,6 @@
 package org.spongepowered.api;
 
 import com.flowpowered.math.vector.Vector3d;
-import java.util.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -42,6 +41,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.net.InetSocketAddress;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 /**

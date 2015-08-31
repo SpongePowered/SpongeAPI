@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.entity.projectile;
 
-import java.util.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
+
+import java.util.Optional;
 
 /**
  * Called when a {@link Projectile} is launched.

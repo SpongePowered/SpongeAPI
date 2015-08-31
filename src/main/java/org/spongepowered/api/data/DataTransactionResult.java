@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.value.BaseValue;

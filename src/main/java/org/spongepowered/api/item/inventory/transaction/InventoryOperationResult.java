@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.item.inventory.transaction;
 
-import java.util.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * An interface for structs returned by inventory operations which encapsulate

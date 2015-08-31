@@ -32,7 +32,6 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import org.spongepowered.api.block.BlockType;
@@ -45,6 +44,7 @@ import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * A block ray which traces a line and returns all block boundaries intersected in order,

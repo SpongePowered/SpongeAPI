@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.util.command.dispatcher;
 
-import java.util.Optional;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**

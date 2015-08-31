@@ -30,7 +30,6 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
@@ -55,6 +54,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

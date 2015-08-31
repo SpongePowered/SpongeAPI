@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.immutable;
 
-import java.util.Optional;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -33,6 +32,8 @@ import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
 import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
 
 /**
  * An {@link ImmutableDataManipulator} handling all related

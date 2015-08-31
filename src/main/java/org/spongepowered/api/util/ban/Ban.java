@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.util.ban;
 
-import java.util.Optional;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.net.InetAddress;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * Represents a ban made on an object.

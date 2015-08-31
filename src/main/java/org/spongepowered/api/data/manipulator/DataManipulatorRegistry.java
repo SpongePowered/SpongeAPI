@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import java.util.Optional;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.data.DataHolder;
+
+import java.util.Optional;
 
 /**
  * A registry of {@link DataManipulator}s and their respective

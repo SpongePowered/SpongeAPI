@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import java.util.Optional;
 import org.spongepowered.api.data.type.PlantType;
 import org.spongepowered.api.world.gen.Populator;
+
+import java.util.Optional;
 
 /**
  * Represents a populator which uses perlin noise to scatter flowers randomly

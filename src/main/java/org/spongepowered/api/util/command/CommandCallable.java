@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.util.command;
 
-import java.util.Optional;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.spec.CommandSpec;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A low-level interface for commands that can be executed. For almost all use

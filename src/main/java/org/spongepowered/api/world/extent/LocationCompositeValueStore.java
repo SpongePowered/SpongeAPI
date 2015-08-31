@@ -26,7 +26,6 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
-import java.util.Optional;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
@@ -42,6 +41,7 @@ import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * A type of {@link Location} based value store that can handle proxied

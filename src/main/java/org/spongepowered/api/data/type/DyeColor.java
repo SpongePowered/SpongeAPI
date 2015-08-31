@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents a color of dye that can be used by various items and blocks.

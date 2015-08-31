@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
+
+import java.util.Optional;
 
 /**
  * Represents a builder that can take a {@link DataContainer} and create a

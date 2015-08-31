@@ -27,6 +27,8 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 
+import java.util.Optional;
+
 /**
  * An event that is called when an entity becomes unleashed.
  */

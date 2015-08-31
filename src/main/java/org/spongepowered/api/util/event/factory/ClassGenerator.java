@@ -57,9 +57,8 @@ import static org.objectweb.asm.Opcodes.LRETURN;
 import static org.objectweb.asm.Opcodes.NEW;
 import static org.objectweb.asm.Opcodes.PUTFIELD;
 import static org.objectweb.asm.Opcodes.RETURN;
-import static org.objectweb.asm.Opcodes.V1_6;
+import static org.objectweb.asm.Opcodes.V1_8;
 
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.objectweb.asm.ClassWriter;
@@ -77,6 +76,7 @@ import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -412,8 +412,8 @@ public class ClassGenerator {
         mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
 
         if (property.getAccessor().getReturnType().equals(Optional.class)) {
-            mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable",
-                    "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
+            mv.visitMethodInsn(INVOKESTATIC, "java/util/Optional", "ofNullable",
+                    "(Ljava/lang/Object;)Ljava/util/Optional;", false);
         }
 
         if (!property.getType().isPrimitive()) {
@@ -465,10 +465,6 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
-    private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
-        if (!hasImplementation(parentType, property.getAccessor())) {
-            this.generateAccessor(cw, parentType, internalName, property);
-        }
 
         Optional<Method> mutatorOptional = property.getMutator();
         if (mutatorOptional.isPresent() && !hasImplementation(parentType, mutatorOptional.get())) {
@@ -502,9 +498,10 @@ public class ClassGenerator {
             toStringMv
                     .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-            toStringMv.visitLdcInsn("=");
-            toStringMv
-                    .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+                if (property.getAccessor().getReturnType().equals(Optional.class)) {
+                    mv.visitMethodInsn(INVOKESTATIC, "java/util/Optional", "ofNullable",
+                                       "(Ljava/lang/Object;)Ljava/util/Optional;", false);
+                }
 
             toStringMv.visitVarInsn(ALOAD, 0);
             toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
@@ -564,7 +561,7 @@ public class ClassGenerator {
         final String internalName = getInternalName(name);
 
         final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[]{Type.getInternalName(type)});
+        cw.visit(V1_8, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[]{Type.getInternalName(type)});
 
 
         MethodVisitor toStringMv = this.initializeToString(cw, type);

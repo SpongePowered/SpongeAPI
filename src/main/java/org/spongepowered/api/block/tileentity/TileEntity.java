@@ -32,6 +32,8 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
+
 /**
  * Represents an abstract Tile Entity. It is a functional block that is
  * continuously updated while residing in a world. It can perform specific
