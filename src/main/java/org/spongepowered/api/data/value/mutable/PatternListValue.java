@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.immutable.ImmutablePatternListValue;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Represents a customized {@link ListValue} handling {@link PatternLayer}s.

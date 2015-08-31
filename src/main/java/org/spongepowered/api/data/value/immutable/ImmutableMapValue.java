@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.value.mutable.MapValue;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Represents a specialized type of {@link ImmutableValue} that is different
@@ -96,7 +96,7 @@ public interface ImmutableMapValue<K, V> extends ImmutableValue<Map<K, V>> {
      * Creates a new {@link ImmutableMapValue} such that all entries are
      * filtered by the provided {@link Predicate}, any that return
      * {@code true} are retained in the new value. Elements that return
-     * <code>true</code> from {@link Predicate#apply(Object)} are kept, and
+     * <code>true</code> from {@link Predicate#test(Object)} are kept, and
      * those that return <code>false</code> are excluded.
      *
      * @param predicate The predicate to filter
@@ -121,27 +121,27 @@ public interface ImmutableMapValue<K, V> extends ImmutableValue<Map<K, V>> {
     boolean containsValue(V value);
 
     /**
-     * Gets an {@link ImmutableSet} of all keys contained in this map value.
+     * Gets an {@link Set} of all keys contained in this map value.
      *
      * @return The set of keys
      */
-    ImmutableSet<K> keySet();
+    Set<K> keySet();
 
     /**
-     * Retrieves an {@link ImmutableSet} of the {@link Entry}s contained
+     * Retrieves an {@link Set} of the {@link Entry}s contained
      * within this map value.
      *
      * @return The immutable set of entries
      */
-    ImmutableSet<Entry<K, V>> entrySet();
+    Set<Entry<K, V>> entrySet();
 
     /**
-     * Retrieves an {@link ImmutableCollection} of all available values within
+     * Retrieves a {@link Collection} of all available values within
      * this map.
      *
      * @return The collection of values
      */
-    ImmutableCollection<V> values();
+    Collection<V> values();
 
     @Override
     ImmutableMapValue<K, V> transform(Function<Map<K, V>, Map<K, V>> function);

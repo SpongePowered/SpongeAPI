@@ -28,7 +28,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.

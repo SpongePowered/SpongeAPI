@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -33,6 +32,7 @@ import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * Represents a {@link ValueContainer} that is immutable once created and
@@ -80,7 +80,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * existing data for the {@link ValueContainer}.</p>
      *
      * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orElse()} can be used to return a potentially
+     * {@link Optional#orElse(Object)} can be used to return a potentially
      * {@code null} {@link ValueContainer}.</p>
      *
      *
@@ -127,7 +127,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * existing data for the {@link ValueContainer}.</p>
      *
      * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orElse()} can be used to return a potentially
+     * {@link Optional#orElse(Object)} can be used to return a potentially
      * {@code null} {@link ValueContainer}.</p>
      *
      *

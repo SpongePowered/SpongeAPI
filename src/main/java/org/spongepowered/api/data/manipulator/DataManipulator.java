@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
@@ -38,6 +37,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.annotation.TransformWith;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * Represents a changelist of data that can be applied to a {@link DataHolder}.

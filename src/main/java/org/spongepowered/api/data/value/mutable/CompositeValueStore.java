@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -33,6 +32,7 @@ import org.spongepowered.api.data.value.ValueContainer;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * Represents a {@link ValueContainer} that contains a various bundle of
@@ -79,7 +79,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * existing data for the {@link ValueContainer}.</p>
      *
      * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orNull()} can be used to return a potentially
+     * {@link Optional#orElse(Object)} can be used to return a potentially
      * {@code null} {@link ValueContainer}.</p>
      *
      *

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.data.value.immutable.ImmutableAttributeMapValue;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * A customized {@link MapValue} that handles the intricacies of

@@ -28,7 +28,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableColoredData;
 import org.spongepowered.api.data.value.mutable.Value;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Represents item data that uses colors. Examples may include leather armor,

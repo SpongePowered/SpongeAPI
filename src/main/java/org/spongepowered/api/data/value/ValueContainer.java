@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -131,7 +130,7 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      * Gets all applicable {@link Key}s for this {@link ValueContainer}.
      * Changes can not be made to the set to alter the {@link ValueContainer},
      * nor can the {@link BaseValue}s be changed with the provided
-     * {@link ImmutableSet}.
+     * {@link Set}.
      *
      * @return An immutable set of known {@link Key}s
      */

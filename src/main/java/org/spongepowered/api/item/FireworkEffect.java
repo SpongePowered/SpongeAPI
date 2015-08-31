@@ -26,7 +26,7 @@ package org.spongepowered.api.item;
 
 import org.spongepowered.api.data.DataSerializable;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.List;
 
 /**

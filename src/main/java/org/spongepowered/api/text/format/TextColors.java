@@ -26,7 +26,7 @@ package org.spongepowered.api.text.format;
 
 import org.spongepowered.api.text.Text;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * TextColors is a list of text colors provided by Vanilla Minecraft.

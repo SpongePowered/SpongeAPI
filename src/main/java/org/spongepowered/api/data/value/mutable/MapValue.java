@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Represents a specialized type of {@link Value} that is different from
@@ -113,27 +113,28 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     boolean containsValue(V value);
 
     /**
-     * Gets an {@link ImmutableSet} of all keys contained in this map value.
+     * Gets a {@link Set} of all keys contained in this map value. Note that
+     * the returned set may be immutable.
      *
      * @return The set of keys
      */
-    ImmutableSet<K> keySet();
+    Set<K> keySet();
 
     /**
-     * Retrieves an {@link ImmutableSet} of the {@link Entry}s contained
-     * within this map value.
+     * Retrieves a {@link Set} of the {@link Entry}s contained
+     * within this map value. Note that the returned set may be immutable.
      *
      * @return The immutable set of entries
      */
-    ImmutableSet<Entry<K, V>> entrySet();
+    Set<Entry<K, V>> entrySet();
 
     /**
-     * Retrieves an {@link ImmutableCollection} of all available values within
-     * this map.
+     * Retrieves a {@link Collection} of all available values within
+     * this map. Note that the returned collection may be immutable.
      *
      * @return The collection of values
      */
-    ImmutableCollection<V> values();
+    Collection<V> values();
 
     @Override
     MapValue<K, V> transform(Function<Map<K, V>, Map<K, V>> function);
