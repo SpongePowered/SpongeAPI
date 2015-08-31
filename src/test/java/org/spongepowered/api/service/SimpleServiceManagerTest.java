@@ -89,13 +89,7 @@ public class SimpleServiceManagerTest {
 
         final AtomicBoolean ran = new AtomicBoolean(false);
         ServiceReference<TestInterface> futureRef = serviceManager.potentiallyProvide(TestInterface.class);
-        futureRef.executeWhenPresent(new Predicate<TestInterface>() {
-            @Override
-            public boolean apply(TestInterface input) {
-                ran.set(true);
-                return true;
-            }
-        });
+        futureRef.executeWhenPresent(input -> ran.set(true));
         assertFalse(ran.get());
         assertFalse(futureRef.ref().isPresent());
 
