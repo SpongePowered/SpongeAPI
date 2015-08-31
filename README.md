@@ -10,7 +10,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Community Chat]: [#sponge on irc.esper.net]
 * [Development Chat]: [#spongedev on irc.esper.net]
 * [Preparing for Development]
-* [Javadocs(temporary link)]
+* [Javadocs]
 
 ## Prerequisites
 * [Java] 6
@@ -31,20 +31,20 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 * Open a pull request with your changes, following our [guidelines](CONTRIBUTING.md).
 * Please follow the above guidelines and requirements for your pull request(s) to be accepted.
 
-[Eclipse]: http://www.eclipse.org/
-[Gradle]: http://www.gradle.org/
-[Homepage]: http://spongepowered.org/
-[IntelliJ]: http://www.jetbrains.com/idea/
-[Issues]: http://issues.spongepowered.org/
-[Wiki]: http://github.com/SpongePowered/SpongeAPI/wiki/
+[Eclipse]: https://www.eclipse.org/
+[Gradle]: https://www.gradle.org/
+[Homepage]: https://spongepowered.org/
+[IntelliJ]: https://www.jetbrains.com/idea/
+[Issues]: https://issues.spongepowered.org/
+[Wiki]: https://github.com/SpongePowered/SpongeAPI/wiki/
 [Java]: http://java.oracle.com/
 [Source]: https://github.com/SpongePowered/SpongeAPI/
-[MIT License]: http://www.tldrlegal.com/license/mit-license
-[Community Chat]: http://webchat.esper.net/?channels=sponge
-[Development Chat]: http://webchat.esper.net/?channels=spongedev
-[Preparing for Development]: http://docs.spongepowered.org/en/preparing/
+[MIT License]: https://www.tldrlegal.com/license/mit-license
+[Community Chat]: https://webchat.esper.net/?channels=sponge
+[Development Chat]: https://webchat.esper.net/?channels=spongedev
+[Preparing for Development]: https://docs.spongepowered.org/en/preparing/
 [#sponge on irc.esper.net]: irc://irc.esper.net/#sponge
-[Development Chat]: http://webchat.esper.net/?channels=spongedev
+[Development Chat]: https://webchat.esper.net/?channels=spongedev
 [#spongedev on irc.esper.net]: irc://irc.esper.net/#spongedev
-[Preparing for Development]: http://docs.spongepowered.org/en/preparing/
-[Javadocs(temporary link)]: http://spongepowered.github.io/SpongeAPI/
+[Preparing for Development]: https://docs.spongepowered.org/en/preparing/
+[Javadocs]: https://jd.spongepowered.org
