@@ -2,10 +2,8 @@ sudo: false
 
 language: java
 jdk:
-  - openjdk6
-  - openjdk7
-  - oraclejdk7
   - oraclejdk8
+  #- openjdk8
 
 env: GRADLE_OPTS="-Xms1g -Xmx3g"
 install: true
