@@ -28,6 +28,8 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
 
+import java.util.Arrays;
+
 /**
  * Something that can execute commands.
  *
@@ -49,7 +51,9 @@ public interface CommandSource extends Subject {
      *
      * @param messages The message(s)
      */
-    void sendMessage(Text... messages);
+    default void sendMessage(Text... messages) {
+        sendMessage(Arrays.asList(messages));
+    }
 
     /**
      * Sends the formatted text message(s) to source when possible. If text formatting

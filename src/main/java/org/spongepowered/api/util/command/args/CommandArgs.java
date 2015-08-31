@@ -26,17 +26,14 @@ package org.spongepowered.api.util.command.args;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.args.parsing.SingleArg;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Nullable;
+import java.util.stream.Collectors;
 
 /**
  * Holder for command arguments.
@@ -118,13 +115,7 @@ public final class CommandArgs {
      * @return all arguments
      */
     public List<String> getAll() {
-        return ImmutableList.copyOf(Lists.transform(this.args, new Function<SingleArg, String>() {
-            @Nullable
-            @Override
-            public String apply(SingleArg input) {
-                return input.getValue();
-            }
-        }));
+        return Collections.unmodifiableList(this.args.stream().map(SingleArg::getValue).collect(Collectors.toList()));
     }
 
     List<SingleArg> getArgs() {

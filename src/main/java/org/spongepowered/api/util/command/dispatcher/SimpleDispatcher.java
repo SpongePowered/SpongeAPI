@@ -29,9 +29,6 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.NEWLINE_TEXT;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_TEXT;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
-import com.google.common.base.Predicate;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
@@ -46,6 +43,7 @@ import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
@@ -64,6 +62,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
@@ -75,17 +74,13 @@ public final class SimpleDispatcher implements Dispatcher {
     /**
      * This is a disambiguator function that returns the first matching command.
      */
-    public static final Disambiguator FIRST_DISAMBIGUATOR = new Disambiguator() {
-
-        @Override
-        public Optional<CommandMapping> disambiguate(CommandSource source, final String aliasUsed, List<CommandMapping> availableOptions) {
-            for (CommandMapping mapping : availableOptions) {
-                if (mapping.getPrimaryAlias().toLowerCase().equals(aliasUsed.toLowerCase())) {
-                    return Optional.of(mapping);
-                }
+    public static final Disambiguator FIRST_DISAMBIGUATOR = (source, aliasUsed, availableOptions) -> {
+        for (CommandMapping mapping : availableOptions) {
+            if (mapping.getPrimaryAlias().toLowerCase().equals(aliasUsed.toLowerCase())) {
+                return Optional.of(mapping);
             }
-            return Optional.of(availableOptions.get(0));
         }
+        return Optional.of(availableOptions.get(0));
     };
 
     private final Disambiguator disambiguatorFunc;
@@ -143,7 +138,7 @@ public final class SimpleDispatcher implements Dispatcher {
      * @return The registered command mapping, unless no aliases could be registered
      */
     public Optional<CommandMapping> register(CommandCallable callable, List<String> aliases) {
-        return register(callable, aliases, Functions.<List<String>>identity());
+        return register(callable, aliases, Function.identity());
     }
 
     /**
@@ -271,7 +266,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Set<String> getPrimaryAliases() {
-        Set<String> aliases = new HashSet<String>();
+        Set<String> aliases = new HashSet<>();
 
         for (CommandMapping mapping : this.commands.values()) {
             aliases.add(mapping.getPrimaryAlias());
@@ -282,7 +277,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Set<String> getAliases() {
-        Set<String> aliases = new HashSet<String>();
+        Set<String> aliases = new HashSet<>();
 
         for (CommandMapping mapping : this.commands.values()) {
             aliases.addAll(mapping.getAllAliases());
@@ -353,7 +348,7 @@ public final class SimpleDispatcher implements Dispatcher {
         final String[] argSplit = arguments.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
         if (argSplit.length == 1) {
-            return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(argSplit[0])));
+            return filterCommands(src).stream().filter(new StartsWithPredicate(argSplit[0])).collect(GuavaCollectors.toImmutableList());
         } else if (!cmdOptional.isPresent()) {
             return ImmutableList.of();
         }
@@ -401,14 +396,8 @@ public final class SimpleDispatcher implements Dispatcher {
         return Optional.of(build.build());
     }
 
-    private Iterable<String> filterCommands(final CommandSource src) {
-        return Multimaps.filterValues(this.commands, new Predicate<CommandMapping>() {
-
-            @Override
-            public boolean apply(@Nullable CommandMapping input) {
-                return input != null && input.getCallable().testPermission(src);
-            }
-        }).keys();
+    private Set<String> filterCommands(final CommandSource src) {
+        return Multimaps.filterValues(this.commands, input -> input.getCallable().testPermission(src)).keys().elementSet();
     }
 
     /**
@@ -423,16 +412,9 @@ public final class SimpleDispatcher implements Dispatcher {
     @Override
     public Text getUsage(final CommandSource source) {
         final TextBuilder build = Texts.builder();
-        Iterable<String> filteredCommands = Iterables.filter(filterCommands(source), new Predicate<String>() {
-
-            @Override
-            public boolean apply(@Nullable String input) {
-                if (input == null) {
-                    return false;
-                }
-                final Optional<CommandMapping> ret = get(input, source);
-                return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
-            }
+        Iterable<String> filteredCommands = Iterables.filter(filterCommands(source), input -> {
+            final Optional<CommandMapping> ret = get(input, source);
+            return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
         });
 
         for (Iterator<String> it = filteredCommands.iterator(); it.hasNext();) {

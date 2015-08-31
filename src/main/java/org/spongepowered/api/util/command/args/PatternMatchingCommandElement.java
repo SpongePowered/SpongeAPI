@@ -26,8 +26,6 @@ package org.spongepowered.api.util.command.args;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.text.Text;
@@ -54,19 +52,13 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
         final String unformattedPattern = args.next();
         Pattern pattern = getFormattedPattern(unformattedPattern);
-        Iterable<String> filteredChoices = Iterables.filter(getChoices(source), Predicates.contains(pattern));
+        Iterable<String> filteredChoices = Iterables.filter(getChoices(source), element -> pattern.matcher(element).find());
         for (String el : filteredChoices) { // Match a single value
             if (el.equalsIgnoreCase(unformattedPattern)) {
                 return getValue(el);
             }
         }
-        Iterable<Object> ret = Iterables.transform(filteredChoices, new Function<String, Object>() {
-            @Nullable
-            @Override
-            public Object apply(@Nullable String input) {
-                return input == null ? null : getValue(input);
-            }
-        });
+        Iterable<Object> ret = Iterables.transform(filteredChoices, this::getValue);
 
         if (!ret.iterator().hasNext()) {
             throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null
@@ -80,7 +72,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         Iterable<String> choices = getChoices(src);
         final Optional<String> nextArg = args.nextIfPresent();
         if (nextArg.isPresent()) {
-            choices = Iterables.filter(choices, Predicates.contains(getFormattedPattern(nextArg.get())));
+            choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
         }
         return ImmutableList.copyOf(choices);
     }

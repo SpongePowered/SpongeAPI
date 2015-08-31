@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.text.action;
 
-import org.spongepowered.api.util.Consumer;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.net.URL;
+import java.util.function.Consumer;
 
 /**
  * Represents a {@link TextAction} that responds to clicks.

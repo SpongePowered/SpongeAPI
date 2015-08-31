@@ -28,12 +28,11 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.args.GenericArguments.markTrue;
 import static org.spongepowered.api.util.command.args.GenericArguments.requiringPermission;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -44,6 +43,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
@@ -261,26 +261,18 @@ class CommandFlags extends CommandElement {
                     element.parse(src, args, context);
                 } catch (ArgumentParseException ex) {
                     args.setState(position);
-                    return ImmutableList.copyOf(Iterables.transform(element.complete(src, args, context), new Function<String, String>() {
-                        @Nullable
-                        @Override
-                        public String apply(@Nullable String input) {
-                            return "--" + finalLongFlag + "=" + input;
-                        }
-                    }));
+                    return ImmutableList.copyOf(
+                            Iterables.transform(element.complete(src, args, context),
+                                    input -> "--" + finalLongFlag + "=" + input));
                 }
             }
         } else {
             CommandElement element = this.longFlags.get(longFlag.toLowerCase());
             if (element == null) {
-                List<String> retStrings = ImmutableList.copyOf(Iterables.transform(Iterables.filter(this.longFlags.keySet(),
-                        new StartsWithPredicate(longFlag.toLowerCase())), new Function<String, String>() {
-                            @Nullable
-                            @Override
-                            public String apply(@Nullable String input) {
-                                return "--" + input;
-                            }
-                        }));
+                List<String> retStrings = this.longFlags.keySet().stream()
+                        .filter(new StartsWithPredicate(longFlag))
+                        .map(arg -> "--" + arg)
+                        .collect(GuavaCollectors.toImmutableList());
                 if (retStrings.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) { // Then we probably have a
                 // following arg specified, if there's anything
                     args.nextIfPresent();
@@ -361,14 +353,6 @@ class CommandFlags extends CommandElement {
 
         Builder() {}
 
-        private static final Function<String, CommandElement> MARK_TRUE_FUNC = new Function<String, CommandElement>() {
-            @Nullable
-            @Override
-            public CommandElement apply(@Nullable String input) {
-                return markTrue(input);
-            }
-        };
-
         private Builder flag(Function<String, CommandElement> func, String... specs) {
             final List<String> availableFlags = new ArrayList<String>(specs.length);
             CommandElement el = null;
@@ -408,7 +392,7 @@ class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder flag(String... specs) {
-            return flag(MARK_TRUE_FUNC, specs);
+            return flag(GenericArguments::markTrue, specs);
         }
 
         /**
@@ -441,7 +425,7 @@ class CommandFlags extends CommandElement {
          */
         @SuppressWarnings({"unchecked", "rawtypes"}) // cuz generics suck
         public Builder valueFlag(CommandElement value, String... specs) {
-            return flag((Function) Functions.constant(value), specs);
+            return flag(ignore -> value, specs);
         }
 
         /**

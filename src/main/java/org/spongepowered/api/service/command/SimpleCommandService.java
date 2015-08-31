@@ -28,8 +28,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -66,6 +64,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import javax.inject.Inject;
 
@@ -112,7 +111,7 @@ public class SimpleCommandService implements CommandService {
 
     @Override
     public Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases) {
-        return register(plugin, callable, aliases, Functions.<List<String>>identity());
+        return register(plugin, callable, aliases, Function.identity());
     }
 
     @Override

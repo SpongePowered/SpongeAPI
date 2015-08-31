@@ -29,11 +29,11 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.Consumer;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.net.URL;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
