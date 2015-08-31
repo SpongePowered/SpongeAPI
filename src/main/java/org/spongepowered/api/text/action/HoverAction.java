@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.action;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -136,7 +136,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
              * @param type The type of the entity
              */
             public Ref(UUID uuid, String name, @Nullable EntityType type) {
-                this(uuid, name, Optional.fromNullable(type));
+                this(uuid, name, Optional.ofNullable(type));
             }
 
             /**
@@ -146,7 +146,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
              * @param name The name of the entity
              */
             public Ref(UUID uuid, String name) {
-                this(uuid, name, Optional.<EntityType>absent());
+                this(uuid, name, Optional.<EntityType>empty());
             }
 
             /**
@@ -194,7 +194,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
             /**
              * Retrieves the type that this {@link Ref} refers to, if it exists.
              *
-             * @return The type, or {@link Optional#absent()}
+             * @return The type, or {@link Optional#empty()}
              */
             public Optional<EntityType> getType() {
                 return this.type;

@@ -26,7 +26,7 @@ package org.spongepowered.api.text.selector;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.scoreboard.Team;
@@ -147,7 +147,7 @@ public final class ArgumentTypes {
      * Gets the {@link ArgumentType} with the provided name.
      *
      * @param name The name of the argument type
-     * @return The {@link ArgumentType} with the given name or Optional.absent() if not found
+     * @return The {@link ArgumentType} with the given name or Optional.empty() if not found
      */
     public static Optional<ArgumentType<?>> valueOf(String name) {
         return Selectors.factory.getArgumentType(name);

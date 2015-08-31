@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Direction.Flag;
 

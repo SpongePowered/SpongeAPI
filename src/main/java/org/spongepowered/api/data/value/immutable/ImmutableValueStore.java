@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.value.immutable;
 
 import com.google.common.base.Function;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -80,7 +80,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * existing data for the {@link ValueContainer}.</p>
      *
      * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orNull()} can be used to return a potentially
+     * {@link Optional#orElse()} can be used to return a potentially
      * {@code null} {@link ValueContainer}.</p>
      *
      *
@@ -127,7 +127,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * existing data for the {@link ValueContainer}.</p>
      *
      * <p>If it is necessary to ignore the {@link Optional},
-     * {@link Optional#orNull()} can be used to return a potentially
+     * {@link Optional#orElse()} can be used to return a potentially
      * {@code null} {@link ValueContainer}.</p>
      *
      *
@@ -193,7 +193,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     /**
      * Gets an altered copy of this {@link ImmutableValueStore} with the given
      * {@link DataManipulator} modified data. If the data is not compatible for
-     * any reason, {@link Optional#absent()} is returned.
+     * any reason, {@link Optional#empty()} is returned.
      *
      * <p>This does not alter the current {@link ImmutableValueStore}.</p>
      *

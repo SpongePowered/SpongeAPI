@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.type;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 

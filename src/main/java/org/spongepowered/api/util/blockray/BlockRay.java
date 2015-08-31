@@ -32,7 +32,7 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import org.spongepowered.api.block.BlockType;
@@ -341,7 +341,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         while (hasNext()) {
             next();
         }
-        return Optional.fromNullable(this.hit);
+        return Optional.ofNullable(this.hit);
     }
 
     private void xyzIntersect() {

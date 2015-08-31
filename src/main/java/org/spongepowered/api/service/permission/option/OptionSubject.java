@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.permission.option;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.permission.context.Context;
 

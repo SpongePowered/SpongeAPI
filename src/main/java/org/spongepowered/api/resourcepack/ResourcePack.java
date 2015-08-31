@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.resourcepack;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import java.net.URL;
 

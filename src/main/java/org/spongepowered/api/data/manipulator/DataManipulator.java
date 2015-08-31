@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.manipulator;
 
 import com.google.common.base.Function;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
@@ -92,7 +92,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * Attempts to read the raw data from the provided {@link DataContainer}.
      * This manipulator should be "reset" to a default state and apply all data
      * from the given {@link DataContainer}. If data is missing from the
-     * {@link DataContainer}, {@link Optional#absent()} can be returned.
+     * {@link DataContainer}, {@link Optional#empty()} can be returned.
      *
      * @param container The container of raw data
      * @return This {@link DataManipulator} with relevant data filled from the

@@ -30,6 +30,7 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
 
+import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -126,7 +127,7 @@ public interface Scoreboard {
      * Gets a {@link Text} member's {@link Team} on this scoreboard.
      *
      * @param member The {@link Text} to search for
-     * @return The {@link Text} member's {@link Team}, or Optional.absent()
+     * @return The {@link Text} member's {@link Team}, or Optional.empty()
      *     if the member has no team
      */
     Optional<Team> getMemberTeam(Text member);

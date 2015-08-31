@@ -27,7 +27,7 @@ package org.spongepowered.api.util.command.args;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Function;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.text.Text;
@@ -98,7 +98,7 @@ public final class CommandArgs {
      * @return The optional next argument.
      */
     public Optional<String> nextIfPresent() {
-        return hasNext() ? Optional.of(this.args.get(++this.index).getValue()) : Optional.<String>absent();
+        return hasNext() ? Optional.of(this.args.get(++this.index).getValue()) : Optional.<String>empty();
     }
 
     /**

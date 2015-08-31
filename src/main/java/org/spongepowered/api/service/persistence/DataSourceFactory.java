@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataSerializable;
 

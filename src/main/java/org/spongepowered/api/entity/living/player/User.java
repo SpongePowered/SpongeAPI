@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;

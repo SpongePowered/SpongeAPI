@@ -25,7 +25,7 @@
 package org.spongepowered.api.service.world;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableSet;
@@ -62,7 +62,7 @@ public interface ChunkLoadService {
      *
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
-     * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
      */
     Optional<LoadingTicket> createTicket(Object plugin, World world);
 
@@ -76,7 +76,7 @@ public interface ChunkLoadService {
      *
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
-     * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
      */
     Optional<EntityLoadingTicket> createEntityTicket(Object plugin, World world);
 
@@ -90,7 +90,7 @@ public interface ChunkLoadService {
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
      * @param player Player that chunks are being loaded for
-     * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
      */
     Optional<PlayerLoadingTicket> createPlayerTicket(Object plugin, World world, UUID player);
 
@@ -107,7 +107,7 @@ public interface ChunkLoadService {
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
      * @param player Player that chunks are being loaded for
-     * @return The new LoadingTicket, or Optional.absent() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
      */
     Optional<PlayerEntityLoadingTicket> createPlayerEntityTicket(Object plugin, World world, UUID player);
 

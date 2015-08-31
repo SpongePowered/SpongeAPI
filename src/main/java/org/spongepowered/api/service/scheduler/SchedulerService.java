@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.scheduler;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import java.util.Set;
 import java.util.UUID;
@@ -45,7 +45,7 @@ public interface SchedulerService {
      * Retrieves a scheduled or running task by its unique ID.
      *
      * @param id The id of the task
-     * @return The scheduled or running task, or {@link Optional#absent()}
+     * @return The scheduled or running task, or {@link Optional#empty()}
      */
     Optional<Task> getTaskById(UUID id);
 

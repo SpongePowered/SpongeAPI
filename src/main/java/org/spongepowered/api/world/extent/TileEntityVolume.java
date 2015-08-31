@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.tileentity.TileEntity;
 
@@ -67,7 +67,7 @@ public interface TileEntityVolume extends MutableBlockVolume {
      * Gets the tile entity at the given position, if it exists.
      *
      * @param position The position
-     * @return The tile entity, or {@link Optional#absent()}
+     * @return The tile entity, or {@link Optional#empty()}
      */
     Optional<TileEntity> getTileEntity(Vector3i position);
 
@@ -77,7 +77,7 @@ public interface TileEntityVolume extends MutableBlockVolume {
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @return The tile entity, or {@link Optional#absent()}
+     * @return The tile entity, or {@link Optional#empty()}
      */
     Optional<TileEntity> getTileEntity(int x, int y, int z);
 

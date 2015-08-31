@@ -38,6 +38,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.text.selector.ArgumentHolder.Limit;
 
 import java.util.Collection;
@@ -66,7 +66,7 @@ public interface SelectorFactory {
      * Gets the {@link ArgumentType} with the provided name.
      *
      * @param name The name of the argument type
-     * @return The {@link ArgumentType} with the given name or Optional.absent() if not found
+     * @return The {@link ArgumentType} with the given name or Optional.empty() if not found
      */
     Optional<ArgumentType<?>> getArgumentType(String name);
 

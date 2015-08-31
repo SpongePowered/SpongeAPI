@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
@@ -60,7 +60,7 @@ public interface WorldBuilder {
 
     /**
      * Sets the name of the world.
-     * 
+     *
      * @param name The name
      * @return The builder, for chaining
      */
@@ -70,7 +70,7 @@ public interface WorldBuilder {
      * Sets the world as enabled. A world which is enabled but unloaded may be
      * loaded automatically if an attempt is made to transfer an entity to the
      * world using {@link Entity#transferToWorld} .
-     * 
+     *
      * @param state Should be enabled
      * @return The builder, for chaining
      */
@@ -78,7 +78,7 @@ public interface WorldBuilder {
 
     /**
      * Sets whether the world should load when the server starts up.
-     * 
+     *
      * @param state Should load on startup
      * @return The builder, for chaining
      */
@@ -87,7 +87,7 @@ public interface WorldBuilder {
     /**
      * Sets whether the spawn chunks of the world should remain loaded when no
      * players are present.
-     * 
+     *
      * @param state Should keep spawn loaded
      * @return The builder, for chaining
      */
@@ -96,7 +96,7 @@ public interface WorldBuilder {
     /**
      * Sets the seed of the world. If not specified this will default to using a
      * random seed.
-     * 
+     *
      * @param seed The seed
      * @return The builder, for chaining
      */
@@ -105,7 +105,7 @@ public interface WorldBuilder {
     /**
      * Sets the default {@link GameMode} of the world. If not specified this
      * will default to {@link GameModes#SURVIVAL}.
-     * 
+     *
      * @param gameMode The gamemode
      * @return The builder, for chaining
      */
@@ -113,7 +113,7 @@ public interface WorldBuilder {
 
     /**
      * Sets the generator type of the world.
-     * 
+     *
      * @param type The type
      * @return The builder, for chaining
      */
@@ -131,7 +131,7 @@ public interface WorldBuilder {
 
     /**
      * Sets the dimension type of the world.
-     * 
+     *
      * @param type The type
      * @return The builder, for chaining
      */
@@ -140,7 +140,7 @@ public interface WorldBuilder {
     /**
      * Sets whether this world should generate map features such as villages and
      * strongholds. If not specified this will default to true.
-     * 
+     *
      * @param enabled Are map features enabled
      * @return The builder, for chaining
      */
@@ -150,7 +150,7 @@ public interface WorldBuilder {
      * Sets whether hardcore mode is enabled. On servers this will cause players
      * to be banned upon death, on clients the world will be deleted! If not
      * specified this will default to false.
-     * 
+     *
      * @param enabled Is hardcore mode enabled
      * @return The builder, for chaining
      */
@@ -177,7 +177,7 @@ public interface WorldBuilder {
 
     /**
      * Attempts to create a {@link World} from the specified parameters.
-     * 
+     *
      * @return The world, if successful
      * @throws IllegalStateException If any required parameters are missing
      */
@@ -186,7 +186,7 @@ public interface WorldBuilder {
     /**
      * Attempts to create a {@link WorldCreationSettings} which may be later
      * used to create a world.
-     * 
+     *
      * @return The world settings
      * @throws IllegalStateException If any required parameters are missing
      */

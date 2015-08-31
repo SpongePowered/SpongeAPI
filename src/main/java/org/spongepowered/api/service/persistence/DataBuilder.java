@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
@@ -42,7 +42,7 @@ public interface DataBuilder<T extends DataSerializable> {
      * Attempts to build the provided {@link DataSerializable} from the given
      * {@link DataView}. If the {@link DataView} is invalid or
      * missing necessary information to complete building the
-     * {@link DataSerializable}, {@link Optional#absent()} may be returned.
+     * {@link DataSerializable}, {@link Optional#empty()} may be returned.
      *
      * @param container The container containing all necessary data
      * @return The instance of the {@link DataSerializable}, if successful

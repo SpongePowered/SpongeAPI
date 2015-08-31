@@ -27,7 +27,7 @@ package org.spongepowered.api.util.command.args;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -167,7 +167,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
 
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        CommandMapping mapping = args.<CommandMapping>getOne(getUntranslatedKey()).orNull();
+        CommandMapping mapping = args.<CommandMapping>getOne(getUntranslatedKey()).orElse(null);
         if (mapping == null) {
             if (this.fallbackExecutor != null) {
                 return this.fallbackExecutor.execute(src, args);
@@ -180,7 +180,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
             spec.checkPermission(src);
             return spec.getExecutor().execute(src, args);
         } else {
-            final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").or("");
+            final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").orElse("");
             return mapping.getCallable().process(src, arguments);
         }
     }

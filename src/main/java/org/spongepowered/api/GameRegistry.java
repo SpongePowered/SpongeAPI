@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
@@ -343,48 +343,48 @@ public interface GameRegistry {
     /**
      * Gets the {@link Statistic} for the given {@link StatisticGroup} and
      * {@link EntityType}. If the statistic group is not a valid
-     * {@link EntityStatistic} group then {@link Optional#absent()} will be
+     * {@link EntityStatistic} group then {@link Optional#empty()} will be
      * returned.
      *
      * @param statisticGroup The type of statistic to return
      * @param entityType The entity type for the statistic to return
-     * @return The entity statistic or Optional.absent() if not found
+     * @return The entity statistic or Optional.empty() if not found
      */
     Optional<EntityStatistic> getEntityStatistic(StatisticGroup statisticGroup, EntityType entityType);
 
     /**
      * Gets the {@link Statistic} for the given {@link StatisticGroup} and
      * {@link ItemType}. If the statistic group is not a valid
-     * {@link ItemStatistic} group then {@link Optional#absent()} will be
+     * {@link ItemStatistic} group then {@link Optional#empty()} will be
      * returned.
      *
      * @param statisticGroup The type of statistic to return
      * @param itemType The item type for the statistic to return
-     * @return The item statistic or Optional.absent() if not found
+     * @return The item statistic or Optional.empty() if not found
      */
     Optional<ItemStatistic> getItemStatistic(StatisticGroup statisticGroup, ItemType itemType);
 
     /**
      * Gets the {@link Statistic} for the given {@link StatisticGroup} and
      * {@link BlockType}. If the statistic group is not a valid
-     * {@link BlockStatistic} group then {@link Optional#absent()} will be
+     * {@link BlockStatistic} group then {@link Optional#empty()} will be
      * returned.
      *
      * @param statisticGroup The type of statistic to return
      * @param blockType The block type for the statistic to return
-     * @return The block statistic or Optional.absent() if not found
+     * @return The block statistic or Optional.empty() if not found
      */
     Optional<BlockStatistic> getBlockStatistic(StatisticGroup statisticGroup, BlockType blockType);
 
     /**
      * Gets the {@link Statistic} for the given {@link StatisticGroup} and
      * team's {@link TextColor}. If the {@link StatisticGroup} is not a valid
-     * {@link TeamStatistic} group then {@link Optional#absent()} will be
+     * {@link TeamStatistic} group then {@link Optional#empty()} will be
      * returned.
      *
      * @param statisticGroup The type of statistic to return
      * @param teamColor The team's color for the statistic to return
-     * @return The team statistic or Optional.absent() if not found
+     * @return The team statistic or Optional.empty() if not found
      */
     Optional<TeamStatistic> getTeamStatistic(StatisticGroup statisticGroup, TextColor teamColor);
 
@@ -408,7 +408,7 @@ public interface GameRegistry {
      * Gets the {@link Rotation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or Optional.absent() if not found
+     * @return The {@link Rotation} with the given degrees or Optional.empty() if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
 
@@ -500,7 +500,7 @@ public interface GameRegistry {
      * Gets a {@link ResourcePack} that's already been created by its ID.
      *
      * @param id The ID of the pack
-     * @return The ResourcePack with the specified ID, or Optional.absent() if
+     * @return The ResourcePack with the specified ID, or Optional.empty() if
      *         none could be found
      */
     Optional<ResourcePack> getById(String id);
@@ -510,7 +510,7 @@ public interface GameRegistry {
      * with the provided color.
      *
      * @param color The color for the display slot
-     * @return The {@link DisplaySlot} with the provided color, or Optional.absent() if not found
+     * @return The {@link DisplaySlot} with the provided color, or Optional.empty() if not found
      */
     Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
 
@@ -525,7 +525,7 @@ public interface GameRegistry {
     /**
      * Gets the {@link PopulatorFactory} for creating {@link Populator}s and
      * {@link GeneratorPopulator}s.
-     * 
+     *
      * @return The populator factory
      */
     PopulatorFactory getPopulatorFactory();
@@ -555,7 +555,7 @@ public interface GameRegistry {
      * Gets the {@link Translation} with the provided ID.
      *
      * @param id The ID of the translation
-     * @return The {@link Translation} with the given ID or Optional.absent() if not found
+     * @return The {@link Translation} with the given ID or Optional.empty() if not found
      */
     Optional<Translation> getTranslationById(String id);
 

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.crafting;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.Recipe;
 
@@ -50,7 +50,7 @@ public interface CraftingInventory extends GridInventory {
     /**
      * Retrieves the recipe formed by this CraftingInventory, if any.
      *
-     * @return The recipe or {@link Optional#absent()} if no recipe is formed
+     * @return The recipe or {@link Optional#empty()} if no recipe is formed
      */
     Optional<Recipe> getRecipe();
 

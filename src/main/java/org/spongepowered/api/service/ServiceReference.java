@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.base.Predicate;
 
 /**

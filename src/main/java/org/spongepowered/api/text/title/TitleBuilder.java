@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.title;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.text.Text;
 
 import javax.annotation.Nullable;
@@ -58,11 +58,11 @@ public class TitleBuilder {
      * @param title The title to copy the values from
      */
     public TitleBuilder(Title title) {
-        this.title = title.title.orNull();
-        this.subtitle = title.subtitle.orNull();
-        this.fadeIn = title.fadeIn.orNull();
-        this.stay = title.stay.orNull();
-        this.fadeOut = title.fadeOut.orNull();
+        this.title = title.title.orElse(null);
+        this.subtitle = title.subtitle.orElse(null);
+        this.fadeIn = title.fadeIn.orElse(null);
+        this.stay = title.stay.orElse(null);
+        this.fadeOut = title.fadeOut.orElse(null);
         this.clear = title.clear;
         this.reset = title.reset;
     }
@@ -70,11 +70,11 @@ public class TitleBuilder {
     /**
      * Returns the current title of this builder.
      *
-     * @return The current main title, or {@link Optional#absent()} if none
+     * @return The current main title, or {@link Optional#empty()} if none
      * @see Title#getTitle()
      */
     public final Optional<Text> getTitle() {
-        return Optional.fromNullable(this.title);
+        return Optional.ofNullable(this.title);
     }
 
     /**
@@ -92,11 +92,11 @@ public class TitleBuilder {
     /**
      * Returns the current subtitle of this builder.
      *
-     * @return The current subtitle, or {@link Optional#absent()} if none
+     * @return The current subtitle, or {@link Optional#empty()} if none
      * @see Title#getSubtitle()
      */
     public final Optional<Text> getSubtitle() {
-        return Optional.fromNullable(this.subtitle);
+        return Optional.ofNullable(this.subtitle);
     }
 
     /**
@@ -114,11 +114,11 @@ public class TitleBuilder {
     /**
      * Returns the current fade in effect time of the title.
      *
-     * @return The current fade in time, or {@link Optional#absent()} if none
+     * @return The current fade in time, or {@link Optional#empty()} if none
      * @see Title#getFadeIn()
      */
     public final Optional<Integer> getFadeIn() {
-        return Optional.fromNullable(this.fadeIn);
+        return Optional.ofNullable(this.fadeIn);
     }
 
     /**
@@ -141,11 +141,11 @@ public class TitleBuilder {
     /**
      * Returns the current stay effect time of the title.
      *
-     * @return The current stay time, or {@link Optional#absent()} if none
+     * @return The current stay time, or {@link Optional#empty()} if none
      * @see Title#getStay()
      */
     public final Optional<Integer> getStay() {
-        return Optional.fromNullable(this.stay);
+        return Optional.ofNullable(this.stay);
     }
 
     /**
@@ -168,11 +168,11 @@ public class TitleBuilder {
     /**
      * Returns the current fade out effect time of the title.
      *
-     * @return The current fade out time, or {@link Optional#absent()} if none
+     * @return The current fade out time, or {@link Optional#empty()} if none
      * @see Title#getFadeOut()
      */
     public final Optional<Integer> getFadeOut() {
-        return Optional.fromNullable(this.fadeOut);
+        return Optional.ofNullable(this.fadeOut);
     }
 
     /**

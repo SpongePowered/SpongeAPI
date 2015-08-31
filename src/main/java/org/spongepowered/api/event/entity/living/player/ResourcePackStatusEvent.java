@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.living.player;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -83,14 +83,14 @@ public interface ResourcePackStatusEvent extends GameEvent {
         private final Optional<Boolean> success;
 
         ResourcePackStatus(Boolean success) {
-            this.success = Optional.fromNullable(success);
+            this.success = Optional.ofNullable(success);
         }
 
         /**
          * Gets if this status indicates that the pack was successfully set.
          *
          * @return true if it was successful, false if it was not, and
-         *         Optional.absent() if it cannot be determined at this time.
+         *         Optional.empty() if it cannot be determined at this time.
          */
         public Optional<Boolean> wasSuccessful() {
             return this.success;

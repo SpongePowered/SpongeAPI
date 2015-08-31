@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.type.BigMushroomType;
 import org.spongepowered.api.world.biome.BiomeTypes;
 import org.spongepowered.api.world.gen.Populator;
@@ -40,7 +40,7 @@ public interface BigMushroom extends Populator {
      * <strong>Note:</strong> this type will be ignored if the populator is set
      * to randomize types {@link #usesRandomizedType()}. If the populator is set
      * to randomize then this method will return absent.
-     * 
+     *
      * @return The type, if not randomized
      */
     Optional<BigMushroomType> getType();
@@ -48,7 +48,7 @@ public interface BigMushroom extends Populator {
     /**
      * Sets the type of mushroom to place. Setting the mushroom type will set
      * {@link #usesRandomizedType()} to false.
-     * 
+     *
      * @param type The new mushroom type
      */
     void setType(BigMushroomType type);
@@ -57,9 +57,9 @@ public interface BigMushroom extends Populator {
      * Gets whether this populator is randomizing which type it is placing. If
      * set the mushroom type will be selected at random for each mushroom that
      * it places.
-     * 
+     *
      * <p>This defaults to true.</p>
-     * 
+     *
      * @return True if this populator is using randomized mushroom types
      */
     boolean usesRandomizedType();
@@ -68,32 +68,32 @@ public interface BigMushroom extends Populator {
      * Sets whether this populator is randomizing which type it is placing. If
      * set the mushroom type will be selected at random for each mushroom that
      * it places.
-     * 
+     *
      * @param state The new state
      */
     void useRandomizedTypes(boolean state);
 
     /**
      * Gets the number of mushrooms which will be attempted to be spawned.
-     * 
+     *
      * <p><strong>Note:</strong> This number is not a definite number and the
      * final count of mushrooms which are successfully spawned by the populator
      * will almost always be lower.</p>
-     * 
+     *
      * <p>The default value for this is 1 (from
      * {@link BiomeTypes#MUSHROOM_ISLAND}.</p>
-     * 
+     *
      * @return The number of mushrooms attempted to be spawned per chunk
      */
     int getMushroomsPerChunk();
 
     /**
      * Sets the number of mushrooms which will be attempted to be spawned.
-     * 
+     *
      * <p><strong>Note:</strong> This number is not a definite number and the
      * final count of mushrooms which are successfully spawned by the populator
      * will almost always be lower.</p>
-     * 
+     *
      * @param count The new amount to attempt to create
      */
     void setMushroomsPerChunk(int count);
@@ -106,10 +106,10 @@ public interface BigMushroom extends Populator {
         /**
          * Sets the type of mushroom to place. Setting the mushroom type will
          * set {@link #usesRandomizedType()} to false.
-         * 
+         *
          * <p>Defaults to absent with the
          * {@link BigMushroom#usesRandomizedType()} flag set to true.</p>
-         * 
+         *
          * @param type The new mushroom type
          * @return This builder, for chaining
          */
@@ -117,11 +117,11 @@ public interface BigMushroom extends Populator {
 
         /**
          * Sets the number of mushrooms which will be attempted to be spawned.
-         * 
+         *
          * <p><strong>Note:</strong> This number is not a definite number and
          * the final count of mushrooms which are successfully spawned by the
          * populator will almost always be lower.</p>
-         * 
+         *
          * @param count The new amount to attempt to create
          * @return This builder, for chaining
          */
@@ -131,7 +131,7 @@ public interface BigMushroom extends Populator {
          * Sets whether this populator is randomizing which type it is placing.
          * If set the mushroom type will be selected at random for each mushroom
          * that it places.
-         * 
+         *
          * <p>This defaults to true.</p>
          *
          * @return This builder, for chaining
@@ -140,7 +140,7 @@ public interface BigMushroom extends Populator {
 
         /**
          * Resets this builder to the default values.
-         * 
+         *
          * @return This builder, for chaining
          */
         Builder reset();
@@ -148,7 +148,7 @@ public interface BigMushroom extends Populator {
         /**
          * Builds a new instance of a {@link BigMushroom} populator with the
          * settings set within the builder.
-         * 
+         *
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
          *             which do not have default values

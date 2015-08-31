@@ -30,7 +30,7 @@ import static org.spongepowered.api.util.command.args.GenericArguments.firstPars
 import static org.spongepowered.api.util.command.args.GenericArguments.optional;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
@@ -73,7 +73,7 @@ public final class CommandSpec implements CommandCallable {
         this.args = args;
         this.executor = executor;
         this.permission = permission;
-        this.description = Optional.fromNullable(description);
+        this.description = Optional.ofNullable(description);
         this.extendedDescription = extendedDescription;
         this.argumentParser = parser;
     }

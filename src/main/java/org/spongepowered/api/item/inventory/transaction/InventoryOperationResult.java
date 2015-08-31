@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.transaction;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.Collection;
@@ -72,7 +72,7 @@ public interface InventoryOperationResult {
 
     /**
      * Get the type of result.
-     * 
+     *
      * @return the type of result
      */
     Type getType();
@@ -80,7 +80,7 @@ public interface InventoryOperationResult {
     /**
      * If items were supplied to the operation, this collection will return any
      * items which were rejected by the target inventory.
-     * 
+     *
      * @return any items which were rejected as part of the inventory operation
      */
     Optional<Collection<ItemStack>> getRejectedItems();
@@ -88,7 +88,7 @@ public interface InventoryOperationResult {
     /**
      * If the operation replaced items in the inventory, this collection returns
      * the ItemStacks which were replaced.
-     * 
+     *
      * @return any items which were ejected as part of the inventory operation
      */
     Optional<Collection<ItemStack>> getReplacedItems();

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 
 import javax.annotation.Nullable;

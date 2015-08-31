@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
+import java.util.Optional;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;

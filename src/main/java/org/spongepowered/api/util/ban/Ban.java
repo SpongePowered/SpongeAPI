@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.ban;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -60,14 +60,14 @@ public interface Ban {
     /**
      * Gets the source that banned the user, if available.
      *
-     * @return The banning source or {@link Optional#absent()}
+     * @return The banning source or {@link Optional#empty()}
      */
     Optional<CommandSource> getSource();
 
     /**
      * Gets the expiration date of this ban, if available.
      *
-     * @return Expiration time of the ban or {@link Optional#absent()}
+     * @return Expiration time of the ban or {@link Optional#empty()}
      */
     Optional<Date> getExpirationDate();
 
