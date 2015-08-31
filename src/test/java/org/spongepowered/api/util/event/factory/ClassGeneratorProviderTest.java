@@ -31,7 +31,6 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertThat;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -42,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -335,7 +335,7 @@ public class ClassGeneratorProviderTest {
     @Test
     public void testCreate_OptionalGetter() {
         Map<String, Object> values = Maps.newHashMap();
-        values.put("name", Optional.fromNullable("MyName"));
+        values.put("name", Optional.ofNullable("MyName"));
 
         ClassGeneratorProvider provider = createProvider();
         EventFactory<OptionalGetter> factory = provider.create(OptionalGetter.class, Object.class);

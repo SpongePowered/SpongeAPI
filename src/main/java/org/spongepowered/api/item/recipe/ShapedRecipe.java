@@ -25,8 +25,9 @@
 package org.spongepowered.api.item.recipe;
 
 import com.flowpowered.math.vector.Vector2i;
-import java.util.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
+
+import java.util.Optional;
 
 /**
  * A ShapedRecipe is a Recipe that has shape and fits into a grid.

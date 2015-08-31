@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.data;
 
-import java.util.Optional;
 import org.spongepowered.api.GameState;
+
+import java.util.Optional;
 
 /**
  * A registry of {@link ImmutableDataHolder}s and their respective

@@ -26,9 +26,8 @@ package org.spongepowered.api.util.reflect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Optional;
-
 import java.lang.reflect.Method;
+import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

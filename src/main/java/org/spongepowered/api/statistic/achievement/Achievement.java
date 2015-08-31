@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.statistic.achievement;
 
-import java.util.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.TextRepresentable;
@@ -33,6 +32,7 @@ import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Represents an in-game achievement which may be earned by or given to players.

@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import java.util.Optional;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.type.BiomeTreeType;
+
+import java.util.Optional;
 
 /**
  * A populator which will place several trees into a chunk in order to create a

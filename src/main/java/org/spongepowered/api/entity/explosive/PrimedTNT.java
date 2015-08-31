@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.entity.explosive;
 
-import java.util.Optional;
 import org.spongepowered.api.entity.living.Living;
+
+import java.util.Optional;
 
 /**
  * Represents a TNT that will explode.

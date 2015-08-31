@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.world;
 
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableSet;
@@ -35,6 +34,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**

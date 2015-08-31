@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.event.network;
 
-import java.util.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.action.ConnectEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

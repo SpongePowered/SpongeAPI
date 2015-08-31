@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import java.util.Optional;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
@@ -32,6 +31,8 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
+
+import java.util.Optional;
 
 /**
  * A builder for {@link World}s and {@link WorldCreationSettings}.

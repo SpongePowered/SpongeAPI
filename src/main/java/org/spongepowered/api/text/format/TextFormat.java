@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.text.format;
 
-import com.google.common.base.Objects;
-
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.base.Objects;
 
 /**
  * Represents a pair of {@link TextStyle and {@link TextColor}}.

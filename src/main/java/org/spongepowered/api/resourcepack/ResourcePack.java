@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.resourcepack;
 
-import java.util.Optional;
-
 import java.net.URL;
+import java.util.Optional;
 
 /**
  * Represents a resource pack that can be sent to the client.

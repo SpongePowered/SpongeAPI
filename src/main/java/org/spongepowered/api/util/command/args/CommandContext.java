@@ -27,7 +27,6 @@ package org.spongepowered.api.util.command.args;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import java.util.Optional;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.util.command.CommandException;
@@ -35,6 +34,7 @@ import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 /**
  * Context that a command is executed in.

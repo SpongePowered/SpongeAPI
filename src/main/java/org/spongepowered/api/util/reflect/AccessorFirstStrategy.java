@@ -26,7 +26,6 @@ package org.spongepowered.api.util.reflect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
@@ -37,6 +36,7 @@ import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 import java.util.regex.Matcher;

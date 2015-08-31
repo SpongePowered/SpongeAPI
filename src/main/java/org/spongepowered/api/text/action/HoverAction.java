@@ -25,7 +25,6 @@
 package org.spongepowered.api.text.action;
 
 import com.google.common.base.Objects;
-import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -33,6 +32,7 @@ import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Identifiable;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.annotation.Nullable;

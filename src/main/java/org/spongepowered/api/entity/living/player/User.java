@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.living.player;
 
-import java.util.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
@@ -36,6 +35,8 @@ import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Identifiable;
+
+import java.util.Optional;
 
 /**
  * A User is the data usually associated with a Player that is persisted across server restarts.

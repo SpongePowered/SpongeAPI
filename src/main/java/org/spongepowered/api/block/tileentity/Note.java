@@ -27,6 +27,8 @@ package org.spongepowered.api.block.tileentity;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.NoteData;
 import org.spongepowered.api.data.type.NotePitch;
 
+import java.util.Optional;
+
 /**
  * Represents a note block.
  *

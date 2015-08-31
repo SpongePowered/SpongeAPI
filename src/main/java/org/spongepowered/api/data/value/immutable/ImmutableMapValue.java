@@ -27,7 +27,6 @@ package org.spongepowered.api.data.value.immutable;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.value.mutable.MapValue;
 

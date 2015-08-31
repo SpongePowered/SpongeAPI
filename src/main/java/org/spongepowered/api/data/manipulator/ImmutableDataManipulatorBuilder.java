@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.service.persistence.DataBuilder;
+
+import java.util.Optional;
 
 public interface ImmutableDataManipulatorBuilder<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends DataBuilder<I> {
 

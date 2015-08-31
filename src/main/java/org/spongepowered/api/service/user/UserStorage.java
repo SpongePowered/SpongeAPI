@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.service.user;
 
-import java.util.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.service.profile.GameProfileResolver;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 /**

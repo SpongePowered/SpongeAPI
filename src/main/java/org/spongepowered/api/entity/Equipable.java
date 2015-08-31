@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.entity;
 
-import java.util.Optional;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.util.Identifiable;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

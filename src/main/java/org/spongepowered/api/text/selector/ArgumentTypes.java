@@ -26,12 +26,12 @@ package org.spongepowered.api.text.selector;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.scoreboard.Team;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Represents the default {@link ArgumentType}s available in Vanilla

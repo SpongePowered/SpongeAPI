@@ -26,7 +26,6 @@ package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
@@ -41,6 +40,7 @@ import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 /**

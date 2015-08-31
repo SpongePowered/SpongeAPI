@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.status;
 
-import java.util.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.event.server.PingServerEvent;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents the response to a status request. Unlike {@link PingServerEvent}

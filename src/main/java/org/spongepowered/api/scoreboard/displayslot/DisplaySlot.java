@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
-import java.util.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Optional;
 
 /**
  * Represents an area to display an objective.

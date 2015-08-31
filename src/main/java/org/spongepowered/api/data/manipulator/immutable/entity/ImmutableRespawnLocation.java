@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import java.util.Optional;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**

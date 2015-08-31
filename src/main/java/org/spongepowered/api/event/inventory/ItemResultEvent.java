@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import java.util.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
+
+import java.util.Optional;
 
 /**
  * Fired when some inventory event causes a single result item.

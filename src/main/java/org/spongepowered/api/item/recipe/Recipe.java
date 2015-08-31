@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import java.util.Optional;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>A Recipe represents some craftable recipe in the game.</p>

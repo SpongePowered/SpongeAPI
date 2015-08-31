@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.item.merchant;
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.mutable.entity.TradeOfferData;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

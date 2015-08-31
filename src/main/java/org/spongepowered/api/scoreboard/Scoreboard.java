@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.scoreboard;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;

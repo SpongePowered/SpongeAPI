@@ -59,7 +59,6 @@ import static org.objectweb.asm.Opcodes.PUTFIELD;
 import static org.objectweb.asm.Opcodes.RETURN;
 import static org.objectweb.asm.Opcodes.V1_6;
 
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.objectweb.asm.ClassWriter;
@@ -75,6 +74,7 @@ import org.spongepowered.api.util.reflect.PropertySearchStrategy;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -421,8 +421,8 @@ public class ClassGenerator {
                 mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
 
                 if (property.getAccessor().getReturnType().equals(Optional.class)) {
-                    mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable",
-                                       "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
+                    mv.visitMethodInsn(INVOKESTATIC, "java/util/Optional", "ofNullable",
+                                       "(Ljava/lang/Object;)Ljava/util/Optional;", false);
                 }
 
                 if (!property.getType().isPrimitive()) {

@@ -25,15 +25,14 @@
 package org.spongepowered.api.data.value.mutable;
 
 import com.google.common.base.Function;
-import java.util.Optional;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Represents a {@link ValueContainer} that contains a various bundle of

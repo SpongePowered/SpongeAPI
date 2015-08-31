@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import java.util.Optional;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.event.inventory.ItemResultEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
+
+import java.util.Optional;
 
 /**
  * An event when a {@link Furnace} consumes an {@link ItemStack} as fuel.

@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.item.merchant;
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.item.inventory.ItemStack;
+
+import java.util.Optional;
 
 /**
  * <p>Represents a trade offer that a {@link Merchant} may offer a

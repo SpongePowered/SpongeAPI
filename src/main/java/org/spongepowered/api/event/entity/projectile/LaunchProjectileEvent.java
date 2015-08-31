@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity.projectile;
 
-import java.util.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -32,6 +31,8 @@ import org.spongepowered.api.event.entity.EntityEvent;
 import org.spongepowered.api.event.entity.living.LivingEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+
+import java.util.Optional;
 
 /**
  * Called when a {@link Projectile} is launched.

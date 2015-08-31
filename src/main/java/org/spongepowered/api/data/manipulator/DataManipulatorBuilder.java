@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.service.persistence.DataBuilder;
+
+import java.util.Optional;
 
 /**
  * A builder of {@link DataManipulator}s. This builder can build

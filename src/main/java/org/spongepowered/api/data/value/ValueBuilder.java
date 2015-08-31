@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import java.util.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -36,6 +35,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Nullable;

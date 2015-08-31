@@ -28,7 +28,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents the color of the text of a {@link Text}.

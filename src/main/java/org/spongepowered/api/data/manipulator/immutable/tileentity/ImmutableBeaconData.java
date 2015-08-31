@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.tileentity;
 
-import java.util.Optional;
 import org.spongepowered.api.block.tileentity.carrier.Beacon;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
 import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.potion.PotionEffectType;
+
+import java.util.Optional;
 
 /**
  * An {@link ImmutableDataManipulator} handling the data for a {@link Beacon},

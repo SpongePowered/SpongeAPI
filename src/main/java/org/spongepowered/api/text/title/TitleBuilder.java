@@ -25,8 +25,9 @@
 package org.spongepowered.api.text.title;
 
 import com.google.common.base.Objects;
-import java.util.Optional;
 import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

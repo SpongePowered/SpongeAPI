@@ -27,6 +27,8 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
+
 /**
  * Represents a scheduled block update. SBUs with higher priorities are
  * processed first.

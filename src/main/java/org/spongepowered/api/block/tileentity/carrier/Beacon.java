@@ -26,6 +26,8 @@ package org.spongepowered.api.block.tileentity.carrier;
 
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
 
+import java.util.Optional;
+
 /**
  * Represents a Beacon.
  *
