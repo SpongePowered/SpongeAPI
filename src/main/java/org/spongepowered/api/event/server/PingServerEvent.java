@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.server;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.status.Favicon;

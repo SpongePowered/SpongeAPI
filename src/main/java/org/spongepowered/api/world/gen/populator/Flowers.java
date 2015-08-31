@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.type.PlantType;
 import org.spongepowered.api.world.gen.Populator;
 
@@ -37,7 +37,7 @@ public interface Flowers extends Populator {
     /**
      * Gets the number of flowers to attempt to spawn per chunk, must be greater
      * than zero.
-     * 
+     *
      * @return The number to spawn
      */
     int getFlowersPerChunk();
@@ -45,7 +45,7 @@ public interface Flowers extends Populator {
     /**
      * Sets the number of flowers to attempt to spawn per chunk, must be greater
      * than zero.
-     * 
+     *
      * @param count The new amount to spawn
      */
     void setFlowersPerChunk(int count);
@@ -53,7 +53,7 @@ public interface Flowers extends Populator {
     /**
      * Gets whether this populator will ignore the set plant type and default to
      * the biome's flower type.
-     * 
+     *
      * @return Is biome dependent
      */
     boolean isBiomeDependent();
@@ -61,7 +61,7 @@ public interface Flowers extends Populator {
     /**
      * Sets whether this populator will ignore the set tile and default to the
      * biome's flower type.
-     * 
+     *
      * @param state The new biome dependency state
      */
     void setBiomeDependent(boolean state);
@@ -70,7 +70,7 @@ public interface Flowers extends Populator {
      * Gets the plant type for this populator to spawn. If the populator is
      * flagged as being biome dependent ( {@link #isBiomeDependent()} ) then
      * this will return absent.
-     * 
+     *
      * @return The plant type, or absent if this is biome dependent
      */
     Optional<PlantType> getFlowerType();
@@ -78,7 +78,7 @@ public interface Flowers extends Populator {
     /**
      * Sets the plant type for this populator to spawn. This will automatically
      * set the {@link #isBiomeDependent()} flag to false.
-     * 
+     *
      * @param type The plant type to spawn
      */
     void serFlowerType(PlantType type);
@@ -91,7 +91,7 @@ public interface Flowers extends Populator {
         /**
          * Sets the number of flowers to attempt to spawn per chunk, must be
          * greater than zero.
-         * 
+         *
          * @param count The new amount to spawn
          * @return This builder, for chaining
          */
@@ -100,7 +100,7 @@ public interface Flowers extends Populator {
         /**
          * Sets whether this populator will ignore the set tile and default to
          * the biome's flower type.
-         * 
+         *
          * @param state The new biome dependent state
          * @return This builder, for chaining
          */
@@ -109,7 +109,7 @@ public interface Flowers extends Populator {
         /**
          * Sets the plant type for this populator to spawn. This will
          * automatically set the {@link #isBiomeDependent()} flag to false.
-         * 
+         *
          * @param type The plant type to spawn
          * @return This builder, for chaining
          */
@@ -117,7 +117,7 @@ public interface Flowers extends Populator {
 
         /**
          * Resets this builder to the default values.
-         * 
+         *
          * @return This builder, for chaining
          */
         Builder reset();
@@ -125,7 +125,7 @@ public interface Flowers extends Populator {
         /**
          * Builds a new instance of a {@link Flowers} populator with the
          * settings set within the builder.
-         * 
+         *
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
          *             which do not have default values

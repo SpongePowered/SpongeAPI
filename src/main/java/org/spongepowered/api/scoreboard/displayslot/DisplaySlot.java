@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.annotation.CatalogedBy;

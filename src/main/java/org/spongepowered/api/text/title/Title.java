@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.title;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.text.Text;
 
 import javax.annotation.Nullable;
@@ -68,11 +68,11 @@ public class Title {
      */
     Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Integer fadeIn, @Nullable Integer stay, @Nullable Integer fadeOut,
             boolean clear, boolean reset) {
-        this.title = Optional.fromNullable(title);
-        this.subtitle = Optional.fromNullable(subtitle);
-        this.fadeIn = Optional.fromNullable(fadeIn);
-        this.stay = Optional.fromNullable(stay);
-        this.fadeOut = Optional.fromNullable(fadeOut);
+        this.title = Optional.ofNullable(title);
+        this.subtitle = Optional.ofNullable(subtitle);
+        this.fadeIn = Optional.ofNullable(fadeIn);
+        this.stay = Optional.ofNullable(stay);
+        this.fadeOut = Optional.ofNullable(fadeOut);
         this.clear = clear;
         this.reset = reset;
     }

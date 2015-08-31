@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**

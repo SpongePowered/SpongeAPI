@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.block.tileentity.carrier.Beacon;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBeaconData;
@@ -57,7 +57,7 @@ public interface BeaconData extends DataManipulator<BeaconData, ImmutableBeaconD
 
     /**
      * Fills the primary and secondary {@link PotionEffectType}s
-     * with {@link Optional#absent()} values as a semi "reset" state.
+     * with {@link Optional#empty()} values as a semi "reset" state.
      *
      * @return This instance, for chaining
      */

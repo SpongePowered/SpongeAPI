@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command.dispatcher;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.util.command.CommandMapping;
 import org.spongepowered.api.util.command.CommandSource;
 

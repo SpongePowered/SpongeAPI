@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.spec.CommandSpec;
 

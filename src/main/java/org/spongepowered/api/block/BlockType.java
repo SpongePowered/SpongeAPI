@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemBlock;

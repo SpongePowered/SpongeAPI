@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Key;
@@ -57,7 +57,7 @@ public interface ValueContainer<C extends ValueContainer<C>> {
     /**
      * Attempts to get the underlying value backed by a {@link BaseValue}
      * linked to the provided {@link Key}. If the {@link Key} is not
-     * supported, {@link Optional#absent()} is returned. It is important
+     * supported, {@link Optional#empty()} is returned. It is important
      * to check for support of a {@link Key} by either calling
      * {@link #supports(BaseValue)} or {@link #supports(Key)}.
      *

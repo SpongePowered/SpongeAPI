@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
@@ -36,28 +36,28 @@ import javax.annotation.Nullable;
  * Represents an entity that has an EquipmentInventory.
  */
 public interface Equipable extends Identifiable, Carrier {
-    
+
     /**
      * Get whether this entity can equip equipment of the specified type (eg.
      * whether calling {@link #equip} will fail because the entity doesn't
-     * have this type of slot. 
-     * 
+     * have this type of slot.
+     *
      * @param type The type of equipment slot to query
      * @return true if this entity can equip items of the specified type
      */
     boolean canEquip(EquipmentType type);
-    
+
     /**
      * Get whether this entity can equip the supplied equipment in its slot of
      * the specified type (eg. whether calling {@link #equip} with the specified
      * slot type and item will succeed)
-     * 
+     *
      * @param type The type of equipment slot to query
      * @param equipment The equipment to check for
      * @return true if can equip the supplied equipment
      */
     boolean canEquip(EquipmentType type, @Nullable ItemStack equipment);
-    
+
     /**
      * Gets the item currently equipped by this entity in the specified slot.
      *
@@ -69,7 +69,7 @@ public interface Equipable extends Identifiable, Carrier {
     /**
      * Sets the item currently equipped by the entity in the specified slot, if
      * the entity has such a slot.
-     * 
+     *
      * <p>Supplying null will unequip any currently equipped item.</p>
      *
      * @param type The type of equipment slot to set
@@ -77,7 +77,7 @@ public interface Equipable extends Identifiable, Carrier {
      * @return true if the item was successfully equipped, false if the item
      *      could not be equipped because the entity doesn't support the
      *      specified equipment type or because the item was incompatible with
-     *      the specified slot. 
+     *      the specified slot.
      */
     boolean equip(EquipmentType type, @Nullable ItemStack equipment);
 

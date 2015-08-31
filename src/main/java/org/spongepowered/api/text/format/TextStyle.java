@@ -27,7 +27,7 @@ package org.spongepowered.api.text.format;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.OptBool;
@@ -253,7 +253,7 @@ public class TextStyle {
     /**
      * Checks for whether text where this style is applied is bolded.
      *
-     * @return The value for the bold property, or {@link Optional#absent()}
+     * @return The value for the bold property, or {@link Optional#empty()}
      */
     public Optional<Boolean> isBold() {
         return this.bold;
@@ -262,7 +262,7 @@ public class TextStyle {
     /**
      * Checks for whether text where this style is applied is italicized.
      *
-     * @return The value for the italic property, or {@link Optional#absent()}
+     * @return The value for the italic property, or {@link Optional#empty()}
      */
     public Optional<Boolean> isItalic() {
         return this.italic;
@@ -272,7 +272,7 @@ public class TextStyle {
      * Checks for whether text where this style is applied has an underline.
      *
      * @return The value for the underline property, or
-     *         {@link Optional#absent()}
+     *         {@link Optional#empty()}
      */
     public Optional<Boolean> hasUnderline() {
         return this.underline;
@@ -282,7 +282,7 @@ public class TextStyle {
      * Checks for whether text where this style is applied has a strikethrough.
      *
      * @return The value for the strikethrough property, or
-     *         {@link Optional#absent()}
+     *         {@link Optional#empty()}
      */
     public Optional<Boolean> hasStrikethrough() {
         return this.strikethrough;
@@ -292,7 +292,7 @@ public class TextStyle {
      * Checks for whether text where this style is obfuscated.
      *
      * @return The value for the obfuscated property, or
-     *         {@link Optional#absent()}
+     *         {@link Optional#empty()}
      */
     public Optional<Boolean> isObfuscated() {
         return this.obfuscated;
@@ -478,7 +478,7 @@ public class TextStyle {
      * Utility method to negate a property if it is not null.
      *
      * @param prop The property to negate
-     * @return The negated property, or {@link Optional#absent()}
+     * @return The negated property, or {@link Optional#empty()}
      */
     private static Optional<Boolean> propNegate(Optional<Boolean> prop) {
         if (prop.isPresent()) {

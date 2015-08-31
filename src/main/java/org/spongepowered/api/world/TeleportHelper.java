@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.annotation.NonnullByDefault;
 

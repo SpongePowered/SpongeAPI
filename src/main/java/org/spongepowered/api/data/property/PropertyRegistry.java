@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.property;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.Property;
 
 public interface PropertyRegistry {

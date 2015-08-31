@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.value.immutable;
 
 import com.google.common.base.Function;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -192,7 +192,7 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
     /**
      * Gets an altered copy of this {@link ImmutableValueStore} with the given
      * {@link DataManipulator} modified data. If the data is not compatible for
-     * any reason, {@link Optional#absent()} is returned.
+     * any reason, {@link Optional#empty()} is returned.
      *
      * <p>This does not alter the current {@link ImmutableValueStore}.</p>
      *

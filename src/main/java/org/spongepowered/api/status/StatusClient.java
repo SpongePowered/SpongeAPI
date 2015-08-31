@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.status;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.MinecraftVersion;
 
 import java.net.InetSocketAddress;
@@ -53,7 +53,7 @@ public interface StatusClient {
      * Gets the address the player is connecting to.
      *
      * @return The address the player is connecting to, or
-     *         {@link Optional#absent()} if not available (for example because
+     *         {@link Optional#empty()} if not available (for example because
      *         of {@link MinecraftVersion#isLegacy()}).
      */
     Optional<InetSocketAddress> getVirtualHost();

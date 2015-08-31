@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.projectile;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.cause.CauseTracked;

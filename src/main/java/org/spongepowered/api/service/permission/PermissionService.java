@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.permission.context.ContextCalculator;
 
@@ -94,7 +94,7 @@ public interface PermissionService {
 
     /**
      * Creates a new description builder for the given plugin's permission. May
-     * return {@link Optional#absent()} if the service does not support
+     * return {@link Optional#empty()} if the service does not support
      * {@link PermissionDescription}s.
      *
      * @param plugin The plugin to create permission descriptions for
@@ -109,7 +109,7 @@ public interface PermissionService {
      *
      * @param permission The permission to get the description for
      * @return The description for the given permission or
-     *         {@link Optional#absent()}
+     *         {@link Optional#empty()}
      */
     Optional<PermissionDescription> getDescription(String permission);
 

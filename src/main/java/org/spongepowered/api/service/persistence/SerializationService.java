@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
@@ -51,7 +51,7 @@ public interface SerializationService {
     <T extends DataSerializable> void registerBuilder(Class<T> clazz, DataBuilder<T> builder);
 
     /**
-     * Attempts to retrieve the {@link DataBuilder} for the desired 
+     * Attempts to retrieve the {@link DataBuilder} for the desired
      * {@link DataSerializable} class.
      *
      * <p>Builders may not always exist for a given {@link DataSerializable},
@@ -68,7 +68,7 @@ public interface SerializationService {
      * Attempts to deserialize an instance of the {@link DataSerializable} from
      * the provided {@link DataView}. If there is no {@link DataBuilder}
      * registered for the provided {@link DataSerializable}, then
-     * {@link Optional#absent()} may be returned.
+     * {@link Optional#empty()} may be returned.
      *
      * @param clazz The class of the data serializable
      * @param dataView The data view containing raw data

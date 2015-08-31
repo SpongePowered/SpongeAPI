@@ -26,7 +26,7 @@ package org.spongepowered.api.util.reflect;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import java.lang.reflect.Method;
 
@@ -62,7 +62,7 @@ public final class Property {
         this.type = type;
         this.leastSpecificMethod = leastSpecificMethod;
         this.accessor = accessor;
-        this.mutator = Optional.fromNullable(mutator);
+        this.mutator = Optional.ofNullable(mutator);
     }
 
     /**

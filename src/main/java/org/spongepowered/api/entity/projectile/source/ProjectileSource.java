@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.projectile.source;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**

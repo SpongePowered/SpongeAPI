@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

@@ -26,7 +26,7 @@ package org.spongepowered.api.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.MapMaker;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -111,7 +111,7 @@ public class SimpleServiceManager implements ServiceManager {
     public <T> Optional<T> provide(Class<T> service) {
         checkNotNull(service, "service");
         @Nullable Provider provider = this.providers.get(service);
-        return provider != null ? (Optional<T>) Optional.of(provider.provider) : Optional.<T>absent();
+        return provider != null ? (Optional<T>) Optional.of(provider.provider) : Optional.<T>empty();
     }
 
     @SuppressWarnings("unchecked")

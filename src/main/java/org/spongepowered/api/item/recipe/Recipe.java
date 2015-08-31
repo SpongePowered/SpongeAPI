@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.GridInventory;
@@ -55,7 +55,7 @@ public interface Recipe {
     List<ItemType> getResultTypes();
 
     /**
-     * Checks if the given {@link GridInventory} fits the required constraints 
+     * Checks if the given {@link GridInventory} fits the required constraints
      * to craft this Recipe.
      *
      * @param grid The ItemGrid to check for validity
@@ -67,7 +67,7 @@ public interface Recipe {
      * Returns the results for running this Recipe over an {@link GridInventory}
      *
      * @param grid An ItemGrid as input
-     * @return A list of ItemStacks or {@link Optional#absent()} if the given
+     * @return A list of ItemStacks or {@link Optional#empty()} if the given
      *          ItemGrid does not match this recipe's requirements.
      */
     Optional<List<ItemStack>> getResults(GridInventory grid);

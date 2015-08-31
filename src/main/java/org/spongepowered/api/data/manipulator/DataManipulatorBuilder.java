@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.service.persistence.DataBuilder;
 
@@ -57,7 +57,7 @@ public interface DataManipulatorBuilder<T extends DataManipulator<T, I>, I exten
      * <p>If the {@link DataHolder} does not contain the necessary information
      * to pre-populate the {@link DataManipulator}, a fresh new
      * {@link DataManipulator} is returned. If the {@link DataManipulator} is
-     * incompatible with the {@link DataHolder}, {@link Optional#absent()} is
+     * incompatible with the {@link DataHolder}, {@link Optional#empty()} is
      * returned.</p>
      *
      * @param dataHolder The {@link DataHolder} to extract data

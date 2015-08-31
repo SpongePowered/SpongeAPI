@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.service.persistence.InvalidDataException;
@@ -40,7 +40,7 @@ public interface DataHolder extends DataSerializable, CompositeValueStore<DataHo
     /**
      * Attempts to retrieve a specific {@link Property} type of this
      * {@link DataHolder}. If the property is not applicable,
-     * {@link Optional#absent()} is returned.
+     * {@link Optional#empty()} is returned.
      *
      * <p>{@link Property}s can define various immutable information about a
      * {@link DataHolder} that is dependent on the instance of the holder.

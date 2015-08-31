@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.text.action.ClickAction;
@@ -74,9 +74,9 @@ public abstract class TextBuilder implements TextRepresentable {
         checkNotNull(text, "text");
         this.format = text.format;
         this.children = Lists.newArrayList(text.children);
-        this.clickAction = text.clickAction.orNull();
-        this.hoverAction = text.hoverAction.orNull();
-        this.shiftClickAction = text.shiftClickAction.orNull();
+        this.clickAction = text.clickAction.orElse(null);
+        this.hoverAction = text.hoverAction.orElse(null);
+        this.shiftClickAction = text.shiftClickAction.orElse(null);
     }
 
     /**
@@ -151,11 +151,11 @@ public abstract class TextBuilder implements TextRepresentable {
     /**
      * Returns the current {@link ClickAction} of this builder.
      *
-     * @return The current click action or {@link Optional#absent()} if none
+     * @return The current click action or {@link Optional#empty()} if none
      * @see Text#getClickAction()
      */
     public final Optional<ClickAction<?>> getClickAction() {
-        return Optional.<ClickAction<?>>fromNullable(this.clickAction);
+        return Optional.<ClickAction<?>>ofNullable(this.clickAction);
     }
 
     /**
@@ -174,11 +174,11 @@ public abstract class TextBuilder implements TextRepresentable {
     /**
      * Returns the current {@link HoverAction} of this builder.
      *
-     * @return The current hover action or {@link Optional#absent()} if none
+     * @return The current hover action or {@link Optional#empty()} if none
      * @see Text#getHoverAction()
      */
     public final Optional<HoverAction<?>> getHoverAction() {
-        return Optional.<HoverAction<?>>fromNullable(this.hoverAction);
+        return Optional.<HoverAction<?>>ofNullable(this.hoverAction);
     }
 
     /**
@@ -197,12 +197,12 @@ public abstract class TextBuilder implements TextRepresentable {
     /**
      * Returns the current {@link ShiftClickAction} of this builder.
      *
-     * @return The current shift click action or {@link Optional#absent()} if
+     * @return The current shift click action or {@link Optional#empty()} if
      *         none
      * @see Text#getShiftClickAction()
      */
     public final Optional<ShiftClickAction<?>> getShiftClickAction() {
-        return Optional.<ShiftClickAction<?>>fromNullable(this.shiftClickAction);
+        return Optional.<ShiftClickAction<?>>ofNullable(this.shiftClickAction);
     }
 
     /**
@@ -1165,7 +1165,7 @@ public abstract class TextBuilder implements TextRepresentable {
         Score(Text.Score text) {
             super(text);
             this.score = text.score;
-            this.override = text.override.orNull();
+            this.override = text.override.orElse(null);
         }
 
         /**
@@ -1193,11 +1193,11 @@ public abstract class TextBuilder implements TextRepresentable {
         /**
          * Returns the current override of this builder.
          *
-         * @return The current override, or {@link Optional#absent()} if none
+         * @return The current override, or {@link Optional#empty()} if none
          * @see Text.Score#getOverride()
          */
         public final Optional<String> getOverride() {
-            return Optional.fromNullable(this.override);
+            return Optional.ofNullable(this.override);
         }
 
         /**

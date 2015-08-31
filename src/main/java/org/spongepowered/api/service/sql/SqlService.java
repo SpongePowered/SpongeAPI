@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.sql;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import java.sql.SQLException;
 
@@ -57,7 +57,7 @@ public interface SqlService {
      *
      * @param alias The alias to check
      * @return The connection url as a String if it exists,
-     *          or {@link Optional#absent()}
+     *          or {@link Optional#empty()}
      */
     Optional<String> getConnectionUrlFromAlias(String alias);
 }

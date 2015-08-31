@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.status;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.event.server.PingServerEvent;
@@ -55,7 +55,7 @@ public interface StatusResponse {
      * Gets player count and the list of players currently playing on the
      * server.
      *
-     * @return The player information, or {@link Optional#absent()} if not
+     * @return The player information, or {@link Optional#empty()} if not
      *         available
      */
     Optional<? extends Players> getPlayers();
@@ -71,7 +71,7 @@ public interface StatusResponse {
     /**
      * Gets the {@link Favicon} of the server.
      *
-     * @return The favicon, or {@link Optional#absent()} if not available
+     * @return The favicon, or {@link Optional#empty()} if not available
      */
     Optional<Favicon> getFavicon();
 

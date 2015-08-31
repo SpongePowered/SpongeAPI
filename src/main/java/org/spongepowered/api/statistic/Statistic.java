@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.statistic;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
