@@ -22,26 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.map.cursor;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.map.MapView;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Represents one of the types of cursor that can be overlaid on a map by the
+ * client. Only player held maps will show the cursors, the map rendering code
+ * for an ItemFrame disables cursor rendering in the client.
  */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
-
-    /**
-     * Gets the {@link Value} for the {@link MapView} attached to this
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
-     *
-     * @return The value for the attached map view
-     */
-    Value<MapView> attachedMapView();
+@CatalogedBy(MapCursors.class)
+public interface MapCursor extends CatalogType {
 }

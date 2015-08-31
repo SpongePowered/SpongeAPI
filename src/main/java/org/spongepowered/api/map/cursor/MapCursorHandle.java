@@ -22,26 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.map.cursor;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.map.MapView;
 
 /**
- * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Holds a link between a {@link MapView} and the {@link MapCursor} stored in it.
+ *
+ * <p>This is needed to allow easy repositioning of cursors and to allow
+ * removing specific cursors, as multiple cursors could be overlaid in the
+ * same position.</p>
  */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+public interface MapCursorHandle {
 
     /**
-     * Gets the {@link Value} for the {@link MapView} attached to this
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
+     * Returns the type of {@link MapCursor} this handle represents.
      *
-     * @return The value for the attached map view
+     * @return The type of cursor
      */
-    Value<MapView> attachedMapView();
+    MapCursor getType();
+
+    /**
+     * Returns the center position of the cursor on the map. Relative to the
+     * map's pixels.
+     *
+     * @return The center position
+     */
+    Vector2i getCenter();
+
+    /**
+     * Updates the position of the cursor on the map. Relative to the map's
+     * pixels.
+     *
+     * @param center The new center position
+     */
+    void update(Vector2i center);
+
+    /**
+     * Removes this cursor from the map.
+     *
+     * @return True if the removal was successful, false otherwise
+     */
+    boolean remove();
 }

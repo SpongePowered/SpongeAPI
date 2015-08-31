@@ -22,26 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
-
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.map.MapView;
+package org.spongepowered.api.map.color;
 
 /**
- * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * An enumeration of all the possible {@link MapShade}s.
  */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+public final class MapShades {
+
+    private MapShades() {
+    }
 
     /**
-     * Gets the {@link Value} for the {@link MapView} attached to this
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
-     *
-     * @return The value for the attached map view
+     * Represents the default mapping, no modification to the color.
      */
-    Value<MapView> attachedMapView();
+    public static final MapShade BASE = null;
+
+    /**
+     * Represents a multiplication by 180 to each RGB component, the remainder
+     * out of 255 is taken as the new component for each color channel.
+     */
+    public static final MapShade MULTIPLY_180 = null;
+
+    /**
+     * Represents a multiplication by 220 to each RGB component, the remainder
+     * out of 255 is taken as the new component for each color channel.
+     */
+    public static final MapShade MULTIPLY_220 = null;
+
+    /**
+     * Represents a multiplication by 135 to each RGB component, the remainder
+     * out of 255 is taken as the new component for each color channel.
+     */
+    public static final MapShade MULTIPLY_135 = null;
 }
