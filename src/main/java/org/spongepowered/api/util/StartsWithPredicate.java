@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.base.Predicate;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -40,11 +42,11 @@ public final class StartsWithPredicate implements Predicate<String> {
      * @param test The string to test input against
      */
     public StartsWithPredicate(String test) {
-        this.test = test;
+        this.test = checkNotNull(test, "test").toLowerCase();
     }
 
     @Override
-    public boolean apply(@Nullable String input) {
-        return input != null && input.toLowerCase().startsWith(this.test.toLowerCase());
+    public boolean test(@Nullable String input) {
+        return input != null && input.toLowerCase().startsWith(this.test);
     }
 }

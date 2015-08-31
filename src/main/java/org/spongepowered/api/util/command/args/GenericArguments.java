@@ -28,7 +28,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -39,6 +38,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandSource;
@@ -163,7 +163,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static <T extends CatalogType> CommandElement catalogedElement(Text key, Game game, Class<T> catalogType) {
-        return new CatalogedTypeCommandElement<T>(key, game, catalogType);
+        return new CatalogedTypeCommandElement<>(key, game, catalogType);
     }
 
     static class MarkTrueCommandElement extends CommandElement {
@@ -313,7 +313,7 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             final String prefix = args.nextIfPresent().orElse("");
-            return ImmutableList.copyOf(Iterables.filter(this.choices.keySet(), new StartsWithPredicate(prefix)));
+            return this.choices.keySet().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
         }
 
         @Override
@@ -380,19 +380,15 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements, new Function<CommandElement, Iterable<String>>() {
-                @Nullable
-                @Override
-                public Iterable<String> apply(@Nullable CommandElement input) {
-                    if (input == null) {
-                        return ImmutableList.of();
-                    }
-
-                    Object startState = args.getState();
-                    List<String> ret = input.complete(src, args, context);
-                    args.setState(startState);
-                    return ret;
+            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements, input -> {
+                if (input == null) {
+                    return ImmutableList.of();
                 }
+
+                Object startState = args.getState();
+                List<String> ret = input.complete(src, args, context);
+                args.setState(startState);
+                return ret;
             })));
         }
 
@@ -741,7 +737,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static <T extends Enum<T>> CommandElement enumValue(Text key, Class<T> type) {
-        return new EnumValueElement<T>(key, type);
+        return new EnumValueElement<>(key, type);
     }
 
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
@@ -754,13 +750,7 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(Arrays.asList(this.type.getEnumConstants()), new Function<T, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable T input) {
-                    return input == null ? null : input.name();
-                }
-            });
+            return Iterables.transform(Arrays.asList(this.type.getEnumConstants()), input -> input == null ? null : input.name());
         }
 
         @Override
@@ -917,13 +907,7 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(this.game.getServer().getOnlinePlayers(), new Function<Player, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable Player input) {
-                    return input == null ? null : input.getName();
-                }
-            });
+            return Iterables.transform(this.game.getServer().getOnlinePlayers(), input -> input == null ? null : input.getName());
         }
 
         @Override
@@ -965,13 +949,8 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(this.game.getServer().getAllWorldProperties(), new Function<WorldProperties, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable WorldProperties input) {
-                    return input == null || !input.isEnabled() ? null : input.getWorldName();
-                }
-            });
+            return Iterables.transform(this.game.getServer().getAllWorldProperties(), input ->
+                    input == null || !input.isEnabled() ? null : input.getWorldName());
         }
 
         @Override
@@ -1105,7 +1084,7 @@ public final class GenericArguments {
             WorldProperties targetWorldProps = ((WorldProperties) world);
             Optional<World> targetWorld = this.game.getServer().getWorld(targetWorldProps.getUniqueId());
             Vector3d vector = (Vector3d) vec;
-            return new Location<World>(targetWorld.get(), vector);
+            return new Location<>(targetWorld.get(), vector);
         }
 
         @Override
@@ -1132,12 +1111,8 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(this.game.getRegistry().getAllOf(this.catalogType), new Function<T, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable T input) {
-                    return input == null ? null : input.getId(); // TODO: ids or names?
-                }
+            return Iterables.transform(this.game.getRegistry().getAllOf(this.catalogType), input -> {
+                return input == null ? null : input.getId(); // TODO: ids or names?
             });
         }
 

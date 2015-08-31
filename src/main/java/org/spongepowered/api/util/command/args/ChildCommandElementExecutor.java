@@ -27,12 +27,11 @@ package org.spongepowered.api.util.command.args;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimaps;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandException;
@@ -45,6 +44,7 @@ import org.spongepowered.api.util.command.spec.CommandSpec;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.Nullable;
@@ -119,20 +119,18 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                     }
                 }
             } else {
-                return ImmutableList.copyOf(Iterables.filter(filterCommands(src), new StartsWithPredicate(commandComponent.get())));
+                return filterCommands(src).stream()
+                        .filter(new StartsWithPredicate(commandComponent.get()))
+                        .collect(GuavaCollectors.toImmutableList());
             }
         } else {
             return ImmutableList.copyOf(filterCommands(src));
         }
     }
 
-    private Iterable<String> filterCommands(final CommandSource src) {
-        return Multimaps.filterValues(this.dispatcher.getAll(), new Predicate<CommandMapping>() {
-            @Override
-            public boolean apply(@Nullable CommandMapping input) {
-                return input != null && input.getCallable().testPermission(src);
-            }
-        }).keys();
+    private Set<String> filterCommands(final CommandSource src) {
+        return Multimaps.filterValues(this.dispatcher.getAll(),
+                input -> input != null && input.getCallable().testPermission(src)).keys().elementSet();
     }
 
     @Override

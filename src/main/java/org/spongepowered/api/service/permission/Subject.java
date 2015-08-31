@@ -124,7 +124,9 @@ public interface Subject {
      * @param permission The permission string
      * @return True if permission is granted
      */
-    boolean hasPermission(String permission);
+    default boolean hasPermission(String permission) {
+        return hasPermission(getActiveContexts(), permission);
+    }
 
     /**
      * Returns the calculated value set for a given permission.
@@ -142,7 +144,9 @@ public interface Subject {
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
      */
-    boolean isChildOf(Subject parent);
+    default boolean isChildOf(Subject parent) {
+        return isChildOf(getActiveContexts(), parent);
+    }
 
     /**
      * Check if this subject is a child of the given parent in the given context
@@ -161,7 +165,9 @@ public interface Subject {
      *
      * @return An immutable list of parents
      */
-    List<Subject> getParents();
+    default List<Subject> getParents() {
+        return getParents(getActiveContexts());
+    }
 
     /**
      * Return all parents that this group has. This must include inherited
