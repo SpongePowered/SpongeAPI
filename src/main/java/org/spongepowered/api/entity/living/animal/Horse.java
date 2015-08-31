@@ -38,6 +38,8 @@ public interface Horse extends Animal, Agent, Carrier {
      *
      * @return A copy of the horse data
      */
-    HorseData getHorseData();
+    default HorseData getHorseData() {
+        return get(HorseData.class).get();
+    }
 
 }

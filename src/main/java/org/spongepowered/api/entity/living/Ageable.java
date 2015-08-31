@@ -45,6 +45,8 @@ public interface Ageable extends Agent {
      *
      * @return The ageable data
      */
-    AgeableData getAgeData();
+    default AgeableData getAgeData() {
+        return get(AgeableData.class).get();
+    }
 
 }

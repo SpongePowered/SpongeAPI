@@ -37,6 +37,8 @@ public interface ExperienceOrb extends Entity {
      *
      * @return A copy of the experience orb data
      */
-    ExpOrbData experienceHeld();
+    default ExpOrbData experienceHeld() {
+        return get(ExpOrbData.class).get();
+    }
 
 }

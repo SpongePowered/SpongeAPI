@@ -37,6 +37,8 @@ public interface Rabbit extends Animal {
      *
      * @return A copy of the rabbit data
      */
-    RabbitData getRabbitData();
+    default RabbitData getRabbitData() {
+        return get(RabbitData.class).get();
+    }
 
 }

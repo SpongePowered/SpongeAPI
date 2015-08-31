@@ -37,6 +37,8 @@ public interface Sheep extends Animal {
      *
      * @return A copy of the dye data
      */
-    DyeableData getDyeData();
+    default DyeableData getDyeData() {
+        return get(DyeableData.class).get();
+    }
 
 }

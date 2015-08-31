@@ -36,6 +36,8 @@ public interface ZombiePigman extends Zombie {
      *
      * @return A copy of the anger data for this pigman
      */
-    AngerableData getAngerData();
+    default AngerableData getAngerData() {
+        return get(AngerableData.class).get();
+    }
 
 }

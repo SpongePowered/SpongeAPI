@@ -38,5 +38,7 @@ public interface Hanging extends Entity {
      *
      * @return A copy of the directional data
      */
-    DirectionalData getDirectionalData();
+    default DirectionalData getDirectionalData() {
+        return get(DirectionalData.class).get();
+    }
 }

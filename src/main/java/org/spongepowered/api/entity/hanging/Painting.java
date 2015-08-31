@@ -36,6 +36,8 @@ public interface Painting extends Hanging {
      *
      * @return A copy of the art data
      */
-    ArtData getArtData();
+    default ArtData getArtData() {
+        return get(ArtData.class).get();
+    }
 
 }

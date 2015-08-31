@@ -29,6 +29,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -50,6 +51,8 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      * @return The size of this map
      */
     int size();
+
+    Optional<V> getValue(K key);
 
     /**
      * Associates the provided key to the provided value. If there already

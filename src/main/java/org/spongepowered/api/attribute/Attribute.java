@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.attribute;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.function.Predicate;
 
 /**
  * Represents a type of attribute that can be applied to an

@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.attribute;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.DataHolder;
+
+import java.util.function.Predicate;
 
 /**
  * An enumeration of all attribute targets present in vanilla Minecraft.

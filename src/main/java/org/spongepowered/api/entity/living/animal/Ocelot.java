@@ -37,6 +37,8 @@ public interface Ocelot extends Animal {
      *
      * @return A copy of the current ocelot data
      */
-    OcelotData getOcelotData();
+    default OcelotData getOcelotData() {
+        return get(OcelotData.class).get();
+    }
 
 }

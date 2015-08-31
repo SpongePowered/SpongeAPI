@@ -36,6 +36,8 @@ public interface Pig extends Animal {
      *
      * @return The pig saddle data
      */
-    PigSaddleData getPigSaddleData();
+    default PigSaddleData getPigSaddleData() {
+        return get(PigSaddleData.class).get();
+    }
 
 }

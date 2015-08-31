@@ -37,6 +37,8 @@ public interface Firework extends Projectile, FusedExplosive {
      *
      * @return A copy of the firework data
      */
-    FireworkData getFireworkData();
+    default FireworkData getFireworkData() {
+        return get(FireworkData.class).get();
+    }
 
 }

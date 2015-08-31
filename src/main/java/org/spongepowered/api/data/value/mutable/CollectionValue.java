@@ -27,8 +27,10 @@ package org.spongepowered.api.data.value.mutable;
 import org.spongepowered.api.data.value.immutable.ImmutableCollectionValue;
 
 import java.util.Collection;
+import java.util.Spliterator;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * Represents a {@link Value} that is backed by a {@link Collection} of
@@ -149,6 +151,22 @@ public interface CollectionValue<E, C extends Collection<E>, V extends Collectio
      * @return A new collection with all elements copied
      */
     C getAll();
+
+    default Spliterator<E> spliterator() {
+        return getAll().spliterator();
+    }
+
+    /**
+     * Creates a {@link Stream}
+     * @return
+     */
+    default Stream<E> stream() {
+        return getAll().stream();
+    }
+
+    default Stream<E> parallelStream() {
+        return getAll().parallelStream();
+    }
 
     @Override
     I asImmutable();
