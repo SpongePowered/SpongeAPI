@@ -25,17 +25,17 @@
 package org.spongepowered.api.service.event;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.EventHandler;
+import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.Order;
-import org.spongepowered.api.event.Subscribe;
+import org.spongepowered.api.event.Listener;
 
 /**
- * Manages the registration of event handlers and the dispatching of events.
+ * Manages the registration of event listeners and the dispatching of events.
  */
 public interface EventManager {
 
     /**
-     * Registers {@link Event} methods annotated with @{@link Subscribe} in the
+     * Registers {@link Event} methods annotated with @{@link Listener} in the
      * specified object.
      *
      * <p>Only methods that are public will be registered and the class must be
@@ -46,75 +46,75 @@ public interface EventManager {
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
      *         instance
      */
-    void register(Object plugin, Object obj);
+    void registerListeners(Object plugin, Object obj);
 
     /**
-     * Registers an event handler for a specific event class.
+     * Registers an event listener for a specific event class.
      *
      * <p>Normally, the annotation-based way in
-     * {@link #register(Object, Object)} should be preferred over this way. This
+     * {@link #registerListeners(Object, Object)} should be preferred over this way. This
      * method exists primarily to support dynamic event registration like needed
      * in scripting plugins.</p>
      *
      * @param plugin The plugin instance
      * @param eventClass The event to listen to
-     * @param handler The handler to receive the events
+     * @param listener The listener to receive the events
      * @param <T> The type of the event
      */
-    <T extends Event> void register(Object plugin, Class<T> eventClass, EventHandler<? super T> handler);
+    <T extends Event> void registerListener(Object plugin, Class<T> eventClass, EventListener<? super T> listener);
 
     /**
-     * Registers an event handler with the specified order for a specific event
+     * Registers an event listener with the specified order for a specific event
      * class.
      *
      * <p>Normally, the annotation-based way in
-     * {@link #register(Object, Object)} should be preferred over this way. This
+     * {@link #registerListeners(Object, Object)} should be preferred over this way. This
      * method exists primarily to support dynamic event registration like needed
      * in scripting plugins.</p>
      *
      * @param plugin The plugin instance
      * @param eventClass The event to listen to
-     * @param order The order the handler will get called at
-     * @param handler The handler to receive the events
+     * @param order The order the listener will get called at
+     * @param listener The listener to receive the events
      * @param <T> The type of the event
      */
-    <T extends Event> void register(Object plugin, Class<T> eventClass, Order order, EventHandler<? super T> handler);
+    <T extends Event> void registerListener(Object plugin, Class<T> eventClass, Order order, EventListener<? super T> listener);
 
     /**
-     * Registers an event handler with the specified order for a specific event
+     * Registers an event listener with the specified order for a specific event
      * class.
      *
      * <p>Normally, the annotation-based way in
-     * {@link #register(Object, Object)} should be preferred over this way. This
+     * {@link #registerListeners(Object, Object)} should be preferred over this way. This
      * method exists primarily to support dynamic event registration like needed
      * in scripting plugins.</p>
      *
      * @param plugin The plugin instance
      * @param eventClass The event to listen to
-     * @param order The order the handler will get called at
-     * @param beforeModifications Whether to call the handler before other server modifications
-     * @param handler The handler to receive the events
+     * @param order The order the listener will get called at
+     * @param beforeModifications Whether to call the listener before other server modifications
+     * @param listener The listener to receive the events
      * @param <T> The type of the event
      */
-    <T extends Event> void register(Object plugin, Class<T> eventClass, Order order, boolean beforeModifications,
-                                    EventHandler<? super T> handler);
+    <T extends Event> void registerListener(Object plugin, Class<T> eventClass, Order order, boolean beforeModifications,
+                                    EventListener<? super T> listener);
 
     /**
      * Un-registers an object from receiving {@link Event}s.
      *
      * @param obj The object
      */
-    void unregister(Object obj);
+    void unregisterListeners(Object obj);
 
     /**
-     * Un-registers all event handlers of a plugin.
+     * Un-registers all event listeners of a plugin.
      *
      * @param plugin The plugin instance
      */
-    void unregisterPlugin(Object plugin);
+    void unregisterPluginListeners(Object plugin);
 
     /**
-     * Calls a {@link Event} to all handlers that handle it.
+     * Calls a {@link Event} to all listeners that listen to it.
      *
      * @param event The event
      * @return True if cancelled, false if not

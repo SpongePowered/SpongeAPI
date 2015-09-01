@@ -39,7 +39,7 @@ import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
  *
  * <p>The server may have cancelled the event if the client's profile or IP is
  * banned or not on the whitelist (if these features are enabled). Be sure to
- * set {@code ignoreCancelled = false} in the {@code @Subscribe} annotation to
+ * set {@code ignoreCancelled = false} in the {@code @Listener} annotation to
  * receive the event in this case.</p>
  *
  * <p>Cancelling the event will prevent the client from joining and show
