@@ -81,4 +81,28 @@ public interface SchedulerService {
      * @return A set of scheduled tasks
      */
     Set<Task> getScheduledTasks(Object plugin);
+
+    /**
+     * Creates a new ExecutorService that can be used to schedule synchronous
+     * tasks through the standard Java concurrency interfaces.
+     *
+     * @param plugin The plugin that will own the created tasks
+     * @return A new executor service that can be used to execute
+     *         synchronous tasks
+     */
+    default SpongeExecutorService syncExecutor(Object plugin) {
+        return new SpongeExecutorService(() -> createTaskBuilder(), plugin);
+    }
+
+    /**
+     * Creates a new ExecutorService that can be used to schedule asynchronous
+     * tasks through the standard Java concurrency interfaces.
+     *
+     * @param plugin The plugin that will own the created tasks
+     * @return A new executor service that can be used to execute
+     *         asynchronous tasks
+     */
+    default SpongeExecutorService asyncExecutor(Object plugin) {
+        return new SpongeExecutorService(() -> createTaskBuilder().async(), plugin);
+    }
 }
