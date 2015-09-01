@@ -22,14 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.event.world.UnloadWorldEvent;
+import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Server} unloads a {@link World} level.
+ * Called when a {@link World} is about to grow a block because it would have
+ * resulted from some form of growth related to flora.
+ *
+ * <p>Examples of reasons why this event would be called include:</p>
+ *
+ * <ul>
+ *     <li>The placement of a cactus block because it grew.</li>
+ *     <li>The placement of a pumpkin block because it grew.</li>
+ *     <li>The change in state of a wheat block because it grew.</li>
+ * </ul>
  */
-public interface ServerUnloadWorldEvent extends UnloadWorldEvent {
+public interface GrowBlockEvent extends ChangeBlockEvent {
+
+    /**
+     * An event where the source is a {@link World}.
+     */
+    interface SourceWorld extends GrowBlockEvent, WorldEvent { }
 
 }

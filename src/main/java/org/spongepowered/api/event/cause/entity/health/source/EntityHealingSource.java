@@ -22,21 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
-import org.spongepowered.api.entity.FallingBlock;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-public interface FallingBlockDamageSource extends EntityDamageSource {
+import org.spongepowered.api.entity.Entity;
 
-    @Override
-    FallingBlock getSource();
+public interface EntityHealingSource extends HealingSource {
 
-    /**
-     * Gets the {@link ImmutableFallingBlockData} backing the
-     * {@link FallingBlock}.
-     *
-     * @return The falling block data
-     */
-    ImmutableFallingBlockData getFallingBlockData();
+    Entity getSource();
+
 }

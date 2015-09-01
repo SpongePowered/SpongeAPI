@@ -22,15 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.world.chunk.ChangeChunkEvent;
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.World;
+package org.spongepowered.api.event.cause.entity.health;
+
+import com.google.common.base.Function;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.Cause;
 
 /**
- * Base event for when a {@link World} unloads a {@link Chunk}.
+ * Represents a modifier that will apply a function on a damage value to
+ * deal towards an entity such that the raw damage is the input of a
+ * {@link Function} such that the output will be the final damage applied
+ * to the {@link Entity}.
  */
-public interface WorldUnloadChunkEvent extends ChangeChunkEvent, WorldEvent {
+public interface HealthModifier {
+
+    /**
+     * Gets the {@link HealthModifierType} for this {@link HealthModifier}.
+     *
+     * @return The damage modifier type
+     */
+    HealthModifierType getType();
+
+    /**
+     * Gets the cause of this {@link HealthModifier}.
+     *
+     * @return The cause of this damage modifier
+     */
+    Cause getCause();
 
 }

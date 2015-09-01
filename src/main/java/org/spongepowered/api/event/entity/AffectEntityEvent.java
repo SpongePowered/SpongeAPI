@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * An event that affects multiple {@link Entity} instances as a bulk action.
  * The constraint is that if an action can be deemed as necessary for selective
- * individualized processing, such as {@link AttackEntityEvent.SourceEntity},
+ * individualized processing, such as {@link InteractEntityEvent.Attack},
  * the actioned {@link Event} is handled individually. If a bulk of
  * {@link Entity} instances are being affected, for example by an
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.

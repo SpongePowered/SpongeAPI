@@ -27,6 +27,9 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
@@ -37,30 +40,71 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import javax.annotation.Nullable;
 
+/**
+ * An event when a "fishing" action is performed. Always involves a
+ * {@link FishHook}.
+ */
 public interface FishingEvent extends GameEvent, Cancellable {
 
+    /**
+     * Gets the {@link FishHook} related with this event.
+     *
+     * @return The fish hook
+     */
     FishHook getFishHook();
 
+    /**
+     * An event where the {@link FishHook} is casted.
+     */
     interface Cast extends FishingEvent {
 
+        /**
+         * An event where the source is an {@link Entity}.
+         */
         interface SourceEntity extends Cast, FishingEvent.SourceEntity { }
 
+        /**
+         * An event where the source is a {@link Living}.
+         */
         interface SourceLiving extends SourceEntity, FishingEvent.SourceLiving { }
 
+        /**
+         * An event where the source is a {@link Human}.
+         */
         interface SourceHuman extends SourceLiving, FishingEvent.SourceHuman { }
 
+        /**
+         * An event where the source is an {@link Player}.
+         */
         interface SourcePlayer extends SourceHuman, FishingEvent.SourcePlayer { }
+
     }
 
+    /**
+     * An event where an {@link Entity} is "hooked" by the {@link FishHook}.
+     */
     interface Hook extends FishingEvent, TargetEntityEvent {
 
+        /**
+         * An event where the source is an {@link Entity}.
+         */
         interface SourceEntity extends Hook, FishingEvent.SourceEntity { }
 
+        /**
+         * An event where the source is a {@link Living}.
+         */
         interface SourceLiving extends SourceEntity, FishingEvent.SourceLiving { }
 
+        /**
+         * An event where the source is a {@link Human}.
+         */
         interface SourceHuman extends SourceLiving, FishingEvent.SourceHuman { }
 
+        /**
+         * An event where the source is an {@link Player}.
+         */
         interface SourcePlayer extends SourceHuman, FishingEvent.SourcePlayer { }
+
     }
 
     /**
@@ -99,21 +143,45 @@ public interface FishingEvent extends GameEvent, Cancellable {
          */
         void setCaughtEntity(@Nullable Entity entity);
 
+        /**
+         * An event where the source is an {@link Entity}.
+         */
         interface SourceEntity extends Retract, FishingEvent.SourceEntity { }
 
+        /**
+         * An event where the source is a {@link Living}.
+         */
         interface SourceLiving extends SourceEntity, FishingEvent.SourceLiving { }
 
+        /**
+         * An event where the source is a {@link Human}.
+         */
         interface SourceHuman extends SourceLiving, FishingEvent.SourceHuman { }
 
+        /**
+         * An event where the source is an {@link Player}.
+         */
         interface SourcePlayer extends SourceHuman, FishingEvent.SourcePlayer { }
     }
 
+    /**
+     * An event where the source is an {@link Entity}.
+     */
     interface SourceEntity extends FishingEvent, EntityEvent { }
 
+    /**
+     * An event where the source is a {@link Living}.
+     */
     interface SourceLiving extends SourceEntity, LivingEvent { }
 
+    /**
+     * An event where the source is a {@link Human}.
+     */
     interface SourceHuman extends SourceLiving, HumanEvent { }
 
+    /**
+     * An event where the source is an {@link Player}.
+     */
     interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

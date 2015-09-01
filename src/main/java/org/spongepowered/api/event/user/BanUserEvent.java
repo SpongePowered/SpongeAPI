@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.user;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 import org.spongepowered.api.util.ban.Ban;
@@ -40,6 +41,9 @@ public interface BanUserEvent extends TargetUserEvent, Cancellable {
      */
     Ban.User getBan();
 
+    /**
+     * An event where a {@link Player} is the target.
+     */
     interface TargetPlayer extends BanUserEvent, TargetPlayerEvent {
 
     }

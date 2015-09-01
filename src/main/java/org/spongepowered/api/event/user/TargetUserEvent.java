@@ -27,8 +27,17 @@ package org.spongepowered.api.event.user;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Event;
 
+/**
+ * An event where a {@link User} is the target. The action and source may not
+ * be known.
+ */
 public interface TargetUserEvent extends Event {
 
+    /**
+     * Gets the targeted {@link User}.
+     *
+     * @return The targeted user
+     */
     User getTargetUser();
 
 }

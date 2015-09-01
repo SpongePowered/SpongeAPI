@@ -29,6 +29,8 @@ import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.Arrow;
@@ -40,6 +42,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageModifierBuilder;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 import org.spongepowered.api.event.entity.living.LivingEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
@@ -59,7 +62,7 @@ import java.util.Map;
  * The uniqueness of this event is that all {@link DamageSource}s can deal
  * varying amounts of damage with varying modifiers based on various reasons.
  * Due to this ambiguous variety of information that is possible to provide,
- * the {@link AttackEntityEvent} can be summarized as so:
+ * the {@link InteractEntityEvent.Attack} can be summarized as so:
  *
  * <p>An {@link Arrow},
  *  that was shot by a {@link Skeleton},
@@ -259,12 +262,28 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
      */
     List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
+    /**
+     * An event where an {@link Entity} is a source. This will coincide with
+     * the {@link DamageSource} being an {@link EntityDamageSource}.
+     */
     interface SourceEntity extends DamageEntityEvent, EntityEvent { }
 
+    /**
+     * An event where a {@link Living} is a source. This will coincide with
+     * the {@link DamageSource} being an {@link EntityDamageSource}.
+     */
     interface SourceLiving extends SourceEntity, LivingEvent { }
 
-    interface SourceHuman extends SourceLiving, HumanEvent {  }
+    /**
+     * An event where a {@link Human} is a source. This will coincide with
+     * the {@link DamageSource} being an {@link EntityDamageSource}.
+     */
+    interface SourceHuman extends SourceLiving, HumanEvent { }
 
+    /**
+     * An event where a {@link Player} is a source. This will coincide with
+     * the {@link DamageSource} being an {@link EntityDamageSource}.
+     */
     interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

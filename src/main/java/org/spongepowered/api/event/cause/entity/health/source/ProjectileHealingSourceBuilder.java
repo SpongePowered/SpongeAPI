@@ -22,47 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-/**
- * Called when a {@link BlockState} moves another {@link BlockState} from one {@link Location} to another.
- *
- * TODO BlockChangeBlock Candidate for Bulk?
- */
-public interface BlockMoveBlockEvent extends BlockEvent, Cancellable {
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.event.cause.entity.health.HealType;
 
-    /**
-     * Gets the target {@link BlockState} being moved.
-     *
-     * @return The BlockState
-     */
-    BlockState getTargetBlock();
+public interface ProjectileHealingSourceBuilder extends EntityHealingSourceBuilder {
 
-    /**
-     * Gets the {@link Location} the {@link BlockState} prior to the event.
-     *
-     * @return The original Location
-     */
-    Location<World> getOriginalTargetLocation();
+    @Override
+    ProjectileHealingSourceBuilder scalesWithDifficulty();
 
-    /**
-     * Gets the {@link Location} the {@link BlockState} will be at after event 
-     * resolution.
-     *
-     * @return The new Location
-     */
-    Location<World> getNewTargetLocation();
+    @Override
+    ProjectileHealingSourceBuilder bypassesArmor();
 
-    /**
-     * Sets the {@link Location} the {@link BlockState} will be at after event 
-     * resolution.
-     *
-     * @param location The new Location
-     */
-    void setNewTargetLocation(Location<World> location);
+    @Override
+    ProjectileHealingSourceBuilder explosion();
+
+    @Override
+    ProjectileHealingSourceBuilder absolute();
+
+    @Override
+    ProjectileHealingSourceBuilder magical();
+
+    @Override
+    ProjectileHealingSourceBuilder entity(Entity entity);
+
+    @Override
+    ProjectileHealingSourceBuilder type(HealType healType);
+
+    ProjectileHealingSourceBuilder projectile(Projectile projectile);
+
+    @Override
+    ProjectileHealingSource build() throws IllegalStateException;
+
 }

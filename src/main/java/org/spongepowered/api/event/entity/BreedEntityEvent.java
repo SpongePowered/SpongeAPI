@@ -24,8 +24,19 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.entity.Entity;
+
+/**
+ * An event where an {@link Entity} is being bred. Usually in the case
+ * where a new {@link Entity} is going to be spawned after the completion
+ * of this event.
+ */
 public interface BreedEntityEvent extends InteractEntityEvent {
 
+    /**
+     * A variant where the {@link #getTargetEntity()} is being bred with
+     * a source that is an {@link Entity}.
+     */
     interface SourceEntity extends BreedEntityEvent, InteractEntityEvent.SourceEntity { }
 
 }

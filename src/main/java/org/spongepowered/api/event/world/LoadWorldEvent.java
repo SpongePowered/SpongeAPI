@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.Server;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.plugin.PluginEvent;
+import org.spongepowered.api.event.server.ServerEvent;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.world.World;
 
 /**
@@ -40,5 +44,15 @@ public interface LoadWorldEvent extends GameEvent, CauseTracked, Cancellable {
      * @return The target world
      */
     World getTargetWorld();
+
+    /**
+     * Called when a {@link PluginContainer} loads a {@link World} level.
+     */
+    interface SourcePlugin extends LoadWorldEvent, PluginEvent { }
+
+    /**
+     * Called when a {@link Server} loads a {@link World} level.
+     */
+    interface SourceServer extends LoadWorldEvent, ServerEvent { }
 
 }

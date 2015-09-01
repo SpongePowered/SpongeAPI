@@ -22,30 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
 
-import org.spongepowered.api.block.tileentity.Sign;
-import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+package org.spongepowered.api.event.world;
 
-public interface PlayerChangeSignEvent extends PlayerEvent {
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.EntityEvent;
+import org.spongepowered.api.event.entity.living.LivingEvent;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
-    /**
-     * Gets the target {@link Sign} being changed.
-     *
-     * @return The Sign
-     */
-    Sign getTarget();
+/**
+ * An event where a portal is created. Usually, this happens after a
+ * {@link ChangeBlockEvent} from any source.
+ */
+public interface CreatePortalEvent extends GameEvent, CauseTracked, Cancellable {
 
-    /**
-     * Gets the original {@link ImmutableSignData} before event changes.
-     * @return The immutable SignData
-     */
-    ImmutableSignData getOriginalText();
+    Location<World> getPortalLocation();
 
-    /**
-     * Gets the {@link SignData} to be applied to the {@link Sign} after event resolution.
-     * @return The SignData
-     */
-    SignData getText();
+    interface SourceEntity extends CreatePortalEvent, EntityEvent { }
+
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
+
 }

@@ -25,6 +25,9 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.action.ChangeExperienceEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
@@ -36,10 +39,21 @@ import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
  */
 public interface HarvestEntityEvent extends TargetEntityEvent, ChangeExperienceEvent, CauseTracked {
 
+    /**
+     * An event where the target is a {@link Living}.
+     */
     interface TargetLiving extends HarvestEntityEvent, TargetLivingEvent { }
 
+    /**
+     * An event where the target is a {@link Human}.
+     */
     interface TargetHuman extends TargetLiving, TargetHumanEvent { }
 
+    /**
+     * An event where the target is a {@link Player}. Usually this will
+     * have additional information regarding whether the player
+     * {@link #keepsInventory()} and their current experience.
+     */
     interface TargetPlayer extends TargetHuman, TargetPlayerEvent {
 
         /**

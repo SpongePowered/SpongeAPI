@@ -32,5 +32,10 @@ import org.spongepowered.api.event.GameEvent;
  */
 public interface ServerEvent extends GameEvent {
 
+    /**
+     * Gets the server source.
+     *
+     * @return The server
+     */
     Server getServer();
 }

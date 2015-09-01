@@ -22,15 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.world.chunk.ChangeChunkEvent;
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.World;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-/**
- * Base event for when a {@link World} loads a {@link Chunk}.
- */
-public interface WorldLoadChunkEvent extends ChangeChunkEvent, WorldEvent {
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.health.HealType;
+
+public interface HealingSourceBuilder {
+
+    HealingSourceBuilder scalesWithDifficulty();
+
+    HealingSourceBuilder bypassesArmor();
+
+    HealingSourceBuilder explosion();
+
+    HealingSourceBuilder absolute();
+
+    HealingSourceBuilder magical();
+
+    HealingSourceBuilder type(HealType healType);
+
+    HealingSource build() throws IllegalStateException;
 
 }

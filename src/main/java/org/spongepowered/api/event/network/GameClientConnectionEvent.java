@@ -37,10 +37,8 @@ import javax.annotation.Nullable;
 /**
  * Represents an event fired during the login process.
  *
- * @see GameClientAuthEvent
- * @see GameClientConnectEvent
  */
-public interface GameClientLoginEvent extends GameEvent, ConnectEvent {
+public interface GameClientConnectionEvent extends GameEvent, ConnectEvent {
 
     /**
      * Gets the {@link RemoteConnection} representing the client connection.
@@ -89,4 +87,15 @@ public interface GameClientLoginEvent extends GameEvent, ConnectEvent {
      * @param cause The cause
      */
     void setDisconnectCause(@Nullable Cause cause);
+
+    /**
+     * An event where the game client is being authenticated.
+     */
+    interface Authenticate extends GameClientConnectionEvent { }
+
+    /**
+     * An event where the game client is logging in.
+     */
+    interface Login extends GameClientConnectionEvent { }
+
 }

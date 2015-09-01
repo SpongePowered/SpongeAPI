@@ -25,6 +25,9 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
@@ -65,12 +68,28 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
      */
     void setNewTransform(Transform<World> transform);
 
+    /**
+     * An event where the {@link #getTargetEntity()} is moving. This can
+     * either be due to AI or client control
+     */
     interface Move extends DisplaceEntityEvent {
 
+        /**
+         * A {@link Move} event where the target entity is a {@link Living}
+         * entity.
+         */
         interface TargetLiving extends Move, DisplaceEntityEvent.TargetLiving { }
 
+        /**
+         * A {@link Move} event where the target entity is a {@link Human}
+         * entity.
+         */
         interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
 
+        /**
+         * A {@link Move} event where the target entity is a {@link Player}
+         * entity.
+         */
         interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
     }
 
@@ -78,6 +97,12 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
 
         /// TODO review teleporter stuff.
 
+        /**
+         * Gets the {@link TeleporterAgent} that was used to calculate the
+         * teleport locations.
+         *
+         * @return The teleporter agent
+         */
         TeleporterAgent getTeleporterAgent();
 
         /**
@@ -96,17 +121,35 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          */
         void setKeepsVelocity(boolean keepsVelocity);
 
+        /**
+         * An event where the target entity is a {@link Living} entity.
+         */
         interface TargetLiving extends Teleport, DisplaceEntityEvent.TargetLiving { }
 
+        /**
+         * An event where the target entity is a {@link Human} entity.
+         */
         interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
 
+        /**
+         * An event where the target entity is a {@link Player} entity.
+         */
         interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
     }
 
+    /**
+     * An event where the target entity is a {@link Living} entity.
+     */
     interface TargetLiving extends DisplaceEntityEvent, TargetLivingEvent { }
 
+    /**
+     * An event where the target entity is a {@link Human} entity.
+     */
     interface TargetHuman extends TargetLiving, TargetHumanEvent { }
 
+    /**
+     * An event where the target entity is a {@link Player} entity.
+     */
     interface TargetPlayer extends TargetHuman, TargetPlayerEvent { }
 
 }

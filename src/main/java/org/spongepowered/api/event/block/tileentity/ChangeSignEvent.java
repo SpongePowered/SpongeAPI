@@ -22,21 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage.source;
+package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
-import org.spongepowered.api.entity.FallingBlock;
+import org.spongepowered.api.block.tileentity.Sign;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.entity.EntityEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 
-public interface FallingBlockDamageSource extends EntityDamageSource {
-
-    @Override
-    FallingBlock getSource();
+public interface ChangeSignEvent extends TargetTileEntityEvent {
 
     /**
-     * Gets the {@link ImmutableFallingBlockData} backing the
-     * {@link FallingBlock}.
+     * Gets the target {@link Sign} being changed.
      *
-     * @return The falling block data
+     * @return The Sign
      */
-    ImmutableFallingBlockData getFallingBlockData();
+    @Override
+    Sign getTargetTile();
+
+    /**
+     * Gets the original {@link ImmutableSignData} before event changes.
+     * @return The immutable SignData
+     */
+    ImmutableSignData getOriginalText();
+
+    /**
+     * Gets the {@link SignData} to be applied to the {@link Sign} after event resolution.
+     * @return The SignData
+     */
+    SignData getText();
+
+    /**
+     * An event where an {@link Entity} is the source.
+     */
+    interface SourceEntity extends ChangeSignEvent, EntityEvent { }
+
+    /**
+     * An event where a {@link Player} is the source.
+     */
+    interface SourcePlayer extends SourceEntity, PlayerEvent { }
+
 }

@@ -22,14 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.plugin;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.event.world.UnloadWorldEvent;
+import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link PluginContainer} unloads a {@link World} level.
+ * Called when a world is about to decay a block.
  */
-public interface PluginUnloadWorldEvent extends UnloadWorldEvent {
+public interface DecayBlockEvent extends ChangeBlockEvent {
+
+    /**
+     * An event where a {@link World} is the source.
+     */
+    interface SourceWorld extends DecayBlockEvent, WorldEvent { }
 
 }

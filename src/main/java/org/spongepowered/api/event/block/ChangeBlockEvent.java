@@ -27,6 +27,10 @@ package org.spongepowered.api.event.block;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -48,7 +52,10 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
      * Gets a list of the {@link BlockTransaction}s for this event. If a
-     * @return
+     * transaction is requested to be marked as "invalid",
+     * {@link BlockTransaction#setIsValid(boolean)} can be used.
+     *
+     * @return The unmodifiable list of transactions
      */
     List<BlockTransaction> getTransactions();
 
@@ -63,16 +70,34 @@ public interface ChangeBlockEvent extends GameEvent, CauseTracked, Cancellable {
      */
     void filter(Predicate<Location<World>> predicate);
 
+    /**
+     * An event where the source is a block.
+     */
     interface SourceBlock extends ChangeBlockEvent, BlockEvent { }
 
+    /**
+     * An event where the source is a {@link World}.
+     */
     interface SourceWorld extends ChangeBlockEvent, WorldEvent { }
 
+    /**
+     * An event where the source is an {@link Entity}.
+     */
     interface SourceEntity extends ChangeBlockEvent, EntityEvent { }
 
+    /**
+     * An event where the source is a {@link Living}.
+     */
     interface SourceLiving extends SourceEntity, LivingEvent { }
 
+    /**
+     * An event where the source is a {@link Human}.
+     */
     interface SourceHuman extends SourceLiving, HumanEvent { }
 
+    /**
+     * An event where the source is a {@link Player}.
+     */
     interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

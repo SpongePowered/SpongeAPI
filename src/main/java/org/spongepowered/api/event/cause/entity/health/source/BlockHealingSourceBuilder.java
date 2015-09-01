@@ -22,31 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-/**
- * Fired when a game client attempts to connect to the server.
- *
- * <p>This event is fired after {@link GameClientAuthEvent}, and in the main
- * thread.</p>
- *
- * <p>This event fires during the login process when the login state is
- * {@code READY_TO_ACCEPT} - after the token has been verified but before the
- * connection state switches to 'play'. See
- * http://wiki.vg/Protocol#Login_Success for the protocol info.</p>
- *
- * <p>The server may have cancelled the event if the client's profile or IP is
- * banned or not on the whitelist (if these features are enabled). Be sure to
- * set {@code ignoreCancelled = false} in the {@code @Listener} annotation to
- * receive the event in this case.</p>
- *
- * <p>Cancelling the event will prevent the client from joining and show
- * {@link #getDisconnectMessage} to the client.</p>
- *
- * @see GameClientAuthEvent
- * @see PlayerJoinEvent
- */
-public interface GameClientConnectEvent extends GameClientLoginEvent {
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.event.cause.entity.health.HealType;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
+
+public interface BlockHealingSourceBuilder extends HealingSourceBuilder {
+    @Override
+    BlockHealingSourceBuilder scalesWithDifficulty();
+
+    @Override
+    BlockHealingSourceBuilder bypassesArmor();
+
+    @Override
+    BlockHealingSourceBuilder explosion();
+
+    @Override
+    BlockHealingSourceBuilder absolute();
+
+    @Override
+    BlockHealingSourceBuilder magical();
+
+    @Override
+    BlockHealingSourceBuilder type(HealType damageType);
+
+    BlockHealingSourceBuilder block(Location<World> location);
+
+    BlockHealingSourceBuilder block(BlockSnapshot blockState);
+
+    @Override
+    BlockHealingSource build() throws IllegalStateException;
 }

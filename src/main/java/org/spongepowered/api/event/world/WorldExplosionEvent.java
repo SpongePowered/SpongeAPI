@@ -41,11 +41,18 @@ public interface WorldExplosionEvent extends ChangeBlockEvent, WorldEvent {
      */
     Explosion getExplosion();
 
+    /**
+     * An event that is fired before the explosion occurs.
+     */
     interface Pre extends WorldExplosionEvent {
 
     }
 
-    interface OnExplosion extends WorldExplosionEvent, AffectEntityEvent, WorldEvent, ChangeBlockEvent {
+    /**
+     * An event that is fired as the explosion is going to start affecting
+     * multiple blocks and entities.
+     */
+    interface Detonate extends WorldExplosionEvent, AffectEntityEvent, WorldEvent, ChangeBlockEvent {
 
     }
 }

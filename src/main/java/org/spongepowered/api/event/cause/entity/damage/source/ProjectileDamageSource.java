@@ -32,6 +32,11 @@ public interface ProjectileDamageSource extends EntityDamageSource {
     @Override
     Projectile getSource();
 
+    /**
+     * Gets the {@link ProjectileSource} that launched the {@link Projectile}.
+     *
+     * @return The projectile source
+     */
     ProjectileSource getShooter();
 
 }

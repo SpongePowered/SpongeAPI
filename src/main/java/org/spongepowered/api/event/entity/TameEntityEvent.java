@@ -34,6 +34,9 @@ import org.spongepowered.api.event.entity.living.player.PlayerEvent;
  */
 public interface TameEntityEvent extends TargetEntityEvent {
 
+    /**
+     *
+     */
     interface SourceEntity extends TameEntityEvent, EntityEvent { }
 
     interface SourceLiving extends SourceEntity, LivingEvent { }

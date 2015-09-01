@@ -22,21 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
-import org.spongepowered.api.entity.FallingBlock;
+package org.spongepowered.api.event.world.chunk;
 
-public interface FallingBlockDamageSource extends EntityDamageSource {
+import org.spongepowered.api.event.world.WorldEvent;
+import org.spongepowered.api.world.gen.Populator;
 
-    @Override
-    FallingBlock getSource();
+import java.util.List;
 
-    /**
-     * Gets the {@link ImmutableFallingBlockData} backing the
-     * {@link FallingBlock}.
-     *
-     * @return The falling block data
-     */
-    ImmutableFallingBlockData getFallingBlockData();
+public interface PopulateChunkEvent extends WorldEvent, ChangeChunkEvent {
+
+    interface Pre extends PopulateChunkEvent {
+
+        /**
+         * Returns a mutable list of all pending populators.
+         *
+         * @return The populators
+         */
+        List<Populator> getPendingPopulators();
+
+    }
+
+    interface Populate extends PopulateChunkEvent {
+
+    }
+
+    interface Post extends PopulateChunkEvent {
+
+    }
+
 }

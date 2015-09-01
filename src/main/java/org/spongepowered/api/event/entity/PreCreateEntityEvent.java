@@ -39,6 +39,11 @@ import org.spongepowered.api.world.World;
  */
 public interface PreCreateEntityEvent extends GameEvent, CauseTracked, Cancellable {
 
+    /**
+     * Gets the {@link Location} that the {@link Entity} will be created at.
+     *
+     * @return The location
+     */
     Location<World> getLocation();
 
     /**

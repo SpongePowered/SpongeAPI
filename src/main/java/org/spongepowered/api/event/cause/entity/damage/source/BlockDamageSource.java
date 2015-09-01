@@ -31,8 +31,18 @@ import org.spongepowered.api.world.World;
 
 public interface BlockDamageSource extends DamageSource {
 
+    /**
+     * Gets the location of the {@link BlockSnapshot}.
+     *
+     * @return The location of the block
+     */
     Location<World> getLocation();
 
+    /**
+     * Gets the {@link BlockSnapshot} of the source.
+     *
+     * @return The block snapshot of the source
+     */
     BlockSnapshot getBlockState();
 
 }

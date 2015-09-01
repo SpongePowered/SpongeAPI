@@ -48,9 +48,18 @@ public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, CauseT
      */
     PotionEffect getPotionEffect();
 
+    /**
+     * An event where the {@link PotionEffect} is being added.
+     */
     interface Gain extends ChangeEntityPotionEffectEvent { }
 
+    /**
+     * An event where the {@link PotionEffect} is being removed.
+     */
     interface Remove extends ChangeEntityPotionEffectEvent { }
 
+    /**
+     * An event where the {@link PotionEffect} is forcibly expiring.
+     */
     interface Expire extends ChangeEntityPotionEffectEvent { }
 }

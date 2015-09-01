@@ -26,6 +26,7 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.world.World;
@@ -37,6 +38,9 @@ import org.spongepowered.api.world.World;
  */
 public interface CreateEntityEvent extends TargetEntityEvent, CauseTracked {
 
+    /**
+     * An event where the {@link #getTargetEntity()} is an {@link Item}.
+     */
     interface TargetItem extends CreateEntityEvent, TargetItemEvent { }
 
 }

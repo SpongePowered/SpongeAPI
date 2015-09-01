@@ -50,7 +50,7 @@ public interface NotifyNeighborBlockEvent extends GameEvent, CauseTracked, Cance
      * {@link BlockState} of the block states that would normally be notified
      * of changes.
      *
-     * @return
+     * @return The original directions map
      */
     Map<Direction, BlockState> getOriginalRelatives();
 
@@ -76,10 +76,14 @@ public interface NotifyNeighborBlockEvent extends GameEvent, CauseTracked, Cance
     void filterDirections(Predicate<Direction> predicate);
 
     /**
-     *
+     * An event where the action is an "ingition" that notifies the neighbor
+     * blocks.
      */
     interface Ignite extends NotifyNeighborBlockEvent {
 
+        /**
+         * An event where the source is a block.
+         */
         interface SourceBlock extends Ignite, NotifyNeighborBlockEvent.SourceBlock { }
 
     }
@@ -97,18 +101,27 @@ public interface NotifyNeighborBlockEvent extends GameEvent, CauseTracked, Cance
          */
         BlockState getSpreadingBlock();
 
+        /**
+         * An event where the source is a block.
+         */
         interface SourceBlock extends Spread, NotifyNeighborBlockEvent.SourceBlock { }
 
     }
 
     interface Burn extends NotifyNeighborBlockEvent {
 
+        /**
+         * An event where the source is a block.
+         */
         interface SourceBlock extends Burn, NotifyNeighborBlockEvent.SourceBlock { }
 
     }
 
     interface Power extends NotifyNeighborBlockEvent {
 
+        /**
+         * An event where the source is a block.
+         */
         interface SourceBlock extends Power, NotifyNeighborBlockEvent.SourceBlock { }
 
     }

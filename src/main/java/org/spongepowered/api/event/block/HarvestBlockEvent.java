@@ -26,6 +26,9 @@ package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.action.ChangeExperienceEvent;
@@ -137,10 +140,19 @@ public interface HarvestBlockEvent extends GameEvent, ChangeExperienceEvent, Can
 
     interface SourceEntity extends HarvestBlockEvent, EntityEvent { }
 
+    /**
+     * An event where the source is a {@link Living}.
+     */
     interface SourceLiving extends SourceEntity, LivingEvent { }
 
+    /**
+     * An event where the source is a {@link Human}.
+     */
     interface SourceHuman extends SourceLiving, HumanEvent { }
 
+    /**
+     * An event where the source is a {@link Player}.
+     */
     interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

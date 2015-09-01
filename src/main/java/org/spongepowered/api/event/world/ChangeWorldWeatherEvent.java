@@ -36,6 +36,11 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
  */
 public interface ChangeWorldWeatherEvent extends GameEvent, CauseTracked, Cancellable {
 
+    /**
+     * Gets the world that is targeted in this event.
+     *
+     * @return The world that is being targeted
+     */
     World getWorld();
 
     /**

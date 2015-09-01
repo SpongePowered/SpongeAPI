@@ -22,24 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.network;
 
-/**
- * Fired when a game client has authenticated with the server.
- *
- * <p>This event is fired asynchronously, i.e. not in the main thread.</p>
- *
- * <p>After the event is fired, the login state switches to
- * {@code READY_TO_ACCEPT} and the thread dies. (The main thread then
- * acknowledges the {@code READY_TO_ACCEPT} state and proceeds to firing
- * {@link GameClientConnectEvent}). The event is triggered after the encryption
- * response is sent from the client, see
- * http://wiki.vg/Protocol#Encryption_Response for more info.</p>
- *
- * <p>Cancelling the event will prevent the client from joining and show
- * {@link #getDisconnectMessage} to the client.</p>
- *
- * @see GameClientConnectEvent
- */
-public interface GameClientAuthEvent extends GameClientLoginEvent {
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.cause.entity.health.source;

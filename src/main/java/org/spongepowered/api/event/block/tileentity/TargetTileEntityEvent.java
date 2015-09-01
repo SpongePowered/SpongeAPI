@@ -22,42 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.game;
 
-import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.Transform;
-import org.spongepowered.api.event.Cancellable;
+package org.spongepowered.api.event.block.tileentity;
+
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
- * Represents an event where an entity is about to be constructed and
- * may be spawned in a world.
- *
- * <p>This event allows plugins to cancel the creation of entities
- * purely based on the {@link EntityType} and {@link Location}. This
- * aids in massive object churning that would otherwise occur in
- * massive cancellation of {@link SpawnEntityEvent}s due to the
- * instantiation of entities and subsequently killing said entities.</p>
+ * An event where a {@link TileEntity} is being targeted.
  */
-public interface GamePreConstructEntityEvent extends CauseTracked, Cancellable, GameEvent {
+public interface TargetTileEntityEvent extends GameEvent {
 
     /**
-     * Gets the {@link EntityType} that is going to be constructed.
+     * Gets the target tile entity.
      *
-     * @return The entity type
+     * @return Gets the targeted tile entity
      */
-    EntityType getEntityType();
-
-    /**
-     * Gets a copy of the transform of the entity that is going to be
-     * constructed.
-     *
-     * @return A copy of the transform that the entity would spawn at
-     */
-    Transform<World> getTransform();
+    TileEntity getTargetTile();
 
 }

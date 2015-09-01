@@ -22,23 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.block.ChangeBlockEvent;
+package org.spongepowered.api.event.cause.entity.health.source;
+
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-/**
- * Called when a {@link World} is about to grow a block because it would have
- * resulted from some form of growth related to flora.
- *
- * <p>Examples of reasons why this event would be called include:</p>
- *
- * <ul>
- *     <li>The placement of a cactus block because it grew.</li>
- *     <li>The placement of a pumpkin block because it grew.</li>
- *     <li>The change in state of a wheat block because it grew.</li>
- * </ul>
- */
-public interface WorldGrowBlockEvent extends ChangeBlockEvent, WorldEvent {
+public interface BlockHealingSource extends HealingSource {
+
+    Location<World> getLocation();
+
+    BlockSnapshot getBlockState();
 
 }

@@ -32,6 +32,9 @@ package org.spongepowered.api.event.entity;
  */
 public interface EntityPortalEvent extends EntityEvent {
 
+    /**
+     *
+     */
     interface Enter extends EntityPortalEvent { }
 
     interface Exit extends EntityPortalEvent { }

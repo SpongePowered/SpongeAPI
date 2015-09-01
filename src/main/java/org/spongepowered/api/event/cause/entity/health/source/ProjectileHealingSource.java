@@ -22,15 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.plugin;
 
-import org.spongepowered.api.event.world.LoadWorldEvent;
-import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.world.World;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-/**
- * Called when a {@link PluginContainer} loads a {@link World} level.
- */
-public interface PluginLoadWorldEvent extends LoadWorldEvent, PluginEvent {
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+
+public interface ProjectileHealingSource extends EntityHealingSource {
+
+    @Override
+    Projectile getSource();
+
+    ProjectileSource getShooter();
 
 }

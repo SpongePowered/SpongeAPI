@@ -22,15 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.Server;
-import org.spongepowered.api.event.world.LoadWorldEvent;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Server} loads a {@link World} level.
+ * Called when a {@link BlockState} moves another {@link BlockState} from one {@link Location} to another.
+ *
+ * TODO BlockChangeBlock Candidate for Bulk?
  */
-public interface ServerLoadWorldEvent extends LoadWorldEvent, ServerEvent {
+public interface MoveBlockEvent extends ChangeBlockEvent, Cancellable {
+
+    /**
+     * An event where a {@link BlockEvent} is the source.
+     */
+    interface SourceBlock extends MoveBlockEvent, BlockEvent { }
 
 }

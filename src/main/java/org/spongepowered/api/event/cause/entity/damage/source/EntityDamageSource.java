@@ -28,6 +28,11 @@ import org.spongepowered.api.entity.Entity;
 
 public interface EntityDamageSource extends DamageSource {
 
+    /**
+     * Gets the {@link Entity} that is the source.
+     *
+     * @return The entity source
+     */
     Entity getSource();
 
 }

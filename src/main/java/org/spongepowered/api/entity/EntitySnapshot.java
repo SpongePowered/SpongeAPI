@@ -62,7 +62,10 @@ public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
      * Gets the {@link Transform} as an {@link Optional} as the
      * {@link Location} may be undefined if this {@link EntitySnapshot} was
      * built without a location. This method is linked to {@link #getLocation()}
-     * @return
+     * such that if there is a {@link Location}, there is usually a
+     * {@link Transform}.
+     *
+     * @return The transform, if available
      */
     Optional<Transform<World>> getTransform();
 

@@ -24,6 +24,18 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
+import org.spongepowered.api.event.world.WorldEvent;
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.World;
+
+/**
+ * An event where a {@link Chunk} is being unloaded.
+ */
 public interface UnloadChunkEvent extends ChangeChunkEvent {
+
+    /**
+     * An event where the source is a {@link World}.
+     */
+    interface SourceWorld extends UnloadChunkEvent, WorldEvent { }
 
 }

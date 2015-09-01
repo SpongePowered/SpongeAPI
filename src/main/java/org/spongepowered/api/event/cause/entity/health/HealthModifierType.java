@@ -22,13 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.block.ChangeBlockEvent;
+package org.spongepowered.api.event.cause.entity.health;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Called when a world is about to decay a block.
+ * A type of {@link HealthModifier} that can apply a "grouping" so to speak
+ * for the damage modifier. The use case is being able to differentiate between
+ * various {@link HealthModifier}s based on the {@link HealthModifierType}
+ * without digging through the {@link Cause} provided by
+ * {@link HealthModifier#getCause()}.
  */
-public interface WorldDecayBlockEvent extends ChangeBlockEvent, WorldEvent {
+@CatalogedBy(HealthModifierTypes.class)
+public interface HealthModifierType extends CatalogType {
 
 }

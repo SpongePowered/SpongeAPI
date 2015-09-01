@@ -26,6 +26,10 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.entity.EntityEvent;
 import org.spongepowered.api.event.entity.living.LivingEvent;
@@ -64,8 +68,14 @@ public interface InteractBlockEvent extends InteractEvent {
      */
     Direction getTargetSide();
 
+    /**
+     * An event where a block is being "used".
+     */
     interface Use extends InteractBlockEvent {
 
+        /**
+         * An event where a block is the source.
+         */
         interface SourceBlock extends Use, InteractBlockEvent.SourceBlock { }
 
         interface SourceEntity extends Use, InteractBlockEvent.SourceEntity { }
@@ -77,8 +87,44 @@ public interface InteractBlockEvent extends InteractEvent {
         interface SourcePlayer extends SourceHuman, InteractBlockEvent.SourcePlayer { }
     }
 
+    /**
+     * An event where a block is being "attacked".
+     */
+    interface Attack extends InteractBlockEvent {
+
+        /**
+         * A type of {@link AttackBlockEvent} where the source is an
+         * {@link Entity}.
+         */
+        interface SourceEntity extends Attack, InteractBlockEvent.SourceEntity { }
+
+        /**
+         * A type of {@link AttackBlockEvent} where the source is a
+         * {@link Living}.
+         */
+        interface SourceLiving extends SourceEntity, InteractBlockEvent.SourceLiving { }
+
+        /**
+         * A type of {@link AttackBlockEvent} where the source is a
+         * {@link Human}.
+         */
+        interface SourceHuman extends SourceLiving, InteractBlockEvent.SourceHuman { }
+
+        /**
+         * A type of {@link AttackBlockEvent} where the source is a
+         * {@link Player}.
+         */
+        interface SourcePlayer extends SourceHuman, InteractBlockEvent.SourcePlayer { }
+    }
+
+    /**
+     * An event where a block is the source.
+     */
     interface SourceBlock extends InteractBlockEvent, BlockEvent { }
 
+    /**
+     *
+     */
     interface SourceEntity extends InteractBlockEvent, EntityEvent { }
 
     interface SourceLiving extends SourceEntity, LivingEvent { }

@@ -31,6 +31,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 public interface BlockDamageSourceBuilder extends DamageSourceBuilder {
+
     @Override
     BlockDamageSourceBuilder scalesWithDifficulty();
 

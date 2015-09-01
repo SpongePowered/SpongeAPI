@@ -32,7 +32,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
-import org.spongepowered.api.event.entity.AttackEntityEvent;
+import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.annotation.SetField;
 
@@ -40,7 +40,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractAttackEntityEvent extends AbstractEvent implements AttackEntityEvent {
+public abstract class AbstractAttackEntityEvent extends AbstractEvent implements InteractEntityEvent.Attack {
 
     @SetField protected double originalDamage;
     @SetField protected List<Tuple<DamageModifier, Function<? super Double, Double>>> functions;

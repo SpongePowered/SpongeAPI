@@ -25,7 +25,7 @@
 package org.spongepowered.api.event;
 
 
-/**
+/** 
  * Generates Sponge event implementations.
  */
 public final class SpongeEventFactory {
@@ -59,20 +59,20 @@ public final class SpongeEventFactory {
         return superClass;
     }
 
-    /**
+    /** 
      * Adds an {@link EventFactoryPlugin} to the chain of plugins.
-     *
+     * 
      * <p>The plugin chain is in LIFO order.</p>
-     *
+     * 
      * @param plugin The {@link EventFactoryPlugin} to add to the chain
      */
 public static void addEventFactoryPlugin(org.spongepowered.api.util.event.factory.EventFactoryPlugin plugin) {
         plugins.add(0, plugin);
     }
 
-    /**
+    /** 
      * Creates an event class from an interface and a map of property names to values.
-     *
+     * 
      * @param type The event interface to generate a class for
      * @param values The map of property names to values
      * @param <T> The type of event to be created
@@ -83,9 +83,9 @@ public static void addEventFactoryPlugin(org.spongepowered.api.util.event.factor
         return ((T)(factories.getUnchecked(type).apply(values)));
     }
 
-    /**
+    /** 
      * Creates a new {@link GameStateEvent} of the given type.
-     *
+     * 
      * @param type The type of the state event
      * @param game The game instance for this {@link GameEvent}
      * @param <T> The type of the state event
@@ -101,7 +101,7 @@ public static <T extends org.spongepowered.api.event.game.state.GameStateEvent>T
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.Event}.
-     *
+     * 
      * @return A new event
      */
 public static org.spongepowered.api.event.Event createEvent() {
@@ -109,11 +109,11 @@ public static org.spongepowered.api.event.Event createEvent() {
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.Event.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.GameEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game event
      */
@@ -123,11 +123,11 @@ public static org.spongepowered.api.event.GameEvent createGameEvent(org.spongepo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.GameEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.ChangeExperienceEvent}.
-     *
+     * 
      * @param experience The experience
      * @param originalExperience The original experience
      * @return A new change experience event
@@ -139,11 +139,11 @@ public static org.spongepowered.api.event.action.ChangeExperienceEvent createCha
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.ChangeExperienceEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.ConnectEvent}.
-     *
+     * 
      * @return A new connect event
      */
 public static org.spongepowered.api.event.action.ConnectEvent createConnectEvent() {
@@ -151,11 +151,11 @@ public static org.spongepowered.api.event.action.ConnectEvent createConnectEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.ConnectEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.DisconnectEvent}.
-     *
+     * 
      * @return A new disconnect event
      */
 public static org.spongepowered.api.event.action.DisconnectEvent createDisconnectEvent() {
@@ -163,11 +163,11 @@ public static org.spongepowered.api.event.action.DisconnectEvent createDisconnec
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.DisconnectEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.InteractEvent}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @return A new interact event
@@ -179,11 +179,11 @@ public static org.spongepowered.api.event.action.InteractEvent createInteractEve
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.InteractEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.MessageEvent}.
-     *
+     * 
      * @param game The game
      * @param message The message
      * @param newMessage The new message
@@ -201,11 +201,11 @@ public static org.spongepowered.api.event.action.MessageEvent createMessageEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.MessageEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -223,11 +223,11 @@ public static org.spongepowered.api.event.block.AttackBlockEvent createAttackBlo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -249,11 +249,11 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -275,11 +275,11 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -301,11 +301,11 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -327,11 +327,11 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BlockEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -347,37 +347,11 @@ public static org.spongepowered.api.event.block.BlockEvent createBlockEvent(org.
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BlockEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.BlockMoveBlockEvent}.
-     *
-     * @param game The game
-     * @param sourceSide The source side
-     * @param sourceBlock The source block
-     * @param sourceLocation The source location
-     * @param targetBlock The target block
-     * @param newTargetLocation The new target location
-     * @param originalTargetLocation The original target location
-     * @return A new block move block event
-     */
-public static org.spongepowered.api.event.block.BlockMoveBlockEvent createBlockMoveBlockEvent(org.spongepowered.api.Game game, org.spongepowered.api.util.Direction sourceSide, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> newTargetLocation, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> originalTargetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("sourceSide", sourceSide);
-        values.put("sourceBlock", sourceBlock);
-        values.put("sourceLocation", sourceLocation);
-        values.put("targetBlock", targetBlock);
-        values.put("newTargetLocation", newTargetLocation);
-        values.put("originalTargetLocation", originalTargetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BlockMoveBlockEvent.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @return A new break block event
@@ -389,11 +363,11 @@ public static org.spongepowered.api.event.block.BreakBlockEvent createBreakBlock
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceSide The source side
@@ -411,11 +385,11 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceBlock crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -431,11 +405,11 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceEntity cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -451,11 +425,11 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceHuman crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -471,11 +445,11 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceLiving cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -491,11 +465,11 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourcePlayer cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @return A new change block event
@@ -507,11 +481,11 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent createChangeBlo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -529,11 +503,11 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceBlock cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -549,11 +523,11 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceEntity cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -569,11 +543,11 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceHuman cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -589,11 +563,11 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceLiving cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -609,11 +583,11 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourcePlayer cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceWorld}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceWorld The source world
@@ -627,11 +601,11 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceWorld cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceWorld.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param targetBlock The target block
      * @param targetSide The target side
@@ -647,11 +621,11 @@ public static org.spongepowered.api.event.block.CollideBlockEvent createCollideB
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param targetBlock The target block
      * @param targetSide The target side
@@ -671,11 +645,11 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param targetBlock The target block
      * @param targetSide The target side
@@ -695,11 +669,11 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param targetBlock The target block
      * @param targetSide The target side
@@ -719,11 +693,11 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param targetBlock The target block
      * @param targetSide The target side
@@ -743,11 +717,79 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.DecayBlockEvent}.
+     * 
+     * @param game The game
+     * @param transactions The transactions
+     * @return A new decay block event
+     */
+public static org.spongepowered.api.event.block.DecayBlockEvent createDecayBlockEvent(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("transactions", transactions);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.DecayBlockEvent.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.DecayBlockEvent.SourceWorld}.
+     * 
+     * @param game The game
+     * @param transactions The transactions
+     * @param sourceWorld The source world
+     * @return A new source world decay block event
+     */
+public static org.spongepowered.api.event.block.DecayBlockEvent.SourceWorld createDecayBlockEventSourceWorld(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions, org.spongepowered.api.world.World sourceWorld) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("transactions", transactions);
+        values.put("sourceWorld", sourceWorld);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.DecayBlockEvent.SourceWorld.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.GrowBlockEvent}.
+     * 
+     * @param game The game
+     * @param transactions The transactions
+     * @return A new grow block event
+     */
+public static org.spongepowered.api.event.block.GrowBlockEvent createGrowBlockEvent(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("transactions", transactions);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.GrowBlockEvent.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.GrowBlockEvent.SourceWorld}.
+     * 
+     * @param game The game
+     * @param transactions The transactions
+     * @param sourceWorld The source world
+     * @return A new source world grow block event
+     */
+public static org.spongepowered.api.event.block.GrowBlockEvent.SourceWorld createGrowBlockEventSourceWorld(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions, org.spongepowered.api.world.World sourceWorld) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("transactions", transactions);
+        values.put("sourceWorld", sourceWorld);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.GrowBlockEvent.SourceWorld.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param experience The experience
      * @param originalExperience The original experience
@@ -775,11 +817,11 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent createHarvestB
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -813,11 +855,11 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param experience The experience
      * @param originalExperience The original experience
@@ -849,11 +891,11 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param experience The experience
      * @param originalExperience The original experience
@@ -885,11 +927,11 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param experience The experience
      * @param originalExperience The original experience
@@ -921,11 +963,11 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param experience The experience
      * @param originalExperience The original experience
@@ -957,11 +999,11 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -979,11 +1021,137 @@ public static org.spongepowered.api.event.block.InteractBlockEvent createInterac
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack}.
+     * 
+     * @param game The game
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @param targetLocation The target location
+     * @return A new attack interact block event
+     */
+public static org.spongepowered.api.event.block.InteractBlockEvent.Attack createInteractBlockEventAttack(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.util.Direction targetSide, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        values.put("targetLocation", targetLocation);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceEntity}.
+     * 
+     * @param game The game
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @param targetLocation The target location
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @return A new source entity attack interact block event
+     */
+public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceEntity createInteractBlockEventAttackSourceEntity(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.util.Direction targetSide, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        values.put("targetLocation", targetLocation);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceEntity.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceHuman}.
+     * 
+     * @param game The game
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @param targetLocation The target location
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @return A new source human attack interact block event
+     */
+public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceHuman createInteractBlockEventAttackSourceHuman(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.util.Direction targetSide, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        values.put("targetLocation", targetLocation);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceHuman.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceLiving}.
+     * 
+     * @param game The game
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @param targetLocation The target location
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @return A new source living attack interact block event
+     */
+public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceLiving createInteractBlockEventAttackSourceLiving(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.util.Direction targetSide, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        values.put("targetLocation", targetLocation);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceLiving.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourcePlayer}.
+     * 
+     * @param game The game
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @param targetLocation The target location
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @return A new source player attack interact block event
+     */
+public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourcePlayer createInteractBlockEventAttackSourcePlayer(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.util.Direction targetSide, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        values.put("targetLocation", targetLocation);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourcePlayer.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1007,11 +1175,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1033,11 +1201,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1059,11 +1227,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1085,11 +1253,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1111,11 +1279,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1133,11 +1301,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use createInt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1161,11 +1329,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1187,11 +1355,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEnt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1213,11 +1381,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHum
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1239,11 +1407,11 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiv
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
@@ -1265,11 +1433,49 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePla
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.MoveBlockEvent}.
+     * 
+     * @param game The game
+     * @param transactions The transactions
+     * @return A new move block event
+     */
+public static org.spongepowered.api.event.block.MoveBlockEvent createMoveBlockEvent(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("transactions", transactions);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.MoveBlockEvent.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.MoveBlockEvent.SourceBlock}.
+     * 
+     * @param game The game
+     * @param sourceSide The source side
+     * @param sourceBlock The source block
+     * @param sourceLocation The source location
+     * @param transactions The transactions
+     * @return A new source block move block event
+     */
+public static org.spongepowered.api.event.block.MoveBlockEvent.SourceBlock createMoveBlockEventSourceBlock(org.spongepowered.api.Game game, org.spongepowered.api.util.Direction sourceSide, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceSide", sourceSide);
+        values.put("sourceBlock", sourceBlock);
+        values.put("sourceLocation", sourceLocation);
+        values.put("transactions", transactions);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.MoveBlockEvent.SourceBlock.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1283,11 +1489,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent createN
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1301,11 +1507,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1327,11 +1533,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.So
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1345,11 +1551,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1371,11 +1577,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1389,11 +1595,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1415,11 +1621,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.S
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1441,11 +1647,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceB
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread}.
-     *
+     * 
      * @param game The game
      * @param originalRelatives The original relatives
      * @param relatives The relatives
@@ -1461,11 +1667,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1489,11 +1695,11 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @return A new place block event
@@ -1505,11 +1711,11 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent createPlaceBlock
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1527,11 +1733,11 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceBlock crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -1547,11 +1753,11 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceEntity cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -1567,11 +1773,11 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceHuman crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -1587,11 +1793,11 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceLiving cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceEntity The source entity
@@ -1607,11 +1813,11 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourcePlayer cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.BrewingStandBrewItemsEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1639,11 +1845,11 @@ public static org.spongepowered.api.event.block.tileentity.BrewingStandBrewItems
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.BrewingStandBrewItemsEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.BrewingStandEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1663,11 +1869,79 @@ public static org.spongepowered.api.event.block.tileentity.BrewingStandEvent cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.BrewingStandEvent.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.tileentity.ChangeSignEvent}.
+     * 
+     * @param game The game
+     * @param targetTile The target tile
+     * @param originalText The original text
+     * @param text The text
+     * @return A new change sign event
+     */
+public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent createChangeSignEvent(org.spongepowered.api.Game game, org.spongepowered.api.block.tileentity.TileEntity targetTile, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData originalText, org.spongepowered.api.data.manipulator.mutable.tileentity.SignData text) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("targetTile", targetTile);
+        values.put("originalText", originalText);
+        values.put("text", text);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.ChangeSignEvent.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourceEntity}.
+     * 
+     * @param game The game
+     * @param targetTile The target tile
+     * @param originalText The original text
+     * @param text The text
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @return A new source entity change sign event
+     */
+public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourceEntity createChangeSignEventSourceEntity(org.spongepowered.api.Game game, org.spongepowered.api.block.tileentity.TileEntity targetTile, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData originalText, org.spongepowered.api.data.manipulator.mutable.tileentity.SignData text, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("targetTile", targetTile);
+        values.put("originalText", originalText);
+        values.put("text", text);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourceEntity.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourcePlayer}.
+     * 
+     * @param game The game
+     * @param targetTile The target tile
+     * @param originalText The original text
+     * @param text The text
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @return A new source player change sign event
+     */
+public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourcePlayer createChangeSignEventSourcePlayer(org.spongepowered.api.Game game, org.spongepowered.api.block.tileentity.TileEntity targetTile, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData originalText, org.spongepowered.api.data.manipulator.mutable.tileentity.SignData text, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("targetTile", targetTile);
+        values.put("originalText", originalText);
+        values.put("text", text);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourcePlayer.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1693,11 +1967,11 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEve
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.FurnaceEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1717,11 +1991,11 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceEvent createFu
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.FurnaceEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1747,11 +2021,27 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent}.
+     * 
+     * @param game The game
+     * @param targetTile The target tile
+     * @return A new target tile entity event
+     */
+public static org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent createTargetTileEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.block.tileentity.TileEntity targetTile) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("targetTile", targetTile);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.TileEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -1769,11 +2059,11 @@ public static org.spongepowered.api.event.block.tileentity.TileEntityEvent creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.TileEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.command.CommandSourceEvent}.
-     *
+     * 
      * @param game The game
      * @param source The source
      * @return A new command source event
@@ -1785,11 +2075,11 @@ public static org.spongepowered.api.event.command.CommandSourceEvent createComma
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.command.CommandSourceEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.command.SendCommandEvent}.
-     *
+     * 
      * @param game The game
      * @param source The source
      * @param arguments The arguments
@@ -1807,11 +2097,11 @@ public static org.spongepowered.api.event.command.SendCommandEvent createSendCom
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.command.SendCommandEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.command.TabCompleteCommandEvent}.
-     *
+     * 
      * @param game The game
      * @param source The source
      * @param arguments The arguments
@@ -1829,11 +2119,11 @@ public static org.spongepowered.api.event.command.TabCompleteCommandEvent create
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.command.TabCompleteCommandEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent}.
-     *
+     * 
      * @param game The game
      * @param targetHolder The target holder
      * @return A new change data holder event
@@ -1845,11 +2135,11 @@ public static org.spongepowered.api.event.data.ChangeDataHolderEvent createChang
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.data.ChangeDataHolderEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange}.
-     *
+     * 
      * @param game The game
      * @param targetHolder The target holder
      * @param endResult The end result
@@ -1865,11 +2155,11 @@ public static org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.AffectEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
@@ -1883,235 +2173,11 @@ public static org.spongepowered.api.event.entity.AffectEntityEvent createAffectE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AffectEntityEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.AttackEntityEvent}.
-     *
-     * @param game The game
-     * @param interactionPoint The interaction point
-     * @param targetEntity The target entity
-     * @param targetTransform The target transform
-     * @param baseDamage The base damage
-     * @param finalDamage The final damage
-     * @param originalDamage The original damage
-     * @param originalFinalDamage The original final damage
-     * @param modifiers The modifiers
-     * @param originalFunctions The original functions
-     * @param originalDamages The original damages
-     * @return A new attack entity event
-     */
-public static org.spongepowered.api.event.entity.AttackEntityEvent createAttackEntityEvent(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("interactionPoint", interactionPoint);
-        values.put("targetEntity", targetEntity);
-        values.put("targetTransform", targetTransform);
-        values.put("baseDamage", baseDamage);
-        values.put("finalDamage", finalDamage);
-        values.put("originalDamage", originalDamage);
-        values.put("originalFinalDamage", originalFinalDamage);
-        values.put("modifiers", modifiers);
-        values.put("originalFunctions", originalFunctions);
-        values.put("originalDamages", originalDamages);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AttackEntityEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.AttackEntityEvent.SourceEntity}.
-     *
-     * @param game The game
-     * @param interactionPoint The interaction point
-     * @param targetEntity The target entity
-     * @param targetTransform The target transform
-     * @param baseDamage The base damage
-     * @param finalDamage The final damage
-     * @param originalDamage The original damage
-     * @param originalFinalDamage The original final damage
-     * @param modifiers The modifiers
-     * @param originalFunctions The original functions
-     * @param originalDamages The original damages
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @return A new source entity attack entity event
-     */
-public static org.spongepowered.api.event.entity.AttackEntityEvent.SourceEntity createAttackEntityEventSourceEntity(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("interactionPoint", interactionPoint);
-        values.put("targetEntity", targetEntity);
-        values.put("targetTransform", targetTransform);
-        values.put("baseDamage", baseDamage);
-        values.put("finalDamage", finalDamage);
-        values.put("originalDamage", originalDamage);
-        values.put("originalFinalDamage", originalFinalDamage);
-        values.put("modifiers", modifiers);
-        values.put("originalFunctions", originalFunctions);
-        values.put("originalDamages", originalDamages);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AttackEntityEvent.SourceEntity.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.AttackEntityEvent.SourceHuman}.
-     *
-     * @param game The game
-     * @param interactionPoint The interaction point
-     * @param targetEntity The target entity
-     * @param targetTransform The target transform
-     * @param baseDamage The base damage
-     * @param finalDamage The final damage
-     * @param originalDamage The original damage
-     * @param originalFinalDamage The original final damage
-     * @param modifiers The modifiers
-     * @param originalFunctions The original functions
-     * @param originalDamages The original damages
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @return A new source human attack entity event
-     */
-public static org.spongepowered.api.event.entity.AttackEntityEvent.SourceHuman createAttackEntityEventSourceHuman(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("interactionPoint", interactionPoint);
-        values.put("targetEntity", targetEntity);
-        values.put("targetTransform", targetTransform);
-        values.put("baseDamage", baseDamage);
-        values.put("finalDamage", finalDamage);
-        values.put("originalDamage", originalDamage);
-        values.put("originalFinalDamage", originalFinalDamage);
-        values.put("modifiers", modifiers);
-        values.put("originalFunctions", originalFunctions);
-        values.put("originalDamages", originalDamages);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AttackEntityEvent.SourceHuman.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.AttackEntityEvent.SourceLightning}.
-     *
-     * @param game The game
-     * @param interactionPoint The interaction point
-     * @param targetEntity The target entity
-     * @param targetTransform The target transform
-     * @param baseDamage The base damage
-     * @param finalDamage The final damage
-     * @param originalDamage The original damage
-     * @param originalFinalDamage The original final damage
-     * @param modifiers The modifiers
-     * @param originalFunctions The original functions
-     * @param originalDamages The original damages
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @return A new source lightning attack entity event
-     */
-public static org.spongepowered.api.event.entity.AttackEntityEvent.SourceLightning createAttackEntityEventSourceLightning(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("interactionPoint", interactionPoint);
-        values.put("targetEntity", targetEntity);
-        values.put("targetTransform", targetTransform);
-        values.put("baseDamage", baseDamage);
-        values.put("finalDamage", finalDamage);
-        values.put("originalDamage", originalDamage);
-        values.put("originalFinalDamage", originalFinalDamage);
-        values.put("modifiers", modifiers);
-        values.put("originalFunctions", originalFunctions);
-        values.put("originalDamages", originalDamages);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AttackEntityEvent.SourceLightning.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.AttackEntityEvent.SourceLiving}.
-     *
-     * @param game The game
-     * @param interactionPoint The interaction point
-     * @param targetEntity The target entity
-     * @param targetTransform The target transform
-     * @param baseDamage The base damage
-     * @param finalDamage The final damage
-     * @param originalDamage The original damage
-     * @param originalFinalDamage The original final damage
-     * @param modifiers The modifiers
-     * @param originalFunctions The original functions
-     * @param originalDamages The original damages
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @return A new source living attack entity event
-     */
-public static org.spongepowered.api.event.entity.AttackEntityEvent.SourceLiving createAttackEntityEventSourceLiving(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("interactionPoint", interactionPoint);
-        values.put("targetEntity", targetEntity);
-        values.put("targetTransform", targetTransform);
-        values.put("baseDamage", baseDamage);
-        values.put("finalDamage", finalDamage);
-        values.put("originalDamage", originalDamage);
-        values.put("originalFinalDamage", originalFinalDamage);
-        values.put("modifiers", modifiers);
-        values.put("originalFunctions", originalFunctions);
-        values.put("originalDamages", originalDamages);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AttackEntityEvent.SourceLiving.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.AttackEntityEvent.SourcePlayer}.
-     *
-     * @param game The game
-     * @param interactionPoint The interaction point
-     * @param targetEntity The target entity
-     * @param targetTransform The target transform
-     * @param baseDamage The base damage
-     * @param finalDamage The final damage
-     * @param originalDamage The original damage
-     * @param originalFinalDamage The original final damage
-     * @param modifiers The modifiers
-     * @param originalFunctions The original functions
-     * @param originalDamages The original damages
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @return A new source player attack entity event
-     */
-public static org.spongepowered.api.event.entity.AttackEntityEvent.SourcePlayer createAttackEntityEventSourcePlayer(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("interactionPoint", interactionPoint);
-        values.put("targetEntity", targetEntity);
-        values.put("targetTransform", targetTransform);
-        values.put("baseDamage", baseDamage);
-        values.put("finalDamage", finalDamage);
-        values.put("originalDamage", originalDamage);
-        values.put("originalFinalDamage", originalFinalDamage);
-        values.put("modifiers", modifiers);
-        values.put("originalFunctions", originalFunctions);
-        values.put("originalDamages", originalDamages);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AttackEntityEvent.SourcePlayer.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.BreedEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetEntity The target entity
@@ -2127,11 +2193,11 @@ public static org.spongepowered.api.event.entity.BreedEntityEvent createBreedEnt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.BreedEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetEntity The target entity
@@ -2151,11 +2217,11 @@ public static org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2175,11 +2241,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetHuman}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2199,11 +2265,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.Targ
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2223,11 +2289,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.Targ
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2247,11 +2313,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.Targ
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2269,11 +2335,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Expire}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2291,11 +2357,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.E
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Expire.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Gain}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2313,11 +2379,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.G
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Gain.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Remove}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2335,11 +2401,11 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.R
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Remove.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2353,11 +2419,11 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent createCollid
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2375,11 +2441,11 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceEntity
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2397,11 +2463,11 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceHuman 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2419,11 +2485,11 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceLiving
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2441,11 +2507,11 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourcePlayer
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CreateEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2459,11 +2525,11 @@ public static org.spongepowered.api.event.entity.CreateEntityEvent createCreateE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CreateEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CreateEntityEvent.TargetItem}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2477,11 +2543,11 @@ public static org.spongepowered.api.event.entity.CreateEntityEvent.TargetItem cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CreateEntityEvent.TargetItem.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2509,11 +2575,11 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent createDamageE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2545,11 +2611,11 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2581,11 +2647,11 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2617,11 +2683,11 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2653,11 +2719,11 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DestructEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2673,11 +2739,11 @@ public static org.spongepowered.api.event.entity.DestructEntityEvent createDestr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DestructEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2691,11 +2757,11 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent createDismo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2713,11 +2779,11 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceEntit
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2735,11 +2801,11 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceHuman
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2757,11 +2823,11 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceLivin
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2779,11 +2845,11 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourcePlaye
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2801,11 +2867,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent createDispl
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2823,11 +2889,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move create
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetHuman}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2845,11 +2911,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.Target
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2867,11 +2933,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.Target
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2889,11 +2955,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.Target
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2911,11 +2977,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2933,11 +2999,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLivin
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2955,11 +3021,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlaye
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -2981,11 +3047,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHuman}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -3007,11 +3073,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -3033,11 +3099,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -3059,11 +3125,11 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3077,11 +3143,11 @@ public static org.spongepowered.api.event.entity.EntityEvent createEntityEvent(o
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityPortalEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3095,11 +3161,11 @@ public static org.spongepowered.api.event.entity.EntityPortalEvent createEntityP
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityPortalEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityPortalEvent.Enter}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3113,11 +3179,11 @@ public static org.spongepowered.api.event.entity.EntityPortalEvent.Enter createE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityPortalEvent.Enter.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityPortalEvent.Exit}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3131,11 +3197,11 @@ public static org.spongepowered.api.event.entity.EntityPortalEvent.Exit createEn
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityPortalEvent.Exit.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ExpireEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -3149,11 +3215,11 @@ public static org.spongepowered.api.event.entity.ExpireEntityEvent createExpireE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ExpireEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -3167,11 +3233,11 @@ public static org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @return A new fishing event
@@ -3183,11 +3249,11 @@ public static org.spongepowered.api.event.entity.FishingEvent createFishingEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @return A new cast fishing event
@@ -3199,11 +3265,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast createFishing
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param sourceEntity The source entity
@@ -3219,11 +3285,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceEntity 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param sourceEntity The source entity
@@ -3239,11 +3305,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceHuman c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param sourceEntity The source entity
@@ -3259,11 +3325,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceLiving 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param sourceEntity The source entity
@@ -3279,11 +3345,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourcePlayer 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param targetEntity The target entity
@@ -3299,11 +3365,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook createFishing
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param targetEntity The target entity
@@ -3323,11 +3389,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param targetEntity The target entity
@@ -3347,11 +3413,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param targetEntity The target entity
@@ -3371,11 +3437,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param targetEntity The target entity
@@ -3395,11 +3461,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param caughtEntity The caught entity
@@ -3415,11 +3481,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract createFish
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param caughtEntity The caught entity
@@ -3439,11 +3505,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEnti
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param caughtEntity The caught entity
@@ -3463,11 +3529,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuma
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param caughtEntity The caught entity
@@ -3487,11 +3553,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLivi
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param fishHook The fish hook
      * @param caughtEntity The caught entity
@@ -3511,11 +3577,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlay
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3531,11 +3597,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourceEntity creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3551,11 +3617,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourceHuman create
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3571,11 +3637,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourceLiving creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3591,11 +3657,11 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourcePlayer creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent}.
-     *
+     * 
      * @param experience The experience
      * @param originalExperience The original experience
      * @param game The game
@@ -3613,11 +3679,11 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent createHarves
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman}.
-     *
+     * 
      * @param experience The experience
      * @param originalExperience The original experience
      * @param game The game
@@ -3635,11 +3701,11 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent.TargetLiving}.
-     *
+     * 
      * @param experience The experience
      * @param originalExperience The original experience
      * @param game The game
@@ -3657,11 +3723,11 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetLiving
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.TargetLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer}.
-     *
+     * 
      * @param experience The experience
      * @param originalExperience The original experience
      * @param game The game
@@ -3685,21 +3751,23 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HealEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @param baseHealAmount The base heal amount
      * @param finalHealAmount The final heal amount
      * @param originalHealAmount The original heal amount
-     * @param healAmount The heal amount
+     * @param modifiers The modifiers
+     * @param originalFunctions The original functions
+     * @param originalHealingAmounts The original healing amounts
      * @return A new heal entity event
      */
-public static org.spongepowered.api.event.entity.HealEntityEvent createHealEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseHealAmount, double finalHealAmount, double originalHealAmount, double healAmount) {
+public static org.spongepowered.api.event.entity.HealEntityEvent createHealEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseHealAmount, double finalHealAmount, double originalHealAmount, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.health.HealthModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.health.HealthModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.health.HealthModifier, java.lang.Double> originalHealingAmounts) {
         java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
@@ -3707,15 +3775,17 @@ public static org.spongepowered.api.event.entity.HealEntityEvent createHealEntit
         values.put("baseHealAmount", baseHealAmount);
         values.put("finalHealAmount", finalHealAmount);
         values.put("originalHealAmount", originalHealAmount);
-        values.put("healAmount", healAmount);
+        values.put("modifiers", modifiers);
+        values.put("originalFunctions", originalFunctions);
+        values.put("originalHealingAmounts", originalHealingAmounts);
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HealEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.IgniteEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -3731,11 +3801,11 @@ public static org.spongepowered.api.event.entity.IgniteEntityEvent createIgniteE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.IgniteEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetEntity The target entity
@@ -3751,11 +3821,235 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent createInter
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack}.
+     * 
+     * @param game The game
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @param baseDamage The base damage
+     * @param finalDamage The final damage
+     * @param originalDamage The original damage
+     * @param originalFinalDamage The original final damage
+     * @param modifiers The modifiers
+     * @param originalFunctions The original functions
+     * @param originalDamages The original damages
+     * @return A new attack interact entity event
+     */
+public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack createInteractEntityEventAttack(org.spongepowered.api.Game game, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        values.put("baseDamage", baseDamage);
+        values.put("finalDamage", finalDamage);
+        values.put("originalDamage", originalDamage);
+        values.put("originalFinalDamage", originalFinalDamage);
+        values.put("modifiers", modifiers);
+        values.put("originalFunctions", originalFunctions);
+        values.put("originalDamages", originalDamages);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceEntity}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @param baseDamage The base damage
+     * @param finalDamage The final damage
+     * @param originalDamage The original damage
+     * @param originalFinalDamage The original final damage
+     * @param modifiers The modifiers
+     * @param originalFunctions The original functions
+     * @param originalDamages The original damages
+     * @return A new source entity attack interact entity event
+     */
+public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceEntity createInteractEntityEventAttackSourceEntity(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        values.put("baseDamage", baseDamage);
+        values.put("finalDamage", finalDamage);
+        values.put("originalDamage", originalDamage);
+        values.put("originalFinalDamage", originalFinalDamage);
+        values.put("modifiers", modifiers);
+        values.put("originalFunctions", originalFunctions);
+        values.put("originalDamages", originalDamages);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceEntity.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceHuman}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @param baseDamage The base damage
+     * @param finalDamage The final damage
+     * @param originalDamage The original damage
+     * @param originalFinalDamage The original final damage
+     * @param modifiers The modifiers
+     * @param originalFunctions The original functions
+     * @param originalDamages The original damages
+     * @return A new source human attack interact entity event
+     */
+public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceHuman createInteractEntityEventAttackSourceHuman(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        values.put("baseDamage", baseDamage);
+        values.put("finalDamage", finalDamage);
+        values.put("originalDamage", originalDamage);
+        values.put("originalFinalDamage", originalFinalDamage);
+        values.put("modifiers", modifiers);
+        values.put("originalFunctions", originalFunctions);
+        values.put("originalDamages", originalDamages);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceHuman.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLightning}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @param baseDamage The base damage
+     * @param finalDamage The final damage
+     * @param originalDamage The original damage
+     * @param originalFinalDamage The original final damage
+     * @param modifiers The modifiers
+     * @param originalFunctions The original functions
+     * @param originalDamages The original damages
+     * @return A new source lightning attack interact entity event
+     */
+public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLightning createInteractEntityEventAttackSourceLightning(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        values.put("baseDamage", baseDamage);
+        values.put("finalDamage", finalDamage);
+        values.put("originalDamage", originalDamage);
+        values.put("originalFinalDamage", originalFinalDamage);
+        values.put("modifiers", modifiers);
+        values.put("originalFunctions", originalFunctions);
+        values.put("originalDamages", originalDamages);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLightning.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLiving}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @param baseDamage The base damage
+     * @param finalDamage The final damage
+     * @param originalDamage The original damage
+     * @param originalFinalDamage The original final damage
+     * @param modifiers The modifiers
+     * @param originalFunctions The original functions
+     * @param originalDamages The original damages
+     * @return A new source living attack interact entity event
+     */
+public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLiving createInteractEntityEventAttackSourceLiving(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        values.put("baseDamage", baseDamage);
+        values.put("finalDamage", finalDamage);
+        values.put("originalDamage", originalDamage);
+        values.put("originalFinalDamage", originalFinalDamage);
+        values.put("modifiers", modifiers);
+        values.put("originalFunctions", originalFunctions);
+        values.put("originalDamages", originalDamages);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLiving.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourcePlayer}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @param baseDamage The base damage
+     * @param finalDamage The final damage
+     * @param originalDamage The original damage
+     * @param originalFinalDamage The original final damage
+     * @param modifiers The modifiers
+     * @param originalFunctions The original functions
+     * @param originalDamages The original damages
+     * @return A new source player attack interact entity event
+     */
+public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourcePlayer createInteractEntityEventAttackSourcePlayer(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, com.flowpowered.math.vector.Vector3d interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, double baseDamage, double finalDamage, double originalDamage, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        values.put("baseDamage", baseDamage);
+        values.put("finalDamage", finalDamage);
+        values.put("originalDamage", originalDamage);
+        values.put("originalFinalDamage", originalFinalDamage);
+        values.put("modifiers", modifiers);
+        values.put("originalFunctions", originalFunctions);
+        values.put("originalDamages", originalDamages);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourcePlayer.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -3777,11 +4071,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3801,11 +4095,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntit
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3825,11 +4119,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3849,11 +4143,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceLivin
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3873,11 +4167,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlaye
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use}.
-     *
+     * 
      * @param game The game
      * @param interactionPoint The interaction point
      * @param targetEntity The target entity
@@ -3893,11 +4187,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use createI
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3917,11 +4211,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3941,11 +4235,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceH
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3965,11 +4259,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceL
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -3989,11 +4283,11 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceP
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.LeashEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4007,11 +4301,11 @@ public static org.spongepowered.api.event.entity.LeashEntityEvent createLeashEnt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.LeashEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.MountEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4027,11 +4321,11 @@ public static org.spongepowered.api.event.entity.MountEntityEvent createMountEnt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.MountEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.PreCreateEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetType The target type
      * @param location The location
@@ -4045,11 +4339,11 @@ public static org.spongepowered.api.event.entity.PreCreateEntityEvent createPreC
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.PreCreateEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4063,11 +4357,11 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent createSpawnEnt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -4087,11 +4381,11 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4107,11 +4401,11 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4125,29 +4419,11 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving.CheckSpawn}.
-     *
-     * @param game The game
-     * @param targetEntity The target entity
-     * @param targetTransform The target transform
-     * @return A new check spawn target living spawn entity event
-     */
-public static org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving.CheckSpawn createSpawnEntityEventTargetLivingCheckSpawn(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("targetEntity", targetEntity);
-        values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving.CheckSpawn.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4161,11 +4437,11 @@ public static org.spongepowered.api.event.entity.TameEntityEvent createTameEntit
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4183,11 +4459,11 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourceEntity cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4205,11 +4481,11 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourceHuman cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4227,11 +4503,11 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourceLiving cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4249,11 +4525,11 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourcePlayer cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TargetEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4267,11 +4543,11 @@ public static org.spongepowered.api.event.entity.TargetEntityEvent createTargetE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TargetEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.UnleashEntityEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4287,11 +4563,11 @@ public static org.spongepowered.api.event.entity.UnleashEntityEvent createUnleas
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.UnleashEntityEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.item.ItemMergeItemEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4307,11 +4583,11 @@ public static org.spongepowered.api.event.entity.item.ItemMergeItemEvent createI
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.item.ItemMergeItemEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.item.TargetItemEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4325,11 +4601,11 @@ public static org.spongepowered.api.event.entity.item.TargetItemEvent createTarg
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.item.TargetItemEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.LivingEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4343,11 +4619,11 @@ public static org.spongepowered.api.event.entity.living.LivingEvent createLiving
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.LivingEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.TargetLivingEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4361,11 +4637,11 @@ public static org.spongepowered.api.event.entity.living.TargetLivingEvent create
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.TargetLivingEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent}.
-     *
+     * 
      * @param experience The experience
      * @param originalExperience The original experience
      * @param game The game
@@ -4385,11 +4661,11 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperie
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent.TargetPlayer}.
-     *
+     * 
      * @param experience The experience
      * @param originalExperience The original experience
      * @param game The game
@@ -4413,11 +4689,11 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperie
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4435,11 +4711,11 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanGameMod
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4457,11 +4733,11 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanGameMod
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4479,11 +4755,11 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEv
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4501,11 +4777,11 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEv
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4519,11 +4795,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanEvent createH
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4539,11 +4815,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent cr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.Enter}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4559,11 +4835,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.En
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.Enter.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4579,11 +4855,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.Enter}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4599,11 +4875,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.Enter.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StartSleeping}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4623,11 +4899,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StartSleeping.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StopSleeping}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4647,11 +4923,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StopSleeping.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StartSleeping}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4671,11 +4947,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.St
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StartSleeping.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StopSleeping}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4695,11 +4971,11 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.St
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StopSleeping.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.TargetHumanEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -4713,35 +4989,11 @@ public static org.spongepowered.api.event.entity.living.human.TargetHumanEvent c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.TargetHumanEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.PlayerChangeSignEvent}.
-     *
-     * @param game The game
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @param target The target
-     * @param originalText The original text
-     * @param text The text
-     * @return A new player change sign event
-     */
-public static org.spongepowered.api.event.entity.living.player.PlayerChangeSignEvent createPlayerChangeSignEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.tileentity.Sign target, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData originalText, org.spongepowered.api.data.manipulator.mutable.tileentity.SignData text) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        values.put("target", target);
-        values.put("originalText", originalText);
-        values.put("text", text);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerChangeSignEvent.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4761,11 +5013,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerChangeStati
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerChatEvent}.
-     *
+     * 
      * @param game The game
      * @param message The message
      * @param newMessage The new message
@@ -4789,11 +5041,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerChatEvent c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerChatEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerConnectionEvent}.
-     *
+     * 
      * @param game The game
      * @param connection The connection
      * @return A new player connection event
@@ -4805,11 +5057,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerConnectionE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerConnectionEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerConnectionRegisterChannelEvent}.
-     *
+     * 
      * @param game The game
      * @param connection The connection
      * @param channelRegistered The channel registered
@@ -4823,11 +5075,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerConnectionR
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerConnectionRegisterChannelEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent}.
-     *
+     * 
      * @param game The game
      * @param connection The connection
      * @param channelUnregistered The channel unregistered
@@ -4841,11 +5093,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerConnectionU
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4859,11 +5111,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerEvent creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -4879,11 +5131,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerGainAchieve
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerJoinEvent}.
-     *
+     * 
      * @param game The game
      * @param message The message
      * @param newMessage The new message
@@ -4905,11 +5157,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerJoinEvent c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerJoinEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerKickEvent}.
-     *
+     * 
      * @param game The game
      * @param message The message
      * @param newMessage The new message
@@ -4931,11 +5183,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerKickEvent c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerKickEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerMessageEvent}.
-     *
+     * 
      * @param game The game
      * @param message The message
      * @param newMessage The new message
@@ -4957,11 +5209,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerMessageEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerMessageEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerQuitEvent}.
-     *
+     * 
      * @param game The game
      * @param message The message
      * @param newMessage The new message
@@ -4983,11 +5235,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerQuitEvent c
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerQuitEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5005,11 +5257,11 @@ public static org.spongepowered.api.event.entity.living.player.PlayerResourcePac
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -5027,11 +5279,11 @@ public static org.spongepowered.api.event.entity.living.player.RespawnPlayerEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.TargetPlayerEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -5045,11 +5297,11 @@ public static org.spongepowered.api.event.entity.living.player.TargetPlayerEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.TargetPlayerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -5065,11 +5317,11 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5089,11 +5341,11 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5113,11 +5365,11 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5137,11 +5389,11 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5161,11 +5413,11 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.TargetProjectileEvent}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -5179,29 +5431,11 @@ public static org.spongepowered.api.event.entity.projectile.TargetProjectileEven
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.TargetProjectileEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.game.GamePreConstructEntityEvent}.
-     *
-     * @param game The game
-     * @param entityType The entity type
-     * @param transform The transform
-     * @return A new game pre construct entity event
-     */
-public static org.spongepowered.api.event.game.GamePreConstructEntityEvent createGamePreConstructEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.EntityType entityType, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> transform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("entityType", entityType);
-        values.put("transform", transform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.GamePreConstructEntityEvent.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameAboutToStartServerEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game about to start server event
      */
@@ -5211,11 +5445,11 @@ public static org.spongepowered.api.event.game.state.GameAboutToStartServerEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameAboutToStartServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameConstructionEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game construction event
      */
@@ -5225,11 +5459,11 @@ public static org.spongepowered.api.event.game.state.GameConstructionEvent creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameConstructionEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameInitializationEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game initialization event
      */
@@ -5239,11 +5473,11 @@ public static org.spongepowered.api.event.game.state.GameInitializationEvent cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameInitializationEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameLoadCompleteEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game load complete event
      */
@@ -5253,11 +5487,11 @@ public static org.spongepowered.api.event.game.state.GameLoadCompleteEvent creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameLoadCompleteEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GamePostInitializationEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game post initialization event
      */
@@ -5267,11 +5501,11 @@ public static org.spongepowered.api.event.game.state.GamePostInitializationEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GamePostInitializationEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GamePreInitializationEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game pre initialization event
      */
@@ -5281,11 +5515,11 @@ public static org.spongepowered.api.event.game.state.GamePreInitializationEvent 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GamePreInitializationEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStartedServerEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game started server event
      */
@@ -5295,11 +5529,11 @@ public static org.spongepowered.api.event.game.state.GameStartedServerEvent crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStartedServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStartingServerEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game starting server event
      */
@@ -5309,11 +5543,11 @@ public static org.spongepowered.api.event.game.state.GameStartingServerEvent cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStartingServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStateEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game state event
      */
@@ -5323,11 +5557,11 @@ public static org.spongepowered.api.event.game.state.GameStateEvent createGameSt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStateEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStoppedServerEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game stopped server event
      */
@@ -5337,11 +5571,11 @@ public static org.spongepowered.api.event.game.state.GameStoppedServerEvent crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStoppedServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStoppingServerEvent}.
-     *
+     * 
      * @param game The game
      * @return A new game stopping server event
      */
@@ -5351,11 +5585,11 @@ public static org.spongepowered.api.event.game.state.GameStoppingServerEvent cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStoppingServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.BlockBrewEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -5375,11 +5609,11 @@ public static org.spongepowered.api.event.inventory.BlockBrewEvent createBlockBr
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.BlockBrewEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.BlockInventoryEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -5397,11 +5631,11 @@ public static org.spongepowered.api.event.inventory.BlockInventoryEvent createBl
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.BlockInventoryEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.BulkItemResultEvent}.
-     *
+     * 
      * @param game The game
      * @param inventory The inventory
      * @param results The results
@@ -5415,11 +5649,11 @@ public static org.spongepowered.api.event.inventory.BulkItemResultEvent createBu
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.BulkItemResultEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.ContainerEvent}.
-     *
+     * 
      * @param game The game
      * @param container The container
      * @return A new container event
@@ -5431,11 +5665,11 @@ public static org.spongepowered.api.event.inventory.ContainerEvent createContain
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.ContainerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent}.
-     *
+     * 
      * @param game The game
      * @return A new drop item stack event
      */
@@ -5445,11 +5679,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent createDro
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post}.
-     *
+     * 
      * @param game The game
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
@@ -5463,11 +5697,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
@@ -5487,11 +5721,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
@@ -5509,11 +5743,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
@@ -5531,11 +5765,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
@@ -5553,11 +5787,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
@@ -5575,11 +5809,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre}.
-     *
+     * 
      * @param game The game
      * @param defaultDroppedItems The default dropped items
      * @param droppedItems The dropped items
@@ -5593,11 +5827,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param defaultDroppedItems The default dropped items
      * @param droppedItems The dropped items
@@ -5617,11 +5851,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param defaultDroppedItems The default dropped items
      * @param droppedItems The dropped items
@@ -5639,11 +5873,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param defaultDroppedItems The default dropped items
      * @param droppedItems The dropped items
@@ -5661,11 +5895,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param defaultDroppedItems The default dropped items
      * @param droppedItems The dropped items
@@ -5683,11 +5917,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param defaultDroppedItems The default dropped items
      * @param droppedItems The dropped items
@@ -5705,11 +5939,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -5725,11 +5959,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceBlo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5743,11 +5977,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceEnt
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5761,11 +5995,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceHum
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5779,11 +6013,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceLiv
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5797,11 +6031,11 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourcePla
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.InventoryClickEvent}.
-     *
+     * 
      * @param game The game
      * @param container The container
      * @param viewer The viewer
@@ -5815,11 +6049,11 @@ public static org.spongepowered.api.event.inventory.InventoryClickEvent createIn
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.InventoryClickEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.InventoryCloseEvent}.
-     *
+     * 
      * @param game The game
      * @param container The container
      * @param viewer The viewer
@@ -5833,11 +6067,11 @@ public static org.spongepowered.api.event.inventory.InventoryCloseEvent createIn
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.InventoryCloseEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.InventoryEvent}.
-     *
+     * 
      * @param game The game
      * @param inventory The inventory
      * @return A new inventory event
@@ -5849,11 +6083,11 @@ public static org.spongepowered.api.event.inventory.InventoryEvent createInvento
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.InventoryEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.ItemResultEvent}.
-     *
+     * 
      * @param game The game
      * @param inventory The inventory
      * @param result The result
@@ -5867,11 +6101,11 @@ public static org.spongepowered.api.event.inventory.ItemResultEvent createItemRe
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.ItemResultEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent}.
-     *
+     * 
      * @param game The game
      * @param inventory The inventory
      * @param items The items
@@ -5885,11 +6119,11 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent createPickUp
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock}.
-     *
+     * 
      * @param game The game
      * @param sourceSide The source side
      * @param sourceBlock The source block
@@ -5909,11 +6143,11 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5931,11 +6165,11 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceEntity
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5953,11 +6187,11 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceHuman 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5975,11 +6209,11 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceLiving
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -5997,11 +6231,11 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourcePlayer
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent}.
-     *
+     * 
      * @param game The game
      * @param itemStackInUse The item stack in use
      * @return A new use item stack event
@@ -6013,11 +6247,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent createUseI
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Finish}.
-     *
+     * 
      * @param game The game
      * @param itemStackInUse The item stack in use
      * @return A new finish use item stack event
@@ -6029,11 +6263,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Finish cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Finish.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6049,11 +6283,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Finish}.
-     *
+     * 
      * @param game The game
      * @param itemStackInUse The item stack in use
      * @param sourceEntity The source entity
@@ -6069,11 +6303,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Finish.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Start}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6089,11 +6323,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Start.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Stop}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6109,11 +6343,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Stop.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Tick}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6129,11 +6363,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Tick.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6149,11 +6383,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Finish}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6169,11 +6403,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Finish.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Start}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6189,11 +6423,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Start.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Stop}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6209,11 +6443,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Stop.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Tick}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6229,11 +6463,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Tick.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6249,11 +6483,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Finish}.
-     *
+     * 
      * @param game The game
      * @param itemStackInUse The item stack in use
      * @param sourceEntity The source entity
@@ -6269,11 +6503,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Finish.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Start}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6289,11 +6523,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Start.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Stop}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6309,11 +6543,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Stop.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Tick}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6329,11 +6563,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Tick.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6349,11 +6583,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Finish}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6369,11 +6603,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Finish.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Start}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6389,11 +6623,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Start.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Stop}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6409,11 +6643,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Stop.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Tick}.
-     *
+     * 
      * @param game The game
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
@@ -6429,11 +6663,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Tick.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Start}.
-     *
+     * 
      * @param game The game
      * @param itemStackInUse The item stack in use
      * @return A new start use item stack event
@@ -6445,11 +6679,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Start crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Start.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Stop}.
-     *
+     * 
      * @param game The game
      * @param itemStackInUse The item stack in use
      * @return A new stop use item stack event
@@ -6461,11 +6695,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Stop creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Stop.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Tick}.
-     *
+     * 
      * @param game The game
      * @param itemStackInUse The item stack in use
      * @return A new tick use item stack event
@@ -6477,11 +6711,11 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Tick creat
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Tick.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent}.
-     *
+     * 
      * @param game The game
      * @param container The container
      * @param viewer The viewer
@@ -6503,11 +6737,11 @@ public static org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent 
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.viewer.ViewerEvent}.
-     *
+     * 
      * @param game The game
      * @param container The container
      * @param viewer The viewer
@@ -6521,11 +6755,11 @@ public static org.spongepowered.api.event.inventory.viewer.ViewerEvent createVie
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.viewer.ViewerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEvent}.
-     *
+     * 
      * @param game The game
      * @param container The container
      * @param viewer The viewer
@@ -6539,11 +6773,11 @@ public static org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEv
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.BanIpEvent}.
-     *
+     * 
      * @param ban The ban
      * @return A new ban ip event
      */
@@ -6553,77 +6787,77 @@ public static org.spongepowered.api.event.network.BanIpEvent createBanIpEvent(or
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.BanIpEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.network.GameClientAuthEvent}.
-     *
+     * {@link org.spongepowered.api.event.network.GameClientConnectionEvent}.
+     * 
      * @param game The game
      * @param disconnectCause The disconnect cause
      * @param disconnectMessage The disconnect message
      * @param profile The profile
      * @param connection The connection
-     * @return A new game client auth event
+     * @return A new game client connection event
      */
-public static org.spongepowered.api.event.network.GameClientAuthEvent createGameClientAuthEvent(org.spongepowered.api.Game game, org.spongepowered.api.event.cause.Cause disconnectCause, org.spongepowered.api.text.Text disconnectMessage, org.spongepowered.api.GameProfile profile, org.spongepowered.api.network.RemoteConnection connection) {
+public static org.spongepowered.api.event.network.GameClientConnectionEvent createGameClientConnectionEvent(org.spongepowered.api.Game game, org.spongepowered.api.event.cause.Cause disconnectCause, org.spongepowered.api.text.Text disconnectMessage, org.spongepowered.api.GameProfile profile, org.spongepowered.api.network.RemoteConnection connection) {
         java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
         values.put("game", game);
         values.put("disconnectCause", disconnectCause);
         values.put("disconnectMessage", disconnectMessage);
         values.put("profile", profile);
         values.put("connection", connection);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientAuthEvent.class, values);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientConnectionEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.network.GameClientConnectEvent}.
-     *
+     * {@link org.spongepowered.api.event.network.GameClientConnectionEvent.Authenticate}.
+     * 
      * @param game The game
      * @param disconnectCause The disconnect cause
      * @param disconnectMessage The disconnect message
      * @param profile The profile
      * @param connection The connection
-     * @return A new game client connect event
+     * @return A new authenticate game client connection event
      */
-public static org.spongepowered.api.event.network.GameClientConnectEvent createGameClientConnectEvent(org.spongepowered.api.Game game, org.spongepowered.api.event.cause.Cause disconnectCause, org.spongepowered.api.text.Text disconnectMessage, org.spongepowered.api.GameProfile profile, org.spongepowered.api.network.RemoteConnection connection) {
+public static org.spongepowered.api.event.network.GameClientConnectionEvent.Authenticate createGameClientConnectionEventAuthenticate(org.spongepowered.api.Game game, org.spongepowered.api.event.cause.Cause disconnectCause, org.spongepowered.api.text.Text disconnectMessage, org.spongepowered.api.GameProfile profile, org.spongepowered.api.network.RemoteConnection connection) {
         java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
         values.put("game", game);
         values.put("disconnectCause", disconnectCause);
         values.put("disconnectMessage", disconnectMessage);
         values.put("profile", profile);
         values.put("connection", connection);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientConnectEvent.class, values);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientConnectionEvent.Authenticate.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.network.GameClientLoginEvent}.
-     *
+     * {@link org.spongepowered.api.event.network.GameClientConnectionEvent.Login}.
+     * 
      * @param game The game
      * @param disconnectCause The disconnect cause
      * @param disconnectMessage The disconnect message
      * @param profile The profile
      * @param connection The connection
-     * @return A new game client login event
+     * @return A new login game client connection event
      */
-public static org.spongepowered.api.event.network.GameClientLoginEvent createGameClientLoginEvent(org.spongepowered.api.Game game, org.spongepowered.api.event.cause.Cause disconnectCause, org.spongepowered.api.text.Text disconnectMessage, org.spongepowered.api.GameProfile profile, org.spongepowered.api.network.RemoteConnection connection) {
+public static org.spongepowered.api.event.network.GameClientConnectionEvent.Login createGameClientConnectionEventLogin(org.spongepowered.api.Game game, org.spongepowered.api.event.cause.Cause disconnectCause, org.spongepowered.api.text.Text disconnectMessage, org.spongepowered.api.GameProfile profile, org.spongepowered.api.network.RemoteConnection connection) {
         java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
         values.put("game", game);
         values.put("disconnectCause", disconnectCause);
         values.put("disconnectMessage", disconnectMessage);
         values.put("profile", profile);
         values.put("connection", connection);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientLoginEvent.class, values);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientConnectionEvent.Login.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.PardonIpEvent}.
-     *
+     * 
      * @param ban The ban
      * @return A new pardon ip event
      */
@@ -6633,11 +6867,11 @@ public static org.spongepowered.api.event.network.PardonIpEvent createPardonIpEv
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.PardonIpEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.plugin.PluginEvent}.
-     *
+     * 
      * @param game The game
      * @param plugin The plugin
      * @return A new plugin event
@@ -6649,11 +6883,11 @@ public static org.spongepowered.api.event.plugin.PluginEvent createPluginEvent(o
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.plugin.PluginForceChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param plugin The plugin
      * @param chunkCoords The chunk coords
@@ -6669,29 +6903,11 @@ public static org.spongepowered.api.event.plugin.PluginForceChunkEvent createPlu
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginForceChunkEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.plugin.PluginLoadWorldEvent}.
-     *
-     * @param game The game
-     * @param plugin The plugin
-     * @param targetWorld The target world
-     * @return A new plugin load world event
-     */
-public static org.spongepowered.api.event.plugin.PluginLoadWorldEvent createPluginLoadWorldEvent(org.spongepowered.api.Game game, org.spongepowered.api.plugin.PluginContainer plugin, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("plugin", plugin);
-        values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginLoadWorldEvent.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.plugin.PluginUnforceChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceWorld The source world
      * @param chunkCoords The chunk coords
@@ -6707,27 +6923,11 @@ public static org.spongepowered.api.event.plugin.PluginUnforceChunkEvent createP
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginUnforceChunkEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.plugin.PluginUnloadWorldEvent}.
-     *
-     * @param game The game
-     * @param targetWorld The target world
-     * @return A new plugin unload world event
-     */
-public static org.spongepowered.api.event.plugin.PluginUnloadWorldEvent createPluginUnloadWorldEvent(org.spongepowered.api.Game game, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginUnloadWorldEvent.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconEvent}.
-     *
+     * 
      * @param source The source
      * @return A new rcon event
      */
@@ -6737,11 +6937,11 @@ public static org.spongepowered.api.event.rcon.RconEvent createRconEvent(org.spo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.rcon.RconEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconLoginEvent}.
-     *
+     * 
      * @param source The source
      * @return A new rcon login event
      */
@@ -6751,11 +6951,11 @@ public static org.spongepowered.api.event.rcon.RconLoginEvent createRconLoginEve
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.rcon.RconLoginEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconQuitEvent}.
-     *
+     * 
      * @param source The source
      * @return A new rcon quit event
      */
@@ -6765,11 +6965,11 @@ public static org.spongepowered.api.event.rcon.RconQuitEvent createRconQuitEvent
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.rcon.RconQuitEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.PingServerEvent}.
-     *
+     * 
      * @param game The game
      * @param server The server
      * @param response The response
@@ -6785,11 +6985,11 @@ public static org.spongepowered.api.event.server.PingServerEvent createPingServe
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.PingServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.PingServerEvent.Response}.
-     *
+     * 
      * @param players The players
      * @param description The description
      * @param favicon The favicon
@@ -6805,11 +7005,11 @@ public static org.spongepowered.api.event.server.PingServerEvent.Response create
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.PingServerEvent.Response.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.PingServerEvent.Response.Players}.
-     *
+     * 
      * @param profiles The profiles
      * @param max The max
      * @param online The online
@@ -6823,11 +7023,11 @@ public static org.spongepowered.api.event.server.PingServerEvent.Response.Player
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.PingServerEvent.Response.Players.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.ServerCreateWorldEvent}.
-     *
+     * 
      * @param game The game
      * @param server The server
      * @param worldCreationSettings The world creation settings
@@ -6843,11 +7043,11 @@ public static org.spongepowered.api.event.server.ServerCreateWorldEvent createSe
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.ServerCreateWorldEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.ServerEvent}.
-     *
+     * 
      * @param game The game
      * @param server The server
      * @return A new server event
@@ -6859,45 +7059,11 @@ public static org.spongepowered.api.event.server.ServerEvent createServerEvent(o
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.ServerEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.server.ServerLoadWorldEvent}.
-     *
-     * @param game The game
-     * @param server The server
-     * @param targetWorld The target world
-     * @return A new server load world event
-     */
-public static org.spongepowered.api.event.server.ServerLoadWorldEvent createServerLoadWorldEvent(org.spongepowered.api.Game game, org.spongepowered.api.Server server, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("server", server);
-        values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.ServerLoadWorldEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.server.ServerUnloadWorldEvent}.
-     *
-     * @param game The game
-     * @param targetWorld The target world
-     * @return A new server unload world event
-     */
-public static org.spongepowered.api.event.server.ServerUnloadWorldEvent createServerUnloadWorldEvent(org.spongepowered.api.Game game, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.ServerUnloadWorldEvent.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.query.BasicQueryServerEvent}.
-     *
+     * 
      * @param maxPlayerCount The max player count
      * @param maxSize The max size
      * @param playerCount The player count
@@ -6921,11 +7087,11 @@ public static org.spongepowered.api.event.server.query.BasicQueryServerEvent cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.query.BasicQueryServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.query.FullQueryServerEvent}.
-     *
+     * 
      * @param maxPlayerCount The max player count
      * @param maxSize The max size
      * @param playerCount The player count
@@ -6959,11 +7125,11 @@ public static org.spongepowered.api.event.server.query.FullQueryServerEvent crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.query.FullQueryServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.query.QueryServerEvent}.
-     *
+     * 
      * @param maxPlayerCount The max player count
      * @param maxSize The max size
      * @param playerCount The player count
@@ -6987,11 +7153,11 @@ public static org.spongepowered.api.event.server.query.QueryServerEvent createQu
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.query.QueryServerEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.BanUserEvent}.
-     *
+     * 
      * @param targetUser The target user
      * @param ban The ban
      * @return A new ban user event
@@ -7003,11 +7169,11 @@ public static org.spongepowered.api.event.user.BanUserEvent createBanUserEvent(o
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.BanUserEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.BanUserEvent.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -7025,11 +7191,11 @@ public static org.spongepowered.api.event.user.BanUserEvent.TargetPlayer createB
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.BanUserEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.PardonUserEvent}.
-     *
+     * 
      * @param targetUser The target user
      * @param ban The ban
      * @return A new pardon user event
@@ -7041,11 +7207,11 @@ public static org.spongepowered.api.event.user.PardonUserEvent createPardonUserE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.PardonUserEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer}.
-     *
+     * 
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
@@ -7063,11 +7229,11 @@ public static org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.TargetUserEvent}.
-     *
+     * 
      * @param targetUser The target user
      * @return A new target user event
      */
@@ -7077,11 +7243,11 @@ public static org.spongepowered.api.event.user.TargetUserEvent createTargetUserE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.TargetUserEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.ChangeWorldGameRuleEvent}.
-     *
+     * 
      * @param game The game
      * @param name The name
      * @param newValue The new value
@@ -7099,11 +7265,11 @@ public static org.spongepowered.api.event.world.ChangeWorldGameRuleEvent createC
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.ChangeWorldGameRuleEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.ChangeWorldWeatherEvent}.
-     *
+     * 
      * @param game The game
      * @param duration The duration
      * @param world The world
@@ -7121,11 +7287,107 @@ public static org.spongepowered.api.event.world.ChangeWorldWeatherEvent createCh
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.ChangeWorldWeatherEvent.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.CreatePortalEvent}.
+     * 
+     * @param game The game
+     * @param portalLocation The portal location
+     * @return A new create portal event
+     */
+public static org.spongepowered.api.event.world.CreatePortalEvent createCreatePortalEvent(org.spongepowered.api.Game game, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("portalLocation", portalLocation);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param portalLocation The portal location
+     * @return A new source entity create portal event
+     */
+public static org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity createCreatePortalEventSourceEntity(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("portalLocation", portalLocation);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param portalLocation The portal location
+     * @return A new source human create portal event
+     */
+public static org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman createCreatePortalEventSourceHuman(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("portalLocation", portalLocation);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param portalLocation The portal location
+     * @return A new source living create portal event
+     */
+public static org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving createCreatePortalEventSourceLiving(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("portalLocation", portalLocation);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer}.
+     * 
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param portalLocation The portal location
+     * @return A new source player create portal event
+     */
+public static org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer createCreatePortalEventSourcePlayer(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("portalLocation", portalLocation);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.CreateWorldEvent}.
-     *
+     * 
      * @param game The game
      * @param worldCreationSettings The world creation settings
      * @param worldProperties The world properties
@@ -7139,11 +7401,11 @@ public static org.spongepowered.api.event.world.CreateWorldEvent createCreateWor
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreateWorldEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.LoadWorldEvent}.
-     *
+     * 
      * @param game The game
      * @param targetWorld The target world
      * @return A new load world event
@@ -7155,11 +7417,47 @@ public static org.spongepowered.api.event.world.LoadWorldEvent createLoadWorldEv
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.LoadWorldEvent.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin}.
+     * 
+     * @param game The game
+     * @param plugin The plugin
+     * @param targetWorld The target world
+     * @return A new source plugin load world event
+     */
+public static org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin createLoadWorldEventSourcePlugin(org.spongepowered.api.Game game, org.spongepowered.api.plugin.PluginContainer plugin, org.spongepowered.api.world.World targetWorld) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("plugin", plugin);
+        values.put("targetWorld", targetWorld);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.LoadWorldEvent.SourceServer}.
+     * 
+     * @param game The game
+     * @param server The server
+     * @param targetWorld The target world
+     * @return A new source server load world event
+     */
+public static org.spongepowered.api.event.world.LoadWorldEvent.SourceServer createLoadWorldEventSourceServer(org.spongepowered.api.Game game, org.spongepowered.api.Server server, org.spongepowered.api.world.World targetWorld) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("server", server);
+        values.put("targetWorld", targetWorld);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.LoadWorldEvent.SourceServer.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.UnloadWorldEvent}.
-     *
+     * 
      * @param game The game
      * @param targetWorld The target world
      * @return A new unload world event
@@ -7171,29 +7469,47 @@ public static org.spongepowered.api.event.world.UnloadWorldEvent createUnloadWor
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.UnloadWorldEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldDecayBlockEvent}.
-     *
+     * {@link org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin}.
+     * 
      * @param game The game
-     * @param transactions The transactions
-     * @param sourceWorld The source world
-     * @return A new world decay block event
+     * @param plugin The plugin
+     * @param targetWorld The target world
+     * @return A new source plugin unload world event
      */
-public static org.spongepowered.api.event.world.WorldDecayBlockEvent createWorldDecayBlockEvent(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions, org.spongepowered.api.world.World sourceWorld) {
+public static org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin createUnloadWorldEventSourcePlugin(org.spongepowered.api.Game game, org.spongepowered.api.plugin.PluginContainer plugin, org.spongepowered.api.world.World targetWorld) {
         java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
         values.put("game", game);
-        values.put("transactions", transactions);
-        values.put("sourceWorld", sourceWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldDecayBlockEvent.class, values);
+        values.put("plugin", plugin);
+        values.put("targetWorld", targetWorld);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer}.
+     * 
+     * @param game The game
+     * @param server The server
+     * @param targetWorld The target world
+     * @return A new source server unload world event
+     */
+public static org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer createUnloadWorldEventSourceServer(org.spongepowered.api.Game game, org.spongepowered.api.Server server, org.spongepowered.api.world.World targetWorld) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("server", server);
+        values.put("targetWorld", targetWorld);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceWorld The source world
      * @return A new world event
@@ -7205,11 +7521,11 @@ public static org.spongepowered.api.event.world.WorldEvent createWorldEvent(org.
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldExplosionEvent}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceWorld The source world
@@ -7225,20 +7541,20 @@ public static org.spongepowered.api.event.world.WorldExplosionEvent createWorldE
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldExplosionEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldExplosionEvent.OnExplosion}.
-     *
+     * {@link org.spongepowered.api.event.world.WorldExplosionEvent.Detonate}.
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
      * @param sourceWorld The source world
      * @param explosion The explosion
-     * @return A new on explosion world explosion event
+     * @return A new detonate world explosion event
      */
-public static org.spongepowered.api.event.world.WorldExplosionEvent.OnExplosion createWorldExplosionEventOnExplosion(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions, java.util.List<? extends org.spongepowered.api.entity.Entity> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.explosion.Explosion explosion) {
+public static org.spongepowered.api.event.world.WorldExplosionEvent.Detonate createWorldExplosionEventDetonate(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions, java.util.List<? extends org.spongepowered.api.entity.Entity> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.explosion.Explosion explosion) {
         java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
         values.put("game", game);
         values.put("transactions", transactions);
@@ -7246,14 +7562,14 @@ public static org.spongepowered.api.event.world.WorldExplosionEvent.OnExplosion 
         values.put("entitySnapshots", entitySnapshots);
         values.put("sourceWorld", sourceWorld);
         values.put("explosion", explosion);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldExplosionEvent.OnExplosion.class, values);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldExplosionEvent.Detonate.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldExplosionEvent.Pre}.
-     *
+     * 
      * @param game The game
      * @param transactions The transactions
      * @param sourceWorld The source world
@@ -7269,11 +7585,11 @@ public static org.spongepowered.api.event.world.WorldExplosionEvent.Pre createWo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldExplosionEvent.Pre.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldGenerateChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param targetChunk The target chunk
      * @return A new world generate chunk event
@@ -7285,11 +7601,11 @@ public static org.spongepowered.api.event.world.WorldGenerateChunkEvent createWo
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldGenerateChunkEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldGenerateChunkEvent.Post}.
-     *
+     * 
      * @param game The game
      * @param targetChunk The target chunk
      * @return A new post world generate chunk event
@@ -7301,11 +7617,11 @@ public static org.spongepowered.api.event.world.WorldGenerateChunkEvent.Post cre
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldGenerateChunkEvent.Post.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldGenerateChunkEvent.Pre}.
-     *
+     * 
      * @param game The game
      * @param targetChunk The target chunk
      * @return A new pre world generate chunk event
@@ -7317,103 +7633,11 @@ public static org.spongepowered.api.event.world.WorldGenerateChunkEvent.Pre crea
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldGenerateChunkEvent.Pre.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldGrowBlockEvent}.
-     *
-     * @param game The game
-     * @param transactions The transactions
-     * @param sourceWorld The source world
-     * @return A new world grow block event
-     */
-public static org.spongepowered.api.event.world.WorldGrowBlockEvent createWorldGrowBlockEvent(org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions, org.spongepowered.api.world.World sourceWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("transactions", transactions);
-        values.put("sourceWorld", sourceWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldGrowBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldLoadChunkEvent}.
-     *
-     * @param game The game
-     * @param sourceWorld The source world
-     * @param targetChunk The target chunk
-     * @return A new world load chunk event
-     */
-public static org.spongepowered.api.event.world.WorldLoadChunkEvent createWorldLoadChunkEvent(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("sourceWorld", sourceWorld);
-        values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldLoadChunkEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldPopulateChunkEvent}.
-     *
-     * @param game The game
-     * @param sourceWorld The source world
-     * @param targetChunk The target chunk
-     * @return A new world populate chunk event
-     */
-public static org.spongepowered.api.event.world.WorldPopulateChunkEvent createWorldPopulateChunkEvent(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("sourceWorld", sourceWorld);
-        values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldPopulateChunkEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldPopulateChunkEvent.Post}.
-     *
-     * @param game The game
-     * @param sourceWorld The source world
-     * @param targetChunk The target chunk
-     * @return A new post world populate chunk event
-     */
-public static org.spongepowered.api.event.world.WorldPopulateChunkEvent.Post createWorldPopulateChunkEventPost(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("sourceWorld", sourceWorld);
-        values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldPopulateChunkEvent.Post.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldPopulateChunkEvent.Pre}.
-     *
-     * @param game The game
-     * @param sourceWorld The source world
-     * @param targetChunk The target chunk
-     * @param pendingPopulators The pending populators
-     * @return A new pre world populate chunk event
-     */
-public static org.spongepowered.api.event.world.WorldPopulateChunkEvent.Pre createWorldPopulateChunkEventPre(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk, java.util.List<org.spongepowered.api.world.gen.Populator> pendingPopulators) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("sourceWorld", sourceWorld);
-        values.put("targetChunk", targetChunk);
-        values.put("pendingPopulators", pendingPopulators);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldPopulateChunkEvent.Pre.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldTickBlockEvent}.
-     *
+     * 
      * @param game The game
      * @param sourceWorld The source world
      * @param targetBlock The target block
@@ -7429,29 +7653,11 @@ public static org.spongepowered.api.event.world.WorldTickBlockEvent createWorldT
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldTickBlockEvent.class, values);
     }
 
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.WorldUnloadChunkEvent}.
-     *
-     * @param game The game
-     * @param sourceWorld The source world
-     * @param targetChunk The target chunk
-     * @return A new world unload chunk event
-     */
-public static org.spongepowered.api.event.world.WorldUnloadChunkEvent createWorldUnloadChunkEvent(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        values.put("game", game);
-        values.put("sourceWorld", sourceWorld);
-        values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldUnloadChunkEvent.class, values);
-    }
-
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.ChangeChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param targetChunk The target chunk
      * @return A new change chunk event
@@ -7463,11 +7669,11 @@ public static org.spongepowered.api.event.world.chunk.ChangeChunkEvent createCha
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.ChangeChunkEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWorld}.
-     *
+     * 
      * @param game The game
      * @param sourceWorld The source world
      * @param targetChunk The target chunk
@@ -7481,11 +7687,11 @@ public static org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWor
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWorld.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.ForcedChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param targetChunk The target chunk
      * @param chunkCoords The chunk coords
@@ -7501,11 +7707,11 @@ public static org.spongepowered.api.event.world.chunk.ForcedChunkEvent createFor
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.ForcedChunkEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.LoadChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param targetChunk The target chunk
      * @return A new load chunk event
@@ -7517,11 +7723,103 @@ public static org.spongepowered.api.event.world.chunk.LoadChunkEvent createLoadC
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.LoadChunkEvent.class, values);
     }
 
-    /**
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.chunk.LoadChunkEvent.SourceWorld}.
+     * 
+     * @param game The game
+     * @param sourceWorld The source world
+     * @param targetChunk The target chunk
+     * @return A new source world load chunk event
+     */
+public static org.spongepowered.api.event.world.chunk.LoadChunkEvent.SourceWorld createLoadChunkEventSourceWorld(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceWorld", sourceWorld);
+        values.put("targetChunk", targetChunk);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.LoadChunkEvent.SourceWorld.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent}.
+     * 
+     * @param game The game
+     * @param sourceWorld The source world
+     * @param targetChunk The target chunk
+     * @return A new populate chunk event
+     */
+public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent createPopulateChunkEvent(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceWorld", sourceWorld);
+        values.put("targetChunk", targetChunk);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populate}.
+     * 
+     * @param game The game
+     * @param sourceWorld The source world
+     * @param targetChunk The target chunk
+     * @return A new populate populate chunk event
+     */
+public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populate createPopulateChunkEventPopulate(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceWorld", sourceWorld);
+        values.put("targetChunk", targetChunk);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populate.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post}.
+     * 
+     * @param game The game
+     * @param sourceWorld The source world
+     * @param targetChunk The target chunk
+     * @return A new post populate chunk event
+     */
+public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post createPopulateChunkEventPost(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceWorld", sourceWorld);
+        values.put("targetChunk", targetChunk);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post.class, values);
+    }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Pre}.
+     * 
+     * @param game The game
+     * @param sourceWorld The source world
+     * @param targetChunk The target chunk
+     * @param pendingPopulators The pending populators
+     * @return A new pre populate chunk event
+     */
+public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Pre createPopulateChunkEventPre(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk, java.util.List<org.spongepowered.api.world.gen.Populator> pendingPopulators) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceWorld", sourceWorld);
+        values.put("targetChunk", targetChunk);
+        values.put("pendingPopulators", pendingPopulators);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Pre.class, values);
+    }
+
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.UnforcedChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param chunkCoords The chunk coords
      * @param ticket The ticket
@@ -7535,11 +7833,11 @@ public static org.spongepowered.api.event.world.chunk.UnforcedChunkEvent createU
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.UnforcedChunkEvent.class, values);
     }
 
-    /**
+    /** 
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.UnloadChunkEvent}.
-     *
+     * 
      * @param game The game
      * @param targetChunk The target chunk
      * @return A new unload chunk event
@@ -7550,4 +7848,23 @@ public static org.spongepowered.api.event.world.chunk.UnloadChunkEvent createUnl
         values.put("targetChunk", targetChunk);
         return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.UnloadChunkEvent.class, values);
     }
+
+    /** 
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.chunk.UnloadChunkEvent.SourceWorld}.
+     * 
+     * @param game The game
+     * @param sourceWorld The source world
+     * @param targetChunk The target chunk
+     * @return A new source world unload chunk event
+     */
+public static org.spongepowered.api.event.world.chunk.UnloadChunkEvent.SourceWorld createUnloadChunkEventSourceWorld(org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
+        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+        values.put("game", game);
+        values.put("sourceWorld", sourceWorld);
+        values.put("targetChunk", targetChunk);
+        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.UnloadChunkEvent.SourceWorld.class, values);
+    }
 }
+

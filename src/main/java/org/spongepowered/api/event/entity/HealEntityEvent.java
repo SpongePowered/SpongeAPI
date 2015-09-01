@@ -24,20 +24,133 @@
  */
 package org.spongepowered.api.event.entity;
 
+import com.google.common.base.Function;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.cause.entity.health.HealthModifier;
+import org.spongepowered.api.event.cause.entity.health.HealthModifierBuilder;
+import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
+import org.spongepowered.api.util.Tuple;
 
+import java.util.List;
+import java.util.Map;
+
+/**
+ * An event where an {@link Entity} is "healed". This can usually mean that
+ * after a certain amount of "heal amount" the entity is destroyed. Similar to
+ * the {@link InteractEntityEvent.Attack}, this event uses various modifiers
+ */
 public interface HealEntityEvent extends TargetEntityEvent, CauseTracked {
 
+    /**
+     * Gets the original amount to "heal" the targeted {@link Entity}.
+     *
+     * @return The original heal amount
+     */
     double getOriginalHealAmount();
 
-    double getBaseHealAmount();
+    /**
+     * Gets an {@link Map} of all original {@link HealthModifier}s
+     * and their associated "modified" heal amount. Note that ordering is not
+     * retained.
+     *
+     * @return An immutable map of the original modified heal amounts
+     */
+    Map<HealthModifier, Double> getOriginalHealingAmounts();
 
-    void setBaseHealAmount(double healAmount);
-
+    /**
+     * Gets the final heal amount that will be applied to the entity. The
+     * final heal amount is the end result of the {@link #getBaseHealAmount()}
+     * being applied in {@link Function#apply(Object)} available from all
+     * the {@link Tuple}s of {@link HealthModifier} to {@link Function} in
+     * {@link #getOriginalFunctions()}.
+     *
+     * @return The final heal amount to deal
+     */
     double getFinalHealAmount();
 
-    void setHealAmount(double healAmount);
+    /**
+     * Gets the original healing amount for the provided
+     * {@link HealthModifier}. If the provided {@link HealthModifier} was not
+     * included in {@link #getOriginalHealingAmounts()}, an
+     * {@link IllegalArgumentException} is thrown.
+     *
+     * @param healthModifier The original healing modifier
+     * @return The original healing change
+     */
+    double getOriginalHealingModifierAmount(HealthModifier healthModifier);
+
+    /**
+     * Gets the original {@link List} of {@link HealthModifier} to
+     * {@link Function} that was originally passed into the event.
+     *
+     * @return The list of heal amount modifier functions
+     */
+    List<Tuple<HealthModifier, Function<? super Double, Double>>> getOriginalFunctions();
 
 
+    /**
+     * Gets the "base" healing amount to apply to the targeted {@link Entity}.
+     * The "base" heal amount is the original value before passing along the chain
+     * of {@link Function}s for all known {@link HealthModifier}s.
+     *
+     * @return The base heal amount
+     */
+    double getBaseHealAmount();
+
+    /**
+     * Sets the "base" healing amount to apply to the targeted {@link Entity}.
+     * The "base" heal amount is the original value passed along the chain of
+     * {@link Function}s for all known {@link HealthModifier}s.
+     *
+     * @param healAmount The base heal amount
+     */
+    void setBaseHealAmount(double healAmount);
+
+    /**
+     * Checks whether the provided {@link HealthModifier} is applicable to the
+     * current available {@link HealthModifier}s.
+     *
+     * @param healthModifier The health modifier to check
+     * @return True if the health modifier is relevant to this event
+     */
+    boolean isModifierApplicable(HealthModifier healthModifier);
+
+    /**
+     * Gets the heal amount for the provided {@link HealthModifier}. Providing that
+     * {@link #isModifierApplicable(HealthModifier)} returns <code>true</code>,
+     * the cached "heal amount" for the {@link HealthModifier} is returned.
+     *
+     * @param healthModifier The heal amount modifier to get the heal amount for
+     * @return The modifier
+     */
+    double getHealAmount(HealthModifier healthModifier);
+
+    /**
+     * Sets the provided {@link Function} to be used for the given
+     * {@link HealthModifier}. If the {@link HealthModifier} is already
+     * included in {@link #getModifiers()}, the {@link Function} replaces
+     * the existing function. If there is no {@link Tuple} for the
+     * {@link HealthModifier}, a new one is created and added to the end
+     * of the list of {@link Function}s to be applied to the
+     * {@link #getBaseHealAmount()}.
+     *
+     * <p>If needing to create a custom {@link HealthModifier} is required,
+     * usage of the {@link HealthModifierBuilder} is recommended.</p>
+     *
+     * @param healthModifier The heal amount modifier
+     * @param function The function to map to the modifier
+     */
+    void setHealAmount(HealthModifier healthModifier, Function<? super Double, Double> function);
+
+    /**
+     * Gets a list of simple {@link Tuple}s of {@link HealthModifier} keyed to
+     * their representative {@link Function}s. All {@link HealthModifier}s are
+     * applicable to the entity based on the {@link HealingSource} and any
+     * possible invulnerabilities due to the {@link HealingSource}.
+     *
+     * @return A list of heal amount modifiers to functions
+     */
+    List<Tuple<HealthModifier, Function<? super Double, Double>>> getModifiers();
 
 }

@@ -41,6 +41,9 @@ public interface PardonUserEvent extends TargetUserEvent, Cancellable {
      */
     Ban.User getBan();
 
+    /**
+     * An event where a {@link Player} is the target.
+     */
     interface TargetPlayer extends PardonUserEvent, TargetPlayerEvent {
 
         @Override
