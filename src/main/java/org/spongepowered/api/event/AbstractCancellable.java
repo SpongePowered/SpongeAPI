@@ -22,31 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.event;
+
+import org.spongepowered.api.eventgencore.annotation.SetField;
 
 /**
- * Represents a class which modifies the behavior of an event generator.
+ * The abstract base class for {@link Cancellable}, used to prevent
+ * the need to pass in 'cancelled' to the event factory.
+ *
+ * <p>This class was actually created because @Aaron1011 didn't
+ * want to add yet another annotation for the event generator.
  */
-public interface EventFactoryPlugin {
+public abstract class AbstractCancellable extends AbstractEvent implements Cancellable {
 
-    /**
-     * Gets the superclass to use for class generated for the specified
-     * event interface.
-     *
-     * <p>All of the registered plugins have this method called in a chain,
-     * which each plugin receiving the return value of the previous plugin as
-     * the <b>superClass</b> parameter. The first plugin in the chain is passed
-     * <code>null</code> as its <b>superClass</b>.</p>
-     *
-     * <p>If a plugin is able to determine a superclass for an event interface,
-     * it should return it. Otherwise, it should return the value it received as
-     * <b>superClass</b>.</p>
-     *
-     * @param eventClass The interface to determine the superclass for
-     * @param superClass The current superclass of the event interface
-     * @param classLoader The classloader used to load the generated event class
-     * @return The class to use as the event interface's superclass
-     */
-    Class<?> resolveSuperClassFor(Class<?> eventClass, Class<?> superClass, ClassGeneratorProvider.LocalClassLoader classLoader);
+    @SetField
+    protected boolean cancelled;
+
+    @Override
+    public boolean isCancelled() {
+        return this.cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = true;
+    }
 
 }

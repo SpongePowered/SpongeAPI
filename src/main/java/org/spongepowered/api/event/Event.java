@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.util.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.util.event.callback.CallbackList;
-import org.spongepowered.api.util.event.factory.UnderlyingFields;
 
 /**
  * An event called within Sponge.
@@ -39,7 +38,6 @@ public interface Event {
      *
      * @return The callbacklist
      */
-    @UnderlyingFields({})
     CallbackList getCallbacks();
 
 }

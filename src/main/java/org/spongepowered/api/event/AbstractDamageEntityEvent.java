@@ -31,10 +31,10 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.eventgencore.annotation.SetField;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.util.Tuple;
-import org.spongepowered.api.util.annotation.SetField;
 
 import java.util.LinkedHashMap;
 import java.util.List;

@@ -22,29 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.annotation;
+package org.spongepowered.api.util.event.factory.plugin;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.objectweb.asm.ClassWriter;
+import org.spongepowered.api.eventgencore.Property;
+
+import java.lang.reflect.Method;
 
 /**
- * Used to mark fields which should be set by the class generator, despite
- * the abstract class having an implementation of the property.
+ * Represents a class which modifies the behavior of an event generator.
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface SetField {
+public interface EventFactoryPlugin {
 
     /**
-     * Indicates whether the field is required to be passed in to an event
-     * constructor.
+     * Called to allow a plugin to override the generation of the field and method(s) for a {@link Property}.
      *
-     * <p>Setting this to <code>true</code> will enable the null check in the
-     * event constructor.</p>
+     * <p>If an event factory plugin does not have any special behavior for the provided {@link Property}, it
+     * should return {@code false}, which passes on the property to other plugins for processing.</p>
      *
-     * @return Whether having the field is required to be passed in.
+     * <p>Returning {@code true} stops the processing of the provided {@link Property}.</p>
+     *
+     * @oaram eventClass The {@link Class} of the event an implementation is being generated for
+     * @param classWriter The {@link ClassWriter} being used to generate the event class implementation
+     * @param property The {@link Property} being processed
+     *
+     * @return whether the provided {@link Property} was processed.
      */
-    boolean isRequired() default false;
+    boolean contributeProperty(Class<?> eventClass, String internalName, ClassWriter classWriter, Property<Class<?>, Method> property);
+
 }

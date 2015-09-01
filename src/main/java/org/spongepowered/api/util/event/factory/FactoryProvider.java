@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.util.event.factory;
 
+import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
+
+import java.util.List;
+
 /**
  * Creates event factories that can generate new instances of requested
  * events.
@@ -53,9 +57,10 @@ public interface FactoryProvider {
      *
      * @param type The type to generate a class for
      * @param parentType The parent type
+     * @param plugins The {@link EventFactoryPlugin}s to use when generating the class
      * @param <T> The type of the event
      * @return The function
      */
-    <T> EventFactory<T> create(Class<T> type, Class<?> parentType);
+    <T> EventFactory<T> create(Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins);
 
 }

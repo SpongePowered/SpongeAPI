@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.util.annotation.SetField;
+import org.spongepowered.api.eventgencore.annotation.SetField;
 import org.spongepowered.api.util.event.callback.CallbackList;
 
 /**

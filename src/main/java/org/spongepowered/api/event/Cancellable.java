@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+
 /**
  * Represents an event that can be cancelled.
  */
+@ImplementedBy(AbstractCancellable.class)
 public interface Cancellable {
 
     /**

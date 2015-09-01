@@ -35,6 +35,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.spongepowered.api.event.SpongeEventFactoryUtils;
 import org.spongepowered.api.util.annotation.TransformResult;
 import org.spongepowered.api.util.annotation.TransformWith;
 
@@ -56,20 +57,22 @@ public class ClassGeneratorProviderTest {
     @Test
     public void testCreate_ModifierMethodInterface() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<ModifiedMethodInterface> factory = provider.create(ModifiedMethodInterface.class, Object.class);
+        EventFactory<ModifiedMethodInterface> factory = provider.create(ModifiedMethodInterface.class, Object.class, SpongeEventFactoryUtils.plugins);
 
         Map<String, Object> values = Maps.newHashMap();
+        values.put("newModifierClass", new ModifierClass());
+        values.put("otherModifierClass", new ModifierClass());
 
         ModifiedMethodInterface result = factory.apply(values);
 
-        assertNotSame(result.getNewModifierClass(), result);
-        assertNotSame(result.getOtherModifierClass(), result);
+        assertNotSame(result.getNewModifierClass(), result.getNewModifierClass());
+        assertNotSame(result.getOtherModifierClass(), result.getOtherModifierClass());
     }
 
     @Test
     public void testCreate_Primitives() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class);
+        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
         Map<String, Object> values = Maps.newHashMap();
         values.put("byte", (byte) 10);
         values.put("short", (short) 11);
@@ -113,7 +116,7 @@ public class ClassGeneratorProviderTest {
     @Test
     public void testCreate_UnsetPrimitives() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class);
+        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
         PrimitiveContainer result = factory.apply(Collections.<String, Object>emptyMap());
 
         assertThat(result.getByte(), is((byte) 0));
@@ -130,14 +133,14 @@ public class ClassGeneratorProviderTest {
     public void testCreate_UnsetPrimitivesWithNonNull() throws Exception {
         ClassGeneratorProvider provider = createProvider();
         provider.setNullPolicy(NullPolicy.NON_NULL_BY_DEFAULT);
-        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class);
+        EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
         factory.apply(Collections.<String, Object>emptyMap());
     }
 
     @Test
     public void testCreate_BoxedPrimitives() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<BoxedPrimitiveContainer> factory = provider.create(BoxedPrimitiveContainer.class, Object.class);
+        EventFactory<BoxedPrimitiveContainer> factory = provider.create(BoxedPrimitiveContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
         Map<String, Object> values = Maps.newHashMap();
         values.put("byte", (byte) 10);
         values.put("short", (short) 11);
@@ -199,7 +202,7 @@ public class ClassGeneratorProviderTest {
     @Test
     public void testCreate_Arrays() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<ArrayContainer> factory = provider.create(ArrayContainer.class, Object.class);
+        EventFactory<ArrayContainer> factory = provider.create(ArrayContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
         Object object = new Object();
 
@@ -230,7 +233,7 @@ public class ClassGeneratorProviderTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCreate_ExcessParameters() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<ExcessParametersContainer> factory = provider.create(ExcessParametersContainer.class, Object.class);
+        EventFactory<ExcessParametersContainer> factory = provider.create(ExcessParametersContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
         Map<String, Object> values = Maps.newHashMap();
         values.put("name", "Jon");
@@ -242,7 +245,7 @@ public class ClassGeneratorProviderTest {
     @Test
     public void testCreate_Inheritance() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<ChildContainer> factory = provider.create(ChildContainer.class, Object.class);
+        EventFactory<ChildContainer> factory = provider.create(ChildContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
         Map<String, Object> values = Maps.newHashMap();
         values.put("name", "Eduardo");
@@ -272,7 +275,7 @@ public class ClassGeneratorProviderTest {
     @Test(expected = AbstractMethodError.class)
     public void testCreate_NonConformingAccessor() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<NonConformingAccessorContainer> factory = provider.create(NonConformingAccessorContainer.class, Object.class);
+        EventFactory<NonConformingAccessorContainer> factory = provider.create(NonConformingAccessorContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
         NonConformingAccessorContainer result = factory.apply(Collections.<String, Object>emptyMap());
         result.setName("Joey");
@@ -282,7 +285,7 @@ public class ClassGeneratorProviderTest {
     @Test(expected = AbstractMethodError.class)
     public void testCreate_NonConformingMutator() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<NonConformingMutatorContainer> factory = provider.create(NonConformingMutatorContainer.class, Object.class);
+        EventFactory<NonConformingMutatorContainer> factory = provider.create(NonConformingMutatorContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
         NonConformingMutatorContainer result = factory.apply(Collections.<String, Object>emptyMap());
         assertThat(result.getName(), is(Matchers.nullValue()));
@@ -292,7 +295,7 @@ public class ClassGeneratorProviderTest {
     @Test(expected = AbstractMethodError.class)
     public void testCreate_IncorrectMutator() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<IncorrectMutatorContainer> factory = provider.create(IncorrectMutatorContainer.class, Object.class);
+        EventFactory<IncorrectMutatorContainer> factory = provider.create(IncorrectMutatorContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
         IncorrectMutatorContainer result = factory.apply(Collections.<String, Object>emptyMap());
         assertThat(result.getAddress(), is(Matchers.nullValue()));
@@ -302,7 +305,7 @@ public class ClassGeneratorProviderTest {
     @Test
     public void testCreate_AbstractImpl() throws Exception {
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<AbstractImplContainer> factory = provider.create(AbstractImplContainer.class, AbstractImpl.class);
+        EventFactory<AbstractImplContainer> factory = provider.create(AbstractImplContainer.class, AbstractImpl.class, SpongeEventFactoryUtils.plugins);
 
         Map<String, Object> values = Maps.newHashMap();
         values.put("age", 56);
@@ -328,7 +331,7 @@ public class ClassGeneratorProviderTest {
         values.put("cool", false);
 
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<AbstractImplContainer> factory = provider.create(AbstractImplContainer.class, AbstractImpl.class);
+        EventFactory<AbstractImplContainer> factory = provider.create(AbstractImplContainer.class, AbstractImpl.class, SpongeEventFactoryUtils.plugins);
         factory.apply(values);
     }
 
@@ -338,7 +341,7 @@ public class ClassGeneratorProviderTest {
         values.put("name", Optional.fromNullable("MyName"));
 
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<OptionalGetter> factory = provider.create(OptionalGetter.class, Object.class);
+        EventFactory<OptionalGetter> factory = provider.create(OptionalGetter.class, Object.class, SpongeEventFactoryUtils.plugins);
         OptionalGetter getter = factory.apply(values);
 
         assertThat(getter.getName().isPresent(), is(true));
@@ -359,7 +362,7 @@ public class ClassGeneratorProviderTest {
         values.put("object", "");
 
         ClassGeneratorProvider provider = createProvider();
-        EventFactory<CovariantMethodOverrideInterface> factory = provider.create(CovariantMethodOverrideInterface.class, Object.class);
+        EventFactory<CovariantMethodOverrideInterface> factory = provider.create(CovariantMethodOverrideInterface.class, Object.class, SpongeEventFactoryUtils.plugins);
         CovariantMethodOverrideInterface overriden = factory.apply(values);
 
         overriden.setObject(new Object());

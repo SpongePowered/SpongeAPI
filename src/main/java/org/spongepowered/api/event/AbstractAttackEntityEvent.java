@@ -31,10 +31,10 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.eventgencore.annotation.SetField;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.util.Tuple;
-import org.spongepowered.api.util.annotation.SetField;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -42,14 +42,18 @@ import java.util.Map;
 
 public abstract class AbstractAttackEntityEvent extends AbstractEvent implements InteractEntityEvent.Attack {
 
-    @SetField protected double originalDamage;
-    @SetField protected List<Tuple<DamageModifier, Function<? super Double, Double>>> functions;
-    private double originalFinalDamage;
-    private ImmutableMap<DamageModifier, Double> originalModifiers;
-    private ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
-    private final LinkedHashMap<DamageModifier, Double> modifiers = Maps.newLinkedHashMap();
-    private final LinkedHashMap<DamageModifier, Function<? super Double, Double>> modifierFunctions = Maps.newLinkedHashMap();
-    private double baseDamage;
+    @SetField(isRequired = true) protected double originalDamage;
+    @SetField(isRequired = true) protected List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
+    @SetField protected double originalFinalDamage;
+    @SetField protected Map<DamageModifier, Double> originalModifiers;
+    @SetField protected final LinkedHashMap<DamageModifier, Double> modifiers = Maps.newLinkedHashMap();
+    @SetField protected final LinkedHashMap<DamageModifier, Function<? super Double, Double>> modifierFunctions = Maps.newLinkedHashMap();
+    @SetField protected double baseDamage;
+
+    // These are left unused on purpose, because Aaron101 is too lazy to change the event generator.
+    // They prevent their respecive fields from being required in the event factory generator
+    @SetField protected double finalDamage;
+    @SetField protected Map<DamageModifier, Double> originalDamages;
 
     @Override
     protected final void init() {
@@ -57,7 +61,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
         final ImmutableMap.Builder<DamageModifier, Double> modifierMapBuilder = ImmutableMap.builder();
         final ImmutableList.Builder<Tuple<DamageModifier, Function<? super Double, Double>>> functionListBuilder = ImmutableList.builder();
         double finalDamage = damage;
-        for (Tuple<DamageModifier, Function<? super Double, Double>> tuple : this.functions) {
+        for (Tuple<DamageModifier, Function<? super Double, Double>> tuple : this.originalFunctions) {
             this.modifierFunctions.put(tuple.getFirst(), tuple.getSecond());
             double tempDamage = checkNotNull(tuple.getSecond().apply(finalDamage));
             finalDamage += tempDamage;
@@ -93,7 +97,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     @Override
     public final double getOriginalModifierDamage(DamageModifier damageModifier) {
         checkArgument(this.originalModifiers.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
-                                                                                        + damageModifier.toString());
+                + damageModifier.toString());
         return this.originalModifiers.get(checkNotNull(damageModifier));
     }
 
@@ -139,7 +143,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     @Override
     public final double getDamage(DamageModifier damageModifier) {
         checkArgument(this.modifierFunctions.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
-                                                                                        + damageModifier.toString());
+                + damageModifier.toString());
         return this.modifiers.get(checkNotNull(damageModifier));
     }
 

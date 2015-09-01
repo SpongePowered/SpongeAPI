@@ -26,6 +26,10 @@ package org.spongepowered.api.util.event.factory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
+
+import java.util.List;
+
 /**
  * Creates event implementations by generating the necessary event class
  * and event factory at runtime.
@@ -64,16 +68,21 @@ public class ClassGeneratorProvider implements FactoryProvider {
      * @return Canonical name
      */
     protected String getClassName(Class<?> clazz, String classifier) {
-        return this.targetPackage + "." + clazz.getSimpleName() + "$" + classifier;
+        String name = clazz.getSimpleName();
+        while (clazz.getEnclosingClass() != null) {
+            clazz = clazz.getEnclosingClass();
+            name = clazz.getSimpleName() + "$" + name;
+        }
+        return this.targetPackage + "." + name + "$" + classifier;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> EventFactory<T> create(final Class<T> type, Class<?> parentType) {
+    public <T> EventFactory<T> create(final Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {
         String eventName = getClassName(type, "Impl");
         String factoryName = getClassName(type, "Factory");
 
-        Class<?> eventClass = this.classLoader.defineClass(eventName, this.builder.createClass(type, eventName, parentType));
+        Class<?> eventClass = this.classLoader.defineClass(eventName, this.builder.createClass(type, eventName, parentType, plugins));
         Class<?> factoryClass = this.classLoader.defineClass(factoryName, this.builder.createFactory(eventClass, factoryName));
 
         try {

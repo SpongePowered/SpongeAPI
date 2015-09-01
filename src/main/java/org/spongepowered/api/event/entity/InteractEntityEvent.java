@@ -34,6 +34,8 @@ import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.Arrow;
 import org.spongepowered.api.entity.weather.Lightning;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.event.AbstractAttackEntityEvent;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.block.BlockEvent;
 import org.spongepowered.api.event.cause.Cause;
@@ -146,6 +148,7 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
      * to process the various {@link DamageModifier}s of which originate or are
      * associated with the targeted {@link Entity}.</p>
      */
+    @ImplementedBy(AbstractAttackEntityEvent.class)
     interface Attack extends InteractEntityEvent {
 
         /**

@@ -67,15 +67,18 @@ import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
-import org.spongepowered.api.util.annotation.SetField;
-import org.spongepowered.api.util.reflect.AccessorFirstStrategy;
-import org.spongepowered.api.util.reflect.Property;
-import org.spongepowered.api.util.reflect.PropertySearchStrategy;
+import org.spongepowered.api.eventgencore.AccessorFirstStrategy;
+import org.spongepowered.api.eventgencore.Property;
+import org.spongepowered.api.eventgencore.PropertySearchStrategy;
+import org.spongepowered.api.eventgencore.annotation.SetField;
+import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionClassWrapper;
+import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -84,7 +87,7 @@ import javax.annotation.Nullable;
  */
 public class ClassGenerator {
 
-    private final PropertySearchStrategy propertySearch = new AccessorFirstStrategy();
+    private final PropertySearchStrategy<Class<?>, Method> propertySearch = new AccessorFirstStrategy<Class<?>, Method>();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
     private final List<String> primitivePropertyExceptions = ImmutableList.of("cancelled");
 
@@ -245,145 +248,236 @@ public class ClassGenerator {
         this.nullPolicy = nullPolicy;
     }
 
-    /**
-     * Create the event class.
-     *
-     * @param type The type
-     * @param name The canonical of the generated class
-     * @param parentType The parent type
-     * @return The class' contents, to be loaded via a {@link ClassLoader}
-     */
-    public byte[] createClass(final Class<?> type, final String name, final Class<?> parentType) {
-        checkNotNull(type, "type");
-        checkNotNull(name, "name");
-        checkNotNull(parentType, "parentType");
+    private boolean hasNullable(Method method) {
+        return method.getAnnotation(Nullable.class) != null;
+    }
 
-        final ImmutableSet<? extends Property> properties = this.propertySearch.findProperties(type);
-        final String internalName = name.replace('.', '/');
+    private boolean hasNonnull(Method method) {
+        return method.getAnnotation(Nonnull.class) != null;
+    }
 
-        final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[]{Type.getInternalName(type)});
+    public static void generateField(ClassWriter classWriter, Property<Class<?>, Method> property) {
+        FieldVisitor fv = classWriter.visitField(ACC_PRIVATE, property.getName(), Type.getDescriptor(property.getType()), null, null);
+        fv.visitEnd();
+    }
 
-        // Create the fields
-        for (Property property : properties) {
-            if (property.isLeastSpecificType()) {
-                if (getSetField(parentType, property.getName()) == null) {
-                    FieldVisitor fv = cw.visitField(ACC_PRIVATE, property.getName(), Type.getDescriptor(property.getType()), null, null);
-                    fv.visitEnd();
-                } else if ((getModifiers(parentType, property.getName()) & Modifier.PRIVATE) != 0) {
-                    throw new RuntimeException("You've annotated the field " + property.getName() + " with @SetField, "
-                                               + "but it's private. This just won't work.");
-                }
+    private void contributeField(ClassWriter classWriter, Class<?> parentType, Property<Class<?>, Method> property) {
+        if (property.isLeastSpecificType()) {
+            if (getSetField(parentType, property.getName()) == null) {
+                generateField(classWriter, property);
+            } else if ((getModifiers(parentType, property.getName()) & Modifier.PRIVATE) != 0) {
+                throw new RuntimeException("You've annotated the field " + property.getName() + " with @SetField, "
+                        + "but it's private. This just won't work.");
             }
         }
+    }
 
-        // Create the constructor
-        {
-            MethodVisitor mv =
-                    cw.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
-            mv.visitCode();
+    private void generateConstructor(ClassWriter classWriter, String internalName, Class<?> parentType, ImmutableSet<? extends Property<Class<?>, Method>> properties) {
+        MethodVisitor mv =
+                classWriter.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
+        mv.visitCode();
 
-            // super()
+        // super()
+        mv.visitVarInsn(ALOAD, 0);
+        mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "<init>", "()V", false);
+
+        for (Property<Class<?>, Method> property : properties) {
+            if (((hasImplementation(parentType, property.getAccessor()) && getSetField(parentType, property.getName()) == null)
+                         || !property.isLeastSpecificType())) {
+                continue;
+            }
+
+            // Object value = map.get("key")
+            mv.visitVarInsn(ALOAD, 1);
+            mv.visitLdcInsn(property.getName());
+            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "remove", "(Ljava/lang/Object;)Ljava/lang/Object;", true);
+            mv.visitVarInsn(ASTORE, 2);
+
+            // Only if we have a null policy:
+            // if (value == null) throw new NullPointerException(...)
+            if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
+                boolean useNullTest = ((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !this.hasNullable(property.getAccessor()))
+                                               || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && this.hasNonnull(property.getAccessor())))
+                        && fieldRequired(parentType, property.getName());
+
+                if (useNullTest && (!property.getType().isPrimitive() || !this.primitivePropertyExceptions.contains(property.getName()))) {
+                    Label afterNullTest = new Label();
+                    mv.visitVarInsn(ALOAD, 2);
+                    mv.visitJumpInsn(IFNONNULL, afterNullTest);
+                    mv.visitTypeInsn(NEW, "java/lang/NullPointerException");
+                    mv.visitInsn(DUP);
+                    mv.visitLdcInsn(property.getName());
+                    mv.visitMethodInsn(INVOKESPECIAL, "java/lang/NullPointerException", "<init>", "(Ljava/lang/String;)V", false);
+                    mv.visitInsn(ATHROW);
+                    mv.visitLabel(afterNullTest);
+                }
+            }
+
+            final boolean hasSetField = getSetField(parentType, property.getName()) != null;
+
+            Label afterPut = new Label();
+
+            // if (value != null) {
+            mv.visitVarInsn(ALOAD, 2);
+            mv.visitJumpInsn(IFNULL, afterPut);
+
+            // stack: -> this
             mv.visitVarInsn(ALOAD, 0);
-            mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "<init>", "()V", false);
 
-            for (Property property : properties) {
-                if (((hasImplementation(parentType, property.getAccessor()) && getSetField(parentType, property.getName()) == null)
-                     || !property.isLeastSpecificType())) {
-                    continue;
-                }
+            // ProperObject newValue = (ProperObject) value
+            mv.visitVarInsn(ALOAD, 2);
+            visitUnboxingMethod(mv, property.getType());
 
-                // Object value = map.get("key")
-                mv.visitVarInsn(ALOAD, 1);
-                mv.visitLdcInsn(property.getName());
-                mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "remove", "(Ljava/lang/Object;)Ljava/lang/Object;", true);
-                mv.visitVarInsn(ASTORE, 2);
-
-                // Only if we have a null policy:
-                // if (value == null) throw new NullPointerException(...)
-                if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
-                    boolean useNullTest = ((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !property.hasNullable())
-                            || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && property.hasNonnull()))
-                                          && fieldRequired(parentType, property.getName());
-
-                    if (useNullTest && (!property.getType().isPrimitive() || !this.primitivePropertyExceptions.contains(property.getName()))) {
-                        Label afterNullTest = new Label();
-                        mv.visitVarInsn(ALOAD, 2);
-                        mv.visitJumpInsn(IFNONNULL, afterNullTest);
-                        mv.visitTypeInsn(NEW, "java/lang/NullPointerException");
-                        mv.visitInsn(DUP);
-                        mv.visitLdcInsn(property.getName());
-                        mv.visitMethodInsn(INVOKESPECIAL, "java/lang/NullPointerException", "<init>", "(Ljava/lang/String;)V", false);
-                        mv.visitInsn(ATHROW);
-                        mv.visitLabel(afterNullTest);
-                    }
-                }
-
-                final boolean hasSetField = getSetField(parentType, property.getName()) != null;
-
-                Label afterPut = new Label();
-
-                // if (value != null) {
-                mv.visitVarInsn(ALOAD, 2);
-                mv.visitJumpInsn(IFNULL, afterPut);
-
-                // stack: -> this
-                mv.visitVarInsn(ALOAD, 0);
-
-                // ProperObject newValue = (ProperObject) value
-                mv.visitVarInsn(ALOAD, 2);
-                visitUnboxingMethod(mv, property.getType());
-
-                // this.field = newValue
-                if (hasSetField) {
-                    mv.visitFieldInsn(PUTFIELD, Type.getInternalName(parentType), property.getName(), Type.getDescriptor(property.getType()));
-                } else {
-                    mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
-                }
-                // }
-
-                mv.visitLabel(afterPut);
+            // this.field = newValue
+            if (hasSetField) {
+                mv.visitFieldInsn(PUTFIELD, Type.getInternalName(parentType), property.getName(), Type.getDescriptor(property.getType()));
+            } else {
+                mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
             }
+            // }
 
-            // if (!map.isEmpty()) throw new IllegalArgumentException(...)
-            {
-                Label afterException = new Label();
-
-                mv.visitVarInsn(ALOAD, 1);
-                mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "isEmpty", "()Z", true);
-                mv.visitJumpInsn(IFNE, afterException);
-
-                mv.visitTypeInsn(NEW, "java/lang/IllegalArgumentException");
-                mv.visitInsn(DUP);
-                mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
-                mv.visitInsn(DUP);
-                mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
-                mv.visitLdcInsn("Some parameters are unused: ");
-                mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-                mv.visitVarInsn(ALOAD, 1);
-                mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "keySet", "()Ljava/util/Set;", true);
-                mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-                mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
-                mv.visitMethodInsn(INVOKESPECIAL, "java/lang/IllegalArgumentException", "<init>", "(Ljava/lang/String;)V", false);
-                mv.visitInsn(ATHROW);
-
-                mv.visitLabel(afterException);
-            }
-
-            // super.init();
-            if (hasDeclaredMethod(parentType, "init")) {
-                mv.visitVarInsn(ALOAD, 0);
-                mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "init", "()V", false);
-            }
-
-            mv.visitInsn(RETURN);
-            mv.visitMaxs(0, 0);
-            mv.visitEnd();
+            mv.visitLabel(afterPut);
         }
 
-        // The return value of toString takes the form of "ClassName{param1=value1, param2=value2, ...}"
+        // if (!map.isEmpty()) throw new IllegalArgumentException(...)
+        {
+            Label afterException = new Label();
 
+            mv.visitVarInsn(ALOAD, 1);
+            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "isEmpty", "()Z", true);
+            mv.visitJumpInsn(IFNE, afterException);
 
+            mv.visitTypeInsn(NEW, "java/lang/IllegalArgumentException");
+            mv.visitInsn(DUP);
+            mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
+            mv.visitInsn(DUP);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+            mv.visitLdcInsn("Some parameters are unused: ");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+            mv.visitVarInsn(ALOAD, 1);
+            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "keySet", "()Ljava/util/Set;", true);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/IllegalArgumentException", "<init>", "(Ljava/lang/String;)V", false);
+            mv.visitInsn(ATHROW);
+
+            mv.visitLabel(afterException);
+        }
+
+        // super.init();
+        if (hasDeclaredMethod(parentType, "init")) {
+            mv.visitVarInsn(ALOAD, 0);
+            mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "init", "()V", false);
+        }
+
+        mv.visitInsn(RETURN);
+        mv.visitMaxs(0, 0);
+        mv.visitEnd();
+    }
+
+    private void generateAccessor(ClassWriter cw, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
+        Method accessor = property.getAccessor();
+
+        MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, accessor.getName(), Type.getMethodDescriptor(accessor), null, null);
+        mv.visitCode();
+        mv.visitVarInsn(ALOAD, 0);
+        mv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getLeastSpecificType()));
+
+        if (!property.isLeastSpecificType()) {
+            mv.visitTypeInsn(CHECKCAST, Type.getInternalName(property.getType()));
+        }
+        mv.visitInsn(getReturnOpcode(property.getType()));
+        mv.visitMaxs(0, 0);
+        mv.visitEnd();
+    }
+
+    /**
+     * Generates a standard mutator method.
+     *
+     * <p>This method assumes that a standard field has been generated for the provided {@link Property}</p>
+     *
+     * @param cw The {@link ClassWriter} to generate the mutator in
+     * @param type The {@link Class} of the event that's having an implementation generated
+     * @param internalName The internal name (slashes instead of periods in the package) of the new class being generated
+     * @param fieldName The name of the field to mutate
+     * @param fieldType The type of the field to mutate
+     * @param property The {@link Property} containing the mutator method to generate for
+     */
+    public static void generateMutator(ClassWriter cw, Class<?> type, String internalName, String fieldName, Class<?> fieldType, Property<Class<?>, Method> property) {
+        Method mutator = property.getMutator().get();
+
+        MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, mutator.getName(), Type.getMethodDescriptor(mutator), null, null);
+        mv.visitCode();
+        mv.visitVarInsn(ALOAD, 0);
+        mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+
+        if (property.getAccessor().getReturnType().equals(Optional.class)) {
+            mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable",
+                    "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
+        }
+
+        if (!property.getType().isPrimitive()) {
+            Class<?> mostSpecificReturn;
+            try {
+                mostSpecificReturn =
+                        type.getMethod(property.getAccessor().getName(), property.getAccessor().getParameterTypes()).getReturnType();
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException("If you're seeing this, than something's REALLY wrong");
+            }
+            Label afterException = new Label();
+            mv.visitInsn(DUP);
+            mv.visitJumpInsn(IFNULL, afterException);
+            mv.visitInsn(DUP);
+            mv.visitTypeInsn(INSTANCEOF, Type.getInternalName(mostSpecificReturn));
+
+            mv.visitJumpInsn(IFNE, afterException);
+
+            mv.visitTypeInsn(NEW, "java/lang/RuntimeException");
+            mv.visitInsn(DUP);
+
+            mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
+            mv.visitInsn(DUP);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+
+            mv.visitLdcInsn("You've attempted to call the method '" + mutator.getName() + "' with an object of type ");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+            mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getName", "()Ljava/lang/String;", false);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+
+            mv.visitLdcInsn(", instead of " + mostSpecificReturn.getName() + ". Though you may have been listening for a supertype of this "
+                    + "event, it's actually a " + type.getName() + ". You need to ensure that the type of the event is what you think"
+                    + " it is, before calling the method (e.g TileEntityChangeEvent#setNewData");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/RuntimeException", "<init>", "(Ljava/lang/String;)V", false);
+            mv.visitInsn(ATHROW);
+
+            mv.visitLabel(afterException);
+        }
+
+        mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+        mv.visitInsn(RETURN);
+        mv.visitMaxs(0, 0);
+        mv.visitEnd();
+    }
+
+    private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
+        if (!hasImplementation(parentType, property.getAccessor())) {
+            this.generateAccessor(cw, parentType, internalName, property);
+        }
+
+        Optional<Method> mutatorOptional = property.getMutator();
+        if (mutatorOptional.isPresent() && !hasImplementation(parentType, mutatorOptional.get())) {
+            generateMutator(cw, type, internalName, property.getName(), property.getType(), property);
+        }
+
+    }
+
+    private MethodVisitor initializeToString(ClassWriter cw, Class<?> type) {
         MethodVisitor toStringMv = cw.visitMethod(ACC_PUBLIC, "toString", "()Ljava/lang/String;", null, null);
         toStringMv.visitCode();
         toStringMv.visitTypeInsn(NEW, "java/lang/StringBuilder");
@@ -394,141 +488,125 @@ public class ClassGenerator {
 
         toStringMv.visitVarInsn(ASTORE, 1);
 
-        // Create the accessors and mutators, and fill out the toString method
-        for (Property property : properties) {
-            if (!hasImplementation(parentType, property.getAccessor())) {
-                Method accessor = property.getAccessor();
+        return toStringMv;
+    }
 
-                MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, accessor.getName(), Type.getMethodDescriptor(accessor), null, null);
-                mv.visitCode();
-                mv.visitVarInsn(ALOAD, 0);
-                mv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getLeastSpecificType()));
-                if (!property.isLeastSpecificType()) {
-                    mv.visitTypeInsn(CHECKCAST, Type.getInternalName(property.getType()));
-                }
-                mv.visitInsn(getReturnOpcode(property.getType()));
-                mv.visitMaxs(0, 0);
-                mv.visitEnd();
-            }
+    private void contributeToString(String internalName, Property<Class<?>, Method> property, MethodVisitor toStringMv) {
+        if (property.isLeastSpecificType()) {
+            Type returnType = Type.getReturnType(property.getAccessor());
 
-            Optional<Method> mutatorOptional = property.getMutator();
-            if (mutatorOptional.isPresent() && !hasImplementation(parentType, mutatorOptional.get())) {
-                Method mutator = mutatorOptional.get();
+            toStringMv.visitVarInsn(ALOAD, 0);
 
-                MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, mutator.getName(), Type.getMethodDescriptor(mutator), null, null);
-                mv.visitCode();
-                mv.visitVarInsn(ALOAD, 0);
-                mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+            toStringMv.visitVarInsn(ALOAD, 1);
+            toStringMv.visitLdcInsn(property.getName());
+            toStringMv
+                    .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-                if (property.getAccessor().getReturnType().equals(Optional.class)) {
-                    mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable",
-                                       "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
-                }
+            toStringMv.visitLdcInsn("=");
+            toStringMv
+                    .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-                if (!property.getType().isPrimitive()) {
-                    Class<?> mostSpecificReturn;
-                    try {
-                        mostSpecificReturn =
-                                type.getMethod(property.getAccessor().getName(), property.getAccessor().getParameterTypes()).getReturnType();
-                    } catch (NoSuchMethodException e) {
-                        throw new RuntimeException("If you're seeing this, than something's REALLY wrong");
-                    }
-                    Label afterException = new Label();
-                    mv.visitInsn(DUP);
-                    mv.visitJumpInsn(IFNULL, afterException);
-                    mv.visitInsn(DUP);
-                    mv.visitTypeInsn(INSTANCEOF, Type.getInternalName(mostSpecificReturn));
+            toStringMv.visitVarInsn(ALOAD, 0);
+            toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
 
-                    mv.visitJumpInsn(IFNE, afterException);
+            String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
 
-                    mv.visitTypeInsn(NEW, "java/lang/RuntimeException");
-                    mv.visitInsn(DUP);
+            toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append",
+                    "(" + desc + ")Ljava/lang/StringBuilder;", false);
 
-                    mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
-                    mv.visitInsn(DUP);
-                    mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
-
-                    mv.visitLdcInsn("You've attempted to call the method '" + mutator.getName() + "' with an object of type ");
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-
-                    mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getName", "()Ljava/lang/String;", false);
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-
-                    mv.visitLdcInsn(", instead of " + mostSpecificReturn.getName() + ". Though you may have been listening for a supertype of this "
-                                    + "event, it's actually a " + type.getName() + ". You need to ensure that the type of the event is what you think"
-                                    + " it is, before calling the method (e.g TileEntityChangeEvent#setNewData");
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
-
-                    mv.visitMethodInsn(INVOKESPECIAL, "java/lang/RuntimeException", "<init>", "(Ljava/lang/String;)V", false);
-                    mv.visitInsn(ATHROW);
-
-                    mv.visitLabel(afterException);
-                }
-
-                mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
-                mv.visitInsn(RETURN);
-                mv.visitMaxs(0, 0);
-                mv.visitEnd();
-            }
-
-            // stringBuilder.append(this.'property'.toString())
-
-            if (property.isLeastSpecificType()) {
-                Type returnType = Type.getReturnType(property.getAccessor());
-
-                toStringMv.visitVarInsn(ALOAD, 0);
-
-                toStringMv.visitVarInsn(ALOAD, 1);
-                toStringMv.visitLdcInsn(property.getName());
-                toStringMv
-                        .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-
-                toStringMv.visitLdcInsn("=");
-                toStringMv
-                        .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-
-                toStringMv.visitVarInsn(ALOAD, 0);
-                toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
-
-                String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
-
-                toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append",
-                                           "(" + desc + ")Ljava/lang/StringBuilder;", false);
-
-                toStringMv.visitLdcInsn(", ");
-                toStringMv
-                        .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-            }
-
+            toStringMv.visitLdcInsn(", ");
+            toStringMv
+                    .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
         }
+    }
 
+    private void finalizeToString(MethodVisitor mv) {
         // The StringBuilder is on the top of the stack from the last append() - duplicate it for call to replace()
-        toStringMv.visitVarInsn(ALOAD, 1);
-        toStringMv.visitInsn(DUP);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitInsn(DUP);
 
         // The replace starts at 2 characters before the end, to remove the extra command and space added
-        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
-        toStringMv.visitLdcInsn(2);
-        toStringMv.visitInsn(ISUB);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
+        mv.visitLdcInsn(2);
+        mv.visitInsn(ISUB);
 
-        toStringMv.visitVarInsn(ALOAD, 1);
-        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
 
-        toStringMv.visitLdcInsn("}");
+        mv.visitLdcInsn("}");
 
-        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "replace", "(IILjava/lang/String;)Ljava/lang/StringBuilder;", false);
-        toStringMv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "replace", "(IILjava/lang/String;)Ljava/lang/StringBuilder;", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
 
-        toStringMv.visitInsn(ARETURN);
-        toStringMv.visitMaxs(0, 0);
-        toStringMv.visitEnd();
+        mv.visitInsn(ARETURN);
+        mv.visitMaxs(0, 0);
+        mv.visitEnd();
+    }
+
+    public static String getInternalName(String name) {
+        return name.replace('.', '/');
+    }
+
+    /**
+     * Create the event class.
+     *
+     * @param type The type
+     * @param name The canonical of the generated class
+     * @param parentType The parent type
+     * @return The class' contents, to be loaded via a {@link ClassLoader}
+     */
+    public byte[] createClass(final Class<?> type, final String name, final Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {
+        checkNotNull(type, "type");
+        checkNotNull(name, "name");
+        checkNotNull(parentType, "parentType");
+
+        final ImmutableSet<? extends Property<Class<?>, Method>> properties = this.propertySearch.findProperties(new ReflectionClassWrapper(type));
+        final String internalName = getInternalName(name);
+
+        final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[]{Type.getInternalName(type)});
+
+
+        MethodVisitor toStringMv = this.initializeToString(cw, type);
+
+        this.generateWithPlugins(cw, type, parentType, internalName, properties, toStringMv, plugins);
+
+        // Create the fields
+        //this.contributeFields(cw, parentType, properties, plugins);
+
+        // Create the constructor
+        this.generateConstructor(cw, internalName, parentType, properties);
+
+        // The return value of toString takes the form of "ClassName{param1=value1, param2=value2, ...}"
+
+
+        // Create the accessors and mutators, and fill out the toString method
+
+        this.finalizeToString(toStringMv);
 
         cw.visitEnd();
 
         return cw.toByteArray();
+    }
+
+    private void generateWithPlugins(ClassWriter cw, Class<?> eventClass, Class<?> parentType, String internalName, ImmutableSet<? extends Property<Class<?>, Method>> properties, MethodVisitor toStringMv, List<? extends EventFactoryPlugin> plugins) {
+        for (Property<Class<?>, Method> property: properties) {
+            boolean processed = false;
+
+            for (EventFactoryPlugin plugin: plugins) {
+                processed = plugin.contributeProperty(eventClass, internalName, cw, property);
+                if (processed == true) {
+                    break;
+                }
+            }
+
+            this.contributeToString(internalName, property, toStringMv);
+
+            if (!processed) {
+                this.contributeField(cw, eventClass, property);
+                this.generateAccessorsandMutator(cw, eventClass, parentType, internalName, property);
+            }
+        }
     }
 
     /**
