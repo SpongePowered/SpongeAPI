@@ -40,13 +40,17 @@ import java.util.concurrent.TimeUnit;
  */
 public interface SpongeExecutorService extends ScheduledExecutorService {
 
-    @Override SpongeFuture<?> schedule(Runnable command, long delay, TimeUnit unit);
+    @Override
+    SpongeFuture<?> schedule(Runnable command, long delay, TimeUnit unit);
 
-    @Override <V> SpongeFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit);
+    @Override
+    <V> SpongeFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit);
 
-    @Override SpongeFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);
+    @Override
+    SpongeFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);
 
-    @Override SpongeFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit);
+    @Override
+    SpongeFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit);
 
     interface SpongeFuture<V> extends RunnableScheduledFuture<V> {
 
