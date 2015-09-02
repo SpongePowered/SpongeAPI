@@ -250,19 +250,6 @@ public final class SpongeEventFactory {
     }
 
     /**
-     * Creates an event class from an interface and a map of property names to values.
-     * 
-     * @param type The event interface to generate a class for
-     * @param values The map of property names to values
-     * @param <T> The type of event to be created
-     * @return The generated event class.
-     */
-    @SuppressWarnings(value = "unchecked")
-    public static <T>T createEventImpl(Class<T> type, Map<String, Object> values) {
-        return SpongeEventFactoryUtils.createEventImpl(type, values);
-    }
-
-    /**
      * Creates a new {@link GameStateEvent} of the given type.
      * 
      * @param type The type of the state event
@@ -273,7 +260,7 @@ public final class SpongeEventFactory {
     public static <T extends GameStateEvent>T createState(Class<T> type, Game game) {
         Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(type, values);
+        return SpongeEventFactoryUtils.createEventImpl(type, values);
     }
 
     /**
@@ -285,7 +272,7 @@ public final class SpongeEventFactory {
      */
     public static Event createEvent() {
         Map<String, Object> values = Maps.newHashMap();
-        return SpongeEventFactory.createEventImpl(Event.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(Event.class, values);
     }
 
     /**
@@ -299,7 +286,7 @@ public final class SpongeEventFactory {
     public static GameEvent createGameEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameEvent.class, values);
     }
 
     /**
@@ -315,7 +302,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("experience", experience);
         values.put("originalExperience", originalExperience);
-        return SpongeEventFactory.createEventImpl(ChangeExperienceEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeExperienceEvent.class, values);
     }
 
     /**
@@ -327,7 +314,7 @@ public final class SpongeEventFactory {
      */
     public static ConnectEvent createConnectEvent() {
         Map<String, Object> values = Maps.newHashMap();
-        return SpongeEventFactory.createEventImpl(ConnectEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConnectEvent.class, values);
     }
 
     /**
@@ -339,7 +326,7 @@ public final class SpongeEventFactory {
      */
     public static DisconnectEvent createDisconnectEvent() {
         Map<String, Object> values = Maps.newHashMap();
-        return SpongeEventFactory.createEventImpl(DisconnectEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisconnectEvent.class, values);
     }
 
     /**
@@ -357,7 +344,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
-        return SpongeEventFactory.createEventImpl(InteractEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEvent.class, values);
     }
 
     /**
@@ -379,7 +366,7 @@ public final class SpongeEventFactory {
         values.put("newMessage", newMessage);
         values.put("sink", sink);
         values.put("source", source);
-        return SpongeEventFactory.createEventImpl(MessageEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(MessageEvent.class, values);
     }
 
     /**
@@ -403,7 +390,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(AttackBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(AttackBlockEvent.class, values);
     }
 
     /**
@@ -431,7 +418,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(AttackBlockEvent.SourceEntity.class, values);
     }
 
     /**
@@ -459,7 +446,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(AttackBlockEvent.SourceHuman.class, values);
     }
 
     /**
@@ -487,7 +474,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(AttackBlockEvent.SourceLiving.class, values);
     }
 
     /**
@@ -515,7 +502,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(AttackBlockEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -537,7 +524,7 @@ public final class SpongeEventFactory {
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return SpongeEventFactory.createEventImpl(BlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BlockEvent.class, values);
     }
 
     /**
@@ -555,7 +542,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(BreakBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreakBlockEvent.class, values);
     }
 
     /**
@@ -579,7 +566,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreakBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -601,7 +588,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreakBlockEvent.SourceEntity.class, values);
     }
 
     /**
@@ -623,7 +610,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreakBlockEvent.SourceHuman.class, values);
     }
 
     /**
@@ -645,7 +632,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreakBlockEvent.SourceLiving.class, values);
     }
 
     /**
@@ -667,7 +654,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreakBlockEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -685,7 +672,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.class, values);
     }
 
     /**
@@ -709,7 +696,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -731,7 +718,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.SourceEntity.class, values);
     }
 
     /**
@@ -753,7 +740,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.SourceHuman.class, values);
     }
 
     /**
@@ -775,7 +762,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.SourceLiving.class, values);
     }
 
     /**
@@ -797,7 +784,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -817,7 +804,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceWorld.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.SourceWorld.class, values);
     }
 
     /**
@@ -839,7 +826,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(CollideBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.class, values);
     }
 
     /**
@@ -865,7 +852,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.SourceEntity.class, values);
     }
 
     /**
@@ -891,7 +878,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.SourceHuman.class, values);
     }
 
     /**
@@ -917,7 +904,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.SourceLiving.class, values);
     }
 
     /**
@@ -943,7 +930,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -961,7 +948,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(DecayBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DecayBlockEvent.class, values);
     }
 
     /**
@@ -981,7 +968,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(DecayBlockEvent.SourceWorld.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DecayBlockEvent.SourceWorld.class, values);
     }
 
     /**
@@ -999,7 +986,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(GrowBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GrowBlockEvent.class, values);
     }
 
     /**
@@ -1019,7 +1006,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(GrowBlockEvent.SourceWorld.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GrowBlockEvent.SourceWorld.class, values);
     }
 
     /**
@@ -1049,7 +1036,7 @@ public final class SpongeEventFactory {
         values.put("originalItemStacks", originalItemStacks);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestBlockEvent.class, values);
     }
 
     /**
@@ -1087,7 +1074,7 @@ public final class SpongeEventFactory {
         values.put("sourceSide", sourceSide);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -1123,7 +1110,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestBlockEvent.SourceEntity.class, values);
     }
 
     /**
@@ -1159,7 +1146,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestBlockEvent.SourceHuman.class, values);
     }
 
     /**
@@ -1195,7 +1182,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestBlockEvent.SourceLiving.class, values);
     }
 
     /**
@@ -1231,7 +1218,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestBlockEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -1255,7 +1242,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.class, values);
     }
 
     /**
@@ -1279,7 +1266,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Attack.class, values);
     }
 
     /**
@@ -1307,7 +1294,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Attack.SourceEntity.class, values);
     }
 
     /**
@@ -1335,7 +1322,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Attack.SourceHuman.class, values);
     }
 
     /**
@@ -1363,7 +1350,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Attack.SourceLiving.class, values);
     }
 
     /**
@@ -1391,7 +1378,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Attack.SourcePlayer.class, values);
     }
 
     /**
@@ -1421,7 +1408,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -1449,7 +1436,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.SourceEntity.class, values);
     }
 
     /**
@@ -1477,7 +1464,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.SourceHuman.class, values);
     }
 
     /**
@@ -1505,7 +1492,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.SourceLiving.class, values);
     }
 
     /**
@@ -1533,7 +1520,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -1557,7 +1544,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Use.class, values);
     }
 
     /**
@@ -1587,7 +1574,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Use.SourceBlock.class, values);
     }
 
     /**
@@ -1615,7 +1602,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Use.SourceEntity.class, values);
     }
 
     /**
@@ -1643,7 +1630,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Use.SourceHuman.class, values);
     }
 
     /**
@@ -1671,7 +1658,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Use.SourceLiving.class, values);
     }
 
     /**
@@ -1699,7 +1686,7 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Use.SourcePlayer.class, values);
     }
 
     /**
@@ -1717,7 +1704,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(MoveBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(MoveBlockEvent.class, values);
     }
 
     /**
@@ -1741,7 +1728,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(MoveBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(MoveBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -1761,7 +1748,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.class, values);
     }
 
     /**
@@ -1781,7 +1768,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Burn.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Burn.class, values);
     }
 
     /**
@@ -1809,7 +1796,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Burn.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Burn.SourceBlock.class, values);
     }
 
     /**
@@ -1829,7 +1816,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Ignite.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Ignite.class, values);
     }
 
     /**
@@ -1857,7 +1844,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Ignite.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Ignite.SourceBlock.class, values);
     }
 
     /**
@@ -1877,7 +1864,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Power.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Power.class, values);
     }
 
     /**
@@ -1905,7 +1892,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Power.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Power.SourceBlock.class, values);
     }
 
     /**
@@ -1933,7 +1920,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -1955,7 +1942,7 @@ public final class SpongeEventFactory {
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
         values.put("spreadingBlock", spreadingBlock);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Spread.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Spread.class, values);
     }
 
     /**
@@ -1985,7 +1972,7 @@ public final class SpongeEventFactory {
         values.put("sourceSide", sourceSide);
         values.put("spreadingBlock", spreadingBlock);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Spread.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Spread.SourceBlock.class, values);
     }
 
     /**
@@ -2003,7 +1990,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlaceBlockEvent.class, values);
     }
 
     /**
@@ -2027,7 +2014,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlaceBlockEvent.SourceBlock.class, values);
     }
 
     /**
@@ -2049,7 +2036,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlaceBlockEvent.SourceEntity.class, values);
     }
 
     /**
@@ -2071,7 +2058,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlaceBlockEvent.SourceHuman.class, values);
     }
 
     /**
@@ -2093,7 +2080,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlaceBlockEvent.SourceLiving.class, values);
     }
 
     /**
@@ -2115,7 +2102,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlaceBlockEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -2149,7 +2136,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return SpongeEventFactory.createEventImpl(BrewingStandBrewItemsEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BrewingStandBrewItemsEvent.class, values);
     }
 
     /**
@@ -2175,7 +2162,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return SpongeEventFactory.createEventImpl(BrewingStandEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BrewingStandEvent.class, values);
     }
 
     /**
@@ -2195,7 +2182,7 @@ public final class SpongeEventFactory {
         values.put("originalText", originalText);
         values.put("targetTile", targetTile);
         values.put("text", text);
-        return SpongeEventFactory.createEventImpl(ChangeSignEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeSignEvent.class, values);
     }
 
     /**
@@ -2221,7 +2208,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetTile", targetTile);
         values.put("text", text);
-        return SpongeEventFactory.createEventImpl(ChangeSignEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeSignEvent.SourceEntity.class, values);
     }
 
     /**
@@ -2247,7 +2234,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetTile", targetTile);
         values.put("text", text);
-        return SpongeEventFactory.createEventImpl(ChangeSignEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeSignEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -2279,7 +2266,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return SpongeEventFactory.createEventImpl(FurnaceConsumeFuelEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FurnaceConsumeFuelEvent.class, values);
     }
 
     /**
@@ -2305,7 +2292,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return SpongeEventFactory.createEventImpl(FurnaceEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FurnaceEvent.class, values);
     }
 
     /**
@@ -2337,7 +2324,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return SpongeEventFactory.createEventImpl(FurnaceSmeltItemEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FurnaceSmeltItemEvent.class, values);
     }
 
     /**
@@ -2353,7 +2340,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetTile", targetTile);
-        return SpongeEventFactory.createEventImpl(TargetTileEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetTileEntityEvent.class, values);
     }
 
     /**
@@ -2377,7 +2364,7 @@ public final class SpongeEventFactory {
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return SpongeEventFactory.createEventImpl(TileEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TileEntityEvent.class, values);
     }
 
     /**
@@ -2393,7 +2380,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);
-        return SpongeEventFactory.createEventImpl(CommandSourceEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CommandSourceEvent.class, values);
     }
 
     /**
@@ -2415,7 +2402,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("result", result);
         values.put("source", source);
-        return SpongeEventFactory.createEventImpl(SendCommandEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(SendCommandEvent.class, values);
     }
 
     /**
@@ -2437,7 +2424,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("source", source);
         values.put("tabCompletions", tabCompletions);
-        return SpongeEventFactory.createEventImpl(TabCompleteCommandEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TabCompleteCommandEvent.class, values);
     }
 
     /**
@@ -2453,7 +2440,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetHolder", targetHolder);
-        return SpongeEventFactory.createEventImpl(ChangeDataHolderEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeDataHolderEvent.class, values);
     }
 
     /**
@@ -2473,7 +2460,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("originalChanges", originalChanges);
         values.put("targetHolder", targetHolder);
-        return SpongeEventFactory.createEventImpl(ChangeDataHolderEvent.ValueChange.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeDataHolderEvent.ValueChange.class, values);
     }
 
     /**
@@ -2493,7 +2480,7 @@ public final class SpongeEventFactory {
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(AffectEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(AffectEntityEvent.class, values);
     }
 
     /**
@@ -2515,7 +2502,7 @@ public final class SpongeEventFactory {
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(BreedEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreedEntityEvent.class, values);
     }
 
     /**
@@ -2541,7 +2528,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(BreedEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreedEntityEvent.SourceEntity.class, values);
     }
 
     /**
@@ -2565,7 +2552,7 @@ public final class SpongeEventFactory {
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.class, values);
     }
 
     /**
@@ -2589,7 +2576,7 @@ public final class SpongeEventFactory {
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetHuman.class, values);
     }
 
     /**
@@ -2613,7 +2600,7 @@ public final class SpongeEventFactory {
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.TargetLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetLiving.class, values);
     }
 
     /**
@@ -2637,7 +2624,7 @@ public final class SpongeEventFactory {
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -2661,7 +2648,7 @@ public final class SpongeEventFactory {
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityPotionEffectEvent.class, values);
     }
 
     /**
@@ -2685,7 +2672,7 @@ public final class SpongeEventFactory {
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.Expire.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityPotionEffectEvent.Expire.class, values);
     }
 
     /**
@@ -2709,7 +2696,7 @@ public final class SpongeEventFactory {
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.Gain.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityPotionEffectEvent.Gain.class, values);
     }
 
     /**
@@ -2733,7 +2720,7 @@ public final class SpongeEventFactory {
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.Remove.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityPotionEffectEvent.Remove.class, values);
     }
 
     /**
@@ -2753,7 +2740,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(CollideEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.class, values);
     }
 
     /**
@@ -2777,7 +2764,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.SourceEntity.class, values);
     }
 
     /**
@@ -2801,7 +2788,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.SourceHuman.class, values);
     }
 
     /**
@@ -2825,7 +2812,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.SourceLiving.class, values);
     }
 
     /**
@@ -2849,7 +2836,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -2869,7 +2856,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(CreateEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreateEntityEvent.class, values);
     }
 
     /**
@@ -2889,7 +2876,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(CreateEntityEvent.TargetItem.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreateEntityEvent.TargetItem.class, values);
     }
 
     /**
@@ -2923,7 +2910,7 @@ public final class SpongeEventFactory {
         values.put("originalFunctions", originalFunctions);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DamageEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DamageEntityEvent.class, values);
     }
 
     /**
@@ -2961,7 +2948,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DamageEntityEvent.SourceEntity.class, values);
     }
 
     /**
@@ -2999,7 +2986,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DamageEntityEvent.SourceHuman.class, values);
     }
 
     /**
@@ -3037,7 +3024,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DamageEntityEvent.SourceLiving.class, values);
     }
 
     /**
@@ -3075,7 +3062,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DamageEntityEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -3097,7 +3084,7 @@ public final class SpongeEventFactory {
         values.put("snapshot", snapshot);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DestructEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.class, values);
     }
 
     /**
@@ -3117,7 +3104,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DismountEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DismountEntityEvent.class, values);
     }
 
     /**
@@ -3141,7 +3128,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DismountEntityEvent.SourceEntity.class, values);
     }
 
     /**
@@ -3165,7 +3152,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DismountEntityEvent.SourceHuman.class, values);
     }
 
     /**
@@ -3189,7 +3176,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DismountEntityEvent.SourceLiving.class, values);
     }
 
     /**
@@ -3213,7 +3200,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DismountEntityEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -3235,7 +3222,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.class, values);
     }
 
     /**
@@ -3257,7 +3244,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.class, values);
     }
 
     /**
@@ -3279,7 +3266,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetHuman.class, values);
     }
 
     /**
@@ -3301,7 +3288,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.TargetLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetLiving.class, values);
     }
 
     /**
@@ -3323,7 +3310,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetPlayer.class, values);
     }
 
     /**
@@ -3345,7 +3332,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetHuman.class, values);
     }
 
     /**
@@ -3367,7 +3354,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.TargetLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetLiving.class, values);
     }
 
     /**
@@ -3389,7 +3376,7 @@ public final class SpongeEventFactory {
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -3417,7 +3404,7 @@ public final class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.class, values);
     }
 
     /**
@@ -3445,7 +3432,7 @@ public final class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetHuman.class, values);
     }
 
     /**
@@ -3473,7 +3460,7 @@ public final class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.TargetLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetLiving.class, values);
     }
 
     /**
@@ -3501,7 +3488,7 @@ public final class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetPlayer.class, values);
     }
 
     /**
@@ -3521,7 +3508,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(EntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(EntityEvent.class, values);
     }
 
     /**
@@ -3541,7 +3528,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(EntityPortalEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(EntityPortalEvent.class, values);
     }
 
     /**
@@ -3561,7 +3548,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(EntityPortalEvent.Enter.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(EntityPortalEvent.Enter.class, values);
     }
 
     /**
@@ -3581,7 +3568,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(EntityPortalEvent.Exit.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(EntityPortalEvent.Exit.class, values);
     }
 
     /**
@@ -3601,7 +3588,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ExpireEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ExpireEntityEvent.class, values);
     }
 
     /**
@@ -3621,7 +3608,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ExpireEntityEvent.TargetItem.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ExpireEntityEvent.TargetItem.class, values);
     }
 
     /**
@@ -3637,7 +3624,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("fishHook", fishHook);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(FishingEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.class, values);
     }
 
     /**
@@ -3653,7 +3640,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("fishHook", fishHook);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Cast.class, values);
     }
 
     /**
@@ -3675,7 +3662,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Cast.SourceEntity.class, values);
     }
 
     /**
@@ -3697,7 +3684,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Cast.SourceHuman.class, values);
     }
 
     /**
@@ -3719,7 +3706,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Cast.SourceLiving.class, values);
     }
 
     /**
@@ -3741,7 +3728,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Cast.SourcePlayer.class, values);
     }
 
     /**
@@ -3761,7 +3748,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Hook.class, values);
     }
 
     /**
@@ -3787,7 +3774,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Hook.SourceEntity.class, values);
     }
 
     /**
@@ -3813,7 +3800,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Hook.SourceHuman.class, values);
     }
 
     /**
@@ -3839,7 +3826,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Hook.SourceLiving.class, values);
     }
 
     /**
@@ -3865,7 +3852,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Hook.SourcePlayer.class, values);
     }
 
     /**
@@ -3885,7 +3872,7 @@ public final class SpongeEventFactory {
         values.put("caughtItem", caughtItem);
         values.put("fishHook", fishHook);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Retract.class, values);
     }
 
     /**
@@ -3911,7 +3898,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Retract.SourceEntity.class, values);
     }
 
     /**
@@ -3937,7 +3924,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Retract.SourceHuman.class, values);
     }
 
     /**
@@ -3963,7 +3950,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Retract.SourceLiving.class, values);
     }
 
     /**
@@ -3989,7 +3976,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Retract.SourcePlayer.class, values);
     }
 
     /**
@@ -4011,7 +3998,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.SourceEntity.class, values);
     }
 
     /**
@@ -4033,7 +4020,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.SourceHuman.class, values);
     }
 
     /**
@@ -4055,7 +4042,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.SourceLiving.class, values);
     }
 
     /**
@@ -4077,7 +4064,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(FishingEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -4101,7 +4088,7 @@ public final class SpongeEventFactory {
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestEntityEvent.class, values);
     }
 
     /**
@@ -4125,7 +4112,7 @@ public final class SpongeEventFactory {
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestEntityEvent.TargetHuman.class, values);
     }
 
     /**
@@ -4149,7 +4136,7 @@ public final class SpongeEventFactory {
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.TargetLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestEntityEvent.TargetLiving.class, values);
     }
 
     /**
@@ -4179,7 +4166,7 @@ public final class SpongeEventFactory {
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestEntityEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -4211,7 +4198,7 @@ public final class SpongeEventFactory {
         values.put("originalHealingAmounts", originalHealingAmounts);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(HealEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HealEntityEvent.class, values);
     }
 
     /**
@@ -4231,7 +4218,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(IgniteEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(IgniteEntityEvent.class, values);
     }
 
     /**
@@ -4253,7 +4240,7 @@ public final class SpongeEventFactory {
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.class, values);
     }
 
     /**
@@ -4279,7 +4266,7 @@ public final class SpongeEventFactory {
         values.put("originalFunctions", originalFunctions);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Attack.class, values);
     }
 
     /**
@@ -4309,7 +4296,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Attack.SourceEntity.class, values);
     }
 
     /**
@@ -4339,7 +4326,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Attack.SourceHuman.class, values);
     }
 
     /**
@@ -4369,7 +4356,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceLightning.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Attack.SourceLightning.class, values);
     }
 
     /**
@@ -4399,7 +4386,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Attack.SourceLiving.class, values);
     }
 
     /**
@@ -4429,7 +4416,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Attack.SourcePlayer.class, values);
     }
 
     /**
@@ -4457,7 +4444,7 @@ public final class SpongeEventFactory {
         values.put("sourceSide", sourceSide);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.SourceBlock.class, values);
     }
 
     /**
@@ -4483,7 +4470,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.SourceEntity.class, values);
     }
 
     /**
@@ -4509,7 +4496,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.SourceHuman.class, values);
     }
 
     /**
@@ -4535,7 +4522,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.SourceLiving.class, values);
     }
 
     /**
@@ -4561,7 +4548,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -4583,7 +4570,7 @@ public final class SpongeEventFactory {
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Use.class, values);
     }
 
     /**
@@ -4609,7 +4596,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Use.SourceEntity.class, values);
     }
 
     /**
@@ -4635,7 +4622,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Use.SourceHuman.class, values);
     }
 
     /**
@@ -4661,7 +4648,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Use.SourceLiving.class, values);
     }
 
     /**
@@ -4687,7 +4674,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Use.SourcePlayer.class, values);
     }
 
     /**
@@ -4705,7 +4692,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(LeashEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LeashEntityEvent.class, values);
     }
 
     /**
@@ -4725,7 +4712,7 @@ public final class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("vehicle", vehicle);
-        return SpongeEventFactory.createEventImpl(MountEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(MountEntityEvent.class, values);
     }
 
     /**
@@ -4745,7 +4732,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("location", location);
         values.put("targetType", targetType);
-        return SpongeEventFactory.createEventImpl(PreCreateEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PreCreateEntityEvent.class, values);
     }
 
     /**
@@ -4765,7 +4752,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.class, values);
     }
 
     /**
@@ -4791,7 +4778,7 @@ public final class SpongeEventFactory {
         values.put("sourceSide", sourceSide);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.SourceBlock.class, values);
     }
 
     /**
@@ -4813,7 +4800,7 @@ public final class SpongeEventFactory {
         values.put("sourceWorld", sourceWorld);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.SourceWorld.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.SourceWorld.class, values);
     }
 
     /**
@@ -4833,7 +4820,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.TargetLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.TargetLiving.class, values);
     }
 
     /**
@@ -4851,7 +4838,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TameEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TameEntityEvent.class, values);
     }
 
     /**
@@ -4875,7 +4862,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TameEntityEvent.SourceEntity.class, values);
     }
 
     /**
@@ -4899,7 +4886,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TameEntityEvent.SourceHuman.class, values);
     }
 
     /**
@@ -4923,7 +4910,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TameEntityEvent.SourceLiving.class, values);
     }
 
     /**
@@ -4947,7 +4934,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TameEntityEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -4965,7 +4952,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TargetEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetEntityEvent.class, values);
     }
 
     /**
@@ -4985,7 +4972,7 @@ public final class SpongeEventFactory {
         values.put("leashHolder", leashHolder);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(UnleashEntityEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.class, values);
     }
 
     /**
@@ -5005,7 +4992,7 @@ public final class SpongeEventFactory {
         values.put("itemToMerge", itemToMerge);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ItemMergeItemEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ItemMergeItemEvent.class, values);
     }
 
     /**
@@ -5023,7 +5010,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TargetItemEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetItemEvent.class, values);
     }
 
     /**
@@ -5043,7 +5030,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(LivingEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LivingEvent.class, values);
     }
 
     /**
@@ -5061,7 +5048,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TargetLivingEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetLivingEvent.class, values);
     }
 
     /**
@@ -5087,7 +5074,7 @@ public final class SpongeEventFactory {
         values.put("originalExperience", originalExperience);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(ChangeHumanExperienceEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeHumanExperienceEvent.class, values);
     }
 
     /**
@@ -5117,7 +5104,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeHumanExperienceEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeHumanExperienceEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -5141,7 +5128,7 @@ public final class SpongeEventFactory {
         values.put("oldGameMode", oldGameMode);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeHumanGameModeEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeHumanGameModeEvent.class, values);
     }
 
     /**
@@ -5165,7 +5152,7 @@ public final class SpongeEventFactory {
         values.put("oldGameMode", oldGameMode);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeHumanGameModeEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeHumanGameModeEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -5187,7 +5174,7 @@ public final class SpongeEventFactory {
         values.put("newLevel", newLevel);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeHumanLevelEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeHumanLevelEvent.class, values);
     }
 
     /**
@@ -5209,7 +5196,7 @@ public final class SpongeEventFactory {
         values.put("newLevel", newLevel);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(ChangeHumanLevelEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeHumanLevelEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -5229,7 +5216,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(HumanEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanEvent.class, values);
     }
 
     /**
@@ -5251,7 +5238,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.class, values);
     }
 
     /**
@@ -5273,7 +5260,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.Enter.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.Enter.class, values);
     }
 
     /**
@@ -5295,7 +5282,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -5317,7 +5304,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.Enter.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.SourcePlayer.Enter.class, values);
     }
 
     /**
@@ -5343,7 +5330,7 @@ public final class SpongeEventFactory {
         values.put("ignoredPlayers", ignoredPlayers);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.StartSleeping.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.SourcePlayer.StartSleeping.class, values);
     }
 
     /**
@@ -5367,7 +5354,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("spawnTransform", spawnTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.StopSleeping.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.SourcePlayer.StopSleeping.class, values);
     }
 
     /**
@@ -5393,7 +5380,7 @@ public final class SpongeEventFactory {
         values.put("ignoredPlayers", ignoredPlayers);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.StartSleeping.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.StartSleeping.class, values);
     }
 
     /**
@@ -5417,7 +5404,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("spawnTransform", spawnTransform);
-        return SpongeEventFactory.createEventImpl(HumanSleepEvent.StopSleeping.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HumanSleepEvent.StopSleeping.class, values);
     }
 
     /**
@@ -5435,7 +5422,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TargetHumanEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetHumanEvent.class, values);
     }
 
     /**
@@ -5461,7 +5448,7 @@ public final class SpongeEventFactory {
         values.put("oldValue", oldValue);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PlayerChangeStatisticEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerChangeStatisticEvent.class, values);
     }
 
     /**
@@ -5491,7 +5478,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("unformattedMessage", unformattedMessage);
-        return SpongeEventFactory.createEventImpl(PlayerChatEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerChatEvent.class, values);
     }
 
     /**
@@ -5507,7 +5494,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("connection", connection);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(PlayerConnectionEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerConnectionEvent.class, values);
     }
 
     /**
@@ -5525,7 +5512,7 @@ public final class SpongeEventFactory {
         values.put("channelRegistered", channelRegistered);
         values.put("connection", connection);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(PlayerConnectionRegisterChannelEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerConnectionRegisterChannelEvent.class, values);
     }
 
     /**
@@ -5543,7 +5530,7 @@ public final class SpongeEventFactory {
         values.put("channelUnregistered", channelUnregistered);
         values.put("connection", connection);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(PlayerConnectionUnregisterChannelEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerConnectionUnregisterChannelEvent.class, values);
     }
 
     /**
@@ -5563,7 +5550,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PlayerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerEvent.class, values);
     }
 
     /**
@@ -5585,7 +5572,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PlayerGainAchievementEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerGainAchievementEvent.class, values);
     }
 
     /**
@@ -5613,7 +5600,7 @@ public final class SpongeEventFactory {
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PlayerJoinEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerJoinEvent.class, values);
     }
 
     /**
@@ -5641,7 +5628,7 @@ public final class SpongeEventFactory {
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PlayerKickEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerKickEvent.class, values);
     }
 
     /**
@@ -5669,7 +5656,7 @@ public final class SpongeEventFactory {
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PlayerMessageEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerMessageEvent.class, values);
     }
 
     /**
@@ -5697,7 +5684,7 @@ public final class SpongeEventFactory {
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PlayerQuitEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerQuitEvent.class, values);
     }
 
     /**
@@ -5721,7 +5708,7 @@ public final class SpongeEventFactory {
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("status", status);
-        return SpongeEventFactory.createEventImpl(PlayerResourcePackStatusEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerResourcePackStatusEvent.class, values);
     }
 
     /**
@@ -5743,7 +5730,7 @@ public final class SpongeEventFactory {
         values.put("originTransform", originTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(RespawnPlayerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(RespawnPlayerEvent.class, values);
     }
 
     /**
@@ -5761,7 +5748,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TargetPlayerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetPlayerEvent.class, values);
     }
 
     /**
@@ -5783,7 +5770,7 @@ public final class SpongeEventFactory {
         values.put("source", source);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LaunchProjectileEvent.class, values);
     }
 
     /**
@@ -5809,7 +5796,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LaunchProjectileEvent.SourceEntity.class, values);
     }
 
     /**
@@ -5835,7 +5822,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LaunchProjectileEvent.SourceHuman.class, values);
     }
 
     /**
@@ -5861,7 +5848,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LaunchProjectileEvent.SourceLiving.class, values);
     }
 
     /**
@@ -5887,7 +5874,7 @@ public final class SpongeEventFactory {
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LaunchProjectileEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -5905,7 +5892,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactory.createEventImpl(TargetProjectileEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetProjectileEvent.class, values);
     }
 
     /**
@@ -5919,7 +5906,7 @@ public final class SpongeEventFactory {
     public static GameAboutToStartServerEvent createGameAboutToStartServerEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameAboutToStartServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameAboutToStartServerEvent.class, values);
     }
 
     /**
@@ -5933,7 +5920,7 @@ public final class SpongeEventFactory {
     public static GameConstructionEvent createGameConstructionEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameConstructionEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameConstructionEvent.class, values);
     }
 
     /**
@@ -5947,7 +5934,7 @@ public final class SpongeEventFactory {
     public static GameInitializationEvent createGameInitializationEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameInitializationEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameInitializationEvent.class, values);
     }
 
     /**
@@ -5961,7 +5948,7 @@ public final class SpongeEventFactory {
     public static GameLoadCompleteEvent createGameLoadCompleteEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameLoadCompleteEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameLoadCompleteEvent.class, values);
     }
 
     /**
@@ -5975,7 +5962,7 @@ public final class SpongeEventFactory {
     public static GamePostInitializationEvent createGamePostInitializationEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GamePostInitializationEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GamePostInitializationEvent.class, values);
     }
 
     /**
@@ -5989,7 +5976,7 @@ public final class SpongeEventFactory {
     public static GamePreInitializationEvent createGamePreInitializationEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GamePreInitializationEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GamePreInitializationEvent.class, values);
     }
 
     /**
@@ -6003,7 +5990,7 @@ public final class SpongeEventFactory {
     public static GameStartedServerEvent createGameStartedServerEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameStartedServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameStartedServerEvent.class, values);
     }
 
     /**
@@ -6017,7 +6004,7 @@ public final class SpongeEventFactory {
     public static GameStartingServerEvent createGameStartingServerEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameStartingServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameStartingServerEvent.class, values);
     }
 
     /**
@@ -6031,7 +6018,7 @@ public final class SpongeEventFactory {
     public static GameStateEvent createGameStateEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameStateEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameStateEvent.class, values);
     }
 
     /**
@@ -6045,7 +6032,7 @@ public final class SpongeEventFactory {
     public static GameStoppedServerEvent createGameStoppedServerEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameStoppedServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameStoppedServerEvent.class, values);
     }
 
     /**
@@ -6059,7 +6046,7 @@ public final class SpongeEventFactory {
     public static GameStoppingServerEvent createGameStoppingServerEvent(Game game) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(GameStoppingServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameStoppingServerEvent.class, values);
     }
 
     /**
@@ -6085,7 +6072,7 @@ public final class SpongeEventFactory {
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return SpongeEventFactory.createEventImpl(BlockBrewEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BlockBrewEvent.class, values);
     }
 
     /**
@@ -6109,7 +6096,7 @@ public final class SpongeEventFactory {
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return SpongeEventFactory.createEventImpl(BlockInventoryEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BlockInventoryEvent.class, values);
     }
 
     /**
@@ -6127,7 +6114,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("results", results);
-        return SpongeEventFactory.createEventImpl(BulkItemResultEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BulkItemResultEvent.class, values);
     }
 
     /**
@@ -6143,7 +6130,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("container", container);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(ContainerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ContainerEvent.class, values);
     }
 
     /**
@@ -6159,7 +6146,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.class, values);
     }
 
     /**
@@ -6179,7 +6166,7 @@ public final class SpongeEventFactory {
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Post.class, values);
     }
 
     /**
@@ -6205,7 +6192,7 @@ public final class SpongeEventFactory {
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Post.SourceBlock.class, values);
     }
 
     /**
@@ -6229,7 +6216,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Post.SourceEntity.class, values);
     }
 
     /**
@@ -6253,7 +6240,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Post.SourceHuman.class, values);
     }
 
     /**
@@ -6277,7 +6264,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Post.SourceLiving.class, values);
     }
 
     /**
@@ -6301,7 +6288,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Post.SourcePlayer.class, values);
     }
 
     /**
@@ -6321,7 +6308,7 @@ public final class SpongeEventFactory {
         values.put("defaultDroppedItems", defaultDroppedItems);
         values.put("droppedItems", droppedItems);
         values.put("game", game);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Pre.class, values);
     }
 
     /**
@@ -6347,7 +6334,7 @@ public final class SpongeEventFactory {
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Pre.SourceBlock.class, values);
     }
 
     /**
@@ -6371,7 +6358,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Pre.SourceEntity.class, values);
     }
 
     /**
@@ -6395,7 +6382,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Pre.SourceHuman.class, values);
     }
 
     /**
@@ -6419,7 +6406,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Pre.SourceLiving.class, values);
     }
 
     /**
@@ -6443,7 +6430,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Pre.SourcePlayer.class, values);
     }
 
     /**
@@ -6465,7 +6452,7 @@ public final class SpongeEventFactory {
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.SourceBlock.class, values);
     }
 
     /**
@@ -6485,7 +6472,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.SourceEntity.class, values);
     }
 
     /**
@@ -6505,7 +6492,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.SourceHuman.class, values);
     }
 
     /**
@@ -6525,7 +6512,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.SourceLiving.class, values);
     }
 
     /**
@@ -6545,7 +6532,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -6563,7 +6550,7 @@ public final class SpongeEventFactory {
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return SpongeEventFactory.createEventImpl(InventoryClickEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InventoryClickEvent.class, values);
     }
 
     /**
@@ -6581,7 +6568,7 @@ public final class SpongeEventFactory {
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return SpongeEventFactory.createEventImpl(InventoryCloseEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InventoryCloseEvent.class, values);
     }
 
     /**
@@ -6597,7 +6584,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
-        return SpongeEventFactory.createEventImpl(InventoryEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InventoryEvent.class, values);
     }
 
     /**
@@ -6615,7 +6602,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("result", result);
-        return SpongeEventFactory.createEventImpl(ItemResultEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ItemResultEvent.class, values);
     }
 
     /**
@@ -6633,7 +6620,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("items", items);
-        return SpongeEventFactory.createEventImpl(PickUpItemEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PickUpItemEvent.class, values);
     }
 
     /**
@@ -6659,7 +6646,7 @@ public final class SpongeEventFactory {
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceBlock.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PickUpItemEvent.SourceBlock.class, values);
     }
 
     /**
@@ -6683,7 +6670,7 @@ public final class SpongeEventFactory {
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PickUpItemEvent.SourceEntity.class, values);
     }
 
     /**
@@ -6707,7 +6694,7 @@ public final class SpongeEventFactory {
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PickUpItemEvent.SourceHuman.class, values);
     }
 
     /**
@@ -6731,7 +6718,7 @@ public final class SpongeEventFactory {
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PickUpItemEvent.SourceLiving.class, values);
     }
 
     /**
@@ -6755,7 +6742,7 @@ public final class SpongeEventFactory {
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PickUpItemEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -6773,7 +6760,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.class, values);
     }
 
     /**
@@ -6791,7 +6778,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.class, values);
     }
 
     /**
@@ -6813,7 +6800,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.class, values);
     }
 
     /**
@@ -6835,7 +6822,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Finish.class, values);
     }
 
     /**
@@ -6857,7 +6844,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Start.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Start.class, values);
     }
 
     /**
@@ -6879,7 +6866,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Stop.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Stop.class, values);
     }
 
     /**
@@ -6901,7 +6888,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Tick.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Tick.class, values);
     }
 
     /**
@@ -6923,7 +6910,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.class, values);
     }
 
     /**
@@ -6945,7 +6932,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Finish.class, values);
     }
 
     /**
@@ -6967,7 +6954,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Start.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Start.class, values);
     }
 
     /**
@@ -6989,7 +6976,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Stop.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Stop.class, values);
     }
 
     /**
@@ -7011,7 +6998,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Tick.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Tick.class, values);
     }
 
     /**
@@ -7033,7 +7020,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.class, values);
     }
 
     /**
@@ -7055,7 +7042,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Finish.class, values);
     }
 
     /**
@@ -7077,7 +7064,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Start.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Start.class, values);
     }
 
     /**
@@ -7099,7 +7086,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Stop.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Stop.class, values);
     }
 
     /**
@@ -7121,7 +7108,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Tick.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Tick.class, values);
     }
 
     /**
@@ -7143,7 +7130,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -7165,7 +7152,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Finish.class, values);
     }
 
     /**
@@ -7187,7 +7174,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Start.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Start.class, values);
     }
 
     /**
@@ -7209,7 +7196,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Stop.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Stop.class, values);
     }
 
     /**
@@ -7231,7 +7218,7 @@ public final class SpongeEventFactory {
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Tick.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Tick.class, values);
     }
 
     /**
@@ -7249,7 +7236,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Start.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Start.class, values);
     }
 
     /**
@@ -7267,7 +7254,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Stop.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Stop.class, values);
     }
 
     /**
@@ -7285,7 +7272,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Tick.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.class, values);
     }
 
     /**
@@ -7311,7 +7298,7 @@ public final class SpongeEventFactory {
         values.put("resultTypes", resultTypes);
         values.put("results", results);
         values.put("viewer", viewer);
-        return SpongeEventFactory.createEventImpl(ViewerCraftItemEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ViewerCraftItemEvent.class, values);
     }
 
     /**
@@ -7329,7 +7316,7 @@ public final class SpongeEventFactory {
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return SpongeEventFactory.createEventImpl(ViewerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ViewerEvent.class, values);
     }
 
     /**
@@ -7347,7 +7334,7 @@ public final class SpongeEventFactory {
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return SpongeEventFactory.createEventImpl(ViewerOpenContainerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ViewerOpenContainerEvent.class, values);
     }
 
     /**
@@ -7361,7 +7348,7 @@ public final class SpongeEventFactory {
     public static BanIpEvent createBanIpEvent(Ban.Ip ban) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
-        return SpongeEventFactory.createEventImpl(BanIpEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BanIpEvent.class, values);
     }
 
     /**
@@ -7383,7 +7370,7 @@ public final class SpongeEventFactory {
         values.put("disconnectMessage", disconnectMessage);
         values.put("game", game);
         values.put("profile", profile);
-        return SpongeEventFactory.createEventImpl(GameClientConnectionEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameClientConnectionEvent.class, values);
     }
 
     /**
@@ -7405,7 +7392,7 @@ public final class SpongeEventFactory {
         values.put("disconnectMessage", disconnectMessage);
         values.put("game", game);
         values.put("profile", profile);
-        return SpongeEventFactory.createEventImpl(GameClientConnectionEvent.Authenticate.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameClientConnectionEvent.Authenticate.class, values);
     }
 
     /**
@@ -7427,7 +7414,7 @@ public final class SpongeEventFactory {
         values.put("disconnectMessage", disconnectMessage);
         values.put("game", game);
         values.put("profile", profile);
-        return SpongeEventFactory.createEventImpl(GameClientConnectionEvent.Login.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(GameClientConnectionEvent.Login.class, values);
     }
 
     /**
@@ -7441,7 +7428,7 @@ public final class SpongeEventFactory {
     public static PardonIpEvent createPardonIpEvent(Ban.Ip ban) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
-        return SpongeEventFactory.createEventImpl(PardonIpEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PardonIpEvent.class, values);
     }
 
     /**
@@ -7457,7 +7444,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("plugin", plugin);
-        return SpongeEventFactory.createEventImpl(PluginEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PluginEvent.class, values);
     }
 
     /**
@@ -7479,7 +7466,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("plugin", plugin);
         values.put("ticket", ticket);
-        return SpongeEventFactory.createEventImpl(PluginForceChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PluginForceChunkEvent.class, values);
     }
 
     /**
@@ -7501,7 +7488,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("ticket", ticket);
-        return SpongeEventFactory.createEventImpl(PluginUnforceChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PluginUnforceChunkEvent.class, values);
     }
 
     /**
@@ -7515,7 +7502,7 @@ public final class SpongeEventFactory {
     public static RconEvent createRconEvent(RconSource source) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("source", source);
-        return SpongeEventFactory.createEventImpl(RconEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(RconEvent.class, values);
     }
 
     /**
@@ -7529,7 +7516,7 @@ public final class SpongeEventFactory {
     public static RconLoginEvent createRconLoginEvent(RconSource source) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("source", source);
-        return SpongeEventFactory.createEventImpl(RconLoginEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(RconLoginEvent.class, values);
     }
 
     /**
@@ -7543,7 +7530,7 @@ public final class SpongeEventFactory {
     public static RconQuitEvent createRconQuitEvent(RconSource source) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("source", source);
-        return SpongeEventFactory.createEventImpl(RconQuitEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(RconQuitEvent.class, values);
     }
 
     /**
@@ -7563,7 +7550,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("response", response);
         values.put("server", server);
-        return SpongeEventFactory.createEventImpl(PingServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PingServerEvent.class, values);
     }
 
     /**
@@ -7583,7 +7570,7 @@ public final class SpongeEventFactory {
         values.put("favicon", favicon);
         values.put("players", players);
         values.put("version", version);
-        return SpongeEventFactory.createEventImpl(PingServerEvent.Response.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PingServerEvent.Response.class, values);
     }
 
     /**
@@ -7601,7 +7588,7 @@ public final class SpongeEventFactory {
         values.put("max", max);
         values.put("online", online);
         values.put("profiles", profiles);
-        return SpongeEventFactory.createEventImpl(PingServerEvent.Response.Players.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PingServerEvent.Response.Players.class, values);
     }
 
     /**
@@ -7623,7 +7610,7 @@ public final class SpongeEventFactory {
         values.put("server", server);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
-        return SpongeEventFactory.createEventImpl(ServerCreateWorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ServerCreateWorldEvent.class, values);
     }
 
     /**
@@ -7639,7 +7626,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("server", server);
-        return SpongeEventFactory.createEventImpl(ServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ServerEvent.class, values);
     }
 
     /**
@@ -7667,7 +7654,7 @@ public final class SpongeEventFactory {
         values.put("motd", motd);
         values.put("playerCount", playerCount);
         values.put("size", size);
-        return SpongeEventFactory.createEventImpl(BasicQueryServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BasicQueryServerEvent.class, values);
     }
 
     /**
@@ -7705,7 +7692,7 @@ public final class SpongeEventFactory {
         values.put("plugins", plugins);
         values.put("size", size);
         values.put("version", version);
-        return SpongeEventFactory.createEventImpl(FullQueryServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FullQueryServerEvent.class, values);
     }
 
     /**
@@ -7733,7 +7720,7 @@ public final class SpongeEventFactory {
         values.put("motd", motd);
         values.put("playerCount", playerCount);
         values.put("size", size);
-        return SpongeEventFactory.createEventImpl(QueryServerEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(QueryServerEvent.class, values);
     }
 
     /**
@@ -7749,7 +7736,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
         values.put("targetUser", targetUser);
-        return SpongeEventFactory.createEventImpl(BanUserEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BanUserEvent.class, values);
     }
 
     /**
@@ -7771,7 +7758,7 @@ public final class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("targetUser", targetUser);
-        return SpongeEventFactory.createEventImpl(BanUserEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BanUserEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -7787,7 +7774,7 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
         values.put("targetUser", targetUser);
-        return SpongeEventFactory.createEventImpl(PardonUserEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PardonUserEvent.class, values);
     }
 
     /**
@@ -7809,7 +7796,7 @@ public final class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("targetUser", targetUser);
-        return SpongeEventFactory.createEventImpl(PardonUserEvent.TargetPlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PardonUserEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -7823,7 +7810,7 @@ public final class SpongeEventFactory {
     public static TargetUserEvent createTargetUserEvent(User targetUser) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("targetUser", targetUser);
-        return SpongeEventFactory.createEventImpl(TargetUserEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetUserEvent.class, values);
     }
 
     /**
@@ -7845,7 +7832,7 @@ public final class SpongeEventFactory {
         values.put("newValue", newValue);
         values.put("oldValue", oldValue);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactory.createEventImpl(ChangeWorldGameRuleEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeWorldGameRuleEvent.class, values);
     }
 
     /**
@@ -7869,7 +7856,7 @@ public final class SpongeEventFactory {
         values.put("initialWeather", initialWeather);
         values.put("resultingWeather", resultingWeather);
         values.put("world", world);
-        return SpongeEventFactory.createEventImpl(ChangeWorldWeatherEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeWorldWeatherEvent.class, values);
     }
 
     /**
@@ -7887,7 +7874,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
-        return SpongeEventFactory.createEventImpl(CreatePortalEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.class, values);
     }
 
     /**
@@ -7909,7 +7896,7 @@ public final class SpongeEventFactory {
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourceEntity.class, values);
     }
 
     /**
@@ -7931,7 +7918,7 @@ public final class SpongeEventFactory {
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourceHuman.class, values);
     }
 
     /**
@@ -7953,7 +7940,7 @@ public final class SpongeEventFactory {
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourceLiving.class, values);
     }
 
     /**
@@ -7975,7 +7962,7 @@ public final class SpongeEventFactory {
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -7995,7 +7982,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
-        return SpongeEventFactory.createEventImpl(CreateWorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(CreateWorldEvent.class, values);
     }
 
     /**
@@ -8013,7 +8000,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactory.createEventImpl(LoadWorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.class, values);
     }
 
     /**
@@ -8033,7 +8020,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("plugin", plugin);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactory.createEventImpl(LoadWorldEvent.SourcePlugin.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.SourcePlugin.class, values);
     }
 
     /**
@@ -8053,7 +8040,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("server", server);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactory.createEventImpl(LoadWorldEvent.SourceServer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.SourceServer.class, values);
     }
 
     /**
@@ -8071,7 +8058,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactory.createEventImpl(UnloadWorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UnloadWorldEvent.class, values);
     }
 
     /**
@@ -8091,7 +8078,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("plugin", plugin);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactory.createEventImpl(UnloadWorldEvent.SourcePlugin.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UnloadWorldEvent.SourcePlugin.class, values);
     }
 
     /**
@@ -8111,7 +8098,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("server", server);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactory.createEventImpl(UnloadWorldEvent.SourceServer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UnloadWorldEvent.SourceServer.class, values);
     }
 
     /**
@@ -8129,7 +8116,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
-        return SpongeEventFactory.createEventImpl(WorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldEvent.class, values);
     }
 
     /**
@@ -8151,7 +8138,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(WorldExplosionEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldExplosionEvent.class, values);
     }
 
     /**
@@ -8177,7 +8164,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(WorldExplosionEvent.Detonate.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldExplosionEvent.Detonate.class, values);
     }
 
     /**
@@ -8199,7 +8186,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return SpongeEventFactory.createEventImpl(WorldExplosionEvent.Pre.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldExplosionEvent.Pre.class, values);
     }
 
     /**
@@ -8217,7 +8204,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(WorldGenerateChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldGenerateChunkEvent.class, values);
     }
 
     /**
@@ -8235,7 +8222,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(WorldGenerateChunkEvent.Post.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldGenerateChunkEvent.Post.class, values);
     }
 
     /**
@@ -8253,7 +8240,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(WorldGenerateChunkEvent.Pre.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldGenerateChunkEvent.Pre.class, values);
     }
 
     /**
@@ -8275,7 +8262,7 @@ public final class SpongeEventFactory {
         values.put("sourceWorld", sourceWorld);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return SpongeEventFactory.createEventImpl(WorldTickBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(WorldTickBlockEvent.class, values);
     }
 
     /**
@@ -8293,7 +8280,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(ChangeChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeChunkEvent.class, values);
     }
 
     /**
@@ -8313,7 +8300,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(ChangeChunkEvent.SourceWorld.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeChunkEvent.SourceWorld.class, values);
     }
 
     /**
@@ -8335,7 +8322,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetChunk", targetChunk);
         values.put("ticket", ticket);
-        return SpongeEventFactory.createEventImpl(ForcedChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ForcedChunkEvent.class, values);
     }
 
     /**
@@ -8353,7 +8340,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(LoadChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LoadChunkEvent.class, values);
     }
 
     /**
@@ -8373,7 +8360,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(LoadChunkEvent.SourceWorld.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(LoadChunkEvent.SourceWorld.class, values);
     }
 
     /**
@@ -8393,7 +8380,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.class, values);
     }
 
     /**
@@ -8413,7 +8400,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.Populate.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.Populate.class, values);
     }
 
     /**
@@ -8433,7 +8420,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.Post.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.Post.class, values);
     }
 
     /**
@@ -8455,7 +8442,7 @@ public final class SpongeEventFactory {
         values.put("pendingPopulators", pendingPopulators);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.Pre.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.Pre.class, values);
     }
 
     /**
@@ -8475,7 +8462,7 @@ public final class SpongeEventFactory {
         values.put("chunkCoords", chunkCoords);
         values.put("game", game);
         values.put("ticket", ticket);
-        return SpongeEventFactory.createEventImpl(UnforcedChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UnforcedChunkEvent.class, values);
     }
 
     /**
@@ -8493,7 +8480,7 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(UnloadChunkEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UnloadChunkEvent.class, values);
     }
 
     /**
@@ -8513,7 +8500,7 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return SpongeEventFactory.createEventImpl(UnloadChunkEvent.SourceWorld.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UnloadChunkEvent.SourceWorld.class, values);
     }
 }
 

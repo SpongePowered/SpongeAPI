@@ -74,5 +74,5 @@ genEventImpl {
     outputDir = "src/main/java/"
     outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
     validateCode = true
-    eventImplCreateMethod = "createEventImpl"
+    eventImplCreateMethod = "org.spongepowered.api.event.SpongeEventFactoryUtils.createEventImpl"
 }
